@@ -1,0 +1,302 @@
+# Bytes test cases (compile and run)
+
+[case testBytesBasics]
+# Note: Add tests for additional operations to testBytesOps or in a new test case
+
+def f(x: bytes) -> bytes:
+    return x
+
+def eq(a: bytes, b: bytes) -> bool:
+    return a == b
+
+def neq(a: bytes, b: bytes) -> bool:
+    return a != b
+[file driver.py]
+from native import f, eq, neq
+assert f(b'123') == b'123'
+assert f(b'\x07 \x0b " \t \x7f \xf0') == b'\x07 \x0b " \t \x7f \xf0'
+assert eq(b'123', b'123')
+assert not eq(b'123', b'1234')
+assert not eq(b'123', b'124')
+assert not eq(b'123', b'223')
+assert neq(b'123', b'1234')
+try:
+    f('x')
+    assert False
+except TypeError:
+    pass
+
+[case testBytesInit]
+def test_bytes_init() -> None:
+    b1 = bytes([5])
+    assert b1 == b'\x05'
+    b2 = bytes([5, 10, 12])
+    assert b2 == b'\x05\n\x0c'
+    b3 = bytes(bytearray(b'foo'))
+    assert b3 == b'foo'
+    b4 = bytes(b'aaa')
+    assert b4 == b'aaa'
+    b5 = bytes(5)
+    assert b5 == b'\x00\x00\x00\x00\x00'
+    try:
+        bytes('x')
+        assert False
+    except TypeError:
+        pass
+
+[case testBytesOps]
+from testutil import assertRaises
+
+def test_indexing() -> None:
+    # Use bytes() to avoid constant folding
+    b = b'asdf' + bytes()
+    assert b[0] == 97
+    assert b[1] == 115
+    assert b[3] == 102
+    assert b[-1] == 102
+    b = b'\xae\x80\xfe\x15' + bytes()
+    assert b[0] == 174
+    assert b[1] == 128
+    assert b[2] == 254
+    assert b[3] == 21
+    assert b[-4] == 174
+    with assertRaises(IndexError, "index out of range"):
+        b[4]
+    with assertRaises(IndexError, "index out of range"):
+        b[-5]
+    with assertRaises(IndexError, "index out of range"):
+        b[2**26]
+
+def test_concat() -> None:
+    b1 = b'123' + bytes()
+    b2 = b'456' + bytes()
+    assert b1 + b2 == b'123456'
+    b3 = b1 + b2
+    b3 = b3 + b1
+    assert b3 == b'123456123'
+    assert b1 == b'123'
+    assert b2 == b'456'
+    assert type(b1) == bytes
+    assert type(b2) == bytes
+    assert type(b3) == bytes
+    brr1: bytes = bytearray(3)
+    brr2: bytes = bytearray(range(5))
+    b4 = b1 + brr1
+    assert b4 == b'123\x00\x00\x00'
+    assert type(brr1) == bytearray
+    assert type(b4) == bytes
+    brr3 = brr1 + brr2
+    assert brr3 == bytearray(b'\x00\x00\x00\x00\x01\x02\x03\x04')
+    assert len(brr3) == 8
+    assert type(brr3) == bytearray
+    brr3 = brr3 + bytearray([10])
+    assert brr3 == bytearray(b'\x00\x00\x00\x00\x01\x02\x03\x04\n')
+    b5 = brr2 + b2
+    assert b5 == bytearray(b'\x00\x01\x02\x03\x04456')
+    assert type(b5) == bytearray
+    b5 = b2 + brr2
+    assert b5 == b'456\x00\x01\x02\x03\x04'
+    assert type(b5) == bytes
+
+def test_join() -> None:
+    seq = (b'1', b'"', b'\xf0')
+    assert b'\x07'.join(seq) == b'1\x07"\x07\xf0'
+    assert b', '.join(()) == b''
+    assert b', '.join([bytes() + b'ab']) == b'ab'
+    assert b', '.join([bytes() + b'ab', b'cd']) == b'ab, cd'
+
+def test_len() -> None:
+    # Use bytes() to avoid constant folding
+    b = b'foo' + bytes()
+    assert len(b) == 3
+    assert len(bytes()) == 0
+
+[case testBytesSlicing]
+def test_bytes_slicing() -> None:
+    b = b'abcdefg'
+    zero = int()
+    ten = 10 + zero
+    two = 2 + zero
+    five = 5 + zero
+    seven = 7 + zero
+    assert b[:ten] == b'abcdefg'
+    assert b[0:seven] == b'abcdefg'
+    assert b[0:(len(b)+1)] == b'abcdefg'
+    assert b[two:five] == b'cde'
+    assert b[two:two] == b''
+    assert b[-two:-two] == b''
+    assert b[-ten:(-ten+1)] == b''
+    assert b[:-two] == b'abcde'
+    assert b[:two] == b'ab'
+    assert b[:] == b'abcdefg'
+    assert b[-two:] == b'fg'
+    assert b[zero:] == b'abcdefg'
+    assert b[:zero] == b''
+    assert b[-ten:] == b'abcdefg'
+    assert b[-ten:ten] == b'abcdefg'
+    big_ints = [1000 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000, 2**24, 2**63]
+    for big_int in big_ints:
+        assert b[1:big_int] == b'bcdefg'
+        assert b[big_int:] == b''
+        assert b[-big_int:-1] == b'abcdef'
+        assert b[-big_int:big_int] == b'abcdefg'
+        assert type(b[-big_int:-1]) == bytes
+    assert type(b[-ten:]) == bytes
+    assert type(b[:]) == bytes
+
+[case testBytearrayBasics]
+from typing import Any
+
+def test_basics() -> None:
+    brr1: bytes = bytearray(3)
+    assert brr1 == bytearray(b'\x00\x00\x00')
+    assert brr1 == b'\x00\x00\x00'
+    l = [10, 20, 30, 40]
+    brr2: bytes = bytearray(l)
+    assert brr2 == bytearray(b'\n\x14\x1e(')
+    assert brr2 == b'\n\x14\x1e('
+    brr3: bytes = bytearray(range(5))
+    assert brr3 == bytearray(b'\x00\x01\x02\x03\x04')
+    assert brr3 == b'\x00\x01\x02\x03\x04'
+    brr4: bytes = bytearray('string', 'utf-8')
+    assert brr4 == bytearray(b'string')
+    assert brr4 == b'string'
+    assert len(brr1) == 3
+    assert len(brr2) == 4
+
+def f(b: bytes) -> bool:
+    return True
+
+def test_bytearray_passed_into_bytes() -> None:
+    assert f(bytearray(3))
+    brr1: Any = bytearray()
+    assert f(brr1)
+
+[case testBytearraySlicing]
+def test_bytearray_slicing() -> None:
+    b: bytes = bytearray(b'abcdefg')
+    zero = int()
+    ten = 10 + zero
+    two = 2 + zero
+    five = 5 + zero
+    seven = 7 + zero
+    assert b[:ten] == b'abcdefg'
+    assert b[0:seven] == b'abcdefg'
+    assert b[two:five] == b'cde'
+    assert b[two:two] == b''
+    assert b[-two:-two] == b''
+    assert b[-ten:(-ten+1)] == b''
+    assert b[:-two] == b'abcde'
+    assert b[:two] == b'ab'
+    assert b[:] == b'abcdefg'
+    assert b[-two:] == b'fg'
+    assert b[zero:] == b'abcdefg'
+    assert b[:zero] == b''
+    assert b[-ten:] == b'abcdefg'
+    assert b[-ten:ten] == b'abcdefg'
+    big_ints = [1000 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000, 2**24, 2**63]
+    for big_int in big_ints:
+        assert b[1:big_int] == b'bcdefg'
+        assert b[big_int:] == b''
+        assert b[-big_int:-1] == b'abcdef'
+        assert b[-big_int:big_int] == b'abcdefg'
+        assert type(b[-big_int:-1]) == bytearray
+    assert type(b[-ten:]) == bytearray
+    assert type(b[:]) == bytearray
+
+[case testBytearrayIndexing]
+from testutil import assertRaises
+
+def test_bytearray_indexing() -> None:
+    b: bytes = bytearray(b'\xae\x80\xfe\x15')
+    assert b[0] == 174
+    assert b[1] == 128
+    assert b[2] == 254
+    assert b[3] == 21
+    assert b[-4] == 174
+    with assertRaises(IndexError, "index out of range"):
+        b[4]
+    with assertRaises(IndexError, "index out of range"):
+        b[-5]
+    b2 = bytearray([175, 255, 128, 22])
+    assert b2[0] == 175
+    assert b2[1] == 255
+    assert b2[-1] == 22
+    assert b2[2] == 128
+    with assertRaises(ValueError, "byte must be in range(0, 256)"):
+        b2[0] = -1
+    with assertRaises(ValueError, "byte must be in range(0, 256)"):
+        b2[0] = 256
+
+[case testBytesJoin]
+from typing import Any
+from testutil import assertRaises
+from a import bytes_subclass
+
+def test_bytes_join() -> None:
+    assert b' '.join([b'a', b'b']) == b'a b'
+    assert b' '.join([]) == b''
+
+    x: bytes = bytearray(b' ')
+    assert x.join([b'a', b'b']) == b'a b'
+    assert type(x.join([b'a', b'b'])) == bytearray
+
+    y: bytes = bytes_subclass()
+    assert y.join([]) == b'spook'
+
+    n: Any = 5
+    with assertRaises(TypeError, "can only join an iterable"):
+        assert b' '.join(n)
+
+[file a.py]
+class bytes_subclass(bytes):
+    def join(self, iter):
+        return b'spook'
+
+[case testBytesFormatting]
+[typing fixtures/typing-full.pyi]
+from testutil import assertRaises
+
+# https://www.python.org/dev/peps/pep-0461/
+def test_bytes_formatting() -> None:
+    val = 10
+    assert b"%x" % val == b'a'
+    assert b'%4x' % val == b'   a'
+    assert b'%#4x' % val == b' 0xa'
+    assert b'%04X' % val == b'000A'
+
+    assert b'%c' % 48 == b'0'
+    assert b'%c' % b'a' == b'a'
+    assert b'%c%c' % (48, b'a') == b'0a'
+
+    assert b'%b' % b'abc' == b'abc'
+    assert b'%b' % 'some string'.encode('utf8') == b'some string'
+
+    assert b'%a' % 3.14 == b'3.14'
+    assert b'%a' % b'abc' == b"b'abc'"
+    assert b'%a' % 'def' == b"'def'"
+
+def test_bytes_formatting_2() -> None:
+    var = b'bb'
+    num = 10
+    assert b'aaa%bbbb%s' % (var, var) == b'aaabbbbbbb'
+    assert b'aaa%dbbb%b' % (num, var) == b'aaa10bbbbb'
+    assert b'%s%b' % (var, var) == b'bbbb'
+    assert b'%b' % bytes() == b''
+    assert b'%b' % b'' == b''
+
+    assert b'\xff%s' % b'\xff' == b'\xff\xff'
+    assert b'\xff%b' % '你好'.encode() == b'\xff\xe4\xbd\xa0\xe5\xa5\xbd'
+
+    aa = b'\xe4\xbd\xa0\xe5\xa5\xbd%b' % b'\xe4\xbd\xa0\xe5\xa5\xbd'
+    assert aa == b'\xe4\xbd\xa0\xe5\xa5\xbd\xe4\xbd\xa0\xe5\xa5\xbd'
+    assert aa.decode() == '你好你好'
+
+
+class A:
+    def __bytes__(self):
+        return b'aaa'
+
+def test_bytes_dunder() -> None:
+    assert b'%b' % A() == b'aaa'
+    assert b'%s' % A() == b'aaa'

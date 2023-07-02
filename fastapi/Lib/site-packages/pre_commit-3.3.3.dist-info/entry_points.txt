@@ -1,0 +1,2 @@
+[console_scripts]
+pre-commit = pre_commit.main:main

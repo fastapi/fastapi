@@ -1,0 +1,153 @@
+-- Test cases for calls using the vectorcall API (Python 3.8+)
+--
+-- Vectorcalls are faster than the legacy API, especially with keyword arguments,
+-- since there is no need to allocate a temporary dictionary for keyword args.
+
+[case testeVectorcallBasic_python3_8]
+from typing import Any
+
+def f(c: Any) -> None:
+    c()
+    c('x', 'y')
+[out]
+def f(c):
+    c, r0 :: object
+    r1, r2 :: str
+    r3 :: object[2]
+    r4 :: object_ptr
+    r5 :: object
+L0:
+    r0 = _PyObject_Vectorcall(c, 0, 0, 0)
+    r1 = 'x'
+    r2 = 'y'
+    r3 = [r1, r2]
+    r4 = load_address r3
+    r5 = _PyObject_Vectorcall(c, r4, 2, 0)
+    keep_alive r1, r2
+    return 1
+
+[case testVectorcallKeywords_python3_8]
+from typing import Any
+
+def f(c: Any) -> None:
+    c(x='a')
+    c('x', a='y', b='z')
+[out]
+def f(c):
+    c :: object
+    r0 :: str
+    r1 :: object[1]
+    r2 :: object_ptr
+    r3, r4 :: object
+    r5, r6, r7 :: str
+    r8 :: object[3]
+    r9 :: object_ptr
+    r10, r11 :: object
+L0:
+    r0 = 'a'
+    r1 = [r0]
+    r2 = load_address r1
+    r3 = ('x',)
+    r4 = _PyObject_Vectorcall(c, r2, 0, r3)
+    keep_alive r0
+    r5 = 'x'
+    r6 = 'y'
+    r7 = 'z'
+    r8 = [r5, r6, r7]
+    r9 = load_address r8
+    r10 = ('a', 'b')
+    r11 = _PyObject_Vectorcall(c, r9, 1, r10)
+    keep_alive r5, r6, r7
+    return 1
+
+[case testVectorcallMethod_python3_8]
+from typing import Any
+
+def f(o: Any) -> None:
+    # On Python 3.8 vectorcalls are only faster with keyword args
+    o.m('x')
+    o.m('x', a='y')
+[out]
+def f(o):
+    o :: object
+    r0, r1 :: str
+    r2 :: object
+    r3, r4, r5 :: str
+    r6 :: object
+    r7 :: object[2]
+    r8 :: object_ptr
+    r9, r10 :: object
+L0:
+    r0 = 'x'
+    r1 = 'm'
+    r2 = CPyObject_CallMethodObjArgs(o, r1, r0, 0)
+    r3 = 'x'
+    r4 = 'y'
+    r5 = 'm'
+    r6 = CPyObject_GetAttr(o, r5)
+    r7 = [r3, r4]
+    r8 = load_address r7
+    r9 = ('a',)
+    r10 = _PyObject_Vectorcall(r6, r8, 1, r9)
+    keep_alive r3, r4
+    return 1
+
+[case testVectorcallMethod_python3_9_64bit]
+from typing import Any
+
+def f(o: Any) -> None:
+    # Python 3.9 has a new API for calling methods
+    o.m('x')
+    o.m('x', 'y', a='z')
+[out]
+def f(o):
+    o :: object
+    r0, r1 :: str
+    r2 :: object[2]
+    r3 :: object_ptr
+    r4 :: object
+    r5, r6, r7, r8 :: str
+    r9 :: object[4]
+    r10 :: object_ptr
+    r11, r12 :: object
+L0:
+    r0 = 'x'
+    r1 = 'm'
+    r2 = [o, r0]
+    r3 = load_address r2
+    r4 = PyObject_VectorcallMethod(r1, r3, 9223372036854775810, 0)
+    keep_alive o, r0
+    r5 = 'x'
+    r6 = 'y'
+    r7 = 'z'
+    r8 = 'm'
+    r9 = [o, r5, r6, r7]
+    r10 = load_address r9
+    r11 = ('a',)
+    r12 = PyObject_VectorcallMethod(r8, r10, 9223372036854775811, r11)
+    keep_alive o, r5, r6, r7
+    return 1
+
+[case testVectorcallMethod_python3_9_32bit]
+from typing import Any
+
+def f(o: Any) -> None:
+   # The IR is slightly different on 32-bit platforms
+    o.m('x', a='y')
+[out]
+def f(o):
+    o :: object
+    r0, r1, r2 :: str
+    r3 :: object[3]
+    r4 :: object_ptr
+    r5, r6 :: object
+L0:
+    r0 = 'x'
+    r1 = 'y'
+    r2 = 'm'
+    r3 = [o, r0, r1]
+    r4 = load_address r3
+    r5 = ('a',)
+    r6 = PyObject_VectorcallMethod(r2, r4, 2147483650, r5)
+    keep_alive o, r0, r1
+    return 1

@@ -1,0 +1,411 @@
+[case testTraitBasic1]
+from mypy_extensions import trait
+
+class A:
+    line: int
+    def foo(self) -> None:
+        print("foo")
+
+@trait
+class T:
+    def bar(self) -> None:
+        print("bar")
+    def baz(self) -> object:
+        return None
+
+class C(A, T):
+    def baz(self) -> int:
+        return 10
+
+def use_t(t: T) -> object:
+    t.bar()
+    return t.baz()
+
+def use_c(c: C) -> int:
+    use_t(c)
+    c.foo()
+    c.bar()
+    return c.baz()
+
+use_t(C())
+
+# This trait is dead code but there's no reason it shouldn't compile
+@trait
+class ChildlessTrait:
+    def __init__(self) -> None:
+        pass
+
+[file driver.py]
+from native import A, T, C, use_c, use_t
+c = C()
+c.foo()
+c.bar()
+assert c.baz() == 10
+assert use_c(c) == 10
+assert use_t(c) == 10
+[out]
+bar
+foo
+bar
+bar
+foo
+bar
+bar
+
+[case testTraitBasic2]
+from mypy_extensions import trait
+
+class A:
+    line: int
+    def foo(self) -> None:
+        print("foo")
+
+@trait
+class T:
+    def bar(self) -> None:
+        print("bar", self.baz())
+    def baz(self) -> int:
+        return -1
+
+@trait
+class T2:
+    line: int
+    def baz(self) -> int:
+        return -2
+
+class C(A, T):
+    def __init__(self) -> None:
+        self.line = 1337
+        self.x = 12
+    def baz(self) -> int:
+        return self.x
+
+class D(C, T2):
+    def __init__(self) -> None:
+        self.line = 1337
+        self.x = 13
+
+@trait
+class T3:
+    def baz(self) -> int:
+        return -2
+
+class E(T3):
+    def __init__(self) -> None:
+        pass
+
+
+def use_t(t: T) -> None:
+    t.bar()
+def use_t2(t: T2) -> int:
+    t.line = t.line
+    return t.line
+
+def use_c(c: C) -> int:
+    use_t(c)
+    c.foo()
+    c.bar()
+    return c.line
+
+def use_d(d: D) -> int:
+    return d.baz()
+
+[file driver.py]
+from native import A, T, C, D, use_c, use_t, use_d, use_t2
+c = C()
+d = D()
+c.foo()
+c.bar()
+print("baz", c.baz())
+print("baz", d.baz())
+use_c(c)
+use_t(c)
+use_c(d)
+use_t(d)
+assert use_d(d) == 13
+print(d.line)
+assert d.line == 1337
+assert use_t2(d) == 1337
+[out]
+foo
+bar 12
+baz 12
+baz 13
+bar 12
+foo
+bar 12
+bar 12
+bar 13
+foo
+bar 13
+bar 13
+1337
+
+[case testTrait3]
+from mypy_extensions import trait
+from typing import Generic, TypeVar
+
+@trait
+class T1: pass
+@trait
+class T2: pass
+
+T = TypeVar('T')
+
+class C(Generic[T], T1, T2):
+    pass
+
+@trait
+class S1(Generic[T]):
+    def foo(self) -> None: pass
+    def bar(self, x: T) -> T: raise Exception
+
+@trait
+class S2(S1[T]):
+    def bar(self, x: T) -> T: return x
+
+@trait
+class S3(S2[T]):
+    def bar(self, x: T) -> T: return x
+
+class D(S3[bool]):
+    def bar(self, x: bool) -> bool: return x
+
+
+[file driver.py]
+import native
+
+[case testTrait4]
+from mypy_extensions import trait
+from typing import Generic, TypeVar
+
+T = TypeVar('T')
+
+
+@trait
+class S1(Generic[T]):
+    def bar(self) -> T: raise Exception
+
+class S2(S1[bool]):
+    def bar(self) -> bool: return False
+
+class D(S2):
+    pass
+
+def lol(x: S1) -> None:
+    x.bar()
+
+[file driver.py]
+import native
+native.lol(native.D())
+
+[case testTraitOrdering]
+import other_b
+# Regression test for a bug where inheriting from a class that
+# inherited from a trait that got processed later on the command line
+# filed to compile.
+[file other_b.py]
+from other_c import Plugin
+
+class Whatever(Plugin):
+    pass
+
+[file other_c.py]
+from mypy_extensions import trait
+
+@trait
+class Base:
+    x = None  # type: int
+
+class Plugin(Base):
+    def __init__(self) -> None:
+        self.x = 10
+
+[file driver.py]
+from native import *
+
+[case testDiamond]
+from mypy_extensions import trait
+
+@trait
+class Base:
+    def get_value(self) -> str:
+        return "Base"
+
+@trait
+class Trait(Base):
+    def get_value(self) -> str:
+        return "Trait"
+
+class Message(Base):
+    def show_message(self) -> None:
+        print("I am a " + self.get_value())
+
+class DerivedMessage(Message, Trait):
+    pass
+
+[file driver.py]
+from native import *
+a = Message()
+a.show_message()
+b = DerivedMessage()
+b.show_message()
+
+[out]
+I am a Base
+I am a Trait
+
+[case testTraitAttrsSubTrait]
+from mypy_extensions import trait
+
+class A:
+    a: int
+
+@trait
+class T1:
+    x: int
+
+@trait
+class T2(T1):
+    y: int
+
+class C(A, T2):
+    c: int
+
+def f(t1: T1, t2: T2) -> None:
+    t1.x, t2.x = t2.x, t1.x
+
+def g(t1: T1, t2: T2) -> None:
+    t2.y = t1.x
+
+def get_x(c: C) -> int:
+    return c.x
+
+def get_y(c: C) -> int:
+    return c.y
+
+[file driver.py]
+from native import C, f, g, get_x, get_y
+
+c1 = C()
+c2 = C()
+
+c1.x = 1
+c1.y = 0
+c2.x = 2
+c2.y = 0
+
+f(c1, c2)
+assert c1.x == 2
+assert c2.x == 1
+assert get_x(c1) == 2
+assert get_x(c2) == 1
+
+assert get_y(c2) == 0
+g(c1, c2)
+assert get_y(c2) == 2
+[out]
+
+[case testTraitAttrsTriangle]
+from mypy_extensions import trait
+
+class A:
+    a: int
+
+@trait
+class T(A):
+    x: int
+    def meth(self) -> int:
+        return self.a
+
+class B(A):
+    b: int
+
+class C(B, T):
+    pass
+
+def take_t(t: T) -> int:
+    return t.x + t.meth()
+
+def take_c(c: C) -> int:
+    return c.x + c.meth()
+
+[file driver.py]
+from native import C, take_t, take_c
+
+c = C()
+c.a = 1
+c.x = 10
+
+assert take_t(c) == take_c(c) == 11
+[out]
+
+[case testTraitAttrsTree]
+from mypy_extensions import trait
+
+class A:
+    a: int
+
+@trait
+class T1:
+    x: int
+
+class B(A, T1):
+    b: int
+
+@trait
+class T2:
+    x: int
+
+class C(B, T2):
+    pass
+
+def f(t1: T1, t2: T2) -> None:
+    t1.x, t2.x = t2.x, t1.x
+
+def g(c1: C, c2: C) -> None:
+    c1.x, c2.x = c2.x, c1.x
+
+[file driver.py]
+from native import C, f, g
+
+c1 = C()
+c2 = C()
+
+c1.x = 1
+c2.x = 2
+
+f(c1, c2)
+assert c1.x == 2
+assert c2.x == 1
+
+g(c1, c2)
+assert c1.x == 1
+assert c2.x == 2
+[out]
+
+[case testTraitErrorMessages]
+from mypy_extensions import trait
+
+@trait
+class Trait:
+    pass
+
+def create() -> Trait:
+    return Trait()
+
+[file driver.py]
+from native import Trait, create
+from testutil import assertRaises
+
+with assertRaises(TypeError, "traits may not be directly created"):
+    Trait()
+
+with assertRaises(TypeError, "traits may not be directly created"):
+    create()
+
+class Sub(Trait):
+    pass
+
+with assertRaises(TypeError, "interpreted classes cannot inherit from compiled traits"):
+    Sub()

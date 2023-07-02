@@ -1,0 +1,10 @@
+boundary: ----WebKitFormBoundaryTkr3kCBQlBe1nrhc
+expected:
+  - name: field1
+    type: field
+    data: !!binary |
+      ZmllbGQx
+  - name: field2
+    type: field
+    data: !!binary |
+      ZmllbGQy

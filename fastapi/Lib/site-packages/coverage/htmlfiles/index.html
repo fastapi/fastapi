@@ -1,0 +1,142 @@
+{# Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0 #}
+{# For details: https://github.com/nedbat/coveragepy/blob/master/NOTICE.txt #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{ title|escape }}</title>
+    <link rel="icon" sizes="32x32" href="favicon_32.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    {% if extra_css %}
+        <link rel="stylesheet" href="{{ extra_css }}" type="text/css">
+    {% endif %}
+    <script type="text/javascript" src="coverage_html.js" defer></script>
+</head>
+<body class="indexfile">
+
+<header>
+    <div class="content">
+        <h1>{{ title|escape }}:
+            <span class="pc_cov">{{totals.pc_covered_str}}%</span>
+        </h1>
+
+        <aside id="help_panel_wrapper">
+            <input id="help_panel_state" type="checkbox">
+            <label for="help_panel_state">
+                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
+            </label>
+            <div id="help_panel">
+                <p class="legend">Shortcuts on this page</p>
+                <div class="keyhelp">
+                    <p>
+                        <kbd>n</kbd>
+                        <kbd>s</kbd>
+                        <kbd>m</kbd>
+                        <kbd>x</kbd>
+                        {% if has_arcs %}
+                        <kbd>b</kbd>
+                        <kbd>p</kbd>
+                        {% endif %}
+                        <kbd>c</kbd>
+                        &nbsp; change column sorting
+                    </p>
+                    <p>
+                        <kbd>[</kbd>
+                        <kbd>]</kbd>
+                        &nbsp; prev/next file
+                    </p>
+                    <p>
+                        <kbd>?</kbd> &nbsp; show/hide this help
+                    </p>
+                </div>
+            </div>
+        </aside>
+
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
+
+        <p class="text">
+            <a class="nav" href="{{__url__}}">coverage.py v{{__version__}}</a>,
+            created at {{ time_stamp }}
+        </p>
+    </div>
+</header>
+
+<main id="index">
+    <table class="index" data-sortable>
+        <thead>
+            {# The title="" attr doesn"t work in Safari. #}
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left" aria-sort="none" data-shortcut="n">Module</th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements</th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing</th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded</th>
+                {% if has_arcs %}
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches</th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial</th>
+                {% endif %}
+                <th class="right" aria-sort="none" data-shortcut="c">coverage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr class="file">
+                <td class="name left"><a href="{{file.html_filename}}">{{file.relative_filename}}</a></td>
+                <td>{{file.nums.n_statements}}</td>
+                <td>{{file.nums.n_missing}}</td>
+                <td>{{file.nums.n_excluded}}</td>
+                {% if has_arcs %}
+                <td>{{file.nums.n_branches}}</td>
+                <td>{{file.nums.n_partial_branches}}</td>
+                {% endif %}
+                <td class="right" data-ratio="{{file.nums.ratio_covered|pair}}">{{file.nums.pc_covered_str}}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>{{totals.n_statements}}</td>
+                <td>{{totals.n_missing}}</td>
+                <td>{{totals.n_excluded}}</td>
+                {% if has_arcs %}
+                <td>{{totals.n_branches}}</td>
+                <td>{{totals.n_partial_branches}}</td>
+                {% endif %}
+                <td class="right" data-ratio="{{totals.ratio_covered|pair}}">{{totals.pc_covered_str}}%</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
+
+    {% if skipped_covered_msg %}
+        <p>{{ skipped_covered_msg }}</p>
+    {% endif %}
+    {% if skipped_empty_msg %}
+        <p>{{ skipped_empty_msg }}</p>
+    {% endif %}
+</main>
+
+<footer>
+    <div class="content">
+        <p>
+            <a class="nav" href="{{__url__}}">coverage.py v{{__version__}}</a>,
+            created at {{ time_stamp }}
+        </p>
+    </div>
+    <aside class="hidden">
+        <a id="prevFileLink" class="nav" href="{{ final_html }}"/>
+        <a id="nextFileLink" class="nav" href="{{ first_html }}"/>
+        <button type="button" class="button_prev_file" data-shortcut="["/>
+        <button type="button" class="button_next_file" data-shortcut="]"/>
+        <button type="button" class="button_show_hide_help" data-shortcut="?"/>
+    </aside>
+</footer>
+
+</body>
+</html>

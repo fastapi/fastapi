@@ -1,0 +1,3 @@
+[console_scripts]
+nodeenv = nodeenv:main
+

@@ -1,0 +1,145 @@
+# async test cases (compile and run)
+
+[case testAsync]
+import asyncio
+
+async def h() -> int:
+    return 1
+
+async def g() -> int:
+    await asyncio.sleep(0)
+    return await h()
+
+async def f() -> int:
+    return await g()
+
+[file asyncio/__init__.pyi]
+async def sleep(t: float) -> None: ...
+
+[typing fixtures/typing-full.pyi]
+
+[file driver.py]
+from native import f
+import asyncio
+
+result = asyncio.run(f())
+assert result == 1
+
+[case testAsyncWith]
+from testutil import async_val
+
+class async_ctx:
+    async def __aenter__(self) -> str:
+        await async_val("enter")
+        return "test"
+
+    async def __aexit__(self, x, y, z) -> None:
+        await async_val("exit")
+
+
+async def async_with() -> str:
+    async with async_ctx() as x:
+        return await async_val("body")
+
+
+[file driver.py]
+from native import async_with
+from testutil import run_generator
+
+yields, val = run_generator(async_with(), [None, 'x', None])
+assert yields == ('enter', 'body', 'exit'), yields
+assert val == 'x', val
+
+
+[case testAsyncReturn]
+from testutil import async_val
+
+async def async_return() -> str:
+    try:
+        return 'test'
+    finally:
+        await async_val('foo')
+
+[file driver.py]
+from native import async_return
+from testutil import run_generator
+
+yields, val = run_generator(async_return())
+assert yields == ('foo',)
+assert val == 'test', val
+
+
+[case testAsyncFor]
+from typing import AsyncIterable, List, Set, Dict
+
+async def async_iter(xs: AsyncIterable[int]) -> List[int]:
+    ys = []
+    async for x in xs:
+        ys.append(x)
+    return ys
+
+async def async_comp(xs: AsyncIterable[int]) -> List[int]:
+    ys = [x async for x in xs]
+    return ys
+
+async def async_comp_set(xs: AsyncIterable[int]) -> Set[int]:
+    return {x async for x in xs}
+
+async def async_comp_dict(xs: AsyncIterable[int]) -> Dict[int, str]:
+    return {x: str(x) async for x in xs}
+
+[typing fixtures/typing-full.pyi]
+
+[file driver.py]
+from native import async_iter, async_comp, async_comp_set, async_comp_dict
+from testutil import run_generator, async_val
+from typing import AsyncIterable, List
+
+# defined here since we couldn't do it inside the test yet...
+async def foo() -> AsyncIterable[int]:
+    for x in range(3):
+        await async_val(x)
+        yield x
+
+yields, val = run_generator(async_iter(foo()))
+assert val == [0,1,2], val
+assert yields == (0,1,2), yields
+
+yields, val = run_generator(async_comp(foo()))
+assert val == [0,1,2], val
+assert yields == (0,1,2), yields
+
+yields, val = run_generator(async_comp_set(foo()))
+assert val == {0,1,2}, val
+assert yields == (0,1,2), yields
+
+yields, val = run_generator(async_comp_dict(foo()))
+assert val == {0: '0',1: '1', 2: '2'}, val
+assert yields == (0,1,2), yields
+
+[case testAsyncFor2]
+from typing import AsyncIterable, List
+
+async def async_iter(xs: AsyncIterable[int]) -> List[int]:
+    ys = []
+    async for x in xs:
+        ys.append(x)
+    return ys
+
+[typing fixtures/typing-full.pyi]
+
+[file driver.py]
+from native import async_iter
+from testutil import run_generator, async_val
+from typing import AsyncIterable, List
+
+# defined here since we couldn't do it inside the test yet...
+async def foo() -> AsyncIterable[int]:
+    for x in range(3):
+        await async_val(x)
+        yield x
+    raise Exception('lol no')
+
+yields, val = run_generator(async_iter(foo()))
+assert yields == (0,1,2), yields
+assert val == 'lol no', val

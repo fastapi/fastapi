@@ -1,0 +1,6 @@
+[console_scripts]
+dmypy = mypy.dmypy.client:console_entry
+mypy = mypy.__main__:console_entry
+mypyc = mypyc.__main__:main
+stubgen = mypy.stubgen:main
+stubtest = mypy.stubtest:main

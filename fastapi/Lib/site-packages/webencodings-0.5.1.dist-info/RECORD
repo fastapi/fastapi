@@ -1,0 +1,17 @@
+webencodings-0.5.1.dist-info/DESCRIPTION.rst,sha256=_NzU86VndzvBejXtyshDbUUz_lzzOrh54_OY9T0OuhQ,1039
+webencodings-0.5.1.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+webencodings-0.5.1.dist-info/METADATA,sha256=KQ7Fg8Lv4_nbUAbzAS29QmiXzG7HnWLIXpF2oN4P2u4,2063
+webencodings-0.5.1.dist-info/RECORD,,
+webencodings-0.5.1.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+webencodings-0.5.1.dist-info/metadata.json,sha256=AYbksnhE5Frl5Ao68tMDgGeytnRxYvvWlvNgxKMiQFY,1092
+webencodings-0.5.1.dist-info/top_level.txt,sha256=bZs_aZHSf_PNlfIHD4-BETJmRi99BJdKLrOW7rQngeo,13
+webencodings/__init__.py,sha256=qOBJIuPy_4ByYH6W_bNgJF-qYQ2DoU-dKsDu5yRWCXg,10579
+webencodings/__pycache__/__init__.cpython-38.pyc,,
+webencodings/__pycache__/labels.cpython-38.pyc,,
+webencodings/__pycache__/mklabels.cpython-38.pyc,,
+webencodings/__pycache__/tests.cpython-38.pyc,,
+webencodings/__pycache__/x_user_defined.cpython-38.pyc,,
+webencodings/labels.py,sha256=4AO_KxTddqGtrL9ns7kAPjb0CcN6xsCIxbK37HY9r3E,8979
+webencodings/mklabels.py,sha256=GYIeywnpaLnP0GSic8LFWgd0UVvO_l1Nc6YoF-87R_4,1305
+webencodings/tests.py,sha256=OtGLyjhNY1fvkW1GvLJ_FV9ZoqC9Anyjr7q3kxTbzNs,6563
+webencodings/x_user_defined.py,sha256=yOqWSdmpytGfUgh_Z6JYgDNhoc-BAHyyeeT15Fr42tM,4307

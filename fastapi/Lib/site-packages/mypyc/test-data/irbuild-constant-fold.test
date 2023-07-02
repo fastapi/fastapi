@@ -1,0 +1,243 @@
+[case testIntConstantFolding]
+def bin_ops() -> None:
+    add = 15 + 47
+    add_mul = (2 + 3) * 5
+    sub = 7 - 11
+    bit_and = 6 & 10
+    bit_or = 6 | 10
+    bit_xor = 6 ^ 10
+    lshift = 5 << 2
+    rshift = 13 >> 2
+    lshift0 = 5 << 0
+    rshift0 = 13 >> 0
+def unary_ops() -> None:
+    neg1 = -5
+    neg2 = --1
+    neg3 = -0
+    pos = +5
+    inverted1 = ~0
+    inverted2 = ~5
+    inverted3 = ~3
+def pow() -> None:
+    p0 = 3**0
+    p1 = 3**5
+    p2 = (-5)**3
+    p3 = 0**0
+[out]
+def bin_ops():
+    add, add_mul, sub, bit_and, bit_or, bit_xor, lshift, rshift, lshift0, rshift0 :: int
+L0:
+    add = 124
+    add_mul = 50
+    sub = -8
+    bit_and = 4
+    bit_or = 28
+    bit_xor = 24
+    lshift = 40
+    rshift = 6
+    lshift0 = 10
+    rshift0 = 26
+    return 1
+def unary_ops():
+    neg1, neg2, neg3, pos, inverted1, inverted2, inverted3 :: int
+L0:
+    neg1 = -10
+    neg2 = 2
+    neg3 = 0
+    pos = 10
+    inverted1 = -2
+    inverted2 = -12
+    inverted3 = -8
+    return 1
+def pow():
+    p0, p1, p2, p3 :: int
+L0:
+    p0 = 2
+    p1 = 486
+    p2 = -250
+    p3 = 2
+    return 1
+
+[case testIntConstantFoldingDivMod]
+def div() -> None:
+    div1 = 25 // 5
+    div2 = 24 // 5
+    div3 = 29 // 5
+    div4 = 30 // 5
+    div_zero = 0 // 5
+    neg1 = -1 // 3
+    neg2 = -2 // 3
+    neg3 = -3 // 3
+    neg4 = -4 // 3
+    neg_neg = -765467 // -234
+    pos_neg = 983745 // -7864
+def mod() -> None:
+    mod1 = 25 % 5
+    mod2 = 24 % 5
+    mod3 = 29 % 5
+    mod4 = 30 % 5
+    mod_zero = 0 % 5
+    neg1 = -4 % 3
+    neg2 = -5 % 3
+    neg3 = -6 % 3
+    neg4 = -7 % 3
+    neg_neg = -765467 % -234
+    pos_neg = 983745 % -7864
+[out]
+def div():
+    div1, div2, div3, div4, div_zero, neg1, neg2, neg3, neg4, neg_neg, pos_neg :: int
+L0:
+    div1 = 10
+    div2 = 8
+    div3 = 10
+    div4 = 12
+    div_zero = 0
+    neg1 = -2
+    neg2 = -2
+    neg3 = -2
+    neg4 = -4
+    neg_neg = 6542
+    pos_neg = -252
+    return 1
+def mod():
+    mod1, mod2, mod3, mod4, mod_zero, neg1, neg2, neg3, neg4, neg_neg, pos_neg :: int
+L0:
+    mod1 = 0
+    mod2 = 8
+    mod3 = 8
+    mod4 = 0
+    mod_zero = 0
+    neg1 = 4
+    neg2 = 2
+    neg3 = 0
+    neg4 = 4
+    neg_neg = -106
+    pos_neg = -14238
+    return 1
+
+[case testIntConstantFoldingUnsupportedCases]
+def error_cases() -> None:
+    div_by_zero = 5 // 0
+    mod_by_zero = 5 % 0
+    lshift_neg = 6 << -1
+    rshift_neg = 7 >> -1
+def unsupported_div() -> None:
+    x = 4 / 6
+    y = 10 / 5
+def unsupported_pow() -> None:
+    p = 3 ** (-1)
+[out]
+def error_cases():
+    r0, div_by_zero, r1, mod_by_zero, r2, lshift_neg, r3, rshift_neg :: int
+L0:
+    r0 = CPyTagged_FloorDivide(10, 0)
+    div_by_zero = r0
+    r1 = CPyTagged_Remainder(10, 0)
+    mod_by_zero = r1
+    r2 = CPyTagged_Lshift(12, -2)
+    lshift_neg = r2
+    r3 = CPyTagged_Rshift(14, -2)
+    rshift_neg = r3
+    return 1
+def unsupported_div():
+    r0, x, r1, y :: float
+L0:
+    r0 = CPyTagged_TrueDivide(8, 12)
+    x = r0
+    r1 = CPyTagged_TrueDivide(20, 10)
+    y = r1
+    return 1
+def unsupported_pow():
+    r0, r1, r2 :: object
+    r3, p :: float
+L0:
+    r0 = object 3
+    r1 = object -1
+    r2 = CPyNumber_Power(r0, r1)
+    r3 = unbox(float, r2)
+    p = r3
+    return 1
+
+[case testIntConstantFoldingBigIntResult_64bit]
+def long_and_short() -> None:
+    # The smallest and largest representable short integers
+    short1 =  0x3ffffffffffffff0 + 0xf  # (1 << 62) - 1
+    short2 = -0x3fffffffffffffff - 1    # -(1 << 62)
+    short3 = -0x4000000000000000
+    # Smallest big integers by absolute value
+    big1 = 1 << 62
+    big2 = 0x4000000000000000  # 1 << 62
+    big3 = -(1 << 62) - 1
+    big4 = -0x4000000000000001  # -(1 << 62) - 1
+    big5 = 123**41
+[out]
+def long_and_short():
+    short1, short2, short3, r0, big1, r1, big2, r2, big3, r3, big4, r4, big5 :: int
+L0:
+    short1 = 9223372036854775806
+    short2 = -9223372036854775808
+    short3 = -9223372036854775808
+    r0 = object 4611686018427387904
+    big1 = r0
+    r1 = object 4611686018427387904
+    big2 = r1
+    r2 = object -4611686018427387905
+    big3 = r2
+    r3 = object -4611686018427387905
+    big4 = r3
+    r4 = object 48541095000524544750127162673405880068636916264012200797813591925035550682238127143323
+    big5 = r4
+    return 1
+
+[case testIntConstantFoldingFinal]
+from typing_extensions import Final
+X: Final = 5
+Y: Final = 2 + 4
+
+def f() -> None:
+    a = X + 1
+    a = Y + 1
+[out]
+def f():
+    a :: int
+L0:
+    a = 12
+    a = 14
+    return 1
+
+[case testIntConstantFoldingClassFinal]
+from typing_extensions import Final
+class C:
+    X: Final = 5
+
+def f() -> None:
+    a = C.X + 1
+[out]
+def C.__mypyc_defaults_setup(__mypyc_self__):
+    __mypyc_self__ :: __main__.C
+L0:
+    __mypyc_self__.X = 10
+    return 1
+def f():
+    a :: int
+L0:
+    a = 12
+    return 1
+
+[case testStrConstantFolding]
+from typing_extensions import Final
+
+S: Final = 'z'
+
+def f() -> None:
+    x = 'foo' + 'bar'
+    y = 'x' + 'y' + S
+[out]
+def f():
+    r0, x, r1, y :: str
+L0:
+    r0 = 'foobar'
+    x = r0
+    r1 = 'xyz'
+    y = r1
+    return 1

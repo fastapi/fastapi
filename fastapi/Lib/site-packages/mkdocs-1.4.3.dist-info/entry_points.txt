@@ -1,0 +1,9 @@
+[console_scripts]
+mkdocs = mkdocs.__main__:cli
+
+[mkdocs.plugins]
+search = mkdocs.contrib.search:SearchPlugin
+
+[mkdocs.themes]
+mkdocs = mkdocs.themes.mkdocs
+readthedocs = mkdocs.themes.readthedocs

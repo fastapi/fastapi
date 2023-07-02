@@ -1,0 +1,265 @@
+# Test cases for imports and related features (compile and run)
+
+[case testImports]
+import testmodule
+import pkg2.mod
+import pkg2.mod2 as mm2
+
+def f(x: int) -> int:
+    return testmodule.factorial(5)
+
+def g(x: int) -> int:
+    from welp import foo
+    return foo(x)
+
+def test_import_basics() -> None:
+    assert f(5) == 120
+    assert g(5) == 5
+    assert "pkg2.mod" not in globals(), "the root module should be in globals!"
+    assert pkg2.mod.x == 1
+    assert "mod2" not in globals(), "pkg2.mod2 is aliased to mm2!"
+    assert mm2.y == 2
+
+def test_import_submodule_within_function() -> None:
+    import pkg.mod
+    assert pkg.x == 1
+    assert pkg.mod.y == 2
+    assert "pkg.mod" not in globals(), "the root module should be in globals!"
+
+def test_import_as_submodule_within_function() -> None:
+    import pkg.mod as mm
+    assert mm.y == 2
+    assert "pkg.mod" not in globals(), "the root module should be in globals!"
+
+# TODO: Don't add local imports to globals()
+#
+# def test_local_import_not_in_globals() -> None:
+#     import nob
+#     assert 'nob' not in globals()
+
+def test_import_module_without_stub_in_function() -> None:
+    # 'psutil' must not have a stub in typeshed for this test case
+    import psutil  # type: ignore
+    # TODO: We shouldn't add local imports to globals()
+    # assert 'psutil' not in globals()
+    assert isinstance(psutil.__name__, str)
+
+def test_import_as_module_without_stub_in_function() -> None:
+    # 'psutil' must not have a stub in typeshed for this test case
+    import psutil as pp  # type: ignore
+    assert 'psutil' not in globals()
+    # TODO: We shouldn't add local imports to globals()
+    # assert 'pp' not in globals()
+    assert isinstance(pp.__name__, str)
+
+[file testmodule.py]
+def factorial(x: int) -> int:
+    if x == 0:
+        return 1
+    else:
+        return x * factorial(x-1)
+[file welp.py]
+def foo(x: int) -> int:
+    return x
+[file pkg/__init__.py]
+x = 1
+[file pkg/mod.py]
+y = 2
+[file pkg2/__init__.py]
+[file pkg2/mod.py]
+x = 1
+[file pkg2/mod2.py]
+y = 2
+[file nob.py]
+z = 3
+
+[case testImportMissing]
+# The unchecked module is configured by the test harness to not be
+# picked up by mypy, so we can test that we do that right thing when
+# calling library modules without stubs.
+import unchecked  # type: ignore
+import unchecked as lol  # type: ignore
+assert unchecked.x == 10
+assert lol.x == 10
+[file unchecked.py]
+x = 10
+
+[file driver.py]
+import native
+
+[case testFromImport]
+from testmodule import g
+
+def f(x: int) -> int:
+    return g(x)
+[file testmodule.py]
+def g(x: int) -> int:
+    return x + 1
+[file driver.py]
+from native import f
+assert f(1) == 2
+
+[case testFromImportWithUntypedModule]
+
+# avoid including an __init__.py and use type: ignore to test what happens
+# if mypy can't tell if mod isn't a module
+from pkg import mod # type: ignore
+
+def test_import() -> None:
+    assert mod.h(8) == 24
+
+[file pkg/mod.py]
+def h(x):
+    return x * 3
+
+[case testFromImportWithKnownModule]
+from pkg import mod1
+from pkg import mod2 as modmod
+from pkg.mod2 import g as gg
+from pkg.mod3 import h as h2, g as g2
+
+def test_import() -> None:
+    assert mod1.h(8) == 24
+    assert modmod.g(1) == 1
+    assert gg(2) == 2
+    assert h2(10) == 12
+    assert g2(10) == 13
+
+[file pkg/__init__.py]
+[file pkg/mod1.py]
+def h(x: int) -> int:
+    return x * 3
+
+[file pkg/mod2.py]
+def g(x: int) -> int:
+    return x
+
+[file pkg/mod3.py]
+def h(x: int) -> int:
+    return x + 2
+
+def g(x: int) -> int:
+    return x + 3
+
+[case testFromImportWithUnKnownModule]
+def test_import() -> None:
+    try:
+        from pkg import a # type: ignore
+    except ImportError:
+        pass
+
+[file pkg/__init__.py]
+
+[case testMultipleFromImportsWithSamePackageButDifferentModules]
+from pkg import a
+from pkg import b
+
+def test_import() -> None:
+    assert a.g() == 4
+    assert b.h() == 39
+
+[file pkg/__init__.py]
+[file pkg/a.py]
+
+def g() -> int:
+    return 4
+
+[file pkg/b.py]
+
+def h() -> int:
+    return 39
+
+[case testReexport]
+# Test that we properly handle accessing values that have been reexported
+import a
+def f(x: int) -> int:
+    return a.g(x) + a.foo + a.b.foo
+
+whatever = a.A()
+
+[file a.py]
+from b import g as g, A as A, foo as foo
+import b
+
+[file b.py]
+def g(x: int) -> int:
+    return x + 1
+
+class A:
+    pass
+
+foo = 20
+
+[file driver.py]
+from native import f, whatever
+import b
+
+assert f(20) == 61
+assert isinstance(whatever, b.A)
+
+[case testAssignModule]
+import a
+assert a.x == 20
+a.x = 10
+[file a.py]
+x = 20
+[file driver.py]
+import native
+
+[case testLazyImport]
+import shared
+
+def do_import() -> None:
+    import a
+
+assert shared.counter == 0
+do_import()
+assert shared.counter == 1
+
+[file a.py]
+import shared
+shared.counter += 1
+
+[file shared.py]
+counter = 0
+
+[case testDelayedImport]
+import a
+print("inbetween")
+import b
+
+[file a.py]
+print("first")
+
+[file b.py]
+print("last")
+
+[out]
+first
+inbetween
+last
+
+[case testImportErrorLineNumber]
+try:
+    import enum
+    import dataclasses, missing  # type: ignore[import]
+except ImportError as e:
+    line = e.__traceback__.tb_lineno # type: ignore[attr-defined]
+    assert line == 3, f"traceback's line number is {line}, expected 3"
+
+[case testImportGroupIsolation]
+def func() -> None:
+    import second
+
+import first
+func()
+
+[file first.py]
+print("first")
+
+[file second.py]
+print("second")
+
+[out]
+first
+second

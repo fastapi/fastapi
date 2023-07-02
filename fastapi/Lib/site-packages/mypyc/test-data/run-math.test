@@ -1,0 +1,106 @@
+# Test cases for the math module (compile and run)
+
+[case testMathOps]
+from typing import Any, Callable
+from typing_extensions import Final
+import math
+from math import pi, e, tau, inf, nan
+from testutil import assertRaises, float_vals, assertDomainError, assertMathRangeError
+
+pymath: Any = math
+
+def validate_one_arg(test: Callable[[float], float], validate: Callable[[float], float]) -> None:
+    """Ensure that test and validate behave the same for various float args."""
+    for x in float_vals:
+        try:
+            expected = validate(x)
+        except Exception as e:
+            try:
+                test(x)
+                assert False, f"no exception raised for {x!r}, expected {e!r}"
+            except Exception as e2:
+                assert repr(e) == repr(e2), f"actual for {x!r}: {e2!r}, expected: {e!r}"
+                continue
+        actual = test(x)
+        assert repr(actual) == repr(expected), (
+            f"actual for {x!r}: {actual!r}, expected {expected!r}")
+
+def validate_two_arg(test: Callable[[float, float], float],
+                     validate: Callable[[float, float], float]) -> None:
+    """Ensure that test and validate behave the same for various float args."""
+    for x in float_vals:
+        for y in float_vals:
+            args = f"({x!r}, {y!r})"
+            try:
+                expected = validate(x, y)
+            except Exception as e:
+                try:
+                    test(x, y)
+                    assert False, f"no exception raised for {args}, expected {e!r}"
+                except Exception as e2:
+                    assert repr(e) == repr(e2), f"actual for {args}: {e2!r}, expected: {e!r}"
+                    continue
+            try:
+                actual = test(x, y)
+            except Exception as e:
+                assert False, f"no exception expected for {args}, got {e!r}"
+            assert repr(actual) == repr(expected), (
+                f"actual for {args}: {actual!r}, expected {expected!r}")
+
+def test_sqrt() -> None:
+    validate_one_arg(lambda x: math.sqrt(x), pymath.sqrt)
+
+def test_sin() -> None:
+    validate_one_arg(lambda x: math.sin(x), pymath.sin)
+
+def test_cos() -> None:
+    validate_one_arg(lambda x: math.cos(x), pymath.cos)
+
+def test_tan() -> None:
+    validate_one_arg(lambda x: math.tan(x), pymath.tan)
+
+def test_exp() -> None:
+    validate_one_arg(lambda x: math.exp(x), pymath.exp)
+
+def test_log() -> None:
+    validate_one_arg(lambda x: math.log(x), pymath.log)
+
+def test_floor() -> None:
+    validate_one_arg(lambda x: math.floor(x), pymath.floor)
+
+def test_ceil() -> None:
+    validate_one_arg(lambda x: math.ceil(x), pymath.ceil)
+
+def test_fabs() -> None:
+    validate_one_arg(lambda x: math.fabs(x), pymath.fabs)
+
+def test_pow() -> None:
+    validate_two_arg(lambda x, y: math.pow(x, y), pymath.pow)
+
+def test_copysign() -> None:
+    validate_two_arg(lambda x, y: math.copysign(x, y), pymath.copysign)
+
+def test_isinf() -> None:
+    for x in float_vals:
+        assert repr(math.isinf(x)) == repr(pymath.isinf(x))
+
+def test_isnan() -> None:
+    for x in float_vals:
+        assert repr(math.isnan(x)) == repr(pymath.isnan(x))
+
+
+def test_pi_is_inlined_correctly() -> None:
+    assert math.pi == pi == 3.141592653589793
+
+def test_e_is_inlined_correctly() -> None:
+    assert math.e == e == 2.718281828459045
+
+def test_tau_is_inlined_correctly() -> None:
+    assert math.tau == tau == 6.283185307179586
+
+def test_inf_is_inlined_correctly() -> None:
+    assert math.inf == inf == float("inf")
+
+def test_nan_is_inlined_correctly() -> None:
+    assert math.isnan(math.nan)
+    assert math.isnan(nan)

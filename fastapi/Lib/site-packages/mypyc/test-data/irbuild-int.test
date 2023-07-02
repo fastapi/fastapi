@@ -1,0 +1,235 @@
+[case testIntNeq]
+def f(x: int, y: int) -> bool:
+    return x != y
+[out]
+def f(x, y):
+    x, y :: int
+    r0 :: native_int
+    r1, r2 :: bit
+    r3 :: bool
+    r4, r5 :: bit
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x != y
+    r3 = r2
+    goto L3
+L2:
+    r4 = CPyTagged_IsEq_(x, y)
+    r5 = r4 ^ 1
+    r3 = r5
+L3:
+    return r3
+
+[case testShortIntComparisons]
+def f(x: int) -> int:
+    if x == 3:
+        return 1
+    elif x != 4:
+        return 2
+    elif 5 == x:
+        return 3
+    elif 6 != x:
+        return 4
+    elif x < 4:
+        return 5
+    return 6
+[out]
+def f(x):
+    x :: int
+    r0, r1, r2, r3 :: bit
+    r4 :: native_int
+    r5, r6, r7 :: bit
+L0:
+    r0 = x == 6
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return 2
+L2:
+    r1 = x != 8
+    if r1 goto L3 else goto L4 :: bool
+L3:
+    return 4
+L4:
+    r2 = 10 == x
+    if r2 goto L5 else goto L6 :: bool
+L5:
+    return 6
+L6:
+    r3 = 12 != x
+    if r3 goto L7 else goto L8 :: bool
+L7:
+    return 8
+L8:
+    r4 = x & 1
+    r5 = r4 != 0
+    if r5 goto L9 else goto L10 :: bool
+L9:
+    r6 = CPyTagged_IsLt_(x, 8)
+    if r6 goto L11 else goto L12 :: bool
+L10:
+    r7 = x < 8 :: signed
+    if r7 goto L11 else goto L12 :: bool
+L11:
+    return 10
+L12:
+L13:
+L14:
+L15:
+L16:
+    return 12
+
+[case testIntMin]
+def f(x: int, y: int) -> int:
+    return min(x, y)
+[out]
+def f(x, y):
+    x, y :: int
+    r0 :: native_int
+    r1 :: bit
+    r2 :: native_int
+    r3, r4, r5 :: bit
+    r6 :: bool
+    r7 :: bit
+    r8 :: int
+L0:
+    r0 = y & 1
+    r1 = r0 == 0
+    r2 = x & 1
+    r3 = r2 == 0
+    r4 = r1 & r3
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    r5 = y < x :: signed
+    r6 = r5
+    goto L3
+L2:
+    r7 = CPyTagged_IsLt_(y, x)
+    r6 = r7
+L3:
+    if r6 goto L4 else goto L5 :: bool
+L4:
+    r8 = y
+    goto L6
+L5:
+    r8 = x
+L6:
+    return r8
+
+[case testIntFloorDivideByPowerOfTwo]
+def divby1(x: int) -> int:
+    return x // 1
+def divby2(x: int) -> int:
+    return x // 2
+def divby3(x: int) -> int:
+    return x // 3
+def divby4(x: int) -> int:
+    return x // 4
+def divby8(x: int) -> int:
+    return x // 8
+[out]
+def divby1(x):
+    x, r0 :: int
+L0:
+    r0 = CPyTagged_FloorDivide(x, 2)
+    return r0
+def divby2(x):
+    x, r0 :: int
+L0:
+    r0 = CPyTagged_Rshift(x, 2)
+    return r0
+def divby3(x):
+    x, r0 :: int
+L0:
+    r0 = CPyTagged_FloorDivide(x, 6)
+    return r0
+def divby4(x):
+    x, r0 :: int
+L0:
+    r0 = CPyTagged_Rshift(x, 4)
+    return r0
+def divby8(x):
+    x, r0 :: int
+L0:
+    r0 = CPyTagged_Rshift(x, 6)
+    return r0
+
+[case testFinalConstantFolding]
+from typing_extensions import Final
+
+X: Final = -1
+Y: Final = -(1 + 3*2)
+Z: Final = Y + 1
+
+class C:
+    A: Final = 1
+    B: Final = -1
+
+def f1() -> int:
+    return X
+
+def f2() -> int:
+    return X + Y
+
+def f3() -> int:
+    return Z
+
+def f4() -> int:
+    return C.A
+
+def f5() -> int:
+    return C.B
+[out]
+def C.__mypyc_defaults_setup(__mypyc_self__):
+    __mypyc_self__ :: __main__.C
+L0:
+    __mypyc_self__.A = 2
+    __mypyc_self__.B = -2
+    return 1
+def f1():
+L0:
+    return -2
+def f2():
+L0:
+    return -16
+def f3():
+L0:
+    return -12
+def f4():
+L0:
+    return 2
+def f5():
+L0:
+    return -2
+
+[case testConvertIntegralToInt]
+def bool_to_int(b: bool) -> int:
+    return int(b)
+
+def int_to_int(n: int) -> int:
+    return int(n)
+[out]
+def bool_to_int(b):
+    b, r0 :: bool
+    r1 :: int
+L0:
+    r0 = b << 1
+    r1 = extend r0: builtins.bool to builtins.int
+    return r1
+def int_to_int(n):
+    n :: int
+L0:
+    return n
+
+[case testIntUnaryPlus]
+def unary_plus(n: int) -> int:
+    x = +n
+    return x
+[out]
+def unary_plus(n):
+    n, x :: int
+L0:
+    x = n
+    return x

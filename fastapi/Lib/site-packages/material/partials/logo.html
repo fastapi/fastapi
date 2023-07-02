@@ -1,0 +1,9 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% if config.theme.logo %}
+  <img src="{{ config.theme.logo | url }}" alt="logo">
+{% else %}
+  {% set icon = config.theme.icon.logo or "material/library" %}
+  {% include ".icons/" ~ icon ~ ".svg" %}
+{% endif %}

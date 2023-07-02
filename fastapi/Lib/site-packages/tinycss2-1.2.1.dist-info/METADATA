@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: tinycss2
+Version: 1.2.1
+Summary: A tiny CSS parser
+Keywords: css,parser
+Author-email: Simon Sapin <simon.sapin@exyr.org>
+Maintainer-email: CourtBouillon <contact@courtbouillon.org>
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Text Processing
+Requires-Dist: webencodings >=0.4
+Requires-Dist: sphinx ; extra == "doc"
+Requires-Dist: sphinx_rtd_theme ; extra == "doc"
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: isort ; extra == "test"
+Requires-Dist: flake8 ; extra == "test"
+Project-URL: Changelog, https://github.com/Kozea/tinycss2/releases
+Project-URL: Code, https://github.com/Kozea/tinycss2/
+Project-URL: Documentation, https://doc.courtbouillon.org/tinycss2/
+Project-URL: Donation, https://opencollective.com/courtbouillon
+Project-URL: Homepage, https://www.courtbouillon.org/tinycss2
+Project-URL: Issues, https://github.com/Kozea/tinycss2/issues
+Provides-Extra: doc
+Provides-Extra: test
+
+tinycss2 is a low-level CSS parser and generator written in Python: it can
+parse strings, return objects representing tokens and blocks, and generate CSS
+strings corresponding to these objects.
+
+Based on the CSS Syntax Level 3 specification, tinycss2 knows the grammar of
+CSS but doesn't know specific rules, properties or values supported in various
+CSS modules.
+
+* Free software: BSD license
+* For Python 3.7+, tested on CPython and PyPy
+* Documentation: https://doc.courtbouillon.org/tinycss2
+* Changelog: https://github.com/Kozea/tinycss2/releases
+* Code, issues, tests: https://github.com/Kozea/tinycss2
+* Code of conduct: https://www.courtbouillon.org/code-of-conduct
+* Professional support: https://www.courtbouillon.org
+* Donation: https://opencollective.com/courtbouillon
+
+tinycss2 has been created and developed by Kozea (https://kozea.fr).
+Professional support, maintenance and community management is provided by
+CourtBouillon (https://www.courtbouillon.org).
+
+Copyrights are retained by their contributors, no copyright assignment is
+required to contribute to tinycss2. Unless explicitly stated otherwise, any
+contribution intentionally submitted for inclusion is licensed under the BSD
+3-clause license, without any additional terms or conditions. For full
+authorship information, see the version control history.
+

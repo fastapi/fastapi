@@ -1,0 +1,125 @@
+-- Test cases for basic block execution frequency analysis.
+--
+-- These test cases are using exception transform test machinery for convenience.
+--
+-- NOTE: These must all have the _freq suffix
+
+[case testSimpleError_freq]
+from typing import List
+def f(x: List[int]) -> int:
+    return x[0]
+[out]
+def f(x):
+    x :: list
+    r0 :: object
+    r1, r2 :: int
+L0:
+    r0 = CPyList_GetItemShort(x, 0)
+    if is_error(r0) goto L3 (error at f:3) else goto L1
+L1:
+    r1 = unbox(int, r0)
+    dec_ref r0
+    if is_error(r1) goto L3 (error at f:3) else goto L2
+L2:
+    return r1
+L3:
+    r2 = <error> :: int
+    return r2
+hot blocks: [0, 1, 2]
+
+[case testHotBranch_freq]
+from typing import List
+def f(x: bool) -> None:
+    if x:
+        y = 1
+    else:
+        y = 2
+[out]
+def f(x):
+    x :: bool
+    y :: int
+L0:
+    if x goto L1 else goto L2 :: bool
+L1:
+    y = 2
+    dec_ref y :: int
+    goto L3
+L2:
+    y = 4
+    dec_ref y :: int
+L3:
+    return 1
+hot blocks: [0, 1, 2, 3]
+
+[case testGoto_freq]
+from typing import List
+def f(x: bool) -> int:
+    if x:
+        y = 1
+    else:
+        return 2
+    return y
+[out]
+def f(x):
+    x :: bool
+    y :: int
+L0:
+    if x goto L1 else goto L2 :: bool
+L1:
+    y = 2
+    goto L3
+L2:
+    return 4
+L3:
+    return y
+hot blocks: [0, 1, 2, 3]
+
+[case testFalseOnError_freq]
+from typing import List
+def f(x: List[int]) -> None:
+    x[0] = 1
+[out]
+def f(x):
+    x :: list
+    r0 :: object
+    r1 :: bit
+    r2 :: None
+L0:
+    r0 = object 1
+    inc_ref r0
+    r1 = CPyList_SetItem(x, 0, r0)
+    if not r1 goto L2 (error at f:3) else goto L1 :: bool
+L1:
+    return 1
+L2:
+    r2 = <error> :: None
+    return r2
+hot blocks: [0, 1]
+
+[case testRareBranch_freq]
+from typing_extensions import Final
+
+x: Final = str()
+
+def f() -> str:
+    return x
+[out]
+def f():
+    r0 :: str
+    r1 :: bool
+    r2 :: str
+L0:
+    r0 = __main__.x :: static
+    if is_error(r0) goto L1 else goto L3
+L1:
+    r1 = raise NameError('value for final name "x" was not set')
+    if not r1 goto L4 (error at f:6) else goto L2 :: bool
+L2:
+    unreachable
+L3:
+    inc_ref r0
+    return r0
+L4:
+    r2 = <error> :: str
+    return r2
+hot blocks: [0, 3]

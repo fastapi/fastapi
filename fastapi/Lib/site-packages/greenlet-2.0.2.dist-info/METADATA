@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: greenlet
+Version: 2.0.2
+Summary: Lightweight in-process concurrent programming
+Home-page: https://greenlet.readthedocs.io/
+Author: Alexey Borzenkov
+Author-email: snaury@gmail.com
+Maintainer: Jason Madden
+Maintainer-email: jason@seecoresoftware.com
+License: MIT License
+Project-URL: Bug Tracker, https://github.com/python-greenlet/greenlet/issues
+Project-URL: Source Code, https://github.com/python-greenlet/greenlet/
+Project-URL: Documentation, https://greenlet.readthedocs.io/
+Keywords: greenlet coroutine concurrency threads cooperative
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+License-File: LICENSE.PSF
+License-File: AUTHORS
+Provides-Extra: docs
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: docutils (<0.18) ; (python_version < "3") and extra == 'docs'
+Provides-Extra: test
+Requires-Dist: objgraph ; extra == 'test'
+Requires-Dist: psutil ; extra == 'test'
+
+.. This file is included into docs/history.rst
+
+.. image:: https://github.com/python-greenlet/greenlet/workflows/tests/badge.svg
+   :target: https://github.com/python-greenlet/greenlet/actions
+
+Greenlets are lightweight coroutines for in-process concurrent
+programming.
+
+The "greenlet" package is a spin-off of `Stackless`_, a version of
+CPython that supports micro-threads called "tasklets". Tasklets run
+pseudo-concurrently (typically in a single or a few OS-level threads)
+and are synchronized with data exchanges on "channels".
+
+A "greenlet", on the other hand, is a still more primitive notion of
+micro-thread with no implicit scheduling; coroutines, in other words.
+This is useful when you want to control exactly when your code runs.
+You can build custom scheduled micro-threads on top of greenlet;
+however, it seems that greenlets are useful on their own as a way to
+make advanced control flow structures. For example, we can recreate
+generators; the difference with Python's own generators is that our
+generators can call nested functions and the nested functions can
+yield values too. (Additionally, you don't need a "yield" keyword. See
+the example in `test_generator.py
+<https://github.com/python-greenlet/greenlet/blob/adca19bf1f287b3395896a8f41f3f4fd1797fdc7/src/greenlet/tests/test_generator.py#L1>`_).
+
+Greenlets are provided as a C extension module for the regular unmodified
+interpreter.
+
+.. _`Stackless`: http://www.stackless.com
+
+
+Who is using Greenlet?
+======================
+
+There are several libraries that use Greenlet as a more flexible
+alternative to Python's built in coroutine support:
+
+ - `Concurrence`_
+ - `Eventlet`_
+ - `Gevent`_
+
+.. _Concurrence: http://opensource.hyves.org/concurrence/
+.. _Eventlet: http://eventlet.net/
+.. _Gevent: http://www.gevent.org/
+
+Getting Greenlet
+================
+
+The easiest way to get Greenlet is to install it with pip::
+
+  pip install greenlet
+
+
+Source code archives and binary distributions are available on the
+python package index at https://pypi.org/project/greenlet
+
+The source code repository is hosted on github:
+https://github.com/python-greenlet/greenlet
+
+Documentation is available on readthedocs.org:
+https://greenlet.readthedocs.io

@@ -1,0 +1,8 @@
+boundary: ----WebKitFormBoundaryI9SCEFp2lpx5DR2K
+expected:
+  - name: file
+    type: file
+    file_name: ???.txt
+    data: !!binary |
+      44GT44KM44Gv44OG44K544OI44Gn44GZ44CC
+

@@ -1,0 +1,887 @@
+-- These test cases compile two or more modules at a time.
+-- Any file prefixed with "other" is compiled.
+--
+-- Note that these are run in three compilation modes: regular,
+-- multi-file and separate. See the docstrings of
+-- mypyc.test.test_run.TestRunMultiFile and
+-- mypyc.test.test_run.TestRunSeparate for more information.
+--
+-- Some of these files perform multiple incremental runs. See
+-- test-data/unit/check-incremental.test for more information
+-- about how this is specified (e.g. .2 file name suffixes).
+
+[case testMultiModulePackage]
+from p.other import g, _i as i
+def f(x: int) -> int:
+    from p.other import h
+    return i(h(g(x + 1)))
+[file p/__init__.py]
+[file p/other.py]
+def g(x: int) -> int:
+    return x + 2
+def h(x: int) -> int:
+    return x + 1
+def _i(x: int) -> int:
+    return x + 3
+[file driver.py]
+import native
+from native import f
+from p.other import g
+assert f(3) == 10
+assert g(2) == 4
+try:
+    f(1.1)
+except TypeError:
+    pass
+else:
+    assert False
+try:
+    g(1.1)
+except TypeError:
+    pass
+else:
+    assert False
+
+[case testMultiModuleFastpaths]
+[file other_main.py]
+
+[file other_main.py.2]
+from other_b import A, func
+
+class B(A):
+    pass
+
+def test() -> None:
+    a = A()
+    assert func() == 12
+    assert a.method() == "test"
+
+test()
+
+[file other_b.py]
+class A:
+    def method(self) -> str:
+        return "test"
+
+def func() -> int:
+    return 12
+
+# Remove all the methods and functions from globals to ensure that
+# they get called via the fastpaths even when doing incremental
+# compilation.
+setattr(A, 'method', None)
+setattr(A, '__init__', None)
+globals()['func'] = None
+globals()['A'] = None
+
+[file driver.py]
+import other_main
+
+[case testMultiModuleSameNames]
+# Use same names in both modules
+import other
+def f() -> int:
+    return 0
+class C:
+    x: int
+    def __init__(self) -> None:
+        self.x = 1
+    def f(self, x: int) -> int:
+        return self.x + x
+class D(C): pass
+
+def g(x: 'other.C') -> None:
+    pass
+
+[file other.py]
+def f(x: int) -> int:
+    return x + 1
+class C:
+    x: int
+    def __init__(self) -> None:
+        self.x = 2
+    def f(self, x: int) -> int:
+        return self.x + x + 1
+class D(C): pass
+[file driver.py]
+import native, other
+assert native.f() == 0
+assert other.f(3) == 4
+c1 = native.C()
+c1.x += 3
+c2 = other.C()
+c2.x += 6
+assert c1.f(9) == 1 + 3 + 9
+assert c2.f(7) == 2 + 6 + 7 + 1
+assert isinstance(native.D(), native.C)
+assert isinstance(other.D(), other.C)
+assert not isinstance(native.D(), other.C)
+assert not isinstance(other.D(), native.C)
+
+[case testMultiModuleInitializeImportedModules]
+from other import f
+
+def g() -> int:
+    return f(1)
+[file other.py]
+def f(x: int) -> int:
+    return x + 4
+[file driver.py]
+import sys
+assert 'other' not in sys.modules
+from native import g
+assert 'other' in sys.modules
+assert g() == 5
+f = sys.modules['other'].f
+assert f(1) == 5
+try:
+    f(1.1)
+except TypeError:
+    pass
+else:
+    assert False
+
+[case testMultiModuleImportClass]
+from typing import cast
+from other import C, a_global
+
+class D(C):
+    def __init__(self, x: int) -> None:
+        self.x = x
+
+def f(c: C) -> int:
+    d = D(3)
+    o: object = c
+    c = cast(C, o)
+    return a_global + c.x + c.f() + d.x + d.f() + 1
+[file other.py]
+from typing_extensions import Final
+a_global: Final = int('5')
+
+class C:
+    x: int
+
+    def __init__(self, x: int) -> None:
+        self.x = x
+
+    def __hash__(self) -> int:
+        return self.x
+
+    def __str__(self) -> str:
+        return str(self.x)
+
+    def f(self) -> int:
+        return 2
+
+    def check(self) -> None:
+        assert isinstance(self, C)
+
+[file driver.py]
+from native import f, D
+from other import C
+c = C(4)
+assert f(c) == 5 + 4 + 2 + 3 + 2 + 1
+assert str(D(10)) == '10'
+assert hash(10) == 10
+try:
+    f(1)
+except TypeError:
+    pass
+else:
+    assert False
+
+assert isinstance(D(10), C)
+
+c.check()
+D(10).check()
+
+[case testMultiModuleSpecialize]
+from other import A
+
+class B(A):
+    def foo(self, x: object) -> int:
+        print(2)
+        return id(x)
+[file other.py]
+class A:
+    def foo(self, x: int) -> object:
+        print(1)
+        return str(x)
+
+def use_a(x: A, y: int) -> object:
+    return x.foo(y)
+
+[file driver.py]
+from native import B
+from other import A, use_a
+a = A()
+b = B()
+o = object()
+i = 10
+assert a.foo(10) == '10'
+assert b.foo(o) == id(o)
+assert use_a(a, 10) == '10'
+assert use_a(b, i) == id(i)
+[out]
+1
+2
+1
+2
+
+[case testMultiModuleLiterals]
+from other import gs, gi, gf
+
+def fs() -> str:
+    return 'f' + gs()
+def fi() -> int:
+    return 10001000100010001000 + gi()
+def ff() -> float:
+    return 2.0 + gf()
+[file other.py]
+def gi() -> int:
+    return 20001000100010001000
+def gs() -> str:
+    return 'g'
+def gf() -> float:
+    return 3.0
+[file driver.py]
+from native import fs, fi, ff
+assert fs() == 'fg'
+assert fi() == 30002000200020002000
+assert ff() == 5.0
+
+[case testMultiModuleTraceback]
+from other import fail2
+
+def fail() -> None:
+    fail2()
+[file other.py]
+def fail2() -> None:
+    x = [1]
+    x[2] = 2
+[file driver.py]
+import traceback
+import sys
+import native
+import other
+try:
+    other.fail2()
+except IndexError:
+    tb = sys.exc_info()[2]
+    assert tb.tb_next.tb_frame.f_globals is other.__dict__
+    traceback.print_exc()
+try:
+    native.fail()
+except IndexError:
+    tb = sys.exc_info()[2]
+    assert tb.tb_next.tb_frame.f_globals is native.__dict__
+    traceback.print_exc()
+[out]
+Traceback (most recent call last):
+  File "driver.py", line 6, in <module>
+    other.fail2()
+  File "other.py", line 3, in fail2
+    x[2] = 2
+IndexError: list assignment index out of range
+Traceback (most recent call last):
+  File "driver.py", line 12, in <module>
+    native.fail()
+  File "native.py", line 4, in fail
+    fail2()
+  File "other.py", line 3, in fail2
+    x[2] = 2
+IndexError: list assignment index out of range
+
+[case testMultiModuleCycle]
+if False:
+    from typing import Final
+import other
+
+x = int('0')  # type: Final
+
+def f1() -> int:
+    return other.f2() + other.x
+
+def f3() -> int:
+    return 5
+[file other.py]
+if False:
+    from typing import Final
+import native
+
+x = int('0')  # type: Final
+
+def f2() -> int:
+    return native.f3() + native.x
+[file driver.py]
+from native import f1
+assert f1() == 5
+
+[case testMultiModuleCycleWithClasses]
+import other
+
+class D: pass
+
+def f() -> other.C:
+    return other.C()
+
+def g(c: other.C) -> D:
+    return c.d
+
+[file other.py]
+import native
+
+class C:
+    def __init__(self) -> None:
+        self.d = native.D()
+
+def h(d: native.D) -> None:
+    pass
+
+[file driver.py]
+from native import f, g
+from other import C, h
+
+c = f()
+assert isinstance(c, C)
+assert g(c) is c.d
+h(c.d)
+
+try:
+    g(1)
+except TypeError:
+    pass
+else:
+    assert False
+
+try:
+    h(1)
+except TypeError:
+    pass
+else:
+    assert False
+
+[case testMultiModuleCycleWithInheritance]
+import other
+
+class Deriv1(other.Base1):
+    def __init__(self) -> None:
+        super().__init__()
+
+class Base2:
+    y: int
+    def __init__(self) -> None:
+        self.y = 2
+
+[file other.py]
+from typing import Tuple
+import native
+
+class Base1:
+    a: Tuple[int, int]
+    x: int
+    def __init__(self) -> None:
+        self.x = 1
+
+def make_2() -> native.Base2:
+    return native.Base2()
+
+[file driver.py]
+from native import Deriv1
+from other import make_2
+a = Deriv1()
+assert a.x == 1
+b = make_2()
+assert b.y == 2
+
+[case testMultiModuleTraitInheritance]
+from other import Base1, Base2
+
+class Deriv1(Base1, Base2):
+    pass
+
+[file other.py]
+from mypy_extensions import trait
+
+@trait
+class Base1:
+    def foo(self) -> int: return 10
+@trait
+class Base2:
+    def bar(self) -> int: return 12
+
+[file driver.py]
+from native import Deriv1
+a = Deriv1()
+assert a.foo() == 10 and a.bar() == 12
+
+
+[case testImportCycleWithNonCompiledModule]
+import m
+
+class C: pass
+
+def f1() -> int:
+    m.D()
+    return m.f2()
+
+def f3() -> int:
+    return 2
+
+[file m.py]
+# This module is NOT compiled
+import native
+
+class D: pass
+
+def f2() -> int:
+    native.C()
+    return native.f3()
+
+[file driver.py]
+from native import f1
+
+assert f1() == 2
+
+[case testImportCycleWithTopLevelStatements]
+import other
+x = 1
+print(x)
+
+[file other.py]
+import native
+x = 2
+print(x)
+
+[file driver.py]
+import other
+print('-')
+import native
+print('>', native.x)
+print('>', other.x)
+
+[out]
+1
+2
+-
+> 1
+> 2
+
+[case testMultiModuleCycleIfMypy1]
+from other import foo, bar
+
+class Foo:
+    def foo(self) -> None:
+        foo(self)
+class Bar:
+    def bar(self) -> None:
+        bar(self)
+
+[file other.py]
+from typing_extensions import TYPE_CHECKING
+MYPY = False
+if MYPY:
+    from native import Foo
+if TYPE_CHECKING:
+    from native import Bar
+
+def foo(x: 'Foo') -> None:
+    pass
+def bar(x: 'Bar') -> None:
+    pass
+
+[file driver.py]
+from native import Foo, Bar
+Foo().foo()
+Bar().bar()
+
+[case testMultiModuleCycleIfMypy2]
+MYPY = False
+if MYPY:
+    from other import C
+
+class D:
+    def __init__(self) -> None:
+        self.y = 1
+
+def f(c: 'C') -> int:
+    return c.x
+
+[file other.py]
+from typing_extensions import TYPE_CHECKING
+if TYPE_CHECKING:
+    from native import D
+
+class C:
+    def __init__(self) -> None:
+        self.x = 2
+
+def g(d: 'D') -> int:
+    return d.y
+
+[file driver.py]
+from native import f, D
+from other import g, C
+
+assert f(C()) == 2
+assert g(D()) == 1
+
+try:
+    f(D())
+except TypeError:
+    pass
+else:
+    assert False
+
+try:
+    g(C())
+except TypeError:
+    pass
+else:
+    assert False
+
+[case testMultiModuleRelative]
+from package.a import f
+[file package/__init__.py]
+[file package/a.py]
+from . import b
+from .c import c3
+def f() -> None:
+    print("Hello " + b.b2())
+    print("Hello " + c3())
+[file package/b.py]
+def b2() -> str:
+    return "moon!"
+[file package/c.py]
+def c3() -> str:
+    return "sun!"
+
+[file driver.py]
+from native import f
+f()
+[out]
+Hello moon!
+Hello sun!
+
+[case testMultiModuleCrash]
+b = False
+if b:
+    import other
+
+def foo() -> None:
+    try:
+        other.x
+    except:
+        pass
+    else:
+        assert False
+
+[file other.py]
+x = 10
+
+[file driver.py]
+from native import foo
+foo()
+
+[case testTrivialIncremental]
+# separate: [(["other.py", "other_b.py"], "stuff")]
+from other import x
+from other_b import z
+y = x + z
+[file other.py]
+x = 1
+[file other.py.2]
+x = 2
+[file other_b.py]
+z = 1
+
+[file driver.py]
+from native import y
+print(y)
+[out]
+2
+[out2]
+3
+[rechecked other, other_b]
+
+[case testIncrementalCompilation1]
+import non_native
+from other_a import A
+from other_b import z
+
+a = A()
+assert a.y == z
+
+assert non_native.foo() == 0
+
+[file other_a.py]
+from other_b import z
+from typing import Iterable
+
+class A:
+    def __init__(self) -> None:
+        self.y = z
+[file other_a.py.2]
+from other_b import z
+from typing import Iterable
+
+class A:
+    def __init__(self) -> None:
+        self.x = 'test'
+        self.y = z
+[file other_b.py]
+import other_a
+
+z = 10
+
+def foo() -> 'other_a.A':
+    return other_a.A()
+[file other_b.py.3]
+import other_a
+
+z = 20
+
+def foo() -> 'other_a.A':
+    return other_a.A()
+
+[file non_native.py]
+import other_a
+
+def foo() -> int:
+    return 0
+
+[file non_native.py.4]
+import other_a
+
+def foo() -> float:
+    return 0
+
+[file driver.py]
+from native import a
+print(a.y, getattr(a, 'x', None))
+
+[out]
+10 None
+[out2]
+10 test
+[out3]
+20 test
+[out4]
+20 test
+
+[rechecked other_a, other_b, native, non_native]
+[rechecked2 other_a, other_b]
+[rechecked3 native, non_native]
+
+
+-- This one tests a group that is not an SCC.
+[case testIncrementalCompilation2]
+# separate: [(["other_a.py", "other_b.py"], "stuff")]
+from other_a import A
+from other_b import z
+
+a = A()
+assert a.y == z
+
+[file other_a.py]
+from other_b import z
+
+class A:
+    def __init__(self) -> None:
+        self.y = z
+[file other_a.py.2]
+from other_b import z
+
+class A:
+    def __init__(self) -> None:
+        self.x = 'test'
+        self.y = z
+
+[file other_b.py]
+z = 10
+
+[file driver.py]
+from native import a
+print(a.y, getattr(a, 'x', None))
+
+[out]
+10 None
+[out2]
+10 test
+
+[rechecked other_a, other_b, native]
+
+[case testIncrementalCompilation3]
+from other import X
+Y = X
+def foo() -> int:
+    return X
+
+[file other.py]
+from typing_extensions import Final
+X: Final = 10
+
+[file other.py.2]
+from typing_extensions import Final
+X: Final = 20
+
+[file driver.py]
+import native
+import other
+assert native.Y == other.X
+assert native.foo() == other.X
+
+[rechecked native, other]
+
+-- This one tests a group changing
+[case testIncrementalCompilation4]
+# separate: [(["other_a.py", "other_b.py"], "stuff")]
+# separate2: []
+from other_a import A
+from other_b import z
+
+a = A()
+assert a.y == z
+
+[file other_a.py]
+from other_b import z
+
+class A:
+    def __init__(self) -> None:
+        self.y = z
+
+[file other_b.py]
+z = 10
+
+[file wtvr.py.2]
+
+[file driver.py]
+from native import a
+print(a.y, getattr(a, 'x', None))
+
+[out]
+10 None
+[out2]
+10 None
+
+[rechecked other_a, other_b, native]
+
+-- This one tests cases where other modules *do not* need rechecked
+[case testIncrementalCompilation5]
+import other_a
+[file other_a.py]
+from other_b import f
+assert f(10) == 20
+[file other_a.py.2]
+from other_b import f
+assert f(20) == 40
+
+[file other_b.py]
+def f(x: int) -> int:
+    return x * 2
+
+[file driver.py]
+import native
+
+[rechecked other_a]
+
+-- Delete one of the C files and make sure this forces recompilation
+[case testIncrementalCompilation6]
+import other_a
+assert other_a.foo() == 10
+[file other_a.py]
+def foo() -> int: return 10
+
+[file build/__native_other_a.c]
+
+[delete build/__native_other_a.c.2]
+
+[file driver.py]
+import native
+
+[rechecked native, other_a]
+
+[case testSeparateCompilationWithUndefinedAttribute]
+from other_a import A
+
+def f() -> None:
+    a = A()
+    if a.x == 5:
+        print(a.y)
+        print(a.m())
+    else:
+        assert a.x == 6
+        try:
+            print(a.y)
+        except AttributeError:
+            print('y undefined')
+        else:
+            assert False
+
+        try:
+            print(a.m())
+        except AttributeError:
+            print('y undefined')
+        else:
+            assert False
+
+[file other_a.py]
+from other_b import B
+
+class A(B):
+    def __init__(self) -> None:
+        self.y = 9
+
+[file other_a.py.2]
+from other_b import B
+
+class A(B):
+    x = 6
+
+    def __init__(self) -> None:
+        pass
+
+[file other_b.py]
+class B:
+    x = 5
+
+    def __init__(self) -> None:
+        self.y = 7
+
+    def m(self) -> int:
+        return self.y
+
+[file driver.py]
+from native import f
+f()
+
+[rechecked native, other_a]
+
+[out]
+9
+9
+[out2]
+y undefined
+y undefined
+
+[case testIncrementalCompilationWithDeletable]
+import other_a
+[file other_a.py]
+from other_b import C
+[file other_a.py.2]
+from other_b import C
+c = C()
+print(getattr(c, 'x', None))
+del c.x
+print(getattr(c, 'x', None))
+[file other_b.py]
+class C:
+    __deletable__ = ['x']
+    def __init__(self) -> None:
+        self.x = 0
+[file driver.py]
+import native
+[out]
+[out2]
+0
+None

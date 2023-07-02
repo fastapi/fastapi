@@ -1,0 +1,314 @@
+[case testStrSplit]
+from typing import Optional, List
+
+def do_split(s: str, sep: Optional[str] = None, max_split: Optional[int] = None) -> List[str]:
+    if sep is not None:
+        if max_split is not None:
+            return s.split(sep, max_split)
+        else:
+            return s.split(sep)
+    return s.split()
+[out]
+def do_split(s, sep, max_split):
+    s :: str
+    sep :: union[str, None]
+    max_split :: union[int, None]
+    r0, r1, r2 :: object
+    r3 :: bit
+    r4 :: object
+    r5 :: bit
+    r6 :: str
+    r7 :: int
+    r8 :: list
+    r9 :: str
+    r10, r11 :: list
+L0:
+    if is_error(sep) goto L1 else goto L2
+L1:
+    r0 = box(None, 1)
+    sep = r0
+L2:
+    if is_error(max_split) goto L3 else goto L4
+L3:
+    r1 = box(None, 1)
+    max_split = r1
+L4:
+    r2 = load_address _Py_NoneStruct
+    r3 = sep != r2
+    if r3 goto L5 else goto L9 :: bool
+L5:
+    r4 = load_address _Py_NoneStruct
+    r5 = max_split != r4
+    if r5 goto L6 else goto L7 :: bool
+L6:
+    r6 = cast(str, sep)
+    r7 = unbox(int, max_split)
+    r8 = CPyStr_Split(s, r6, r7)
+    return r8
+L7:
+    r9 = cast(str, sep)
+    r10 = PyUnicode_Split(s, r9, -1)
+    return r10
+L8:
+L9:
+    r11 = PyUnicode_Split(s, 0, -1)
+    return r11
+
+
+[case testStrEquality]
+def eq(x: str, y: str) -> bool:
+    return x == y
+
+def neq(x: str, y: str) -> bool:
+    return x != y
+
+[out]
+def eq(x, y):
+    x, y :: str
+    r0 :: int32
+    r1 :: bit
+    r2 :: object
+    r3, r4, r5 :: bit
+L0:
+    r0 = PyUnicode_Compare(x, y)
+    r1 = r0 == -1
+    if r1 goto L1 else goto L3 :: bool
+L1:
+    r2 = PyErr_Occurred()
+    r3 = r2 != 0
+    if r3 goto L2 else goto L3 :: bool
+L2:
+    r4 = CPy_KeepPropagating()
+L3:
+    r5 = r0 == 0
+    return r5
+def neq(x, y):
+    x, y :: str
+    r0 :: int32
+    r1 :: bit
+    r2 :: object
+    r3, r4, r5 :: bit
+L0:
+    r0 = PyUnicode_Compare(x, y)
+    r1 = r0 == -1
+    if r1 goto L1 else goto L3 :: bool
+L1:
+    r2 = PyErr_Occurred()
+    r3 = r2 != 0
+    if r3 goto L2 else goto L3 :: bool
+L2:
+    r4 = CPy_KeepPropagating()
+L3:
+    r5 = r0 != 0
+    return r5
+
+[case testStrReplace]
+from typing import Optional
+
+def do_replace(s: str, old_substr: str, new_substr: str, max_count: Optional[int] = None) -> str:
+    if max_count is not None:
+        return s.replace(old_substr, new_substr, max_count)
+    else:
+        return s.replace(old_substr, new_substr)
+[out]
+def do_replace(s, old_substr, new_substr, max_count):
+    s, old_substr, new_substr :: str
+    max_count :: union[int, None]
+    r0, r1 :: object
+    r2 :: bit
+    r3 :: int
+    r4, r5 :: str
+L0:
+    if is_error(max_count) goto L1 else goto L2
+L1:
+    r0 = box(None, 1)
+    max_count = r0
+L2:
+    r1 = load_address _Py_NoneStruct
+    r2 = max_count != r1
+    if r2 goto L3 else goto L4 :: bool
+L3:
+    r3 = unbox(int, max_count)
+    r4 = CPyStr_Replace(s, old_substr, new_substr, r3)
+    return r4
+L4:
+    r5 = PyUnicode_Replace(s, old_substr, new_substr, -1)
+    return r5
+L5:
+    unreachable
+
+[case testStrToBool]
+def is_true(x: str) -> bool:
+    if x:
+        return True
+    else:
+        return False
+[out]
+def is_true(x):
+    x :: str
+    r0 :: bit
+L0:
+    r0 = CPyStr_IsTrue(x)
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+L3:
+    unreachable
+
+[case testStringFormatMethod]
+def f(s: str, num: int) -> None:
+    s1 = "Hi! I'm {}, and I'm {} years old.".format(s, num)
+    s2 = ''.format()
+    s3 = 'abc'.format()
+    s4 = '}}{}{{{}}}{{{}'.format(num, num, num)
+[out]
+def f(s, num):
+    s :: str
+    num :: int
+    r0, r1, r2, r3, r4, s1, r5, s2, r6, s3, r7, r8, r9, r10, r11, r12, r13, s4 :: str
+L0:
+    r0 = CPyTagged_Str(num)
+    r1 = "Hi! I'm "
+    r2 = ", and I'm "
+    r3 = ' years old.'
+    r4 = CPyStr_Build(5, r1, s, r2, r0, r3)
+    s1 = r4
+    r5 = ''
+    s2 = r5
+    r6 = 'abc'
+    s3 = r6
+    r7 = CPyTagged_Str(num)
+    r8 = CPyTagged_Str(num)
+    r9 = CPyTagged_Str(num)
+    r10 = '}'
+    r11 = '{'
+    r12 = '}{'
+    r13 = CPyStr_Build(6, r10, r7, r11, r8, r12, r9)
+    s4 = r13
+    return 1
+
+[case testFStrings]
+def f(var: str, num: int) -> None:
+    s1 = f"Hi! I'm {var}. I am {num} years old."
+    s2 = f'Hello {var:>{num}}'
+    s3 = f''
+    s4 = f'abc'
+[out]
+def f(var, num):
+    var :: str
+    num :: int
+    r0, r1, r2, r3, r4, s1, r5, r6, r7, r8, r9, r10, r11 :: str
+    r12 :: object
+    r13 :: str
+    r14 :: list
+    r15, r16, r17 :: ptr
+    r18, s2, r19, s3, r20, s4 :: str
+L0:
+    r0 = "Hi! I'm "
+    r1 = '. I am '
+    r2 = CPyTagged_Str(num)
+    r3 = ' years old.'
+    r4 = CPyStr_Build(5, r0, var, r1, r2, r3)
+    s1 = r4
+    r5 = ''
+    r6 = 'Hello '
+    r7 = '{:{}}'
+    r8 = '>'
+    r9 = CPyTagged_Str(num)
+    r10 = CPyStr_Build(2, r8, r9)
+    r11 = 'format'
+    r12 = CPyObject_CallMethodObjArgs(r7, r11, var, r10, 0)
+    r13 = cast(str, r12)
+    r14 = PyList_New(2)
+    r15 = get_element_ptr r14 ob_item :: PyListObject
+    r16 = load_mem r15 :: ptr*
+    set_mem r16, r6 :: builtins.object*
+    r17 = r16 + WORD_SIZE*1
+    set_mem r17, r13 :: builtins.object*
+    keep_alive r14
+    r18 = PyUnicode_Join(r5, r14)
+    s2 = r18
+    r19 = ''
+    s3 = r19
+    r20 = 'abc'
+    s4 = r20
+    return 1
+
+[case testStringFormattingCStyle]
+def f(var: str, num: int) -> None:
+    s1 = "Hi! I'm %s." % var
+    s2 = "I am %d years old." % num
+    s3 = "Hi! I'm %s. I am %d years old." % (var, num)
+    s4 = "Float: %f" % num
+[typing fixtures/typing-full.pyi]
+[out]
+def f(var, num):
+    var :: str
+    num :: int
+    r0, r1, r2, s1, r3, r4, r5, r6, s2, r7, r8, r9, r10, r11, s3, r12 :: str
+    r13, r14 :: object
+    r15, s4 :: str
+L0:
+    r0 = "Hi! I'm "
+    r1 = '.'
+    r2 = CPyStr_Build(3, r0, var, r1)
+    s1 = r2
+    r3 = CPyTagged_Str(num)
+    r4 = 'I am '
+    r5 = ' years old.'
+    r6 = CPyStr_Build(3, r4, r3, r5)
+    s2 = r6
+    r7 = CPyTagged_Str(num)
+    r8 = "Hi! I'm "
+    r9 = '. I am '
+    r10 = ' years old.'
+    r11 = CPyStr_Build(5, r8, var, r9, r7, r10)
+    s3 = r11
+    r12 = 'Float: %f'
+    r13 = box(int, num)
+    r14 = PyNumber_Remainder(r12, r13)
+    r15 = cast(str, r14)
+    s4 = r15
+    return 1
+
+[case testDecode]
+def f(b: bytes) -> None:
+    b.decode()
+    b.decode('utf-8')
+    b.decode('utf-8', 'backslashreplace')
+[out]
+def f(b):
+    b :: bytes
+    r0, r1, r2, r3, r4, r5 :: str
+L0:
+    r0 = CPy_Decode(b, 0, 0)
+    r1 = 'utf-8'
+    r2 = CPy_Decode(b, r1, 0)
+    r3 = 'utf-8'
+    r4 = 'backslashreplace'
+    r5 = CPy_Decode(b, r3, r4)
+    return 1
+
+[case testEncode]
+def f(s: str) -> None:
+    s.encode()
+    s.encode('utf-8')
+    s.encode('ascii', 'backslashreplace')
+[out]
+def f(s):
+    s :: str
+    r0 :: bytes
+    r1 :: str
+    r2 :: bytes
+    r3, r4 :: str
+    r5 :: bytes
+L0:
+    r0 = CPy_Encode(s, 0, 0)
+    r1 = 'utf-8'
+    r2 = CPy_Encode(s, r1, 0)
+    r3 = 'ascii'
+    r4 = 'backslashreplace'
+    r5 = CPy_Encode(s, r3, r4)
+    return 1

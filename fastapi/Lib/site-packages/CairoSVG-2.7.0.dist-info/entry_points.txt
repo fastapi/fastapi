@@ -1,0 +1,2 @@
+[console_scripts]
+cairosvg = cairosvg.__main__:main

@@ -1,0 +1,8 @@
+boundary: --boundary
+expected:
+  - name: field
+    type: field
+    data: !!binary |
+        UVFRUVFRUVFRUVFRUVFRUVFRUVENCi0tLS1ib3VuZGFyeVFRUVFRUVFRUVFRUVFRUVFRUVFR
+
+

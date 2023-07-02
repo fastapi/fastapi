@@ -1,0 +1,11 @@
+------WebKitFormBoundarygbACTUR58IyeurVf
+Content-Disposition: form-data; name="file1"; filename="test1.txt"
+Content-Type: text/plain
+
+Test file #1
+------WebKitFormBoundarygbACTUR58IyeurVf
+Content-Disposition: form-data; name="file2"; filename="test2.txt"
+Content-Type: text/plain
+
+Test file #2
+------WebKitFormBoundarygbACTUR58IyeurVf--

@@ -1,0 +1,2 @@
+[mkdocs.plugins]
+markdownextradata = markdownextradata.plugin:MarkdownExtraDataPlugin

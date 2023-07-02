@@ -1,0 +1,334 @@
+# Test cases for dicts (compile and run)
+
+[case testDictStuff]
+from typing import Dict, Any, List, Set, Tuple
+from defaultdictwrap import make_dict
+
+def f(x: int) -> int:
+    dict1 = {} # type: Dict[int, int]
+    dict1[1] = 1
+    dict2 = {} # type: Dict[int, int]
+    dict2[x] = 2
+    dict1.update(dict2)
+
+    l = [(5, 2)]  # type: Any
+    dict1.update(l)
+    d2 = {6: 4}  # type: Any
+    dict1.update(d2)
+
+    return dict1[1]
+
+def g() -> int:
+    d = make_dict()
+    d['a'] = 10
+    d['a'] += 10
+    d['b'] += 10
+    l = [('c', 2)]  # type: Any
+    d.update(l)
+    d2 = {'d': 4}  # type: Any
+    d.update(d2)
+    return d['a'] + d['b']
+
+def h() -> None:
+    d = {}  # type: Dict[Any, Any]
+    d[{}]
+
+def update_dict(x: Dict[Any, Any], y: Any):
+    x.update(y)
+
+def make_dict1(x: Any) -> Dict[Any, Any]:
+    return dict(x)
+
+def make_dict2(x: Dict[Any, Any]) -> Dict[Any, Any]:
+    return dict(x)
+
+def u(x: int) -> int:
+    d = {} # type: Dict[str, int]
+    d.update(x=x)
+    return d['x']
+
+def get_content(d: Dict[int, int]) -> Tuple[List[int], List[int], List[Tuple[int, int]]]:
+    return list(d.keys()), list(d.values()), list(d.items())
+
+def get_content_set(d: Dict[int, int]) -> Tuple[Set[int], Set[int], Set[Tuple[int, int]]]:
+    return set(d.keys()), set(d.values()), set(d.items())
+[file defaultdictwrap.py]
+from typing import Dict
+from collections import defaultdict  # type: ignore
+def make_dict() -> Dict[str, int]:
+    return defaultdict(int)
+
+[file driver.py]
+from collections import OrderedDict
+from native import (
+    f, g, h, u, make_dict1, make_dict2, update_dict, get_content, get_content_set
+)
+assert f(1) == 2
+assert f(2) == 1
+assert g() == 30
+# Make sure we get a TypeError from indexing with unhashable and not KeyError
+try:
+    h()
+except TypeError:
+    pass
+else:
+    assert False
+d = {'a': 1, 'b': 2}
+assert make_dict1(d) == d
+assert make_dict1(d.items()) == d
+assert make_dict2(d) == d
+# object.__dict__ is a "mappingproxy" and not a dict
+assert make_dict1(object.__dict__) == dict(object.__dict__)
+d = {}
+update_dict(d, object.__dict__)
+assert d == dict(object.__dict__)
+
+assert u(10) == 10
+assert get_content({1: 2}) == ([1], [2], [(1, 2)])
+od = OrderedDict([(1, 2), (3, 4)])
+assert get_content(od) == ([1, 3], [2, 4], [(1, 2), (3, 4)])
+od.move_to_end(1)
+assert get_content(od) == ([3, 1], [4, 2], [(3, 4), (1, 2)])
+assert get_content_set({1: 2}) == ({1}, {2}, {(1, 2)})
+assert get_content_set(od) == ({1, 3}, {2, 4}, {(1, 2), (3, 4)})
+
+[typing fixtures/typing-full.pyi]
+
+[case testDictIterationMethodsRun]
+from typing import Dict, Union
+from typing_extensions import TypedDict
+
+class ExtensionDict(TypedDict):
+    python: str
+    c: str
+
+def print_dict_methods(d1: Dict[int, int],
+                       d2: Dict[int, int],
+                       d3: Dict[int, int]) -> None:
+    for k in d1.keys():
+        print(k)
+    for k, v in d2.items():
+        print(k)
+        print(v)
+    for v in d3.values():
+        print(v)
+
+def print_dict_methods_special(d1: Union[Dict[int, int], Dict[str, str]],
+                               d2: ExtensionDict) -> None:
+    for k in d1.keys():
+        print(k)
+    for k, v in d1.items():
+        print(k)
+        print(v)
+    for v2 in d2.values():
+        print(v2)
+    for k2, v2 in d2.items():
+        print(k2)
+        print(v2)
+
+
+def clear_during_iter(d: Dict[int, int]) -> None:
+    for k in d:
+        d.clear()
+
+class Custom(Dict[int, int]): pass
+[file driver.py]
+from native import print_dict_methods, print_dict_methods_special, Custom, clear_during_iter
+from collections import OrderedDict
+print_dict_methods({}, {}, {})
+print_dict_methods({1: 2}, {3: 4, 5: 6}, {7: 8})
+print('==')
+c = Custom({0: 1})
+print_dict_methods(c, c, c)
+print('==')
+d = OrderedDict([(1, 2), (3, 4)])
+print_dict_methods(d, d, d)
+print('==')
+print_dict_methods_special({1: 2}, {"python": ".py", "c": ".c"})
+d.move_to_end(1)
+print_dict_methods(d, d, d)
+clear_during_iter({})  # OK
+try:
+    clear_during_iter({1: 2, 3: 4})
+except RuntimeError as e:
+    assert str(e) == "dictionary changed size during iteration"
+else:
+    assert False
+try:
+    clear_during_iter(d)
+except RuntimeError as e:
+    assert str(e) == "OrderedDict changed size during iteration"
+else:
+    assert False
+
+class CustomMad(dict):
+    def __iter__(self):
+        return self
+    def __next__(self):
+        raise ValueError
+m = CustomMad()
+try:
+    clear_during_iter(m)
+except ValueError:
+    pass
+else:
+    assert False
+
+class CustomBad(dict):
+    def items(self):
+        return [(1, 2, 3)]  # Oops
+b = CustomBad()
+try:
+    print_dict_methods(b, b, b)
+except TypeError as e:
+    assert str(e) == "a tuple of length 2 expected"
+else:
+    assert False
+[out]
+1
+3
+4
+5
+6
+8
+==
+0
+0
+1
+1
+==
+1
+3
+1
+2
+3
+4
+2
+4
+==
+1
+1
+2
+.py
+.c
+python
+.py
+c
+.c
+3
+1
+3
+4
+1
+2
+4
+2
+
+[case testDictMethods]
+from collections import defaultdict
+from typing import Dict, Optional, List, Set
+
+def test_dict_clear() -> None:
+    d = {'a': 1, 'b': 2}
+    d.clear()
+    assert d == {}
+    dd: Dict[str, int] = defaultdict(int)
+    dd['a'] = 1
+    dd.clear()
+    assert dd == {}
+
+def test_dict_copy() -> None:
+    d: Dict[str, int] = {}
+    assert d.copy() == d
+    d = {'a': 1, 'b': 2}
+    assert d.copy() == d
+    assert d.copy() is not d
+    dd: Dict[str, int] = defaultdict(int)
+    dd['a'] = 1
+    assert dd.copy() == dd
+    assert isinstance(dd.copy(), defaultdict)
+
+class MyDict(dict):
+    def __init__(self, *args, **kwargs):
+        self.update(*args, **kwargs)
+
+    def setdefault(self, k, v=None):
+        if v is None:
+            if k in self.keys():
+                return self[k]
+            else:
+                return None
+        else:
+            return super().setdefault(k, v) + 10
+
+def test_dict_setdefault() -> None:
+    d: Dict[str, Optional[int]] = {'a': 1, 'b': 2}
+    assert d.setdefault('a', 2) == 1
+    assert d.setdefault('b', 2) == 2
+    assert d.setdefault('c', 3) == 3
+    assert d['a'] == 1
+    assert d['c'] == 3
+    assert d.setdefault('a') == 1
+    assert d.setdefault('e') == None
+    assert d.setdefault('e', 100) == None
+
+def test_dict_subclass_setdefault() -> None:
+    d = MyDict()
+    d['a'] = 1
+    assert d.setdefault('a', 2) == 11
+    assert d.setdefault('b', 2) == 12
+    assert d.setdefault('c', 3) == 13
+    assert d['a'] == 1
+    assert d['c'] == 3
+    assert d.setdefault('a') == 1
+    assert d.setdefault('e') == None
+    assert d.setdefault('e', 100) == 110
+
+def test_dict_empty_collection_setdefault() -> None:
+    d1: Dict[str, List[int]] = {'a': [1, 2, 3]}
+    assert d1.setdefault('a', []) == [1, 2, 3]
+    assert d1.setdefault('b', []) == []
+    assert 'b' in d1
+    d1.setdefault('b', []).append(3)
+    assert d1['b'] == [3]
+    assert d1.setdefault('c', [1]) == [1]
+
+    d2: Dict[str, Dict[str, int]] = {'a': {'a': 1}}
+    assert d2.setdefault('a', {}) == {'a': 1}
+    assert d2.setdefault('b', {}) == {}
+    assert 'b' in d2
+    d2.setdefault('b', {})['aa'] = 2
+    d2.setdefault('b', {})['bb'] = 3
+    assert d2['b'] == {'aa': 2, 'bb': 3}
+    assert d2.setdefault('c', {'cc': 1}) == {'cc': 1}
+
+    d3: Dict[str, Set[str]] = {'a': set('a')}
+    assert d3.setdefault('a', set()) == {'a'}
+    assert d3.setdefault('b', set()) == set()
+    d3.setdefault('b', set()).add('b')
+    d3.setdefault('b', set()).add('c')
+    assert d3['b'] == {'b', 'c'}
+    assert d3.setdefault('c', set('d')) == {'d'}
+
+[case testDictToBool]
+from typing import Dict, List
+
+def is_true(x: dict) -> bool:
+    if x:
+        return True
+    else:
+        return False
+
+def is_false(x: dict) -> bool:
+    if not x:
+        return True
+    else:
+        return False
+
+def test_dict_to_bool() -> None:
+    assert is_false({})
+    assert not is_true({})
+    tmp_list: List[Dict] = [{2: bool}, {'a': 'b'}]
+    for x in tmp_list:
+        assert is_true(x)
+        assert not is_false(x)

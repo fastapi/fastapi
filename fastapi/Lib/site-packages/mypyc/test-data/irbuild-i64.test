@@ -1,0 +1,2155 @@
+[case testI64Basics]
+from mypy_extensions import i64
+
+def f() -> i64:
+    x: i64 = 5
+    y = x
+    return y
+[out]
+def f():
+    x, y :: int64
+L0:
+    x = 5
+    y = x
+    return y
+
+[case testI64Compare]
+from mypy_extensions import i64
+
+def min(x: i64, y: i64) -> i64:
+    if x < y:
+        return x
+    else:
+        return y
+
+def all_comparisons(x: i64) -> int:
+    if x == 2:
+        y = 10
+    elif 3 != x:
+        y = 11
+    elif x > 4:
+        y = 12
+    elif 6 >= x:
+        y = 13
+    elif x < 5:
+        y = 14
+    elif 6 <= x:
+        y = 15
+    else:
+        y = 16
+    return y
+[out]
+def min(x, y):
+    x, y :: int64
+    r0 :: bit
+L0:
+    r0 = x < y :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return x
+L2:
+    return y
+L3:
+    unreachable
+def all_comparisons(x):
+    x :: int64
+    r0 :: bit
+    y :: int
+    r1, r2, r3, r4, r5 :: bit
+L0:
+    r0 = x == 2
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    y = 20
+    goto L18
+L2:
+    r1 = 3 != x
+    if r1 goto L3 else goto L4 :: bool
+L3:
+    y = 22
+    goto L17
+L4:
+    r2 = x > 4 :: signed
+    if r2 goto L5 else goto L6 :: bool
+L5:
+    y = 24
+    goto L16
+L6:
+    r3 = 6 >= x :: signed
+    if r3 goto L7 else goto L8 :: bool
+L7:
+    y = 26
+    goto L15
+L8:
+    r4 = x < 5 :: signed
+    if r4 goto L9 else goto L10 :: bool
+L9:
+    y = 28
+    goto L14
+L10:
+    r5 = 6 <= x :: signed
+    if r5 goto L11 else goto L12 :: bool
+L11:
+    y = 30
+    goto L13
+L12:
+    y = 32
+L13:
+L14:
+L15:
+L16:
+L17:
+L18:
+    return y
+
+[case testI64Arithmetic]
+from mypy_extensions import i64
+
+def f(x: i64, y: i64) -> i64:
+    z = x + y
+    return y - z
+[out]
+def f(x, y):
+    x, y, r0, z, r1 :: int64
+L0:
+    r0 = x + y
+    z = r0
+    r1 = y - z
+    return r1
+
+[case testI64Negation]
+from mypy_extensions import i64
+
+def f() -> i64:
+    i: i64 = -3
+    return -i
+[out]
+def f():
+    i, r0 :: int64
+L0:
+    i = -3
+    r0 = 0 - i
+    return r0
+
+[case testI64MoreUnaryOps]
+from mypy_extensions import i64
+
+def unary(x: i64) -> i64:
+    y = ~x
+    x = +y
+    return x
+[out]
+def unary(x):
+    x, r0, y :: int64
+L0:
+    r0 = x ^ -1
+    y = r0
+    x = y
+    return x
+
+[case testI64BoxingAndUnboxing]
+from typing import Any
+from mypy_extensions import i64
+
+def f(a: Any) -> None:
+    b: i64 = a
+    a = b
+[out]
+def f(a):
+    a :: object
+    r0, b :: int64
+    r1 :: object
+L0:
+    r0 = unbox(int64, a)
+    b = r0
+    r1 = box(int64, b)
+    a = r1
+    return 1
+
+[case testI64ListGetSetItem]
+from typing import List
+from mypy_extensions import i64
+
+def get(a: List[i64], i: i64) -> i64:
+    return a[i]
+def set(a: List[i64], i: i64, x: i64) -> None:
+    a[i] = x
+[out]
+def get(a, i):
+    a :: list
+    i :: int64
+    r0 :: object
+    r1 :: int64
+L0:
+    r0 = CPyList_GetItemInt64(a, i)
+    r1 = unbox(int64, r0)
+    return r1
+def set(a, i, x):
+    a :: list
+    i, x :: int64
+    r0 :: object
+    r1 :: bit
+L0:
+    r0 = box(int64, x)
+    r1 = CPyList_SetItemInt64(a, i, r0)
+    return 1
+
+[case testI64MixedArithmetic]
+from mypy_extensions import i64
+
+def f() -> i64:
+    a: i64 = 1
+    b = a + 2
+    return 3 - b
+[out]
+def f():
+    a, r0, b, r1 :: int64
+L0:
+    a = 1
+    r0 = a + 2
+    b = r0
+    r1 = 3 - b
+    return r1
+
+[case testI64MixedComparison]
+from mypy_extensions import i64
+
+def f(a: i64) -> i64:
+    if a < 3:
+        return 1
+    elif 3 < a:
+        return 2
+    return 3
+[out]
+def f(a):
+    a :: int64
+    r0, r1 :: bit
+L0:
+    r0 = a < 3 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    r1 = 3 < a :: signed
+    if r1 goto L3 else goto L4 :: bool
+L3:
+    return 2
+L4:
+L5:
+    return 3
+
+[case testI64InplaceOperations]
+from mypy_extensions import i64
+
+def add(a: i64) -> i64:
+    b = a
+    b += 1
+    a += b
+    return a
+def others(a: i64, b: i64) -> i64:
+    a -= b
+    a *= b
+    a &= b
+    a |= b
+    a ^= b
+    a <<= b
+    a >>= b
+    return a
+[out]
+def add(a):
+    a, b, r0, r1 :: int64
+L0:
+    b = a
+    r0 = b + 1
+    b = r0
+    r1 = a + b
+    a = r1
+    return a
+def others(a, b):
+    a, b, r0, r1, r2, r3, r4, r5, r6 :: int64
+L0:
+    r0 = a - b
+    a = r0
+    r1 = a * b
+    a = r1
+    r2 = a & b
+    a = r2
+    r3 = a | b
+    a = r3
+    r4 = a ^ b
+    a = r4
+    r5 = a << b
+    a = r5
+    r6 = a >> b
+    a = r6
+    return a
+
+[case testI64BitwiseOps]
+from mypy_extensions import i64
+
+def forward(a: i64, b: i64) -> i64:
+    b = a & 1
+    a = b | 2
+    b = a ^ 3
+    a = b << 4
+    b = a >> 5
+    return b
+
+def reverse(a: i64, b: i64) -> i64:
+    b = 1 & a
+    a = 2 | b
+    b = 3 ^ a
+    a = 4 << b
+    b = 5 >> a
+    return b
+
+def unary(a: i64) -> i64:
+    return ~a
+[out]
+def forward(a, b):
+    a, b, r0, r1, r2, r3, r4 :: int64
+L0:
+    r0 = a & 1
+    b = r0
+    r1 = b | 2
+    a = r1
+    r2 = a ^ 3
+    b = r2
+    r3 = b << 4
+    a = r3
+    r4 = a >> 5
+    b = r4
+    return b
+def reverse(a, b):
+    a, b, r0, r1, r2, r3, r4 :: int64
+L0:
+    r0 = 1 & a
+    b = r0
+    r1 = 2 | b
+    a = r1
+    r2 = 3 ^ a
+    b = r2
+    r3 = 4 << b
+    a = r3
+    r4 = 5 >> a
+    b = r4
+    return b
+def unary(a):
+    a, r0 :: int64
+L0:
+    r0 = a ^ -1
+    return r0
+
+[case testI64Division]
+from mypy_extensions import i64
+
+def constant_divisor(x: i64) -> i64:
+    return x // 7
+def variable_divisor(x: i64, y: i64) -> i64:
+    return x // y
+def constant_lhs(x: i64) -> i64:
+    return 27 // x
+def divide_by_neg_one(x: i64) -> i64:
+    return x // -1
+def divide_by_zero(x: i64) -> i64:
+    return x // 0
+[out]
+def constant_divisor(x):
+    x, r0, r1 :: int64
+    r2, r3, r4 :: bit
+    r5 :: int64
+    r6 :: bit
+    r7 :: int64
+L0:
+    r0 = x / 7
+    r1 = r0
+    r2 = x < 0 :: signed
+    r3 = 7 < 0 :: signed
+    r4 = r2 == r3
+    if r4 goto L3 else goto L1 :: bool
+L1:
+    r5 = r1 * 7
+    r6 = r5 == x
+    if r6 goto L3 else goto L2 :: bool
+L2:
+    r7 = r1 - 1
+    r1 = r7
+L3:
+    return r1
+def variable_divisor(x, y):
+    x, y, r0 :: int64
+L0:
+    r0 = CPyInt64_Divide(x, y)
+    return r0
+def constant_lhs(x):
+    x, r0 :: int64
+L0:
+    r0 = CPyInt64_Divide(27, x)
+    return r0
+def divide_by_neg_one(x):
+    x, r0 :: int64
+L0:
+    r0 = CPyInt64_Divide(x, -1)
+    return r0
+def divide_by_zero(x):
+    x, r0 :: int64
+L0:
+    r0 = CPyInt64_Divide(x, 0)
+    return r0
+
+[case testI64Mod]
+from mypy_extensions import i64
+
+def constant_divisor(x: i64) -> i64:
+    return x % 7
+def variable_divisor(x: i64, y: i64) -> i64:
+    return x % y
+def constant_lhs(x: i64) -> i64:
+    return 27 % x
+def mod_by_zero(x: i64) -> i64:
+    return x % 0
+[out]
+def constant_divisor(x):
+    x, r0, r1 :: int64
+    r2, r3, r4, r5 :: bit
+    r6 :: int64
+L0:
+    r0 = x % 7
+    r1 = r0
+    r2 = x < 0 :: signed
+    r3 = 7 < 0 :: signed
+    r4 = r2 == r3
+    if r4 goto L3 else goto L1 :: bool
+L1:
+    r5 = r1 == 0
+    if r5 goto L3 else goto L2 :: bool
+L2:
+    r6 = r1 + 7
+    r1 = r6
+L3:
+    return r1
+def variable_divisor(x, y):
+    x, y, r0 :: int64
+L0:
+    r0 = CPyInt64_Remainder(x, y)
+    return r0
+def constant_lhs(x):
+    x, r0 :: int64
+L0:
+    r0 = CPyInt64_Remainder(27, x)
+    return r0
+def mod_by_zero(x):
+    x, r0 :: int64
+L0:
+    r0 = CPyInt64_Remainder(x, 0)
+    return r0
+
+[case testI64InPlaceDiv]
+from mypy_extensions import i64
+
+def by_constant(x: i64) -> i64:
+    x //= 7
+    return x
+def by_variable(x: i64, y: i64) -> i64:
+    x //= y
+    return x
+[out]
+def by_constant(x):
+    x, r0, r1 :: int64
+    r2, r3, r4 :: bit
+    r5 :: int64
+    r6 :: bit
+    r7 :: int64
+L0:
+    r0 = x / 7
+    r1 = r0
+    r2 = x < 0 :: signed
+    r3 = 7 < 0 :: signed
+    r4 = r2 == r3
+    if r4 goto L3 else goto L1 :: bool
+L1:
+    r5 = r1 * 7
+    r6 = r5 == x
+    if r6 goto L3 else goto L2 :: bool
+L2:
+    r7 = r1 - 1
+    r1 = r7
+L3:
+    x = r1
+    return x
+def by_variable(x, y):
+    x, y, r0 :: int64
+L0:
+    r0 = CPyInt64_Divide(x, y)
+    x = r0
+    return x
+
+[case testI64InPlaceMod]
+from mypy_extensions import i64
+
+def by_constant(x: i64) -> i64:
+    x %= 7
+    return x
+def by_variable(x: i64, y: i64) -> i64:
+    x %= y
+    return x
+[out]
+def by_constant(x):
+    x, r0, r1 :: int64
+    r2, r3, r4, r5 :: bit
+    r6 :: int64
+L0:
+    r0 = x % 7
+    r1 = r0
+    r2 = x < 0 :: signed
+    r3 = 7 < 0 :: signed
+    r4 = r2 == r3
+    if r4 goto L3 else goto L1 :: bool
+L1:
+    r5 = r1 == 0
+    if r5 goto L3 else goto L2 :: bool
+L2:
+    r6 = r1 + 7
+    r1 = r6
+L3:
+    x = r1
+    return x
+def by_variable(x, y):
+    x, y, r0 :: int64
+L0:
+    r0 = CPyInt64_Remainder(x, y)
+    x = r0
+    return x
+
+[case testI64ForRange]
+from mypy_extensions import i64
+
+def g(a: i64) -> None: pass
+
+def f(x: i64) -> None:
+    n: i64  # TODO: Infer the type
+    for n in range(x):
+        g(n)
+[out]
+def g(a):
+    a :: int64
+L0:
+    return 1
+def f(x):
+    x, r0, n :: int64
+    r1 :: bit
+    r2 :: None
+    r3 :: int64
+L0:
+    r0 = 0
+    n = r0
+L1:
+    r1 = r0 < x :: signed
+    if r1 goto L2 else goto L4 :: bool
+L2:
+    r2 = g(n)
+L3:
+    r3 = r0 + 1
+    r0 = r3
+    n = r3
+    goto L1
+L4:
+    return 1
+
+[case testI64ConvertFromInt_64bit]
+from mypy_extensions import i64
+
+def int_to_i64(a: int) -> i64:
+    return a
+[out]
+def int_to_i64(a):
+    a :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+L0:
+    r0 = a & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = a >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = a ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive a
+L3:
+    return r3
+
+[case testI64ConvertToInt_64bit]
+from mypy_extensions import i64
+
+def i64_to_int(a: i64) -> int:
+    return a
+[out]
+def i64_to_int(a):
+    a :: int64
+    r0, r1 :: bit
+    r2, r3, r4 :: int
+L0:
+    r0 = a <= 4611686018427387903 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = a >= -4611686018427387904 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(a)
+    r3 = r2
+    goto L4
+L3:
+    r4 = a << 1
+    r3 = r4
+L4:
+    return r3
+
+[case testI64ConvertToInt_32bit]
+from mypy_extensions import i64
+
+def i64_to_int(a: i64) -> int:
+    return a
+[out]
+def i64_to_int(a):
+    a :: int64
+    r0, r1 :: bit
+    r2, r3 :: int
+    r4 :: native_int
+    r5 :: int
+L0:
+    r0 = a <= 1073741823 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = a >= -1073741824 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(a)
+    r3 = r2
+    goto L4
+L3:
+    r4 = truncate a: int64 to native_int
+    r5 = r4 << 1
+    r3 = r5
+L4:
+    return r3
+
+[case testI64Tuple]
+from typing import Tuple
+from mypy_extensions import i64
+
+def f(x: i64, y: i64) -> Tuple[i64, i64]:
+    return x, y
+
+def g() -> Tuple[i64, i64]:
+    return 1, 2
+
+def h() -> i64:
+    x, y = g()
+    t = g()
+    return x + y + t[0]
+[out]
+def f(x, y):
+    x, y :: int64
+    r0 :: tuple[int64, int64]
+L0:
+    r0 = (x, y)
+    return r0
+def g():
+    r0 :: tuple[int, int]
+    r1 :: tuple[int64, int64]
+L0:
+    r0 = (2, 4)
+    r1 = (1, 2)
+    return r1
+def h():
+    r0 :: tuple[int64, int64]
+    r1, x, r2, y :: int64
+    r3, t :: tuple[int64, int64]
+    r4, r5, r6 :: int64
+L0:
+    r0 = g()
+    r1 = r0[0]
+    x = r1
+    r2 = r0[1]
+    y = r2
+    r3 = g()
+    t = r3
+    r4 = x + y
+    r5 = t[0]
+    r6 = r4 + r5
+    return r6
+
+[case testI64MixWithTagged1_64bit]
+from mypy_extensions import i64
+def f(x: i64, y: int) -> i64:
+    return x + y
+[out]
+def f(x, y):
+    x :: int64
+    y :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6, r7 :: int64
+L0:
+    r0 = y & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = y >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = y ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive y
+L3:
+    r7 = x + r3
+    return r7
+
+[case testI64MixWithTagged2_64bit]
+from mypy_extensions import i64
+def f(x: int, y: i64) -> i64:
+    return x + y
+[out]
+def f(x, y):
+    x :: int
+    y :: int64
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6, r7 :: int64
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = x ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive x
+L3:
+    r7 = r3 + y
+    return r7
+
+[case testI64MixWithTaggedInPlace1_64bit]
+from mypy_extensions import i64
+def f(y: i64) -> int:
+    x = 0
+    x += y
+    return x
+[out]
+def f(y):
+    y :: int64
+    x :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6, r7 :: int64
+    r8, r9 :: bit
+    r10, r11, r12 :: int
+L0:
+    x = 0
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = x ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive x
+L3:
+    r7 = r3 + y
+    r8 = r7 <= 4611686018427387903 :: signed
+    if r8 goto L4 else goto L5 :: bool
+L4:
+    r9 = r7 >= -4611686018427387904 :: signed
+    if r9 goto L6 else goto L5 :: bool
+L5:
+    r10 = CPyTagged_FromInt64(r7)
+    r11 = r10
+    goto L7
+L6:
+    r12 = r7 << 1
+    r11 = r12
+L7:
+    x = r11
+    return x
+
+[case testI64MixWithTaggedInPlace2_64bit]
+from mypy_extensions import i64
+def f(y: int) -> i64:
+    x: i64 = 0
+    x += y
+    return x
+[out]
+def f(y):
+    y :: int
+    x :: int64
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6, r7 :: int64
+L0:
+    x = 0
+    r0 = y & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = y >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = y ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive y
+L3:
+    r7 = x + r3
+    x = r7
+    return x
+
+[case testI64MixedCompare1_64bit]
+from mypy_extensions import i64
+def f(x: int, y: i64) -> bool:
+    return x == y
+[out]
+def f(x, y):
+    x :: int
+    y :: int64
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+    r7 :: bit
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = x ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive x
+L3:
+    r7 = r3 == y
+    return r7
+
+[case testI64MixedCompare2_64bit]
+from mypy_extensions import i64
+def f(x: i64, y: int) -> bool:
+    return x == y
+[out]
+def f(x, y):
+    x :: int64
+    y :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+    r7 :: bit
+L0:
+    r0 = y & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = y >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = y ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive y
+L3:
+    r7 = x == r3
+    return r7
+
+[case testI64MixedCompare_32bit]
+from mypy_extensions import i64
+def f(x: int, y: i64) -> bool:
+    return x == y
+[out]
+def f(x, y):
+    x :: int
+    y :: int64
+    r0 :: native_int
+    r1 :: bit
+    r2, r3, r4 :: int64
+    r5 :: ptr
+    r6 :: c_ptr
+    r7 :: int64
+    r8 :: bit
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = extend signed x: builtins.int to int64
+    r3 = r2 >> 1
+    r4 = r3
+    goto L3
+L2:
+    r5 = x ^ 1
+    r6 = r5
+    r7 = CPyLong_AsInt64(r6)
+    r4 = r7
+    keep_alive x
+L3:
+    r8 = r4 == y
+    return r8
+
+[case testI64AsBool]
+from mypy_extensions import i64
+def f(x: i64) -> i64:
+    if x:
+        return 5
+    elif not x:
+        return 6
+    return 3
+[out]
+def f(x):
+    x :: int64
+    r0, r1 :: bit
+L0:
+    r0 = x != 0
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return 5
+L2:
+    r1 = x != 0
+    if r1 goto L4 else goto L3 :: bool
+L3:
+    return 6
+L4:
+L5:
+    return 3
+
+[case testI64AssignMixed_64bit]
+from mypy_extensions import i64
+def f(x: i64, y: int) -> i64:
+    x = y
+    return x
+def g(x: i64, y: int) -> int:
+    y = x
+    return y
+[out]
+def f(x, y):
+    x :: int64
+    y :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+L0:
+    r0 = y & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = y >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = y ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive y
+L3:
+    x = r3
+    return x
+def g(x, y):
+    x :: int64
+    y :: int
+    r0, r1 :: bit
+    r2, r3, r4 :: int
+L0:
+    r0 = x <= 4611686018427387903 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = x >= -4611686018427387904 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(x)
+    r3 = r2
+    goto L4
+L3:
+    r4 = x << 1
+    r3 = r4
+L4:
+    y = r3
+    return y
+
+[case testBorrowOverI64Arithmetic]
+from mypy_extensions import i64
+
+def add_simple(c: C) -> i64:
+    return c.x + c.y
+
+def inplace_add_simple(c: C) -> None:
+    c.x += c.y
+
+def add_borrow(d: D) -> i64:
+    return d.c.x + d.c.y
+
+class D:
+    c: C
+
+class C:
+    x: i64
+    y: i64
+[out]
+def add_simple(c):
+    c :: __main__.C
+    r0, r1, r2 :: int64
+L0:
+    r0 = c.x
+    r1 = c.y
+    r2 = r0 + r1
+    return r2
+def inplace_add_simple(c):
+    c :: __main__.C
+    r0, r1, r2 :: int64
+    r3 :: bool
+L0:
+    r0 = c.x
+    r1 = c.y
+    r2 = r0 + r1
+    c.x = r2; r3 = is_error
+    return 1
+def add_borrow(d):
+    d :: __main__.D
+    r0 :: __main__.C
+    r1 :: int64
+    r2 :: __main__.C
+    r3, r4 :: int64
+L0:
+    r0 = borrow d.c
+    r1 = r0.x
+    r2 = borrow d.c
+    r3 = r2.y
+    r4 = r1 + r3
+    keep_alive d, d
+    return r4
+
+[case testBorrowOverI64Bitwise]
+from mypy_extensions import i64
+
+def bitwise_simple(c: C) -> i64:
+    return c.x | c.y
+
+def inplace_bitwide_simple(c: C) -> None:
+    c.x &= c.y
+
+def bitwise_borrow(d: D) -> i64:
+    return d.c.x ^ d.c.y
+
+class D:
+    c: C
+
+class C:
+    x: i64
+    y: i64
+[out]
+def bitwise_simple(c):
+    c :: __main__.C
+    r0, r1, r2 :: int64
+L0:
+    r0 = c.x
+    r1 = c.y
+    r2 = r0 | r1
+    return r2
+def inplace_bitwide_simple(c):
+    c :: __main__.C
+    r0, r1, r2 :: int64
+    r3 :: bool
+L0:
+    r0 = c.x
+    r1 = c.y
+    r2 = r0 & r1
+    c.x = r2; r3 = is_error
+    return 1
+def bitwise_borrow(d):
+    d :: __main__.D
+    r0 :: __main__.C
+    r1 :: int64
+    r2 :: __main__.C
+    r3, r4 :: int64
+L0:
+    r0 = borrow d.c
+    r1 = r0.x
+    r2 = borrow d.c
+    r3 = r2.y
+    r4 = r1 ^ r3
+    keep_alive d, d
+    return r4
+
+[case testBorrowOverI64ListGetItem1]
+from mypy_extensions import i64
+
+def f(n: i64) -> str:
+    a = [C()]
+    return a[n].s
+
+class C:
+    s: str
+[out]
+def f(n):
+    n :: int64
+    r0 :: __main__.C
+    r1 :: list
+    r2, r3 :: ptr
+    a :: list
+    r4 :: object
+    r5 :: __main__.C
+    r6 :: str
+L0:
+    r0 = C()
+    r1 = PyList_New(1)
+    r2 = get_element_ptr r1 ob_item :: PyListObject
+    r3 = load_mem r2 :: ptr*
+    set_mem r3, r0 :: builtins.object*
+    keep_alive r1
+    a = r1
+    r4 = CPyList_GetItemInt64Borrow(a, n)
+    r5 = borrow cast(__main__.C, r4)
+    r6 = r5.s
+    keep_alive a, n, r4
+    return r6
+
+[case testBorrowOverI64ListGetItem2]
+from typing import List
+from mypy_extensions import i64
+
+def f(a: List[i64], n: i64) -> bool:
+    if a[n] == 0:
+        return True
+    return False
+[out]
+def f(a, n):
+    a :: list
+    n :: int64
+    r0 :: object
+    r1 :: int64
+    r2 :: bit
+L0:
+    r0 = CPyList_GetItemInt64Borrow(a, n)
+    r1 = unbox(int64, r0)
+    r2 = r1 == 0
+    keep_alive a, n
+    if r2 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+
+[case testCoerceShortIntToI64]
+from mypy_extensions import i64
+from typing import List
+
+def f(a: List[i64], y: i64) -> bool:
+    if len(a) < y:
+        return True
+    return False
+
+def g(a: List[i64], y: i64) -> bool:
+    if y < len(a):
+        return True
+    return False
+[out]
+def f(a, y):
+    a :: list
+    y :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3 :: int64
+    r4 :: bit
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = r3 < y :: signed
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+def g(a, y):
+    a :: list
+    y :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3 :: int64
+    r4 :: bit
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = y < r3 :: signed
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+
+[case testMultiplyListByI64_64bit]
+from mypy_extensions import i64
+from typing import List
+
+def f(n: i64) -> List[i64]:
+    return [n] * n
+[out]
+def f(n):
+    n :: int64
+    r0 :: list
+    r1 :: object
+    r2, r3 :: ptr
+    r4, r5 :: bit
+    r6, r7, r8 :: int
+    r9 :: list
+L0:
+    r0 = PyList_New(1)
+    r1 = box(int64, n)
+    r2 = get_element_ptr r0 ob_item :: PyListObject
+    r3 = load_mem r2 :: ptr*
+    set_mem r3, r1 :: builtins.object*
+    keep_alive r0
+    r4 = n <= 4611686018427387903 :: signed
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    r5 = n >= -4611686018427387904 :: signed
+    if r5 goto L3 else goto L2 :: bool
+L2:
+    r6 = CPyTagged_FromInt64(n)
+    r7 = r6
+    goto L4
+L3:
+    r8 = n << 1
+    r7 = r8
+L4:
+    r9 = CPySequence_Multiply(r0, r7)
+    return r9
+
+[case testShortIntAndI64Op]
+from mypy_extensions import i64
+from typing import List
+
+def add_i64(a: List[i64], n: i64) -> i64:
+    return len(a) + n
+def add_i64_2(a: List[i64], n: i64) -> i64:
+    return n + len(a)
+def eq_i64(a: List[i64], n: i64) -> bool:
+    if len(a) == n:
+        return True
+    return False
+def lt_i64(a: List[i64], n: i64) -> bool:
+    if n < len(a):
+        return True
+    return False
+[out]
+def add_i64(a, n):
+    a :: list
+    n :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3, r4 :: int64
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = r3 + n
+    return r4
+def add_i64_2(a, n):
+    a :: list
+    n :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3, r4 :: int64
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = n + r3
+    return r4
+def eq_i64(a, n):
+    a :: list
+    n :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3 :: int64
+    r4 :: bit
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = r3 == n
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+def lt_i64(a, n):
+    a :: list
+    n :: int64
+    r0 :: ptr
+    r1 :: native_int
+    r2 :: short_int
+    r3 :: int64
+    r4 :: bit
+L0:
+    r0 = get_element_ptr a ob_size :: PyVarObject
+    r1 = load_mem r0 :: native_int*
+    keep_alive a
+    r2 = r1 << 1
+    r3 = r2 >> 1
+    r4 = n < r3 :: signed
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    return 0
+
+[case testOptionalI64_64bit]
+from typing import Optional
+from mypy_extensions import i64
+
+def f(x: Optional[i64]) -> i64:
+    if x is None:
+        return 1
+    return x
+[out]
+def f(x):
+    x :: union[int64, None]
+    r0 :: object
+    r1 :: bit
+    r2 :: int64
+L0:
+    r0 = load_address _Py_NoneStruct
+    r1 = x == r0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    return 1
+L2:
+    r2 = unbox(int64, x)
+    return r2
+
+[case testI64DefaultValueSingle]
+from mypy_extensions import i64
+
+def f(x: i64, y: i64 = 0) -> i64:
+    return x + y
+
+def g() -> i64:
+    return f(7) + f(8, 9)
+[out]
+def f(x, y, __bitmap):
+    x, y :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+    r2 :: int64
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    y = 0
+L2:
+    r2 = x + y
+    return r2
+def g():
+    r0, r1, r2 :: int64
+L0:
+    r0 = f(7, 0, 0)
+    r1 = f(8, 9, 1)
+    r2 = r0 + r1
+    return r2
+
+[case testI64DefaultValueWithMultipleArgs]
+from mypy_extensions import i64
+
+def f(a: i64, b: i64 = 1, c: int = 2, d: i64 = 3) -> i64:
+    return 0
+
+def g() -> i64:
+    return f(7) + f(8, 9) + f(1, 2, 3) + f(4, 5, 6, 7)
+[out]
+def f(a, b, c, d, __bitmap):
+    a, b :: int64
+    c :: int
+    d :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+    r2 :: uint32
+    r3 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    b = 1
+L2:
+    if is_error(c) goto L3 else goto L4
+L3:
+    c = 4
+L4:
+    r2 = __bitmap & 2
+    r3 = r2 == 0
+    if r3 goto L5 else goto L6 :: bool
+L5:
+    d = 3
+L6:
+    return 0
+def g():
+    r0 :: int
+    r1 :: int64
+    r2 :: int
+    r3, r4, r5, r6, r7, r8 :: int64
+L0:
+    r0 = <error> :: int
+    r1 = f(7, 0, r0, 0, 0)
+    r2 = <error> :: int
+    r3 = f(8, 9, r2, 0, 1)
+    r4 = r1 + r3
+    r5 = f(1, 2, 6, 0, 1)
+    r6 = r4 + r5
+    r7 = f(4, 5, 12, 7, 3)
+    r8 = r6 + r7
+    return r8
+
+[case testI64MethodDefaultValue]
+from mypy_extensions import i64
+
+class C:
+    def m(self, x: i64 = 5) -> None:
+        pass
+
+def f(c: C) -> None:
+    c.m()
+    c.m(6)
+[out]
+def C.m(self, x, __bitmap):
+    self :: __main__.C
+    x :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 5
+L2:
+    return 1
+def f(c):
+    c :: __main__.C
+    r0, r1 :: None
+L0:
+    r0 = c.m(0, 0)
+    r1 = c.m(6, 1)
+    return 1
+
+[case testI64ExplicitConversionFromNativeInt]
+from mypy_extensions import i64, i32
+
+def from_i32(x: i32) -> i64:
+    return i64(x)
+
+def from_i64(x: i64) -> i64:
+    return i64(x)
+[out]
+def from_i32(x):
+    x :: int32
+    r0 :: int64
+L0:
+    r0 = extend signed x: int32 to int64
+    return r0
+def from_i64(x):
+    x :: int64
+L0:
+    return x
+
+[case testI64ExplicitConversionFromInt_64bit]
+from mypy_extensions import i64
+
+def f(x: int) -> i64:
+    return i64(x)
+[out]
+def f(x):
+    x :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = x ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive x
+L3:
+    return r3
+
+[case testI64ExplicitConversionToInt_64bit]
+from mypy_extensions import i64
+
+def f(x: i64) -> int:
+    return int(x)
+[out]
+def f(x):
+    x :: int64
+    r0, r1 :: bit
+    r2, r3, r4 :: int
+L0:
+    r0 = x <= 4611686018427387903 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = x >= -4611686018427387904 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(x)
+    r3 = r2
+    goto L4
+L3:
+    r4 = x << 1
+    r3 = r4
+L4:
+    return r3
+
+[case testI64ExplicitConversionFromLiteral]
+from mypy_extensions import i64
+
+def f() -> None:
+    x = i64(0)
+    y = i64(11)
+    z = i64(-3)
+[out]
+def f():
+    x, y, z :: int64
+L0:
+    x = 0
+    y = 11
+    z = -3
+    return 1
+
+[case testI64ForLoopOverRange]
+from mypy_extensions import i64
+
+def f() -> None:
+    for x in range(i64(4)):
+        y = x
+[out]
+def f():
+    r0, x :: int64
+    r1 :: bit
+    y, r2 :: int64
+L0:
+    r0 = 0
+    x = r0
+L1:
+    r1 = r0 < 4 :: signed
+    if r1 goto L2 else goto L4 :: bool
+L2:
+    y = x
+L3:
+    r2 = r0 + 1
+    r0 = r2
+    x = r2
+    goto L1
+L4:
+    return 1
+
+[case testI64ForLoopOverRange2]
+from mypy_extensions import i64
+
+def f() -> None:
+    for x in range(0, i64(4)):
+        y = x
+[out]
+def f():
+    r0, x :: int64
+    r1 :: bit
+    y, r2 :: int64
+L0:
+    r0 = 0
+    x = r0
+L1:
+    r1 = r0 < 4 :: signed
+    if r1 goto L2 else goto L4 :: bool
+L2:
+    y = x
+L3:
+    r2 = r0 + 1
+    r0 = r2
+    x = r2
+    goto L1
+L4:
+    return 1
+
+[case testI64MethodDefaultValueOverride]
+from mypy_extensions import i64
+
+class C:
+    def f(self, x: i64 = 11) -> None: pass
+class D(C):
+    def f(self, x: i64 = 12) -> None: pass
+[out]
+def C.f(self, x, __bitmap):
+    self :: __main__.C
+    x :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 11
+L2:
+    return 1
+def D.f(self, x, __bitmap):
+    self :: __main__.D
+    x :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 12
+L2:
+    return 1
+
+[case testI64FinalConstants]
+from typing_extensions import Final
+from mypy_extensions import i64
+
+A: Final = -1
+B: Final = -(1 + 3*2)
+C: Final = 0
+D: Final = A - B
+E: Final[i64] = 1 + 3
+
+def f1() -> i64:
+    return A
+
+def f2() -> i64:
+    return A + B
+
+def f3() -> i64:
+    return C
+
+def f4() -> i64:
+    return D
+
+def f5() -> i64:
+    return E
+[out]
+def f1():
+L0:
+    return -1
+def f2():
+L0:
+    return -8
+def f3():
+L0:
+    return 0
+def f4():
+L0:
+    return 6
+def f5():
+L0:
+    return 4
+
+[case testI64OperationsWithBools]
+from mypy_extensions import i64
+
+# TODO: Other mixed operations
+
+def add_bool_to_int(n: i64, b: bool) -> i64:
+    return n + b
+
+def compare_bool_to_i64(n: i64, b: bool) -> bool:
+    if n == b:
+        return b != n
+    return True
+[out]
+def add_bool_to_int(n, b):
+    n :: int64
+    b :: bool
+    r0, r1 :: int64
+L0:
+    r0 = extend b: builtins.bool to int64
+    r1 = n + r0
+    return r1
+def compare_bool_to_i64(n, b):
+    n :: int64
+    b :: bool
+    r0 :: int64
+    r1 :: bit
+    r2 :: int64
+    r3 :: bit
+L0:
+    r0 = extend b: builtins.bool to int64
+    r1 = n == r0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = extend b: builtins.bool to int64
+    r3 = r2 != n
+    return r3
+L2:
+    return 1
+
+[case testI64Cast_64bit]
+from typing import cast
+from mypy_extensions import i64
+
+def cast_object(o: object) -> i64:
+    return cast(i64, o)
+
+def cast_int(x: int) -> i64:
+    return cast(i64, x)
+[out]
+def cast_object(o):
+    o :: object
+    r0 :: int64
+L0:
+    r0 = unbox(int64, o)
+    return r0
+def cast_int(x):
+    x :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3 :: int64
+    r4 :: ptr
+    r5 :: c_ptr
+    r6 :: int64
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = x >> 1
+    r3 = r2
+    goto L3
+L2:
+    r4 = x ^ 1
+    r5 = r4
+    r6 = CPyLong_AsInt64(r5)
+    r3 = r6
+    keep_alive x
+L3:
+    return r3
+
+[case testI64Cast_32bit]
+from typing import cast
+from mypy_extensions import i64
+
+def cast_int(x: int) -> i64:
+    return cast(i64, x)
+[out]
+def cast_int(x):
+    x :: int
+    r0 :: native_int
+    r1 :: bit
+    r2, r3, r4 :: int64
+    r5 :: ptr
+    r6 :: c_ptr
+    r7 :: int64
+L0:
+    r0 = x & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = extend signed x: builtins.int to int64
+    r3 = r2 >> 1
+    r4 = r3
+    goto L3
+L2:
+    r5 = x ^ 1
+    r6 = r5
+    r7 = CPyLong_AsInt64(r6)
+    r4 = r7
+    keep_alive x
+L3:
+    return r4
+
+[case testI64ExplicitConversionFromVariousTypes_64bit]
+from mypy_extensions import i64
+
+def bool_to_i64(b: bool) -> i64:
+    return i64(b)
+
+def str_to_i64(s: str) -> i64:
+    return i64(s)
+
+def str_to_i64_with_base(s: str) -> i64:
+    return i64(s, 2)
+
+class C:
+    def __int__(self) -> i64:
+        return 5
+
+def instance_to_i64(c: C) -> i64:
+    return i64(c)
+
+def float_to_i64(x: float) -> i64:
+    return i64(x)
+[out]
+def bool_to_i64(b):
+    b :: bool
+    r0 :: int64
+L0:
+    r0 = extend b: builtins.bool to int64
+    return r0
+def str_to_i64(s):
+    s :: str
+    r0 :: object
+    r1 :: int64
+L0:
+    r0 = CPyLong_FromStr(s)
+    r1 = unbox(int64, r0)
+    return r1
+def str_to_i64_with_base(s):
+    s :: str
+    r0 :: object
+    r1 :: int64
+L0:
+    r0 = CPyLong_FromStrWithBase(s, 4)
+    r1 = unbox(int64, r0)
+    return r1
+def C.__int__(self):
+    self :: __main__.C
+L0:
+    return 5
+def instance_to_i64(c):
+    c :: __main__.C
+    r0 :: int64
+L0:
+    r0 = c.__int__()
+    return r0
+def float_to_i64(x):
+    x :: float
+    r0 :: int
+    r1 :: native_int
+    r2 :: bit
+    r3, r4 :: int64
+    r5 :: ptr
+    r6 :: c_ptr
+    r7 :: int64
+L0:
+    r0 = CPyTagged_FromFloat(x)
+    r1 = r0 & 1
+    r2 = r1 == 0
+    if r2 goto L1 else goto L2 :: bool
+L1:
+    r3 = r0 >> 1
+    r4 = r3
+    goto L3
+L2:
+    r5 = r0 ^ 1
+    r6 = r5
+    r7 = CPyLong_AsInt64(r6)
+    r4 = r7
+    keep_alive r0
+L3:
+    return r4
+
+[case testI64ExplicitConversionFromFloat_32bit]
+from mypy_extensions import i64
+
+def float_to_i64(x: float) -> i64:
+    return i64(x)
+[out]
+def float_to_i64(x):
+    x :: float
+    r0 :: int
+    r1 :: native_int
+    r2 :: bit
+    r3, r4, r5 :: int64
+    r6 :: ptr
+    r7 :: c_ptr
+    r8 :: int64
+L0:
+    r0 = CPyTagged_FromFloat(x)
+    r1 = r0 & 1
+    r2 = r1 == 0
+    if r2 goto L1 else goto L2 :: bool
+L1:
+    r3 = extend signed r0: builtins.int to int64
+    r4 = r3 >> 1
+    r5 = r4
+    goto L3
+L2:
+    r6 = r0 ^ 1
+    r7 = r6
+    r8 = CPyLong_AsInt64(r7)
+    r5 = r8
+    keep_alive r0
+L3:
+    return r5
+
+[case testI64ConvertToFloat_64bit]
+from mypy_extensions import i64
+
+def i64_to_float(x: i64) -> float:
+    return float(x)
+[out]
+def i64_to_float(x):
+    x :: int64
+    r0, r1 :: bit
+    r2, r3, r4 :: int
+    r5 :: float
+L0:
+    r0 = x <= 4611686018427387903 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = x >= -4611686018427387904 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(x)
+    r3 = r2
+    goto L4
+L3:
+    r4 = x << 1
+    r3 = r4
+L4:
+    r5 = CPyFloat_FromTagged(r3)
+    return r5
+
+[case testI64ConvertToFloat_32bit]
+from mypy_extensions import i64
+
+def i64_to_float(x: i64) -> float:
+    return float(x)
+[out]
+def i64_to_float(x):
+    x :: int64
+    r0, r1 :: bit
+    r2, r3 :: int
+    r4 :: native_int
+    r5 :: int
+    r6 :: float
+L0:
+    r0 = x <= 1073741823 :: signed
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = x >= -1073741824 :: signed
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = CPyTagged_FromInt64(x)
+    r3 = r2
+    goto L4
+L3:
+    r4 = truncate x: int64 to native_int
+    r5 = r4 << 1
+    r3 = r5
+L4:
+    r6 = CPyFloat_FromTagged(r3)
+    return r6
+
+[case testI64IsinstanceNarrowing]
+from typing import Union
+from mypy_extensions import i64
+
+class C:
+    a: i64
+
+def narrow1(x: Union[C, i64]) -> i64:
+    if isinstance(x, i64):
+        return x
+    return x.a
+
+def narrow2(x: Union[C, i64]) -> i64:
+    if isinstance(x, int):
+        return x
+    return x.a
+[out]
+def narrow1(x):
+    x :: union[__main__.C, int64]
+    r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3 :: bool
+    r4 :: int64
+    r5 :: __main__.C
+    r6 :: int64
+L0:
+    r0 = load_address PyLong_Type
+    r1 = PyObject_IsInstance(x, r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    if r3 goto L1 else goto L2 :: bool
+L1:
+    r4 = unbox(int64, x)
+    return r4
+L2:
+    r5 = borrow cast(__main__.C, x)
+    r6 = r5.a
+    keep_alive x
+    return r6
+def narrow2(x):
+    x :: union[__main__.C, int64]
+    r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3 :: bool
+    r4 :: int64
+    r5 :: __main__.C
+    r6 :: int64
+L0:
+    r0 = load_address PyLong_Type
+    r1 = PyObject_IsInstance(x, r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    if r3 goto L1 else goto L2 :: bool
+L1:
+    r4 = unbox(int64, x)
+    return r4
+L2:
+    r5 = borrow cast(__main__.C, x)
+    r6 = r5.a
+    keep_alive x
+    return r6
+
+[case testI64ConvertBetweenTuples_64bit]
+from __future__ import annotations
+from mypy_extensions import i64
+
+def f(t: tuple[int, i64, int]) -> None:
+    tt: tuple[int, i64, i64] = t
+
+def g(n: int) -> None:
+    t: tuple[i64, i64] = (1, n)
+[out]
+def f(t):
+    t :: tuple[int, int64, int]
+    r0 :: int
+    r1 :: int64
+    r2 :: int
+    r3 :: native_int
+    r4 :: bit
+    r5, r6 :: int64
+    r7 :: ptr
+    r8 :: c_ptr
+    r9 :: int64
+    r10, tt :: tuple[int, int64, int64]
+L0:
+    r0 = t[0]
+    r1 = t[1]
+    r2 = t[2]
+    r3 = r2 & 1
+    r4 = r3 == 0
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    r5 = r2 >> 1
+    r6 = r5
+    goto L3
+L2:
+    r7 = r2 ^ 1
+    r8 = r7
+    r9 = CPyLong_AsInt64(r8)
+    r6 = r9
+    keep_alive r2
+L3:
+    r10 = (r0, r1, r6)
+    tt = r10
+    return 1
+def g(n):
+    n :: int
+    r0 :: tuple[int, int]
+    r1 :: int
+    r2 :: native_int
+    r3 :: bit
+    r4, r5 :: int64
+    r6 :: ptr
+    r7 :: c_ptr
+    r8 :: int64
+    r9, t :: tuple[int64, int64]
+L0:
+    r0 = (2, n)
+    r1 = r0[1]
+    r2 = r1 & 1
+    r3 = r2 == 0
+    if r3 goto L1 else goto L2 :: bool
+L1:
+    r4 = r1 >> 1
+    r5 = r4
+    goto L3
+L2:
+    r6 = r1 ^ 1
+    r7 = r6
+    r8 = CPyLong_AsInt64(r7)
+    r5 = r8
+    keep_alive r1
+L3:
+    r9 = (1, r5)
+    t = r9
+    return 1

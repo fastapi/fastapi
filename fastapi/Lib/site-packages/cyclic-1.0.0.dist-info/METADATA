@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: cyclic
+Version: 1.0.0
+Summary: Handle cyclic relations
+Home-page: https://github.com/neurobin/cyclic
+Author: Md. Jahidul Hamid
+Author-email: jahidulhamid@yahoo.com
+License: BSD
+Keywords: cyclic relation circular dependency
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+[![Build Status](https://travis-ci.org/neurobin/cyclic.svg?branch=release)](https://travis-ci.org/neurobin/cyclic)
+
+Handle cyclic relation compared by value.
+
+# Install
+
+Install from Pypi:
+
+```bash
+pip install cyclic
+```
+
+# Usage
+
+```python
+from cyclic import Cyclic
+
+cy = Cyclic()
+
+# Let's say A is a prent of B
+cy.add(B, A)
+
+# B is a parent of C
+cy.add(C, B)
+
+# C is a parent of A (cyclic)
+cy.add(A, C)
+
+# let's see if C is in any kind of cyclic relation
+
+print(cy.is_cyclic(C)) # True
+
+```
+
+

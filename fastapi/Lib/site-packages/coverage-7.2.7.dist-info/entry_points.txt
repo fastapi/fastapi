@@ -1,0 +1,4 @@
+[console_scripts]
+coverage = coverage.cmdline:main
+coverage-3.8 = coverage.cmdline:main
+coverage3 = coverage.cmdline:main

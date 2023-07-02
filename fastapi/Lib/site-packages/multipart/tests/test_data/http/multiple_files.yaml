@@ -1,0 +1,13 @@
+boundary: ----WebKitFormBoundarygbACTUR58IyeurVf
+expected:
+  - name: file1
+    type: file
+    file_name: test1.txt
+    data: !!binary |
+      VGVzdCBmaWxlICMx
+  - name: file2
+    type: file
+    file_name: test2.txt
+    data: !!binary |
+      VGVzdCBmaWxlICMy
+

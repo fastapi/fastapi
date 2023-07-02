@@ -1,0 +1,497 @@
+[case testFloatAdd]
+def f(x: float, y: float) -> float:
+    return x + y
+def g(x: float) -> float:
+    z = x - 1.5
+    return 2.5 * z
+[out]
+def f(x, y):
+    x, y, r0 :: float
+L0:
+    r0 = x + y
+    return r0
+def g(x):
+    x, r0, z, r1 :: float
+L0:
+    r0 = x - 1.5
+    z = r0
+    r1 = 2.5 * z
+    return r1
+
+[case testFloatBoxAndUnbox]
+from typing import Any
+def f(x: float) -> object:
+    return x
+def g(x: Any) -> float:
+    return x
+[out]
+def f(x):
+    x :: float
+    r0 :: object
+L0:
+    r0 = box(float, x)
+    return r0
+def g(x):
+    x :: object
+    r0 :: float
+L0:
+    r0 = unbox(float, x)
+    return r0
+
+[case testFloatNegAndPos]
+def f(x: float) -> float:
+    y = +x * -0.5
+    return -y
+[out]
+def f(x):
+    x, r0, y, r1 :: float
+L0:
+    r0 = x * -0.5
+    y = r0
+    r1 = -y
+    return r1
+
+[case testFloatCoerceFromInt]
+def from_int(x: int) -> float:
+    return x
+
+def from_literal() -> float:
+    return 5
+
+def from_literal_neg() -> float:
+    return -2
+[out]
+def from_int(x):
+    x :: int
+    r0 :: float
+L0:
+    r0 = CPyFloat_FromTagged(x)
+    return r0
+def from_literal():
+L0:
+    return 5.0
+def from_literal_neg():
+L0:
+    return -2.0
+
+[case testConvertBetweenFloatAndInt]
+def to_int(x: float) -> int:
+    return int(x)
+def from_int(x: int) -> float:
+    return float(x)
+[out]
+def to_int(x):
+    x :: float
+    r0 :: int
+L0:
+    r0 = CPyTagged_FromFloat(x)
+    return r0
+def from_int(x):
+    x :: int
+    r0 :: float
+L0:
+    r0 = CPyFloat_FromTagged(x)
+    return r0
+
+[case testFloatOperatorAssignment]
+def f(x: float, y: float) -> float:
+    x += y
+    x -= 5.0
+    return x
+[out]
+def f(x, y):
+    x, y, r0, r1 :: float
+L0:
+    r0 = x + y
+    x = r0
+    r1 = x - 5.0
+    x = r1
+    return x
+
+[case testFloatOperatorAssignmentWithInt]
+def f(x: float, y: int) -> None:
+    x += y
+    x -= 5
+[out]
+def f(x, y):
+    x :: float
+    y :: int
+    r0, r1, r2 :: float
+L0:
+    r0 = CPyFloat_FromTagged(y)
+    r1 = x + r0
+    x = r1
+    r2 = x - 5.0
+    x = r2
+    return 1
+
+[case testFloatComparison]
+def lt(x: float, y: float) -> bool:
+    return x < y
+def eq(x: float, y: float) -> bool:
+    return x == y
+[out]
+def lt(x, y):
+    x, y :: float
+    r0 :: bit
+L0:
+    r0 = x < y
+    return r0
+def eq(x, y):
+    x, y :: float
+    r0 :: bit
+L0:
+    r0 = x == y
+    return r0
+
+[case testFloatOpWithLiteralInt]
+def f(x: float) -> None:
+    y = x * 2
+    z = 1 - y
+    b = z < 3
+    c = 0 == z
+[out]
+def f(x):
+    x, r0, y, r1, z :: float
+    r2 :: bit
+    b :: bool
+    r3 :: bit
+    c :: bool
+L0:
+    r0 = x * 2.0
+    y = r0
+    r1 = 1.0 - y
+    z = r1
+    r2 = z < 3.0
+    b = r2
+    r3 = 0.0 == z
+    c = r3
+    return 1
+
+[case testFloatCallFunctionWithLiteralInt]
+def f(x: float) -> None: pass
+
+def g() -> None:
+    f(3)
+    f(-2)
+[out]
+def f(x):
+    x :: float
+L0:
+    return 1
+def g():
+    r0, r1 :: None
+L0:
+    r0 = f(3.0)
+    r1 = f(-2.0)
+    return 1
+
+[case testFloatAsBool]
+def f(x: float) -> int:
+    if x:
+        return 2
+    else:
+        return 5
+[out]
+def f(x):
+    x :: float
+    r0 :: bit
+L0:
+    r0 = x != 0.0
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return 4
+L2:
+    return 10
+L3:
+    unreachable
+
+[case testCallSqrtViaMathModule]
+import math
+
+def f(x: float) -> float:
+    return math.sqrt(x)
+[out]
+def f(x):
+    x, r0 :: float
+L0:
+    r0 = CPyFloat_Sqrt(x)
+    return r0
+
+[case testFloatFinalConstant]
+from typing_extensions import Final
+
+X: Final = 123.0
+Y: Final = -1.0
+
+def f() -> float:
+    a = X
+    return a + Y
+[out]
+def f():
+    a, r0 :: float
+L0:
+    a = 123.0
+    r0 = a + -1.0
+    return r0
+
+[case testFloatDefaultArg]
+def f(x: float = 1.5) -> float:
+    return x
+[out]
+def f(x, __bitmap):
+    x :: float
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 1.5
+L2:
+    return x
+
+[case testFloatMixedOperations]
+def f(x: float, y: int) -> None:
+    if x < y:
+        z = x + y
+        x -= y
+        z = y + z
+    if y == x:
+        x -= 1
+[out]
+def f(x, y):
+    x :: float
+    y :: int
+    r0 :: float
+    r1 :: bit
+    r2, r3, z, r4, r5, r6, r7, r8 :: float
+    r9 :: bit
+    r10 :: float
+L0:
+    r0 = CPyFloat_FromTagged(y)
+    r1 = x < r0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = CPyFloat_FromTagged(y)
+    r3 = x + r2
+    z = r3
+    r4 = CPyFloat_FromTagged(y)
+    r5 = x - r4
+    x = r5
+    r6 = CPyFloat_FromTagged(y)
+    r7 = r6 + z
+    z = r7
+L2:
+    r8 = CPyFloat_FromTagged(y)
+    r9 = r8 == x
+    if r9 goto L3 else goto L4 :: bool
+L3:
+    r10 = x - 1.0
+    x = r10
+L4:
+    return 1
+
+[case testFloatDivideSimple]
+def f(x: float, y: float) -> float:
+    z = x / y
+    z = z / 2.0
+    return z / 3
+[out]
+def f(x, y):
+    x, y :: float
+    r0 :: bit
+    r1 :: bool
+    r2, z, r3, r4 :: float
+L0:
+    r0 = y == 0.0
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = raise ZeroDivisionError('float division by zero')
+    unreachable
+L2:
+    r2 = x / y
+    z = r2
+    r3 = z / 2.0
+    z = r3
+    r4 = z / 3.0
+    return r4
+
+[case testFloatDivideIntOperand]
+def f(n: int, m: int) -> float:
+    return n / m
+[out]
+def f(n, m):
+    n, m :: int
+    r0 :: float
+L0:
+    r0 = CPyTagged_TrueDivide(n, m)
+    return r0
+
+[case testFloatResultOfIntDivide]
+def f(f: float, n: int) -> float:
+    x = f / n
+    return n / x
+[out]
+def f(f, n):
+    f :: float
+    n :: int
+    r0 :: float
+    r1 :: bit
+    r2 :: bool
+    r3, x, r4 :: float
+    r5 :: bit
+    r6 :: bool
+    r7 :: float
+L0:
+    r0 = CPyFloat_FromTagged(n)
+    r1 = r0 == 0.0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = raise ZeroDivisionError('float division by zero')
+    unreachable
+L2:
+    r3 = f / r0
+    x = r3
+    r4 = CPyFloat_FromTagged(n)
+    r5 = x == 0.0
+    if r5 goto L3 else goto L4 :: bool
+L3:
+    r6 = raise ZeroDivisionError('float division by zero')
+    unreachable
+L4:
+    r7 = r4 / x
+    return r7
+
+[case testFloatExplicitConversions]
+def f(f: float, n: int) -> int:
+    x = float(n)
+    y = float(x)  # no-op
+    return int(y)
+[out]
+def f(f, n):
+    f :: float
+    n :: int
+    r0, x, y :: float
+    r1 :: int
+L0:
+    r0 = CPyFloat_FromTagged(n)
+    x = r0
+    y = x
+    r1 = CPyTagged_FromFloat(y)
+    return r1
+
+[case testFloatModulo]
+def f(x: float, y: float) -> float:
+    return x % y
+[out]
+def f(x, y):
+    x, y :: float
+    r0 :: bit
+    r1 :: bool
+    r2, r3 :: float
+    r4, r5, r6, r7 :: bit
+    r8, r9 :: float
+L0:
+    r0 = y == 0.0
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    r1 = raise ZeroDivisionError('float modulo')
+    unreachable
+L2:
+    r2 = x % y
+    r3 = r2
+    r4 = r3 == 0.0
+    if r4 goto L5 else goto L3 :: bool
+L3:
+    r5 = x < 0.0
+    r6 = y < 0.0
+    r7 = r5 == r6
+    if r7 goto L6 else goto L4 :: bool
+L4:
+    r8 = r3 + y
+    r3 = r8
+    goto L6
+L5:
+    r9 = copysign(0.0, y)
+    r3 = r9
+L6:
+    return r3
+
+[case testFloatFloorDivide]
+def f(x: float, y: float) -> float:
+    return x // y
+def g(x: float, y: int) -> float:
+    return x // y
+[out]
+def f(x, y):
+    x, y, r0 :: float
+L0:
+    r0 = CPyFloat_FloorDivide(x, y)
+    return r0
+def g(x, y):
+    x :: float
+    y :: int
+    r0, r1 :: float
+L0:
+    r0 = CPyFloat_FromTagged(y)
+    r1 = CPyFloat_FloorDivide(x, r0)
+    return r1
+
+[case testFloatNarrowToIntDisallowed]
+class C:
+    x: float
+
+def narrow_local(x: float, n: int) -> int:
+    x = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return x
+
+def narrow_tuple_lvalue(x: float, y: float, n: int) -> int:
+    x, y = 1.0, n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return y
+
+def narrow_multiple_lvalues(x: float, y: float, n: int) -> int:
+    x = a = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    a = y = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return x + y
+
+def narrow_attribute(c: C, n: int) -> int:
+    c.x = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return c.x
+
+def narrow_using_int_literal(x: float) -> int:
+    x = 1  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return x
+
+def narrow_using_declaration(n: int) -> int:
+    x: float
+    x = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    return x
+
+[case testFloatInitializeFromInt]
+def init(n: int) -> None:
+    # These are strictly speaking safe, since these don't narrow, but for consistency with
+    # narrowing assignments, generate errors here
+    x: float = n  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+    y: float = 5  # E: Incompatible value representations in assignment (expression has type "int", variable has type "float")
+
+[case testFloatCoerceTupleFromIntValues]
+from __future__ import annotations
+
+def f(x: int) -> None:
+    t: tuple[float, float, float] = (x, 2.5, -7)
+[out]
+def f(x):
+    x :: int
+    r0 :: tuple[int, float, int]
+    r1 :: int
+    r2 :: float
+    r3, t :: tuple[float, float, float]
+L0:
+    r0 = (x, 2.5, -14)
+    r1 = r0[0]
+    r2 = CPyFloat_FromTagged(r1)
+    r3 = (r2, 2.5, -7.0)
+    t = r3
+    return 1

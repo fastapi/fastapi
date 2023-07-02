@@ -1,0 +1,1502 @@
+[case testI64BasicOps]
+from typing import List, Any, Tuple, Union
+
+from mypy_extensions import i64, i32
+
+from testutil import assertRaises
+
+def inc(n: i64) -> i64:
+    return n + 1
+
+def test_inc() -> None:
+    # Use int() to avoid constant folding
+    n = 1 + int()
+    m = 2 + int()
+    assert inc(n) == m
+
+def min_ll(x: i64, y: i64) -> i64:
+    if x < y:
+        return x
+    else:
+        return y
+
+def test_min() -> None:
+    assert min_ll(1 + int(), 2) == 1
+    assert min_ll(2 + int(), 1) == 1
+    assert min_ll(1 + int(), 1) == 1
+    assert min_ll(-2 + int(), 1) == -2
+    assert min_ll(1 + int(), -2) == -2
+
+def eq(x: i64, y: i64) -> bool:
+    return x == y
+
+def test_eq() -> None:
+    assert eq(int(), int())
+    assert eq(5 + int(), 5 + int())
+    assert eq(-5 + int(), -5 + int())
+    assert not eq(int(), 1 + int())
+    assert not eq(5 + int(), 6 + int())
+    assert not eq(-5 + int(), -6 + int())
+    assert not eq(-5 + int(), 5 + int())
+
+def test_comparisons() -> None:
+    one: i64 = 1 + int()
+    one2: i64 = 1 + int()
+    two: i64 = 2 + int()
+    assert one < two
+    assert not (one < one2)
+    assert not (two < one)
+    assert two > one
+    assert not (one > one2)
+    assert not (one > two)
+    assert one <= two
+    assert one <= one2
+    assert not (two <= one)
+    assert two >= one
+    assert one >= one2
+    assert not (one >= two)
+    assert one == one2
+    assert not (one == two)
+    assert one != two
+    assert not (one != one2)
+
+def is_true(x: i64) -> bool:
+    if x:
+        return True
+    else:
+        return False
+
+def is_true2(x: i64) -> bool:
+    return bool(x)
+
+def is_false(x: i64) -> bool:
+    if not x:
+        return True
+    else:
+        return False
+
+def test_i64_as_bool() -> None:
+    assert not is_true(0)
+    assert not is_true2(0)
+    assert is_false(0)
+    for x in 1, 55, -1, -7, 1 << 40, -(1 << 50):
+        assert is_true(x)
+        assert is_true2(x)
+        assert not is_false(x)
+
+def bool_as_i64(b: bool) -> i64:
+    return b
+
+def test_bool_as_i64() -> None:
+    assert bool_as_i64(False) == 0
+    assert bool_as_i64(True) == 1
+
+def div_by_3(x: i64) -> i64:
+    return x // 3
+
+def div_by_neg_3(x: i64) -> i64:
+    return x // -3
+
+def div(x: i64, y: i64) -> i64:
+    return x // y
+
+def test_divide_by_constant() -> None:
+    for i in range(-1000, 1000):
+        assert div_by_3(i) == i // 3
+    for i in range(-2**63, -2**63 + 1000):
+        assert div_by_3(i) == i // 3
+    for i in range(2**63 - 1000, 2**63):
+        assert div_by_3(i) == i // 3
+
+def test_divide_by_negative_constant() -> None:
+    for i in range(-1000, 1000):
+        assert div_by_neg_3(i) == i // -3
+    for i in range(-2**63, -2**63 + 1000):
+        assert div_by_neg_3(i) == i // -3
+    for i in range(2**63 - 1000, 2**63):
+        assert div_by_neg_3(i) == i // -3
+
+def test_divide_by_variable() -> None:
+    values = (list(range(-50, 50)) +
+              list(range(-2**63, -2**63 + 10)) +
+              list(range(2**63 - 10, 2**63)))
+    for x in values:
+        for y in values:
+            if y != 0:
+                if x // y == 2**63:
+                    with assertRaises(OverflowError, "integer division overflow"):
+                        div(x, y)
+                else:
+                    assert div(x, y) == x // y
+            else:
+                with assertRaises(ZeroDivisionError, "integer division or modulo by zero"):
+                    div(x, y)
+
+def mod_by_7(x: i64) -> i64:
+    return x % 7
+
+def mod_by_neg_7(x: i64) -> i64:
+    return x // -7
+
+def mod(x: i64, y: i64) -> i64:
+    return x % y
+
+def test_mod_by_constant() -> None:
+    for i in range(-1000, 1000):
+        assert mod_by_7(i) == i % 7
+    for i in range(-2**63, -2**63 + 1000):
+        assert mod_by_7(i) == i % 7
+    for i in range(2**63 - 1000, 2**63):
+        assert mod_by_7(i) == i % 7
+
+def test_mod_by_negative_constant() -> None:
+    for i in range(-1000, 1000):
+        assert mod_by_neg_7(i) == i // -7
+    for i in range(-2**63, -2**63 + 1000):
+        assert mod_by_neg_7(i) == i // -7
+    for i in range(2**63 - 1000, 2**63):
+        assert mod_by_neg_7(i) == i // -7
+
+def test_mod_by_variable() -> None:
+    values = (list(range(-50, 50)) +
+              list(range(-2**63, -2**63 + 10)) +
+              list(range(2**63 - 10, 2**63)))
+    for x in values:
+        for y in values:
+            if y != 0:
+                assert mod(x, y) == x % y
+            else:
+                with assertRaises(ZeroDivisionError, "integer division or modulo by zero"):
+                    mod(x, y)
+
+def get_item(a: List[i64], n: i64) -> i64:
+    return a[n]
+
+def test_get_list_item() -> None:
+    a = [1, 6, -2]
+    assert get_item(a, 0) == 1
+    assert get_item(a, 1) == 6
+    assert get_item(a, 2) == -2
+    assert get_item(a, -1) == -2
+    assert get_item(a, -2) == 6
+    assert get_item(a, -3) == 1
+    with assertRaises(IndexError, "list index out of range"):
+        get_item(a, 3)
+    with assertRaises(IndexError, "list index out of range"):
+        get_item(a, -4)
+    # TODO: Very large/small values and indexes
+
+def test_simple_arithmetic_ops() -> None:
+    zero: i64 = int()
+    one: i64 = zero + 1
+    two: i64 = one + 1
+    neg_one: i64 = -one
+    assert one + one == 2
+    assert one + two == 3
+    assert one + neg_one == 0
+    assert one - one == 0
+    assert one - two == -1
+    assert one * one == 1
+    assert one * two == 2
+    assert two * two == 4
+    assert two * neg_one == -2
+    assert neg_one * one == -1
+    assert neg_one * neg_one == 1
+    assert two * 0 == 0
+    assert 0 * two == 0
+    assert -one == -1
+    assert -two == -2
+    assert -neg_one == 1
+    assert -zero == 0
+
+def test_bitwise_ops() -> None:
+    x: i64 = 7997307308812232241 + int()
+    y: i64 = 4333433528471475340 + int()
+    z: i64 = -2462230749488444526 + int()
+    zero: i64 = int()
+    one: i64 = zero + 1
+    two: i64 = zero + 2
+    neg_one: i64 = -one
+
+    assert x & y == 3179577071592752128
+    assert x & z == 5536089561888850448
+    assert z & z == z
+    assert x & zero == 0
+
+    assert x | y == 9151163765690955453
+    assert x | z == -1013002565062733
+    assert z | z == z
+    assert x | 0 == x
+
+    assert x ^ y == 5971586694098203325
+    assert x ^ z == -5537102564453913181
+    assert z ^ z == 0
+    assert z ^ 0 == z
+
+    assert x << one == -2452129456085087134
+    assert x << two == -4904258912170174268
+    assert z << two == 8597821075755773512
+    assert z << 0 == z
+
+    assert x >> one == 3998653654406116120
+    assert x >> two == 1999326827203058060
+    assert z >> two == -615557687372111132
+    assert z >> 0 == z
+
+    assert ~x == -7997307308812232242
+    assert ~z == 2462230749488444525
+    assert ~zero == -1
+    assert ~neg_one == 0
+
+def test_coerce_to_and_from_int() -> None:
+    for shift in range(0, 64):
+        for sign in 1, -1:
+            for delta in range(-5, 5):
+                n = sign * (1 << shift) + delta
+                if -(1 << 63) <= n < (1 << 63):
+                    x: i64 = n
+                    m: int = x
+                    assert m == n
+
+def test_coerce_to_and_from_int2() -> None:
+    for shift in range(0, 64):
+        for sign in 1, -1:
+            for delta in range(-5, 5):
+                n = sign * (1 << shift) + delta
+                if -(1 << 63) <= n < (1 << 63):
+                    x: i64 = i64(n)
+                    m: int = int(x)
+                    assert m == n
+
+def test_explicit_conversion_to_i64() -> None:
+    x = i64(5)
+    assert x == 5
+    y = int() - 113
+    x = i64(y)
+    assert x == -113
+    n32: i32 = 1733
+    x = i64(n32)
+    assert x == 1733
+    n32 = -1733
+    x = i64(n32)
+    assert x == -1733
+    z = i64(x)
+    assert z == -1733
+
+def test_explicit_conversion_overflow() -> None:
+    max_i64 = int() + 2**63 - 1
+    x = i64(max_i64)
+    assert x == 2**63 - 1
+    assert int(x) == max_i64
+
+    min_i64 = int() - 2**63
+    y = i64(min_i64)
+    assert y == -2**63
+    assert int(y) == min_i64
+
+    too_big = int() + 2**63
+    with assertRaises(OverflowError):
+        x = i64(too_big)
+
+    too_small = int() - 2**63 - 1
+    with assertRaises(OverflowError):
+        x = i64(too_small)
+
+def test_i64_from_large_small_literal() -> None:
+    x = i64(2**63 - 1)
+    assert x == 2**63 - 1
+    x = i64(-2**63)
+    assert x == -2**63
+
+def from_float(x: float) -> i64:
+    return i64(x)
+
+def test_explicit_conversion_from_float() -> None:
+    assert from_float(0.0) == 0
+    assert from_float(1.456) == 1
+    assert from_float(-1234.567) == -1234
+    # Subtract 1024 due to limited precision of 64-bit floats
+    assert from_float(2**63 - 1024) == 2**63 - 1024
+    assert from_float(-2**63) == -2**63
+    # The error message could be better, but this is acceptable
+    with assertRaises(OverflowError, "int too large to convert to i64"):
+        assert from_float(float(2**63))
+    with assertRaises(OverflowError, "int too large to convert to i64"):
+        # One ulp below the lowest valid i64 value
+        from_float(float(-2**63 - 2048))
+
+def from_str(s: str) -> i64:
+    return i64(s)
+
+def test_explicit_conversion_from_str() -> None:
+    assert from_str("0") == 0
+    assert from_str("1") == 1
+    assert from_str("-1234") == -1234
+    with assertRaises(ValueError):
+        from_str("1.2")
+
+def from_str_with_base(s: str, base: int) -> i64:
+    return i64(s, base)
+
+def test_explicit_conversion_from_str_with_base() -> None:
+    assert from_str_with_base("101", 2) == 5
+    assert from_str_with_base("109", 10) == 109
+    assert from_str_with_base("-f0A", 16) == -3850
+    assert from_str_with_base("0x1a", 16) == 26
+    assert from_str_with_base("0X1A", 16) == 26
+    with assertRaises(ValueError):
+        from_str_with_base("1.2", 16)
+
+def from_bool(b: bool) -> i64:
+    return i64(b)
+
+def test_explicit_conversion_from_bool() -> None:
+    assert from_bool(True) == 1
+    assert from_bool(False) == 0
+
+class IntConv:
+    def __init__(self, x: i64) -> None:
+        self.x = x
+
+    def __int__(self) -> i64:
+        return self.x + 1
+
+def test_explicit_conversion_from_instance() -> None:
+    assert i64(IntConv(0)) == 1
+    assert i64(IntConv(12345)) == 12346
+    assert i64(IntConv(-23)) == -22
+
+def test_explicit_conversion_from_any() -> None:
+    # This can't be specialized
+    a: Any = "101"
+    assert i64(a, base=2) == 5
+
+def test_tuple_i64() -> None:
+    a: i64 = 1
+    b: i64 = 2
+    t = (a, b)
+    a, b = t
+    assert a == 1
+    assert b == 2
+    x: Any = t
+    tt: Tuple[i64, i64] = x
+    assert tt == (1, 2)
+
+def test_list_set_item() -> None:
+    a: List[i64] = [0, 2, 6]
+    z: i64 = int()
+    a[z] = 1
+    assert a == [1, 2, 6]
+    a[z + 2] = 9
+    assert a == [1, 2, 9]
+    a[-(z + 1)] = 10
+    assert a == [1, 2, 10]
+    a[-(z + 3)] = 3
+    assert a == [3, 2, 10]
+    with assertRaises(IndexError):
+        a[z + 3] = 0
+    with assertRaises(IndexError):
+        a[-(z + 4)] = 0
+    assert a == [3, 2, 10]
+
+class C:
+    def __init__(self, x: i64) -> None:
+        self.x = x
+
+def test_attributes() -> None:
+    i: i64
+    for i in range(-1000, 1000):
+        c = C(i)
+        assert c.x == i
+        c.x = i + 1
+        assert c.x == i + 1
+
+def test_mixed_comparisons() -> None:
+    i64_3: i64 = int() + 3
+    int_5 = int() + 5
+    assert i64_3 < int_5
+    assert int_5 > i64_3
+    b = i64_3 > int_5
+    assert not b
+
+    int_largest = int() + (1 << 63) - 1
+    assert int_largest > i64_3
+    int_smallest = int() - (1 << 63)
+    assert i64_3 > int_smallest
+
+    int_too_big = int() + (1 << 63)
+    int_too_small = int() - (1 << 63) - 1
+    with assertRaises(OverflowError):
+        assert i64_3 < int_too_big
+    with assertRaises(OverflowError):
+        assert int_too_big < i64_3
+    with assertRaises(OverflowError):
+        assert i64_3 > int_too_small
+    with assertRaises(OverflowError):
+        assert int_too_small < i64_3
+
+def test_mixed_comparisons_32bit() -> None:
+    # Test edge cases on 32-bit platforms
+    i64_3: i64 = int() + 3
+    int_5 = int() + 5
+
+    int_largest_short = int() + (1 << 30) - 1
+    int_largest_short_i64: i64 = int_largest_short
+    assert int_largest_short > i64_3
+    int_smallest_short = int() - (1 << 30)
+    int_smallest_short_i64: i64 = int_smallest_short
+    assert i64_3 > int_smallest_short
+
+    int_big = int() + (1 << 30)
+    assert int_big > i64_3
+    int_small = int() - (1 << 30) - 1
+    assert i64_3 > int_small
+
+    assert int_smallest_short_i64 > int_small
+    assert int_largest_short_i64 < int_big
+
+def test_mixed_arithmetic_and_bitwise_ops() -> None:
+    i64_3: i64 = int() + 3
+    int_5 = int() + 5
+    assert i64_3 + int_5 == 8
+    assert int_5 - i64_3 == 2
+    assert i64_3 << int_5 == 96
+    assert int_5 << i64_3  == 40
+    assert i64_3 ^ int_5 == 6
+    assert int_5 | i64_3  == 7
+
+    int_largest = int() + (1 << 63) - 1
+    assert int_largest - i64_3 == 9223372036854775804
+    int_smallest = int() - (1 << 63)
+    assert int_smallest + i64_3 == -9223372036854775805
+
+    int_too_big = int() + (1 << 63)
+    int_too_small = int() - (1 << 63) - 1
+    with assertRaises(OverflowError):
+        assert i64_3 & int_too_big
+    with assertRaises(OverflowError):
+        assert int_too_small & i64_3
+
+def test_for_loop() -> None:
+    n: i64 = 0
+    for i in range(i64(5 + int())):
+        n += i
+    assert n == 10
+    n = 0
+    for i in range(i64(5)):
+        n += i
+    assert n == 10
+    n = 0
+    for i in range(i64(2 + int()), 5 + int()):
+        n += i
+    assert n == 9
+    n = 0
+    for i in range(2, i64(5 + int())):
+        n += i
+    assert n == 9
+    assert sum([x * x for x in range(i64(4 + int()))]) == 1 + 4 + 9
+
+def narrow1(x: Union[str, i64]) -> i64:
+    if isinstance(x, i64):
+        return x
+    return len(x)
+
+def narrow2(x: Union[str, i64]) -> i64:
+    if isinstance(x, int):
+        return x
+    return len(x)
+
+def test_isinstance() -> None:
+    assert narrow1(123) == 123
+    assert narrow1("foobar") == 6
+    assert narrow2(123) == 123
+    assert narrow2("foobar") == 6
+
+[case testI64ErrorValuesAndUndefined]
+from typing import Any, Tuple
+import sys
+
+from mypy_extensions import mypyc_attr, i64
+from typing_extensions import Final
+
+from testutil import assertRaises
+
+def maybe_raise(n: i64, error: bool) -> i64:
+    if error:
+        raise ValueError()
+    return n
+
+def test_error_value() -> None:
+    for i in range(-1000, 1000):
+        assert maybe_raise(i, False) == i
+    with assertRaises(ValueError):
+        maybe_raise(0, True)
+
+class C:
+    def maybe_raise(self, n: i64, error: bool) -> i64:
+        if error:
+            raise ValueError()
+        return n
+
+def test_method_error_value() -> None:
+    for i in range(-1000, 1000):
+        assert C().maybe_raise(i, False) == i
+    with assertRaises(ValueError):
+        C().maybe_raise(0, True)
+
+def maybe_raise_tuple(n: i64, error: bool) -> Tuple[i64, i64]:
+    if error:
+        raise ValueError()
+    return n, n+ 1
+
+def test_tuple_error_value() -> None:
+    for i in range(-1000, 1000):
+        assert maybe_raise_tuple(i, False) == (i, i + 1)
+    with assertRaises(ValueError):
+        maybe_raise_tuple(0, True)
+    f: Any = maybe_raise_tuple
+    for i in range(-1000, 1000):
+        assert f(i, False) == (i, i + 1)
+    with assertRaises(ValueError):
+        f(0, True)
+
+def maybe_raise_tuple2(n: i64, error: bool) -> Tuple[i64, int]:
+    if error:
+        raise ValueError()
+    return n, n+ 1
+
+def test_tuple_error_value_2() -> None:
+    for i in range(-1000, 1000):
+        assert maybe_raise_tuple2(i, False) == (i, i + 1)
+    with assertRaises(ValueError):
+        maybe_raise_tuple(0, True)
+
+def test_unbox_int() -> None:
+    for i in list(range(-1000, 1000)) + [-(1 << 63), (1 << 63) - 1]:
+        o: Any = i
+        x: i64 = i
+        assert x == i
+        y: i64 = o
+        assert y == i
+
+def test_unbox_int_fails() -> None:
+    o: Any = 'x'
+    if sys.version_info[0] == 3 and sys.version_info[1] < 10:
+        msg = "an integer is required (got type str)"
+    else:
+        msg = "'str' object cannot be interpreted as an integer"
+    with assertRaises(TypeError, msg):
+        x: i64 = o
+    o2: Any = 1 << 63
+    with assertRaises(OverflowError, "int too large to convert to i64"):
+        y: i64 = o2
+    o3: Any = -(1 << 63 + 1)
+    with assertRaises(OverflowError, "int too large to convert to i64"):
+        z: i64 = o3
+
+class Uninit:
+    x: i64
+    y: i64 = 0
+    z: i64
+
+class Derived(Uninit):
+    a: i64 = 1
+    b: i64
+    c: i64 = 2
+
+class Derived2(Derived):
+    h: i64
+
+def test_uninitialized_attr() -> None:
+    o = Uninit()
+    assert o.y == 0
+    with assertRaises(AttributeError):
+        o.x
+    with assertRaises(AttributeError):
+        o.z
+    o.x = 1
+    assert o.x == 1
+    with assertRaises(AttributeError):
+        o.z
+    o.z = 2
+    assert o.z == 2
+
+# This is the error value, but it's also a valid normal value
+MAGIC: Final = -113
+
+def test_magic_value() -> None:
+    o = Uninit()
+    o.x = MAGIC
+    assert o.x == MAGIC
+    with assertRaises(AttributeError):
+        o.z
+    o.z = MAGIC
+    assert o.x == MAGIC
+    assert o.z == MAGIC
+
+def test_magic_value_via_any() -> None:
+    o: Any = Uninit()
+    with assertRaises(AttributeError):
+        o.x
+    with assertRaises(AttributeError):
+        o.z
+    o.x = MAGIC
+    assert o.x == MAGIC
+    with assertRaises(AttributeError):
+        o.z
+    o.z = MAGIC
+    assert o.z == MAGIC
+
+def test_magic_value_and_inheritance() -> None:
+    o = Derived2()
+    o.x = MAGIC
+    assert o.x == MAGIC
+    with assertRaises(AttributeError):
+        o.z
+    with assertRaises(AttributeError):
+        o.b
+    with assertRaises(AttributeError):
+        o.h
+    o.z = MAGIC
+    assert o.z == MAGIC
+    with assertRaises(AttributeError):
+        o.b
+    with assertRaises(AttributeError):
+        o.h
+    o.h = MAGIC
+    assert o.h == MAGIC
+    with assertRaises(AttributeError):
+        o.b
+    o.b = MAGIC
+    assert o.b == MAGIC
+
+@mypyc_attr(allow_interpreted_subclasses=True)
+class MagicInit:
+    x: i64 = MAGIC
+
+def test_magic_value_as_initializer() -> None:
+    o = MagicInit()
+    assert o.x == MAGIC
+
+class ManyUninit:
+    a1: i64
+    a2: i64
+    a3: i64
+    a4: i64
+    a5: i64
+    a6: i64
+    a7: i64
+    a8: i64
+    a9: i64
+    a10: i64
+    a11: i64
+    a12: i64
+    a13: i64
+    a14: i64
+    a15: i64
+    a16: i64
+    a17: i64
+    a18: i64
+    a19: i64
+    a20: i64
+    a21: i64
+    a22: i64
+    a23: i64
+    a24: i64
+    a25: i64
+    a26: i64
+    a27: i64
+    a28: i64
+    a29: i64
+    a30: i64
+    a31: i64
+    a32: i64
+    a33: i64
+    a34: i64
+    a35: i64
+    a36: i64
+    a37: i64
+    a38: i64
+    a39: i64
+    a40: i64
+    a41: i64
+    a42: i64
+    a43: i64
+    a44: i64
+    a45: i64
+    a46: i64
+    a47: i64
+    a48: i64
+    a49: i64
+    a50: i64
+    a51: i64
+    a52: i64
+    a53: i64
+    a54: i64
+    a55: i64
+    a56: i64
+    a57: i64
+    a58: i64
+    a59: i64
+    a60: i64
+    a61: i64
+    a62: i64
+    a63: i64
+    a64: i64
+    a65: i64
+    a66: i64
+    a67: i64
+    a68: i64
+    a69: i64
+    a70: i64
+    a71: i64
+    a72: i64
+    a73: i64
+    a74: i64
+    a75: i64
+    a76: i64
+    a77: i64
+    a78: i64
+    a79: i64
+    a80: i64
+    a81: i64
+    a82: i64
+    a83: i64
+    a84: i64
+    a85: i64
+    a86: i64
+    a87: i64
+    a88: i64
+    a89: i64
+    a90: i64
+    a91: i64
+    a92: i64
+    a93: i64
+    a94: i64
+    a95: i64
+    a96: i64
+    a97: i64
+    a98: i64
+    a99: i64
+    a100: i64
+
+def test_many_uninitialized_attributes() -> None:
+    o = ManyUninit()
+    with assertRaises(AttributeError):
+        o.a1
+    with assertRaises(AttributeError):
+        o.a10
+    with assertRaises(AttributeError):
+        o.a20
+    with assertRaises(AttributeError):
+        o.a30
+    with assertRaises(AttributeError):
+        o.a31
+    with assertRaises(AttributeError):
+        o.a32
+    with assertRaises(AttributeError):
+        o.a33
+    with assertRaises(AttributeError):
+        o.a40
+    with assertRaises(AttributeError):
+        o.a50
+    with assertRaises(AttributeError):
+        o.a60
+    with assertRaises(AttributeError):
+        o.a62
+    with assertRaises(AttributeError):
+        o.a63
+    with assertRaises(AttributeError):
+        o.a64
+    with assertRaises(AttributeError):
+        o.a65
+    with assertRaises(AttributeError):
+        o.a80
+    with assertRaises(AttributeError):
+        o.a100
+    o.a30 = MAGIC
+    assert o.a30 == MAGIC
+    o.a31 = MAGIC
+    assert o.a31 == MAGIC
+    o.a32 = MAGIC
+    assert o.a32 == MAGIC
+    o.a33 = MAGIC
+    assert o.a33 == MAGIC
+    with assertRaises(AttributeError):
+        o.a34
+    o.a62 = MAGIC
+    assert o.a62 == MAGIC
+    o.a63 = MAGIC
+    assert o.a63 == MAGIC
+    o.a64 = MAGIC
+    assert o.a64 == MAGIC
+    o.a65 = MAGIC
+    assert o.a65 == MAGIC
+    with assertRaises(AttributeError):
+        o.a66
+
+class BaseNoBitmap:
+    x: int = 5
+
+class DerivedBitmap(BaseNoBitmap):
+    # Subclass needs a bitmap, but base class doesn't have it.
+    y: i64
+
+def test_derived_adds_bitmap() -> None:
+    d = DerivedBitmap()
+    d.x = 643
+    b: BaseNoBitmap = d
+    assert b.x == 643
+
+class Delete:
+    __deletable__ = ['x', 'y']
+    x: i64
+    y: i64
+
+def test_del() -> None:
+    o = Delete()
+    o.x = MAGIC
+    o.y = -1
+    assert o.x == MAGIC
+    assert o.y == -1
+    del o.x
+    with assertRaises(AttributeError):
+        o.x
+    assert o.y == -1
+    del o.y
+    with assertRaises(AttributeError):
+        o.y
+    o.x = 5
+    assert o.x == 5
+    with assertRaises(AttributeError):
+        o.y
+    del o.x
+    with assertRaises(AttributeError):
+        o.x
+
+class UndefinedTuple:
+    def __init__(self, x: i64, y: i64) -> None:
+        if x != 0:
+            self.t = (x, y)
+
+def test_undefined_native_int_tuple() -> None:
+    o = UndefinedTuple(MAGIC, MAGIC)
+    assert o.t[0] == MAGIC
+    assert o.t[1] == MAGIC
+    o = UndefinedTuple(0, 0)
+    with assertRaises(AttributeError):
+        o.t
+    o = UndefinedTuple(-13, 45)
+    assert o.t == (-13, 45)
+
+def test_undefined_native_int_tuple_via_any() -> None:
+    cls: Any = UndefinedTuple
+    o: Any = cls(MAGIC, MAGIC)
+    assert o.t[0] == MAGIC
+    assert o.t[1] == MAGIC
+    o = cls(0, 0)
+    with assertRaises(AttributeError):
+        o.t
+    o = UndefinedTuple(-13, 45)
+    assert o.t == (-13, 45)
+
+[case testI64DefaultArgValues]
+from typing import Any, Iterator, Tuple
+from typing_extensions import Final
+
+MAGIC: Final = -113
+
+from mypy_extensions import i64
+
+def f(x: i64, y: i64 = 5) -> i64:
+    return x + y
+
+def test_simple_default_arg() -> None:
+    assert f(3) == 8
+    assert f(4, 9) == 13
+    assert f(5, MAGIC) == -108
+    for i in range(-1000, 1000):
+        assert f(1, i) == 1 + i
+    f2: Any = f
+    assert f2(3) == 8
+    assert f2(4, 9) == 13
+    assert f2(5, MAGIC) == -108
+
+def g(a: i64, b: i64 = 1, c: int = 2, d: i64 = 3) -> i64:
+    return a + b + c + d
+
+def test_two_default_args() -> None:
+    assert g(10) == 16
+    assert g(10, 2) == 17
+    assert g(10, 2, 3) == 18
+    assert g(10, 2, 3, 4) == 19
+    g2: Any = g
+    assert g2(10) == 16
+    assert g2(10, 2) == 17
+    assert g2(10, 2, 3) == 18
+    assert g2(10, 2, 3, 4) == 19
+
+class C:
+    def __init__(self) -> None:
+        self.i: i64 = 1
+
+    def m(self, a: i64, b: i64 = 1, c: int = 2, d: i64 = 3) -> i64:
+        return self.i + a + b + c + d
+
+class D(C):
+    def m(self, a: i64, b: i64 = 2, c: int = 3, d: i64 = 4) -> i64:
+        return self.i + a + b + c + d
+
+    def mm(self, a: i64 = 2, b: i64 = 1) -> i64:
+        return self.i + a + b
+
+    @staticmethod
+    def s(a: i64 = 2, b: i64 = 1) -> i64:
+        return a + b
+
+    @classmethod
+    def c(cls, a: i64 = 2, b: i64 = 3) -> i64:
+        assert cls is D
+        return a + b
+
+def test_method_default_args() -> None:
+    a = [C(), D()]
+    assert a[0].m(4) == 11
+    d = D()
+    assert d.mm() == 4
+    assert d.mm(5) == 7
+    assert d.mm(MAGIC) == MAGIC + 2
+    assert d.mm(b=5) == 8
+    assert D.mm(d) == 4
+    assert D.mm(d, 6) == 8
+    assert D.mm(d, MAGIC) == MAGIC + 2
+    assert D.mm(d, b=6) == 9
+    dd: Any = d
+    assert dd.mm() == 4
+    assert dd.mm(5) == 7
+    assert dd.mm(MAGIC) == MAGIC + 2
+    assert dd.mm(b=5) == 8
+
+def test_static_method_default_args() -> None:
+    d = D()
+    assert d.s() == 3
+    assert d.s(5) == 6
+    assert d.s(MAGIC) == MAGIC + 1
+    assert d.s(5, 6) == 11
+    assert D.s() == 3
+    assert D.s(5) == 6
+    assert D.s(MAGIC) == MAGIC + 1
+    assert D.s(5, 6) == 11
+    dd: Any = d
+    assert dd.s() == 3
+    assert dd.s(5) == 6
+    assert dd.s(MAGIC) == MAGIC + 1
+    assert dd.s(5, 6) == 11
+
+def test_class_method_default_args() -> None:
+    d = D()
+    assert d.c() == 5
+    assert d.c(5) == 8
+    assert d.c(MAGIC) == MAGIC + 3
+    assert d.c(b=5) == 7
+    assert D.c() == 5
+    assert D.c(5) == 8
+    assert D.c(MAGIC) == MAGIC + 3
+    assert D.c(b=5) == 7
+    dd: Any = d
+    assert dd.c() == 5
+    assert dd.c(5) == 8
+    assert dd.c(MAGIC) == MAGIC + 3
+    assert dd.c(b=5) == 7
+
+class Init:
+    def __init__(self, x: i64 = 2, y: i64 = 5) -> None:
+        self.x = x
+        self.y = y
+
+def test_init_default_args() -> None:
+    o = Init()
+    assert o.x == 2
+    assert o.y == 5
+    o = Init(7, 8)
+    assert o.x == 7
+    assert o.y == 8
+    o = Init(4)
+    assert o.x == 4
+    assert o.y == 5
+    o = Init(MAGIC, MAGIC)
+    assert o.x == MAGIC
+    assert o.y == MAGIC
+    o = Init(3, MAGIC)
+    assert o.x == 3
+    assert o.y == MAGIC
+    o = Init(MAGIC, 11)
+    assert o.x == MAGIC
+    assert o.y == 11
+    o = Init(MAGIC)
+    assert o.x == MAGIC
+    assert o.y == 5
+    o = Init(y=MAGIC)
+    assert o.x == 2
+    assert o.y == MAGIC
+
+def kw_only(*, a: i64 = 1, b: int = 2, c: i64 = 3) -> i64:
+    return a + b + c * 2
+
+def test_kw_only_default_args() -> None:
+    assert kw_only() == 9
+    assert kw_only(a=2) == 10
+    assert kw_only(b=4) == 11
+    assert kw_only(c=11) == 25
+    assert kw_only(a=2, c=4) == 12
+    assert kw_only(c=4, a=2) == 12
+    kw_only2: Any = kw_only
+    assert kw_only2() == 9
+    assert kw_only2(a=2) == 10
+    assert kw_only2(b=4) == 11
+    assert kw_only2(c=11) == 25
+    assert kw_only2(a=2, c=4) == 12
+    assert kw_only2(c=4, a=2) == 12
+
+def tuples(t: Tuple[i64, i64] = (MAGIC, MAGIC)) -> i64:
+    return t[0] + t[1]
+
+def test_tuple_arg_defaults() -> None:
+    assert tuples() == 2 * MAGIC
+    assert tuples((1, 2)) == 3
+    assert tuples((MAGIC, MAGIC)) == 2 * MAGIC
+    tuples2: Any = tuples
+    assert tuples2() == 2 * MAGIC
+    assert tuples2((1, 2)) == 3
+    assert tuples2((MAGIC, MAGIC)) == 2 * MAGIC
+
+class TupleInit:
+    def __init__(self, t: Tuple[i64, i64] = (MAGIC, MAGIC)) -> None:
+        self.t = t[0] + t[1]
+
+def test_tuple_init_arg_defaults() -> None:
+    assert TupleInit().t == 2 * MAGIC
+    assert TupleInit((1, 2)).t == 3
+    assert TupleInit((MAGIC, MAGIC)).t == 2 * MAGIC
+    o: Any = TupleInit
+    assert o().t == 2 * MAGIC
+    assert o((1, 2)).t == 3
+    assert o((MAGIC, MAGIC)).t == 2 * MAGIC
+
+def many_args(
+    a1: i64 = 0,
+    a2: i64 = 1,
+    a3: i64 = 2,
+    a4: i64 = 3,
+    a5: i64 = 4,
+    a6: i64 = 5,
+    a7: i64 = 6,
+    a8: i64 = 7,
+    a9: i64 = 8,
+    a10: i64 = 9,
+    a11: i64 = 10,
+    a12: i64 = 11,
+    a13: i64 = 12,
+    a14: i64 = 13,
+    a15: i64 = 14,
+    a16: i64 = 15,
+    a17: i64 = 16,
+    a18: i64 = 17,
+    a19: i64 = 18,
+    a20: i64 = 19,
+    a21: i64 = 20,
+    a22: i64 = 21,
+    a23: i64 = 22,
+    a24: i64 = 23,
+    a25: i64 = 24,
+    a26: i64 = 25,
+    a27: i64 = 26,
+    a28: i64 = 27,
+    a29: i64 = 28,
+    a30: i64 = 29,
+    a31: i64 = 30,
+    a32: i64 = 31,
+    a33: i64 = 32,
+    a34: i64 = 33,
+) -> i64:
+    return a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27 + a28 + a29 + a30 + a31 + a32 + a33 + a34
+
+def test_many_args() -> None:
+    assert many_args() == 561
+    assert many_args(a1=100) == 661
+    assert many_args(a2=101) == 661
+    assert many_args(a15=114) == 661
+    assert many_args(a31=130) == 661
+    assert many_args(a32=131) == 661
+    assert many_args(a33=232) == 761
+    assert many_args(a34=333) == 861
+    assert many_args(a1=100, a33=232) == 861
+    f: Any = many_args
+    assert f() == 561
+    assert f(a1=100) == 661
+    assert f(a2=101) == 661
+    assert f(a15=114) == 661
+    assert f(a31=130) == 661
+    assert f(a32=131) == 661
+    assert f(a33=232) == 761
+    assert f(a34=333) == 861
+    assert f(a1=100, a33=232) == 861
+
+def test_nested_function_defaults() -> None:
+    a: i64 = 1
+
+    def nested(x: i64 = 2, y: i64 = 3) -> i64:
+        return a + x + y
+
+    assert nested() == 6
+    assert nested(3) == 7
+    assert nested(y=5) == 8
+    assert nested(MAGIC) == MAGIC + 4
+    a = 11
+    assert nested() == 16
+
+
+def test_nested_function_defaults_via_any() -> None:
+    a: i64 = 1
+
+    def nested_native(x: i64 = 2, y: i64 = 3) -> i64:
+        return a + x + y
+
+    nested: Any = nested_native
+
+    assert nested() == 6
+    assert nested(3) == 7
+    assert nested(y=5) == 8
+    assert nested(MAGIC) == MAGIC + 4
+    a = 11
+    assert nested() == 16
+
+def gen(x: i64 = 1, y: i64 = 2) -> Iterator[i64]:
+    yield x + y
+
+def test_generator() -> None:
+    g = gen()
+    assert next(g) == 3
+    g = gen(2)
+    assert next(g) == 4
+    g = gen(2, 3)
+    assert next(g) == 5
+    a: Any = gen
+    g = a()
+    assert next(g) == 3
+    g = a(2)
+    assert next(g) == 4
+    g = a(2, 3)
+    assert next(g) == 5
+
+def magic_default(x: i64 = MAGIC) -> i64:
+    return x
+
+def test_magic_default() -> None:
+    assert magic_default() == MAGIC
+    assert magic_default(1) == 1
+    assert magic_default(MAGIC) == MAGIC
+    a: Any = magic_default
+    assert a() == MAGIC
+    assert a(1) == 1
+    assert a(MAGIC) == MAGIC
+
+[case testI64UndefinedLocal]
+from typing_extensions import Final
+
+from mypy_extensions import i64, i32
+
+from testutil import assertRaises
+
+MAGIC: Final = -113
+
+
+def test_conditionally_defined_local() -> None:
+    x = not int()
+    if x:
+        y: i64 = 5
+        z: i32 = 6
+    assert y == 5
+    assert z == 6
+
+def test_conditionally_undefined_local() -> None:
+    x = int()
+    if x:
+        y: i64 = 5
+        z: i32 = 6
+    else:
+        ok: i64 = 7
+    assert ok == 7
+    try:
+        print(y)
+    except NameError as e:
+        assert str(e) == 'local variable "y" referenced before assignment'
+    else:
+        assert False
+    try:
+        print(z)
+    except NameError as e:
+        assert str(e) == 'local variable "z" referenced before assignment'
+    else:
+        assert False
+
+def test_assign_error_value_conditionally() -> None:
+    x = int()
+    if not x:
+        y: i64 = MAGIC
+        z: i32 = MAGIC
+    assert y == MAGIC
+    assert z == MAGIC
+
+def tuple_case(x: i64, y: i64) -> None:
+    if not int():
+        t = (x, y)
+    assert t == (x, y)
+    if int():
+        t2 = (x, y)
+    try:
+        print(t2)
+    except NameError as e:
+        assert str(e) == 'local variable "t2" referenced before assignment'
+    else:
+        assert False
+
+def test_conditionally_undefined_tuple() -> None:
+    tuple_case(2, 3)
+    tuple_case(-2, -3)
+    tuple_case(MAGIC, MAGIC)
+
+def test_many_locals() -> None:
+    x = int()
+    if x:
+        a0: i64 = 0
+        a1: i64 = 1
+        a2: i64 = 2
+        a3: i64 = 3
+        a4: i64 = 4
+        a5: i64 = 5
+        a6: i64 = 6
+        a7: i64 = 7
+        a8: i64 = 8
+        a9: i64 = 9
+        a10: i64 = 10
+        a11: i64 = 11
+        a12: i64 = 12
+        a13: i64 = 13
+        a14: i64 = 14
+        a15: i64 = 15
+        a16: i64 = 16
+        a17: i64 = 17
+        a18: i64 = 18
+        a19: i64 = 19
+        a20: i64 = 20
+        a21: i64 = 21
+        a22: i64 = 22
+        a23: i64 = 23
+        a24: i64 = 24
+        a25: i64 = 25
+        a26: i64 = 26
+        a27: i64 = 27
+        a28: i64 = 28
+        a29: i64 = 29
+        a30: i64 = 30
+        a31: i64 = 31
+        a32: i64 = 32
+        a33: i64 = 33
+    with assertRaises(NameError):
+        print(a0)
+    with assertRaises(NameError):
+        print(a31)
+    with assertRaises(NameError):
+        print(a32)
+    with assertRaises(NameError):
+        print(a33)
+    a0 = 5
+    assert a0 == 5
+    with assertRaises(NameError):
+        print(a31)
+    with assertRaises(NameError):
+        print(a32)
+    with assertRaises(NameError):
+        print(a33)
+    a32 = 55
+    assert a0 == 5
+    assert a32 == 55
+    with assertRaises(NameError):
+        print(a31)
+    with assertRaises(NameError):
+        print(a33)
+    a31 = 10
+    a33 = 20
+    assert a0 == 5
+    assert a31 == 10
+    assert a32 == 55
+    assert a33 == 20
+
+[case testI64GlueMethodsAndInheritance]
+from typing import Any
+from typing_extensions import Final
+
+from mypy_extensions import i64, trait
+
+from testutil import assertRaises
+
+MAGIC: Final = -113
+
+class Base:
+    def foo(self) -> i64:
+        return 5
+
+    def bar(self, x: i64 = 2) -> i64:
+        return x + 1
+
+    def hoho(self, x: i64) -> i64:
+        return x - 1
+
+class Derived(Base):
+    def foo(self, x: i64 = 5) -> i64:
+        return x + 10
+
+    def bar(self, x: i64 = 3, y: i64 = 20) -> i64:
+        return x + y + 2
+
+    def hoho(self, x: i64 = 7) -> i64:
+        return x - 2
+
+def test_derived_adds_bitmap() -> None:
+    b: Base = Derived()
+    assert b.foo() == 15
+
+def test_derived_adds_another_default_arg() -> None:
+    b: Base = Derived()
+    assert b.bar() == 25
+    assert b.bar(1) == 23
+    assert b.bar(MAGIC) == MAGIC + 22
+
+def test_derived_switches_arg_to_have_default() -> None:
+    b: Base = Derived()
+    assert b.hoho(5) == 3
+    assert b.hoho(MAGIC) == MAGIC - 2
+
+@trait
+class T:
+    @property
+    def x(self) -> i64: ...
+    @property
+    def y(self) -> i64: ...
+
+class C(T):
+    x: i64 = 1
+    y: i64 = 4
+
+def test_read_only_property_in_trait_implemented_as_attribute() -> None:
+    c = C()
+    c.x = 5
+    assert c.x == 5
+    c.x = MAGIC
+    assert c.x == MAGIC
+    assert c.y == 4
+    c.y = 6
+    assert c.y == 6
+    t: T = C()
+    assert t.y == 4
+    t = c
+    assert t.x == MAGIC
+    c.x = 55
+    assert t.x == 55
+    assert t.y == 6
+    a: Any = c
+    assert a.x == 55
+    assert a.y == 6
+    a.x = 7
+    a.y = 8
+    assert a.x == 7
+    assert a.y == 8
+
+class D(T):
+    xx: i64
+
+    @property
+    def x(self) -> i64:
+        return self.xx
+
+    @property
+    def y(self) -> i64:
+        raise TypeError
+
+def test_read_only_property_in_trait_implemented_as_property() -> None:
+    d = D()
+    d.xx = 5
+    assert d.x == 5
+    d.xx = MAGIC
+    assert d.x == MAGIC
+    with assertRaises(TypeError):
+        d.y
+    t: T = d
+    assert t.x == MAGIC
+    d.xx = 6
+    assert t.x == 6
+    with assertRaises(TypeError):
+        t.y
+
+@trait
+class T2:
+    x: i64
+    y: i64
+
+class C2(T2):
+    pass
+
+def test_inherit_trait_attribute() -> None:
+    c = C2()
+    c.x = 5
+    assert c.x == 5
+    c.x = MAGIC
+    assert c.x == MAGIC
+    with assertRaises(AttributeError):
+        c.y
+    c.y = 6
+    assert c.y == 6
+    t: T2 = C2()
+    with assertRaises(AttributeError):
+        t.y
+    t = c
+    assert t.x == MAGIC
+    c.x = 55
+    assert t.x == 55
+    assert t.y == 6
+    a: Any = c
+    assert a.x == 55
+    assert a.y == 6
+    a.x = 7
+    a.y = 8
+    assert a.x == 7
+    assert a.y == 8
+
+class D2(T2):
+    x: i64
+    y: i64 = 4
+
+def test_implement_trait_attribute() -> None:
+    d = D2()
+    d.x = 5
+    assert d.x == 5
+    d.x = MAGIC
+    assert d.x == MAGIC
+    assert d.y == 4
+    d.y = 6
+    assert d.y == 6
+    t: T2 = D2()
+    assert t.y == 4
+    t = d
+    assert t.x == MAGIC
+    d.x = 55
+    assert t.x == 55
+    assert t.y == 6
+    a: Any = d
+    assert a.x == 55
+    assert a.y == 6
+    a.x = 7
+    a.y = 8
+    assert a.x == 7
+    assert a.y == 8

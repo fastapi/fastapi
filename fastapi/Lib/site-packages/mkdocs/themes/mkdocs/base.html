@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="{{ config.theme.locale|default('en') }}">
+    <head>
+      {%- block site_meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if page and page.is_homepage %}<meta name="description" content="{{ config['site_description'] }}">{% endif %}
+        {% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
+        {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+        {% if config.site_favicon %}<link rel="shortcut icon" href="{{ config.site_favicon|url }}">
+        {% else %}<link rel="shortcut icon" href="{{ 'img/favicon.ico'|url }}">{% endif %}
+      {%- endblock %}
+
+      {%- block htmltitle %}
+        <title>{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+      {%- endblock %}
+
+      {%- block styles %}
+        <link href="{{ 'css/bootstrap.min.css'|url }}" rel="stylesheet">
+        <link href="{{ 'css/font-awesome.min.css'|url }}" rel="stylesheet">
+        <link href="{{ 'css/base.css'|url }}" rel="stylesheet">
+        {%- if config.theme.highlightjs %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/{{ config.theme.hljs_style }}.min.css">
+        {%- endif %}
+        {%- for path in extra_css %}
+        <link href="{{ path }}" rel="stylesheet">
+        {%- endfor %}
+      {%- endblock %}
+
+      {%- block libs %}
+
+        <script src="{{ 'js/jquery-1.10.2.min.js'|url }}" defer></script>
+        <script src="{{ 'js/bootstrap.min.js'|url }}" defer></script>
+        {%- if config.theme.highlightjs %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        {%- for lang in config.theme.hljs_languages %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/{{lang}}.min.js"></script>
+        {%- endfor %}
+        <script>hljs.initHighlightingOnLoad();</script>
+        {%- endif %}
+      {%- endblock %}
+
+      {%- block analytics %}
+        {%- if config.theme.analytics.gtag %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.theme.analytics.gtag }}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{{ config.theme.analytics.gtag }}');
+        </script>
+        {%- elif config.google_analytics %}
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ config.google_analytics[0] }}', '{{ config.google_analytics[1] }}');
+            ga('send', 'pageview');
+        </script>
+        {%- endif %}
+      {%- endblock %}
+
+      {%- block extrahead %} {% endblock %}
+    </head>
+
+    <body{% if page and page.is_homepage %} class="homepage"{% endif %}>
+        <div class="navbar fixed-top navbar-expand-lg navbar-{% if config.theme.nav_style == "light" %}light{% else %}dark{% endif %} bg-{{ config.theme.nav_style }}">
+            <div class="container">
+
+                {%- block site_name %}
+                <a class="navbar-brand" href="{{ nav.homepage.url|url }}">{{ config.site_name }}</a>
+                {%- endblock %}
+
+                {%- if nav|length>1 or (page and (page.next_page or page.previous_page)) or config.repo_url %}
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {%- endif %}
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                  {%- block site_nav %}
+                    {%- if nav|length>1 %}
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                        {%- for nav_item in nav %}
+                        {%- if nav_item.children %}
+                            <li class="dropdown{% if nav_item.active %} active{% endif %}">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ nav_item.title }} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                {%- for nav_item in nav_item.children %}
+                                    {% include "nav-sub.html" %}
+                                {%- endfor %}
+                                </ul>
+                            </li>
+                        {%- else %}
+                            <li class="navitem{% if nav_item.active %} active{% endif %}">
+                                <a href="{{ nav_item.url|url }}" class="nav-link">{{ nav_item.title }}</a>
+                            </li>
+                        {%- endif %}
+                        {%- endfor %}
+                        </ul>
+                    {%- endif %}
+                  {%- endblock %}
+
+                    <ul class="nav navbar-nav ml-auto">
+                      {%- block search_button %}
+                        {%- if 'search' in config['plugins'] %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> {% trans %}Search{% endtrans %}
+                            </a>
+                        </li>
+                        {%- endif %}
+                      {%- endblock %}
+
+                      {%- block next_prev %}
+                        {%- if page and (page.next_page or page.previous_page) %}
+                            <li class="nav-item">
+                                <a rel="prev" {% if page.previous_page %}href="{{ page.previous_page.url|url }}" class="nav-link"{% else %}class="nav-link disabled"{% endif %}>
+                                    <i class="fa fa-arrow-left"></i> {% trans %}Previous{% endtrans %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" {% if page.next_page %}href="{{ page.next_page.url|url }}" class="nav-link"{% else %}class="nav-link disabled"{% endif %}>
+                                    {% trans %}Next{% endtrans %} <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        {%- endif %}
+                      {%- endblock %}
+
+                      {%- block repo %}
+                        {%- if page and page.edit_url %}
+                            <li class="nav-item">
+                                <a href="{{ page.edit_url }}" class="nav-link">
+                                    {%- if config.repo_name == 'GitHub' -%}
+                                        <i class="fa fa-github"></i> {% trans repo_name=config.repo_name %}Edit on {{ repo_name }}{% endtrans %}
+                                    {%- elif config.repo_name == 'Bitbucket' -%}
+                                        <i class="fa fa-bitbucket"></i> {% trans repo_name=config.repo_name %}Edit on {{ repo_name }}{% endtrans %}
+                                    {%- elif config.repo_name == 'GitLab' -%}
+                                        <i class="fa fa-gitlab"></i> {% trans repo_name=config.repo_name %}Edit on {{ repo_name }}{% endtrans %}
+                                    {%- elif config.repo_name -%}
+                                        {% trans repo_name=config.repo_name%}Edit on {{ repo_name }}{% endtrans %}
+                                    {% else %}
+                                        {% trans repo_name=config.repo_name%}Edit{% endtrans %}
+                                    {%- endif -%}
+                                </a>
+                            </li>
+                        {%- elif config.repo_url %}
+                            <li class="nav-item">
+                                <a href="{{ config.repo_url }}" class="nav-link">
+                                    {%- if config.repo_name == 'GitHub' -%}
+                                        <i class="fa fa-github"></i> {{ config.repo_name }}
+                                    {%- elif config.repo_name == 'Bitbucket' -%}
+                                        <i class="fa fa-bitbucket"></i> {{ config.repo_name }}
+                                    {%- elif config.repo_name == 'GitLab' -%}
+                                        <i class="fa fa-gitlab"></i> {{ config.repo_name }}
+                                    {%- else -%}
+                                    {{ config.repo_name }}
+                                    {%- endif -%}
+                                </a>
+                            </li>
+                        {%- endif %}
+                      {%- endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {%- block content %}
+                    <div class="col-md-3">{% include "toc.html" %}</div>
+                    <div class="col-md-9" role="main">{% include "content.html" %}</div>
+                {%- endblock %}
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+          {%- block footer %}
+            <hr>
+            {%- if config.copyright %}
+                <p>{{ config.copyright }}</p>
+            {%- endif %}
+            <p>{% trans mkdocs_link='<a href="https://www.mkdocs.org/">MkDocs</a>' %}Documentation built with {{ mkdocs_link }}.{% endtrans %}</p>
+          {%- endblock %}
+        </footer>
+
+      {%- block scripts %}
+        <script>
+            var base_url = {{ base_url | tojson }},
+                shortcuts = {{ config.theme.shortcuts | tojson }};
+        </script>
+        <script src="{{ 'js/base.js'|url }}" defer></script>
+        {%- for path in extra_javascript %}
+        <script src="{{ path }}" defer></script>
+        {%- endfor %}
+      {%- endblock %}
+
+        {% if 'search' in config['plugins'] %}{%- include "search-modal.html" %}{% endif %}
+        {%- include "keyboard-modal.html" %}
+
+    </body>
+</html>
+{% if page and page.is_homepage %}
+<!--
+MkDocs version : {{ mkdocs_version }}
+Build Date UTC : {{ build_date_utc }}
+-->
+{% endif %}

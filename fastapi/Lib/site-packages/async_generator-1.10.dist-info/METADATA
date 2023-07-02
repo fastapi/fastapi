@@ -1,0 +1,145 @@
+Metadata-Version: 2.1
+Name: async-generator
+Version: 1.10
+Summary: Async generators and context managers for Python 3.5+
+Home-page: https://github.com/python-trio/async_generator
+Author: Nathaniel J. Smith
+Author-email: njs@pobox.com
+License: MIT -or- Apache License 2.0
+Keywords: async
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: AsyncIO
+Requires-Python: >=3.5
+
+.. image:: https://img.shields.io/badge/chat-join%20now-blue.svg
+   :target: https://gitter.im/python-trio/general
+   :alt: Join chatroom
+
+.. image:: https://img.shields.io/badge/docs-read%20now-blue.svg
+   :target: https://async-generator.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://travis-ci.org/python-trio/async_generator.svg?branch=master
+   :target: https://travis-ci.org/python-trio/async_generator
+   :alt: Automated test status
+
+.. image:: https://ci.appveyor.com/api/projects/status/af4eyed8o8tc3t0r/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/python-trio/trio/history
+   :alt: Automated test status (Windows)
+
+.. image:: https://codecov.io/gh/python-trio/async_generator/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/python-trio/async_generator
+   :alt: Test coverage
+
+The async_generator library
+===========================
+
+Python 3.6 added `async generators
+<https://www.python.org/dev/peps/pep-0525/>`__. (What's an async
+generator? `Check out my 5-minute lightning talk demo from PyCon 2016
+<https://youtu.be/PulzIT8KYLk?t=24m30s>`__.) Python 3.7 adds some more
+tools to make them usable, like ``contextlib.asynccontextmanager``.
+
+This library gives you all that back to Python 3.5.
+
+For example, this code only works in Python 3.6+:
+
+.. code-block:: python3
+
+   async def load_json_lines(stream_reader):
+       async for line in stream_reader:
+           yield json.loads(line)
+
+But this code does the same thing, and works on Python 3.5+:
+
+.. code-block:: python3
+
+   from async_generator import async_generator, yield_
+
+   @async_generator
+   async def load_json_lines(stream_reader):
+       async for line in stream_reader:
+           await yield_(json.loads(line))
+
+Or in Python 3.7, you can write:
+
+.. code-block:: python3
+
+   from contextlib import asynccontextmanager
+
+   @asynccontextmanager
+   async def background_server():
+       async with trio.open_nursery() as nursery:
+           value = await nursery.start(my_server)
+           try:
+               yield value
+           finally:
+               # Kill the server when the scope exits
+               nursery.cancel_scope.cancel()
+
+This is the same, but back to 3.5:
+
+.. code-block:: python3
+
+   from async_generator import async_generator, yield_, asynccontextmanager
+
+   @asynccontextmanager
+   @async_generator
+   async def background_server():
+       async with trio.open_nursery() as nursery:
+           value = await nursery.start(my_server)
+           try:
+               await yield_(value)
+           finally:
+               # Kill the server when the scope exits
+               nursery.cancel_scope.cancel()
+
+(And if you're on 3.6, you can use ``@asynccontextmanager`` with
+native generators.)
+
+
+Let's do this
+=============
+
+* Install: ``python3 -m pip install -U async_generator`` (or on Windows,
+  maybe ``py -3 -m pip install -U async_generator``
+
+* Manual: https://async-generator.readthedocs.io/
+
+* Bug tracker and source code: https://github.com/python-trio/async_generator
+
+* Real-time chat: https://gitter.im/python-trio/general
+
+* License: MIT or Apache 2, your choice
+
+* Contributor guide: https://trio.readthedocs.io/en/latest/contributing.html
+
+* Code of conduct: Contributors are requested to follow our `code of
+  conduct
+  <https://trio.readthedocs.io/en/latest/code-of-conduct.html>`__ in
+  all project spaces.
+
+
+How come some of those links talk about "trio"?
+===============================================
+
+`Trio <https://trio.readthedocs.io>`__ is a new async concurrency
+library for Python that's obsessed with usability and correctness – we
+want to make it *easy* to get things *right*. The ``async_generator``
+library is maintained by the Trio project as part of that mission, and
+because Trio uses ``async_generator`` internally.
+
+You can use ``async_generator`` with any async library. It works great
+with ``asyncio``, or Twisted, or whatever you like. (But we think Trio
+is pretty sweet.)
+
+

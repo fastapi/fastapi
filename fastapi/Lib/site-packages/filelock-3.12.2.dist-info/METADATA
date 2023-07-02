@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: filelock
+Version: 3.12.2
+Summary: A platform independent file lock.
+Project-URL: Documentation, https://py-filelock.readthedocs.io
+Project-URL: Homepage, https://github.com/tox-dev/py-filelock
+Project-URL: Source, https://github.com/tox-dev/py-filelock
+Project-URL: Tracker, https://github.com/tox-dev/py-filelock/issues
+Maintainer-email: Bernát Gábor <gaborjbernat@gmail.com>
+License-Expression: Unlicense
+License-File: LICENSE
+Keywords: application,cache,directory,log,user
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: The Unlicense (Unlicense)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System
+Requires-Python: >=3.7
+Provides-Extra: docs
+Requires-Dist: furo>=2023.5.20; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints!=1.23.4,>=1.23; extra == 'docs'
+Requires-Dist: sphinx>=7.0.1; extra == 'docs'
+Provides-Extra: testing
+Requires-Dist: covdefaults>=2.3; extra == 'testing'
+Requires-Dist: coverage>=7.2.7; extra == 'testing'
+Requires-Dist: diff-cover>=7.5; extra == 'testing'
+Requires-Dist: pytest-cov>=4.1; extra == 'testing'
+Requires-Dist: pytest-mock>=3.10; extra == 'testing'
+Requires-Dist: pytest-timeout>=2.1; extra == 'testing'
+Requires-Dist: pytest>=7.3.1; extra == 'testing'
+Description-Content-Type: text/markdown
+
+# py-filelock
+
+[![PyPI](https://img.shields.io/pypi/v/filelock)](https://pypi.org/project/filelock/)
+[![Supported Python
+versions](https://img.shields.io/pypi/pyversions/filelock.svg)](https://pypi.org/project/filelock/)
+[![Documentation
+status](https://readthedocs.org/projects/py-filelock/badge/?version=latest)](https://py-filelock.readthedocs.io/en/latest/?badge=latest)
+[![Code style:
+black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Downloads](https://pepy.tech/badge/filelock/month)](https://pepy.tech/project/filelock)
+[![check](https://github.com/tox-dev/py-filelock/actions/workflows/check.yml/badge.svg)](https://github.com/tox-dev/py-filelock/actions/workflows/check.yml)
+
+For more information checkout the [official documentation](https://py-filelock.readthedocs.io/en/latest/index.html).

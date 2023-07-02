@@ -52,6 +52,7 @@ nav:
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hu: /hu/
   - id: /id/
   - ja: /ja/
   - ko: /ko/
@@ -176,9 +177,9 @@ markdown_extensions:
     guess_lang: false
   mdx_include:
     base_path: docs
-  admonition:
-  codehilite:
-  extra:
+  admonition: null
+  codehilite: null
+  extra: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
@@ -186,8 +187,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
-  attr_list:
-  md_in_html:
+  attr_list: null
+  md_in_html: null
 extra:
   analytics:
     provider: google
@@ -222,6 +223,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hu/
+    name: hu
   - link: /id/
     name: id
   - link: /ja/

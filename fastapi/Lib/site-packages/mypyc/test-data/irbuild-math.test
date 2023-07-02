@@ -1,0 +1,64 @@
+[case testMathLiteralsAreInlined]
+import math
+from math import pi, e, tau, inf, nan
+
+def f1() -> float:
+    return pi
+
+def f2() -> float:
+    return math.pi
+
+def f3() -> float:
+    return math.e
+
+def f4() -> float:
+    return math.e
+
+def f5() -> float:
+    return math.tau
+
+def f6() -> float:
+    return math.tau
+
+def f7() -> float:
+    return math.inf
+def f8() -> float:
+    return math.inf
+
+def f9() -> float:
+    return math.nan
+
+def f10() -> float:
+    return math.nan
+
+[out]
+def f1():
+L0:
+    return 3.141592653589793
+def f2():
+L0:
+    return 3.141592653589793
+def f3():
+L0:
+    return 2.718281828459045
+def f4():
+L0:
+    return 2.718281828459045
+def f5():
+L0:
+    return 6.283185307179586
+def f6():
+L0:
+    return 6.283185307179586
+def f7():
+L0:
+    return inf
+def f8():
+L0:
+    return inf
+def f9():
+L0:
+    return nan
+def f10():
+L0:
+    return nan

@@ -1,0 +1,437 @@
+# Test cases for glue methods.
+#
+# These are used when subclass method signature has a different representation
+# compared to the base class.
+
+[case testSubclassSpecialize2]
+class A:
+    def foo(self, x: int) -> object:
+        return str(x)
+class B(A):
+    def foo(self, x: object) -> object:
+        return x
+class C(B):
+    def foo(self, x: object) -> int:
+        return id(x)
+
+def use_a(x: A, y: int) -> object:
+    return x.foo(y)
+
+def use_b(x: B, y: object) -> object:
+    return x.foo(y)
+
+def use_c(x: C, y: object) -> int:
+    return x.foo(y)
+[out]
+def A.foo(self, x):
+    self :: __main__.A
+    x :: int
+    r0 :: str
+L0:
+    r0 = CPyTagged_Str(x)
+    return r0
+def B.foo(self, x):
+    self :: __main__.B
+    x :: object
+L0:
+    return x
+def B.foo__A_glue(self, x):
+    self :: __main__.B
+    x :: int
+    r0, r1 :: object
+L0:
+    r0 = box(int, x)
+    r1 = B.foo(self, r0)
+    return r1
+def C.foo(self, x):
+    self :: __main__.C
+    x :: object
+    r0 :: int
+L0:
+    r0 = CPyTagged_Id(x)
+    return r0
+def C.foo__B_glue(self, x):
+    self :: __main__.C
+    x :: object
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = C.foo(self, x)
+    r1 = box(int, r0)
+    return r1
+def C.foo__A_glue(self, x):
+    self :: __main__.C
+    x :: int
+    r0 :: object
+    r1 :: int
+    r2 :: object
+L0:
+    r0 = box(int, x)
+    r1 = C.foo(self, r0)
+    r2 = box(int, r1)
+    return r2
+def use_a(x, y):
+    x :: __main__.A
+    y :: int
+    r0 :: object
+L0:
+    r0 = x.foo(y)
+    return r0
+def use_b(x, y):
+    x :: __main__.B
+    y, r0 :: object
+L0:
+    r0 = x.foo(y)
+    return r0
+def use_c(x, y):
+    x :: __main__.C
+    y :: object
+    r0 :: int
+L0:
+    r0 = x.foo(y)
+    return r0
+
+[case testPropertyDerivedGen]
+from typing import Callable
+class BaseProperty:
+    @property
+    def value(self) -> object:
+        return self._incrementer
+
+    @property
+    def bad_value(self) -> object:
+        return self._incrementer
+
+    @property
+    def next(self) -> BaseProperty:
+        return BaseProperty(self._incrementer + 1)
+
+    def __init__(self, value: int) -> None:
+        self._incrementer = value
+
+class DerivedProperty(BaseProperty):
+    @property
+    def value(self) -> int:
+        return self._incrementer
+
+    @property
+    def bad_value(self) -> object:
+        return self._incrementer
+
+    @property
+    def next(self) -> DerivedProperty:
+        return DerivedProperty(self._incr_func, self._incr_func(self.value))
+
+    def __init__(self, incr_func: Callable[[int], int], value: int) -> None:
+        BaseProperty.__init__(self, value)
+        self._incr_func = incr_func
+
+
+class AgainProperty(DerivedProperty):
+    @property
+    def next(self) -> AgainProperty:
+        return AgainProperty(self._incr_func, self._incr_func(self._incr_func(self.value)))
+
+    @property
+    def bad_value(self) -> int:
+        return self._incrementer
+[out]
+def BaseProperty.value(self):
+    self :: __main__.BaseProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = self._incrementer
+    r1 = box(int, r0)
+    return r1
+def BaseProperty.bad_value(self):
+    self :: __main__.BaseProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = self._incrementer
+    r1 = box(int, r0)
+    return r1
+def BaseProperty.next(self):
+    self :: __main__.BaseProperty
+    r0, r1 :: int
+    r2 :: __main__.BaseProperty
+L0:
+    r0 = borrow self._incrementer
+    r1 = CPyTagged_Add(r0, 2)
+    keep_alive self
+    r2 = BaseProperty(r1)
+    return r2
+def BaseProperty.__init__(self, value):
+    self :: __main__.BaseProperty
+    value :: int
+L0:
+    self._incrementer = value
+    return 1
+def DerivedProperty.value(self):
+    self :: __main__.DerivedProperty
+    r0 :: int
+L0:
+    r0 = self._incrementer
+    return r0
+def DerivedProperty.value__BaseProperty_glue(__mypyc_self__):
+    __mypyc_self__ :: __main__.DerivedProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = __mypyc_self__.value
+    r1 = box(int, r0)
+    return r1
+def DerivedProperty.bad_value(self):
+    self :: __main__.DerivedProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = self._incrementer
+    r1 = box(int, r0)
+    return r1
+def DerivedProperty.next(self):
+    self :: __main__.DerivedProperty
+    r0 :: object
+    r1 :: int
+    r2, r3, r4 :: object
+    r5 :: int
+    r6 :: __main__.DerivedProperty
+L0:
+    r0 = self._incr_func
+    r1 = self.value
+    r2 = self._incr_func
+    r3 = box(int, r1)
+    r4 = PyObject_CallFunctionObjArgs(r2, r3, 0)
+    r5 = unbox(int, r4)
+    r6 = DerivedProperty(r0, r5)
+    return r6
+def DerivedProperty.next__BaseProperty_glue(__mypyc_self__):
+    __mypyc_self__, r0 :: __main__.DerivedProperty
+L0:
+    r0 = __mypyc_self__.next
+    return r0
+def DerivedProperty.__init__(self, incr_func, value):
+    self :: __main__.DerivedProperty
+    incr_func :: object
+    value :: int
+    r0 :: None
+L0:
+    r0 = BaseProperty.__init__(self, value)
+    self._incr_func = incr_func
+    return 1
+def AgainProperty.next(self):
+    self :: __main__.AgainProperty
+    r0 :: object
+    r1 :: int
+    r2, r3, r4 :: object
+    r5 :: int
+    r6, r7, r8 :: object
+    r9 :: int
+    r10 :: __main__.AgainProperty
+L0:
+    r0 = self._incr_func
+    r1 = self.value
+    r2 = self._incr_func
+    r3 = box(int, r1)
+    r4 = PyObject_CallFunctionObjArgs(r2, r3, 0)
+    r5 = unbox(int, r4)
+    r6 = self._incr_func
+    r7 = box(int, r5)
+    r8 = PyObject_CallFunctionObjArgs(r6, r7, 0)
+    r9 = unbox(int, r8)
+    r10 = AgainProperty(r0, r9)
+    return r10
+def AgainProperty.next__DerivedProperty_glue(__mypyc_self__):
+    __mypyc_self__, r0 :: __main__.AgainProperty
+L0:
+    r0 = __mypyc_self__.next
+    return r0
+def AgainProperty.next__BaseProperty_glue(__mypyc_self__):
+    __mypyc_self__, r0 :: __main__.AgainProperty
+L0:
+    r0 = __mypyc_self__.next
+    return r0
+def AgainProperty.bad_value(self):
+    self :: __main__.AgainProperty
+    r0 :: int
+L0:
+    r0 = self._incrementer
+    return r0
+def AgainProperty.bad_value__DerivedProperty_glue(__mypyc_self__):
+    __mypyc_self__ :: __main__.AgainProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = __mypyc_self__.bad_value
+    r1 = box(int, r0)
+    return r1
+def AgainProperty.bad_value__BaseProperty_glue(__mypyc_self__):
+    __mypyc_self__ :: __main__.AgainProperty
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = __mypyc_self__.bad_value
+    r1 = box(int, r0)
+    return r1
+
+[case testPropertyTraitSubclassing]
+from mypy_extensions import trait
+@trait
+class SubclassedTrait:
+    @property
+    def this(self) -> SubclassedTrait:
+        return self
+
+    @property
+    def boxed(self) -> object:
+        return 3
+
+class DerivingObject(SubclassedTrait):
+    @property
+    def this(self) -> DerivingObject:
+        return self
+
+    @property
+    def boxed(self) -> int:
+        return 5
+[out]
+def SubclassedTrait.this(self):
+    self :: __main__.SubclassedTrait
+L0:
+    return self
+def SubclassedTrait.boxed(self):
+    self :: __main__.SubclassedTrait
+    r0 :: object
+L0:
+    r0 = object 3
+    return r0
+def DerivingObject.this(self):
+    self :: __main__.DerivingObject
+L0:
+    return self
+def DerivingObject.this__SubclassedTrait_glue(__mypyc_self__):
+    __mypyc_self__, r0 :: __main__.DerivingObject
+L0:
+    r0 = __mypyc_self__.this
+    return r0
+def DerivingObject.boxed(self):
+    self :: __main__.DerivingObject
+L0:
+    return 10
+def DerivingObject.boxed__SubclassedTrait_glue(__mypyc_self__):
+    __mypyc_self__ :: __main__.DerivingObject
+    r0 :: int
+    r1 :: object
+L0:
+    r0 = __mypyc_self__.boxed
+    r1 = box(int, r0)
+    return r1
+
+[case testI64GlueWithExtraDefaultArg]
+from mypy_extensions import i64
+
+class C:
+    def f(self) -> None: pass
+
+class D(C):
+    def f(self, x: i64 = 44) -> None: pass
+[out]
+def C.f(self):
+    self :: __main__.C
+L0:
+    return 1
+def D.f(self, x, __bitmap):
+    self :: __main__.D
+    x :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 44
+L2:
+    return 1
+def D.f__C_glue(self):
+    self :: __main__.D
+    r0 :: None
+L0:
+    r0 = D.f(self, 0, 0)
+    return r0
+
+[case testI64GlueWithSecondDefaultArg]
+from mypy_extensions import i64
+
+class C:
+    def f(self, x: i64 = 11) -> None: pass
+class D(C):
+    def f(self, x: i64 = 12, y: i64 = 13) -> None: pass
+[out]
+def C.f(self, x, __bitmap):
+    self :: __main__.C
+    x :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 11
+L2:
+    return 1
+def D.f(self, x, y, __bitmap):
+    self :: __main__.D
+    x, y :: int64
+    __bitmap, r0 :: uint32
+    r1 :: bit
+    r2 :: uint32
+    r3 :: bit
+L0:
+    r0 = __bitmap & 1
+    r1 = r0 == 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    x = 12
+L2:
+    r2 = __bitmap & 2
+    r3 = r2 == 0
+    if r3 goto L3 else goto L4 :: bool
+L3:
+    y = 13
+L4:
+    return 1
+def D.f__C_glue(self, x, __bitmap):
+    self :: __main__.D
+    x :: int64
+    __bitmap :: uint32
+    r0 :: None
+L0:
+    r0 = D.f(self, x, 0, __bitmap)
+    return r0
+
+[case testI64GlueWithInvalidOverride]
+from mypy_extensions import i64
+
+class C:
+    def f(self, x: i64, y: i64 = 5) -> None: pass
+    def ff(self, x: int) -> None: pass
+class CC(C):
+    def f(self, x: i64 = 12, y: i64 = 5) -> None: pass  # Line 7
+    def ff(self, x: int = 12) -> None: pass
+
+class D:
+    def f(self, x: int) -> None: pass
+class DD(D):
+    def f(self, x: i64) -> None: pass  # Line 13
+
+class E:
+    def f(self, x: i64) -> None: pass
+class EE(E):
+    def f(self, x: int) -> None: pass  # Line 18
+[out]
+main:7: error: An argument with type "int64" cannot be given a default value in a method override
+main:13: error: Incompatible argument type "int64" (base class has type "int")
+main:18: error: Incompatible argument type "int" (base class has type "int64")

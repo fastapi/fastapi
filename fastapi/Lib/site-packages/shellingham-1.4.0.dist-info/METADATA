@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: shellingham
+Version: 1.4.0
+Summary: Tool to Detect Surrounding Shell
+Home-page: https://github.com/sarugaku/shellingham
+Author: Tzu-ping Chung
+Author-email: uranusjr@gmail.com
+License: ISC License
+Keywords: shell
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: !=3.0,!=3.1,!=3.2,!=3.3,>=2.6
+Description-Content-Type: text/x-rst
+
+=============================================
+Shellingham: Tool to Detect Surrounding Shell
+=============================================
+
+.. image:: https://img.shields.io/pypi/v/shellingham.svg
+    :target: https://pypi.org/project/shellingham/
+
+Shellingham detects what shell the current Python executable is running in.
+
+
+Usage
+=====
+
+::
+
+    >>> import shellingham
+    >>> shellingham.detect_shell()
+    ('bash', '/bin/bash')
+
+``detect_shell`` pokes around the process's running environment to determine
+what shell it is run in. It returns a 2-tuple:
+
+* The shell name, always lowercased.
+* The command used to run the shell.
+
+``ShellDetectionFailure`` is raised if ``detect_shell`` fails to detect the
+surrounding shell.
+
+
+Notes
+=====
+
+* The shell name is always lowercased.
+* On Windows, the shell name is the name of the executable, minus the file
+  extension.
+* Currently the command only contains the executable name on Windows, even if
+  the command is invoked by the full path. This may change in the future.
+
+
+Notes for Application Developers
+================================
+
+Remember, your application's user is not necessarily using a shell.
+Shellingham raises ``ShellDetectionFailure`` if there is no shell to detect,
+but *your application should almost never do this to your user*.
+
+A practical approach to this is to wrap ``detect_shell`` in a try block, and
+provide a sane default on failure::
+
+    try:
+        shell = shellingham.detect_shell()
+    except shellingham.ShellDetectionFailure:
+        shell = provide_default()
+
+There are a few choices for you to choose from.
+
+* The POSIX standard mandates the environment variable ``SHELL`` to refer to
+  "the user's preferred command language interpreter". This is always available
+  (even if the user is not in an interactive session), and likely the correct
+  choice to launch an interactive sub-shell with.
+* A command ``sh`` is almost guarenteed to exist, likely at ``/bin/sh``, since
+  several POSIX tools rely on it. This should be suitable if you want to run a
+  (possibly non-interactive) script.
+* All versions of DOS and Windows have an environment variable ``COMSPEC``.
+  This can always be used to launch a usable command prompt (e.g. `cmd.exe` on
+  Windows).
+
+Here's a simple implementation to provide a default shell::
+
+    import os
+
+    def provide_default():
+        if os.name == 'posix':
+            return os.environ['SHELL']
+        elif os.name == 'nt':
+            return os.environ['COMSPEC']
+        raise NotImplementedError(f'OS {os.name!r} support not available')
+
+

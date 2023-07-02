@@ -1,0 +1,26 @@
+[console_scripts]
+virtualenv = virtualenv.__main__:run_with_catch
+
+[virtualenv.activate]
+bash = virtualenv.activation.bash:BashActivator
+batch = virtualenv.activation.batch:BatchActivator
+cshell = virtualenv.activation.cshell:CShellActivator
+fish = virtualenv.activation.fish:FishActivator
+nushell = virtualenv.activation.nushell:NushellActivator
+powershell = virtualenv.activation.powershell:PowerShellActivator
+python = virtualenv.activation.python:PythonActivator
+
+[virtualenv.create]
+cpython3-mac-framework = virtualenv.create.via_global_ref.builtin.cpython.mac_os:CPython3macOsFramework
+cpython3-posix = virtualenv.create.via_global_ref.builtin.cpython.cpython3:CPython3Posix
+cpython3-win = virtualenv.create.via_global_ref.builtin.cpython.cpython3:CPython3Windows
+pypy3-posix = virtualenv.create.via_global_ref.builtin.pypy.pypy3:PyPy3Posix
+pypy3-win = virtualenv.create.via_global_ref.builtin.pypy.pypy3:Pypy3Windows
+venv = virtualenv.create.via_global_ref.venv:Venv
+
+[virtualenv.discovery]
+builtin = virtualenv.discovery.builtin:Builtin
+
+[virtualenv.seed]
+app-data = virtualenv.seed.embed.via_app_data.via_app_data:FromAppData
+pip = virtualenv.seed.embed.pip_invoke:PipInvoke

@@ -1,0 +1,238 @@
+-- Generate ops related to Any types
+
+
+[case testCoerceAnyInCallsAndReturn]
+from typing import Any
+def f(x: Any) -> Any:
+    return g(x)
+def g(x: int) -> int:
+    return f(x)
+[out]
+def f(x):
+    x :: object
+    r0, r1 :: int
+    r2 :: object
+L0:
+    r0 = unbox(int, x)
+    r1 = g(r0)
+    r2 = box(int, r1)
+    return r2
+def g(x):
+    x :: int
+    r0, r1 :: object
+    r2 :: int
+L0:
+    r0 = box(int, x)
+    r1 = f(r0)
+    r2 = unbox(int, r1)
+    return r2
+
+[case testCoerceAnyInAssignment]
+from typing import Any, Tuple
+class C:
+    a: Any
+    n: int
+def f(a: Any, n: int, c: C) -> None:
+    c.a = n
+    c.n = a
+    a = n
+    n = a
+    a.a = n
+[out]
+def f(a, n, c):
+    a :: object
+    n :: int
+    c :: __main__.C
+    r0 :: object
+    r1 :: bool
+    r2 :: int
+    r3 :: bool
+    r4 :: object
+    r5 :: int
+    r6 :: str
+    r7 :: object
+    r8 :: int32
+    r9 :: bit
+L0:
+    r0 = box(int, n)
+    c.a = r0; r1 = is_error
+    r2 = unbox(int, a)
+    c.n = r2; r3 = is_error
+    r4 = box(int, n)
+    a = r4
+    r5 = unbox(int, a)
+    n = r5
+    r6 = 'a'
+    r7 = box(int, n)
+    r8 = PyObject_SetAttr(a, r6, r7)
+    r9 = r8 >= 0 :: signed
+    return 1
+
+[case testCoerceAnyInOps]
+from typing import Any, List
+def f1(a: Any, n: int) -> None:
+    a + n
+    n + a
+def f2(a: Any, n: int, l: List[int]) -> None:
+    a[n]
+    l[a]
+    a[n] = n
+    l[a] = n
+    l[n] = a
+    [a, n]
+def f3(a: Any, n: int) -> None:
+    a += n
+    n += a
+[out]
+def f1(a, n):
+    a :: object
+    n :: int
+    r0, r1, r2, r3 :: object
+L0:
+    r0 = box(int, n)
+    r1 = PyNumber_Add(a, r0)
+    r2 = box(int, n)
+    r3 = PyNumber_Add(r2, a)
+    return 1
+def f2(a, n, l):
+    a :: object
+    n :: int
+    l :: list
+    r0, r1, r2, r3, r4 :: object
+    r5 :: int32
+    r6 :: bit
+    r7 :: object
+    r8 :: int32
+    r9, r10 :: bit
+    r11 :: list
+    r12 :: object
+    r13, r14, r15 :: ptr
+L0:
+    r0 = box(int, n)
+    r1 = PyObject_GetItem(a, r0)
+    r2 = PyObject_GetItem(l, a)
+    r3 = box(int, n)
+    r4 = box(int, n)
+    r5 = PyObject_SetItem(a, r3, r4)
+    r6 = r5 >= 0 :: signed
+    r7 = box(int, n)
+    r8 = PyObject_SetItem(l, a, r7)
+    r9 = r8 >= 0 :: signed
+    r10 = CPyList_SetItem(l, n, a)
+    r11 = PyList_New(2)
+    r12 = box(int, n)
+    r13 = get_element_ptr r11 ob_item :: PyListObject
+    r14 = load_mem r13 :: ptr*
+    set_mem r14, a :: builtins.object*
+    r15 = r14 + WORD_SIZE*1
+    set_mem r15, r12 :: builtins.object*
+    keep_alive r11
+    return 1
+def f3(a, n):
+    a :: object
+    n :: int
+    r0, r1, r2, r3 :: object
+    r4 :: int
+L0:
+    r0 = box(int, n)
+    r1 = PyNumber_InPlaceAdd(a, r0)
+    a = r1
+    r2 = box(int, n)
+    r3 = PyNumber_InPlaceAdd(r2, a)
+    r4 = unbox(int, r3)
+    n = r4
+    return 1
+
+[case testCoerceAnyInConditionalExpr]
+from typing import Any
+def f4(a: Any, n: int, b: bool) -> None:
+    a = a if b else n
+    n = n if b else a
+[out]
+def f4(a, n, b):
+    a :: object
+    n :: int
+    b :: bool
+    r0, r1, r2, r3 :: object
+    r4 :: int
+L0:
+    if b goto L1 else goto L2 :: bool
+L1:
+    r0 = a
+    goto L3
+L2:
+    r1 = box(int, n)
+    r0 = r1
+L3:
+    a = r0
+    if b goto L4 else goto L5 :: bool
+L4:
+    r2 = box(int, n)
+    r3 = r2
+    goto L6
+L5:
+    r3 = a
+L6:
+    r4 = unbox(int, r3)
+    n = r4
+    return 1
+
+[case testAbsSpecialization]
+# Specialization of native classes that implement __abs__ is checked in
+# irbuild-dunders.test
+def f() -> None:
+    a = abs(1)
+    b = abs(1.1)
+[out]
+def f():
+    r0, r1 :: object
+    r2, a :: int
+    r3, b :: float
+L0:
+    r0 = object 1
+    r1 = PyNumber_Absolute(r0)
+    r2 = unbox(int, r1)
+    a = r2
+    r3 = fabs(1.1)
+    b = r3
+    return 1
+
+[case testFunctionBasedOps]
+def f() -> None:
+    a = divmod(5, 2)
+def f2() -> int:
+    return pow(2, 5)
+def f3() -> float:
+    return pow(2, 5, 3)
+[out]
+def f():
+    r0, r1, r2 :: object
+    r3, a :: tuple[float, float]
+L0:
+    r0 = object 5
+    r1 = object 2
+    r2 = PyNumber_Divmod(r0, r1)
+    r3 = unbox(tuple[float, float], r2)
+    a = r3
+    return 1
+def f2():
+    r0, r1, r2 :: object
+    r3 :: int
+L0:
+    r0 = object 2
+    r1 = object 5
+    r2 = CPyNumber_Power(r0, r1)
+    r3 = unbox(int, r2)
+    return r3
+def f3():
+    r0, r1, r2, r3 :: object
+    r4 :: int
+    r5 :: float
+L0:
+    r0 = object 2
+    r1 = object 5
+    r2 = object 3
+    r3 = PyNumber_Power(r0, r1, r2)
+    r4 = unbox(int, r3)
+    r5 = CPyFloat_FromTagged(r4)
+    return r5

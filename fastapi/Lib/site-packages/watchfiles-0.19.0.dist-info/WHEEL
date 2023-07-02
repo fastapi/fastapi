@@ -1,0 +1,4 @@
+Wheel-Version: 1.0
+Generator: maturin (0.14.16)
+Root-Is-Purelib: false
+Tag: cp37-abi3-win_amd64

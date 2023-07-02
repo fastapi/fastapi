@@ -1,0 +1,603 @@
+-- Test cases for data flow analysis.
+
+[case testSimple_MaybeDefined]
+def f(a: int) -> None:
+    x = 1
+    if x == a:
+        y = 1
+    else:
+        z = 1
+[out]
+def f(a):
+    a, x :: int
+    r0 :: native_int
+    r1, r2, r3 :: bit
+    y, z :: int
+L0:
+    x = 2
+    r0 = x & 1
+    r1 = r0 != 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = CPyTagged_IsEq_(x, a)
+    if r2 goto L3 else goto L4 :: bool
+L2:
+    r3 = x == a
+    if r3 goto L3 else goto L4 :: bool
+L3:
+    y = 2
+    goto L5
+L4:
+    z = 2
+L5:
+    return 1
+(0, 0)   {a}                     {a, x}
+(0, 1)   {a, x}                  {a, x}
+(0, 2)   {a, x}                  {a, x}
+(0, 3)   {a, x}                  {a, x}
+(1, 0)   {a, x}                  {a, x}
+(1, 1)   {a, x}                  {a, x}
+(2, 0)   {a, x}                  {a, x}
+(2, 1)   {a, x}                  {a, x}
+(3, 0)   {a, x}                  {a, x, y}
+(3, 1)   {a, x, y}               {a, x, y}
+(4, 0)   {a, x}                  {a, x, z}
+(4, 1)   {a, x, z}               {a, x, z}
+(5, 0)   {a, x, y, z}            {a, x, y, z}
+
+[case testSimple_Liveness]
+def f(a: int) -> int:
+    x = 1
+    if x == 1:
+        return a
+    else:
+        return x
+[out]
+def f(a):
+    a, x :: int
+    r0 :: bit
+L0:
+    x = 2
+    r0 = x == 2
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    return a
+L2:
+    return x
+L3:
+    unreachable
+(0, 0)   {a}                     {a, x}
+(0, 1)   {a, x}                  {a, r0, x}
+(0, 2)   {a, r0, x}              {a, x}
+(1, 0)   {a}                     {}
+(2, 0)   {x}                     {}
+(3, 0)   {}                      {}
+
+[case testSpecial_Liveness]
+def f() -> int:
+    x = 1
+    y = 1
+    x = 2
+    return x
+[out]
+def f():
+    x, y :: int
+L0:
+    x = 2
+    y = 2
+    x = 4
+    return x
+(0, 0)   {}                      {}
+(0, 1)   {}                      {}
+(0, 2)   {}                      {x}
+(0, 3)   {x}                     {}
+
+[case testSpecial2_Liveness]
+def f(a: int) -> int:
+    a = 1
+    a = 2
+    a = 3
+    return a
+[out]
+def f(a):
+    a :: int
+L0:
+    a = 2
+    a = 4
+    a = 6
+    return a
+(0, 0)   {}                      {}
+(0, 1)   {}                      {}
+(0, 2)   {}                      {a}
+(0, 3)   {a}                     {}
+
+[case testSimple_MustDefined]
+def f(a: int) -> None:
+    if a == 1:
+        y = 1
+        x = 2
+    else:
+        x = 2
+[out]
+def f(a):
+    a :: int
+    r0 :: bit
+    y, x :: int
+L0:
+    r0 = a == 2
+    if r0 goto L1 else goto L2 :: bool
+L1:
+    y = 2
+    x = 4
+    goto L3
+L2:
+    x = 4
+L3:
+    return 1
+(0, 0)   {a}                     {a}
+(0, 1)   {a}                     {a}
+(1, 0)   {a}                     {a, y}
+(1, 1)   {a, y}                  {a, x, y}
+(1, 2)   {a, x, y}               {a, x, y}
+(2, 0)   {a}                     {a, x}
+(2, 1)   {a, x}                  {a, x}
+(3, 0)   {a, x}                  {a, x}
+
+[case testTwoArgs_MustDefined]
+def f(x: int, y: int) -> int:
+    return x
+[out]
+def f(x, y):
+    x, y :: int
+L0:
+    return x
+(0, 0)   {x, y}                  {x, y}
+
+[case testLoop_MustDefined]
+def f(n: int) -> None:
+    while n < 5:
+        n = n + 1
+        m = n
+[out]
+def f(n):
+    n :: int
+    r0 :: native_int
+    r1, r2, r3 :: bit
+    r4, m :: int
+L0:
+L1:
+    r0 = n & 1
+    r1 = r0 != 0
+    if r1 goto L2 else goto L3 :: bool
+L2:
+    r2 = CPyTagged_IsLt_(n, 10)
+    if r2 goto L4 else goto L5 :: bool
+L3:
+    r3 = n < 10 :: signed
+    if r3 goto L4 else goto L5 :: bool
+L4:
+    r4 = CPyTagged_Add(n, 2)
+    n = r4
+    m = n
+    goto L1
+L5:
+    return 1
+(0, 0)   {n}                     {n}
+(1, 0)   {n}                     {n}
+(1, 1)   {n}                     {n}
+(1, 2)   {n}                     {n}
+(2, 0)   {n}                     {n}
+(2, 1)   {n}                     {n}
+(3, 0)   {n}                     {n}
+(3, 1)   {n}                     {n}
+(4, 0)   {n}                     {n}
+(4, 1)   {n}                     {n}
+(4, 2)   {n}                     {m, n}
+(4, 3)   {m, n}                  {m, n}
+(5, 0)   {n}                     {n}
+
+[case testMultiPass_Liveness]
+def f(n: int) -> None:
+    x = 1
+    y = 1
+    while n < 1:
+        n = y
+        while n < 2:
+            n = 1
+            n = x
+[out]
+def f(n):
+    n, x, y :: int
+    r0 :: native_int
+    r1, r2, r3 :: bit
+    r4 :: native_int
+    r5, r6, r7 :: bit
+L0:
+    x = 2
+    y = 2
+L1:
+    r0 = n & 1
+    r1 = r0 != 0
+    if r1 goto L2 else goto L3 :: bool
+L2:
+    r2 = CPyTagged_IsLt_(n, 2)
+    if r2 goto L4 else goto L10 :: bool
+L3:
+    r3 = n < 2 :: signed
+    if r3 goto L4 else goto L10 :: bool
+L4:
+    n = y
+L5:
+    r4 = n & 1
+    r5 = r4 != 0
+    if r5 goto L6 else goto L7 :: bool
+L6:
+    r6 = CPyTagged_IsLt_(n, 4)
+    if r6 goto L8 else goto L9 :: bool
+L7:
+    r7 = n < 4 :: signed
+    if r7 goto L8 else goto L9 :: bool
+L8:
+    n = 2
+    n = x
+    goto L5
+L9:
+    goto L1
+L10:
+    return 1
+(0, 0)   {n}                     {n, x}
+(0, 1)   {n, x}                  {n, x, y}
+(0, 2)   {n, x, y}               {n, x, y}
+(1, 0)   {n, x, y}               {n, r0, x, y}
+(1, 1)   {n, r0, x, y}           {n, r1, x, y}
+(1, 2)   {n, r1, x, y}           {n, x, y}
+(2, 0)   {n, x, y}               {r2, x, y}
+(2, 1)   {r2, x, y}              {x, y}
+(3, 0)   {n, x, y}               {r3, x, y}
+(3, 1)   {r3, x, y}              {x, y}
+(4, 0)   {x, y}                  {n, x, y}
+(4, 1)   {n, x, y}               {n, x, y}
+(5, 0)   {n, x, y}               {n, r4, x, y}
+(5, 1)   {n, r4, x, y}           {n, r5, x, y}
+(5, 2)   {n, r5, x, y}           {n, x, y}
+(6, 0)   {n, x, y}               {n, r6, x, y}
+(6, 1)   {n, r6, x, y}           {n, x, y}
+(7, 0)   {n, x, y}               {n, r7, x, y}
+(7, 1)   {n, r7, x, y}           {n, x, y}
+(8, 0)   {x, y}                  {x, y}
+(8, 1)   {x, y}                  {n, x, y}
+(8, 2)   {n, x, y}               {n, x, y}
+(9, 0)   {n, x, y}               {n, x, y}
+(10, 0)  {}                      {}
+
+[case testCall_Liveness]
+def f(x: int) -> int:
+    a = f(1)
+    return f(a) + a
+[out]
+def f(x):
+    x, r0, a, r1, r2, r3 :: int
+L0:
+    r0 = f(2)
+    if is_error(r0) goto L3 (error at f:2) else goto L1
+L1:
+    a = r0
+    r1 = f(a)
+    if is_error(r1) goto L3 (error at f:3) else goto L2
+L2:
+    r2 = CPyTagged_Add(r1, a)
+    return r2
+L3:
+    r3 = <error> :: int
+    return r3
+(0, 0)   {}                      {r0}
+(0, 1)   {r0}                    {r0}
+(1, 0)   {r0}                    {a}
+(1, 1)   {a}                     {a, r1}
+(1, 2)   {a, r1}                 {a, r1}
+(2, 0)   {a, r1}                 {r2}
+(2, 1)   {r2}                    {}
+(3, 0)   {}                      {r3}
+(3, 1)   {r3}                    {}
+
+[case testLoop_MaybeDefined]
+def f(a: int) -> None:
+    while a < a:
+        while a < a:
+            y = a
+        x = a
+[out]
+def f(a):
+    a :: int
+    r0 :: native_int
+    r1 :: bit
+    r2 :: native_int
+    r3, r4, r5 :: bit
+    r6 :: native_int
+    r7 :: bit
+    r8 :: native_int
+    r9, r10, r11 :: bit
+    y, x :: int
+L0:
+L1:
+    r0 = a & 1
+    r1 = r0 != 0
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = a & 1
+    r3 = r2 != 0
+    if r3 goto L3 else goto L4 :: bool
+L3:
+    r4 = CPyTagged_IsLt_(a, a)
+    if r4 goto L5 else goto L12 :: bool
+L4:
+    r5 = a < a :: signed
+    if r5 goto L5 else goto L12 :: bool
+L5:
+L6:
+    r6 = a & 1
+    r7 = r6 != 0
+    if r7 goto L8 else goto L7 :: bool
+L7:
+    r8 = a & 1
+    r9 = r8 != 0
+    if r9 goto L8 else goto L9 :: bool
+L8:
+    r10 = CPyTagged_IsLt_(a, a)
+    if r10 goto L10 else goto L11 :: bool
+L9:
+    r11 = a < a :: signed
+    if r11 goto L10 else goto L11 :: bool
+L10:
+    y = a
+    goto L6
+L11:
+    x = a
+    goto L1
+L12:
+    return 1
+(0, 0)   {a}                     {a}
+(1, 0)   {a, x, y}               {a, x, y}
+(1, 1)   {a, x, y}               {a, x, y}
+(1, 2)   {a, x, y}               {a, x, y}
+(2, 0)   {a, x, y}               {a, x, y}
+(2, 1)   {a, x, y}               {a, x, y}
+(2, 2)   {a, x, y}               {a, x, y}
+(3, 0)   {a, x, y}               {a, x, y}
+(3, 1)   {a, x, y}               {a, x, y}
+(4, 0)   {a, x, y}               {a, x, y}
+(4, 1)   {a, x, y}               {a, x, y}
+(5, 0)   {a, x, y}               {a, x, y}
+(6, 0)   {a, x, y}               {a, x, y}
+(6, 1)   {a, x, y}               {a, x, y}
+(6, 2)   {a, x, y}               {a, x, y}
+(7, 0)   {a, x, y}               {a, x, y}
+(7, 1)   {a, x, y}               {a, x, y}
+(7, 2)   {a, x, y}               {a, x, y}
+(8, 0)   {a, x, y}               {a, x, y}
+(8, 1)   {a, x, y}               {a, x, y}
+(9, 0)   {a, x, y}               {a, x, y}
+(9, 1)   {a, x, y}               {a, x, y}
+(10, 0)  {a, x, y}               {a, x, y}
+(10, 1)  {a, x, y}               {a, x, y}
+(11, 0)  {a, x, y}               {a, x, y}
+(11, 1)  {a, x, y}               {a, x, y}
+(12, 0)  {a, x, y}               {a, x, y}
+
+[case testTrivial_BorrowedArgument]
+def f(a: int, b: int) -> int:
+    return b
+[out]
+def f(a, b):
+    a, b :: int
+L0:
+    return b
+(0, 0)   {a, b}                  {a, b}
+
+[case testSimple_BorrowedArgument]
+def f(a: int) -> int:
+    b = a
+    a = 1
+    return a
+[out]
+def f(a):
+    a, b :: int
+L0:
+    b = a
+    a = 2
+    return a
+(0, 0)   {a}                     {a}
+(0, 1)   {a}                     {}
+(0, 2)   {}                      {}
+
+[case testConditional_BorrowedArgument]
+def f(a: int) -> int:
+    if a == a:
+        x = 2
+        a = 1
+    else:
+        x = 1
+    return x
+[out]
+def f(a):
+    a :: int
+    r0 :: native_int
+    r1, r2, r3 :: bit
+    x :: int
+L0:
+    r0 = a & 1
+    r1 = r0 != 0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    r2 = CPyTagged_IsEq_(a, a)
+    if r2 goto L3 else goto L4 :: bool
+L2:
+    r3 = a == a
+    if r3 goto L3 else goto L4 :: bool
+L3:
+    x = 4
+    a = 2
+    goto L5
+L4:
+    x = 2
+L5:
+    return x
+(0, 0)   {a}                     {a}
+(0, 1)   {a}                     {a}
+(0, 2)   {a}                     {a}
+(1, 0)   {a}                     {a}
+(1, 1)   {a}                     {a}
+(2, 0)   {a}                     {a}
+(2, 1)   {a}                     {a}
+(3, 0)   {a}                     {a}
+(3, 1)   {a}                     {}
+(3, 2)   {}                      {}
+(4, 0)   {a}                     {a}
+(4, 1)   {a}                     {a}
+(5, 0)   {}                      {}
+
+[case testLoop_BorrowedArgument]
+def f(a: int) -> int:
+    sum = 0
+    i = 0
+    while i <= a:
+        sum = sum + i
+        i = i + 1
+    return sum
+[out]
+def f(a):
+    a, sum, i :: int
+    r0 :: native_int
+    r1 :: bit
+    r2 :: native_int
+    r3, r4, r5 :: bit
+    r6, r7 :: int
+L0:
+    sum = 0
+    i = 0
+L1:
+    r0 = i & 1
+    r1 = r0 != 0
+    if r1 goto L3 else goto L2 :: bool
+L2:
+    r2 = a & 1
+    r3 = r2 != 0
+    if r3 goto L3 else goto L4 :: bool
+L3:
+    r4 = CPyTagged_IsLt_(a, i)
+    if r4 goto L6 else goto L5 :: bool
+L4:
+    r5 = i <= a :: signed
+    if r5 goto L5 else goto L6 :: bool
+L5:
+    r6 = CPyTagged_Add(sum, i)
+    sum = r6
+    r7 = CPyTagged_Add(i, 2)
+    i = r7
+    goto L1
+L6:
+    return sum
+(0, 0)   {a}                     {a}
+(0, 1)   {a}                     {a}
+(0, 2)   {a}                     {a}
+(1, 0)   {a}                     {a}
+(1, 1)   {a}                     {a}
+(1, 2)   {a}                     {a}
+(2, 0)   {a}                     {a}
+(2, 1)   {a}                     {a}
+(2, 2)   {a}                     {a}
+(3, 0)   {a}                     {a}
+(3, 1)   {a}                     {a}
+(4, 0)   {a}                     {a}
+(4, 1)   {a}                     {a}
+(5, 0)   {a}                     {a}
+(5, 1)   {a}                     {a}
+(5, 2)   {a}                     {a}
+(5, 3)   {a}                     {a}
+(5, 4)   {a}                     {a}
+(6, 0)   {a}                     {a}
+
+[case testError]
+def f(x: List[int]) -> None: pass # E: Name "List" is not defined \
+                                  # N: Did you forget to import it from "typing"? (Suggestion: "from typing import List")
+
+[case testExceptUndefined_Liveness]
+def lol(x: object) -> int:
+    try:
+        st = id(x)
+    except Exception:
+        return -1
+    return st + 1
+[out]
+def lol(x):
+    x :: object
+    r0, st :: int
+    r1 :: tuple[object, object, object]
+    r2 :: object
+    r3 :: str
+    r4 :: object
+    r5, r6 :: bit
+    r7, r8 :: int
+L0:
+L1:
+    r0 = CPyTagged_Id(x)
+    st = r0
+    goto L10
+L2:
+    r1 = CPy_CatchError()
+    r2 = builtins :: module
+    r3 = 'Exception'
+    r4 = CPyObject_GetAttr(r2, r3)
+    if is_error(r4) goto L8 (error at lol:4) else goto L3
+L3:
+    r5 = CPy_ExceptionMatches(r4)
+    if r5 goto L4 else goto L5 :: bool
+L4:
+    CPy_RestoreExcInfo(r1)
+    return -2
+L5:
+    CPy_Reraise()
+    if not 0 goto L8 else goto L6 :: bool
+L6:
+    unreachable
+L7:
+    CPy_RestoreExcInfo(r1)
+    goto L10
+L8:
+    CPy_RestoreExcInfo(r1)
+    r6 = CPy_KeepPropagating()
+    if not r6 goto L11 else goto L9 :: bool
+L9:
+    unreachable
+L10:
+    r7 = CPyTagged_Add(st, 2)
+    return r7
+L11:
+    r8 = <error> :: int
+    return r8
+(0, 0)   {x}                     {x}
+(1, 0)   {x}                     {r0}
+(1, 1)   {r0}                    {st}
+(1, 2)   {st}                    {st}
+(2, 0)   {}                      {r1}
+(2, 1)   {r1}                    {r1, r2}
+(2, 2)   {r1, r2}                {r1, r2, r3}
+(2, 3)   {r1, r2, r3}            {r1, r4}
+(2, 4)   {r1, r4}                {r1, r4}
+(3, 0)   {r1, r4}                {r1, r5}
+(3, 1)   {r1, r5}                {r1}
+(4, 0)   {r1}                    {}
+(4, 1)   {}                      {}
+(5, 0)   {r1}                    {r1}
+(5, 1)   {r1}                    {r1}
+(6, 0)   {}                      {}
+(7, 0)   {r1, st}                {st}
+(7, 1)   {st}                    {st}
+(8, 0)   {r1}                    {}
+(8, 1)   {}                      {r6}
+(8, 2)   {r6}                    {}
+(9, 0)   {}                      {}
+(10, 0)  {st}                    {r7}
+(10, 1)  {r7}                    {}
+(11, 0)  {}                      {r8}
+(11, 1)  {r8}                    {}

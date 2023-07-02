@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: outcome
+Version: 1.2.0
+Summary: Capture the outcome of Python function calls.
+Home-page: https://github.com/python-trio/outcome
+Author: Frazer McLean
+Author-email: frazer@frazermclean.co.uk
+License: MIT OR Apache-2.0
+Project-URL: Documentation, https://outcome.readthedocs.io/en/latest/
+Project-URL: Chat, https://gitter.im/python-trio/general
+Keywords: result
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Trio
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: attrs (>=19.2.0)
+
+.. image:: https://img.shields.io/badge/chat-join%20now-blue.svg
+   :target: https://gitter.im/python-trio/general
+   :alt: Join chatroom
+
+.. image:: https://img.shields.io/badge/docs-read%20now-blue.svg
+   :target: https://outcome.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://travis-ci.org/python-trio/trio.svg?branch=master
+   :target: https://travis-ci.org/python-trio/outcome
+   :alt: Automated test status (Linux and MacOS)
+
+.. image:: https://ci.appveyor.com/api/projects/status/c54uu4rxlgs2usmj/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/RazerM/outcome/history
+   :alt: Automated test status (Windows)
+
+.. image:: https://codecov.io/gh/python-trio/trio/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/python-trio/outcome
+   :alt: Test coverage
+
+outcome
+=======
+
+Welcome to `outcome <https://github.com/python-trio/outcome>`__!
+
+Capture the outcome of Python function calls. Extracted from the
+`Trio <https://github.com/python-trio/trio>`__ project.
+
+License: Your choice of MIT or Apache License 2.0
+
+

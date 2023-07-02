@@ -1,0 +1,2 @@
+version = "3.6.*"
+obsolete_since = "3.6.1"

@@ -1,0 +1,2 @@
+[console_scripts]
+httpx = httpx:main

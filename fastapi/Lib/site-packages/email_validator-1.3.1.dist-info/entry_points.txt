@@ -1,0 +1,3 @@
+[console_scripts]
+email_validator = email_validator:main
+

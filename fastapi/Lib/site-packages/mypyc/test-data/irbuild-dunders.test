@@ -1,0 +1,223 @@
+# Test cases for (some) dunder methods
+
+[case testDundersLen]
+class C:
+    def __len__(self) -> int:
+        return 2
+
+def f(c: C) -> int:
+    return len(c)
+[out]
+def C.__len__(self):
+    self :: __main__.C
+L0:
+    return 4
+def f(c):
+    c :: __main__.C
+    r0 :: int
+    r1 :: native_int
+    r2, r3, r4 :: bit
+    r5 :: bool
+L0:
+    r0 = c.__len__()
+    r1 = r0 & 1
+    r2 = r1 != 0
+    if r2 goto L1 else goto L2 :: bool
+L1:
+    r3 = CPyTagged_IsLt_(r0, 0)
+    if r3 goto L3 else goto L4 :: bool
+L2:
+    r4 = r0 >= 0 :: signed
+    if r4 goto L4 else goto L3 :: bool
+L3:
+    r5 = raise ValueError('__len__() should return >= 0')
+    unreachable
+L4:
+    return r0
+
+[case testDundersSetItem]
+class C:
+    def __setitem__(self, key: int, value: int) -> None:
+        pass
+
+def f(c: C) -> None:
+    c[3] = 4
+[out]
+def C.__setitem__(self, key, value):
+    self :: __main__.C
+    key, value :: int
+L0:
+    return 1
+def f(c):
+    c :: __main__.C
+    r0 :: None
+L0:
+    r0 = c.__setitem__(6, 8)
+    return 1
+
+[case testDundersContains]
+from typing import Any
+
+class C:
+    def __contains__(self, x: int) -> bool:
+        return False
+
+def f(c: C) -> bool:
+    return 7 in c
+
+def g(c: C) -> bool:
+    return 7 not in c
+
+class D:
+    def __contains__(self, x: int) -> Any:
+        return 'x'
+
+def h(d: D) -> bool:
+    return 7 not in d
+[out]
+def C.__contains__(self, x):
+    self :: __main__.C
+    x :: int
+L0:
+    return 0
+def f(c):
+    c :: __main__.C
+    r0 :: bool
+L0:
+    r0 = c.__contains__(14)
+    return r0
+def g(c):
+    c :: __main__.C
+    r0, r1 :: bool
+L0:
+    r0 = c.__contains__(14)
+    r1 = r0 ^ 1
+    return r1
+def D.__contains__(self, x):
+    self :: __main__.D
+    x :: int
+    r0 :: str
+L0:
+    r0 = 'x'
+    return r0
+def h(d):
+    d :: __main__.D
+    r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3, r4 :: bool
+L0:
+    r0 = d.__contains__(14)
+    r1 = PyObject_IsTrue(r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    r4 = r3 ^ 1
+    return r4
+
+[case testDundersDelItem]
+class C:
+    def __delitem__(self, x: int) -> None:
+        pass
+
+def f(c: C) -> None:
+    del c[5]
+[out]
+def C.__delitem__(self, x):
+    self :: __main__.C
+    x :: int
+L0:
+    return 1
+def f(c):
+    c :: __main__.C
+    r0 :: None
+L0:
+    r0 = c.__delitem__(10)
+    return 1
+
+[case testDundersUnary]
+class C:
+    def __neg__(self) -> int:
+        return 1
+
+    def __invert__(self) -> int:
+        return 2
+
+    def __int__(self) -> int:
+        return 3
+
+    def __float__(self) -> float:
+        return 4.0
+
+    def __pos__(self) -> int:
+        return 5
+
+    def __abs__(self) -> int:
+        return 6
+
+    def __bool__(self) -> bool:
+        return False
+
+    def __complex__(self) -> complex:
+        return 7j
+
+def f(c: C) -> None:
+    -c
+    ~c
+    int(c)
+    float(c)
+    +c
+    abs(c)
+    bool(c)
+    complex(c)
+[out]
+def C.__neg__(self):
+    self :: __main__.C
+L0:
+    return 2
+def C.__invert__(self):
+    self :: __main__.C
+L0:
+    return 4
+def C.__int__(self):
+    self :: __main__.C
+L0:
+    return 6
+def C.__float__(self):
+    self :: __main__.C
+L0:
+    return 4.0
+def C.__pos__(self):
+    self :: __main__.C
+L0:
+    return 10
+def C.__abs__(self):
+    self :: __main__.C
+L0:
+    return 12
+def C.__bool__(self):
+    self :: __main__.C
+L0:
+    return 0
+def C.__complex__(self):
+    self :: __main__.C
+    r0 :: object
+L0:
+    r0 = 7j
+    return r0
+def f(c):
+    c :: __main__.C
+    r0, r1, r2 :: int
+    r3 :: float
+    r4, r5 :: int
+    r6 :: bool
+    r7 :: object
+L0:
+    r0 = c.__neg__()
+    r1 = c.__invert__()
+    r2 = c.__int__()
+    r3 = c.__float__()
+    r4 = c.__pos__()
+    r5 = c.__abs__()
+    r6 = c.__bool__()
+    r7 = c.__complex__()
+    return 1

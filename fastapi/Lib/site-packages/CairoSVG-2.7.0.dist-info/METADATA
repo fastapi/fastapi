@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: CairoSVG
+Version: 2.7.0
+Summary: A Simple SVG Converter based on Cairo
+Home-page: https://courtbouillon.org/cairosvg
+Author: Guillaume Ayoub
+Author-email: contact@courtbouillon.org
+License: LGPLv3+
+Project-URL: Documentation, https://cairosvg.org/documentation/
+Project-URL: Code, https://github.com/Kozea/CairoSVG/
+Project-URL: Issue tracker, https://github.com/Kozea/CairoSVG/issues
+Project-URL: Donation, https://opencollective.com/courtbouillon
+Keywords: svg,converter,cairo,pdf,png,postscript
+Platform: Linux
+Platform: macOS
+Platform: Windows
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst
+Requires-Dist: cairocffi
+Requires-Dist: cssselect2
+Requires-Dist: defusedxml
+Requires-Dist: pillow
+Requires-Dist: tinycss2
+Provides-Extra: doc
+Requires-Dist: sphinx ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: isort ; extra == 'test'
+
+CairoSVG is an SVG converter based on Cairo. It can export SVG files to PDF,
+EPS, PS, and PNG files.
+
+* Free software: LGPL license
+* For Python 3.7+, tested on CPython and PyPy
+* Documentation: https://cairosvg.org/documentation/
+* Changelog: https://github.com/Kozea/CairoSVG/releases
+* Code, issues, tests: https://github.com/Kozea/CairoSVG
+* Code of conduct: https://www.courtbouillon.org/code-of-conduct
+* Professional support: https://www.courtbouillon.org
+* Donation: https://opencollective.com/courtbouillon
+
+CairoSVG has been created and developed by Kozea (https://kozea.fr).
+Professional support, maintenance and community management is provided by
+CourtBouillon (https://www.courtbouillon.org).
+
+Copyrights are retained by their contributors, no copyright assignment is
+required to contribute to CairoSVG. Unless explicitly stated otherwise, any
+contribution intentionally submitted for inclusion is licensed under the LGPL 
+license, without any additional terms or conditions. For full
+authorship information, see the version control history.

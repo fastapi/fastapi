@@ -1,0 +1,13 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% set class = "" %}
+<nav class="md-tabs" aria-label="{{ lang.t('tabs') }}" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      {% for nav_item in nav %}
+        {% include "partials/tabs-item.html" %}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

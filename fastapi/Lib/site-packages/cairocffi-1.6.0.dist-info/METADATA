@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: cairocffi
+Version: 1.6.0
+Summary: cffi-based cairo bindings for Python
+Keywords: cairo,cffi,binding
+Author-email: Simon Sapin <contact@courtbouillon.org>
+Maintainer-email: CourtBouillon <contact@courtbouillon.org>
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Dist: cffi >= 1.1.0
+Requires-Dist: sphinx ; extra == "doc"
+Requires-Dist: sphinx_rtd_theme ; extra == "doc"
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: flake8 ; extra == "test"
+Requires-Dist: isort ; extra == "test"
+Requires-Dist: numpy ; extra == "test"
+Requires-Dist: pikepdf ; extra == "test"
+Requires-Dist: xcffib >= 1.4.0 ; extra == "xcb"
+Project-URL: Changelog, https://cairocffi.readthedocs.io/en/stable/changelog.html
+Project-URL: Code, https://github.com/Kozea/cairocffi/
+Project-URL: Documentation, https://cairocffi.readthedocs.io/
+Project-URL: Donation, https://opencollective.com/courtbouillon
+Project-URL: Issues, https://github.com/Kozea/cairocffi/issues
+Provides-Extra: doc
+Provides-Extra: test
+Provides-Extra: xcb
+
+cairocffi is a `CFFI`_-based drop-in replacement for Pycairo_,
+a set of Python bindings and object-oriented API for cairo_.
+Cairo is a 2D vector graphics library with support for multiple backends
+including image buffers, PNG, PostScript, PDF, and SVG file output.
+
+Additionally, the ``cairocffi.pixbuf`` module uses GDK-PixBuf_
+to decode various image formats for use in cairo.
+
+.. _CFFI: https://cffi.readthedocs.org/
+.. _Pycairo: https://pycairo.readthedocs.io/
+.. _cairo: http://cairographics.org/
+.. _GDK-PixBuf: https://gitlab.gnome.org/GNOME/gdk-pixbuf
+
+* Free software: BSD license
+* For Python 3.7+, tested on CPython and PyPy
+* Documentation: https://cairocffi.readthedocs.io
+* Changelog: https://cairocffi.readthedocs.io/en/stable/changelog.html
+* Code, issues, tests: https://github.com/Kozea/cairocffi
+* Code of conduct: https://www.courtbouillon.org/code-of-conduct
+* Professional support: https://www.courtbouillon.org
+* Donation: https://opencollective.com/courtbouillon
+* API partially compatible with Pycairo.
+* Works with any version of cairo.
+
+cairocffi has been created and developed by Kozea (https://kozea.fr).
+Professional support, maintenance and community management is provided by
+CourtBouillon (https://www.courtbouillon.org).
+
+Copyrights are retained by their contributors, no copyright assignment is
+required to contribute to cairocffi. Unless explicitly stated otherwise, any
+contribution intentionally submitted for inclusion is licensed under the BSD
+3-clause license, without any additional terms or conditions. For full
+authorship information, see the version control history.
+

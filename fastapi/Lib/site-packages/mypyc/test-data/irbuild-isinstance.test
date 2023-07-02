@@ -1,0 +1,109 @@
+[case testIsinstanceInt]
+def is_int(value: object) -> bool:
+    return isinstance(value, int)
+
+[out]
+def is_int(value):
+    value, r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3 :: bool
+L0:
+    r0 = load_address PyLong_Type
+    r1 = PyObject_IsInstance(value, r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    return r3
+
+[case testIsinstanceNotBool1]
+def is_not_bool(value: object) -> bool:
+    return not isinstance(value, bool)
+
+[out]
+def is_not_bool(value):
+    value, r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3, r4 :: bool
+L0:
+    r0 = load_address PyBool_Type
+    r1 = PyObject_IsInstance(value, r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    r4 = r3 ^ 1
+    return r4
+
+[case testIsinstanceIntAndNotBool]
+# This test is to ensure that 'value' doesn't get coerced to int when we are
+# checking if it's a bool, since an int can never be an instance of a bool
+def is_not_bool_and_is_int(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+[out]
+def is_not_bool_and_is_int(value):
+    value, r0 :: object
+    r1 :: int32
+    r2 :: bit
+    r3, r4 :: bool
+    r5 :: object
+    r6 :: int32
+    r7 :: bit
+    r8, r9 :: bool
+L0:
+    r0 = load_address PyLong_Type
+    r1 = PyObject_IsInstance(value, r0)
+    r2 = r1 >= 0 :: signed
+    r3 = truncate r1: int32 to builtins.bool
+    if r3 goto L2 else goto L1 :: bool
+L1:
+    r4 = r3
+    goto L3
+L2:
+    r5 = load_address PyBool_Type
+    r6 = PyObject_IsInstance(value, r5)
+    r7 = r6 >= 0 :: signed
+    r8 = truncate r6: int32 to builtins.bool
+    r9 = r8 ^ 1
+    r4 = r9
+L3:
+    return r4
+
+[case testBorrowSpecialCaseWithIsinstance]
+class C:
+    s: str
+
+def g() -> object:
+    pass
+
+def f() -> None:
+    x = g()
+    if isinstance(x, C):
+        x.s
+[out]
+def g():
+    r0 :: object
+L0:
+    r0 = box(None, 1)
+    return r0
+def f():
+    r0, x, r1 :: object
+    r2 :: ptr
+    r3 :: object
+    r4 :: bit
+    r5 :: __main__.C
+    r6 :: str
+L0:
+    r0 = g()
+    x = r0
+    r1 = __main__.C :: type
+    r2 = get_element_ptr x ob_type :: PyObject
+    r3 = load_mem r2 :: builtins.object*
+    keep_alive x
+    r4 = r3 == r1
+    if r4 goto L1 else goto L2 :: bool
+L1:
+    r5 = borrow cast(__main__.C, x)
+    r6 = r5.s
+    keep_alive x
+L2:
+    return 1

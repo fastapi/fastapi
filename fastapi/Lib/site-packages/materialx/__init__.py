@@ -1,0 +1,1 @@
+"""MkDocs Material Extensions."""

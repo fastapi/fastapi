@@ -1,0 +1,245 @@
+-- Test cases for invoking mypyc on the command line
+--
+-- These are slow -- do not add test cases unless you have a very good reason to do so.
+
+[case testCompileMypyc]
+# cmd: a.py b.py p/__init__.py p/q.py
+import os.path
+import p
+import p.q
+import a
+import b
+print('<main>', b.g(a.A()))
+try:
+    a.f('')
+except TypeError:
+    pass
+else:
+    assert False
+for x in [a, b, p, p.q]:
+    assert os.path.splitext(x.__file__)[1] != '.py'
+[file z.py]
+
+[file a.py]
+import b
+import c
+from p import s
+from typing import NamedTuple
+
+print('<a>', ord('A') == 65)  # Test full builtins
+
+class A:
+    def __init__(self) -> None:
+        self.x = 4
+
+def f(x: int) -> b.B:
+    return b.B(x)
+
+class B:
+    def __init__(self, x: int, y: str) -> None:
+        self.x = x
+
+print('<a>', f(5).x)
+print('<c>', c.foo())
+assert s.bar(10) == 20
+
+class NT(NamedTuple):
+    x: int
+
+print(NT(2))
+
+[file b.py]
+import a
+import p.q
+
+class B:
+    def __init__(self, x: int) -> None:
+        self.x = x
+
+def g(z: 'a.A') -> int:
+    return p.q.foo(z.x)
+
+print('<b>', 'here')
+
+[file c.py]
+def foo() -> int:
+    return 10
+
+[file p/__init__.py]
+
+[file p/q.py]
+import p.r
+def foo(x: int) -> int:
+    return x*p.r.foo(x)
+
+[file p/r.py]
+def foo(x: int) -> int:
+    return x
+
+[file p/s.py]
+def bar(x: int) -> int:
+    return x*2
+
+[out]
+<b> here
+<a> True
+<a> 5
+<c> 10
+NT(x=2)
+<main> 16
+
+-- This test is here so we can turn it on when we get nervous about
+-- this case, but is disabled for speed reasons.
+[case testCompileMypycOne-skip]
+# cmd: a.py
+import os.path
+import a
+assert os.path.splitext(a.__file__)[1] != '.py'
+assert a.f(10) == 100
+
+[file a.py]
+def f(x: int) -> int:
+    return x*x
+
+[case testErrorOutput]
+# cmd: test.py
+
+[file test.py]
+from typing import List, Any, AsyncIterable
+from typing_extensions import Final
+from mypy_extensions import trait, mypyc_attr
+from functools import singledispatch
+
+def busted(b: bool) -> None:
+    for i in range(1, 10, 0):  # E: range() step can't be zero
+        try:
+            if i == 5:
+                break  # E: break inside try/finally block is unimplemented
+            elif i == 4:
+                continue  # E: continue inside try/finally block is unimplemented
+        finally:
+            print('oops')
+
+print(sum([1,2,3]))
+
+x = [1,2]
+
+class Foo:
+    a, b = (10, 20)  # E: Only assignment to variables is supported in class bodies
+    x[0] = 10  # E: Only assignment to variables is supported in class bodies
+    lol = 20
+    l = [10]  # W: Unsupported default attribute value
+    c = d = 50  # E: Multiple assignment in class bodies not supported
+
+    if 1+1 == 2:  # E: Unsupported statement in class body
+        x = 10
+
+Foo.lol = 50  # E: Only class variables defined as ClassVar can be assigned to
+
+def decorator(x: Any) -> Any:
+    return x
+
+class NeverMetaclass(type):  # E: Inheriting from most builtin types is unimplemented
+    pass
+
+class Concrete1:
+    pass
+
+@trait
+class PureTrait:
+    pass
+
+@trait
+class Trait1:
+    pass
+
+class Concrete2:
+    pass
+
+@trait
+class Trait2(Concrete2):
+    pass
+
+@decorator
+class NonExt(Concrete1):  # E: Non-extension classes may not inherit from extension classes
+    pass
+
+
+class NopeMultipleInheritance(Concrete1, Concrete2):  # E: Multiple inheritance is not supported (except for traits)
+    pass
+
+class NopeMultipleInheritanceAndBadOrder(Concrete1, Trait1, Concrete2):  # E: Multiple inheritance is not supported (except for traits)
+    pass
+
+class NopeMultipleInheritanceAndBadOrder2(Concrete1, Concrete2, Trait1):  # E: Multiple inheritance is not supported (except for traits)
+    pass
+
+class NopeMultipleInheritanceAndBadOrder3(Trait1, Concrete1, Concrete2):  # E: Non-trait base must appear first in parent list # E: Multiple inheritance is not supported (except for traits)
+    pass
+
+class NopeBadOrder(Trait1, Concrete2):  # E: Non-trait base must appear first in parent list
+    pass
+
+
+@decorator
+class NonExt2:
+    @property  # E: Property setters not supported in non-extension classes
+    def test(self) -> int:
+        return 0
+
+    @test.setter
+    def test(self, x: int) -> None:
+        pass
+
+iterator_warning = (i+1 for i in range(10))  # W: Treating generator comprehension as list
+
+# But we don't want warnings for these cases:
+tup = tuple(i+1 for i in range(10))
+a_str = " ".join(str(i) for i in range(10))
+wtvr = next(i for i in range(10) if i == 5)
+
+d1 = {1: 2}
+
+# Make sure we can produce an error when we hit the awful None case
+def f(l: List[object]) -> None:
+    x = None  # E: Local variable "x" has inferred type None; add an annotation
+    for i in l:
+        if x is None:
+            x = i
+
+@mypyc_attr(allow_interpreted_subclasses=True)
+class AllowInterp1(Concrete1):  # E: Base class "test.Concrete1" does not allow interpreted subclasses
+    pass
+
+@mypyc_attr(allow_interpreted_subclasses=True)
+class AllowInterp2(PureTrait):  # E: Base class "test.PureTrait" does not allow interpreted subclasses
+    pass
+
+async def async_generators() -> AsyncIterable[int]:
+    yield 1  # E: async generators are unimplemented
+
+@singledispatch
+def a(arg) -> None:
+    pass
+
+@decorator # E: Calling decorator after registering function not supported
+@a.register
+def g(arg: int) -> None:
+    pass
+
+@a.register
+@decorator
+def h(arg: str) -> None:
+    pass
+
+@decorator
+@decorator # E: Calling decorator after registering function not supported
+@a.register
+def i(arg: Foo) -> None:
+    pass
+
+[case testOnlyWarningOutput]
+# cmd: test.py
+
+[file test.py]
+names = (str(v) for v in [1, 2, 3])  # W: Treating generator comprehension as list

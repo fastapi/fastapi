@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: passlib
+Version: 1.7.4
+Summary: comprehensive password hashing framework supporting over 30 schemes
+Home-page: https://passlib.readthedocs.io
+Author: Eli Collins
+Author-email: elic@assurancetechnologies.com
+License: BSD
+Download-URL: https://pypi.python.org/packages/source/p/passlib/passlib-1.7.4.tar.gz
+Keywords: password secret hash security
+Provides-Extra: argon2
+Requires-Dist: argon2-cffi (>=18.2.0) ; extra == 'argon2'
+Provides-Extra: bcrypt
+Requires-Dist: bcrypt (>=3.1.0) ; extra == 'bcrypt'
+Provides-Extra: build_docs
+Requires-Dist: sphinx (>=1.6) ; extra == 'build_docs'
+Requires-Dist: sphinxcontrib-fulltoc (>=1.2.0) ; extra == 'build_docs'
+Requires-Dist: cloud-sptheme (>=1.10.1) ; extra == 'build_docs'
+Provides-Extra: totp
+Requires-Dist: cryptography ; extra == 'totp'
+
+Passlib is a password hashing library for Python 2 & 3, which provides
+cross-platform implementations of over 30 password hashing algorithms, as well
+as a framework for managing existing password hashes. It's designed to be useful
+for a wide range of tasks, from verifying a hash found in /etc/shadow, to
+providing full-strength password hashing for multi-user applications.
+
+* See the `documentation <https://passlib.readthedocs.io>`_
+  for details, installation instructions, and examples.
+
+* See the `homepage <https://foss.heptapod.net/python-libs/passlib/wikis/home>`_
+  for the latest news and more information.
+
+* See the `changelog <https://passlib.readthedocs.io/en/stable/history>`_
+  for a description of what's new in Passlib.
+
+All releases are signed with the gpg key
+`4D8592DF4CE1ED31 <http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x4D8592DF4CE1ED31>`_.
+
+

@@ -1,0 +1,36 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% if config.theme.icon.admonition %}
+  {% set style = ["\x3cstyle\x3e:root{"] %}
+  {% for type, icon in config.theme.icon.admonition.items() %}
+    {% import ".icons/" ~ icon ~ ".svg" as icon %}
+    {% set _ = style.append(
+      "--md-admonition-icon--" ~ type ~ ":" ~
+      "url('data:image/svg+xml;charset=utf-8," ~
+        icon | replace("\n", "") ~
+      "');"
+    ) %}
+  {% endfor %}
+  {% set _ = style.append("}\x3c/style\x3e") %}
+  {{ style | join }}
+{% endif %}
+{% if config.theme.icon.tag %}
+  {% set style = ["\x3cstyle\x3e"] %}
+  {% for type, icon in config.theme.icon.tag.items() %}
+    {% import ".icons/" ~ icon ~ ".svg" as icon %}
+    {% if type != "default" %}
+      {% set modifier = "--" ~ type %}
+    {% endif %}
+    {% set _ = style.append(
+      ".md-tag" ~ modifier ~ "{" ~
+        "--md-tag-icon:" ~
+        "url('data:image/svg+xml;charset=utf-8," ~
+          icon | replace("\n", "") ~
+        "');" ~
+      "}"
+    ) %}
+  {% endfor %}
+  {% set _ = style.append("\x3c/style\x3e") %}
+  {{ style | join }}
+{% endif %}

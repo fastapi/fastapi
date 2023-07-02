@@ -1,0 +1,332 @@
+[case testI32BasicOps]
+from typing import Any, Tuple
+
+from mypy_extensions import i32, i64
+
+from testutil import assertRaises
+
+def test_box_and_unbox() -> None:
+    values = (list(range(-2**31, -2**31 + 100)) +
+              list(range(-1000, 1000)) +
+              list(range(2**31 - 100, 2**31)))
+    for i in values:
+        o: Any = i
+        x: i32 = o
+        o2: Any = x
+        assert o == o2
+        assert x == i
+    with assertRaises(OverflowError, "int too large to convert to i32"):
+        o = 2**31
+        x2: i32 = o
+    with assertRaises(OverflowError, "int too large to convert to i32"):
+        o = -2**32 - 1
+        x3: i32 = o
+
+def div_by_7(x: i32) -> i32:
+    return x // 7
+def div_by_neg_7(x: i32) -> i32:
+    return x // -7
+
+def div(x: i32, y: i32) -> i32:
+    return x // y
+
+def test_divide_by_constant() -> None:
+    for i in range(-1000, 1000):
+        assert div_by_7(i) == i // 7
+    for i in range(-2**31, -2**31 + 1000):
+        assert div_by_7(i) == i // 7
+    for i in range(2**31 - 1000, 2**31):
+        assert div_by_7(i) == i // 7
+
+def test_divide_by_negative_constant() -> None:
+    for i in range(-1000, 1000):
+        assert div_by_neg_7(i) == i // -7
+    for i in range(-2**31, -2**31 + 1000):
+        assert div_by_neg_7(i) == i // -7
+    for i in range(2**31 - 1000, 2**31):
+        assert div_by_neg_7(i) == i // -7
+
+def test_divide_by_variable() -> None:
+    values = (list(range(-50, 50)) +
+              list(range(-2**31, -2**31 + 10)) +
+              list(range(2**31 - 10, 2**31)))
+    for x in values:
+        for y in values:
+            if y != 0:
+                if x // y == 2**31:
+                    with assertRaises(OverflowError, "integer division overflow"):
+                        div(x, y)
+                else:
+                    assert div(x, y) == x // y
+            else:
+                with assertRaises(ZeroDivisionError, "integer division or modulo by zero"):
+                    div(x, y)
+
+def mod_by_7(x: i32) -> i32:
+    return x % 7
+
+def mod_by_neg_7(x: i32) -> i32:
+    return x // -7
+
+def mod(x: i32, y: i32) -> i32:
+    return x % y
+
+def test_mod_by_constant() -> None:
+    for i in range(-1000, 1000):
+        assert mod_by_7(i) == i % 7
+    for i in range(-2**31, -2**31 + 1000):
+        assert mod_by_7(i) == i % 7
+    for i in range(2**31 - 1000, 2**31):
+        assert mod_by_7(i) == i % 7
+
+def test_mod_by_negative_constant() -> None:
+    for i in range(-1000, 1000):
+        assert mod_by_neg_7(i) == i // -7
+    for i in range(-2**31, -2**31 + 1000):
+        assert mod_by_neg_7(i) == i // -7
+    for i in range(2**31 - 1000, 2**31):
+        assert mod_by_neg_7(i) == i // -7
+
+def test_mod_by_variable() -> None:
+    values = (list(range(-50, 50)) +
+              list(range(-2**31, -2**31 + 10)) +
+              list(range(2**31 - 10, 2**31)))
+    for x in values:
+        for y in values:
+            if y != 0:
+                assert mod(x, y) == x % y
+            else:
+                with assertRaises(ZeroDivisionError, "integer division or modulo by zero"):
+                    mod(x, y)
+
+def test_simple_arithmetic_ops() -> None:
+    zero: i32 = int()
+    one: i32 = zero + 1
+    two: i32 = one + 1
+    neg_one: i32 = -one
+    assert one + one == 2
+    assert one + two == 3
+    assert one + neg_one == 0
+    assert one - one == 0
+    assert one - two == -1
+    assert one * one == 1
+    assert one * two == 2
+    assert two * two == 4
+    assert two * neg_one == -2
+    assert neg_one * one == -1
+    assert neg_one * neg_one == 1
+    assert two * 0 == 0
+    assert 0 * two == 0
+    assert -one == -1
+    assert -two == -2
+    assert -neg_one == 1
+    assert -zero == 0
+
+def test_bitwise_ops() -> None:
+    x: i32 = 1920687484 + int()
+    y: i32 = 383354614 + int()
+    z: i32 = -1879040563 + int()
+    zero: i32 = int()
+    one: i32 = zero + 1
+    two: i32 = zero + 2
+    neg_one: i32 = -one
+
+    assert x & y == 307823732
+    assert x & z == 268442956
+    assert z & z == z
+    assert x & zero == 0
+
+    assert x | y == 1996218366
+    assert x | z == -226796035
+    assert z | z == z
+    assert x | 0 == x
+
+    assert x ^ y == 1688394634
+    assert x ^ z == -495238991
+    assert z ^ z == 0
+    assert z ^ 0 == z
+
+    assert x << one == -453592328
+    assert x << two == -907184656
+    assert z << two == 1073772340
+    assert z << 0 == z
+
+    assert x >> one == 960343742
+    assert x >> two == 480171871
+    assert z >> two == -469760141
+    assert z >> 0 == z
+
+    assert ~x == -1920687485
+    assert ~z == 1879040562
+    assert ~zero == -1
+    assert ~neg_one == 0
+
+def eq(x: i32, y: i32) -> bool:
+    return x == y
+
+def test_eq() -> None:
+    assert eq(int(), int())
+    assert eq(5 + int(), 5 + int())
+    assert eq(-5 + int(), -5 + int())
+    assert not eq(int(), 1 + int())
+    assert not eq(5 + int(), 6 + int())
+    assert not eq(-5 + int(), -6 + int())
+    assert not eq(-5 + int(), 5 + int())
+
+def test_comparisons() -> None:
+    one: i32 = 1 + int()
+    one2: i32 = 1 + int()
+    two: i32 = 2 + int()
+    assert one < two
+    assert not (one < one2)
+    assert not (two < one)
+    assert two > one
+    assert not (one > one2)
+    assert not (one > two)
+    assert one <= two
+    assert one <= one2
+    assert not (two <= one)
+    assert two >= one
+    assert one >= one2
+    assert not (one >= two)
+    assert one == one2
+    assert not (one == two)
+    assert one != two
+    assert not (one != one2)
+
+def test_mixed_comparisons() -> None:
+    i32_3: i32 = int() + 3
+    int_5 = int() + 5
+    assert i32_3 < int_5
+    assert int_5 > i32_3
+    b = i32_3 > int_5
+    assert not b
+
+    int_largest = int() + (1 << 31) - 1
+    assert int_largest > i32_3
+    int_smallest = int() - (1 << 31)
+    assert i32_3 > int_smallest
+
+    int_too_big = int() + (1 << 31)
+    int_too_small = int() - (1 << 31) - 1
+    with assertRaises(OverflowError):
+        assert i32_3 < int_too_big
+    with assertRaises(OverflowError):
+        assert int_too_big < i32_3
+    with assertRaises(OverflowError):
+        assert i32_3 > int_too_small
+    with assertRaises(OverflowError):
+        assert int_too_small < i32_3
+
+def test_mixed_arithmetic_and_bitwise_ops() -> None:
+    i32_3: i32 = int() + 3
+    int_5 = int() + 5
+    assert i32_3 + int_5 == 8
+    assert int_5 - i32_3 == 2
+    assert i32_3 << int_5 == 96
+    assert int_5 << i32_3  == 40
+    assert i32_3 ^ int_5 == 6
+    assert int_5 | i32_3  == 7
+
+    int_largest = int() + (1 << 31) - 1
+    assert int_largest - i32_3 == 2147483644
+    int_smallest = int() - (1 << 31)
+    assert int_smallest + i32_3 == -2147483645
+
+    int_too_big = int() + (1 << 31)
+    int_too_small = int() - (1 << 31) - 1
+    with assertRaises(OverflowError):
+        assert i32_3 & int_too_big
+    with assertRaises(OverflowError):
+        assert int_too_small & i32_3
+
+def test_coerce_to_and_from_int() -> None:
+    for shift in range(0, 32):
+        for sign in 1, -1:
+            for delta in range(-5, 5):
+                n = sign * (1 << shift) + delta
+                if -(1 << 31) <= n < (1 << 31):
+                    x: i32 = n
+                    m: int = x
+                    assert m == n
+
+def test_explicit_conversion_to_i32() -> None:
+    x = i32(5)
+    assert x == 5
+    y = int() - 113
+    x = i32(y)
+    assert x == -113
+    n64: i64 = 1733
+    x = i32(n64)
+    assert x == 1733
+    n32 = -1733
+    x = i32(n32)
+    assert x == -1733
+    z = i32(x)
+    assert z == -1733
+
+def test_explicit_conversion_overflow() -> None:
+    max_i32 = int() + 2**31 - 1
+    x = i32(max_i32)
+    assert x == 2**31 - 1
+    assert int(x) == max_i32
+
+    min_i32 = int() - 2**31
+    y = i32(min_i32)
+    assert y == -2**31
+    assert int(y) == min_i32
+
+    too_big = int() + 2**31
+    with assertRaises(OverflowError):
+        x = i32(too_big)
+
+    too_small = int() - 2**31 - 1
+    with assertRaises(OverflowError):
+        x = i32(too_small)
+
+def test_i32_from_large_small_literal() -> None:
+    x = i32(2**31 - 1)
+    assert x == 2**31 - 1
+    x = i32(-2**31)
+    assert x == -2**31
+
+def test_i32_truncate_from_i64() -> None:
+    large = i64(2**32 + 157 + int())
+    x = i32(large)
+    assert x == 157
+    small = i64(-2**32 - 157 + int())
+    x = i32(small)
+    assert x == -157
+    large2 = i64(2**31 + int())
+    x = i32(large2)
+    assert x == -2**31
+    small2 = i64(-2**31 - 1 - int())
+    x = i32(small2)
+    assert x == 2**31 - 1
+
+def from_float(x: float) -> i32:
+    return i32(x)
+
+def test_explicit_conversion_from_float() -> None:
+    assert from_float(0.0) == 0
+    assert from_float(1.456) == 1
+    assert from_float(-1234.567) == -1234
+    assert from_float(2**31 - 1) == 2**31 - 1
+    assert from_float(-2**31) == -2**31
+    # The error message could be better, but this is acceptable
+    with assertRaises(OverflowError, "int too large to convert to i32"):
+        assert from_float(float(2**31))
+    with assertRaises(OverflowError, "int too large to convert to i32"):
+        # One ulp below the lowest valid i64 value
+        from_float(float(-2**31 - 2048))
+
+def test_tuple_i32() -> None:
+    a: i32 = 1
+    b: i32 = 2
+    t = (a, b)
+    a, b = t
+    assert a == 1
+    assert b == 2
+    x: Any = t
+    tt: Tuple[i32, i32] = x
+    assert tt == (1, 2)

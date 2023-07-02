@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: blinker
+Version: 1.6.2
+Summary: Fast, simple object-to-object and broadcast signaling
+Author-email: Jason Kirtland <jek@discorporate.us>
+Maintainer-email: Pallets Ecosystem <contact@palletsprojects.com>
+License: MIT License
+Project-URL: Homepage, https://blinker.readthedocs.io
+Project-URL: Documentation, https://blinker.readthedocs.io
+Project-URL: Source Code, https://github.com/pallets-eco/blinker/
+Project-URL: Issue Tracker, https://github.com/pallets-eco/blinker/issues/
+Project-URL: Chat, https://discord.gg/pallets
+Keywords: signal,emit,events,broadcast
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE.rst
+
+Blinker
+=======
+
+Blinker provides a fast dispatching system that allows any number of
+interested parties to subscribe to events, or "signals".
+
+Signal receivers can subscribe to specific senders or receive signals
+sent by any sender.
+
+.. code-block:: pycon
+
+    >>> from blinker import signal
+    >>> started = signal('round-started')
+    >>> def each(round):
+    ...     print(f"Round {round}")
+    ...
+    >>> started.connect(each)
+
+    >>> def round_two(round):
+    ...     print("This is round two.")
+    ...
+    >>> started.connect(round_two, sender=2)
+
+    >>> for round in range(1, 4):
+    ...     started.send(round)
+    ...
+    Round 1!
+    Round 2!
+    This is round two.
+    Round 3!
+
+
+Links
+-----
+
+-   Documentation: https://blinker.readthedocs.io/
+-   Changes: https://blinker.readthedocs.io/#changes
+-   PyPI Releases: https://pypi.org/project/blinker/
+-   Source Code: https://github.com/pallets-eco/blinker/
+-   Issue Tracker: https://github.com/pallets-eco/blinker/issues/

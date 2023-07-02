@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: pymdown-extensions
+Version: 10.0.1
+Summary: Extension pack for Python Markdown.
+Project-URL: Homepage, https://github.com/facelessuser/pymdown-extensions
+Author-email: Isaac Muse <Isaac.Muse@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.md
+Keywords: extensions,markdown
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Filters
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Requires-Python: >=3.7
+Requires-Dist: markdown>=3.2
+Requires-Dist: pyyaml
+Description-Content-Type: text/markdown
+
+[![Donate via PayPal][donate-image]][donate-link]
+[![Discord][discord-image]][discord-link]
+[![Build][github-ci-image]][github-ci-link]
+[![Coverage Status][codecov-image]][codecov-link]
+[![PyPI Version][pypi-image]][pypi-link]
+[![PyPI Downloads][pypi-down]][pypi-link]
+[![PyPI - Python Version][python-image]][pypi-link]
+![License][license-image-mit]
+
+# PyMdown Extensions
+
+Extensions for [Python Markdown](https://python-markdown.github.io).
+
+# Documentation
+
+Extension documentation is found here: https://facelessuser.github.io/pymdown-extensions/.
+
+# License
+
+License is MIT.  See [LICENSE](https://github.com/facelessuser/pymdown-extensions/blob/master/LICENSE.md) for more info.
+
+[github-ci-image]: https://github.com/facelessuser/pymdown-extensions/workflows/build/badge.svg?branch=master&event=push
+[github-ci-link]: https://github.com/facelessuser/pymdown-extensions/actions?query=workflow%3Abuild+branch%3Amaster
+[discord-image]: https://img.shields.io/discord/678289859768745989?logo=discord&logoColor=aaaaaa&color=mediumpurple&labelColor=333333
+[discord-link]:https://discord.gg/TWs8Tgr
+[codecov-image]: https://img.shields.io/codecov/c/github/facelessuser/pymdown-extensions/master.svg?logo=codecov&logoColor=aaaaaa&labelColor=333333
+[codecov-link]: https://codecov.io/github/facelessuser/pymdown-extensions
+[pypi-image]: https://img.shields.io/pypi/v/pymdown-extensions.svg?logo=pypi&logoColor=aaaaaa&labelColor=333333
+[pypi-link]: https://pypi.python.org/pypi/pymdown-extensions
+[python-image]: https://img.shields.io/pypi/pyversions/pymdown-extensions?logo=python&logoColor=aaaaaa&labelColor=333333
+[pypi-down]: https://img.shields.io/pypi/dm/pymdown-extensions.svg?logo=pypi&logoColor=aaaaaa&labelColor=333333
+[license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
+[donate-image]: https://img.shields.io/badge/Donate-PayPal-3fabd1?logo=paypal
+[donate-link]: https://www.paypal.me/facelessuser

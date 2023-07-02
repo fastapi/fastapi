@@ -1,0 +1,229 @@
+# Test cases for booleans (compile and run)
+
+[case testTrueAndFalse]
+def t() -> bool:
+    return True
+
+def f() -> bool:
+    return False
+[file driver.py]
+from native import t, f
+print(t())
+print(f())
+[out]
+True
+False
+
+[case testBoolOps]
+from typing import Optional, Any
+MYPY = False
+if MYPY:
+    from mypy_extensions import i64
+
+def f(x: bool) -> bool:
+    if x:
+        return False
+    else:
+        return True
+
+def test_if() -> None:
+    assert f(True) is False
+    assert f(False) is True
+
+def test_bitwise_and() -> None:
+    # Use eval() to avoid constand folding
+    t: bool = eval('True')
+    f: bool = eval('False')
+    assert t & t == True
+    assert t & f == False
+    assert f & t == False
+    assert f & f == False
+    t &= t
+    assert t == True
+    t &= f
+    assert t == False
+
+def test_bitwise_or() -> None:
+    # Use eval() to avoid constand folding
+    t: bool = eval('True')
+    f: bool = eval('False')
+    assert t | t == True
+    assert t | f == True
+    assert f | t == True
+    assert f | f == False
+    t |= f
+    assert t == True
+    f |= t
+    assert f == True
+
+def test_bitwise_xor() -> None:
+    # Use eval() to avoid constand folding
+    t: bool = eval('True')
+    f: bool = eval('False')
+    assert t ^ t == False
+    assert t ^ f == True
+    assert f ^ t == True
+    assert f ^ f == False
+    t ^= f
+    assert t == True
+    t ^= t
+    assert t == False
+    f ^= f
+    assert f == False
+
+def test_isinstance_bool() -> None:
+    a = True
+    b = 1.0
+    c = 1
+    d = False
+    assert isinstance(a, bool) == True
+    assert isinstance(b, bool) == False
+    assert isinstance(c, bool) == False
+    assert isinstance(d, bool) == True
+
+class C: pass
+class D:
+    def __init__(self, b: bool) -> None:
+        self.b = b
+
+    def __bool__(self) -> bool:
+        return self.b
+
+class E: pass
+class F(E):
+    def __init__(self, b: bool) -> None:
+        self.b = b
+
+    def __bool__(self) -> bool:
+        return self.b
+
+def optional_to_bool1(o: Optional[C]) -> bool:
+    return bool(o)
+
+def optional_to_bool2(o: Optional[D]) -> bool:
+    return bool(o)
+
+def optional_to_bool3(o: Optional[E]) -> bool:
+    return bool(o)
+
+def test_optional_to_bool() -> None:
+    assert not optional_to_bool1(None)
+    assert optional_to_bool1(C())
+    assert not optional_to_bool2(None)
+    assert not optional_to_bool2(D(False))
+    assert optional_to_bool2(D(True))
+    assert not optional_to_bool3(None)
+    assert optional_to_bool3(E())
+    assert not optional_to_bool3(F(False))
+    assert optional_to_bool3(F(True))
+
+def test_any_to_bool() -> None:
+    a: Any = int()
+    b: Any = a + 1
+    assert not bool(a)
+    assert bool(b)
+
+def eq(x: bool, y: bool) -> bool:
+    return x == y
+
+def ne(x: bool, y: bool) -> bool:
+    return x != y
+
+def lt(x: bool, y: bool) -> bool:
+    return x < y
+
+def le(x: bool, y: bool) -> bool:
+    return x <= y
+
+def gt(x: bool, y: bool) -> bool:
+    return x > y
+
+def ge(x: bool, y: bool) -> bool:
+    return x >= y
+
+def test_comparisons() -> None:
+    for x in True, False:
+        for y in True, False:
+            x2: Any = x
+            y2: Any = y
+            assert eq(x, y) == (x2 == y2)
+            assert ne(x, y) == (x2 != y2)
+            assert lt(x, y) == (x2 < y2)
+            assert le(x, y) == (x2 <= y2)
+            assert gt(x, y) == (x2 > y2)
+            assert ge(x, y) == (x2 >= y2)
+
+def eq_mixed(x: bool, y: int) -> bool:
+    return x == y
+
+def neq_mixed(x: int, y: bool) -> bool:
+    return x != y
+
+def lt_mixed(x: bool, y: int) -> bool:
+    return x < y
+
+def gt_mixed(x: int, y: bool) -> bool:
+    return x > y
+
+def test_mixed_comparisons() -> None:
+    for x in True, False:
+        for n in -(1 << 70), -123, 0, 1, 1753, 1 << 70:
+            assert eq_mixed(x, n) == (int(x) == n)
+            assert neq_mixed(n, x) == (n != int(x))
+            assert lt_mixed(x, n) == (int(x) < n)
+            assert gt_mixed(n, x) == (n > int(x))
+
+def add(x: bool, y: bool) -> int:
+    return x + y
+
+def add_mixed(b: bool, n: int) -> int:
+    return b + n
+
+def sub_mixed(n: int, b: bool) -> int:
+    return n - b
+
+def test_arithmetic() -> None:
+    for x in True, False:
+        for y in True, False:
+            assert add(x, y) == int(x) + int(y)
+        for n in -(1 << 70), -123, 0, 1, 1753, 1 << 70:
+            assert add_mixed(x, n) == int(x) + n
+            assert sub_mixed(n, x) == n - int(x)
+
+def add_mixed_i64(b: bool, n: i64) -> i64:
+    return b + n
+
+def sub_mixed_i64(n: i64, b: bool) -> i64:
+    return n - b
+
+def test_arithmetic_i64() -> None:
+    for x in True, False:
+        for n in -(1 << 62), -123, 0, 1, 1753, 1 << 62:
+            assert add_mixed_i64(x, n) == int(x) + n
+            assert sub_mixed_i64(n, x) == n - int(x)
+
+def eq_mixed_i64(x: bool, y: i64) -> bool:
+    return x == y
+
+def neq_mixed_i64(x: i64, y: bool) -> bool:
+    return x != y
+
+def lt_mixed_i64(x: bool, y: i64) -> bool:
+    return x < y
+
+def gt_mixed_i64(x: i64, y: bool) -> bool:
+    return x > y
+
+def test_mixed_comparisons_i64() -> None:
+    for x in True, False:
+        for n in -(1 << 62), -123, 0, 1, 1753, 1 << 62:
+            assert eq_mixed_i64(x, n) == (int(x) == n)
+            assert neq_mixed_i64(n, x) == (n != int(x))
+            assert lt_mixed_i64(x, n) == (int(x) < n)
+            assert gt_mixed_i64(n, x) == (n > int(x))
+
+[case testBoolMixInt]
+y = False
+print((y or 0) and True)
+[out]
+0

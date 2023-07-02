@@ -1,0 +1,21 @@
+<div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">{% trans %}Search{% endtrans %}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans %}Close{% endtrans %}</span></button>
+            </div>
+            <div class="modal-body">
+                <p>{% trans %}From here you can search these documents. Enter your search terms below.{% endtrans %}</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="{% trans %}Search...{% endtrans %}" id="mkdocs-search-query" title="{% trans %}Type search term here{% endtrans %}">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="{% trans %}No results found{% endtrans %}"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

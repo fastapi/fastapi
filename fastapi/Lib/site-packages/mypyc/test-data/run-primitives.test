@@ -1,0 +1,375 @@
+# Test cases for misc primitives (compile and run)
+#
+# Please only add tests that don't have an obvious place in type-specific test
+# files such as run-strings.test, run-lists.test, etc.
+
+[case testGenericEquality]
+def eq(a: object, b: object) -> bool:
+    if a == b:
+        return True
+    else:
+        return False
+def ne(a: object, b: object) -> bool:
+    if a != b:
+        return True
+    else:
+        return False
+def f(o: object) -> bool:
+    if [1, 2] == o:
+        return True
+    else:
+        return False
+[file driver.py]
+from native import eq, ne, f
+assert eq('xz', 'x' + 'z')
+assert not eq('x', 'y')
+assert not ne('xz', 'x' + 'z')
+assert ne('x', 'y')
+assert f([1, 2])
+assert not f([2, 2])
+assert not f(1)
+
+[case testGenericBinaryOps]
+from typing import Any
+def add(x: Any, y: Any) -> Any:
+    return x + y
+def subtract(x: Any, y: Any) -> Any:
+    return x - y
+def multiply(x: Any, y: Any) -> Any:
+    return x * y
+def floor_div(x: Any, y: Any) -> Any:
+    return x // y
+def true_div(x: Any, y: Any) -> Any:
+    return x / y
+def remainder(x: Any, y: Any) -> Any:
+    return x % y
+def power(x: Any, y: Any) -> Any:
+    return x ** y
+def lshift(x: Any, y: Any) -> Any:
+    return x << y
+def rshift(x: Any, y: Any) -> Any:
+    return x >> y
+def num_and(x: Any, y: Any) -> Any:
+    return x & y
+def num_xor(x: Any, y: Any) -> Any:
+    return x ^ y
+def num_or(x: Any, y: Any) -> Any:
+    return x | y
+def lt(x: Any, y: Any) -> Any:
+    if x < y:
+        return True
+    else:
+        return False
+def le(x: Any, y: Any) -> Any:
+    if x <= y:
+        return True
+    else:
+        return False
+def gt(x: Any, y: Any) -> Any:
+    if x > y:
+        return True
+    else:
+        return False
+def ge(x: Any, y: Any) -> Any:
+    if x >= y:
+        return True
+    else:
+        return False
+def contains(x: Any, y: Any) -> Any:
+    if x in y:
+        return True
+    else:
+        return False
+def identity(x: Any, y: Any) -> Any:
+    if x is y:
+        return True
+    else:
+        return False
+def disidentity(x: Any, y: Any) -> Any:
+    if x is not y:
+        return True
+    else:
+        return False
+def not_eq_cond(a: Any, b: Any) -> bool:
+    if not (a == b):
+        return True
+    else:
+        return False
+def eq2(a: Any, b: Any) -> bool:
+    return a == b
+def slice1(x: Any) -> Any:
+    return x[:]
+def slice2(x: Any, y: Any) -> Any:
+    return x[y:]
+def slice3(x: Any, y: Any) -> Any:
+    return x[:y]
+def slice4(x: Any, y: Any, z: Any) -> Any:
+    return x[y:z]
+def slice5(x: Any, y: Any, z: Any, zz: Any) -> Any:
+    return x[y:z:zz]
+[file driver.py]
+from native import *
+assert add(5, 6) == 11
+assert add('x', 'y') == 'xy'
+assert subtract(8, 3) == 5
+assert multiply(8, 3) == 24
+assert floor_div(8, 3) == 2
+assert true_div(7, 2) == 3.5
+assert remainder(11, 4) == 3
+assert remainder('%.3d', 5) == '005'
+assert remainder('%d-%s', (5, 'xy')) == '5-xy'
+assert power(3, 4) == 81
+assert lshift(5, 3) == 40
+assert rshift(41, 3) == 5
+assert num_and(99, 56) == 32
+assert num_xor(99, 56) == 91
+assert num_or(99, 56) == 123
+assert lt('a', 'b')
+assert not lt('a', 'a')
+assert not lt('b', 'a')
+assert not gt('a', 'b')
+assert not gt('a', 'a')
+assert gt('b', 'a')
+assert le('a', 'b')
+assert le('a', 'a')
+assert not le('b', 'a')
+assert not ge('a', 'b')
+assert ge('a', 'a')
+assert ge('b', 'a')
+assert contains('x', 'axb')
+assert not contains('X', 'axb')
+assert contains('x', {'x', 'y'})
+a = [1, 3, 5]
+assert slice1(a) == a
+assert slice1(a) is not a
+assert slice2(a, 1) == [3, 5]
+assert slice3(a, -1) == [1, 3]
+assert slice4(a, 1, -1) == [3]
+assert slice5(a, 2, 0, -1) == [5, 3]
+o1, o2 = object(), object()
+assert identity(o1, o1)
+assert not identity(o1, o2)
+assert not disidentity(o1, o1)
+assert disidentity(o1, o2)
+assert eq2('xz', 'x' + 'z')
+assert not eq2('x', 'y')
+assert not not_eq_cond('xz', 'x' + 'z')
+assert not_eq_cond('x', 'y')
+
+[case testGenericMiscOps]
+from typing import Any
+def neg(x: Any) -> Any:
+    return -x
+def pos(x: Any) -> Any:
+    return +x
+def invert(x: Any) -> Any:
+    return ~x
+def get_item(o: Any, k: Any) -> Any:
+    return o[k]
+def set_item(o: Any, k: Any, v: Any) -> Any:
+    o[k] = v
+[file driver.py]
+from native import *
+assert neg(6) == -6
+assert pos(6) == 6
+assert invert(6) == -7
+d = {'x': 5}
+assert get_item(d, 'x') == 5
+set_item(d, 'y', 6)
+assert d['y'] == 6
+
+[case testAnyAttributeAndMethodAccess]
+from typing import Any, List
+class C:
+    a: int
+    def m(self, x: int, a: List[int]) -> int:
+        return self.a + x + a[0]
+def get_a(x: Any) -> Any:
+    return x.a
+def set_a(x: Any, y: Any) -> None:
+    x.a = y
+def call_m(x: Any) -> Any:
+    return x.m(1, [3])
+[file driver.py]
+from native import C, get_a, set_a, call_m
+class D:
+    def m(self, x, a):
+        return self.a + x + a[0]
+
+c = C()
+c.a = 6
+d = D()
+d.a = 2
+assert get_a(c) == 6
+assert get_a(d) == 2
+assert call_m(c) == 10
+assert call_m(d) == 6
+set_a(c, 5)
+assert c.a == 5
+set_a(d, 4)
+assert d.a == 4
+try:
+    get_a(object())
+except AttributeError:
+    pass
+else:
+    assert False
+try:
+    call_m(object())
+except AttributeError:
+    pass
+else:
+    assert False
+try:
+    set_a(object(), 5)
+except AttributeError:
+    pass
+else:
+    assert False
+
+[case testFloat]
+def assign_and_return_float_sum() -> float:
+    f1 = 1.0
+    f2 = 2.0
+    f3 = 3.0
+    return f1 * f2 + f3
+
+def from_int(i: int) -> float:
+    return float(i)
+
+def to_int(x: float) -> int:
+    return int(x)
+
+def get_complex() -> complex:
+    return 5.2j + 3.5 + 1j
+
+[file driver.py]
+from native import assign_and_return_float_sum, from_int, to_int, get_complex
+sum = 0.0
+for i in range(10):
+    sum += assign_and_return_float_sum()
+assert sum == 50.0
+
+assert str(from_int(10)) == '10.0'
+assert str(to_int(3.14)) == '3'
+assert str(to_int(3)) == '3'
+assert get_complex() == 3.5 + 6.2j
+
+[case testDel]
+from typing import List
+from testutil import assertRaises
+
+def printDict(dict) -> None:
+    l = list(dict.keys()) # type: List[str]
+    l.sort()
+    for key in l:
+        print(key, dict[key])
+    print("#########")
+
+def delList() -> None:
+    l = [1, 2, 3]
+    print(tuple(l))
+    del l[1]
+    print(tuple(l))
+
+def delDict() -> None:
+    d = {"one":1, "two":2}
+    printDict(d)
+    del d["one"]
+    printDict(d)
+
+def delListMultiple() -> None:
+    l = [1, 2, 3, 4, 5, 6, 7]
+    print(tuple(l))
+    del l[1], l[2], l[3]
+    print(tuple(l))
+
+def delDictMultiple() -> None:
+    d = {"one":1, "two":2, "three":3, "four":4}
+    printDict(d)
+    del d["two"], d["four"]
+    printDict(d)
+
+class Dummy():
+    __deletable__ = ('x', 'y')
+
+    def __init__(self, x: int, y: int) -> None:
+        self.x = x
+        self.y = y
+
+def delAttribute() -> None:
+    dummy = Dummy(1, 2)
+    del dummy.x
+    with assertRaises(AttributeError):
+        dummy.x
+
+def delAttributeMultiple() -> None:
+    dummy = Dummy(1, 2)
+    del dummy.x, dummy.y
+    with assertRaises(AttributeError):
+        dummy.x
+    with assertRaises(AttributeError):
+        dummy.y
+
+def delLocal(b: bool) -> int:
+    dummy = 10
+    if b:
+        del dummy
+    return dummy
+
+def delLocalLoop() -> None:
+    # Try deleting a local in a loop to make sure the control flow analysis works
+    dummy = 1
+    for i in range(10):
+        print(dummy)
+        dummy *= 2
+        if i == 4:
+            del dummy
+
+global_var = 10
+del global_var
+
+[file driver.py]
+from native import (
+    delList, delDict, delListMultiple, delDictMultiple, delAttribute,
+    delAttributeMultiple, delLocal, delLocalLoop,
+)
+import native
+from testutil import assertRaises
+
+delList()
+delDict()
+delListMultiple()
+delDictMultiple()
+delAttribute()
+delAttributeMultiple()
+with assertRaises(AttributeError):
+    native.global_var
+with assertRaises(NameError, 'local variable "dummy" referenced before assignment'):
+    delLocal(True)
+assert delLocal(False) == 10
+with assertRaises(NameError, 'local variable "dummy" referenced before assignment'):
+    delLocalLoop()
+[out]
+(1, 2, 3)
+(1, 3)
+one 1
+two 2
+#########
+two 2
+#########
+(1, 2, 3, 4, 5, 6, 7)
+(1, 3, 5, 7)
+four 4
+one 1
+three 3
+two 2
+#########
+one 1
+three 3
+#########
+1
+2
+4
+8
+16

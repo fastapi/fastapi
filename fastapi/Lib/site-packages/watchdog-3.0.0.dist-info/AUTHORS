@@ -1,0 +1,73 @@
+Original Project Lead:
+----------------------
+Yesudeep Mangalapilly <yesudeep@google.com>
+
+Current Project Lead:
+---------------------
+Mickaël Schoentgen <contact@tiger-222.fr>
+
+Contributors in alphabetical order:
+-----------------------------------
+Adrian Tejn Kern <tejnkern@gmail.com>
+Andrew Schaaf <andrew@andrewschaaf.com>
+Danilo de Jesus da Silva Bellini <danilo.bellini@gmail.com>
+David LaPalomento <dlapalomento@gmail.com>
+Filip Noetzel <filip@j03.de>
+Gary van der Merwe <garyvdm@garyvdm.localdomain>
+Gora Khargosh <gora.khargosh@gmail.com>
+Hannu Valtonen <hannu.valtonen@ohmu.fi>
+Jesse Printz <jesse@jonypawks.net>
+Kurt McKee <contactme@kurtmckee.org>
+Léa Klein <lklein@nuxeo.com>
+Luke McCarthy <luke@iogopro.co.uk>
+Lukáš Lalinský <lalinsky@gmail.com>
+Malthe Borch <mborch@gmail.com>
+Martin Kreichgauer <kreichgauer@gmail.com>
+Martin Kreichgauer <martin@kreichgauer.com>
+Mike Lundy <mike@fluffypenguin.org>
+Raymond Hettinger <python@rcn.com>
+Roman Ovchinnikov <coolthecold@gmail.com>
+Rotem Yaari <vmalloc@gmail.com>
+Ryan Kelly <ryan@rfk.id.au>
+Senko Rasic <senko.rasic@dobarkod.hr>
+Senko Rašić <senko@senko.net>
+Shane Hathaway <shane@hathawaymix.org>
+Simon Pantzare <simon@pewpewlabs.com>
+Simon Pantzare <simpa395@student.liu.se>
+Steven Samuel Cole <steven.samuel.cole@gmail.com>
+Stéphane Klein <stephane@harobed.org>
+Thomas Guest <tag@wordaligned.org>
+Thomas Heller <theller@ctypes.org>
+Tim Cuthbertson <tim+github@gfxmonk.net>
+Todd Whiteman <toddw@activestate.com>
+Will McGugan <will@willmcgugan.com>
+Yesudeep Mangalapilly <gora.khargosh@gmail.com>
+Yesudeep Mangalapilly <yesudeep@google.com>
+dvogel <dvogel@wlscapi.uwsc.wisc.edu>
+gfxmonk <tim3d.junk@gmail.com>
+
+
+We would like to thank these individuals for ideas:
+---------------------------------------------------
+Tim Golden               <mail@timgolden.me.uk>
+Sebastien Martini        <seb@dbzteam.org>
+
+Initially we used the flask theme for the documentation which was written by
+----------------------------------------------------------------------------
+Armin Ronacher           <armin.ronacher@active-4.com>
+
+
+Watchdog also includes open source libraries or adapted code
+from the following projects:
+
+- MacFSEvents - https://github.com/malthe/macfsevents
+- watch_directory.py - http://timgolden.me.uk/python/downloads/watch_directory.py
+- pyinotify - https://github.com/seb-m/pyinotify
+- fsmonitor - https://github.com/shaurz/fsmonitor
+- echo - http://wordaligned.org/articles/echo
+- Lukáš Lalinský's ordered set queue implementation:
+  https://stackoverflow.com/questions/1581895/how-check-if-a-task-is-already-in-python-queue
+- Armin Ronacher's flask-sphinx-themes for the documentation:
+  https://github.com/mitsuhiko/flask-sphinx-themes
+- pyfilesystem - https://github.com/PyFilesystem/pyfilesystem
+- get_FILE_NOTIFY_INFORMATION - http://blog.gmane.org/gmane.comp.python.ctypes/month=20070901

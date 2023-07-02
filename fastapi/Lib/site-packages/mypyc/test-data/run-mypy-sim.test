@@ -1,0 +1,138 @@
+-- Some test code that tries to simulate important/interesting parts of mypy itself!
+[case testSimulateMypy]
+from mypy_extensions import trait
+from typing import List, TypeVar, cast, Generic
+from abc import abstractmethod
+import other_strconv as strconv
+#from other_visitor import ExpressionVisitor, StatementVisitor, NodeVisitor
+import other_visitor as visitor
+
+T = TypeVar('T')
+
+############ nodes.py
+
+class Context:
+    def __init__(self) -> None:
+        self.line = -1
+    def set_line(self, line: int) -> None:
+        self.line = line
+
+class Node(Context):
+    def accept(self, visitor: visitor.NodeVisitor[T]) -> T: return cast(T, None)
+    def to_str(self) -> str:
+        return self.accept(strconv.StrConv())
+
+@trait
+class Statement(Node):
+    def accept(self, visitor: visitor.StatementVisitor[T]) -> T: return cast(T, None)
+
+@trait
+class Expression(Node):
+    def accept(self, visitor: visitor.ExpressionVisitor[T]) -> T: return cast(T, None)
+
+@trait
+class SymbolNode(Node):
+    """Nodes that can be stored in a symbol table."""
+    @abstractmethod
+    def name(self) -> str: return cast(str, None)
+
+class FuncBase(Node):
+    def __init__(self) -> None:
+        super().__init__()
+        self.is_static = False
+
+class Block(Statement):
+    def __init__(self, stmts: List[Statement]) -> None:
+        self.stmts = stmts
+
+    def accept(self, visitor: visitor.StatementVisitor[T]) -> T:
+        return visitor.visit_block(self)
+
+class ExprStmt(Statement):
+    def __init__(self, expr: Expression) -> None:
+        self.expr = expr
+
+    def accept(self, visitor: visitor.StatementVisitor[T]) -> T:
+        return visitor.visit_expr_stmt(self)
+
+class FuncItem(FuncBase):
+    def __init__(self, body: Block) -> None:
+        self.body = body
+
+class FuncDef(FuncItem, SymbolNode, Statement):
+    def __init__(self, name: str, body: Block) -> None:
+        super().__init__(body)
+        self._name = name
+    def accept(self, visitor: visitor.StatementVisitor[T]) -> T:
+        return visitor.visit_func_def(self)
+    def name(self) -> str:
+        return self._name
+
+class LambdaExpr(FuncItem, Expression):
+    def accept(self, visitor: visitor.ExpressionVisitor[T]) -> T:
+        return visitor.visit_lambda_expr(self)
+
+def lol(x: Statement) -> int:
+    return x.line
+
+[file other_visitor.py]
+from mypy_extensions import trait
+from typing import TypeVar, cast, Generic
+from abc import abstractmethod
+import native as nodes
+
+T = TypeVar('T')
+
+@trait
+class ExpressionVisitor(Generic[T]):
+    @abstractmethod
+    def visit_lambda_expr(self, o: 'nodes.LambdaExpr') -> T:
+        return cast(T, None)
+
+@trait
+class StatementVisitor(Generic[T]):
+    @abstractmethod
+    def visit_block(self, o: 'nodes.Block') -> T:
+        return cast(T, None)
+
+    @abstractmethod
+    def visit_func_def(self, o: 'nodes.FuncDef') -> T:
+        return cast(T, None)
+
+    @abstractmethod
+    def visit_expr_stmt(self, o: 'nodes.ExprStmt') -> T:
+        return cast(T, None)
+
+@trait
+class NodeVisitor(Generic[T], ExpressionVisitor[T], StatementVisitor[T]):
+    pass
+
+[file other_strconv.py]
+from typing import List
+import native as nodes
+from other_visitor import NodeVisitor
+
+class StrConv(NodeVisitor[str]):
+    def visit_block(self, b: nodes.Block) -> str:
+        # we really need comprehensions!
+        # TODO: PartialType unsupported
+        things = []  # type: List[str]
+        for s in b.stmts:
+            things.append(s.accept(self))
+        return "{" + "; ".join(things) + "}"
+
+    def visit_func_def(self, f: nodes.FuncDef) -> str:
+        return "def " + f.name() + "(): " + f.body.accept(self)
+
+    def visit_expr_stmt(self, e: nodes.ExprStmt) -> str:
+        return e.expr.accept(self)
+
+    def visit_lambda_expr(self, b: nodes.LambdaExpr) -> str:
+        return "(fn: " + b.body.accept(self) + ")"
+
+[file driver.py]
+from native import *
+
+block = Block([Block([]), ExprStmt(LambdaExpr(Block([])))])
+fn = FuncDef('test', block)
+assert fn.to_str() == "def test(): {{}; (fn: {})}"

@@ -1,0 +1,716 @@
+/* Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0 */
+/* For details: https://github.com/nedbat/coveragepy/blob/master/NOTICE.txt */
+
+// CSS styles for coverage.py HTML reports.
+
+// When you edit this file, you need to run "make css" to get the CSS file
+// generated, and then check in both the .scss and the .css files.
+
+// When working on the file, this command is useful:
+//      sass --watch --style=compact --sourcemap=none --no-cache coverage/htmlfiles/style.scss:htmlcov/style.css
+//
+// OR you can process sass purely in python with `pip install pysass`, then:
+//      pysassc --style=compact coverage/htmlfiles/style.scss coverage/htmlfiles/style.css
+
+// Ignore this comment, it's for the CSS output file:
+/* Don't edit this .css file. Edit the .scss file instead! */
+
+// Dimensions
+$left-gutter: 3.5rem;
+
+//
+// Declare colors and variables
+//
+
+$font-normal:             -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$font-code:               SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+$off-button-lighten:      50%;
+$hover-dark-amt:          95%;
+
+$focus-color:             #007acc;
+
+$mis-color:               #ff0000;
+$run-color:               #00dd00;
+$exc-color:               #808080;
+$par-color:               #bbbb00;
+
+$light-bg:                #fff;
+$light-fg:                #000;
+$light-gray1:             #f8f8f8;
+$light-gray2:             #eee;
+$light-gray3:             #ccc;
+$light-gray4:             #999;
+$light-gray5:             #666;
+$light-gray6:             #333;
+$light-pln-bg:            $light-bg;
+$light-mis-bg:            #fdd;
+$light-run-bg:            #dfd;
+$light-exc-bg:            $light-gray2;
+$light-par-bg:            #ffa;
+$light-token-com:         #008000;
+$light-token-str:         #0451a5;
+$light-context-bg-color:  #d0e8ff;
+
+$dark-bg:                 #1e1e1e;
+$dark-fg:                 #eee;
+$dark-gray1:              #222;
+$dark-gray2:              #333;
+$dark-gray3:              #444;
+$dark-gray4:              #777;
+$dark-gray5:              #aaa;
+$dark-gray6:              #ddd;
+$dark-pln-bg:             $dark-bg;
+$dark-mis-bg:             #4b1818;
+$dark-run-bg:             #373d29;
+$dark-exc-bg:             $dark-gray2;
+$dark-par-bg:             #650;
+$dark-token-com:          #6a9955;
+$dark-token-str:          #9cdcfe;
+$dark-context-bg-color:   #056;
+
+//
+// Mixins and utilities
+//
+
+@mixin background-dark($color) {
+    @media (prefers-color-scheme: dark) {
+        background: $color;
+    }
+}
+@mixin color-dark($color) {
+    @media (prefers-color-scheme: dark) {
+        color: $color;
+    }
+}
+@mixin border-color-dark($color) {
+    @media (prefers-color-scheme: dark) {
+        border-color: $color;
+    }
+}
+
+// Add visual outline to navigable elements on focus improve accessibility.
+@mixin focus-border {
+    &:active, &:focus {
+        outline: 2px dashed $focus-color;
+    }
+}
+
+// Page-wide styles
+html, body, h1, h2, h3, p, table, td, th {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+// Set baseline grid to 16 pt.
+body {
+    font-family: $font-normal;
+    font-size: 1em;
+    background: $light-bg;
+    color: $light-fg;
+    @include background-dark($dark-bg);
+    @include color-dark($dark-fg);
+}
+
+html>body {
+    font-size: 16px;
+}
+
+a {
+    @include focus-border;
+}
+
+p {
+    font-size: .875em;
+    line-height: 1.4em;
+}
+
+table {
+    border-collapse: collapse;
+}
+td {
+    vertical-align: top;
+}
+table tr.hidden {
+    display: none !important;
+}
+
+p#no_rows {
+    display: none;
+    font-size: 1.2em;
+}
+
+a.nav {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+        color: inherit;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+// Page structure
+header {
+    background: $light-gray1;
+    @include background-dark(black);
+    width: 100%;
+    z-index: 2;
+    border-bottom: 1px solid $light-gray3;
+    @include border-color-dark($dark-gray2);
+
+    .content {
+        padding: 1rem $left-gutter;
+    }
+
+    h2 {
+        margin-top: .5em;
+        font-size: 1em;
+    }
+
+    p.text {
+        margin: .5em 0 -.5em;
+        color: $light-gray5;
+        @include color-dark($dark-gray5);
+        font-style: italic;
+    }
+
+    &.sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 2.5em;
+
+        .text {
+            display: none;
+        }
+
+        h1, h2 {
+            font-size: 1em;
+            margin-top: 0;
+            display: inline-block;
+        }
+
+        .content {
+            padding: .5rem $left-gutter;
+            p {
+                font-size: 1em;
+            }
+        }
+
+        & ~ #source {
+            padding-top: 6.5em;
+        }
+    }
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+footer {
+    margin: 1rem $left-gutter;
+
+    .content {
+        padding: 0;
+        color: $light-gray5;
+        @include color-dark($dark-gray5);
+        font-style: italic;
+    }
+}
+
+#index {
+    margin: 1rem 0 0 $left-gutter;
+}
+
+// Header styles
+
+h1 {
+    font-size: 1.25em;
+    display: inline-block;
+}
+
+#filter_container {
+    float: right;
+    margin: 0 2em 0 0;
+
+    input {
+        width: 10em;
+        padding: 0.2em 0.5em;
+        border: 2px solid $light-gray3;
+        background: $light-bg;
+        color: $light-fg;
+        @include border-color-dark($dark-gray3);
+        @include background-dark($dark-bg);
+        @include color-dark($dark-fg);
+        &:focus {
+            border-color: $focus-color;
+        }
+    }
+}
+
+header button {
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid;
+    border-radius: .2em;
+    color: inherit;
+    padding: .1em .5em;
+    margin: 1px calc(.1em + 1px);
+    cursor: pointer;
+    border-color: $light-gray3;
+    @include border-color-dark($dark-gray3);
+    @include focus-border;
+
+    &.run {
+        background: mix($light-run-bg, $light-bg, $off-button-lighten);
+        @include background-dark($dark-run-bg);
+        &.show_run {
+            background: $light-run-bg;
+            @include background-dark($dark-run-bg);
+            border: 2px solid $run-color;
+            margin: 0 .1em;
+        }
+    }
+    &.mis {
+        background: mix($light-mis-bg, $light-bg, $off-button-lighten);
+        @include background-dark($dark-mis-bg);
+        &.show_mis {
+            background: $light-mis-bg;
+            @include background-dark($dark-mis-bg);
+            border: 2px solid $mis-color;
+            margin: 0 .1em;
+        }
+    }
+    &.exc {
+        background: mix($light-exc-bg, $light-bg, $off-button-lighten);
+        @include background-dark($dark-exc-bg);
+        &.show_exc {
+            background: $light-exc-bg;
+            @include background-dark($dark-exc-bg);
+            border: 2px solid $exc-color;
+            margin: 0 .1em;
+        }
+    }
+    &.par {
+        background: mix($light-par-bg, $light-bg, $off-button-lighten);
+        @include background-dark($dark-par-bg);
+        &.show_par {
+            background: $light-par-bg;
+            @include background-dark($dark-par-bg);
+            border: 2px solid $par-color;
+            margin: 0 .1em;
+        }
+    }
+}
+
+// Yellow post-it things.
+%popup {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    background: #ffffcc;
+    border: 1px solid #888;
+    border-radius: .2em;
+    color: #333;
+    padding: .25em .5em;
+}
+
+// Yellow post-it's in the text listings.
+%in-text-popup {
+    @extend %popup;
+    white-space: normal;
+    float: right;
+    top: 1.75em;
+    right: 1em;
+    height: auto;
+}
+
+// Help panel
+#help_panel_wrapper {
+    float: right;
+    position: relative;
+}
+
+#keyboard_icon {
+    margin: 5px;
+}
+
+#help_panel_state {
+    display: none;
+}
+
+#help_panel {
+    @extend %popup;
+    top: 25px;
+    right: 0;
+    padding: .75em;
+    border: 1px solid #883;
+
+    color: #333;
+
+    .keyhelp p {
+        margin-top: .75em;
+    }
+
+    .legend {
+        font-style: italic;
+        margin-bottom: 1em;
+    }
+
+    .indexfile & {
+        width: 25em;
+    }
+
+    .pyfile & {
+        width: 18em;
+    }
+
+    #help_panel_state:checked ~ & {
+        display: block;
+    }
+}
+
+kbd {
+    border: 1px solid black;
+    border-color: #888 #333 #333 #888;
+    padding: .1em .35em;
+    font-family: $font-code;
+    font-weight: bold;
+    background: #eee;
+    border-radius: 3px;
+}
+
+// Source file styles
+
+// The slim bar at the left edge of the source lines, colored by coverage.
+$border-indicator-width: .2em;
+
+#source {
+    padding: 1em 0 1em $left-gutter;
+    font-family: $font-code;
+
+    p {
+        // position relative makes position:absolute pop-ups appear in the right place.
+        position: relative;
+        white-space: pre;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .n {
+            float: left;
+            text-align: right;
+            width: $left-gutter;
+            box-sizing: border-box;
+            margin-left: -$left-gutter;
+            padding-right: 1em;
+            color: $light-gray4;
+            @include color-dark($dark-gray4);
+
+            &.highlight {
+                background: #ffdd00;
+            }
+
+            a {
+                // These two lines make anchors to the line scroll the line to be
+                // visible beneath the fixed-position header.
+                margin-top: -4em;
+                padding-top: 4em;
+
+                text-decoration: none;
+                color: $light-gray4;
+                @include color-dark($dark-gray4);
+                &:hover {
+                    text-decoration: underline;
+                    color: $light-gray4;
+                    @include color-dark($dark-gray4);
+                }
+            }
+        }
+
+        .t {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            margin-left: -.5em;
+            padding-left: .5em - $border-indicator-width;
+            border-left: $border-indicator-width solid $light-bg;
+            @include border-color-dark($dark-bg);
+
+            &:hover {
+                background: mix($light-pln-bg, $light-fg, $hover-dark-amt);
+                @include background-dark(mix($dark-pln-bg, $dark-fg, $hover-dark-amt));
+
+                & ~ .r .annotate.long {
+                    display: block;
+                }
+            }
+
+            // Syntax coloring
+            .com {
+                color: $light-token-com;
+                @include color-dark($dark-token-com);
+                font-style: italic;
+                line-height: 1px;
+            }
+            .key {
+                font-weight: bold;
+                line-height: 1px;
+            }
+            .str {
+                color: $light-token-str;
+                @include color-dark($dark-token-str);
+            }
+        }
+
+        &.mis {
+            .t {
+                border-left: $border-indicator-width solid $mis-color;
+            }
+
+            &.show_mis .t {
+                background: $light-mis-bg;
+                @include background-dark($dark-mis-bg);
+
+                &:hover {
+                    background: mix($light-mis-bg, $light-fg, $hover-dark-amt);
+                    @include background-dark(mix($dark-mis-bg, $dark-fg, $hover-dark-amt));
+                }
+            }
+        }
+
+        &.run {
+            .t {
+                border-left: $border-indicator-width solid $run-color;
+            }
+
+            &.show_run .t {
+                background: $light-run-bg;
+                @include background-dark($dark-run-bg);
+
+                &:hover {
+                    background: mix($light-run-bg, $light-fg, $hover-dark-amt);
+                    @include background-dark(mix($dark-run-bg, $dark-fg, $hover-dark-amt));
+                }
+            }
+        }
+
+        &.exc {
+            .t {
+                border-left: $border-indicator-width solid $exc-color;
+            }
+
+            &.show_exc .t {
+                background: $light-exc-bg;
+                @include background-dark($dark-exc-bg);
+
+                &:hover {
+                    background: mix($light-exc-bg, $light-fg, $hover-dark-amt);
+                    @include background-dark(mix($dark-exc-bg, $dark-fg, $hover-dark-amt));
+                }
+            }
+        }
+
+        &.par {
+            .t {
+                border-left: $border-indicator-width solid $par-color;
+            }
+
+            &.show_par .t {
+                background: $light-par-bg;
+                @include background-dark($dark-par-bg);
+
+                &:hover {
+                    background: mix($light-par-bg, $light-fg, $hover-dark-amt);
+                    @include background-dark(mix($dark-par-bg, $dark-fg, $hover-dark-amt));
+                }
+            }
+
+        }
+
+        .r {
+            position: absolute;
+            top: 0;
+            right: 2.5em;
+            font-family: $font-normal;
+        }
+
+        .annotate {
+            font-family: $font-normal;
+            color: $light-gray5;
+            @include color-dark($dark-gray6);
+            padding-right: .5em;
+
+            &.short:hover ~ .long {
+                display: block;
+            }
+
+            &.long {
+                @extend %in-text-popup;
+                width: 30em;
+                right: 2.5em;
+            }
+        }
+
+        input {
+            display: none;
+
+            & ~ .r label.ctx {
+                cursor: pointer;
+                border-radius: .25em;
+                &::before {
+                    content: "▶ ";
+                }
+                &:hover {
+                    background: mix($light-context-bg-color, $light-bg, $off-button-lighten);
+                    @include background-dark(mix($dark-context-bg-color, $dark-bg, $off-button-lighten));
+                    color: $light-gray5;
+                    @include color-dark($dark-gray5);
+                }
+            }
+
+            &:checked ~ .r label.ctx {
+                background: $light-context-bg-color;
+                @include background-dark($dark-context-bg-color);
+                color: $light-gray5;
+                @include color-dark($dark-gray5);
+                border-radius: .75em .75em 0 0;
+                padding: 0 .5em;
+                margin: -.25em 0;
+                &::before {
+                    content: "▼ ";
+                }
+            }
+
+            &:checked ~ .ctxs {
+                padding: .25em .5em;
+                overflow-y: scroll;
+                max-height: 10.5em;
+            }
+        }
+
+        label.ctx {
+            color: $light-gray4;
+            @include color-dark($dark-gray4);
+            display: inline-block;
+            padding: 0 .5em;
+            font-size: .8333em;   // 10/12
+        }
+
+        .ctxs {
+            display: block;
+            max-height: 0;
+            overflow-y: hidden;
+            transition: all .2s;
+            padding: 0 .5em;
+            font-family: $font-normal;
+            white-space: nowrap;
+            background: $light-context-bg-color;
+            @include background-dark($dark-context-bg-color);
+            border-radius: .25em;
+            margin-right: 1.75em;
+            text-align: right;
+        }
+    }
+}
+
+
+// index styles
+#index {
+    font-family: $font-code;
+    font-size: 0.875em;
+
+    table.index {
+        margin-left: -.5em;
+    }
+    td, th {
+        text-align: right;
+        width: 5em;
+        padding: .25em .5em;
+        border-bottom: 1px solid $light-gray2;
+        @include border-color-dark($dark-gray2);
+        &.name {
+            text-align: left;
+            width: auto;
+        }
+    }
+    th {
+        font-style: italic;
+        color: $light-gray6;
+        @include color-dark($dark-gray6);
+        cursor: pointer;
+        &:hover {
+            background: $light-gray2;
+            @include background-dark($dark-gray2);
+        }
+        &[aria-sort="ascending"], &[aria-sort="descending"] {
+            white-space: nowrap;
+            background: $light-gray2;
+            @include background-dark($dark-gray2);
+            padding-left: .5em;
+        }
+        &[aria-sort="ascending"]::after {
+            font-family: sans-serif;
+            content: " ↑";
+        }
+        &[aria-sort="descending"]::after {
+            font-family: sans-serif;
+            content: " ↓";
+        }
+    }
+    td.name a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    tr.total td,
+    tr.total_dynamic td {
+        font-weight: bold;
+        border-top: 1px solid #ccc;
+        border-bottom: none;
+    }
+    tr.file:hover {
+        background: $light-gray2;
+        @include background-dark($dark-gray2);
+        td.name {
+            text-decoration: underline;
+            color: inherit;
+        }
+    }
+}
+
+// scroll marker styles
+#scroll_marker {
+    position: fixed;
+    z-index: 3;
+    right: 0;
+    top: 0;
+    width: 16px;
+    height: 100%;
+    background: $light-bg;
+    border-left: 1px solid $light-gray2;
+    @include background-dark($dark-bg);
+    @include border-color-dark($dark-gray2);
+    will-change: transform; // for faster scrolling of fixed element in Chrome
+
+    .marker {
+        background: $light-gray3;
+        @include background-dark($dark-gray3);
+        position: absolute;
+        min-height: 3px;
+        width: 100%;
+    }
+}

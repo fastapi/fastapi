@@ -1,0 +1,1183 @@
+[case testMaybeUninitVar]
+class C:
+    def __init__(self, x: int) -> None:
+        self.x = x
+
+def f(b: bool) -> None:
+    u = C(1)
+    while b:
+        v = C(2)
+        if v is not u:
+            break
+    print(v.x)
+[file driver.py]
+from native import f
+f(True)
+[out]
+2
+
+[case testUninitBoom]
+def f(a: bool, b: bool) -> None:
+    if a:
+        x = 'lol'
+    if b:
+        print(x)
+
+def g() -> None:
+    try:
+        [0][1]
+        y = 1
+    except Exception:
+        pass
+    print(y)
+
+[file driver.py]
+from native import f, g
+from testutil import assertRaises
+
+f(True, True)
+f(False, False)
+with assertRaises(NameError):
+    f(False, True)
+with assertRaises(NameError):
+    g()
+[out]
+lol
+
+[case testBuiltins]
+y = 10
+def f(x: int) -> None:
+    print(5)
+    d = globals()
+    assert d['y'] == 10
+    d['y'] = 20
+    assert y == 20
+[file driver.py]
+from native import f
+f(5)
+[out]
+5
+
+[case testOptional]
+from typing import Optional
+
+class A: pass
+
+def f(x: Optional[A]) -> Optional[A]:
+    return x
+
+def g(x: Optional[A]) -> int:
+    if x is None:
+        return 1
+    if x is not None:
+        return 2
+    return 3
+
+def h(x: Optional[int], y: Optional[bool]) -> None:
+    pass
+
+[file driver.py]
+from native import f, g, A
+a = A()
+assert f(None) is None
+assert f(a) is a
+assert g(None) == 1
+assert g(a) == 2
+
+[case testInferredOptionalAssignment]
+from typing import Any, Generator
+
+def f(b: bool) -> Any:
+    if b:
+        x = None
+    else:
+        x = 1
+
+    if b:
+        y = 1
+    else:
+        y = None
+
+    m = 1 if b else None
+    n = None if b else 1
+    return ((x, y), (m, n))
+
+def gen(b: bool) -> Generator[Any, None, None]:
+    if b:
+        y = 1
+    else:
+        y = None
+    yield y
+
+assert f(False) == ((1, None), (None, 1))
+assert f(True) == ((None, 1), (1, None))
+assert next(gen(False)) is None
+assert next(gen(True)) == 1
+
+[case testWith]
+from typing import Any
+class Thing:
+    def __init__(self, x: str) -> None:
+        self.x = x
+    def __enter__(self) -> str:
+        print('enter!', self.x)
+        if self.x == 'crash':
+            raise Exception('ohno')
+        return self.x
+    def __exit__(self, x: Any, y: Any, z: Any) -> None:
+        print('exit!', self.x, y)
+
+def foo(i: int) -> int:
+    with Thing('a') as x:
+        print("yooo?", x)
+        if i == 0:
+            return 10
+        elif i == 1:
+            raise Exception('exception!')
+    return -1
+
+def bar() -> None:
+    with Thing('a') as x, Thing('b') as y:
+        print("yooo?", x, y)
+
+def baz() -> None:
+    with Thing('a') as x, Thing('crash') as y:
+        print("yooo?", x, y)
+
+[file driver.py]
+from native import foo, bar, baz
+assert foo(0) == 10
+print('== foo ==')
+try:
+    foo(1)
+except Exception:
+    print('caught')
+assert foo(2) == -1
+
+print('== bar ==')
+bar()
+
+print('== baz ==')
+try:
+    baz()
+except Exception:
+    print('caught')
+
+[out]
+enter! a
+yooo? a
+exit! a None
+== foo ==
+enter! a
+yooo? a
+exit! a exception!
+caught
+enter! a
+yooo? a
+exit! a None
+== bar ==
+enter! a
+enter! b
+yooo? a b
+exit! b None
+exit! a None
+== baz ==
+enter! a
+enter! crash
+exit! a ohno
+caught
+
+[case testDisplays]
+from typing import List, Set, Tuple, Sequence, Dict, Any, Mapping
+
+def listDisplay(x: List[int], y: List[int]) -> List[int]:
+    return [1, 2, *x, *y, 3]
+
+def setDisplay(x: Set[int], y: Set[int]) -> Set[int]:
+    return {1, 2, *x, *y, 3}
+
+def tupleDisplay(x: Sequence[str], y: Sequence[str]) -> Tuple[str, ...]:
+    return ('1', '2', *x, *y, '3')
+
+def dictDisplay(x: str, y1: Dict[str, int], y2: Dict[str, int]) -> Dict[str, int]:
+    return {x: 2, **y1, 'z': 3, **y2}
+
+def dictDisplayUnpackMapping(obj: Mapping[str, str]) -> Dict[str, str]:
+    return {**obj, "env": "value"}
+
+[file driver.py]
+import os
+from native import listDisplay, setDisplay, tupleDisplay, dictDisplay, dictDisplayUnpackMapping
+assert listDisplay([4], [5, 6]) == [1, 2, 4, 5, 6, 3]
+assert setDisplay({4}, {5}) == {1, 2, 3, 4, 5}
+assert tupleDisplay(['4', '5'], ['6']) == ('1', '2', '4', '5', '6', '3')
+assert dictDisplay('x', {'y1': 1}, {'y2': 2, 'z': 5}) == {'x': 2, 'y1': 1, 'y2': 2, 'z': 5}
+assert dictDisplayUnpackMapping(os.environ) == {**os.environ, "env": "value"}
+
+[case testArbitraryLvalues]
+from typing import List, Dict, Any
+
+class O(object):
+    def __init__(self) -> None:
+        self.x = 1
+
+def increment_attr(a: Any) -> Any:
+    a.x += 1
+    return a
+
+def increment_attr_o(o: O) -> O:
+    o.x += 1
+    return o
+
+def increment_all_indices(l: List[int]) -> List[int]:
+    for i in range(len(l)):
+        l[i] += 1
+    return l
+
+def increment_all_keys(d: Dict[str, int]) -> Dict[str, int]:
+    for k in d:
+        d[k] += 1
+    return d
+
+[file driver.py]
+from native import O, increment_attr, increment_attr_o, increment_all_indices, increment_all_keys
+
+class P(object):
+    def __init__(self) -> None:
+        self.x = 0
+
+assert increment_attr(P()).x == 1
+assert increment_attr_o(O()).x == 2
+assert increment_all_indices([1, 2, 3]) == [2, 3, 4]
+assert increment_all_keys({'a':1, 'b':2, 'c':3}) == {'a':2, 'b':3, 'c':4}
+
+[case testControlFlowExprs]
+from typing import Tuple
+def foo() -> object:
+    print('foo')
+    return 'foo'
+def bar() -> object:
+    print('bar')
+    return 'bar'
+def t(x: int) -> int:
+    print(x)
+    return x
+
+def f(b: bool) -> Tuple[object, object, object]:
+    x = foo() if b else bar()
+    y = b or foo()
+    z = b and foo()
+    return (x, y, z)
+def g() -> Tuple[object, object]:
+    return (foo() or bar(), foo() and bar())
+
+def nand(p: bool, q: bool) -> bool:
+    if not (p and q):
+        return True
+    return False
+
+def chained(x: int, y: int, z: int) -> bool:
+    return t(x) < t(y) > t(z)
+
+def chained2(x: int, y: int, z: int, w: int) -> bool:
+    return t(x) < t(y) < t(z) < t(w)
+[file driver.py]
+from native import f, g, nand, chained, chained2
+assert f(True) == ('foo', True, 'foo')
+print()
+assert f(False) == ('bar', 'foo', False)
+print()
+assert g() == ('foo', 'bar')
+
+assert nand(True, True) == False
+assert nand(True, False) == True
+assert nand(False, True) == True
+assert nand(False, False) == True
+
+print()
+assert chained(10, 20, 15) == True
+print()
+assert chained(10, 20, 30) == False
+print()
+assert chained(21, 20, 30) == False
+print()
+assert chained2(1, 2, 3, 4) == True
+print()
+assert chained2(1, 0, 3, 4) == False
+print()
+assert chained2(1, 2, 0, 4) == False
+[out]
+foo
+foo
+
+bar
+foo
+
+foo
+foo
+bar
+
+10
+20
+15
+
+10
+20
+30
+
+21
+20
+
+1
+2
+3
+4
+
+1
+0
+
+1
+2
+0
+
+[case testMultipleAssignment]
+from typing import Tuple, List, Any
+
+def from_tuple(t: Tuple[int, str]) -> List[Any]:
+    x, y = t
+    return [y, x]
+
+def from_tuple_sequence(t: Tuple[int, ...]) -> List[int]:
+    x, y, z = t
+    return [z, y, x]
+
+def from_list(l: List[int]) -> List[int]:
+    x, y = l
+    return [y, x]
+
+def from_list_complex(l: List[int]) -> List[int]:
+    ll = l[:]
+    ll[1], ll[0] = l
+    return ll
+
+def from_any(o: Any) -> List[Any]:
+    x, y = o
+    return [y, x]
+
+def multiple_assignments(t: Tuple[int, str]) -> List[Any]:
+    a, b = c, d = t
+    e, f = g, h = 1, 2
+    return [a, b, c, d, e, f, g, h]
+[file driver.py]
+from native import (
+    from_tuple, from_tuple_sequence, from_list, from_list_complex, from_any, multiple_assignments
+)
+
+assert from_tuple((1, 'x')) == ['x', 1]
+
+assert from_tuple_sequence((1, 5, 4)) == [4, 5, 1]
+try:
+    from_tuple_sequence((1, 5))
+except ValueError as e:
+    assert 'not enough values to unpack (expected 3, got 2)' in str(e)
+else:
+    assert False
+
+assert from_list([3, 4]) == [4, 3]
+try:
+    from_list([5, 4, 3])
+except ValueError as e:
+    assert 'too many values to unpack (expected 2)' in str(e)
+else:
+    assert False
+
+assert from_list_complex([7, 6]) == [6, 7]
+try:
+    from_list_complex([5, 4, 3])
+except ValueError as e:
+    assert 'too many values to unpack (expected 2)' in str(e)
+else:
+    assert False
+
+assert from_any('xy') == ['y', 'x']
+
+assert multiple_assignments((4, 'x')) == [4, 'x', 4, 'x', 1, 2, 1, 2]
+
+[case testUnpack]
+from typing import List
+
+a, *b = [1, 2, 3, 4, 5]
+
+*c, d = [1, 2, 3, 4, 5]
+
+e, *f = [1,2]
+
+j, *k, l = [1, 2, 3]
+
+m, *n, o = [1, 2, 3, 4, 5, 6]
+
+p, q, r, *s, t = [1,2,3,4,5,6,7,8,9,10]
+
+tup = (1,2,3)
+y, *z = tup
+
+def unpack1(l : List[int]) -> None:
+    *v1, v2, v3 = l
+
+def unpack2(l : List[int]) -> None:
+    v1, *v2, v3 = l
+
+def unpack3(l : List[int]) -> None:
+    v1, v2, *v3 = l
+
+[file driver.py]
+from native import a, b, c, d, e, f, j, k, l, m, n, o, p, q, r, s, t, y, z
+from native import unpack1, unpack2, unpack3
+from testutil import assertRaises
+
+assert a == 1
+assert b == [2,3,4,5]
+assert c == [1,2,3,4]
+assert d == 5
+assert e == 1
+assert f == [2]
+assert j == 1
+assert k == [2]
+assert l == 3
+assert m == 1
+assert n == [2,3,4,5]
+assert o == 6
+assert p == 1
+assert q == 2
+assert r == 3
+assert s == [4,5,6,7,8,9]
+assert t == 10
+assert y == 1
+assert z == [2,3]
+
+with assertRaises(ValueError, "not enough values to unpack"):
+    unpack1([1])
+
+with assertRaises(ValueError, "not enough values to unpack"):
+    unpack2([1])
+
+with assertRaises(ValueError, "not enough values to unpack"):
+    unpack3([1])
+
+[out]
+
+[case testModuleTopLevel]
+x = 1
+print(x)
+
+def f() -> None:
+    print(x + 1)
+
+def g() -> None:
+    global x
+    x = 77
+
+[file driver.py]
+import native
+native.f()
+native.x = 5
+native.f()
+native.g()
+print(native.x)
+
+[out]
+1
+2
+6
+77
+
+[case testComprehensions]
+from typing import List
+
+# A list comprehension
+l = [str(x) + "     " + str(y) + "   " + str(x*y) for x in range(10)
+     if x != 6 if x != 5 for y in range(x) if y*x != 8]
+
+# Test short-circuiting as well
+def pred(x: int) -> bool:
+    if x > 6:
+        raise Exception()
+    return x > 3
+# If we fail to short-circuit, pred(x) will be called with x=7
+# eventually and will raise an exception.
+l2 = [x for x in range(10) if x <= 6 if pred(x)]
+
+src = ['x']
+
+def f() -> List[str]:
+    global src
+    res = src
+    src = []
+    return res
+
+l3 = [s for s in f()]
+l4 = [s for s in f()]
+
+# A dictionary comprehension
+d = {k: k*k for k in range(10) if k != 5 if k != 6}
+
+# A set comprehension
+s = {str(x) + "     " + str(y) + "   " + str(x*y) for x in range(10)
+     if x != 6 if x != 5 for y in range(x) if y*x != 8}
+
+[file driver.py]
+from native import l, l2, l3, l4, d, s
+for a in l:
+    print(a)
+print(tuple(l2))
+assert l3 == ['x']
+assert l4 == []
+for k in sorted(d):
+    print(k, d[k])
+for a in sorted(s):
+    print(a)
+[out]
+1     0   0
+2     0   0
+2     1   2
+3     0   0
+3     1   3
+3     2   6
+4     0   0
+4     1   4
+4     3   12
+7     0   0
+7     1   7
+7     2   14
+7     3   21
+7     4   28
+7     5   35
+7     6   42
+8     0   0
+8     2   16
+8     3   24
+8     4   32
+8     5   40
+8     6   48
+8     7   56
+9     0   0
+9     1   9
+9     2   18
+9     3   27
+9     4   36
+9     5   45
+9     6   54
+9     7   63
+9     8   72
+(4, 5, 6)
+0 0
+1 1
+2 4
+3 9
+4 16
+7 49
+8 64
+9 81
+1     0   0
+2     0   0
+2     1   2
+3     0   0
+3     1   3
+3     2   6
+4     0   0
+4     1   4
+4     3   12
+7     0   0
+7     1   7
+7     2   14
+7     3   21
+7     4   28
+7     5   35
+7     6   42
+8     0   0
+8     2   16
+8     3   24
+8     4   32
+8     5   40
+8     6   48
+8     7   56
+9     0   0
+9     1   9
+9     2   18
+9     3   27
+9     4   36
+9     5   45
+9     6   54
+9     7   63
+9     8   72
+
+[case testDummyTypes]
+from typing import Tuple, List, Dict, NamedTuple
+from typing_extensions import Literal, TypedDict, NewType
+
+class A:
+    pass
+
+T = List[A]
+U = List[Tuple[int, str]]
+Z = List[List[int]]
+D = Dict[int, List[int]]
+N = NewType('N', int)
+G = Tuple[int, str]
+def foo(x: N) -> int:
+    return x
+foo(N(10))
+z = N(10)
+Lol = NamedTuple('Lol', (('a', int), ('b', T)))
+x = Lol(1, [])
+def take_lol(x: Lol) -> int:
+    return x.a
+
+TD = TypedDict('TD', {'a': int})
+def take_typed_dict(x: TD) -> int:
+    return x['a']
+
+def take_literal(x: Literal[1, 2, 3]) -> None:
+    print(x)
+
+[file driver.py]
+import sys
+from native import *
+
+if sys.version_info[:3] > (3, 5, 2):
+    assert "%s %s %s %s" % (T, U, Z, D) == "typing.List[native.A] typing.List[typing.Tuple[int, str]] typing.List[typing.List[int]] typing.Dict[int, typing.List[int]]"
+print(x)
+print(z)
+print(take_lol(x))
+print(take_typed_dict({'a': 20}))
+try:
+    take_typed_dict(None)
+except Exception as e:
+    print(type(e).__name__)
+
+
+take_literal(1)
+# We check that the type is the real underlying type
+try:
+    take_literal(None)
+except Exception as e:
+    print(type(e).__name__)
+# ... but not that it is a valid literal value
+take_literal(10)
+[out]
+Lol(a=1, b=[])
+10
+1
+20
+TypeError
+1
+TypeError
+10
+
+[case testClassBasedTypedDict]
+from typing_extensions import TypedDict
+
+class TD(TypedDict):
+    a: int
+
+class TD2(TD):
+    b: int
+
+class TD3(TypedDict, total=False):
+    c: int
+
+class TD4(TD3, TD2, total=False):
+    d: int
+
+def test_typed_dict() -> None:
+    d = TD(a=5)
+    assert d['a'] == 5
+    assert type(d) == dict
+    # TODO: This doesn't work yet
+    # assert TD.__annotations__ == {'a': int}
+
+def test_inherited_typed_dict() -> None:
+    d = TD2(a=5, b=3)
+    assert d['a'] == 5
+    assert d['b'] == 3
+    assert type(d) == dict
+
+def test_non_total_typed_dict() -> None:
+    d3 = TD3(c=3)
+    d4 = TD4(a=1, b=2, c=3, d=4)
+    assert d3['c'] == 3
+    assert d4['d'] == 4
+
+[case testClassBasedNamedTuple]
+from typing import NamedTuple
+import sys
+
+# Class-based NamedTuple requires Python 3.6+
+version = sys.version_info[:2]
+if version[0] == 3 and version[1] < 6:
+    exit()
+
+class NT(NamedTuple):
+    a: int
+
+def test_named_tuple() -> None:
+    t = NT(a=1)
+    assert t.a == 1
+    assert type(t) is NT
+    assert isinstance(t, tuple)
+    assert not isinstance(tuple([1]), NT)
+
+[case testUnion]
+from typing import Union
+
+class A:
+    def __init__(self, x: int) -> None:
+        self.x = x
+    def f(self, y: int) -> int:
+        return y + self.x
+
+class B:
+    def __init__(self, x: object) -> None:
+        self.x = x
+    def f(self, y: object) -> object:
+        return y
+
+def f(x: Union[A, str]) -> object:
+    if isinstance(x, A):
+        return x.x
+    else:
+        return x + 'x'
+
+def g(x: int) -> Union[A, int]:
+    if x == 0:
+        return A(1)
+    else:
+        return x + 1
+
+def get(x: Union[A, B]) -> object:
+    return x.x
+
+def call(x: Union[A, B]) -> object:
+    return x.f(5)
+
+[file driver.py]
+from native import A, B, f, g, get, call
+assert f('a') == 'ax'
+assert f(A(4)) == 4
+assert isinstance(g(0), A)
+assert g(2) == 3
+assert get(A(5)) == 5
+assert get(B('x')) == 'x'
+assert call(A(4)) == 9
+assert call(B('x')) == 5
+try:
+    f(1)
+except TypeError:
+    pass
+else:
+    assert False
+
+[case testAnyAll]
+from typing import Iterable
+
+def call_any_nested(l: Iterable[Iterable[int]], val: int = 0) -> int:
+    res = any(i == val for l2 in l for i in l2)
+    return 0 if res else 1
+
+def call_any(l: Iterable[int], val: int = 0) -> int:
+    res = any(i == val for i in l)
+    return 0 if res else 1
+
+def call_all(l: Iterable[int], val: int = 0) -> int:
+    res = all(i == val for i in l)
+    return 0 if res else 1
+
+[file driver.py]
+from native import call_any, call_all, call_any_nested
+
+zeros = [0, 0, 0]
+ones = [1, 1, 1]
+mixed_001 = [0, 0, 1]
+mixed_010 = [0, 1, 0]
+mixed_100 = [1, 0, 0]
+mixed_011 = [0, 1, 1]
+mixed_101 = [1, 0, 1]
+mixed_110 = [1, 1, 0]
+
+assert call_any([]) == 1
+assert call_any(zeros) == 0
+assert call_any(ones) == 1
+assert call_any(mixed_001) == 0
+assert call_any(mixed_010) == 0
+assert call_any(mixed_100) == 0
+assert call_any(mixed_011) == 0
+assert call_any(mixed_101) == 0
+assert call_any(mixed_110) == 0
+
+assert call_all([]) == 0
+assert call_all(zeros) == 0
+assert call_all(ones) == 1
+assert call_all(mixed_001) == 1
+assert call_all(mixed_010) == 1
+assert call_all(mixed_100) == 1
+assert call_all(mixed_011) == 1
+assert call_all(mixed_101) == 1
+assert call_all(mixed_110) == 1
+
+assert call_any_nested([[1, 1, 1], [1, 1], []]) == 1
+assert call_any_nested([[1, 1, 1], [0, 1], []]) == 0
+
+[case testSum]
+[typing fixtures/typing-full.pyi]
+from typing import Any, List
+
+def test_sum_of_numbers() -> None:
+    assert sum(x for x in [1, 2, 3]) == 6
+    assert sum(x for x in [0.0, 1.2, 2]) == 6.2
+    assert sum(x for x in [1, 1j]) == 1 + 1j
+
+def test_sum_callables() -> None:
+    assert sum((lambda x: x == 0)(x) for x in []) == 0
+    assert sum((lambda x: x == 0)(x) for x in [0]) == 1
+    assert sum((lambda x: x == 0)(x) for x in [0, 0, 0]) == 3
+    assert sum((lambda x: x == 0)(x) for x in [0, 1, 0]) == 2
+    assert sum((lambda x: x % 2 == 0)(x) for x in range(2**10)) == 2**9
+
+def test_sum_comparisons() -> None:
+    assert sum(x == 0 for x in []) == 0
+    assert sum(x == 0 for x in [0]) == 1
+    assert sum(x == 0 for x in [0, 0, 0]) == 3
+    assert sum(x == 0 for x in [0, 1, 0]) == 2
+    assert sum(x % 2 == 0 for x in range(2**10)) == 2**9
+
+def test_sum_multi() -> None:
+    assert sum(i + j == 0 for i, j in zip([0, 0, 0], [0, 1, 0])) == 2
+
+def test_sum_misc() -> None:
+    # misc cases we do optimize (note, according to sum's helptext, we don't need to support
+    # non-numeric cases, but CPython and mypyc both do anyway)
+    assert sum(c == 'd' for c in 'abcdd') == 2
+    # misc cases we do not optimize
+    assert sum([0, 1]) == 1
+    assert sum([0, 1], 1) == 2
+
+def test_sum_start_given() -> None:
+    a = 1
+    assert sum((x == 0 for x in [0, 1]), a) == 2
+    assert sum(((lambda x: x == 0)(x) for x in []), 1) == 1
+    assert sum(((lambda x: x == 0)(x) for x in [0]), 1) == 2
+    assert sum(((lambda x: x == 0)(x) for x in [0, 0, 0]), 1) == 4
+    assert sum(((lambda x: x == 0)(x) for x in [0, 1, 0]), 1) == 3
+    assert sum(((lambda x: x % 2 == 0)(x) for x in range(2**10)), 1) == 2**9 + 1
+    assert sum((x for x in [1, 1j]), 2j) == 1 + 3j
+    assert sum((c == 'd' for c in 'abcdd'), 1) == 3
+
+[case testNoneStuff]
+from typing import Optional
+class A:
+    x: int
+
+def lol(x: A) -> None:
+    setattr(x, 'x', 5)
+
+def none() -> None:
+    return
+
+def arg(x: Optional[A]) -> bool:
+    return x is None
+
+[file driver.py]
+import native
+native.lol(native.A())
+
+# Catch refcounting failures
+for i in range(10000):
+    native.none()
+    native.arg(None)
+
+[case testBorrowRefs]
+def make_garbage(arg: object) -> None:
+    b = True
+    while b:
+        arg = None
+        b = False
+
+[file driver.py]
+from native import make_garbage
+import sys
+
+def test():
+    x = object()
+    r0 = sys.getrefcount(x)
+    make_garbage(x)
+    r1 = sys.getrefcount(x)
+    assert r0 == r1
+
+test()
+
+[case testFinalStaticRunFail]
+if False:
+    from typing import Final
+
+if bool():
+    x: 'Final' = [1]
+
+def f() -> int:
+    return x[0]
+
+[file driver.py]
+from native import f
+try:
+    print(f())
+except NameError as e:
+    print(e.args[0])
+[out]
+value for final name "x" was not set
+
+[case testFinalStaticRunListTupleInt]
+if False:
+    from typing import Final
+
+x: 'Final' = [1]
+y: 'Final' = (1, 2)
+z: 'Final' = 1 + 1
+
+def f() -> int:
+    return x[0]
+def g() -> int:
+    return y[0]
+def h() -> int:
+    return z - 1
+
+[file driver.py]
+from native import f, g, h, x, y, z
+print(f())
+print(x[0])
+print(g())
+print(y)
+print(h())
+print(z)
+[out]
+1
+1
+1
+(1, 2)
+1
+2
+
+[case testCheckVersion]
+import sys
+
+if sys.version_info[:2] == (3, 12):
+    def version() -> int:
+        return 12
+elif sys.version_info[:2] == (3, 11):
+    def version() -> int:
+        return 11
+elif sys.version_info[:2] == (3, 10):
+    def version() -> int:
+        return 10
+elif sys.version_info[:2] == (3, 9):
+    def version() -> int:
+        return 9
+elif sys.version_info[:2] == (3, 8):
+    def version() -> int:
+        return 8
+elif sys.version_info[:2] == (3, 7):
+    def version() -> int:
+        return 7
+elif sys.version_info[:2] == (3, 6):
+    def version() -> int:
+        return 6
+else:
+    raise Exception("we don't support this version yet!")
+
+
+[file driver.py]
+import sys
+version = sys.version_info[:2]
+
+import native
+assert native.version() == sys.version_info[1]
+
+[case testTypeErrorMessages]
+from typing import Tuple
+class A:
+    pass
+class B:
+    pass
+
+def f(x: B) -> None:
+    pass
+def g(x: Tuple[int, A]) -> None:
+    pass
+[file driver.py]
+from testutil import assertRaises
+from native import A, f, g
+
+class Busted:
+    pass
+Busted.__module__ = None
+
+with assertRaises(TypeError, "int"):
+    f(0)
+with assertRaises(TypeError, "native.A"):
+    f(A())
+with assertRaises(TypeError, "tuple[None, native.A]"):
+    f((None, A()))
+with assertRaises(TypeError, "tuple[tuple[int, str], native.A]"):
+    f(((1, "ha"), A()))
+with assertRaises(TypeError, "tuple[<50 items>]"):
+    f(tuple(range(50)))
+
+with assertRaises(TypeError, "errored formatting real type!"):
+    f(Busted())
+
+with assertRaises(TypeError, "tuple[int, native.A] object expected; got tuple[int, int]"):
+    g((20, 30))
+
+[case testComprehensionShadowBinder]
+def foo(x: object) -> object:
+    if isinstance(x, list):
+        return tuple(x for x in x), x
+    return None
+
+[file driver.py]
+from native import foo
+
+assert foo(None) == None
+assert foo([1, 2, 3]) == ((1, 2, 3), [1, 2, 3])
+
+[case testAllLiterals]
+# Test having all sorts of literals in a single file
+
+def test_str() -> None:
+    assert '' == eval("''")
+    assert len('foo bar' + str()) == 7
+    assert 'foo bar' == eval("'foo bar'")
+    assert 'foo\u1245\0bar' == eval("'foo' + chr(0x1245) + chr(0) + 'bar'")
+    assert 'foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345' == eval("'foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345'")
+    assert 'Zoobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar123' == eval("'Zoobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar123'")
+
+def test_bytes() -> None:
+    assert b'' == eval("b''")
+    assert b'foo bar' == eval("b'foo bar'")
+    assert b'\xafde' == eval(r"b'\xafde'")
+    assert b'foo\xde\0bar' == eval("b'foo' + bytes([0xde, 0]) + b'bar'")
+    assert b'foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345' == eval("b'foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345foobar12345'")
+
+def test_int() -> None:
+    assert 2875872359823758923758923759 == eval('2875872359823758923758923759')
+    assert -552875872359823758923758923759 == eval('-552875872359823758923758923759')
+
+def test_float() -> None:
+    assert 1.5 == eval('1.5')
+    assert -3.75 == eval('-3.75')
+    assert 2.5e10 == eval('2.5e10')
+    assert 2.5e50 == eval('2.5e50')
+    assert 2.5e1000 == eval('2.5e1000')
+    assert -2.5e1000 == eval('-2.5e1000')
+
+def test_complex() -> None:
+    assert 1.5j == eval('1.5j')
+    assert 1.5j + 2.5 == eval('2.5 + 1.5j')
+    assert -3.75j == eval('-3.75j')
+    assert 2.5e10j == eval('2.5e10j')
+    assert 2.5e50j == eval('2.5e50j')
+    assert 2.5e1000j == eval('2.5e1000j')
+    assert 2.5e1000j + 3.5e2000 == eval('3.5e2000 + 2.5e1000j')
+    assert -2.5e1000j == eval('-2.5e1000j')
+
+[case testUnreachableExpressions]
+from typing import cast
+import sys
+
+A = sys.platform == 'x' and foobar
+B = sys.platform == 'x' and sys.foobar
+C = sys.platform == 'x' and f(a, -b, 'y') > [c + e, g(y=2)]
+C = sys.platform == 'x' and cast(a, b[c])
+C = sys.platform == 'x' and (lambda x: y + x)
+# TODO: This still doesn't work
+# C = sys.platform == 'x' and (x for y in z)
+
+assert not A
+assert not B
+assert not C
+
+[case testDoesntSegfaultWhenTopLevelFails]
+# make the initial import fail
+assert False
+
+class C:
+    def __init__(self):
+        self.x = 1
+        self.y = 2
+def test() -> None:
+    a = C()
+[file driver.py]
+# load native, cause PyInit to be run, create the module but don't finish initializing the globals
+try:
+    import native
+except:
+    pass
+try:
+    # try accessing those globals that were never properly initialized
+    import native
+    native.test()
+# should fail with AssertionError due to `assert False` in other function
+except AssertionError:
+    pass
+
+[case testRepeatedUnderscoreFunctions]
+def _(arg): pass
+def _(arg): pass
+
+[case testUnderscoreFunctionsInMethods]
+
+class A:
+    def _(arg): pass
+    def _(arg): pass
+class B(A):
+    def _(arg): pass
+    def _(arg): pass
+
+[case testGlobalRedefinition_toplevel]
+# mypy: allow-redefinition
+i = 0
+i += 1
+i = "foo"
+i += i
+i = b"foo"
+
+def test_redefinition() -> None:
+    assert i == b"foo"
+
+[case testWithNative]
+class DummyContext:
+    def __init__(self):
+        self.c = 0
+    def __enter__(self) -> None:
+        self.c += 1
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        self.c -= 1
+
+def test_dummy_context() -> None:
+    c = DummyContext()
+    with c:
+        assert c.c == 1
+    assert c.c == 0
+
+[case testWithNativeVarArgs]
+class DummyContext:
+    def __init__(self):
+        self.c = 0
+    def __enter__(self) -> None:
+        self.c += 1
+    def __exit__(self, *args: object) -> None:
+        self.c -= 1
+
+def test_dummy_context() -> None:
+    c = DummyContext()
+    with c:
+        assert c.c == 1
+    assert c.c == 0

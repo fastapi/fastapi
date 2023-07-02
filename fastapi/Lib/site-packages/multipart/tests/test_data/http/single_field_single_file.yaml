@@ -1,0 +1,13 @@
+boundary: boundary
+expected:
+  - name: field
+    type: field
+    data: !!binary |
+      dGVzdDE=
+  - name: file
+    type: file
+    file_name: file.txt
+    data: !!binary |
+      dGVzdDI=
+
+

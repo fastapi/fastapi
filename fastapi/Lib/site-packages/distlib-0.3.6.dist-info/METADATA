@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: distlib
+Version: 0.3.6
+Summary: Distribution utilities
+Home-page: https://github.com/pypa/distlib
+Author: Vinay Sajip
+Author-email: vinay_sajip@red-dove.com
+License: Python license
+Project-URL: Documentation, https://distlib.readthedocs.io/
+Project-URL: Source, https://github.com/pypa/distlib
+Project-URL: Tracker, https://github.com/pypa/distlib/issues
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Python Software Foundation License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development
+License-File: LICENSE.txt
+
+|badge1| |badge2|
+
+.. |badge1| image:: https://img.shields.io/github/workflow/status/pypa/distlib/Tests
+   :alt: GitHub test status
+
+.. |badge2| image:: https://img.shields.io/codecov/c/github/pypa/distlib
+   :target: https://app.codecov.io/gh/pypa/distlib
+   :alt: GitHub coverage status
+
+What is it?
+-----------
+
+Distlib is a library which implements low-level functions that relate to
+packaging and distribution of Python software. It is intended to be used as the
+basis for third-party packaging tools. The documentation is available at
+
+https://distlib.readthedocs.io/
+
+Main features
+-------------
+
+Distlib currently offers the following features:
+
+* The package ``distlib.database``, which implements a database of installed
+  distributions, as defined by :pep:`376`, and distribution dependency graph
+  logic. Support is also provided for non-installed distributions (i.e.
+  distributions registered with metadata on an index like PyPI), including
+  the ability to scan for dependencies and building dependency graphs.
+* The package ``distlib.index``, which implements an interface to perform
+  operations on an index, such as registering a project, uploading a
+  distribution or uploading documentation. Support is included for verifying
+  SSL connections (with domain matching) and signing/verifying packages using
+  GnuPG.
+* The package ``distlib.metadata``, which implements distribution metadata as
+  defined by :pep:`643`, :pep:`566`, :pep:`345`, :pep:`314` and :pep:`241`.
+* The package ``distlib.markers``, which implements environment markers as
+  defined by :pep:`508`.
+* The package ``distlib.manifest``, which implements lists of files used
+  in packaging source distributions.
+* The package ``distlib.locators``, which allows finding distributions, whether
+  on PyPI (XML-RPC or via the "simple" interface), local directories or some
+  other source.
+* The package ``distlib.resources``, which allows access to data files stored
+  in Python packages, both in the file system and in .zip files.
+* The package ``distlib.scripts``, which allows installing of scripts with
+  adjustment of shebang lines and support for native Windows executable
+  launchers.
+* The package ``distlib.version``, which implements version specifiers as
+  defined by :pep:`440`, but also support for working with "legacy" versions and
+  semantic versions.
+* The package ``distlib.wheel``, which provides support for building and
+  installing from the Wheel format for binary distributions (see :pep:`427`).
+* The package ``distlib.util``, which contains miscellaneous functions and
+  classes which are useful in packaging, but which do not fit neatly into
+  one of the other packages in ``distlib``.* The package implements enhanced
+  globbing functionality such as the ability to use ``**`` in patterns to
+  specify recursing into subdirectories.
+
+
+Python version and platform compatibility
+-----------------------------------------
+
+Distlib is intended to be used on and is tested on Python versions 2.7 and 3.6 - 3.10,
+pypy-2.7 and pypy3 on Linux, Windows, and macOS.
+
+Project status
+--------------
+
+The project has reached a mature status in its development: there is a comprehensive
+test suite and it has been exercised on Windows, Ubuntu and macOS. The project is used
+by well-known projects such as `pip <https://pypi.org/pypi/pip>`_ and `caniusepython3
+<https://pypi.org/pypi/caniusepython3>`_.
+
+This project was migrated from Mercurial to Git and from BitBucket to GitHub, and
+although all information of importance has been retained across the migration, some
+commit references in issues and issue comments may have become invalid.
+
+Code of Conduct
+---------------
+
+Everyone interacting in the distlib project's codebases, issue trackers, chat
+rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
+
+.. _PyPA Code of Conduct: https://www.pypa.io/en/latest/code-of-conduct/
+
+

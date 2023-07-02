@@ -1,0 +1,448 @@
+# Test cases for exceptions (compile and run)
+
+[case testException]
+from typing import List
+def f(x: List[int]) -> None:
+    g(x)
+
+def g(x: List[int]) -> bool:
+    x[5] = 2
+    return True
+
+def r1() -> None:
+    q1()
+
+def q1() -> None:
+    raise Exception("test")
+
+def r2() -> None:
+    q2()
+
+def q2() -> None:
+    raise Exception
+
+class A:
+    def __init__(self) -> None:
+        raise Exception
+
+def hey() -> None:
+    A()
+
+[file driver.py]
+from native import f, r1, r2, hey
+import traceback
+try:
+    f([])
+except IndexError:
+    traceback.print_exc()
+try:
+    r1()
+except Exception:
+    traceback.print_exc()
+try:
+    r2()
+except Exception:
+    traceback.print_exc()
+try:
+    hey()
+except Exception:
+    traceback.print_exc()
+[out]
+Traceback (most recent call last):
+  File "driver.py", line 4, in <module>
+    f([])
+  File "native.py", line 3, in f
+    g(x)
+  File "native.py", line 6, in g
+    x[5] = 2
+IndexError: list assignment index out of range
+Traceback (most recent call last):
+  File "driver.py", line 8, in <module>
+    r1()
+  File "native.py", line 10, in r1
+    q1()
+  File "native.py", line 13, in q1
+    raise Exception("test")
+Exception: test
+Traceback (most recent call last):
+  File "driver.py", line 12, in <module>
+    r2()
+  File "native.py", line 16, in r2
+    q2()
+  File "native.py", line 19, in q2
+    raise Exception
+Exception
+Traceback (most recent call last):
+  File "driver.py", line 16, in <module>
+    hey()
+  File "native.py", line 26, in hey
+    A()
+  File "native.py", line 23, in __init__
+    raise Exception
+Exception
+
+[case testTryExcept]
+from typing import Any, Iterator
+import wrapsys
+def g(b: bool) -> None:
+    try:
+        if b:
+            x = [0]
+            x[1]
+        else:
+            raise Exception('hi')
+    except:
+        print("caught!")
+
+def r(x: int) -> None:
+    if x == 0:
+        [0][1]
+    elif x == 1:
+        raise Exception('hi')
+    elif x == 2:
+        {1: 1}[0]
+    elif x == 3:
+        a = object()  # type: Any
+        a.lol
+
+def f(b: bool) -> None:
+    try:
+        r(int(b))
+    except AttributeError:
+        print('no')
+    except:
+        print(str(wrapsys.exc_info()[1]))
+    print(str(wrapsys.exc_info()[1]))
+
+def h() -> None:
+    while True:
+        try:
+            raise Exception('gonna break')
+        except:
+            print(str(wrapsys.exc_info()[1]))
+            break
+    print(str(wrapsys.exc_info()[1]))
+
+def i() -> None:
+    try:
+        r(0)
+    except:
+        print(type(wrapsys.exc_info()[1]))
+        raise
+
+def j(n: int) -> None:
+    try:
+        r(n)
+    except (IndexError, KeyError):
+        print("lookup!")
+    except AttributeError as e:
+        print("attr! --", e)
+
+def k() -> None:
+    try:
+        r(1)
+    except:
+        r(0)
+
+def l() -> None:
+    try:
+        r(0)
+    except IndexError:
+        try:
+            r(2)
+        except KeyError as e:
+            print("key! --", e)
+
+def m(x: object) -> int:
+    try:
+        st = id(x)
+    except Exception:
+        return -1
+    return st + 1
+
+def iter_exception() -> Iterator[str]:
+    try:
+        r(0)
+    except KeyError as e:
+        yield 'lol'
+
+[file wrapsys.py]
+# This is a gross hack around some limitations of the test system/mypyc.
+from typing import Any
+import sys
+def exc_info() -> Any:
+    return sys.exc_info()  # type: ignore
+
+[file driver.py]
+import sys, traceback
+from native import g, f, h, i, j, k, l, m, iter_exception
+from testutil import assertRaises
+print("== i ==")
+try:
+    i()
+except:
+    traceback.print_exc(file=sys.stdout)
+
+print("== k ==")
+try:
+    k()
+except:
+    traceback.print_exc(file=sys.stdout)
+
+print("== g ==")
+g(True)
+g(False)
+
+print("== f ==")
+f(True)
+f(False)
+
+print("== h ==")
+h()
+
+print("== j ==")
+j(0)
+j(2)
+j(3)
+try:
+    j(1)
+except:
+    print("out!")
+
+print("== l ==")
+l()
+
+m('lol')
+
+with assertRaises(IndexError):
+    list(iter_exception())
+
+[out]
+== i ==
+<class 'IndexError'>
+Traceback (most recent call last):
+  File "driver.py", line 6, in <module>
+    i()
+  File "native.py", line 44, in i
+    r(0)
+  File "native.py", line 15, in r
+    [0][1]
+IndexError: list index out of range
+== k ==
+Traceback (most recent call last):
+  File "native.py", line 59, in k
+    r(1)
+  File "native.py", line 17, in r
+    raise Exception('hi')
+Exception: hi
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "driver.py", line 12, in <module>
+    k()
+  File "native.py", line 61, in k
+    r(0)
+  File "native.py", line 15, in r
+    [0][1]
+IndexError: list index out of range
+== g ==
+caught!
+caught!
+== f ==
+hi
+None
+list index out of range
+None
+== h ==
+gonna break
+None
+== j ==
+lookup!
+lookup!
+attr! -- 'object' object has no attribute 'lol'
+out!
+== l ==
+key! -- 0
+
+[case testTryFinally]
+from typing import Any
+import wrapsys
+
+def a(b1: bool, b2: int) -> None:
+    try:
+        if b1:
+            raise Exception('hi')
+    finally:
+        print('finally:', str(wrapsys.exc_info()[1]))
+        if b2 == 2:
+            return
+        if b2 == 1:
+            raise Exception('again!')
+
+def b(b1: int, b2: int) -> str:
+    try:
+        if b1 == 1:
+            raise Exception('hi')
+        elif b1 == 2:
+            [0][1]
+        elif b1 == 3:
+            return 'try'
+    except IndexError:
+        print('except')
+    finally:
+        print('finally:', str(wrapsys.exc_info()[1]))
+        if b2 == 2:
+            return 'finally'
+        if b2 == 1:
+            raise Exception('again!')
+    return 'outer'
+
+def c() -> str:
+    try:
+        try:
+            return 'wee'
+        finally:
+            print("out a")
+    finally:
+        print("out b")
+
+
+[file wrapsys.py]
+# This is a gross hack around some limitations of the test system/mypyc.
+from typing import Any
+import sys
+def exc_info() -> Any:
+    return sys.exc_info()  # type: ignore
+
+[file driver.py]
+import traceback
+import sys
+from native import a, b, c
+
+def run(f):
+    try:
+        x = f()
+        if x:
+            print("returned:", x)
+    except Exception as e:
+        print("caught:", type(e).__name__ + ": " + str(e))
+
+print("== a ==")
+for i in range(3):
+    for b1 in [False, True]:
+        run(lambda: a(b1, i))
+
+print("== b ==")
+for i in range(4):
+    for j in range(3):
+        run(lambda: b(i, j))
+
+print("== b ==")
+print(c())
+
+[out]
+== a ==
+finally: None
+finally: hi
+caught: Exception: hi
+finally: None
+caught: Exception: again!
+finally: hi
+caught: Exception: again!
+finally: None
+finally: hi
+== b ==
+finally: None
+returned: outer
+finally: None
+caught: Exception: again!
+finally: None
+returned: finally
+finally: hi
+caught: Exception: hi
+finally: hi
+caught: Exception: again!
+finally: hi
+returned: finally
+except
+finally: None
+returned: outer
+except
+finally: None
+caught: Exception: again!
+except
+finally: None
+returned: finally
+finally: None
+returned: try
+finally: None
+caught: Exception: again!
+finally: None
+returned: finally
+== b ==
+out a
+out b
+wee
+
+[case testCustomException]
+from typing import List
+
+class ListOutOfBounds(IndexError):
+    pass
+
+class UserListWarning(UserWarning):
+    pass
+
+def f(l: List[int], k: int) -> int:
+    try:
+        return l[k]
+    except IndexError:
+        raise ListOutOfBounds("Ruh-roh from f!")
+
+def g(l: List[int], k: int) -> int:
+    try:
+        return f([1,2,3], 3)
+    except ListOutOfBounds:
+        raise ListOutOfBounds("Ruh-roh from g!")
+
+def k(l: List[int], k: int) -> int:
+    try:
+        return g([1,2,3], 3)
+    except IndexError:
+        raise UserListWarning("Ruh-roh from k!")
+
+def h() -> int:
+    try:
+        return k([1,2,3], 3)
+    except UserWarning:
+        return -1
+
+[file driver.py]
+from native import h
+assert h() == -1
+
+[case testExceptionAtModuleTopLevel]
+from typing import Any
+
+def f(x: int) -> None: pass
+
+y: Any = ''
+f(y)
+
+[file driver.py]
+import traceback
+try:
+    import native
+except TypeError:
+    traceback.print_exc()
+else:
+    assert False
+
+[out]
+Traceback (most recent call last):
+  File "driver.py", line 3, in <module>
+    import native
+  File "native.py", line 6, in <module>
+    f(y)
+TypeError: int object expected; got str

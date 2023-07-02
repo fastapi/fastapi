@@ -1,0 +1,38 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="{{ lang.t('search.placeholder') }}" placeholder="{{ lang.t('search.placeholder') }}" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        {% include ".icons/material/magnify.svg" %}
+        {% include ".icons/material/arrow-left.svg" %}
+      </label>
+      <nav class="md-search__options" aria-label="{{ lang.t('search') }}">
+        {% if "search.share" in features %}
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="{{ lang.t('search.share') }}" aria-label="{{ lang.t('search.share') }}" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            {% include ".icons/material/share-variant.svg" %}
+          </a>
+        {% endif %}
+        <button type="reset" class="md-search__icon md-icon" title="{{ lang.t('search.reset') }}" aria-label="{{ lang.t('search.reset') }}" tabindex="-1">
+          {% include ".icons/material/close.svg" %}
+        </button>
+      </nav>
+      {% if "search.suggest" in features %}
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      {% endif %}
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            {{ lang.t("search.result.initializer") }}
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
