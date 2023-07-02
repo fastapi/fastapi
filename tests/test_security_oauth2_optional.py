@@ -97,9 +97,9 @@ grant_type_incorrect = {
     "detail": [
         {
             "loc": ["body", "grant_type"],
-            "msg": 'string does not match regex "password"',
+            "msg": 'string does not match regex "^password$"',
             "type": "value_error.str.regex",
-            "ctx": {"pattern": "password"},
+            "ctx": {"pattern": "^password$"},
         }
     ]
 }
@@ -112,6 +112,16 @@ grant_type_incorrect = {
         ({"username": "johndoe", "password": "secret"}, 422, grant_type_required),
         (
             {"username": "johndoe", "password": "secret", "grant_type": "incorrect"},
+            422,
+            grant_type_incorrect,
+        ),
+        (
+            {"username": "johndoe", "password": "secret", "grant_type": "passwordblah"},
+            422,
+            grant_type_incorrect,
+        ),
+        (
+            {"username": "johndoe", "password": "secret", "grant_type": "blahpassword"},
             422,
             grant_type_incorrect,
         ),
@@ -197,7 +207,7 @@ def test_openapi_schema():
                     "properties": {
                         "grant_type": {
                             "title": "Grant Type",
-                            "pattern": "password",
+                            "pattern": "^password$",
                             "type": "string",
                         },
                         "username": {"title": "Username", "type": "string"},
