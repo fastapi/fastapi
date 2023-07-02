@@ -114,27 +114,30 @@ class Schema(BaseModel):
     dynamicAnchor: Optional[str] = Field(default=None, alias="$dynamicAnchor")
     ref: Optional[str] = Field(default=None, alias="$ref")
     dynamicRef: Optional[str] = Field(default=None, alias="$dynamicRef")
-    defs: Optional[Dict[str, "Schema"]] = Field(default=None, alias="$defs")
+    defs: Optional[Dict[str, "SchemaOrBool"]] = Field(default=None, alias="$defs")
     comment: Optional[str] = Field(default=None, alias="$comment")
     # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-a-vocabulary-for-applying-s
     # A Vocabulary for Applying Subschemas
-    allOf: Optional[List["Schema"]] = None
-    anyOf: Optional[List["Schema"]] = None
-    oneOf: Optional[List["Schema"]] = None
-    not_: Optional["Schema"] = Field(default=None, alias="not")
-    if_: Optional["Schema"] = Field(default=None, alias="if")
-    then: Optional["Schema"] = None
-    else_: Optional["Schema"] = Field(default=None, alias="else")
-    dependentSchemas: Optional[Dict[str, "Schema"]] = None
-    prefixItems: Optional[List["Schema"]] = None
-    items: Optional[Union["Schema", List["Schema"]]] = None
-    contains: Optional["Schema"] = None
-    properties: Optional[Dict[str, "Schema"]] = None
-    patternProperties: Optional[Dict[str, "Schema"]] = None
-    additionalProperties: Optional["Schema"] = None
-    propertyNames: Optional["Schema"] = None
-    unevaluatedItems: Optional["Schema"] = None
-    unevaluatedProperties: Optional["Schema"] = None
+    allOf: Optional[List["SchemaOrBool"]] = None
+    anyOf: Optional[List["SchemaOrBool"]] = None
+    oneOf: Optional[List["SchemaOrBool"]] = None
+    not_: Optional["SchemaOrBool"] = Field(default=None, alias="not")
+    if_: Optional["SchemaOrBool"] = Field(default=None, alias="if")
+    then: Optional["SchemaOrBool"] = None
+    else_: Optional["SchemaOrBool"] = Field(default=None, alias="else")
+    dependentSchemas: Optional[Dict[str, "SchemaOrBool"]] = None
+    prefixItems: Optional[List["SchemaOrBool"]] = None
+    # TODO: uncomment and remove below when deprecating Pydantic v1
+    # It generales a list of schemas for tuples, before prefixItems was available
+    # items: Optional["SchemaOrBool"] = None
+    items: Optional[Union["SchemaOrBool", List["SchemaOrBool"]]] = None
+    contains: Optional["SchemaOrBool"] = None
+    properties: Optional[Dict[str, "SchemaOrBool"]] = None
+    patternProperties: Optional[Dict[str, "SchemaOrBool"]] = None
+    additionalProperties: Optional["SchemaOrBool"] = None
+    propertyNames: Optional["SchemaOrBool"] = None
+    unevaluatedItems: Optional["SchemaOrBool"] = None
+    unevaluatedProperties: Optional["SchemaOrBool"] = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
     # A Vocabulary for Structural Validation
     type: Optional[str] = None
@@ -164,7 +167,7 @@ class Schema(BaseModel):
     # A Vocabulary for the Contents of String-Encoded Data
     contentEncoding: Optional[str] = None
     contentMediaType: Optional[str] = None
-    contentSchema: Optional["Schema"] = None
+    contentSchema: Optional["SchemaOrBool"] = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-basic-meta
     # A Vocabulary for Basic Meta-Data Annotations
     title: Optional[str] = None
@@ -189,6 +192,11 @@ class Schema(BaseModel):
 
     class Config:
         extra: str = "allow"
+
+
+# Ref: https://json-schema.org/draft/2020-12/json-schema-core.html#name-json-schema-documents
+# A JSON Schema MUST be an object or a boolean.
+SchemaOrBool = Union[Schema, bool]
 
 
 class Example(BaseModel):
