@@ -144,7 +144,7 @@ def test_openapi_schema(client: TestClient):
                     "properties": {
                         "grant_type": {
                             "title": "Grant Type",
-                            "pattern": "password",
+                            "pattern": "^password$",
                             "type": "string",
                         },
                         "username": {"title": "Username", "type": "string"},
