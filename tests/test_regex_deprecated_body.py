@@ -92,14 +92,22 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/x-www-form-urlencoded": {
-                                "schema": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/components/schemas/Body_read_items_items__post"
-                                        }
-                                    ],
-                                    "title": "Body",
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Body_read_items_items__post"
+                                            }
+                                        ],
+                                        "title": "Body",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "$ref": "#/components/schemas/Body_read_items_items__post"
+                                    }
+                                )
                             }
                         }
                     },
@@ -126,13 +134,19 @@ def test_openapi_schema():
             "schemas": {
                 "Body_read_items_items__post": {
                     "properties": {
-                        "q": {
-                            "anyOf": [
-                                {"type": "string", "pattern": "^fixedquery$"},
-                                {"type": "null"},
-                            ],
-                            "title": "Q",
-                        }
+                        "q": IsDict(
+                            {
+                                "anyOf": [
+                                    {"type": "string", "pattern": "^fixedquery$"},
+                                    {"type": "null"},
+                                ],
+                                "title": "Q",
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"type": "string", "pattern": "^fixedquery$", "title": "Q"}
+                        )
                     },
                     "type": "object",
                     "title": "Body_read_items_items__post",

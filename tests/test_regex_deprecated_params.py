@@ -94,13 +94,23 @@ def test_openapi_schema():
                             "name": "q",
                             "in": "query",
                             "required": False,
-                            "schema": {
-                                "anyOf": [
-                                    {"type": "string", "pattern": "^fixedquery$"},
-                                    {"type": "null"},
-                                ],
-                                "title": "Q",
-                            },
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [
+                                        {"type": "string", "pattern": "^fixedquery$"},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "type": "string",
+                                    "pattern": "^fixedquery$",
+                                    "title": "Q",
+                                }
+                            ),
                         }
                     ],
                     "responses": {
