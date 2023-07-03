@@ -1,7 +1,6 @@
-from typing import Union
+from typing import Annotated
 
 from fastapi import FastAPI, Query
-from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -9,7 +8,7 @@ app = FastAPI()
 @app.get("/items/")
 async def read_items(
     q: Annotated[
-        Union[str, None], Query(min_length=3, max_length=50, pattern="^fixedquery$")
+        str | None, Query(min_length=3, max_length=50, regex="^fixedquery$")
     ] = None
 ):
     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
