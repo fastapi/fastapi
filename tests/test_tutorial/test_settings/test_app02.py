@@ -1,10 +1,9 @@
 from pytest import MonkeyPatch
 
-from ...utils import needs_pydanticv1
+from ...utils import needs_pydanticv2
 
 
-# TODO: pv2 add version with Pydantic v2
-@needs_pydanticv1
+@needs_pydanticv2
 def test_settings(monkeypatch: MonkeyPatch):
     from docs_src.settings.app02 import main
 
@@ -14,8 +13,7 @@ def test_settings(monkeypatch: MonkeyPatch):
     assert settings.items_per_user == 50
 
 
-# TODO: pv2 add version with Pydantic v2
-@needs_pydanticv1
+@needs_pydanticv2
 def test_override_settings():
     from docs_src.settings.app02 import test_main
 
