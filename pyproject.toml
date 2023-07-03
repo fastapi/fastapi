@@ -63,6 +63,7 @@ all = [
     "orjson >=3.2.1",
     "email_validator >=2.0.0",
     "uvicorn[standard] >=0.12.0",
+    "pydantic-settings >=2.0.0",
 ]
 
 [tool.hatch.version]
