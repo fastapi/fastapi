@@ -18,7 +18,12 @@ def Path(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -65,7 +70,12 @@ def Query(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -113,7 +123,12 @@ def Header(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -161,7 +176,12 @@ def Cookie(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -210,7 +230,12 @@ def Body(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -256,7 +281,12 @@ def Form(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
@@ -301,7 +331,12 @@ def File(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     pattern: Optional[str] = None,
-    regex: Optional[str] = None,
+    regex: Annotated[
+        Optional[str],
+        deprecated(
+            "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+        ),
+    ] = None,
     examples: Optional[List[Any]] = None,
     example: Annotated[
         Optional[Any],
