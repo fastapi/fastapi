@@ -125,7 +125,34 @@ That means that any value read in Python from an environment variable will be a 
 
 ## Pydantic `Settings`
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+
+### Install `pydantic-settings`
+
+First, install the `pydantic-settings` package:
+
+<div class="termy">
+
+```console
+$ pip install pydantic-settings
+---> 100%
+```
+
+</div>
+
+It also comes included when you install the `all` extras with:
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[all]"
+---> 100%
+```
+
+</div>
+
+!!! info
+    In Pydantic v1 it came included with the main package. Now it is distributed as this independent package so that you can choose to install it or not if you don't need that functionality.
 
 ### Create the `Settings` object
 
@@ -135,9 +162,20 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-```Python hl_lines="2  5-8  11"
-{!../../../docs_src/settings/tutorial001.py!}
-```
+=== "Pydantic v2"
+
+    ```Python hl_lines="2  5-8  11"
+    {!> ../../../docs_src/settings/tutorial001.py!}
+    ```
+
+=== "Pydantic v1"
+
+    !!! info
+        In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
+
+    ```Python hl_lines="2  5-8  11"
+    {!> ../../../docs_src/settings/tutorial001_pv1.py!}
+    ```
 
 !!! tip
     If you want something quick to copy and paste, don't use this example, use the last one below.
