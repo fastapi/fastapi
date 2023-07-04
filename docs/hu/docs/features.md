@@ -1,4 +1,4 @@
-# Jellemzők
+# Funkciók
 
 ## FastAPI funkciók
 
@@ -32,41 +32,41 @@ Ha 2 perces felfrissítésre van szüksége a Python-típusok használatáról (
 A szabványos Python típusokat írod:
 
 ``` Python
-dátum és idő import dátumától
+from datetime import date
 
-a pydantic import BaseModelből
+from pydantic import BaseModel
 
-# Deklaráljon egy változót str-ként
-# és kap szerkesztő támogatást a függvényen belül
+# Declare a variable as a str
+# and get editor support inside the function
 def main(user_id: str):
-     user_id visszaküldése
+    return user_id
 
 
-# Egy pydantikus modell
-osztály Felhasználó (Alapmodell):
-     azonosító: int
-     név: str
-     csatlakozott: dátum
+# A Pydantic model
+class User(BaseModel):
+    id: int
+    name: str
+    joined: date
 ```
 
 Ezt így lehet használni:
 
 ``` Python
-my_user: Felhasználó = Felhasználó(id=3, name="John Doe", joined="2018-07-19")
+my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
 
 second_user_data = {
-     "id": 4,
-     "név": "Mária",
-     "csatlakozott": "2018-11-30",
+    "id": 4,
+    "name": "Mary",
+    "joined": "2018-11-30",
 }
 
-my_second_user: Felhasználó = Felhasználó(**második_felhasználói_adatok)
+my_second_user: User = User(**second_user_data)
 ```
 
 !!! info
      A "**második_felhasználói adatok" jelentése:
 
-     Közvetlenül adja át a `second_user_data` diktátum kulcsait és értékeit kulcsérték argumentumként, ami egyenértékű a következővel: `User(id=4, name="Mary", joined="2018-11-30")`
+     Közvetlenül adja át a `second_user_data` szótár kulcsait és értékeit kulcs-érték argumentumként, ami egyenértékű a következővel: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ### Szerkesztő támogatás
 
@@ -80,11 +80,11 @@ Ritkán kell visszamennie a dokihoz.
 
 A szerkesztője a következőképpen segíthet Önnek:
 
-* a <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code-ban</a>:
+* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code-ban</a>:
 
 ![szerkesztő támogatása](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* a <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharmban</a>:
+* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharmban</a>:
 
 ![szerkesztő támogatása](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -94,7 +94,7 @@ Nem kell többé rossz kulcsneveket begépelnie, oda-vissza lépkedni a dokument
 
 ### Rövid
 
-Mindenhez ésszerű **alapbeállításai** vannak, mindenhol választható konfigurációkkal. Az összes paraméter finomhangolható, hogy azt tegye, amire szüksége van, és meghatározza a szükséges API-t.
+Mindenhez ésszerű **alapbeállításai** vannak, mindenhol választható konfigurációkkal. Az összes paraméter finomhangolható, hogy azt tegye, amire szüksége van, és amire az API-nak szüksége van.
 
 De alapértelmezés szerint mindez **"csak működik"**.
 
