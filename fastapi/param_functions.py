@@ -1,4 +1,4 @@
-from typing import Any, Callable, List, Optional, Sequence, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi import params
 from fastapi._compat import Undefined
@@ -48,7 +48,7 @@ def Path(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Path(
@@ -124,7 +124,7 @@ def Query(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Query(
@@ -201,7 +201,7 @@ def Header(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Header(
@@ -278,7 +278,7 @@ def Cookie(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Cookie(
@@ -356,7 +356,7 @@ def Body(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Body(
@@ -435,7 +435,7 @@ def Form(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.Form(
@@ -513,7 +513,7 @@ def File(  # noqa: N802
     ] = _Unset,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
-    json_schema_extra: Union[dict[str, Any], None] = None,
+    json_schema_extra: Union[Dict[str, Any], None] = None,
     **extra: Any,
 ) -> Any:
     return params.File(

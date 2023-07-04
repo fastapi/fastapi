@@ -1,6 +1,6 @@
 import warnings
 from enum import Enum
-from typing import Any, Callable, List, Optional, Sequence, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
@@ -63,7 +63,7 @@ class Param(FieldInfo):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.deprecated = deprecated
@@ -172,7 +172,7 @@ class Path(Param):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -256,7 +256,7 @@ class Query(Param):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -339,7 +339,7 @@ class Header(Param):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -422,7 +422,7 @@ class Cookie(Param):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -504,7 +504,7 @@ class Body(FieldInfo):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.embed = embed
@@ -615,7 +615,7 @@ class Form(Body):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -698,7 +698,7 @@ class File(Form):
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[dict[str, Any], None] = None,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
