@@ -1,5 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_pydanticv2
 
@@ -55,9 +56,16 @@ def test_post_invalid(client: TestClient):
         """
     response = client.post("/items/", content=yaml_data)
     assert response.status_code == 422, response.text
+    # insert_assert(response.json())
     assert response.json() == {
         "detail": [
-            {"loc": ["tags", 3], "msg": "str type expected", "type": "type_error.str"}
+            {
+                "type": "string_type",
+                "loc": ["tags", 3],
+                "msg": "Input should be a valid string",
+                "input": {"sneaky": "object"},
+                "url": match_pydantic_error_url("string_type"),
+            }
         ]
     }
 
