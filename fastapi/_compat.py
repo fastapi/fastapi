@@ -101,9 +101,6 @@ if PYDANTIC_V2:
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[self.field_info.annotation, self.field_info]
             )
-            self._field_info_core_schema = TypeAdapter.model_field_schema(
-                name=self.name, field=self.field_info
-            )
 
         def get_default(self) -> Any:
             if self.field_info.is_required():
@@ -183,7 +180,7 @@ if PYDANTIC_V2:
         model_name_map: ModelNameMap,
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = schema_generator.generate_inner(field._field_info_core_schema)
+        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
@@ -202,12 +199,7 @@ if PYDANTIC_V2:
         model_name_map: ModelNameMap,
     ) -> Dict[str, Dict[str, Any]]:
         inputs = [
-            (
-                field,
-                "validation",
-                TypeAdapter.model_field_schema(name=field.name, field=field.field_info),
-            )
-            for field in fields
+            (field, "validation", field._type_adapter.core_schema) for field in fields
         ]
         _, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
         return definitions  # type: ignore[return-value]

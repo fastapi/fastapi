@@ -33,7 +33,12 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -51,7 +56,7 @@ class Param(FieldInfo):
             warnings.warn(
                 "`example` has been depreacated, please use `examples` instead",
                 category=DeprecationWarning,
-                stacklevel=1,
+                stacklevel=4,
             )
         self.example = example
         self.include_in_schema = include_in_schema
@@ -70,11 +75,17 @@ class Param(FieldInfo):
         )
         if examples is not None:
             kwargs["examples"] = examples
+        if regex is not None:
+            print(f"regex: {regex}")
+            warnings.warn(
+                "`regex` has been depreacated, please use `pattern` instead",
+                category=DeprecationWarning,
+                stacklevel=4,
+            )
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
             kwargs["pattern"] = pattern or regex
         else:
-            # TODO: pv2 figure out how to deprecate regex
             kwargs["regex"] = pattern or regex
 
         super().__init__(**kwargs)
@@ -101,7 +112,12 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -156,7 +172,12 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -210,7 +231,12 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -264,7 +290,12 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -317,7 +348,12 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -334,7 +370,7 @@ class Body(FieldInfo):
             warnings.warn(
                 "`example` has been depreacated, please use `examples` instead",
                 category=DeprecationWarning,
-                stacklevel=1,
+                stacklevel=4,
             )
         self.example = example
         kwargs = dict(
@@ -352,11 +388,16 @@ class Body(FieldInfo):
         )
         if examples is not None:
             kwargs["examples"] = examples
+        if regex is not None:
+            warnings.warn(
+                "`regex` has been depreacated, please use `pattern` instead",
+                category=DeprecationWarning,
+                stacklevel=4,
+            )
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
             kwargs["pattern"] = pattern or regex
         else:
-            # TODO: pv2 figure out how to deprecate regex
             kwargs["regex"] = pattern or regex
         super().__init__(
             **kwargs,
@@ -383,7 +424,12 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
@@ -433,7 +479,12 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
-        regex: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],

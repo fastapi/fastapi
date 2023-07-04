@@ -2,7 +2,7 @@ import importlib
 
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv1
+from ...utils import needs_pydanticv2
 
 
 def get_client() -> TestClient:
@@ -14,8 +14,7 @@ def get_client() -> TestClient:
     return client
 
 
-# TODO: pv2 add version with Pydantic v2
-@needs_pydanticv1
+@needs_pydanticv2
 def test_disable_openapi(monkeypatch):
     monkeypatch.setenv("OPENAPI_URL", "")
     # Load the client after setting the env var
@@ -28,8 +27,7 @@ def test_disable_openapi(monkeypatch):
     assert response.status_code == 404, response.text
 
 
-# TODO: pv2 add version with Pydantic v2
-@needs_pydanticv1
+@needs_pydanticv2
 def test_root():
     client = get_client()
     response = client.get("/")
@@ -37,8 +35,7 @@ def test_root():
     assert response.json() == {"message": "Hello World"}
 
 
-# TODO: pv2 add version with Pydantic v2
-@needs_pydanticv1
+@needs_pydanticv2
 def test_default_openapi():
     client = get_client()
     response = client.get("/docs")
