@@ -1,4 +1,5 @@
 -e .
+pydantic-settings >=2.0.0
 pytest >=7.1.3,<8.0.0
 coverage[toml] >= 6.5.0,< 8.0
 mypy ==1.4.0
@@ -24,3 +25,5 @@ passlib[bcrypt] >=1.7.2,<2.0.0
 # types
 types-ujson ==5.7.0.1
 types-orjson ==3.6.2
+
+git+https://github.com/pydantic/pydantic.git
