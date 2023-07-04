@@ -1,19 +1,18 @@
 import pytest
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
-from ...utils import needs_pydanticv2
+from ...utils import needs_pydanticv1
 
 
 @pytest.fixture(name="client")
 def get_client():
-    from docs_src.path_operation_advanced_configuration.tutorial007 import app
+    from docs_src.path_operation_advanced_configuration.tutorial007_pv1 import app
 
     client = TestClient(app)
     return client
 
 
-@needs_pydanticv2
+@needs_pydanticv1
 def test_post(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -30,7 +29,7 @@ def test_post(client: TestClient):
     }
 
 
-@needs_pydanticv2
+@needs_pydanticv1
 def test_post_broken_yaml(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -44,7 +43,7 @@ def test_post_broken_yaml(client: TestClient):
     assert response.json() == {"detail": "Invalid YAML"}
 
 
-@needs_pydanticv2
+@needs_pydanticv1
 def test_post_invalid(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -56,21 +55,14 @@ def test_post_invalid(client: TestClient):
         """
     response = client.post("/items/", content=yaml_data)
     assert response.status_code == 422, response.text
-    # insert_assert(response.json())
     assert response.json() == {
         "detail": [
-            {
-                "type": "string_type",
-                "loc": ["tags", 3],
-                "msg": "Input should be a valid string",
-                "input": {"sneaky": "object"},
-                "url": match_pydantic_error_url("string_type"),
-            }
+            {"loc": ["tags", 3], "msg": "str type expected", "type": "type_error.str"}
         ]
     }
 
 
-@needs_pydanticv2
+@needs_pydanticv1
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
