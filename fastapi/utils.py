@@ -14,6 +14,8 @@ from typing import (
 )
 from weakref import WeakKeyDictionary
 
+from typing_extensions import Literal
+
 import fastapi
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -68,6 +70,7 @@ def create_response_field(
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
+    mode: Literal['validation', 'serialization'] = 'validation'
 ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
@@ -80,7 +83,9 @@ def create_response_field(
     else:
         field_info = field_info or FieldInfo()
     kwargs = {"name": name, "field_info": field_info}
-    if not PYDANTIC_V2:
+    if PYDANTIC_V2:
+        kwargs.update({"mode": mode})
+    else:
         kwargs.update(
             {
                 "type_": type_,
