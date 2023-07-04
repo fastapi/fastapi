@@ -14,8 +14,6 @@ from typing import (
 )
 from weakref import WeakKeyDictionary
 
-from typing_extensions import Literal
-
 import fastapi
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -30,6 +28,7 @@ from fastapi._compat import (
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel, create_model
 from pydantic.fields import FieldInfo
+from typing_extensions import Literal
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -70,7 +69,7 @@ def create_response_field(
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
-    mode: Literal['validation', 'serialization'] = 'validation'
+    mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.

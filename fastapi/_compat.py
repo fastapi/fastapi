@@ -79,7 +79,7 @@ if PYDANTIC_V2:
     class ModelField:
         field_info: FieldInfo
         name: str
-        mode: Literal['validation', 'serialization'] = 'validation'
+        mode: Literal["validation", "serialization"] = "validation"
 
         @property
         def alias(self) -> str:
@@ -179,7 +179,9 @@ if PYDANTIC_V2:
         field: ModelField,
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
-        field_mapping: dict[tuple[ModelField, Literal['validation', 'serialization']], JsonSchemaValue]
+        field_mapping: Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
         json_schema = field_mapping[(field, field.mode)]
@@ -421,6 +423,9 @@ else:
         field: ModelField,
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
+        field_mapping: Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
         return field_schema(  # type: ignore[no-any-return]
