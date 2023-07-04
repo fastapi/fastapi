@@ -100,7 +100,7 @@ Por isso, o OpenAPI 3.0.3 definiu o seu próprio <a href="https://github.com/OAI
 
 Portanto, embora `example` não seja parte do JSON Schema, é parte da versão customizada do JSON Schema usada pelo OpenAPI, e é isso que vai ser usado dentro da UI de documentação.
 
-Mas quando você usa `example` ou `examples` com qualquer um dos outros utilitários (`Query ()`, `Body ()`, etc.) esses exemplos não são adicionados ao JSON Schema que descreve esses dados (nem mesmo para versão própria do OpenAPI do JSON Schema), eles são adicionados diretamente à declaração da *operação de rota* no OpenAPI (fora das partes do OpenAPI que usam o JSON Schema).
+Mas quando você usa `example` ou `examples` com qualquer um dos outros utilitários (`Query()`, `Body()`, etc.) esses exemplos não são adicionados ao JSON Schema que descreve esses dados (nem mesmo para versão própria do OpenAPI do JSON Schema), eles são adicionados diretamente à declaração da *operação de rota* no OpenAPI (fora das partes do OpenAPI que usam o JSON Schema).
 
 Para `Path()`, `Query()`, `Header()`, e `Cookie()`, o `example` e `examples` são adicionados a <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">definição do OpenAPI, dentro do `Parameter Object` (na especificação)</a>.
 
