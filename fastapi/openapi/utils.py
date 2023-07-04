@@ -3,12 +3,10 @@ import inspect
 import warnings
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
-from pydantic.json_schema import JsonSchemaValue
-from typing_extensions import Literal
-
 from fastapi import routing
 from fastapi._compat import (
     GenerateJsonSchema,
+    JsonSchemaValue,
     ModelField,
     Undefined,
     get_compat_model_name_map,
@@ -33,6 +31,7 @@ from fastapi.utils import (
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+from typing_extensions import Literal
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -93,7 +92,9 @@ def get_openapi_operation_parameters(
     all_route_params: Sequence[ModelField],
     schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
-    field_mapping: dict[tuple[ModelField, Literal['validation', 'serialization']], JsonSchemaValue]
+    field_mapping: Dict[
+        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    ],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
@@ -128,7 +129,9 @@ def get_openapi_operation_request_body(
     body_field: Optional[ModelField],
     schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
-    field_mapping: dict[tuple[ModelField, Literal['validation', 'serialization']], JsonSchemaValue]
+    field_mapping: Dict[
+        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    ],
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
@@ -205,7 +208,9 @@ def get_openapi_path(
     operation_ids: Set[str],
     schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
-    field_mapping: dict[tuple[ModelField, Literal['validation', 'serialization']], JsonSchemaValue]
+    field_mapping: Dict[
+        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    ],
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -274,7 +279,7 @@ def get_openapi_path(
                             operation_ids=operation_ids,
                             schema_generator=schema_generator,
                             model_name_map=model_name_map,
-                            field_mapping=field_mapping
+                            field_mapping=field_mapping,
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
@@ -481,7 +486,7 @@ def get_openapi(
                 operation_ids=operation_ids,
                 schema_generator=schema_generator,
                 model_name_map=model_name_map,
-                field_mapping=field_mapping
+                field_mapping=field_mapping,
             )
             if result:
                 path, security_schemes, path_definitions = result
