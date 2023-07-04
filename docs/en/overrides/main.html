@@ -40,7 +40,7 @@
 {%- block scripts %}
 {{ super() }}
 <!-- EnhanceDocs AI Chat integration start -->
-<link href="https://unpkg.com/enhancedocs-chat@1.1.4/dist/style.css" rel="stylesheet">
+<link href="https://unpkg.com/enhancedocs-chat@1.1.9/dist/style.css" rel="stylesheet">
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -71,7 +71,7 @@
 
     loadScript('https://unpkg.com/react@18/umd/react.production.min.js', () => {
       loadScript('https://unpkg.com/react-dom@18/umd/react-dom.production.min.js', () => {
-        loadScript('https://unpkg.com/enhancedocs-chat@1.1.4/dist/enhancedocs-chat.umd.js', initEnhanceDocsChat);
+        loadScript('https://unpkg.com/enhancedocs-chat@1.1.9/dist/enhancedocs-chat.umd.js', initEnhanceDocsChat);
       });
     });
   })
