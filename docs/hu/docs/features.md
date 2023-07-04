@@ -1,120 +1,120 @@
-# Funkciók
+# Jellemzők
 
 ## FastAPI funkciók
 
-**FastAPI** a következőket nyújtja:
+A **FastAPI** a következőket nyújtja:
 
-### Nyílt szabványok alapján
+### Nyílt szabványokon alapul
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> az API fejlesztéshez, ebbe beletartozik az <abbr title="más néven végpontok, utak">útvonal</abbr> <abbr title="más néven HTTP parancsok, úgymint POST, GET, PUT, DELETE">műveletek</abbr>, paraméterek, "test" lekérések, biztonság, stb. deklarálása
-* Automatikus adat modell dokumentáció <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a>-val (mivel az OpenAPI maga is JSON Schema-n alapul).
-* A fejlesztés ezen szabványokat fejben tartva történt, aprólékos tanulmányt követve, nem csak egy utógondolatként rápakolva egy rétegként.
-* Ez automatikus **kliens kód generálást** is engedélyez számos programozási nyelvben.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> API létrehozásához, beleértve <abbr title="más néven: endpoints, routes">útvonal</abbr> <abbr title="más néven HTTP metódusok, mint POST, GET, PUT, DELETE">műveletek</abbr>, paraméterek, test kérések, biztonság stb.
+* Automatikus adatmodell-dokumentáció a <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON-sémával</strong></a> (mint Maga az OpenAPI a JSON-sémán alapul).
+* Ezen szabványok köré tervezve, alapos tanulmányozás után. Utólagos réteg helyett a tetején.
+* Ez számos nyelven lehetővé teszi az automatikus **klienskód-generálás** használatát is.
 
-### Automatikus documentáció
+### Automatikus dokumentumok
 
-Interaktív API dokumentáció és webes felhasználói felület. Mivelhogy a keretrendszer az OpenAPI-on alapul, több lehetőség is van, ezek közül 2 alapból elérhető.
+Interaktív API dokumentációs és felfedező webes felhasználói felületek. Mivel a keretrendszer OpenAPI-n alapul, több lehetőség is létezik, amelyek közül 2 alapértelmezés szerint benne van.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, interaktív felfedezéssel, hívd meg és teszteld az API-odat közvetlenül a böngésződből.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, interaktív felfedezés, hívja és tesztelje API-ját közvetlenül a böngészőből.
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI interakció](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternatív API dokumentáció <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>-kal.
+* Alternatív API dokumentáció a <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a> segítségével.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Csupán Modern Python
+### Csak Modern Python
 
-Minden a standard **Python 3.6 típus** deklarációkon alapul (Pydantic-nak köszönhetően). Nem kell új szintaxist megtanulni. Csakis standard modern Python.
+Mindez szabványos **Python 3.6 típusú** deklarációkon alapul (hála a Pydantic-nek). Nincs új megtanulandó szintaxis. Csak szabványos modern Python.
 
-Ha szükséged van egy 2 perces frissítőre a Python típusokról (még akkor is, ha em használod a FastAPI-t), nézd meg a rövid oktató videót: [Python Típusok](python-types.md){.internal-link target=_blank}.
+Ha 2 perces felfrissítésre van szüksége a Python-típusok használatáról (még ha nem is használja a FastAPI-t), tekintse meg a rövid oktatóanyagot: [Python Types](python-types.md){.internal-link target=_blank}.
 
-Standard Python kód típusokkal:
+A szabványos Python típusokat írod:
 
-```Python
-from datetime import date
+``` Python
+dátum és idő import dátumától
 
-from pydantic import BaseModel
+a pydantic import BaseModelből
 
-# Declare a variable as a str
-# and get editor support inside the function
+# Deklaráljon egy változót str-ként
+# és kap szerkesztő támogatást a függvényen belül
 def main(user_id: str):
-    return user_id
+     user_id visszaküldése
 
 
-# A Pydantic model
-class User(BaseModel):
-    id: int
-    name: str
-    joined: date
+# Egy pydantikus modell
+osztály Felhasználó (Alapmodell):
+     azonosító: int
+     név: str
+     csatlakozott: dátum
 ```
 
-Amit aztán így lehet használni:
+Ezt így lehet használni:
 
-```Python
-my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
+``` Python
+my_user: Felhasználó = Felhasználó(id=3, name="John Doe", joined="2018-07-19")
 
 second_user_data = {
-    "id": 4,
-    "name": "Mary",
-    "joined": "2018-11-30",
+     "id": 4,
+     "név": "Mária",
+     "csatlakozott": "2018-11-30",
 }
 
-my_second_user: User = User(**second_user_data)
+my_second_user: Felhasználó = Felhasználó(**második_felhasználói_adatok)
 ```
 
 !!! info
-    `**second_user_data` jelentése:
+     A "**második_felhasználói adatok" jelentése:
 
-    Átadod a `second_user_data` szótár kulcsait és a hozzájuk tartozó értékeket közvetlenül mint kulcs-érték paramétereket , a fenti kóddal ekvivalens: `User(id=4, name="Mary", joined="2018-11-30")`
+     Közvetlenül adja át a `second_user_data` diktátum kulcsait és értékeit kulcsérték argumentumként, ami egyenértékű a következővel: `User(id=4, name="Mary", joined="2018-11-30")`
 
-### Kódszerkesztés segítség
+### Szerkesztő támogatás
 
-A keretsrendszer úgy lett felépítve, hogy könnyű és egyértelmű legyen használni, minden egyes döntés számos fejlesztői környezetben le lett tesztelve még a fejlesztés előtt, hogy a legjobb fejlesztői élményt nyújtsa.
+Az összes keretrendszert úgy tervezték meg, hogy könnyen és intuitívan használható legyen, minden döntést több szerkesztőn is teszteltek még a fejlesztés megkezdése előtt, hogy a legjobb fejlesztési élményt biztosítsák.
 
-A legutóbbi Python fejlesztői kutatásban látszott, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">hogy a legtöbbet használt funkció az "automatikus kitöltés" volt</a>.
+A legutóbbi Python fejlesztői felmérésben egyértelmű volt, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target= "_blank">hogy a leggyakrabban használt funkció az "automatikus kiegészítés"</a>.
 
-Az egész **FastAPI** keretrendszer azon alapul, hogy ezt az igényt kielégítse. Az automatikus kitöltés működik mindenhol.
+A teljes **FastAPI** keretrendszer ennek kielégítésére épül. Az automatikus kiegészítés mindenhol működik.
 
-Nagyon ritkán kell majd csak visszajönnöd a dokumentációhoz.
+Ritkán kell visszamennie a dokihoz.
 
-A fejlesztői környezeted így tud neked segíteni:
+A szerkesztője a következőképpen segíthet Önnek:
 
-*<a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>-ban:
+* a <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code-ban</a>:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![szerkesztő támogatása](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-*<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>-ban:
+* a <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharmban</a>:
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![szerkesztő támogatása](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Olyan kódot is ki tud egészíteni, amire nem is gondoltál volna. Pl. a `price` kulcsot a JSON "test"-ben (ami akár beágyazva is lehetne) ami a kérésből jön.
+Olyan kódot kapsz, amelyet korábban lehetetlennek tartottál. Például a „price” kulcs egy JSON-törzsben (amely lehet beágyazott), amely egy kérelemből származik.
 
-Nincs többé elírt kulcsnév, ugrálás dokumentációk között, vagy görgetés fel és le, hogy vajon `username`-et vagy `user_name`-et kell használni.
+Nem kell többé rossz kulcsneveket begépelnie, oda-vissza lépkedni a dokumentumok között, vagy fel-le görgetni, hogy megtudja, hogy végre használta-e a "felhasználónév" vagy a "felhasználónév" értéket.
 
 ### Rövid
 
-Magától érthetődő **alapbeállítások** mindenhol, de opcionális változtatások elérhetők akárhol. Az összes paramétert finomhangolatod aszerint, hogy mire van szükséged, és hogy az API-nak mire van szüksége.
+Mindenhez ésszerű **alapbeállításai** vannak, mindenhol választható konfigurációkkal. Az összes paraméter finomhangolható, hogy azt tegye, amire szüksége van, és meghatározza a szükséges API-t.
 
-De alapból minden **"csak működik, és kész"**.
+De alapértelmezés szerint mindez **"csak működik"**.
 
 ### Érvényesítés
 
-* Érvényesítés majdnem mindegyik (vagy az összes?) Python **adattípusra**, többek között:
-    * JSON objektumok (`dict`).
-    * JSON tömb (`list`) definiáló tárgytípusok.
-    * Szöveg (`str`) mezők, minimális és maximális hosszak megadása.
-    * Számok (`int`, `float`) minimális és maximális hosszak megadásával, stb.
+* Érvényesítés a legtöbb (vagy az összes?) Python **adattípushoz**, beleértve:
+     * JSON objektumok (`dict`).
+     * JSON-tömb (`lista`), amely elemtípusokat határoz meg.
+     * String (`str`) mezők, amelyek meghatározzák a minimális és maximális hosszúságot.
+     * Számok ('int', 'float') min és max értékekkel stb.
 
-* Érvényesítés egzotikusabb típusra, például:
-    * Link(URL).
-    * Email.
-    * Globálisan egyedi azonosító (UUID).
-    * ...és még sok más.
+* Érvényesítés az egzotikusabb típusokhoz, mint például:
+     * URL.
+     * E-mail.
+     * UUID.
+     * ...és mások.
 
-Az összes érvényesítés a **Pydantic** segítségével történik.
+Az összes érvényesítést a jól bevált és robusztus **Pydantic** kezeli.
 
-### Biztonság és azonosítás
+### Biztonság és hitelesítés
 
 Biztonság és azonosítás integrálva. Kompromisszumok nélkül az adatbázisokkal vagy adatmodellekkel.
 
