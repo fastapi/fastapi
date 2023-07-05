@@ -34,7 +34,7 @@ def test_openapi_schema(client: TestClient):
     assert response.status_code == 200
     # insert_assert(response.json())
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/": {
