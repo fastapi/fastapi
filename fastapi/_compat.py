@@ -201,7 +201,12 @@ if PYDANTIC_V2:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
-    ) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+    ) -> Tuple[
+        Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
+        Dict[str, Dict[str, Any]],
+    ]:
         inputs = [
             (field, field.mode, field._type_adapter.core_schema) for field in fields
         ]
@@ -441,7 +446,12 @@ else:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
-    ) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+    ) -> Tuple[
+        Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
+        Dict[str, Dict[str, Any]],
+    ]:
         models = get_flat_models_from_fields(fields, known_models=set())
         return {}, get_model_definitions(
             flat_models=models, model_name_map=model_name_map
