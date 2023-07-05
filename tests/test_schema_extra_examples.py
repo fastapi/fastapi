@@ -1,240 +1,220 @@
 from typing import Union
 
+import pytest
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-app = FastAPI()
 
+def create_app():
+    app = FastAPI()
 
-class Item(BaseModel):
-    data: str
+    class Item(BaseModel):
+        data: str
 
-    class Config:
-        schema_extra = {"example": {"data": "Data in schema_extra"}}
+        class Config:
+            schema_extra = {"example": {"data": "Data in schema_extra"}}
 
+    @app.post("/schema_extra/")
+    def schema_extra(item: Item):
+        return item
 
-@app.post("/schema_extra/")
-def schema_extra(item: Item):
-    return item
+    with pytest.warns(DeprecationWarning):
 
+        @app.post("/example/")
+        def example(item: Item = Body(example={"data": "Data in Body example"})):
+            return item
 
-@app.post("/example/")
-def example(item: Item = Body(example={"data": "Data in Body example"})):
-    return item
+    @app.post("/examples/")
+    def examples(
+        item: Item = Body(
+            examples=[
+                {"data": "Data in Body examples, example1"},
+                {"data": "Data in Body examples, example2"},
+            ],
+        )
+    ):
+        return item
 
+    with pytest.warns(DeprecationWarning):
 
-@app.post("/examples/")
-def examples(
-    item: Item = Body(
-        examples={
-            "example1": {
-                "summary": "example1 summary",
-                "value": {"data": "Data in Body examples, example1"},
-            },
-            "example2": {"value": {"data": "Data in Body examples, example2"}},
-        },
-    )
-):
-    return item
+        @app.post("/example_examples/")
+        def example_examples(
+            item: Item = Body(
+                example={"data": "Overridden example"},
+                examples=[
+                    {"data": "examples example_examples 1"},
+                    {"data": "examples example_examples 2"},
+                ],
+            )
+        ):
+            return item
 
+    # TODO: enable these tests once/if Form(embed=False) is supported
+    # TODO: In that case, define if File() should support example/examples too
+    # @app.post("/form_example")
+    # def form_example(firstname: str = Form(example="John")):
+    #     return firstname
 
-@app.post("/example_examples/")
-def example_examples(
-    item: Item = Body(
-        example={"data": "Overridden example"},
-        examples={
-            "example1": {"value": {"data": "examples example_examples 1"}},
-            "example2": {"value": {"data": "examples example_examples 2"}},
-        },
-    )
-):
-    return item
+    # @app.post("/form_examples")
+    # def form_examples(
+    #     lastname: str = Form(
+    #         ...,
+    #         examples={
+    #             "example1": {"summary": "last name summary", "value": "Doe"},
+    #             "example2": {"value": "Doesn't"},
+    #         },
+    #     ),
+    # ):
+    #     return lastname
 
+    # @app.post("/form_example_examples")
+    # def form_example_examples(
+    #     lastname: str = Form(
+    #         ...,
+    #         example="Doe overridden",
+    #         examples={
+    #             "example1": {"summary": "last name summary", "value": "Doe"},
+    #             "example2": {"value": "Doesn't"},
+    #         },
+    #     ),
+    # ):
+    #     return lastname
 
-# TODO: enable these tests once/if Form(embed=False) is supported
-# TODO: In that case, define if File() should support example/examples too
-# @app.post("/form_example")
-# def form_example(firstname: str = Form(example="John")):
-#     return firstname
+    with pytest.warns(DeprecationWarning):
 
+        @app.get("/path_example/{item_id}")
+        def path_example(
+            item_id: str = Path(
+                example="item_1",
+            ),
+        ):
+            return item_id
 
-# @app.post("/form_examples")
-# def form_examples(
-#     lastname: str = Form(
-#         ...,
-#         examples={
-#             "example1": {"summary": "last name summary", "value": "Doe"},
-#             "example2": {"value": "Doesn't"},
-#         },
-#     ),
-# ):
-#     return lastname
+    @app.get("/path_examples/{item_id}")
+    def path_examples(
+        item_id: str = Path(
+            examples=["item_1", "item_2"],
+        ),
+    ):
+        return item_id
 
+    with pytest.warns(DeprecationWarning):
 
-# @app.post("/form_example_examples")
-# def form_example_examples(
-#     lastname: str = Form(
-#         ...,
-#         example="Doe overridden",
-#         examples={
-#             "example1": {"summary": "last name summary", "value": "Doe"},
-#             "example2": {"value": "Doesn't"},
-#         },
-#     ),
-# ):
-#     return lastname
+        @app.get("/path_example_examples/{item_id}")
+        def path_example_examples(
+            item_id: str = Path(
+                example="item_overridden",
+                examples=["item_1", "item_2"],
+            ),
+        ):
+            return item_id
 
+    with pytest.warns(DeprecationWarning):
 
-@app.get("/path_example/{item_id}")
-def path_example(
-    item_id: str = Path(
-        example="item_1",
-    ),
-):
-    return item_id
+        @app.get("/query_example/")
+        def query_example(
+            data: Union[str, None] = Query(
+                default=None,
+                example="query1",
+            ),
+        ):
+            return data
 
+    @app.get("/query_examples/")
+    def query_examples(
+        data: Union[str, None] = Query(
+            default=None,
+            examples=["query1", "query2"],
+        ),
+    ):
+        return data
 
-@app.get("/path_examples/{item_id}")
-def path_examples(
-    item_id: str = Path(
-        examples={
-            "example1": {"summary": "item ID summary", "value": "item_1"},
-            "example2": {"value": "item_2"},
-        },
-    ),
-):
-    return item_id
+    with pytest.warns(DeprecationWarning):
 
+        @app.get("/query_example_examples/")
+        def query_example_examples(
+            data: Union[str, None] = Query(
+                default=None,
+                example="query_overridden",
+                examples=["query1", "query2"],
+            ),
+        ):
+            return data
 
-@app.get("/path_example_examples/{item_id}")
-def path_example_examples(
-    item_id: str = Path(
-        example="item_overridden",
-        examples={
-            "example1": {"summary": "item ID summary", "value": "item_1"},
-            "example2": {"value": "item_2"},
-        },
-    ),
-):
-    return item_id
+    with pytest.warns(DeprecationWarning):
 
+        @app.get("/header_example/")
+        def header_example(
+            data: Union[str, None] = Header(
+                default=None,
+                example="header1",
+            ),
+        ):
+            return data
 
-@app.get("/query_example/")
-def query_example(
-    data: Union[str, None] = Query(
-        default=None,
-        example="query1",
-    ),
-):
-    return data
+    @app.get("/header_examples/")
+    def header_examples(
+        data: Union[str, None] = Header(
+            default=None,
+            examples=[
+                "header1",
+                "header2",
+            ],
+        ),
+    ):
+        return data
 
+    with pytest.warns(DeprecationWarning):
 
-@app.get("/query_examples/")
-def query_examples(
-    data: Union[str, None] = Query(
-        default=None,
-        examples={
-            "example1": {"summary": "Query example 1", "value": "query1"},
-            "example2": {"value": "query2"},
-        },
-    ),
-):
-    return data
+        @app.get("/header_example_examples/")
+        def header_example_examples(
+            data: Union[str, None] = Header(
+                default=None,
+                example="header_overridden",
+                examples=["header1", "header2"],
+            ),
+        ):
+            return data
 
+    with pytest.warns(DeprecationWarning):
 
-@app.get("/query_example_examples/")
-def query_example_examples(
-    data: Union[str, None] = Query(
-        default=None,
-        example="query_overridden",
-        examples={
-            "example1": {"summary": "Query example 1", "value": "query1"},
-            "example2": {"value": "query2"},
-        },
-    ),
-):
-    return data
+        @app.get("/cookie_example/")
+        def cookie_example(
+            data: Union[str, None] = Cookie(
+                default=None,
+                example="cookie1",
+            ),
+        ):
+            return data
 
+    @app.get("/cookie_examples/")
+    def cookie_examples(
+        data: Union[str, None] = Cookie(
+            default=None,
+            examples=["cookie1", "cookie2"],
+        ),
+    ):
+        return data
 
-@app.get("/header_example/")
-def header_example(
-    data: Union[str, None] = Header(
-        default=None,
-        example="header1",
-    ),
-):
-    return data
+    with pytest.warns(DeprecationWarning):
 
+        @app.get("/cookie_example_examples/")
+        def cookie_example_examples(
+            data: Union[str, None] = Cookie(
+                default=None,
+                example="cookie_overridden",
+                examples=["cookie1", "cookie2"],
+            ),
+        ):
+            return data
 
-@app.get("/header_examples/")
-def header_examples(
-    data: Union[str, None] = Header(
-        default=None,
-        examples={
-            "example1": {"summary": "header example 1", "value": "header1"},
-            "example2": {"value": "header2"},
-        },
-    ),
-):
-    return data
-
-
-@app.get("/header_example_examples/")
-def header_example_examples(
-    data: Union[str, None] = Header(
-        default=None,
-        example="header_overridden",
-        examples={
-            "example1": {"summary": "Query example 1", "value": "header1"},
-            "example2": {"value": "header2"},
-        },
-    ),
-):
-    return data
-
-
-@app.get("/cookie_example/")
-def cookie_example(
-    data: Union[str, None] = Cookie(
-        default=None,
-        example="cookie1",
-    ),
-):
-    return data
-
-
-@app.get("/cookie_examples/")
-def cookie_examples(
-    data: Union[str, None] = Cookie(
-        default=None,
-        examples={
-            "example1": {"summary": "cookie example 1", "value": "cookie1"},
-            "example2": {"value": "cookie2"},
-        },
-    ),
-):
-    return data
-
-
-@app.get("/cookie_example_examples/")
-def cookie_example_examples(
-    data: Union[str, None] = Cookie(
-        default=None,
-        example="cookie_overridden",
-        examples={
-            "example1": {"summary": "Query example 1", "value": "cookie1"},
-            "example2": {"value": "cookie2"},
-        },
-    ),
-):
-    return data
-
-
-client = TestClient(app)
+    return app
 
 
 def test_call_api():
+    app = create_app()
+    client = TestClient(app)
     response = client.post("/schema_extra/", json={"data": "Foo"})
     assert response.status_code == 200, response.text
     response = client.post("/example/", json={"data": "Foo"})
@@ -277,10 +257,12 @@ def test_openapi_schema():
     * Body(example={}) overrides schema_extra in pydantic model
     * Body(examples{}) overrides Body(example={}) and schema_extra in pydantic model
     """
+    app = create_app()
+    client = TestClient(app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/schema_extra/": {
@@ -351,20 +333,14 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"},
-                                "examples": {
-                                    "example1": {
-                                        "summary": "example1 summary",
-                                        "value": {
-                                            "data": "Data in Body examples, example1"
-                                        },
-                                    },
-                                    "example2": {
-                                        "value": {
-                                            "data": "Data in Body examples, example2"
-                                        }
-                                    },
-                                },
+                                "schema": {
+                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                    "title": "Item",
+                                    "examples": [
+                                        {"data": "Data in Body examples, example1"},
+                                        {"data": "Data in Body examples, example2"},
+                                    ],
+                                }
                             }
                         },
                         "required": True,
@@ -394,15 +370,15 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"},
-                                "examples": {
-                                    "example1": {
-                                        "value": {"data": "examples example_examples 1"}
-                                    },
-                                    "example2": {
-                                        "value": {"data": "examples example_examples 2"}
-                                    },
+                                "schema": {
+                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                    "title": "Item",
+                                    "examples": [
+                                        {"data": "examples example_examples 1"},
+                                        {"data": "examples example_examples 2"},
+                                    ],
                                 },
+                                "example": {"data": "Overridden example"},
                             }
                         },
                         "required": True,
@@ -463,13 +439,10 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "item ID summary",
-                                    "value": "item_1",
-                                },
-                                "example2": {"value": "item_2"},
+                            "schema": {
+                                "title": "Item Id",
+                                "type": "string",
+                                "examples": ["item_1", "item_2"],
                             },
                             "name": "item_id",
                             "in": "path",
@@ -500,14 +473,12 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "item ID summary",
-                                    "value": "item_1",
-                                },
-                                "example2": {"value": "item_2"},
+                            "schema": {
+                                "title": "Item Id",
+                                "type": "string",
+                                "examples": ["item_1", "item_2"],
                             },
+                            "example": "item_overridden",
                             "name": "item_id",
                             "in": "path",
                         }
@@ -568,13 +539,10 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "Query example 1",
-                                    "value": "query1",
-                                },
-                                "example2": {"value": "query2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["query1", "query2"],
                             },
                             "name": "data",
                             "in": "query",
@@ -605,14 +573,12 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "Query example 1",
-                                    "value": "query1",
-                                },
-                                "example2": {"value": "query2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["query1", "query2"],
                             },
+                            "example": "query_overridden",
                             "name": "data",
                             "in": "query",
                         }
@@ -642,7 +608,7 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
+                            "schema": {"type": "string", "title": "Data"},
                             "example": "header1",
                             "name": "data",
                             "in": "header",
@@ -673,13 +639,10 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "header example 1",
-                                    "value": "header1",
-                                },
-                                "example2": {"value": "header2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["header1", "header2"],
                             },
                             "name": "data",
                             "in": "header",
@@ -710,14 +673,12 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "Query example 1",
-                                    "value": "header1",
-                                },
-                                "example2": {"value": "header2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["header1", "header2"],
                             },
+                            "example": "header_overridden",
                             "name": "data",
                             "in": "header",
                         }
@@ -747,7 +708,7 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
+                            "schema": {"type": "string", "title": "Data"},
                             "example": "cookie1",
                             "name": "data",
                             "in": "cookie",
@@ -778,13 +739,10 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "cookie example 1",
-                                    "value": "cookie1",
-                                },
-                                "example2": {"value": "cookie2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["cookie1", "cookie2"],
                             },
                             "name": "data",
                             "in": "cookie",
@@ -815,14 +773,12 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Data", "type": "string"},
-                            "examples": {
-                                "example1": {
-                                    "summary": "Query example 1",
-                                    "value": "cookie1",
-                                },
-                                "example2": {"value": "cookie2"},
+                            "schema": {
+                                "type": "string",
+                                "title": "Data",
+                                "examples": ["cookie1", "cookie2"],
                             },
+                            "example": "cookie_overridden",
                             "name": "data",
                             "in": "cookie",
                         }
