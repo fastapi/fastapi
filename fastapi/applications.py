@@ -31,6 +31,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.routing import APIRoute
 from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
@@ -493,6 +494,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -520,6 +522,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -548,6 +551,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -575,6 +579,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -603,6 +608,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -630,6 +636,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -658,6 +665,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -685,6 +693,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -713,6 +722,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -740,6 +750,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -768,6 +779,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -795,6 +807,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -823,6 +836,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -850,6 +864,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
@@ -878,6 +893,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
@@ -905,6 +921,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            route_class_override=route_class_override,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
