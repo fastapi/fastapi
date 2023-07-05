@@ -79,6 +79,7 @@ if PYDANTIC_V2:
     class ModelField:
         field_info: FieldInfo
         name: str
+        mode: Literal["validation", "serialization"] = "validation"
 
         @property
         def alias(self) -> str:
@@ -178,9 +179,12 @@ if PYDANTIC_V2:
         field: ModelField,
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
+        field_mapping: Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+        json_schema = field_mapping[(field, field.mode)]
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
@@ -197,12 +201,12 @@ if PYDANTIC_V2:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
-    ) -> Dict[str, Dict[str, Any]]:
+    ) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
         inputs = [
-            (field, "validation", field._type_adapter.core_schema) for field in fields
+            (field, field.mode, field._type_adapter.core_schema) for field in fields
         ]
-        _, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
-        return definitions  # type: ignore[return-value]
+        field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
+        return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
         from fastapi import params
@@ -419,6 +423,9 @@ else:
         field: ModelField,
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
+        field_mapping: Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
         return field_schema(  # type: ignore[no-any-return]
@@ -434,9 +441,11 @@ else:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
-    ) -> Dict[str, Dict[str, Any]]:
+    ) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
         models = get_flat_models_from_fields(fields, known_models=set())
-        return get_model_definitions(flat_models=models, model_name_map=model_name_map)
+        return {}, get_model_definitions(
+            flat_models=models, model_name_map=model_name_map
+        )
 
     def is_scalar_field(field: ModelField) -> bool:
         return is_pv1_scalar_field(field)
