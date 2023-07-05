@@ -1,7 +1,0 @@
-----boundary
-Content-Disposition: form-data; name="file"; filename="test.txt"
-Content-Type: text/plain
-Content-Transfer-Encoding: base64
-
-VGVzdCAxMjM=
-----boundary--

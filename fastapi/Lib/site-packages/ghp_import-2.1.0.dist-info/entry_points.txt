@@ -1,3 +1,0 @@
-[console_scripts]
-ghp-import = ghp_import:main
-

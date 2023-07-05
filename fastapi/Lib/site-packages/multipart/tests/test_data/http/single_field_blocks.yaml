@@ -1,6 +1,0 @@
-boundary: --boundary
-expected:
-  - name: field
-    type: field
-    data: !!binary |
-      MDEyMzQ1Njc4OUFCQ0RFRkdISUowMTIzNDU2Nzg5QUJDREVGR0hJSg==

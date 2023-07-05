@@ -1,9 +1,0 @@
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  # This cannot be empty as otherwise no environment will be created.
-  # We're using openssl here as it is available on all system and will
-  # most likely be always installed anyways.
-  # See https://github.com/conda/conda/issues/9487
-  - openssl

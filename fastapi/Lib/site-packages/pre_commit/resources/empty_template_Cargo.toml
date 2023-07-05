@@ -1,7 +1,0 @@
-[package]
-name = "__fake_crate"
-version = "0.0.0"
-
-[[bin]]
-name = "__fake_cmd"
-path = "main.rs"

@@ -1,4 +1,0 @@
-name: pre_commit_empty_pubspec
-environment:
-  sdk: '>=2.10.0'
-executables: {}

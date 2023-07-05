@@ -1,2 +1,0 @@
-[console_scripts]
-uvicorn = uvicorn.main:main

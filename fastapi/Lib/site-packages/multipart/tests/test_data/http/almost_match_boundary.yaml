@@ -1,8 +1,0 @@
-boundary: --boundary
-expected:
-  - name: file
-    type: file
-    file_name: test.txt
-    data: !!binary |
-        LS1ib3VuZGFyaQ0KLS1ib3VuZGFyeXEtLWJvdW5kYXJ5DXEtLWJvdW5kYXJxDQotLWJvdW5hcnlkLS0NCi0tbm90Ym91bmQtLQ0KLS1taXNtYXRjaA0KLS1taXNtYXRjaC0tDQotLWJvdW5kYXJ5LVENCi0tYm91bmRhcnkNUS0tYm91bmRhcnlR
-
