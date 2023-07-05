@@ -210,7 +210,9 @@ if PYDANTIC_V2:
         inputs = [
             (field, field.mode, field._type_adapter.core_schema) for field in fields
         ]
-        field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
+        field_mapping, definitions = schema_generator.generate_definitions(
+            inputs=inputs
+        )
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
