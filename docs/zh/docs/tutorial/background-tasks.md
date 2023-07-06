@@ -75,20 +75,20 @@
     {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
     ```
 
-=== "Python 3.10+ non-Annotated"
+=== "Python 3.10+ 没Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
-
+         尽可能选择使用 `Annotated` 的版本。
+    
     ```Python hl_lines="11  13  20  23"
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.6+ 没Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
-
+         尽可能选择使用 `Annotated` 的版本。
+    
     ```Python hl_lines="13  15  22  25"
     {!> ../../../docs_src/background_tasks/tutorial002.py!}
     ```
