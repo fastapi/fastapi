@@ -267,6 +267,11 @@ class Schema(BaseModel):
 SchemaOrBool = Union[Schema, bool]
 
 
+# Ref: https://json-schema.org/draft/2020-12/json-schema-core.html#name-json-schema-documents
+# A JSON Schema MUST be an object or a boolean.
+SchemaOrBool = Union[Schema, bool]
+
+
 class Example(BaseModel):
     summary: Optional[str] = None
     description: Optional[str] = None
