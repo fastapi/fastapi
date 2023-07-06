@@ -79,7 +79,7 @@
 
     !!! tip
          尽可能选择使用 `Annotated` 的版本。
-    
+
     ```Python hl_lines="11  13  20  23"
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
@@ -88,7 +88,7 @@
 
     !!! tip
          尽可能选择使用 `Annotated` 的版本。
-    
+
     ```Python hl_lines="13  15  22  25"
     {!> ../../../docs_src/background_tasks/tutorial002.py!}
     ```
