@@ -37,6 +37,8 @@ from fastapi._compat import (
     is_bytes_sequence_field,
     is_scalar_field,
     is_scalar_sequence_field,
+    is_scalar_mapping_field,
+    is_scalar_sequence_mapping_field,
     is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,

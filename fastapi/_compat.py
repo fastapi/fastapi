@@ -227,6 +227,12 @@ if PYDANTIC_V2:
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
+    
+    def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        return field_annotation_is_scalar_sequence(field.field_info.annotation)
+    
+    def is_scalar_mapping_field(field: ModelField) -> bool:
+        return field_annotation_is_scalar_sequence(field.field_info.annotation)
 
     def is_bytes_field(field: ModelField) -> bool:
         return is_bytes_or_nonable_bytes_annotation(field.type_)
@@ -466,6 +472,12 @@ else:
         return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
+        return is_pv1_scalar_sequence_field(field)
+    
+    def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        return is_pv1_scalar_sequence_field(field)
+    
+    def is_scalar_mapping_field(field: ModelField) -> bool:
         return is_pv1_scalar_sequence_field(field)
 
     def is_bytes_field(field: ModelField) -> bool:
