@@ -653,11 +653,11 @@ def request_params_to_args(
         ):
             value = received_params.getlist(field.alias) or field.default
         elif is_scalar_mapping_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
+            received_params, (QueryParams)
         ):
             value = dict(received_params.multi_items()) or field.default
         elif is_scalar_sequence_mapping_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
+            received_params, (QueryParams)
         ):
             if not len(received_params.multi_items()):
                 value = field.default
