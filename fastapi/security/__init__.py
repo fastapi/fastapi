@@ -6,6 +6,7 @@ from .http import HTTPBasic as HTTPBasic
 from .http import HTTPBasicCredentials as HTTPBasicCredentials
 from .http import HTTPBearer as HTTPBearer
 from .http import HTTPDigest as HTTPDigest
+from .http import HTTPDigestCredentials as HTTPDigestCredentials
 from .oauth2 import OAuth2 as OAuth2
 from .oauth2 import OAuth2AuthorizationCodeBearer as OAuth2AuthorizationCodeBearer
 from .oauth2 import OAuth2PasswordBearer as OAuth2PasswordBearer
