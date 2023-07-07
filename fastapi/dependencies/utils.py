@@ -1,4 +1,5 @@
 import inspect
+from collections import defaultdict
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -450,6 +451,11 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
         return False
+    elif isinstance(param_field.field_info, (params.Query, params.Header)) and (
+        is_scalar_sequence_mapping_field(param_field)
+        or is_scalar_mapping_field(param_field)
+    ):
+        return False
     else:
         assert isinstance(
             param_field.field_info, params.Body
@@ -644,6 +650,19 @@ def request_params_to_args(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
+        if is_scalar_mapping_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            value = dict(received_params.multi_items()) or field.default
+        elif is_scalar_sequence_mapping_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            if not len(received_params.multi_items()):
+                value = field.default
+            else:
+                value = defaultdict(list)
+                for k, v in received_params.multi_items():
+                    value[k].append(v)
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
