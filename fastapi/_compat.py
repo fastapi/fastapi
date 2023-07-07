@@ -286,6 +286,7 @@ else:
         SHAPE_SINGLETON,
         SHAPE_TUPLE,
         SHAPE_TUPLE_ELLIPSIS,
+        SHAPE_MAPPING,
     )
     from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
@@ -332,9 +333,6 @@ else:
         SHAPE_TUPLE_ELLIPSIS,
     }
 
-    mapping_shapes = {
-        SHAPE_MAPPING,
-    }
     sequence_shape_to_type = {
         SHAPE_LIST: list,
         SHAPE_SET: set,
@@ -342,6 +340,11 @@ else:
         SHAPE_SEQUENCE: list,
         SHAPE_TUPLE_ELLIPSIS: list,
     }
+
+    mapping_shapes = {
+        SHAPE_MAPPING,
+    }
+    mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
     @dataclass
     class GenerateJsonSchema:  # type: ignore[no-redef]
@@ -505,10 +508,10 @@ else:
         return is_pv1_scalar_sequence_field(field)
     
     def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
-        return is_pv1_scalar_sequence_field(field)
+        return is_pv1_scalar_sequence_mapping_field(field)
     
     def is_scalar_mapping_field(field: ModelField) -> bool:
-        return is_pv1_scalar_sequence_field(field)
+        return is_pv1_scalar_mapping_field(field)
 
     def is_bytes_field(field: ModelField) -> bool:
         return lenient_issubclass(field.type_, bytes)
