@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Update links for self-hosted Swagger UI, point to v5, for OpenAPI 31.0. PR [#9834](https://github.com/tiangolo/fastapi/pull/9834) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.100.0
 
