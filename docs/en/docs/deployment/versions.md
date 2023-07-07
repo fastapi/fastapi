@@ -51,7 +51,7 @@ So, you should be able to pin to a version like:
 fastapi>=0.45.0,<0.46.0
 ```
 
-Breaking changes and new features are added in "MINOR" versions.
+Non-breaking changes and new features are added in "MINOR" versions.
 
 !!! tip
     The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
