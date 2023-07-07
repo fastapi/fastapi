@@ -70,7 +70,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="18-23"
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
@@ -79,7 +79,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="20-25"
     {!> ../../../docs_src/schema_extra_example/tutorial003.py!}

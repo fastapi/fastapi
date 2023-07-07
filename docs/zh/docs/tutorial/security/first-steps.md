@@ -35,7 +35,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python
     {!> ../../../docs_src/security/tutorial001.py!}

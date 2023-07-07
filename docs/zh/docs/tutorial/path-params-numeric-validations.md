@@ -27,7 +27,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -36,7 +36,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -69,7 +69,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -78,7 +78,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -110,7 +110,7 @@
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}

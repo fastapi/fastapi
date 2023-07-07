@@ -29,7 +29,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -38,7 +38,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -133,7 +133,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -142,7 +142,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -202,7 +202,7 @@ q: str = None
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="25"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -211,7 +211,7 @@ q: str = None
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -256,7 +256,7 @@ item: Item = Body(embed=True)
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -265,7 +265,7 @@ item: Item = Body(embed=True)
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
