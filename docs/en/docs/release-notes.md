@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨ Add support for Pydantic v2. PR [#9816](https://github.com/tiangolo/fastapi/pull/9816) by [@tiangolo](https://github.com/tiangolo).
 ✨ Support for **Pydantic v2** ✨
 
 Pydantic version 2 has the **core** re-written in **Rust** and includes a lot of improvements and features, for example:
