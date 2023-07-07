@@ -331,6 +331,10 @@ else:
         SHAPE_SEQUENCE,
         SHAPE_TUPLE_ELLIPSIS,
     }
+
+    mapping_shapes = {
+        SHAPE_MAPPING,
+    }
     sequence_shape_to_type = {
         SHAPE_LIST: list,
         SHAPE_SET: set,
@@ -405,6 +409,32 @@ else:
         if _annotation_is_sequence(field.type_):
             return True
         return False
+    
+    def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
+        if (field.shape in mapping_shapes) and not lenient_issubclass(
+            field.type_, BaseModel
+        ):
+            if field.sub_fields is None:
+                return False
+            for sub_field in field.sub_fields:
+                if not is_scalar_field(sub_field):
+                    return False
+            return True
+        return False
+
+
+    def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        if (field.shape in mapping_shapes) and not lenient_issubclass(
+            field.type_, BaseModel
+        ):
+            if field.sub_fields is None:
+                return False
+            for sub_field in field.sub_fields:
+                if not is_scalar_sequence_field(sub_field):
+                    return False
+            return True
+        return False
+
 
     def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
         use_errors: List[Any] = []
