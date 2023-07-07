@@ -83,3 +83,106 @@ def check_nonce(
         return False
 
     return True
+
+
+def digest_access_response(
+    request_method: str,
+    request_uri: str,
+    request_body: Optional[bytes],
+    username: str,
+    password: str,
+    realm: str,
+    nonce: str,
+    cnonce: str,
+    nc: str,
+    qop: str,
+    algo: Optional[str],
+) -> str:
+    """
+    Create a digest access authentication response.
+
+    The HTTP Digest Access Authentication response is specified in:
+        - RFC 7616, section 3.4.1
+        - RFC 2617, section 3.2.2.1
+        - RFC 2069, section 2.1.2
+
+    Briefly, the response is defined as:
+
+        IF <qop> is one of "auth" or "auth-int" THEN
+            response = H(<HA1>:<nonce>:<nc>:<cnonce>:<qop>:<HA2>)
+        OTHERWISE:
+            response = H(<HA1>:<nonce>:<HA2>)
+
+        WHERE:
+            H() = The hashing algorithm specified by the <algo> directive.
+
+            HA1 =
+                IF <algo> endwith '-sess' THEN
+                    H(<username>:<realm>:<password>):<nonce>:<cnonce>
+                OTHERWISE:
+                    H(<username>:<realm>:<password>)
+
+            HA2 =
+                IF <qop> is 'auth-int' THEN
+                    H(<method>:<digestURI>:H(<request-body>))
+                ELSE:
+                    H(<method>:<digestURI>)
+
+    Args:
+        request_method (str): The HTTP request method.
+        request_uri (str): The HTTP request URI.
+        request_body (str | None): The HTTP request body.
+        username (str): The username. Note this may potentailly be hashed.
+        password (str): The password.
+        realm (str): The realm under protection.
+        nonce (str): The nonce.
+        cnonce (str): The cnonce (client-nonce).
+        nc (str): The nc (nonce counter).
+        qop (str | None): The qop (quality-of-protection).
+        algo (str | None): The algorithm. Include suffix '-sess' for session.
+
+    Raises:
+        ValueError: If either:
+            - the algo is not supported by hashlib.
+            - the qop is not supported (None, "auth", "auth-int")
+    """
+
+    # Check and clean ALGO
+    algo = algo.lower() if algo else "md5"
+    if algo.endswith("-sess"):
+        algo_sess = True
+        algo = algo[:-5]
+    else:
+        algo_sess = False
+
+    algo = algo.replace("-", "")
+
+    if algo not in hashlib.algorithms_available:
+        raise ValueError(f"Unsupported algorithm '{algo}'")
+
+    def digest_fn(x: str) -> str:
+        return hashlib.new(algo, x.encode()).hexdigest()
+
+    # Check QOP
+    # TODO: Support auth-int. There may be challenges with this due, as this
+    #       requires the entity-body to be included in the response. This is
+    #       different to the message-body (before Transfer-Encoding). Starlette
+    #       does not seem to provide access to such entity-body.
+    if qop not in (
+        None,
+        "auth",
+    ):
+        raise ValueError(f"Unsupported qop '{qop}'")
+
+    # Calculate HA1
+    a1 = f"{username}:{realm}:{password}"
+    if algo_sess:
+        a1 = f"{digest_fn(a1)}:{nonce}:{cnonce}"
+    ha1 = digest_fn(a1)
+
+    # Calculate HA2
+    a2 = f"{request_method}:{request_uri}"
+    ha2 = digest_fn(a2)
+
+    # Calculate and return response
+    return digest_fn(f"{ha1}:{nonce}:{nc}:{cnonce}:{qop}:{ha2}")
