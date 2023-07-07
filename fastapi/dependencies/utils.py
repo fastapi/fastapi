@@ -36,7 +36,9 @@ from fastapi._compat import (
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
+    is_scalar_mapping_field,
     is_scalar_sequence_field,
+    is_scalar_sequence_mapping_field,
     is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
@@ -451,9 +453,10 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
         return False
-    elif isinstance(
-        param_field.field_info, (params.Query, params.Header)
-    ) and (is_scalar_sequence_mapping_field(param_field) or is_scalar_mapping_field(param_field)):
+    elif isinstance(param_field.field_info, (params.Query, params.Header)) and (
+        is_scalar_sequence_mapping_field(param_field)
+        or is_scalar_mapping_field(param_field)
+    ):
         return False
     else:
         assert isinstance(
@@ -649,7 +652,7 @@ def request_params_to_args(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
-        if is_scalar_mapping_field(field) and isinstance(
+        elif is_scalar_mapping_field(field) and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = dict(received_params.multi_items()) or field.default
@@ -658,7 +661,7 @@ def request_params_to_args(
         ):
             if not len(received_params.multi_items()):
                 value = field.default
-            else:    
+            else:
                 value = defaultdict(list)
                 for k, v in received_params.multi_items():
                     value[k].append(v)

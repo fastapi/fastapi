@@ -1,5 +1,5 @@
 import http
-from typing import FrozenSet, Optional
+from typing import FrozenSet, List, Mapping, Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -182,6 +182,21 @@ def get_query_param_required(query=Query()):
 @app.get("/query/param-required/int")
 def get_query_param_required_type(query: int = Query()):
     return f"foo bar {query}"
+
+
+@app.get("/query/sequence-params")
+def get_sequence_query_params(query: Mapping[str, List[int]] = Query({})):
+    return f"foo bar {query}"
+
+
+@app.get("/query/mapping-params")
+def get_mapping_query_params(queries: Mapping[str, str] = Query({})):
+    return f"foo bar {queries['foo']} {queries['bar']}"
+
+
+@app.get("/query/mapping-sequence-params")
+def get_sequence_mapping_query_params(queries: Mapping[str, List[int]] = Query({})):
+    return f"foo bar {queries}"
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)

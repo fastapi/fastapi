@@ -43,6 +43,13 @@ sequence_annotation_to_type = {
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
+mapping_annotation_to_type = {
+    Mapping: list,
+}
+
+mapping_types = tuple(mapping_annotation_to_type.keys())
+
+
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter
@@ -228,6 +235,12 @@ if PYDANTIC_V2:
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
 
+    def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        return field_annotation_is_scalar_sequence_mapping(field.field_info.annotation)
+
+    def is_scalar_mapping_field(field: ModelField) -> bool:
+        return field_annotation_is_scalar_mapping(field.field_info.annotation)
+
     def is_bytes_field(field: ModelField) -> bool:
         return is_bytes_or_nonable_bytes_annotation(field.type_)
 
@@ -275,6 +288,7 @@ else:
     from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
         SHAPE_LIST,
+        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
@@ -325,6 +339,7 @@ else:
         SHAPE_SEQUENCE,
         SHAPE_TUPLE_ELLIPSIS,
     }
+
     sequence_shape_to_type = {
         SHAPE_LIST: list,
         SHAPE_SET: set,
@@ -332,6 +347,11 @@ else:
         SHAPE_SEQUENCE: list,
         SHAPE_TUPLE_ELLIPSIS: list,
     }
+
+    mapping_shapes = {
+        SHAPE_MAPPING,
+    }
+    mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
     @dataclass
     class GenerateJsonSchema:  # type: ignore[no-redef]
@@ -397,6 +417,30 @@ else:
                         return False
             return True
         if _annotation_is_sequence(field.type_):
+            return True
+        return False
+
+    def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
+        if (field.shape in mapping_shapes) and not lenient_issubclass(
+            field.type_, BaseModel
+        ):
+            if field.sub_fields is None:
+                return False
+            for sub_field in field.sub_fields:
+                if not is_scalar_field(sub_field):
+                    return False
+            return True
+        return False
+
+    def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        if (field.shape in mapping_shapes) and not lenient_issubclass(
+            field.type_, BaseModel
+        ):
+            if field.sub_fields is None:
+                return False
+            for sub_field in field.sub_fields:
+                if not is_scalar_sequence_field(sub_field):
+                    return False
             return True
         return False
 
@@ -468,6 +512,12 @@ else:
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return is_pv1_scalar_sequence_field(field)
 
+    def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+        return is_pv1_scalar_sequence_mapping_field(field)
+
+    def is_scalar_mapping_field(field: ModelField) -> bool:
+        return is_pv1_scalar_mapping_field(field)
+
     def is_bytes_field(field: ModelField) -> bool:
         return lenient_issubclass(field.type_, bytes)
 
@@ -517,14 +567,27 @@ def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     )
 
 
+def _annotation_is_mapping(annotation: Union[Type[Any], None]) -> bool:
+    if lenient_issubclass(annotation, (str, bytes)):
+        return False
+    return lenient_issubclass(annotation, mapping_types)
+
+
+def field_annotation_is_mapping(annotation: Union[Type[Any], None]) -> bool:
+    return _annotation_is_mapping(annotation) or _annotation_is_mapping(
+        get_origin(annotation)
+    )
+
+
 def value_is_sequence(value: Any) -> bool:
     return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))  # type: ignore[arg-type]
 
 
 def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     return (
-        lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
+        lenient_issubclass(annotation, (BaseModel, UploadFile))
         or _annotation_is_sequence(annotation)
+        or _annotation_is_mapping(annotation)
         or is_dataclass(annotation)
     )
 
@@ -560,6 +623,45 @@ def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> b
         return at_least_one_scalar_sequence
     return field_annotation_is_sequence(annotation) and all(
         field_annotation_is_scalar(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
+def field_annotation_is_scalar_mapping(annotation: Union[Type[Any], None]) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        at_least_one_scalar_mapping = False
+        for arg in get_args(annotation):
+            if field_annotation_is_scalar_mapping(arg):
+                at_least_one_scalar_mapping = True
+                continue
+            elif not field_annotation_is_scalar(arg):
+                return False
+        return at_least_one_scalar_mapping
+    return field_annotation_is_mapping(annotation) and all(
+        field_annotation_is_scalar(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
+def field_annotation_is_scalar_sequence_mapping(
+    annotation: Union[Type[Any], None]
+) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        at_least_one_scalar_mapping = False
+        for arg in get_args(annotation):
+            if field_annotation_is_scalar_mapping(arg):
+                at_least_one_scalar_mapping = True
+                continue
+            elif not field_annotation_is_scalar(arg):
+                return False
+        return at_least_one_scalar_mapping
+    return field_annotation_is_mapping(annotation) and all(
+        (
+            field_annotation_is_scalar_sequence(sub_annotation)
+            or field_annotation_is_scalar(sub_annotation)
+        )
         for sub_annotation in get_args(annotation)
     )
 
