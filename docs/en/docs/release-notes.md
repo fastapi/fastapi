@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.100.0
+
 ✨ Support for **Pydantic v2** ✨
 
 Pydantic version 2 has the **core** re-written in **Rust** and includes a lot of improvements and features, for example:
