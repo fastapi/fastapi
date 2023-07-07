@@ -27,7 +27,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        尽可能选择使用 `Annotated` 的版本。
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
