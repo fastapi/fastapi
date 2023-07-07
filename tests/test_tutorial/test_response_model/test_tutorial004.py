@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.response_model.tutorial004 import app
@@ -83,7 +84,16 @@ def test_openapi_schema():
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "price": {"title": "Price", "type": "number"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                         "tax": {"title": "Tax", "type": "number", "default": 10.5},
                         "tags": {
                             "title": "Tags",

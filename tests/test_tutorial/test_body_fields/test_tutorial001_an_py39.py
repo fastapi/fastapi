@@ -1,5 +1,7 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py39
 
@@ -12,59 +14,71 @@ def get_client():
     return client
 
 
-price_not_greater = {
-    "detail": [
-        {
-            "ctx": {"limit_value": 0},
-            "loc": ["body", "item", "price"],
-            "msg": "ensure this value is greater than 0",
-            "type": "value_error.number.not_gt",
-        }
-    ]
-}
+@needs_py39
+def test_items_5(client: TestClient):
+    response = client.put("/items/5", json={"item": {"name": "Foo", "price": 3.0}})
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": 5,
+        "item": {"name": "Foo", "price": 3.0, "description": None, "tax": None},
+    }
 
 
 @needs_py39
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/5",
-            {"item": {"name": "Foo", "price": 3.0}},
-            200,
-            {
-                "item_id": 5,
-                "item": {"name": "Foo", "price": 3.0, "description": None, "tax": None},
-            },
-        ),
-        (
-            "/items/6",
-            {
-                "item": {
-                    "name": "Bar",
-                    "price": 0.2,
-                    "description": "Some bar",
-                    "tax": "5.4",
+def test_items_6(client: TestClient):
+    response = client.put(
+        "/items/6",
+        json={
+            "item": {
+                "name": "Bar",
+                "price": 0.2,
+                "description": "Some bar",
+                "tax": "5.4",
+            }
+        },
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": 6,
+        "item": {
+            "name": "Bar",
+            "price": 0.2,
+            "description": "Some bar",
+            "tax": 5.4,
+        },
+    }
+
+
+@needs_py39
+def test_invalid_price(client: TestClient):
+    response = client.put("/items/5", json={"item": {"name": "Foo", "price": -3.0}})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "greater_than",
+                    "loc": ["body", "item", "price"],
+                    "msg": "Input should be greater than 0",
+                    "input": -3.0,
+                    "ctx": {"gt": 0.0},
+                    "url": match_pydantic_error_url("greater_than"),
                 }
-            },
-            200,
-            {
-                "item_id": 6,
-                "item": {
-                    "name": "Bar",
-                    "price": 0.2,
-                    "description": "Some bar",
-                    "tax": 5.4,
-                },
-            },
-        ),
-        ("/items/5", {"item": {"name": "Foo", "price": -3.0}}, 422, price_not_greater),
-    ],
-)
-def test(path, body, expected_status, expected_response, client: TestClient):
-    response = client.put(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "ctx": {"limit_value": 0},
+                    "loc": ["body", "item", "price"],
+                    "msg": "ensure this value is greater than 0",
+                    "type": "value_error.number.not_gt",
+                }
+            ]
+        }
+    )
 
 
 @needs_py39
@@ -124,18 +138,39 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "title": "The description of the item",
-                            "maxLength": 300,
-                            "type": "string",
-                        },
+                        "description": IsDict(
+                            {
+                                "title": "The description of the item",
+                                "anyOf": [
+                                    {"maxLength": 300, "type": "string"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "The description of the item",
+                                "maxLength": 300,
+                                "type": "string",
+                            }
+                        ),
                         "price": {
                             "title": "Price",
                             "exclusiveMinimum": 0.0,
                             "type": "number",
                             "description": "The price must be greater than zero",
                         },
-                        "tax": {"title": "Tax", "type": "number"},
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                     },
                 },
                 "Body_update_item_items__item_id__put": {

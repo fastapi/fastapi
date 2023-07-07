@@ -2,6 +2,79 @@
 
 ## Latest Changes
 
+✨ Support for **Pydantic v2** ✨
+
+Pydantic version 2 has the **core** re-written in **Rust** and includes a lot of improvements and features, for example:
+
+* Improved **correctness** in corner cases.
+* **Safer** types.
+* Better **performance** and **less energy** consumption.
+* Better **extensibility**.
+* etc.
+
+...all this while keeping the **same Python API**. In most of the cases, for simple models, you can simply upgrade the Pydantic version and get all the benefits. 🚀
+
+In some cases, for pure data validation and processing, you can get performance improvements of **20x** or more. This means 2,000% or more. 🤯
+
+When you use **FastAPI**, there's a lot more going on, processing the request and response, handling dependencies, executing **your own code**, and particularly, **waiting for the network**. But you will probably still get some nice performance improvements just from the upgrade.
+
+The focus of this release is **compatibility** with Pydantic v1 and v2, to make sure your current apps keep working. Later there will be more focus on refactors, correctness, code improvements, and then **performance** improvements. Some third-party early beta testers that ran benchmarks on the beta releases of FastAPI reported improvements of **2x - 3x**. Which is not bad for just doing `pip install --upgrade fastapi pydantic`. This was not an official benchmark and I didn't check it myself, but it's a good sign.
+
+### Migration
+
+Check out the [Pydantic migration guide](https://docs.pydantic.dev/2.0/migration/).
+
+For the things that need changes in your Pydantic models, the Pydantic team built [`bump-pydantic`](https://github.com/pydantic/bump-pydantic).
+
+A command line tool that will **process your code** and update most of the things **automatically** for you. Make sure you have your code in git first, and review each of the changes to make sure everything is correct before committing the changes.
+
+### Pydantic v1
+
+**This version of FastAPI still supports Pydantic v1**. And although Pydantic v1 will be deprecated at some point, ti will still be supported for a while.
+
+This means that you can install the new Pydantic v2, and if something fails, you can install Pydantic v1 while you fix any problems you might have, but having the latest FastAPI.
+
+There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept at **100%**.
+
+### Changes
+
+* There are **new parameter** fields supported by Pydantic `Field()` for:
+
+    * `Path()`
+    * `Query()`
+    * `Header()`
+    * `Cookie()`
+    * `Body()`
+    * `Form()`
+    * `File()`
+
+* The new parameter fields are:
+
+    * `default_factory`
+    * `alias_priority`
+    * `validation_alias`
+    * `serialization_alias`
+    * `discriminator`
+    * `strict`
+    * `multiple_of`
+    * `allow_inf_nan`
+    * `max_digits`
+    * `decimal_places`
+    * `json_schema_extra`
+
+...you can read about them in the Pydantic docs.
+
+* The parameter `regex` has been deprecated and replaced by `pattern`.
+    * You can read more about it in the docs for [Query Parameters and String Validations: Add regular expressions](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions).
+* New Pydantic models use an improved and simplified attribute `model_config` that takes a simple dict instead of an internal class `Config` for their configuration.
+    * You can read more about it in the docs for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
+* The attribute `schema_extra` for the internal class `Config` has been replaced by the key `json_schema_extra` in the new `model_config` dict.
+    * You can read more about it in the docs for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
+* When you install `"fastapi[all]"` it now also includes:
+    * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
+    * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+* Now Pydantic Settings is an additional optional package (included in `"fastapi[all]"`). To use settings you should now import `from pydantic_settings import BaseSettings` instead of importing from `pydantic` directly.
+    * You can read more about it in the docs for [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/).
 
 ## 0.99.1
 

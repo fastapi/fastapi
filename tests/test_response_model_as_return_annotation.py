@@ -2,10 +2,10 @@ from typing import List, Union
 
 import pytest
 from fastapi import FastAPI
-from fastapi.exceptions import FastAPIError
+from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 
 
 class BaseUser(BaseModel):
@@ -277,12 +277,12 @@ def test_response_model_no_annotation_return_exact_dict():
 
 
 def test_response_model_no_annotation_return_invalid_dict():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/response_model-no_annotation-return_invalid_dict")
 
 
 def test_response_model_no_annotation_return_invalid_model():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/response_model-no_annotation-return_invalid_model")
 
 
@@ -313,12 +313,12 @@ def test_no_response_model_annotation_return_exact_dict():
 
 
 def test_no_response_model_annotation_return_invalid_dict():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/no_response_model-annotation-return_invalid_dict")
 
 
 def test_no_response_model_annotation_return_invalid_model():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/no_response_model-annotation-return_invalid_model")
 
 
@@ -395,12 +395,12 @@ def test_response_model_model1_annotation_model2_return_exact_dict():
 
 
 def test_response_model_model1_annotation_model2_return_invalid_dict():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/response_model_model1-annotation_model2-return_invalid_dict")
 
 
 def test_response_model_model1_annotation_model2_return_invalid_model():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/response_model_model1-annotation_model2-return_invalid_model")
 
 
