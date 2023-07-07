@@ -2,7 +2,6 @@
 
 ## Latest Changes
 
-* ✨ Add support for Pydantic v2. PR [#9816](https://github.com/tiangolo/fastapi/pull/9816) by [@tiangolo](https://github.com/tiangolo).
 ✨ Support for **Pydantic v2** ✨
 
 Pydantic version 2 has the **core** re-written in **Rust** and includes a lot of improvements and features, for example:
@@ -76,6 +75,8 @@ There are **tests for both Pydantic v1 and v2**, and test **coverage** is kept a
     * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
 * Now Pydantic Settings is an additional optional package (included in `"fastapi[all]"`). To use settings you should now import `from pydantic_settings import BaseSettings` instead of importing from `pydantic` directly.
     * You can read more about it in the docs for [Settings and Environment Variables](https://fastapi.tiangolo.com/advanced/settings/).
+
+* PR [#9816](https://github.com/tiangolo/fastapi/pull/9816) by [@tiangolo](https://github.com/tiangolo), included all the work done (in multiple PRs) on the beta branch (`main-pv2`).
 
 ## 0.99.1
 
