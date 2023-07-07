@@ -652,7 +652,7 @@ def request_params_to_args(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
-        if is_scalar_mapping_field(field) and isinstance(
+        elif is_scalar_mapping_field(field) and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = dict(received_params.multi_items()) or field.default
