@@ -78,7 +78,7 @@ articles:
     title: FastAPI for Flask Users
   - author: Louis Guitton
     author_link: https://twitter.com/louis_guitton
-    link: https://guitton.co/posts/fastapi-monitoring/
+    link: https://dev.to/louisguitton/how-to-monitor-your-fastapi-service-3mpo
     title: How to monitor your FastAPI service
   - author: Julien Harbulot
     author_link: https://julienharbulot.com/
