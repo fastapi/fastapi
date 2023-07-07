@@ -227,10 +227,10 @@ if PYDANTIC_V2:
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
-    
+
     def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
-    
+
     def is_scalar_mapping_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
 
@@ -281,12 +281,12 @@ else:
     from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
         SHAPE_LIST,
+        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
         SHAPE_TUPLE,
         SHAPE_TUPLE_ELLIPSIS,
-        SHAPE_MAPPING,
     )
     from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
@@ -412,7 +412,7 @@ else:
         if _annotation_is_sequence(field.type_):
             return True
         return False
-    
+
     def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
         if (field.shape in mapping_shapes) and not lenient_issubclass(
             field.type_, BaseModel
@@ -425,7 +425,6 @@ else:
             return True
         return False
 
-
     def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
         if (field.shape in mapping_shapes) and not lenient_issubclass(
             field.type_, BaseModel
@@ -437,7 +436,6 @@ else:
                     return False
             return True
         return False
-
 
     def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
         use_errors: List[Any] = []
@@ -506,10 +504,10 @@ else:
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return is_pv1_scalar_sequence_field(field)
-    
+
     def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
         return is_pv1_scalar_sequence_mapping_field(field)
-    
+
     def is_scalar_mapping_field(field: ModelField) -> bool:
         return is_pv1_scalar_mapping_field(field)
 
