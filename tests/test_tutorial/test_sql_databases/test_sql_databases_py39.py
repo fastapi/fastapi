@@ -3,9 +3,10 @@ import os
 from pathlib import Path
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
+from ...utils import needs_py39, needs_pydanticv1
 
 
 @pytest.fixture(scope="module", name="client")
@@ -29,6 +30,8 @@ def get_client(tmp_path_factory: pytest.TempPathFactory):
 
 
 @needs_py39
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
@@ -41,6 +44,8 @@ def test_create_user(client):
 
 
 @needs_py39
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_get_user(client):
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
@@ -50,12 +55,16 @@ def test_get_user(client):
 
 
 @needs_py39
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_inexistent_user(client):
     response = client.get("/users/999")
     assert response.status_code == 404, response.text
 
 
 @needs_py39
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_get_users(client):
     response = client.get("/users/")
     assert response.status_code == 200, response.text
@@ -65,6 +74,8 @@ def test_get_users(client):
 
 
 @needs_py39
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
 def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
@@ -89,6 +100,8 @@ def test_create_item(client):
 
 
 @needs_py39
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
 def test_read_items(client):
     response = client.get("/items/")
     assert response.status_code == 200, response.text
@@ -100,7 +113,9 @@ def test_read_items(client):
 
 
 @needs_py39
-def test_openapi_schema(client):
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -328,7 +343,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                     },
                 },
                 "Item": {
@@ -337,7 +361,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"},
+                        ),
                         "id": {"title": "Id", "type": "integer"},
                         "owner_id": {"title": "Owner Id", "type": "integer"},
                     },

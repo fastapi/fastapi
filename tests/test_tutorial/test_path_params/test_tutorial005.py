@@ -1,4 +1,4 @@
-import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.path_params.tutorial005 import app
@@ -6,47 +6,55 @@ from docs_src.path_params.tutorial005 import app
 client = TestClient(app)
 
 
-@pytest.mark.parametrize(
-    "url,status_code,expected",
-    [
-        (
-            "/models/alexnet",
-            200,
-            {"model_name": "alexnet", "message": "Deep Learning FTW!"},
-        ),
-        (
-            "/models/lenet",
-            200,
-            {"model_name": "lenet", "message": "LeCNN all the images"},
-        ),
-        (
-            "/models/resnet",
-            200,
-            {"model_name": "resnet", "message": "Have some residuals"},
-        ),
-        (
-            "/models/foo",
-            422,
-            {
-                "detail": [
-                    {
-                        "ctx": {"enum_values": ["alexnet", "resnet", "lenet"]},
-                        "loc": ["path", "model_name"],
-                        "msg": "value is not a valid enumeration member; permitted: 'alexnet', 'resnet', 'lenet'",
-                        "type": "type_error.enum",
-                    }
-                ]
-            },
-        ),
-    ],
-)
-def test_get_enums(url, status_code, expected):
-    response = client.get(url)
-    assert response.status_code == status_code
-    assert response.json() == expected
+def test_get_enums_alexnet():
+    response = client.get("/models/alexnet")
+    assert response.status_code == 200
+    assert response.json() == {"model_name": "alexnet", "message": "Deep Learning FTW!"}
 
 
-def test_openapi():
+def test_get_enums_lenet():
+    response = client.get("/models/lenet")
+    assert response.status_code == 200
+    assert response.json() == {"model_name": "lenet", "message": "LeCNN all the images"}
+
+
+def test_get_enums_resnet():
+    response = client.get("/models/resnet")
+    assert response.status_code == 200
+    assert response.json() == {"model_name": "resnet", "message": "Have some residuals"}
+
+
+def test_get_enums_invalid():
+    response = client.get("/models/foo")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "enum",
+                    "loc": ["path", "model_name"],
+                    "msg": "Input should be 'alexnet','resnet' or 'lenet'",
+                    "input": "foo",
+                    "ctx": {"expected": "'alexnet','resnet' or 'lenet'"},
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "ctx": {"enum_values": ["alexnet", "resnet", "lenet"]},
+                    "loc": ["path", "model_name"],
+                    "msg": "value is not a valid enumeration member; permitted: 'alexnet', 'resnet', 'lenet'",
+                    "type": "type_error.enum",
+                }
+            ]
+        }
+    )
+
+
+def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     data = response.json()
@@ -98,12 +106,22 @@ def test_openapi():
                         }
                     },
                 },
-                "ModelName": {
-                    "title": "ModelName",
-                    "enum": ["alexnet", "resnet", "lenet"],
-                    "type": "string",
-                    "description": "An enumeration.",
-                },
+                "ModelName": IsDict(
+                    {
+                        "title": "ModelName",
+                        "enum": ["alexnet", "resnet", "lenet"],
+                        "type": "string",
+                    }
+                )
+                | IsDict(
+                    {
+                        # TODO: remove when deprecating Pydantic v1
+                        "title": "ModelName",
+                        "enum": ["alexnet", "resnet", "lenet"],
+                        "type": "string",
+                        "description": "An enumeration.",
+                    }
+                ),
                 "ValidationError": {
                     "title": "ValidationError",
                     "required": ["loc", "msg", "type"],
