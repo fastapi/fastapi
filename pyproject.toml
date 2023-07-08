@@ -42,8 +42,8 @@ classifiers = [
 ]
 dependencies = [
     "starlette>=0.27.0,<0.28.0",
-    "pydantic>=1.7.4,!=1.8,!=1.8.1,<2.0.0",
-    "typing-extensions>=4.5.0"
+    "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,<3.0.0",
+    "typing-extensions>=4.5.0",
 ]
 dynamic = ["version"]
 
@@ -61,8 +61,10 @@ all = [
     "pyyaml >=5.3.1",
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
     "orjson >=3.2.1",
-    "email_validator >=1.1.1",
+    "email_validator >=2.0.0",
     "uvicorn[standard] >=0.12.0",
+    "pydantic-settings >=2.0.0",
+    "pydantic-extra-types >=2.0.0",
 ]
 
 [tool.hatch.version]
@@ -85,6 +87,7 @@ check_untyped_defs = true
 addopts = [
   "--strict-config",
   "--strict-markers",
+  "--ignore=docs_src",
 ]
 xfail_strict = true
 junit_family = "xunit2"
@@ -142,6 +145,7 @@ ignore = [
 "docs_src/custom_response/tutorial007.py" = ["B007"]
 "docs_src/dataclasses/tutorial003.py" = ["I001"]
 "docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
+"docs_src/path_operation_advanced_configuration/tutorial007_pv1.py" = ["B904"]
 "docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
 "docs_src/dependencies/tutorial008_an.py" = ["F821"]
 "docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]

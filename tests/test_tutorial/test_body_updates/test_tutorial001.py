@@ -1,11 +1,17 @@
+import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.body_updates.tutorial001 import app
 
-client = TestClient(app)
+@pytest.fixture(name="client")
+def get_client():
+    from docs_src.body_updates.tutorial001 import app
+
+    client = TestClient(app)
+    return client
 
 
-def test_get():
+def test_get(client: TestClient):
     response = client.get("/items/baz")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -17,7 +23,7 @@ def test_get():
     }
 
 
-def test_put():
+def test_put(client: TestClient):
     response = client.put(
         "/items/bar", json={"name": "Barz", "price": 3, "description": None}
     )
@@ -30,7 +36,7 @@ def test_put():
     }
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -118,9 +124,36 @@ def test_openapi_schema():
                     "title": "Item",
                     "type": "object",
                     "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
-                        "price": {"title": "Price", "type": "number"},
+                        "name": IsDict(
+                            {
+                                "title": "Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Name", "type": "string"}
+                        ),
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "price": IsDict(
+                            {
+                                "title": "Price",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Price", "type": "number"}
+                        ),
                         "tax": {"title": "Tax", "type": "number", "default": 10.5},
                         "tags": {
                             "title": "Tags",

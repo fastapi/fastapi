@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.response_model.tutorial003_01 import app
@@ -78,7 +79,16 @@ def test_openapi_schema():
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": {"title": "Full Name", "type": "string"},
+                        "full_name": IsDict(
+                            {
+                                "title": "Full Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Full Name", "type": "string"}
+                        ),
                     },
                 },
                 "HTTPValidationError": {
@@ -103,7 +113,16 @@ def test_openapi_schema():
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": {"title": "Full Name", "type": "string"},
+                        "full_name": IsDict(
+                            {
+                                "title": "Full Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Full Name", "type": "string"}
+                        ),
                         "password": {"title": "Password", "type": "string"},
                     },
                 },

@@ -1,4 +1,6 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from docs_src.dataclasses.tutorial001 import app
 
@@ -19,15 +21,30 @@ def test_post_item():
 def test_post_invalid_item():
     response = client.post("/items/", json={"name": "Foo", "price": "invalid price"})
     assert response.status_code == 422
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "price"],
-                "msg": "value is not a valid float",
-                "type": "type_error.float",
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "float_parsing",
+                    "loc": ["body", "price"],
+                    "msg": "Input should be a valid number, unable to parse string as a number",
+                    "input": "invalid price",
+                    "url": match_pydantic_error_url("float_parsing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "price"],
+                    "msg": "value is not a valid float",
+                    "type": "type_error.float",
+                }
+            ]
+        }
+    )
 
 
 def test_openapi_schema():
@@ -88,8 +105,26 @@ def test_openapi_schema():
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "price": {"title": "Price", "type": "number"},
-                        "description": {"title": "Description", "type": "string"},
-                        "tax": {"title": "Tax", "type": "number"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                     },
                 },
                 "ValidationError": {

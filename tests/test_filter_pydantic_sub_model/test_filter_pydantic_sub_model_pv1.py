@@ -1,46 +1,20 @@
-from typing import Optional
-
 import pytest
-from fastapi import Depends, FastAPI
+from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, ValidationError, validator
 
-app = FastAPI()
-
-
-class ModelB(BaseModel):
-    username: str
+from ..utils import needs_pydanticv1
 
 
-class ModelC(ModelB):
-    password: str
+@pytest.fixture(name="client")
+def get_client():
+    from .app_pv1 import app
+
+    client = TestClient(app)
+    return client
 
 
-class ModelA(BaseModel):
-    name: str
-    description: Optional[str] = None
-    model_b: ModelB
-
-    @validator("name")
-    def lower_username(cls, name: str, values):
-        if not name.endswith("A"):
-            raise ValueError("name must end in A")
-        return name
-
-
-async def get_model_c() -> ModelC:
-    return ModelC(username="test-user", password="test-password")
-
-
-@app.get("/model/{name}", response_model=ModelA)
-async def get_model_a(name: str, model_c=Depends(get_model_c)):
-    return {"name": name, "description": "model-a-desc", "model_b": model_c}
-
-
-client = TestClient(app)
-
-
-def test_filter_sub_model():
+@needs_pydanticv1
+def test_filter_sub_model(client: TestClient):
     response = client.get("/model/modelA")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -50,8 +24,9 @@ def test_filter_sub_model():
     }
 
 
-def test_validator_is_cloned():
-    with pytest.raises(ValidationError) as err:
+@needs_pydanticv1
+def test_validator_is_cloned(client: TestClient):
+    with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
     assert err.value.errors() == [
         {
@@ -62,7 +37,8 @@ def test_validator_is_cloned():
     ]
 
 
-def test_openapi_schema():
+@needs_pydanticv1
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.dataclasses.tutorial003 import app
@@ -135,11 +136,22 @@ def test_openapi_schema():
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "items": {
-                            "title": "Items",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/Item"},
-                        },
+                        "items": IsDict(
+                            {
+                                "title": "Items",
+                                "type": "array",
+                                "items": {"$ref": "#/components/schemas/Item"},
+                                "default": [],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Items",
+                                "type": "array",
+                                "items": {"$ref": "#/components/schemas/Item"},
+                            }
+                        ),
                     },
                 },
                 "HTTPValidationError": {
@@ -159,7 +171,16 @@ def test_openapi_schema():
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                     },
                 },
                 "ValidationError": {
