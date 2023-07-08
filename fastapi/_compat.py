@@ -424,7 +424,7 @@ else:
         if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
             field.type_, BaseModel
         ):
-            if field.sub_fields is not None:
+            if field.sub_fields is not None:  # type: ignore[attr-defined]
                 for sub_field in field.sub_fields:  # type: ignore[attr-defined]
                     if not is_scalar_field(sub_field):
                         return False
