@@ -427,7 +427,7 @@ def test_mapping_with_non_mapping_query_mixed_types():
     assert response.status_code == 200
     assert (
         response.json()
-        == "foo bar 1 {'foo': 'baz', 'bar': 'buzz', 'query': '1'}  {'query': '1'} {'foo': [], 'bar': [], 'query': ['1']}"
+        == "foo bar 1 {'foo': 'baz', 'bar': 'buzz', 'query': '1'}  {'query': 1} {'foo': [], 'bar': [], 'query': [1]}"
     )
 
 
