@@ -1163,279 +1163,237 @@ def test_openapi_schema():
                     },
                 }
             },
-    "/query/sequence-params": {
-        "get": {
-            "summary": "Get Sequence Query Params",
-            "operationId": "get_sequence_query_params_query_sequence_params_get",
-            "parameters": [
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "items": {
-                                "type": "integer"
+            "/query/sequence-params": {
+                "get": {
+                    "summary": "Get Sequence Query Params",
+                    "operationId": "get_sequence_query_params_query_sequence_params_get",
+                    "parameters": [
+                        {
+                            "required": False,
+                            "schema": {
+                                "additionalProperties": {
+                                    "items": {"type": "integer"},
+                                    "type": "array",
+                                },
+                                "type": "object",
+                                "title": "Query",
+                                "default": {},
                             },
-                            "type": "array"
+                            "name": "query",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
                         },
-                        "type": "object",
-                        "title": "Query",
-                        "default": {}
-                    },
-                    "name": "query",
-                    "in": "query"
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "422": {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/HTTPValidationError"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/query/mapping-params": {
-        "get": {
-            "summary": "Get Mapping Query Params",
-            "operationId": "get_mapping_query_params_query_mapping_params_get",
-            "parameters": [
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "type": "object",
-                        "title": "Queries",
-                        "default": {}
-                    },
-                    "name": "queries",
-                    "in": "query"
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "422": {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/HTTPValidationError"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/query/mapping-sequence-params": {
-        "get": {
-            "summary": "Get Sequence Mapping Query Params",
-            "operationId": "get_sequence_mapping_query_params_query_mapping_sequence_params_get",
-            "parameters": [
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "items": {
-                                "type": "integer"
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
                             },
-                            "type": "array"
                         },
-                        "type": "object",
-                        "title": "Queries",
-                        "default": {}
                     },
-                    "name": "queries",
-                    "in": "query"
                 }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "422": {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
+            },
+            "/query/mapping-params": {
+                "get": {
+                    "summary": "Get Mapping Query Params",
+                    "operationId": "get_mapping_query_params_query_mapping_params_get",
+                    "parameters": [
+                        {
+                            "required": False,
                             "schema": {
-                                "$ref": "#/components/schemas/HTTPValidationError"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/query/mixed-params": {
-        "get": {
-            "summary": "Get Mixed Mapping Query Params",
-            "operationId": "get_mixed_mapping_query_params_query_mixed_params_get",
-            "parameters": [
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "items": {
-                                "type": "string"
+                                "additionalProperties": {"type": "string"},
+                                "type": "object",
+                                "title": "Queries",
+                                "default": {},
                             },
-                            "type": "array"
-                        },
-                        "type": "object",
-                        "title": "Sequence Mapping Queries",
-                        "default": {}
-                    },
-                    "name": "sequence_mapping_queries",
-                    "in": "query"
-                },
-                {
-                    "required": True,
-                    "schema": {
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "type": "object",
-                        "title": "Mapping Query"
-                    },
-                    "name": "mapping_query",
-                    "in": "query"
-                },
-                {
-                    "required": True,
-                    "schema": {
-                        "type": "string",
-                        "title": "Query"
-                    },
-                    "name": "query",
-                    "in": "query"
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/json": {
-                            "schema": {}
+                            "name": "queries",
+                            "in": "query",
                         }
-                    }
-                },
-                "422": {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/HTTPValidationError"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "/query/mixed-type-params": {
-        "get": {
-            "summary": "Get Mixed Mapping Mixed Type Query Params",
-            "operationId": "get_mixed_mapping_mixed_type_query_params_query_mixed_type_params_get",
-            "parameters": [
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "items": {
-                                "type": "integer"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
                             },
-                            "type": "array"
                         },
-                        "type": "object",
-                        "title": "Sequence Mapping Queries",
-                        "default": {}
                     },
-                    "name": "sequence_mapping_queries",
-                    "in": "query"
-                },
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "type": "object",
-                        "title": "Mapping Query Str",
-                        "default": {}
-                    },
-                    "name": "mapping_query_str",
-                    "in": "query"
-                },
-                {
-                    "required": False,
-                    "schema": {
-                        "additionalProperties": {
-                            "type": "integer"
-                        },
-                        "type": "object",
-                        "title": "Mapping Query Int",
-                        "default": {}
-                    },
-                    "name": "mapping_query_int",
-                    "in": "query"
-                },
-                {
-                    "required": True,
-                    "schema": {
-                        "type": "integer",
-                        "title": "Query"
-                    },
-                    "name": "query",
-                    "in": "query"
                 }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "422": {
-                    "description": "Validation Error",
-                    "content": {
-                        "application/json": {
+            },
+            "/query/mapping-sequence-params": {
+                "get": {
+                    "summary": "Get Sequence Mapping Query Params",
+                    "operationId": "get_sequence_mapping_query_params_query_mapping_sequence_params_get",
+                    "parameters": [
+                        {
+                            "required": False,
                             "schema": {
-                                "$ref": "#/components/schemas/HTTPValidationError"
-                            }
+                                "additionalProperties": {
+                                    "items": {"type": "integer"},
+                                    "type": "array",
+                                },
+                                "type": "object",
+                                "title": "Queries",
+                                "default": {},
+                            },
+                            "name": "queries",
+                            "in": "query",
                         }
-                    }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
                 }
-            }
-        }
-    }
+            },
+            "/query/mixed-params": {
+                "get": {
+                    "summary": "Get Mixed Mapping Query Params",
+                    "operationId": "get_mixed_mapping_query_params_query_mixed_params_get",
+                    "parameters": [
+                        {
+                            "required": False,
+                            "schema": {
+                                "additionalProperties": {
+                                    "items": {"type": "string"},
+                                    "type": "array",
+                                },
+                                "type": "object",
+                                "title": "Sequence Mapping Queries",
+                                "default": {},
+                            },
+                            "name": "sequence_mapping_queries",
+                            "in": "query",
+                        },
+                        {
+                            "required": True,
+                            "schema": {
+                                "additionalProperties": {"type": "string"},
+                                "type": "object",
+                                "title": "Mapping Query",
+                            },
+                            "name": "mapping_query",
+                            "in": "query",
+                        },
+                        {
+                            "required": True,
+                            "schema": {"type": "string", "title": "Query"},
+                            "name": "query",
+                            "in": "query",
+                        },
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/query/mixed-type-params": {
+                "get": {
+                    "summary": "Get Mixed Mapping Mixed Type Query Params",
+                    "operationId": "get_mixed_mapping_mixed_type_query_params_query_mixed_type_params_get",
+                    "parameters": [
+                        {
+                            "required": False,
+                            "schema": {
+                                "additionalProperties": {
+                                    "items": {"type": "integer"},
+                                    "type": "array",
+                                },
+                                "type": "object",
+                                "title": "Sequence Mapping Queries",
+                                "default": {},
+                            },
+                            "name": "sequence_mapping_queries",
+                            "in": "query",
+                        },
+                        {
+                            "required": False,
+                            "schema": {
+                                "additionalProperties": {"type": "string"},
+                                "type": "object",
+                                "title": "Mapping Query Str",
+                                "default": {},
+                            },
+                            "name": "mapping_query_str",
+                            "in": "query",
+                        },
+                        {
+                            "required": False,
+                            "schema": {
+                                "additionalProperties": {"type": "integer"},
+                                "type": "object",
+                                "title": "Mapping Query Int",
+                                "default": {},
+                            },
+                            "name": "mapping_query_int",
+                            "in": "query",
+                        },
+                        {
+                            "required": True,
+                            "schema": {"type": "integer", "title": "Query"},
+                            "name": "query",
+                            "in": "query",
+                        },
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
         },
         "components": {
             "schemas": {
