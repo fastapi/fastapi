@@ -5,6 +5,7 @@ from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
 
+
 @app.api_route("/api_route")
 def non_operation():
     return {"message": "Hello World"}

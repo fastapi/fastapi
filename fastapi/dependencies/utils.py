@@ -640,7 +640,10 @@ async def solve_dependencies(
         )
     return values, errors, background_tasks, response, dependency_cache
 
-class Marker: pass
+
+class Marker:
+    pass
+
 
 def request_params_to_args(
     required_params: Sequence[ModelField],
@@ -680,10 +683,10 @@ def request_params_to_args(
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif (
-                isinstance(errors_, list)
-                and is_scalar_sequence_mapping_field(field)
-                and isinstance(received_params, QueryParams)
-            ):
+            isinstance(errors_, list)
+            and is_scalar_sequence_mapping_field(field)
+            and isinstance(received_params, QueryParams)
+        ):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             # remove all invalid parameters
             marker = Marker()
@@ -693,9 +696,9 @@ def request_params_to_args(
                 value[key] = [x for x in value[key] if x != marker]
             values[field.name] = value
         elif (
-                isinstance(errors_, list)
-                and is_scalar_mapping_field(field)
-                and isinstance(received_params, QueryParams)
+            isinstance(errors_, list)
+            and is_scalar_mapping_field(field)
+            and isinstance(received_params, QueryParams)
         ):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             # remove all invalid parameters
