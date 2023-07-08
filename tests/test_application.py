@@ -1,5 +1,4 @@
 import pytest
-from deepdiff import DeepDiff
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
