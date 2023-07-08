@@ -226,7 +226,7 @@ In this case, there are 3 query parameters:
 
 ## Free Form Query Parameters
 
-Sometimes you want to receive some query parameters, but you don't know in advance what they will be. **FastAPI** supports this case too.
+Sometimes you want to receive some query parameters, but you don't know in advance what they are called. **FastAPI** supports provides support for this use case.
 
 === "Python 3.10+"
 
@@ -234,11 +234,11 @@ Sometimes you want to receive some query parameters, but you don't know in advan
     {!> ../../../docs_src/query_params/tutorial007_py310.py!}
     ```
 
-And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will that OpenAPI supports this too:
+And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will that OpenAPI supports this format of query parameter:
 
 <img src="/img/tutorial/path-params/image01.png">
 
-However, since the query parameters are decaled in the request as
+However, since the query parameters are declared in the request as
 
 ```
 http://127.0.0.1:8000/query/mixed-type-params?query=1&foo=bar&foo=baz
@@ -264,4 +264,4 @@ http://127.0.0.1:8000/query/mixed-type-params?query=1&foo=bar&foo=baz
   }
 }
 ```
-As you can see the `query` parameter is added to every `Query` argument for which it is valid. This is because **FastAPI** does not know which `Query` argument you want to add the `query` parameter to, and `1` validates as an `int`, `str`, and `List[str]`. `foo` is only added to the `string_mapping` and `sequence_mapping_queries` arguments because it is not a valid `int`.
+As you can see the `query` parameter is added to every `Query` argument for which it is valid. This is because **FastAPI** does not know which `Query` argument you want to add the `query` parameter to, and `1` validates as both an `int` and a `str`. `List[str]`. `foo` is only added to the `string_mapping` and `sequence_mapping_queries` arguments because it is not a valid `int`.
