@@ -238,7 +238,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 <img src="/img/tutorial/path-params/image01.png">
 
-However, since the query parameters are decaled in the request as 
+However, since the query parameters are decaled in the request as
 
 ```
 http://127.0.0.1:8000/query/mixed-type-params?query=1&foo=bar&foo=baz

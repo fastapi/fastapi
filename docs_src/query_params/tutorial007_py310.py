@@ -1,4 +1,4 @@
-from typing import Mapping, List
+from typing import List, Mapping
 
 from fastapi import FastAPI, Query
 
@@ -13,8 +13,8 @@ def get_mixed_mapping_mixed_type_query_params(
     sequence_mapping_queries: Mapping[str, List[int]] = Query({}),
 ):
     return {
-        "query":query, 
-        "string_mapping": mapping_query_str, 
-        "mapping_query_int": mapping_query_int, 
-        "sequence_mapping_queries": sequence_mapping_queries
-        }
+        "query": query,
+        "string_mapping": mapping_query_str,
+        "mapping_query_int": mapping_query_int,
+        "sequence_mapping_queries": sequence_mapping_queries,
+    }

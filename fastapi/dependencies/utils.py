@@ -694,7 +694,8 @@ def request_params_to_args(
                 value[key][index] = marker
             for key in value:
                 value[key] = [x for x in value[key] if x != marker]
-            values[field.name] = value
+            v_, _ = field.validate(value, values, loc=loc)
+            values[field.name] = v_
         elif (
             isinstance(errors_, list)
             and is_scalar_mapping_field(field)
@@ -704,7 +705,8 @@ def request_params_to_args(
             # remove all invalid parameters
             for _, _, key in [error["loc"] for error in new_errors]:
                 value.pop(key)
-            values[field.name] = value
+            v_, _ = field.validate(value, values, loc=loc)
+            values[field.name] = v_
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             errors.extend(new_errors)
