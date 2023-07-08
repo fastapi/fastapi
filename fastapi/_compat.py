@@ -658,11 +658,8 @@ def field_annotation_is_scalar_sequence_mapping(
                 return False
         return at_least_one_scalar_mapping
     return field_annotation_is_mapping(annotation) and all(
-        (
-            field_annotation_is_scalar_sequence(sub_annotation)
-            or field_annotation_is_scalar(sub_annotation)
-        )
-        for sub_annotation in get_args(annotation)
+        field_annotation_is_scalar_sequence(sub_annotation)
+        for sub_annotation in get_args(annotation)[1:]
     )
 
 

@@ -453,7 +453,7 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
         return False
-    elif isinstance(param_field.field_info, (params.Query, params.Header)) and (
+    elif isinstance(param_field.field_info, params.Query) and (
         is_scalar_sequence_mapping_field(param_field)
         or is_scalar_mapping_field(param_field)
     ):
@@ -640,6 +640,7 @@ async def solve_dependencies(
         )
     return values, errors, background_tasks, response, dependency_cache
 
+class Marker: pass
 
 def request_params_to_args(
     required_params: Sequence[ModelField],
@@ -653,18 +654,15 @@ def request_params_to_args(
         ):
             value = received_params.getlist(field.alias) or field.default
         elif is_scalar_mapping_field(field) and isinstance(
-            received_params, (QueryParams)
+            received_params, QueryParams
         ):
             value = dict(received_params.multi_items()) or field.default
         elif is_scalar_sequence_mapping_field(field) and isinstance(
-            received_params, (QueryParams)
+            received_params, QueryParams
         ):
-            if not len(received_params.multi_items()):
-                value = field.default
-            else:
-                value = defaultdict(list)
-                for k, v in received_params.multi_items():
-                    value[k].append(v)
+            value = defaultdict(list)
+            for k, v in received_params.multi_items():
+                value[k].append(v)
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
@@ -681,6 +679,29 @@ def request_params_to_args(
         v_, errors_ = field.validate(value, values, loc=loc)
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
+        elif (
+                isinstance(errors_, list)
+                and is_scalar_sequence_mapping_field(field)
+                and isinstance(received_params, QueryParams)
+            ):
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+            # remove all invalid parameters
+            marker = Marker()
+            for _, _, key, index in [error["loc"] for error in new_errors]:
+                value[key][index] = marker
+            for key in value:
+                value[key] = [x for x in value[key] if x != marker]
+            values[field.name] = value
+        elif (
+                isinstance(errors_, list)
+                and is_scalar_mapping_field(field)
+                and isinstance(received_params, QueryParams)
+        ):
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+            # remove all invalid parameters
+            for _, _, key in [error["loc"] for error in new_errors]:
+                value.pop(key)
+            values[field.name] = value
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             errors.extend(new_errors)

@@ -5,7 +5,6 @@ from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
 
-
 @app.api_route("/api_route")
 def non_operation():
     return {"message": "Hello World"}
@@ -196,7 +195,29 @@ def get_mapping_query_params(queries: Mapping[str, str] = Query({})):
 
 @app.get("/query/mapping-sequence-params")
 def get_sequence_mapping_query_params(queries: Mapping[str, List[int]] = Query({})):
-    return f"foo bar {queries}"
+    return f"foo bar {dict(queries)}"
+
+
+@app.get("/query/mixed-params")
+def get_mixed_mapping_query_params(
+    sequence_mapping_queries: Mapping[str, List[str]] = Query({}),
+    mapping_query: Mapping[str, str] = Query(),
+    query: str = Query(),
+):
+    return (
+        f"foo bar {sequence_mapping_queries['foo'][0]} {sequence_mapping_queries['foo'][1]} "
+        f"{mapping_query['foo']} {mapping_query['bar']} {query}"
+    )
+
+
+@app.get("/query/mixed-type-params")
+def get_mixed_mapping_mixed_type_query_params(
+    sequence_mapping_queries: Mapping[str, List[int]] = Query({}),
+    mapping_query_str: Mapping[str, str] = Query({}),
+    mapping_query_int: Mapping[str, int] = Query({}),
+    query: int = Query(),
+):
+    return f"foo bar {query} {mapping_query_str}  {mapping_query_int} {dict(sequence_mapping_queries)}"
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
