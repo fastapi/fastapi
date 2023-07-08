@@ -1,5 +1,5 @@
 import http
-from typing import FrozenSet, List, Mapping, Optional
+from typing import FrozenSet, List, Mapping, Optional, Union
 
 from fastapi import FastAPI, Path, Query
 
@@ -184,11 +184,6 @@ def get_query_param_required_type(query: int = Query()):
     return f"foo bar {query}"
 
 
-@app.get("/query/sequence-params")
-def get_sequence_query_params(query: Mapping[str, List[int]] = Query({})):
-    return f"foo bar {query}"
-
-
 @app.get("/query/mapping-params")
 def get_mapping_query_params(queries: Mapping[str, str] = Query({})):
     return f"foo bar {queries['foo']} {queries['bar']}"
@@ -201,7 +196,7 @@ def get_sequence_mapping_query_params(queries: Mapping[str, List[int]] = Query({
 
 @app.get("/query/mixed-params")
 def get_mixed_mapping_query_params(
-    sequence_mapping_queries: Mapping[str, List[str]] = Query({}),
+    sequence_mapping_queries: Mapping[str, List[Union[str, int]]] = Query({}),
     mapping_query: Mapping[str, str] = Query(),
     query: str = Query(),
 ):

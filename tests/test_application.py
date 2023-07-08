@@ -1163,44 +1163,6 @@ def test_openapi_schema():
                     },
                 }
             },
-            "/query/sequence-params": {
-                "get": {
-                    "summary": "Get Sequence Query Params",
-                    "operationId": "get_sequence_query_params_query_sequence_params_get",
-                    "parameters": [
-                        {
-                            "required": False,
-                            "schema": {
-                                "additionalProperties": {
-                                    "items": {"type": "integer"},
-                                    "type": "array",
-                                },
-                                "type": "object",
-                                "title": "Query",
-                                "default": {},
-                            },
-                            "name": "query",
-                            "in": "query",
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
-                                    }
-                                }
-                            },
-                        },
-                    },
-                }
-            },
             "/query/mapping-params": {
                 "get": {
                     "summary": "Get Mapping Query Params",
@@ -1283,7 +1245,12 @@ def test_openapi_schema():
                             "required": False,
                             "schema": {
                                 "additionalProperties": {
-                                    "items": {"type": "string"},
+                                    "items": {
+                                        "anyOf": [
+                                            {"type": "string"},
+                                            {"type": "integer"},
+                                        ]
+                                    },
                                     "type": "array",
                                 },
                                 "type": "object",

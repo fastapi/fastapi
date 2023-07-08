@@ -424,11 +424,10 @@ else:
         if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
             field.type_, BaseModel
         ):
-            if field.sub_fields is None:  # type: ignore[attr-defined]
-                return False
-            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
-                if not is_scalar_field(sub_field):
-                    return False
+            if field.sub_fields is not None:
+                for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+                    if not is_scalar_field(sub_field):
+                        return False
             return True
         return False
 
@@ -436,11 +435,10 @@ else:
         if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
             field.type_, BaseModel
         ):
-            if field.sub_fields is None:  # type: ignore[attr-defined]
-                return False
-            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
-                if not is_scalar_sequence_field(sub_field):
-                    return False
+            if field.sub_fields is not None:  # type: ignore[attr-defined]
+                for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+                    if not is_scalar_sequence_field(sub_field):
+                        return False
             return True
         return False
 
@@ -628,16 +626,6 @@ def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> b
 
 
 def field_annotation_is_scalar_mapping(annotation: Union[Type[Any], None]) -> bool:
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        at_least_one_scalar_mapping = False
-        for arg in get_args(annotation):
-            if field_annotation_is_scalar_mapping(arg):
-                at_least_one_scalar_mapping = True
-                continue
-            elif not field_annotation_is_scalar(arg):
-                return False
-        return at_least_one_scalar_mapping
     return field_annotation_is_mapping(annotation) and all(
         field_annotation_is_scalar(sub_annotation)
         for sub_annotation in get_args(annotation)
@@ -647,16 +635,6 @@ def field_annotation_is_scalar_mapping(annotation: Union[Type[Any], None]) -> bo
 def field_annotation_is_scalar_sequence_mapping(
     annotation: Union[Type[Any], None]
 ) -> bool:
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        at_least_one_scalar_mapping = False
-        for arg in get_args(annotation):
-            if field_annotation_is_scalar_mapping(arg):
-                at_least_one_scalar_mapping = True
-                continue
-            elif not field_annotation_is_scalar(arg):
-                return False
-        return at_least_one_scalar_mapping
     return field_annotation_is_mapping(annotation) and all(
         field_annotation_is_scalar_sequence(sub_annotation)
         for sub_annotation in get_args(annotation)[1:]
