@@ -4,23 +4,47 @@ You can declare examples of the data your app can receive.
 
 Here are several ways to do it.
 
-## Pydantic `schema_extra`
+## Extra JSON Schema data in Pydantic models
 
-You can declare `examples` for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
+You can declare `examples` for a Pydantic model that will be added to the generated JSON Schema.
 
-=== "Python 3.10+"
+=== "Python 3.10+ Pydantic v2"
 
-    ```Python hl_lines="13-23"
+    ```Python hl_lines="13-24"
     {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.10+ Pydantic v1"
 
-    ```Python hl_lines="15-25"
+    ```Python hl_lines="13-23"
+    {!> ../../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
+    ```
+
+=== "Python 3.6+ Pydantic v2"
+
+    ```Python hl_lines="15-26"
     {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
     ```
 
+=== "Python 3.6+ Pydantic v1"
+
+    ```Python hl_lines="15-25"
+    {!> ../../../docs_src/schema_extra_example/tutorial001_pv1.py!}
+    ```
+
 That extra info will be added as-is to the output **JSON Schema** for that model, and it will be used in the API docs.
+
+=== "Pydantic v2"
+
+    In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic's docs: Model Config</a>.
+
+    You can set `"json_schema_extra"` with a `dict` containing any additonal data you would like to show up in the generated JSON Schema, including `examples`.
+
+=== "Pydantic v1"
+
+    In Pydantic version 1, you would use an internal class `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>.
+
+    You can set `schema_extra` with a `dict` containing any additonal data you would like to show up in the generated JSON Schema, including `examples`.
 
 !!! tip
     You could use the same technique to extend the JSON Schema and add your own custom extra info.

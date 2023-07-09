@@ -1,6 +1,7 @@
 import os
 import shutil
 
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.additional_responses.tutorial002 import app
@@ -64,7 +65,16 @@ def test_openapi_schema():
                         },
                         {
                             "required": False,
-                            "schema": {"title": "Img", "type": "boolean"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                                    "title": "Img",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Img", "type": "boolean"}
+                            ),
                             "name": "img",
                             "in": "query",
                         },
