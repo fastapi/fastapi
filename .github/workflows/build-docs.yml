@@ -44,10 +44,14 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v05
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
+      # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
+      - name: Install Material for MkDocs Insiders
+        if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
+        run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Export Language Codes
         id: show-langs
         run: |
@@ -76,7 +80,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v05
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
@@ -85,6 +89,10 @@ jobs:
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
+          path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@v3
