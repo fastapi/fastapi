@@ -321,7 +321,7 @@ def test_openapi_schema():
                             {
                                 "title": "Grant Type",
                                 "anyOf": [
-                                    {"pattern": "password", "type": "string"},
+                                    {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
                             }
@@ -330,7 +330,7 @@ def test_openapi_schema():
                             # TODO: remove when deprecating Pydantic v1
                             {
                                 "title": "Grant Type",
-                                "pattern": "password",
+                                "pattern": "^password$",
                                 "type": "string",
                             }
                         ),
