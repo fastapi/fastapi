@@ -12,4 +12,3 @@ jieba==0.42.1
 pillow==9.5.0
 # For image processing by Material for MkDocs
 cairosvg==2.7.0
-# cache: 1
