@@ -159,9 +159,9 @@ def test_strict_login_incorrect_grant_type():
                 {
                     "type": "string_pattern_mismatch",
                     "loc": ["body", "grant_type"],
-                    "msg": "String should match pattern 'password'",
+                    "msg": "String should match pattern '^password$'",
                     "input": "incorrect",
-                    "ctx": {"pattern": "password"},
+                    "ctx": {"pattern": "^password$"},
                     "url": match_pydantic_error_url("string_pattern_mismatch"),
                 }
             ]
@@ -172,9 +172,9 @@ def test_strict_login_incorrect_grant_type():
             "detail": [
                 {
                     "loc": ["body", "grant_type"],
-                    "msg": 'string does not match regex "password"',
+                    "msg": 'string does not match regex "^password$"',
                     "type": "value_error.str.regex",
-                    "ctx": {"pattern": "password"},
+                    "ctx": {"pattern": "^password$"},
                 }
             ]
         }
@@ -259,7 +259,7 @@ def test_openapi_schema():
                     "properties": {
                         "grant_type": {
                             "title": "Grant Type",
-                            "pattern": "password",
+                            "pattern": "^password$",
                             "type": "string",
                         },
                         "username": {"title": "Username", "type": "string"},
