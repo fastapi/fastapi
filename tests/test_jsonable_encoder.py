@@ -1,3 +1,4 @@
+import os
 from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -248,7 +249,10 @@ def test_encode_model_with_pure_path():
                 arbitrary_types_allowed = True
 
     obj = ModelWithPath(path=PurePath("/foo", "bar"))
-    assert jsonable_encoder(obj) == {"path": "/foo/bar"}
+    if os.name in ("nt",):
+        assert jsonable_encoder(obj) == {"path": "\\foo\\bar"}
+    else:
+        assert jsonable_encoder(obj) == {"path": "/foo/bar"}
 
 
 def test_encode_model_with_pure_posix_path():
