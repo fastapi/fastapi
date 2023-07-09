@@ -25,6 +25,3 @@ archive.zip
 *~
 .*.sw?
 .cache
-
-main.py
-.devcontainer
