@@ -147,8 +147,14 @@ def test_strict_login_no_grant_type():
         }
     )
 
+
 @pytest.mark.parametrize(
-    argnames=["grant_type"], argvalues=["incorrect", "passwordblah", "blahpassword"]
+    argnames=["grant_type"],
+    argvalues=[
+        pytest.param("incorrect", id="incorrect value"),
+        pytest.param("passwordblah", id="password with suffix"),
+        pytest.param("blahpassword", id="password with prefix"),
+    ],
 )
 def test_strict_login_incorrect_grant_type(grant_type: str):
     response = client.post(
