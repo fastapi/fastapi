@@ -1,6 +1,6 @@
 # 后台任务
 
-你可以定义后台任务，在返回响应之后运行。
+你可以定义在返回响应后运行的后台任务。
 
 这对需要在请求之后执行的操作很有用，但客户端不必在接收响应之前等待操作完成。
 
@@ -13,7 +13,7 @@
 
 ## 使用 `BackgroundTasks`
 
-首先导入 `BackgroundTasks` 并在 *路径操作函数* 中使用类型声明`BackgroundTasks`定义一个参数：
+首先导入 `BackgroundTasks` 并在 *路径操作函数* 中使用类型声明 `BackgroundTasks` 定义一个参数：
 
 ```Python hl_lines="1  13"
 {!../../../docs_src/background_tasks/tutorial001.py!}
@@ -113,7 +113,7 @@
 
 ## 告诫
 
-如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如<a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>）可能更好。
+如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>）可能更好。
 
 它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
 
