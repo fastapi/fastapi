@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           # To allow latest-changes to commit to master
-          token: ${{ secrets.ACTIONS_TOKEN }}
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -32,7 +32,7 @@ jobs:
           limit-access-to-actor: true
       - uses: docker://tiangolo/latest-changes:0.0.3
         with:
-          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
           latest_changes_header: '## Latest Changes\n\n'
           debug_logs: true
