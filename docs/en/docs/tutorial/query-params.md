@@ -226,7 +226,7 @@ In this case, there are 3 query parameters:
 
 ## Free Form Query Parameters
 
-Sometimes you want to receive some query parameters, but you don't know in advance what they are called. **FastAPI** supports provides support for this use case.
+Sometimes you want to receive some query parameters, but you don't know in advance what they are called. **FastAPI** provides support for this use case.
 
 === "Python 3.10+"
 
