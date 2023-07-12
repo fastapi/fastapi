@@ -467,6 +467,7 @@ class Body(FieldInfo):
         annotation: Optional[Any] = None,
         embed: bool = False,
         media_type: str = "application/json",
+        media_type_extra: Optional[Dict[str, Any]] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
         # TODO: update when deprecating Pydantic v1, import these types
@@ -509,6 +510,7 @@ class Body(FieldInfo):
     ):
         self.embed = embed
         self.media_type = media_type
+        self.media_type_extra = media_type_extra
         self.deprecated = deprecated
         if example is not _Unset:
             warnings.warn(

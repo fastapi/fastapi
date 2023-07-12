@@ -19,7 +19,7 @@ from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_flat_dependant, get_flat_params
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
-from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.models import OpenAPI, Schema
 from fastapi.params import Body, Param
 from fastapi.responses import Response
 from fastapi.types import ModelNameMap
@@ -151,6 +151,8 @@ def get_openapi_operation_request_body(
     request_media_content: Dict[str, Any] = {"schema": body_schema}
     if field_info.example != Undefined:
         request_media_content["example"] = jsonable_encoder(field_info.example)
+    if field_info.media_type_extra:
+        request_media_content.update(jsonable_encoder(field_info.media_type_extra))
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 
