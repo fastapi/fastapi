@@ -117,6 +117,9 @@ if PYDANTIC_V2:
             json_schemas_map: dict[tuple[JsonSchemaKeyT, JsonSchemaMode], DefsRef] = {}
             for key, mode, schema in inputs:
                 self.mode = mode
+                self.skip_null_schema = isinstance(key, ModelField) and isinstance(
+                    key.field_info, Param
+                )
                 json_schema = self.generate_inner(schema)
                 json_schemas_map[(key, mode)] = definitions_remapping.remap_json_schema(
                     json_schema
