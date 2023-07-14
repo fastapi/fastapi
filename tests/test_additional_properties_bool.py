@@ -79,7 +79,6 @@ def test_openapi_schema():
             "schemas": {
                 "Foo": {
                     "properties": {},
-                    "additionalProperties": False,
                     "type": "object",
                     "title": "Foo",
                 },

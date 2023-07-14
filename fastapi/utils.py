@@ -60,6 +60,8 @@ def get_model_definitions(
         m_schema, m_definitions, m_nested_models = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
+        if "additionalProperties" in m_schema.keys() and not m_schema.get("additionalProperties"):
+            del m_schema["additionalProperties"]
         definitions.update(m_definitions)
         model_name = model_name_map[model]
         if "description" in m_schema:
