@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.query_params_str_validations.tutorial011 import app
@@ -49,11 +50,23 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {
-                                "title": "Q",
-                                "type": "array",
-                                "items": {"type": "string"},
-                            },
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [
+                                        {"type": "array", "items": {"type": "string"}},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "title": "Q",
+                                    "type": "array",
+                                    "items": {"type": "string"},
+                                }
+                            ),
                             "name": "q",
                             "in": "query",
                         }

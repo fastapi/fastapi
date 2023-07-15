@@ -1,13 +1,19 @@
 from typing import Union
 
+from dirty_equals import IsDict
 from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class FooBaseModel(BaseModel):
-    class Config:
-        extra = "forbid"
+    if PYDANTIC_V2:
+        model_config = ConfigDict(extra="forbid")
+    else:
+
+        class Config:
+            extra = "forbid"
 
 
 class Foo(FooBaseModel):
@@ -52,7 +58,19 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Foo"}
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [
+                                            {"$ref": "#/components/schemas/Foo"},
+                                            {"type": "null"},
+                                        ],
+                                        "title": "Foo",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {"$ref": "#/components/schemas/Foo"}
+                                )
                             }
                         }
                     },

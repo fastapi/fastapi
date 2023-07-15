@@ -8,12 +8,18 @@ client = TestClient(app)
 def test_get_validation_error():
     response = client.get("/items/foo")
     assert response.status_code == 400, response.text
-    validation_error_str_lines = [
-        b"1 validation error for Request",
-        b"path -> item_id",
-        b"  value is not a valid integer (type=type_error.integer)",
-    ]
-    assert response.content == b"\n".join(validation_error_str_lines)
+    # TODO: remove when deprecating Pydantic v1
+    assert (
+        # TODO: remove when deprecating Pydantic v1
+        "path -> item_id" in response.text
+        or "'loc': ('path', 'item_id')" in response.text
+    )
+    assert (
+        # TODO: remove when deprecating Pydantic v1
+        "value is not a valid integer" in response.text
+        or "Input should be a valid integer, unable to parse string as an integer"
+        in response.text
+    )
 
 
 def test_get_http_error():
