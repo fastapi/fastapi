@@ -70,7 +70,8 @@ def test_validator_is_cloned(client: TestClient):
                 "url": match_pydantic_error_url("value_error"),
             }
         )
-        | IsDict(
+    ] or [
+        IsDict(
             # TODO remove when deprecating Pydantic v1
             {
                 "loc": ("response", "name"),
