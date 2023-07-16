@@ -165,6 +165,8 @@ def jsonable_encoder(
         return obj.value
     if isinstance(obj, PurePath):
         return str(obj)
+    if isinstance(obj, str):
+        return str(obj).replace("\\", "/")
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):

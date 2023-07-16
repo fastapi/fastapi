@@ -27,5 +27,4 @@ jobs:
           limit-access-to-actor: true
       - uses: ./.github/actions/people
         with:
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          standard_token: ${{ secrets.FASTAPI_PEOPLE }}
+          token: ${{ secrets.FASTAPI_PEOPLE }}

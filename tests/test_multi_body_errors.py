@@ -56,7 +56,7 @@ def test_jsonable_encoder_requiring_error():
                 }
             ]
         }
-    ) | IsDict(
+    ) or IsDict(
         # TODO: remove when deprecating Pydantic v1
         {
             "detail": [
@@ -105,7 +105,7 @@ def test_put_incorrect_body_multiple():
                 },
             ]
         }
-    ) | IsDict(
+    ) or IsDict(
         # TODO: remove when deprecating Pydantic v1
         {
             "detail": [
