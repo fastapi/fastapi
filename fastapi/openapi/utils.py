@@ -146,9 +146,18 @@ def get_openapi_operation_request_body(
     request_media_type = field_info.media_type
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
+    request_media_content: Dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
-    request_media_content: Dict[str, Any] = {"schema": body_schema}
+
+    if field_info.examples is not None:
+        examples = field_info.examples
+        if isinstance(examples, dict):
+            examples = {k: v for k, v in examples.items() if "value" in v}
+            body_schema["examples"] = [dct["value"] for dct in examples.values()]
+            request_media_content["examples"] = examples
+
+    request_media_content["schema"] = body_schema
     if field_info.example != Undefined:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     if field_info.media_type_extra:

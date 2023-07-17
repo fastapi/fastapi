@@ -347,7 +347,7 @@ def Body(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
