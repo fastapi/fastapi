@@ -81,26 +81,7 @@ def test_openapi_schema():
                                             },
                                         ],
                                     }
-                                ),
-                                "examples": {
-                                    "Example Item": {
-                                        "value": {
-                                            "name": "Foo",
-                                            "description": "A very nice Item",
-                                            "price": 35.4,
-                                            "tax": 3.2,
-                                        }
-                                    },
-                                    "Example Item; coerce string to float": {
-                                        "value": {"name": "Bar", "price": "35.4"}
-                                    },
-                                    "Raise validation error for 'price'": {
-                                        "value": {
-                                            "name": "Baz",
-                                            "price": "thirty five point four",
-                                        }
-                                    },
-                                },
+                                )
                             }
                         },
                         "required": True,
