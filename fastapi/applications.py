@@ -15,12 +15,12 @@ from typing import (
 
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
+    websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -30,7 +30,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable
+from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
@@ -54,6 +54,7 @@ class FastAPI(Starlette):
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
+        summary: Optional[str] = None,
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
@@ -61,6 +62,7 @@ class FastAPI(Starlette):
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        redirect_slashes: bool = True,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -83,6 +85,7 @@ class FastAPI(Starlette):
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        webhooks: Optional[routing.APIRouter] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
@@ -93,6 +96,7 @@ class FastAPI(Starlette):
     ) -> None:
         self.debug = debug
         self.title = title
+        self.summary = summary
         self.description = description
         self.version = version
         self.terms_of_service = terms_of_service
@@ -108,7 +112,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.extra = extra
-        self.openapi_version = "3.0.2"
+        self.openapi_version = "3.1.0"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
@@ -121,11 +125,13 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
+        self.webhooks = webhooks or routing.APIRouter()
         self.root_path = root_path or openapi_prefix
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
+            redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
@@ -144,6 +150,11 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
+        )
+        self.exception_handlers.setdefault(
+            WebSocketRequestValidationError,
+            # Starlette still has incorrect type specification for the handlers
+            websocket_request_validation_exception_handler,  # type: ignore
         )
 
         self.user_middleware: List[Middleware] = (
@@ -207,11 +218,13 @@ class FastAPI(Starlette):
                 title=self.title,
                 version=self.version,
                 openapi_version=self.openapi_version,
+                summary=self.summary,
                 description=self.description,
                 terms_of_service=self.terms_of_service,
                 contact=self.contact,
                 license_info=self.license_info,
                 routes=self.routes,
+                webhooks=self.webhooks.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
             )
@@ -291,8 +304,8 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -349,8 +362,8 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -395,15 +408,34 @@ class FastAPI(Starlette):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[Depends]] = None,
     ) -> None:
-        self.router.add_api_websocket_route(path, endpoint, name=name)
+        self.router.add_api_websocket_route(
+            path,
+            endpoint,
+            name=name,
+            dependencies=dependencies,
+        )
 
     def websocket(
-        self, path: str, name: Optional[str] = None
+        self,
+        path: str,
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[Depends]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_websocket_route(path, func, name=name)
+            self.add_api_websocket_route(
+                path,
+                func,
+                name=name,
+                dependencies=dependencies,
+            )
             return func
 
         return decorator
@@ -451,8 +483,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -506,8 +538,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -561,8 +593,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -616,8 +648,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -671,8 +703,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -726,8 +758,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -781,8 +813,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -836,8 +868,8 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,

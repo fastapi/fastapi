@@ -7,9 +7,15 @@ from fastapi.datastructures import Default
 from fastapi.testclient import TestClient
 
 
+# TODO: remove when deprecating Pydantic v1
 def test_upload_file_invalid():
     with pytest.raises(ValueError):
         UploadFile.validate("not a Starlette UploadFile")
+
+
+def test_upload_file_invalid_pydantic_v2():
+    with pytest.raises(ValueError):
+        UploadFile._validate("not a Starlette UploadFile", {})
 
 
 def test_default_placeholder_equals():
