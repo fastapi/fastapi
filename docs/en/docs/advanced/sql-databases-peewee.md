@@ -5,6 +5,13 @@
 
     Feel free to skip this.
 
+    Peewee is not recommended with FastAPI as it doesn't play well with anything async Python. There are several better alternatives.
+
+!!! info
+    These docs assume Pydantic v1.
+
+    Because Pewee doesn't play well with anything async and there are better alternatives, I won't update these docs for Pydantic v2, they are kept for now only for historical purposes.
+
 If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
 
 If you already have a code base that uses <a href="https://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.

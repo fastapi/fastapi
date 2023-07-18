@@ -29,9 +29,13 @@ And that function `get_openapi()` receives as parameters:
 
 * `title`: The OpenAPI title, shown in the docs.
 * `version`: The version of your API, e.g. `2.5.0`.
-* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.0.2`.
-* `description`: The description of your API.
+* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.1.0`.
+* `summary`: A short summary of the API.
+* `description`: The description of your API, this can include markdown and will be shown in the docs.
 * `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
+
+!!! info
+    The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by FastAPI 0.99.0 and above.
 
 ## Overriding the defaults
 
@@ -51,7 +55,7 @@ First, write all your **FastAPI** application as normally:
 
 Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
 
-```Python hl_lines="2  15-20"
+```Python hl_lines="2  15-21"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -59,7 +63,7 @@ Then, use the same utility function to generate the OpenAPI schema, inside a `cu
 
 Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
 
-```Python hl_lines="21-23"
+```Python hl_lines="22-24"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -71,7 +75,7 @@ That way, your application won't have to generate the schema every time a user o
 
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
-```Python hl_lines="13-14  24-25"
+```Python hl_lines="13-14  25-26"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -79,7 +83,7 @@ It will be generated only once, and then the same cached schema will be used for
 
 Now you can replace the `.openapi()` method with your new function.
 
-```Python hl_lines="28"
+```Python hl_lines="29"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -132,8 +136,8 @@ You can probably right-click each link and select an option similar to `Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 And **ReDoc** uses the file:
 

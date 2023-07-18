@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39
@@ -44,7 +45,7 @@ def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
@@ -128,9 +129,36 @@ def test_openapi_schema(client: TestClient):
                     "title": "Item",
                     "type": "object",
                     "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
-                        "price": {"title": "Price", "type": "number"},
+                        "name": IsDict(
+                            {
+                                "title": "Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Name", "type": "string"}
+                        ),
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "price": IsDict(
+                            {
+                                "title": "Price",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Price", "type": "number"}
+                        ),
                         "tax": {"title": "Tax", "type": "number", "default": 10.5},
                         "tags": {
                             "title": "Tags",
