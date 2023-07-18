@@ -150,8 +150,10 @@ def get_openapi_operation_request_body(
     if required:
         request_body_oai["required"] = required
 
-    if field_info.examples is not None:
-        examples = field_info.examples
+    examples = getattr(field_info, "examples", None) or getattr(
+        field_info, "extra", {}
+    ).get("examples", None)
+    if examples is not None:
         if isinstance(examples, dict):
             examples = {k: v for k, v in examples.items() if "value" in v}
             body_schema["examples"] = [dct["value"] for dct in examples.values()]
