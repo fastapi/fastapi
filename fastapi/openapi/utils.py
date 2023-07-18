@@ -108,6 +108,14 @@ def get_openapi_operation_parameters(
             model_name_map=model_name_map,
             field_mapping=field_mapping,
         )
+        examples = getattr(field_info, "examples", None) or getattr(
+            field_info, "extra", {}
+        ).get("examples", None)
+        if examples:
+            if isinstance(examples, dict):
+                examples = {k: v for k, v in examples.items() if "value" in v}
+                param_schema["examples"] = [dct["value"] for dct in examples.values()]
+
         parameter = {
             "name": param.alias,
             "in": field_info.in_.value,
@@ -116,6 +124,8 @@ def get_openapi_operation_parameters(
         }
         if field_info.description:
             parameter["description"] = field_info.description
+        if examples:
+            parameter["examples"] = jsonable_encoder(examples)
         if field_info.example != Undefined:
             parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:

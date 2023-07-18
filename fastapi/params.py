@@ -53,7 +53,7 @@ class Param(FieldInfo):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -162,7 +162,7 @@ class Path(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -246,7 +246,7 @@ class Query(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -329,7 +329,7 @@ class Header(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -412,7 +412,7 @@ class Cookie(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -607,7 +607,7 @@ class Form(Body):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -690,7 +690,7 @@ class File(Form):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(

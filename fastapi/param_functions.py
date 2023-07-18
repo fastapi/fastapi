@@ -38,7 +38,7 @@ def Path(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
@@ -114,7 +114,7 @@ def Query(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
@@ -191,7 +191,7 @@ def Header(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
@@ -268,7 +268,7 @@ def Cookie(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
@@ -427,7 +427,7 @@ def Form(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
@@ -505,7 +505,7 @@ def File(  # noqa: N802
     allow_inf_nan: Union[bool, None] = _Unset,
     max_digits: Union[int, None] = _Unset,
     decimal_places: Union[int, None] = _Unset,
-    examples: Optional[List[Any]] = None,
+    examples: Optional[Union[List[Any], Dict[str, Any]]] = None,
     example: Annotated[
         Optional[Any],
         deprecated(
