@@ -1,300 +1,298 @@
-# Custom Response - HTML, Stream, File, others
+# Réponse personnalisée - HTML, flux, fichier, autres
 
-By default, **FastAPI** will return the responses using `JSONResponse`.
+Par défaut, **FastAPI** renvoie les réponses à l'aide de `JSONResponse`.
 
-You can override it by returning a `Response` directly as seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}.
+Vous pouvez le remplacer en renvoyant une `Response` directement comme indiqué dans [Renvoyer une réponse directement](response-directly.md){.internal-link target=_blank}.
 
-But if you return a `Response` directly, the data won't be automatically converted, and the documentation won't be automatically generated (for example, including the specific "media type", in the HTTP header `Content-Type` as part of the generated OpenAPI).
+Mais si vous renvoyez une `Response` directement, les données ne seront pas automatiquement converties et la documentation ne sera pas automatiquement générée (par exemple, le "type de support" spécifique, dans l'en-tête HTTP `Content-Type` ne fera pas partie de l'OpenAPI générée).
 
-But you can also declare the `Response` that you want to be used, in the *path operation decorator*.
+Mais vous pouvez aussi déclarer la `Response` que vous souhaitez utiliser, dans le *décorateur de chemin*.
 
-The contents that you return from your *path operation function* will be put inside of that `Response`.
+Le contenu que vous renvoyez de votre *fonction d'opération de chemin* sera placé à l'intérieur de cette `Response`.
 
-And if that `Response` has a JSON media type (`application/json`), like is the case with the `JSONResponse` and `UJSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*.
+Et si cette `Response` a un type de média JSON (`application/json`), comme c'est le cas avec `JSONResponse` et `UJSONResponse`, les données que vous renvoyez seront automatiquement converties (et filtrées) avec n'importe quel `response_model` de la bibliothèque de validation Pydantic que vous avez déclaré dans le *décorateur du paramètre de chemin*.
 
 !!! note
-    If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
+     Si vous utilisez une classe de réponse sans type de média, FastAPI s'attendra à ce que votre réponse n'ait pas de contenu, il ne documentera donc pas le format de réponse dans ses documents OpenAPI générés.
 
-## Use `ORJSONResponse`
+## Utilisez `ORJSONResponse`
 
-For example, if you are squeezing performance, you can install and use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> and set the response to be `ORJSONResponse`.
+Par exemple, si vous souhaitez optimiser les performances, vous pouvez installer et utiliser <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a > et définissez la réponse sur `ORJSONResponse`.
 
-Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
+Importez la classe `Response` (ou une de ses sous-classe) que vous souhaitez utiliser et déclarez-la dans le *décorateur du paramètre de chemin*.
 
-For large responses, returning a `Response` directly is much faster than returning a dictionary.
+Pour les réponses volumineuses, renvoyer directement une réponse est beaucoup plus rapide que de renvoyer un dictionnaire.
 
-This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+En effet, par défaut, FastAPI inspectera chaque élément à l'intérieur et s'assurera qu'il est sérialisable avec JSON, en utilisant le même [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} expliqué dans ce tutoriel. C'est ce qui vous permet de renvoyer des **objets arbitraires**, comme des modèles de base de données.
 
-But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
+Mais si vous êtes certain que le contenu que vous renvoyez est **sérialisable en JSON**, vous pouvez le transmettre directement à la classe de réponse et éviter une surcharge que FastAPI aurait en transmettant votre contenu de retour via le `jsonable_encoder` avant en le passant à la classe de réponse.
 
-```Python hl_lines="2  7"
+```Python hl_lines="2 7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
 !!! info
-    The parameter `response_class` will also be used to define the "media type" of the response.
+     Le paramètre `response_class` sera également utilisé pour définir le "type de média" de la réponse.
 
-    In this case, the HTTP header `Content-Type` will be set to `application/json`.
+     Dans ce cas, l'en-tête HTTP "Content-Type" sera défini sur "application/json".
 
-    And it will be documented as such in OpenAPI.
+     Et il sera documenté comme tel dans OpenAPI.
 
-!!! tip
-    The `ORJSONResponse` is currently only available in FastAPI, not in Starlette.
+!!! tip "Astuce"
+     Le `ORJSONResponse` n'est actuellement disponible que dans FastAPI, pas dans Starlette.
 
-## HTML Response
+## Réponse HTML
 
-To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
+Pour renvoyer une réponse HTML directement à partir de **FastAPI**, utilisez `HTMLResponse`.
 
-* Import `HTMLResponse`.
-* Pass `HTMLResponse` as the parameter `response_class` of your *path operation decorator*.
+* Importer `HTMLResponse`.
+* Passez `HTMLResponse` comme paramètre `response_class` de votre *décorateur de chemin*.
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial002.py!}
 ```
 
 !!! info
-    The parameter `response_class` will also be used to define the "media type" of the response.
+     Le paramètre `response_class` sera également utilisé pour définir le "type de média" de la réponse.
 
-    In this case, the HTTP header `Content-Type` will be set to `text/html`.
+     Dans ce cas, l'en-tête HTTP `Content-Type` sera défini sur `text/html`.
 
-    And it will be documented as such in OpenAPI.
+     Et il sera documenté comme tel dans OpenAPI.
 
-### Return a `Response`
+### Renvoie d'une `Response`
 
-As seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}, you can also override the response directly in your *path operation*, by returning it.
+Comme on le voit dans [Renvoyer une réponse directement](response-directly.md){.internal-link target=_blank}, vous pouvez également remplacer la réponse directement dans votre *chemin*, en la renvoyant.
 
-The same example from above, returning an `HTMLResponse`, could look like:
+Le même exemple ci-dessus, renvoyant une `HTMLResponse`, pourrait ressembler à :
 
-```Python hl_lines="2  7  19"
+```Python hl_lines="2 7 19"
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
 
-!!! warning
-    A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
+!!! warning "Attention !"
+     Une `Response` renvoyée directement par votre *fonction d'opération de chemin* ne sera pas documentée dans OpenAPI (par exemple, le `Content-Type` ne sera pas documenté) et ne sera pas visible dans les documents interactifs automatiques.
 
 !!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
+     Bien entendu, l'en-tête "Content-Type", le code d'état, etc. proviendront de l'objet "Response" que vous avez renvoyé.
 
-### Document in OpenAPI and override `Response`
+### Documentez dans OpenAPI et remplacez `Response`
 
-If you want to override the response from inside of the function but at the same time document the "media type" in OpenAPI, you can use the `response_class` parameter AND return a `Response` object.
+Si vous souhaitez remplacer la réponse de l'intérieur de la fonction tout en documentant le "type de média" dans OpenAPI, vous pouvez utiliser le paramètre `response_class` ET renvoyer un objet `Response`.
 
-The `response_class` will then be used only to document the OpenAPI *path operation*, but your `Response` will be used as is.
+La `response_class` ne sera alors utilisée que pour documenter le *chemin* dans OpenAPI, mais votre `Response` sera utilisée telle quelle.
 
-#### Return an `HTMLResponse` directly
+#### Renvoie directement une `HTMLResponse`
 
-For example, it could be something like:
+Par exemple, cela pourrait être quelque chose comme :
 
-```Python hl_lines="7  21  23"
+```Python hl_lines="7 21 23"
 {!../../../docs_src/custom_response/tutorial004.py!}
 ```
 
-In this example, the function `generate_html_response()` already generates and returns a `Response` instead of returning the HTML in a `str`.
+Dans cet exemple, la fonction `generate_html_response()` génère déjà et renvoie une `Response` au lieu de renvoyer le HTML dans une `str`.
 
-By returning the result of calling `generate_html_response()`, you are already returning a `Response` that will override the default **FastAPI** behavior.
+En renvoyant le résultat de l'appel de `generate_html_response()`, vous renvoyez déjà une `Response` qui remplacera le comportement **FastAPI** par défaut.
 
-But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** will know how to document it in OpenAPI and the interactive docs as HTML with `text/html`:
+Mais comme vous avez également passé `HTMLResponse` dans `response_class`, **FastAPI** saura comment le documenter dans OpenAPI et les documents interactifs au format HTML avec `text/html` :
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Available responses
+## Réponses disponibles
 
-Here are some of the available responses.
+Voici quelques-unes des réponses disponibles.
 
-Have in mind that you can use `Response` to return anything else, or even create a custom sub-class.
+Gardez à l'esprit que vous pouvez utiliser `Response` pour renvoyer autre chose, ou même créer une sous-classe personnalisée.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import HTMLResponse`.
+!!! note "Détails techniques"
+     Vous pouvez également utiliser `from starlette.responses import HTMLResponse`.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+     **FastAPI** fournit le même `starlette.responses` que `fastapi.responses` simplement par commodité. Mais la plupart des réponses disponibles proviennent directement de Starlette.
 
 ### `Response`
 
-The main `Response` class, all the other responses inherit from it.
+La classe principale `Response`, toutes les autres réponses en héritent.
 
-You can return it directly.
+Vous pouvez le retourner directement.
 
-It accepts the following parameters:
+Il accepte les paramètres suivants :
 
-* `content` - A `str` or `bytes`.
-* `status_code` - An `int` HTTP status code.
-* `headers` - A `dict` of strings.
-* `media_type` - A `str` giving the media type. E.g. `"text/html"`.
+* `content` - Une `str` ou `bytes`.
+* `status_code` - Un code d'état HTTP `int`.
+* `headers` - Un `dict` de chaînes.
+* `media_type` - Une `str` donnant le type de média. Par exemple. `"texte/html"`.
 
-FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the media_type and appending a charset for text types.
+FastAPI (en fait Starlette) inclura automatiquement un en-tête Content-Length. Il inclura également un en-tête Content-Type, basé sur le media_type et ajoutant un jeu de caractères pour les types de texte.
 
-```Python hl_lines="1  18"
+```Python hl_lines="1 18"
 {!../../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ### `HTMLResponse`
 
-Takes some text or bytes and returns an HTML response, as you read above.
+Prend du texte ou des octets et renvoie une réponse HTML, comme vous l'avez lu ci-dessus.
 
 ### `PlainTextResponse`
 
-Takes some text or bytes and returns an plain text response.
+Prend du texte ou des octets et renvoie une réponse en texte brut.
 
-```Python hl_lines="2  7  9"
+```Python hl_lines="2 7 9"
 {!../../../docs_src/custom_response/tutorial005.py!}
 ```
 
 ### `JSONResponse`
 
-Takes some data and returns an `application/json` encoded response.
+Prend des données et renvoie une réponse encodée `application/json`.
 
-This is the default response used in **FastAPI**, as you read above.
+Il s'agit de la réponse par défaut utilisée dans **FastAPI**, comme vous l'avez lu ci-dessus.
 
 ### `ORJSONResponse`
+Une réponse JSON alternative rapide utilisant <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, comme vous l'avez lu ci-dessus.
 
-A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
+### `Réponse UJSON`
 
-### `UJSONResponse`
+Une alternative rapide à JSON utilisant <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
-An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+!!! warning "Attention !"
+     `ujson` est moins fiable que l'implémentation intégrée à Python pour gérer certains cas extrêmes.
 
-!!! warning
-    `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
-
-```Python hl_lines="2  7"
-{!../../../docs_src/custom_response/tutorial001.py!}
+```Python hl_lines="2 7"
+{!../../../docs_src/custom_response/tutorial001.py !}
 ```
 
-!!! tip
-    It's possible that `ORJSONResponse` might be a faster alternative.
+!!! tip "Astuce"
+     Il est possible que `ORJSONResponse` soit une alternative plus rapide.
 
 ### `RedirectResponse`
 
-Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
+Renvoie une redirection HTTP. Utilise un code d'état 307 (redirection temporaire) par défaut.
 
-You can return a `RedirectResponse` directly:
+Vous pouvez renvoyer directement une `RedirectResponse` :
 
-```Python hl_lines="2  9"
+```Python hl_lines="2 9"
 {!../../../docs_src/custom_response/tutorial006.py!}
 ```
 
 ---
 
-Or you can use it in the `response_class` parameter:
+Ou vous pouvez l'utiliser dans le paramètre `response_class` :
 
 
-```Python hl_lines="2  7  9"
+```Python hl_lines="2 7 9"
 {!../../../docs_src/custom_response/tutorial006b.py!}
 ```
 
-If you do that, then you can return the URL directly from your *path operation* function.
+Si vous faites cela, vous pouvez renvoyer l'URL directement à partir de votre fonction *chemin*.
 
-In this case, the `status_code` used will be the default one for the `RedirectResponse`, which is `307`.
+Dans ce cas, le `status_code` utilisé sera celui par défaut pour la `RedirectResponse`, qui est `307`.
 
 ---
 
-You can also use the `status_code` parameter combined with the `response_class` parameter:
+Vous pouvez également utiliser le paramètre `status_code` combiné avec le paramètre `response_class` :
 
-```Python hl_lines="2  7  9"
+```Python hl_lines="2 7 9"
 {!../../../docs_src/custom_response/tutorial006c.py!}
 ```
 
 ### `StreamingResponse`
 
-Takes an async generator or a normal generator/iterator and streams the response body.
+Prend un générateur asynchrone ou un générateur/itérateur normal et diffuse le corps de la réponse.
 
 ```Python hl_lines="2  14"
 {!../../../docs_src/custom_response/tutorial007.py!}
 ```
+#### Utilisation de `StreamingResponse` avec des objets de type fichier
 
-#### Using `StreamingResponse` with file-like objects
+Si vous avez un objet de type fichier (par exemple, un objet renvoyé par `open()`), vous pouvez créer une fonction génératrice pour itérer sur cet objet de type fichier.
 
-If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
+De cette façon, vous n'avez pas à tout stocker en mémoire, et vous pouvez passer cette fonction de générateur à `StreamingResponse` et la renvoyer.
 
-That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
+Cela inclut de nombreuses bibliothèques pour interagir avec le stockage en ligne (cloud), le traitement vidéo et autres.
 
-This includes many libraries to interact with cloud storage, video processing, and others.
-
-```{ .python .annotate hl_lines="2  10-12  14" }
+```{ .python .annotate hl_lines="2 10-12 14" }
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
-1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
-2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
-3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+1. C'est une fonction de générateur car elle contient des instructions "yield" à l'intérieur.
+2. En utilisant un bloc `with`, nous nous assurons que l'objet de type fichier est fermé une fois la fonction de générateur terminée. Donc, après avoir fini d'envoyer la réponse.
+3. Ce `yield from` indique à la fonction d'itérer sur cette chose nommée `file_like`. Et puis, pour chaque partie itérée, donnez cette partie comme provenant de cette fonction génératrice.
 
-    So, it is a generator function that transfers the "generating" work to something else internally.
+C'est donc une fonction génératrice qui transfère le travail "générateur" à autre chose en interne.
 
-    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
+En procédant de cette façon, nous pouvons le mettre dans un bloc `with` pour nous assurer qu'il soit fermé à la fin du traitement.
 
-!!! tip
-    Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+!!! tip "Astuce"
+     Notez qu'ici, comme nous utilisons la fonction standart `open()` qui ne prend pas en charge `async` et `wait`, nous devons déclarer l'opération de chemin avec `def` normal.
 
 ### `FileResponse`
 
-Asynchronously streams a file as the response.
+Diffuse de manière asynchrone un fichier en tant que réponse.
 
-Takes a different set of arguments to instantiate than the other response types:
+Prend un ensemble d'arguments différent à instancier que les autres types de réponse :
 
-* `path` - The filepath to the file to stream.
-* `headers` - Any custom headers to include, as a dictionary.
-* `media_type` - A string giving the media type. If unset, the filename or path will be used to infer a media type.
-* `filename` - If set, this will be included in the response `Content-Disposition`.
+* `path` - Le chemin d'accès au fichier à diffuser.
+* `headers` - Tous les en-têtes personnalisés à inclure, sous forme de dictionnaire.
+* `media_type` - Une chaîne donnant le type de média. S'il n'est pas défini, le nom de fichier ou le chemin sera utilisé pour déduire un type de média.
+* `filename` - Si défini, il sera inclus dans la réponse `Content-Disposition`.
 
-File responses will include appropriate `Content-Length`, `Last-Modified` and `ETag` headers.
+Les réponses de fichier incluront les en-têtes `Content-Length`, `Last-Modified` et `ETag` appropriés.
 
-```Python hl_lines="2  10"
+```Python hl_lines="2 10"
 {!../../../docs_src/custom_response/tutorial009.py!}
 ```
 
-You can also use the `response_class` parameter:
+Vous pouvez également utiliser le paramètre `response_class` :
 
-```Python hl_lines="2  8  10"
+```Python hl_lines="2 8 10"
 {!../../../docs_src/custom_response/tutorial009b.py!}
 ```
 
-In this case, you can return the file path directly from your *path operation* function.
+Dans ce cas, vous pouvez retourner le chemin du fichier directement depuis votre fonction *chemin*.
 
-## Custom response class
+## Classe de réponse personnalisée
 
-You can create your own custom response class, inheriting from `Response` and using it.
+Vous pouvez créer votre propre classe de réponse personnalisée, en héritant de `Response` et en l'utilisant.
 
-For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, but with some custom settings not used in the included `ORJSONResponse` class.
+Par exemple, disons que vous voulez utiliser <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, mais avec certains paramètres personnalisés non utilisés dans la classe `ORJSONResponse` incluse.
 
-Let's say you want it to return indented and formatted JSON, so you want to use the orjson option `orjson.OPT_INDENT_2`.
+Supposons que vous souhaitiez qu'il renvoie un JSON indenté et formaté. Vous souhaitez donc utiliser l'option orjson `orjson.OPT_INDENT_2`.
 
-You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
+Vous pouvez créer une `CustomORJSONResponse`. La principale chose que vous devez faire est de créer une méthode `Response.render(content)` qui renvoie le contenu sous forme de `bytes` :
 
-```Python hl_lines="9-14  17"
+```Python hl_lines="9-14 17"
 {!../../../docs_src/custom_response/tutorial009c.py!}
 ```
 
-Now instead of returning:
+Maintenant, au lieu de revenir :
 
 ```json
-{"message": "Hello World"}
+{"message": "Bonjour le monde"}
 ```
 
-...this response will return:
+...cette réponse renverra :
 
 ```json
 {
-  "message": "Hello World"
+   "message": "Bonjour le monde"
 }
 ```
 
-Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
+Bien sûr, vous trouverez probablement de bien meilleurs moyens d'en tirer parti que de formater JSON. 😉
 
-## Default response class
+## Classe de réponse par défaut
 
-When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
+Lors de la création d'une instance de classe **FastAPI** ou d'un `APIRouter`, vous pouvez spécifier la classe de réponse à utiliser par défaut.
 
-The parameter that defines this is `default_response_class`.
+Le paramètre qui définit ceci est `default_response_class`.
 
-In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
+Dans l'exemple ci-dessous, **FastAPI** utilisera `ORJSONResponse` par défaut, dans toutes les *opérations de chemin*, au lieu de `JSONResponse`.
 
-```Python hl_lines="2  4"
+```Python hl_lines="2 4"
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 
-!!! tip
-    You can still override `response_class` in *path operations* as before.
+!!! tip "Astuce"
+     Vous pouvez toujours remplacer `response_class` dans votre *chemin* comme avant.
 
-## Additional documentation
+## Documents supplémentaires
 
-You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Vous pouvez également déclarer le type de média et de nombreux autres détails dans OpenAPI à l'aide de `responses` : [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
