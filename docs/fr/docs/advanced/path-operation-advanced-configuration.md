@@ -2,7 +2,7 @@
 
 ## ID d'opération OpenAPI
 
-!!! Attention
+!!! warning "Attention !"
     Si vous n'êtes pas un "expert" en OpenAPI, vous n'en avez probablement pas besoin.
 
 Dans OpenAPI, les chemins sont des ressources, tels que /users/ ou /items/, exposées par votre API, et les opérations sont les méthodes HTTP utilisées pour manipuler ces chemins, telles que GET, POST ou DELETE. Les operationId sont des chaînes uniques facultatives utilisées pour identifier une opération d'un chemin. Vous pouvez définir l'OpenAPI `operationId` à utiliser dans votre *opération de chemin* avec le paramètre `operation_id`.
