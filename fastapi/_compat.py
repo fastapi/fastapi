@@ -60,7 +60,7 @@ if PYDANTIC_V2:
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
     from pydantic_core.core_schema import (
-        general_plain_validator_function as general_plain_validator_function,
+        no_info_plain_validator_function as no_info_plain_validator_function,
     )
 
     Required = PydanticUndefined
@@ -340,7 +340,7 @@ else:
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
-    def general_plain_validator_function(  # type: ignore[misc]
+    def no_info_plain_validator_function(  # type: ignore[misc]
         function: Callable[..., Any],
         *,
         ref: Union[str, None] = None,

@@ -7,6 +7,7 @@ from fastapi._compat import (
     _get_model_config,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
+    no_info_plain_validator_function,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
@@ -15,18 +16,19 @@ from pydantic.fields import FieldInfo
 from .utils import needs_pydanticv1, needs_pydanticv2
 
 
+@needs_pydanticv1
+def test_dummy_no_info_plain_validator_function():
+    # For coverage
+    validator = no_info_plain_validator_function(lambda x: None)
+    assert validator == {}
+
+
 @needs_pydanticv2
 def test_model_field_default_required():
     # For coverage
     field_info = FieldInfo(annotation=str)
     field = ModelField(name="foo", field_info=field_info)
     assert field.default is Undefined
-
-
-@needs_pydanticv1
-def test_upload_file_dummy_general_plain_validator_function():
-    # For coverage
-    assert UploadFile.__get_pydantic_core_schema__(str, lambda x: None) == {}
 
 
 @needs_pydanticv1
