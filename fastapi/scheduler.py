@@ -4,15 +4,16 @@ from typing import Any, Callable, Dict, Optional, Tuple
 
 from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
+from starlette.background import P
 
 
 class TaskScheduler:
-    def __init__(self):
+    def __init__(self) -> None:
         ...
 
     async def schedule_task(
         self,
-        func: Callable,
+        func: Callable[P, Any],
         execute_at: datetime,
         args: Optional[Tuple[Any]],
         kwargs: Optional[Dict[str, Any]],
@@ -27,7 +28,7 @@ class TaskScheduler:
 
     async def execute_function(
         self,
-        func: Callable,
+        func: Callable[P, Any],
         args: Optional[Tuple[Any]],
         kwargs: Optional[Dict[str, Any]],
     ) -> None:
@@ -39,7 +40,7 @@ class TaskScheduler:
 
     def add_task(
         self,
-        func: Callable,
+        func: Callable[P, Any],
         execute_at: datetime,
         args: Optional[Tuple[Any]] = (),
         kwargs: Optional[Dict[str, Any]] = None,
@@ -49,5 +50,5 @@ class TaskScheduler:
         asyncio.create_task(self.schedule_task(func, execute_at, args, kwargs))
 
 
-def get_scheduler() -> Callable:
+def get_scheduler() -> TaskScheduler:
     return TaskScheduler()
