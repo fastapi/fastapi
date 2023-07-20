@@ -7,7 +7,7 @@ from fastapi._compat import (
     GetJsonSchemaHandler,
     JsonSchemaValue,
     _model_rebuild,
-    general_plain_validator_function,
+    no_info_plain_validator_function,
 )
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
@@ -23,36 +23,32 @@ except ImportError:  # pragma: no cover
 
     class EmailStr(str):  # type: ignore
         @classmethod
-        def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
-            yield cls.validate
-
-        @classmethod
-        def validate(cls, v: Any) -> str:
-            logger.warning(
-                "email-validator not installed, email fields will be treated as str.\n"
-                "To install, run: pip install email-validator"
-            )
-            return str(v)
-
-        @classmethod
-        def _validate(cls, __input_value: Any, _: Any) -> str:
+        def _validate(cls, __input_value: Any) -> str:
             logger.warning(
                 "email-validator not installed, email fields will be treated as str.\n"
                 "To install, run: pip install email-validator"
             )
             return str(__input_value)
 
-        @classmethod
-        def __get_pydantic_json_schema__(
-            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-        ) -> JsonSchemaValue:
-            return {"type": "string", "format": "email"}
+        if PYDANTIC_V2:
 
-        @classmethod
-        def __get_pydantic_core_schema__(
-            cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
-        ) -> CoreSchema:
-            return general_plain_validator_function(cls._validate)
+            @classmethod
+            def __get_pydantic_json_schema__(
+                cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
+            ) -> JsonSchemaValue:
+                return {"type": "string", "format": "email"}
+
+            @classmethod
+            def __get_pydantic_core_schema__(
+                cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
+            ) -> CoreSchema:
+                return no_info_plain_validator_function(cls._validate)
+
+        else:
+
+            @classmethod
+            def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
+                yield cls._validate
 
 
 class Contact(BaseModel):

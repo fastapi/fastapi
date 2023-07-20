@@ -24,12 +24,6 @@ def test_model_field_default_required():
 
 
 @needs_pydanticv1
-def test_upload_file_dummy_general_plain_validator_function():
-    # For coverage
-    assert UploadFile.__get_pydantic_core_schema__(str, lambda x: None) == {}
-
-
-@needs_pydanticv1
 def test_union_scalar_list():
     # For coverage
     # TODO: there might not be a current valid code path that uses this, it would
