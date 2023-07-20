@@ -164,7 +164,13 @@ if PYDANTIC_V2:
     def _normalize_errors(
         errors: Sequence[Union[ErrorDetails, ErrorWrapper]]
     ) -> List[ErrorDetails]:
-        return errors  # type: ignore[return-value]
+        use_errors: List[ErrorDetails] = []
+        for error in errors:
+            if isinstance(error, dict):
+                use_errors.append(error)
+            else:
+                raise NotImplementedError(f"Unexpected ErrorWrapper: {error}")
+        return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
         model.model_rebuild()
@@ -425,7 +431,7 @@ else:
     def _normalize_errors(
         errors: Sequence[Union[ErrorDetails, ErrorWrapper]]
     ) -> List[ErrorDetails]:
-        use_errors: List[Any] = []
+        use_errors: List[ErrorDetails] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
                 new_errors = ValidationError(  # type: ignore[call-arg]
