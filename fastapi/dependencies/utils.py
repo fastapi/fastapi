@@ -21,6 +21,7 @@ import anyio
 from fastapi import params
 from fastapi._compat import (
     PYDANTIC_V2,
+    ErrorDetails,
     ErrorWrapper,
     ModelField,
     Required,
@@ -516,13 +517,13 @@ async def solve_dependencies(
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
-    List[Any],
+    List[Union[ErrorDetails, ErrorWrapper]],
     Optional[BackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
 ]:
     values: Dict[str, Any] = {}
-    errors: List[Any] = []
+    errors: List[Union[ErrorDetails, ErrorWrapper]] = []
     if response is None:
         response = Response()
         del response.headers["content-length"]
@@ -636,9 +637,9 @@ async def solve_dependencies(
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
-) -> Tuple[Dict[str, Any], List[Any]]:
+) -> Tuple[Dict[str, Any], List[Union[ErrorDetails, ErrorWrapper]]]:
     values = {}
-    errors = []
+    errors: List[Union[ErrorDetails, ErrorWrapper]] = []
     for field in required_params:
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
@@ -659,7 +660,7 @@ def request_params_to_args(
             continue
         v_, errors_ = field.validate(value, values, loc=loc)
         if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
+            errors.append(errors_)  # Pydantic V1 errors
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             errors.extend(new_errors)
@@ -671,9 +672,9 @@ def request_params_to_args(
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
-) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
+) -> Tuple[Dict[str, Any], List[Union[ErrorDetails, ErrorWrapper]]]:
     values = {}
-    errors: List[Dict[str, Any]] = []
+    errors: List[Union[ErrorDetails, ErrorWrapper]] = []
     if required_params:
         field = required_params[0]
         field_info = field.field_info

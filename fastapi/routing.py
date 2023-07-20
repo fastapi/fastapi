@@ -21,6 +21,8 @@ from typing import (
 
 from fastapi import params
 from fastapi._compat import (
+    ErrorDetails,
+    ErrorWrapper,
     ModelField,
     Undefined,
     _get_model_config,
@@ -131,7 +133,7 @@ async def serialize_response(
     is_coroutine: bool = True,
 ) -> Any:
     if field:
-        errors = []
+        errors: List[Union[ErrorDetails, ErrorWrapper]] = []
         if not hasattr(field, "serialize"):
             # pydantic v1
             response_content = _prepare_response_content(

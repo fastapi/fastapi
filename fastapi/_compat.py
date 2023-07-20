@@ -56,6 +56,7 @@ if PYDANTIC_V2:
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import CoreSchema as CoreSchema
+    from pydantic_core import ErrorDetails as ErrorDetails
     from pydantic_core import MultiHostUrl as MultiHostUrl
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
@@ -114,7 +115,7 @@ if PYDANTIC_V2:
             values: Dict[str, Any] = {},  # noqa: B006
             *,
             loc: Tuple[Union[int, str], ...] = (),
-        ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+        ) -> Tuple[Any, Union[List[ErrorDetails], None]]:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
@@ -160,7 +161,9 @@ if PYDANTIC_V2:
     ) -> Any:
         return annotation
 
-    def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
+    def _normalize_errors(
+        errors: Sequence[Union[ErrorDetails, ErrorWrapper]]
+    ) -> List[ErrorDetails]:
         return errors  # type: ignore[return-value]
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
@@ -244,12 +247,12 @@ if PYDANTIC_V2:
         assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
         return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+    def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorDetails:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
         ).errors()[0]
         error["input"] = None
-        return error  # type: ignore[return-value]
+        return error
 
     def create_body_model(
         *, fields: Sequence[ModelField], model_name: str
@@ -259,6 +262,18 @@ if PYDANTIC_V2:
         return BodyModel
 
 else:
+    import sys
+
+    if sys.version_info >= (3, 9):
+        from typing import TypedDict as _TypedDict
+    else:
+        from typing_extensions import TypedDict as _TypedDict
+
+    if sys.version_info >= (3, 11):
+        from typing import NotRequired as _NotRequired
+    else:
+        from typing_extensions import NotRequired as _NotRequired
+
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
     from pydantic import (  # type: ignore[assignment]
@@ -333,6 +348,13 @@ else:
         SHAPE_TUPLE_ELLIPSIS: list,
     }
 
+    class ErrorDetails(_TypedDict):  # type: ignore[no-redef]
+        type: str
+        loc: Tuple[Union[int, str], ...]
+        msg: str
+        ctx: _NotRequired[Dict[str, Any]]
+        # input: Any  # This is only available in Pydantic V2
+
     @dataclass
     class GenerateJsonSchema:  # type: ignore[no-redef]
         ref_template: str
@@ -400,7 +422,9 @@ else:
             return True
         return False
 
-    def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
+    def _normalize_errors(
+        errors: Sequence[Union[ErrorDetails, ErrorWrapper]]
+    ) -> List[ErrorDetails]:
         use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
@@ -480,10 +504,10 @@ else:
     def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+    def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorDetails:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
         new_error = ValidationError([missing_field_error], RequestErrorModel)
-        return new_error.errors()[0]  # type: ignore[return-value]
+        return new_error.errors()[0]
 
     def create_body_model(
         *, fields: Sequence[ModelField], model_name: str
@@ -495,10 +519,10 @@ else:
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Dict[str, Any]]:
-    updated_loc_errors: List[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())}
+    *, errors: Sequence[ErrorDetails], loc_prefix: Tuple[Union[str, int], ...]
+) -> List[ErrorDetails]:
+    updated_loc_errors: List[ErrorDetails] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())}  # type: ignore[misc]
         for err in _normalize_errors(errors)
     ]
 
