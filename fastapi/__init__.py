@@ -21,5 +21,7 @@ from .param_functions import Security as Security
 from .requests import Request as Request
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter
+from .scheduler import TaskScheduler as TaskScheduler
+from .scheduler import get_scheduler as get_scheduler
 from .websockets import WebSocket as WebSocket
 from .websockets import WebSocketDisconnect as WebSocketDisconnect

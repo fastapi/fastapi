@@ -25,3 +25,9 @@ archive.zip
 *~
 .*.sw?
 .cache
+
+# venv directory
+fastapi-venv
+
+# test app
+app.py
