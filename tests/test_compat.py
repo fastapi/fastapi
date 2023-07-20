@@ -1,10 +1,13 @@
 from typing import List, Union
 
+import pytest
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
+    ErrorWrapper,
     ModelField,
     Undefined,
     _get_model_config,
+    _normalize_errors,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
 )
@@ -57,6 +60,16 @@ def test_get_model_config():
     foo = Foo()
     config = _get_model_config(foo)
     assert config == {"from_attributes": True}
+
+
+@needs_pydanticv2
+def test_normalize_errors_wrapper_not_allowed():
+    # For coverage in Pydantic v2
+    with pytest.raises(
+        NotImplementedError,
+        match="Unexpected ErrorWrapper: ErrorWrapper\\('invalid'\\)",
+    ):
+        _normalize_errors([ErrorWrapper("invalid")])
 
 
 def test_complex():

@@ -169,7 +169,7 @@ if PYDANTIC_V2:
             if isinstance(error, dict):
                 use_errors.append(error)
             else:
-                raise NotImplementedError(f"Unexpected ErrorWrapper: {error}")
+                raise NotImplementedError(f"Unexpected ErrorWrapper: {repr(error)}")
         return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
