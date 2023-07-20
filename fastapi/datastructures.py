@@ -5,7 +5,7 @@ from fastapi._compat import (
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,
-    general_plain_validator_function,
+    no_info_plain_validator_function,
 )
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
@@ -18,38 +18,34 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 
 class UploadFile(StarletteUploadFile):
     @classmethod
-    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
-        yield cls.validate
-
-    @classmethod
-    def validate(cls: Type["UploadFile"], v: Any) -> Any:
-        if not isinstance(v, StarletteUploadFile):
-            raise ValueError(f"Expected UploadFile, received: {type(v)}")
-        return v
-
-    @classmethod
-    def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
+    def _validate(cls, __input_value: Any) -> "UploadFile":
         if not isinstance(__input_value, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
 
-    if not PYDANTIC_V2:
+    if PYDANTIC_V2:
+
+        @classmethod
+        def __get_pydantic_json_schema__(
+            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
+        ) -> JsonSchemaValue:
+            return {"type": "string", "format": "binary"}
+
+        @classmethod
+        def __get_pydantic_core_schema__(
+            cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
+        ) -> CoreSchema:
+            return no_info_plain_validator_function(cls._validate)
+
+    else:
 
         @classmethod
         def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
             field_schema.update({"type": "string", "format": "binary"})
 
-    @classmethod
-    def __get_pydantic_json_schema__(
-        cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-    ) -> JsonSchemaValue:
-        return {"type": "string", "format": "binary"}
-
-    @classmethod
-    def __get_pydantic_core_schema__(
-        cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
-    ) -> CoreSchema:
-        return general_plain_validator_function(cls._validate)
+        @classmethod
+        def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
+            yield cls._validate
 
 
 class DefaultPlaceholder:
