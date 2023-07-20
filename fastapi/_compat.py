@@ -17,7 +17,7 @@ from typing import (
     Union,
 )
 
-from fastapi.exceptions import RequestErrorModel
+import fastapi
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -435,7 +435,7 @@ else:
         for error in errors:
             if isinstance(error, ErrorWrapper):
                 new_errors = ValidationError(  # type: ignore[call-arg]
-                    errors=[error], model=RequestErrorModel
+                    errors=[error], model=fastapi.exceptions.RequestErrorModel
                 ).errors()
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
@@ -512,7 +512,9 @@ else:
 
     def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorDetails:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
-        new_error = ValidationError([missing_field_error], RequestErrorModel)
+        new_error = ValidationError(
+            [missing_field_error], fastapi.exceptions.RequestErrorModel
+        )
         return new_error.errors()[0]
 
     def create_body_model(
