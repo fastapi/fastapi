@@ -3,8 +3,8 @@ from datetime import datetime
 from typing import Any, Callable, Dict, Optional, Tuple
 
 from starlette._utils import is_async_callable
-from starlette.concurrency import run_in_threadpool
 from starlette.background import P
+from starlette.concurrency import run_in_threadpool
 
 
 class TaskScheduler:
