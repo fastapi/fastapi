@@ -7,12 +7,20 @@ from fastapi._compat import (
     _get_model_config,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
+    no_info_plain_validator_function,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
 from .utils import needs_pydanticv1, needs_pydanticv2
+
+
+@needs_pydanticv1
+def test_dummy_no_info_plain_validator_function():
+    # For coverage
+    validator = no_info_plain_validator_function(lambda x: None)
+    assert validator == {}
 
 
 @needs_pydanticv2
