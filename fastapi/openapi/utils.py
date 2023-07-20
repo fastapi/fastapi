@@ -433,6 +433,7 @@ def get_openapi(
     terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
+    by_alias: bool = True,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -454,7 +455,7 @@ def get_openapi(
     operation_ids: Set[str] = set()
     all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
     model_name_map = get_compat_model_name_map(all_fields)
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE, by_alias=by_alias)
     field_mapping, definitions = get_definitions(
         fields=all_fields,
         schema_generator=schema_generator,
