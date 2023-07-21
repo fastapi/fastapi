@@ -56,7 +56,7 @@ class OpenAPIHttpStatusCodeRanges(Enum):
     SERVER_ERROR = "5XX"
 
     @classmethod
-    def has_value(cls: Type[T], value: str) -> bool:
+    def has_value(cls: Type[T], value:Union[int, str, None]) -> bool:
         return value in cls._value2member_map_
 
 
