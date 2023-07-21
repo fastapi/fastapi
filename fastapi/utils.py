@@ -67,7 +67,7 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
         return True
     try:
         current_status_code = int(status_code)
-    except:
+    except ValueError:
         return False
     return (current_status_code >= 200 and current_status_code <= 526) and (
         current_status_code not in {204, 304}
