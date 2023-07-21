@@ -88,9 +88,14 @@ if PYDANTIC_V2:
                 return super().generate_inner(schema["schema"])
             return super().nullable_schema(schema)
 
-        def default_schema(self, schema: core_schema.WithDefaultSchema) -> JsonSchemaValue:
+        def default_schema(
+            self, schema: core_schema.WithDefaultSchema
+        ) -> JsonSchemaValue:
             json_schema = super().default_schema(schema)
-            if self.skip_null_schema and json_schema.get("default", PydanticUndefined) is None:
+            if (
+                self.skip_null_schema
+                and json_schema.get("default", PydanticUndefined) is None
+            ):
                 json_schema.pop("default")
             return json_schema
 
