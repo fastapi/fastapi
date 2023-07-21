@@ -2,7 +2,7 @@ import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast, TypeVar
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -16,6 +16,7 @@ from pydantic.utils import lenient_issubclass
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
+T = TypeVar('T', bound='OpenAPIHttpStatusCodeRanges')
 
 class OpenAPIHttpStatusCodeRanges(Enum):
     """Represents HTTP status codes ranges in the OpenAPI specification
@@ -30,7 +31,7 @@ class OpenAPIHttpStatusCodeRanges(Enum):
     SERVER_ERROR = "5XX"
 
     @classmethod
-    def has_value(cls, value):
+    def has_value(cls:Type[T], value:str) -> bool:
         return value in cls._value2member_map_
 
 
