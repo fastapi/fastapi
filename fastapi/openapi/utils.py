@@ -124,7 +124,7 @@ def get_openapi_operation_parameters(
         }
         if field_info.description:
             parameter["description"] = field_info.description
-        if examples:
+        if isinstance(examples, dict):
             parameter["examples"] = jsonable_encoder(examples)
         if field_info.example != Undefined:
             parameter["example"] = jsonable_encoder(field_info.example)
