@@ -20,7 +20,9 @@ from typing import (
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
+from pydantic.json_schema import JsonSchemaValue
 from pydantic.version import VERSION as PYDANTIC_VERSION
+from pydantic_core import core_schema
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
@@ -85,6 +87,12 @@ if PYDANTIC_V2:
             if self.skip_null_schema:
                 return super().generate_inner(schema["schema"])
             return super().nullable_schema(schema)
+
+        def default_schema(self, schema: core_schema.WithDefaultSchema) -> JsonSchemaValue:
+            json_schema = super().default_schema(schema)
+            if self.skip_null_schema and json_schema.get("default", PydanticUndefined) is None:
+                json_schema.pop("default")
+            return json_schema
 
         def generate_definitions(
             self,
