@@ -1,7 +1,6 @@
 import re
 import warnings
 from dataclasses import is_dataclass
-
 from enum import Enum
 from typing import (
     TYPE_CHECKING,
@@ -11,9 +10,9 @@ from typing import (
     Optional,
     Set,
     Type,
+    TypeVar,
     Union,
     cast,
-    TypeVar
 )
 from weakref import WeakKeyDictionary
 
@@ -40,8 +39,9 @@ if TYPE_CHECKING:  # pragma: nocover
 _CLONED_TYPES_CACHE: MutableMapping[
     Type[BaseModel], Type[BaseModel]
 ] = WeakKeyDictionary()
-  
-T = TypeVar('T', bound='OpenAPIHttpStatusCodeRanges')
+
+T = TypeVar("T", bound="OpenAPIHttpStatusCodeRanges")
+
 
 class OpenAPIHttpStatusCodeRanges(Enum):
     """Represents HTTP status codes ranges in the OpenAPI specification
@@ -56,9 +56,8 @@ class OpenAPIHttpStatusCodeRanges(Enum):
     SERVER_ERROR = "5XX"
 
     @classmethod
-    def has_value(cls:Type[T], value:str) -> bool:
+    def has_value(cls: Type[T], value: str) -> bool:
         return value in cls._value2member_map_
-
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
