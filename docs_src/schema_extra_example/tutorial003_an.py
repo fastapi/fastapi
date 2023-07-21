@@ -20,12 +20,14 @@ async def update_item(
     item: Annotated[
         Item,
         Body(
-            example={
-                "name": "Foo",
-                "description": "A very nice Item",
-                "price": 35.4,
-                "tax": 3.2,
-            },
+            examples=[
+                {
+                    "name": "Foo",
+                    "description": "A very nice Item",
+                    "price": 35.4,
+                    "tax": 3.2,
+                }
+            ],
         ),
     ],
 ):
