@@ -23,7 +23,7 @@ from pydantic.color import Color
 from pydantic.networks import NameEmail
 from pydantic.types import SecretBytes, SecretStr
 
-from ._compat import PYDANTIC_V2, MultiHostUrl, Url, _model_dump
+from ._compat import PYDANTIC_V2, MultiHostUrl, UndefinedType, Url, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -167,6 +167,8 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
+    if isinstance(obj, UndefinedType):
+        return None
     if isinstance(obj, dict):
         encoded_dict = {}
         allowed_keys = set(obj.keys())
