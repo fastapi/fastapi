@@ -511,6 +511,19 @@ def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     return lenient_issubclass(annotation, sequence_types)
 
 
+def field_annotation_is_optional_sequence(annotation: Union[Type[Any], None]) -> bool:
+    if get_origin(annotation) == Union:
+        args = get_args(annotation)
+        if not args:
+            return False
+        else:
+            first_argument = args[0]
+            if hasattr(first_argument, "__origin__"):
+                if first_argument.__origin__ in sequence_types:
+                    return True
+    return False
+
+
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)

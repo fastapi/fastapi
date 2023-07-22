@@ -43,6 +43,7 @@ from fastapi._compat import (
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
+    field_annotation_is_optional_sequence,
 )
 from fastapi.concurrency import (
     AsyncExitStack,
@@ -691,7 +692,9 @@ async def request_body_to_args(
 
             value: Optional[Any] = None
             if received_body is not None:
-                if (is_sequence_field(field)) and isinstance(received_body, FormData):
+                if (
+                    is_sequence_field(field) or field_annotation_is_optional_sequence(field.field_info.annotation)
+                ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
                     try:
