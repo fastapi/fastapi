@@ -223,7 +223,21 @@ if PYDANTIC_V2:
         ) and not isinstance(field.field_info, params.Body)
 
     def is_sequence_field(field: ModelField) -> bool:
-        return field_annotation_is_sequence(field.field_info.annotation)
+        return field_annotation_is_sequence(
+            field.field_info.annotation
+        ) or field_annotation_is_optional_sequence(field.field_info.annotation)
+
+    def field_annotation_is_optional_sequence(
+        annotation: Union[Type[Any], None]
+    ) -> bool:
+        origin = get_origin(annotation)
+        if origin is Union:
+            args = get_args(annotation)
+            first_argument = args[0]
+            if hasattr(first_argument, "__origin__"):
+                if first_argument.__origin__ in sequence_types:
+                    return True
+        return False
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
