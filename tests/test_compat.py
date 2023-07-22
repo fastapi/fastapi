@@ -1,13 +1,13 @@
-from typing import List, Union, Optional
+from typing import List, Optional, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
+    field_annotation_is_optional_sequence,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
-    field_annotation_is_optional_sequence,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
@@ -102,7 +102,7 @@ def test_model_optional_union():
         Optional[set[int]],
         Union[set[int], set[float]],
         Optional[frozenset[int]],
-        Union[List[int], None]
+        Union[List[int], None],
     ]
     for annotation in types:
         field_info = FieldInfo(annotation=annotation)
