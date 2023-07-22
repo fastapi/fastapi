@@ -228,7 +228,6 @@ if PYDANTIC_V2:
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
 
-
     def field_annotation_is_optional_sequence(field: ModelField) -> bool:
         if get_origin(field.field_info.annotation) == Union:
             args = get_args(field.field_info.annotation)
