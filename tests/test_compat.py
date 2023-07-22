@@ -116,7 +116,7 @@ def test_model_optional_union_v1():
 
 
 @needs_pydanticv1
-def test_model_optional_union_v2():
+def test_model_optional_union_v1():
     # For coverage
     types = [
         Optional[List[str]],
