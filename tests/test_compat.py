@@ -1,4 +1,4 @@
-from typing import List, Union, Optional
+from typing import List, Union, Optional, Set, FrozenSet
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -94,14 +94,15 @@ def test_is_uploadfile_sequence_annotation():
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
 
 
-def test_model_optional_union():
+@needs_pydanticv2
+def test_model_optional_union_v1():
     # For coverage
     types = [
-        Optional[list[str]],
-        Union[list[int], list[float]],
-        Optional[set[int]],
-        Union[set[int], set[float]],
-        Optional[frozenset[int]],
+        Optional[List[str]],
+        Union[List[int], List[float]],
+        Optional[Set[int]],
+        Union[Set[int], Set[float]],
+        Optional[FrozenSet[int]],
         Union[List[int], None]
     ]
     for annotation in types:
@@ -111,4 +112,37 @@ def test_model_optional_union():
 
     field_info_str = FieldInfo(annotation=str)
     field_str = ModelField(name="foo", field_info=field_info_str)
+    assert field_annotation_is_optional_sequence(field_str) is False
+
+
+@needs_pydanticv1
+def test_model_optional_union_v2():
+    # For coverage
+    types = [
+        Optional[List[str]],
+        Union[List[int], List[float]],
+        Optional[Set[int]],
+        Union[Set[int], Set[float]],
+        Optional[FrozenSet[int]],
+        Union[List[int], None]
+    ]
+    for annotation in types:
+        field_info = FieldInfo()
+        field = ModelField(
+            name="foo",
+            field_info=field_info,
+            type_=annotation,
+            class_validators={},
+            model_config=BaseConfig,
+        )
+        assert field_annotation_is_optional_sequence(field) is True
+
+    field_info_str = FieldInfo()
+    field_str = ModelField(
+        name="foo",
+        field_info=field_info_str,
+        type_=str,
+        class_validators={},
+        model_config=BaseConfig,
+    )
     assert field_annotation_is_optional_sequence(field_str) is False
