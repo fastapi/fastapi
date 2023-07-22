@@ -1,4 +1,4 @@
-from typing import List, Union, Optional, Set, FrozenSet
+from typing import FrozenSet, List, Optional, Set, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -103,7 +103,7 @@ def test_model_optional_union_v1():
         Optional[Set[int]],
         Union[Set[int], Set[float]],
         Optional[FrozenSet[int]],
-        Union[List[int], None]
+        Union[List[int], None],
     ]
     for annotation in types:
         field_info = FieldInfo(annotation=annotation)
@@ -124,7 +124,7 @@ def test_model_optional_union_v1():
         Optional[Set[int]],
         Union[Set[int], Set[float]],
         Optional[FrozenSet[int]],
-        Union[List[int], None]
+        Union[List[int], None],
     ]
     for annotation in types:
         field_info = FieldInfo()
