@@ -29,6 +29,7 @@ from fastapi._compat import (
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
+    field_annotation_is_optional_sequence,
     field_annotation_is_scalar,
     get_annotation_from_field_info,
     get_missing_field_error,
@@ -43,7 +44,6 @@ from fastapi._compat import (
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
-    field_annotation_is_optional_sequence,
 )
 from fastapi.concurrency import (
     AsyncExitStack,
