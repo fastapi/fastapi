@@ -691,9 +691,7 @@ async def request_body_to_args(
 
             value: Optional[Any] = None
             if received_body is not None:
-                if (
-                    is_sequence_field(field)
-                ) and isinstance(received_body, FormData):
+                if (is_sequence_field(field)) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
                     try:

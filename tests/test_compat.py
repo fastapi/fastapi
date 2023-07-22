@@ -6,8 +6,8 @@ from fastapi._compat import (
     Undefined,
     _get_model_config,
     is_bytes_sequence_annotation,
-    is_uploadfile_sequence_annotation,
     is_sequence_field,
+    is_uploadfile_sequence_annotation,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
@@ -113,5 +113,3 @@ def test_model_optional_union_v2():
     field_info_str = FieldInfo(annotation=str)
     field_str = ModelField(name="foo", field_info=field_info_str)
     assert is_sequence_field(field_str) is False
-
-
