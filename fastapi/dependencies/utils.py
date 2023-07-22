@@ -29,7 +29,6 @@ from fastapi._compat import (
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
-    field_annotation_is_optional_sequence,
     field_annotation_is_scalar,
     get_annotation_from_field_info,
     get_missing_field_error,
@@ -694,7 +693,6 @@ async def request_body_to_args(
             if received_body is not None:
                 if (
                     is_sequence_field(field)
-                    or field_annotation_is_optional_sequence(field)
                 ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:

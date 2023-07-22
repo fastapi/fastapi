@@ -5,9 +5,9 @@ from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
-    field_annotation_is_optional_sequence,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
+    is_sequence_field,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
@@ -95,7 +95,7 @@ def test_is_uploadfile_sequence_annotation():
 
 
 @needs_pydanticv2
-def test_model_optional_union_v1():
+def test_model_optional_union_v2():
     # For coverage
     types = [
         Optional[List[str]],
@@ -108,41 +108,10 @@ def test_model_optional_union_v1():
     for annotation in types:
         field_info = FieldInfo(annotation=annotation)
         field = ModelField(name="foo", field_info=field_info)
-        assert field_annotation_is_optional_sequence(field) is True
+        assert is_sequence_field(field) is True
 
     field_info_str = FieldInfo(annotation=str)
     field_str = ModelField(name="foo", field_info=field_info_str)
-    assert field_annotation_is_optional_sequence(field_str) is False
+    assert is_sequence_field(field_str) is False
 
 
-@needs_pydanticv1
-def test_model_optional_union_v1():
-    # For coverage
-    types = [
-        Optional[List[str]],
-        Union[List[int], List[float]],
-        Optional[Set[int]],
-        Union[Set[int], Set[float]],
-        Optional[FrozenSet[int]],
-        Union[List[int], None],
-    ]
-    for annotation in types:
-        field_info = FieldInfo()
-        field = ModelField(
-            name="foo",
-            field_info=field_info,
-            type_=annotation,
-            class_validators={},
-            model_config=BaseConfig,
-        )
-        assert field_annotation_is_optional_sequence(field) is True
-
-    field_info_str = FieldInfo()
-    field_str = ModelField(
-        name="foo",
-        field_info=field_info_str,
-        type_=str,
-        class_validators={},
-        model_config=BaseConfig,
-    )
-    assert field_annotation_is_optional_sequence(field_str) is False
