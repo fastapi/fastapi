@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -7,6 +7,7 @@ from fastapi._compat import (
     _get_model_config,
     is_bytes_sequence_annotation,
     is_uploadfile_sequence_annotation,
+    field_annotation_is_optional_sequence,
 )
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
@@ -91,3 +92,23 @@ def test_is_uploadfile_sequence_annotation():
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+
+
+def test_model_optional_union():
+    # For coverage
+    types = [
+        Optional[list[str]],
+        Union[list[int], list[float]],
+        Optional[set[int]],
+        Union[set[int], set[float]],
+        Optional[frozenset[int]],
+        Union[List[int], None]
+    ]
+    for annotation in types:
+        field_info = FieldInfo(annotation=annotation)
+        field = ModelField(name="foo", field_info=field_info)
+        assert field_annotation_is_optional_sequence(field) is True
+
+    field_info_str = FieldInfo(annotation=str)
+    field_str = ModelField(name="foo", field_info=field_info_str)
+    assert field_annotation_is_optional_sequence(field_str) is False

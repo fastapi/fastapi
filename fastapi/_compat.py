@@ -231,13 +231,10 @@ if PYDANTIC_V2:
     def field_annotation_is_optional_sequence(field: ModelField) -> bool:
         if get_origin(field.field_info.annotation) == Union:
             args = get_args(field.field_info.annotation)
-            if not args:
-                return False
-            else:
-                first_argument = args[0]
-                if hasattr(first_argument, "__origin__"):
-                    if first_argument.__origin__ in sequence_types:
-                        return True
+            first_argument = args[0]
+            if hasattr(first_argument, "__origin__"):
+                if first_argument.__origin__ in sequence_types:
+                    return True
         return False
 
     def is_bytes_field(field: ModelField) -> bool:
@@ -480,13 +477,10 @@ else:
     def field_annotation_is_optional_sequence(field: ModelField) -> bool:
         if get_origin(field.type_) == Union:
             args = get_args(field.type_)
-            if not args:
-                return False
-            else:
-                first_argument = args[0]
-                if hasattr(first_argument, "__origin__"):
-                    if first_argument.__origin__ in sequence_types:
-                        return True
+            first_argument = args[0]
+            if hasattr(first_argument, "__origin__"):
+                if first_argument.__origin__ in sequence_types:
+                    return True
         return False
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
