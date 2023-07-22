@@ -479,8 +479,8 @@ else:
         return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
 
     def field_annotation_is_optional_sequence(field: ModelField) -> bool:
-        if get_origin(field.annotation) == Union:
-            args = get_args(field.annotation)
+        if get_origin(field.type_) == Union:
+            args = get_args(field.type_)
             if not args:
                 return False
             else:
