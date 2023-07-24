@@ -1,3 +1,4 @@
+from copy import copy
 from enum import Enum
 from typing import (
     Any,
@@ -92,6 +93,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        generate_head_endpoints: bool = True,
         **extra: Any,
     ) -> None:
         self.debug = debug
@@ -162,6 +164,16 @@ class FastAPI(Starlette):
         )
         self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
+        if generate_head_endpoints:
+            self.on_event("startup")(self._add_default_head_endpoints)
+
+    def _add_default_head_endpoints(self) -> None:
+        for route in self.routes:
+            if isinstance(route, routing.APIRoute) and "GET" in route.methods:
+                new_route = copy(route)
+                new_route.methods = ["HEAD"]
+                new_route.include_in_schema = False
+                self.routes.append(new_route)
 
     def build_middleware_stack(self) -> ASGIApp:
         # Duplicate/override from Starlette to add AsyncExitStackMiddleware
