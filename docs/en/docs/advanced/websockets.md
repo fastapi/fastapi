@@ -2,19 +2,21 @@
 
 You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
-## Install `WebSockets`
+## Install `uvicorn` and `websockets`
 
-First you need to install `WebSockets`:
+First you need to install `uvicorn` and `websockets`:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ pip install uvicorn websockets
 
 ---> 100%
 ```
 
 </div>
+
+Uvicorn uses `websockets` to handle the websocket protocol. Note that FastAPI does not use the `websockets` package directly.
 
 ## WebSockets client
 
