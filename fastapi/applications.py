@@ -171,7 +171,7 @@ class FastAPI(Starlette):
         for route in self.routes:
             if isinstance(route, routing.APIRoute) and "GET" in route.methods:
                 new_route = copy(route)
-                new_route.methods = ["HEAD"]
+                new_route.methods = {"HEAD"}
                 new_route.include_in_schema = False
                 self.routes.append(new_route)
 
