@@ -51,7 +51,7 @@ def test_jsonable_encoder_requiring_error():
                     "loc": ["body", 0, "age"],
                     "msg": "Input should be greater than 0",
                     "input": -1.0,
-                    "ctx": {"gt": '0'},
+                    "ctx": {"gt": "0"},
                     "url": match_pydantic_error_url("greater_than"),
                 }
             ]
@@ -84,16 +84,23 @@ def test_put_incorrect_body_multiple():
                     "input": {"age": "five"},
                     "url": match_pydantic_error_url("missing"),
                 },
-                {'ctx': {'class': 'Decimal'},
-                 'input': 'five',
-                 'loc': ['body', 0, 'age', 'is-instance[Decimal]'],
-                 'msg': 'Input should be an instance of Decimal',
-                 'type': 'is_instance_of',
-                 'url': match_pydantic_error_url("is_instance_of")},
+                {
+                    "ctx": {"class": "Decimal"},
+                    "input": "five",
+                    "loc": ["body", 0, "age", "is-instance[Decimal]"],
+                    "msg": "Input should be an instance of Decimal",
+                    "type": "is_instance_of",
+                    "url": match_pydantic_error_url("is_instance_of"),
+                },
                 {
                     "type": "decimal_parsing",
-                    "loc": ["body", 0, "age", 'function-after[to_decimal(), '
-                     'union[int,constrained-str,function-plain[str()]]]'],
+                    "loc": [
+                        "body",
+                        0,
+                        "age",
+                        "function-after[to_decimal(), "
+                        "union[int,constrained-str,function-plain[str()]]]",
+                    ],
                     "msg": "Input should be a valid decimal",
                     "input": "five",
                 },
@@ -104,16 +111,23 @@ def test_put_incorrect_body_multiple():
                     "input": {"age": "six"},
                     "url": match_pydantic_error_url("missing"),
                 },
-                {'ctx': {'class': 'Decimal'},
-                 'input': 'six',
-                 'loc': ['body', 1, 'age', 'is-instance[Decimal]'],
-                 'msg': 'Input should be an instance of Decimal',
-                 'type': 'is_instance_of',
-                 'url': match_pydantic_error_url("is_instance_of")},
+                {
+                    "ctx": {"class": "Decimal"},
+                    "input": "six",
+                    "loc": ["body", 1, "age", "is-instance[Decimal]"],
+                    "msg": "Input should be an instance of Decimal",
+                    "type": "is_instance_of",
+                    "url": match_pydantic_error_url("is_instance_of"),
+                },
                 {
                     "type": "decimal_parsing",
-                    "loc": ["body", 1, "age", 'function-after[to_decimal(), '
-                     'union[int,constrained-str,function-plain[str()]]]'],
+                    "loc": [
+                        "body",
+                        1,
+                        "age",
+                        "function-after[to_decimal(), "
+                        "union[int,constrained-str,function-plain[str()]]]",
+                    ],
                     "msg": "Input should be a valid decimal",
                     "input": "six",
                 },
