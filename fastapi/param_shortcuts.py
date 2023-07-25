@@ -1,6 +1,7 @@
-from typing import TYPE_CHECKING, Annotated, Any, Callable, TypeVar
+from typing import TYPE_CHECKING, Any, Callable, TypeVar
 
 from fastapi import param_functions
+from typing_extensions import Annotated
 
 
 class ParamShortcut:
