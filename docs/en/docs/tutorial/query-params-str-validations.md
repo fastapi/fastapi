@@ -277,7 +277,7 @@ You can also add a parameter `min_length`:
 
 ## Add regular expressions
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
+You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> `pattern` that the parameter should match:
 
 === "Python 3.10+"
 
@@ -315,7 +315,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
     {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
     ```
 
-This specific regular expression checks that the received parameter value:
+This specific regular expression pattern checks that the received parameter value:
 
 * `^`: starts with the following characters, doesn't have characters before.
 * `fixedquery`: has the exact value `fixedquery`.
@@ -324,6 +324,20 @@ This specific regular expression checks that the received parameter value:
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
 But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+
+### Pydantic v1 `regex` instead of `pattern`
+
+Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
+
+You could still see some code using it:
+
+=== "Python 3.10+ Pydantic v1"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
+    ```
+
+But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
 
 ## Default values
 
