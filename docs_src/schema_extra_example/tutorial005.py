@@ -1,5 +1,7 @@
+from typing import Union
+
 from fastapi import Body, FastAPI, Path
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -31,10 +33,10 @@ item_examples_list = [dct["value"] for dct in item_examples.values() if "value" 
 
 
 class Item(BaseModel):
-    name: str = Field(examples=["Foo", "Bar"])
-    description: str | None = Field(default=None, examples=["A very nice Item"])
-    price: float = Field(examples=[35.4])
-    tax: float | None = Field(default=None, examples=[3.2, None])
+    name: str
+    description: Union[str, None] = None
+    price: float
+    tax: Union[float, None] = None
 
     model_config = {
         "json_schema_extra": {
