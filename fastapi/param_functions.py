@@ -319,7 +319,6 @@ def Body(  # noqa: N802
     default_factory: Union[Callable[[], Any], None] = _Unset,
     embed: bool = False,
     media_type: str = "application/json",
-    media_type_extra: Optional[Dict[str, Any]] = None,
     alias: Optional[str] = None,
     alias_priority: Union[int, None] = _Unset,
     # TODO: update when deprecating Pydantic v1, import these types
@@ -365,7 +364,6 @@ def Body(  # noqa: N802
         default_factory=default_factory,
         embed=embed,
         media_type=media_type,
-        media_type_extra=media_type_extra,
         alias=alias,
         alias_priority=alias_priority,
         validation_alias=validation_alias,

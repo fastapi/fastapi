@@ -110,11 +110,10 @@ def get_openapi_operation_parameters(
         )
         examples = getattr(field_info, "examples", None) or getattr(
             field_info, "extra", {}
-        ).get("examples", None)
-        if examples:
-            if isinstance(examples, dict):
-                examples = {k: v for k, v in examples.items() if "value" in v}
-                param_schema["examples"] = [dct["value"] for dct in examples.values()]
+        ).get("examples")
+        if isinstance(examples, dict):
+            examples = {k: v for k, v in examples.items() if "value" in v}
+            param_schema["examples"] = [dct["value"] for dct in examples.values()]
 
         parameter = {
             "name": param.alias,
@@ -162,18 +161,15 @@ def get_openapi_operation_request_body(
 
     examples = getattr(field_info, "examples", None) or getattr(
         field_info, "extra", {}
-    ).get("examples", None)
-    if examples is not None:
-        if isinstance(examples, dict):
-            examples = {k: v for k, v in examples.items() if "value" in v}
-            body_schema["examples"] = [dct["value"] for dct in examples.values()]
-            request_media_content["examples"] = examples
+    ).get("examples")
+    if isinstance(examples, dict):
+        examples = {k: v for k, v in examples.items() if "value" in v}
+        body_schema["examples"] = [dct["value"] for dct in examples.values()]
+        request_media_content["examples"] = examples
 
     request_media_content["schema"] = body_schema
     if field_info.example != Undefined:
         request_media_content["example"] = jsonable_encoder(field_info.example)
-    if field_info.media_type_extra:
-        request_media_content.update(jsonable_encoder(field_info.media_type_extra))
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 

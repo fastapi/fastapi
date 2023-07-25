@@ -1,4 +1,4 @@
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, Path
 from pydantic import BaseModel, Field
 
 app = FastAPI()
@@ -28,7 +28,6 @@ item_examples = {
 }
 
 item_examples_list = [dct["value"] for dct in item_examples.values() if "value" in dct]
-media_type_extra = {"examples": item_examples}
 
 
 class Item(BaseModel):
@@ -43,7 +42,7 @@ class Item(BaseModel):
                 "name": "Bar",
                 "price": "35.4",
             },
-            "examples": item_examples_list[:1],
+            "examples": item_examples_list,
         }
     }
 
@@ -51,11 +50,15 @@ class Item(BaseModel):
 @app.put("/items/{item_id}")
 async def update_item(
     *,
-    item_id: int,
-    item: Item = Body(
-        examples=item_examples,
-        media_type_extra=media_type_extra,
+    item_id: int = Path(
+        ...,
+        examples={
+            "id as int": {"value": 5},
+            "id as string": {"value": "5"},
+            "invalid id": {"value": "anything else"},
+        },
     ),
+    item: Item = Body(examples=item_examples),
 ):
     results = {"item_id": item_id, "item": item}
     return results
