@@ -1,4 +1,4 @@
-# Security Intro
+# Security
 
 There are many ways to handle security, authentication and authorization.
 

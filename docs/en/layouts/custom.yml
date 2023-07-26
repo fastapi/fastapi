@@ -1,0 +1,228 @@
+# Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# -----------------------------------------------------------------------------
+# Configuration
+# -----------------------------------------------------------------------------
+
+# The same default card with a a configurable logo
+
+# Definitions
+definitions:
+
+  # Background image
+  - &background_image >-
+    {{ layout.background_image or "" }}
+
+  # Background color (default: indigo)
+  - &background_color >-
+    {%- if layout.background_color -%}
+      {{ layout.background_color }}
+    {%- else -%}
+      {%- set palette = config.theme.palette or {} -%}
+      {%- if not palette is mapping -%}
+        {%- set palette = palette | first -%}
+      {%- endif -%}
+      {%- set primary = palette.get("primary", "indigo") -%}
+      {%- set primary = primary.replace(" ", "-") -%}
+      {{ {
+        "red":         "#ef5552",
+        "pink":        "#e92063",
+        "purple":      "#ab47bd",
+        "deep-purple": "#7e56c2",
+        "indigo":      "#4051b5",
+        "blue":        "#2094f3",
+        "light-blue":  "#02a6f2",
+        "cyan":        "#00bdd6",
+        "teal":        "#009485",
+        "green":       "#4cae4f",
+        "light-green": "#8bc34b",
+        "lime":        "#cbdc38",
+        "yellow":      "#ffec3d",
+        "amber":       "#ffc105",
+        "orange":      "#ffa724",
+        "deep-orange": "#ff6e42",
+        "brown":       "#795649",
+        "grey":        "#757575",
+        "blue-grey":   "#546d78",
+        "black":       "#000000",
+        "white":       "#ffffff"
+      }[primary] or "#4051b5" }}
+    {%- endif -%}
+
+  # Text color (default: white)
+  - &color >-
+    {%- if layout.color -%}
+      {{ layout.color }}
+    {%- else -%}
+      {%- set palette = config.theme.palette or {} -%}
+      {%- if not palette is mapping -%}
+        {%- set palette = palette | first -%}
+      {%- endif -%}
+      {%- set primary = palette.get("primary", "indigo") -%}
+      {%- set primary = primary.replace(" ", "-") -%}
+      {{ {
+        "red":         "#ffffff",
+        "pink":        "#ffffff",
+        "purple":      "#ffffff",
+        "deep-purple": "#ffffff",
+        "indigo":      "#ffffff",
+        "blue":        "#ffffff",
+        "light-blue":  "#ffffff",
+        "cyan":        "#ffffff",
+        "teal":        "#ffffff",
+        "green":       "#ffffff",
+        "light-green": "#ffffff",
+        "lime":        "#000000",
+        "yellow":      "#000000",
+        "amber":       "#000000",
+        "orange":      "#000000",
+        "deep-orange": "#ffffff",
+        "brown":       "#ffffff",
+        "grey":        "#ffffff",
+        "blue-grey":   "#ffffff",
+        "black":       "#ffffff",
+        "white":       "#000000"
+      }[primary] or "#ffffff" }}
+    {%- endif -%}
+
+  # Font family (default: Roboto)
+  - &font_family >-
+    {%- if layout.font_family -%}
+      {{ layout.font_family }}
+    {%- elif config.theme.font != false -%}
+      {{ config.theme.font.get("text", "Roboto") }}
+    {%- else -%}
+      Roboto
+    {%- endif -%}
+
+  # Site name
+  - &site_name >-
+    {{ config.site_name }}
+
+  # Page title
+  - &page_title >-
+    {{ page.meta.get("title", page.title) }}
+
+  # Page title with site name
+  - &page_title_with_site_name >-
+    {%- if not page.is_homepage -%}
+      {{ page.meta.get("title", page.title) }} - {{ config.site_name }}
+    {%- else -%}
+      {{ page.meta.get("title", page.title) }}
+    {%- endif -%}
+
+  # Page description
+  - &page_description >-
+    {{ page.meta.get("description", config.site_description) or "" }}
+
+
+  # Start of custom modified logic
+  # Logo
+  - &logo >-
+    {%- if layout.logo -%}
+      {{ layout.logo }}
+    {%- elif config.theme.logo -%}
+      {{ config.docs_dir }}/{{ config.theme.logo }}
+    {%- endif -%}
+  # End of custom modified logic
+
+  # Logo (icon)
+  - &logo_icon >-
+    {{ config.theme.icon.logo or "" }}
+
+# Meta tags
+tags:
+
+  # Open Graph
+  og:type: website
+  og:title: *page_title_with_site_name
+  og:description: *page_description
+  og:image: "{{ image.url }}"
+  og:image:type: "{{ image.type }}"
+  og:image:width: "{{ image.width }}"
+  og:image:height: "{{ image.height }}"
+  og:url: "{{ page.canonical_url }}"
+
+  # Twitter
+  twitter:card: summary_large_image
+  twitter.title: *page_title_with_site_name
+  twitter:description: *page_description
+  twitter:image: "{{ image.url }}"
+
+# -----------------------------------------------------------------------------
+# Specification
+# -----------------------------------------------------------------------------
+
+# Card size and layers
+size: { width: 1200, height: 630 }
+layers:
+
+  # Background
+  - background:
+      image: *background_image
+      color: *background_color
+
+  # Logo
+  - size: { width: 144, height: 144 }
+    offset: { x: 992, y: 64 }
+    background:
+      image: *logo
+    icon:
+      value: *logo_icon
+      color: *color
+
+  # Site name
+  - size: { width: 832, height: 42 }
+    offset: { x: 64, y: 64 }
+    typography:
+      content: *site_name
+      color: *color
+      font:
+        family: *font_family
+        style: Bold
+
+  # Page title
+  - size: { width: 832, height: 310 }
+    offset: { x: 62, y: 160 }
+    typography:
+      content: *page_title
+      align: start
+      color: *color
+      line:
+        amount: 3
+        height: 1.25
+      font:
+        family: *font_family
+        style: Bold
+
+  # Page description
+  - size: { width: 832, height: 64 }
+    offset: { x: 64, y: 512 }
+    typography:
+      content: *page_description
+      align: start
+      color: *color
+      line:
+        amount: 2
+        height: 1.5
+      font:
+        family: *font_family
+        style: Regular

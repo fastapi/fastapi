@@ -25,10 +25,12 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
+      - name: Install Pydantic v2
+        run: pip install "pydantic>=2.0.2,<3.0.0"
       - name: Lint
         run: bash scripts/lint.sh
 
@@ -37,6 +39,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        pydantic-version: ["pydantic-v1", "pydantic-v2"]
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
@@ -51,10 +54,16 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
+      - name: Install Pydantic v1
+        if: matrix.pydantic-version == 'pydantic-v1'
+        run: pip install "pydantic>=1.10.0,<2.0.0"
+      - name: Install Pydantic v2
+        if: matrix.pydantic-version == 'pydantic-v2'
+        run: pip install "pydantic>=2.0.2,<3.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh

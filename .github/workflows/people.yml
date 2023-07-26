@@ -12,6 +12,7 @@ on:
 
 jobs:
   fastapi-people:
+    if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,5 +27,4 @@ jobs:
           limit-access-to-actor: true
       - uses: ./.github/actions/people
         with:
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          standard_token: ${{ secrets.FASTAPI_PEOPLE }}
+          token: ${{ secrets.FASTAPI_PEOPLE }}
