@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.100.1
+
 ### Fixes
 
 * 🐛 Replace `MultHostUrl` to `AnyUrl` for compatibility with older versions of Pydantic v1. PR [#9852](https://github.com/tiangolo/fastapi/pull/9852) by [@Kludex](https://github.com/Kludex).
