@@ -1,5 +1,12 @@
 # NoSQL (Distributed / Big Data) Databases
 
+!!! info
+    These docs are about to be updated. 🎉
+
+    The current version assumes Pydantic v1.
+
+    The new docs will hopefully use Pydantic v2 and will use <a href="https://art049.github.io/odmantic/" class="external-link" target="_blank">ODMantic</a> with MongoDB.
+
 **FastAPI** can also be integrated with any <abbr title="Distributed database (Big Data), also 'Not Only SQL'">NoSQL</abbr>.
 
 Here we'll see an example using **<a href="https://www.couchbase.com/" class="external-link" target="_blank">Couchbase</a>**, a <abbr title="Document here refers to a JSON object (a dict), with keys and values, and those values can also be other JSON objects, arrays (lists), numbers, strings, booleans, etc.">document</abbr> based NoSQL database.
