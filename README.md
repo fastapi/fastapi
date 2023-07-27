@@ -48,6 +48,7 @@ The key features are:
 
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
 <a href="https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" target="_blank" title="Build, run and scale your apps on a modern, reliable, and secure PaaS."><img src="https://fastapi.tiangolo.com/img/sponsors/platform-sh.png"></a>
+<a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=main-badge" target="_blank" title="Fern | SDKs and API docs"><img src="https://fastapi.tiangolo.com/img/sponsors/fern.png"></a>
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://training.talkpython.fm/fastapi-courses" target="_blank" title="FastAPI video courses on demand from people you trust"><img src="https://fastapi.tiangolo.com/img/sponsors/talkpython.png"></a>
 <a href="https://testdriven.io/courses/tdd-fastapi/" target="_blank" title="Learn to build high-quality web apps with best practices"><img src="https://fastapi.tiangolo.com/img/sponsors/testdriven.svg"></a>
