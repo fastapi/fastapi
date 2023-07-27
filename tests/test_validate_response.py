@@ -4,7 +4,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 app = FastAPI()
 
@@ -13,6 +13,18 @@ class Item(BaseModel):
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
+
+
+class Model(BaseModel):
+    name: str
+    price: float
+
+    @classmethod
+    def from_value(cls, **kwargs):
+        res = cls.model_construct()
+        res.name = kwargs.get("name")
+        res.price = kwargs.get("price")
+        return res
 
 
 @app.get("/items/invalid", response_model=Item)
@@ -45,6 +57,16 @@ def get_invalidlist():
         {"name": "bar", "price": "bar"},
         {"name": "baz", "price": "baz"},
     ]
+
+
+@app.get("/get_model_no_price", response_model=Model)
+def get_model_no_price():
+    return Model(name="Dummy")
+
+
+@app.get("/get_model_no_price_constructor", response_model=Model)
+def get_model_no_price_constructor():
+    return Model.from_value(**{"name": "Dummy"})
 
 
 client = TestClient(app)
@@ -82,3 +104,13 @@ def test_double_invalid():
 def test_invalid_list():
     with pytest.raises(ResponseValidationError):
         client.get("/items/invalidlist")
+
+
+def test_get_model_no_price():
+    with pytest.raises(ValidationError):
+        client.get("/get_model_no_price")
+
+
+def test_get_model_no_price_constructor():
+    with pytest.raises(ValidationError):
+        client.get("/get_model_no_price_constructor")
