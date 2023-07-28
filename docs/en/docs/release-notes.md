@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Remove Vietnamese note about missing translation. PR [#9957](https://github.com/tiangolo/fastapi/pull/9957) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.100.1
 
