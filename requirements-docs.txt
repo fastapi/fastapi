@@ -1,0 +1,14 @@
+-e .
+mkdocs==1.4.3
+mkdocs-material==9.1.17
+mdx-include >=1.4.1,<2.0.0
+mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
+typer-cli >=0.0.13,<0.0.14
+typer[all] >=0.6.1,<0.8.0
+pyyaml >=5.3.1,<7.0.0
+# For Material for MkDocs, Chinese search
+jieba==0.42.1
+# For image processing by Material for MkDocs
+pillow==9.5.0
+# For image processing by Material for MkDocs
+cairosvg==2.7.0
