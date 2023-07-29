@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class User(BaseModel):
     id: int
-    name: str = "John Doe"
+    name = "John Doe"
     signup_ts: datetime | None = None
     friends: list[int] = []
 
