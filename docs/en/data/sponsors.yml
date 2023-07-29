@@ -5,6 +5,9 @@ gold:
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
+  - url: https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=main-badge
+    title: Fern | SDKs and API docs
+    img: https://fastapi.tiangolo.com/img/sponsors/fern.png
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
