@@ -147,7 +147,6 @@ def test_path_parameters_order_schema():
 
 
 def test_path_parameters_order_get():
-
     path_params = {
         "user_id": "1",
         "project_id": "2",

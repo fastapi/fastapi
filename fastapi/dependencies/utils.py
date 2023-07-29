@@ -195,7 +195,6 @@ def get_flat_dependant(
 
 
 def preserve_path_params_order(dependant: Dependant) -> Callable[[ModelField], int]:
-
     assert dependant.path is not None
 
     path_params_ordered = []
