@@ -175,12 +175,14 @@ http://127.0.0.1:8000/items/foo-item
 {
     "detail": [
         {
+            "type": "missing",
             "loc": [
                 "query",
                 "needy"
             ],
-            "msg": "field required",
-            "type": "value_error.missing"
+            "msg": "Field required",
+            "input": null,
+            "url": "https://errors.pydantic.dev/2.1/v/missing"
         }
     ]
 }
