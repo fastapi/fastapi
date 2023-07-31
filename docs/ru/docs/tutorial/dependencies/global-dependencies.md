@@ -20,8 +20,8 @@
 
 === "Python 3.6 non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Рекомендуется использовать 'Annotated' версию, если это возможно.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/dependencies/tutorial012.py!}
