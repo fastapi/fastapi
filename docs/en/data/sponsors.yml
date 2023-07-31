@@ -7,7 +7,7 @@ gold:
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
   - url: https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=main-badge
     title: Fern | SDKs and API docs
-    img: https://fastapi.tiangolo.com/img/sponsors/fern.png
+    img: https://fastapi.tiangolo.com/img/sponsors/fern.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
