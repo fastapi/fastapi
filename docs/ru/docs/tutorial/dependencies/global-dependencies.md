@@ -27,7 +27,7 @@
     {!> ../../../docs_src/dependencies/tutorial012.py!}
     ```
 
-Все способы [добавления `dependencies` к *декораторам путевых операций*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} по-прежнему применимы, но в данном случае зависимости применяются ко всем *путевым операциям* приложения.
+Все способы [добавления `dependencies` к *декораторам операции пути*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} по-прежнему применимы, но в данном случае зависимости применяются ко всем *операциям пути* приложения.
 
 ## Зависимости для групп *путевых операций*
 
