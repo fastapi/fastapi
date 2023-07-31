@@ -1,34 +1,52 @@
-# Benchmarks
+# بینچ مارکس
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+انڈیپنڈنٹ ٹیک امپور بینچ مارک **FASTAPI** Uvicorn کے تحت چلنے والی ایپلی کیشنز کو <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> ایک تیز رفتار Python فریم ورک میں سے ایک </a> ، صرف Starlette اور Uvicorn کے نیچے ( FASTAPI  کے ذریعہ اندرونی طور پر استعمال کیا جاتا ہے ) (*)
 
-But when checking benchmarks and comparisons you should have the following in mind.
+لیکن جب بینچ مارک اور موازنہ کی جانچ پڑتال کرتے ہو تو آپ کو مندرجہ ذیل بات ذہن میں رکھنی چاہئے.
 
-## Benchmarks and speed
+## بینچ مارک اور رفتار
 
-When you check the benchmarks, it is common to see several tools of different types compared as equivalent.
+جب آپ بینچ مارک کی جانچ کرتے ہیں تو ، مساوی کے مقابلے میں مختلف اقسام کے متعدد اوزار دیکھنا عام ہے.
 
-Specifically, to see Uvicorn, Starlette and FastAPI compared together (among many other tools).
+خاص طور پر ، Uvicorn, Starlette اور FastAPI کو دیکھنے کے لئے ( بہت سے دوسرے ٹولز ) کے ساتھ موازنہ کیا گیا.
 
-The simpler the problem solved by the tool, the better performance it will get. And most of the benchmarks don't test the additional features provided by the tool.
+ٹول کے ذریعہ حل ہونے والا آسان مسئلہ ، اس کی بہتر کارکردگی ہوگی. اور زیادہ تر بینچ مارک ٹول کے ذریعہ فراہم کردہ اضافی خصوصیات کی جانچ نہیں کرتے ہیں.
 
-The hierarchy is like:
+درجہ بندی کی طرح ہے:
 
-* **Uvicorn**: an ASGI server
-    * **Starlette**: (uses Uvicorn) a web microframework
-        * **FastAPI**: (uses Starlette) an API microframework with several additional features for building APIs, with data validation, etc.
+<ul style="direction: rtl;">
+    <li><div style="text-align: right;">ASGI :<b>Uvicorn</b> سرور</div></li>
+    <ul>
+        <li><div style="text-align: right;"><b>Starlette</b>:  (Uvicorn استعمال کرتا ہے) ایک ویب مائیکرو فریم ورک </div></li>
+        <ul>
+            <li><div style="text-align: right;"><b>FastAPI</b>: (Starlette کا استعمال کرتا ہے) ایک API مائکرو فریم ورک جس میں APIs بنانے کے لیے کئی اضافی خصوصیات ہیں، ڈیٹا کی توثیق وغیرہ کے ساتھ۔</div></li>
+        </ul>
+    </ul>
+</ul>
 
-* **Uvicorn**:
-    * Will have the best performance, as it doesn't have much extra code apart from the server itself.
-    * You wouldn't write an application in Uvicorn directly. That would mean that your code would have to include more or less, at least, all the code provided by Starlette (or **FastAPI**). And if you did that, your final application would have the same overhead as having used a framework and minimizing your app code and bugs.
-    * If you are comparing Uvicorn, compare it against Daphne, Hypercorn, uWSGI, etc. Application servers.
-* **Starlette**:
-    * Will have the next best performance, after Uvicorn. In fact, Starlette uses Uvicorn to run. So, it probably can only get "slower" than Uvicorn by having to execute more code.
-    * But it provides you the tools to build simple web applications, with routing based on paths, etc.
-    * If you are comparing Starlette, compare it against Sanic, Flask, Django, etc. Web frameworks (or microframeworks).
-* **FastAPI**:
-    * The same way that Starlette uses Uvicorn and cannot be faster than it, **FastAPI** uses Starlette, so it cannot be faster than it.
-    * FastAPI provides more features on top of Starlette. Features that you almost always need when building APIs, like data validation and serialization. And by using it, you get automatic documentation for free (the automatic documentation doesn't even add overhead to running applications, it is generated on startup).
-    * If you didn't use FastAPI and used Starlette directly (or another tool, like Sanic, Flask, Responder, etc) you would have to implement all the data validation and serialization yourself. So, your final application would still have the same overhead as if it was built using FastAPI. And in many cases, this data validation and serialization is the biggest amount of code written in applications.
-    * So, by using FastAPI you are saving development time, bugs, lines of code, and you would probably get the same performance (or better) you would if you didn't use it (as you would have to implement it all in your code).
-    * If you are comparing FastAPI, compare it against a web application framework (or set of tools) that provides data validation, serialization and documentation, like Flask-apispec, NestJS, Molten, etc. Frameworks with integrated automatic data validation, serialization and documentation.
+<ul style="direction: rtl;">
+    <li><div style="text-align: right;"><b>Uvicorn</b>:</div></li>
+    <ul>
+        <li><div style="text-align: right;">بہترین کارکردگی ہوگی، کیونکہ اس میں سرور کے علاوہ زیادہ اضافی کوڈ نہیں ہے۔</div></li>
+        <li><div style="text-align: right;">آپ براہ راست Uvicorn میں درخواست نہیں لکھیں گے۔ اس کا مطلب یہ ہوگا کہ آپ کے کوڈ میں کم و بیش، کم از کم، Starlette (یا <b>FastAPI</b>) کی طرف سے فراہم کردہ تمام کوڈ شامل کرنا ہوں گے۔ اور اگر آپ نے ایسا کیا تو، آپ کی حتمی ایپلیکیشن کا وہی اوور ہیڈ ہوگا جیسا کہ ایک فریم ورک استعمال کرنے اور آپ کے ایپ کوڈ اور کیڑے کو کم سے کم کرنا۔</div></li>
+        <li><div style="text-align: right;">اگر آپ Uvicorn کا موازنہ کر رہے ہیں تو اس کا موازنہ Daphne، Hypercorn، uWSGI وغیرہ ایپلیکیشن سرورز سے کریں۔</div></li>
+    </ul>
+</ul>
+<ul style="direction: rtl;">
+    <li><div style="text-align: right;"><b>Starlette</b>:</div></li>
+    <ul>
+        <li><div style="text-align: right;">Uvicorn کے بعد اگلی بہترین کارکردگی ہوگی۔ درحقیقت، Starlette چلانے کے لیے Uvicorn کا استعمال کرتی ہے۔ لہذا، یہ شاید زیادہ کوڈ پر عمل درآمد کرکے Uvicorn سے "سست" ہوسکتا ہے۔</div></li>
+        <li><div style="text-align: right;">لیکن یہ آپ کو آسان ویب ایپلیکیشنز بنانے کے لیے ٹولز فراہم کرتا ہے، راستوں پر مبنی روٹنگ کے ساتھ، وغیرہ۔</div></li>
+        <li><div style="text-align: right;">اگر آپ سٹارلیٹ کا موازنہ کر رہے ہیں تو اس کا موازنہ Sanic، Flask، Django وغیرہ سے کریں۔ ویب فریم ورکس (یا مائیکرو فریم ورکس)</div></li>
+    </ul>
+</ul>
+<ul style="direction: rtl;">
+    <li><div style="text-align: right;"><b>FastAPI</b>:</div></li>
+    <ul>
+        <li><div style="text-align: right;">جس طرح سے Uvicorn Starlette کا استعمال کرتا ہے اور اس سے تیز نہیں ہو سکتا، Starlette <b>FastAPI</b> کا استعمال کرتا ہے، اس لیے یہ اس سے تیز نہیں ہو سکتا۔</div></li>
+        <li><div style="text-align: right;">Starlette FastAPI کے اوپری حصے میں مزید خصوصیات فراہم کرتا ہے۔ وہ خصوصیات جن کی آپ کو APIs بناتے وقت تقریباً ہمیشہ ضرورت ہوتی ہے، جیسے ڈیٹا کی توثیق اور سیریلائزیشن۔ اور اسے استعمال کرنے سے، آپ کو خودکار دستاویزات مفت میں مل جاتی ہیں (خودکار دستاویزات چلنے والی ایپلی کیشنز میں اوور ہیڈ کو بھی شامل نہیں کرتی ہیں، یہ اسٹارٹ اپ پر تیار ہوتی ہیں)۔</div></li>
+        <li><div style="text-align: right;">اگر آپ نے FastAPI کا استعمال نہیں کیا ہے اور Starlette کو براہ راست استعمال کیا ہے (یا کوئی دوسرا ٹول، جیسے Sanic، Flask، Responder، وغیرہ) آپ کو تمام ڈیٹا کی توثیق اور سیریلائزیشن کو خود نافذ کرنا ہوگا۔ لہذا، آپ کی حتمی ایپلیکیشن اب بھی وہی اوور ہیڈ ہوگی جیسا کہ اسے FastAPI کا استعمال کرتے ہوئے بنایا گیا تھا۔ اور بہت سے معاملات میں، یہ ڈیٹا کی توثیق اور سیریلائزیشن ایپلی کیشنز میں لکھے گئے کوڈ کی سب سے بڑی مقدار ہے۔</div></li>
+        <li><div style="text-align: right;">لہذا، FastAPI کا استعمال کرکے آپ ترقیاتی وقت، Bugs، کوڈ کی لائنوں کی بچت کر رہے ہیں، اور شاید آپ کو وہی کارکردگی (یا بہتر) ملے گی اگر آپ اسے استعمال نہیں کرتے (جیسا کہ آپ کو یہ سب اپنے کوڈ میں لاگو کرنا ہوگا۔ )</div></li>
+        <li><div style="text-align: right;">اگر آپ FastAPI کا موازنہ کر رہے ہیں، تو اس کا موازنہ ویب ایپلیکیشن فریم ورک (یا ٹولز کے سیٹ) سے کریں جو ڈیٹا کی توثیق، سیریلائزیشن اور دستاویزات فراہم کرتا ہے، جیسے Flask-apispec، NestJS، Molten، وغیرہ۔ مربوط خودکار ڈیٹا کی توثیق، سیریلائزیشن اور دستاویزات کے ساتھ فریم ورک۔</div></li>
+    </ul>
+</ul>
