@@ -329,12 +329,14 @@ def analyze_param(
         and get_origin(annotation) is Annotated
     ):
         annotated_args = get_args(annotation)
-        type_annotation = annotated_args[0]
-        fastapi_annotations = [
-            arg
-            for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
-        ]
+        fastapi_annotations = []
+        other_annotations = []
+        for arg in annotated_args[1:]:
+            if isinstance(arg, (FieldInfo, params.Depends)):
+                fastapi_annotations.append(arg)
+            else:
+                other_annotations.append(arg)
+
         assert (
             len(fastapi_annotations) <= 1
         ), f"Cannot specify multiple `Annotated` FastAPI arguments for {param_name!r}"
@@ -355,6 +357,11 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
+
+        if other_annotations:
+            type_annotation = Annotated[(annotated_args[0], *other_annotations)]
+        else:
+            type_annotation = annotated_args[0]
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 
