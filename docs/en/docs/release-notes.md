@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🍱 Update sponsors, Fern badge. PR [#9982](https://github.com/tiangolo/fastapi/pull/9982) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Deploy docs to Cloudflare Pages. PR [#9978](https://github.com/tiangolo/fastapi/pull/9978) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsor Fern. PR [#9979](https://github.com/tiangolo/fastapi/pull/9979) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update CI debug mode with Tmate. PR [#9977](https://github.com/tiangolo/fastapi/pull/9977) by [@tiangolo](https://github.com/tiangolo).
