@@ -1,6 +1,6 @@
-FROM python:3.7
+FROM python:3.11
 
-RUN pip install httpx PyGithub "pydantic==2.0.2" "pyyaml>=5.3.1,<6.0.0"
+RUN pip install httpx PyGithub "pydantic==2.0.2" pydantic-settings "pyyaml>=5.3.1,<6.0.0"
 
 COPY ./app /app
 
