@@ -20,10 +20,10 @@ from uuid import UUID
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
-from pydantic.networks import NameEmail
+from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 
-from ._compat import PYDANTIC_V2, MultiHostUrl, Url, _model_dump
+from ._compat import PYDANTIC_V2, Url, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -80,7 +80,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     set: list,
     UUID: str,
     Url: str,
-    MultiHostUrl: str,
+    AnyUrl: str,
 }
 
 
