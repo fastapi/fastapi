@@ -56,7 +56,6 @@ if PYDANTIC_V2:
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import CoreSchema as CoreSchema
-    from pydantic_core import MultiHostUrl as MultiHostUrl
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
     from pydantic_core.core_schema import (
@@ -293,9 +292,6 @@ else:
     )
     from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
         UndefinedType as UndefinedType,  # noqa: F401
-    )
-    from pydantic.networks import (  # type: ignore[no-redef]
-        MultiHostDsn as MultiHostUrl,  # noqa: F401
     )
     from pydantic.schema import (
         field_schema,
