@@ -112,7 +112,7 @@ body:
   - type: input
     id: fastapi-version
     attributes:
-      label: FastAPI Version
+      label: FastAPI Version x
       description: |
         What FastAPI version are you using?
 
