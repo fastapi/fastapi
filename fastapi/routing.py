@@ -448,9 +448,7 @@ class APIRoute(routing.Route):
             self.response_field = create_response_field(
                 name=response_name,
                 type_=self.response_model,
-                # TODO: This should actually set mode='serialization', just, that changes the schemas
-                # mode="serialization",
-                mode="validation",
+                mode="serialization",
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
