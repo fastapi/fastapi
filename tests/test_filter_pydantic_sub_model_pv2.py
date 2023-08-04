@@ -1,7 +1,7 @@
 from typing import Optional
 
 import pytest
-from dirty_equals import HasRepr, IsDict
+from dirty_equals import HasRepr, IsDict, IsOneOf
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
@@ -139,7 +139,11 @@ def test_openapi_schema(client: TestClient):
                 },
                 "ModelA": {
                     "title": "ModelA",
-                    "required": ["name", "foo"],
+                    "required": IsOneOf(
+                        ["name", "description", "foo"],
+                        # TODO remove when deprecating Pydantic v1
+                        ["name", "foo"],
+                    ),
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
