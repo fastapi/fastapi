@@ -69,6 +69,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
+from typing_extensions import Literal
 
 
 def _prepare_response_content(
@@ -386,6 +387,9 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -448,9 +452,7 @@ class APIRoute(routing.Route):
             self.response_field = create_response_field(
                 name=response_name,
                 type_=self.response_model,
-                # TODO: This should actually set mode='serialization', just, that changes the schemas
-                # mode="serialization",
-                mode="validation",
+                mode=response_model_schema_mode,
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
@@ -612,6 +614,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -662,6 +667,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -693,6 +699,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -723,6 +732,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_schema_mode=response_model_schema_mode,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -920,6 +930,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -948,6 +961,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -976,6 +990,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1004,6 +1021,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1032,6 +1050,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1060,6 +1081,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1088,6 +1110,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1116,6 +1141,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1144,6 +1170,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1172,6 +1201,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1200,6 +1230,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1228,6 +1261,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1256,6 +1290,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1284,6 +1321,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1312,6 +1350,9 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_schema_mode: Literal[
+            "validation", "serialization"
+        ] = "validation",
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1340,6 +1381,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_schema_mode=response_model_schema_mode,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
