@@ -323,7 +323,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Интерактивная документация API
 
-Теперь перейдите на <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> или <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (или похожую, которую использует Ваш Docker-хост).
+Теперь перейдите по ссылке <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> или <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (или похожей, которую использует Ваш Docker-хост).
 
 Здесь Вы увидите автоматическую интерактивную документацию API (предоставляемую <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
