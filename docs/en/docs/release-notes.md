@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.101.0
+
 ### Features
 
 * ✨ Enable Pydantic's serialization mode for responses, add support for Pydantic's `computed_field`, better OpenAPI for response models, proper required attributes, better generated clients. PR [#10011](https://github.com/tiangolo/fastapi/pull/10011) by [@tiangolo](https://github.com/tiangolo).
