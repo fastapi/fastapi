@@ -5,4 +5,4 @@ plugins:
     cards_layout_options:
       logo: ../en/docs/img/icon-white.svg
   typeset:
-# Cache: 1
+# Cache: 2
