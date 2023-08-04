@@ -331,7 +331,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## Альтернативная документация API
 
-Также Вы можете перейти на <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (или похожую, которую использует Ваш Docker-хост).
+Также Вы можете перейти по ссылке <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (или похожей, которую использует Ваш Docker-хост).
 
 Здесь Вы увидите альтернативную автоматическую документацию API (предоставляемую <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
