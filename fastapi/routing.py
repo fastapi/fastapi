@@ -83,7 +83,7 @@ def _prepare_response_content(
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
-            # Otherwise there's no way to extract lazy data that requires attribute
+            # Otherwise, there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
             return res
         return _model_dump(
@@ -456,7 +456,7 @@ class APIRoute(routing.Route):
             # that doesn't have the hashed_password. But because it's a subclass, it
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
-            # will be always created.
+            # will always be created.
             # TODO: remove when deprecating Pydantic v1
             self.secure_cloned_response_field: Optional[
                 ModelField
