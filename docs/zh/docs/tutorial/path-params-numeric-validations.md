@@ -6,9 +6,41 @@
 
 首先，从 `fastapi` 导入 `Path`：
 
-```Python hl_lines="1"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="1  3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="1  3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="3-4"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
 
 ## 声明元数据
 
@@ -16,9 +48,41 @@
 
 例如，要声明路径参数 `item_id`的 `title` 元数据值，你可以输入：
 
-```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
 
 !!! note
     路径参数总是必需的，因为它必须是路径的一部分。
@@ -43,9 +107,14 @@
 
 因此，你可以将函数声明为：
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
-```
+=== "Python 3.6 non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+    ```
 
 ## 按需对参数排序的技巧
 

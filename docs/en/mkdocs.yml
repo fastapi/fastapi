@@ -59,6 +59,8 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
+  - uk: /uk/
+  - vi: /vi/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -236,6 +238,10 @@ extra:
     name: ru - русский язык
   - link: /tr/
     name: tr - Türkçe
+  - link: /uk/
+    name: uk
+  - link: /vi/
+    name: vi
   - link: /zh/
     name: zh - 汉语
 extra_css:
