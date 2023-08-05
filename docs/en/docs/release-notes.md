@@ -107,7 +107,7 @@ A command line tool that will **process your code** and update most of the thing
 
 ### Pydantic v1
 
-**This version of FastAPI still supports Pydantic v1**. And although Pydantic v1 will be deprecated at some point, ti will still be supported for a while.
+**This version of FastAPI still supports Pydantic v1**. And although Pydantic v1 will be deprecated at some point, it will still be supported for a while.
 
 This means that you can install the new Pydantic v2, and if something fails, you can install Pydantic v1 while you fix any problems you might have, but having the latest FastAPI.
 
