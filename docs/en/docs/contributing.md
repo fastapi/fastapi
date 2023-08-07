@@ -126,7 +126,7 @@ And if you update that local FastAPI source code when you run that Python file a
 That way, you don't have to "install" your local version to be able to test every change.
 
 !!! note "Technical Details"
-    This only happens when you install using this included `requiements.txt` instead of installing `pip install fastapi` directly.
+    This only happens when you install using this included `requirements.txt` instead of installing `pip install fastapi` directly.
 
     That is because inside of the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
 
