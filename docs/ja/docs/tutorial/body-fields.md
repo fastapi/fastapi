@@ -1,6 +1,6 @@
-# Body - Fields
+# ボディ - フィールド
 
- *path operation function*で`Query`、`Path` や`Body`を使って追加のバリデーションとメタデータを宣言した時と同じ方法で、Pydanticの `Field`を使って、Pydanticモデル内部に、バリデーションとメタデータを宣言することができます。
+ *パス操作関数*で`Query`、`Path` や`Body`を使って追加のバリデーションとメタデータを宣言した時と同じ方法で、Pydanticの `Field`を使って、Pydanticモデル内部に、バリデーションとメタデータを宣言することができます。
 
 ## Import `Field`
 
@@ -27,7 +27,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
@@ -36,14 +36,14 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
 !!! warning "注意"
-     `Field` は `pydantic`から直接インポートされており、（`Query`, `Path`, `Body`, etc)などの他のものとは違い、`fastapi` からのインポートではありません。
+     `Field` は `pydantic`から直接インポートされており、`Query`, `Path`, `Body`, etc などの他のものとは違い、`fastapi` からのインポートではありません。
 
 ## Declare model attributes
 
@@ -70,7 +70,7 @@
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
@@ -79,7 +79,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="11-14"
     {!> ../../../docs_src/body_fields/tutorial001.py!}
@@ -88,12 +88,10 @@
 `Field`は`Query`、`Path`、および`Body`と同じように機能し、すべてのパラメーターなどが同じです。
 
 !!! note "備考"
-    実は、 `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
+    実は、`Query`、`Path`など、次に見る他の要素は、共通の`Param`クラスのサブクラスのオブジェクトを生成します。この`Param`クラス自体は、Pydanticの`FieldInfo`クラスのサブクラスです。
 
-    And Pydantic's `Field` returns an instance of `FieldInfo` as well.
-    そしてPydanticの`Field`はFieldInfo`インスタンスも同様に返します。
+    そしてPydanticの`Field`は`FieldInfo`インスタンスも返します。
 
-    `Body` also returns objects of a subclass of `FieldInfo` directly. And there are others you will see later that are subclasses of the `Body` class.
     `Body`はまた、`FieldInfo`のサブクラスのオブジェクトを直接返します。また、のちに見ることになる他のクラスも`Body`クラスのサブクラスです。
 
     `Query`や`Path`、`fastapi`から何かをインポートする際は、それらが実際は特別なクラスを返す関数であることを覚えていてください。
