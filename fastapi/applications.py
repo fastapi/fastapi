@@ -229,7 +229,7 @@ class FastAPI(Starlette):
                 webhooks=self.webhooks.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
-                by_alias=self.by_alias
+                by_alias=self.by_alias,
             )
         return self.openapi_schema
 
