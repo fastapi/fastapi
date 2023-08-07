@@ -108,7 +108,7 @@
 
 !!! warning "注意"
     `Field` に渡された追加のキーは、アプリケーションのOpenAPIスキーマに表示されるでしょう。
-    
+
     これらのキーが必ずしもOpenAPIの仕様の一部であるとは限らないので、[the OpenAPI validator](https://validator.swagger.io/)などの一部のOpenAPIツールでは、生成されたスキーマで動作しない場合があります。
 
 ## 要約
