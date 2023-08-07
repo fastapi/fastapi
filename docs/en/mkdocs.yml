@@ -59,6 +59,7 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
+  - yo: /yo/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -176,9 +177,9 @@ markdown_extensions:
     guess_lang: false
   mdx_include:
     base_path: docs
-  admonition:
-  codehilite:
-  extra:
+  admonition: null
+  codehilite: null
+  extra: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
@@ -186,8 +187,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
-  attr_list:
-  md_in_html:
+  attr_list: null
+  md_in_html: null
 extra:
   analytics:
     provider: google
@@ -236,6 +237,8 @@ extra:
     name: ru - русский язык
   - link: /tr/
     name: tr - Türkçe
+  - link: /yo/
+    name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
 extra_css:
