@@ -263,7 +263,7 @@ Wà á rí àwọn àkọsílẹ̀ aládàáṣiṣẹ́ mìíràn (tí a pese n
 
 ## Àpẹẹrẹ ìgbésókè mìíràn
 
-Ní báyìí ṣe àtúnṣe fáìlì `main.py` láti gba kókó èsì láti inú ìbéèrè `PUT`. 
+Ní báyìí ṣe àtúnṣe fáìlì `main.py` láti gba kókó èsì láti inú ìbéèrè `PUT`.
 
 Ní báyìí, ṣe ìkéde kókó èsì API nínú kóòdù rẹ nipa lilo àwọn ìtọ́kasí àmì irúfẹ́ Python, ọpẹ́ pàtàkìsi sí Pydantic.
 
@@ -297,7 +297,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-Olupin yóò tún ṣe àtúnṣe laifọwọyi/aládàáṣiṣẹ́ (nítorí wípé ó se àfikún `-reload` si àṣẹ kóòdù `uvicorn` lókè). 
+Olupin yóò tún ṣe àtúnṣe laifọwọyi/aládàáṣiṣẹ́ (nítorí wípé ó se àfikún `-reload` si àṣẹ kóòdù `uvicorn` lókè).
 
 ### Ìbáṣepọ̀ ìgbésókè àkọsílẹ̀ API
 
