@@ -10,9 +10,17 @@
 
 您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
 
-```Python hl_lines="15-23"
-{!../../../docs_src/schema_extra_example/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="13-21"
+    {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="15-23"
+    {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
+    ```
 
 这些额外的信息将按原样添加到输出的JSON模式中。
 
@@ -20,9 +28,17 @@
 
 在 `Field`, `Path`, `Query`, `Body` 和其他你之后将会看到的工厂函数，你可以为JSON 模式声明额外信息，你也可以通过给工厂函数传递其他的任意参数来给JSON 模式声明额外信息，比如增加 `example`:
 
-```Python hl_lines="4  10-13"
-{!../../../docs_src/schema_extra_example/tutorial002.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="2  8-11"
+    {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="4  10-13"
+    {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
+    ```
 
 !!! warning
     请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
@@ -33,9 +49,41 @@
 
 比如，你可以将请求体的一个 `example` 传递给 `Body`:
 
-```Python hl_lines="20-25"
-{!../../../docs_src/schema_extra_example/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="22-27"
+    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="22-27"
+    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="23-28"
+    {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="18-23"
+    {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="20-25"
+    {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
+    ```
 
 ## 文档 UI 中的例子
 

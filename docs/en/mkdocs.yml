@@ -59,6 +59,8 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
+  - uk: /uk/
+  - vi: /vi/
   - yo: /yo/
   - zh: /zh/
 - features.md
@@ -237,6 +239,10 @@ extra:
     name: ru - русский язык
   - link: /tr/
     name: tr - Türkçe
+  - link: /uk/
+    name: uk
+  - link: /vi/
+    name: vi
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
