@@ -28,7 +28,7 @@
 {% if external_links %}
 <ul style="direction: rtl;">
 {% for article in external_links.articles.english %}
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li> 
+ <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
 </ul>
 {% endif %}
