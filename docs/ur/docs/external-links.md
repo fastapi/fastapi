@@ -1,11 +1,15 @@
 # <div style="text-align: right;">بیرونی روابط اور مضامین</div>
-<br>
-<div style="text-align: right;">
-    ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے۔ <span style="margin-left: 0;"><b>FastAPI</b></span>
+
+<div style="direction: rtl;">
+    <div style="direction: ltr; text-align: right;">
+        ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے۔ <span style="margin-right: 0;"><b>FastAPI</b></span>
+    </div>
 </div>
 <br>
-<div style="text-align: right;">
-    سے متعلق بہت ساری پوسٹس، آرٹیکلز، ٹولز اور پروجیکٹس ہیں۔ <span style="margin-left: 0;"><b>FastAPI</b></span>
+<div style="direction: rtl;">
+    <div style="direction: ltr; text-align: right;">
+    سے متعلق بہت ساری پوسٹس، آرٹیکلز، ٹولز اور پروجیکٹس ہیں۔  <span style="margin-right: 0;"><b>FastAPI</b></span>
+    </div>
 </div>
 <br>
 <div style="text-align: right;">
@@ -28,7 +32,7 @@
 </ul>
 {% endfor %}
 {% endif %}
-
+<br>
 
 ### <div style="text-align: right;">جاپانی</div>
 
@@ -41,6 +45,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ### <div style="text-align: right;">ویتنامی</div>
 
 {% if external_links %}
@@ -52,6 +57,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ### <div style="text-align: right;">روسی</div>
 
 {% if external_links %}
@@ -63,6 +69,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ### <div style="text-align: right;">جرمن</div>
 
 {% if external_links %}
@@ -74,6 +81,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ### <div style="text-align: right;">تائیوانی</div>
 
 {% if external_links %}
@@ -85,6 +93,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ## <div style="text-align: right;">پوڈکاسٹ</div>
 
 {% if external_links %}
@@ -96,6 +105,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ## <div style="text-align: right;">بات چیت</div>
 
 {% if external_links %}
@@ -107,6 +117,7 @@
 {% endfor %}
 {% endif %}
 
+<br>
 ## <div style="text-align: right;">پروجیکٹس</div>
 
 <div style="text-align: right;">:'fastapi' عنوان کے ساتھ تازہ ترین GitHub پروجیکٹس</div>
