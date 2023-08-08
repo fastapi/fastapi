@@ -111,7 +111,7 @@
 
     これらのキーが必ずしもOpenAPIの仕様の一部であるとは限らないので、[the OpenAPI validator](https://validator.swagger.io/)などの一部のOpenAPIツールでは、生成されたスキーマで動作しない場合があります。
 
-## 要約
+## まとめ
 
 Pydanticの`Field`で、追加のバリデーションやメタデータをモデルの属性に付与することができます。
 
