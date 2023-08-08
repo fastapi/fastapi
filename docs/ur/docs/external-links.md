@@ -26,101 +26,101 @@
 ### <div style="text-align: right;">انگریزی</div>
 
 {% if external_links %}
-{% for article in external_links.articles.english %}
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.english %}
+ <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li> 
 {% endfor %}
+</ul>
 {% endif %}
 <br>
 
 ### <div style="text-align: right;">جاپانی</div>
 
 {% if external_links %}
-{% for article in external_links.articles.japanese %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.japanese %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ### <div style="text-align: right;">ویتنامی</div>
 
 {% if external_links %}
-{% for article in external_links.articles.vietnamese %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.vietnamese %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ### <div style="text-align: right;">روسی</div>
 
 {% if external_links %}
-{% for article in external_links.articles.russian %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.russian %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ### <div style="text-align: right;">جرمن</div>
 
 {% if external_links %}
-{% for article in external_links.articles.german %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.german %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ### <div style="text-align: right;">تائیوانی</div>
 
 {% if external_links %}
-{% for article in external_links.articles.taiwanese %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.articles.taiwanese %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ## <div style="text-align: right;">پوڈکاسٹ</div>
 
 {% if external_links %}
-{% for article in external_links.podcasts.english %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.podcasts.english %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ## <div style="text-align: right;">بات چیت</div>
 
 {% if external_links %}
-{% for article in external_links.talks.english %}
-
 <ul style="direction: rtl;">
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</li></div>
-</ul>
+{% for article in external_links.talks.english %}
+<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
+</ul>
 {% endif %}
 
 <br>
+
 ## <div style="text-align: right;">پروجیکٹس</div>
 
-<div style="text-align: right;">:'fastapi' عنوان کے ساتھ تازہ ترین GitHub پروجیکٹس</div>
+<div style="text-align: right;">'fastapi' عنوان کے ساتھ تازہ ترین GitHub پروجیکٹس:</div>
 
 <div class="github-topic-projects">
 </div>
