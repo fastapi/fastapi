@@ -4,9 +4,9 @@ Python hỗ trợ tùy chọn "type hints" (còn được gọi là "type annota
 
 Những **"type hints"** hay chú thích là một cú pháp đặc biệt cho phép khai báo <abbr title="ví dụ: str, int, float, bool"> kiểu dữ liệu</abbr> của một biến.
 
-Bằng việc khai báo kiểu dữ liệu cho các biến của bạn, các trình soạn thảo và các công cụ có thể hỗ trợ bạn tốt hơn. 
+Bằng việc khai báo kiểu dữ liệu cho các biến của bạn, các trình soạn thảo và các công cụ có thể hỗ trợ bạn tốt hơn.
 
-Đây chỉ là một **hướng dẫn nhanh** về gợi ý kiểu dữ liệu trong Python. Nó chỉ bao gồm những điều cần thiết tối thiểu để sử dụng chúng với **FastAPI**... đó thực sự là rất ít. 
+Đây chỉ là một **hướng dẫn nhanh** về gợi ý kiểu dữ liệu trong Python. Nó chỉ bao gồm những điều cần thiết tối thiểu để sử dụng chúng với **FastAPI**... đó thực sự là rất ít.
 
 **FastAPI** hoàn toàn được dựa trên những gợi ý kiểu dữ liệu, chúng mang đến nhiều ưu điểm và lợi ích.
 
@@ -156,7 +156,7 @@ Những kiểu dữ liệu nội bộ này được gọi là những kiểu d�
 
 Cú pháp sử dụng `typing` **tương thích** với tất cả các phiên bản, từ Python 3.6 tới những phiên bản cuối cùng, bao gồm Python 3.9, Python 3.10,...
 
-As Python advances, **những phiên bản mới** mang tới sự hỗ trợ được cải tiến cho những chú thích kiểu dữ liệu và trong nhiều trường hợp bạn thậm chí sẽ không cần import và sử dụng mô đun `typing` để khai báo chú thích kiểu dữ liệu. 
+As Python advances, **những phiên bản mới** mang tới sự hỗ trợ được cải tiến cho những chú thích kiểu dữ liệu và trong nhiều trường hợp bạn thậm chí sẽ không cần import và sử dụng mô đun `typing` để khai báo chú thích kiểu dữ liệu.
 
 Nếu bạn có thể chọn một phiên bản Python gần đây hơn cho dự án của bạn, ban sẽ có được những ưu điểm của những cải tiến đơn giản đó.
 
