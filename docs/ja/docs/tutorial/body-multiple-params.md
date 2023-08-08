@@ -2,9 +2,9 @@
 
 これまで、`Path` と `Query` を見てきたので、より高度なリクエストボディの宣言の利用法を見ていきましょう。
 
-## `Path`、 `Query` とボディパラメータを混ぜる
+## `Path`、 `Query` とボディパラメータを組み合わせる
 
-もちろんですが、`Path`, `Query` や リクエストボディのパラメータの宣言は、自由に共存させることができ、**FastAPI** はそれを理解することができます。
+もちろんですが、`Path`, `Query` や リクエストボディのパラメータの宣言は、自由に組み合わせることができ、**FastAPI** はそれを理解することができます。
 
 そして、デフォルトを`None`に設定することで、ボディパラメータの宣言をオプションにすることも可能です。
 
@@ -28,7 +28,7 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="17-19"
@@ -37,7 +37,7 @@
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="19-21"
@@ -131,7 +131,7 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="20"
@@ -140,7 +140,7 @@
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="22"
@@ -205,7 +205,7 @@ q: str | None = None
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="25"
@@ -214,7 +214,7 @@ q: str | None = None
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="27"
@@ -258,7 +258,7 @@ as in:
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="15"
@@ -267,7 +267,7 @@ as in:
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば`Annotated`バージョンを使って下さい。
 
     ```Python hl_lines="17"

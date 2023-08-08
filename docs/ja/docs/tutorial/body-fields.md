@@ -2,7 +2,7 @@
 
  *パス操作関数*で`Query`、`Path` や`Body`を使って追加のバリデーションとメタデータを宣言した時と同じ方法で、Pydanticの `Field`を使って、Pydanticモデル内部に、バリデーションとメタデータを宣言することができます。
 
-## Import `Field`
+## `Field` のインポート
 
 はじめに、インポートを行います:
 
@@ -26,7 +26,7 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="2"
@@ -35,7 +35,7 @@
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="4"
@@ -45,7 +45,7 @@
 !!! warning "注意"
      `Field` は `pydantic`から直接インポートされており、`Query`, `Path`, `Body`, etc などの他のものとは違い、`fastapi` からのインポートではありません。
 
-## Declare model attributes
+## モデル属性の宣言
 
 `Field`をモデル属性と共に使うことができるようになりました:
 
@@ -69,7 +69,7 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="9-12"
@@ -78,7 +78,7 @@
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
+    !!! tip "豆知識"
         可能であれば `Annotated` バージョンを使ってください。
 
     ```Python hl_lines="11-14"
