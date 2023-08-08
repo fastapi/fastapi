@@ -22,7 +22,6 @@
 <br>
 
 ## <div style="text-align: right;">مضامین</div>
-
 ### <div style="text-align: right;">انگریزی</div>
 
 {% if external_links %}
@@ -32,7 +31,6 @@
 {% endfor %}
 </ul>
 {% endif %}
-<br>
 
 ### <div style="text-align: right;">جاپانی</div>
 
@@ -44,8 +42,6 @@
 </ul>
 {% endif %}
 
-<br>
-
 ### <div style="text-align: right;">ویتنامی</div>
 
 {% if external_links %}
@@ -55,8 +51,6 @@
 {% endfor %}
 </ul>
 {% endif %}
-
-<br>
 
 ### <div style="text-align: right;">روسی</div>
 
@@ -68,7 +62,6 @@
 </ul>
 {% endif %}
 
-<br>
 
 ### <div style="text-align: right;">جرمن</div>
 
@@ -80,8 +73,6 @@
 </ul>
 {% endif %}
 
-<br>
-
 ### <div style="text-align: right;">تائیوانی</div>
 
 {% if external_links %}
@@ -91,8 +82,6 @@
 {% endfor %}
 </ul>
 {% endif %}
-
-<br>
 
 ## <div style="text-align: right;">پوڈکاسٹ</div>
 
@@ -104,8 +93,6 @@
 </ul>
 {% endif %}
 
-<br>
-
 ## <div style="text-align: right;">بات چیت</div>
 
 {% if external_links %}
@@ -116,7 +103,6 @@
 </ul>
 {% endif %}
 
-<br>
 
 ## <div style="text-align: right;">پروجیکٹس</div>
 
