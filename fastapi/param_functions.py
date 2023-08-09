@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, TypeVar, Union
 
 from fastapi import params
 from fastapi._compat import Undefined
@@ -549,9 +549,12 @@ def File(  # noqa: N802
     )
 
 
+DependsReturnType = TypeVar('DependsReturnType')
+
+
 def Depends(  # noqa: N802
-    dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
-) -> Any:
+    dependency: Optional[Callable[..., DependsReturnType]] = None, *, use_cache: bool = True
+) -> DependsReturnType:
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
