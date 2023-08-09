@@ -59,9 +59,9 @@ This means that you can send only the data that you want to update, leaving the 
 
 ### Using Pydantic's `exclude_unset` parameter
 
-If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.dict()`.
+If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.model_dump()`.
 
-Like `item.dict(exclude_unset=True)`.
+Like `item.model_dump(exclude_unset=True)`.
 
 That would generate a `dict` with only the data that was set when creating the `item` model, excluding default values.
 
@@ -120,7 +120,7 @@ In summary, to apply partial updates you would:
     * This way you can update only the values actually set by the user, instead of overriding values already stored with default values in your model.
 * Create a copy of the stored model, updating it's attributes with the received partial updates (using the `update` parameter).
 * Convert the copied model to something that can be stored in your DB (for example, using the `jsonable_encoder`).
-    * This is comparable to using the model's `.dict()` method again, but it makes sure (and converts) the values to data types that can be converted to JSON, for example, `datetime` to `str`.
+    * This is comparable to using the model's `.model_dump()` method again, but it makes sure (and converts) the values to data types that can be converted to JSON, for example, `datetime` to `str`.
 * Save the data to your DB.
 * Return the updated model.
 
