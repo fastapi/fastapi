@@ -549,11 +549,13 @@ def File(  # noqa: N802
     )
 
 
-DependsReturnType = TypeVar('DependsReturnType')
+DependsReturnType = TypeVar("DependsReturnType")
 
 
 def Depends(  # noqa: N802
-    dependency: Optional[Callable[..., DependsReturnType]] = None, *, use_cache: bool = True
+    dependency: Optional[Callable[..., DependsReturnType]] = None,
+    *,
+    use_cache: bool = True,
 ) -> DependsReturnType:
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
