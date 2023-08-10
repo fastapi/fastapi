@@ -3,7 +3,6 @@ from typing import TYPE_CHECKING, Any, Callable, TypeVar
 from fastapi import param_functions
 from typing_extensions import Annotated
 
-
 __all__ = [
     "Body",
     "BodyEx",
