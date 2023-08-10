@@ -168,7 +168,9 @@ def test_shortcuts_ex_schema():
                     "required": True,
                     "content": {
                         "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_with_shortcuts_some__p__post"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_with_shortcuts_some__p__post"
+                            }
                         }
                     },
                 },
@@ -180,7 +182,11 @@ def test_shortcuts_ex_schema():
                     "422": {
                         "description": "Validation Error",
                         "content": {
-                            "application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
                         },
                     },
                 },
@@ -220,7 +226,9 @@ def test_shortcuts_ex_schema():
                     "required": True,
                     "content": {
                         "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_with_shortcuts_ex_some_ex__p__post"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_with_shortcuts_ex_some_ex__p__post"
+                            }
                         }
                     },
                 },
@@ -232,7 +240,11 @@ def test_shortcuts_ex_schema():
                     "422": {
                         "description": "Validation Error",
                         "content": {
-                            "application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
                         },
                     },
                 },
