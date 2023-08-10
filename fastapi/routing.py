@@ -522,7 +522,6 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
-
 class APIRouter(routing.Router):
     def __init__(
         self,
@@ -690,16 +689,19 @@ class APIRouter(routing.Router):
             self.routes.pop(auto_options_index)
 
         if "OPTIONS" not in new_route.methods:
+
             async def options_route():
                 return Response(headers={"Allow": ", ".join(allowed_methods)})
 
-            self.routes.append(APIRoute(
-                self.prefix + path,
-                endpoint=options_route,
-                methods=["OPTIONS"],
-                include_in_schema=False,
-                is_auto_options=True,
-            ))
+            self.routes.append(
+                APIRoute(
+                    self.prefix + path,
+                    endpoint=options_route,
+                    methods=["OPTIONS"],
+                    include_in_schema=False,
+                    is_auto_options=True,
+                )
+            )
 
     def api_route(
         self,
