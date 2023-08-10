@@ -1,3 +1,4 @@
+import pydantic
 from fastapi import (
     Cookie,
     CookieEx,
@@ -73,48 +74,83 @@ def test_shortcuts_not_valid():
     client = TestClient(app, cookies={"c": "0"})
     response = client.post("/some-ex/0?q=0", headers={"H": "0"}, data={"f": 0})
     assert response.status_code == 422, response.json()
-    assert response.json()["detail"] == [
-        {
-            "type": "greater_than_equal",
-            "loc": ["path", "p"],
-            "msg": "Input should be greater than or equal to 1",
-            "input": "0",
-            "ctx": {"ge": 1},
-            "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
-        },
-        {
-            "type": "greater_than_equal",
-            "loc": ["query", "q"],
-            "msg": "Input should be greater than or equal to 1",
-            "input": "0",
-            "ctx": {"ge": 1},
-            "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
-        },
-        {
-            "type": "greater_than_equal",
-            "loc": ["header", "h"],
-            "msg": "Input should be greater than or equal to 1",
-            "input": "0",
-            "ctx": {"ge": 1},
-            "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
-        },
-        {
-            "type": "greater_than_equal",
-            "loc": ["cookie", "c"],
-            "msg": "Input should be greater than or equal to 1",
-            "input": "0",
-            "ctx": {"ge": 1},
-            "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
-        },
-        {
-            "type": "greater_than_equal",
-            "loc": ["body", "f"],
-            "msg": "Input should be greater than or equal to 1",
-            "input": "0",
-            "ctx": {"ge": 1},
-            "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
-        },
-    ]
+    print(response.json())
+    if pydantic.__version__.split(".")[0] == "1":
+        assert response.json()["detail"] == [
+            {
+                "loc": ["path", "p"],
+                "msg": "ensure this value is greater than or equal to 1",
+                "type": "value_error.number.not_ge",
+                "ctx": {"limit_value": 1},
+            },
+            {
+                "loc": ["query", "q"],
+                "msg": "ensure this value is greater than or equal to 1",
+                "type": "value_error.number.not_ge",
+                "ctx": {"limit_value": 1},
+            },
+            {
+                "loc": ["header", "h"],
+                "msg": "ensure this value is greater than or equal to 1",
+                "type": "value_error.number.not_ge",
+                "ctx": {"limit_value": 1},
+            },
+            {
+                "loc": ["cookie", "c"],
+                "msg": "ensure this value is greater than or equal to 1",
+                "type": "value_error.number.not_ge",
+                "ctx": {"limit_value": 1},
+            },
+            {
+                "loc": ["body", "f"],
+                "msg": "ensure this value is greater than or equal to 1",
+                "type": "value_error.number.not_ge",
+                "ctx": {"limit_value": 1},
+            },
+        ]
+    else:
+        assert response.json()["detail"] == [
+            {
+                "type": "greater_than_equal",
+                "loc": ["path", "p"],
+                "msg": "Input should be greater than or equal to 1",
+                "input": "0",
+                "ctx": {"ge": 1},
+                "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
+            },
+            {
+                "type": "greater_than_equal",
+                "loc": ["query", "q"],
+                "msg": "Input should be greater than or equal to 1",
+                "input": "0",
+                "ctx": {"ge": 1},
+                "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
+            },
+            {
+                "type": "greater_than_equal",
+                "loc": ["header", "h"],
+                "msg": "Input should be greater than or equal to 1",
+                "input": "0",
+                "ctx": {"ge": 1},
+                "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
+            },
+            {
+                "type": "greater_than_equal",
+                "loc": ["cookie", "c"],
+                "msg": "Input should be greater than or equal to 1",
+                "input": "0",
+                "ctx": {"ge": 1},
+                "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
+            },
+            {
+                "type": "greater_than_equal",
+                "loc": ["body", "f"],
+                "msg": "Input should be greater than or equal to 1",
+                "input": "0",
+                "ctx": {"ge": 1},
+                "url": "https://errors.pydantic.dev/2.1/v/greater_than_equal",
+            },
+        ]
 
 
 def test_shortcuts_ex():
@@ -168,7 +204,9 @@ def test_shortcuts_ex_schema():
                     "required": True,
                     "content": {
                         "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_with_shortcuts_some__p__post"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_with_shortcuts_some__p__post"
+                            }
                         }
                     },
                 },
@@ -180,7 +218,11 @@ def test_shortcuts_ex_schema():
                     "422": {
                         "description": "Validation Error",
                         "content": {
-                            "application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
                         },
                     },
                 },
@@ -220,7 +262,9 @@ def test_shortcuts_ex_schema():
                     "required": True,
                     "content": {
                         "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_with_shortcuts_ex_some_ex__p__post"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_with_shortcuts_ex_some_ex__p__post"
+                            }
                         }
                     },
                 },
@@ -232,7 +276,11 @@ def test_shortcuts_ex_schema():
                     "422": {
                         "description": "Validation Error",
                         "content": {
-                            "application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
                         },
                     },
                 },
