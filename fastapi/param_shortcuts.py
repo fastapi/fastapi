@@ -4,6 +4,28 @@ from fastapi import param_functions
 from typing_extensions import Annotated
 
 
+__all__ = [
+    "Body",
+    "BodyEx",
+    "Cookie",
+    "CookieEx",
+    "Depends",
+    "DependsEx",
+    "File",
+    "FileEx",
+    "Form",
+    "FormEx",
+    "Header",
+    "HeaderEx",
+    "Path",
+    "PathEx",
+    "Query",
+    "QueryEx",
+    "Security",
+    "SecurityEx",
+]
+
+
 class ParamShortcut:
     def __init__(self, base_func: Callable) -> None:  # type: ignore
         self._base_func = base_func
