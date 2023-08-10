@@ -17,7 +17,7 @@ class ParamShortcut:
         return Annotated[args, self._base_func()]
 
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
     # mypy cheats
     T = TypeVar("T")
     Body = Annotated[T, param_functions.Body()]
@@ -29,6 +29,17 @@ if TYPE_CHECKING:
     Path = Annotated[T, param_functions.Path()]
     Query = Annotated[T, param_functions.Query()]
     Security = Annotated[T, param_functions.Security()]
+    # mypy does not like to extend already annotated params
+    # with extra annotation (so need to cheat with these XXX-Ex types):
+    from typing import Annotated as BodyEx
+    from typing import Annotated as CookieEx
+    from typing import Annotated as DependsEx
+    from typing import Annotated as FileEx
+    from typing import Annotated as FormEx
+    from typing import Annotated as HeaderEx
+    from typing import Annotated as PathEx
+    from typing import Annotated as QueryEx
+    from typing import Annotated as SecurityEx
 else:
     Body = ParamShortcut(param_functions.Body)
     Cookie = ParamShortcut(param_functions.Cookie)
@@ -39,3 +50,14 @@ else:
     Path = ParamShortcut(param_functions.Path)
     Query = ParamShortcut(param_functions.Query)
     Security = ParamShortcut(param_functions.Security)
+    # mypy does not like to extend already annotated params
+    # with extra annotation (so need to cheat with these XXX-Ex types):
+    BodyEx = Body
+    CookieEx = Cookie
+    DependsEx = Depends
+    FileEx = File
+    FormEx = Form
+    HeaderEx = Header
+    PathEx = Path
+    QueryEx = Query
+    SecurityEx = Security
