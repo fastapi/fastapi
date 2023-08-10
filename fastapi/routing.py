@@ -396,6 +396,7 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        is_auto_options: bool = False,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -496,6 +497,7 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.app = request_response(self.get_route_handler())
+        self.is_auto_options = is_auto_options
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
@@ -518,6 +520,7 @@ class APIRoute(routing.Route):
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
+
 
 
 class APIRouter(routing.Router):
@@ -671,6 +674,32 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
+        self._update_auto_options_routes(route, path)
+
+    def _update_auto_options_routes(self, new_route: APIRoute, path: str) -> None:
+        auto_options_index: Optional[int] = None
+        allowed_methods: Set[str] = set()
+        for index, route in enumerate(self.routes):
+            if route.path == new_route.path:
+                if hasattr(route, "is_auto_options") and route.is_auto_options:
+                    auto_options_index = index
+                else:
+                    allowed_methods.update(route.methods)
+
+        if auto_options_index is not None:
+            self.routes.pop(auto_options_index)
+
+        if "OPTIONS" not in new_route.methods:
+            async def options_route():
+                return Response(headers={"Allow": ", ".join(allowed_methods)})
+
+            self.routes.append(APIRoute(
+                self.prefix + path,
+                endpoint=options_route,
+                methods=["OPTIONS"],
+                include_in_schema=False,
+                is_auto_options=True,
+            ))
 
     def api_route(
         self,
