@@ -1,11 +1,11 @@
-# Server Workers - Gunicorn with Uvicorn
+# Server Workers - Gunicorn と Uvicorn
 
 前回のデプロイメント・コンセプトを振り返ってみましょう：
 
 * セキュリティ - HTTPS
 * 起動時の実行
 * 再起動
-* **レプリケーション（実行中のプロセス数）**メモリ
+* **レプリケーション（実行中のプロセス数）**
 * メモリ
 * 開始前の事前ステップ
 
@@ -23,7 +23,7 @@
    
     特に、**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**コンテナごとに単一のUvicornプロセスを実行することになりますが**、それについてはこの章の後半で説明します。
 
-## GunicornがUvicornのワーカー・プロセスを管理
+## GunicornによるUvicornのワーカー・プロセスの管理
 
 **Gunicorn**は**WSGI標準**のアプリケーションサーバーです。このことは、GunicornはFlaskやDjangoのようなアプリケーションにサービスを提供できることを意味します。Gunicornそれ自体は**FastAPI**と互換性がないですが、というのもFastAPIは最新の**<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">ASGI 標準</a>**を使用しているためです。
 
@@ -84,27 +84,26 @@ $ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --b
 それぞれのオプションの意味を見てみましょう：
 
 * `main:app`： `main`は"`main`"という名前のPythonモジュール、つまりファイル`main.py`を意味します。そして `app` は **FastAPI** アプリケーションの変数名です。
-    * main:app`はPythonの`import`文と同じようなものだと想像できます：
+   * main:app`はPythonの`import`文と同じようなものだと想像できます：
 
-        ```Python
-        from main import app
-        ```
-    
-    * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
+    ```Python
+    from main import app
+    ```
+   * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
 * `--workers`： 使用するワーカー・プロセスの数で、それぞれがUvicornのワーカーを実行します。
 * `--worker-class`： ワーカー・プロセスで使用するGunicorn互換のワーカークラスです。
-    * ここではGunicornがインポートして使用できるクラスを渡します：
+   * ここではGunicornがインポートして使用できるクラスを渡します：
 
-        ```Python
-        import uvicorn.workers.UvicornWorker
-        ```
+    ```Python
+    import uvicorn.workers.UvicornWorker
+    ```
 
 * `--bind`： GunicornにリッスンするIPとポートを伝えます。コロン(`:`)でIPとポートを区切ります。
     * Uvicornを直接実行している場合は、`--bind 0.0.0.0:80` （Gunicornのオプション）の代わりに、`--host 0.0.0.0`と `--port 80`を使います。
 
 出力では、各プロセスの**PID**（プロセスID）が表示されているのがわかります（単なる数字です）。
 
-ご覧の通りです：
+以下の通りです：
 
 * Gunicornの**プロセス・マネージャー**はPID `19499`（あなたの場合は違う番号でしょう）で始まります。
 * 次に、`Listening at: http://0.0.0.0:80`を開始します。
