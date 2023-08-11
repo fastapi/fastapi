@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Adejumo Ridwan Suleiman
+    author_link: https://www.linkedin.com/in/adejumoridwan/
+    link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
+    title: Build an SMS Spam Classifier Serverless Database with FaunaDB and FastAPI
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/

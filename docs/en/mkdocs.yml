@@ -241,7 +241,7 @@ extra:
   - link: /uk/
     name: uk
   - link: /vi/
-    name: vi
+    name: vi - Tiếng Việt
   - link: /zh/
     name: zh - 汉语
 extra_css:

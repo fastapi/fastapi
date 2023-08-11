@@ -12,6 +12,11 @@ A common tool is <a href="https://openapi-generator.tech/" class="external-link"
 
 If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a>.
 
+Another option you could consider for several languages is <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-generate-clients" class="external-link" target="_blank">Fern</a>.
+
+!!! info
+    <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-generate-clients" class="external-link" target="_blank">Fern</a> is also a FastAPI sponsor. 😎🎉
+
 ## Generate a TypeScript Frontend Client
 
 Let's start with a simple FastAPI application:
