@@ -12,7 +12,7 @@
 * 再起動
 * レプリケーション（実行中のプロセス数）
 * メモリー
-* 起動する前のステップ
+* 開始前の事前のステップ
 
 これらが**デプロイメント**にどのような影響を与えるかを見ていきましょう。
 
@@ -30,7 +30,7 @@
 
 ## セキュリティ - HTTPS
 
-<!-- add link when https.md written in Japanese is created  -->
+<!-- TODO: add link when https.md written in Japanese is created  -->
 HTTPSに関する前章では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
 
 通常、アプリケーションサーバにとって**外部の**コンポーネントである**TLS Termination Proxy**によって提供されることが一般的です。このプロキシは通信の暗号化を担当します。
@@ -187,7 +187,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 同じAPIプログラムの**複数のプロセス**を実行する場合、それらは一般に**Worker／ワーカー**と呼ばれます。
 
 ### ワーカー・プロセス と ポート
-<!-- add link when https.md written in Japanese is created  -->
+<!-- TODO: add link when https.md written in Japanese is created  -->
 
 HTTPSについてのドキュメントで、一つのサーバーで一つのポートとIPアドレスの組み合わせでリッスンできるのは一つのプロセスだけであることを覚えていますでしょうか？
 
@@ -246,7 +246,7 @@ HTTPSについてのドキュメントで、一つのサーバーで一つのポ
 
 !!! tip
     これらの**コンテナ**やDockerそしてKubernetesに関する項目が、まだあまり意味をなしていなくても心配しないでください。
-    <!-- add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
+    <!-- TODO: add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
 
     コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します。
 
@@ -282,7 +282,7 @@ HTTPSについてのドキュメントで、一つのサーバーで一つのポ
     * 利用するbashスクリプトを起動／再起動したり、エラーを検出したりする方法は以前として必要になるでしょう。
 
 !!! tip
-   <!-- add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
+   <!-- TODO: add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
    コンテナを使った具体的な例については、次の章で紹介します。
 
 ## リソースの利用
@@ -317,7 +317,7 @@ HTTPSについてのドキュメントで、一つのサーバーで一つのポ
 * 再起動
 * レプリケーション（実行中のプロセス数）
 * メモリー
-* 起動する前のステップ
+* 開始前の事前ステップ
 
 これらの考え方とその適用方法を理解することで、デプロイメントを設定したり調整したりする際に必要な直感的な判断ができるようになるはずです。🤓
 
