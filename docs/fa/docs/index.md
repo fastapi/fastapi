@@ -143,7 +143,7 @@ $ pip install "uvicorn[standard]"
 * فایلی به نام  `main.py` با محتوای زیر ایجاد کنید :
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -436,7 +436,6 @@ item: Item
 
 استفاده شده توسط Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - برای <abbr title="تبدیل داده‌های موجود در درخواست‌های HTTP به داده پایتونی">"تجزیه (parse)"</abbr> سریع‌تر JSON .
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - برای اعتبارسنجی آدرس‌های ایمیل.
 
 استفاده شده توسط Starlette:

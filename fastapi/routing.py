@@ -20,6 +20,14 @@ from typing import (
 )
 
 from fastapi import params
+from fastapi._compat import (
+    ModelField,
+    Undefined,
+    _get_model_config,
+    _model_dump,
+    _normalize_errors,
+    lenient_issubclass,
+)
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -29,9 +37,14 @@ from fastapi.dependencies.utils import (
     get_typed_return_annotation,
     solve_dependencies,
 )
-from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.types import DecoratedCallable
+from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import (
+    FastAPIError,
+    RequestValidationError,
+    ResponseValidationError,
+    WebSocketRequestValidationError,
+)
+from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -40,23 +53,20 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import ModelField, Undefined
-from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import BaseRoute, Match
-from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
+    BaseRoute,
+    Match,
     compile_path,
     get_name,
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
+from starlette.routing import Mount as Mount  # noqa
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
@@ -69,14 +79,15 @@ def _prepare_response_content(
     exclude_none: bool = False,
 ) -> Any:
     if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
+        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
-            # Otherwise there's no way to extract lazy data that requires attribute
+            # Otherwise, there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
             return res
-        return res.dict(
+        return _model_dump(
+            res,
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
@@ -111,8 +122,8 @@ async def serialize_response(
     *,
     field: Optional[ModelField] = None,
     response_content: Any,
-    include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+    include: Optional[IncEx] = None,
+    exclude: Optional[IncEx] = None,
     by_alias: bool = True,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
@@ -121,24 +132,40 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        response_content = _prepare_response_content(
-            response_content,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
+        if not hasattr(field, "serialize"):
+            # pydantic v1
+            response_content = _prepare_response_content(
+                response_content,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
             value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
+        if isinstance(errors_, list):
             errors.extend(errors_)
+        elif errors_:
+            errors.append(errors_)
         if errors:
-            raise ValidationError(errors, field.type_)
+            raise ResponseValidationError(
+                errors=_normalize_errors(errors), body=response_content
+            )
+
+        if hasattr(field, "serialize"):
+            return field.serialize(
+                value,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
+
         return jsonable_encoder(
             value,
             include=include,
@@ -171,8 +198,8 @@ def get_request_handler(
     status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
-    response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+    response_model_include: Optional[IncEx] = None,
+    response_model_exclude: Optional[IncEx] = None,
     response_model_by_alias: bool = True,
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
@@ -216,7 +243,16 @@ def get_request_handler(
                             body = body_bytes
         except json.JSONDecodeError as e:
             raise RequestValidationError(
-                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+                [
+                    {
+                        "type": "json_invalid",
+                        "loc": ("body", e.pos),
+                        "msg": "JSON decode error",
+                        "input": {},
+                        "ctx": {"error": e.msg},
+                    }
+                ],
+                body=e.doc,
             ) from e
         except HTTPException:
             raise
@@ -232,7 +268,7 @@ def get_request_handler(
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
-            raise RequestValidationError(errors, body=body)
+            raise RequestValidationError(_normalize_errors(errors), body=body)
         else:
             raw_response = await run_endpoint_function(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
@@ -283,8 +319,7 @@ def get_websocket_app(
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
-            await websocket.close(code=WS_1008_POLICY_VIOLATION)
-            raise WebSocketRequestValidationError(errors)
+            raise WebSocketRequestValidationError(_normalize_errors(errors))
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
 
@@ -298,13 +333,21 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         endpoint: Callable[..., Any],
         *,
         name: Optional[str] = None,
+        dependencies: Optional[Sequence[params.Depends]] = None,
         dependency_overrides_provider: Optional[Any] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
+        self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        for depends in self.dependencies[::-1]:
+            self.dependant.dependencies.insert(
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            )
+
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
@@ -337,8 +380,8 @@ class APIRoute(routing.Route):
         name: Optional[str] = None,
         methods: Optional[Union[Set[str], List[str]]] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -403,7 +446,9 @@ class APIRoute(routing.Route):
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
-                name=response_name, type_=self.response_model
+                name=response_name,
+                type_=self.response_model,
+                mode="serialization",
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
@@ -411,17 +456,15 @@ class APIRoute(routing.Route):
             # that doesn't have the hashed_password. But because it's a subclass, it
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
-            # will be always created.
+            # will always be created.
+            # TODO: remove when deprecating Pydantic v1
             self.secure_cloned_response_field: Optional[
                 ModelField
             ] = create_cloned_field(self.response_field)
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
-        if dependencies:
-            self.dependencies = list(dependencies)
-        else:
-            self.dependencies = []
+        self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
@@ -516,7 +559,7 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
-        self.dependencies = list(dependencies or []) or []
+        self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
@@ -561,8 +604,8 @@ class APIRouter(routing.Router):
         deprecated: Optional[bool] = None,
         methods: Optional[Union[Set[str], List[str]]] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -642,8 +685,8 @@ class APIRouter(routing.Router):
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -690,21 +733,37 @@ class APIRouter(routing.Router):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> None:
+        current_dependencies = self.dependencies.copy()
+        if dependencies:
+            current_dependencies.extend(dependencies)
+
         route = APIWebSocketRoute(
             self.prefix + path,
             endpoint=endpoint,
             name=name,
+            dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
 
     def websocket(
-        self, path: str, name: Optional[str] = None
+        self,
+        path: str,
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_websocket_route(path, func, name=name)
+            self.add_api_websocket_route(
+                path, func, name=name, dependencies=dependencies
+            )
             return func
 
         return decorator
@@ -744,7 +803,7 @@ class APIRouter(routing.Router):
                 path = getattr(r, "path")  # noqa: B009
                 name = getattr(r, "name", "unknown")
                 if path is not None and not path:
-                    raise Exception(
+                    raise FastAPIError(
                         f"Prefix and path cannot be both empty (path operation: {name})"
                     )
         if responses is None:
@@ -819,8 +878,16 @@ class APIRouter(routing.Router):
                     name=route.name,
                 )
             elif isinstance(route, APIWebSocketRoute):
+                current_dependencies = []
+                if dependencies:
+                    current_dependencies.extend(dependencies)
+                if route.dependencies:
+                    current_dependencies.extend(route.dependencies)
                 self.add_api_websocket_route(
-                    prefix + route.path, route.endpoint, name=route.name
+                    prefix + route.path,
+                    route.endpoint,
+                    dependencies=current_dependencies,
+                    name=route.name,
                 )
             elif isinstance(route, routing.WebSocketRoute):
                 self.add_websocket_route(
@@ -845,8 +912,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -901,8 +968,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -957,8 +1024,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -1013,8 +1080,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -1069,8 +1136,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -1125,8 +1192,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -1181,8 +1248,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
@@ -1237,8 +1304,8 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
         response_model_by_alias: bool = True,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,

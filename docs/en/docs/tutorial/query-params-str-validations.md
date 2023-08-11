@@ -44,13 +44,20 @@ To achieve that, first import:
 
 === "Python 3.6+"
 
-    In versions of Python below Python 3.9 you import `Annotation` from `typing_extensions`.
+    In versions of Python below Python 3.9 you import `Annotated` from `typing_extensions`.
 
     It will already be installed with FastAPI.
 
     ```Python hl_lines="3-4"
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
     ```
+
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
 
 ## Use `Annotated` in the type for the `q` parameter
 
@@ -110,7 +117,7 @@ Notice that the default value is still `None`, so the parameter is still optiona
 
 But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to extract this value from the query parameters (this would have been the default anyway 🤷) and that we want to have **additional validation** for this value (that's why we do this, to get the additional validation). 😎
 
-FastAPI wll now:
+FastAPI will now:
 
 * **Validate** the data making sure that the max length is 50 characters
 * Show a **clear error** for the client when the data is not valid
@@ -199,7 +206,7 @@ Instead use the actual default value of the function parameter. Otherwise, it wo
 For example, this is not allowed:
 
 ```Python
-q: Annotated[str Query(default="rick")] = "morty"
+q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
 ...because it's not clear if the default value should be `"rick"` or `"morty"`.
@@ -270,7 +277,7 @@ You can also add a parameter `min_length`:
 
 ## Add regular expressions
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
+You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> `pattern` that the parameter should match:
 
 === "Python 3.10+"
 
@@ -308,7 +315,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
     {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
     ```
 
-This specific regular expression checks that the received parameter value:
+This specific regular expression pattern checks that the received parameter value:
 
 * `^`: starts with the following characters, doesn't have characters before.
 * `fixedquery`: has the exact value `fixedquery`.
@@ -317,6 +324,20 @@ This specific regular expression checks that the received parameter value:
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
 But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+
+### Pydantic v1 `regex` instead of `pattern`
+
+Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
+
+You could still see some code using it:
+
+=== "Python 3.10+ Pydantic v1"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
+    ```
+
+But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
 
 ## Default values
 

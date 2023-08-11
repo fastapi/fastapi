@@ -1,4 +1,4 @@
-# Dependencies - First Steps
+# Dependencies
 
 **FastAPI** has a very powerful but intuitive **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 
@@ -84,6 +84,13 @@ In this case, this dependency expects:
 * An optional query parameter `limit` that is an `int`, and by default is `100`.
 
 And then it just returns a `dict` containing those values.
+
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
 
 ### Import `Depends`
 

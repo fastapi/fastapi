@@ -46,7 +46,7 @@ The docs UI would also need the OpenAPI schema to declare that this API `server`
 
 ```JSON hl_lines="4-8"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
@@ -251,7 +251,7 @@ We get the same response:
 
 but this time at the URL with the prefix path provided by the proxy: `/api/v1`.
 
-Of course, the idea here is that everyone would access the app through the proxy, so the version with the path prefix `/app/v1` is the "correct" one.
+Of course, the idea here is that everyone would access the app through the proxy, so the version with the path prefix `/api/v1` is the "correct" one.
 
 And the version without the path prefix (`http://127.0.0.1:8000/app`), provided by Uvicorn directly, would be exclusively for the _proxy_ (Traefik) to access it.
 
@@ -298,7 +298,7 @@ Will generate an OpenAPI schema like:
 
 ```JSON hl_lines="5-7"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
