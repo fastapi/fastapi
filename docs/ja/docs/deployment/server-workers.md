@@ -20,7 +20,7 @@
 !!! info
     <!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
     DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}
-   
+
     特に、**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**コンテナごとに単一のUvicornプロセスを実行することになりますが**、それについてはこの章の後半で説明します。
 
 ## GunicornによるUvicornのワーカー・プロセスの管理
