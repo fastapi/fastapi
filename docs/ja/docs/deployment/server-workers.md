@@ -21,13 +21,13 @@
     <!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
     DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}
 
-    特に、**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**コンテナごとに単一のUvicornプロセスを実行することになりますが**、それについてはこの章の後半で説明します。
+    特に**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**、**コンテナごとに単一のUvicornプロセス**を実行することになりますが、それについてはこの章の後半で説明します。
 
 ## GunicornによるUvicornのワーカー・プロセスの管理
 
 **Gunicorn**は**WSGI標準**のアプリケーションサーバーです。このことは、GunicornはFlaskやDjangoのようなアプリケーションにサービスを提供できることを意味します。Gunicornそれ自体は**FastAPI**と互換性がないですが、というのもFastAPIは最新の**<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">ASGI 標準</a>**を使用しているためです。
 
-しかし、Gunicornは**プロセスマネージャー**として動作し、ユーザーが特定の**ワーカー・プロセスクラス**を使用するように指示することができます。するとGunicornはそのクラスを使いーつ以上の**ワーカー・プロセス**を開始します。
+しかし、Gunicornは**プロセスマネージャー**として動作し、ユーザーが特定の**ワーカー・プロセスクラス**を使用するように指示することができます。するとGunicornはそのクラスを使い1つ以上の**ワーカー・プロセス**を開始します。
 
 そして**Uvicorn**には**Gunicorn互換のワーカークラス**があります。
 
@@ -84,19 +84,20 @@ $ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --b
 それぞれのオプションの意味を見てみましょう：
 
 * `main:app`： `main`は"`main`"という名前のPythonモジュール、つまりファイル`main.py`を意味します。そして `app` は **FastAPI** アプリケーションの変数名です。
-   * main:app`はPythonの`import`文と同じようなものだと想像できます：
+    * main:app`はPythonの`import`文と同じようなものだと想像できます：
 
-    ```Python
-    from main import app
-    ```
-   * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
+        ```Python
+        from main import app
+        ```
+
+    * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
 * `--workers`： 使用するワーカー・プロセスの数で、それぞれがUvicornのワーカーを実行します。
 * `--worker-class`： ワーカー・プロセスで使用するGunicorn互換のワーカークラスです。
-   * ここではGunicornがインポートして使用できるクラスを渡します：
+    * ここではGunicornがインポートして使用できるクラスを渡します：
 
-    ```Python
-    import uvicorn.workers.UvicornWorker
-    ```
+        ```Python
+        import uvicorn.workers.UvicornWorker
+        ```
 
 * `--bind`： GunicornにリッスンするIPとポートを伝えます。コロン(`:`)でIPとポートを区切ります。
     * Uvicornを直接実行している場合は、`--bind 0.0.0.0:80` （Gunicornのオプション）の代わりに、`--host 0.0.0.0`と `--port 80`を使います。
@@ -146,7 +147,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ここで唯一の新しいオプションは `--workers` で、Uvicornに4つのワーカー・プロセスを起動するように指示しています。
 
-各プロセスの **PID** が表示され、親プロセスの `27365` (これは **プロセスマネージャ**) と、各ワーカー・プロセスの **PID** が表示されます： 27368`、`27369`、`27370`、`27367`になります。
+各プロセスの **PID** が表示され、親プロセスの `27365` (これは **プロセスマネージャ**) と、各ワーカー・プロセスの **PID** が表示されます： `27368`、`27369`、`27370`、`27367`になります。
 
 ## デプロイメントのコンセプト
 
