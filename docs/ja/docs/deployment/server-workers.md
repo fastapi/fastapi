@@ -1,6 +1,6 @@
 # Server Workers - Gunicorn と Uvicorn
 
-前回のデプロイメント・コンセプトを振り返ってみましょう：
+前回のデプロイメントのコンセプトを振り返ってみましょう：
 
 * セキュリティ - HTTPS
 * 起動時の実行
@@ -91,7 +91,9 @@ $ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --b
         ```
 
     * つまり、`main:app`のコロンは、`from main import app`のPythonの`import`の部分と同じになります。
+
 * `--workers`： 使用するワーカー・プロセスの数で、それぞれがUvicornのワーカーを実行します。
+
 * `--worker-class`： ワーカー・プロセスで使用するGunicorn互換のワーカークラスです。
     * ここではGunicornがインポートして使用できるクラスを渡します：
 
