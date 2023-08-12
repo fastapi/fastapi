@@ -29,8 +29,8 @@
 
 ## セキュリティ - HTTPS
 
-<!-- TODO: add link when https.md written in Japanese is created  -->
-HTTPSに関する前章では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
+<!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
+[前チャプターのHTTPSについて](./https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
 
 通常、アプリケーションサーバにとって**外部の**コンポーネントである**TLS Termination Proxy**によって提供されることが一般的です。このプロキシは通信の暗号化を担当します。
 
@@ -186,11 +186,11 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 同じAPIプログラムの**複数のプロセス**を実行する場合、それらは一般的に**Worker／ワーカー**と呼ばれます。
 
 ### ワーカー・プロセス と ポート
-<!-- TODO: add link when https.md written in Japanese is created  -->
+<!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
 
-HTTPSについてのドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
+[HTTPSについて](./https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
 
-これは今でも同じです。
+これはいまだに同じです。
 
 そのため、**複数のプロセス**を同時に持つには**ポートでリッスンしている単一のプロセス**が必要であり、それが何らかの方法で各ワーカー・プロセスに通信を送信することが求められます。
 
@@ -245,9 +245,9 @@ HTTPSについてのドキュメントで、1つのサーバーで1つのポー�
 
 !!! tip
     これらの**コンテナ**やDockerそしてKubernetesに関する項目が、まだあまり意味をなしていなくても心配しないでください。
-    <!-- TODO: add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
+    <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
 
-    コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します。
+    コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
 
 ## 開始前の事前のステップ
 
@@ -281,8 +281,8 @@ HTTPSについてのドキュメントで、1つのサーバーで1つのポー�
     * 利用するbashスクリプトを起動／再起動したり、エラーを検出したりする方法は以前として必要になるでしょう。
 
 !!! tip
-   <!-- TODO: add link when docker.md written in Japanese is updated. the current version is outdated compared to English one.  -->
-   コンテナを使った具体的な例については、次の章で紹介します。
+   <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
+   コンテナを使った具体的な例については、次の章で紹介します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
 
 ## リソースの利用
 
