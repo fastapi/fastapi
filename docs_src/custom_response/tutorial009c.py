@@ -1,7 +1,6 @@
 from typing import Any
 
 import orjson
-
 from fastapi import FastAPI, Response
 
 app = FastAPI()

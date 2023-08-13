@@ -1,8 +1,7 @@
-from typing import Annotated, Optional
-
-from pydantic import BaseModel
+from typing import Annotated
 
 from fastapi import FastAPI, Header, HTTPException
+from pydantic import BaseModel
 
 fake_secret_token = "coneofsilence"
 
@@ -17,7 +16,7 @@ app = FastAPI()
 class Item(BaseModel):
     id: str
     title: str
-    description: Optional[str] = None
+    description: str | None = None
 
 
 @app.get("/items/{item_id}", response_model=Item)

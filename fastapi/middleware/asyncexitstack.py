@@ -1,8 +1,7 @@
 from typing import Optional
 
-from starlette.types import ASGIApp, Receive, Scope, Send
-
 from fastapi.concurrency import AsyncExitStack
+from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class AsyncExitStackMiddleware:

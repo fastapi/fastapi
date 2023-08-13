@@ -1,9 +1,9 @@
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict
+
 from .utils import needs_pydanticv1, needs_pydanticv2
 
 
@@ -74,7 +74,7 @@ def test_read_with_orm_mode_pv1() -> None:
 
     @app.post("/people/", response_model=PersonRead)
     def create_person(person: PersonCreate) -> Any:
-        db_person = Person.model_config(person)
+        db_person = Person.from_orm(person)
         return db_person
 
     client = TestClient(app)

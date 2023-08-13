@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI, Path, Query
 
@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/items/{item_id}")
 async def read_items(
     item_id: Annotated[int, Path(title="The ID of the item to get")],
-    q: Annotated[Optional[str], Query(alias="item-query")] = None,
+    q: Annotated[str | None, Query(alias="item-query")] = None,
 ):
     results = {"item_id": item_id}
     if q:

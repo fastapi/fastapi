@@ -1,8 +1,8 @@
 from dirty_equals import IsDict
-
-from docs_src.query_params.tutorial005 import app
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
+
+from docs_src.query_params.tutorial005 import app
 
 client = TestClient(app)
 

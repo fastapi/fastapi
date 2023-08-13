@@ -1,17 +1,14 @@
-from typing import Optional
-
-from pydantic import BaseModel
-
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class Item(BaseModel):
-    name: Optional[str] = None
-    description: Optional[str] = None
-    price: Optional[float] = None
+    name: str | None = None
+    description: str | None = None
+    price: float | None = None
     tax: float = 10.5
     tags: list[str] = []
 

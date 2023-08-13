@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from pydantic import Required
-
 from fastapi import FastAPI, Query
+from pydantic import Required
 
 app = FastAPI()
 

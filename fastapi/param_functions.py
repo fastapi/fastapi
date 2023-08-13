@@ -1,9 +1,8 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
-from typing_extensions import Annotated, deprecated
-
 from fastapi import params
 from fastapi._compat import Undefined
+from typing_extensions import Annotated, deprecated
 
 _Unset: Any = Undefined
 

@@ -17,13 +17,12 @@ from typing import (
     Union,
 )
 
+from fastapi.exceptions import RequestErrorModel
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-from fastapi.exceptions import RequestErrorModel
-from fastapi.types import IncEx, ModelNameMap, UnionType
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
@@ -45,6 +44,7 @@ sequence_annotation_to_type = {
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
+    from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter
     from pydantic import ValidationError as ValidationError
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
@@ -55,7 +55,12 @@ if PYDANTIC_V2:
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
+    from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
+    from pydantic_core import Url as Url
+    from pydantic_core.core_schema import (
+        general_plain_validator_function as general_plain_validator_function,
+    )
 
     Required = PydanticUndefined
     Undefined = PydanticUndefined
@@ -105,12 +110,10 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
-                values=None,  # noqa: B006
+            values: Dict[str, Any] = {},  # noqa: B006
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
-            if values is None:
-                values = {}
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
@@ -150,6 +153,19 @@ if PYDANTIC_V2:
             # Each ModelField is unique for our purposes, to allow making a dict from
             # ModelField to its JSON Schema.
             return id(self)
+
+        @default.setter
+        def default(self, value):
+            self._default = value
+
+        @alias.setter
+        def alias(self, value):
+            self._alias = value
+
+        @required.setter
+        def required(self, value):
+            self._required = value
+
 
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str

@@ -1,9 +1,10 @@
+from fastapi.testclient import TestClient
+
 from docs_src.events.tutorial003 import (
     app,
     fake_answer_to_everything_ml_model,
     ml_models,
 )
-from fastapi.testclient import TestClient
 
 
 def test_events():

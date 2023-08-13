@@ -1,5 +1,6 @@
-from docs_src.query_params_str_validations.tutorial012 import app
 from fastapi.testclient import TestClient
+
+from docs_src.query_params_str_validations.tutorial012 import app
 
 client = TestClient(app)
 

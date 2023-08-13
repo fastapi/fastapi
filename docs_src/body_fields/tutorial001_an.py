@@ -1,9 +1,8 @@
 from typing import Union
 
+from fastapi import Body, FastAPI
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
-
-from fastapi import Body, FastAPI
 
 app = FastAPI()
 

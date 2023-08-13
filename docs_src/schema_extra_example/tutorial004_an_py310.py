@@ -1,17 +1,16 @@
-from typing import Annotated, Optional
-
-from pydantic import BaseModel
+from typing import Annotated
 
 from fastapi import Body, FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
 
 
 @app.put("/items/{item_id}")

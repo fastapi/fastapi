@@ -1,8 +1,5 @@
-from typing import Optional
-
-from pydantic import BaseModel, EmailStr
-
 from fastapi import FastAPI
+from pydantic import BaseModel, EmailStr
 
 app = FastAPI()
 
@@ -10,7 +7,7 @@ app = FastAPI()
 class BaseUser(BaseModel):
     username: str
     email: EmailStr
-    full_name: Optional[str] = None
+    full_name: str | None = None
 
 
 class UserIn(BaseUser):

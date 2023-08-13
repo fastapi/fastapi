@@ -2,9 +2,8 @@ from typing import List
 
 import databases
 import sqlalchemy
-from pydantic import BaseModel
-
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 # SQLAlchemy specific code, as with any other app
 DATABASE_URL = "sqlite:///./test.db"
@@ -63,4 +62,4 @@ async def read_notes():
 async def create_note(note: NoteIn):
     query = notes.insert().values(text=note.text, completed=note.completed)
     last_record_id = await database.execute(query)
-    return {**note.model_dump(), "id": last_record_id}
+    return {**note.dict(), "id": last_record_id}

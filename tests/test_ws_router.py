@@ -1,7 +1,6 @@
 import functools
 
 import pytest
-
 from fastapi import (
     APIRouter,
     Depends,

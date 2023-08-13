@@ -1,9 +1,8 @@
 from dataclasses import field  # (1)
 from typing import List, Union
 
-from pydantic.dataclasses import dataclass  # (2)
-
 from fastapi import FastAPI
+from pydantic.dataclasses import dataclass  # (2)
 
 
 @dataclass

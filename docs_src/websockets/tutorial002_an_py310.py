@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import (
     Cookie,
@@ -65,8 +65,8 @@ async def get():
 
 async def get_cookie_or_token(
     websocket: WebSocket,
-    session: Annotated[Optional[str], Cookie()] = None,
-    token: Annotated[Optional[str], Query()] = None,
+    session: Annotated[str | None, Cookie()] = None,
+    token: Annotated[str | None, Query()] = None,
 ):
     if session is None and token is None:
         raise WebSocketException(code=status.WS_1008_POLICY_VIOLATION)
@@ -78,7 +78,7 @@ async def websocket_endpoint(
     *,
     websocket: WebSocket,
     item_id: str,
-    q: Optional[int] = None,
+    q: int | None = None,
     cookie_or_token: Annotated[str, Depends(get_cookie_or_token)],
 ):
     await websocket.accept()

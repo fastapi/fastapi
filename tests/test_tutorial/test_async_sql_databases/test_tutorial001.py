@@ -1,5 +1,7 @@
-from docs_src.async_sql_databases.tutorial001 import app
 from fastapi.testclient import TestClient
+
+from docs_src.async_sql_databases.tutorial001 import app
+
 from ...utils import needs_pydanticv1
 
 

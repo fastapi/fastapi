@@ -1,17 +1,16 @@
-from typing import Any, Optional
-
-from pydantic import BaseModel
+from typing import Any
 
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
     tags: list[str] = []
 
 

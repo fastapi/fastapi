@@ -1,7 +1,6 @@
+from fastapi import FastAPI, Query
 from pydantic import Required
 from typing_extensions import Annotated
-
-from fastapi import FastAPI, Query
 
 app = FastAPI()
 

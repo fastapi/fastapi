@@ -1,7 +1,6 @@
 from typing import List
 
 import pytest
-
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIError
 

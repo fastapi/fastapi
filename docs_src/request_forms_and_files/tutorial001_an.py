@@ -1,6 +1,5 @@
-from typing_extensions import Annotated
-
 from fastapi import FastAPI, File, Form, UploadFile
+from typing_extensions import Annotated
 
 app = FastAPI()
 

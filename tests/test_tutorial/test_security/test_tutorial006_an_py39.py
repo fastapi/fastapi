@@ -1,8 +1,8 @@
 from base64 import b64encode
 
 import pytest
-
 from fastapi.testclient import TestClient
+
 from ...utils import needs_py39
 
 

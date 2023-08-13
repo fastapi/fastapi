@@ -1,9 +1,8 @@
 from typing import Union
 
-from pydantic import BaseModel
-
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic import BaseModel
 
 fake_users_db = {
     "johndoe": {

@@ -1,8 +1,7 @@
 from typing import List
 
-from pydantic import BaseModel
-
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -12,7 +11,7 @@ class RecursiveItem(BaseModel):
     name: str
 
 
-RecursiveItem.model_rebuild()
+RecursiveItem.update_forward_refs()
 
 
 class RecursiveSubitemInSubmodel(BaseModel):
@@ -25,7 +24,7 @@ class RecursiveItemViaSubmodel(BaseModel):
     name: str
 
 
-RecursiveSubitemInSubmodel.model_rebuild()
+RecursiveSubitemInSubmodel.update_forward_refs()
 
 
 @app.get("/items/recursive", response_model=RecursiveItem)

@@ -1,6 +1,6 @@
 import pytest
-
 from fastapi.exceptions import FastAPIError
+
 from ...utils import needs_py310
 
 

@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI, File, UploadFile
 
@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 @app.post("/files/")
-async def create_file(file: Annotated[Optional[bytes], File()] = None):
+async def create_file(file: Annotated[bytes | None, File()] = None):
     if not file:
         return {"message": "No file sent"}
     else:
@@ -14,7 +14,7 @@ async def create_file(file: Annotated[Optional[bytes], File()] = None):
 
 
 @app.post("/uploadfile/")
-async def create_upload_file(file: Optional[UploadFile] = None):
+async def create_upload_file(file: UploadFile | None = None):
     if not file:
         return {"message": "No upload file sent"}
     else:

@@ -1,6 +1,5 @@
-from typing_extensions import Annotated
-
 from fastapi import Depends
+from typing_extensions import Annotated
 
 
 async def dependency_a():

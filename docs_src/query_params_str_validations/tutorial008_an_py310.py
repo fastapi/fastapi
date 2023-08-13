@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import FastAPI, Query
 
@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/items/")
 async def read_items(
     q: Annotated[
-        Optional[str],
+        str | None,
         Query(
             title="Query string",
             description="Query string for the items to search in the database that have a good match",
