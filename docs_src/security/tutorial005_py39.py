@@ -1,16 +1,15 @@
 from datetime import datetime, timedelta
 from typing import Union
 
-from jose import JWTError, jwt
-from passlib.context import CryptContext
-from pydantic import BaseModel, ValidationError
-
 from fastapi import Depends, FastAPI, HTTPException, Security, status
 from fastapi.security import (
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
     SecurityScopes,
 )
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from pydantic import BaseModel, ValidationError
 
 # to get a string like this run:
 # openssl rand -hex 32

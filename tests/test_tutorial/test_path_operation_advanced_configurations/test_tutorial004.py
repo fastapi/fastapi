@@ -1,5 +1,7 @@
-from docs_src.path_operation_advanced_configuration.tutorial004 import app
 from fastapi.testclient import TestClient
+
+from docs_src.path_operation_advanced_configuration.tutorial004 import app
+
 from ...utils import needs_pydanticv1, needs_pydanticv2
 
 client = TestClient(app)

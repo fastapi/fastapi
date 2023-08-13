@@ -2,7 +2,6 @@ from unittest.mock import patch
 
 import pytest
 from dirty_equals import IsDict
-
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
 

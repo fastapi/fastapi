@@ -1,5 +1,6 @@
-from docs_src.security.tutorial001_an import app
 from fastapi.testclient import TestClient
+
+from docs_src.security.tutorial001_an import app
 
 client = TestClient(app)
 

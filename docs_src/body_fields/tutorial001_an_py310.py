@@ -1,8 +1,7 @@
 from typing import Annotated, Optional
 
-from pydantic import BaseModel, Field
-
 from fastapi import Body, FastAPI
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 

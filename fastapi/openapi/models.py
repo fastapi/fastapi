@@ -1,10 +1,6 @@
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Type, Union
 
-from pydantic import AnyUrl, BaseModel, Field
-from typing_extensions import Annotated, Literal
-from typing_extensions import deprecated as typing_deprecated
-
 from fastapi._compat import (
     PYDANTIC_V2,
     CoreSchema,
@@ -14,6 +10,9 @@ from fastapi._compat import (
     general_plain_validator_function,
 )
 from fastapi.logger import logger
+from pydantic import AnyUrl, BaseModel, Field
+from typing_extensions import Annotated, Literal
+from typing_extensions import deprecated as typing_deprecated
 
 try:
     import email_validator

@@ -1,8 +1,8 @@
 import pytest
-
-from docs_src.websockets.tutorial002_an import app
 from fastapi.testclient import TestClient
 from fastapi.websockets import WebSocketDisconnect
+
+from docs_src.websockets.tutorial002_an import app
 
 
 def test_main():

@@ -1,11 +1,10 @@
 from typing import List
 
 from dirty_equals import IsDict
-from pydantic import BaseModel
-
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
+from pydantic import BaseModel
 
 app = FastAPI()
 

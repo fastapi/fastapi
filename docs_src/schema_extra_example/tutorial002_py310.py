@@ -1,8 +1,7 @@
 from typing import Optional
 
-from pydantic import BaseModel, Field
-
 from fastapi import FastAPI
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 

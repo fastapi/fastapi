@@ -17,13 +17,12 @@ from typing import (
     Union,
 )
 
+from fastapi.exceptions import RequestErrorModel
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-from fastapi.exceptions import RequestErrorModel
-from fastapi.types import IncEx, ModelNameMap, UnionType
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
@@ -105,7 +104,7 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
-                values=None,  # noqa: B006
+            values=None,  # noqa: B006
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
@@ -397,8 +396,7 @@ else:
         use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_errors = ValidationError(  # type: ignore[call-arg]
-                ).errors()
+                new_errors = ValidationError().errors()  # type: ignore[call-arg]
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
                 use_errors.extend(_normalize_errors(error))

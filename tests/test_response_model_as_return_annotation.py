@@ -1,12 +1,11 @@
 from typing import List, Union
 
 import pytest
-from pydantic import BaseModel
-
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 
 class BaseUser(BaseModel):
@@ -170,7 +169,9 @@ def response_model_model1_annotation_model2_return_invalid_model() -> Item:
     "/response_model_model1-annotation_model2-return_dict_with_extra_data",
     response_model=User,
 )
-def response_model_model1_annotation_model2_return_dict_with_extra_data() -> dict[str, str]:
+def response_model_model1_annotation_model2_return_dict_with_extra_data() -> (
+    dict[str, str]
+):
     return {"name": "John", "surname": "Doe", "password_hash": "secret"}
 
 
