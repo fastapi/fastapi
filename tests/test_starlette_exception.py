@@ -1,6 +1,7 @@
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
-from starlette.exceptions import HTTPException as StarletteHTTPException
 
 app = FastAPI()
 

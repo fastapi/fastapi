@@ -1,8 +1,8 @@
 from dirty_equals import IsDict
-from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from docs_src.handling_errors.tutorial006 import app
+from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 client = TestClient(app)
 

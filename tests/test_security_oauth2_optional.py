@@ -1,11 +1,12 @@
 from typing import Optional
 
 from dirty_equals import IsDict
+from pydantic import BaseModel
+
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
-from pydantic import BaseModel
 
 app = FastAPI()
 

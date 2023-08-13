@@ -1,16 +1,19 @@
-from fastapi import Body, FastAPI
+from typing import Optional
+
 from pydantic import BaseModel, Field
+
+from fastapi import Body, FastAPI
 
 app = FastAPI()
 
 
 class Item(BaseModel):
     name: str
-    description: str | None = Field(
+    description: Optional[str] = Field(
         default=None, title="The description of the item", max_length=300
     )
     price: float = Field(gt=0, description="The price must be greater than zero")
-    tax: float | None = None
+    tax: Optional[float] = None
 
 
 @app.put("/items/{item_id}")

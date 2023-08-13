@@ -3,6 +3,11 @@ import inspect
 import warnings
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
+from starlette.responses import JSONResponse
+from starlette.routing import BaseRoute
+from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+from typing_extensions import Literal
+
 from fastapi import routing
 from fastapi._compat import (
     GenerateJsonSchema,
@@ -25,13 +30,8 @@ from fastapi.responses import Response
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
-    generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
-from starlette.responses import JSONResponse
-from starlette.routing import BaseRoute
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
-from typing_extensions import Literal
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -167,7 +167,6 @@ def generate_operation_id(
     if route.operation_id:
         return route.operation_id
     path: str = route.path_format
-    return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
 def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:

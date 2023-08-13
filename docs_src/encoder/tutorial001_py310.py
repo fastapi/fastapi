@@ -1,8 +1,10 @@
 from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
 
 fake_db = {}
 
@@ -10,7 +12,7 @@ fake_db = {}
 class Item(BaseModel):
     title: str
     timestamp: datetime
-    description: str | None = None
+    description: Optional[str] = None
 
 
 app = FastAPI()

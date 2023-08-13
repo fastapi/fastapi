@@ -2,10 +2,11 @@ from decimal import Decimal
 from typing import List
 
 from dirty_equals import IsDict, IsOneOf
+from pydantic import BaseModel, condecimal
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
-from pydantic import BaseModel, condecimal
 
 app = FastAPI()
 

@@ -239,7 +239,7 @@ def get_graphql_translation_discussions(*, settings: Settings):
         query=all_discussions_query,
         category_id=questions_translations_category_id,
     )
-    graphql_response = AllDiscussionsResponse.parse_obj(data)
+    graphql_response = AllDiscussionsResponse.model_validate(data)
     return graphql_response.data.repository.discussions.nodes
 
 
@@ -252,7 +252,7 @@ def get_graphql_translation_discussion_comments_edges(
         discussion_number=discussion_number,
         after=after,
     )
-    graphql_response = CommentsResponse.parse_obj(data)
+    graphql_response = CommentsResponse.model_validate(data)
     return graphql_response.data.repository.discussion.comments.edges
 
 
@@ -283,7 +283,7 @@ def create_comment(*, settings: Settings, discussion_id: str, body: str):
         discussion_id=discussion_id,
         body=body,
     )
-    response = AddCommentResponse.parse_obj(data)
+    response = AddCommentResponse.model_validate(data)
     return response.data.addDiscussionComment.comment
 
 
@@ -294,7 +294,7 @@ def update_comment(*, settings: Settings, comment_id: str, body: str):
         comment_id=comment_id,
         body=body,
     )
-    response = UpdateCommentResponse.parse_obj(data)
+    response = UpdateCommentResponse.model_validate(data)
     return response.data.updateDiscussionComment.comment
 
 
@@ -312,7 +312,7 @@ if __name__ == "__main__":
             f"No github event file available at: {settings.github_event_path}"
         )
     contents = settings.github_event_path.read_text()
-    github_event = PartialGitHubEvent.parse_raw(contents)
+    github_event = PartialGitHubEvent.model_validate(contents)
 
     # Avoid race conditions with multiple labels
     sleep_time = random.random() * 10  # random number between 0 and 10 seconds

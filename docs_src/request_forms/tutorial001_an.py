@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Form
 from typing_extensions import Annotated
+
+from fastapi import FastAPI, Form
 
 app = FastAPI()
 

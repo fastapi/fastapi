@@ -1,5 +1,8 @@
-from fastapi import FastAPI, Header, HTTPException
+from typing import Optional
+
 from pydantic import BaseModel
+
+from fastapi import FastAPI, Header, HTTPException
 
 fake_secret_token = "coneofsilence"
 
@@ -14,7 +17,7 @@ app = FastAPI()
 class Item(BaseModel):
     id: str
     title: str
-    description: str | None = None
+    description: Optional[str] = None
 
 
 @app.get("/items/{item_id}", response_model=Item)

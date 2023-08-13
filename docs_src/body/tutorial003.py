@@ -1,7 +1,8 @@
 from typing import Union
 
-from fastapi import FastAPI
 from pydantic import BaseModel
+
+from fastapi import FastAPI
 
 
 class Item(BaseModel):
@@ -16,4 +17,4 @@ app = FastAPI()
 
 @app.put("/items/{item_id}")
 async def create_item(item_id: int, item: Item):
-    return {"item_id": item_id, **item.dict()}
+    return {"item_id": item_id, **item.model_dump()}

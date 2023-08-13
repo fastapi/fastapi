@@ -1,7 +1,8 @@
 from typing import Union
 
-from fastapi import FastAPI, Header
 from typing_extensions import Annotated
+
+from fastapi import FastAPI, Header
 
 app = FastAPI()
 

@@ -1,10 +1,11 @@
 from typing import Optional
 
-from fastapi.openapi.models import APIKey, APIKeyIn
-from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
+
+from fastapi.openapi.models import APIKey, APIKeyIn
+from fastapi.security.base import SecurityBase
 
 
 class APIKeyBase(SecurityBase):

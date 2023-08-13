@@ -1,6 +1,7 @@
 import strawberry
-from fastapi import FastAPI
 from strawberry.asgi import GraphQL
+
+from fastapi import FastAPI
 
 
 @strawberry.type

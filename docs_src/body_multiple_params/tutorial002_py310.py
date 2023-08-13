@@ -1,19 +1,22 @@
-from fastapi import FastAPI
+from typing import Optional
+
 from pydantic import BaseModel
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
 class Item(BaseModel):
     name: str
-    description: str | None = None
+    description: Optional[str] = None
     price: float
-    tax: float | None = None
+    tax: Optional[float] = None
 
 
 class User(BaseModel):
     username: str
-    full_name: str | None = None
+    full_name: Optional[str] = None
 
 
 @app.put("/items/{item_id}")

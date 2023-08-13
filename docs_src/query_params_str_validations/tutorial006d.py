@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Query
 from pydantic import Required
+
+from fastapi import FastAPI, Query
 
 app = FastAPI()
 

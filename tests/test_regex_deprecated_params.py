@@ -1,10 +1,12 @@
+from typing import Optional
+
 import pytest
 from dirty_equals import IsDict
+from typing_extensions import Annotated
+
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
-from typing_extensions import Annotated
-
 from .utils import needs_py310
 
 
@@ -14,7 +16,7 @@ def get_client():
 
         @app.get("/items/")
         async def read_items(
-            q: Annotated[str | None, Query(regex="^fixedquery$")] = None
+            q: Annotated[Optional[str], Query(regex="^fixedquery$")] = None
         ):
             if q:
                 return f"Hello {q}"

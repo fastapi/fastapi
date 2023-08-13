@@ -38,7 +38,7 @@ if __name__ == "__main__":
     g = Github(settings.input_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     try:
-        event = PartialGithubEvent.parse_file(settings.github_event_path)
+        event = PartialGithubEvent.model_validate(settings.github_event_path)
     except ValidationError as e:
         logging.error(f"Error parsing event file: {e.errors()}")
         sys.exit(0)

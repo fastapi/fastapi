@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated
 
 from ._compat import PYDANTIC_V2, Undefined
 
@@ -43,9 +43,6 @@ class Param(FieldInfo):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -56,10 +53,6 @@ class Param(FieldInfo):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -152,9 +145,6 @@ class Path(Param):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -165,10 +155,6 @@ class Path(Param):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -236,9 +222,6 @@ class Query(Param):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -249,10 +232,6 @@ class Query(Param):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -319,9 +298,6 @@ class Header(Param):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -332,10 +308,6 @@ class Header(Param):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -402,9 +374,6 @@ class Cookie(Param):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -415,10 +384,6 @@ class Cookie(Param):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -484,9 +449,6 @@ class Body(FieldInfo):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -497,10 +459,6 @@ class Body(FieldInfo):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -595,9 +553,6 @@ class Form(Body):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -608,10 +563,6 @@ class Form(Body):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -678,9 +629,6 @@ class File(Form):
         pattern: Optional[str] = None,
         regex: Annotated[
             Optional[str],
-            deprecated(
-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
-            ),
         ] = None,
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
@@ -691,10 +639,6 @@ class File(Form):
         examples: Optional[List[Any]] = None,
         example: Annotated[
             Optional[Any],
-            deprecated(
-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
-                "although still supported. Use examples instead."
-            ),
         ] = _Unset,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,

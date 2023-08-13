@@ -1,11 +1,12 @@
 from typing import List, Union
 
 import pytest
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 
 class BaseUser(BaseModel):
@@ -78,22 +79,22 @@ def no_response_model_annotation_return_same_model() -> User:
 
 
 @app.get("/no_response_model-annotation-return_exact_dict")
-def no_response_model_annotation_return_exact_dict() -> User:
+def no_response_model_annotation_return_exact_dict() -> dict[str, str]:
     return {"name": "John", "surname": "Doe"}
 
 
 @app.get("/no_response_model-annotation-return_invalid_dict")
-def no_response_model_annotation_return_invalid_dict() -> User:
+def no_response_model_annotation_return_invalid_dict() -> dict[str, str]:
     return {"name": "John"}
 
 
 @app.get("/no_response_model-annotation-return_invalid_model")
-def no_response_model_annotation_return_invalid_model() -> User:
+def no_response_model_annotation_return_invalid_model() -> Item:
     return Item(name="Foo", price=42.0)
 
 
 @app.get("/no_response_model-annotation-return_dict_with_extra_data")
-def no_response_model_annotation_return_dict_with_extra_data() -> User:
+def no_response_model_annotation_return_dict_with_extra_data() -> dict[str, str]:
     return {"name": "John", "surname": "Doe", "password_hash": "secret"}
 
 
@@ -108,24 +109,24 @@ def response_model_none_annotation_return_same_model() -> User:
 
 
 @app.get("/response_model_none-annotation-return_exact_dict", response_model=None)
-def response_model_none_annotation_return_exact_dict() -> User:
+def response_model_none_annotation_return_exact_dict() -> dict[str, str]:
     return {"name": "John", "surname": "Doe"}
 
 
 @app.get("/response_model_none-annotation-return_invalid_dict", response_model=None)
-def response_model_none_annotation_return_invalid_dict() -> User:
+def response_model_none_annotation_return_invalid_dict() -> dict[str, str]:
     return {"name": "John"}
 
 
 @app.get("/response_model_none-annotation-return_invalid_model", response_model=None)
-def response_model_none_annotation_return_invalid_model() -> User:
+def response_model_none_annotation_return_invalid_model() -> Item:
     return Item(name="Foo", price=42.0)
 
 
 @app.get(
     "/response_model_none-annotation-return_dict_with_extra_data", response_model=None
 )
-def response_model_none_annotation_return_dict_with_extra_data() -> User:
+def response_model_none_annotation_return_dict_with_extra_data() -> dict[str, str]:
     return {"name": "John", "surname": "Doe", "password_hash": "secret"}
 
 
@@ -140,21 +141,21 @@ def response_model_none_annotation_return_submodel_with_extra_data() -> User:
 @app.get(
     "/response_model_model1-annotation_model2-return_same_model", response_model=User
 )
-def response_model_model1_annotation_model2_return_same_model() -> Item:
+def response_model_model1_annotation_model2_return_same_model() -> User:
     return User(name="John", surname="Doe")
 
 
 @app.get(
     "/response_model_model1-annotation_model2-return_exact_dict", response_model=User
 )
-def response_model_model1_annotation_model2_return_exact_dict() -> Item:
+def response_model_model1_annotation_model2_return_exact_dict() -> dict[str, str]:
     return {"name": "John", "surname": "Doe"}
 
 
 @app.get(
     "/response_model_model1-annotation_model2-return_invalid_dict", response_model=User
 )
-def response_model_model1_annotation_model2_return_invalid_dict() -> Item:
+def response_model_model1_annotation_model2_return_invalid_dict() -> dict[str, str]:
     return {"name": "John"}
 
 
@@ -169,7 +170,7 @@ def response_model_model1_annotation_model2_return_invalid_model() -> Item:
     "/response_model_model1-annotation_model2-return_dict_with_extra_data",
     response_model=User,
 )
-def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Item:
+def response_model_model1_annotation_model2_return_dict_with_extra_data() -> dict[str, str]:
     return {"name": "John", "surname": "Doe", "password_hash": "secret"}
 
 
@@ -177,7 +178,7 @@ def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Ite
     "/response_model_model1-annotation_model2-return_submodel_with_extra_data",
     response_model=User,
 )
-def response_model_model1_annotation_model2_return_submodel_with_extra_data() -> Item:
+def response_model_model1_annotation_model2_return_submodel_with_extra_data() -> DBUser:
     return DBUser(name="John", surname="Doe", password_hash="secret")
 
 

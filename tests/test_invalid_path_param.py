@@ -1,8 +1,9 @@
 from typing import Dict, List, Tuple
 
 import pytest
-from fastapi import FastAPI
 from pydantic import BaseModel
+
+from fastapi import FastAPI
 
 
 def test_invalid_sequence():

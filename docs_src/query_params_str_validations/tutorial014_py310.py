@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI, Query
 
 app = FastAPI()
@@ -5,7 +7,7 @@ app = FastAPI()
 
 @app.get("/items/")
 async def read_items(
-    hidden_query: str | None = Query(default=None, include_in_schema=False)
+    hidden_query: Optional[str] = Query(default=None, include_in_schema=False)
 ):
     if hidden_query:
         return {"hidden_query": hidden_query}

@@ -1,8 +1,8 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from sqlalchemy.orm import Session
 
+from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from . import crud, models, schemas
 from .database import SessionLocal, engine
 

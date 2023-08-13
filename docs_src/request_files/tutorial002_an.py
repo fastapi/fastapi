@@ -1,8 +1,9 @@
 from typing import List
 
+from typing_extensions import Annotated
+
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse
-from typing_extensions import Annotated
 
 app = FastAPI()
 

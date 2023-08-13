@@ -1,2 +1,5 @@
-def say_hi(name: str | None):
+from typing import Optional
+
+
+def say_hi(name: Optional[str]):
     print(f"Hey {name}!")

@@ -1,9 +1,10 @@
 from typing import Optional
 
 from dirty_equals import IsDict
+from pydantic import BaseModel, HttpUrl
+
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, HttpUrl
 
 app = FastAPI()
 

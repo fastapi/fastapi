@@ -1,8 +1,8 @@
 import pytest
 from dirty_equals import IsDict
-from fastapi.testclient import TestClient
 
 from docs_src.cookie_params.tutorial001_an import app
+from fastapi.testclient import TestClient
 
 
 @pytest.mark.parametrize(

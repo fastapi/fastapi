@@ -1,6 +1,7 @@
 import sys
 
 import pytest
+
 from fastapi._compat import PYDANTIC_V2
 
 needs_py39 = pytest.mark.skipif(sys.version_info < (3, 9), reason="requires python3.9+")

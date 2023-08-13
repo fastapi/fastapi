@@ -1,7 +1,7 @@
 from dirty_equals import IsDict
-from fastapi.testclient import TestClient
 
 from docs_src.query_params_str_validations.tutorial011 import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

@@ -2,11 +2,11 @@ from typing import Optional
 
 import pytest
 from dirty_equals import HasRepr, IsDict, IsOneOf
+
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
-
 from .utils import needs_pydanticv2
 
 

@@ -1,6 +1,7 @@
 from typing import AsyncGenerator, Generator
 
 import pytest
+
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 

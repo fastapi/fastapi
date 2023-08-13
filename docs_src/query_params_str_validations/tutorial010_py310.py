@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI, Query
 
 app = FastAPI()
@@ -5,8 +7,7 @@ app = FastAPI()
 
 @app.get("/items/")
 async def read_items(
-    q: str
-    | None = Query(
+    q: Optional[str] = Query(
         default=None,
         alias="item-query",
         title="Query string",

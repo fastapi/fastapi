@@ -17,12 +17,13 @@ from typing import (
     Union,
 )
 
-from fastapi.exceptions import RequestErrorModel
-from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
+
+from fastapi.exceptions import RequestErrorModel
+from fastapi.types import IncEx, ModelNameMap, UnionType
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
@@ -44,7 +45,6 @@ sequence_annotation_to_type = {
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
-    from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter
     from pydantic import ValidationError as ValidationError
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
@@ -55,12 +55,7 @@ if PYDANTIC_V2:
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
-    from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
-    from pydantic_core import Url as Url
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as general_plain_validator_function,
-    )
 
     Required = PydanticUndefined
     Undefined = PydanticUndefined
@@ -110,10 +105,12 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
-            values: Dict[str, Any] = {},  # noqa: B006
+                values=None,  # noqa: B006
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+            if values is None:
+                values = {}
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
@@ -401,7 +398,6 @@ else:
         for error in errors:
             if isinstance(error, ErrorWrapper):
                 new_errors = ValidationError(  # type: ignore[call-arg]
-                    errors=[error], model=RequestErrorModel
                 ).errors()
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
@@ -411,12 +407,12 @@ else:
         return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
-        model.update_forward_refs()
+        model.model_rebuild()
 
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        return model.model_dump(**kwargs)
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]
@@ -486,7 +482,7 @@ else:
     ) -> Type[BaseModel]:
         BodyModel = create_model(model_name)
         for f in fields:
-            BodyModel.__fields__[f.name] = f  # type: ignore[index]
+            BodyModel.model_fields[f.name] = f  # type: ignore[index]
         return BodyModel
 
 

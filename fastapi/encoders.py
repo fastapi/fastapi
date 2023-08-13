@@ -17,12 +17,12 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
-from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 
+from fastapi.types import IncEx
 from ._compat import PYDANTIC_V2, Url, _model_dump
 
 

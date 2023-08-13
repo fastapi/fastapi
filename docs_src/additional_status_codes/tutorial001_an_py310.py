@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Optional
 
 from fastapi import Body, FastAPI, status
 from fastapi.responses import JSONResponse
@@ -11,8 +11,8 @@ items = {"foo": {"name": "Fighters", "size": 6}, "bar": {"name": "Tenders", "siz
 @app.put("/items/{item_id}")
 async def upsert_item(
     item_id: str,
-    name: Annotated[str | None, Body()] = None,
-    size: Annotated[int | None, Body()] = None,
+    name: Annotated[Optional[str], Body()] = None,
+    size: Annotated[Optional[int], Body()] = None,
 ):
     if item_id in items:
         item = items[item_id]

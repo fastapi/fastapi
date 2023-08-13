@@ -1,6 +1,5 @@
-from fastapi.testclient import TestClient
-
 from docs_src.additional_status_codes.tutorial001 import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

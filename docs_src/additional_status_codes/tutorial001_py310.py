@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import Body, FastAPI, status
 from fastapi.responses import JSONResponse
 
@@ -9,8 +11,8 @@ items = {"foo": {"name": "Fighters", "size": 6}, "bar": {"name": "Tenders", "siz
 @app.put("/items/{item_id}")
 async def upsert_item(
     item_id: str,
-    name: str | None = Body(default=None),
-    size: int | None = Body(default=None),
+    name: Optional[str] = Body(default=None),
+    size: Optional[int] = Body(default=None),
 ):
     if item_id in items:
         item = items[item_id]

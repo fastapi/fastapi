@@ -1,8 +1,9 @@
 from typing import Union
 
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
 
 
 class Item(BaseModel):

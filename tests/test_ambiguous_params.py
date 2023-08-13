@@ -1,7 +1,8 @@
 import pytest
+from typing_extensions import Annotated
+
 from fastapi import Depends, FastAPI, Path
 from fastapi.param_functions import Query
-from typing_extensions import Annotated
 
 app = FastAPI()
 

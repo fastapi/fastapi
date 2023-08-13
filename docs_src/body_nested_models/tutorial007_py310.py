@@ -1,5 +1,8 @@
-from fastapi import FastAPI
+from typing import Optional
+
 from pydantic import BaseModel, HttpUrl
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -11,16 +14,16 @@ class Image(BaseModel):
 
 class Item(BaseModel):
     name: str
-    description: str | None = None
+    description: Optional[str] = None
     price: float
-    tax: float | None = None
+    tax: Optional[float] = None
     tags: set[str] = set()
-    images: list[Image] | None = None
+    images: Optional[list[Image]] = None
 
 
 class Offer(BaseModel):
     name: str
-    description: str | None = None
+    description: Optional[str] = None
     price: float
     items: list[Item]
 

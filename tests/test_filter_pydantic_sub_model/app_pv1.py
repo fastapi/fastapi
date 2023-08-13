@@ -1,7 +1,8 @@
 from typing import Optional
 
+from pydantic import BaseModel
+
 from fastapi import Depends, FastAPI
-from pydantic import BaseModel, validator
 
 app = FastAPI()
 
@@ -19,7 +20,6 @@ class ModelA(BaseModel):
     description: Optional[str] = None
     model_b: ModelB
 
-    @validator("name")
     def lower_username(cls, name: str, values):
         if not name.endswith("A"):
             raise ValueError("name must end in A")

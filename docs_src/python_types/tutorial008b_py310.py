@@ -1,2 +1,5 @@
-def process_item(item: int | str):
+from typing import Union
+
+
+def process_item(item: Union[int, str]):
     print(item)

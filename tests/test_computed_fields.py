@@ -1,7 +1,7 @@
 import pytest
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
 from .utils import needs_pydanticv2
 
 

@@ -2,7 +2,6 @@ from functools import lru_cache
 from typing import Annotated
 
 from fastapi import Depends, FastAPI
-
 from .config import Settings
 
 app = FastAPI()

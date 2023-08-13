@@ -1,10 +1,12 @@
+from typing import Optional
+
 from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
 
 
 @app.post("/files/")
-async def create_file(file: bytes | None = File(default=None)):
+async def create_file(file: Optional[bytes] = File(default=None)):
     if not file:
         return {"message": "No file sent"}
     else:
@@ -12,7 +14,7 @@ async def create_file(file: bytes | None = File(default=None)):
 
 
 @app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile | None = None):
+async def create_upload_file(file: Optional[UploadFile] = None):
     if not file:
         return {"message": "No upload file sent"}
     else:

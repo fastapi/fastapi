@@ -1,5 +1,4 @@
 from dirty_equals import IsDict, IsOneOf
-from fastapi.testclient import TestClient
 
 from docs_src.security.tutorial005_an import (
     app,
@@ -8,6 +7,7 @@ from docs_src.security.tutorial005_an import (
     get_password_hash,
     verify_password,
 )
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

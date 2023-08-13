@@ -1,7 +1,8 @@
 from typing import Union
 
-from fastapi import FastAPI, File, UploadFile
 from typing_extensions import Annotated
+
+from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
 

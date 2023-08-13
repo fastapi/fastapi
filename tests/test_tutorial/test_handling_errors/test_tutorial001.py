@@ -1,6 +1,5 @@
-from fastapi.testclient import TestClient
-
 from docs_src.handling_errors.tutorial001 import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

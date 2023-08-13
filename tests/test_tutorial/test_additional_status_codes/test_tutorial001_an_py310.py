@@ -1,6 +1,6 @@
 import pytest
-from fastapi.testclient import TestClient
 
+from fastapi.testclient import TestClient
 from ...utils import needs_py310
 
 
