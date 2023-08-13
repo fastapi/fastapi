@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+from typing import Optional
+
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel

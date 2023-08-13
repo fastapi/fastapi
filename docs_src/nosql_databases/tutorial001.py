@@ -2,7 +2,11 @@ from typing import Union
 
 from couchbase import LOCKMODE_WAIT
 from couchbase.bucket import Bucket
+<<<<<<< HEAD
 from couchbase.cluster import Cluster, PasswordAuthenticator
+=======
+from couchbase.cluster import Cluster
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
 from fastapi import FastAPI
 from pydantic import BaseModel
 

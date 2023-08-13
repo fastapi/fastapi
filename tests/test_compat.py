@@ -9,7 +9,11 @@ from fastapi._compat import (
     is_uploadfile_sequence_annotation,
 )
 from fastapi.testclient import TestClient
+<<<<<<< HEAD
 from pydantic import BaseConfig, BaseModel, ConfigDict
+=======
+from pydantic import BaseModel, ConfigDict
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
 from pydantic.fields import FieldInfo
 
 from .utils import needs_pydanticv1, needs_pydanticv2

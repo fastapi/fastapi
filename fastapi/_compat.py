@@ -110,7 +110,11 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
+<<<<<<< HEAD
             values: Dict[str, Any] = {},  # noqa: B006
+=======
+            values=None,  # noqa: B006
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
@@ -413,8 +417,7 @@ else:
         use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_errors = ValidationError(  # type: ignore[call-arg]
-                ).errors()
+                new_errors = ValidationError().errors()  # type: ignore[call-arg]
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
                 use_errors.extend(_normalize_errors(error))

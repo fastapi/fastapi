@@ -41,12 +41,16 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -54,6 +58,7 @@ class Param(FieldInfo):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -61,6 +66,9 @@ class Param(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -150,12 +158,16 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -163,6 +175,7 @@ class Path(Param):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -170,6 +183,9 @@ class Path(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -234,12 +250,16 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -247,6 +267,7 @@ class Query(Param):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -254,6 +275,9 @@ class Query(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -317,12 +341,16 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -330,6 +358,7 @@ class Header(Param):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -337,6 +366,9 @@ class Header(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -400,12 +432,16 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -413,6 +449,7 @@ class Cookie(Param):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -420,6 +457,9 @@ class Cookie(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -482,12 +522,16 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -495,6 +539,7 @@ class Body(FieldInfo):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -502,6 +547,9 @@ class Body(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -593,12 +641,16 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -606,6 +658,7 @@ class Form(Body):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -613,6 +666,9 @@ class Form(Body):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -676,12 +732,16 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+<<<<<<< HEAD
         regex: Annotated[
             Optional[str],
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
+=======
+        regex: Annotated[Optional[str],] = None,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         discriminator: Union[str, None] = None,
         strict: Union[bool, None] = _Unset,
         multiple_of: Union[float, None] = _Unset,
@@ -689,6 +749,7 @@ class File(Form):
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
         examples: Optional[List[Any]] = None,
+<<<<<<< HEAD
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -696,6 +757,9 @@ class File(Form):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
+=======
+        example: Annotated[Optional[Any],] = _Unset,
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
