@@ -8,7 +8,7 @@ Linuxコンテナの使用には、**セキュリティ**、**反復可能性（
 
 !!! tip
     TODO: なぜか遷移できない
-    お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#fastapi用のdockerイメージをビルドする)へジャンプしてください。
+    お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#build-a-docker-image-for-fastapi)へジャンプしてください。
 
 <details>
 <summary>Dockerfile プレビュー 👀</summary>
@@ -97,7 +97,7 @@ Docker Hubは 多くのツールや環境、データベース、アプリケー
 
 しかし、**少なくとも1つの実行中のプロセス**がなければ、実行中のコンテナを持つことはできないです。メイン・プロセスが停止すれば、コンテナも停止します。
 
-## FastAPI用のDockerイメージをビルドする
+## Build a Docker Image for FastAPI
 
 ということで、何か作りましょう！🚀
 
@@ -324,7 +324,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 確認する
 
-DockerコンテナのURLで確認できるはずです。例: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 、 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (またはそれに相当するDockerホストを使用したもの）
+Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> や <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (またはそれに相当するDockerホストを使用したもの）といったURLで確認できるはずです。
 
 アクセスすると以下のようなものが表示されます：
 
@@ -457,7 +457,7 @@ Kubernetesのような分散コンテナ管理システムの1つは通常、入
 
 （GunicornやUvicornがUvicornワーカーを管理するように）コンテナ内に別のプロセスマネージャーを持つことは、クラスターシステムですでに対処しているであろう**不要な複雑さ**を追加するだけです。
 
-### 複数のプロセスと特殊なケースを持つコンテナ
+### Containers with Multiple Processes and Special Cases
 
 もちろん、**特殊なケース**として、**Gunicornプロセスマネージャ**を持つ**コンテナ**内で複数の**Uvicornワーカープロセス**を起動させたい場合があります。
 
@@ -533,12 +533,12 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 前の章で詳しく説明したように、Uvicornワーカーで動作するGunicornを含む公式のDockerイメージがあります： [Server Workers - Gunicorn と Uvicorn](./server-workers.md){.internal-link target=_blank}で詳しく説明しています。
 
-このイメージは、主に上記で説明した状況で役に立つでしょう： [複数のプロセスと特殊なケースを持つコンテナ](#複数のプロセスと特殊なケースを持つコンテナ)
+このイメージは、主に上記で説明した状況で役に立つでしょう： [複数のプロセスと特殊なケースを持つコンテナ（Containers with Multiple Processes and Special Cases）](#containers-with-multiple-processes-and-special-cases)
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 !!! warning
-    このベースイメージや類似のイメージは**必要ない**可能性が高いので、[上記の: FastAPI用のDockerイメージをビルドする](#fastapi用のdockerイメージをビルドする)のようにゼロからイメージをビルドする方が良いでしょう。
+    このベースイメージや類似のイメージは**必要ない**可能性が高いので、[上記の: FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi)のようにゼロからイメージをビルドする方が良いでしょう。
 
 このイメージには、利用可能なCPUコアに基づいて**ワーカー・プロセスの数**を設定する**オートチューニング**メカニズムが含まれています。
 
@@ -563,7 +563,7 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 その結果、パフォーマンスが大幅に低下する（あるいはクラッシュする）可能性があります。🚨
 
-### Dockerfile`を作成する
+### Dockerfileを作成する
 
 この画像に基づいて`Dockerfile`を作成する方法を以下に示します：
 
@@ -595,9 +595,9 @@ COPY ./app /app/app
 
 おそらく、**Kubernetes**（または他のもの）を使用していて、すでにクラスタレベルで複数の**コンテナ**で**レプリケーション**を設定している場合は、この公式ベースイメージ（または他の類似のもの）は**使用すべきではありません**。
 
-そのような場合は、上記のように**ゼロから**イメージを構築する方がよいでしょう： [FastAPI用のDockerイメージをビルドする](#fastapi用のdockerイメージをビルドする) を参照してください。
+そのような場合は、上記のように**ゼロから**イメージを構築する方がよいでしょう： [FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi) を参照してください。
 
-このイメージは、主に上記の[複数のプロセスと特殊なケースを持つコンテナ](#複数のプロセスと特殊なケースを持つコンテナ)で説明したような特殊なケースで役に立ちます。
+このイメージは、主に上記の[複数のプロセスと特殊なケースを持つコンテナ（Containers with Multiple Processes and Special Cases）](#containers-with-multiple-processes-and-special-cases)で説明したような特殊なケースで役に立ちます。
 
 例えば、アプリケーションが**シンプル**で、CPUに応じたデフォルトのプロセス数を設定すればうまくいく場合や、クラスタレベルでレプリケーションを手動で設定する手間を省きたい場合、アプリで複数のコンテナを実行しない場合などです。
 
@@ -610,7 +610,7 @@ COPY ./app /app/app
 例えば以下のリストの方法です:
 
 * 単一サーバーの**Docker Compose**
-* Kubernetes**クラスタ
+* **Kubernetes**クラスタ
 * Docker Swarmモードのクラスター
 * Nomadのような別のツール
 * コンテナ・イメージをデプロイするクラウド・サービス
