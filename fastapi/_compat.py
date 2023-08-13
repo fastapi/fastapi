@@ -166,7 +166,6 @@ if PYDANTIC_V2:
         def required(self, value):
             self._required = value
 
-
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
     ) -> Any:
@@ -413,8 +412,7 @@ else:
         use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_errors = ValidationError(  # type: ignore[call-arg]
-                ).errors()
+                new_errors = ValidationError().errors()  # type: ignore[call-arg]
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
                 use_errors.extend(_normalize_errors(error))

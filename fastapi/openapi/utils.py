@@ -165,7 +165,6 @@ def generate_operation_id(
     )
     if route.operation_id:
         return route.operation_id
-    path: str = route.path_format
 
 
 def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
