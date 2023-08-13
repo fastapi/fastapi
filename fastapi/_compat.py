@@ -154,6 +154,19 @@ if PYDANTIC_V2:
             # ModelField to its JSON Schema.
             return id(self)
 
+        @default.setter
+        def default(self, value):
+            self._default = value
+
+        @alias.setter
+        def alias(self, value):
+            self._alias = value
+
+        @required.setter
+        def required(self, value):
+            self._required = value
+
+
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
     ) -> Any:
@@ -401,7 +414,6 @@ else:
         for error in errors:
             if isinstance(error, ErrorWrapper):
                 new_errors = ValidationError(  # type: ignore[call-arg]
-                    errors=[error], model=RequestErrorModel
                 ).errors()
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
@@ -411,12 +423,12 @@ else:
         return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
-        model.update_forward_refs()
+        model.model_rebuild()
 
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        return model.model_dump(**kwargs)
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]
@@ -486,7 +498,7 @@ else:
     ) -> Type[BaseModel]:
         BodyModel = create_model(model_name)
         for f in fields:
-            BodyModel.__fields__[f.name] = f  # type: ignore[index]
+            BodyModel.model_fields[f.name] = f  # type: ignore[index]
         return BodyModel
 
 
