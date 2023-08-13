@@ -110,7 +110,11 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
+<<<<<<< HEAD
             values: Dict[str, Any] = {},  # noqa: B006
+=======
+            values=None,  # noqa: B006
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
@@ -153,6 +157,19 @@ if PYDANTIC_V2:
             # Each ModelField is unique for our purposes, to allow making a dict from
             # ModelField to its JSON Schema.
             return id(self)
+
+        @default.setter
+        def default(self, value):
+            self._default = value
+
+        @alias.setter
+        def alias(self, value):
+            self._alias = value
+
+        @required.setter
+        def required(self, value):
+            self._required = value
+
 
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
@@ -400,9 +417,7 @@ else:
         use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_errors = ValidationError(  # type: ignore[call-arg]
-                    errors=[error], model=RequestErrorModel
-                ).errors()
+                new_errors = ValidationError().errors()  # type: ignore[call-arg]
                 use_errors.extend(new_errors)
             elif isinstance(error, list):
                 use_errors.extend(_normalize_errors(error))
@@ -411,12 +426,12 @@ else:
         return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
-        model.update_forward_refs()
+        model.model_rebuild()
 
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        return model.model_dump(**kwargs)
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]
@@ -486,7 +501,7 @@ else:
     ) -> Type[BaseModel]:
         BodyModel = create_model(model_name)
         for f in fields:
-            BodyModel.__fields__[f.name] = f  # type: ignore[index]
+            BodyModel.model_fields[f.name] = f  # type: ignore[index]
         return BodyModel
 
 

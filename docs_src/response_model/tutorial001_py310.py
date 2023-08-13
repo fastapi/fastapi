@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from typing import Any
+=======
+from typing import Any, Optional
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
 
 from fastapi import FastAPI
 from pydantic import BaseModel

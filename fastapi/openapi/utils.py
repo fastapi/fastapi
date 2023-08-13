@@ -25,7 +25,6 @@ from fastapi.responses import Response
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
-    generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
 from starlette.responses import JSONResponse
@@ -166,8 +165,6 @@ def generate_operation_id(
     )
     if route.operation_id:
         return route.operation_id
-    path: str = route.path_format
-    return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
 def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:

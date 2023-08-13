@@ -169,7 +169,13 @@ def response_model_model1_annotation_model2_return_invalid_model() -> Item:
     "/response_model_model1-annotation_model2-return_dict_with_extra_data",
     response_model=User,
 )
+<<<<<<< HEAD
 def response_model_model1_annotation_model2_return_dict_with_extra_data() -> Item:
+=======
+def response_model_model1_annotation_model2_return_dict_with_extra_data() -> (
+    dict[str, str]
+):
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
     return {"name": "John", "surname": "Doe", "password_hash": "secret"}
 
 

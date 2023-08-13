@@ -1,4 +1,8 @@
 from datetime import datetime
+<<<<<<< HEAD
+=======
+from typing import Optional
+>>>>>>> a1c1fa61f06a55ee077e7fa1c980d1eceb698091
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
