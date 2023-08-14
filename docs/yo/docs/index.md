@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>Ìlànà wẹẹbu FastAPI, iṣẹ́ gíga, ó rọrùn láti kọ̀, o yára láti kóòdù, tí ó ṣetán fún iṣelọpọ ní lílọ</em>
+    <em>Ìlànà wẹ́ẹ́bù FastAPI, iṣẹ́ gíga, ó rọrùn láti kọ̀, o yára láti kóòdù, ó sì ṣetán fún iṣelọpọ ní lílo</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -27,20 +27,20 @@
 
 ---
 
-FastAPI jẹ igbalode, tí ó yára (iṣẹ-giga), ilana wẹẹbu fun kikọ àwọn API pẹlu Python 3.7+ èyí tí ó da lori awọn ìtọ́kasí àmì irúfẹ́ Python.
+FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́bù fún kikọ àwọn API pẹ̀lú Python 3.7+ èyí tí ó da lori àwọn ìtọ́kasí àmì irúfẹ́ Python.
 
-Àwọn ẹya pataki ni:
+Àwọn ẹya pàtàkì ni:
 
-* **Ó yára**: Iṣẹ tí ó ga pupọ, tí ó wa ni ibamu pẹlu **NodeJS** ati **Go** (ọpẹ si Starlette ati Pydantic). [Ọkan ninu awọn ilana Python ti o yára julọ ti o wa](#performance).
-* **Ó yára láti kóòdù**: O mu iyara pọ si lati kọ awọn ẹya tuntun kóòdù nipasẹ "Igba ìdá ọgọ́rùn-ún" (i.e. 200%) si "ọ̀ọ́dúrún ìdá ọgọ́rùn-ún" (i.e. 300%).
+* **Ó yára**: Iṣẹ tí ó ga púpọ̀, tí ó wa ni ibamu pẹ̀lú **NodeJS** àti **Go** (ọpẹ si Starlette àti Pydantic). [Ọkan nínú àwọn ìlànà Python ti o yára jùlọ ti o wa](#performance).
+* **Ó yára láti kóòdù**: O mu iyara pọ si láti kọ àwọn ẹya tuntun kóòdù nipasẹ "Igba ìdá ọgọ́rùn-ún" (i.e. 200%) si "ọ̀ọ́dúrún ìdá ọgọ́rùn-ún" (i.e. 300%).
 * **Àìtọ́ kékeré**: O n din aṣiṣe ku bi ọgbon ìdá ọgọ́rùn-ún (i.e. 40%) ti eda eniyan (oṣiṣẹ kóòdù) fa. *
-* **Ọgbọ́n àti ìmọ̀**: Atilẹyin olootu nla. <abbr title="a tun le pe ni olùrànlọ́wọ́ alaifiọwọkan alaifọwọyi, olùpari iṣẹ-ṣiṣe, Oloye">Ipari</abbr> nibi gbogbo. Àkókò díẹ̀ nipa wíwá ibi tí ìṣòro kóòdù wà.
-* **Irọrun**: A kọ kí ó le rọrun lati lo ati lati kọ ẹkọ nínú rè. Ó máa fún ọ ní àkókò díẹ̀ látı ka àkọsílẹ.
-* **Ó kúkurú ní kikọ**: Ó dín àtúnkọ ati àtúntò kóòdù kù. Ìkéde àṣàyàn kọ̀ọ̀kan nínú rẹ̀ ní ọ̀pọ̀lọpọ̀ àwọn ìlò. O ṣe iranlọwọ láti má ṣe ní ọ̀pọ̀lọpọ̀ àṣìṣe.
+* **Ọgbọ́n àti ìmọ̀**: Atilẹyin olootu nla. <abbr title="a tun le pe ni olùrànlọ́wọ́ alaifiọwọkan alaifọwọyi, olùpari iṣẹ-ṣiṣe, Oloye">Ìparí</abbr> nibi gbogbo. Àkókò díẹ̀ nipa wíwá ibi tí ìṣòro kóòdù wà.
+* **Irọrun**: A kọ kí ó le rọrun láti lo àti láti kọ ẹkọ nínú rè. Ó máa fún ọ ní àkókò díẹ̀ látı ka àkọsílẹ.
+* **Ó kúkurú ní kikọ**: Ó dín àtúnkọ àti àtúntò kóòdù kù. Ìkéde àṣàyàn kọ̀ọ̀kan nínú rẹ̀ ní ọ̀pọ̀lọpọ̀ àwọn ìlò. O ṣe iranlọwọ láti má ṣe ní ọ̀pọ̀lọpọ̀ àṣìṣe.
 * **Ó lágbára**: Ó ń ṣe àgbéjáde kóòdù tí ó ṣetán fún ìṣelọ́pọ̀. Pẹ̀lú àkọsílẹ̀ tí ó máa ṣàlàyé ara rẹ̀ fún ẹ ní ìbáṣepọ̀ aládàáṣiṣẹ́ pẹ̀lú rè.
-* **Ajohunše/Ìtọ́kasí**: Ó da lori (ati ibamu ni kikun pẹlu) awọn ìmọ ajohunše/ìtọ́kasí fun awọn API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eyi tí a mọ tẹlẹ si Swagger) àti <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Ajohunše/Ìtọ́kasí**: Ó da lori (àti ibamu ni kikun pẹ̀lú) àwọn ìmọ ajohunše/ìtọ́kasí fún àwọn API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (èyí tí a mọ tẹlẹ si Swagger) àti <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* iṣiro yi da lori awọn idanwo tí ẹgbẹ idagbasoke FastAPI ṣe, nigbati won kọ awọn ohun elo iṣelọpọ kóòdù pẹlu rẹ.</small>
+<small>* iṣiro yi da lori àwọn idanwo tí ẹgbẹ ìdàgbàsókè FastAPI ṣe, nígbàtí wọn kọ àwọn ohun elo iṣelọpọ kóòdù pẹ̀lú rẹ.</small>
 
 ## Àwọn onígbọ̀wọ́
 
@@ -61,19 +61,19 @@ FastAPI jẹ igbalode, tí ó yára (iṣẹ-giga), ilana wẹẹbu fun kikọ �
 
 ## Àwọn ero àti èsì
 
-"_[...] Mò ń lo **FastAPI** púpọ̀ ní lẹ́nu àìpẹ́ yìí. [...] Mo n gbero láti lo o pẹ̀lú awọn ẹgbẹ mi fun gbogbo iṣẹ **ML wa ni Microsoft**. Diẹ ninu wọn ni afikun ti ifilelẹ awọn ẹya ara ti ọja **Windows** wa pẹ̀lú awọn ti **Office**._"
+"_[...] Mò ń lo **FastAPI** púpọ̀ ní lẹ́nu àìpẹ́ yìí. [...] Mo n gbero láti lo o pẹ̀lú àwọn ẹgbẹ mi fún gbogbo iṣẹ **ML wa ni Microsoft**. Diẹ nínú wọn ni afikun ti ifilelẹ àwọn ẹya ara ti ọja **Windows** wa pẹ̀lú àwọn ti **Office**._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_A gba àwọn ohun èlò ìwé afọwọkọ **FastAPI** tí kò yí padà láti ṣẹ̀dá olùpín **REST** tí a lè béèrè lọ́wọ́ rẹ̀ láti gba **àsọtẹ́lẹ̀**. [fun Ludwig]_"
+"_A gba àwọn ohun èlò ìwé afọwọkọ **FastAPI** tí kò yí padà láti ṣẹ̀dá olùpín **REST** tí a lè béèrè lọ́wọ́ rẹ̀ láti gba **àsọtẹ́lẹ̀**. [fún Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_**Netflix** ni inudidun lati kede itusilẹ orisun kóòdù ti ilana iṣọkan **iṣakoso Ìṣòro** wa: **Ìfiránṣẹ́**! [a kọ pẹlu **FastAPI**]_"
+"_**Netflix** ni inudidun láti kede itusilẹ orisun kóòdù ti ìlànà iṣọkan **iṣakoso Ìṣòro** wa: **Ìfiránṣẹ́**! [a kọ pẹ̀lú **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
@@ -91,15 +91,15 @@ FastAPI jẹ igbalode, tí ó yára (iṣẹ-giga), ilana wẹẹbu fun kikọ �
 
 ---
 
-"_Ti o ba n wa lati kọ ọkan **ilana igbalode** fun kikọ awọn REST API, ṣayẹwo **FastAPI** [...] Ó yára, ó rọrùn láti lò, ó sì rọrùn láti kọ́[...]_"
+"_Ti o ba n wa láti kọ ọkan **ìlànà igbalode** fún kikọ àwọn REST API, ṣayẹwo **FastAPI** [...] Ó yára, ó rọrùn láti lò, ó sì rọrùn láti kọ́[...]_"
 
-"_A ti yipada si **FastAPI** fun **APIs** wa [...] Mo lérò pé wà á fẹ́ràn rẹ̀ [...]_"
+"_A ti yipada si **FastAPI** fún **APIs** wa [...] Mo lérò pé wà á fẹ́ràn rẹ̀ [...]_"
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_Ti ẹnikẹni ba n wa láti kọ iṣelọpọ API pẹ̀lú Python, èmi yóò ṣe'dúró fún **FastAPI**. Ó jẹ́ ohun tí **àgbékalẹ̀ rẹ̀ lẹ́wà**, **ó rọrùn láti lò** àti wipe ó ni **ìwọ̀n gíga**, o tí dí **bọtini paati** ninu alakọkọ API idagbasoke kikọ fun wa, ati pe o ni ipa lori adaṣiṣẹ ati awọn iṣẹ gẹ́gẹ́ bíi Onímọ̀-ẹ̀rọ TAC tí órí Íńtánẹ́ẹ̀tì_"
+"_Ti ẹnikẹni ba n wa láti kọ iṣelọpọ API pẹ̀lú Python, èmi yóò ṣe'dúró fún **FastAPI**. Ó jẹ́ ohun tí **àgbékalẹ̀ rẹ̀ lẹ́wà**, **ó rọrùn láti lò** àti wipe ó ni **ìwọ̀n gíga**, o tí dí **bọtini paati** nínú alakọkọ API ìdàgbàsókè kikọ fún wa, àti pe o ni ipa lori adaṣiṣẹ àti àwọn iṣẹ gẹ́gẹ́ bíi Onímọ̀-ẹ̀rọ TAC tí órí Íńtánẹ́ẹ̀tì_"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
@@ -133,7 +133,7 @@ $ pip install fastapi
 ```
 
 </div>
-Iwọ yóò tún nílò olupin ASGI, fun iṣelọpọ bii <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> tabi <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Iwọ yóò tún nílò olupin ASGI, fún iṣelọpọ bii <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> tabi <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -240,10 +240,10 @@ INFO:     Application startup complete.
 
 O tí ṣẹ̀dá API èyí tí yóò:
 
-* Gbà àwọn ìbéèrè HTTP ni àwọn _ipa ọ̀nà_ `/` ati `/items/{item_id}`.
+* Gbà àwọn ìbéèrè HTTP ni àwọn _ipa ọ̀nà_ `/` àti `/items/{item_id}`.
 * Èyí tí àwọn _ipa ọ̀nà_ (i.e. _paths_) méjèèjì gbà àwọn <em>iṣẹ</em> `GET` (a tun mọ si _àwọn ọna_ HTTP).
-* Èyí tí _ipa ọ̀nà_  (i.e. _paths_) `/items/{item_id}` ní _awọn ohun-ini ipa ọ̀nà_ tí ó yẹ kí ó jẹ́ `int` i.e. `ÒǸKÀ`.
-* Èyí tí _ipa ọ̀nà_  (i.e. _paths_) `/items/{item_id}` ní àṣàyàn `str` _awọn ohun-ini_ (i.e. _query parameter_) `q`.
+* Èyí tí _ipa ọ̀nà_  (i.e. _paths_) `/items/{item_id}` ní _àwọn ohun-ini ipa ọ̀nà_ tí ó yẹ kí ó jẹ́ `int` i.e. `ÒǸKÀ`.
+* Èyí tí _ipa ọ̀nà_  (i.e. _paths_) `/items/{item_id}` ní àṣàyàn `str` _àwọn ohun-ini_ (i.e. _query parameter_) `q`.
 
 ### Ìbáṣepọ̀ àkọsílẹ̀ API
 
@@ -265,7 +265,7 @@ Wà á rí àwọn àkọsílẹ̀ aládàáṣiṣẹ́ mìíràn (tí a pese n
 
 Ní báyìí ṣe àtúnṣe fáìlì `main.py` láti gba kókó èsì láti inú ìbéèrè `PUT`.
 
-Ní báyìí, ṣe ìkéde kókó èsì API nínú kóòdù rẹ nipa lilo àwọn ìtọ́kasí àmì irúfẹ́ Python, ọpẹ́ pàtàkìsi sí Pydantic.
+Ní báyìí, ṣe ìkéde kókó èsì API nínú kóòdù rẹ nipa lílo àwọn ìtọ́kasí àmì irúfẹ́ Python, ọpẹ́ pàtàkìsi sí Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -311,7 +311,7 @@ Ní báyìí, lọ sí <a href="http://127.0.0.1:8000/docs" class="external-link
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Lẹhinna tẹ bọtini "Ṣiṣe" i.e. "Execute", olùmúlò (i.e. user interface) yóò sọrọ pẹlu API rẹ, yóò ṣe afiranṣẹ awọn èròjà, paapaa julo yoo gba awọn àbájáde yóò si ṣe ṣafihan wọn loju ìbòjú:
+* Lẹhinna tẹ bọtini "Ṣiṣe" i.e. "Execute", olùmúlò (i.e. user interface) yóò sọrọ pẹ̀lú API rẹ, yóò ṣe afiranṣẹ àwọn èròjà, pàápàá jùlọ yóò gba àwọn àbájáde yóò si ṣafihan wọn loju ìbòjú:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -325,11 +325,11 @@ Ní báyìí, lọ sí <a href="http://127.0.0.1:8000/redoc" class="external-lin
 
 ### Àtúnyẹ̀wò
 
-Ni akopọ, iwọ yoo kede ni **kete** awọn iru èròjà/pàrámítà, kókó èsì API, abbl (i.e. ati bẹbẹ lọ), bi àwọn èròjà iṣẹ.
+Ni akopọ, ìwọ yóò kéde ni **kete** àwọn iru èròjà/pàrámítà, kókó èsì API, abbl (i.e. àti bẹbẹ lọ), bi àwọn èròjà iṣẹ.
 
 O ṣe ìyẹn pẹ̀lú irúfẹ́ àmì ìtọ́kasí ìgbàlódé Python.
 
-O ò nílò láti kọ́ síńtáàsì tuntun, ìlànà tàbí ọ̀wọ́ kíláàsì kan pàtó, abbl (i.e. ati bẹbẹ lọ).
+O ò nílò láti kọ́ síńtáàsì tuntun, ìlànà tàbí ọ̀wọ́ kíláàsì kan pàtó, abbl (i.e. àti bẹbẹ lọ).
 
 Ìtọ́kasí **Python 3.7+**
 
@@ -351,7 +351,7 @@ item: Item
     * Pipari.
     * Àyẹ̀wò irúfẹ́ àmì ìtọ́kasí.
 * Ìfọwọ́sí àkójọf'áyẹ̀wò (i.e. data):
-    * Aṣiṣe alaifọwọyi/aládàáṣiṣẹ́ ati aṣiṣe ti ó hàn kedere nigbati awọn àkójọf'áyẹ̀wò (i.e. data) kò wulo tabi tí kò fẹsẹ̀ múlẹ̀.
+    * Aṣiṣe alaifọwọyi/aládàáṣiṣẹ́ àti aṣiṣe ti ó hàn kedere nígbàtí àwọn àkójọf'áyẹ̀wò (i.e. data) kò wulo tabi tí kò fẹsẹ̀ múlẹ̀.
     * Ìfọwọ́sí fún ohun elo JSON tí ó jìn gan-an.
 * <abbr title="also known as: serialization, parsing, marshalling">Ìyípadà</abbr> tí input àkójọf'áyẹ̀wò: tí ó wà láti nẹtiwọọki si àkójọf'áyẹ̀wò àti irúfẹ́ àmì ìtọ́kasí Python. Ó ń ka láti:
     * JSON.
@@ -420,7 +420,7 @@ Gbiyanju láti yí ìlà padà pẹ̀lú:
 
 Fún àpẹẹrẹ pípé síi pẹ̀lú àwọn àbùdá mìíràn, wo <a href="https://fastapi.tiangolo.com/tutorial/">Ìdánilẹ́kọ̀ọ́ - Ìtọ́sọ́nà Olùmúlò</a>.
 
-**Itaniji gẹ́gẹ́ bí isọ'ye**: ìdánilẹ́kọ̀ọ́ - itọsọna olùmúlò pẹlu:
+**Itaniji gẹ́gẹ́ bí isọ'ye**: ìdánilẹ́kọ̀ọ́ - itọsọna olùmúlò pẹ̀lú:
 
 * Ìkéde àṣàyàn **pàrámítà** láti àwọn oriṣiriṣi ibòmíràn gẹ́gẹ́ bíi: àwọn **àkọlé èsì API**, **kúkì**, **ààyè fọọmu**, àti **fáìlì**.
 * Bíi ó ṣe lé ṣètò **àwọn ìdíwọ́ ìfọwọ́sí** bí `maximum_length` tàbí `regex`.
