@@ -69,7 +69,7 @@ class Param(FieldInfo):
         self.deprecated = deprecated
         if example is not _Unset:
             warnings.warn(
-                "`example` has been depreacated, please use `examples` instead",
+                "`example` has been deprecated, please use `examples` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
@@ -98,7 +98,7 @@ class Param(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
@@ -512,7 +512,7 @@ class Body(FieldInfo):
         self.deprecated = deprecated
         if example is not _Unset:
             warnings.warn(
-                "`example` has been depreacated, please use `examples` instead",
+                "`example` has been deprecated, please use `examples` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )

@@ -9,6 +9,10 @@ jobs:
     if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - uses: docker://tiangolo/label-approved:0.0.2
       with:
         token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
