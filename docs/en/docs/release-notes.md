@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Update sponsors, add Speakeasy. PR [#10098](https://github.com/tiangolo/fastapi/pull/10098) by [@tiangolo](https://github.com/tiangolo).
 ## 0.101.1
 
 ### Fixes
