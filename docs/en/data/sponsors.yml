@@ -33,6 +33,9 @@ silver:
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
+  - url: https://speakeasyapi.dev?utm_source=fastapi+repo&utm_medium=github+sponsorship
+    title: SDKs for your API | Speakeasy
+    img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
