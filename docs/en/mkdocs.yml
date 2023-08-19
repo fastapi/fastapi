@@ -159,7 +159,7 @@ nav:
   - deployment/https.md
   - deployment/manually.md
   - deployment/concepts.md
-  - deployment/deta.md
+  - deployment/cloud.md
   - deployment/server-workers.md
   - deployment/docker.md
 - project-generation.md
