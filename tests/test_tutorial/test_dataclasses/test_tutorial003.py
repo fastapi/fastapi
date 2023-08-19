@@ -79,7 +79,9 @@ def test_openapi_schema():
                                 "schema": {
                                     "title": "Items",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/ItemInput"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Item-Input"
+                                    },
                                 }
                             }
                         },
@@ -141,7 +143,7 @@ def test_openapi_schema():
                         "items": {
                             "title": "Items",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/ItemOutput"},
+                            "items": {"$ref": "#/components/schemas/Item-Output"},
                         },
                     },
                 },
@@ -156,7 +158,7 @@ def test_openapi_schema():
                         }
                     },
                 },
-                "ItemInput": {
+                "Item-Input": {
                     "title": "Item",
                     "required": ["name"],
                     "type": "object",
@@ -168,7 +170,7 @@ def test_openapi_schema():
                         },
                     },
                 },
-                "ItemOutput": {
+                "Item-Output": {
                     "title": "Item",
                     "required": ["name", "description"],
                     "type": "object",
