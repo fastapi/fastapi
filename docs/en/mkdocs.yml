@@ -45,6 +45,7 @@ plugins:
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
+      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
 nav:
 - FastAPI: index.md
 - Languages:
@@ -134,7 +135,6 @@ nav:
   - advanced/using-request-directly.md
   - advanced/dataclasses.md
   - advanced/middleware.md
-  - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
   - advanced/nosql-databases.md
   - advanced/sub-applications.md
@@ -166,6 +166,10 @@ nav:
   - deployment/cloud.md
   - deployment/server-workers.md
   - deployment/docker.md
+- How To - Recipes:
+  - how-to/index.md
+  - how-to/general.md
+  - how-to/sql-databases-peewee.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
