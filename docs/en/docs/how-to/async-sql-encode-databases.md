@@ -1,4 +1,4 @@
-# Async SQL (Relational) Databases
+# Async SQL (Relational) Databases with Encode/Databases
 
 !!! info
     These docs are about to be updated. 🎉
