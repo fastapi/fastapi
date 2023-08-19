@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.extending_openapi.tutorial003 import app
+from docs_src.configure_swagger_ui.tutorial002 import app
 
 client = TestClient(app)
 
@@ -9,8 +9,11 @@ def test_swagger_ui():
     response = client.get("/docs")
     assert response.status_code == 200, response.text
     assert (
-        '"syntaxHighlight": false' in response.text
-    ), "syntaxHighlight should be included and converted to JSON"
+        '"syntaxHighlight": false' not in response.text
+    ), "not used parameters should not be included"
+    assert (
+        '"syntaxHighlight.theme": "obsidian"' in response.text
+    ), "parameters with middle dots should be included in a JSON compatible way"
     assert (
         '"dom_id": "#swagger-ui"' in response.text
     ), "default configs should be preserved"

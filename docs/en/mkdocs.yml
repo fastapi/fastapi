@@ -45,6 +45,13 @@ plugins:
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
+      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
+      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
+      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
+      advanced/graphql.md: how-to/graphql.md
+      advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
+      advanced/conditional-openapi.md: how-to/conditional-openapi.md
+      advanced/extending-openapi.md: how-to/extending-openapi.md
 nav:
 - FastAPI: index.md
 - Languages:
@@ -134,24 +141,17 @@ nav:
   - advanced/using-request-directly.md
   - advanced/dataclasses.md
   - advanced/middleware.md
-  - advanced/sql-databases-peewee.md
-  - advanced/async-sql-databases.md
-  - advanced/nosql-databases.md
   - advanced/sub-applications.md
   - advanced/behind-a-proxy.md
   - advanced/templates.md
-  - advanced/graphql.md
   - advanced/websockets.md
   - advanced/events.md
-  - advanced/custom-request-and-route.md
   - advanced/testing-websockets.md
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
   - advanced/async-tests.md
   - advanced/settings.md
-  - advanced/conditional-openapi.md
-  - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/openapi-webhooks.md
   - advanced/wsgi.md
@@ -166,6 +166,18 @@ nav:
   - deployment/cloud.md
   - deployment/server-workers.md
   - deployment/docker.md
+- How To - Recipes:
+  - how-to/index.md
+  - how-to/general.md
+  - how-to/sql-databases-peewee.md
+  - how-to/async-sql-encode-databases.md
+  - how-to/nosql-databases-couchbase.md
+  - how-to/graphql.md
+  - how-to/custom-request-and-route.md
+  - how-to/conditional-openapi.md
+  - how-to/extending-openapi.md
+  - how-to/custom-docs-ui-assets.md
+  - how-to/configure-swagger-ui.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
