@@ -42,6 +42,9 @@ plugins:
   search: null
   markdownextradata:
     data: ../en/data
+  redirects:
+    redirect_maps:
+      deployment/deta.md: deployment/cloud.md
 nav:
 - FastAPI: index.md
 - Languages:
@@ -60,6 +63,7 @@ nav:
   - ru: /ru/
   - tr: /tr/
   - uk: /uk/
+  - ur: /ur/
   - vi: /vi/
   - zh: /zh/
 - features.md
@@ -178,9 +182,9 @@ markdown_extensions:
     guess_lang: false
   mdx_include:
     base_path: docs
-  admonition:
-  codehilite:
-  extra:
+  admonition: null
+  codehilite: null
+  extra: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
@@ -188,8 +192,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
-  attr_list:
-  md_in_html:
+  attr_list: null
+  md_in_html: null
 extra:
   analytics:
     provider: google
@@ -240,6 +244,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk
+  - link: /ur/
+    name: ur
   - link: /vi/
     name: vi - Tiếng Việt
   - link: /zh/
