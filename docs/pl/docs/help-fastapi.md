@@ -140,7 +140,7 @@ Możesz <a href="https://github.com/tiangolo/fastapi/discussions/new?category=qu
 
 **Uwaga**: jeśli to zrobisz, poproszę Cię również o pomoc innym. 😉
 
-## Przeglądaj Pull Requests
+## Przeglądaj Pull Requesty
 
 Możesz pomóc mi w przeglądaniu żądań ściągnięcia od innych.
 
