@@ -1,4 +1,4 @@
-# NoSQL (Distributed / Big Data) Databases
+# NoSQL (Distributed / Big Data) Databases with Couchbase
 
 !!! info
     These docs are about to be updated. 🎉

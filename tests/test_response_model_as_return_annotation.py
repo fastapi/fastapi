@@ -277,13 +277,15 @@ def test_response_model_no_annotation_return_exact_dict():
 
 
 def test_response_model_no_annotation_return_invalid_dict():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/response_model-no_annotation-return_invalid_dict")
+    assert "missing" in str(excinfo.value)
 
 
 def test_response_model_no_annotation_return_invalid_model():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/response_model-no_annotation-return_invalid_model")
+    assert "missing" in str(excinfo.value)
 
 
 def test_response_model_no_annotation_return_dict_with_extra_data():
@@ -313,13 +315,15 @@ def test_no_response_model_annotation_return_exact_dict():
 
 
 def test_no_response_model_annotation_return_invalid_dict():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/no_response_model-annotation-return_invalid_dict")
+    assert "missing" in str(excinfo.value)
 
 
 def test_no_response_model_annotation_return_invalid_model():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/no_response_model-annotation-return_invalid_model")
+    assert "missing" in str(excinfo.value)
 
 
 def test_no_response_model_annotation_return_dict_with_extra_data():
@@ -395,13 +399,15 @@ def test_response_model_model1_annotation_model2_return_exact_dict():
 
 
 def test_response_model_model1_annotation_model2_return_invalid_dict():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/response_model_model1-annotation_model2-return_invalid_dict")
+    assert "missing" in str(excinfo.value)
 
 
 def test_response_model_model1_annotation_model2_return_invalid_model():
-    with pytest.raises(ResponseValidationError):
+    with pytest.raises(ResponseValidationError) as excinfo:
         client.get("/response_model_model1-annotation_model2-return_invalid_model")
+    assert "missing" in str(excinfo.value)
 
 
 def test_response_model_model1_annotation_model2_return_dict_with_extra_data():

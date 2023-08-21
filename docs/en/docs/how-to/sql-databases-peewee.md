@@ -12,6 +12,8 @@
 
     Because Pewee doesn't play well with anything async and there are better alternatives, I won't update these docs for Pydantic v2, they are kept for now only for historical purposes.
 
+    The examples here are no longer tested in CI (as they were before).
+
 If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
 
 If you already have a code base that uses <a href="https://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.

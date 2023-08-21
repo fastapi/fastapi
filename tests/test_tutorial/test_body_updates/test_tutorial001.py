@@ -53,7 +53,7 @@ def test_openapi_schema(client: TestClient):
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/ItemOutput"
+                                        "$ref": "#/components/schemas/Item-Output"
                                     }
                                 }
                             },
@@ -87,7 +87,7 @@ def test_openapi_schema(client: TestClient):
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/ItemOutput"
+                                        "$ref": "#/components/schemas/Item-Output"
                                     }
                                 }
                             },
@@ -116,7 +116,7 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/ItemInput"}
+                                "schema": {"$ref": "#/components/schemas/Item-Input"}
                             }
                         },
                         "required": True,
@@ -126,7 +126,7 @@ def test_openapi_schema(client: TestClient):
         },
         "components": {
             "schemas": {
-                "ItemInput": {
+                "Item-Input": {
                     "title": "Item",
                     "type": "object",
                     "properties": {
@@ -151,7 +151,7 @@ def test_openapi_schema(client: TestClient):
                         },
                     },
                 },
-                "ItemOutput": {
+                "Item-Output": {
                     "title": "Item",
                     "type": "object",
                     "required": ["name", "description", "price", "tax", "tags"],
