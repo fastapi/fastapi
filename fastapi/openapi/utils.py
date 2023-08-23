@@ -166,7 +166,7 @@ def get_openapi_operation_request_body(
         examples = {k: v for k, v in examples.items() if "value" in v}
         body_schema["examples"] = [dct["value"] for dct in examples.values()]
         request_media_content["examples"] = examples
-    
+
     elif isinstance(examples, list):
         body_schema["examples"] = examples
         request_media_content["examples"] = {}
