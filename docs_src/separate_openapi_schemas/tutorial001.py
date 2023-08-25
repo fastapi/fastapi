@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: Union[str, None] = None
 
 
 app = FastAPI()
