@@ -3,3 +3,5 @@
 -r requirements-docs.txt
 uvicorn[standard] >=0.12.0,<0.23.0
 pre-commit >=2.17.0,<4.0.0
+# For generating screenshots
+playwright
