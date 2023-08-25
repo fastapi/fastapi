@@ -1,17 +1,24 @@
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.separate_openapi_schemas.tutorial002 import app
-
-client = TestClient(app)
+from ...utils import needs_pydanticv2
 
 
-def test_create_item():
+@pytest.fixture(name="client")
+def get_client() -> TestClient:
+    from docs_src.separate_openapi_schemas.tutorial002 import app
+
+    client = TestClient(app)
+    return client
+
+
+def test_create_item(client: TestClient) -> None:
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200, response.text
     assert response.json() == {"name": "Foo", "description": None}
 
 
-def test_read_items():
+def test_read_items(client: TestClient) -> None:
     response = client.get("/items/")
     assert response.status_code == 200, response.text
     assert response.json() == [
@@ -23,7 +30,8 @@ def test_read_items():
     ]
 
 
-def test_openapi_schema():
+@needs_pydanticv2
+def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

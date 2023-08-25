@@ -1,23 +1,25 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
+from ...utils import needs_py39, needs_pydanticv2
 
 
 @pytest.fixture(name="client")
 def get_client() -> TestClient:
-    from docs_src.separate_openapi_schemas.tutorial001_py39 import app
+    from docs_src.separate_openapi_schemas.tutorial002_py39 import app
 
     client = TestClient(app)
     return client
 
 
+@needs_py39
 def test_create_item(client: TestClient) -> None:
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200, response.text
     assert response.json() == {"name": "Foo", "description": None}
 
 
+@needs_py39
 def test_read_items(client: TestClient) -> None:
     response = client.get("/items/")
     assert response.status_code == 200, response.text
@@ -30,6 +32,7 @@ def test_read_items(client: TestClient) -> None:
     ]
 
 
+@needs_py39
 @needs_pydanticv2
 def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
@@ -48,9 +51,7 @@ def test_openapi_schema(client: TestClient) -> None:
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Item-Output"
-                                        },
+                                        "items": {"$ref": "#/components/schemas/Item"},
                                         "type": "array",
                                         "title": "Response Read Items Items  Get",
                                     }
@@ -65,7 +66,7 @@ def test_openapi_schema(client: TestClient) -> None:
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -102,7 +103,7 @@ def test_openapi_schema(client: TestClient) -> None:
                     "type": "object",
                     "title": "HTTPValidationError",
                 },
-                "Item-Input": {
+                "Item": {
                     "properties": {
                         "name": {"type": "string", "title": "Name"},
                         "description": {
@@ -112,18 +113,6 @@ def test_openapi_schema(client: TestClient) -> None:
                     },
                     "type": "object",
                     "required": ["name"],
-                    "title": "Item",
-                },
-                "Item-Output": {
-                    "properties": {
-                        "name": {"type": "string", "title": "Name"},
-                        "description": {
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                            "title": "Description",
-                        },
-                    },
-                    "type": "object",
-                    "required": ["name", "description"],
                     "title": "Item",
                 },
                 "ValidationError": {
