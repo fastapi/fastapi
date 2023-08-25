@@ -183,7 +183,9 @@ if PYDANTIC_V2:
         ],
         separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
-        override_mode = None if separate_input_output_schemas else "validation"
+        override_mode: Union[Literal["validation"], None] = (
+            None if separate_input_output_schemas else "validation"
+        )
         # This expects that GenerateJsonSchema was already used to generate the definitions
         json_schema = field_mapping[(field, override_mode or field.mode)]
         if "$ref" not in json_schema:
@@ -209,7 +211,9 @@ if PYDANTIC_V2:
         ],
         Dict[str, Dict[str, Any]],
     ]:
-        override_mode = None if separate_input_output_schemas else "validation"
+        override_mode: Union[Literal["validation"], None] = (
+            None if separate_input_output_schemas else "validation"
+        )
         inputs = [
             (field, override_mode or field.mode, field._type_adapter.core_schema)
             for field in fields
