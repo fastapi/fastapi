@@ -176,6 +176,7 @@ nav:
   - how-to/custom-request-and-route.md
   - how-to/conditional-openapi.md
   - how-to/extending-openapi.md
+  - how-to/separate-openapi-schemas.md
   - how-to/custom-docs-ui-assets.md
   - how-to/configure-swagger-ui.md
 - project-generation.md
