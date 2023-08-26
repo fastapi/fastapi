@@ -29,7 +29,8 @@ def handle_exc_for_ws(func: _SecurityDepFunc) -> _SecurityDepFunc:
         except HTTPException as e:
             if not isinstance(request, WebSocket):
                 raise e
-            await request.accept()
+            # close before accepted with result a HTTP 403 so the exception argument is ignored
+            # ref: https://asgi.readthedocs.io/en/latest/specs/www.html#close-send-event
             raise WebSocketException(
                 code=WS_1008_POLICY_VIOLATION, reason=e.detail
             ) from None
