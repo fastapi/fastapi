@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.103.0
+
 ### Features
 
 * ✨ Add support for `openapi_examples` in all FastAPI parameters. PR [#10152](https://github.com/tiangolo/fastapi/pull/10152) by [@tiangolo](https://github.com/tiangolo).
