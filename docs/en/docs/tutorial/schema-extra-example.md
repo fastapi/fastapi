@@ -74,7 +74,7 @@ When using `Field()` with Pydantic models, you can also declare additional `exam
     {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
     ```
 
-## `examples` in OpenAPI
+## `examples` in JSON Schema - OpenAPI
 
 When using any of:
 
@@ -86,7 +86,7 @@ When using any of:
 * `Form()`
 * `File()`
 
-you can also declare a group of `examples` with additional information that will be added to **OpenAPI**.
+you can also declare a group of `examples` with additional information that will be added to their **JSON Schemas** inside of **OpenAPI**.
 
 ### `Body` with `examples`
 
@@ -174,9 +174,84 @@ You can of course also pass multiple `examples`:
     {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
     ```
 
-### Examples in the docs UI
+When you do this, the examples will be part of the internal **JSON Schema** for that body data.
 
-With `examples` added to `Body()` the `/docs` would look like:
+Nevertheless, at the <abbr title="2023-08-26">time of writing this</abbr>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
+
+### OpenAPI-specific `examples`
+
+Since before **JSON Schema** supported `examples` OpenAPI had support for a different field also called `examples`.
+
+This **OpenAPI-specific** `examples` goes in another section in the OpenAPI specification. It goes in the **details for each *path operation***, not inside each JSON Schema.
+
+And Swagger UI has supported this particular `examples` field for a while. So, you can use it to **show** different **examples in the docs UI**.
+
+The shape of this OpenAPI-specific field `examples` is a `dict` with **multiple examples** (instead of a `list`), each with extra information that will be added to **OpenAPI** too.
+
+This doesn't go inside of each JSON Schema contained in OpenAPI, this goes outside, in the *path operation* directly.
+
+### Using the `openapi_examples` Parameter
+
+You can declare the OpenAPI-specific `examples` in FastAPI with the parameter `openapi_examples` for:
+
+* `Path()`
+* `Query()`
+* `Header()`
+* `Cookie()`
+* `Body()`
+* `Form()`
+* `File()`
+
+The keys of the `dict` identify each example, and each value is another `dict`.
+
+Each specific example `dict` in the `examples` can contain:
+
+* `summary`: Short description for the example.
+* `description`: A long description that can contain Markdown text.
+* `value`: This is the actual example shown, e.g. a `dict`.
+* `externalValue`: alternative to `value`, a URL pointing to the example. Although this might not be supported by as many tools as `value`.
+
+You can use it like this:
+
+=== "Python 3.10+"
+
+    ```Python hl_lines="23-49"
+    {!> ../../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="23-49"
+    {!> ../../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="24-50"
+    {!> ../../../docs_src/schema_extra_example/tutorial005_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="19-45"
+    {!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="21-47"
+    {!> ../../../docs_src/schema_extra_example/tutorial005.py!}
+    ```
+
+### OpenAPI Examples in the Docs UI
+
+With `openapi_examples` added to `Body()` the `/docs` would look like:
 
 <img src="/img/tutorial/body-fields/image02.png">
 
@@ -210,20 +285,8 @@ OpenAPI also added `example` and `examples` fields to other parts of the specifi
     * `File()`
     * `Form()`
 
-### OpenAPI's `examples` field
-
-The shape of this field `examples` from OpenAPI is a `dict` with **multiple examples**, each with extra information that will be added to **OpenAPI** too.
-
-The keys of the `dict` identify each example, and each value is another `dict`.
-
-Each specific example `dict` in the `examples` can contain:
-
-* `summary`: Short description for the example.
-* `description`: A long description that can contain Markdown text.
-* `value`: This is the actual example shown, e.g. a `dict`.
-* `externalValue`: alternative to `value`, a URL pointing to the example. Although this might not be supported by as many tools as `value`.
-
-This applies to those other parts of the OpenAPI specification apart from JSON Schema.
+!!! info
+    This old OpenAPI-specific `examples` parameter is now `openapi_examples` since FastAPI `0.103.0`.
 
 ### JSON Schema's `examples` field
 
@@ -249,6 +312,12 @@ And that **JSON Schema** of the Pydantic model is included in the **OpenAPI** of
 In versions of FastAPI before 0.99.0 (0.99.0 and above use the newer OpenAPI 3.1.0) when you used `example` or `examples` with any of the other utilities (`Query()`, `Body()`, etc.) those examples were not added to the JSON Schema that describes that data (not even to OpenAPI's own version of JSON Schema), they were added directly to the *path operation* declaration in OpenAPI (outside the parts of OpenAPI that use JSON Schema).
 
 But now that FastAPI 0.99.0 and above uses OpenAPI 3.1.0, that uses JSON Schema 2020-12, and Swagger UI 5.0.0 and above, everything is more consistent and the examples are included in JSON Schema.
+
+### Swagger UI and OpenAPI-specific `examples`
+
+Now, as Swagger UI didn't support multiple JSON Schema examples (as of 2023-08-26), users didn't have a way to show multiple examples in the docs.
+
+To solve that, FastAPI `0.103.0` **added support** for declaring the same old **OpenAPI-specific** `examples` field with the new parameter `openapi_examples`. 🤓
 
 ### Summary
 
