@@ -17,15 +17,15 @@ def get_authorization_scheme_param(
 
 
 _SecurityDepFunc = TypeVar(
-    "_SecurityDepFunc", bound=Callable[[Any, HTTPConnection], Awaitable]
+    "_SecurityDepFunc", bound=Callable[[Any, HTTPConnection], Awaitable[Any]]
 )
 
 
 def handle_exc_for_ws(func: _SecurityDepFunc) -> _SecurityDepFunc:
     @wraps(func)
-    async def wrapper(self, request: HTTPConnection, *args, **kwargs):
+    async def wrapper(self: Any, request: HTTPConnection) -> Any:
         try:
-            return await func(self, request, *args, **kwargs)
+            return await func(self, request)
         except HTTPException as e:
             if not isinstance(request, WebSocket):
                 raise e

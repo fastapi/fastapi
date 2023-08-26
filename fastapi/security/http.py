@@ -187,7 +187,9 @@ class HTTPBasic(HTTPBase):
         self.auto_error = auto_error
 
     @handle_exc_for_ws
-    async def __call__(self, request: HTTPConnection) -> Optional[HTTPBasicCredentials]:
+    async def __call__(  # type: ignore
+        self, request: HTTPConnection
+    ) -> Optional[HTTPBasicCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
