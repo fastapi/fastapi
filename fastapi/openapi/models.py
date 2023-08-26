@@ -273,7 +273,7 @@ class Example(TypedDict, total=False):
     value: Optional[Any]
     externalValue: Optional[AnyUrl]
 
-    if PYDANTIC_V2:
+    if PYDANTIC_V2:  # type: ignore [misc]
         __pydantic_config__ = {"extra": "allow"}
 
     else:
