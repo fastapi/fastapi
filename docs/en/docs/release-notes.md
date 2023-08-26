@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add note to docs about Separate Input and Output Schemas with FastAPI version. PR [#10150](https://github.com/tiangolo/fastapi/pull/10150) by [@tiangolo](https://github.com/tiangolo).
 ## 0.102.0
 
 ### Features
