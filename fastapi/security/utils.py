@@ -1,4 +1,10 @@
-from typing import Optional, Tuple
+from functools import wraps
+from typing import Any, Awaitable, Callable, Optional, Tuple, TypeVar
+
+from fastapi.exceptions import HTTPException, WebSocketException
+from starlette.requests import HTTPConnection
+from starlette.status import WS_1008_POLICY_VIOLATION
+from starlette.websockets import WebSocket
 
 
 def get_authorization_scheme_param(
@@ -8,3 +14,24 @@ def get_authorization_scheme_param(
         return "", ""
     scheme, _, param = authorization_header_value.partition(" ")
     return scheme, param
+
+
+_SecurityDepFunc = TypeVar(
+    "_SecurityDepFunc", bound=Callable[[Any, HTTPConnection], Awaitable]
+)
+
+
+def handle_exc_for_ws(func: _SecurityDepFunc) -> _SecurityDepFunc:
+    @wraps(func)
+    async def wrapper(self, request: HTTPConnection, *args, **kwargs):
+        try:
+            return await func(self, request, *args, **kwargs)
+        except HTTPException as e:
+            if not isinstance(request, WebSocket):
+                raise e
+            await request.accept()
+            raise WebSocketException(
+                code=WS_1008_POLICY_VIOLATION, reason=e.detail
+            ) from None
+
+    return wrapper  # type: ignore
