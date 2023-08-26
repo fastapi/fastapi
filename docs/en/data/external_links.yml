@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Keshav Malik
+    author_link: https://theinfosecguy.xyz/
+    link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
+    title: Building a CRUD API with FastAPI and Supabase
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/
@@ -232,10 +236,6 @@ articles:
     author_link: https://medium.com/@krishnardt365
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
-  - author: Keshav Malik
-    author_link: https://theinfosecguy.xyz/
-    link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
-    title: Building a CRUD API with FastAPI and Supabase
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
