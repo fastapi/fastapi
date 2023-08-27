@@ -31,7 +31,7 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-```Python hl_lines="10-14  37-54"
+```Python hl_lines="9-13  36-53"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
@@ -50,7 +50,7 @@ It could be just one or two lines of code, like:
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
-requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
+httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
 But possibly the most important part of the callback is making sure that your API user (the external developer) implements the *external API* correctly, according to the data that *your API* is going to send in the request body of the callback, etc.
@@ -64,7 +64,7 @@ This example doesn't implement the callback itself (that could be just a line of
 !!! tip
     The actual callback is just an HTTP request.
 
-    When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+    When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 
 ## Write the callback documentation code
 
@@ -83,7 +83,7 @@ So we are going to use that same knowledge to document how the *external API* sh
 
 First create a new `APIRouter` that will contain one or more callbacks.
 
-```Python hl_lines="5  26"
+```Python hl_lines="3  25"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
@@ -96,18 +96,18 @@ It should look just like a normal FastAPI *path operation*:
 * It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
-```Python hl_lines="17-19  22-23  29-33"
+```Python hl_lines="16-18  21-22  28-32"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -163,7 +163,7 @@ At this point you have the *callback path operation(s)* needed (the one(s) that 
 
 Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
 
-```Python hl_lines="36"
+```Python hl_lines="35"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
