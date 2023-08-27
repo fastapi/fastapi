@@ -99,6 +99,82 @@ class DocInfo:
 
 where the attribute `documentation` contains the same value string passed to the function `doc()`.
 
+### Additional Scenarios
+
+The main scenarios that this proposal intends to cover are described above, and for implementors to be conformant to this specification, they only need to support those scenarios described above.
+
+Here are some additional edge case scenarios with their respective considerations, but implementors are not required to support them.
+
+#### Type Alias
+
+When creating a type alias, like:
+
+```python
+Username = Annotated[str, doc("The name of a user in the system")]
+```
+
+...the documentation would be considered to be carried by the parameter annotated with `Foo`.
+
+So, in a function like:
+
+```Python
+def hi(to: Username) -> None: ...
+```
+
+...it would be equivalent to:
+
+```Python
+def hi(to: Annotated[str, doc("The name of a user in the system")]) -> None: ...
+```
+
+Nevertheless, implementors would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex derefrenecing logic. If they do, they could state they also support the optional type aliases.
+
+#### Annotating Type Parameters
+
+When annotating type parameters, as in:
+
+```Python
+def hi(to: list[Annotated[str, doc("The name of a user in a list")]]) -> None: ...
+```
+
+...the documentation in `doc()` would refer to what it is annotating, in this case, each item in the list, not the list itself.
+
+There are currently no practical use cases for documenting type parameters, so implementors are not required to support this scenario to be considered conformant, but it's included for completeness.
+
+#### Annotating Unions
+
+If used in one of the parameters of a union, as in:
+
+```Python
+def hi(to: str | Annotated[list[str, doc("List of user names")]]) -> None: ...
+```
+
+...again, the documentation in `doc()` would refer to what it is annotating, in this case, this documents the list itself, not its items.
+
+In particular, the documentation would not refer to a single string passed as a parameter, only to a list.
+
+There are currently no practical use cases for documenting unions, so implementors are not required to support this scenario to be considered conformant, but it's included for completeness.
+
+#### Duplications
+
+If `doc()` is used multiple times in a single `Annotated`, it would be considered invalid usage from the developer, for example:
+
+```Python
+def hi(to: Annotated[str, doc("A user name"), doc("A pet name")]) -> None: ...
+```
+
+Implementors can consider this invalid and are not required to support this to be considered conformant.
+
+Nevertheless, as it might be difficult to enforce it on developers, implementors can opt to support one of the `doc()` declarations.
+
+In that case, the suggestion would be to support the first one (just to simplify that implementation, as that would be the first one to be found when iterating over the `Annotated` parameters).
+
+For an implementation that supports the first `doc()` appearance, the above example would be equivalent to:
+
+```Python
+def hi(to: Annotated[str, doc("A user name")]) -> None: ...
+```
+
 ## Alternate Form
 
 To avoid delaying adoption of this proposal until after the `doc()` function has been added to the typing module, type checkers and tools may support an alternative form `__typing_doc__`. This form can be defined locally without any reliance on the `typing` or `typing_extensions` modules. It allows immediate adoption of the specification by library authors. Type checkers that have not yet adopted this specification will retain their current behavior.
