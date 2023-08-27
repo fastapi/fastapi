@@ -201,6 +201,22 @@ All the CPython core developers contacted for early feedback (at least 4) have s
 
 Editor developers (VS Code and PyCharm) have shown some interest, while showing concerns about the verbosity of the proposal, although not about the implementation (which is what would affect them the most). And they have shown they would consider adding support for this if it were to become an official standard. In that case, they would only need to add support for rendering, as support for editing, which is normally non-existing for other standards, is already there, as they already support editing standard Python syntax.
 
+### Bike Shedding
+
+I think `doc()` is a good name for the main function. But it might make sense to consider changing the names for the other parts.
+
+The returned class containing info currently named `DocInfo` could instead be named just `Doc`. Although it could make verbal conversations more confusing as it's the same word as the name of the function.
+
+The parameter received by `doc()` currently named `documentation` could instead be named also `doc`, but it would make it more ambiguous in discussions to distinguish when talking about the function and the parameter, although it would simplify the amount of terms, but as these terms refer to different things closely related, it could make sense to have different names.
+
+The parameter received by `doc()` currently named `documentation` could instead be named `value`, but the word "documentation" might convey better the meaning.
+
+The parameter received by `doc()` currently named `documentation` could be a position-only parameter, in which case the name wouldn't matter much. But then there wouldn't be a way to make it match with the `DocInfo` attribute.
+
+The `DocInfo` class has a single attribute `documentation`, this name matches the parameter passed to `doc()`. It could be named something different, like `doc`, but this would mean a mismatch between the `doc()` parameter `documentation` and the equivalent attribute `doc`, and it would mean that in one case (in the function), the term `doc` refers to a function, and in the other case (the resulting class) the term `doc` refers to a string value.
+
+This shows the logic to select the current terms, but it could all be discussed further.
+
 ## Copyright
 
 This document is placed in the public domain or under the
