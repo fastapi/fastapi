@@ -127,7 +127,7 @@ def hi(to: Username) -> None: ...
 def hi(to: Annotated[str, doc("The name of a user in the system")]) -> None: ...
 ```
 
-Nevertheless, implementers would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex derefrenecing logic. If they do, they could state they also support the optional type aliases.
+Nevertheless, implementers would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex derefrenecing logic.
 
 #### Annotating Type Parameters
 
@@ -154,6 +154,27 @@ def hi(to: str | Annotated[list[str, doc("List of user names")]]) -> None: ...
 In particular, the documentation would not refer to a single string passed as a parameter, only to a list.
 
 There are currently no practical use cases for documenting unions, so implementers are not required to support this scenario to be considered conformant, but it's included for completeness.
+
+#### Multiple `Annotated`
+
+Continuing with the same idea above, if `Annotated` was used multiple times in the same parameter, `doc()` would refer to the type it is annotating.
+
+So, in an example like:
+
+```Python
+def hi(to: Annotated[
+        Annotated[str, doc("A user name")] | Annotated[list, doc("A list of user names")],
+        doc("Who to say hi to")
+    ]) -> None: ...
+```
+
+The documentation for the whole parameter `to` would be considered to be "`Who to say hi to`".
+
+The documentation for the case where that parameter `to` is specifically a `str` would be considered to be "`A user name`".
+
+The documentation for the case where that parameter `to` is specifically a `list` would be considered to be "`A list of user names`".
+
+Implementers would only be required to support the top level use case, where the documentation for `to` is considered to be "`Who to say hi to`". They could optionally support having conditional documentation for when the type of the parameter passed is of one type or another, but they are not required to do so.
 
 #### Duplications
 
