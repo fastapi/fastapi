@@ -181,19 +181,31 @@ Implementers would only be required to support the top level use case, where the
 If `doc()` is used multiple times in a single `Annotated`, it would be considered invalid usage from the developer, for example:
 
 ```Python
-def hi(to: Annotated[str, doc("A user name"), doc("A pet name")]) -> None: ...
+def hi(to: Annotated[str, doc("A user name"), doc("The current user name")]) -> None: ...
 ```
 
 Implementers can consider this invalid and are not required to support this to be considered conformant.
 
 Nevertheless, as it might be difficult to enforce it on developers, implementers can opt to support one of the `doc()` declarations.
 
-In that case, the suggestion would be to support the first one (just to simplify that implementation, as that would be the first one to be found when iterating over the `Annotated` parameters).
-
-For an implementation that supports the first `doc()` appearance, the above example would be equivalent to:
+In that case, the suggestion would be to support the last one, just because this would support overriding, for example, in:
 
 ```Python
-def hi(to: Annotated[str, doc("A user name")]) -> None: ...
+User = Annotated[str, doc("The name of a user")]
+
+CurrentUser = Annotated[User, doc("The name of the current user")]
+```
+
+Internally, in Python, `CurrentUser` here is equivalent to:
+
+```Python
+CurrentUser = Annotated[str, doc("The name of a user"), doc("The name of the current user")]
+```
+
+For an implementation that supports the last `doc()` appearance, the above example would be equivalent to:
+
+```Python
+def hi(to: Annotated[str, doc("The current user name")]) -> None: ...
 ```
 
 ## Alternate Form
