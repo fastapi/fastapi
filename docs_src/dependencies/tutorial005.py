@@ -1,6 +1,7 @@
-from typing import Union
 from enum import Enum, auto
-from fastapi import Cookie, Depends, FastAPI, EndPoint
+from typing import Union
+
+from fastapi import Cookie, Depends, EndPoint, FastAPI
 
 app = FastAPI()
 
