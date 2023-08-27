@@ -9,3 +9,4 @@ UnionType = getattr(types, "UnionType", Union)
 NoneType = getattr(types, "UnionType", None)
 ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
 IncEx = Union[Set[int], Set[str], Dict[int, Any], Dict[str, Any]]
+EndpointEnum = Enum

@@ -30,7 +30,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, EndpointEnum, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
@@ -477,6 +477,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -504,6 +505,7 @@ class FastAPI(Starlette):
         return self.router.get(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -532,6 +534,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -559,6 +562,7 @@ class FastAPI(Starlette):
         return self.router.put(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -587,6 +591,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -614,6 +619,7 @@ class FastAPI(Starlette):
         return self.router.post(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -642,6 +648,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -669,6 +676,7 @@ class FastAPI(Starlette):
         return self.router.delete(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -697,6 +705,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -724,6 +733,7 @@ class FastAPI(Starlette):
         return self.router.options(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -752,6 +762,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -779,6 +790,7 @@ class FastAPI(Starlette):
         return self.router.head(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -807,6 +819,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -834,6 +847,7 @@ class FastAPI(Starlette):
         return self.router.patch(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -862,6 +876,7 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -889,6 +904,7 @@ class FastAPI(Starlette):
         return self.router.trace(
             path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,

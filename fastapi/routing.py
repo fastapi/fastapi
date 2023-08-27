@@ -44,7 +44,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, EndpointEnum, IncEx
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -369,6 +369,7 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -408,6 +409,7 @@ class APIRoute(routing.Route):
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
+        self.endpoint_enum = endpoint_enum
         self.deprecated = deprecated
         self.operation_id = operation_id
         self.response_model_include = response_model_include
@@ -593,6 +595,7 @@ class APIRouter(routing.Router):
         path: str,
         endpoint: Callable[..., Any],
         *,
+        endpoint_enum: Optional[EndpointEnum] = None,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
@@ -644,6 +647,7 @@ class APIRouter(routing.Router):
             self.prefix + path,
             endpoint=endpoint,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=current_tags,
             dependencies=current_dependencies,
@@ -675,6 +679,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -705,6 +710,7 @@ class APIRouter(routing.Router):
                 path,
                 func,
                 response_model=response_model,
+                endpoint_enum=endpoint_enum,
                 status_code=status_code,
                 tags=tags,
                 dependencies=dependencies,
@@ -902,6 +908,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
+        endpoint_enum: Optional[EndpointEnum] = None,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
@@ -930,6 +937,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -959,6 +967,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -986,6 +995,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1015,6 +1025,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1042,6 +1053,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1071,6 +1083,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1098,6 +1111,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1127,6 +1141,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1154,6 +1169,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1183,6 +1199,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1210,6 +1227,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1239,6 +1257,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1266,6 +1285,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1295,6 +1315,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Any = Default(None),
+        endpoint_enum: Optional[EndpointEnum] = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1322,6 +1343,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            endpoint_enum=endpoint_enum,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
