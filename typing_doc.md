@@ -89,12 +89,9 @@ def create_user(
 The return of the `doc()` function is an instance of a class that can be checked and used at runtime, defined as:
 
 ```Python
-from dataclasses import dataclass
-
-
-@dataclass
 class DocInfo:
-    documentation: str
+    def __init__(self, documentation: str):
+        self.documentation = documentation
 ```
 
 where the attribute `documentation` contains the same value string passed to the function `doc()`.
