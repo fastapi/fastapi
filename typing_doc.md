@@ -36,7 +36,7 @@ This doesn't deprecate current usage of docstrings, it's transparent to common d
 
 The main proposal is to have a new function `doc()` in the `typing` module. Even though this is not strictly related to the type annotations, it's expected to go in `Annotated` type annotations, and to interact with type annotations.
 
-There's also the particular benefit to having it in `typing` that it could be implemented in the `typing_extensions` package to have support for older versions of Python.
+There's also the particular benefit that it could be implemented in the `typing_extensions` package to have support for older versions of Python.
 
 This `doc()` function would receive one single parameter `documentation` with a documentation string.
 
