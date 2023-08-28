@@ -210,30 +210,24 @@ def hi(to: Annotated[str, doc("The current user name")]) -> None: ...
 
 ## Alternate Form
 
-To avoid delaying adoption of this proposal until after the `doc()` function has been added to the typing module, type checkers and tools may support an alternative form `__typing_doc__`. This form can be defined locally without any reliance on the `typing` or `typing_extensions` modules. It allows immediate adoption of the specification by library authors. Type checkers that have not yet adopted this specification will retain their current behavior.
+Part of the formalization of this document includes writing a PEP and adding this to `typing_extensions`. That is currently an ongoing effort.
 
-To use this alternate form, library authors should include the following declaration within their type stubs or source files.
+By including it in `typing_extensions`, it will be usable by current versions of Python, even before this proposal is accepted and included into the Python standard library in a future version of Python (if it is ever accepted).
+
+To avoid delaying adoption, the `doc` function and `DocInfo` class are (at least temporarily) already available in [annotated-types](https://github.com/annotated-types/annotated-types).
+
+Early adopters can install `annotated-types` and do:
 
 ```Python
-from dataclasses import dataclass
+from types import Annotated
+
+from annotated_types import doc
 
 
-@dataclass
-class DocInfo:
-    documentation: str
-
-
-def __typing_doc__(
-    documentation: str,
-) -> DocInfo:
-    return DocInfo(documentation)
+def hi(to: Annotated[str, doc("The current user name")]) -> None: ...
 ```
 
-And then they can use it in the same places they would use `doc()`.
-
 This alternate form can be used by early adopters including libraries, linters, editors, type checkers, documentation generation tools and others.
-
-**Note**: this mimics and blatantly copies the pattern from the early versions of the [`dataclass_transform` specification](https://github.com/microsoft/pyright/blob/main/specs/dataclass_transforms.md#alternate-form).
 
 ## Rejected Ideas
 
