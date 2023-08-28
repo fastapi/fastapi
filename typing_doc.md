@@ -113,7 +113,7 @@ When creating a type alias, like:
 Username = Annotated[str, doc("The name of a user in the system")]
 ```
 
-...the documentation would be considered to be carried by the parameter annotated with `Foo`.
+...the documentation would be considered to be carried by the parameter annotated with `Username`.
 
 So, in a function like:
 
@@ -127,7 +127,7 @@ def hi(to: Username) -> None: ...
 def hi(to: Annotated[str, doc("The name of a user in the system")]) -> None: ...
 ```
 
-Nevertheless, implementers would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex derefrenecing logic.
+Nevertheless, implementers would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex dereferencing logic.
 
 #### Annotating Type Parameters
 
