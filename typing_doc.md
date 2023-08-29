@@ -1,5 +1,11 @@
 # Documentation Metadata in Typing
 
+## Note: PEP 727
+
+This is the initial/previous version of [PEP 727](https://peps.python.org/pep-0727/).
+
+The continuation and evolution of this document and proposal will continue there.
+
 ## Abstract
 
 This document proposes a way to complement docstrings to add additional documentation to Python symbols using type annotations with `Annotated` (in class attributes, function and method parameters, return values, and variables).
@@ -209,11 +215,11 @@ def hi(
 
 ## Alternate Form
 
-Part of the formalization of this document includes writing a PEP and adding this to `typing_extensions`. That is currently an ongoing effort.
+Part of the formalization of this document includes writing [PEP 727](https://peps.python.org/pep-0727/) and adding this to `typing_extensions`. That is currently an ongoing effort.
 
 By including it in `typing_extensions`, it will be usable by current versions of Python, even before this proposal is accepted and included into the Python standard library in a future version of Python (if it is ever accepted).
 
-To avoid delaying adoption, the `doc` function and `DocInfo` class are (at least temporarily) already available in [annotated-types](https://github.com/annotated-types/annotated-types).
+It will also be included in the next release of [annotated-types](https://github.com/annotated-types/annotated-types), in case that is available before it is in `typing_extensions`.
 
 Early adopters can install `annotated-types` and do:
 
