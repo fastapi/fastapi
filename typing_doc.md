@@ -36,7 +36,7 @@ This doesn't deprecate current usage of docstrings, it's transparent to common d
 
 The main proposal is to have a new function `doc()` in the `typing` module. Even though this is not strictly related to the type annotations, it's expected to go in `Annotated` type annotations, and to interact with type annotations.
 
-There's also the particular benefit that it could be implemented in the `typing_extensions` package to have support for older versions of Python.
+There's also the particular benefit that it could be implemented in the `typing_extensions` package to have support for older versions of Python and early adopters of this proposal.
 
 This `doc()` function would receive one single parameter `documentation` with a documentation string.
 
@@ -55,10 +55,6 @@ from typing import Annotated, TypedDict, NotRequired, doc
 class User(TypedDict):
     firstname: Annotated[str, doc("The user's first name")]
     lastname: Annotated[str, doc("The user's last name")]
-    name: Annotated[
-        NotRequired[str],
-        doc("The user's full name, this field is deprecated"),
-    ]
 ```
 
 An example documenting the parameters of a function could look like this:
@@ -69,15 +65,7 @@ from typing import Annotated, doc
 
 def create_user(
     lastname: Annotated[str, doc("The **last name** of the newly created user")],
-    *,
-    firstname: Annotated[
-        str | None,
-        doc("The **first name** of the newly created user"),
-    ] = None,
-    name: Annotated[
-        str | None,
-        doc("The user's full name, this argument is deprecated."),
-    ] = None,
+    firstname: Annotated[str | None, doc("The user's **first name**")] = None,
 ) -> Annotated[User, doc("The created user after saving in the database")]:
     """
     Create a new user in the system, it needs the database connection to be already
@@ -94,7 +82,7 @@ class DocInfo:
         self.documentation = documentation
 ```
 
-where the attribute `documentation` contains the same value string passed to the function `doc()`.
+...where the attribute `documentation` contains the same value string passed to the function `doc()`.
 
 ### Additional Scenarios
 
@@ -115,13 +103,17 @@ Username = Annotated[str, doc("The name of a user in the system")]
 So, in a function like:
 
 ```Python
-def hi(to: Username) -> None: ...
+def hi(
+    to: Username,
+) -> None: ...
 ```
 
 ...it would be equivalent to:
 
 ```Python
-def hi(to: Annotated[str, doc("The name of a user in the system")]) -> None: ...
+def hi(
+    to: Annotated[str, doc("The name of a user in the system")],
+) -> None: ...
 ```
 
 Nevertheless, implementers would not be required to support type aliases outside of the final type annotation to be conformant with this specification, as it could require more complex dereferencing logic.
@@ -131,7 +123,9 @@ Nevertheless, implementers would not be required to support type aliases outside
 When annotating type parameters, as in:
 
 ```Python
-def hi(to: list[Annotated[str, doc("The name of a user in a list")]]) -> None: ...
+def hi(
+    to: list[Annotated[str, doc("The name of a user in a list")]],
+) -> None: ...
 ```
 
 ...the documentation in `doc()` would refer to what it is annotating, in this case, each item in the list, not the list itself.
@@ -143,7 +137,9 @@ There are currently no practical use cases for documenting type parameters, so i
 If used in one of the parameters of a union, as in:
 
 ```Python
-def hi(to: str | Annotated[list[str, doc("List of user names")]]) -> None: ...
+def hi(
+    to: str | Annotated[list[str], doc("List of user names")],
+) -> None: ...
 ```
 
 ...again, the documentation in `doc()` would refer to what it is annotating, in this case, this documents the list itself, not its items.
@@ -152,17 +148,19 @@ In particular, the documentation would not refer to a single string passed as a 
 
 There are currently no practical use cases for documenting unions, so implementers are not required to support this scenario to be considered conformant, but it's included for completeness.
 
-#### Multiple `Annotated`
+#### Nested `Annotated`
 
-Continuing with the same idea above, if `Annotated` was used multiple times in the same parameter, `doc()` would refer to the type it is annotating.
+Continuing with the same idea above, if `Annotated` was used nested and used multiple times in the same parameter, `doc()` would refer to the type it is annotating.
 
 So, in an example like:
 
 ```Python
-def hi(to: Annotated[
+def hi(
+    to: Annotated[
         Annotated[str, doc("A user name")] | Annotated[list, doc("A list of user names")],
-        doc("Who to say hi to")
-    ]) -> None: ...
+        doc("Who to say hi to"),
+    ],
+) -> None: ...
 ```
 
 The documentation for the whole parameter `to` would be considered to be "`Who to say hi to`".
@@ -173,12 +171,14 @@ The documentation for the case where that parameter `to` is specifically a `list
 
 Implementers would only be required to support the top level use case, where the documentation for `to` is considered to be "`Who to say hi to`". They could optionally support having conditional documentation for when the type of the parameter passed is of one type or another, but they are not required to do so.
 
-#### Duplications
+#### Duplication
 
 If `doc()` is used multiple times in a single `Annotated`, it would be considered invalid usage from the developer, for example:
 
 ```Python
-def hi(to: Annotated[str, doc("A user name"), doc("The current user name")]) -> None: ...
+def hi(
+    to: Annotated[str, doc("A user name"), doc("The current user name")],
+) -> None: ...
 ```
 
 Implementers can consider this invalid and are not required to support this to be considered conformant.
@@ -188,21 +188,23 @@ Nevertheless, as it might be difficult to enforce it on developers, implementers
 In that case, the suggestion would be to support the last one, just because this would support overriding, for example, in:
 
 ```Python
-User = Annotated[str, doc("The name of a user")]
+User = Annotated[str, doc("A user name")]
 
-CurrentUser = Annotated[User, doc("The name of the current user")]
+CurrentUser = Annotated[User, doc("The current user name")]
 ```
 
 Internally, in Python, `CurrentUser` here is equivalent to:
 
 ```Python
-CurrentUser = Annotated[str, doc("The name of a user"), doc("The name of the current user")]
+CurrentUser = Annotated[str, doc("A user name"), doc("The current user name")]
 ```
 
 For an implementation that supports the last `doc()` appearance, the above example would be equivalent to:
 
 ```Python
-def hi(to: Annotated[str, doc("The current user name")]) -> None: ...
+def hi(
+    to: Annotated[str, doc("The current user name")],
+) -> None: ...
 ```
 
 ## Alternate Form
@@ -221,7 +223,9 @@ from types import Annotated
 from annotated_types import doc
 
 
-def hi(to: Annotated[str, doc("The current user name")]) -> None: ...
+def hi(
+    to: Annotated[str, doc("The current user name")],
+) -> None: ...
 ```
 
 This alternate form can be used by early adopters including libraries, linters, editors, type checkers, documentation generation tools and others.
@@ -275,7 +279,7 @@ Nevertheless, type annotations in Python could already be considered, by default
 
 It could be argued that this proposal extends the type of information that type annotations carry, the same way as [PEP 702](https://peps.python.org/pep-0702/) extends them to include deprecation information.
 
-And as described above, being able to include this in `typing_extensions` to support older versions of Python is a very simple and practical reason why it would make sense to have this as part of `typing`.
+And as described above, including this in `typing_extensions` to support older versions of Python would have a very simple and practical benefit.
 
 ### Multiple Standards
 
@@ -285,13 +289,13 @@ Nevertheless, as stated above, none of those standards cover the general drawbac
 
 None of the editors have full docstring editing support (even when they have rendering support). Again, this is solved by this proposal just by using standard Python syntax and structures instead of a docstring microsyntax.
 
-The effort required to implement support for this proposal by tools would be minimal compared to that required for alternative docstring-based pseudo-standards, as for this proposal, editors would only need to access an already existing value in their ASTs, instead of writing a parsers for a new string microsyntax.
+The effort required to implement support for this proposal by tools would be minimal compared to that required for alternative docstring-based pseudo-standards, as for this proposal, editors would only need to access an already existing value in their ASTs, instead of writing a parser for a new string microsyntax.
 
 In the same way, it can be seen that, in many cases, a new standard that takes advantage of new features and solves several problems from previous methods can be worth having. As is the case with the new `pyproject.toml`, `dataclass_transform`, the new typing pipe/union (`|`) operator, and other cases.
 
 ### Adoption
 
-As this is a new standard and proposal, it would only make sense if it had interest from the community.
+As this is a new standard proposal, it would only make sense if it had interest from the community.
 
 Fortunately there's already interest from several mainstream libraries from several developers and teams, including FastAPI, Typer, SQLModel, Asyncer (from the author of this proposal), Pydantic, Strawberry, and others, from other teams.
 
@@ -309,7 +313,7 @@ The returned class containing info currently named `DocInfo` could instead be na
 
 The parameter received by `doc()` currently named `documentation` could instead be named also `doc`, but it would make it more ambiguous in discussions to distinguish when talking about the function and the parameter, although it would simplify the amount of terms, but as these terms refer to different things closely related, it could make sense to have different names.
 
-The parameter received by `doc()` currently named `documentation` could instead be named `value`, but the word "documentation" might convey better the meaning.
+The parameter received by `doc()` currently named `documentation` could instead be named `value`, but the word "documentation" might convey the meaning better.
 
 The parameter received by `doc()` currently named `documentation` could be a position-only parameter, in which case the name wouldn't matter much. But then there wouldn't be a way to make it match with the `DocInfo` attribute.
 
