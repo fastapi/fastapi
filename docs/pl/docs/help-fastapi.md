@@ -241,7 +241,7 @@ Na GitHubie szablon poprowadzi Cię do napisania odpowiedniego pytania, dzięki 
 
 Rozmowy w systemach czatu nie są też tak łatwo przeszukiwalne jak na GitHubie, więc pytania i odpowiedzi mogą zaginąć w rozmowie. A tylko te na GitHubie liczą się do zostania [Ekspertem FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, więc najprawdopodobniej otrzymasz więcej uwagi na GitHubie.
 
-Z drugiej strony w systemach czatu jest tysiące użytkowników, więc jest duża szansa, że znajdziesz tam kogoś do rozmowy, prawie cały czas. 😄
+Z drugiej strony w systemach czatu są tysiące użytkowników, więc jest duża szansa, że znajdziesz tam kogoś do rozmowy, prawie w każdej chwili. 😄
 
 ## Wspieraj autora
 
