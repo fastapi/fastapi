@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI to szybki, prosty w nauce i gotowy do użycia w produkcji framework</em>
+    <em>Framework FastAPI, wydajny, prosty w nauce, szybki do kodowania, gotowy do użycia w produkcji</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
@@ -24,18 +24,18 @@
 
 ---
 
-FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona 3.6+ bazujący na standardowym typowaniu Pythona.
+FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona 3.7+ bazujący na standardowym typowaniu Pythona.
 
 Kluczowe cechy:
 
 * **Wydajność**: FastAPI jest bardzo wydajny, na równi z **NodeJS** oraz **Go** (dzięki Starlette i Pydantic). [Jeden z najszybszych dostępnych frameworków Pythonowych](#wydajnosc).
-* **Szybkość kodowania**: Przyśpiesza szybkość pisania nowych funkcjonalności o około 200% do 300%. *
-* **Mniejsza ilość błędów**: Zmniejsza ilość ludzkich (dewelopera) błędy o około 40%. *
-* **Intuicyjność**: Wspaniałe wsparcie dla edytorów kodu. Dostępne wszędzie <abbr title="znane jako auto-complete, autocompletion, IntelliSense">automatyczne uzupełnianie</abbr> kodu. Krótszy czas debugowania.
-* **Łatwość**: Zaprojektowany by być prosty i łatwy do nauczenia. Mniej czasu spędzonego na czytanie dokumentacji.
+* **Szybkoi do kodowania**: Przyśpiesza szybkość pisania nowych funkcjonalności o około 200% do 300%. *
+* **Mniejsza ilość błędów**: Zmniejsza ilość ludzkich (developerskich) błędów o około 40%. *
+* **Intuicyjność**: Wspaniałe wsparcie dla edytorów kodu. <abbr title="znane jako auto-complete, autocompletion, IntelliSense">Automatyczne uzupełnianie</abbr> dostępne wszędzie. Krótszy czas debugowania.
+* **Łatwość**: Zaprojektowany by być prostym do uycia i nauki. Mniej czasu spędzonego na czytaniu dokumentacji.
 * **Kompaktowość**: Minimalizacja powtarzającego się kodu. Wiele funkcjonalności dla każdej deklaracji parametru. Mniej błędów.
 * **Solidność**: Kod gotowy dla środowiska produkcyjnego. Wraz z automatyczną interaktywną dokumentacją.
-* **Bazujący na standardach**: Oparty na (i w pełni kompatybilny z) otwartych standardach API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (wcześniej znane jako Swagger) oraz <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Bazujący na standardach**: Oparty (i w pełni kompatybilny) na otwartych standardach API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (wcześniej znane jako Swagger) oraz <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* oszacowania bazowane na testach wykonanych przez wewnętrzny zespół deweloperów, budujących aplikacie używane na środowisku produkcyjnym.</small>
 
