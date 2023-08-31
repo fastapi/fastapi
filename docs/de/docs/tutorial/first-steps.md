@@ -59,7 +59,7 @@ Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereit
 
 ### Alternative API-Dokumentation
 
-Als nächstes gehen Sie zu <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Als Nächstes gehen Sie zu <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 Dort sehen Sie die alternative, automatische Dokumentation (bereitgestellt durch <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
