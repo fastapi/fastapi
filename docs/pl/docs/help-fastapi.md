@@ -61,7 +61,7 @@ Możesz:
 
 <a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweetnij o **FastAPI**</a> i daj mi i innym znać, dlaczego Ci się podoba. 🎉
 
-Uwielbiam słyszeć, jak **FastAPI** jest używane, co Ci się w nim podobało, w jakim projekcie/firmie go używasz itp.
+Uwielbiam słuchać, jak **FastAPI** jest używane, co Ci się w nim podobało, w jakim projekcie/firmie go używasz itp.
 
 ## Głosuj na FastAPI
 
