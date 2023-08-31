@@ -45,7 +45,7 @@ Możesz skontaktować się ze <a href="https://tiangolo.com" class="external-lin
 Możesz:
 
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **GitHubie**</a>.
-    * Zobaczyć inne projekty Open Source, które stworzyłem, które mogą Ci pomóc.
+    * Zobacz inne projekty Open Source, które stworzyłem, które mogą Ci pomóc.
     * Śledzić mnie, aby zobaczyć, kiedy tworzę nowy projekt Open Source.
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **Twitterze**</a> lub <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
     * Powiedz mi, jak korzystasz z FastAPI (uwielbiam to słyszeć).
