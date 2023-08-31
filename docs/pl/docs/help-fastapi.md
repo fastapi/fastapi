@@ -34,7 +34,7 @@ Dodając gwiazdkę, inni użytkownicy będą mogli łatwiej znaleźć projekt i 
 
 Możesz "obserwować" FastAPI na GitHubie (klikając przycisk "obserwuj" w prawym górnym rogu): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-Tam możesz wybrać opcję "Tylko wydania".
+ Możesz tam wybrać opcję "Tylko wydania".
 
 Dzięki temu będziesz otrzymywać powiadomienia (na swój adres e-mail) za każdym razem, gdy pojawi się nowe wydanie (nowa wersja) **FastAPI** z poprawkami błędów i nowymi funkcjami.
 
