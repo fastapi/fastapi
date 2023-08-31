@@ -237,7 +237,7 @@ Istnieje również poprzedni <a href="https://gitter.im/tiangolo/fastapi" class=
 
 Miej na uwadze, że ponieważ czaty pozwalają na bardziej "swobodną rozmowę", łatwo jest zadawać pytania, które są zbyt ogólne i trudniejsze do odpowiedzi, więc możesz nie otrzymać odpowiedzi.
 
-Na GitHubie szablon poprowadzi Cię do napisania odpowiedniego pytania, dzięki czemu łatwiej uzyskasz dobrą odpowiedź, a nawet rozwiążesz problem samodzielnie, zanim zapytasz. A na GitHubie mogę się upewnić, że zawsze odpowiadam na wszystko, nawet jeśli zajmuje to trochę czasu. Osobiście nie mogę tego zrobić z systemami czatu. 😅
+Na GitHubie szablon poprowadzi Cię do napisania odpowiedniego pytania, dzięki czemu łatwiej uzyskasz dobrą odpowiedź, a nawet rozwiążesz problem samodzielnie, zanim zapytasz. Pondato na GitHubie mogę się upewnić, że zawsze odpowiadam na wszystko, nawet jeśli zajmuje to trochę czasu. Osobiście nie mogę tego zrobić z systemami czatu. 😅
 
 Rozmowy w systemach czatu nie są też tak łatwo przeszukiwalne jak na GitHubie, więc pytania i odpowiedzi mogą zaginąć w rozmowie. A tylko te na GitHubie liczą się do zostania [Ekspertem FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, więc najprawdopodobniej otrzymasz więcej uwagi na GitHubie.
 
