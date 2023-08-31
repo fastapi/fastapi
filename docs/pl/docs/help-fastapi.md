@@ -51,7 +51,7 @@ Możesz:
     * Powiedz mi, jak korzystasz z FastAPI (uwielbiam o tym słuchać).
     * Dowiedz się, kiedy ogłaszam coś nowego lub wypuszczam nowe narzędzia.
     * Możesz także <a href="https://twitter.com/fastapi" class="external-link" target="_blank">śledzić @fastapi na Twitterze</a> (to oddzielne konto).
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Połącz się ze mną na **Linkedin**</a>.
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Nawiąż kontakt ze mną na **Linkedin**</a>.
     * Dowiedz się, kiedy ogłaszam coś nowego lub wypuszczam nowe narzędzia (chociaż częściej korzystam z Twittera 🤷‍♂).
 * Czytaj, co piszę (lub śledź mnie) na <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> lub <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Czytaj inne pomysły, artykuły i dowiedz się o narzędziach, które stworzyłem.
