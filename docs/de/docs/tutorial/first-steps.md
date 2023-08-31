@@ -31,7 +31,7 @@ $ uvicorn main:app --reload
     * `app`: das Objekt, welches in der Datei `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
     * `--reload`: lässt den Server nach Codeänderungen neu starten. Sollte nur für Entwicklungszwecke verwendet werden.
 
-In der Ausgabe sollte es eine Zeile geben, die ungefähr so aussieht:
+In der Konsole sollte es eine Zeile geben, die ungefähr so aussieht:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
@@ -51,7 +51,7 @@ Sie werden folgende JSON-Antwort sehen:
 
 ### Interaktive API-Dokumentation
 
-Gehen Sie als nächstes zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs </a>.
+Gehen Sie als Nächstes zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs </a>.
 
 Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereitgestellt durch <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
@@ -61,7 +61,7 @@ Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereit
 
 Als nächstes gehen Sie zu <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-Dort sehen Sie die alternative automatische Dokumentation (bereitgestellt durch <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Dort sehen Sie die alternative, automatische Dokumentation (bereitgestellt durch <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -208,14 +208,14 @@ Bei der Erstellung einer API ist der "Pfad" die wichtigste Möglichkeit zur Tren
 
 "Operation" bezieht sich hier auf eine der HTTP-"Methoden".
 
-Entweder einer dieser:
+Entweder eine dieser:
 
 * `POST`
 * `GET`
 * `PUT`
 * `DELETE`
 
-...oder einer der exotischeren:
+...oder einer der Exotischeren:
 
 * `OPTIONS`
 * `HEAD`
@@ -253,7 +253,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
 !!! Info "`@decorator` Information"
     Diese `@something`-Syntax wird in Python als "Dekorator" bezeichnet.
 
-    Diese werden direkt über einer Funktion platziert. Wie ein hübscher dekorativer Hut (daher kommt wohl der Begriff).
+    Diese werden direkt über einer Funktion platziert. Wie ein hübscher, dekorativer Hut (daher kommt wohl der Begriff).
 
     Ein "Dekorator" nimmt die darunter stehende Funktion und macht etwas damit.
 
