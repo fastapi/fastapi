@@ -54,7 +54,7 @@ Możesz:
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Nawiąż kontakt ze mną na **Linkedin**</a>.
     * Dowiedz się, kiedy ogłaszam coś nowego lub wypuszczam nowe narzędzia (chociaż częściej korzystam z Twittera 🤷‍♂).
 * Czytaj, co piszę (lub śledź mnie) na <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> lub <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
-    * Czytaj inne pomysły, artykuły i dowiedz się o narzędziach, które stworzyłem.
+    * Czytaj o innych pomysłach, artykułach i dowiedz się o narzędziach, które stworzyłem.
     * Śledź mnie, aby przeczytać, kiedy publikuję coś nowego.
 
 ## Tweetnij o **FastAPI**
