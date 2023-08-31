@@ -17,7 +17,7 @@ Możesz zapisać się do rzadkiego [newsletter **FastAPI i jego przyjaciele**](/
 * Aktualnościami o FastAPI i przyjaciołach 🚀
 * Przewodnikami 📝
 * Funkcjami ✨
-* Zmianami łamiącymi kompatybilność 🚨
+* Przełomowymi zmianami 🚨
 * Poradami i sztuczkami ✅
 
 ## Śledź FastAPI na Twitterze
