@@ -128,7 +128,7 @@ Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generier
 
 ## Rückblick, Schritt für Schritt
 
-### Schritt 1: Importieren von `FastAPI`  
+### Schritt 1: Importieren von `FastAPI`
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -258,7 +258,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
     Ein "Dekorator" nimmt die darunter stehende Funktion und macht etwas damit.
 
     In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion mit dem **Pfad** `/` und der **Operation** `get` zusammenhängt.
-    
+
     Dies ist der "**Pfad-Operations-Dekorator**".
 
 Sie können auch die anderen Operationen verwenden:
@@ -280,7 +280,7 @@ Oder die exotischeren:
     **FastAPI** erzwingt keine bestimmte Bedeutung.
 
     Die hier aufgeführten Informationen dienen als Leitfaden und sind nicht verbindlich.
-    
+
     Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit "POST"-Operationen durch.
 
 ### Schritt 4: Definieren einer **Pfad-Operations-Funktion**

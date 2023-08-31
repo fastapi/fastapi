@@ -2,7 +2,18 @@ import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    MutableMapping,
+    Optional,
+    Set,
+    Type,
+    Union,
+    cast,
+)
+from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -15,6 +26,11 @@ from pydantic.utils import lenient_issubclass
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+# Cache for `create_cloned_field`
+_CLONED_TYPES_CACHE: MutableMapping[
+    Type[BaseModel], Type[BaseModel]
+] = WeakKeyDictionary()
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
@@ -98,11 +114,13 @@ def create_response_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
+    cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
-    # _cloned_types has already cloned types, to support recursive models
+    # cloned_types caches already cloned types to support recursive models and improve
+    # performance by avoiding unecessary cloning
     if cloned_types is None:
-        cloned_types = {}
+        cloned_types = _CLONED_TYPES_CACHE
+
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
