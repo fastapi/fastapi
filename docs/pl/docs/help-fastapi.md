@@ -215,8 +215,8 @@ Jest wiele pracy do zrobienia, a w większości przypadków **TY** możesz to zr
 
 Główne zadania, które możesz wykonać teraz to:
 
-* [Pomoc innym z pytaniami na GitHubie](#help-others-with-questions-in-github){.internal-link target=_blank} (zobacz powyższą sekcję).
-* [Przeglądaj Pull Requesty](#review-pull-requests){.internal-link target=_blank} (zobacz powyższą sekcję).
+* [Pomóc innym z pytaniami na GitHubie](#help-others-with-questions-in-github){.internal-link target=_blank} (zobacz powyższą sekcję).
+* [Oceniać Pull Requesty](#review-pull-requests){.internal-link target=_blank} (zobacz powyższą sekcję).
 
 Te dwie czynności **zajmują najwięcej czasu**. To główna praca związana z utrzymaniem FastAPI.
 
