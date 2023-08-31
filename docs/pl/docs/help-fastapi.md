@@ -195,15 +195,15 @@ A jeśli istnieje jakaś inna potrzeba dotycząca stylu lub spójności, poprosz
 
 Możesz [przyczynić się](contributing.md){.internal-link target=_blank} do kodu źródłowego za pomocą Pull Requestu, na przykład:
 
-* Aby naprawić literówkę, którą znalazłeś w dokumentacji.
-* Aby podzielić się artykułem, filmem lub podcastem, który stworzyłeś lub znalazłeś na temat FastAPI, <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">edytując ten plik</a>.
-    * Upewnij się, że dodajesz swój link na początek odpowiedniej sekcji.
-* Aby pomóc w [tłumaczeniu dokumentacji](contributing.md#translations){.internal-link target=_blank} na Twój język.
+* Naprawić literówkę, którą znalazłeś w dokumentacji.
+* Podzielić się artykułem, filmem lub podcastem, który stworzyłeś lub znalazłeś na temat FastAPI, <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">edytując ten plik</a>.
+    * Upewnij się, że dodajesz swój link na początku odpowiedniej sekcji.
+* Pomóc w [tłumaczeniu dokumentacji](contributing.md#translations){.internal-link target=_blank} na Twój język.
     * Możesz również pomóc w recenzji tłumaczeń stworzonych przez innych.
-* Aby zaproponować nowe sekcje dokumentacji.
-* Aby naprawić istniejący problem/błąd.
+* Zaproponować nowe sekcje dokumentacji.
+* Naprawić istniejący problem/błąd.
     * Upewnij się, że dodajesz testy.
-* Aby dodać nową funkcję.
+* Dodać nową funkcję.
     * Upewnij się, że dodajesz testy.
     * Upewnij się, że dodajesz dokumentację, jeśli jest to istotne.
 
