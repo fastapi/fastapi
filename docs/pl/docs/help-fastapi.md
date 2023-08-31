@@ -48,7 +48,7 @@ Możesz:
     * Zobacz inne projekty Open Source, które stworzyłem, które mogą Ci pomóc.
     * Śledź mnie, aby zobaczyć, kiedy tworzę nowy projekt Open Source.
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **Twitterze**</a> lub <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
-    * Powiedz mi, jak korzystasz z FastAPI (uwielbiam to słyszeć).
+    * Powiedz mi, jak korzystasz z FastAPI (uwielbiam o tym słuchać).
     * Dowiedz się, kiedy ogłaszam coś nowego lub wypuszczam nowe narzędzia.
     * Możesz także <a href="https://twitter.com/fastapi" class="external-link" target="_blank">śledzić @fastapi na Twitterze</a> (to oddzielne konto).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Połącz się ze mną na **Linkedin**</a>.
