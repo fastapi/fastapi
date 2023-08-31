@@ -102,7 +102,7 @@ _~~"_[...] Ostatnio mnóstwo korzystam z **FastAPI**. [...] W zasadzie planuję 
 
 Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI</abbr>, która ma być używana w terminalu zamiast API, sprawdź <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** to młodsze rodzeństwo FastAPI. Jego celem jest pozostanie **FastAPI aplikacji konsolowych** . ⌨️ 🚀
+**Typer** to młodszy brat FastAPI. Jego celem jest bycie **FastAPI aplikacji konsolowych** . ⌨️ 🚀
 
 ## Wymagania
 
@@ -186,7 +186,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Przypis**:
 
-Jeżeli nie znasz, sprawdź sekcję _"In a hurry?"_ o <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` i `await` w dokumentacji</a>.
+Jeżeli nie wiesz, sprawdź sekcję w dokumentacji _"Spieszysz się?"_ o <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` i `await`</a>.
 
 </details>
 
@@ -232,30 +232,30 @@ Właśnie stworzyłeś API które:
 
 * Otrzymuje żądania HTTP w _ścieżce_ `/` i `/items/{item_id}`.
 * Obie _ścieżki_ używają <em>operacji</em> `GET` (znane także jako _metody_ HTTP).
-* _Ścieżka_ `/items/{item_id}` ma _parametr ścieżki_ `item_id` który powinien być obiektem typu `int`.
+* _Ścieżka_ `/items/{item_id}` ma _parametr ścieżki_ `item_id`, który powinien być obiektem typu `int`.
 * _Ścieżka_ `/items/{item_id}` ma opcjonalny _parametr zapytania_ typu `str` o nazwie `q`.
 
 ### Interaktywna dokumentacja API
 
 Otwórz teraz stronę <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Zobaczysz automatyczną interaktywną dokumentację API (dostarczoną z pomocą <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Zobaczysz automatyczną interaktywną dokumentację API (dostarczoną za pomocą <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Alternatywna dokumentacja API
 
-Otwórz teraz <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Teraz otwórz <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-Zobaczysz alternatywną, lecz wciąż automatyczną dokumentację (wygenerowaną z pomocą <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Zobaczysz alternatywną automatyczną dokumentację (wygenerowaną za pomocą <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ## Aktualizacja przykładu
 
-Zmodyfikuj teraz plik `main.py`, aby otrzmywał treść (body) żądania `PUT`.
+Zmodyfikuj teraz plik `main.py`, aby otrzymywał treść (body) żądania `PUT`.
 
-Zadeklaruj treść żądania, używając standardowych typów w Pythonie dzięki Pydantic.
+Zadeklaruj treść żądania, używając standardowych typów w Pythonie, dzięki Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
