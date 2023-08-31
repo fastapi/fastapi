@@ -59,7 +59,7 @@ Możesz:
 
 ## Tweetnij o **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweetnij o **FastAPI**</a> i daj mi i innym znać, dlaczego Ci się podoba. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweetnij o **FastAPI**</a> i daj mi, i innym znać, dlaczego Ci się podoba. 🎉
 
 Uwielbiam słuchać, jak **FastAPI** jest używane, co Ci się w nim podobało, w jakim projekcie/firmie go używasz itp.
 
@@ -82,7 +82,7 @@ Jeśli pomagasz wielu ludziom z ich pytaniami, zostaniesz oficjalnym [Ekspertem 
 
 Pamiętaj tylko, że najważniejsze jest: starać się być życzliwym. Ludzie przychodzą z frustracjami i w wielu przypadkach nie pytają w najlepszy sposób, ale postaraj się być jak najbardziej życzliwy. 🤗
 
-Idea polega na tym, aby społeczność **FastAPI** była życzliwa i przyjazna. Jednocześnie nie akceptuj prześladowania ani braku szacunku wobec innych. Musimy dbać o siebie nawzajem.
+Idea polega na tym, aby społeczność **FastAPI** była życzliwa i przyjazna. Jednocześnie nie akceptuj prześladowania, ani braku szacunku wobec innych. Musimy dbać o siebie nawzajem.
 
 ---
 
@@ -96,7 +96,7 @@ Oto, jak pomóc innym z pytaniami (w dyskusjach lub problemach):
 
 * W wielu przypadkach zadane pytanie dotyczy wyimaginowanego rozwiązania użytkownika, ale może istnieć **lepsze** rozwiązanie. Jeśli lepiej zrozumiesz problem i przypadki użycia, być może będziesz mógł zaproponować lepsze **alternatywne rozwiązanie**.
 
-* Jeśli nie rozumiesz pytania, poproś o więce **szczegółów**.
+* Jeśli nie rozumiesz pytania, poproś o więcej **szczegółów**.
 
 ### Odtwórz problem
 
@@ -106,7 +106,7 @@ W wielu przypadkach skopiują tylko fragment kodu, ale to nie wystarczy, aby **o
 
 * Możesz poprosić ich o dostarczenie <a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">minimalnego, odtwarzalnego przykładu</a>, który możesz **skopiować i wkleić** i uruchomić lokalnie, aby zobaczyć ten sam błąd lub zachowanie, które widzą, lub lepiej zrozumieć ich przypadki użycia.
 
-* Jeśli jesteś szczególnie hojny, możesz spróbować **stworzyć taki przykład** samodzielnie, opierając się tylko na opisie problemu. Miej na uwadze, że może to zająć dużo czasu i lepiej poprosić ich o wyjaśnienie problemu.
+* Jeśli jesteś szczególnie hojny, możesz spróbować **stworzyć taki przykład** samodzielnie, opierając się tylko na opisie problemu. Miej na uwadze, że może to zająć dużo czasu i lepiej może być najpierw poprosić ich o wyjaśnienie problemu.
 
 ### Proponuj rozwiązania
 
@@ -152,9 +152,9 @@ Oto, co warto mieć na uwadze i jak przeglądać pull request:
 
 ### Zrozum problem
 
-* Najpierw upewnij się, że **rozumiesz problem**, który próbuje rozwiązać żądanie ściągnięcia. Może on mieć dłuższą dyskusję w Dyskusji na GitHubie lub w problemie.
+* Najpierw upewnij się, że **rozumiesz problem**, który próbuje rozwiązać pull request. Może on mieć dłuższą dyskusję w Dyskusji na GitHubie lub w problemie.
 
-* Jest też duża szansa, że żądanie ściągnięcia nie jest tak naprawdę potrzebne, ponieważ problem można rozwiązać w **inny sposób**. Wtedy możesz to zasugerować lub zapytać o to.
+* Jest też duża szansa, że pull request nie jest tak naprawdę potrzebny, ponieważ problem można rozwiązać w **inny sposób**. Wtedy możesz to zasugerować lub o to zapytać.
 
 ### Nie martw się stylem
 
@@ -173,7 +173,7 @@ A jeśli istnieje jakaś inna potrzeba dotycząca stylu lub spójności, poprosz
 !!! info
     Niestety, nie mogę po prostu ufać PR-om, które mają kilka zatwierdzeń.
 
-    Kilka razy zdarzyło się, że są PR-y z 3, 5 lub więcej zatwierdzeniami, prawdopodobnie dlatego, że opis jest pociągający, ale gdy sprawdzam PR-y, są one faktycznie uszkodzone, mają błąd lub nie rozwiązują problemu, który twierdzą, że rozwiązują. 😅
+    Kilka razy zdarzyło się, że są PR-y z 3, 5 lub więcej zatwierdzeniami, prawdopodobnie dlatego, że opis jest interesujący, ale gdy sprawdzam PR-y, są one w rzeczywistości uszkodzone, mają błąd lub nie rozwiązują problemu, który twierdzą, że rozwiązują. 😅
 
     Dlatego naprawdę ważne jest, abyś faktycznie przeczytał i uruchomił kod oraz dał mi znać w komentarzach, że to zrobiłeś. 🤓
 
@@ -187,13 +187,13 @@ A jeśli istnieje jakaś inna potrzeba dotycząca stylu lub spójności, poprosz
 
 * Następnie sprawdź, czy testy **przechodzą** po PR. ✅
 
-* Wiele PR-ów nie ma testów, możesz przypomnieć im o dodaniu testów, a nawet **przypomnieć** im o dodaniu testów, a nawet **zaproponować** samemu jakieś testy. To jedna z rzeczy, które pochłaniają najwięcej czasu, i możesz w tym bardzo pomóc.
+* Wiele PR-ów nie ma testów, możesz **przypomnieć** im o dodaniu testów, a nawet **zaproponować** samemu jakieś testy. To jedna z rzeczy, które pochłaniają najwięcej czasu i możesz w tym bardzo pomóc.
 
-* Następnie skomentuj również, co próbowałeś, wtedy będę wiedział, że to sprawdziłeś. 🤓
+* Następnie skomentuj również to, czego spróbowałeś, wtedy będę wiedział, że to sprawdziłeś. 🤓
 
 ## Utwórz Pull Request
 
-Możesz [przyczynić się](contributing.md){.internal-link target=_blank} do kodu źródłowego za pomocą Pull Requestu, na przykład:
+Możesz [wnieść wkład](contributing.md){.internal-link target=_blank} do kodu źródłowego za pomocą Pull Requestu, na przykład:
 
 * Naprawić literówkę, którą znalazłeś w dokumentacji.
 * Podzielić się artykułem, filmem lub podcastem, który stworzyłeś lub znalazłeś na temat FastAPI, <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">edytując ten plik</a>.
