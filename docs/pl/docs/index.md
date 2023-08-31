@@ -315,13 +315,13 @@ Otwórz teraz <a href="http://127.0.0.1:8000/redoc" class="external-link" target
 
 ### Podsumowanie
 
-Podsumowując, musiałeś zadeklarować typy parametrów, treści żądania (body) itp. tylko **raz**, i są one dostępne jako parametry funkcji.
+Podsumowując, deklarujesz **jeden raz** typy parametrów zapytania, treści żądania (body), itp. jako parametry funkcji.
 
-Robisz to tak samo jak ze standardowymi typami w Pythonie.
+Robisz za pomocą standardowych współczesnych typów w Pythonie.
 
-Nie musisz sie uczyć żadnej nowej składni, metod lub klas ze specyficznych bibliotek itp.
+Nie musisz uczyć się nowej składni, metod lub klas ze specyficznych bibliotek, itp.
 
-Po prostu standardowy **Python 3.6+**.
+Po prostu standardowy **Python 3.7++**.
 
 Na przykład, dla danych typu `int`:
 
@@ -329,29 +329,29 @@ Na przykład, dla danych typu `int`:
 item_id: int
 ```
 
-albo dla bardziej złożonego obiektu `Item`:
+albo dla bardziej złożonego modelu `Item`:
 
 ```Python
 item: Item
 ```
 
-...i z pojedyńczą deklaracją otrzymujesz:
+...i z pojedynczą deklaracją otrzymujesz:
 
 * Wsparcie edytorów kodu, wliczając:
     * Auto-uzupełnianie.
     * Sprawdzanie typów.
-* Walidacja danych:
-    * Automatyczne i przejrzyste błędy gdy dane są niepoprawne.
+* Walidację danych:
+    * Automatyczne i jasne błędy, gdy dane są niepoprawne.
     * Walidacja nawet dla głęboko zagnieżdżonych obiektów JSON.
-* <abbr title="znane również jako: serializacja, przetwarzanie, marshalling">Konwersja</abbr> danych wejściowych: przychodzących z sieci na Pythonowe typy. Pozwala na przetwarzanie danych:
-    * JSON.
-    * Parametrów ścieżki.
-    * Parametrów zapytania.
-    * Dane cookies.
-    * Dane nagłówków (headers).
-    * Formularze.
-    * Pliki.
-* <abbr title="znane również jako: serializacja, przetwarzanie, marshalling">Konwersja</abbr> danych wyjściowych: wychodzących z Pythona do sieci (jako JSON):
+* <abbr title="znane również jako: serializacja, przetwarzanie, marshalling">Konwersję</abbr> danych wejściowych: przychodzących z sieci na Pythonowe dane i typy. Pozwala na odczytywanie danych z:
+    * JSON,
+    * Parametrów ścieżki,
+    * Parametrów zapytania,
+    * Danych cookies,
+    * Danych nagłówków (headers),
+    * Formularzy,
+    * Plików,
+* <abbr title="znane również jako: serializacja, przetwarzanie, marshalling">Konwersję</abbr> danych wyjściowych: wychodzących z danych i typów Pythona do danych sieciowych (jako JSON):
     * Przetwarzanie Pythonowych typów (`str`, `int`, `float`, `bool`, `list`, itp).
     * Obiekty `datetime`.
     * Obiekty `UUID`.
@@ -365,16 +365,16 @@ item: Item
 
 Wracając do poprzedniego przykładu, **FastAPI** :
 
-* Potwierdzi, że w ścieżce jest `item_id` dla żądań `GET` i `PUT`.
-* Potwierdzi, że `item_id` jest typu `int` dla żądań `GET` i `PUT`.
-    * Jeżeli nie jest, odbiorca zobaczy przydatną, przejrzystą wiadomość z błędem.
-* Sprawdzi czy w ścieżce jest opcjonalny parametr zapytania `q` (np. `http://127.0.0.1:8000/items/foo?q=somequery`) dla żądania `GET`.
-    * Jako że parametr `q` jest zadeklarowany jako `= None`, jest on opcjonalny.
-    * Gdyby tego `None` nie było, parametr ten byłby wymagany (tak jak treść żądania w żądaniu `PUT`).
+* Sprawdzi, że dla żądań `GET` i `PUT` w ścieżce jest `item_id`.
+* Sprawdzi, że dla żądań `GET` i `PUT` `item_id` jest typu `int` .
+    * Jeżeli nie jest, klient zobaczy przydatną, przejrzystą wiadomość z błędem.
+* Sprawdzi, dla żądania `GET`, czy w ścieżce jest opcjonalny parametr zapytania `q` (np. `http://127.0.0.1:8000/items/foo?q=somequery`).
+    * Jako że parametr `q` jest zadeklarowany z `= None`, jest on opcjonalny.
+    * Gdyby nie było tego `None`, parametr ten byłby wymagany (tak jak treść żądania w żądaniu `PUT`).
 * Dla żądania `PUT` z ścieżką `/items/{item_id}`, odczyta treść żądania jako JSON:
     * Sprawdzi czy posiada wymagany atrybut `name`, który powinien być typu `str`.
     * Sprawdzi czy posiada wymagany atrybut `price`, który musi być typu `float`.
-    * Sprawdzi czy posiada opcjonalny atrybut `is_offer`, który (jeżeli obecny) powinien być typu `bool`.
+    * Sprawdzi czy posiada opcjonalny atrybut `is_offer`, który powinien być typu `bool` (jeżeli jest obecny).
     * To wszystko będzie również działać dla głęboko zagnieżdżonych obiektów JSON.
 * Automatycznie konwertuje z i do JSON.
 * Dokumentuje wszystko w OpenAPI, które może być używane przez:
@@ -384,9 +384,9 @@ Wracając do poprzedniego przykładu, **FastAPI** :
 
 ---
 
-To dopiero początek, ale już masz mniej-więcej pojęcie jak to wszystko działa.
+To dopiero zahaczyliśmy o początek, ale już masz pojęcie jak to wszystko mniej-więcej działa.
 
-Spróbuj zmienić linijkę:
+Spróbuj zmienić w linii zawierającej:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -408,50 +408,51 @@ Spróbuj zmienić linijkę:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Dla bardziej kompletnych przykładów posiadających więcej funkcjonalności, zobacz <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+Dla bardziej kompletnych przykładów posiadających więcej funkcjonalności, zobacz <a href="https://fastapi.tiangolo.com/tutorial/">Samouczek - Podręcznik Użytkownika</a>.
 
-**Uwaga Spoiler**: tutorial - user guide zawiera:
+**Uwaga Spoiler**: Samouczek - Podręcznik Użytkownika zawiera:
 
 * Deklaracje **parametrów** z innych miejsc takich jak: **nagłówki**, **pliki cookies**, **formularze** i **pliki**.
 * Jak ustawić **ograniczenia walidacyjne** takie jak `maksymalna długość` lub `regex`.
-* Potężny i łatwy w użyciu system **<abbr title="znane jako komponenty, resources, providers, services, injectables">Dependency Injection</abbr>**.
-* Zabezpieczenia i autentykacja, wliczając wsparcie dla **OAuth2** z **tokenami JWT** oraz autoryzacją **HTTP Basic**.
+* Potężny i łatwy w użyciu system **<abbr title="znane jako komponenty, resources, providers, services, injectables">Wstrzykiwania zależności</abbr>** (Dependency Injection).
+* Zabezpieczenia i uwierzytelnienie, wliczając wsparcie dla **OAuth2** z **tokenami JWT** oraz uwierzytelnieniem **HTTP Basic**.
 * Bardziej zaawansowane (ale równie proste) techniki deklarowania **głęboko zagnieżdżonych modeli JSON** (dzięki Pydantic).
-* Wiele dodatkowych funkcji (dzięki Starlette) takie jak:
+* GraphQL integration with Strawberry and other libraries.
+* Integracja GraphQL z [Strawberry](https://strawberry.rocks) i innymi bibliotekami.
+* Wiele dodatkowych funkcji (dzięki Starlette), takich jak:
     * **WebSockety**
-    * **GraphQL**
-    * bardzo proste testy bazujące na HTTPX oraz `pytest`
+    * bardzo proste testy oparte na HTTPX oraz `pytest`
     * **CORS**
     * **Sesje cookie**
     * ...i więcej.
 
 ## Wydajność
 
-Niezależne benchmarki TechEmpower pokazują, że **FastAPI** (uruchomiony na serwerze Uvicorn) <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">jest jednym z najszybszych dostępnych Pythonowych frameworków</a>, zaraz po Starlette i Uvicorn (używanymi wewnątrznie przez FastAPI). (*)
+Niezależne benchmarki TechEmpower pokazują, że aplikacje **FastAPI**, uruchomione na serwerze Uvicorn, są <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">jednym z najszybszych dostępnych Pythonowych frameworków</a>, zaraz po Starlette i Uvicorn (używanymi wewnątrznie przez FastAPI). (*)
 
-Aby dowiedzieć się o tym więcej, zobacz sekcję <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Aby dowiedzieć się więcej, zobacz sekcję <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarki</a>.
 
 ## Opcjonalne zależności
 
 Używane przez Pydantic:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - dla walidacji adresów email.
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - dla zarządzania ustawieniami.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>email_validator</code></a> - dla dodatkowych typów używanych z Pydantic.
 
 Używane przez Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Wymagane jeżeli chcesz korzystać z `FileResponse` albo `StaticFiles`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Wymagane jeżeli chcesz używać domyślnej konfiguracji szablonów.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Wymagane jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Wymagane, jeżeli chcesz korzystać z `TestClient`.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Wymagane, jeżeli chcesz używać domyślnej konfiguracji szablonów.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Wymagane, jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Wymagany dla wsparcia `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Wymagane dla wsparcia `SchemaGenerator` z Starlette (z FastAPI prawdopodobnie tego nie potrzebujesz).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Wymagane dla wsparcia `GraphQLApp`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Wymagane jeżeli chcesz korzystać z `UJSONResponse`.
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Wymagane dla wsparcia `SchemaGenerator` ze Starlette (prawdopodobnie nie potrzebujesz tego z FastAPI).
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Wymagane, jeżeli chcesz korzystać z `UJSONResponse`.
 
 Używane przez FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - jako serwer, który ładuje i obsługuje Twoją aplikację.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Wymagane jeżeli chcesz używać `ORJSONResponse`.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Wymagane, jeżeli chcesz używać `ORJSONResponse`.
 
 Możesz zainstalować wszystkie te aplikacje przy pomocy `pip install fastapi[all]`.
 
