@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✅ Add missing test for OpenAPI examples, it was missing in coverage. PR [#10188](https://github.com/tiangolo/fastapi/pull/10188) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.103.0
 
