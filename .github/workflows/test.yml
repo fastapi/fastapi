@@ -13,6 +13,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,7 +29,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v05
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
@@ -42,6 +46,10 @@ jobs:
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
       fail-fast: false
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -54,7 +62,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v03
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt') }}-test-v05
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
@@ -80,6 +88,10 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
@@ -110,6 +122,10 @@ jobs:
       - coverage-combine
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@release/v1
         with:

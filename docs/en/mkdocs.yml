@@ -42,6 +42,16 @@ plugins:
   search: null
   markdownextradata:
     data: ../en/data
+  redirects:
+    redirect_maps:
+      deployment/deta.md: deployment/cloud.md
+      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
+      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
+      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
+      advanced/graphql.md: how-to/graphql.md
+      advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
+      advanced/conditional-openapi.md: how-to/conditional-openapi.md
+      advanced/extending-openapi.md: how-to/extending-openapi.md
 nav:
 - FastAPI: index.md
 - Languages:
@@ -59,6 +69,9 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
+  - uk: /uk/
+  - ur: /ur/
+  - vi: /vi/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -128,24 +141,17 @@ nav:
   - advanced/using-request-directly.md
   - advanced/dataclasses.md
   - advanced/middleware.md
-  - advanced/sql-databases-peewee.md
-  - advanced/async-sql-databases.md
-  - advanced/nosql-databases.md
   - advanced/sub-applications.md
   - advanced/behind-a-proxy.md
   - advanced/templates.md
-  - advanced/graphql.md
   - advanced/websockets.md
   - advanced/events.md
-  - advanced/custom-request-and-route.md
   - advanced/testing-websockets.md
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
   - advanced/async-tests.md
   - advanced/settings.md
-  - advanced/conditional-openapi.md
-  - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/openapi-webhooks.md
   - advanced/wsgi.md
@@ -157,9 +163,22 @@ nav:
   - deployment/https.md
   - deployment/manually.md
   - deployment/concepts.md
-  - deployment/deta.md
+  - deployment/cloud.md
   - deployment/server-workers.md
   - deployment/docker.md
+- How To - Recipes:
+  - how-to/index.md
+  - how-to/general.md
+  - how-to/sql-databases-peewee.md
+  - how-to/async-sql-encode-databases.md
+  - how-to/nosql-databases-couchbase.md
+  - how-to/graphql.md
+  - how-to/custom-request-and-route.md
+  - how-to/conditional-openapi.md
+  - how-to/extending-openapi.md
+  - how-to/separate-openapi-schemas.md
+  - how-to/custom-docs-ui-assets.md
+  - how-to/configure-swagger-ui.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -176,9 +195,9 @@ markdown_extensions:
     guess_lang: false
   mdx_include:
     base_path: docs
-  admonition:
-  codehilite:
-  extra:
+  admonition: null
+  codehilite: null
+  extra: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
@@ -186,8 +205,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
-  attr_list:
-  md_in_html:
+  attr_list: null
+  md_in_html: null
 extra:
   analytics:
     provider: google
@@ -236,6 +255,12 @@ extra:
     name: ru - русский язык
   - link: /tr/
     name: tr - Türkçe
+  - link: /uk/
+    name: uk
+  - link: /ur/
+    name: ur
+  - link: /vi/
+    name: vi - Tiếng Việt
   - link: /zh/
     name: zh - 汉语
 extra_css:

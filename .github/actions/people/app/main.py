@@ -9,7 +9,8 @@ from typing import Any, Container, DefaultDict, Dict, List, Set, Union
 import httpx
 import yaml
 from github import Github
-from pydantic import BaseModel, BaseSettings, SecretStr
+from pydantic import BaseModel, SecretStr
+from pydantic_settings import BaseSettings
 
 github_graphql_url = "https://api.github.com/graphql"
 questions_category_id = "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDAxNDM0"
@@ -382,6 +383,7 @@ def get_graphql_response(
     data = response.json()
     if "errors" in data:
         logging.error(f"Errors in response, after: {after}, category_id: {category_id}")
+        logging.error(data["errors"])
         logging.error(response.text)
         raise RuntimeError(response.text)
     return data
@@ -389,7 +391,7 @@ def get_graphql_response(
 
 def get_graphql_issue_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=issues_query, after=after)
-    graphql_response = IssuesResponse.parse_obj(data)
+    graphql_response = IssuesResponse.model_validate(data)
     return graphql_response.data.repository.issues.edges
 
 
@@ -404,19 +406,19 @@ def get_graphql_question_discussion_edges(
         after=after,
         category_id=questions_category_id,
     )
-    graphql_response = DiscussionsResponse.parse_obj(data)
+    graphql_response = DiscussionsResponse.model_validate(data)
     return graphql_response.data.repository.discussions.edges
 
 
 def get_graphql_pr_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=prs_query, after=after)
-    graphql_response = PRsResponse.parse_obj(data)
+    graphql_response = PRsResponse.model_validate(data)
     return graphql_response.data.repository.pullRequests.edges
 
 
 def get_graphql_sponsor_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=sponsors_query, after=after)
-    graphql_response = SponsorsResponse.parse_obj(data)
+    graphql_response = SponsorsResponse.model_validate(data)
     return graphql_response.data.user.sponsorshipsAsMaintainer.edges
 
 
@@ -607,7 +609,7 @@ def get_top_users(
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
-    logging.info(f"Using config: {settings.json()}")
+    logging.info(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.input_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     question_commentors, question_last_month_commentors, question_authors = get_experts(

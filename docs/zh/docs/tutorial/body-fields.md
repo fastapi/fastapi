@@ -6,9 +6,41 @@
 
 首先，你必须导入它：
 
-```Python hl_lines="2"
-{!../../../docs_src/body_fields/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="2"
+    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001.py!}
+    ```
 
 !!! warning
     注意，`Field` 是直接从 `pydantic` 导入的，而不是像其他的（`Query`，`Path`，`Body` 等）都从 `fastapi` 导入。
@@ -17,9 +49,41 @@
 
 然后，你可以对模型属性使用 `Field`：
 
-```Python hl_lines="9-10"
-{!../../../docs_src/body_fields/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="12-15"
+    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="9-12"
+    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001.py!}
+    ```
 
 `Field` 的工作方式和 `Query`、`Path` 和 `Body` 相同，包括它们的参数等等也完全相同。
 
