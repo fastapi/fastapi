@@ -2,11 +2,11 @@
 
 因为 **FastAPI** 是基于OpenAPI规范的，自然您可以使用许多相匹配的工具，包括自动生成API文档 (由 Swagger UI 提供)。
 
-一个不怎么显而易见的特殊优势是为您的API对于各种不同的**编程语言**来**生成客户端**(有时候被叫做 <abbr title="Software Development Kits">**SDKs**</abbr> )。
+一个不太明显而又特别的优势是，你可以为你的API针对不同的**编程语言**来**生成客户端**(有时候被叫做 <abbr title="Software Development Kits">**SDKs**</abbr> )。
 
 ## OpenAPI 客户端生成
 
-有许多工具可以生成 **OpenAPI**。
+有许多工具可以从**OpenAPI**生成客户端。
 
 一个常见的工具是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>。
 
@@ -14,7 +14,7 @@
 
 ## 生成一个 TypeScript 前端客户端
 
-让我们从一个简单的 FastAPI 程序开始：
+让我们从一个简单的 FastAPI 应用开始：
 
 === "Python 3.9+"
 
@@ -28,11 +28,11 @@
     {!> ../../../docs_src/generate_clients/tutorial001.py!}
     ```
 
-请注意 *路径操作* 定义了他们所用于请求数据和回应数据的模型，所使用的模型是`Item` 和 `ResponseMessage`。
+请注意，*路径操作* 定义了他们所用于请求数据和回应数据的模型，所使用的模型是`Item` 和 `ResponseMessage`。
 
 ### API 文档
 
-如果您访问API文档，您将看到它具有在请求中发送和在响应中接收数据的**模式**：
+如果您访问API文档，您将看到它具有在请求中发送和在响应中接收数据的**模式(schemas)**：
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
@@ -112,19 +112,19 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 <img src="/img/tutorial/generate-clients/image03.png">
 
 !!! tip
-    请注意 `Item` 模型中FastAPI应用程序中定义的 `name `和 `price` 的自动补全。
+    请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
 
-您也将拥有发送的数据出现的内部错误：
+如果发送的数据字段不符，你也会看到编辑器的错误提示:
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
-回应的对象也拥有自动补全:
+响应(response)对象也拥有自动补全:
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
 ## 带有标签的 FastAPI 应用
 
-在许多情况下，你的FastAPI应用程序会更复杂，你可能会使用标签来分隔不同组的*路径操作*。
+在许多情况下，你的FastAPI应用程序会更复杂，你可能会使用标签来分隔不同组的*路径操作(path operations)*。
 
 例如，您可以有一个用 `items` 的部分和另一个用于 `users` 的部分，它们可以用标签来分隔：
 
@@ -161,9 +161,9 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...这是因为客户端生成器为每个*路径操作*使用OpenAPI的内部 **操作 ID**。
+...这是因为客户端生成器为每个 *路径操作* 使用OpenAPI的内部 **操作 ID(operation ID)**。
 
-OpenAPI要求每个操作 ID 在所有路径操作中都是唯一的，因此 FastAPI 使用**函数名**、**路径**和**HTTP方法/操作**来生成此操作ID，因为这样可以确保这些操作 ID 是唯一的。
+OpenAPI要求每个操作 ID 在所有 *路径操作* 中都是唯一的，因此 FastAPI 使用**函数名**、**路径**和**HTTP方法/操作**来生成此操作ID，因为这样可以确保这些操作 ID 是唯一的。
 
 但接下来我会告诉你如何改进。 🤓
 
@@ -177,11 +177,11 @@ OpenAPI要求每个操作 ID 在所有路径操作中都是唯一的，因此 Fa
 
 ### 自定义生成唯一ID函数
 
-FastAPI为每个*路径操作*使用一个**唯一ID**，它用于操作ID，也用于任何所需自定义模型的名称，用于请求或响应。
+FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**，也用于任何所需自定义模型的名称，用于请求或响应。
 
 你可以自定义该函数。它接受一个 `APIRoute` 对象作为输入，并输出一个字符串。
 
-例如，以下是一个示例，它使用第一个标签（你可能只有一个标签）和路径操作名称（函数名）。
+例如，以下是一个示例，它使用第一个标签（你可能只有一个标签）和*路径操作*名称（函数名）。
 
 然后，你可以将这个自定义函数作为 `generate_unique_id_function` 参数传递给 **FastAPI**:
 
@@ -245,7 +245,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于操作ID，也
 }
 ```
 
-生成新的客户端之后，你现在将拥有**清晰的方法名称**，具备**自动补全**、**内部错误**等功能：
+生成新的客户端之后，你现在将拥有**清晰的方法名称**，具备**自动补全**、**错误提示**等功能：
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
@@ -257,7 +257,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于操作ID，也
 * 请求体中的数据、查询参数等。
 * 响应数据。
 
-你还将获得针对所有内容的内部错误。
+你还将获得针对所有内容的错误提示。
 
 每当你更新后端代码并**重新生成**前端代码时，新的*路径操作*将作为方法可用，旧的方法将被删除，并且其他任何更改将反映在生成的代码中。 🤓
 
