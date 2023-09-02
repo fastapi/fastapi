@@ -9,6 +9,9 @@ from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
+# TODO: import from typing when deprecating Python 3.9
+from typing_extensions import Annotated
+
 
 class OAuth2PasswordRequestForm:
     """
@@ -45,12 +48,13 @@ class OAuth2PasswordRequestForm:
 
     def __init__(
         self,
-        grant_type: str = Form(default=None, regex="password"),
-        username: str = Form(),
-        password: str = Form(),
-        scope: str = Form(default=""),
-        client_id: Optional[str] = Form(default=None),
-        client_secret: Optional[str] = Form(default=None),
+        *,
+        grant_type: Annotated[Union[str, None], Form(pattern="password")] = None,
+        username: Annotated[str, Form()],
+        password: Annotated[str, Form()],
+        scope: Annotated[str, Form()] = "",
+        client_id: Annotated[Union[str, None], Form()] = None,
+        client_secret: Annotated[Union[str, None], Form()] = None,
     ):
         self.grant_type = grant_type
         self.username = username
@@ -95,12 +99,12 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     def __init__(
         self,
-        grant_type: str = Form(regex="password"),
-        username: str = Form(),
-        password: str = Form(),
-        scope: str = Form(default=""),
-        client_id: Optional[str] = Form(default=None),
-        client_secret: Optional[str] = Form(default=None),
+        grant_type: Annotated[str, Form(pattern="password")],
+        username: Annotated[str, Form()],
+        password: Annotated[str, Form()],
+        scope: Annotated[str, Form()] = "",
+        client_id: Annotated[Union[str, None], Form()] = None,
+        client_secret: Annotated[Union[str, None], Form()] = None,
     ):
         super().__init__(
             grant_type=grant_type,
