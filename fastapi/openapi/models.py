@@ -11,7 +11,7 @@ from fastapi._compat import (
 )
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
-from typing_extensions import Annotated, Literal
+from typing_extensions import Annotated, Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
 try:
@@ -267,14 +267,14 @@ class Schema(BaseModel):
 SchemaOrBool = Union[Schema, bool]
 
 
-class Example(BaseModel):
-    summary: Optional[str] = None
-    description: Optional[str] = None
-    value: Optional[Any] = None
-    externalValue: Optional[AnyUrl] = None
+class Example(TypedDict, total=False):
+    summary: Optional[str]
+    description: Optional[str]
+    value: Optional[Any]
+    externalValue: Optional[AnyUrl]
 
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+    if PYDANTIC_V2:  # type: ignore [misc]
+        __pydantic_config__ = {"extra": "allow"}
 
     else:
 
