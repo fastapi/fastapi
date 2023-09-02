@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/alternatives.md`. PR [#10060](https://github.com/tiangolo/fastapi/pull/10060) by [@whysage](https://github.com/whysage).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/index.md`. PR [#10079](https://github.com/tiangolo/fastapi/pull/10079) by [@rostik1410](https://github.com/rostik1410).
 * ✏️ Fix typos in `docs/en/docs/how-to/separate-openapi-schemas.md` and `docs/en/docs/tutorial/schema-extra-example.md`. PR [#10189](https://github.com/tiangolo/fastapi/pull/10189) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/generate-clients.md`. PR [#9883](https://github.com/tiangolo/fastapi/pull/9883) by [@funny-cat-happy](https://github.com/funny-cat-happy).
