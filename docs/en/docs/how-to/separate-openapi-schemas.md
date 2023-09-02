@@ -160,7 +160,7 @@ If you interact with the docs and check the response, even though the code didn'
 
 This means that it will **always have a value**, it's just that sometimes the value could be `None` (or `null` in JSON).
 
-That means that, clients using your API don't have to check if the value exists or not, they can **asume the field will always be there**, but just that in some cases it will have the default value of `None`.
+That means that, clients using your API don't have to check if the value exists or not, they can **assume the field will always be there**, but just that in some cases it will have the default value of `None`.
 
 The way to describe this in OpenAPI, is to mark that field as **required**, because it will always be there.
 
