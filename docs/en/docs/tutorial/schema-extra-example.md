@@ -38,13 +38,13 @@ That extra info will be added as-is to the output **JSON Schema** for that model
 
     In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic's docs: Model Config</a>.
 
-    You can set `"json_schema_extra"` with a `dict` containing any additonal data you would like to show up in the generated JSON Schema, including `examples`.
+    You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
 === "Pydantic v1"
 
     In Pydantic version 1, you would use an internal class `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>.
 
-    You can set `schema_extra` with a `dict` containing any additonal data you would like to show up in the generated JSON Schema, including `examples`.
+    You can set `schema_extra` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
 !!! tip
     You could use the same technique to extend the JSON Schema and add your own custom extra info.
