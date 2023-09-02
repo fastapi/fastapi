@@ -1,8 +1,8 @@
 -e .
-mkdocs==1.4.3
-mkdocs-material==9.1.17
+mkdocs-material==9.1.21
 mdx-include >=1.4.1,<2.0.0
 mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
+mkdocs-redirects>=1.2.1,<1.3.0
 typer-cli >=0.0.13,<0.0.14
 typer[all] >=0.6.1,<0.8.0
 pyyaml >=5.3.1,<7.0.0

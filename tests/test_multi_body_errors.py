@@ -51,7 +51,7 @@ def test_jsonable_encoder_requiring_error():
                     "loc": ["body", 0, "age"],
                     "msg": "Input should be greater than 0",
                     "input": -1.0,
-                    "ctx": {"gt": 0.0},
+                    "ctx": {"gt": 0},
                     "url": match_pydantic_error_url("greater_than"),
                 }
             ]
@@ -89,6 +89,7 @@ def test_put_incorrect_body_multiple():
                     "loc": ["body", 0, "age"],
                     "msg": "Input should be a valid decimal",
                     "input": "five",
+                    "url": match_pydantic_error_url("decimal_parsing"),
                 },
                 {
                     "type": "missing",
@@ -102,6 +103,7 @@ def test_put_incorrect_body_multiple():
                     "loc": ["body", 1, "age"],
                     "msg": "Input should be a valid decimal",
                     "input": "six",
+                    "url": match_pydantic_error_url("decimal_parsing"),
                 },
             ]
         }

@@ -92,6 +92,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        separate_input_output_schemas: bool = True,
         **extra: Any,
     ) -> None:
         self.debug = debug
@@ -111,6 +112,7 @@ class FastAPI(Starlette):
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
+        self.separate_input_output_schemas = separate_input_output_schemas
         self.extra = extra
         self.openapi_version = "3.1.0"
         self.openapi_schema: Optional[Dict[str, Any]] = None
@@ -227,6 +229,7 @@ class FastAPI(Starlette):
                 webhooks=self.webhooks.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
+                separate_input_output_schemas=self.separate_input_output_schemas,
             )
         return self.openapi_schema
 
