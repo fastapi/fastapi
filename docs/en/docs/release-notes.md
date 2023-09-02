@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.103.1
+
 ### Fixes
 
 * 📌 Pin AnyIO to < 4.0.0 to handle an incompatibility while upgrading to Starlette 0.31.1. PR [#10194](https://github.com/tiangolo/fastapi/pull/10194) by [@tiangolo](https://github.com/tiangolo).
