@@ -106,7 +106,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-然后轮到你了，你为你的恋人和你选了两个非常精美的汉堡。🍔🍔
+然后轮到你了，你为你的恋人和你选了两个非常豪华的汉堡。🍔🍔
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
