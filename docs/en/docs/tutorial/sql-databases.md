@@ -1,5 +1,12 @@
 # SQL (Relational) Databases
 
+!!! info
+    These docs are about to be updated. 🎉
+
+    The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
+
+    The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
+
 **FastAPI** doesn't require you to use a SQL (relational) database.
 
 But you can use any relational database that you want.
