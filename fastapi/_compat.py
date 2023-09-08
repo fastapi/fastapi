@@ -109,6 +109,7 @@ if PYDANTIC_V2:
 
         def __post_init__(self) -> None:
             from pydantic import PydanticDeprecatedSince20
+
             try:
                 self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                     Annotated[self.field_info.annotation, self.field_info]
@@ -140,6 +141,7 @@ if PYDANTIC_V2:
             except AttributeError:
                 # pydantic v1
                 from pydantic import v1
+
                 try:
                     return v1.parse_obj_as(self.type_, value), None
                 except v1.ValidationError as exc:
