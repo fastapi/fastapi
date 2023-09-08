@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 import pytest
 from fastapi import Body, FastAPI
@@ -54,12 +54,12 @@ async def response_model__invalid():
     return 1
 
 
-@app.get("/response_model_list", response_model=list[Model])
+@app.get("/response_model_list", response_model=List[Model])
 async def response_model_list():
     return [Model(name="valid_model")]
 
 
-@app.get("/response_model_list__invalid", response_model=list[Model])
+@app.get("/response_model_list__invalid", response_model=List[Model])
 async def response_model_list__invalid():
     return [1]
 
