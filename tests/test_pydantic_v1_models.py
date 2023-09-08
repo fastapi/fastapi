@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing_extensions import Annotated
 
 import pytest
 from fastapi import Body, FastAPI
