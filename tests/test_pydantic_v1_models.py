@@ -1,23 +1,37 @@
 import pytest
 from fastapi import Body, FastAPI
+from fastapi._compat import PYDANTIC_V2
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from pydantic import v1
 from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
+if PYDANTIC_V2:
+    from pydantic import v1
 
-class Item(v1.BaseModel):
-    name: str
-    description: str | None = None
-    price: float
-    tax: float | None = None
-    tags: list = []
+    class Item(v1.BaseModel):
+        name: str
+        description: str | None = None
+        price: float
+        tax: float | None = None
+        tags: list = []
 
+    class Model(v1.BaseModel):
+        name: str
 
-class Model(v1.BaseModel):
-    name: str
+else:
+    from pydantic import BaseModel
+
+    class Item(BaseModel):
+        name: str
+        description: str | None = None
+        price: float
+        tax: float | None = None
+        tags: list = []
+
+    class Model(BaseModel):
+        name: str
 
 
 app = FastAPI()
