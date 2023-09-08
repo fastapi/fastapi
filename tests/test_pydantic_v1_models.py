@@ -6,6 +6,8 @@ from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from pydantic import v1
 
+from tests.utils import needs_pydanticv2
+
 
 class Item(v1.BaseModel):
     name: str
@@ -50,6 +52,7 @@ async def response_model_list__invalid():
 client = TestClient(app)
 
 
+@needs_pydanticv2
 class TestResponseModel:
     def test_simple__valid(self):
         response = client.get("/response_model")
@@ -70,6 +73,7 @@ class TestResponseModel:
             client.get("/response_model_list__invalid")
 
 
+@needs_pydanticv2
 class TestRequestBody:
     def test_model__valid(self):
         response = client.post("/request_body", json={"name": "myname", "price": 1.0})
