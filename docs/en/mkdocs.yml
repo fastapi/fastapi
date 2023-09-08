@@ -72,6 +72,7 @@ nav:
   - uk: /uk/
   - ur: /ur/
   - vi: /vi/
+  - yo: /yo/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -261,6 +262,8 @@ extra:
     name: ur
   - link: /vi/
     name: vi - Tiếng Việt
+  - link: /yo/
+    name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
 extra_css:

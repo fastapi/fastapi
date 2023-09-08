@@ -35,7 +35,7 @@ It should be a `list` of `Depends()`:
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-These dependencies will be executed/solved the same way normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
+These dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
 
 !!! tip
     Some editors check for unused function parameters, and show them as errors.
