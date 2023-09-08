@@ -1,5 +1,6 @@
 from typing import Optional
 
+from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -42,7 +43,7 @@ def test_openapi():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -52,11 +53,21 @@ def test_openapi():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {
-                                "title": "Standard Query Param",
-                                "type": "integer",
-                                "default": 50,
-                            },
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "default": 50,
+                                    "title": "Standard Query Param",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "title": "Standard Query Param",
+                                    "type": "integer",
+                                    "default": 50,
+                                }
+                            ),
                             "name": "standard_query_param",
                             "in": "query",
                         },

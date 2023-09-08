@@ -258,6 +258,8 @@ def live(
     Takes an optional LANG argument with the name of the language to serve, by default
     en.
     """
+    # Enable line numbers during local development to make it easier to highlight
+    os.environ["LINENUMS"] = "true"
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang

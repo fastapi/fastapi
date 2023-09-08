@@ -90,7 +90,9 @@ Let's see what each of those options mean:
         ```
 
     * So, the colon in `main:app` would be equivalent to the Python `import` part in `from main import app`.
+
 * `--workers`: The number of worker processes to use, each will run a Uvicorn worker, in this case, 4 workers.
+
 * `--worker-class`: The Gunicorn-compatible worker class to use in the worker processes.
     * Here we pass the class that Gunicorn can import and use with:
 

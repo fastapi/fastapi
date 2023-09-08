@@ -20,9 +20,26 @@
 
 把下面的示例代码复制到 `main.py`：
 
-```Python
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.9+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 ## 运行
 
