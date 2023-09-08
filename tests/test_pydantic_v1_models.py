@@ -1,10 +1,9 @@
-from typing_extensions import Annotated
-
 import pytest
 from fastapi import Body, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from pydantic import v1
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
