@@ -1,3 +1,5 @@
+from typing import Optional
+
 import pytest
 from fastapi import Body, FastAPI
 from fastapi._compat import PYDANTIC_V2
@@ -12,9 +14,9 @@ if PYDANTIC_V2:
 
     class Item(v1.BaseModel):
         name: str
-        description: str | None = None
+        description: Optional[str] = None
         price: float
-        tax: float | None = None
+        tax: Optional[float] = None
         tags: list = []
 
     class Model(v1.BaseModel):
@@ -25,9 +27,9 @@ else:
 
     class Item(BaseModel):
         name: str
-        description: str | None = None
+        description: Optional[str] = None
         price: float
-        tax: float | None = None
+        tax: Optional[float] = None
         tags: list = []
 
     class Model(BaseModel):
