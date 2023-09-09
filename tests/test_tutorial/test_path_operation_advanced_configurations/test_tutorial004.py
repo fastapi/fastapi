@@ -35,7 +35,7 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/ItemOutput"
+                                        "$ref": "#/components/schemas/Item-Output"
                                     }
                                 }
                             },
@@ -57,7 +57,7 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/ItemInput"}
+                                "schema": {"$ref": "#/components/schemas/Item-Input"}
                             }
                         },
                         "required": True,
@@ -67,7 +67,7 @@ def test_openapi_schema():
         },
         "components": {
             "schemas": {
-                "ItemInput": {
+                "Item-Input": {
                     "title": "Item",
                     "required": ["name", "price"],
                     "type": "object",
@@ -91,7 +91,7 @@ def test_openapi_schema():
                         },
                     },
                 },
-                "ItemOutput": {
+                "Item-Output": {
                     "title": "Item",
                     "required": ["name", "description", "price", "tax", "tags"],
                     "type": "object",
