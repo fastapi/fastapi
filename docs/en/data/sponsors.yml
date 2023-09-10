@@ -30,9 +30,6 @@ silver:
   - url: https://careers.powens.com/
     title: Powens is hiring!
     img: https://fastapi.tiangolo.com/img/sponsors/powens.png
-  - url: https://www.svix.com/
-    title: Svix - Webhooks as a service
-    img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
