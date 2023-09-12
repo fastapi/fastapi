@@ -72,6 +72,7 @@ nav:
   - uk: /uk/
   - ur: /ur/
   - vi: /vi/
+  - yo: /yo/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -176,6 +177,7 @@ nav:
   - how-to/custom-request-and-route.md
   - how-to/conditional-openapi.md
   - how-to/extending-openapi.md
+  - how-to/separate-openapi-schemas.md
   - how-to/custom-docs-ui-assets.md
   - how-to/configure-swagger-ui.md
 - project-generation.md
@@ -260,6 +262,8 @@ extra:
     name: ur
   - link: /vi/
     name: vi - Tiếng Việt
+  - link: /yo/
+    name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
 extra_css:

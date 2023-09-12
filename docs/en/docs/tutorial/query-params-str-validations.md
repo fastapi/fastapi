@@ -932,7 +932,7 @@ Validations specific for strings:
 
 * `min_length`
 * `max_length`
-* `regex`
+* `pattern`
 
 In these examples you saw how to declare validations for `str` values.
 
