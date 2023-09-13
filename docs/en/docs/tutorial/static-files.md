@@ -22,7 +22,7 @@ You can serve static files automatically from a directory using `StaticFiles`.
 
 This is different from using an `APIRouter` as a mounted application is completely independent. The OpenAPI and docs from your main application won't include anything from the mounted application, etc.
 
-You can read more about this in the **Advanced User Guide**.
+You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
 
 ## Details
 
