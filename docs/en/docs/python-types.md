@@ -10,7 +10,7 @@ This is just a **quick tutorial / refresher** about Python type hints. It covers
 
 **FastAPI** is all based on these type hints, they give it many advantages and benefits.
 
-But even if you never use **FastAPI**, you would benefit from learning a bit about them.
+But even if you never used **FastAPI**, you would benefit from learning a bit about them.
 
 !!! note
     If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
