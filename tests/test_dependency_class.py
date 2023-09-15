@@ -53,6 +53,11 @@ async def get_callable_dependency(value: str = Depends(callable_dependency)):
     return value
 
 
+app.add_api_route(
+    "/callable-dependency-not-decorated", callable_dependency, methods=["GET"]
+)
+
+
 @app.get("/callable-gen-dependency")
 async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependency)):
     return value
@@ -63,6 +68,13 @@ async def get_async_callable_dependency(
     value: str = Depends(async_callable_dependency),
 ):
     return value
+
+
+app.add_api_route(
+    "/async-callable-dependency-not-decorated",
+    async_callable_dependency,
+    methods=["GET"],
+)
 
 
 @app.get("/async-callable-gen-dependency")
@@ -79,6 +91,13 @@ async def get_synchronous_method_dependency(
     return value
 
 
+app.add_api_route(
+    "/synchronous-method-dependency-not-decorated",
+    methods_dependency.synchronous,
+    methods=["GET"],
+)
+
+
 @app.get("/synchronous-method-gen-dependency")
 async def get_synchronous_method_gen_dependency(
     value: str = Depends(methods_dependency.synchronous_gen),
@@ -91,6 +110,13 @@ async def get_asynchronous_method_dependency(
     value: str = Depends(methods_dependency.asynchronous),
 ):
     return value
+
+
+app.add_api_route(
+    "/asynchronous-method-dependency-not-decorated",
+    methods_dependency.asynchronous,
+    methods=["GET"],
+)
 
 
 @app.get("/asynchronous-method-gen-dependency")
@@ -107,12 +133,25 @@ client = TestClient(app)
     "route,value",
     [
         ("/callable-dependency", "callable-dependency"),
+        ("/callable-dependency-not-decorated", "callable-dependency-not-decorated"),
         ("/callable-gen-dependency", "callable-gen-dependency"),
         ("/async-callable-dependency", "async-callable-dependency"),
+        (
+            "/async-callable-dependency-not-decorated",
+            "async-callable-dependency-not-decorated",
+        ),
         ("/async-callable-gen-dependency", "async-callable-gen-dependency"),
         ("/synchronous-method-dependency", "synchronous-method-dependency"),
+        (
+            "/synchronous-method-dependency-not-decorated",
+            "synchronous-method-dependency-not-decorated",
+        ),
         ("/synchronous-method-gen-dependency", "synchronous-method-gen-dependency"),
         ("/asynchronous-method-dependency", "asynchronous-method-dependency"),
+        (
+            "/asynchronous-method-dependency-not-decorated",
+            "asynchronous-method-dependency-not-decorated",
+        ),
         ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
     ],
 )

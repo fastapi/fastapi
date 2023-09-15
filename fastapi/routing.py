@@ -238,6 +238,9 @@ def get_request_handler(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
             )
 
+            if asyncio.iscoroutine(raw_response):
+                raw_response = await raw_response
+
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
