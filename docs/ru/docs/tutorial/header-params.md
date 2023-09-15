@@ -26,8 +26,8 @@
 
 === "Python 3.10+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -35,8 +35,8 @@
 
 === "Python 3.6+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -68,8 +68,8 @@
 
 === "Python 3.10+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -77,8 +77,8 @@
 
 === "Python 3.6+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -89,7 +89,7 @@
 
     Но помните, что когда вы импортируете `Query`, `Path`, `Header` и другие из `fastapi`, на самом деле это функции, которые возвращают специальные классы.
 
-!!! Дополнительная информация
+!!! info "Дополнительная информация"
     Чтобы объявить заголовки, важно использовать `Header`, потому что в противном случае параметры интерпретируются как query-параметры.
 
 ## Автоматическое преобразование
@@ -128,8 +128,8 @@
 
 === "Python 3.10+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
@@ -137,14 +137,14 @@
 
 === "Python 3.6+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial002.py!}
     ```
 
-!!! Внимание
+!!! warning "Внимание"
     Прежде чем установить для `convert_underscores` значение `False`, имейте в виду, что некоторые HTTP-прокси и серверы запрещают использование заголовков с подчеркиванием.
 
 ## Повторяющиеся заголовки
@@ -177,8 +177,8 @@
 
 === "Python 3.10+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/header_params/tutorial003_py310.py!}
@@ -186,8 +186,8 @@
 
 === "Python 3.9+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
@@ -195,8 +195,8 @@
 
 === "Python 3.6+ без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Подсказка"
+        Предпочтительнее использовать версию с аннотацией, если это возможно.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial003.py!}
