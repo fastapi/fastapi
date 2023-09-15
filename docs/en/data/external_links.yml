@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Adejumo Ridwan Suleiman
+    author_link: https://www.linkedin.com/in/adejumoridwan/
+    link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
+    title: Build an SMS Spam Classifier Serverless Database with FaunaDB and FastAPI
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/
@@ -233,6 +237,10 @@ articles:
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
   german:
+  - author: Marcel Sander (actidoo)
+    author_link: https://www.actidoo.com
+    link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
+    title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
