@@ -560,6 +560,12 @@ class Body(FieldInfo):
             )
         current_json_schema_extra = json_schema_extra or extra
         if PYDANTIC_V2:
+            if serialization_alias in (_Unset, None) and isinstance(alias, str):
+                serialization_alias = alias
+
+            if validation_alias in (_Unset, None):
+                validation_alias = alias
+
             kwargs.update(
                 {
                     "annotation": annotation,
