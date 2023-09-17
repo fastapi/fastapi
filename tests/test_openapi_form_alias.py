@@ -31,6 +31,5 @@ def test_get_route(path: str):
 def test_form_alias_is_correct(schema_obj: str):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    print(response.json()["components"]["schemas"])
     form_properties = response.json()["components"]["schemas"][schema_obj]["properties"]
     assert "aliased-field" in form_properties
