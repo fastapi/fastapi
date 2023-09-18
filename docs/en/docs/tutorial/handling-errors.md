@@ -1,6 +1,6 @@
 # Handling Errors
 
-There are many situations in where you need to notify an error to a client that is using your API.
+There are many situations in which you need to notify an error to a client that is using your API.
 
 This client could be a browser with a frontend, a code from someone else, an IoT device, etc.
 
