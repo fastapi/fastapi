@@ -71,7 +71,7 @@ class AccessTokenValidator(HTTPBearer):
             raise HTTPException(
                 status_code=HTTP_400_BAD_REQUEST,
                 detail="Unsupported authorization code",
-            )
+            ) from None
 
         # 4. if security scopes are present, validate them
         if security_scopes and security_scopes.scopes:
