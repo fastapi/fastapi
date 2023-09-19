@@ -36,6 +36,9 @@ silver:
   - url: https://speakeasyapi.dev?utm_source=fastapi+repo&utm_medium=github+sponsorship
     title: SDKs for your API | Speakeasy
     img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
+  - url: https://www.svix.com/
+    title: Svix - Webhooks as a service
+    img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.

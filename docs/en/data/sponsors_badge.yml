@@ -12,7 +12,6 @@ logins:
   - ObliviousAI
   - Doist
   - nihpo
-  - svix
   - armand-sauzay
   - databento-bot
   - nanram22
@@ -20,3 +19,4 @@ logins:
   - porter-dev
   - fern-api
   - ndimares
+  - svixhq
