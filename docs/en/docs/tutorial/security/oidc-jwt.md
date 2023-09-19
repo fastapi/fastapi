@@ -1,6 +1,6 @@
 # OpenID Connect (OIDC) with JWT Access Tokens
 
-For this tutorial we will be using OpenID Connect (OIDC) as an *authentication* layer that builds on top of the OAuth2 *authorization* layer. 
+For this tutorial we will be using OpenID Connect (OIDC) as an *authentication* layer that builds on top of the OAuth2 *authorization* layer.
 
 We will be using the Swagger UI to serve the OpenID Connect authentication flow. The **FastAPI** (default) router will implement a OAuth2 resource server that validates the JWT access tokens and grant access to the router's endpoints.
 
@@ -24,14 +24,14 @@ First, we will need to configure an Applicaton (i.e. Relying Party in OpenID-spe
     * *Write down the client id*
 
 Then, we will select an authorization server to verify user identities and issue tokens for secure authentication and authorization of login requests:
-!!! check "Step 2 - Configure authorization server to return a custom claim" 
+!!! check "Step 2 - Configure authorization server to return a custom claim"
     * Select/create a custom authorization server for the abovementioned application
     * Create a custom claim with the name "`groups`".
     * Map the values to the groups of which the authenticated user is member of
     * *Write down issuer URL*
     * *Write down audience*
 
-Finally, we will need to create a user and a group named "`Foo`" to 
+Finally, we will need to create a user and a group named "`Foo`" to
 !!! check "Step 3 - Create a user and group"
     * Create a group called "`Foo`"
     * Create a user
@@ -41,14 +41,14 @@ Finally, we will need to create a user and a group named "`Foo`" to
 
 ## Configure your **FastAPI** Application
 
-We assume a running pip environment with **FastAPI** installed (see [here](../../index.md#installation)). 
+We assume a running pip environment with **FastAPI** installed (see [here](../../index.md#installation)).
 
 This example contains a `AccessTokenValidator` that validates the JWT access tokens using the jwks url that is part of the oidc well known configuration. It requires a Python JavaScript Object Signing and Encryprion (JOSE) library, a HTTP client to fetch keysets and some cache utilities.
 
 
 !!! check "Step 4 - Install AccessTokenValidator Dependencies"
     ```console
-    pip install jose cachetools types-cachetools httpx 
+    pip install jose cachetools types-cachetools httpx
     ```
 
 You need to fill in the values in the .env file that you wrote down from the previous steps:
