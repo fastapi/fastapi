@@ -345,3 +345,7 @@ talks:
     author_link: https://twitter.com/chriswithers13
     link: https://www.youtube.com/watch?v=3DLwPcrE5mA
     title: 'PyCon UK 2019: FastAPI from the ground up'
+  - author: Jeny Sadadia
+    author_link: https://github.com/JenySadadia
+    link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
+    title: 'PyCon AU 2023: Testing asynchronous applications with FastAPI and pytest'
