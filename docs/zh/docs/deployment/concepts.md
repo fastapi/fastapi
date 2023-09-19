@@ -278,7 +278,7 @@
 * Kubernetes 中的“Init Container”在应用程序容器之前运行
 * 一个 bash 脚本，运行前面的步骤，然后启动您的应用程序
      * 您仍然需要一种方法来启动/重新启动 bash 脚本、检测错误等。
- 
+
 !!! tip
      我将在以后的章节中为您提供使用容器执行此操作的更具体示例：[容器中的 FastAPI - Docker](./docker.md){.internal-link target=_blank}。
 
