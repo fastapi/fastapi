@@ -50,48 +50,22 @@ def test_openapi_schema(client: TestClient):
         "paths": {
             "/items/{item_id}": {
                 "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
-                                }
-                            },
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
-                                    }
-                                }
-                            },
-                        },
-                    },
                     "summary": "Read Item",
                     "operationId": "read_item_items__item_id__get",
                     "parameters": [
                         {
-                            "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
                             "name": "item_id",
                             "in": "path",
+                            "required": True,
+                            "schema": {"type": "string", "title": "Item Id"},
                         }
                     ],
-                },
-                "put": {
                     "responses": {
                         "200": {
                             "description": "Successful Response",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -106,58 +80,63 @@ def test_openapi_schema(client: TestClient):
                             },
                         },
                     },
+                },
+                "put": {
                     "summary": "Update Item",
                     "operationId": "update_item_items__item_id__put",
                     "parameters": [
                         {
-                            "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
                             "name": "item_id",
                             "in": "path",
+                            "required": True,
+                            "schema": {"type": "string", "title": "Item Id"},
                         }
                     ],
                     "requestBody": {
+                        "required": True,
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
-                        "required": True,
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
                     },
                 },
             }
         },
         "components": {
             "schemas": {
-                "Item-Input": {
-                    "title": "Item",
-                    "type": "object",
+                "HTTPValidationError": {
                     "properties": {
-                        "name": {
-                            "title": "Name",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "price": {
-                            "title": "Price",
-                            "anyOf": [{"type": "number"}, {"type": "null"}],
-                        },
-                        "tax": {"title": "Tax", "type": "number", "default": 10.5},
-                        "tags": {
-                            "title": "Tags",
+                        "detail": {
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
                             "type": "array",
-                            "items": {"type": "string"},
-                            "default": [],
-                        },
+                            "title": "Detail",
+                        }
                     },
+                    "type": "object",
+                    "title": "HTTPValidationError",
                 },
-                "Item-Output": {
-                    "title": "Item",
-                    "type": "object",
-                    "required": ["name", "description", "price", "tax", "tags"],
+                "Item": {
                     "properties": {
                         "name": {
                             "anyOf": [{"type": "string"}, {"type": "null"}],
@@ -171,41 +150,32 @@ def test_openapi_schema(client: TestClient):
                             "anyOf": [{"type": "number"}, {"type": "null"}],
                             "title": "Price",
                         },
-                        "tax": {"title": "Tax", "type": "number", "default": 10.5},
+                        "tax": {"type": "number", "title": "Tax", "default": 10.5},
                         "tags": {
-                            "title": "Tags",
-                            "type": "array",
                             "items": {"type": "string"},
+                            "type": "array",
+                            "title": "Tags",
                             "default": [],
                         },
                     },
+                    "type": "object",
+                    "title": "Item",
                 },
                 "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
                     "properties": {
                         "loc": {
-                            "title": "Location",
-                            "type": "array",
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
+                            "title": "Location",
+                        },
+                        "msg": {"type": "string", "title": "Message"},
+                        "type": {"type": "string", "title": "Error Type"},
                     },
+                    "type": "object",
+                    "required": ["loc", "msg", "type"],
+                    "title": "ValidationError",
                 },
             }
         },

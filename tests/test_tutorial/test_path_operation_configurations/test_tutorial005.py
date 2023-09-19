@@ -29,14 +29,23 @@ def test_openapi_schema():
         "paths": {
             "/items/": {
                 "post": {
+                    "summary": "Create an item",
+                    "description": "Create an item with all the information:\n\n- **name**: each item must have a name\n- **description**: a long description\n- **price**: required\n- **tax**: if the item doesn't have tax, you can omit this\n- **tags**: a set of unique tag strings for this item",
+                    "operationId": "create_item_items__post",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                        "required": True,
+                    },
                     "responses": {
                         "200": {
                             "description": "The created item",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -51,96 +60,61 @@ def test_openapi_schema():
                             },
                         },
                     },
-                    "summary": "Create an item",
-                    "description": "Create an item with all the information:\n\n- **name**: each item must have a name\n- **description**: a long description\n- **price**: required\n- **tax**: if the item doesn't have tax, you can omit this\n- **tags**: a set of unique tag strings for this item",
-                    "operationId": "create_item_items__post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
-                            }
-                        },
-                        "required": True,
-                    },
                 }
             }
         },
         "components": {
             "schemas": {
-                "Item-Input": {
-                    "title": "Item",
-                    "required": ["name", "price"],
-                    "type": "object",
+                "HTTPValidationError": {
                     "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "price": {"title": "Price", "type": "number"},
-                        "tax": {
-                            "title": "Tax",
-                            "anyOf": [{"type": "number"}, {"type": "null"}],
-                        },
-                        "tags": {
-                            "title": "Tags",
-                            "uniqueItems": True,
+                        "detail": {
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
                             "type": "array",
-                            "items": {"type": "string"},
-                            "default": [],
-                        },
+                            "title": "Detail",
+                        }
                     },
+                    "type": "object",
+                    "title": "HTTPValidationError",
                 },
-                "Item-Output": {
-                    "title": "Item",
-                    "required": ["name", "description", "price", "tax", "tags"],
-                    "type": "object",
+                "Item": {
                     "properties": {
-                        "name": {"title": "Name", "type": "string"},
+                        "name": {"type": "string", "title": "Name"},
                         "description": {
                             "anyOf": [{"type": "string"}, {"type": "null"}],
                             "title": "Description",
                         },
-                        "price": {"title": "Price", "type": "number"},
+                        "price": {"type": "number", "title": "Price"},
                         "tax": {
-                            "title": "Tax",
                             "anyOf": [{"type": "number"}, {"type": "null"}],
+                            "title": "Tax",
                         },
                         "tags": {
-                            "title": "Tags",
-                            "uniqueItems": True,
-                            "type": "array",
                             "items": {"type": "string"},
+                            "type": "array",
+                            "uniqueItems": True,
+                            "title": "Tags",
                             "default": [],
                         },
                     },
+                    "type": "object",
+                    "required": ["name", "price"],
+                    "title": "Item",
                 },
                 "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
                     "properties": {
                         "loc": {
-                            "title": "Location",
-                            "type": "array",
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
+                            "title": "Location",
+                        },
+                        "msg": {"type": "string", "title": "Message"},
+                        "type": {"type": "string", "title": "Error Type"},
                     },
+                    "type": "object",
+                    "required": ["loc", "msg", "type"],
+                    "title": "ValidationError",
                 },
             }
         },

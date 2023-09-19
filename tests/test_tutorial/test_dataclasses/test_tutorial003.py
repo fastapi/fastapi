@@ -67,25 +67,23 @@ def test_openapi_schema():
                     "operationId": "create_author_items_authors__author_id__items__post",
                     "parameters": [
                         {
-                            "required": True,
-                            "schema": {"title": "Author Id", "type": "string"},
                             "name": "author_id",
                             "in": "path",
+                            "required": True,
+                            "schema": {"type": "string", "title": "Author Id"},
                         }
                     ],
                     "requestBody": {
+                        "required": True,
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Items",
                                     "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Item-Input"
-                                    },
+                                    "items": {"$ref": "#/components/schemas/Item"},
+                                    "title": "Items",
                                 }
                             }
                         },
-                        "required": True,
                     },
                     "responses": {
                         "200": {
@@ -119,11 +117,11 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "title": "Response Get Authors Authors  Get",
-                                        "type": "array",
                                         "items": {
                                             "$ref": "#/components/schemas/Author"
                                         },
+                                        "type": "array",
+                                        "title": "Response Get Authors Authors  Get",
                                     }
                                 }
                             },
@@ -135,68 +133,56 @@ def test_openapi_schema():
         "components": {
             "schemas": {
                 "Author": {
-                    "title": "Author",
-                    "required": ["name", "items"],
-                    "type": "object",
                     "properties": {
-                        "name": {"title": "Name", "type": "string"},
+                        "name": {"type": "string", "title": "Name"},
                         "items": {
-                            "title": "Items",
+                            "items": {"$ref": "#/components/schemas/Item"},
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/Item-Output"},
+                            "title": "Items",
                         },
                     },
+                    "type": "object",
+                    "required": ["name"],
+                    "title": "Author",
                 },
                 "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
                     "properties": {
                         "detail": {
-                            "title": "Detail",
-                            "type": "array",
                             "items": {"$ref": "#/components/schemas/ValidationError"},
+                            "type": "array",
+                            "title": "Detail",
                         }
                     },
+                    "type": "object",
+                    "title": "HTTPValidationError",
                 },
-                "Item-Input": {
-                    "title": "Item",
+                "Item": {
+                    "properties": {
+                        "name": {"type": "string", "title": "Name"},
+                        "description": {
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                            "title": "Description",
+                        },
+                    },
+                    "type": "object",
                     "required": ["name"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                    },
-                },
-                "Item-Output": {
                     "title": "Item",
-                    "required": ["name", "description"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                    },
                 },
                 "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
                     "properties": {
                         "loc": {
-                            "title": "Location",
-                            "type": "array",
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
+                            "type": "array",
+                            "title": "Location",
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
+                        "msg": {"type": "string", "title": "Message"},
+                        "type": {"type": "string", "title": "Error Type"},
                     },
+                    "type": "object",
+                    "required": ["loc", "msg", "type"],
+                    "title": "ValidationError",
                 },
             }
         },

@@ -145,9 +145,7 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Item-Output"
-                                        },
+                                        "items": {"$ref": "#/components/schemas/Item"},
                                         "type": "array",
                                         "title": "Response Read Items Items  Get",
                                     }
@@ -162,7 +160,7 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -193,9 +191,7 @@ def test_openapi_schema():
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "items": {
-                                        "$ref": "#/components/schemas/Item-Input"
-                                    },
+                                    "items": {"$ref": "#/components/schemas/Item"},
                                     "type": "array",
                                     "title": "Item",
                                 }
@@ -235,7 +231,7 @@ def test_openapi_schema():
                     "type": "object",
                     "title": "HTTPValidationError",
                 },
-                "Item-Input": {
+                "Item": {
                     "properties": {
                         "name": {"type": "string", "title": "Name"},
                         "description": {
@@ -244,7 +240,7 @@ def test_openapi_schema():
                         },
                         "sub": {
                             "anyOf": [
-                                {"$ref": "#/components/schemas/SubItem-Input"},
+                                {"$ref": "#/components/schemas/SubItem"},
                                 {"type": "null"},
                             ]
                         },
@@ -253,25 +249,7 @@ def test_openapi_schema():
                     "required": ["name"],
                     "title": "Item",
                 },
-                "Item-Output": {
-                    "properties": {
-                        "name": {"type": "string", "title": "Name"},
-                        "description": {
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                            "title": "Description",
-                        },
-                        "sub": {
-                            "anyOf": [
-                                {"$ref": "#/components/schemas/SubItem-Output"},
-                                {"type": "null"},
-                            ]
-                        },
-                    },
-                    "type": "object",
-                    "required": ["name", "description", "sub"],
-                    "title": "Item",
-                },
-                "SubItem-Input": {
+                "SubItem": {
                     "properties": {
                         "subname": {"type": "string", "title": "Subname"},
                         "sub_description": {
@@ -287,24 +265,6 @@ def test_openapi_schema():
                     },
                     "type": "object",
                     "required": ["subname"],
-                    "title": "SubItem",
-                },
-                "SubItem-Output": {
-                    "properties": {
-                        "subname": {"type": "string", "title": "Subname"},
-                        "sub_description": {
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                            "title": "Sub Description",
-                        },
-                        "tags": {
-                            "items": {"type": "string"},
-                            "type": "array",
-                            "title": "Tags",
-                            "default": [],
-                        },
-                    },
-                    "type": "object",
-                    "required": ["subname", "sub_description", "tags"],
                     "title": "SubItem",
                 },
                 "ValidationError": {
