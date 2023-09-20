@@ -1,9 +1,10 @@
+INHERIT: ../en/mkdocs.maybe-insiders.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: ../en/overrides
   palette:
   - media: '(prefers-color-scheme: light)'
     scheme: default
@@ -11,18 +12,24 @@ theme:
     accent: amber
     toggle:
       icon: material/lightbulb
-      name: Switch to light mode
+      name: Switch to dark mode
   - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb-outline
-      name: Switch to dark mode
+      name: Switch to light mode
   features:
   - search.suggest
   - search.highlight
   - content.tabs.link
+  - navigation.indexes
+  - content.tooltips
+  - navigation.path
+  - content.code.annotate
+  - content.code.copy
+  - content.code.select
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -32,31 +39,40 @@ repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
-- search
-- markdownextradata:
-    data: data
+  search: null
+  markdownextradata:
+    data: ../en/data
+  redirects:
+    redirect_maps:
+      deployment/deta.md: deployment/cloud.md
+      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
+      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
+      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
+      advanced/graphql.md: how-to/graphql.md
+      advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
+      advanced/conditional-openapi.md: how-to/conditional-openapi.md
+      advanced/extending-openapi.md: how-to/extending-openapi.md
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
-  - az: /az/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
   - he: /he/
   - id: /id/
-  - it: /it/
   - ja: /ja/
   - ko: /ko/
-  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
-  - sq: /sq/
-  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
+  - ur: /ur/
+  - vi: /vi/
+  - yo: /yo/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -126,25 +142,19 @@ nav:
   - advanced/using-request-directly.md
   - advanced/dataclasses.md
   - advanced/middleware.md
-  - advanced/sql-databases-peewee.md
-  - advanced/async-sql-databases.md
-  - advanced/nosql-databases.md
   - advanced/sub-applications.md
   - advanced/behind-a-proxy.md
   - advanced/templates.md
-  - advanced/graphql.md
   - advanced/websockets.md
   - advanced/events.md
-  - advanced/custom-request-and-route.md
   - advanced/testing-websockets.md
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
   - advanced/async-tests.md
   - advanced/settings.md
-  - advanced/conditional-openapi.md
-  - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
+  - advanced/openapi-webhooks.md
   - advanced/wsgi.md
   - advanced/generate-clients.md
 - async.md
@@ -154,40 +164,54 @@ nav:
   - deployment/https.md
   - deployment/manually.md
   - deployment/concepts.md
-  - deployment/deta.md
+  - deployment/cloud.md
   - deployment/server-workers.md
   - deployment/docker.md
+- How To - Recipes:
+  - how-to/index.md
+  - how-to/general.md
+  - how-to/sql-databases-peewee.md
+  - how-to/async-sql-encode-databases.md
+  - how-to/nosql-databases-couchbase.md
+  - how-to/graphql.md
+  - how-to/custom-request-and-route.md
+  - how-to/conditional-openapi.md
+  - how-to/extending-openapi.md
+  - how-to/separate-openapi-schemas.md
+  - how-to/custom-docs-ui-assets.md
+  - how-to/configure-swagger-ui.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
 - benchmarks.md
 - help-fastapi.md
+- newsletter.md
 - contributing.md
 - release-notes.md
 markdown_extensions:
-- toc:
+  toc:
     permalink: true
-- markdown.extensions.codehilite:
+  markdown.extensions.codehilite:
     guess_lang: false
-- mdx_include:
+  mdx_include:
     base_path: docs
-- admonition
-- codehilite
-- extra
-- pymdownx.superfences:
+  admonition: null
+  codehilite: null
+  extra: null
+  pymdownx.superfences:
     custom_fences:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed:
+  pymdownx.tabbed:
     alternate_style: true
-- attr_list
-- md_in_html
+  attr_list: null
+  md_in_html: null
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -206,10 +230,10 @@ extra:
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -220,28 +244,26 @@ extra:
     name: he
   - link: /id/
     name: id
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /nl/
-    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
     name: ru - русский язык
-  - link: /sq/
-    name: sq - shqip
-  - link: /sv/
-    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
-    name: uk - українська мова
+    name: uk
+  - link: /ur/
+    name: ur
+  - link: /vi/
+    name: vi - Tiếng Việt
+  - link: /yo/
+    name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
 extra_css:
@@ -250,3 +272,5 @@ extra_css:
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+hooks:
+- ../../scripts/mkdocs_hooks.py

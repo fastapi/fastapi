@@ -8,9 +8,23 @@
 * `@app.delete()`
 * 等等。
 
-```Python hl_lines="17"
-{!../../../docs_src/response_model/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001.py!}
+    ```
 
 !!! note
     注意，`response_model`是「装饰器」方法（`get`，`post` 等）的一个参数。不像之前的所有参数和请求体，它不属于*路径操作函数*。
@@ -58,21 +72,45 @@ FastAPI 将使用此 `response_model` 来：
 
 相反，我们可以创建一个有明文密码的输入模型和一个没有明文密码的输出模型：
 
-```Python hl_lines="9  11  16"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 这样，即便我们的*路径操作函数*将会返回包含密码的相同输入用户：
 
-```Python hl_lines="24"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 ...我们已经将 `response_model` 声明为了不包含密码的 `UserOut` 模型：
 
-```Python hl_lines="22"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 因此，**FastAPI** 将会负责过滤掉未在输出模型中声明的所有数据（使用 Pydantic）。
 

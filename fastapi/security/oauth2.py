@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, cast
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -8,6 +8,9 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+
+# TODO: import from typing when deprecating Python 3.9
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -45,12 +48,13 @@ class OAuth2PasswordRequestForm:
 
     def __init__(
         self,
-        grant_type: str = Form(default=None, regex="password"),
-        username: str = Form(),
-        password: str = Form(),
-        scope: str = Form(default=""),
-        client_id: Optional[str] = Form(default=None),
-        client_secret: Optional[str] = Form(default=None),
+        *,
+        grant_type: Annotated[Union[str, None], Form(pattern="password")] = None,
+        username: Annotated[str, Form()],
+        password: Annotated[str, Form()],
+        scope: Annotated[str, Form()] = "",
+        client_id: Annotated[Union[str, None], Form()] = None,
+        client_secret: Annotated[Union[str, None], Form()] = None,
     ):
         self.grant_type = grant_type
         self.username = username
@@ -95,12 +99,12 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     def __init__(
         self,
-        grant_type: str = Form(regex="password"),
-        username: str = Form(),
-        password: str = Form(),
-        scope: str = Form(default=""),
-        client_id: Optional[str] = Form(default=None),
-        client_secret: Optional[str] = Form(default=None),
+        grant_type: Annotated[str, Form(pattern="password")],
+        username: Annotated[str, Form()],
+        password: Annotated[str, Form()],
+        scope: Annotated[str, Form()] = "",
+        client_id: Annotated[Union[str, None], Form()] = None,
+        client_secret: Annotated[Union[str, None], Form()] = None,
     ):
         super().__init__(
             grant_type=grant_type,
@@ -119,9 +123,11 @@ class OAuth2(SecurityBase):
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
-        self.model = OAuth2Model(flows=flows, description=description)
+        self.model = OAuth2Model(
+            flows=cast(OAuthFlowsModel, flows), description=description
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -148,7 +154,9 @@ class OAuth2PasswordBearer(OAuth2):
     ):
         if not scopes:
             scopes = {}
-        flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
+        flows = OAuthFlowsModel(
+            password=cast(Any, {"tokenUrl": tokenUrl, "scopes": scopes})
+        )
         super().__init__(
             flows=flows,
             scheme_name=scheme_name,
@@ -185,12 +193,15 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
-            authorizationCode={
-                "authorizationUrl": authorizationUrl,
-                "tokenUrl": tokenUrl,
-                "refreshUrl": refreshUrl,
-                "scopes": scopes,
-            }
+            authorizationCode=cast(
+                Any,
+                {
+                    "authorizationUrl": authorizationUrl,
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
+            )
         )
         super().__init__(
             flows=flows,
