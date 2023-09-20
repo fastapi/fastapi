@@ -7,7 +7,7 @@
 !!!提示
      如果您很赶时间或不在乎，请继续阅读下一部分，下一部分会提供一个step-by-step的教程，告诉你怎么使用不同技术来把一切都配置好。
 
-要从顾客的角度**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
+要从用户的角度**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
 
 现在，从**开发人员的角度**，在考虑 HTTPS 时需要记住以下几点：
 
@@ -16,16 +16,16 @@
 * 证书有**生命周期**。
      * 它们会**过期**。
      * 然后它们需要**更新**，**再次从第三方获取**。
-* 连接加密发生在 **TCP 层**。
+* 连接的加密发生在 **TCP 层**。
      * 这是 HTTP **下面的一层**。
      * 因此，**证书和加密**处理是在 **HTTP之前**完成的。
-* **TCP 不知道“域(domains)”**。 仅仅知道 IP 地址。
+* **TCP 不知道“域(domain)”**。 仅仅知道 IP 地址。
      * 有关所请求的 **特定域(specific domain)** 的信息位于 **HTTP 数据**中。
 * **HTTPS 证书**“证明”**某个域**，但协议和加密发生在 TCP 层，在知道正在处理哪个域**之前**。
 * **默认情况下**，这意味着您**每个 IP 地址只能拥有一个 HTTPS 证书**。
      * 无论您的服务器有多大，或者服务器上的每个应用程序有多小。
      * 不过，对此有一个**解决方案**。
-* **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/ Server_Name_Induction" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
+* **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/ Server_Name_Indication" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
      * 此 SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域/应用程序**。
      * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
 * **获得安全连接后**，通信协议**仍然是HTTP**。
@@ -37,7 +37,7 @@
 
 * Traefik（也可以处理证书更新）
 * Caddy（也可以处理证书更新）
-* nginx
+* Nginx
 * HAProxy
 
 ## Let's Encrypt
