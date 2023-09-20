@@ -1,0 +1,80 @@
+# Tutorial - Benutzerhandbuch
+
+Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** und die meisten seiner Funktionen verwenden können.
+
+Jeder Abschnitt baut schrittweise auf den vorhergehenden auf. Die Abschnitte sind aber nach einzelnen Themen gegliedert, sodass Sie direkt zu einem bestimmten Abschnitt springen können, um Ihre speziellen API-Fragen zu beantworten.
+
+Außerdem dienen sie als zukünftige Referenz.
+
+Sodass Sie zurückkommen können und genau das sehen, was Sie benötigen.
+
+## Den Code ausführen
+
+Alle Codeblöcke können kopiert und direkt verwendet werden (es sind tatsächlich getestete Python-Dateien).
+
+Um ein Beispiel auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen.
+
+Die Verwendung in Ihrem Editor zeigt Ihnen die Vorteile von FastAPI: Wie wenig Code Sie schreiben müssen, Typprüfungen, Code-Vervollständigung, usw.
+
+---
+
+## FastAPI installieren
+
+Der erste Schritt ist die Installation von FastAPI.
+
+Für das Tutorial empfiehlt es sich, es mit allen optionalen Abhängigkeiten und Funktionen zu installieren:
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[all]"
+
+---> 100%
+```
+
+</div>
+
+... das beinhaltet auch `uvicorn`, welchen Sie als Server verwenden können, der ihren Code ausführt.
+
+!!! Hinweis
+    Sie können die einzelnen Teile auch separat installieren.
+
+    Das folgende würden Sie wahrscheinlich tun, wenn Sie Ihre Anwendung in der Produktion einsetzen:
+
+    ```
+    pip install fastapi
+    ```
+
+    Installieren Sie auch `uvicorn` als Server:
+
+    ```
+    pip install "uvicorn[standard]"
+    ```
+
+    Dasselbe gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
+
+## Erweitertes Benutzerhandbuch
+
+Es gibt auch ein **erweitertes Benutzerhandbuch**, welches Sie später nach diesem **Tutorial - Benutzerhandbuch** lesen können.
+
+Das **erweiterte Benutzerhandbuch** baut auf diesem Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
+
+Allerdings sollten Sie zuerst das **Tutorial - Benutzerhandbuch** lesen (was Sie hier gerade lesen).
+
+Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial - Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **erweiterten Benutzerhandbuch** vervollständigen können.
