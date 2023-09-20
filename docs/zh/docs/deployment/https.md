@@ -25,7 +25,7 @@
 * **默认情况下**，这意味着您**每个 IP 地址只能拥有一个 HTTPS 证书**。
      * 无论您的服务器有多大，或者服务器上的每个应用程序有多小。
      * 不过，对此有一个**解决方案**。
-* **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/ Server_Name_Indication" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
+* **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
      * 此 SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域/应用程序**。
      * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
 * **获得安全连接后**，通信协议**仍然是HTTP**。
