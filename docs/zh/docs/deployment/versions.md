@@ -4,7 +4,7 @@
 
 经常添加新功能，定期修复错误，并且代码仍在持续改进。
 
-这就是为什么当前版本仍然是“0.x.x”，这反映出每个版本都可能有Breaking changes。 这遵循<a href="https://semver.org/" class="external-link" target="_blank">语义版本控制</a>的约定。
+这就是为什么当前版本仍然是`0.x.x`，这反映出每个版本都可能有Breaking changes。 这遵循<a href="https://semver.org/" class="external-link" target="_blank">语义版本控制</a>的约定。
 
 你现在就可以使用 **FastAPI** 创建生产环境应用程序（你可能已经这样做了一段时间），你只需确保使用的版本可以与其余代码正确配合即可。
 
@@ -14,7 +14,7 @@
 
 例如，假设你在应用程序中使用版本`0.45.0`。
 
-如果你使用“requirements.txt”文件，你可以使用以下命令指定版本：
+如果你使用`requirements.txt`文件，你可以使用以下命令指定版本：
 
 ````txt
 fastapi==0.45.0
@@ -64,7 +64,7 @@ fastapi>=0.45.0,<0.46.0
 
 添加测试后，你可以将 **FastAPI** 版本升级到更新版本，并通过运行测试来确保所有代码都能正常工作。
 
-如果一切正常，或者在进行必要的更改之后，并且所有测试都通过了，那么你可以将“fastapi”固定到新的版本。
+如果一切正常，或者在进行必要的更改之后，并且所有测试都通过了，那么你可以将`fastapi`固定到新的版本。
 
 ## 关于Starlette
 
@@ -76,7 +76,7 @@ fastapi>=0.45.0,<0.46.0
 
 ## 关于 Pydantic
 
-Pydantic 包含针对 **FastAPI** 的测试及其自己的测试，因此 Pydantic 的新版本（“1.0.0”以上）始终与 FastAPI 兼容。
+Pydantic 包含针对 **FastAPI** 的测试及其自己的测试，因此 Pydantic 的新版本（`1.0.0`以上）始终与 FastAPI 兼容。
 
 你可以将 Pydantic 固定到适合你的`1.0.0`以上和`2.0.0`以下的任何版本。
 
