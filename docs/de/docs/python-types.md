@@ -13,7 +13,7 @@ Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typ-
 Aber selbst wenn Sie **FastAPI** nie verwenden, wird es für Sie nützlich sein, ein wenig darüber zu lernen.
 
 !!! Hinweis
-    Wenn Sie ein Python-Experte sind und bereits alles über Typ-Hinweise wissen, springen Sie zum nächsten Kapitel.
+    Wenn Sie ein Python-Experte sind und bereits alles über Typ-Hinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
 
 ## Motivation
 
