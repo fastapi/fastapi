@@ -38,7 +38,6 @@
     </div>
 
     !!! tip
-
         通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
         其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
