@@ -6,7 +6,7 @@ Diese **"Typ-Hinweise"** oder -Annotationen sind eine spezielle Syntax, die es e
 
 Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Werkzeuge bessere Unterstützung bieten.
 
-Dies ist nur eine **schnelle Anleitung / Auffrischung** über Pythons Typ-Hinweise. Sie deckt nur das Minimum ab, das nötig ist, um diese mit **FastAPI** zu verwenden ... was tatsächlich sehr wenig ist.
+Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typ-Hinweise. Sie deckt nur das Minimum ab, das nötig ist, um diese mit **FastAPI** zu verwenden ... was tatsächlich sehr wenig ist.
 
 **FastAPI** basiert vollständig auf diesen Typ-Hinweisen, sie geben der Anwendung viele Vorteile und Möglichkeiten.
 
@@ -31,9 +31,9 @@ John Doe
 
 Die Funktion macht Folgendes:
 
-* Nimm einen `first_name` und `last_name`.
-* Schreibe den ersten Buchstaben eines jeden Wortes groß, mithilfe von `title()`.
-* <abbr title="Füge zu einer Einheit zusammen, eins nach dem anderen.">Verkette</abbr> sie mit einem Leerzeichen in der Mitte.
+* Nimmt einen `first_name` und `last_name`.
+* Schreibt den ersten Buchstaben eines jeden Wortes groß, mithilfe von `title()`.
+* <abbr title="Füge zu einer Einheit zusammen, eins nach dem anderen.">Verkettet</abbr> sie mit einem Leerzeichen in der Mitte.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -83,7 +83,7 @@ Das sind die "Typ-Hinweise":
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-Das ist nicht dasselbe wie das Deklarieren von Standardwerten, wie es hier der Fall ist:
+Das ist nicht das gleiche wie das Deklarieren von Standardwerten, wie es hier der Fall ist:
 
 ```Python
     first_name="john", last_name="doe"
@@ -97,7 +97,7 @@ Und das Hinzufügen von Typ-Hinweisen ändert normalerweise nichts an dem, was o
 
 Aber jetzt stellen Sie sich vor, Sie sind wieder mitten in der Erstellung dieser Funktion, aber mit Typ-Hinweisen.
 
-An der gleichen Stelle versuchen Sie, die Autovervollständigung mit "Strg+Leertaste" auszulösen, und Sie sehen:
+An derselben Stelle versuchen Sie, die Autovervollständigung mit "Strg+Leertaste" auszulösen, und Sie sehen:
 
 <img src="/img/python-types/image02.png">
 
@@ -299,9 +299,9 @@ In Python 3.6 und darüber (inklusive Python 3.10) können Sie das deklarieren, 
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Wenn Sie `Optional[str]` statt nur `str` verwenden, wird Ihr Editor Ihnen helfen, wenn Sie annehmen, dass ein Wert ein `str` ist, obwohl er tatsächlich auch `None` sein könnte.
+Wenn Sie `Optional[str]` anstelle von nur `str` verwenden, wird Ihr Editor Ihnen dabei helfen, Fehler zu erkennen, bei denen Sie annehmen könnten, dass ein Wert immer eine Zeichenkette (`str`) ist, obwohl er auch `None` sein könnte.
 
-`Optional[Etwas]` ist tatsächlich eine Abkürzung für `Union[Something, None]`, diese beiden sind äquivalent.
+`Optional[Something]` ist tatsächlich eine Abkürzung für `Union[Something, None]`, diese beiden sind äquivalent.
 
 Das bedeutet auch, dass Sie in Python 3.10 `Something | None` verwenden können:
 
@@ -327,8 +327,8 @@ Das bedeutet auch, dass Sie in Python 3.10 `Something | None` verwenden können:
 
 Wenn Sie eine Python Version unterhalb 3.10 verwenden, hier ist mein sehr **subjektiver** Standpunkt dazu:
 
-* 🚨 Vermeiden Sie `Optional[EinTyp]`
-* Stattdessen ✨ **verwenden Sie `Union[EinTyp, None]`** ✨.
+* 🚨 Vermeiden Sie `Optional[SomeType]`
+* Stattdessen ✨ **verwenden Sie `Union[SomeType, None]`** ✨.
 
 Beide sind äquivalent und im Hintergrund dasselbe, aber ich empfehle `Union` statt `Optional`, weil das Wort "**optional**" impliziert, dass dieser Wert, zum Beispiel als Funktionsparameter, optional ist. Tatsächlich bedeutet es aber nur "Der Wert kann `None` sein", selbst wenn der Wert nicht optional ist und benötigt wird.
 
