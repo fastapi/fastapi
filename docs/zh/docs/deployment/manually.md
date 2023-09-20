@@ -25,39 +25,39 @@
 
 === "Uvicorn"
 
-     * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>，一个快如闪电 ASGI 服务器，基于 uvloop 和 httptools 构建。
+    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>，一个快如闪电 ASGI 服务器，基于 uvloop 和 httptools 构建。
 
-     <div class="termy">
+    <div class="termy">
 
-     ```console
-     $ pip install "uvicorn[standard]"
+    ```console
+    $ pip install "uvicorn[standard]"
 
-     ---> 100%
-     ```
+    ---> 100%
+    ```
 
-     </div>
+    </div>
 
-     !!! tip
+    !!! tip
 
-         通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
+        通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
-         其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
+        其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
 
 === "Hypercorn"
 
-     * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
+    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
 
-     <div class="termy">
+    <div class="termy">
 
-     ```console
-     $ pip install hypercorn
+    ```console
+    $ pip install hypercorn
 
-     ---> 100%
-     ```
+    ---> 100%
+    ```
 
-     </div>
+    </div>
 
-     ...或任何其他 ASGI 服务器。
+    ...或任何其他 ASGI 服务器。
 
 
 ## 运行服务器程序
