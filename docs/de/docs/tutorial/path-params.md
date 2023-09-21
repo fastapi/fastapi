@@ -72,7 +72,7 @@ Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also ei
 
 ## Dokumentation
 
-Wenn Sie Ihren Browser unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> öffnen, sehen Sie eine automatisch generierte, interaktive API Dokumentation:
+Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> in Ihrem Browser öffnen, sehen Sie eine automatisch generierte, interaktive API-Dokumentation:
 
 <img src="/img/tutorial/path-params/image01.png">
 
