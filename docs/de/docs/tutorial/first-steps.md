@@ -326,8 +326,8 @@ Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert we
 
 ## Zusammenfassung
 
-* `FastAPI` importieren.
-* Erstellen einer `app` Instanz.
-* Schreiben eines **Pfad-Operation-Dekorators** (wie z.B. `@app.get("/")`).
-* Schreiben einer **Pfad-Operation-Funktion** (wie z.B. oben `def root(): ...`).
-* Starten des Entwicklungsservers (z.B. `uvicorn main:app --reload`).
+* Importieren Sie `FastAPI`.
+* Erstellen Sie eine `app` Instanz.
+* Schreiben Sie einen **Pfad-Operation-Dekorator** (wie z.B. `@app.get("/")`).
+* Schreiben Sie eine **Pfad-Operation-Funktion** (wie z.B. oben `def root(): ...`).
+* Starten Sie den Entwicklungsserver (z.B. `uvicorn main:app --reload`).
