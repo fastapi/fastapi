@@ -242,7 +242,7 @@ Sie verwenden das also wie folgt:
 
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
-* Editor Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
+* Editor-Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
 * Daten "<abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, nach Python Daten konvertieren">parsen</abbr>"
 * Daten-Validierung
 * API Annotationen und automatische Dokumentation
