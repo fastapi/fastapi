@@ -184,7 +184,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 
 #### *Enumerations-Mitglieder* zurückgeben
 
-Sie können *Enum-Mitglieder* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Körper (z.B. als `dict`).
+Sie können *Enum-Member* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
 
 Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Zeichenketten), bevor sie zum Klient übertragen werden:
 
