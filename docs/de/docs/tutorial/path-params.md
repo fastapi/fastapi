@@ -192,7 +192,7 @@ Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Zeichenk
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-In Ihrem Klienten erhalten Sie eine JSON-Antwort, wie etwa:
+In Ihrem Client erhalten Sie eine JSON-Antwort, wie etwa:
 
 ```JSON
 {
