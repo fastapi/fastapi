@@ -279,7 +279,7 @@ Oder die exotischeren:
 
     **FastAPI** erzwingt keine bestimmte Bedeutung.
 
-    Die hier aufgeführten Informationen dienen als Leitfaden, nicht als Regel.
+    Die hier aufgeführten Informationen dienen als Leitfaden, nicht als Anforderung.
 
     Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit "POST"-Operationen durch.
 
