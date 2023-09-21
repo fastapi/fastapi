@@ -16,7 +16,7 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 
 ## Pfad-Parameter mit Typen
 
-Sie können den Typen eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mittels Standard Python Typ Annotationen:
+Sie können den Typen eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit den normalen Typ-Annotationen in Python:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
