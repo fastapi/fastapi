@@ -30,11 +30,11 @@ Die gleichen Prozesse, die für Pfad-Parameter stattfinden, werden auch auf Quer
 * Daten-Validierung
 * Automatische Dokumentation
 
-## Standardwerte
+## Defaultwerte
 
-Da Query-Parameter nicht ein festgelegter Teil des Pfades sind, können sie optional sein und Standardwerte haben.
+Da Query-Parameter nicht ein festgelegter Teil des Pfades sind, können sie optional sein und Defaultwerte haben.
 
-Im obigen Beispiel haben sie die Standardwerte `skip=0` und `limit=10`.
+Im obigen Beispiel haben sie die Defaultwerte `skip=0` und `limit=10`.
 
 Wenn Sie also zur URL:
 
@@ -57,11 +57,11 @@ http://127.0.0.1:8000/items/?skip=20
 gehen, werden die Parameter-Werte Ihrer Funktion sein:
 
 * `skip=20`: da Sie das in der URL gesetzt haben
-* `limit=10`: weil das der Standardwert ist
+* `limit=10`: weil das der Defaultwert ist
 
 ## Optionale Parameter
 
-Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem Sie deren Standardwert auf `None` setzen:
+Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem Sie deren Defaultwert auf `None` setzen:
 
 === "Python 3.10+"
 
@@ -150,11 +150,11 @@ Parameter werden anhand ihres Namens erkannt:
 
 ## Erforderliche Query-Parameter
 
-Wenn Sie einen Standardwert für Nicht-Pfad-Parameter deklarieren (Bis jetzt haben wir nur Query-Parameter gesehen), dann ist der Parameter nicht erforderlich.
+Wenn Sie einen Defaultwert für Nicht-Pfad-Parameter deklarieren (Bis jetzt haben wir nur Query-Parameter gesehen), dann ist der Parameter nicht erforderlich.
 
 Wenn Sie keinen spezifischen Wert haben wollen, sondern der Parameter einfach optional sein soll, dann setzen Sie den Defaultwert auf `None`.
 
-Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie einfach keinen Standardwert:
+Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie einfach keinen Defaultwert:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
@@ -200,7 +200,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-Und natürlich können Sie einige Parameter als erforderlich, einige mit Standardwert, und einige als vollständig optional definieren:
+Und natürlich können Sie einige Parameter als erforderlich, einige mit Defaultwert, und einige als vollständig optional definieren:
 
 === "Python 3.10+"
 
@@ -217,7 +217,7 @@ Und natürlich können Sie einige Parameter als erforderlich, einige mit Standar
 In diesem Fall gibt es drei Query-Parameter:
 
 * `needy`, ein erforderlicher `str`.
-* `skip`, ein `int` mit einem Standardwert `0`.
+* `skip`, ein `int` mit einem Defaultwert `0`.
 * `limit`, ein optionales `int`.
 
 !!! tip
