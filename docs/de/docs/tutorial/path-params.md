@@ -61,7 +61,7 @@ Wenn Sie aber im Browser <a href="http://127.0.0.1:8000/items/foo" class="extern
 
 Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 
-Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (eine Fließkommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     Sprich, mit der gleichen Python Typ Deklaration gibt Ihnen **FastAPI** Daten-Validierung.
