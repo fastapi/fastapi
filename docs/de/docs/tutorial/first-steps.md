@@ -91,7 +91,7 @@ OpenAPI definiert ein API-Schema für Ihre API. Dieses Schema enthält Definitio
 
 #### Betrachten Sie die `openapi.json`
 
-Falls Sie wissen möchten, wie das rohe OpenAPI-Schema aussieht, FastAPI generiert automatisch ein JSON (Schema) mit den Beschreibungen Ihrer ganzen API.
+Falls Sie wissen möchten, wie das rohe OpenAPI-Schema aussieht: FastAPI generiert automatisch ein JSON (Schema) mit den Beschreibungen Ihrer gesamten API.
 
 Sie können es direkt ansehen unter: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json </a>.
 
