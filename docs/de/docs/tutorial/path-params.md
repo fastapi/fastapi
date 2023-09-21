@@ -1,6 +1,6 @@
 # Pfad-Parameter
 
-Sie können Pfad-"Parameter" oder -"Variablen" mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierte Zeichenkette: Die Zeichenkette enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
+Sie können Pfad-"Parameter" oder -"Variablen" mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
@@ -36,9 +36,9 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 ```
 
 !!! check
-    Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht die Zeichenkette `"3"`, also ein `str`.
+    Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
 
-    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">"parsen"</abbr>.
+    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">"parsen"</abbr>.
 
 ## Daten-Validierung
 
@@ -186,7 +186,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 
 Sie können *Enum-Member* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
 
-Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Zeichenketten), bevor sie zum Client übertragen werden:
+Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings), bevor sie zum Client übertragen werden:
 
 ```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -243,7 +243,7 @@ Sie verwenden das also wie folgt:
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
 * Editor-Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
-* Daten "<abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, nach Python Daten konvertieren">parsen</abbr>"
+* Daten "<abbr title="Den String, der von einer HTTP Anfrage kommt, nach Python Daten konvertieren">parsen</abbr>"
 * Daten-Validierung
 * API-Annotationen und automatische Dokumentation
 
