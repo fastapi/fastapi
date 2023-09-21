@@ -1,10 +1,10 @@
 # Request-Body
 
-Wenn Sie Daten von einem Klient (sagen wir, einem Browser) zu ihrer API senden, dann senden Sie diese als einen **Request-Body** (Deutsch: Anfrage-Körper).
+Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu ihrer API senden, dann senden Sie diese als einen **Request-Body** (Deutsch: Anfrage-Körper).
 
-Ein **Request**-Body sind Daten, die vom Klient zu ihrer API gesendet werden. Ein **Response**-Body (Deutsch: Antwort-Körper) sind Daten, die Ihre API zum Klient sendet.
+Ein **Request**-Body sind Daten, die vom Client zu ihrer API gesendet werden. Ein **Response**-Body (Deutsch: Antwort-Körper) sind Daten, die Ihre API zum Client sendet.
 
-Ihre API sendet fast immer einen **Response**-Body. Aber Klienten senden nicht unbedingt immer **Request**-Bodys (sondern nur Metadaten).
+Ihre API sendet fast immer einen **Response**-Body. Aber Clients senden nicht unbedingt immer **Request**-Bodys (sondern nur Metadaten).
 
 Um einen **Request**-Body zu senden, verwenden Sie <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> Modelle mit allen deren Fähigkeiten und Vorzügen.
 
