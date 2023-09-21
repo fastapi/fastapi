@@ -117,7 +117,7 @@ Da der Editor die Typen der Variablen kennt, erhalten Sie nicht nur Code-Vervoll
 
 <img src="/img/python-types/image04.png">
 
-Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mittels `str(age)` in eine Zeichenkette:
+Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mittels `str(age)` in einen String:
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
@@ -168,7 +168,7 @@ Wenn Sie über die **neueste Version von Python** verfügen, verwenden Sie die B
 
 #### Liste
 
-Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Liste von Zeichenketten – sein soll.
+Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Liste von Strings – sein soll.
 
 === "Python 3.9+"
 
@@ -205,7 +205,7 @@ Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Li
 
     In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder `list` in Python 3.9 und darüber).
 
-Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist eine Zeichenkette – ein `str`.
+Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist ein String – `str`.
 
 !!! tip
     Wenn Sie Python 3.9 oder höher verwenden, müssen Sie `List` nicht von `typing` importieren, Sie können stattdessen den regulären `list`-Typ verwenden.
@@ -299,7 +299,7 @@ In Python 3.6 und darüber (inklusive Python 3.10) können Sie das deklarieren, 
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Wenn Sie `Optional[str]` anstelle von nur `str` verwenden, wird Ihr Editor Ihnen dabei helfen, Fehler zu erkennen, bei denen Sie annehmen könnten, dass ein Wert immer eine Zeichenkette (`str`) ist, obwohl er auch `None` sein könnte.
+Wenn Sie `Optional[str]` anstelle von nur `str` verwenden, wird Ihr Editor Ihnen dabei helfen, Fehler zu erkennen, bei denen Sie annehmen könnten, dass ein Wert immer eine String (`str`) ist, obwohl er auch `None` sein könnte.
 
 `Optional[Something]` ist tatsächlich eine Abkürzung für `Union[Something, None]`, diese beiden sind äquivalent.
 
