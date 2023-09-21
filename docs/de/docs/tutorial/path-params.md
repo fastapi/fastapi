@@ -240,7 +240,7 @@ Sie verwenden das also wie folgt:
 
 ## Rekapitulation
 
-In **FastAPI**, mittels kurzer, intuitiver Typ-Deklarationen, erhalten Sie:
+In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
 * Editor Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
 * Daten "<abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, nach Python Daten konvertieren">parsen</abbr>"
