@@ -87,7 +87,7 @@ In diesem Fall sind die JSON-Attribute und deren Datentypen, usw. gemeint.
 
 #### OpenAPI und JSON Schemata
 
-OpenAPI definiert ein API-Schema für Ihre API. Dieses Schema enthält Definitionen (oder "Schemata") der Daten, die von Ihrer API unter Verwendung von **JSON Schemata**, dem Standard für JSON-Datenschemata, gesendet und empfangen werden.
+OpenAPI definiert ein API-Schema für Ihre API. Dieses Schema enthält Definitionen (oder "Schemata") der Daten, die von Ihrer API unter Verwendung von **JSON Schema**, dem Standard für JSON-Datenschemata, gesendet und empfangen werden.
 
 #### Betrachten Sie die `openapi.json`
 
