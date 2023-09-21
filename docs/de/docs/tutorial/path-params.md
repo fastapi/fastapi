@@ -25,7 +25,7 @@ Sie können den Typen eines Pfad-Parameters in der Argumentliste der Funktion de
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
 !!! check
-    Dadurch erhalten Sie Editor Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
+    Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
 
 ## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr>
 
