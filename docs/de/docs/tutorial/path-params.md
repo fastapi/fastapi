@@ -186,7 +186,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 
 Sie können *Enum-Member* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
 
-Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Zeichenketten), bevor sie zum Klient übertragen werden:
+Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Zeichenketten), bevor sie zum Client übertragen werden:
 
 ```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
