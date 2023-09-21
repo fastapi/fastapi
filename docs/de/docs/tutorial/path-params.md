@@ -125,7 +125,7 @@ Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinsti
 
 ## Vordefinierte Parameterwerte
 
-Wenn Sie eine *Pfad-Operation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein normales Python-<abbr title="Enumeration – Aufzählung">`Enum`</abbr> verwenden.
+Wenn Sie eine *Pfad-Operation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein normales Python-<abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
 
 ### Erstellen Sie eine `Enum`-Klasse
 
