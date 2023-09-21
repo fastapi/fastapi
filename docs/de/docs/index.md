@@ -435,7 +435,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
     * **Cookie Sessions**
     * ... und mehr.
 
-## Performanz
+## Performance
 
 Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn laufen, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur noch hinter Starlette und Uvicorn selbst (intern von FastAPI verwendet).
 
