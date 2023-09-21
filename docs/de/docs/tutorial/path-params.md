@@ -165,7 +165,7 @@ Der *Pfad-Parameter* wird ein *Member einer Enumeration* sein.
 
 #### *Enumerations-Mitglieder* vergleichen
 
-Sie können ihn mit einem Mitglied Ihres Enums `ModelName` vergleichen:
+Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
