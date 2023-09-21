@@ -104,7 +104,7 @@ Aber standardmäßig **"funktioniert einfach"** alles.
 * Validierung für die meisten (oder alle?) Python **Datentypen**, hierzu gehören:
     * JSON Objekte (`dict`).
     * JSON Listen (`list`), die den Typ ihrer Elemente definieren.
-    * Zeichenketten (`str`) mit definierter minimaler und maximaler Länge.
+    * Strings (`str`) mit definierter minimaler und maximaler Länge.
     * Zahlen (`int`, `float`) mit Mindest- und Maximal-Werten, usw.
 
 * Validierung für mehr exotische Typen, wie:
