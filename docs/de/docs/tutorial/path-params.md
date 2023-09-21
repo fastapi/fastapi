@@ -83,13 +83,13 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 
 ## Nützliche Standards. Alternative Dokumentation
 
-Und weil das generierte Schema vom <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>-Standard kommt, gibt es viele kompatible Werkzeuge.
+Und weil das generierte Schema vom <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>-Standard kommt, gibt es viele kompatible Tools.
 
 Zum Beispiel bietet **FastAPI** selbst eine alternative API-Dokumentation (verwendet ReDoc), welche Sie unter <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> einsehen können:
 
 <img src="/img/tutorial/path-params/image02.png">
 
-Auf dem gleichen Weg gibt es viele kompatible Werkzeuge. Inklusive Codegenerierung für viele Sprachen.
+Und viele weitere kompatible Tools. Inklusive Codegenerierung für viele Sprachen.
 
 ## Pydantic
 
@@ -213,7 +213,7 @@ Sprich, die URL für diese Datei wäre etwas wie: `/files/home/johndoe/myfile.tx
 
 OpenAPI bietet nicht die Möglichkeit, dass ein *Pfad-Parameter* seinerseits einen *Pfad* enthalten kann, das würde zu Szenarios führen, die schwierig zu testen und zu definieren sind.
 
-Trotzdem können Sie das in **FastAPI** tun, indem Sie eines der internen Werkzeuge von Starlette verwenden.
+Trotzdem können Sie das in **FastAPI** tun, indem Sie eines der internen Tools von Starlette verwenden.
 
 Die Dokumentation würde weiterhin funktionieren, allerdings wird nicht dokumentiert werden, dass der Parameter ein Pfad sein sollte.
 
