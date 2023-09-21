@@ -297,7 +297,7 @@ Das ist unsere "**Pfad-Operation-Funktion**":
 
 Das ist eine Python-Funktion.
 
-Sie wird von **FastAPI** aufgerufen, immer wenn sie eine Anfrage erhält an die URL "`/`", mittels einer `GET`-Operation.
+Sie wird von **FastAPI** aufgerufen, immer wenn sie eine Anfrage an die URL "`/`" mit einer `GET`-Operation erhält.
 
 In diesem Fall handelt es sich um eine `async`-Funktion (eine asynchrone Funktion).
 
