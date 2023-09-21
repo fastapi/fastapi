@@ -38,7 +38,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 !!! check
     Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht die Zeichenkette `"3"`, also ein `str`.
 
-    Sprich, mit dieser Typ Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, nach Python Daten konvertieren">"parsen"</abbr>.
+    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Die Zeichenkette, die von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">"parsen"</abbr>.
 
 ## Daten-Validierung
 
