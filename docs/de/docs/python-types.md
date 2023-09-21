@@ -4,7 +4,7 @@ Python hat Unterstützung für optionale "Typ-Hinweise" (Englisch: "Type Hints")
 
 Diese **"Typ-Hinweise"** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="Zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
 
-Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Werkzeuge bessere Unterstützung bieten.
+Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Tools bessere Unterstützung bieten.
 
 Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typ-Hinweise. Sie deckt nur das Minimum ab, das nötig ist, um diese mit **FastAPI** zu verwenden ... was tatsächlich sehr wenig ist.
 
@@ -496,20 +496,20 @@ Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typ-Hinweisen
     {!> ../../../docs_src/python_types/tutorial013.py!}
     ```
 
-Python selbst macht nichts mit `Annotated`. Für Editoren und andere Werkzeuge ist der Typ immer noch `str`.
+Python selbst macht nichts mit `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
 
 Aber Sie können `Annotated` nutzen, um **FastAPI** mit Metadaten zu versorgen, die ihm sagen, wie sich ihre Anwendung verhalten soll.
 
-Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind Metadaten für andere Werkzeuge.
+Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind Metadaten für andere Tools.
 
 Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standard Python ist. 😎
 
 Später werden Sie sehen, wie **mächtig** es sein kann.
 
 !!! tip
-    Der Umstand, dass es **Standard Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Werkzeugen, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
+    Der Umstand, dass es **Standard Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 
-    Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python Werkzeugen und Bibliotheken sein wird. 🚀
+    Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python Tools und Bibliotheken sein wird. 🚀
 
 ## Typ-Hinweise in **FastAPI**
 
