@@ -83,7 +83,7 @@ Das sind die "Typ-Hinweise":
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-Das ist nicht das gleiche wie das Deklarieren von Standardwerten, wie es hier der Fall ist:
+Das ist nicht das gleiche wie das Deklarieren von Defaultwerten, wie es hier der Fall ist:
 
 ```Python
     first_name="john", last_name="doe"
