@@ -89,7 +89,7 @@ Zum Beispiel bietet **FastAPI** selbst eine alternative API-Dokumentation (verwe
 
 <img src="/img/tutorial/path-params/image02.png">
 
-Auf dem gleichen Weg gibt es viele kompatible Werkzeuge. Inklusive Code generierenden Werkzeugen für viele Sprachen.
+Auf dem gleichen Weg gibt es viele kompatible Werkzeuge. Inklusive Codegenerierung für viele Sprachen.
 
 ## Pydantic
 
