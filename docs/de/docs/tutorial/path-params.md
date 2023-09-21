@@ -159,11 +159,11 @@ Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann d
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Mit Python *<abbr title="Enumeration – Aufzählung">Enumerationen</abbr>* arbeiten
+### Mit Python *<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten
 
-Der *Pfad-Parameter* wird ein *Member einer Enumeration* sein.
+Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der möglichen Werte einer Enumeration">Member</abbr> eines Enums* sein.
 
-#### *Enumerations-Mitglieder* vergleichen
+#### *Enum-Member* vergleichen
 
 Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 
@@ -171,7 +171,7 @@ Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### Den *Enumerations-Wert* erhalten
+#### *Enum-Wert* erhalten
 
 Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
 
@@ -182,7 +182,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 !!! tip
     Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
 
-#### *Enumerations-Mitglieder* zurückgeben
+#### *Enum-Member* zurückgeben
 
 Sie können *Enum-Member* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
 
