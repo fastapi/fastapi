@@ -322,7 +322,7 @@ Sie können ein `dict`, `list`, einzelne Werte wie `str`, `int`, usw. zurückgeb
 
 Sie können auch Pydantic-Modelle zurückgeben (dazu später mehr).
 
-Es gibt viele andere Objekte und Modelle, die automatisch in JSON konvertiert werden (einschließlich ORMs, usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
+Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert werden (einschließlich ORMs usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
 
 ## Zusammenfassung
 
