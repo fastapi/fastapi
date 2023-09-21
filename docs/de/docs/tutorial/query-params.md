@@ -19,7 +19,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 * `skip`: mit dem Wert `0`
 * `limit`: mit dem Wert `10`
 
-Da sie Teil der URL sind, sind sie "naturgemäß" Zeichenketten.
+Da sie Teil der URL sind, sind sie "naturgemäß" Strings.
 
 Aber wenn Sie sie mit Python-Typen deklarieren (im obigen Beispiel als `int`), werden sie zu diesem Typ konvertiert, und gegen diesen validiert.
 
