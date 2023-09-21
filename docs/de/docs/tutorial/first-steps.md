@@ -230,10 +230,10 @@ Wenn Sie APIs bauen, verwenden Sie normalerweise diese spezifischen HTTP-Methode
 
 Normalerweise verwenden Sie:
 
-* `POST`: um Daten zu erzeugen.
-* `GET`: um Daten zu lesen.
-* `PUT`: um Daten zu aktualisieren.
-* `DELETE`: um Daten zu löschen.
+* `POST`: um Daten zu erzeugen (create).
+* `GET`: um Daten zu lesen (read).
+* `PUT`: um Daten zu aktualisieren (update).
+* `DELETE`: um Daten zu löschen (delete).
 
 Daher wird in OpenAPI jede dieser HTTP-Methoden als "Operation" bezeichnet.
 
