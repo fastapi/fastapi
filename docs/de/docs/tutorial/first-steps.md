@@ -73,7 +73,7 @@ Dort sehen Sie die alternative, automatisch erstellte Dokumentation (bereitgeste
 
 Ein "Schema" ist eine Definition oder Beschreibung von etwas. Nicht der Code, der es implementiert, sondern nur eine abstrakte Beschreibung.
 
-#### API "Schema"
+#### API-"Schema"
 
 In diesem Fall ist  <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> eine Spezifikation, die vorschreibt, wie ein Schema für Ihre API zu definieren ist.
 
