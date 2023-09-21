@@ -161,7 +161,7 @@ Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann d
 
 ### Mit Python *<abbr title="Enumeration – Aufzählung">Enumerationen</abbr>* arbeiten
 
-Der *Pfad-Parameter* wird ein *Mitglied einer Enumeration* sein.
+Der *Pfad-Parameter* wird ein *Member einer Enumeration* sein.
 
 #### *Enumerations-Mitglieder* vergleichen
 
