@@ -77,7 +77,7 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Wiederum, mit dieser gleichen Python Typ Deklaration gibt Ihnen **FastAPI** eine automatisch generierte, interaktive Dokumentation (verwendet die Swagger Benutzeroberfläche).
+    Wiederum, mit dieser gleichen Python Typ Deklaration gibt Ihnen **FastAPI** eine automatisch generierte, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 
     Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
