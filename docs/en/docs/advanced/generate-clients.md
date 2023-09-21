@@ -12,6 +12,19 @@ A common tool is <a href="https://openapi-generator.tech/" class="external-link"
 
 If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a>.
 
+## Client and SDK Generators - Sponsor
+
+There are also some **company-backed** Client and SDK generators based on OpenAPI (FastAPI), in some cases they can offer you **additional features** on top of high-quality generated SDKs/clients.
+
+Some of them also ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
+
+And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
+
+You might want to try their services and follow their guides:
+
+* <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-generate-clients" class="external-link" target="_blank">Fern</a>
+* <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+
 ## Generate a TypeScript Frontend Client
 
 Let's start with a simple FastAPI application:
