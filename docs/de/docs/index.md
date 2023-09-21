@@ -390,7 +390,7 @@ Um auf das vorherige Codebeispiel zurückzukommen, **FastAPI** wird:
 * Alles mit OpenAPI dokumentieren, welches verwendet werden kann von:
     * Interaktiven Dokumentationssystemen.
     * Automatisch Client-Code generierenden Systemen für viele Sprachen.
-* 2 interaktive Dokumentation-Webschnittstellen direkt zur Verfügung stellen.
+* Zwei interaktive Dokumentation-Webschnittstellen direkt zur Verfügung stellen.
 
 ---
 
