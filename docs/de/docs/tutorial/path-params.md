@@ -42,7 +42,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 
 ## Daten-Validierung
 
-Aber wenn Sie im Browser <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> besuchen, erhalten Sie eine hübsche HTTP-Fehlermeldung:
+Wenn Sie aber im Browser <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> besuchen, erhalten Sie eine hübsche HTTP-Fehlermeldung:
 
 ```JSON
 {
