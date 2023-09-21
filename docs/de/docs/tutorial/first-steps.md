@@ -151,7 +151,7 @@ Hier ist die `app`-Variable eine "Instanz" der Klasse `FastAPI`.
 
 Dies wird der Einstiegspunkt jeder Interaktion sein, um ihre ganze API zu erstellen.
 
-Diese `app`  ist die gleiche, auf die sich `uvicorn` im Kommando bezieht:
+Diese `app` ist die gleiche, auf die sich `uvicorn` im Kommando bezieht:
 
 <div class="termy">
 
