@@ -79,7 +79,7 @@ In diesem Fall ist  <a href="https://github.com/OAI/OpenAPI-Specification" class
 
 Diese Schema-Definition enthält Ihre API-Pfade, die möglichen Parameter, welche diese entgegennehmen, usw.
 
-#### Daten  "Schema"
+#### Daten-"Schema"
 
 Der Begriff "Schema" kann sich auch auf die Form von Daten beziehen, wie z.B. einen JSON-Inhalt.
 
