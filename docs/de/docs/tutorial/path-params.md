@@ -173,7 +173,7 @@ Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 
 #### Den *Enumerations-Wert* erhalten
 
-Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_mitglied.value`:
+Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
 
 ```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
