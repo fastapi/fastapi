@@ -107,7 +107,7 @@ Etwa `/users/me`, um Daten über den aktuellen Nutzer zu erhalten.
 
 Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifischen Nutzer zu erhalten, mittels einer Nutzer-ID.
 
-Weil *Pfad-Operationen* in Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
+Weil *Pfad-Operationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
