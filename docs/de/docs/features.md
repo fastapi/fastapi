@@ -130,7 +130,7 @@ Alle in OpenAPI definierten Sicherheitsschemas, inklusive:
 
 Zusätzlich alle Sicherheitsfunktionen von Starlette (inklusive **Session Cookies**).
 
-Alles als wiederverwendbare Werkzeuge und Komponenten gebaut, die einfach in ihre Systeme, Datenspeicher, relationalen und nicht-relationalen Datenbanken, usw., integriert werden können.
+Alles als wiederverwendbare Tools und Komponenten gebaut, die einfach in ihre Systeme, Datenspeicher, relationalen und nicht-relationalen Datenbanken, usw., integriert werden können.
 
 ### Einbringen von Abhängigkeiten (Dependency Injection)
 
