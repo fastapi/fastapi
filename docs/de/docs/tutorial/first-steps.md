@@ -320,7 +320,7 @@ Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 
 Sie können ein `dict`, `list`, einzelne Werte wie `str`, `int`, usw. zurückgeben.
 
-Sie können auch Pydantic Modelle zurückgeben (dazu später mehr).
+Sie können auch Pydantic-Modelle zurückgeben (dazu später mehr).
 
 Es gibt viele andere Objekte und Modelle, die automatisch in JSON konvertiert werden (einschließlich ORMs, usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
 
