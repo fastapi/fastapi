@@ -1,6 +1,6 @@
 # Pfad-Parameter
 
-Sie können Pfad "Parameter" oder - "Variablen" mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierte Zeichenkette: Die Zeichenkette enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
+Sie können Pfad-"Parameter" oder -"Variablen" mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierte Zeichenkette: Die Zeichenkette enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
