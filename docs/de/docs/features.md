@@ -95,7 +95,7 @@ Nie wieder falsche Schlüsselnamen tippen, Hin und Herhüpfen zwischen der Dokum
 
 ### Kompakt
 
-Es gibt für alles sensible **Standardwerte**, mit optionaler Konfiguration überall. Alle Parameter können feinjustiert werden, damit sie tun, was Sie benötigen, und die API definieren, die Sie brauchen.
+Es gibt für alles sensible **Defaultwerte**, mit optionaler Konfiguration überall. Alle Parameter können feinjustiert werden, damit sie tun, was Sie benötigen, und die API definieren, die Sie brauchen.
 
 Aber standardmäßig **"funktioniert einfach"** alles.
 
