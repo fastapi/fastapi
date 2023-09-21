@@ -49,7 +49,7 @@ Verwenden Sie normale Python-Typen für die Klassenattribute:
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-Wie auch bei Query-Parametern gilt, wenn ein Modell-Attribut einen Standardwert hat, ist das Attribut nicht erforderlich. Ansonsten ist es erforderlich. Verwenden Sie `None`, um es als optional zu kennzeichnen.
+Wie auch bei Query-Parametern gilt, wenn ein Modell-Attribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Ansonsten ist es erforderlich. Verwenden Sie `None`, um es als optional zu kennzeichnen.
 
 Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python `dict`) wie dieses:
 
@@ -62,7 +62,7 @@ Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python `dict`
 }
 ```
 
-Da `description` und `tax` optional sind (mit `None` als Standardwert), wäre folgendes JSON "`object`" auch gültig:
+Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre folgendes JSON "`object`" auch gültig:
 
 ```JSON
 {
@@ -204,7 +204,7 @@ die Funktionsparameter werden wie folgt erkannt:
 * Wenn der Parameter vom Typ eines **Pydantic Modells** ist, wird er als Request-**Body** interpretiert.
 
 !!! Hinweis
-    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Standardwertes `=None`
+    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `=None`
 
     Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
 
