@@ -219,7 +219,7 @@ Die Dokumentation würde weiterhin funktionieren, allerdings wird nicht dokument
 
 ### Pfad Konverter
 
-Mittels einer Option direkt von Starlette können Sie einen *Pfad Parameter* deklarieren, der einen Pfad enthalten soll, indem Sie eine URL wie folgt definieren:
+Mittels einer Option direkt von Starlette können Sie einen *Pfad-Parameter* deklarieren, der einen Pfad enthalten soll, indem Sie eine URL wie folgt definieren:
 
 ```
 /files/{file_path:path}
