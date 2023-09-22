@@ -144,7 +144,7 @@ So würden Sie `Query()` als Defaultwert Ihres Funktionsparameters verwenden, de
     {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
     ```
 
-Da wir in diesem Fall (ohne die Verwendung von `Annotated`) den Parameter-Defaultwert `None` mit `Query()` ersetzen, müssen wir nun den dessen Defaultwert mit dem Parameter `Query(default=None)` deklarieren. Das dient demselben Zweck, dies als Defaultwert für den Funktionsparameter zu setzen (zumindest für FastAPI).
+Da wir in diesem Fall (ohne die Verwendung von `Annotated`) den Parameter-Defaultwert `None` mit `Query()` ersetzen, müssen wir nun dessen Defaultwert mit dem Parameter `Query(default=None)` deklarieren. Das dient demselben Zweck, `None` als Defaultwert für den Funktionsparameter zu setzen (zumindest für FastAPI).
 
 Sprich:
 
@@ -343,7 +343,7 @@ Beachten Sie aber, dass das deprecated ist, und zum neuen Namen `pattern` geänd
 
 Sie können natürlich andere Defaultwerte als `None` verwenden.
 
-Angenommen, Sie möchten den `q` Query-Parameter so deklarieren, dass er eine `min_length` von `3` hat, und den Defaultwert `"fixedquery"`:
+Beispielsweise könnten Sie den `q` Query-Parameter so deklarieren, dass er eine `min_length` von `3` hat, und den Defaultwert `"fixedquery"`:
 
 === "Python 3.9+"
 
@@ -686,7 +686,7 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]` (oder `list[s
 !!! Hinweis
     Beachten Sie, dass FastAPI in diesem Fall den Inhalt der Liste nicht überprüft.
 
-    Zum Beispiel würde `List[int]` überprüfen (und dokumentieren) dass die Liste Ganzzahlen enthält. `list` alleine aber nicht.
+    Zum Beispiel würde `List[int]` überprüfen (und dokumentieren) dass die Liste Ganzzahlen enthält. `list` alleine macht das nicht.
 
 ## Deklarieren von mehr Metadaten
 
@@ -785,7 +785,7 @@ Wie in:
 http://127.0.0.1:8000/items/?item-query=foobaritems
 ```
 
-Aber `item-query` ist kein gültiger Variablen-Name in Python.
+Aber `item-query` ist kein gültiger Name für eine Variable in Python.
 
 Am ähnlichsten wäre `item_query`.
 
@@ -829,7 +829,7 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
     {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
     ```
 
-## Parameter als veraltet ausweisen
+## Parameter als deprecated ausweisen
 
 Nehmen wir an, Sie mögen diesen Parameter nicht mehr.
 
@@ -936,4 +936,4 @@ Validierungen spezifisch für Strings:
 
 In diesen Beispielen haben Sie gesehen, wie Sie Validierungen für Strings hinzufügen.
 
-In den nächsten Kapiteln sehen wir, wie man Validierungen für andere Typen hinzufügt, etwa Zahlen.
+In den nächsten Kapiteln sehen wir, wie man Validierungen für andere Typen hinzufügt, etwa für Zahlen.
