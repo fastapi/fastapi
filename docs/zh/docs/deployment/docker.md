@@ -110,13 +110,13 @@ Docker 一直是创建和管理**容器镜像**和**容器**的主要工具之�
 
 您通常会在某个文件中包含应用程序的**依赖项**。
 
-这主要取决于您用来**安装**这些要求的工具。
+具体做法取决于您用来**安装**这些依赖的工具。
 
-最常见的方法是创建一个文件“requirements.txt”，其中包含包名称及其版本，每行一个。
+最常见的方法是创建一个`requirements.txt`文件，其中每行包含一个包名称和它的版本。
 
-当然，您可以使用在[关于 FastAPI 版本](./versions.md){.internal-link target=_blank} 中阅读的相同想法来设置版本范围。
+您当然也可以使用在[关于 FastAPI 版本](./versions.md){.internal-link target=_blank} 中讲到的方法来设置版本范围。
 
-例如，您的“requirements.txt”可能如下所示：
+例如，您的`requirements.txt`可能如下所示：
 
 
 ```
@@ -125,7 +125,7 @@ pydantic>=1.8.0,<2.0.0
 uvicorn>=0.15.0,<0.16.0
 ```
 
-您通常会使用`pip`安装这些依赖项，例如：
+您通常会使用`pip`安装这些依赖项：
 
 <div class="termy">
 
@@ -138,7 +138,7 @@ Successfully installed fastapi pydantic uvicorn
 </div>
 
 !!! info
-     还有其他格式和工具来定义和安装包依赖项。
+     还有其他文件格式和工具来定义和安装依赖项。
 
      我将在下面的部分中向您展示一个使用 Poetry 的示例。 👇
 
@@ -192,7 +192,7 @@ COPY ./app /code/app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-1.从官方Python基础镜像开始。
+1. 从官方Python基础镜像开始。
 
 2. 将当前工作目录设置为`/code`。
 
@@ -248,7 +248,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 #### 在 TLS 终止代理后面
 
-如果您在 Nginx 或 Traefik 等 TLS 终止代理（负载均衡器）后面运行容器，请添加选项 `--proxy-headers`，这将告诉 Uvicorn 信任该代理发送的标头，告诉它应用程序正在 HTTPS 后面运行
+如果您在 Nginx 或 Traefik 等 TLS 终止代理（负载均衡器）后面运行容器，请添加选项 `--proxy-headers`，这将告诉 Uvicorn 信任该代理发送的标头，告诉它应用程序正在 HTTPS 后面运行等信息
 
 ```Dockerfile
 CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
