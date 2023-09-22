@@ -1,4 +1,4 @@
-# Query-Parameter und String-Validierungen
+# Query-Parameter und Validierung von Strings
 
 **FastAPI** erlaubt es Ihnen, Ihre Parameter zusätzlich zu validieren, und zusätzliche Informationen hinzuzufügen.
 
