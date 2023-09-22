@@ -227,9 +227,9 @@ Zum Beispiel:
 
 Nehmen wir an, Sie haben nur einen einzelnen `item`-Body-Parameter, ein Pydantic-Modell `Item`.
 
-Normalerweise wird **FastAPI** dann seinen Körper direkt erwarten.
+Normalerweise wird **FastAPI** dann seinen JSON-Body direkt erwarten.
 
-Aber wenn Sie möchten, dass es ein JSON erwartet, mit einem Schlüssel `item` und darin den Inhalt des Modells, so wie es das tut, wenn Sie mehrere Body-Parameter deklarieren, dann können Sie den speziellen `Body`-Parameter `embed` setzen:
+Aber wenn Sie möchten, dass es einen JSON-Body erwartet, mit einem Schlüssel `item` und darin den Inhalt des Modells, so wie es das tut, wenn Sie mehrere Body-Parameter deklarieren, dann können Sie den speziellen `Body`-Parameter `embed` setzen:
 
 ```Python
 item: Item = Body(embed=True)
@@ -301,7 +301,7 @@ statt:
 
 Sie können mehrere Body-Parameter zu ihrer *Pfad-Operation-Funktion* hinzufügen.
 
-Aber **FastAPI** wird sich darum kümmern, ihnen korrekte Daten in ihrer Funktion überreichen, und das korrekte Schema in der *Pfad-Operation* validieren und dokumentieren.
+**FastAPI** wird sich darum kümmern, ihnen korrekte Daten in ihrer Funktion überreichen, und das korrekte Schema in der *Pfad-Operation* validieren und dokumentieren.
 
 Sie können auch einzelne Werte deklarieren, die als Teil des Bodys empfangen werden.
 
