@@ -668,7 +668,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 4. 将`pyproject.toml`和`poetry.lock`文件复制到`/tmp`目录。
 
-   因为它使用 `./poetry.lock*` （以 `*` 结尾），所以如果该文件尚不可用，它不会崩溃。
+     因为它使用 `./poetry.lock*` （以 `*` 结尾），所以如果该文件尚不可用，它不会崩溃。
 
 5. 生成`requirements.txt`文件。
 
@@ -678,7 +678,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 8. 将 `requirements.txt` 文件复制到 `/code` 目录。
 
-   该文件仅存在于前一个阶段，这就是为什么我们使用 `--from-requirements-stage` 来复制它。
+     该文件仅存在于前一个阶段，这就是为什么我们使用 `--from-requirements-stage` 来复制它。
 
 9. 安装生成的`requirements.txt`文件中的依赖项。
 
