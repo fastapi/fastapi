@@ -52,7 +52,7 @@ Importieren Sie zuerst:
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
     ```
 
-!!! Hinweis
+!!! info
     FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
     Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
@@ -172,7 +172,7 @@ q: str | None = None
 
 Nur, dass die `Query`-Versionen den Parameter explizit als Query-Parameter deklarieren.
 
-!!! Hinweis
+!!! info
     Behalten Sie in Kopf, dass:
 
     ```Python
