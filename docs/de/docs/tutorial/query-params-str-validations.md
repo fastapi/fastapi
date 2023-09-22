@@ -121,7 +121,7 @@ FastAPI wird nun:
 
 * Die Daten **validieren** und sicherstellen, dass sie nicht länger als 50 Zeichen sind
 * Dem Client einen **verständlichen Fehler** anzeigen, wenn die Daten ungültig sind
-* Den Parameter in der OpenAPI-Schema-*Pfad-Operation* **dokumentieren** (sodass er in der **UI der automatisch generierten Dokumentation** angezeigt wird)
+* Den Parameter in der OpenAPI-Schema-*Pfad-Operation* **dokumentieren** (sodass er in der **automatisch generierten Dokumentation** angezeigt wird)
 
 ## Alternativ (alt): `Query` als Defaultwert
 
