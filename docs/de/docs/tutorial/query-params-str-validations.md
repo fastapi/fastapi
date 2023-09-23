@@ -500,7 +500,7 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
     ```
 
 !!! tip
-    Pydantic, welches die gesamte Daten-Validierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/1.10/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a> erfahren.
+    Pydantic, welches die gesamte Daten-Validierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
 
 ### Pydantics `Required` anstelle von Ellipse (`...`) verwenden
 
