@@ -472,7 +472,7 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
 
 !!! tip
-    Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/1.10/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a> mehr erfahren.
+    Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
 
 ## Typ-Hinweise mit Metadaten-Annotationen
 
