@@ -7,7 +7,7 @@ HTTPSは単に「有効」か「無効」かで決まるものだと思いがち
 !!! tip
     もし急いでいたり、HTTPSの仕組みについて気にしないのであれば、次のセクションに進み、さまざまなテクニックを使ってすべてをセットアップするステップ・バイ・ステップの手順をご覧ください。
 
-消費者の視点から **HTTPS の基本を学ぶ**に当たっては、次のリソースをオススメします: <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
+利用者の視点から **HTTPS の基本を学ぶ**に当たっては、次のリソースをオススメします: <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
 さて、**開発者の視点**から、HTTPSについて考える際に念頭に置くべきことをいくつかみていきましょう：
 
