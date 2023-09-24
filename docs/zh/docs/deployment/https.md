@@ -7,9 +7,9 @@
 !!!提示
      如果您很赶时间或不在乎，请继续阅读下一部分，下一部分会提供一个step-by-step的教程，告诉你怎么使用不同技术来把一切都配置好。
 
-要从用户的角度**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
+要从用户的视角**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
 
-现在，从**开发人员的角度**，在考虑 HTTPS 时需要记住以下几点：
+现在，从**开发人员的角度**，在了解 HTTPS 时需要记住以下几点：
 
 * 对于 HTTPS，**服务器**需要拥有由**第三方**生成的**"证书(certificate)"**。
      * 这些证书实际上是从第三方**获取**的，而不是“生成”的。
@@ -26,12 +26,12 @@
      * 无论您的服务器有多大，或者服务器上的每个应用程序有多小。
      * 不过，对此有一个**解决方案**。
 * **TLS** 协议（在 HTTP 之下的TCP 层处理加密的协议）有一个**扩展**，称为 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="服务器名称指示">SNI</abbr></a>**。
-     * 此 SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域/应用程序**。
+     * SNI 扩展允许一台服务器（具有 **单个 IP 地址**）拥有 **多个 HTTPS 证书** 并提供 **多个 HTTPS 域/应用程序**。
      * 为此，服务器上会有**单独**的一个组件（程序）侦听**公共 IP 地址**，这个组件必须拥有服务器中的**所有 HTTPS 证书**。
 * **获得安全连接后**，通信协议**仍然是HTTP**。
      * 内容是 **加密过的**，即使它们是通过 **HTTP 协议** 发送的。
 
-通常的做法是在服务器上运行**一个程序/HTTP 服务器**并**管理所有 HTTPS 部分**：接收**加密的 HTTPS 请求**， 将 **解密的 HTTP 请求** 发送到在同一服务器中运行的实际 HTTP 应用程序（在本例中为 **FastAPI** 应用程序），从应用程序中获取 **HTTP 响应**，**对其进行加密** 使用适当的 **HTTPS 证书** 并使用 **HTTPS** 将其发送回客户端。 此服务器通常称为 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理(TLS Termination Proxy)</a>**。
+通常的做法是在服务器上运行**一个程序/HTTP 服务器**并**管理所有 HTTPS 部分**：接收**加密的 HTTPS 请求**， 将 **解密的 HTTP 请求** 发送到在同一服务器中运行的实际 HTTP 应用程序（在本例中为 **FastAPI** 应用程序），从应用程序中获取 **HTTP 响应**， 使用适当的 **HTTPS 证书**对其进行加密并使用 **HTTPS** 将其发送回客户端。 此服务器通常被称为 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理(TLS Termination Proxy)</a>**。
 
 您可以用作 TLS 终止代理的一些选项包括：
 
@@ -48,21 +48,22 @@
 
 但随后 **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** 创建了。
 
-它是 Linux 基金会的一个项目。 它以自动方式免费提供 **HTTPS 证书**。 这些证书使用所有标准的加密安全性，并且有效期很短（大约 3 个月），因此**安全性实际上更好**，因为它们的生命周期缩短了。
+它是 Linux 基金会的一个项目。 它以自动方式免费提供 **HTTPS 证书**。 这些证书可以使用所有符合标准的安全加密，并且有效期很短（大约 3 个月），因此**安全性实际上更好**，因为它们的生命周期缩短了。
 
-域名经过安全验证并自动生成证书。 这还允许自动更新这些证书。
+域可以被安全地验证并自动生成证书。 这还允许自动更新这些证书。
 
 我们的想法是自动获取和更新这些证书，以便您可以永远免费拥有**安全的 HTTPS**。
 
 ## 面向开发人员的 HTTPS
 
-以下是 HTTPS API 的示例，分步说明，主要关注对开发人员重要的点。
+这里有一个 HTTPS API 看起来是什么样的示例，我们会分步说明，并且主要关注对开发人员重要的部分。
+
 
 ### 域名
 
-这可能都是从您**获取**一些**域名**开始的。 然后，您可以在 DNS 服务器（可能是您的同一家云服务商）中配置它。
+第一步我们要先**获取**一些**域名(Domain Name)**开。 然后可以在 DNS 服务器（可能是您的同一家云服务商）中配置它。
 
-您可能会获得一个云服务器（虚拟机）或类似的东西，并且它会有一个<abbr title="That isn't Change">固定</abbr> **公共IP地址**。
+您可能拥有一个云服务器（虚拟机）或类似的东西，并且它会有一个<abbr title="That isn't Change">固定</abbr> **公共IP地址**。
 
 在 DNS 服务器中，您可以配置一条记录（“A 记录”）以将 **您的域** 指向您服务器的公共 **IP 地址**。
 
