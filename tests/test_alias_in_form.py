@@ -6,13 +6,16 @@ app: FastAPI = FastAPI()
 
 @app.post("/testing_alias")
 async def check_alias(id_test: int = Form(alias="otherId")):
-    return {"other_id":id_test}
+    return {"other_id": id_test}
+
 
 @app.patch("/testing")
-async def check_without_alias(id_test:int = Form()):
-    return {"id_test":id_test}
+async def check_without_alias(id_test: int = Form()):
+    return {"id_test": id_test}
+
 
 client = TestClient(app)
+
 
 def test_without_alias():
     response = client.patch("/testing", data={"id_test": 1})
