@@ -1,5 +1,3 @@
-from typing import Annotated
-
 from fastapi import FastAPI, Form
 from starlette.testclient import TestClient
 
@@ -7,11 +5,11 @@ from starlette.testclient import TestClient
 app:FastAPI = FastAPI()
 
 @app.post("/testing_alias")
-async def check_alias(id_test: Annotated[int, Form(alias="otherId")]):
+async def check_alias(id_test: int = Form(alias="otherId")):
     return {"other_id":id_test}
 
 @app.patch("/testing")
-async def check_without_alias(id_test:Annotated[int, Form()]):
+async def check_without_alias(id_test:int = Form()):
     return {"id_test":id_test}
 
 
