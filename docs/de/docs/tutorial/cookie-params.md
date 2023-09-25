@@ -87,7 +87,7 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs
 !!! Hinweis "Technische Details"
     `Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
-    Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path` und `Cookie` von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
+    Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
 
 !!! info
     Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
