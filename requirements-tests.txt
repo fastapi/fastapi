@@ -11,7 +11,7 @@ dirty-equals ==0.6.0
 # TODO: once removing databases from tutorial, upgrade SQLAlchemy
 # probably when including SQLModel
 sqlalchemy >=1.4.49,<1.5.0
-databases[sqlite] >=0.3.2,<0.8.0
+databases[sqlite] >=0.3.2,<0.7.0
 orjson >=3.2.1,<4.0.0
 ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0
 python-multipart >=0.0.5,<0.0.7
@@ -20,7 +20,7 @@ anyio[trio] >=3.2.1,<4.0.0
 python-jose[cryptography] >=3.3.0,<4.0.0
 pyyaml >=5.3.1,<7.0.0
 passlib[bcrypt] >=1.7.2,<2.0.0
-
+greenlet==3.0.0rc3
 # types
 types-ujson ==5.7.0.1
 types-orjson ==3.6.2
