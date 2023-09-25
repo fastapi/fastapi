@@ -44,7 +44,7 @@ Importieren Sie zuerst `Cookie`:
 
 ## `Cookie`-Parameter deklarieren
 
-Dann deklarieren Sie Cookie-Parameter, auf die gleiche Weise, wie Sie auch `Path` und `Query`-Parameter deklarieren.
+Dann deklarieren Sie Cookie-Parameter, auf die gleiche Weise, wie Sie auch `Path`- und `Query`-Parameter deklarieren.
 
 Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs- und Beschreibungs-Parameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
 
