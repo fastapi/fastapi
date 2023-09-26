@@ -203,7 +203,7 @@ die Funktionsparameter werden wie folgt erkannt:
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
 * Wenn der Parameter vom Typ eines **Pydantic Modells** ist, wird er als Request-**Body** interpretiert.
 
-!!! Hinweis
+!!! note "Hinweis"
     FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `=None`
 
     Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
