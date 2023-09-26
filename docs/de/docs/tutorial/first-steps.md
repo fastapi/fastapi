@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! Hinweis
+!!! note "Hinweis"
     Der Befehl `uvicorn main:app` bezieht sich auf:
 
     * `main`: die Datei `main.py` (ein sogenanntes Python-"Modul").
@@ -136,7 +136,7 @@ Ebenfalls können Sie es verwenden, um automatisch Code zu generieren, für Clie
 
 `FastAPI` ist eine Python-Klasse, die alle Funktionalität für Ihre API bereitstellt.
 
-!!! Hinweis "Technische Details"
+!!! note "Technische Details"
     `FastAPI`  ist eine Klasse, die direkt von `Starlette` erbt.
 
     Sie können alle Funktionalitäten von <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> auch mit `FastAPI` nutzen.
@@ -199,7 +199,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! Info
+!!! info
     Ein "Pfad" wird häufig auch als "Endpunkt" oder "Route" bezeichnet.
 
 Bei der Erstellung einer API ist der "Pfad" die Hauptmethode zur Trennung von "Anliegen" und "Ressourcen".
@@ -250,7 +250,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
  * den Pfad `/`
  * unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
 
-!!! Info "`@decorator` Information"
+!!! info "`@decorator` Information"
     Diese `@etwas`-Syntax wird in Python "Dekorator" genannt.
 
     Sie platzieren sie über einer Funktion. Wie ein hübscher, dekorativer Hut (Ich nehme an, daher kommt der Begriff).
@@ -309,7 +309,7 @@ Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *"In Eile?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ### Schritt 5: den Inhalt zurückgeben
