@@ -42,7 +42,7 @@ Importieren Sie es zuerst:
     {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
-!!! warning
+!!! warning "Achtung"
     Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
 
 ## Modell-Attribute deklarieren
@@ -87,7 +87,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
 
 `Field` funktioniert genauso wie `Query`, `Path` und `Body`, es hat die gleichen Parameter, usw.
 
-!!! Hinweis "Technische Details"
+!!! note "Technische Details"
     Tatsächlich erstellen `Query`, `Path` und andere, die sie kennenlernen werden, Instanzen von Kindklassen einer allgemeinen Klasse `Param`, die ihrerseits eine Kindklasse von Pydantics `FieldInfo`-Klasse ist.
 
     Und Pydantics `Field` gibt ebenfalls eine Instanz von `FieldInfo` zurück.
@@ -105,7 +105,7 @@ Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarier
 
 Sie werden später mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
-!!! warning
+!!! warning "Achtung"
     Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 
 ## Rekapitulation
