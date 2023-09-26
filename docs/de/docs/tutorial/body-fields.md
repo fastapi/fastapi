@@ -42,7 +42,7 @@ Importieren Sie es zuerst:
     {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
-!!! Achtung
+!!! warning
     Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
 
 ## Modell-Attribute deklarieren
@@ -105,7 +105,7 @@ Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarier
 
 Sie werden später mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
-!!! Achtung
+!!! warning
     Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 
 ## Rekapitulation
