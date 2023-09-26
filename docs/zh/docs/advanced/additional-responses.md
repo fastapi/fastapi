@@ -166,7 +166,7 @@
 !!! Note
 	- 请注意，您必须直接使用 `FileResponse` 返回图像。
 
-!!! Info 
+!!! Info
 	- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
 	- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
 
