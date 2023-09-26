@@ -91,7 +91,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
 
     Sie sollten ihn daher mit `...` deklarieren, um ihn als erforderlich auszuzeichnen.
@@ -281,7 +281,7 @@ Und Sie können auch Validierungen für Zahlen deklarieren:
 
     Sie alle teilen dieselben Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
 
-!!! Hinweis "Technische Details"
+!!! note "Technische Details"
     `Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
 
     Die, wenn sie aufgerufen werden, Instanzen der Klassen mit demselben Namen zurückgeben.
