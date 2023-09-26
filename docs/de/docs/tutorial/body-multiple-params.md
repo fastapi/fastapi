@@ -44,7 +44,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Beachten Sie, dass in diesem Fall das `item`, welches vom Body genommen wird, optional ist. Da es `None` als Defaultwert hat.
 
 ## Mehrere Body-Parameter
@@ -93,7 +93,7 @@ Es wird deshalb die Parameternamen als Schlüssel (Feldnamen) im Body verwenden,
 }
 ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Beachten Sie, dass, obwohl `item` wie zuvor deklariert wurde, es nun unter einem Schlüssel `item` im Body erwartet wird.
 
 **FastAPI** wird die automatische Konvertierung des Requests übernehmen, sodass der Parameter `item` seinen spezifischen Inhalt bekommt, genau so wie der Parameter `user`.
