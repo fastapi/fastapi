@@ -84,7 +84,7 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
-!!! Hinweis "Technische Details"
+!!! note "Technische Details"
     `Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
     Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
