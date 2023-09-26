@@ -18,7 +18,7 @@ Nehmen wir als Beispiel die folgende Anwendung:
 
 Der Query-Parameter `q` hat den Typ `Union[str, None]` (oder `str | None` in Python 3.10), was bedeutet, er ist entweder ein `str` oder `None`. Der Defaultwert ist `None`, also weiß FastAPI, der Parameter ist nicht erforderlich.
 
-!!! Hinweis
+!!! note "Hinweis"
     FastAPI weiß nur dank des definierten Defaultwertes `=None`, dass der Wert von `q` nicht erforderlich ist
 
     `Union[str, None]` hingegen erlaubt ihren Editor, Sie besser zu unterstützen und Fehler zu erkennen.
@@ -366,7 +366,7 @@ Beispielsweise könnten Sie den `q` Query-Parameter so deklarieren, dass er eine
     {!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
     ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Ein Parameter ist optional (nicht erforderlich), wenn er irgendeinen Defaultwert, auch `None`, hat.
 
 ## Erforderliche Parameter
@@ -683,7 +683,7 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]` (oder `list[s
     {!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
     ```
 
-!!! Hinweis
+!!! note "Hinweis"
     Beachten Sie, dass FastAPI in diesem Fall den Inhalt der Liste nicht überprüft.
 
     Zum Beispiel würde `List[int]` überprüfen (und dokumentieren) dass die Liste Ganzzahlen enthält. `list` alleine macht das nicht.
@@ -694,7 +694,7 @@ Sie können mehr Informationen zum Parameter hinzufügen.
 
 Diese Informationen werden zur generierten OpenAPI hinzugefügt, und von den Dokumentations-Oberflächen und von externen Tools verwendet.
 
-!!! Hinweis
+!!! note "Hinweis"
     Beachten Sie, dass verschiedene Tools OpenAPI möglicherweise unterschiedlich gut unterstützen.
 
     Einige könnten noch nicht alle zusätzlichen Informationen anzeigen, die Sie deklariert haben, obwohl in den meisten Fällen geplant ist, das fehlende Feature zu implementieren.
