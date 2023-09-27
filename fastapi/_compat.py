@@ -58,9 +58,15 @@ if PYDANTIC_V2:
     from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as general_plain_validator_function,
-    )
+
+    try:
+        from pydantic_core.core_schema import (
+            with_info_plain_validator_function as with_info_plain_validator_function,
+        )
+    except ImportError:
+        from pydantic_core.core_schema import (
+            general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
+        )
 
     Required = PydanticUndefined
     Undefined = PydanticUndefined
