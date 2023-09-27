@@ -12,7 +12,7 @@
 
 Наприклад, вона не приймає об'єкти типу `datetime`, оскільки вони не сумісні з JSON.
 
-Отже, об'єкт типу `datetime` потрібно перетворити в рядок `str`, який містить дані в <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO формат</a>.
+Отже, об'єкт типу `datetime` потрібно перетворити в рядок `str`, який містить дані в <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO форматі</a>.
 
 Тим самим способом ця база даних не прийматиме об'єкт типу Pydantic model (об'єкт з атрибутами), а лише `dict`.
 
