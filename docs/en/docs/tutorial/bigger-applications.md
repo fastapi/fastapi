@@ -112,9 +112,26 @@ So we put them in their own `dependencies` module (`app/dependencies.py`).
 
 We will now use a simple dependency to read a custom `X-Token` header:
 
-```Python hl_lines="1  4-6"
-{!../../../docs_src/bigger_applications/app/dependencies.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="3  6-8"
+    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  5-7"
+    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="1  4-6"
+    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+    ```
 
 !!! tip
     We are using an invented header to simplify this example.
@@ -189,7 +206,7 @@ The end result is that the item paths are now:
 
 ### Import the dependencies
 
-This codes lives in the module `app.routers.items`, the file `app/routers/items.py`.
+This code lives in the module `app.routers.items`, the file `app/routers/items.py`.
 
 And we need to get the dependency function from the module `app.dependencies`, the file `app/dependencies.py`.
 
@@ -360,7 +377,7 @@ The `router` from `users` would overwrite the one from `items` and we wouldn't b
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 
-```Python hl_lines="4"
+```Python hl_lines="5"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 

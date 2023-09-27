@@ -106,7 +106,7 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.6+
+Python 3.7+
 
 FastAPI está sobre los hombros de gigantes:
 
@@ -418,7 +418,7 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 * Muchas características extra (gracias a Starlette) como:
     * **WebSockets**
     * **GraphQL**
-    * pruebas extremadamente fáciles con `requests` y `pytest`
+    * pruebas extremadamente fáciles con HTTPX y `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...y mucho más.
@@ -433,12 +433,11 @@ Para entender más al respecto revisa la sección <a href="https://fastapi.tiang
 
 Usadas por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de JSON más rápido.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validación de emails.
 
 Usados por Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Requerido si quieres usar el `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si quieres usar el `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si quieres usar la configuración por defecto de templates.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Requerido si quieres dar soporte a  <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de formularios, con `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requerido para dar soporte a `SessionMiddleware`.

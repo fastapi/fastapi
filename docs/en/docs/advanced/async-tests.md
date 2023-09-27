@@ -1,6 +1,6 @@
 # Async Tests
 
-You have already seen how to test your **FastAPI** applications using the provided `TestClient`, but with it, you can't test or run any other `async` function in your (synchronous) pytest functions.
+You have already seen how to test your **FastAPI** applications using the provided `TestClient`. Up to now, you have only seen how to write synchronous tests, without using `async` functions.
 
 Being able to use asynchronous functions in your tests could be useful, for example, when you're querying your database asynchronously. Imagine you want to test sending requests to your FastAPI application and then verify that your backend successfully wrote the correct data in the database, while using an async database library.
 
@@ -8,7 +8,7 @@ Let's look at how we can make that work.
 
 ## pytest.mark.anyio
 
-If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. Anyio provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
+If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. AnyIO provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
 
 ## HTTPX
 
@@ -16,13 +16,7 @@ Even if your **FastAPI** application uses normal `def` functions instead of `asy
 
 The `TestClient` does some magic inside to call the asynchronous FastAPI application in your normal `def` test functions, using standard pytest. But that magic doesn't work anymore when we're using it inside asynchronous functions. By running our tests asynchronously, we can no longer use the `TestClient` inside our test functions.
 
-Luckily there's a nice alternative, called <a href="https://www.python-httpx.org/" class="external-link" target="_blank">HTTPX</a>.
-
-HTTPX is an HTTP client for Python 3 that allows us to query our FastAPI application similarly to how we did it with the `TestClient`.
-
-If you're familiar with the <a href="https://requests.readthedocs.io/en/master/" class="external-link" target="_blank">Requests</a> library, you'll find that the API of HTTPX is almost identical.
-
-The important difference for us is that with HTTPX we are not limited to synchronous, but can also make asynchronous requests.
+The `TestClient` is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, and luckily, we can use it directly to test the API.
 
 ## Example
 
@@ -85,7 +79,7 @@ This is the equivalent to:
 response = client.get('/')
 ```
 
-that we used to make our requests with the `TestClient`.
+...that we used to make our requests with the `TestClient`.
 
 !!! tip
     Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.

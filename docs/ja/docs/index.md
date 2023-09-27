@@ -107,7 +107,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 ## 必要条件
 
-Python 3.6+
+Python 3.7+
 
 FastAPI は巨人の肩の上に立っています。
 
@@ -416,7 +416,7 @@ item: Item
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
   - **GraphQL**
-  - `requests` や `pytest`をもとにした極限に簡単なテスト
+  - `httpx` や `pytest`をもとにした極限に簡単なテスト
   - **CORS**
   - **クッキーセッション**
   - ...などなど。
@@ -431,12 +431,11 @@ item: Item
 
 Pydantic によって使用されるもの:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - より速い JSON への<abbr title="converting the string that comes from an HTTP request into Python data">"変換"</abbr>.
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
 
 Starlette によって使用されるもの:
 
-- <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - `TestClient`を使用するために必要です。
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient`を使用するために必要です。
 - <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用する場合は必要です。
 - <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>`request.form()`からの変換をサポートしたい場合は必要です。
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` サポートのためには必要です。

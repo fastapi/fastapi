@@ -20,9 +20,26 @@
 
 把下面的示例代码复制到 `main.py`：
 
-```Python
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.9+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 ## 运行
 
@@ -110,7 +127,7 @@ OAuth2 的设计目标是为了让后端或 API 独立于服务器验证用户�
 
 !!! info "说明"
 
-    `Beare` 令牌不是唯一的选择。
+    `Bearer` 令牌不是唯一的选择。
 
     但它是最适合这个用例的方案。
 
