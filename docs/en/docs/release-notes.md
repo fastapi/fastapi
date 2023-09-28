@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.103.2
+
 ### Refactors
 
 * ⬆️ Upgrade compatibility with Pydantic v2.4, new renamed functions and JSON Schema input/output models with default values. PR [#10344](https://github.com/tiangolo/fastapi/pull/10344) by [@tiangolo](https://github.com/tiangolo).
