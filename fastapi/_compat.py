@@ -63,7 +63,7 @@ if PYDANTIC_V2:
         from pydantic_core.core_schema import (
             with_info_plain_validator_function as with_info_plain_validator_function,
         )
-    except ImportError:
+    except ImportError:  # pragma: no cover
         from pydantic_core.core_schema import (
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
