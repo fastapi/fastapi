@@ -108,7 +108,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
     ```
 
 !!! info
-    Um `EmailStr` zu verwenden, installieren Sie bitte zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+    Um `EmailStr` zu verwenden, installieren Sie zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
 
     Z.B. `pip install email-validator`
     oder `pip install pydantic[email]`.
@@ -188,11 +188,11 @@ Da unsere zwei Modelle in diesem Fall unterschiedlich sind, würde, wenn wir den
 
 Darum müssen wir es in diesem Fall im `response_model`-Parameter deklarieren.
 
-... aber lesen Sie unten weiter, um zu sehen, wie man das eleganter lösen kann.
+... aber lesen Sie weiter, um zu sehen, wie man das eleganter lösen kann.
 
 ## Rückgabewert und Datenfilterung
 
-Führen wir unser vorheriges Beispiel fort. Wir möchten **die Funktion mit einem Typ annotieren**, aber etwas zurückgeben, das **weniger Daten** enthält.
+Führen wir unser vorheriges Beispiel fort. Wir wollten **die Funktion mit einem Typ annotieren**, aber etwas zurückgeben, das **weniger Daten** enthält.
 
 Wir möchten auch, dass FastAPI die Daten weiterhin, dem Response-Modell entsprechend, **filtert**.
 
@@ -232,7 +232,7 @@ Der Editor, mypy und andere Tools werden sich darüber nicht beschweren, da `Use
 
 FastAPI seinerseits wird den Rückgabetyp sehen und sicherstellen, dass das, was Sie zurückgeben, **nur** die Felder enthält, welche in diesem Typ deklariert sind.
 
-FastAPI macht intern mehrere Dinge mit Pydantic, um sicherzustellen, dass diese Ähnlichkeitsregeln der Klassenvererbung nicht auf die Filterung der zurückgegebenen Daten angewendet werden, sonst könnten Sie am Ende mehr Daten zurückgeben als erwartet.
+FastAPI macht intern mehrere Dinge mit Pydantic, um sicherzustellen, dass diese Ähnlichkeitsregeln der Klassenvererbung nicht auf die Filterung der zurückgegebenen Daten angewendet werden, sonst könnten Sie am Ende mehr Daten zurückgeben als gedacht.
 
 Auf diese Weise erhalten Sie das beste beider Welten: Typ-Annotationen mit **Tool-Unterstützung** und **Datenfilterung**.
 
@@ -258,7 +258,7 @@ Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, 
 {!> ../../../docs_src/response_model/tutorial003_02.py!}
 ```
 
-Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder Kindklasse von) `Response` ist.
+Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Kindklasse von) `Response` ist.
 
 Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Kindklassen von `Response` sind, die Typ-Annotation ist daher korrekt.
 
@@ -276,7 +276,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Kindklasse von `R
 
 Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Response-Modell von dieser Typ-Annotation zu erstellen, und scheitern.
 
-Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: "Irgendeiner dieser Typen"'>Union</abbr> mehrerer Typen haben, wobei einer oder mehrere nicht gültige Pydantic-Typen sind. Zum Beispiel wird folgendes nicht funktionieren 💥:
+Dasselbe wird passieren, wenn Sie eine <abbr title='"Eine Union mehrerer Typen" bedeutet: "Irgendeiner dieser Typen"'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel wird folgendes nicht funktionieren 💥:
 
 === "Python 3.10+"
 
@@ -430,7 +430,7 @@ Diese Felder werden also in der JSON-Response enthalten sein.
 
 Sie können auch die **Pfad-Operation-Dekorator**-Parameter `response_model_include` und `response_model_exclude` verwenden.
 
-Sie nehmen ein `set` von `str`s entgegen, mit den Namen von Attributen, die eingeschlossen (ohne den Rest) oder ausgeschlossen (nur der Rest) werden sollen.
+Diese nehmen ein `set` von `str`s entgegen, mit den Namen von Attributen, die eingeschlossen (ohne den Rest) oder ausgeschlossen (nur der Rest) werden sollen.
 
 Das kann als Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Modell haben und ein paar Daten von der Ausgabe ausschließen wollen.
 
