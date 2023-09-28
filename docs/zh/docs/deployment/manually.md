@@ -99,7 +99,7 @@
 
 Starlette 和 **FastAPI** 基于 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>， 所以它们才能同时与 Python 的标准库 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和<a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> 兼容。
 
-尽管如此，Uvicorn 目前仅与 asyncio 兼容，并且通常使用 <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a >,`asyncio`的高性能替代品。
+尽管如此，Uvicorn 目前仅与 asyncio 兼容，并且通常使用 <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a >, 它是`asyncio`的高性能替代品。
 
 但如果你想直接使用**Trio**，那么你可以使用**Hypercorn**，因为它支持它。 ✨
 
