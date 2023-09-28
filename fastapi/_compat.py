@@ -351,7 +351,7 @@ else:
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
-    def general_plain_validator_function(  # type: ignore[misc]
+    def with_info_plain_validator_function(  # type: ignore[misc]
         function: Callable[..., Any],
         *,
         ref: Union[str, None] = None,
