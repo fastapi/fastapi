@@ -1,4 +1,4 @@
-# Response-Modell – Rückgabewert
+# Response-Modell – Rückgabetyp
 
 Sie können den Typ der <abbr title="Antwort, Response, Response-Objekt: Das, was zum anfragenden Client zurückgeschickt wird">Response</abbr> deklarieren, indem Sie den **Rückgabetyp** der *Pfad-Operation* annotieren.
 
