@@ -73,7 +73,7 @@ Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre fol
 
 ## Deklarieren Sie es als Parameter
 
-Um es zu Ihrer *Pfad-Operation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
+Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
 
 === "Python 3.10+"
 
@@ -108,7 +108,7 @@ Die JSON Schemas Ihrer Modelle werden Teil ihrer OpenAPI-generierten Schemas und
 
 <img src="/img/tutorial/body/image01.png">
 
-Und werden auch verwendet in der API-Dokumentation innerhalb jeder *Pfad-Operation*, welche sie braucht:
+Und werden auch verwendet in der API-Dokumentation innerhalb jeder *Pfadoperation*, welche sie braucht:
 
 <img src="/img/tutorial/body/image02.png">
 
