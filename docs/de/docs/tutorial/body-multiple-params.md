@@ -49,7 +49,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 ## Mehrere Body-Parameter
 
-Im vorherigen Beispiel erwartete die *Pfad-Operation* einen JSON-Body mit den Attributen eines `Item`s, etwa:
+Im vorherigen Beispiel erwartete die *Pfadoperation* einen JSON-Body mit den Attributen eines `Item`s, etwa:
 
 ```JSON
 {
@@ -299,9 +299,9 @@ statt:
 
 ## Rekapitulation
 
-Sie können mehrere Body-Parameter zu ihrer *Pfad-Operation-Funktion* hinzufügen.
+Sie können mehrere Body-Parameter zu ihrer *Pfadoperation-Funktion* hinzufügen.
 
-**FastAPI** wird sich darum kümmern, ihnen korrekte Daten in ihrer Funktion überreichen, und das korrekte Schema in der *Pfad-Operation* validieren und dokumentieren.
+**FastAPI** wird sich darum kümmern, ihnen korrekte Daten in ihrer Funktion zu überreichen, und das korrekte Schema in der *Pfadoperation* validieren und dokumentieren.
 
 Sie können auch einzelne Werte deklarieren, die als Teil des Bodys empfangen werden.
 
