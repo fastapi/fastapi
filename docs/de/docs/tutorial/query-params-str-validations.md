@@ -121,7 +121,7 @@ FastAPI wird nun:
 
 * Die Daten **validieren** und sicherstellen, dass sie nicht länger als 50 Zeichen sind
 * Dem Client einen **verständlichen Fehler** anzeigen, wenn die Daten ungültig sind
-* Den Parameter in der OpenAPI-Schema-*Pfad-Operation* **dokumentieren** (sodass er in der **automatisch generierten Dokumentation** angezeigt wird)
+* Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatisch generierten Dokumentation** angezeigt wird)
 
 ## Alternativ (alt): `Query` als Defaultwert
 
@@ -195,7 +195,7 @@ Jetzt können wir `Query` weitere Parameter übergeben. Fangen wir mit dem `max_
 q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
-Das wird die Daten validieren, einen verständlichen Fehler ausgeben, wenn die Daten nicht gültig sind, und den Parameter in der OpenAPI-Schema-*Pfad-Operation* dokumentieren.
+Das wird die Daten validieren, einen verständlichen Fehler ausgeben, wenn die Daten nicht gültig sind, und den Parameter in der OpenAPI-Schema-*Pfadoperation* dokumentieren.
 
 ### `Query` als Defaultwert oder in `Annotated`
 
@@ -587,7 +587,7 @@ Dann, mit einer URL wie:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-bekommen Sie alle `q`-*Query-Parameter*-Werte (`foo` und `bar`) in einer Python Liste – `list` – in ihrer *Pfad-Operation-Funktion*, im Funktionsparameter `q`, überreicht.
+bekommen Sie alle `q`-*Query-Parameter*-Werte (`foo` und `bar`) in einer Python Liste – `list` – in ihrer *Pfadoperation-Funktion*, im Funktionsparameter `q`, überreicht.
 
 Die Antwort auf diese URL wäre also:
 
