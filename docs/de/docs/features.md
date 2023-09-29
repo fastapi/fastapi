@@ -138,8 +138,8 @@ FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abb
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **"Graph" von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.
-* Alle Abhängigkeiten können Daten von Anfragen anfordern und **die Pfad-Operationen**-Einschränkungen und automatisierte Dokumentation erweitern.
-* **Automatische Validierung** selbst für *Pfad-Operation*-Parameter, die in Abhängigkeiten definiert sind.
+* Alle Abhängigkeiten können Daten von Anfragen anfordern und das Verhalten von **Pfadoperationen** und der automatisierten Dokumentation **modifizieren**.
+* **Automatische Validierung** selbst für solche Parameter von *Pfadoperationen*, welche in Abhängigkeiten definiert sind.
 * Unterstützung für komplexe Authentifizierungssysteme, **Datenbankverbindungen**, usw.
 * **Keine Kompromisse** bei Datenbanken, Frontends, usw., sondern einfache Integration mit allen.
 
@@ -147,7 +147,7 @@ FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abb
 
 Oder mit anderen Worten, sie werden nicht benötigt. Importieren und nutzen Sie den Code, den Sie brauchen.
 
-Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abhängigkeiten), dass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen Code erstellen können. Hierbei nutzen Sie dieselbe Struktur und Syntax, wie bei *Pfad-Operationen*.
+Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abhängigkeiten), dass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen Code erstellen können. Hierbei nutzen Sie dieselbe Struktur und Syntax, wie bei *Pfadoperationen*.
 
 ### Getestet
 
