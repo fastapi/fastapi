@@ -1,6 +1,6 @@
 # Body - Felder
 
-So wie Sie zusätzliche Validation und Metadaten in **Pfad-Operation-Funktion**-Parametern mittels `Query`, `Path` und `Body` deklarieren, können Sie auch innerhalb von Pydantic-Modellen zusätzliche Validation und Metadaten deklarieren, mittels Pydantics `Field`.
+So wie Sie zusätzliche Validation und Metadaten in Parametern der **Pfadoperation-Funktion** mittels `Query`, `Path` und `Body` deklarieren, können Sie auch innerhalb von Pydantic-Modellen zusätzliche Validation und Metadaten deklarieren, mittels Pydantics `Field`.
 
 ## `Field` importieren
 
@@ -97,7 +97,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
     Denken Sie daran, dass `Query`, `Path` und andere von `fastapi` tatsächlich Funktionen sind, die spezielle Klassen zurückgeben.
 
 !!! tip
-    Beachten Sie, dass jedes Modell-Attribut, mit einem Typ, Defaultwert und `Field`, die gleiche Struktur hat wie ein Pfad-Operation-Funktion-Parameter, nur mit `Field` statt `Path`, `Query`, `Body`.
+    Beachten Sie, dass jedes Modell-Attribut mit einem Typ, Defaultwert und `Field` die gleiche Struktur hat wie ein Parameter einer Pfadoperation-Funktion, nur mit `Field` statt `Path`, `Query`, `Body`.
 
 ## Zusätzliche Information hinzufügen
 
