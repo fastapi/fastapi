@@ -101,13 +101,13 @@ Mehrere davon werden wir in den nächsten Kapiteln erkunden.
 
 ## Die Reihenfolge ist wichtig
 
-Wenn Sie *Pfad-Operationen* erstellen, haben Sie manchmal einen fixen Pfad.
+Wenn Sie *Pfadoperationen* erstellen, haben Sie manchmal einen fixen Pfad.
 
 Etwa `/users/me`, um Daten über den aktuellen Nutzer zu erhalten.
 
 Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifischen Nutzer zu erhalten, mittels einer Nutzer-ID.
 
-Weil *Pfad-Operationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
+Weil *Pfadoperationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
@@ -115,7 +115,7 @@ Weil *Pfad-Operationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sic
 
 Ansonsten würde der Pfad für `/users/{user_id}` auch `/users/me` auswerten, und annehmen, dass ein Parameter `user_id` mit dem Wert `"me"` übergeben wurde.
 
-Sie können eine Pfad-Operation auch nicht erneut definieren:
+Sie können eine Pfadoperation auch nicht erneut definieren:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003b.py!}
@@ -125,7 +125,7 @@ Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinsti
 
 ## Vordefinierte Parameterwerte
 
-Wenn Sie eine *Pfad-Operation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein normales Python-<abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
+Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein normales Python-<abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
 
 ### Erstellen Sie eine `Enum`-Klasse
 
@@ -184,7 +184,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 
 #### *Enum-Member* zurückgeben
 
-Sie können *Enum-Member* in ihrer *Pfad-Operation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
+Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
 
 Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings), bevor sie zum Client übertragen werden:
 
@@ -203,7 +203,7 @@ In Ihrem Client erhalten Sie eine JSON-Antwort, wie etwa:
 
 ## Pfad Parameter die Pfade enthalten
 
-Angenommen, Sie haben eine *Pfad-Operation* mit einem Pfad `/files/{file_path}`.
+Angenommen, Sie haben eine *Pfadoperation* mit einem Pfad `/files/{file_path}`.
 
 Aber `file_path` soll selbst einen *Pfad* enthalten, etwa `home/johndoe/myfile.txt`.
 
