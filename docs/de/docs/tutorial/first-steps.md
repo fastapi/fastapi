@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Schritt 3: Erstellen einer *Pfad-Operation*
+### Schritt 3: Erstellen einer *Pfadoperation*
 
 #### Pfad
 
@@ -239,7 +239,7 @@ Daher wird in OpenAPI jede dieser HTTP-Methoden als "Operation" bezeichnet.
 
 Wir werden sie auch "**Operationen**" nennen.
 
-#### Definieren eines *Pfad-Operation-Dekorators*
+#### Definieren eines *Pfadoperation-Dekorators*
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -259,7 +259,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
 
     In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion mit dem **Pfad** `/` und der **Operation** `get` zusammenhängt.
 
-    Es ist der "**Pfad-Operation-Dekorator**".
+    Es ist der "**Pfadoperation-Dekorator**".
 
 Sie können auch die anderen Operationen verwenden:
 
@@ -283,9 +283,9 @@ Oder die exotischeren:
 
     Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit "POST"-Operationen durch.
 
-### Schritt 4: Definieren der **Pfad-Operation-Funktion**
+### Schritt 4: Definieren der **Pfadoperation-Funktion**
 
-Das ist unsere "**Pfad-Operation-Funktion**":
+Das ist unsere "**Pfadoperation-Funktion**":
 
 * **Pfad**: ist `/`.
 * **Operation**: ist `get`.
@@ -328,6 +328,6 @@ Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert we
 
 * Importieren Sie `FastAPI`.
 * Erstellen Sie eine `app` Instanz.
-* Schreiben Sie einen **Pfad-Operation-Dekorator** (wie z.B. `@app.get("/")`).
-* Schreiben Sie eine **Pfad-Operation-Funktion** (wie z.B. oben `def root(): ...`).
+* Schreiben Sie einen **Pfadoperation-Dekorator** (wie z.B. `@app.get("/")`).
+* Schreiben Sie eine **Pfadoperation-Funktion** (wie z.B. oben `def root(): ...`).
 * Starten Sie den Entwicklungsserver (z.B. `uvicorn main:app --reload`).
