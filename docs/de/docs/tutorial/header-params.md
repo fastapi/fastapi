@@ -202,7 +202,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
     {!> ../../../docs_src/header_params/tutorial003.py!}
     ```
 
-Wenn Sie mit einer *Pfad-Operation* kommunizieren, die zwei HTTP-Header sendet, wie:
+Wenn Sie mit einer *Pfadoperation* kommunizieren, die zwei HTTP-Header sendet, wie:
 
 ```
 X-Token: foo
