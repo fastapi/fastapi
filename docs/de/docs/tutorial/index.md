@@ -1,4 +1,4 @@
-# Tutorial - Benutzerhandbuch
+# Tutorial – Benutzerhandbuch
 
 Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** und die meisten seiner Funktionen verwenden können.
 
@@ -71,10 +71,10 @@ $ pip install "fastapi[all]"
 
 ## Handbuch für fortgeschrittene Benutzer
 
-Es gibt auch ein **Handbuch für fortgeschrittene Benutzer**, welches Sie später nach diesem **Tutorial - Benutzerhandbuch** lesen können.
+Es gibt auch ein **Handbuch für fortgeschrittene Benutzer**, welches Sie später nach diesem **Tutorial – Benutzerhandbuch** lesen können.
 
 Das **Handbuch für fortgeschrittene Benutzer** baut auf diesem Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
-Allerdings sollten Sie zuerst das **Tutorial - Benutzerhandbuch** lesen (was Sie hier gerade tun).
+Allerdings sollten Sie zuerst das **Tutorial – Benutzerhandbuch** lesen (was Sie hier gerade tun).
 
-Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial - Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **Handbuch für fortgeschrittene Benutzer** vervollständigen können.
+Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial – Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **Handbuch für fortgeschrittene Benutzer** vervollständigen können.
