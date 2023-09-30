@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union, Set
 from uuid import UUID
 
 from fastapi.types import IncEx
@@ -98,7 +98,7 @@ def generate_encoders_by_class_tuples(
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
-def jsonable_encoder(
+def _jsonable_encoder_impl(
     obj: Any,
     include: Optional[IncEx] = None,
     exclude: Optional[IncEx] = None,
@@ -108,6 +108,7 @@ def jsonable_encoder(
     exclude_none: bool = False,
     custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
     sqlalchemy_safe: bool = True,
+    markers: Optional[Set[int]] = None,
 ) -> Any:
     custom_encoder = custom_encoder or {}
     if custom_encoder:
@@ -140,17 +141,18 @@ def jsonable_encoder(
         )
         if "__root__" in obj_dict:
             obj_dict = obj_dict["__root__"]
-        return jsonable_encoder(
+        return _jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             # TODO: remove when deprecating Pydantic v1
             custom_encoder=encoders,
             sqlalchemy_safe=sqlalchemy_safe,
+            markers=markers,
         )
     if dataclasses.is_dataclass(obj):
         obj_dict = dataclasses.asdict(obj)
-        return jsonable_encoder(
+        return _jsonable_encoder(
             obj_dict,
             include=include,
             exclude=exclude,
@@ -160,6 +162,7 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
+            markers=markers,
         )
     if isinstance(obj, Enum):
         return obj.value
@@ -184,21 +187,23 @@ def jsonable_encoder(
                 and (value is not None or not exclude_none)
                 and key in allowed_keys
             ):
-                encoded_key = jsonable_encoder(
+                encoded_key = _jsonable_encoder(
                     key,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    markers=markers,
                 )
-                encoded_value = jsonable_encoder(
+                encoded_value = _jsonable_encoder(
                     value,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    markers=markers,
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
@@ -206,7 +211,7 @@ def jsonable_encoder(
         encoded_list = []
         for item in obj:
             encoded_list.append(
-                jsonable_encoder(
+                _jsonable_encoder(
                     item,
                     include=include,
                     exclude=exclude,
@@ -216,6 +221,7 @@ def jsonable_encoder(
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
+                    markers=markers,
                 )
             )
         return encoded_list
@@ -236,7 +242,7 @@ def jsonable_encoder(
         except Exception as e:
             errors.append(e)
             raise ValueError(errors) from e
-    return jsonable_encoder(
+    return _jsonable_encoder(
         data,
         include=include,
         exclude=exclude,
@@ -246,4 +252,65 @@ def jsonable_encoder(
         exclude_none=exclude_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
+        markers=markers,
+    )
+
+
+def _jsonable_encoder(
+    obj: Any,
+    include: Optional[IncEx] = None,
+    exclude: Optional[IncEx] = None,
+    by_alias: bool = True,
+    exclude_unset: bool = False,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
+    sqlalchemy_safe: bool = True,
+    markers: Optional[Set[int]] = None,
+) -> Any:
+    if markers is not None:
+        marker_id = id(obj)
+        if marker_id in markers:
+            raise ValueError("Circular reference detected")
+        markers.add(marker_id)
+    result = _jsonable_encoder_impl(
+        obj=obj,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+        custom_encoder=custom_encoder,
+        sqlalchemy_safe=sqlalchemy_safe,
+        markers=markers,
+    )
+    if markers is not None:
+        markers.remove(marker_id)
+    return result
+
+
+def jsonable_encoder(
+    obj: Any,
+    include: Optional[IncEx] = None,
+    exclude: Optional[IncEx] = None,
+    by_alias: bool = True,
+    exclude_unset: bool = False,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
+    sqlalchemy_safe: bool = True,
+    check_circular: bool = False,
+) -> Any:
+    return _jsonable_encoder(
+        obj=obj,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+        custom_encoder=custom_encoder,
+        sqlalchemy_safe=sqlalchemy_safe,
+        markers=set() if check_circular else None,
     )

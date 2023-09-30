@@ -310,3 +310,23 @@ def test_encode_deque_encodes_child_models():
     dq = deque([Model(test="test")])
 
     assert jsonable_encoder(dq)[0]["test"] == "test"
+
+
+def test_check_circular():
+    lst = [1, 2, 3]
+    lst.append(lst)
+
+    with pytest.raises(ValueError, match="Circular reference detected"):
+        jsonable_encoder(lst, check_circular=True)
+
+    with pytest.raises(RecursionError):
+        jsonable_encoder(lst, check_circular=False)
+
+    dct = {"n1": 1, "n2": 2, "l1": {}}
+    dct["l1"]["l2"] = dct
+
+    with pytest.raises(ValueError, match="Circular reference detected"):
+        jsonable_encoder(dct, check_circular=True)
+
+    with pytest.raises(RecursionError):
+        jsonable_encoder(dct, check_circular=False)
