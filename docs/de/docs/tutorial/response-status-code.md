@@ -48,11 +48,11 @@ Kurz:
     * `200` ist der Standard-Statuscode, welcher bedeutet, alles ist "OK".
     * Ein anderes Beispiel ist `201`, "Created" ("Erzeugt"). Wird in der Regel verwendet, wenn ein neuer Datensatz in der Datenbank erzeugt wurde.
     * Ein spezieller Fall ist `204`, "No Content" ("Kein Inhalt"). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der zum Client zurückgeschickt wird, diese Response hat also keinen Body.
-* **`300`** und darüber steht für "Redirection" ("Umleitung").  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, "Not Modified" ("Nicht verändert"), welcher keinen haben darf.
-* **`400`** und darüber stehen für "Client error"-Responses ("Fehler beim Client"). Auch diese verwenden Sie am häufigsten.
+* **`300`** und darüber steht für "Redirection" ("Umleitung").  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, "Not Modified" ("Nicht verändert"), welche keinen haben darf.
+* **`400`** und darüber stehen für "Client error"-Responses ("Client-Fehler"). Auch diese verwenden Sie am häufigsten.
     * Ein Beispiel ist `404`, für eine "Not Found"-Response ("Nicht gefunden").
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
-* `500` und darüber stehen für Fehler beim Server. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
+* `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
 !!! tip
     Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a>.
@@ -86,4 +86,4 @@ Diese sind nur eine Annehmlichkeit und enthalten die gleiche Nummer, aber auf di
 
 ## Den Standardwert ändern
 
-Später sehen Sie, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, wie Sie einen anderen Statuscode zurückgeben als den Standardcode, den Sie hier deklarieren.
+Später sehen Sie, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, wie Sie einen anderen Statuscode zurückgeben können, als den Standardcode, den Sie hier deklarieren.
