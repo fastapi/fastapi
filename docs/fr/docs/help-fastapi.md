@@ -36,8 +36,8 @@ Vous pouvez :
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me suivre sur **Twitter**</a>.
     * Dites-moi comment vous utilisez FastAPI (j'adore entendre ça).
     * Entendre quand je fais des annonces ou que je lance de nouveaux outils.
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Vous connectez à moi sur **Linkedin**</a>.
-    * Etre notifié quand je fais des annonces ou que je lance de nouveaux outils (bien que j'utilise plus souvent Twitte 🤷‍♂).
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Vous connectez à moi sur **LinkedIn**</a>.
+    * Etre notifié quand je fais des annonces ou que je lance de nouveaux outils (bien que j'utilise plus souvent Twitter 🤷‍♂).
 * Lire ce que j’écris (ou me suivre) sur <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> ou <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Lire d'autres idées, articles, et sur les outils que j'ai créés.
     * Suivez-moi pour lire quand je publie quelque chose de nouveau.
