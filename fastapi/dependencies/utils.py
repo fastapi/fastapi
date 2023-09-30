@@ -355,6 +355,11 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
+        # When there is no `FieldInfo` or `Depends` in annotated_args,
+        # like Annotated[str, StringConstraints(...)]
+        # we need use the `annotation` as the `type_annotation` to keep the metadata.
+        elif fastapi_annotation is None:
+            type_annotation = annotation
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 

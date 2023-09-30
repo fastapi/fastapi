@@ -1,9 +1,11 @@
 import pytest
 from dirty_equals import IsDict
+from pydantic import StringConstraints
+from typing_extensions import Annotated
+
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
-from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -25,6 +27,11 @@ async def multiple(foo: Annotated[str, object(), Query(min_length=1)]):
 
 @app.get("/unrelated")
 async def unrelated(foo: Annotated[str, object()]):
+    return {"foo": foo}
+
+
+@app.get("/other_constrict")
+async def other_constrict(foo: Annotated[str, StringConstraints(min_length=1)]):
     return {"foo": foo}
 
 
@@ -84,6 +91,7 @@ foo_is_short = {
         ("/required?foo=bar", 200, {"foo": "bar"}),
         ("/required", 422, foo_is_missing),
         ("/required?foo=", 422, foo_is_short),
+        ("/other_constrict?foo=", 422, foo_is_short),
         ("/multiple?foo=bar", 200, {"foo": "bar"}),
         ("/multiple", 422, foo_is_missing),
         ("/multiple?foo=", 422, foo_is_short),
