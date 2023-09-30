@@ -4,19 +4,23 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .utils import needs_pydanticv2
+from .utils import PYDANTIC_V2, needs_pydanticv2
 
 
 class SubItem(BaseModel):
     subname: str
     sub_description: Optional[str] = None
     tags: List[str] = []
+    if PYDANTIC_V2:
+        model_config = {"json_schema_serialization_defaults_required": True}
 
 
 class Item(BaseModel):
     name: str
     description: Optional[str] = None
     sub: Optional[SubItem] = None
+    if PYDANTIC_V2:
+        model_config = {"json_schema_serialization_defaults_required": True}
 
 
 def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
