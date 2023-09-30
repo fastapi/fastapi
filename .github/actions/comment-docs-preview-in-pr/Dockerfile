@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.9
 
 RUN pip install httpx "pydantic==1.5.1" pygithub
 
