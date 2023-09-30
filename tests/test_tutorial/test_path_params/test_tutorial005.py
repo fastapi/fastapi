@@ -33,9 +33,9 @@ def test_get_enums_invalid():
                 {
                     "type": "enum",
                     "loc": ["path", "model_name"],
-                    "msg": "Input should be 'alexnet','resnet' or 'lenet'",
+                    "msg": "Input should be 'alexnet', 'resnet' or 'lenet'",
                     "input": "foo",
-                    "ctx": {"expected": "'alexnet','resnet' or 'lenet'"},
+                    "ctx": {"expected": "'alexnet', 'resnet' or 'lenet'"},
                 }
             ]
         }
