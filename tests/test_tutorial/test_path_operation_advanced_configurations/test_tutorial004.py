@@ -34,9 +34,7 @@ def test_openapi_schema():
                             "description": "Successful Response",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -57,7 +55,7 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -67,33 +65,9 @@ def test_openapi_schema():
         },
         "components": {
             "schemas": {
-                "Item-Input": {
+                "Item": {
                     "title": "Item",
                     "required": ["name", "price"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "price": {"title": "Price", "type": "number"},
-                        "tax": {
-                            "title": "Tax",
-                            "anyOf": [{"type": "number"}, {"type": "null"}],
-                        },
-                        "tags": {
-                            "title": "Tags",
-                            "uniqueItems": True,
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "default": [],
-                        },
-                    },
-                },
-                "Item-Output": {
-                    "title": "Item",
-                    "required": ["name", "description", "price", "tax", "tags"],
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
