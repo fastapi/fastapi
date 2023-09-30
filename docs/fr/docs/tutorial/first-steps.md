@@ -170,7 +170,7 @@ Si vous créez votre app avec :
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-Et la mettez dans un fichier `main.py`, alors vous appeleriez `uvicorn` avec :
+Et la mettez dans un fichier `main.py`, alors vous appelleriez `uvicorn` avec :
 
 <div class="termy">
 
