@@ -69,12 +69,12 @@ $ pip install "fastapi[all]"
 
     Dasselbe gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
 
-## Erweitertes Benutzerhandbuch
+## Handbuch für fortgeschrittene Benutzer
 
-Es gibt auch ein **erweitertes Benutzerhandbuch**, welches Sie später nach diesem **Tutorial - Benutzerhandbuch** lesen können.
+Es gibt auch ein **Handbuch für fortgeschrittene Benutzer**, welches Sie später nach diesem **Tutorial - Benutzerhandbuch** lesen können.
 
-Das **erweiterte Benutzerhandbuch** baut auf diesem Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
+Das **Handbuch für fortgeschrittene Benutzer** baut auf diesem Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
-Allerdings sollten Sie zuerst das **Tutorial - Benutzerhandbuch** lesen (was Sie hier gerade lesen).
+Allerdings sollten Sie zuerst das **Tutorial - Benutzerhandbuch** lesen (was Sie hier gerade tun).
 
-Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial - Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **erweiterten Benutzerhandbuch** vervollständigen können.
+Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial - Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **Handbuch für fortgeschrittene Benutzer** vervollständigen können.
