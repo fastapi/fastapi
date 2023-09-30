@@ -9,7 +9,7 @@ from typing_extensions import Annotated
 if pydantic.__version__.startswith("2."):
     from pydantic import StringConstraints
 else:
-    from pydantic import ConstrainedStr as StringConstraints
+    StringConstraints = Query
 
 app = FastAPI()
 
