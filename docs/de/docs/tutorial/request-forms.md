@@ -85,7 +85,7 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer "speziellen" Kodierun
 !!! warning "Achtung"
     Sie können mehrere `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `application/x-www-form-urlencoded` statt `application/json` kodiert.
 
-    Das ist keine Limitation von FastAPI, sondern Teil des HTTP-Protokolls.
+    Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 
 ## Rekapitulation
 
