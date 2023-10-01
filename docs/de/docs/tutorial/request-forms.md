@@ -34,7 +34,7 @@ Importieren Sie `Form` von `fastapi`:
 
 ## `Form`-Parameter definieren
 
-Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` gemacht haben:
+Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` machen würden:
 
 === "Python 3.9+"
 
