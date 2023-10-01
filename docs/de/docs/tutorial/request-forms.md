@@ -67,7 +67,7 @@ Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (u
     `Form` ist eine Klasse, die direkt von `Body` erbt.
 
 !!! tip
-    Um Formular-Bodys zu deklarieren, verwenden Sie explizit `Form`, da sonst die Parameter als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
+    Um Formular-Bodys zu deklarieren, verwenden Sie explizit `Form`, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
 ## Über "Formularfelder"
 
