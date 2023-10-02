@@ -1,10 +1,10 @@
 # Body – Mehrere Parameter
 
-Jetzt, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von Request-Body-Deklarationen an.
+Jetzt, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von Requestbody-Deklarationen an.
 
-## `Path`, `Query` und Body-Parameter vermischen
+## `Path`-, `Query`- und Body-Parameter vermischen
 
-Zuerst einmal, Sie können `Path`-, `Query`- und Request-Body-Parameter-Deklarationen frei mischen und **FastAPI** wird wissen, was zu tun ist.
+Zuerst einmal, Sie können `Path`-, `Query`- und Requestbody-Parameter-Deklarationen frei mischen und **FastAPI** wird wissen, was zu tun ist.
 
 Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Defaultwert auf `None` setzen:
 
