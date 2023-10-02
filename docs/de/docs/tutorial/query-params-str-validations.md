@@ -601,7 +601,7 @@ Die Antwort auf diese URL wäre also:
 ```
 
 !!! tip
-    Um einen Query-Parameter vom Typ `list` zu deklarieren, wie im Beispiel oben, müssen Sie explizit `Query` verwenden, sonst würde der Parameter als Request-Body interpretiert werden.
+    Um einen Query-Parameter vom Typ `list` zu deklarieren, wie im Beispiel oben, müssen Sie explizit `Query` verwenden, sonst würde der Parameter als Requestbody interpretiert werden.
 
 Die interaktive API-Dokumentation wird entsprechend aktualisiert und erlaubt jetzt mehrere Werte.
 
