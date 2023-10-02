@@ -1,12 +1,12 @@
-# Request-Body
+# Requestbody
 
-Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu ihrer API senden, dann senden Sie diese als einen **Request-Body** (Deutsch: Anfrage-Körper).
+Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu ihrer API senden, dann senden Sie diese als einen **Requestbody** (Deutsch: Anfragekörper).
 
-Ein **Request**-Body sind Daten, die vom Client zu ihrer API gesendet werden. Ein **Response**-Body (Deutsch: Antwort-Körper) sind Daten, die Ihre API zum Client sendet.
+Ein **Request**body sind Daten, die vom Client zu ihrer API gesendet werden. Ein **Response**body (Deutsch: Antwortkörper) sind Daten, die Ihre API zum Client sendet.
 
-Ihre API sendet fast immer einen **Response**-Body. Aber Clients senden nicht unbedingt immer **Request**-Bodys (sondern nur Metadaten).
+Ihre API sendet fast immer einen **Response**body. Aber Clients senden nicht unbedingt immer **Request**bodys (sondern nur Metadaten).
 
-Um einen **Request**-Body zu senden, verwenden Sie <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> Modelle mit allen deren Fähigkeiten und Vorzügen.
+Um einen **Request**body zu deklarieren, verwenden Sie <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>-Modelle mit allen deren Fähigkeiten und Vorzügen.
 
 !!! info
     Um Daten zu versenden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
@@ -93,7 +93,7 @@ Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche
 
 Mit nur dieser Python-Typ-Deklaration, wird **FastAPI**:
 
-* Den Request-Body als JSON lesen.
+* Den Requestbody als JSON lesen.
 * Die entsprechenden Typen konvertieren (falls nötig).
 * Diese Daten validieren.
     * Wenn die Daten ungültig sind, einen klar lesbaren Fehler zurückgeben, der anzeigt, wo und was die inkorrekten Daten waren.
@@ -161,11 +161,11 @@ Innerhalb der Funktion können Sie alle Attribute des Modells direkt verwenden:
     {!> ../../../docs_src/body/tutorial002.py!}
     ```
 
-## Request-Body + Pfad-Parameter
+## Requestbody- + Pfad-Parameter
 
-Sie können Pfad-Parameter und Request-Body gleichzeitig deklarieren.
+Sie können Pfad- und Requestbody-Parameter gleichzeitig deklarieren.
 
-**FastAPI** erkennt, dass Funktionsparameter, die mit Pfad-Parametern übereinstimmen, **vom Pfad genommen** werden sollen, und dass Funktionsparameter, welche Pydantic-Modelle sind, **vom Request-Body genommen** werden sollen.
+**FastAPI** erkennt, dass Funktionsparameter, die mit Pfad-Parametern übereinstimmen, **vom Pfad genommen** werden sollen, und dass Funktionsparameter, welche Pydantic-Modelle sind, **vom Requestbody genommen** werden sollen.
 
 === "Python 3.10+"
 
@@ -179,7 +179,7 @@ Sie können Pfad-Parameter und Request-Body gleichzeitig deklarieren.
     {!> ../../../docs_src/body/tutorial003.py!}
     ```
 
-## Request-Body + Pfad- + Query-Parameter
+## Requestbody- + Pfad- + Query-Parameter
 
 Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** deklarieren.
 
@@ -201,7 +201,7 @@ die Funktionsparameter werden wie folgt erkannt:
 
 * Wenn der Parameter auch im **Pfad** deklariert wurde, wird er als Pfad-Parameter interpretiert.
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
-* Wenn der Parameter vom Typ eines **Pydantic Modells** ist, wird er als Request-**Body** interpretiert.
+* Wenn der Parameter vom Typ eines **Pydantic-Modells** ist, wird er als Request**body** interpretiert.
 
 !!! note "Hinweis"
     FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `=None`
