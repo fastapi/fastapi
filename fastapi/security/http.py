@@ -35,11 +35,12 @@ class HTTPBase(SecurityBase):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.token_header = token_header
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        if token_header:
+        if self.token_header:
             authorization = request.headers.get("Authorization")
         else:
             authorization = request.cookies.get("Authorization")
@@ -68,11 +69,12 @@ class HTTPBasic(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
+        self.token_header = token_header
 
     async def __call__(  # type: ignore
         self, request: Request
     ) -> Optional[HTTPBasicCredentials]:
-        if token_header:
+        if self.token_header:
             authorization = request.headers.get("Authorization")
         else:
             authorization = request.cookies.get("Authorization")
@@ -118,11 +120,12 @@ class HTTPBearer(HTTPBase):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.token_header = True
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        if token_header:
+        if self.token_header:
             authorization = request.headers.get("Authorization")
         else:
             authorization = request.cookies.get("Authorization")
@@ -157,11 +160,12 @@ class HTTPDigest(HTTPBase):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.token_header = token_header
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        if token_header:
+        if self.token_header:
             authorization = request.headers.get("Authorization")
         else:
             authorization = request.cookies.get("Authorization")
