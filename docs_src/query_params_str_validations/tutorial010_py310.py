@@ -13,7 +13,7 @@ async def read_items(
         description="Query string for the items to search in the database that have a good match",
         min_length=3,
         max_length=50,
-        regex="^fixedquery$",
+        pattern="^fixedquery$",
         deprecated=True,
     )
 ):
