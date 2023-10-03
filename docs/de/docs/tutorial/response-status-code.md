@@ -28,7 +28,7 @@ Das wird:
 <img src="/img/tutorial/response-status-code/image01.png">
 
 !!! note "Hinweis"
-    Einige Responsecodes (siehe nächste Sektion) kennzeichnen, dass die Response keinen Body hat.
+    Einige Responsecodes (siehe nächster Abschnitt) kennzeichnen, dass die Response keinen Body hat.
 
     FastAPI versteht das und wird in der OpenAPI-Dokumentation anzeigen, dass es keinen Responsebody gibt.
 
