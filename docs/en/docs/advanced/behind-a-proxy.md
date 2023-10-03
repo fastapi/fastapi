@@ -125,7 +125,7 @@ Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--r
 
 ### About `root_path`
 
-Have in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
+Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
 But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
 
@@ -142,7 +142,7 @@ Uvicorn will expect the proxy to access Uvicorn at `http://127.0.0.1:8000/app`, 
 
 ## About proxies with a stripped path prefix
 
-Have in mind that a proxy with stripped path prefix is only one of the ways to configure it.
+Keep in mind that a proxy with stripped path prefix is only one of the ways to configure it.
 
 Probably in many cases the default will be that the proxy doesn't have a stripped path prefix.
 

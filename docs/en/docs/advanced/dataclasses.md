@@ -21,7 +21,7 @@ And of course, it supports the same:
 This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
 
 !!! info
-    Have in mind that dataclasses can't do everything Pydantic models can do.
+    Keep in mind that dataclasses can't do everything Pydantic models can do.
 
     So, you might still need to use Pydantic models.
 

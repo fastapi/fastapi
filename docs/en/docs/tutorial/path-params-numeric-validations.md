@@ -126,7 +126,7 @@ So, you can declare your function as:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
     ```
 
-But have in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
+But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
 === "Python 3.9+"
 
@@ -166,7 +166,7 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 ### Better with `Annotated`
 
-Have in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
+Keep in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
 
 === "Python 3.9+"
 

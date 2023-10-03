@@ -212,7 +212,7 @@ Client #1596980209979 left the chat
 !!! tip
     The app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.
 
-    But have in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
+    But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
 
     If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
 

@@ -28,7 +28,7 @@ For example, to declare another response with a status code `404` and a Pydantic
 ```
 
 !!! note
-    Have in mind that you have to return the `JSONResponse` directly.
+    Keep in mind that you have to return the `JSONResponse` directly.
 
 !!! info
     The `model` key is not part of OpenAPI.
