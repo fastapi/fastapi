@@ -30,7 +30,7 @@ class HTTPBase(SecurityBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-        token_header: bool = True
+        token_header: bool = True,
     ):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -62,7 +62,7 @@ class HTTPBasic(HTTPBase):
         realm: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-        token_header: bool = True
+        token_header: bool = True,
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -113,7 +113,7 @@ class HTTPBearer(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-        token_header: bool = True
+        token_header: bool = True,
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -152,7 +152,7 @@ class HTTPDigest(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-        token_header: bool = True
+        token_header: bool = True,
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
