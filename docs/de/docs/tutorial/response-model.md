@@ -89,7 +89,7 @@ Wenn sowohl Rückgabetyp als auch `response_model` deklariert sind, hat `respons
 
 So können Sie korrekte Typ-Annotationen zu ihrer Funktion hinzufügen, die von ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
 
-Sie können auch `response_model=None` verwenden, um das Erstellen eines Response-Modells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Sektionen unten sehen.
+Sie können auch `response_model=None` verwenden, um das Erstellen eines Response-Modells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
 
 ## Dieselben Eingabedaten zurückgeben
 
