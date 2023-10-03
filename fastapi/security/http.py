@@ -30,6 +30,7 @@ class HTTPBase(SecurityBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        token_header: bool = True
     ):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -38,7 +39,10 @@ class HTTPBase(SecurityBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        if token_header:
+            authorization = request.headers.get("Authorization")
+        else:
+            authorization = request.cookies.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -58,6 +62,7 @@ class HTTPBasic(HTTPBase):
         realm: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        token_header: bool = True
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -67,7 +72,10 @@ class HTTPBasic(HTTPBase):
     async def __call__(  # type: ignore
         self, request: Request
     ) -> Optional[HTTPBasicCredentials]:
-        authorization = request.headers.get("Authorization")
+        if token_header:
+            authorization = request.headers.get("Authorization")
+        else:
+            authorization = request.cookies.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
             unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
@@ -105,6 +113,7 @@ class HTTPBearer(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        token_header: bool = True
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -113,7 +122,10 @@ class HTTPBearer(HTTPBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        if token_header:
+            authorization = request.headers.get("Authorization")
+        else:
+            authorization = request.cookies.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -140,6 +152,7 @@ class HTTPDigest(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        token_header: bool = True
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -148,7 +161,10 @@ class HTTPDigest(HTTPBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        if token_header:
+            authorization = request.headers.get("Authorization")
+        else:
+            authorization = request.cookies.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
