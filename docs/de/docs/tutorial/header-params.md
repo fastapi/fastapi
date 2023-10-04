@@ -102,7 +102,7 @@ Aber eine Variable wie `user-agent` ist in Python nicht gültig.
 
 Darum wird `Header` standardmäßig in Parameternamen den Unterstrich (`_`) zu einem Bindestrich (`-`) konvertieren.
 
-HTTP-Header sind außerdem unabhängig von Groß-/Kleinschreibung, darum können Sie sie mittels der Standard-Python-Schreibweise deklarieren (auch bekannt als "snake_case").
+HTTP-Header sind außerdem unabhängig von Groß-/Kleinschreibung, darum können Sie sie mittels der Standard Python-Schreibweise deklarieren (auch bekannt als "snake_case").
 
 Sie können also `user_agent` schreiben, wie Sie es normalerweise in Python-Code machen würden, statt etwa die ersten Buchstaben groß zu schreiben, wie in `User_Agent`.
 
