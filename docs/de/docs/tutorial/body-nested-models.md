@@ -55,9 +55,9 @@ from typing import List
 my_list: List[str]
 ```
 
-Das ist alles Standard-Python-Syntax für Typ-Deklarationen.
+Das ist alles Standard Python-Syntax für Typ-Deklarationen.
 
-Verwenden Sie dieselbe Standard-Syntax für Modell-Attribute mit inneren Typen.
+Verwenden Sie dieselbe Standard Syntax für Modell-Attribute mit inneren Typen.
 
 In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine "Liste von Strings" ist:
 
