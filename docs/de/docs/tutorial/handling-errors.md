@@ -68,7 +68,7 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 
     Zum Beispiel ein `dict`, eine `list`, usw.
 
-    Das wird automatisch von **FastAPI** gehandhabt und nach JSON konvertiert.
+    Das wird automatisch von **FastAPI** gehandhabt und der Wert nach JSON konvertiert.
 
 ## Benutzerdefinierte Header hinzufügen
 
@@ -98,7 +98,7 @@ Sie könnten einen benutzerdefinierten Exceptionhandler mittels `@app.exception_
 
 Wenn Sie nun `/unicorns/yolo` anfragen, `raise`d die *Pfadoperation* eine `UnicornException`.
 
-Aber es wird vom `unicorn_exception_handler` gehandhabt.
+Aber diese wird von `unicorn_exception_handler` gehandhabt.
 
 Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-Inhalt:
 
@@ -169,7 +169,7 @@ path -> item_id
 
 Aber der Client/Nutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">"Internal Server Error"</abbr> mit einem HTTP-Statuscode `500`.
 
-Das ist, wie es sein sollte, denn wenn Sie einen Pydantic-`ValidationError` in Ihrer *Response* oder irgendwo sonst in ihrem Code haben (es sei denn, im Request des Clients), ist das tatsächlich ein Bug in ihrem Code.
+Das ist, wie es sein sollte, denn wenn Sie einen Pydantic-`ValidationError` in Ihrer *Response* oder irgendwo sonst in ihrem Code haben (es sei denn, im *Request* des Clients), ist das tatsächlich ein Bug in ihrem Code.
 
 Und während Sie den Fehler beheben, sollten ihre Clients/Nutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
 
