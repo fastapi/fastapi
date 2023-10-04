@@ -36,7 +36,7 @@ Importieren Sie zuerst:
 
 === "Python 3.10+"
 
-    In Python 3.9 oder darüber, ist `Annotated` Teil der Standard-Bibliothek, also können Sie es von `typing` importieren.
+    In Python 3.9 oder darüber, ist `Annotated` Teil der Standardbibliothek, also können Sie es von `typing` importieren.
 
     ```Python hl_lines="1  3"
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
