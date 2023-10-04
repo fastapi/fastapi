@@ -45,7 +45,7 @@ Kurz:
 
 * `100` und darüber stehen für "Information". Diese verwenden Sie selten direkt. Responses mit diesen Statuscodes können keinen Body haben.
 * **`200`** und darüber stehen für Responses, die "Successful" ("Erfolgreich") waren. Diese verwenden Sie am häufigsten.
-    * `200` ist der Standard-Statuscode, welcher bedeutet, alles ist "OK".
+    * `200` ist der Default-Statuscode, welcher bedeutet, alles ist "OK".
     * Ein anderes Beispiel ist `201`, "Created" ("Erzeugt"). Wird in der Regel verwendet, wenn ein neuer Datensatz in der Datenbank erzeugt wurde.
     * Ein spezieller Fall ist `204`, "No Content" ("Kein Inhalt"). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der zum Client zurückgeschickt wird, diese Response hat also keinen Body.
 * **`300`** und darüber steht für "Redirection" ("Umleitung").  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, "Not Modified" ("Nicht verändert"), welche keinen haben darf.
@@ -84,6 +84,6 @@ Diese sind nur eine Annehmlichkeit und enthalten die gleiche Nummer, aber auf di
 
     **FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für den Entwickler. Aber sie kommen direkt von Starlette.
 
-## Den Standardwert ändern
+## Den Defaultwert ändern
 
-Später sehen Sie, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, wie Sie einen anderen Statuscode zurückgeben können, als den Standardcode, den Sie hier deklarieren.
+Später sehen Sie, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.
