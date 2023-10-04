@@ -150,7 +150,7 @@ Es gibt Datenstrukturen, die andere Werte enthalten können, wie etwa `dict`, `l
 
 Diese Typen mit inneren Typen werden "**generische**" Typen genannt. Es ist möglich, sie mit ihren inneren Typen zu deklarieren.
 
-Um diese Typen und die inneren Typen zu deklarieren, können Sie das Standard-Python-Modul `typing` verwenden. Es existiert speziell für die Unterstützung dieser Typ-Hinweise.
+Um diese Typen und die inneren Typen zu deklarieren, können Sie Pythons Standardmodul `typing` verwenden. Es existiert speziell für die Unterstützung dieser Typ-Hinweise.
 
 #### Neuere Python-Versionen
 
@@ -480,7 +480,7 @@ Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typ-Hinweisen
 
 === "Python 3.9+"
 
-    In Python 3.9 ist `Annotated` ein Teil der Standard-Bibliothek, Sie können es von `typing` importieren.
+    In Python 3.9 ist `Annotated` ein Teil der Standardbibliothek, Sie können es von `typing` importieren.
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial013_py39.py!}
@@ -531,7 +531,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typ-Hinweisen, und Sie erhalten:
 
 Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank}.
 
-Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard Python Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
+Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
 !!! info
     Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der "Cheat Sheet" von `mypy`</a>.
