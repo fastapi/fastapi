@@ -118,7 +118,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 * `content_type`: Ein `str` mit dem Inhaltstyp (MIME-Typ / Medientyp) (z.B. `image/jpeg`).
 * `file`: Ein <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (ein <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein "file-like"-Objekt erwarten.
 
-`UploadFile` hat die folgenden `async`hronen Methoden. Sie alle rufen die entsprechenden darunterliegenden Datei-Methoden auf (wobei intern `SpooledTemporaryFile` verwendet wird).
+`UploadFile` hat die folgenden `async`hronen Methoden. Sie alle rufen die entsprechenden Methoden des darunterliegenden Datei-Objekts auf (wobei intern `SpooledTemporaryFile` verwendet wird).
 
 * `write(daten)`: Schreibt `daten` (`str` oder `bytes`) in die Datei.
 * `read(anzahl)`: Liest `anzahl` (`int`) bytes/Zeichen aus der Datei.
@@ -309,6 +309,6 @@ Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu se
     {!> ../../../docs_src/request_files/tutorial003.py!}
     ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Verwenden Sie `File`, `bytes` und `UploadFile`, um hochladbare Dateien im Request zu deklarieren, die als Formulardaten gesendet werden.
