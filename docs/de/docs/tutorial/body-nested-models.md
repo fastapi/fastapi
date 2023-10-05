@@ -369,7 +369,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
 
     Und das `dict` welches Sie als `weights` erhalten, wird `int`-Schlüssel und `float`-Werte haben.
 
-## Rekapitulation
+## Zusammenfassung
 
 Mit **FastAPI** haben Sie die maximale Flexibilität von Pydantic-Modellen, während Ihr Code einfach, kurz und elegant bleibt.
 
@@ -379,4 +379,4 @@ Aber mit all den Vorzügen:
 * Daten-Konvertierung (auch bekannt als Parsen, Serialisierung)
 * Daten-Validierung
 * Schema-Dokumentation
-* Automatisch generierte Dokumentation
+* Automatische Dokumentation
