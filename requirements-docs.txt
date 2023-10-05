@@ -12,3 +12,5 @@ jieba==0.42.1
 pillow==9.5.0
 # For image processing by Material for MkDocs
 cairosvg==2.7.0
+mkdocstrings[python]==0.23.0
+griffe-typingdoc==0.2.1
