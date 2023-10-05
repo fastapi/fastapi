@@ -121,7 +121,7 @@ FastAPI wird nun:
 
 * Die Daten **validieren** und sicherstellen, dass sie nicht länger als 50 Zeichen sind
 * Dem Client einen **verständlichen Fehler** anzeigen, wenn die Daten ungültig sind
-* Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatisch generierten Dokumentation** angezeigt wird)
+* Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatischen Dokumentation** angezeigt wird)
 
 ## Alternativ (alt): `Query` als Defaultwert
 
@@ -231,7 +231,7 @@ Der **Default**wert des **Funktionsparameters** ist der **tatsächliche Default*
 
 Sie können die Funktion ohne FastAPI an **anderen Stellen aufrufen**, und es wird **wie erwartet funktionieren**. Wenn es einen **erforderlichen** Parameter gibt (ohne Defaultwert), und Sie führen die Funktion ohne den benötigten Parameter aus, dann wird Ihr **Editor** Sie das mit einem Fehler wissen lassen, und **Python** wird sich auch beschweren.
 
-Wenn Sie aber nicht `Annotated` benutzen und stattdessen die **(alte) Methode mit einem Defaultwert**, dann müssen Sie, wenn Sie die Funktion ohne FastAPI an **anderen Stellen** aufrufen, sich daran **erinnern**, die Argumente der Funktion zu übergeben, damit es richtig funktioniert. Ansonsten erhalten Sie unerwartete Werte (z.B. `QueryInfo` oder etwas Ähnliches, statt `str`). Ihr Editor kann ihnen nicht helfen, und Python wird die Funktion ohne Beschwerden ausführen, es sei denn, die Operationen innerhalb werfen einen Fehler.
+Wenn Sie aber nicht `Annotated` benutzen und stattdessen die **(alte) Variante mit einem Defaultwert**, dann müssen Sie, wenn Sie die Funktion ohne FastAPI an **anderen Stellen** aufrufen, sich daran **erinnern**, die Argumente der Funktion zu übergeben, damit es richtig funktioniert. Ansonsten erhalten Sie unerwartete Werte (z.B. `QueryInfo` oder etwas Ähnliches, statt `str`). Ihr Editor kann ihnen nicht helfen, und Python wird die Funktion ohne Beschwerden ausführen, es sei denn, die Operationen innerhalb werfen einen Fehler.
 
 Da `Annotated` mehrere Metadaten haben kann, können Sie dieselbe Funktion auch mit anderen Tools verwenden, wie etwa <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
@@ -917,7 +917,7 @@ Um einen Query-Parameter vom generierten OpenAPI-Schema auszuschließen (und dah
     {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
     ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Sie können zusätzliche Validierungen und Metadaten zu ihren Parametern hinzufügen.
 
