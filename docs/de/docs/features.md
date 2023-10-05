@@ -8,7 +8,7 @@
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch genannt Endpunkte, Routen">Pfad</abbr>-<abbr title="gemeint sind HTTP-Methoden wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Body-Anfragen, Sicherheit, usw.
 * Automatische Dokumentation der Datenmodelle mit <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (da OpenAPI selbst auf JSON Schema basiert).
-* Um diese Standards herum entworfen, nach sorgfältiger Studie. Statt einer nachträglichen Schicht darüber.
+* Um diese Standards herum entworfen, nach sorgfältigem Studium. Statt einer nachträglichen Schicht darüber.
 * Dies ermöglicht auch automatische **Client-Code-Generierung** in vielen Sprachen.
 
 ### Automatische Dokumentation
@@ -186,7 +186,7 @@ Dasselbe gilt auch für die andere Richtung: Sie können in vielen Fällen das O
 Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für die gesamte Datenverarbeitung Pydantic nutzt):
 
 * **Kein Kopfzerbrechen**:
-    * Keine neue Schema-Definition-Mikrosprache zu lernen.
+    * Keine neue Schemadefinition-Mikrosprache zu lernen.
     * Wenn Sie Pythons Typen kennen, wissen Sie, wie man Pydantic verwendet.
 * Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">Linter</abbr>/Gehirn**:
     * Weil Pydantics Datenstrukturen einfach nur Instanzen ihrer definierten Klassen sind; Autovervollständigung, Linting, mypy und ihre Intuition sollten alle einwandfrei mit ihren validierten Daten funktionieren.
@@ -195,5 +195,5 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
     * Die Validierer erlauben es, komplexe Datenschemen klar und einfach zu definieren, überprüft und dokumentiert als JSON Schema.
     * Sie können tief **verschachtelte JSON** Objekte haben, die alle validiert und annotiert sind.
 * **Erweiterbar**:
-    * Pydantic erlaubt die Definition von eigenen Datentypen oder sie können die Validierung mit einer `validator` dekorierten Methode im Modell erweitern.
+    * Pydantic erlaubt die Definition von eigenen Datentypen oder sie können die Validierung mit einer `validator`-dekorierten Methode im Modell erweitern.
 * 100 % Testabdeckung.
