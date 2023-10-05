@@ -297,7 +297,7 @@ statt:
 }
 ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Sie können mehrere Body-Parameter zu ihrer *Pfadoperation-Funktion* hinzufügen.
 
