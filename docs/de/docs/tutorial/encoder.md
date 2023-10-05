@@ -1,6 +1,6 @@
 # JSON-kompatibler Encoder
 
-Es gibt Fälle, da möchten Sie einen Datentyp (etwa ein Pydantic-Modell) in etwas konvertieren, dass kompatibel mit JSON ist (etwa ein `dict`, eine `list`e, usw.).
+Es gibt Fälle, da möchten Sie einen Datentyp (etwa ein Pydantic-Modell) in etwas konvertieren, das kompatibel mit JSON ist (etwa ein `dict`, eine `list`e, usw.).
 
 Zum Beispiel, wenn Sie es in einer Datenbank speichern möchten.
 
@@ -36,7 +36,7 @@ In diesem Beispiel wird das Pydantic-Modell in ein `dict`, und das `datetime`-Ob
 
 Das Resultat dieses Aufrufs ist etwas, das mit Pythons Standard-<a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a> kodiert werden kann.
 
-Es wird also kein großer `str` zurückgegeben, der die Daten im JSON-Format (als String) enthält. Sondern es gibt eine Python-Standarddatenstruktur (z.B. ein `dict`) mit Werten und Unterwerten zurück, die alle mit JSON kompatibel sind.
+Es wird also kein großer `str` zurückgegeben, der die Daten im JSON-Format (als String) enthält. Es wird eine Python-Standarddatenstruktur (z.B. ein `dict`) zurückgegeben, mit Werten und Unterwerten, die alle mit JSON kompatibel sind.
 
 !!! note "Hinweis"
     `jsonable_encoder` wird tatsächlich von **FastAPI** intern verwendet, um Daten zu konvertieren. Aber es ist in vielen anderen Szenarien hilfreich.
