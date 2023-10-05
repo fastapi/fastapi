@@ -245,7 +245,7 @@ In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.
     {!> ../../../docs_src/extra_models/tutorial005.py!}
     ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Verwenden Sie gerne mehrere Pydantic-Modelle und vererben Sie je nach Bedarf.
 
