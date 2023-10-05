@@ -265,7 +265,7 @@ Dasselbe gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
     ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Mit `Query` und `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und String-Validierungen deklarieren, so wie in [Query-Parameter und String-Validierungen](query-params-str-validations.md){.internal-link target=_blank} beschrieben.
 
