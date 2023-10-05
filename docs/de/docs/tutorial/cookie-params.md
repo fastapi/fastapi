@@ -92,6 +92,6 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs
 !!! info
     Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
 
-## Rekapitulation
+## Zusammenfassung
 
 Deklarieren Sie Cookies mittels `Cookie`, auf die gleiche Weise wie bei `Query` und `Path`.
