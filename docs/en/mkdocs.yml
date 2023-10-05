@@ -194,6 +194,8 @@ nav:
   - how-to/custom-docs-ui-assets.md
   - how-to/configure-swagger-ui.md
 - project-generation.md
+- Reference (Code API):
+  - reference/index.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
