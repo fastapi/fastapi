@@ -220,7 +220,7 @@ Dann wäre die Antwort:
 }
 ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Deklarieren Sie Header mittels `Header`, auf die gleiche Weise wie bei `Query`, `Path` und `Cookie`.
 
