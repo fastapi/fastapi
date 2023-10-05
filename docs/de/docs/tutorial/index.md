@@ -2,17 +2,17 @@
 
 Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** und die meisten seiner Funktionen verwenden können.
 
-Jeder Abschnitt baut schrittweise auf den vorhergehenden auf. Die Abschnitte sind aber nach einzelnen Themen gegliedert, sodass Sie direkt zu einem bestimmten Abschnitt springen können, um Ihre speziellen API-Fragen zu beantworten.
+Jeder Abschnitt baut schrittweise auf den vorhergehenden auf. Diese Abschnitte sind aber nach einzelnen Themen gegliedert, sodass Sie direkt zu einem bestimmten Thema übergehen können, um Ihre speziellen API-Anforderungen zu lösen.
 
-Außerdem dienen sie als zukünftige Referenz.
+Außerdem dienen diese als zukünftige Referenz.
 
-Sodass Sie zurückkommen können und genau das sehen, was Sie benötigen.
+Dadurch können Sie jederzeit  zurückkommen und sehen genau das, was Sie benötigen.
 
 ## Den Code ausführen
 
-Alle Codeblöcke können kopiert und direkt verwendet werden (es sind tatsächlich getestete Python-Dateien).
+Alle Codeblöcke können kopiert und direkt verwendet werden (da es sich um getestete Python-Dateien handelt).
 
-Um ein Beispiel auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
+Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
 
 <div class="termy">
 
@@ -30,15 +30,15 @@ $ uvicorn main:app --reload
 
 Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen.
 
-Die Verwendung in Ihrem Editor zeigt Ihnen die Vorteile von FastAPI: Wie wenig Code Sie schreiben müssen, Typprüfungen, Code-Vervollständigung, usw.
+Die Verwendung in Ihrem eigenen Editor zeigt Ihnen die Vorteile von FastAPI am besten, wenn Sie sehen, wie wenig Code Sie schreiben müssen, all die Typprüfungen, die automatische Vervollständigung usw.
 
 ---
 
 ## FastAPI installieren
 
-Der erste Schritt ist die Installation von FastAPI.
+Der erste Schritt besteht aus der Installation von FastAPI.
 
-Für das Tutorial empfiehlt es sich, es mit allen optionalen Abhängigkeiten und Funktionen zu installieren:
+Für dieses Tutorial empfiehlt es sich, FastAPI mit allen optionalen Abhängigkeiten und Funktionen zu installieren:
 
 <div class="termy">
 
