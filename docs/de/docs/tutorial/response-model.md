@@ -238,7 +238,7 @@ Auf diese Weise erhalten Sie das beste beider Welten: Sowohl Typ-Annotationen mi
 
 ## Anzeige in der Dokumentation
 
-Wenn Sie sich die automatische Dokumentation betrachten, können Sie sehen, dass Eingabe- und Ausgabe-Modell beide ihr eigenes JSON Schema haben:
+Wenn Sie sich die automatische Dokumentation betrachten, können Sie sehen, dass Eingabe- und Ausgabe-Modell beide ihr eigenes JSON-Schema haben:
 
 <img src="/img/tutorial/response-model/image01.png">
 
@@ -474,7 +474,7 @@ Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ei
     {!> ../../../docs_src/response_model/tutorial006.py!}
     ```
 
-## Rekapitulation
+## Zusammenfassung
 
 Verwenden Sie den Parameter `response_model` im *Pfadoperation-Dekorator*, um Response-Modelle zu definieren, und besonders, um private Daten herauszufiltern.
 
