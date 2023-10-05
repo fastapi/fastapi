@@ -87,6 +87,6 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer "speziellen" Kodierun
 
     Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 
-## Rekapitulation
+## Zusammenfassung
 
 Verwenden Sie `Form`, um Eingabe-Parameter für Formulardaten zu deklarieren.
