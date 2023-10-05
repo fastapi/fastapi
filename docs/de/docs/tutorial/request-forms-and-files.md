@@ -64,6 +64,6 @@ Und Sie können einige der Dateien als `bytes` und einige als `UploadFile` dekla
 
     Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 
-## Rekapitulation
+## Zusammenfassung
 
 Verwenden Sie `File` und `Form` zusammen, wenn Sie Daten und Dateien zusammen im selben Request empfangen müssen.
