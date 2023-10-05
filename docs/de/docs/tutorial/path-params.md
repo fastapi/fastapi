@@ -72,12 +72,12 @@ Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also ei
 
 ## Dokumentation
 
-Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> in Ihrem Browser öffnen, sehen Sie eine automatisch generierte, interaktive API-Dokumentation:
+Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> in Ihrem Browser öffnen, sehen Sie eine automatische, interaktive API-Dokumentation:
 
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Wiederum, mit dieser gleichen Python Typ Deklaration gibt Ihnen **FastAPI** eine automatisch generierte, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+    Wiederum, mit dieser gleichen Python Typ Deklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 
     Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
@@ -238,7 +238,7 @@ Sie verwenden das also wie folgt:
 
     In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
 
-## Rekapitulation
+## Zusammenfassung
 
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
