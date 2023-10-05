@@ -108,7 +108,7 @@ Sie werden später mehr darüber lernen, wie man zusätzliche Information unterb
 !!! warning "Achtung"
     Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 
-## Rekapitulation
+## Zusammenfassung
 
 Sie können Pydantics `Field` verwenden, um zusätzliche Validierungen und Metadaten für Modell-Attribute zu deklarieren.
 
