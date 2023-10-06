@@ -613,7 +613,6 @@ def is_bytes_sequence_annotation(annotation: Any) -> bool:
         for sub_annotation in get_args(annotation)
     )
 
-
 def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
@@ -624,11 +623,7 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
                 continue
         return at_least_one
     args = get_args(annotation)
-    return (
-        field_annotation_is_sequence(annotation)
-        and args
-        and all(
-            is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
-            for sub_annotation in args
-        )
+    return field_annotation_is_sequence(annotation) and bool(args) and all(
+        is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
+        for sub_annotation in args
     )
