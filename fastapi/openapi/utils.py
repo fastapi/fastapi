@@ -461,6 +461,17 @@ def get_fields_from_routes(
             if route.callbacks:
                 callback_flat_models.extend(get_fields_from_routes(route.callbacks))
             params = get_flat_params(route.dependant)
+            dependency_overrides = None
+            if route.dependency_overrides_provider:
+                dependency_overrides = (
+                    route.dependency_overrides_provider.dependency_overrides
+                )
+            dependant = get_resolved_dependant(
+                dependant=route.dependant,
+                dependency_overrides=dependency_overrides,
+            )
+            params.extend(get_flat_params(dependant))
+
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(

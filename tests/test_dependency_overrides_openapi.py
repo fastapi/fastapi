@@ -45,7 +45,10 @@ override_simple_openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "string"},
+                        "schema": {
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                            "title": "Q",
+                        },
                         "name": "q",
                         "in": "query",
                     },

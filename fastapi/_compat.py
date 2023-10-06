@@ -161,7 +161,21 @@ if PYDANTIC_V2:
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from
             # ModelField to its JSON Schema.
-            return id(self)
+            # build a hash from the field_info and name and mode
+            # This method is probably not safe enough... but how can
+            # we easily hash and compare ModelFields builds with the same data?
+            return hash(
+                (
+                    repr(self.field_info),
+                    self.name,
+                    self.mode,
+                )
+            )
+
+        def __eq__(self, other: Any) -> bool:
+            if not isinstance(other, ModelField):
+                return False
+            return self.__hash__() == other.__hash__()
 
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
