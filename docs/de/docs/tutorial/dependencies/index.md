@@ -1,4 +1,4 @@
-# Dependencies
+# Abhängigkeiten
 
 **FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
 
@@ -25,9 +25,9 @@ Sehen wir uns ein sehr einfaches Beispiel an. Es ist so einfach, dass es vorerst
 
 Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection** Systems konzentrieren.
 
-### Erstellen Sie eine Dependency, oder "dependable"
+### Erstellen Sie eine Abhängigkeit ("Dependable")
 
-Konzentrieren wir uns zunächst auf die Dependency – die Abhängigkeit.
+Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
 === "Python 3.10+"
@@ -129,7 +129,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-### Deklarieren der Dependency im "Dependanten"
+### Deklarieren der Abhängigkeit im "Verwender" ("Dependant")
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
@@ -206,7 +206,7 @@ Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI
 
     Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
 
-## `Annotated` Dependencies wiederverwenden
+## `Annotated`-Abhängigkeiten wiederverwenden
 
 In den Beispielen oben sehen Sie, dass es ein kleines bisschen **Codeverdoppelung** gibt.
 
