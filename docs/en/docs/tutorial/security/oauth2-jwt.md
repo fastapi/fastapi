@@ -218,6 +218,8 @@ Update `get_current_user` to receive the same token as before, but this time, us
 
 Decode the received token, verify it, and return the current user.
 
+Note: jwt.decode has a built-in method to check "exp" and it does check it by default (https://github.com/mpdavis/python-jose/blob/96474ecfb6ad3ce16f41b0814ab5126d58725e2a/jose/jwt.py#L82)
+
 If the token is invalid, return an HTTP error right away.
 
 === "Python 3.10+"
