@@ -98,7 +98,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)
-    except ExpiredSignatureError: # Check signature expiry
+    except ExpiredSignatureError:  # Check signature expiry
         raise credentials_exception
     except JWTError:
         raise credentials_exception
