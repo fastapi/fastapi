@@ -44,7 +44,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependab
 
 Aber dann haben wir ein `dict` im Parameter `commons` der *Pfadoperation-Funktion*.
 
-Und wir wissen, dass Editoren nicht viel Unterstützung (wie etwa Code-Vervollständigung) für `dict`s leisten können, weil sie ihre Schlüssel- und Werttypen nicht kennen.
+Und wir wissen, dass Editoren nicht viel Unterstützung (wie etwa Code-Vervollständigung) für `dict`s bieten können, weil sie ihre Schlüssel- und Werttypen nicht kennen.
 
 Das können wir besser machen ...
 
@@ -93,15 +93,15 @@ Und um `fluffy` zu erzeugen, rufen Sie `Cat` auf.
 
 Eine Python-Klasse ist also auch ein **Callable**.
 
-Dann könnten Sie in **FastAPI** eine Python-Klasse als Abhängigkeit verwenden.
+Darum können Sie in **FastAPI** auch eine Python-Klasse als Abhängigkeit verwenden.
 
 Was FastAPI tatsächlich prüft, ist, ob es sich um ein "Callable" (Funktion, Klasse oder irgendetwas anderes) handelt und ob die Parameter definiert sind.
 
-Wenn Sie ein "Callable" als Abhängigkeit in **FastAPI** übergeben, analysiert es die Parameter dieses "Callables" und verarbeitet sie auf die gleiche Weise wie die Parameter für eine *Pfadoperation-Funktion*. Einschließlich Unterabhängigkeiten.
+Wenn Sie **FastAPI** ein "Callable" als Abhängigkeit übergeben, analysiert es die Parameter dieses "Callables" und verarbeitet sie auf die gleiche Weise wie die Parameter einer *Pfadoperation-Funktion*. Einschließlich Unterabhängigkeiten.
 
-Das gilt auch für Callables ohne Parameter. So wie auch für *Pfadoperation-Funktionen* ohne Parameter.
+Das gilt auch für Callables ohne Parameter. So wie es auch für *Pfadoperation-Funktionen* ohne Parameter gilt.
 
-Dann können wir die das "Dependable" der Abhängigkeit `common_parameters` von oben in die Klasse `CommonQueryParams` ändern:
+Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben in die Klasse `CommonQueryParams` ändern:
 
 === "Python 3.10+"
 
@@ -294,7 +294,7 @@ Das letzte `CommonQueryParams`, in:
 
 ... ist das, was **FastAPI** tatsächlich verwendet, um die Abhängigkeit zu ermitteln.
 
-Daraus extrahiert FastAPI die deklarierten Parameter, und das ist es, was FastAPI tatsächlich aufruft.
+Aus diesem extrahiert FastAPI die deklarierten Parameter, und dieses ist es, was FastAPI auch aufruft.
 
 ---
 
@@ -380,6 +380,12 @@ Es wird jedoch empfohlen, den Typ zu deklarieren, da Ihr Editor so weiß, was al
 
 Aber Sie sehen, dass wir hier etwas Codeduplizierung haben, indem wir `CommonQueryParams` zweimal schreiben:
 
+=== "Python 3.6+"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
 === "Python 3.6+ nicht annotiert"
 
     !!! tip
@@ -387,12 +393,6 @@ Aber Sie sehen, dass wir hier etwas Codeduplizierung haben, indem wir `CommonQue
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
-
-=== "Python 3.6+"
-
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
 **FastAPI** bietet eine Abkürzung für diese Fälle, wo die Abhängigkeit *speziell* eine Klasse ist, welche **FastAPI** aufruft, um eine Instanz der Klasse selbst zu erstellen.
@@ -435,7 +435,7 @@ Anstatt zu schreiben:
 
 Sie deklarieren die Abhängigkeit als Typ des Parameters und verwenden `Depends()` ohne Parameter, anstatt die vollständige Klasse *erneut* in `Depends(CommonQueryParams)` schreiben zu müssen.
 
-Das gleiche Beispiel würde dann so aussehen:
+Dasselbe Beispiel würde dann so aussehen:
 
 === "Python 3.10+"
 
