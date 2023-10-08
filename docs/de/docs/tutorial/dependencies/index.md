@@ -25,7 +25,7 @@ Sehen wir uns ein sehr einfaches Beispiel an. Es ist so einfach, dass es vorerst
 
 Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection** Systems konzentrieren.
 
-### Erstellen Sie eine Abhängigkeit ("Dependable")
+### Erstellen Sie eine Abhängigkeit (<abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">"Dependable"</abbr>)
 
 Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
@@ -129,7 +129,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-### Deklarieren der Abhängigkeit im "Verwender" ("Dependant")
+### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">"Dependant"</abbr>
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
