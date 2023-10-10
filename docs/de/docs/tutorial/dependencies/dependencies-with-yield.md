@@ -156,7 +156,7 @@ Die Ausführungsreihenfolge ähnelt mehr oder weniger dem folgenden Diagramm. Di
 sequenceDiagram
 
 participant client as Client
-participant handler as Exception-Handler
+participant handler as Exceptionhandler
 participant dep as Abhängigkeit mit yield
 participant operation as Pfadoperation
 participant tasks as Hintergrund-Tasks
@@ -200,7 +200,7 @@ participant tasks as Hintergrund-Tasks
 !!! tip
     Obiges Diagramm verwendet `HTTPException`, aber Sie können auch jede andere Exception auslösen, für die Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} erstellt haben.
 
-    Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten übergeben, einschließlich `HTTPException`, und dann **erneut** an die Exceptionhandler. Wenn für diese Exception kein Exceptionhandler vorhanden ist, wird sie von der internen Standard `ServerErrorMiddleware` gehandhabt, was einen HTTP-Statuscode 500 zurückgibt, um den Client darüber zu informieren, dass ein Fehler auf dem Server aufgetreten ist.
+    Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten übergeben, einschließlich `HTTPException`, und dann **erneut** an die Exceptionhandler. Wenn für diese Exception kein Exceptionhandler vorhanden ist, wird sie von der internen Default `ServerErrorMiddleware` gehandhabt, was einen HTTP-Statuscode 500 zurückgibt, um den Client darüber zu informieren, dass ein Fehler auf dem Server aufgetreten ist.
 
 ## Kontextmanager
 
