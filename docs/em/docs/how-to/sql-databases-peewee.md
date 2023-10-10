@@ -210,7 +210,7 @@ connect_args={"check_same_thread": False}
 
 ✋️ 🎚 ⚫️ 🚫 `list`. &amp; ⚫️ 🚫 ☑ 🐍 <a href="https://docs.python.org/3/glossary.html#term-generator" class="external-link" target="_blank">🚂</a>. ↩️ 👉, Pydantic 🚫 💭 🔢 ❔ 🗜 ⚫️ `list` Pydantic *🏷* / 🔗.
 
-✋️ ⏮️ ⏬ Pydantic ✔ 🚚 🛃 🎓 👈 😖 ⚪️➡️ `pydantic.utils.GetterDict`, 🚚 🛠️ ⚙️ 🕐❔ ⚙️ `orm_mode = True` 🗃 💲 🐜 🏷 🔢.
+✋️ ⏮️ ⏬ Pydantic ✔ 🚚 🛃 🎓 👈 😖 ⚪️➡️ `pydantic.v1.utils.GetterDict`, 🚚 🛠️ ⚙️ 🕐❔ ⚙️ `orm_mode = True` 🗃 💲 🐜 🏷 🔢.
 
 👥 🔜 ✍ 🛃 `PeeweeGetterDict` 🎓 &amp; ⚙️ ⚫️ 🌐 🎏 Pydantic *🏷* / 🔗 👈 ⚙️ `orm_mode`:
 

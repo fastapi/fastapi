@@ -2,7 +2,7 @@ from typing import Any, List, Union
 
 import peewee
 from pydantic import BaseModel
-from pydantic.utils import GetterDict
+from pydantic.v1.utils import GetterDict
 
 
 class PeeweeGetterDict(GetterDict):
