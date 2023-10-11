@@ -252,7 +252,7 @@ Es kann Fälle geben, bei denen Sie etwas zurückgeben, das kein gültiges Pydan
 
 ### Eine Response direkt zurückgeben
 
-Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, wie es später in der fortgeschrittenen Dokumentation erläutert wird](../advanced/response-directly.md){.internal-link target=_blank}.
+Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, wie es später im Handbuch für fortgeschrittene Benutzer erläutert wird](../advanced/response-directly.md){.internal-link target=_blank}.
 
 ```Python hl_lines="8  10-11"
 {!> ../../../docs_src/response_model/tutorial003_02.py!}
