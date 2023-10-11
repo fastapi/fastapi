@@ -23,17 +23,17 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Standartlara dayalı**: API'ler için açık standartlara dayanır (ve tamammen uyumludur): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Şeması</a>.
     * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Birçok diger özelliği**</a> dahili otomatik doğrulama, serialization, interaktif dokümantasyon, OAuth2 JWT token ile authentication, vb.
 * **Güvenli şifreleme** .
-* **JWT token** authentication.
+* **JWT token** kimlik doğrulama.
 * **SQLAlchemy** models (Flask dan bağımsızdır. Celery worker'ları ile kullanılabilir).
 * Kullanıcılar için temel başlangıç ​​modeli (gerektiği gibi değiştirin ve kaldırın).
 * **Alembic** migration.
 * **CORS** (Cross Origin Resource Sharing).
 * **Celery** worker'ları ile backend içerisinden seçilen işleri çalıştırabilirsiniz.
-* **Pytest**'e dayalı, Docker ile entegre REST backend testleri ıle veritabanından bağımsız olarak tam API etkileşimini test edebilirsiniz. Docker'da çalıştığı için her seferinde sıfırdan yeni bir veri deposu oluşturabilir (böylece ElasticSearch, MongoDB, CouchDB veya ne istersen kullanabilirsin ve sadece API'nin çalışıp çalışmadığını test edebilirsin).
+* **Pytest**'e dayalı, Docker ile entegre REST backend testleri ile veritabanından bağımsız olarak tam API etkileşimini test edebilirsiniz. Docker'da çalıştığı için her seferinde sıfırdan yeni bir veri deposu oluşturabilir (böylece ElasticSearch, MongoDB, CouchDB veya ne istersen kullanabilirsin ve sadece API'nin çalışıp çalışmadığını test edebilirsin).
 * Atom Hydrogen veya Visual Studio Code Jupyter gibi uzantılarla uzaktan veya Docker içi geliştirme için **Jupyter Çekirdekleri** ile kolay Python entegrasyonu.
 * **Vue** ile frontend:
     * Vue CLI ile oluşturulmuş.
-    * Dahili **JWT Authentication**.
+    * Dahili **JWT kimlik doğrulama**.
     * Dahili Login.
     * Login sonrası, Kontrol paneli.
     * Kullanıcı oluşturma ve düzenleme kontrol paneli
@@ -58,7 +58,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class
 
 ⚠️ **UYARI** ⚠️
 
-sıfırdan bir projeye başlıyorsanız alternatiflerine bakın.
+Sıfırdan bir projeye başlıyorsanız alternatiflerine bakın.
 
 Örneğin,  <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a> daha iyi bir alternatif olabilir, aktif olarak geliştiriliyor ve kullanılıyor. Ve yeni özellik ve ilerlemelere sahip.
 
