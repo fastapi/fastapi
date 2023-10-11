@@ -13,7 +13,7 @@
     데이터를 보낼때, 이 중 한가지를 사용해야합니다: `POST` (더 일반적입니다), `PUT`, `DELETE` 또는 `PATCH`.
 
     `GET`요청과 본문를 함께 보내는 것은 정식으로 정의되지 않은 동작이지만, FastAPI에서는 매우 복잡하거나 극단적인 사용 사례에 한하여 지원합니다.
-    
+
     권장하지 않은 동작이므로 Swagger UI가 포함된 대화형 문서에서는 `GET`을 사용할 때 문서에 본문를 보여주지 않고, 또한 중간의 프록시에서 지원하지 않을 수 있습니다.
 
 ## Pydantic의 `BaseModel`가져오기
@@ -54,7 +54,7 @@
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-쿼리 매개변수를 선언할 때와 마찬가지로, 모델 속성에 기본 값이 있으면 필수가 아닙니다. (기본 값에 특정한 값을 추가하지 않으면서 선택적으로 만들기 위해서는 `none`을 이용하면 됩니다.) 반대로, 모델 속성을 필수로 만드려면 기본값을 선언할 수 없습니다. 
+쿼리 매개변수를 선언할 때와 마찬가지로, 모델 속성에 기본 값이 있으면 필수가 아닙니다. (기본 값에 특정한 값을 추가하지 않으면서 선택적으로 만들기 위해서는 `none`을 이용하면 됩니다.) 반대로, 모델 속성을 필수로 만드려면 기본값을 선언할 수 없습니다.
 
 예를 들어, 위의 모델은 다음과 같이 JSON "`object`"(또는 파이썬 `dict`)를 선언합니다.
 
@@ -143,7 +143,7 @@
     만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 을 편집기로 쓴다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> 을 사용할 수 있습니다..
 
     다음을 통해 Pydantic 모델에 대한 편집기 지원을 개선시킵니다.
-    
+
     * 자동 완성
     * 유형 확인
     * 리팩토링
