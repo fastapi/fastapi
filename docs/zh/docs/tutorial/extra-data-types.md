@@ -55,12 +55,76 @@
 
 下面是一个*路径操作*的示例，其中的参数使用了上面的一些类型。
 
-```Python hl_lines="1  3  12-16"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="1  3  12-16"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="1  3  12-16"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  3  13-17"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="1  2  11-15"
+    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="1  2  12-16"
+    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
+    ```
 
 注意，函数内的参数有原生的数据类型，你可以，例如，执行正常的日期操作，如:
 
-```Python hl_lines="18-19"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="18-19"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="18-19"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="19-20"
+    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="17-18"
+    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="18-19"
+    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
+    ```
