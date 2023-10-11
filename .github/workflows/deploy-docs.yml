@@ -29,21 +29,20 @@ jobs:
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-site
           path: ./site/
-      - name: Deploy to Netlify
+      - name: Deploy to Cloudflare Pages
         if: steps.download.outputs.found_artifact == 'true'
-        id: netlify
-        uses: nwtgck/actions-netlify@v2.0.0
+        id: deploy
+        uses: cloudflare/pages-action@v1
         with:
-          publish-dir: './site'
-          production-deploy: ${{ github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' }}
-          github-token: ${{ secrets.FASTAPI_PREVIEW_DOCS_NETLIFY }}
-          enable-commit-comment: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: fastapitiangolo
+          directory: './site'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
       - name: Comment Deploy
-        if: steps.netlify.outputs.deploy-url != ''
+        if: steps.deploy.outputs.url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
         with:
           token: ${{ secrets.FASTAPI_PREVIEW_DOCS_COMMENT_DEPLOY }}
-          deploy_url: "${{ steps.netlify.outputs.deploy-url }}"
+          deploy_url: "${{ steps.deploy.outputs.url }}"

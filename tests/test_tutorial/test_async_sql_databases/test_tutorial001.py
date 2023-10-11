@@ -2,7 +2,11 @@ from fastapi.testclient import TestClient
 
 from docs_src.async_sql_databases.tutorial001 import app
 
+from ...utils import needs_pydanticv1
 
+
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_create_read():
     with TestClient(app) as client:
         note = {"text": "Foo bar", "completed": False}
@@ -22,7 +26,7 @@ def test_openapi_schema():
         response = client.get("/openapi.json")
         assert response.status_code == 200, response.text
         assert response.json() == {
-            "openapi": "3.0.2",
+            "openapi": "3.1.0",
             "info": {"title": "FastAPI", "version": "0.1.0"},
             "paths": {
                 "/notes/": {
