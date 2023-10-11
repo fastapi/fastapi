@@ -265,7 +265,6 @@ CPU'ya bağlı işlemlerin yaygın örnekleri, karmaşık matematik işlemleri g
 
 Ancak, Makine Öğrenimi sistemlerindekile gibi **CPU'ya bağlı** iş yükleri için paralellik ve çoklu işlemenin (birden çok işlemin paralel olarak çalışması) avantajlarından da yararlanabilirsiniz.
 
-That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 Buna ek olarak Python'un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olduğu gerçeği, FastAPI'yi Veri Bilimi / Makine Öğrenimi web API'leri ve uygulamaları için çok iyi bir seçenek haline getirir.
 
 Production'da nasıl oldugunu görmek için şu bölüme bakın [Deployment](deployment/index.md){.internal-link target=_blank}.
@@ -290,7 +289,7 @@ async def get_burgers(number: int):
     return burgers
 ```
 
-...instead of `def`:
+...`def` yerine:
 
 ```Python hl_lines="2"
 # bu kod asenkron değil
