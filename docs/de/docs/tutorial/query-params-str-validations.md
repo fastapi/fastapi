@@ -61,7 +61,7 @@ Importieren Sie zuerst:
 
 ## `Annotated` im Typ des `q`-Parameters verwenden
 
-Erinnern Sie sich, wie ich in [Einführung in Python-Typen](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} sagte, dass Sie mittels `Annotated` Metadaten zu Ihren Parametern hinzufügen können?
+Erinnern Sie sich, wie ich in [Einführung in Python-Typen](../python-types.md#typ-hinweise-mit-metadaten-annotationen){.internal-link target=_blank} sagte, dass Sie mittels `Annotated` Metadaten zu Ihren Parametern hinzufügen können?
 
 Jetzt ist es an der Zeit, das mit FastAPI auszuprobieren. 🚀
 
