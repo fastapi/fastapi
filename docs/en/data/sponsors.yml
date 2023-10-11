@@ -13,7 +13,7 @@ gold:
     img: https://fastapi.tiangolo.com/img/sponsors/porter.png
   - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
     title: Automate FastAPI documentation generation with Bump.sh
-    img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.png
+    img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
