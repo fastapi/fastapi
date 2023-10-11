@@ -2,6 +2,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi import params
 from fastapi._compat import Undefined
+from fastapi.openapi.models import Example
 from typing_extensions import Annotated, deprecated
 
 _Unset: Any = Undefined
@@ -46,6 +47,7 @@ def Path(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -76,6 +78,7 @@ def Path(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -122,6 +125,7 @@ def Query(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -152,6 +156,7 @@ def Query(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -199,6 +204,7 @@ def Header(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -230,6 +236,7 @@ def Header(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -276,6 +283,7 @@ def Cookie(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -306,6 +314,7 @@ def Cookie(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -354,6 +363,7 @@ def Body(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -386,6 +396,7 @@ def Body(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -433,6 +444,7 @@ def Form(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -464,6 +476,7 @@ def Form(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
@@ -511,6 +524,7 @@ def File(  # noqa: N802
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
+    openapi_examples: Optional[Dict[str, Example]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
     json_schema_extra: Union[Dict[str, Any], None] = None,
@@ -542,6 +556,7 @@ def File(  # noqa: N802
         decimal_places=decimal_places,
         example=example,
         examples=examples,
+        openapi_examples=openapi_examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
