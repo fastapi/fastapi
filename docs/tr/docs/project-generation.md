@@ -20,7 +20,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Kolay**: Kolay öğrenip kolay kullanmak için tasarlandı. Daha az döküman okuma daha çok iş.
     * **Kısa**: Minimum kod tekrarı. Her parametre bildiriminde birden çok özellik.
     * **Güçlü**: Production-ready. Otomatik interaktif dökümantasyon.
-    * **Standartlara dayalı**: API'ler için açık standartlara dayanır (ve tamammen uyumludur): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Şeması</a>.
+    * **Standartlara dayalı**: API'ler için açık standartlara dayanır (ve tamamen uyumludur): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Şeması</a>.
     * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Birçok diger özelliği**</a> dahili otomatik doğrulama, serialization, interaktif dokümantasyon, OAuth2 JWT token ile authentication, vb.
 * **Güvenli şifreleme** .
 * **JWT token** kimlik doğrulama.
