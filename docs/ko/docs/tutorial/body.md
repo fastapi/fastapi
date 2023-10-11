@@ -215,4 +215,4 @@
 
 ## Pydantic 없이
 
-Pydantic 모델을 사용하고 싶지 않다면, **본문** 매개변수를 사용할 수 있습니다. [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.문서를 참고하세요.
+Pydantic 모델을 사용하고 싶지 않다면, **본문** 매개변수를 사용할 수 있습니다. [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}문서를 참고하세요.
