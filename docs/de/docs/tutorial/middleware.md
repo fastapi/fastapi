@@ -22,11 +22,11 @@ Um eine Middleware zu erstellen, verwenden Sie den Dekorator `@app.middleware("h
 
 Die Middleware-Funktion erhält:
 
-* Den `request`.
-* Eine Funktion `call_next`, die den `request` als Parameter erhält.
-    * Diese Funktion gibt den `request` an die entsprechende *Pfadoperation* weiter.
-    * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
-* Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
+* Den `Request`.
+* Eine Funktion `call_next`, die den `Request` als Parameter erhält.
+    * Diese Funktion gibt den `Request` an die entsprechende *Pfadoperation* weiter.
+    * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `Response` zurück.
+* Sie können die `Response` dann weiter modifizieren, bevor Sie sie zurückgeben.
 
 ```Python hl_lines="8-9  11  14"
 {!../../../docs_src/middleware/tutorial001.py!}
@@ -42,11 +42,11 @@ Die Middleware-Funktion erhält:
 
     **FastAPI** bietet es als Komfort für Sie, den Entwickler, an. Aber es stammt direkt von Starlette.
 
-### Vor und nach der `response`
+### Vor und nach der `Response`
 
-Sie können Code hinzufügen, der mit dem `request` ausgeführt wird, bevor dieser von einer beliebigen *Pfadoperation* empfangen wird.
+Sie können Code hinzufügen, der mit dem `Request` ausgeführt wird, bevor dieser von einer beliebigen *Pfadoperation* empfangen wird.
 
-Und auch nachdem die `response` generiert wurde, bevor sie zurückgegeben wird.
+Und auch nachdem die `Response` generiert wurde, bevor sie zurückgegeben wird.
 
 Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hinzufügen, der die Zeit in Sekunden enthält, die benötigt wurde, um die Anfrage zu verarbeiten und eine Antwort zu generieren:
 
