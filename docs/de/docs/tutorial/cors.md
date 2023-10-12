@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing)
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder "Cross-Origin Resource Sharing"</a> 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder "Cross-Origin Resource Sharing"</a>
 beschreibt die Situation, wenn ein Frontend (aus JavaScript-Code), das in einem Browser läuft und mit einem Backend kommuniziert, welches in einem anderen "Ursprung" als das Frontend ist.
 
 ## Ursprung
