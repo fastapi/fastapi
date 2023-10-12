@@ -56,6 +56,6 @@ Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hi
 
 ## Andere Middlewares
 
-Sie können später mehr über andere Middlewares in [Erweiterte Benutzeranleitung: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
+Sie können später mehr über andere Middlewares in [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
 
 In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing">CORS</abbr> mit einer Middleware behandeln können.
