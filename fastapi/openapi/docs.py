@@ -22,6 +22,7 @@ swagger_ui_default_parameters: Annotated[
     "showCommonExtensions": True,
 }
 
+redoc_ui_default_parameters={}
 
 def get_swagger_ui_html(
     *,
@@ -205,6 +206,7 @@ def get_redoc_html(
             """
         ),
     ] = True,
+    redoc_ui_parameters: Optional[Dict[str, Any]] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML response that loads ReDoc for the alternative
@@ -216,6 +218,20 @@ def get_redoc_html(
     Read more about it in the
     [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).
     """
+
+    current_redoc_ui_parameters = redoc_ui_default_parameters.copy()
+    if redoc_ui_parameters:
+        current_redoc_ui_parameters.update(redoc_ui_parameters)
+
+    def add_redoc_ui_parameters():
+        _props = ""
+        for key, value in current_redoc_ui_parameters.items():
+            if value:
+                _props += f"{key}='{json.dumps(jsonable_encoder(value))}' "
+            else:
+                _props += f"{key} "
+        return _props
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -245,7 +261,7 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc spec-url="{openapi_url}" {add_redoc_ui_parameters()}></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>
