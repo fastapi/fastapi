@@ -22,7 +22,7 @@ swagger_ui_default_parameters: Annotated[
     "showCommonExtensions": True,
 }
 
-redoc_ui_default_parameters = {}
+redoc_ui_default_parameters: Dict[str, Any] = {}
 
 
 def get_swagger_ui_html(
