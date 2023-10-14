@@ -221,4 +221,4 @@ In diesem Fall gibt es drei Query-Parameter:
 * `limit`, ein optionales `int`.
 
 !!! tip
-    Sie können auch `Enum`s verwenden, auf dieselbe Weise wie mit [Pfad-Parametern](path-params.md#predefined-values){.internal-link target=_blank}.
+    Sie können auch `Enum`s verwenden, auf dieselbe Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
