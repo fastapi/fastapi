@@ -46,7 +46,7 @@ Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
     {!> ../../../docs_src/dependencies/tutorial005.py!}
     ```
 
-Diese deklariert einen optionalen Abfrageparameter `q` als `str` und gibt ihn dann einfach zurück.
+Diese deklariert einen optionalen Abfrageparameter `q` vom Typ `str` und gibt ihn dann einfach zurück.
 
 Das ist recht einfach (nicht sehr nützlich), hilft uns aber dabei, uns auf die Funktionsweise der Unterabhängigkeiten zu konzentrieren.
 
