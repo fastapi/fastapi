@@ -36,7 +36,7 @@ Seine Schlüssel-Merkmale sind:
 * **Schnell zu programmieren**: Erhöhen Sie die Geschwindigkeit bei der Entwicklung von Funktionen um etwa 200 % bis 300 %. *
 * **Weniger Bugs**: Verringern Sie die von Menschen (Entwicklern) verursachten Fehler um etwa 40 %. *
 * **Intuitiv**: Exzellente Editor-Unterstützung. <abbr title="auch bekannt als Autovervollständigung, Autocompletion, IntelliSense">Code-Vervollständigung</abbr> überall. Weniger Debuggen.
-* **Einfach**: Entworfen, um einfach zu benutzen und zu erlernen zu sein. Weniger Zeit für das Lesen der Dokumentation.
+* **Einfach**: So konzipiert, dass es einfach zu benutzen und zu erlernen ist. Weniger Zeit für das Lesen der Dokumentation.
 * **Kurz**: Minimieren Sie die Verdoppelung von Code. Mehrere Funktionen aus jeder Parameterdeklaration. Weniger Bugs.
 * **Robust**: Erhalten Sie produktionsreifen Code. Mit automatischer, interaktiver Dokumentation.
 * **Standards-basiert**: Basierend auf (und vollständig kompatibel mit) den offenen Standards für APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (früher bekannt als Swagger) und <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
@@ -100,7 +100,7 @@ Seine Schlüssel-Merkmale sind:
 
 ---
 
-"_Falls irgendjemand eine Produktions-Python-API erstellen möchte, kann ich **FastAPI** wärmstens empfehlen. Es ist **wunderschön gestaltet**, **einfach zu verwenden** und **hoch skalierbar**; es ist zu einer **Schlüsselkomponente** in unserer API-First-Entwicklungsstrategie geworden und treibt viele Automatisierungen und Dienste an, wie etwa unseren virtuellen TAC-Ingenieur._"
+"_Falls irgendjemand eine Produktions-Python-API erstellen möchte, kann ich **FastAPI** wärmstens empfehlen. Es ist **wunderschön konzipiert**, **einfach zu verwenden** und **hoch skalierbar**; es ist zu einer **Schlüsselkomponente** in unserer API-First-Entwicklungsstrategie geworden und treibt viele Automatisierungen und Dienste an, wie etwa unseren virtuellen TAC-Ingenieur._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(Ref)</small></a></div>
 
