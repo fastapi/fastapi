@@ -210,4 +210,4 @@ die Funktionsparameter werden wie folgt erkannt:
 
 ## Ohne Pydantic
 
-Wenn Sie keine Pydantic-Modelle verwenden wollen, können Sie auch **Body**-Parameter nehmen. Siehe die Dokumentation unter [Body - Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#singular-values-in-body){.internal-link target=\_blank}.
+Wenn Sie keine Pydantic-Modelle verwenden wollen, können Sie auch **Body**-Parameter nehmen. Siehe die Dokumentation unter [Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#einzelne-werte-im-body){.internal-link target=\_blank}.
