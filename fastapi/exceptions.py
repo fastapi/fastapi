@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Sequence, Type
+from typing import Any, Dict, Optional, Sequence, Type, Union
 
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -122,7 +122,7 @@ class WebSocketException(StarletteWebSocketException):
             ),
         ],
         reason: Annotated[
-            str | None,
+            Union[str, None],
             Doc(
                 """
                 The reason to close the WebSocket connection.
