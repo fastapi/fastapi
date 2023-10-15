@@ -115,7 +115,7 @@ Eğer API yerine <abbr title="Command Line Interface">komut satırı uygulaması
 
 ## Gereksinimler
 
-Python 3.7+
+Python 3.8+
 
 FastAPI iki devin omuzları üstünde duruyor:
 
