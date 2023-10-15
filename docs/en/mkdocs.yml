@@ -65,6 +65,7 @@ plugins:
           unwrap_annotated: true
           filters: ["!^_"]
           merge_init_into_class: true
+          docstring_section_style: spacy
 nav:
 - FastAPI: index.md
 - Languages:
@@ -196,6 +197,29 @@ nav:
 - project-generation.md
 - Reference (Code API):
   - reference/index.md
+  - reference/fastapi.md
+  - reference/parameters.md
+  - reference/status.md
+  - reference/uploadfile.md
+  - reference/exceptions.md
+  - reference/dependencies.md
+  - reference/apirouter.md
+  - reference/background.md
+  - reference/request.md
+  - reference/websocket.md
+  - reference/httpconnection.md
+  - reference/response.md
+  - reference/responses.md
+  - reference/middleware.md
+  - OpenAPI:
+    - reference/openapi/index.md
+    - reference/openapi/docs.md
+  - reference/security/index.md
+  - reference/encoders.md
+  - reference/staticfiles.md
+  - reference/templating.md
+  - reference/testclient.md
+  - reference/websockets.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
