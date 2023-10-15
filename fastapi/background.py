@@ -47,22 +47,8 @@ class BackgroundTasks(StarletteBackgroundTasks):
                 """
             ),
         ],
-        *args: Annotated[
-            P.args,
-            Doc(
-                """
-                The positional arguments to pass to the function.
-                """
-            ),
-        ],
-        **kwargs: Annotated[
-            P.kwargs,
-            Doc(
-                """
-                The keyword arguments to pass to the function.
-                """
-            ),
-        ],
+        *args: P.args,
+        **kwargs: P.kwargs,
     ) -> None:
         """
         Add a function to be called in the background after the response is sent.
