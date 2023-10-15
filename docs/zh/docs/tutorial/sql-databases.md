@@ -258,7 +258,7 @@ connect_args={"check_same_thread": False}
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -302,7 +302,7 @@ name: str
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -331,7 +331,7 @@ name: str
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -471,7 +471,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -505,7 +505,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-20"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -530,7 +530,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24  32  38  47  53"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -551,7 +551,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -650,7 +650,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -670,7 +670,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -729,7 +729,7 @@ $ uvicorn sql_app.main:app --reload
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14-22"
     {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}

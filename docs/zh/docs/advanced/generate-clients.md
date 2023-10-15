@@ -22,7 +22,7 @@
     {!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11  14-15  18  19  23"
     {!> ../../../docs_src/generate_clients/tutorial001.py!}
@@ -134,7 +134,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
     {!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23  28  36"
     {!> ../../../docs_src/generate_clients/tutorial002.py!}
@@ -191,7 +191,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
     {!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8-9  12"
     {!> ../../../docs_src/generate_clients/tutorial003.py!}
