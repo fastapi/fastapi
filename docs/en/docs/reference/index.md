@@ -1,24 +1,7 @@
-# Reference (Code API)
+# Reference - Code API
 
-::: fastapi.FastAPI
-    options:
-        members:
-            - openapi_version
-            - webhooks
-            - state
-            - dependency_overrides
-            - router
-            - openapi
-            - websocket
-            - include_router
-            - get
-            - put
-            - post
-            - delete
-            - options
-            - head
-            - patch
-            - trace
-            - on_event
-            - middleware
-            - exception_handler
+Here's the reference or code API, the classes, functions, parameters, attributes, and
+all the FastAPI parts you can use in you applications.
+
+If you want to **learn FastAPI** you are much better off reading the
+[FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/).
