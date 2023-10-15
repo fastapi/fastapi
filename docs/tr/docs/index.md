@@ -390,11 +390,11 @@ Az önceki örneğe geri dönelim, **FastAPI**'ın yapacaklarına bir bakış at
 * Her şeyi OpenAPI ile uyumlu bir şekilde otomatik olarak dokümanlayacak ve bunlarda aşağıdaki gibi kullanılabilecek:
     * Etkileşimli dokümantasyon sistemleri.
     * Bir çok programlama dili için otomatik istemci kodu üretim sistemleri.
-* İki ayrı etkileşimli dokümantasyon arayüzünü doğrudan sağlayacak:
+* İki ayrı etkileşimli dokümantasyon arayüzünü doğrudan sağlayacak.
 
 ---
 
-Yüzeysel bir bakış atmış olsakda, çalışma mantığını çoktan anladın.
+Daha yeni başladık ama çalışma mantığını çoktan anlamış oldunuz.
 
 Şimdi aşağıdaki satırı değiştirmeyi deneyin:
 
@@ -414,7 +414,7 @@ Yüzeysel bir bakış atmış olsakda, çalışma mantığını çoktan anladın
         ... "item_price": item.price ...
 ```
 
-...ve editörünün veri tiplerini bildiğini ve otomatik tamamladığını gör:
+...ve editörünün veri tiplerini bildiğini ve otomatik tamamladığını göreceksiniz:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -437,7 +437,7 @@ Daha fazal özellik içeren, daha eksiksiz bir örnek için <a href="https://fas
 
 ## Performans
 
-Bağımsız TechEmpower kıyaslamaları gösteriyor ki, Uvicorn ile çalıştırılan **FastAPI** uygulamaları <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">en hızlı Python framework'lerinden birisi</a>, sadece Starlette ve Uvicorn'dan daha yavaş ki FastAPI bunların üzerine kurulu.
+Bağımsız TechEmpower kıyaslamaları gösteriyor ki, Uvicorn ile çalıştırılan **FastAPI** uygulamaları <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">en hızlı Python framework'lerinden birisi</a>, sadece Starlette ve Uvicorn'dan yavaş, ki FastAPI bunların üzerine kurulu bir kütüphanedir.
 
 Daha fazla bilgi için, bu bölüme bir göz at <a href="https://fastapi.tiangolo.com/tr/benchmarks/" class="internal-link" target="_blank">Kıyaslamalar</a>.
 
@@ -460,7 +460,7 @@ Starlette tarafında kullanılan:
 
 Hem FastAPI hem de Starlette tarafından kullanılan:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı bir web sunucusunda servis edecek sunucu için gerekli.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı servis edecek web sunucusu görevini üstlenir.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse` kullanacaksanız gerekli.
 
 Bunların hepsini `pip install fastapi[all]` ile yükleyebilirsin.
