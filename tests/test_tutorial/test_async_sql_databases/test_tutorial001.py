@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 from ...utils import needs_pydanticv1
 
 
-@pytest.fixture(name="app")
+@pytest.fixture(name="app", scope="module")
 def get_app():
     with pytest.warns(DeprecationWarning):
         from docs_src.async_sql_databases.tutorial001 import app
