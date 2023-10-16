@@ -256,7 +256,7 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
 !!! note "Hinweis"
-    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *"In Eile?"*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
 
 ## Integriert in OpenAPI
 
