@@ -386,7 +386,7 @@ Az önceki örneğe geri dönelim, **FastAPI**'ın yapacaklarına bir bakış at
     * `price` adında zorunlu bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
     * `is_offer` adında opsiyonel bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
     * Bunların hepsi en derin JSON objelerinde bile çalışacak.
-* JSON'dan ve JSON'a dönüşümü otomatik olarak yapacak.
+* Verilerin JSON'a ve JSON'ın python objesine dönüşümü otomatik olarak yapılacak.
 * Her şeyi OpenAPI ile uyumlu bir şekilde otomatik olarak dokümanlayacak ve bunlarda aşağıdaki gibi kullanılabilecek:
     * Etkileşimli dokümantasyon sistemleri.
     * Bir çok programlama dili için otomatik istemci kodu üretim sistemleri.
