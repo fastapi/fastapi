@@ -378,10 +378,10 @@ Az önceki örneğe geri dönelim, **FastAPI**'ın yapacaklarına bir bakış at
 * `item_id`'nin `GET` ve `PUT` istekleri için, yolda olup olmadığının kontol edecek.
 * `item_id`'nin `GET` ve `PUT` istekleri için, tipinin `int` olduğunu doğrulayacak.
     * Eğer değilse, sebebini belirten bir hata mesajı gösterecek.
-* Opsiyonel bir `q` parametresinin `GET` talebi içinde (`http://127.0.0.1:8000/items/foo?q=somequery` gibi) olup olmadığını kontrol edecek
+* Opsiyonel bir `q` parametresinin `GET` isteği içinde (`http://127.0.0.1:8000/items/foo?q=somequery` gibi) olup olmadığını kontrol edecek
     * `q` parametresini `= None` ile oluşturduğumuz için, opsiyonel bir parametre olacak.
     * Eğer `None` olmasa zorunlu bir parametre olacaktı (`PUT` metodunun gövdesinde olduğu gibi).
-* `PUT` talebi için `/items/{item_id}`'nin gövdesini, JSON olarak doğrulayıp okuyacak:
+* `PUT` isteği için `/items/{item_id}`'nin gövdesini, JSON olarak doğrulayıp okuyacak:
     * `name` adında zorunlu bir parametre olup olmadığını ve varsa tipinin `str` olup olmadığını kontol edecek.
     * `price` adında zorunlu bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
     * `is_offer` adında opsiyonel bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
