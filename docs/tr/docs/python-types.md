@@ -466,7 +466,7 @@ Resmi Pydantic dokümanlarından alınmıştır:
 
 Daha fazlasini görmek için [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-!!! tip 
+!!! tip
     Pydantic, varsayılan değer olmadan `Optional` veya `Union[Something, None]` kullandığınızda özel bir davranışa sahiptir, `Required`, `Optional` alanları hakkında Pydantic dokümanlarında daha fazla bilgi edinebilirsiniz: <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional Fields</a>.
 
 ## Meta Veri Ek Açıklamaları ile Tip İpuçları
