@@ -58,7 +58,7 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Andere Sponsoren</a>
+<a href="https://fastapi.tiangolo.com/de/fastapi-people/#sponsoren" class="external-link" target="_blank">Andere Sponsoren</a>
 
 ## Meinungen
 
@@ -196,7 +196,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Anmerkung**:
 
-Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _"In Eile?"_ über <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` und `await` in der Dokumentation</a> an.
+Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _"In Eile?"_ über <a href="https://fastapi.tiangolo.com/de/async/#in-eile" target="_blank">`async` und `await` in der Dokumentation</a> an.
 </details>
 
 ### Starten
