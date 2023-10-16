@@ -163,7 +163,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 
 Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette auf Steroiden ist):
 
-* Schwer beeindruckende Performance. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python Frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
+* Schwer beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python Frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
 * **WebSocket**-Unterstützung.
 * Hintergrundaufgaben im selben Prozess.
 * Ereignisse beim Starten und Herunterfahren.
