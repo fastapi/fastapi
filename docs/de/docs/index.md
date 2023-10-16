@@ -27,11 +27,11 @@
 
 ---
 
-FastAPI ist ein modernes, schnelles (High-Performance) Web-Framework zur Erstellung von APIs mit Python 3.7+ auf Basis von Standard Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
+FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.7+ auf Basis von Standard Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
 
 Seine Schlüssel-Merkmale sind:
 
-* **Schnell**: Sehr hohe Leistung, auf Augenhöhe mit **NodeJS** und **Go** (Dank Starlette und Pydantic). [Eines der schnellsten verfügbaren Python-Frameworks](#performance).
+* **Schnell**: Sehr hohe Leistung, auf Augenhöhe mit **NodeJS** und **Go** (Dank Starlette und Pydantic). [Eines der schnellsten verfügbaren Python-Frameworks](#performanz).
 
 * **Schnell zu programmieren**: Erhöhen Sie die Geschwindigkeit bei der Entwicklung von Funktionen um etwa 200 % bis 300 %. *
 * **Weniger Bugs**: Verringern Sie die von Menschen (Entwicklern) verursachten Fehler um etwa 40 %. *
@@ -435,7 +435,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
     * **Cookie Sessions**
     * ... und mehr.
 
-## Performance
+## Performanz
 
 Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn laufen, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur noch hinter Starlette und Uvicorn selbst (intern von FastAPI verwendet).
 
