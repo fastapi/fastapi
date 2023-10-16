@@ -249,4 +249,4 @@ In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
 Und Sie müssen sie nur einmal deklarieren.
 
-Das ist wahrscheinlich der sichtbarste Unterschied zwischen **FastAPI** und alternativen Frameworks (abgesehen von der reinen Performance).
+Das ist wahrscheinlich der sichtbarste Unterschied zwischen **FastAPI** und alternativen Frameworks (abgesehen von der reinen Performanz).
