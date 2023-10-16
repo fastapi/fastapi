@@ -59,7 +59,9 @@ plugins:
           extensions:
             - griffe_typingdoc
           show_root_heading: true
-          members: true
+          show_if_no_docstring: true
+          preload_modules: [httpx, starlette]
+          inherited_members: true
           members_order: source
           separate_signature: true
           unwrap_annotated: true
