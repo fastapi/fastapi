@@ -1381,7 +1381,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -1394,7 +1394,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -1758,7 +1758,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -1771,7 +1771,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -2140,7 +2140,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -2153,7 +2153,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -2522,7 +2522,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -2535,7 +2535,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -2899,7 +2899,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -2912,7 +2912,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -3276,7 +3276,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -3289,7 +3289,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -3658,7 +3658,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -3671,7 +3671,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
@@ -4040,7 +4040,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An summary for the *path operation*.
+                A summary for the *path operation*.
 
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
 
@@ -4053,7 +4053,7 @@ class APIRouter(routing.Router):
             Optional[str],
             Doc(
                 """
-                An description for the *path operation*.
+                A description for the *path operation*.
 
                 If not provided, it will be extracted automatically from the docstring
                 of the *path operation function*.
