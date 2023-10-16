@@ -1,16 +1,16 @@
 # Python Veri Tiplerine Giriş
 
-Python isteğe bağlı olarak "tip belirteçlerini" ('tür ek açıklamaları' olarak da adlandırılır)  destekler.
+Python isteğe bağlı olarak "tip belirteçlerini" ('tür ek açıklamaları' olarak da adlandırılır) destekler.
 
  **"Tip belirteçleri"** (veya ek açıklamalar) bir değişkenin <abbr title="örneğin: str, int, float, bool">tipinin</abbr> belirtilmesine olanak sağlayan özel bir sözdizimidir.
 
-Değişkenleriniz için tür bildirerek, editörler ve araçlar size daha iyi bir kullanım deneyimi sağlayabilir.
+Değişkenleriniz için tip bildirerek, editörler ve araçlar size daha iyi bir kullanım deneyimi sağlayabilir.
 
-Bu pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme** rehberidir ve bu rehber **FastAPI** kullanımı için gerekli olan ufak bir konuyu kapsar ki bu çok az bir miktardır.
+Bu sayfa Python tip belirteçleriyle ilgili **hızlı bir başlangıç rehberi/bilgi tazeleyici** görevindedir. İçeriği ise FastAPI ile kullanılacak minimum gereksinimleri kapsar, ki bu dağın görünen yüzü.
 
-**FastAPI' nin** tamamı bu tür tip belirteçlere dayanır ve bunlar birçok avantaj ve fayda sağlar.
+**FastAPI**'nin tamamı bu tip belirteçlere dayanır ve bunlar birçok avantaj ve fayda sağlar.
 
-Ancak hiç **FastAPI** kullanmasanız bile, onlar hakkında biraz bilgi edinmeniz yararınıza olacaktır.
+Ancak hiç **FastAPI** kullanmasanız bile, bu konu hakkında biraz bilgi edinmeniz yararınıza olacaktır.
 
 !!! not
     Eğer bir Python uzmanıysanız ve tip ipuçları hakkında her şeyi zaten biliyorsanız, bir sonraki bölüme geçebilirsiniz.
@@ -23,7 +23,7 @@ Basit bir örnek ile başlayalım:
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-Bu program çağrıldığında çıktısı(output) aşağıdaki gibi olur:
+Bu program çağrıldığında <abbr title="Output">çıktısı</abbr> aşağıdaki gibi olur:
 
 ```
 John Doe
@@ -41,21 +41,21 @@ Fonksiyon sırayla şunları yapar:
 
 ### Düzenleme
 
-Bu program son derece basittir.
+Bu program son derece basitti.
 
-Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. Ancak daha sonra, metin içindeki ilk harfi büyük harfe dönüştüren bir işlevi çağırmanız gerekecektir."
+Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. Ancak metin içerisindeki ilk harfi büyük harfe dönüştüren metodu hatırlamanız gerekecek.
 
- `upper` mıydı ? Yoksa  `uppercase`' mi? `first_uppercase`? `capitalize`?
+ `upper` mıydı? Yoksa  `uppercase`' mi? `first_uppercase`? Ya da `capitalize`?
 
 Ardından, programcıların en iyi dostu olan otomatik tamamlamayı kullanarak işinizi kolaylaştırdınız.
 
-'first_name', ardından bir nokta ('.') yazıp otomatik tamamlamayı tetiklemek için 'Ctrl+Space' tuşlarına bastınız.
+`first_name`, ardından bir nokta ('.') yazıp otomatik tamamlamayı tetiklemek için 'Ctrl+Space' tuşlarına bastınız.
 
 Ancak, ne yazık ki, yararlı hiçbir şey elde edemediniz:
 
 <img src="/img/python-types/image01.png">
 
-### Tipleri ekle
+### Tipleri Ekle
 
 Önceki sürümden sadece bir satırı değiştirelim.
 
@@ -79,21 +79,21 @@ ve bu hale getirmiş olacağız:
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-Bu, varsayılan değerleri değiştirmek ile aynı şey değildir:
+Parametrelere varsayılan değer atamak ile aynı şey değildir:
 
 ```Python
     first_name="john", last_name="doe"
 ```
 
-Dolayısıyla bu iki uygulamanın birbirinden farklı olduğunu dikkate alın.
+Dolayısıyla bu iki kullanımın tamamen birbirinden farklı.
 
 Dikkat edin; iki nokta üst üste (`:`) kullanıyoruz , eşittir (`=`) DEĞİL.
 
-Ayrıca tür ipuçlarını eklemek normalde onlar olmadan, olacakları değiştirmez.
+Ayrıca tip ipuçları eklemek kodun çıktısını değiştirmez.
 
 Şimdi programı tekrar en baştan yazdığınızı hayal edin.
 
-Aynı noktada, `Ctrl+Space` ile otomatik tamamlamayı tetiklediniz  ve şunu görüyorsunuz:
+Aynı noktada, `Ctrl+Space` ile otomatik tamamlamayı tetiklediniz ve şunu görüyorsunuz:
 
 <img src="/img/python-types/image02.png">
 
@@ -109,7 +109,7 @@ Tür belirteçlerine sahip bir fonksiyonu inceleyelim:
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Editör, değişkenlerin tiplerini bildiğinden yalnızca otomatik tamamlamayı değil, hata kontrollerini de sağlar:
+Editör, değişkenlerin tiplerini bildiğinden dolayı yalnızca otomatik tamamlamayı değil, hata kontrollerini de sağlar:
 
 <img src="/img/python-types/image04.png">
 
@@ -119,11 +119,11 @@ Artık `age` değişkenini `str(age)` olarak kullanmanız gerektiğini biliyorsu
 {!../../../docs_src/python_types/tutorial004.py!}
 ```
 
-## Tip Bildirme
+## Tip Tanımlama
 
 Az önce tip belirteçlerinin en çok kullanıldığı ana yeri gördünüz.
 
- **FastAPI**ile çalışırken tip belirteçlerini en çok kullanacağımız yer yine fonksiyonlardır.
+**FastAPI** ile çalışırken tip belirteçlerini en çok kullanacağımız yer yine fonksiyonlardır.
 
 ### Basit Tipler
 
@@ -152,7 +152,7 @@ Bu tipleri ve dahili tpileri bildirmek için standart Python küyüphanesi "typi
 
 Yazım kullanan `sözdizimi`, Python 3.6'dan Python 3.9, Python 3.10 vb. dahil olmak üzere en son sürümlere kadar tüm sürümlerle **uyumludur**.
 
-Python geliştikçe, **yeni sürümler** bu `belirteç` (tür ek) açıklamaları için gelişmiş destekle birlikte gelir ve çoğu durumda tür ek açıklamalarını bildirmek için yazım modülünü içe aktarmanıza ve kullanmanıza bile gerek kalmaz.
+Python geliştikçe, **yeni sürümler** bu `belirteç` (tip eki) açıklamaları için gelişmiş destekle birlikte gelir ve çoğu durumda tür ek açıklamalarını bildirmek için yazım modülünü içe aktarmanıza ve kullanmanıza bile gerek kalmaz.
 
 Projeniz için Python'un daha yeni bir sürümünü seçebilir ve böylece ekstra basitleştirilmiş özelliklerden yararlanabilirsiniz.
 
