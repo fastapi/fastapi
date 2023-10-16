@@ -1,6 +1,6 @@
 # Python Veri Tiplerine Giriş
 
-Python isteğe bağlı olarak "tip belirteçlerini" ('tür ek açıklamaları' olarak da adlandırılır) destekler.
+Python isteğe bağlı olarak "<abbr title="'tür ek açıklamaları' olarak da adlandırılır">tip belirteçlerini</abbr>" destekler.
 
  **"Tip belirteçleri"** (veya ek açıklamalar) bir değişkenin <abbr title="örneğin: str, int, float, bool">tipinin</abbr> belirtilmesine olanak sağlayan özel bir sözdizimidir.
 
