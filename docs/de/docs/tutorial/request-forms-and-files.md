@@ -15,13 +15,13 @@ Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definie
     {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -40,13 +40,13 @@ Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Q
     {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
