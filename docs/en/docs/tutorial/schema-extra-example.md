@@ -20,13 +20,13 @@ You can declare `examples` for a Pydantic model that will be added to the genera
     {!> ../../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
     ```
 
-=== "Python 3.6+ Pydantic v2"
+=== "Python 3.8+ Pydantic v2"
 
     ```Python hl_lines="15-26"
     {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
     ```
 
-=== "Python 3.6+ Pydantic v1"
+=== "Python 3.8+ Pydantic v1"
 
     ```Python hl_lines="15-25"
     {!> ../../../docs_src/schema_extra_example/tutorial001_pv1.py!}
@@ -68,7 +68,7 @@ When using `Field()` with Pydantic models, you can also declare additional `exam
     {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10-13"
     {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
@@ -104,7 +104,7 @@ Here we pass `examples` containing one example of the data expected in `Body()`:
     {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23-30"
     {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
@@ -119,7 +119,7 @@ Here we pass `examples` containing one example of the data expected in `Body()`:
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -150,7 +150,7 @@ You can of course also pass multiple `examples`:
     {!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24-39"
     {!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
@@ -165,7 +165,7 @@ You can of course also pass multiple `examples`:
     {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -225,7 +225,7 @@ You can use it like this:
     {!> ../../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24-50"
     {!> ../../../docs_src/schema_extra_example/tutorial005_an.py!}
@@ -240,7 +240,7 @@ You can use it like this:
     {!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

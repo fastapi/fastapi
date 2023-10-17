@@ -23,7 +23,7 @@ Here's a general idea of how the models could look like with their password fiel
     {!> ../../../docs_src/extra_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
     {!> ../../../docs_src/extra_models/tutorial001.py!}
@@ -164,7 +164,7 @@ That way, we can declare just the differences between the models (with plaintext
     {!> ../../../docs_src/extra_models/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  15-16  19-20  23-24"
     {!> ../../../docs_src/extra_models/tutorial002.py!}
@@ -187,7 +187,7 @@ To do that, use the standard Python type hint <a href="https://docs.python.org/3
     {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14-15  18-20  33"
     {!> ../../../docs_src/extra_models/tutorial003.py!}
@@ -219,7 +219,7 @@ For that, use the standard Python `typing.List` (or just `list` in Python 3.9 an
     {!> ../../../docs_src/extra_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  20"
     {!> ../../../docs_src/extra_models/tutorial004.py!}
@@ -239,7 +239,7 @@ In this case, you can use `typing.Dict` (or just `dict` in Python 3.9 and above)
     {!> ../../../docs_src/extra_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  8"
     {!> ../../../docs_src/extra_models/tutorial005.py!}
