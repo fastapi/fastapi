@@ -16,7 +16,7 @@ Hierbei können Sie **Typ-Annotationen** genauso verwenden, wie Sie es bei Werte
     {!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18  23"
     {!> ../../../docs_src/response_model/tutorial001_01.py!}
@@ -65,7 +65,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
     {!> ../../../docs_src/response_model/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001.py!}
@@ -101,7 +101,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11"
     {!> ../../../docs_src/response_model/tutorial002.py!}
@@ -121,7 +121,7 @@ Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu 
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/response_model/tutorial002.py!}
@@ -146,7 +146,7 @@ Wir können stattdessen ein Eingabe-Modell mit dem Klartext-Passwort, und ein Au
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -160,7 +160,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -174,7 +174,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -208,7 +208,7 @@ Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil a
     {!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-13  15-16  20"
     {!> ../../../docs_src/response_model/tutorial003_01.py!}
@@ -284,7 +284,7 @@ Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen be
     {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/response_model/tutorial003_04.py!}
@@ -306,7 +306,7 @@ In diesem Fall können Sie die Generierung des Response-Modells abschalten, inde
     {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/response_model/tutorial003_05.py!}
@@ -330,7 +330,7 @@ Ihr Response-Modell könnte Defaultwerte haben, wie:
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11  13-14"
     {!> ../../../docs_src/response_model/tutorial004.py!}
@@ -360,7 +360,7 @@ Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unse
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial004.py!}
@@ -447,7 +447,7 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
     {!> ../../../docs_src/response_model/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="31  37"
     {!> ../../../docs_src/response_model/tutorial005.py!}
@@ -468,7 +468,7 @@ Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ei
     {!> ../../../docs_src/response_model/tutorial006_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="31  37"
     {!> ../../../docs_src/response_model/tutorial006.py!}
