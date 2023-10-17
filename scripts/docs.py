@@ -290,7 +290,6 @@ def update_config() -> None:
         else:
             use_name = alternate_dict[url]
             new_alternate.append({"link": url, "name": use_name})
-    config["nav"][1] = {"Languages": languages}
     config["extra"]["alternate"] = new_alternate
     en_config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
