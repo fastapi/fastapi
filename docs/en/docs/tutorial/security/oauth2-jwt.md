@@ -121,7 +121,7 @@ And another one to authenticate and return a user.
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="7  49  56-57  60-61  70-76"
     {!> ../../../docs_src/security/tutorial004_an.py!}
@@ -136,7 +136,7 @@ And another one to authenticate and return a user.
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -188,7 +188,7 @@ Create a utility function to generate a new access token.
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="6  13-15  29-31 79-87"
     {!> ../../../docs_src/security/tutorial004_an.py!}
@@ -203,7 +203,7 @@ Create a utility function to generate a new access token.
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -232,7 +232,7 @@ If the token is invalid, return an HTTP error right away.
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="90-107"
     {!> ../../../docs_src/security/tutorial004_an.py!}
@@ -247,7 +247,7 @@ If the token is invalid, return an HTTP error right away.
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -274,7 +274,7 @@ Create a real JWT access token and return it
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="118-133"
     {!> ../../../docs_src/security/tutorial004_an.py!}
@@ -289,7 +289,7 @@ Create a real JWT access token and return it
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

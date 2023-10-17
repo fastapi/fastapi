@@ -69,7 +69,7 @@ Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo
     {!> ../../../docs_src/query_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params/tutorial002.py!}
@@ -91,7 +91,7 @@ Você também pode declarar tipos `bool`, e eles serão convertidos:
     {!> ../../../docs_src/query_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params/tutorial003.py!}
@@ -143,7 +143,7 @@ Eles serão detectados pelo nome:
     {!> ../../../docs_src/query_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8  10"
     {!> ../../../docs_src/query_params/tutorial004.py!}
@@ -209,7 +209,7 @@ E claro, você pode definir alguns parâmetros como obrigatórios, alguns possui
     {!> ../../../docs_src/query_params/tutorial006_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params/tutorial006.py!}

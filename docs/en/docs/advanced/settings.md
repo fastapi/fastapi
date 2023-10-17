@@ -260,13 +260,13 @@ Now we create a dependency that returns a new `config.Settings()`.
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="6  12-13"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -288,13 +288,13 @@ And then we can require it from the *path operation function* as a dependency an
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  19-21"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -396,13 +396,13 @@ But as we are using the `@lru_cache()` decorator on top, the `Settings` object w
     {!> ../../../docs_src/settings/app03_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  11"
     {!> ../../../docs_src/settings/app03_an/main.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

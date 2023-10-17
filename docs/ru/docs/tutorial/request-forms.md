@@ -17,13 +17,13 @@
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_forms/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать 'Annotated' версию, если это возможно.
@@ -42,13 +42,13 @@
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/request_forms/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать 'Annotated' версию, если это возможно.
