@@ -25,7 +25,7 @@ Interaktywna dokumentacja i webowe interfejsy do eksploracji API. Z racji tego, 
 
 ### Nowoczesny Python
 
-Wszystko opiera się na standardowych deklaracjach typu **Python 3.6** (dzięki Pydantic). Brak nowej składni do uczenia. Po prostu standardowy, współczesny Python.
+Wszystko opiera się na standardowych deklaracjach typu **Python 3.8** (dzięki Pydantic). Brak nowej składni do uczenia. Po prostu standardowy, współczesny Python.
 
 Jeśli potrzebujesz szybkiego przypomnienia jak używać deklaracji typów w Pythonie (nawet jeśli nie używasz FastAPI), sprawdź krótki samouczek: [Python Types](python-types.md){.internal-link target=_blank}.
 
