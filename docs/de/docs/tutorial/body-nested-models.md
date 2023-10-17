@@ -12,7 +12,7 @@ Sie können ein Attribut als Sub-Typ definieren, zum Beispiel eine Python `list`
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial001.py!}
@@ -73,7 +73,7 @@ In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine "List
     {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial002.py!}
@@ -99,7 +99,7 @@ Deklarieren wir also `tags` als Set von Strings.
     {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14"
     {!> ../../../docs_src/body_nested_models/tutorial003.py!}
@@ -137,7 +137,7 @@ Wir können zum Beispiel ein `Image`-Modell definieren.
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -159,7 +159,7 @@ Und dann können wir es als Typ eines Attributes verwenden.
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -208,7 +208,7 @@ Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarie
     {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10"
     {!> ../../../docs_src/body_nested_models/tutorial005.py!}
@@ -232,7 +232,7 @@ Sie können Pydantic-Modelle auch als Typen innerhalb von `list`, `set`, usw. ve
     {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
@@ -283,7 +283,7 @@ Sie können beliebig tief verschachtelte Modelle definieren:
     {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14  20  23  27"
     {!> ../../../docs_src/body_nested_models/tutorial007.py!}
@@ -314,7 +314,7 @@ so wie in:
     {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_nested_models/tutorial008.py!}
@@ -354,7 +354,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
     {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}
