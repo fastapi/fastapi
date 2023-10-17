@@ -122,7 +122,7 @@ Both *path operations* require an `X-Token` header.
     {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_an/main.py!}
@@ -137,7 +137,7 @@ Both *path operations* require an `X-Token` header.
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

@@ -40,7 +40,7 @@ And then **FastAPI** will call that override instead of the original dependency.
     {!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="29-30  33"
     {!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
@@ -55,7 +55,7 @@ And then **FastAPI** will call that override instead of the original dependency.
     {!> ../../../docs_src/dependency_testing/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
