@@ -72,13 +72,13 @@ Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `de
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  13  21"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -99,13 +99,13 @@ Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` 
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17-18  25-26"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
