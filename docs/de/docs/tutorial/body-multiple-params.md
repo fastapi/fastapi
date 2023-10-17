@@ -20,7 +20,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
@@ -35,7 +35,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -68,7 +68,7 @@ Aber Sie können auch mehrere Body-Parameter deklarieren, z.B. `item` und `user`
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
@@ -122,7 +122,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
@@ -137,7 +137,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -196,7 +196,7 @@ Zum Beispiel:
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="28"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
@@ -211,7 +211,7 @@ Zum Beispiel:
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -249,7 +249,7 @@ so wie in:
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
@@ -264,7 +264,7 @@ so wie in:
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
