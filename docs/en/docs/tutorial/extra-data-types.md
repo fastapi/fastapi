@@ -67,7 +67,7 @@ Here's an example *path operation* with parameters using some of the above types
     {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  3  13-17"
     {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
@@ -82,7 +82,7 @@ Here's an example *path operation* with parameters using some of the above types
     {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -105,7 +105,7 @@ Note that the parameters inside the function have their natural data type, and y
     {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-20"
     {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
@@ -120,7 +120,7 @@ Note that the parameters inside the function have their natural data type, and y
     {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
