@@ -43,7 +43,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
