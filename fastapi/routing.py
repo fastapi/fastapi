@@ -204,6 +204,7 @@ def get_request_handler(
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
+    max_files: Optional[int] = None,
     dependency_overrides_provider: Optional[Any] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -219,7 +220,10 @@ def get_request_handler(
             body: Any = None
             if body_field:
                 if is_body_form:
-                    body = await request.form()
+                    if max_files is not None:
+                        body = await request.form(max_files=max_files)
+                    else:
+                        body = await request.form()
                     stack = request.scope.get("fastapi_astack")
                     assert isinstance(stack, AsyncExitStack)
                     stack.push_async_callback(body.close)
@@ -386,6 +390,7 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        max_files: Optional[int] = None,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -416,6 +421,7 @@ class APIRoute(routing.Route):
         self.response_model_exclude_unset = response_model_exclude_unset
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
+        self.max_files = max_files
         self.include_in_schema = include_in_schema
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -508,6 +514,7 @@ class APIRoute(routing.Route):
             response_model_exclude_unset=self.response_model_exclude_unset,
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
+            max_files=self.max_files,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
@@ -610,6 +617,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        max_files: Optional[int] = None,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -660,6 +668,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            max_files=max_files,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -691,6 +700,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        max_files: Optional[int] = None,
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -721,6 +731,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                max_files=max_files,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -1030,6 +1041,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        max_files: Optional[int] = None,
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1058,6 +1070,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            max_files=max_files,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
