@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python 3.7+, basé sur les annotations de type standard de Python.
+FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python 3.8+, basé sur les annotations de type standard de Python.
 
 Les principales fonctionnalités sont :
 
@@ -115,7 +115,7 @@ Si vous souhaitez construire une application <abbr title="Command Line Interface
 
 ## Prérequis
 
-Python 3.7+
+Python 3.8+
 
 FastAPI repose sur les épaules de géants :
 
@@ -331,7 +331,7 @@ Vous faites cela avec les types Python standard modernes.
 
 Vous n'avez pas à apprendre une nouvelle syntaxe, les méthodes ou les classes d'une bibliothèque spécifique, etc.
 
-Juste du **Python 3.7+** standard.
+Juste du **Python 3.8+** standard.
 
 Par exemple, pour un `int`:
 
