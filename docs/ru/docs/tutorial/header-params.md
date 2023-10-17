@@ -18,7 +18,7 @@
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -33,7 +33,7 @@
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Предпочтительнее использовать версию с аннотацией, если это возможно.
@@ -60,7 +60,7 @@
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -75,7 +75,7 @@
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Предпочтительнее использовать версию с аннотацией, если это возможно.
@@ -120,7 +120,7 @@
     {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/header_params/tutorial002_an.py!}
@@ -135,7 +135,7 @@
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Предпочтительнее использовать версию с аннотацией, если это возможно.
@@ -169,7 +169,7 @@
     {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial003_an.py!}
@@ -193,7 +193,7 @@
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Предпочтительнее использовать версию с аннотацией, если это возможно.

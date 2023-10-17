@@ -69,7 +69,7 @@
     {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14  16  23  26"
     {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
@@ -84,7 +84,7 @@
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ 没Annotated"
+=== "Python 3.8+ 没Annotated"
 
     !!! tip
          尽可能选择使用 `Annotated` 的版本。
