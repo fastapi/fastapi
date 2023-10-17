@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI, Python 3.7+'nin standart type hint'lerine dayalı, modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'tür.
+FastAPI, Python 3.8+'nin standart type hint'lerine dayalı, modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'tür.
 
 Temel özellikleri şunlardır:
 
@@ -115,7 +115,7 @@ Eğer API yerine, terminalde kullanılmak üzere bir <abbr title="Komut Satırı
 
 ## Gereksinimler
 
-Python 3.7+
+Python 3.8+
 
 FastAPI iki devin omuzları üstünde duruyor:
 
@@ -331,7 +331,7 @@ Bu işlemi standart modern Python tipleriyle yapıyoruz.
 
 Yeni bir syntax yapısını, bir kütüphane özel metod veya sınıfları öğrenmeye gerek yoktur.
 
-Hepsi sadece **Python 3.7+** standartlarına dayalıdır.
+Hepsi sadece **Python 3.8+** standartlarına dayalıdır.
 
 Örnek olarak, `int` tanımlamak için:
 
