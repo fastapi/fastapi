@@ -12,7 +12,7 @@
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial001.py!}
@@ -73,7 +73,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial002.py!}
@@ -99,7 +99,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14"
     {!> ../../../docs_src/body_nested_models/tutorial003.py!}
@@ -137,7 +137,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -159,7 +159,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -208,7 +208,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10"
     {!> ../../../docs_src/body_nested_models/tutorial005.py!}
@@ -232,7 +232,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
@@ -283,7 +283,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14  20  23  27"
     {!> ../../../docs_src/body_nested_models/tutorial007.py!}
@@ -314,7 +314,7 @@ images: list[Image]
     {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_nested_models/tutorial008.py!}
@@ -354,7 +354,7 @@ images: list[Image]
     {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}
