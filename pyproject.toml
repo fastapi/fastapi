@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "fastapi"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = "MIT"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
@@ -32,7 +32,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
