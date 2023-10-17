@@ -63,7 +63,7 @@
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="13  15  22  25"
     {!> ../../../docs_src/background_tasks/tutorial002.py!}

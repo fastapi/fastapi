@@ -12,13 +12,13 @@ In that case, they will be applied to all the *path operations* in the applicati
     {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial012_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
