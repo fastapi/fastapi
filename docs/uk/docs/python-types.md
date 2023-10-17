@@ -164,7 +164,7 @@ John Doe
 
 Наприклад, давайте визначимо змінну, яка буде `list` із `str`.
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     З модуля `typing`, імпортуємо `List` (з великої літери `L`):
 
@@ -218,7 +218,7 @@ John Doe
 
 Ви повинні зробити те ж саме, щоб оголосити `tuple` і `set`:
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial007.py!}
@@ -243,7 +243,7 @@ John Doe
 
 Другий параметр типу для значення у `dict`:
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008.py!}
@@ -269,7 +269,7 @@ John Doe
 
 У Python 3.10 також є **альтернативний синтаксис**, у якому ви можете розділити можливі типи за допомогою <abbr title='також називають «побітовим "або" оператором», але це значення тут не актуальне'>вертикальної смуги (`|`)</abbr>.
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008b.py!}
@@ -299,13 +299,13 @@ John Doe
 
 Це також означає, що в Python 3.10 ви можете використовувати `Something | None`:
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009.py!}
     ```
 
-=== "Python 3.6 і вище - альтернатива"
+=== "Python 3.8 і вище - альтернатива"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009b.py!}
@@ -321,7 +321,7 @@ John Doe
 
 Ці типи, які приймають параметри типу у квадратних дужках, називаються **Generic types** or **Generics**, наприклад:
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     * `List`
     * `Tuple`
@@ -340,7 +340,7 @@ John Doe
     * `set`
     * `dict`
 
-    І те саме, що й у Python 3.6, із модуля `typing`:
+    І те саме, що й у Python 3.8, із модуля `typing`:
 
     * `Union`
     * `Optional`
@@ -355,10 +355,10 @@ John Doe
     * `set`
     * `dict`
 
-    І те саме, що й у Python 3.6, із модуля `typing`:
+    І те саме, що й у Python 3.8, із модуля `typing`:
 
     * `Union`
-    * `Optional` (так само як у Python 3.6)
+    * `Optional` (так само як у Python 3.8)
     * ...та інші.
 
     У Python 3.10, як альтернатива використанню `Union` та `Optional`, ви можете використовувати <abbr title='також називають «побітовим "або" оператором», але це значення тут не актуальне'>вертикальну смугу (`|`)</abbr> щоб оголосити об'єднання типів.
@@ -397,7 +397,7 @@ John Doe
 
 Приклад з документації Pydantic:
 
-=== "Python 3.6 і вище"
+=== "Python 3.8 і вище"
 
     ```Python
     {!> ../../../docs_src/python_types/tutorial011.py!}
