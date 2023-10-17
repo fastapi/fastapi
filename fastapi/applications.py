@@ -639,10 +639,6 @@ class FastAPI(Starlette):
             Doc(
                 """
                 A URL prefix for the OpenAPI URL.
-
-                `openapi_prefix` has been deprecated in favor of `root_path`, which
-                follows more closely the ASGI standard, is simpler, and more
-                automatic.
                 """
             ),
             deprecated(

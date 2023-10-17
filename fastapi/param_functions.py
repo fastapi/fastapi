@@ -153,8 +153,6 @@ def Path(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -275,8 +273,6 @@ def Path(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -482,8 +478,6 @@ def Query(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -604,8 +598,6 @@ def Query(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -801,8 +793,6 @@ def Header(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -923,8 +913,6 @@ def Header(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -1110,8 +1098,6 @@ def Cookie(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -1232,8 +1218,6 @@ def Cookie(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -1441,8 +1425,6 @@ def Body(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -1563,8 +1545,6 @@ def Body(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -1760,8 +1740,6 @@ def Form(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -1882,8 +1860,6 @@ def Form(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
@@ -2078,8 +2054,6 @@ def File(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
-
-            Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead.
             """
         ),
         deprecated(
@@ -2200,8 +2174,6 @@ def File(  # noqa: N802
         Doc(
             """
             Include extra fields used by the JSON Schema.
-
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
             """
         ),
         deprecated(
