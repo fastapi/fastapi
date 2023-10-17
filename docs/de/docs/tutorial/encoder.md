@@ -26,7 +26,7 @@ Es nimmt ein Objekt entgegen, wie etwa ein Pydantic-Modell, und gibt eine JSON-k
     {!> ../../../docs_src/encoder/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  22"
     {!> ../../../docs_src/encoder/tutorial001.py!}
