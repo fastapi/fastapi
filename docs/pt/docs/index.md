@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python 3.6 ou superior, baseado nos _type hints_ padrões do Python.
+FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python 3.8 ou superior, baseado nos _type hints_ padrões do Python.
 
 Os recursos chave são:
 
@@ -100,7 +100,7 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 
 ## Requisitos
 
-Python 3.7+
+Python 3.8+
 
 FastAPI está nos ombros de gigantes:
 
@@ -316,7 +316,7 @@ Você faz com tipos padrão do Python moderno.
 
 Você não terá que aprender uma nova sintaxe, métodos ou classes de uma biblioteca específica etc.
 
-Apenas **Python 3.6+** padrão.
+Apenas **Python 3.8+** padrão.
 
 Por exemplo, para um `int`:
 
