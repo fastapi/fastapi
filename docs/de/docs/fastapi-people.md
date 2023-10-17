@@ -18,7 +18,7 @@ Das bin ich:
 </div>
 {% endif %}
 
-Ich bin der Erfinder und Betreuer von **FastAPI**. Sie können mehr darüber in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank} erfahren.
+Ich bin der Erfinder und Betreuer von **FastAPI**. Sie können mehr darüber in [FastAPI helfen – Hilfe erhalten – Mit dem Autor vernetzen](help-fastapi.md#mit-dem-autor-vernetzen){.internal-link target=_blank} erfahren.
 
 ... Aber hier möchte ich Ihnen die Gemeinschaft vorstellen.
 
@@ -28,15 +28,15 @@ Ich bin der Erfinder und Betreuer von **FastAPI**. Sie können mehr darüber in 
 
 Das sind die Menschen, die:
 
-* [Anderen bei Problemen (Fragen) in GitHub helfen](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [<abbr title="Pull Request – 'Zieh-Anfrage': Geänderten Quellcode senden, mit dem Vorschlag, ihn mit dem aktuellen Quellcode zu verschmelzen">Pull Requests</abbr> erstellen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Pull Requests überprüfen, [besonders wichtig für Übersetzungen](contributing.md#translations){.internal-link target=_blank}.
+* [Anderen bei Fragen auf GitHub helfen](help-fastapi.md#anderen-bei-fragen-auf-github-helfen){.internal-link target=_blank}.
+* [<abbr title='Pull Request – "Zieh-Anfrage": Geänderten Quellcode senden, mit dem Vorschlag, ihn mit dem aktuellen Quellcode zu verschmelzen'>Pull Requests</abbr> erstellen](help-fastapi.md#einen-pull-request-erstellen){.internal-link target=_blank}.
+* Pull Requests überprüfen (Review), [besonders wichtig für Übersetzungen](contributing.md#translations){.internal-link target=_blank}.
 
 Eine Runde Applaus für sie. 👏 🙇
 
 ## Aktivste Benutzer im letzten Monat
 
-Hier die Benutzer, die im letzten Monat am meisten [anderen mit Problemen (Fragen) auf Github](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} geholfen haben. ☕
+Hier die Benutzer, die im letzten Monat am meisten [anderen mit Fragen auf Github](help-fastapi.md#anderen-bei-fragen-auf-github-helfen){.internal-link target=_blank} geholfen haben. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -52,7 +52,7 @@ Hier die Benutzer, die im letzten Monat am meisten [anderen mit Problemen (Frage
 
 Hier die **FastAPI-Experten**. 🤓
 
-Das sind die Benutzer, die *insgesamt* [anderen am meisten mit Problemen (Fragen) auf GitHub geholfen haben](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+Das sind die Benutzer, die *insgesamt* [anderen am meisten mit Fragen auf GitHub geholfen haben](help-fastapi.md#anderen-bei-fragen-auf-github-helfen){.internal-link target=_blank}.
 
 Sie haben bewiesen, dass sie Experten sind, weil sie vielen anderen geholfen haben. ✨
 
@@ -70,7 +70,7 @@ Sie haben bewiesen, dass sie Experten sind, weil sie vielen anderen geholfen hab
 
 Hier sind die **Top-Mitwirkenden**. 👷
 
-Diese Benutzer haben [die meisten <abbr title="Pull Request – 'Zieh-Anfrage': Geänderten Quellcode senden, mit dem Vorschlag, ihn mit dem aktuellen Quellcode zu verschmelzen">Pull Requests</abbr> erstellt](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} welche *<abbr title="Mergen – Zusammenführen: Unterschiedliche Versionen eines Quellcodes zusammenführen">gemerged</abbr>* wurden.
+Diese Benutzer haben [die meisten Pull Requests erstellt](help-fastapi.md#einen-pull-request-erstellen){.internal-link target=_blank} welche *<abbr title="Mergen – Zusammenführen: Unterschiedliche Versionen eines Quellcodes zusammenführen">gemerged</abbr>* wurden.
 
 Sie haben Quellcode, Dokumentation, Übersetzungen, usw. beigesteuert. 📦
 
