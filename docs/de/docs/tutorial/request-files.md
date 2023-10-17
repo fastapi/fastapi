@@ -19,13 +19,13 @@ Importieren Sie `File` und `UploadFile` von `fastapi`:
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -44,13 +44,13 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -85,13 +85,13 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -181,7 +181,7 @@ Sie können eine Datei optional machen, indem Sie Standard Typ-Annotationen verw
     {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10  18"
     {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
@@ -196,7 +196,7 @@ Sie können eine Datei optional machen, indem Sie Standard Typ-Annotationen verw
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -215,13 +215,13 @@ Sie können auch `File()` zusammen mit `UploadFile` verwenden, um zum Beispiel z
     {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8  14"
     {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -244,7 +244,7 @@ Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
     {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11  16"
     {!> ../../../docs_src/request_files/tutorial002_an.py!}
@@ -259,7 +259,7 @@ Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -285,7 +285,7 @@ Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu se
     {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12  19-21"
     {!> ../../../docs_src/request_files/tutorial003_an.py!}
@@ -300,7 +300,7 @@ Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu se
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
