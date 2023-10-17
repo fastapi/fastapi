@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́bù fún kikọ àwọn API pẹ̀lú Python 3.7+ èyí tí ó da lori àwọn ìtọ́kasí àmì irúfẹ́ Python.
+FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́bù fún kikọ àwọn API pẹ̀lú Python 3.8+ èyí tí ó da lori àwọn ìtọ́kasí àmì irúfẹ́ Python.
 
 Àwọn ẹya pàtàkì ni:
 
@@ -115,7 +115,7 @@ Ti o ba n kọ ohun èlò <abbr title="Command Line Interface">CLI</abbr> láti 
 
 ## Èròjà
 
-Python 3.7+
+Python 3.8+
 
 FastAPI dúró lórí àwọn èjìká tí àwọn òmíràn:
 
@@ -331,7 +331,7 @@ O ṣe ìyẹn pẹ̀lú irúfẹ́ àmì ìtọ́kasí ìgbàlódé Python.
 
 O ò nílò láti kọ́ síńtáàsì tuntun, ìlànà tàbí ọ̀wọ́ kíláàsì kan pàtó, abbl (i.e. àti bẹbẹ lọ).
 
-Ìtọ́kasí **Python 3.7+**
+Ìtọ́kasí **Python 3.8+**
 
 Fún àpẹẹrẹ, fún `int`:
 
