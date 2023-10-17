@@ -182,7 +182,7 @@ Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Li
     {!> ../../../docs_src/python_types/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     Von `typing` importieren Sie `List` (mit Großbuchstaben `L`):
 
@@ -230,7 +230,7 @@ Das Gleiche gilt für die Deklaration eines Tupels – `tuple` – und einer Men
     {!> ../../../docs_src/python_types/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial007.py!}
@@ -255,7 +255,7 @@ Der zweite Typ-Parameter ist für die Werte des `dict`:
     {!> ../../../docs_src/python_types/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008.py!}
@@ -281,7 +281,7 @@ In Python 3.10 gibt es zusätzlich eine **neue Syntax**, die es erlaubt, die mö
     {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008b.py!}
@@ -311,13 +311,13 @@ Das bedeutet auch, dass Sie in Python 3.10 `Something | None` verwenden können:
     {!> ../../../docs_src/python_types/tutorial009_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009.py!}
     ```
 
-=== "Python 3.6+ alternative"
+=== "Python 3.8+ Alternative"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009b.py!}
@@ -375,10 +375,10 @@ Diese Typen, die Typ-Parameter in eckigen Klammern akzeptieren, werden **generis
     * `set`
     * `dict`
 
-    Verwenden Sie für den Rest, wie unter Python 3.6, das `typing`-Modul:
+    Verwenden Sie für den Rest, wie unter Python 3.8, das `typing`-Modul:
 
     * `Union`
-    * `Optional`
+    * `Optional` (so wie unter Python 3.8)
     * ... und andere.
 
     In Python 3.10 können Sie als Alternative zu den Generics `Union` und `Optional` den <abbr title='Allgemein: "oder". In anderem Zusammenhang auch "Bitweises ODER", aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> verwenden, um Vereinigungen von Typen zu deklarieren, das ist besser und einfacher.
@@ -392,13 +392,13 @@ Diese Typen, die Typ-Parameter in eckigen Klammern akzeptieren, werden **generis
     * `set`
     * `dict`
 
-    Verwenden Sie für den Rest, wie unter Python 3.6, das `typing`-Modul:
+    Verwenden Sie für den Rest, wie unter Python 3.8, das `typing`-Modul:
 
     * `Union`
     * `Optional`
     * ... und andere.
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     * `List`
     * `Tuple`
@@ -458,7 +458,7 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
     {!> ../../../docs_src/python_types/tutorial011_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/python_types/tutorial011.py!}
@@ -486,7 +486,7 @@ Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typ-Hinweisen
     {!> ../../../docs_src/python_types/tutorial013_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     In Versionen niedriger als Python 3.9 importieren Sie `Annotated` von `typing_extensions`.
 
