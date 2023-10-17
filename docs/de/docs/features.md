@@ -25,11 +25,11 @@ Interaktive API-Dokumentation und erkundbare Web-Benutzeroberflächen. Da das Fr
 
 ### Nur modernes Python
 
-Alles basiert auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden. Nur normales, modernes Python.
+Alles basiert auf **Python 3.8 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
 Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
 
-Sie schreiben normales Python mit Typen:
+Sie schreiben Standard Python mit Typen:
 
 ```Python
 from typing import List, Dict
