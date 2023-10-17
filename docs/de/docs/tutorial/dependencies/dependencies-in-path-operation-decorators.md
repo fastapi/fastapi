@@ -20,13 +20,13 @@ Es sollte eine `list`e von `Depends()` sein:
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -63,13 +63,13 @@ Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhä
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="7  12"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -88,13 +88,13 @@ Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeit
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -115,13 +115,13 @@ Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Si
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
