@@ -26,13 +26,13 @@ Copy the example in a file `main.py`:
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -140,13 +140,13 @@ When we create an instance of the `OAuth2PasswordBearer` class we pass in the `t
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python  hl_lines="7"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -191,13 +191,13 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python  hl_lines="11"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

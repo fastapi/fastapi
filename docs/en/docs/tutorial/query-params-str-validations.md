@@ -10,7 +10,7 @@ Let's take this application as example:
     {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
@@ -42,7 +42,7 @@ To achieve that, first import:
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     In versions of Python below Python 3.9 you import `Annotated` from `typing_extensions`.
 
@@ -73,7 +73,7 @@ We had this type annotation:
     q: str | None = None
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     q: Union[str, None] = None
@@ -87,7 +87,7 @@ What we will do is wrap that with `Annotated`, so it becomes:
     q: Annotated[str | None] = None
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     q: Annotated[Union[str, None]] = None
@@ -107,7 +107,7 @@ Now that we have this `Annotated` where we can put more metadata, add `Query` to
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
@@ -138,7 +138,7 @@ This is how you would use `Query()` as the default value of your function parame
     {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
@@ -251,7 +251,7 @@ You can also add a parameter `min_length`:
     {!> ../../../docs_src/query_params_str_validations/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial003_an.py!}
@@ -266,7 +266,7 @@ You can also add a parameter `min_length`:
     {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -291,7 +291,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
     {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/query_params_str_validations/tutorial004_an.py!}
@@ -306,7 +306,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
     {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -351,13 +351,13 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
     {!> ../../../docs_src/query_params_str_validations/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial005_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -405,13 +405,13 @@ So, when you need to declare a value as required while using `Query`, you can si
     {!> ../../../docs_src/query_params_str_validations/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial006_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -435,13 +435,13 @@ There's an alternative way to explicitly declare that a value is required. You c
     {!> ../../../docs_src/query_params_str_validations/tutorial006b_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial006b_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -475,7 +475,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
     {!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial006c_an.py!}
@@ -490,7 +490,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
     {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -512,13 +512,13 @@ If you feel uncomfortable using `...`, you can also import and use `Required` fr
     {!> ../../../docs_src/query_params_str_validations/tutorial006d_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="2  9"
     {!> ../../../docs_src/query_params_str_validations/tutorial006d_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -548,7 +548,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
     {!> ../../../docs_src/query_params_str_validations/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial011_an.py!}
@@ -572,7 +572,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
     {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -617,7 +617,7 @@ And you can also define a default `list` of values if none are provided:
     {!> ../../../docs_src/query_params_str_validations/tutorial012_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial012_an.py!}
@@ -632,7 +632,7 @@ And you can also define a default `list` of values if none are provided:
     {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -668,13 +668,13 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
     {!> ../../../docs_src/query_params_str_validations/tutorial013_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial013_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -713,7 +713,7 @@ You can add a `title`:
     {!> ../../../docs_src/query_params_str_validations/tutorial007_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial007_an.py!}
@@ -728,7 +728,7 @@ You can add a `title`:
     {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -751,7 +751,7 @@ And a `description`:
     {!> ../../../docs_src/query_params_str_validations/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/query_params_str_validations/tutorial008_an.py!}
@@ -766,7 +766,7 @@ And a `description`:
     {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -805,7 +805,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
     {!> ../../../docs_src/query_params_str_validations/tutorial009_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial009_an.py!}
@@ -820,7 +820,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
     {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -849,7 +849,7 @@ Then pass the parameter `deprecated=True` to `Query`:
     {!> ../../../docs_src/query_params_str_validations/tutorial010_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/query_params_str_validations/tutorial010_an.py!}
@@ -864,7 +864,7 @@ Then pass the parameter `deprecated=True` to `Query`:
     {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -893,7 +893,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
     {!> ../../../docs_src/query_params_str_validations/tutorial014_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial014_an.py!}
@@ -908,7 +908,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
     {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
