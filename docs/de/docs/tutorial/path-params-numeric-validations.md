@@ -18,7 +18,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3-4"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -33,7 +33,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -67,7 +67,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -82,7 +82,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -117,7 +117,7 @@ Für **FastAPI** ist es nicht wichtig. Es erkennt die Parameter anhand ihres Nam
 
 Sie können Ihre Funktion also so deklarieren:
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -134,7 +134,7 @@ Aber behalten Sie im Kopf, dass Sie dieses Problem nicht haben, wenn Sie `Annota
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
@@ -174,7 +174,7 @@ Behalten Sie im Kopf, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem n
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
@@ -191,13 +191,13 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -219,13 +219,13 @@ Das Gleiche trifft zu auf:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -250,13 +250,13 @@ Dasselbe gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
