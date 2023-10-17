@@ -17,7 +17,7 @@ jobs:
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     # For pull requests it's not necessary to checkout the code but for master it is
     - uses: dorny/paths-filter@v2
       id: filter
@@ -35,7 +35,7 @@ jobs:
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -71,7 +71,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
