@@ -24,13 +24,13 @@ To do that, we declare a method `__call__`:
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/dependencies/tutorial011_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -51,13 +51,13 @@ And now, we can use `__init__` to declare the parameters of the instance that we
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/dependencies/tutorial011_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -78,13 +78,13 @@ We could create an instance of this class with:
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial011_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -113,13 +113,13 @@ checker(q="somequery")
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/dependencies/tutorial011_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
