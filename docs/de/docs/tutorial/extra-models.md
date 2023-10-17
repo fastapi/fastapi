@@ -211,7 +211,7 @@ Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, 
 
 Genauso können Sie eine Response deklarieren, die eine Liste von Objekten ist.
 
-Verwenden Sie dafür Pythons normales `typing.List` (oder nur `list` in Python 3.9 und darüber):
+Verwenden Sie dafür Pythons Standard `typing.List` (oder nur `list` in Python 3.9 und darüber):
 
 === "Python 3.9+"
 
