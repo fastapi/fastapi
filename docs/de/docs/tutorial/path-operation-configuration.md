@@ -25,7 +25,7 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
     {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  17"
     {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
@@ -54,7 +54,7 @@ Sie können Ihrer *Pfadoperation* Tags hinzufügen, mittels des Parameters `tags
     {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  22  27"
     {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
@@ -92,7 +92,7 @@ Sie können eine Zusammenfassung (`summary`) und eine Beschreibung (`description
     {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20-21"
     {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
@@ -116,7 +116,7 @@ Sie können im Docstring <a href="https://en.wikipedia.org/wiki/Markdown" class=
     {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-27"
     {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
@@ -142,7 +142,7 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
     {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
