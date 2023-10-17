@@ -25,7 +25,7 @@ Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzers
 
 ### Nur modernes Python
 
-Alles basiert auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
+Alles basiert auf **Python 3.8 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
 
 
