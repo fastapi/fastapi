@@ -208,7 +208,7 @@ nav:
   - reference/apirouter.md
   - reference/background.md
   - reference/request.md
-  - reference/websocket.md
+  - reference/websockets.md
   - reference/httpconnection.md
   - reference/response.md
   - reference/responses.md
@@ -221,7 +221,6 @@ nav:
   - reference/staticfiles.md
   - reference/templating.md
   - reference/testclient.md
-  - reference/websockets.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
