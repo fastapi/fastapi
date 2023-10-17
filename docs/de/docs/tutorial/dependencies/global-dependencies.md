@@ -12,13 +12,13 @@ In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet
     {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial012_an.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
