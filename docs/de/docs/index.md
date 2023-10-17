@@ -265,7 +265,7 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 Ändern Sie jetzt die Datei `main.py`, um den <abbr title="Body – Körper, Inhalt: Der eigentliche Inhalt einer Nachricht, nicht die Metadaten">Body</abbr> einer `PUT`-Anfrage zu empfangen.
 
-Deklarieren Sie den Body mithilfe von normalen Python-Typen, dank Pydantic.
+Deklarieren Sie den Body mithilfe von Standard Python Typen, dank Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -327,11 +327,11 @@ Und nun gehen Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link
 
 Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, etc. als Funktionsparameter.
 
-Das machen Sie mit normalen, modernen Python Typen.
+Das machen Sie mit modernen Standard Python Typen.
 
 Sie müssen keine neue Syntax, Methoden oder Klassen einer bestimmten Bibliothek usw. lernen.
 
-Nur normales **Python 3.7+**.
+Nur Standard **Python 3.7+**.
 
 Zum Beispiel für ein `int`:
 
