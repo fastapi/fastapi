@@ -36,4 +36,4 @@ def read_items():
     return [{"name": "Plumbus"}, {"name": "Portal Gun"}]
 ```
 
-::: starlette.status
+::: fastapi.status

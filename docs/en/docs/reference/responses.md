@@ -58,7 +58,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
 
 ## Starlette Responses
 
-::: starlette.responses.FileResponse
+::: fastapi.responses.FileResponse
     options:
         members:
             - chunk_size
@@ -74,7 +74,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.HTMLResponse
+::: fastapi.responses.HTMLResponse
     options:
         members:
             - charset
@@ -89,7 +89,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.JSONResponse
+::: fastapi.responses.JSONResponse
     options:
         members:
             - charset
@@ -104,7 +104,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.PlainTextResponse
+::: fastapi.responses.PlainTextResponse
     options:
         members:
             - charset
@@ -119,7 +119,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.RedirectResponse
+::: fastapi.responses.RedirectResponse
     options:
         members:
             - charset
@@ -134,7 +134,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.Response
+::: fastapi.responses.Response
     options:
         members:
             - charset
@@ -149,7 +149,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - set_cookie
             - delete_cookie
 
-::: starlette.responses.StreamingResponse
+::: fastapi.responses.StreamingResponse
     options:
         members:
             - body_iterator

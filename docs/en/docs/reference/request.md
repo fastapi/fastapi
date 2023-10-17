@@ -15,26 +15,4 @@ from fastapi import Request
     WebSockets, you can define a parameter that takes an `HTTPConnection` instead of a
     `Request` or a `WebSocket`.
 
-::: starlette.requests.Request
-    options:
-        members:
-            - scope
-            - app
-            - url
-            - base_url
-            - headers
-            - query_params
-            - path_params
-            - cookies
-            - client
-            - state
-            - method
-            - receive
-            - url_for
-            - stream
-            - body
-            - json
-            - form
-            - close
-            - is_disconnected
-            - send_push_promise
+::: fastapi.Request

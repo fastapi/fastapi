@@ -11,4 +11,4 @@ You can import it directly from `fastapi.staticfiles`:
 from fastapi.staticfiles import StaticFiles
 ```
 
-::: starlette.staticfiles.StaticFiles
+::: fastapi.staticfiles.StaticFiles

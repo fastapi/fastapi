@@ -12,17 +12,4 @@ You can import it directly from `fastapi`:
 from fastapi import Response
 ```
 
-::: starlette.responses.Response
-    options:
-        members:
-            - charset
-            - status_code
-            - media_type
-            - body
-            - background
-            - raw_headers
-            - render
-            - init_headers
-            - headers
-            - set_cookie
-            - delete_cookie
+::: fastapi.Response

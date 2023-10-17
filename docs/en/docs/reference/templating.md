@@ -11,4 +11,4 @@ You can import it directly from `fastapi.templating`:
 from fastapi.templating import Jinja2Templates
 ```
 
-::: starlette.templating.Jinja2Templates
+::: fastapi.templating.Jinja2Templates

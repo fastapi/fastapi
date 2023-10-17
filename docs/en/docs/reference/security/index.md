@@ -34,73 +34,43 @@ from fastapi.security import (
 ## API Key Security Schemes
 
 ::: fastapi.security.APIKeyCookie
-    options:
-        members:
 
 ::: fastapi.security.APIKeyHeader
-    options:
-        members:
 
 ::: fastapi.security.APIKeyQuery
-    options:
-        members:
 
 ## HTTP Authentication Schemes
 
 ::: fastapi.security.HTTPBasic
-    options:
-        members:
 
 ::: fastapi.security.HTTPBearer
-    options:
-        members:
 
 ::: fastapi.security.HTTPDigest
-    options:
-        members:
 
 ## HTTP Credentials
 
 ::: fastapi.security.HTTPAuthorizationCredentials
-    options:
-        members:
 
 ::: fastapi.security.HTTPBasicCredentials
-    options:
-        members:
 
 ## OAuth2 Authentication
 
 ::: fastapi.security.OAuth2
-    options:
-        members:
 
 ::: fastapi.security.OAuth2AuthorizationCodeBearer
-    options:
-        members:
 
 ::: fastapi.security.OAuth2PasswordBearer
-    options:
-        members:
 
 ## OAuth2 Password Form
 
 ::: fastapi.security.OAuth2PasswordRequestForm
-    options:
-        members:
 
 ::: fastapi.security.OAuth2PasswordRequestFormStrict
-    options:
-        members:
 
 ## OAuth2 Security Scopes in Dependencies
 
 ::: fastapi.security.SecurityScopes
-    options:
-        members:
 
 ## OpenID Connect
 
 ::: fastapi.security.OpenIdConnect
-    options:
-        members:

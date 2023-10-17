@@ -10,20 +10,4 @@ You can import it from `fastapi.requests`:
 from fastapi.requests import HTTPConnection
 ```
 
-::: starlette.requests.HTTPConnection
-    options:
-        members:
-            - scope
-            - app
-            - url
-            - base_url
-            - headers
-            - query_params
-            - path_params
-            - cookies
-            - client
-            - state
-            - method
-            - receive
-            - url_for
-            - is_disconnected
+::: fastapi.requests.HTTPConnection
