@@ -18,7 +18,7 @@ Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas 
     {!> ../../../docs_src/body_updates/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="30-35"
     {!> ../../../docs_src/body_updates/tutorial001.py!}
@@ -79,7 +79,7 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) 
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="34"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
@@ -103,7 +103,7 @@ Wie in `stored_item_model.copy(update=update_data)`:
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="35"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
@@ -136,7 +136,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="30-37"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
