@@ -18,7 +18,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependab
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -33,7 +33,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependab
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -115,7 +115,7 @@ Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben
     {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12-16"
     {!> ../../../docs_src/dependencies/tutorial002_an.py!}
@@ -130,7 +130,7 @@ Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -153,7 +153,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
     {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/dependencies/tutorial002_an.py!}
@@ -168,7 +168,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -191,7 +191,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -206,7 +206,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -241,7 +241,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
     {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial002_an.py!}
@@ -256,7 +256,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -271,13 +271,13 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
 Beachten Sie, wie wir `CommonQueryParams` im obigen Code zweimal schreiben:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -300,13 +300,13 @@ Aus diesem extrahiert FastAPI die deklarierten Parameter, und dieses ist es, was
 
 In diesem Fall hat das erste `CommonQueryParams` in:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[CommonQueryParams, ...
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -319,13 +319,13 @@ In diesem Fall hat das erste `CommonQueryParams` in:
 
 Sie könnten tatsächlich einfach schreiben:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[Any, Depends(CommonQueryParams)]
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -348,7 +348,7 @@ Sie könnten tatsächlich einfach schreiben:
     {!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial003_an.py!}
@@ -363,7 +363,7 @@ Sie könnten tatsächlich einfach schreiben:
     {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -380,13 +380,13 @@ Es wird jedoch empfohlen, den Typ zu deklarieren, da Ihr Editor so weiß, was al
 
 Aber Sie sehen, dass wir hier etwas Codeduplizierung haben, indem wir `CommonQueryParams` zweimal schreiben:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -401,13 +401,13 @@ In diesem speziellen Fall können Sie Folgendes tun:
 
 Anstatt zu schreiben:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -418,13 +418,13 @@ Anstatt zu schreiben:
 
 ... schreiben Sie:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     commons: Annotated[CommonQueryParams, Depends()]
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -449,7 +449,7 @@ Dasselbe Beispiel würde dann so aussehen:
     {!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial004_an.py!}
@@ -464,7 +464,7 @@ Dasselbe Beispiel würde dann so aussehen:
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
