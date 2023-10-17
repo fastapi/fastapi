@@ -13,7 +13,7 @@ Você pode passar diretamente o código `int`, como `404`.
 
 Mas se você não se lembrar o que cada código numérico significa, pode usar as constantes de atalho em `status`:
 
-=== "Python 3.6 and above"
+=== "Python 3.8 and above"
 
     ```Python hl_lines="3  17"
     {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
@@ -42,7 +42,7 @@ Esse código de status será usado na resposta e será adicionado ao esquema Ope
 
 Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tags` com uma `list` de `str` (comumente apenas um `str`):
 
-=== "Python 3.6 and above"
+=== "Python 3.8 and above"
 
     ```Python hl_lines="17  22  27"
     {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
@@ -80,7 +80,7 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
 Você pode adicionar um `summary` e uma `description`:
 
-=== "Python 3.6 and above"
+=== "Python 3.8 and above"
 
     ```Python hl_lines="20-21"
     {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
@@ -104,7 +104,7 @@ Como as descrições tendem a ser longas e cobrir várias linhas, você pode dec
 
 Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
-=== "Python 3.6 and above"
+=== "Python 3.8 and above"
 
     ```Python hl_lines="19-27"
     {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
@@ -131,7 +131,7 @@ Ela será usada nas documentações interativas:
 
 Você pode especificar a descrição da resposta com o parâmetro `response_description`:
 
-=== "Python 3.6 and above"
+=== "Python 3.8 and above"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
