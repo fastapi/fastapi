@@ -167,7 +167,7 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer "speziellen" Kodierun
 
 ## Optionaler Datei-Upload
 
-Sie können eine Datei optional machen, indem Sie normale Typ-Annotationen verwenden und den Defaultwert auf `None` setzen:
+Sie können eine Datei optional machen, indem Sie Standard Typ-Annotationen verwenden und den Defaultwert auf `None` setzen:
 
 === "Python 3.10+"
 
