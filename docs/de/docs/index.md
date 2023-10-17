@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.7+ auf Basis von Standard Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
+FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
 
 Seine Schlüssel-Merkmale sind:
 
@@ -116,7 +116,7 @@ Wenn Sie eine <abbr title="Command Line Interface – Kommandozeilen-Schnittstel
 
 ## Anforderungen
 
-Python 3.7+
+Python 3.8+
 
 FastAPI steht auf den Schultern von Giganten:
 
@@ -331,7 +331,7 @@ Das machen Sie mit modernen Standard Python Typen.
 
 Sie müssen keine neue Syntax, Methoden oder Klassen einer bestimmten Bibliothek usw. lernen.
 
-Nur Standard **Python 3.7+**.
+Nur Standard **Python 3.8+**.
 
 Zum Beispiel für ein `int`:
 
