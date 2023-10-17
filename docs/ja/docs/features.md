@@ -24,7 +24,7 @@
 
 ### 現代的なPython
 
-FastAPIの機能はすべて、標準のPython 3.6型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
+FastAPIの機能はすべて、標準のPython 3.8型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
 
 （FastAPIを使用しない場合でも）Pythonの型の使用方法について簡単な復習が必要な場合は、短いチュートリアル（[Python Types](python-types.md){.internal-link target=_blank}）を参照してください。
 
