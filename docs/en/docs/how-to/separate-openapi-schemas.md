@@ -44,7 +44,7 @@ Let's say you have a Pydantic model with default values, like this one:
 
     </details>
 
-=== "Python 3.7+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
@@ -99,7 +99,7 @@ If you use this model as an input like here:
 
     </details>
 
-=== "Python 3.7+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
@@ -142,7 +142,7 @@ But if you use the same model as an output, like here:
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
     ```
 
-=== "Python 3.7+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
@@ -214,7 +214,7 @@ In that case, you can disable this feature in **FastAPI**, with the parameter `s
     {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
     ```
 
-=== "Python 3.7+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
