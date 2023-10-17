@@ -42,7 +42,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -57,7 +57,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -105,7 +105,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -120,7 +120,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -145,7 +145,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16  21"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -160,7 +160,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -230,7 +230,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
     {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19  24"
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
