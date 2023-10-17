@@ -12,7 +12,7 @@ You can define an attribute to be a subtype. For example, a Python `list`:
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial001.py!}
@@ -73,7 +73,7 @@ So, in our example, we can make `tags` be specifically a "list of strings":
     {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial002.py!}
@@ -99,7 +99,7 @@ Then we can declare `tags` as a set of strings:
     {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14"
     {!> ../../../docs_src/body_nested_models/tutorial003.py!}
@@ -137,7 +137,7 @@ For example, we can define an `Image` model:
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -159,7 +159,7 @@ And then we can use it as the type of an attribute:
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -208,7 +208,7 @@ For example, as in the `Image` model we have a `url` field, we can declare it to
     {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10"
     {!> ../../../docs_src/body_nested_models/tutorial005.py!}
@@ -232,7 +232,7 @@ You can also use Pydantic models as subtypes of `list`, `set`, etc:
     {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
@@ -283,7 +283,7 @@ You can define arbitrarily deeply nested models:
     {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14  20  23  27"
     {!> ../../../docs_src/body_nested_models/tutorial007.py!}
@@ -314,7 +314,7 @@ as in:
     {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_nested_models/tutorial008.py!}
@@ -354,7 +354,7 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
     {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}

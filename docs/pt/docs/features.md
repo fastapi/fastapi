@@ -25,7 +25,7 @@ Documentação interativa da API e navegação _web_ da interface de usuário. C
 
 ### Apenas Python moderno
 
-Tudo é baseado no padrão das declarações de **tipos do Python 3.6** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
+Tudo é baseado no padrão das declarações de **tipos do Python 3.8** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
 
 Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md){.internal-link target=_blank}.
 
