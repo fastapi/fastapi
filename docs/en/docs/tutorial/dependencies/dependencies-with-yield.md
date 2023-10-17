@@ -72,13 +72,13 @@ For example, `dependency_c` can have a dependency on `dependency_b`, and `depend
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  13  21"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -99,13 +99,13 @@ And, in turn, `dependency_b` needs the value from `dependency_a` (here named `de
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17-18  25-26"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
