@@ -25,7 +25,7 @@ Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -43,7 +43,7 @@ Verwenden Sie Standard Python-Typen für die Klassenattribute:
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="7-11"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -81,7 +81,7 @@ Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -155,7 +155,7 @@ Innerhalb der Funktion können Sie alle Attribute des Modells direkt verwenden:
     {!> ../../../docs_src/body/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/body/tutorial002.py!}
@@ -173,7 +173,7 @@ Sie können Pfad- und Requestbody-Parameter gleichzeitig deklarieren.
     {!> ../../../docs_src/body/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17-18"
     {!> ../../../docs_src/body/tutorial003.py!}
@@ -191,7 +191,7 @@ Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** 
     {!> ../../../docs_src/body/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial004.py!}
