@@ -18,7 +18,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3-4"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -33,7 +33,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -67,7 +67,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -82,7 +82,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -117,7 +117,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -134,7 +134,7 @@ But have in mind that if you use `Annotated`, you won't have this problem, it wo
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
@@ -174,7 +174,7 @@ Have in mind that if you use `Annotated`, as you are not using function paramete
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
@@ -192,13 +192,13 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -220,13 +220,13 @@ The same applies for:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -251,13 +251,13 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
