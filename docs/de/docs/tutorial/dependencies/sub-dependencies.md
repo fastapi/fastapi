@@ -22,7 +22,7 @@ Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
     {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-10"
     {!> ../../../docs_src/dependencies/tutorial005_an.py!}
@@ -37,7 +37,7 @@ Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -66,7 +66,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstelle
     {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/dependencies/tutorial005_an.py!}
@@ -81,7 +81,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstelle
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -113,7 +113,7 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
     {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/dependencies/tutorial005_an.py!}
@@ -128,7 +128,7 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6 nicht annotiert"
+=== "Python 3.8 nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -161,14 +161,14 @@ Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, de
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in derselben Anfrage aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
         return {"fresh_value": fresh_value}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
