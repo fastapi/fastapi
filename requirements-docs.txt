@@ -13,6 +13,6 @@ pillow==9.5.0
 # For image processing by Material for MkDocs
 cairosvg==2.7.0
 mkdocstrings[python]==0.23.0
-griffe-typingdoc==0.2.1
+griffe-typingdoc==0.2.2
 # For mkdocstrings
 httpx >=0.23.0,<0.25.0
