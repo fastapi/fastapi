@@ -18,7 +18,7 @@ Importieren Sie zuerst `Header`:
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -33,7 +33,7 @@ Importieren Sie zuerst `Header`:
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -60,7 +60,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -75,7 +75,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -120,7 +120,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
     {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/header_params/tutorial002_an.py!}
@@ -135,7 +135,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -169,7 +169,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
     {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial003_an.py!}
@@ -193,7 +193,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
