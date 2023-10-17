@@ -8,13 +8,13 @@ Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injectio
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -45,7 +45,7 @@ So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch üb
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  13-17"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -60,7 +60,7 @@ So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch üb
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -91,7 +91,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="26"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -106,7 +106,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -131,7 +131,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20-23  27-28"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -146,7 +146,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -171,7 +171,7 @@ Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="32"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -186,7 +186,7 @@ Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
@@ -253,7 +253,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="31-33"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -268,7 +268,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ nicht annotiert"
+=== "Python 3.8+ nicht annotiert"
 
     !!! tip
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
