@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Merkmale
 
 ## FastAPI Merkmale
