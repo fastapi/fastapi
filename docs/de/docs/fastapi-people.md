@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI Leute
 
 FastAPI hat eine großartige Gemeinschaft, die Menschen mit unterschiedlichstem Hintergrund willkommen heißt.
