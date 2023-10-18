@@ -1,4 +1,5 @@
 -e .
+-r requirements-docs-tests.txt
 mkdocs-material==9.1.21
 mdx-include >=1.4.1,<2.0.0
 mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
@@ -12,3 +13,5 @@ jieba==0.42.1
 pillow==9.5.0
 # For image processing by Material for MkDocs
 cairosvg==2.7.0
+mkdocstrings[python]==0.23.0
+griffe-typingdoc==0.2.2
