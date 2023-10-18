@@ -1,0 +1,3 @@
+# For mkdocstrings and tests
+httpx >=0.23.0,<0.25.0
+black == 23.3.0
