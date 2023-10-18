@@ -7,6 +7,7 @@ from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
+    Awaitable,
     Callable,
     Coroutine,
     Dict,
@@ -543,6 +544,12 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        exception_handlers: Optional[
+            Dict[
+                Union[int, Type[Exception]],
+                Callable[[Request, Any], Coroutine[Any, Any, Response]],
+            ]
+        ] = None,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -568,6 +575,9 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.exception_handlers: Dict[
+            Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
 
     def route(
         self,
@@ -897,6 +907,8 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
+        for exc_or_code, handler in router.exception_handlers.items():
+            self.exception_handlers[exc_or_code] = handler
 
     def get(
         self,
@@ -1352,5 +1364,19 @@ class APIRouter(routing.Router):
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_event_handler(event_type, func)
             return func
+
+        return decorator
+
+    def exception_handler(
+        self, exc_or_status_code: Union[int, Type[Exception]]
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        """
+        Register an exception handler like you would from root FastAPI app.
+        See https://fastapi.tiangolo.com/tutorial/handling-errors/
+        """
+
+        def decorator(fn: DecoratedCallable) -> DecoratedCallable:
+            self.exception_handlers[exc_or_status_code] = fn
+            return fn
 
         return decorator
