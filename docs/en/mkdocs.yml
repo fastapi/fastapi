@@ -197,6 +197,7 @@ nav:
   - OpenAPI:
     - reference/openapi/index.md
     - reference/openapi/docs.md
+    - reference/openapi/models.md
   - reference/security/index.md
   - reference/encoders.md
   - reference/staticfiles.md
