@@ -133,9 +133,6 @@ class WebSocketException(StarletteWebSocketException):
             ),
         ] = None,
     ) -> None:
-        """
-        ---
-        """
         super().__init__(code=code, reason=reason)
 
 

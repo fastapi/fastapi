@@ -66,9 +66,6 @@ class OpenIdConnect(SecurityBase):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         self.model = OpenIdConnectModel(
             openIdConnectUrl=openIdConnectUrl, description=description
         )

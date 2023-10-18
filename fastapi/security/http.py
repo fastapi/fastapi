@@ -179,9 +179,6 @@ class HTTPBasic(HTTPBase):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
@@ -297,9 +294,6 @@ class HTTPBearer(HTTPBase):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -402,9 +396,6 @@ class HTTPDigest(HTTPBase):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error

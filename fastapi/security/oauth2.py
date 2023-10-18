@@ -141,9 +141,6 @@ class OAuth2PasswordRequestForm:
             ),
         ] = None,
     ):
-        """
-        ---
-        """
         self.grant_type = grant_type
         self.username = username
         self.password = password
@@ -298,9 +295,6 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             ),
         ] = None,
     ):
-        """
-        ---
-        """
         super().__init__(
             grant_type=grant_type,
             username=username,
@@ -376,9 +370,6 @@ class OAuth2(SecurityBase):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         self.model = OAuth2Model(
             flows=cast(OAuthFlowsModel, flows), description=description
         )
@@ -467,9 +458,6 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
@@ -572,9 +560,6 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = True,
     ):
-        """
-        ---
-        """
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
@@ -634,9 +619,6 @@ class SecurityScopes:
             ),
         ] = None,
     ):
-        """
-        ---
-        """
         self.scopes: Annotated[
             List[str],
             Doc(
