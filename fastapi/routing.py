@@ -520,6 +520,32 @@ class APIRoute(routing.Route):
 
 
 class APIRouter(routing.Router):
+    """
+    `APIRouter` class, used to group *path operations*, for example to structure
+    an app in multiple files. It would then be included in the `FastAPI` app, or
+    in another `APIRouter` (ultimately included in the app).
+
+    Read more about it in the
+    [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
+
+    ## Example
+
+    ```python
+    from fastapi import APIRouter, FastAPI
+
+    app = FastAPI()
+    router = APIRouter()
+
+
+    @router.get("/users/", tags=["users"])
+    async def read_users():
+        return [{"username": "Rick"}, {"username": "Morty"}]
+
+
+    app.include_router(router)
+    ```
+    """
+
     def __init__(
         self,
         *,
@@ -742,31 +768,6 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
     ) -> None:
-        """
-        `APIRouter` class, used to group *path operations*, for example to structure
-        an app in multiple files. It would then be included in the `FastAPI` app, or
-        in another `APIRouter` (ultimately included in the app).
-
-        Read more about it in the
-        [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
-
-        ## Example
-
-        ```python
-        from fastapi import APIRouter, FastAPI
-
-        app = FastAPI()
-        router = APIRouter()
-
-
-        @router.get("/users/", tags=["users"])
-        async def read_users():
-            return [{"username": "Rick"}, {"username": "Morty"}]
-
-
-        app.include_router(router)
-        ```
-        """
         super().__init__(
             routes=routes,
             redirect_slashes=redirect_slashes,
