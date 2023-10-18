@@ -20,13 +20,13 @@ It should be a `list` of `Depends()`:
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -35,7 +35,7 @@ It should be a `list` of `Depends()`:
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-These dependencies will be executed/solved the same way normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
+These dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
 
 !!! tip
     Some editors check for unused function parameters, and show them as errors.
@@ -63,13 +63,13 @@ They can declare request requirements (like headers) or other sub-dependencies:
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="7  12"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -88,13 +88,13 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -115,13 +115,13 @@ So, you can re-use a normal dependency (that returns a value) you already use so
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

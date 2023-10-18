@@ -1,5 +1,12 @@
 # SQL (Relational) Databases
 
+!!! info
+    These docs are about to be updated. 🎉
+
+    The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
+
+    The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
+
 **FastAPI** doesn't require you to use a SQL (relational) database.
 
 But you can use any relational database that you want.
@@ -274,7 +281,7 @@ But for security, the `password` won't be in other Pydantic *models*, for exampl
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -318,7 +325,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -347,7 +354,7 @@ In the `Config` class, set the attribute `orm_mode = True`.
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -487,7 +494,7 @@ In a very simplistic way create the database tables:
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -521,7 +528,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-20"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -546,7 +553,7 @@ This will then give us better editor support inside the *path operation function
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24  32  38  47  53"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -567,7 +574,7 @@ Now, finally, here's the standard **FastAPI** *path operations* code.
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -666,7 +673,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -686,7 +693,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -745,7 +752,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14-22"
     {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
