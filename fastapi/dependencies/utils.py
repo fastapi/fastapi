@@ -44,6 +44,7 @@ from fastapi._compat import (
     serialize_sequence_value,
     value_is_sequence,
 )
+from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     AsyncExitStack,
     asynccontextmanager,
@@ -56,7 +57,7 @@ from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic.fields import FieldInfo
-from starlette.background import BackgroundTasks
+from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import HTTPConnection, Request
@@ -305,7 +306,7 @@ def add_non_field_param_to_dependency(
     elif lenient_issubclass(type_annotation, Response):
         dependant.response_param_name = param_name
         return True
-    elif lenient_issubclass(type_annotation, BackgroundTasks):
+    elif lenient_issubclass(type_annotation, StarletteBackgroundTasks):
         dependant.background_tasks_param_name = param_name
         return True
     elif lenient_issubclass(type_annotation, SecurityScopes):
@@ -382,7 +383,14 @@ def analyze_param(
 
     if lenient_issubclass(
         type_annotation,
-        (Request, WebSocket, HTTPConnection, Response, BackgroundTasks, SecurityScopes),
+        (
+            Request,
+            WebSocket,
+            HTTPConnection,
+            Response,
+            StarletteBackgroundTasks,
+            SecurityScopes,
+        ),
     ):
         assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
         assert (
@@ -510,14 +518,14 @@ async def solve_dependencies(
     request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: Optional[BackgroundTasks] = None,
+    background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[Any],
-    Optional[BackgroundTasks],
+    Optional[StarletteBackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
 ]:
