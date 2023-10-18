@@ -1,4 +1,5 @@
 -e .
+-r requirements-docs-tests.txt
 mkdocs-material==9.1.21
 mdx-include >=1.4.1,<2.0.0
 mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
@@ -14,5 +15,3 @@ pillow==9.5.0
 cairosvg==2.7.0
 mkdocstrings[python]==0.23.0
 griffe-typingdoc==0.2.2
-# For mkdocstrings
-httpx >=0.23.0,<0.25.0
