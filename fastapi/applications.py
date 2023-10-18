@@ -830,9 +830,6 @@ class FastAPI(Starlette):
             ),
         ],
     ) -> None:
-        """
-        ---
-        """
         self.debug = debug
         self.title = title
         self.summary = summary
