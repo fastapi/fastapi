@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.104.0
+
 ## Features
 
 * ✨ Add reference (code API) docs with PEP 727, add subclass with custom docstrings for `BackgroundTasks`, refactor docs structure. PR [#10392](https://github.com/tiangolo/fastapi/pull/10392) by [@tiangolo](https://github.com/tiangolo). New docs at [FastAPI Reference - Code API](https://fastapi.tiangolo.com/reference/).
