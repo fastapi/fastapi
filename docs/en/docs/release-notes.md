@@ -7,6 +7,7 @@ hide:
 
 ## Latest Changes
 
+* ✨ Add reference (code API) docs with PEP 727, add subclass with custom docstrings for `BackgroundTasks`, refactor docs structure. PR [#10392](https://github.com/tiangolo/fastapi/pull/10392) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump dawidd6/action-download-artifact from 2.27.0 to 2.28.0. PR [#10268](https://github.com/tiangolo/fastapi/pull/10268) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/checkout from 3 to 4. PR [#10208](https://github.com/tiangolo/fastapi/pull/10208) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.8.6 to 1.8.10. PR [#10061](https://github.com/tiangolo/fastapi/pull/10061) by [@dependabot[bot]](https://github.com/apps/dependabot).
