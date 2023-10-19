@@ -27,16 +27,16 @@
 
 ---
 
-FastAPI, Python 3.8+'nin standart <abbr title="Tip Belirteçleri: Type Hints">tip belirteçleri</abbr>ne dayalı, modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'tür.
+FastAPI, Python <abbr title="Python 3.8 ve üzeri">3.8+</abbr>'nin standart <abbr title="Tip Belirteçleri: Type Hints">tip belirteçleri</abbr>ne dayalı, modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'tür.
 
 Temel özellikleri şunlardır:
 
-* **Fast**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [En hızlı Python framework'lerinden bir tanesi](#performans).
-* **Kodlaması Hızlı**: Geliştirme hızını yaklaşık 200% ile 300% aralığında arttırır. *
-* **Daha az hata**: İnsan (geliştiri) kaynaklı hataları yaklaşık 40% azaltır. *
+* **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [En hızlı Python framework'lerinden bir tanesi](#performans).
+* **Kodlaması Hızlı**: Geliştirme hızını yaklaşık %200 ile %300 aralığında arttırır. *
+* **Daha az hata**: İnsan (geliştirici) kaynaklı hataları yaklaşık %40 azaltır. *
 * **Sezgisel**: Şahane editör desteği. Her yerde <abbr title="Otomatik Tamamlama: auto-complete, autocompletion, IntelliSense">otomatik tamamlama</abbr>. Hata ayıklama ile daha az zaman harcayacaksınız.
 * **Kolay**: Öğrenmesi ve kullanması kolay olacak şekilde tasarlandı. Doküman okuma ile daha az zaman harcayacaksınız.
-* **Kısa**: Minimum kod tekrarı. Her parametre tanımlamasında birden fazla özellik. Daha az hata.
+* **Kısa**: Minimum kod tekrarı. Her parametre tanımlamasında birden fazla özellik ve daha az hata.
 * **Güçlü**: Otomatik ve etkileşimli dokümantasyon ile birlikte, kullanıma hazır kod elde et.
 * **Standard öncelikli**: API'lar için açık standartlara dayalı (ve tamamen uyumlu); <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eski adıyla Swagger) ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
