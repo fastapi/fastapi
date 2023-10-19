@@ -4,11 +4,11 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 ## Developing
 
-If you already cloned the repository and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the [fastapi repository](https://github.com/tiangolo/fastapi){.internal-link target=_blank} and you want to deep dive in the code, here are some guidelines to set up your environment.
 
 ### Virtual environment with `venv`
 
-You can create a virtual environment in a directory using Python's `venv` module:
+You can create an isolated virtual local environment in a directory using Python's `venv` module. Let's do this in the cloned repository (where the `requirements.txt` is):
 
 <div class="termy">
 
@@ -18,7 +18,7 @@ $ python -m venv env
 
 </div>
 
-That will create a directory `./env/` with the Python binaries and then you will be able to install packages for that isolated environment.
+That will create a directory `./env/` with the Python binaries, and then you will be able to install packages for that local environment.
 
 ### Activate the environment
 
@@ -84,7 +84,7 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
-Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
+Make sure you have the latest pip version on your local environment to avoid errors on the next steps:
 
 <div class="termy">
 
@@ -119,7 +119,7 @@ It will install all the dependencies and your local FastAPI in your local enviro
 
 #### Using your local FastAPI
 
-If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
+If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your cloned local FastAPI source code.
 
 And if you update that local FastAPI source code when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
