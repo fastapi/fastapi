@@ -177,6 +177,8 @@ This helps to make sure that:
 * The documentation examples can be run as is.
 * Most of the features are covered by the documentation, ensured by test coverage.
 
+#### Live preview
+
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
 <div class="termy">
@@ -380,7 +382,7 @@ You can make the first pull request with those two files, `docs/ht/mkdocs.yml` a
 
 #### Preview the result
 
-You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
+As already mentioned above, You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
 
 Once you are done, you can also test it all as it would look online, including all the other languages.
 
