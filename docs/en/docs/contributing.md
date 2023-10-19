@@ -212,6 +212,22 @@ That way, you can edit the documentation/source files and see the changes live.
     $ mkdocs serve --dev-addr 8008
     ```
 
+#### Apps and docs at the same time
+
+If you run the examples with, e.g.:
+
+<div class="termy">
+
+```console
+$ uvicorn tutorial001:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
+
 #### Typer CLI (optional)
 
 The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
@@ -230,22 +246,6 @@ Completion will take effect once you restart the terminal.
 ```
 
 </div>
-
-### Apps and docs at the same time
-
-If you run the examples with, e.g.:
-
-<div class="termy">
-
-```console
-$ uvicorn tutorial001:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
 
 ### Translations
 
