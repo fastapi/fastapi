@@ -101,7 +101,7 @@ $ python -m pip install --upgrade pip
 
     This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
 
-### pip
+### Install requirements using pip
 
 After activating the environment as described above:
 
@@ -130,7 +130,7 @@ That way, you don't have to "install" your local version to be able to test ever
 
     That is because inside of the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
 
-### Format
+### Format the code
 
 There is a script that you can run that will format and clean all your code:
 
