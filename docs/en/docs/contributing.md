@@ -126,9 +126,9 @@ And if you update that local FastAPI source code when you run that Python file a
 That way, you don't have to "install" your local version to be able to test every change.
 
 !!! note "Technical Details"
-    This only happens when you install using this included `requirements.txt` instead of installing `pip install fastapi` directly.
+    This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
 
-    That is because inside of the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+    That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
 
 ### Format the code
 
@@ -171,9 +171,9 @@ And those Python files are included/injected in the documentation when generatin
 
 Most of the tests actually run against the example source files in the documentation.
 
-This helps making sure that:
+This helps to make sure that:
 
-* The documentation is up to date.
+* The documentation is up-to-date.
 * The documentation examples can be run as is.
 * Most of the features are covered by the documentation, ensured by test coverage.
 
