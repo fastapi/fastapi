@@ -382,7 +382,7 @@ When you translate a document, there are some parts which you should not or just
 
 * Do not change things wrapped in "``" (inline code).
 
-* Translate the `"Text"` part in lines starting with `===` or `!!!` but keep the rest of the line as is. For example, translate `=== "Python 3.10+ non-Annotated"` to `=== "Python 3.10+ nicht annotiert"` and `!!! info "Technical Details"`, to `!!! info "Technische Details"` in German. If there is no `"Text"` part, You may add one, if necessary, for example You may change `!!! warning` to `!!! warning "Achtung"` in German. Do not change the small written word directly after the `!!!`, it is responsible for the coloring of the resulting box.
+* Translate the `"Text"` part in lines starting with `===` or `!!!` but keep the rest of the line as is. For example, translate `=== "Python 3.10+ non-Annotated"` to `=== "Python 3.10+ nicht annotiert"` and `!!! info "Technical Details"`, to `!!! info "Technische Details"` in German. If there is no `"Text"` part, You may add one, if necessary, for example You may change `!!! warning` to `!!! warning "Achtung"` in German. Do not change the low-caps word directly after the `!!!`, it is responsible for the coloring of the resulting box.
 
 * Do not change links to local images and code files. You don't have to change anything for this to work in the translation.
 
