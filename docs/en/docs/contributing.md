@@ -117,7 +117,7 @@ $ pip install -r requirements.txt
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
-#### Using your local FastAPI
+### Using your local FastAPI
 
 If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your cloned local FastAPI source code.
 
