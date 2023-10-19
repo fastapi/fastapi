@@ -372,6 +372,22 @@ You can continue with the previous instructions for an "Existing Language" for t
 
 You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
 
+#### Things to be kept as-is
+
+* Do not translate the code examples in `./docs_src`. Only translate text in the docs.
+
+* In code blocks, which are inlined (instead of linking to `./docs_src`), you may translate comments (`# a comment`). Keep the rest unchanged. For example, do not change variable names.
+
+* Do not change things wrapped in "``" (inline code).
+
+* Translate the `"Text"` part in lines starting with `===` or `!!!` but keep the rest of the line as is. For example, translate `=== "Python 3.10+ non-Annotated"` to `=== "Python 3.10+ nicht annotiert"` and `!!! info "Technical Details"`, to `!!! info "Technische Details"` in German. If there is no `"Text"` part, You may add one, if necessary, for example You may change `!!! warning` to `!!! warning "Achtung"` in German. Do not change the small written word directly after the `!!!`, it is responsible for the coloring of the resulting box.
+
+* Do not change links to local images and code files. You don't have to change anything for this to work in the translation.
+
+* Do not change links to local markdown (`.md`) documents, including the link text, if the target document is not translated. That way, the reader can see that it is not yet translated. However, if the link text is not the verbatim title of the related section but part of the current sentence flow, translate it.
+
+* If the target document is translated, translate both the link text and the `#hash-part` (if there is one) but do not change the path part. (To figure out the `#hash-part`, click on the "Permanent Link" icon right of the related section heading) For example, you would translate `[FastAPI Experts](../fastapi-people.md#experts)` with `[FastAPI-Experten](../fastapi-people.md#experten)` in a German translation. The path part (`../fastapi-people.md`) stays unchanged, the Link text (`FastAPI-Experten`) and the hash part (`#experten`) gets translated.
+
 #### Preview the result
 
 As already mentioned above, You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
