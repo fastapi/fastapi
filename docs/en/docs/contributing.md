@@ -257,7 +257,7 @@ Here are the steps to help with translations.
 
 * Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the PRs by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
 
-* Add reviews requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
+* Review those pull requests, requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
 !!! tip
     You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
