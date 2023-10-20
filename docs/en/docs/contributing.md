@@ -372,23 +372,24 @@ You can continue with the previous instructions for an "Existing Language" for t
 
 You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
 
-#### Things to be kept as-is
+#### Tips and tricks for translation
 
-When you translate a document, there are some parts which you should not or just partially translate. Some of them, because the documentation generator requires them, in order to do specific things:
+* Translate only the Markdown documents (`.md`). Do not translate the code examples at `./docs_src`.
 
-* Do not translate the code examples in `./docs_src`. Only translate text in the docs.
+* In code blocks within the Markdown document, translate comments (`# a comment`), but leave the rest unchanged.
 
-* In code blocks, which are inlined (instead of linking to `./docs_src`), you may translate comments (`# a comment`). Keep the rest unchanged. For example, do not change variable names.
+* Do not change anything enclosed in "``" (inline code).
 
-* Do not change things wrapped in "``" (inline code).
+* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
 
-* Translate the `"Text"` part in lines starting with `===` or `!!!` but keep the rest of the line as is. For example, translate `=== "Python 3.10+ non-Annotated"` to `=== "Python 3.10+ nicht annotiert"` and `!!! info "Technical Details"`, to `!!! info "Technische Details"` in German. If there is no `"Text"` part, You may add one, if necessary, for example You may change `!!! warning` to `!!! warning "Achtung"` in German. Do not change the low-caps word directly after the `!!!`, it is responsible for the coloring of the resulting box.
+* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
 
-* Do not change links to local images and code files. You don't have to change anything for this to work in the translation.
+* Do not change the paths in links to images, code files, Markdown documents.
 
-* Do not change links to local markdown (`.md`) documents, including the link text, if the target document is not translated. That way, the reader can see that it is not yet translated. However, if the link text is not the verbatim title of the related section but part of the current sentence flow, translate it.
-
-* If the target document is translated, translate both the link text and the `#hash-part` (if there is one) but do not change the path part. (To figure out the `#hash-part`, click on the "Permanent Link" icon right of the related section heading) For example, you would translate `[FastAPI Experts](../fastapi-people.md#experts)` with `[FastAPI-Experten](../fastapi-people.md#experten)` in a German translation. The path part (`../fastapi-people.md`) stays unchanged, the Link text (`FastAPI-Experten`) and the hash part (`#experten`) gets translated.
+* However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
+    * Search for such links in the translated document using the regex `#[^# ]`.
+    * Search in all documents already translated into your language, using the regex `your-translated-document\.md#`.
+    * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
 
 #### Preview the result
 
