@@ -183,18 +183,18 @@ This would mean that **FastAPI** would expect a body similar to:
 
 Again, doing just that declaration, with **FastAPI** you get:
 
-* Editor support (completion, etc), even for nested models
+* Editor support (completion, etc.), even for nested models
 * Data conversion
 * Data validation
 * Automatic documentation
 
 ## Special types and validation
 
-Apart from normal singular types like `str`, `int`, `float`, etc. You can use more complex singular types that inherit from `str`.
+Apart from normal singular types like `str`, `int`, `float`, etc. you can use more complex singular types that inherit from `str`.
 
 To see all the options you have, checkout the docs for <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic's exotic types</a>. You will see some examples in the next chapter.
 
-For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `HttpUrl`:
+For example, as in the `Image` model we have a `url` field, we can declare it to be an instance of Pydantic's `HttpUrl` instead of a `str`:
 
 === "Python 3.10+"
 
@@ -218,7 +218,7 @@ The string will be checked to be a valid URL, and documented in JSON Schema / Op
 
 ## Attributes with lists of submodels
 
-You can also use Pydantic models as subtypes of `list`, `set`, etc:
+You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 
 === "Python 3.10+"
 
@@ -238,7 +238,7 @@ You can also use Pydantic models as subtypes of `list`, `set`, etc:
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
     ```
 
-This will expect (convert, validate, document, etc) a JSON body like:
+This will expect (convert, validate, document, etc.) a JSON body like:
 
 ```JSON hl_lines="11"
 {
@@ -334,15 +334,15 @@ But you don't have to worry about them either, incoming dicts are converted auto
 
 ## Bodies of arbitrary `dict`s
 
-You can also declare a body as a `dict` with keys of some type and values of other type.
+You can also declare a body as a `dict` with keys of some type and values of some other type.
 
-Without having to know beforehand what are the valid field/attribute names (as would be the case with Pydantic models).
+This way, you don't have to know beforehand what the valid field/attribute names are (as would be the case with Pydantic models).
 
 This would be useful if you want to receive keys that you don't already know.
 
 ---
 
-Other useful case is when you want to have keys of other type, e.g. `int`.
+Another useful case is when you want to have keys of another type (e.g., `int`).
 
 That's what we are going to see here.
 

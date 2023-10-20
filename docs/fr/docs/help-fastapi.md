@@ -84,24 +84,6 @@ Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" 
 * Pour corriger une Issue/Bug existant.
 * Pour ajouter une nouvelle fonctionnalité.
 
-## Rejoindre le chat
-
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Rejoindre le chat à https://gitter.im/tiangolo/fastapi">
-</a>
-
-Rejoignez le chat sur Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
-
-Vous pouvez y avoir des conversations rapides avec d'autres personnes, aider les autres, partager des idées, etc.
-
-Mais gardez à l'esprit que, comme il permet une "conversation plus libre", il est facile de poser des questions trop générales et plus difficiles à répondre, de sorte que vous risquez de ne pas recevoir de réponses.
-
-Dans les Issues de GitHub, le modèle vous guidera pour écrire la bonne question afin que vous puissiez plus facilement obtenir une bonne réponse, ou même résoudre le problème vous-même avant même de le poser. Et dans GitHub, je peux m'assurer que je réponds toujours à tout, même si cela prend du temps. Je ne peux pas faire cela personnellement avec le chat Gitter. 😅
-
-Les conversations dans Gitter ne sont pas non plus aussi facilement consultables que dans GitHub, de sorte que les questions et les réponses peuvent se perdre dans la conversation.
-
-De l'autre côté, il y a plus de 1000 personnes dans le chat, il y a donc de fortes chances que vous y trouviez quelqu'un à qui parler, presque tout le temps. 😄
-
 ## Parrainer l'auteur
 
 Vous pouvez également soutenir financièrement l'auteur (moi) via <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
