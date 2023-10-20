@@ -35,7 +35,7 @@ Das sind die Menschen, die:
 
 * [Anderen bei Fragen auf GitHub helfen](help-fastapi.md#anderen-bei-fragen-auf-github-helfen){.internal-link target=_blank}.
 * [<abbr title='Pull Request – "Zieh-Anfrage": Geänderten Quellcode senden, mit dem Vorschlag, ihn mit dem aktuellen Quellcode zu verschmelzen'>Pull Requests</abbr> erstellen](help-fastapi.md#einen-pull-request-erstellen){.internal-link target=_blank}.
-* Pull Requests überprüfen (Review), [besonders wichtig für Übersetzungen](contributing.md#translations){.internal-link target=_blank}.
+* Pull Requests überprüfen (Review), [besonders wichtig für Übersetzungen](contributing.md#ubersetzungen){.internal-link target=_blank}.
 
 Eine Runde Applaus für sie. 👏 🙇
 
@@ -97,7 +97,7 @@ Diese Benutzer sind die **Top-Rezensenten**. 🕵️
 
 ### Rezensionen für Übersetzungen
 
-Ich spreche nur ein paar Sprachen (und nicht sehr gut 😅). Daher bestätigen Reviewer [**Übersetzungen der Dokumentation**](contributing.md#translations){.internal-link target=_blank}. Ohne sie gäbe es keine Dokumentation in mehreren anderen Sprachen.
+Ich spreche nur ein paar Sprachen (und nicht sehr gut 😅). Daher bestätigen Reviewer [**Übersetzungen der Dokumentation**](contributing.md#ubersetzungen){.internal-link target=_blank}. Ohne sie gäbe es keine Dokumentation in mehreren anderen Sprachen.
 
 ---
 
