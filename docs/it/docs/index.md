@@ -6,7 +6,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, alte prestazioni, facile da imparare, rapido da programmare, pronto per il rilascio in produzione</em>
+    <em>FastAPI framework, alte prestazioni, facile da imparare, rapido da implementare, pronto per il rilascio in produzione</em>
 </p>
 <p align="center">
 <a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
@@ -41,7 +41,7 @@ Le sue caratteristiche principali sono:
 * **Robusto**: Crea codice pronto per la produzione con documentazione automatica interattiva.
 * **Basato sugli standard**: Basato su (e completamente compatibile con) gli open standard per le API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (precedentemente Swagger) e <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Stima basata sull'esito di test eseguiti da un team di sviluppo per applicazioni professionali.</small>
+<small>* Stima basata sull'esito di test eseguiti su codice sorgente di applicazioni rilasciate in produzione da un team interno di sviluppatori.</small>
 
 ## Sponsor
 
@@ -344,7 +344,7 @@ item: Item
     * Controllo sulle annotazioni di tipo.
 * Validazione dei dati:
     * Errori chiari e automatici quando i dati sono invalidi.
-    * Validazione anche per gli oggetti JSON altamente nidificati.
+    * Validazione anche per gli oggetti JSON più complessi.
 * <abbr title="anche noto come: serializzazione, parsing, marshalling">Conversione</abbr> dei dati di input: da risorse esterne a dati e tipi di Python. È possibile leggere da:
     * JSON.
     * Path parameters.
@@ -377,7 +377,7 @@ Tornando al precedente esempio, **FastAPI**:
     * verifica che la richiesta abbia un attributo obbligatorio `name` e che sia di tipo `str`.
     * verifica che la richiesta abbia un attributo obbligatorio `price` e che sia di tipo `float`.
     * verifica che la richiesta abbia un attributo opzionale `is_offer` e che sia di tipo `bool`, se presente.
-    * Tutto questo funzionerebbe anche con oggetti JSON altamente nidificati.
+    * Tutto questo funzionerebbe anche con oggetti JSON più complessi.
 * Convertirà *da* e *a* JSON automaticamente.
 * Documenterà tutto con OpenAPI, che può essere usato per:
     * Sistemi di documentazione interattivi.
