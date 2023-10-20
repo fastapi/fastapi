@@ -231,8 +231,6 @@ Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" targ
 
     Use the chat only for other general conversations.
 
-There is also the previous <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>, but as it doesn't have channels and advanced features, conversations are more difficult, so Discord is now the recommended system.
-
 ### Don't use the chat for questions
 
 Have in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.

@@ -114,8 +114,6 @@ do FastAPI.
 
     Use o chat apenas para outro tipo de assunto.
 
-Também existe o <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">chat do Gitter</a>, porém ele não possuí canais e recursos avançados, conversas são mais engessadas, por isso o Discord é mais recomendado.
-
 ### Não faça perguntas no chat
 
 Tenha em mente que os chats permitem uma "conversa mais livre", dessa forma é muito fácil fazer perguntas que são muito genéricas e dificeís de responder, assim você pode acabar não sendo respondido.
