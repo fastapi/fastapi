@@ -231,8 +231,6 @@
 
     ⚙️ 💬 🕴 🎏 🏢 💬.
 
-📤 ⏮️ <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">🥊 💬</a>, ✋️ ⚫️ 🚫 ✔️ 📻 &amp; 🏧 ⚒, 💬 🌖 ⚠, 😧 🔜 👍 ⚙️.
-
 ### 🚫 ⚙️ 💬 ❔
 
 ✔️ 🤯 👈 💬 ✔ 🌅 "🆓 💬", ⚫️ ⏩ 💭 ❔ 👈 💁‍♂️ 🏢 &amp; 🌅 ⚠ ❔,, 👆 💪 🚫 📨 ❔.
