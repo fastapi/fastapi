@@ -197,7 +197,7 @@ Sie können zum Quellcode mit Pull Requests [beitragen](contributing.md){.intern
 * Um einen Tippfehler zu beheben, den Sie in der Dokumentation gefunden haben.
 * Um einen Artikel, ein Video oder einen Podcast über FastAPI zu teilen, den Sie erstellt oder gefunden haben, indem Sie <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">diese Datei bearbeiten</a>.
     * Stellen Sie sicher, dass Sie Ihren Link am Anfang des entsprechenden Abschnitts einfügen.
-* Um zu helfen, [die Dokumentation in Ihre Sprache zu übersetzen](contributing.md#translations){.internal-link target=_blank}.
+* Um zu helfen, [die Dokumentation in Ihre Sprache zu übersetzen](contributing.md#ubersetzungen){.internal-link target=_blank}.
     * Sie können auch dabei helfen, die von anderen erstellten Übersetzungen zu überprüfen (Review).
 * Um neue Dokumentationsabschnitte vorzuschlagen.
 * Um ein bestehendes Problem / einen bestehenden Bug zu beheben.
