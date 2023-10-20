@@ -194,7 +194,7 @@ Abgesehen von normalen einfachen Typen, wie `str`, `int`, `float`, usw. können 
 
 Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantics Typ-Übersicht</a> an. Sie werden im nächsten Kapitel ein paar Beispiele kennenlernen.
 
-Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Pydantic `HttpUrl` ist, anstelle eines `str`:
+Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Instanz von Pydantics `HttpUrl` sein soll, anstelle eines `str`:
 
 === "Python 3.10+"
 
@@ -334,9 +334,9 @@ Aber Sie müssen sich auch nicht weiter um die Modelle kümmern, hereinkommende 
 
 ## Bodys mit beliebigen `dict`s
 
-Sie können einen Body als `dict` deklarieren, mit Schlüsseln eines Typs und Werten eines anderen Typs.
+Sie können einen Body auch als `dict` deklarieren, mit Schlüsseln eines Typs und Werten eines anderen Typs.
 
-Ohne vorher zu wissen, wie die Feld-/Attribut-Namen lauten (wie es bei Pydantic-Modellen der Fall wäre).
+So brauchen Sie vorher nicht zu wissen, wie die Feld-/Attribut-Namen lauten (wie es bei Pydantic-Modellen der Fall wäre).
 
 Das ist nützlich, wenn Sie Schlüssel empfangen, deren Namen Sie nicht bereits kennen.
 
