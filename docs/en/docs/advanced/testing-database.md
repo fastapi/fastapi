@@ -1,5 +1,12 @@
 # Testing a Database
 
+!!! info
+    These docs are about to be updated. 🎉
+
+    The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
+
+    The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
+
 You can use the same dependency overrides from [Testing Dependencies with Overrides](testing-dependencies.md){.internal-link target=_blank} to alter a database for testing.
 
 You could want to set up a different database for testing, rollback the data after the tests, pre-fill it with some testing data, etc.
@@ -44,7 +51,7 @@ So the new file structure looks like:
 
 First, we create a new database session with the new database.
 
-For the tests we'll use a file `test.db` instead of `sql_app.db`.
+We'll use an in-memory database that persists during the tests instead of the local file `sql_app.db`.
 
 But the rest of the session code is more or less the same, we just copy it.
 

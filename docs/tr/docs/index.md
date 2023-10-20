@@ -1,7 +1,3 @@
-
-{!../../../docs/missing-translation.md!}
-
-
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -28,7 +24,7 @@
 
 ---
 
-FastAPI, Python 3.6+'nın standart type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü.
+FastAPI, Python 3.8+'nın standart type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü.
 
 Ana özellikleri:
 
@@ -119,7 +115,7 @@ Eğer API yerine <abbr title="Command Line Interface">komut satırı uygulaması
 
 ## Gereksinimler
 
-Python 3.6+
+Python 3.8+
 
 FastAPI iki devin omuzları üstünde duruyor:
 
@@ -143,7 +139,7 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -335,7 +331,7 @@ Type-hinting işlemini Python dilindeki standart veri tipleri ile yapabilirsin
 
 Yeni bir syntax'e alışmana gerek yok, metodlar ve classlar zaten spesifik kütüphanelere ait.
 
-Sadece standart **Python 3.6+**.
+Sadece standart **Python 3.8+**.
 
 Örnek olarak, `int` tanımlamak için:
 
@@ -434,7 +430,7 @@ Daha fazla örnek ve özellik için <a href="https://fastapi.tiangolo.com/tutori
 * Diğer ekstra özellikler (Starlette sayesinde):
     * **WebSockets**
     * **GraphQL**
-    * `requests` ve `pytest` sayesinde aşırı kolay testler.
+    * HTTPX ve `pytest` sayesinde aşırı kolay testler.
     * **CORS**
     * **Cookie Sessions**
     * ...ve daha fazlası.
@@ -449,12 +445,11 @@ Daha fazla bilgi için, bu bölüme bir göz at <a href="https://fastapi.tiangol
 
 Pydantic tarafında kullanılan:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - daha hızlı JSON <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">"dönüşümü"</abbr> için.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - email doğrulaması için.
 
 Starlette tarafında kullanılan:
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Eğer kendine ait template konfigürasyonu oluşturmak istiyorsan gerekli
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Form kullanmak istiyorsan gerekli <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">("dönüşümü")</abbr>.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` desteği için gerekli.

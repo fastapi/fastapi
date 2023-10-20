@@ -27,7 +27,7 @@ OpenAPI standartlarına dayalı olan bir framework olarak, geliştiricilerin bir
 
 ### Sadece modern Python
 
-Tamamiyle standartlar **Python 3.6**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
+Tamamiyle standartlar **Python 3.8**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
 
 
 Eğer Python type hintlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz at: [Python Types](python-types.md){.internal-link target=_blank}.
@@ -174,7 +174,7 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 * **GraphQL** desteği.
 * Kullanım halinde arka plan işlevleri.
 * Başlatma ve kapatma eventleri(startup and shutdown).
-* Test sunucusu `requests` üzerine kurulu.
+* Test sunucusu HTTPX üzerine kurulu.
 * **CORS**, GZip, Static dosyalar, Streaming responseları.
 * **Session and Cookie** desteği.
 * 100% test kapsayıcılığı.

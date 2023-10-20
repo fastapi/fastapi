@@ -25,7 +25,7 @@ Documentación interactiva de la API e interfaces web de exploración. Hay múlt
 
 ### Simplemente Python moderno
 
-Todo está basado en las declaraciones de tipo de **Python 3.6** estándar (gracias a Pydantic). No necesitas aprender una sintáxis nueva, solo Python moderno.
+Todo está basado en las declaraciones de tipo de **Python 3.8** estándar (gracias a Pydantic). No necesitas aprender una sintáxis nueva, solo Python moderno.
 
 Si necesitas un repaso de 2 minutos de cómo usar los tipos de Python (así no uses FastAPI) prueba el tutorial corto: [Python Types](python-types.md){.internal-link target=_blank}.
 
@@ -167,7 +167,7 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 * Soporte para **GraphQL**.
 * <abbr title="En español: tareas que se ejecutan en el fondo, sin frenar requests, en el mismo proceso. En ingles: In-process background tasks">Tareas en background</abbr>.
 * Eventos de startup y shutdown.
-* Cliente de pruebas construido con `requests`.
+* Cliente de pruebas construido con HTTPX.
 * **CORS**, GZip, Static Files, Streaming responses.
 * Soporte para **Session and Cookie**.
 * Cobertura de pruebas al 100%.
