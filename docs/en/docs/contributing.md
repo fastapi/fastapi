@@ -311,7 +311,7 @@ $ python ./scripts/docs.py live es
 
 Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
-You will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
+You will see that every language has all the pages. But some pages are not translated and have an info box at the top, about the missing translation.
 
 Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
 
@@ -330,7 +330,7 @@ docs/es/docs/features.md
 !!! tip
     Notice that the only change in the path and file name is the language code, from `en` to `es`.
 
-If you go to your browser you will see that now the docs show your new section. 🎉
+If you go to your browser you will see that now the docs show your new section (the info box at the top is gone). 🎉
 
 Now you can translate it all and see how it looks as you save the file.
 
