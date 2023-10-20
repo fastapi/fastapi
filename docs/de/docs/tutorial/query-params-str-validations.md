@@ -502,33 +502,8 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 !!! tip
     Pydantic, welches die gesamte Daten-Validierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
 
-### Pydantics `Required` anstelle von Ellipse (`...`) verwenden
-
-Wenn Ihnen bei `...` unwohl ist, können Sie auch `Required` von Pydantic importieren und verwenden:
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="2  9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d_an.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="2  8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d.py!}
-    ```
-
 !!! tip
-    Denken Sie daran, dass in den meisten Fällen, wenn etwas erforderlich ist, Sie einfach den Defaultwert weglassen können. Sie müssen also normalerweise weder `...` noch `Required` verwenden.
+    Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
 
 ## Query-Parameter-Liste / Mehrere Werte
 
