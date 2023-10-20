@@ -255,7 +255,7 @@ Here are the steps to help with translations.
 
 #### Tips and guidelines
 
-* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the PRs by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
+* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
 
 * Review those pull requests, requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
@@ -266,7 +266,7 @@ Here are the steps to help with translations.
 
 * Check if there's a <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-* If you translate a page, add a single pull request per page translated. That will make it much easier for others to review it.
+* If you translate pages, add a single pull request per page translated. That will make it much easier for others to review it.
 
 * To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
