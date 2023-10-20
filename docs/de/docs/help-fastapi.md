@@ -230,8 +230,6 @@ Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link
 
     Nutzen Sie den Chat nur für andere allgemeine Gespräche.
 
-Es gibt auch den früheren <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter-Chat</a>, da dieser jedoch keine Kanäle und fortgeschrittene Funktionen hat, sind Gespräche schwieriger, weshalb Discord jetzt das empfohlene System ist.
-
 ### Den Chat nicht für Fragen verwenden
 
 Bedenken Sie, da Chats mehr "freie Konversation" ermöglichen, dass es verlockend ist, Fragen zu stellen, die zu allgemein und schwierig zu beantworten sind, sodass Sie möglicherweise keine Antworten erhalten.
