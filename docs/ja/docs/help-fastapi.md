@@ -82,20 +82,6 @@ GitHubレポジトリで<a href="https://github.com/tiangolo/fastapi/issues/new/
 * 既存のissue/バグを修正。
 * 新機能を追加。
 
-## チャットに参加
-
-Gitterでチャットに参加: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
-
-そこで、他の人と手早く会話したり、手助けやアイデアの共有などができます。
-
-しかし、「自由な会話」が許容されているので一般的すぎて回答が難しい質問もしやすくなります。そのせいで回答を得られないかもしれません。
-
-GitHub issuesでは良い回答を得やすい質問ができるように、もしくは、質問する前に自身で解決できるようにテンプレートがガイドしてくれます。そして、GitHubではたとえ時間がかかっても全てに答えているか確認できます。個人的にはGitterチャットでは同じことはできないです。😅
-
-Gitterでの会話はGitHubほど簡単に検索できないので、質問と回答が会話の中に埋もれてしまいます。
-
-一方、チャットには1000人以上いるので、いつでも話し相手が見つかる可能性が高いです。😄
-
 ## 開発者のスポンサーになる
 
 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>を通して開発者を経済的にサポートできます。
