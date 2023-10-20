@@ -374,7 +374,7 @@ You can make the first pull request with those two files, `docs/ht/mkdocs.yml` a
 
 #### Things to be kept as-is
 
-When you translate a document, there are some parts which you should not or just partially translate, usually because the documentation generator requires them, in order to do specific things:
+When you translate a document, there are some parts which you should not or just partially translate. Some of them, because the documentation generator requires them, in order to do specific things:
 
 * Do not translate the code examples in `./docs_src`. Only translate text in the docs.
 
