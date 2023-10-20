@@ -18,7 +18,7 @@ from fastapi import Depends
 ## `Security()`
 
 For many scenarios, you can handle security (authorization, authentication, etc.) with
-dependendencies, using `Depends()`.
+dependencies, using `Depends()`.
 
 But when you want to also declare OAuth2 scopes, you can use `Security()` instead of
 `Depends()`.
