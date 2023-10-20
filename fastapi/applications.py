@@ -86,13 +86,6 @@ class FastAPI(Starlette):
                 **Note**: you probably shouldn't use this parameter, it is inherited
                 from Starlette and supported for compatibility.
 
-                In FastAPI, you normally would use the *path operation* decorators,
-                like:
-
-                * `app.get()`
-                * `app.post()`
-                * etc.
-
                 ---
 
                 A list of routes to serve incoming HTTP and WebSocket requests.
