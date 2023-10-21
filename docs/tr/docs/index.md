@@ -329,7 +329,7 @@ Sunucu otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn` komutuy
 
 Bu işlemi standart modern Python tipleriyle yapıyoruz.
 
-Yeni bir syntax yapısını, bir kütüphane özel metod veya sınıfları öğrenmeye gerek yoktur.
+Yeni bir sözdizimi yapısını, bir kütüphane özel metod veya sınıfları öğrenmeye gerek yoktur.
 
 Hepsi sadece **Python 3.8+** standartlarına dayalıdır.
 
@@ -362,7 +362,7 @@ item: Item
     * Formlar.
     * Dosyalar.
 * Giden verinin <abbr title="Dönüşüm: serialization, parsing, marshalling olarak da biliniyor">dönüşümünü</abbr> aşağıdaki veri tiplerini kullanarak gerçekleştirir (JSON olarak):
-    * Python tiplerinin (`str`, `int`, `float`, `bool`, `list`, vs) dönüşümü.
+    * Python tiplerinin (`str`, `int`, `float`, `bool`, `list`, vb) dönüşümü.
     * `datetime` objesi.
     * `UUID` objesi.
     * Veritabanı modelleri.
