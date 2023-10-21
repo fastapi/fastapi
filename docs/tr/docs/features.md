@@ -1,20 +1,20 @@
 # Özelikler
 
-## FastAPI özellikleri
+## FastAPI Özellikleri
 
-**FastAPI** sana bunları sağlıyor
+**FastAPI** bize şu özellikleri sunuyor:
 
-### Açık standartları temel alır
+### Açık Kaynak Standartlar Üzerine Kurulu
 
-* API oluşturma işlemlerinde <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> buna <abbr title="also known as: endpoints, routes">path</abbr> <abbr title=" HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonları </abbr>parametreleri, body talebi, güvenlik  gibi şeyler dahil olmak üzere deklare bunların deklare edilmesi.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="also known as: endpoints, routes">path</abbr> <abbr title=" HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonları </abbr>parametreleri, body talebi, güvenlik  gibi şeyler dahil olmak üzere deklare bunların deklare edilmesi.
 * Otomatik olarak data modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ile beraber dokümante edilmesi (OpenAPI'n kendisi zaten JSON Schema'ya dayanıyor).
 * Titiz bir çalışmanın sonucunda yukarıdaki standartlara uygun bir framework oluşturduk. Standartları pastanın üzerine sonradan eklenmiş bir çilek olarak görmedik.
-* Ayrıca bu bir çok dilde kullanılabilecek **client code generator** kullanımına da izin veriyor.
+* Ayrıca bu bir çok dilde kullanılabilecek **client code generation** kullanımına da izin veriyor.
 
-### Otomatik dokümantasyon
+### Otomatik Dokümantasyon
 
 
-OpenAPI standartlarına dayalı olan bir framework olarak, geliştiricilerin birden çok seçeneği var, varsayılan olarak gelen 2 farklı interaktif API dokümantasyonu ve web kullanıcı arayüzü var.
+OpenAPI standartlarına dayalı bir framework olarak, geliştiricilerin birden çok seçeneği var, varsayılan olarak gelen 2 farklı interaktif API dokümantasyonu ve web kullanıcı arayüzü var.
 
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a> interaktif olarak API'ınızı tarayıcı üzerinden çağırıp test edebilmenize olanak sağlıyor.
@@ -25,23 +25,22 @@ OpenAPI standartlarına dayalı olan bir framework olarak, geliştiricilerin bir
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Sadece modern Python
+### Sadece Modern Python
 
-Tamamiyle standartlar **Python 3.6**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
+Tamamen **Python 3.6**'nın tip belirteçlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
 
 
-Eğer Python type hintlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz at: [Python Types](python-types.md){.internal-link target=_blank}.
+Eğer Python tip belirteçlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz atabilirsin: [Python Types](python-types.md){.internal-link target=_blank}.
 
-Standart Python'u typelarını belirterek yazıyorsun:
+Standart Python'u tiplerini belirterek yazıyorsun:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
 
-# Değişkeni str olarak belirt
-# ve o fonksiyon için harika bir editör desteği al
+# Değişkeni str olarak belirtelim
+# Bu bize o fonksiyon için harika bir editör desteği vericek
 def main(user_id: str):
     return user_id
 
@@ -72,13 +71,13 @@ my_second_user: User = User(**second_user_data)
 
     Key-Value çiftini direkt olarak  `second_user_data` dictionarysine kaydet , yaptığın şey buna eşit olacak: `User(id=4, name="Mary", joined="2018-11-30")`
 
-### Editor desteği
+### Editor Desteği
 
-Bütün framework kullanılması kolay ve sezgileri güçlü olması için tasarlandı, verilen bütün kararlar geliştiricilere en iyi geliştirme deneyimini yaşatmak üzere, bir çok editör üzerinde test edildi.
+Bütün framework kolay ve sezgisel olması için tasarlandı, verilen bütün kararlar geliştiricilere en iyi geliştirme deneyimini yaşatmak üzere tasarlandı ve bir çok editör üzerinde test edildi.
 
-Son yapılan Python geliştiricileri anketinde, açık ara <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">en çok kullanılan özellik "oto-tamamlama" idi.</a>.
+Son yapılan Python geliştiricileri anketinde, açık ara <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">en çok kullanılan özellik "otomatik tamamlama" idi.</a>.
 
-Bütün **FastAPI** frameworkü oto-tamamlama açısından geliştiriciyi tatmin etmek üzerine tasarlandı. Otomatik tamamlama her yerde çalışıyor.
+Bütün **FastAPI** frameworkü otomatik tamamlama açısından geliştiriciyi tatmin etmek üzerine tasarlandı. Otomatik tamamlama her yerde çalışıyor.
 
 Dokümantasyona tekrardan çok nadir olarak geleceksin.
 
@@ -93,7 +92,7 @@ Editörün sana nasıl yardım ettiğine bir bak:
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 
-Daha önceden düşünüp en imkansız diyebileceğin durumlarda bile otomatik tamamlama alacaksın, örnek olarak `price` JSON body içerisinde (nested bir JSON body de olabilirdi.) direkt olarak istekten geliyor, bu durumda bile oto-tammalama sağlıyor.
+Daha önceden düşünüp en imkansız diyebileceğin durumlarda bile otomatik tamamlama alacaksın, örnek olarak `price` JSON body içerisinde (nested bir JSON body de olabilirdi.) direkt olarak istekten geliyor, bu durumda bile otomatik tamamlama sağlıyor.
 
 Artık key isimlerini yanlış yazma, dokümantasyona dönüp deliler gibi yukarı aşağı sayfada gezmek ve en sonunda `username` mi yoksa `user_name` mi kullandım gibi sorular yok.
 
@@ -106,13 +105,13 @@ Hepsi varsayılan olarak **çalışıyor**.
 
 ### Doğrulama
 
-* Neredeyse bütün (ya da hepsi?) Python **data typeları** için doğrulama, kapsadıkları:
+* Neredeyse bütün (ya da hepsi?) Python **veri tipleri** için doğrulama, kapsadıkları:
     * JSON objeleri (`dict`).
-    * JSON array (`list`) item type'ı belirtirken.
+    * JSON array (`list`) item tipini belirtirken.
     * String (`str`) parametresi, minimum ve maksimum uzunluk gibi sınırlandırmalar yaparken.
     * Numaralar (`int`, `float`) maksimum ve minimum gibi sınırlandırmalar yaparken.
 
-* Bunlar gibi en egzotik typelarla bile doğrulama yapabiliyorsunuz.:
+* Bunlar gibi en yabancıl tiplerle bile doğrulama yapabiliyorsunuz.:
     * URL.
     * Email.
     * UUID.
@@ -120,7 +119,7 @@ Hepsi varsayılan olarak **çalışıyor**.
 
 Bütün doğrulama olayları çok güçlü bir kütüphane sayesinde yapılıyor, **Pydantic**.
 
-### Güvenlik ve kimlik doğrulama
+### Güvenlik ve Kimlik Doğrulama
 
 Güvenlik ve doğrulama database ve data modellerinden taviz vermeden entegre edilebilir durumda.
 
@@ -137,7 +136,7 @@ Bütün güvenlik özellikleri Starlette'den geliyor (**session cookies'de** dah
 
 Bütün hepsi tekrardan kullanılabilir aletler ve bileşenler olarak, kolayca sistemlerinize, data depolarınıza, ilişkisel ve NoSQL databaselerinize entegre edebileceğiniz şekilde yapıldı.
 
-### Dependency injection
+### Dependency Injection
 
 FastAPI'ın inanılmaz derecede kullanımı kolay, fakat inanılmaz derecede güçlü <abbr title='"components", "resources", "services", "providers" olarak da bilinen'><strong>Dependency Injection </strong></abbr> sistemi var.
 
@@ -148,41 +147,41 @@ FastAPI'ın inanılmaz derecede kullanımı kolay, fakat inanılmaz derecede gü
 * Kompleks kimlik doğrulama sistemleri için destek, **database bağlantıları**, vs.
 * **Taviz yok** hiçbir şeyden taviz vermeden, database frontend vs. Bütün hepsinin kolayca entegre edilebiliyor.
 
-### Sınırsız "plug-inler"
+### Sınırsız "Plugin"
 
 Başka bir deyişle, plug-inlere ihtiyacımız yok, import edip direkt olarak kullanmaya başlayabiliriz.
 
 Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber) tasarlandı, sen bir "plug-in" yaratıp 2 satır kod ile, *path operasyonlarında* kullandığımız syntax ve aynı yapı ile koduna entregre edebilirsin.
 
 
-### Test edildi
+### Tamamen Test Edildiş ve Güvenilir
 
-* 100% <abbr title="Kodun ne kadarının test edildiği">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">typeları belirtilmiş</abbr> codebase.
+* 100% <abbr title="Kodun ne kadarının test edildiği">testle kapsanmış</abbr>.
+* 100% <abbr title="Python tip belirteçleri bazı kod editörleri ve araçlarda daha iyi destek sunar">tipleri belirtilmiş</abbr> kod tabanı.
 * FastAPI ile yapılan bir çok proje insanlar tarafından kullanılıyor.
 
-## Starlette özellikleri
+## Starlette Özellikleri
 
 **FastAPI**, <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> ile tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Starlette kodu da çalışacaktır.
 
-`FastAPI` aslında `Starlette`'nin bir sub-class'ı. Eğer Starlette'nin nasıl kullanılacağını biliyor isen, çoğu işlevini aynı şekilde yapıyor.
+`FastAPI` aslında `Starlette`'nin alt katmanında kullanan bir üst framework. Eğer Starlette'nin nasıl kullanılacağını biliyor isen, çoğu işlevini aynı şekilde yapıyor.
 
 **FastAPI** ile beraber **Starlette**'nin bütün özelliklerine de sahip olacaksınız (FastAPI aslında Starlette'nin steroid basmış hali):
 
-* Gerçekten etkileyici bir performansa sahip.Python'un ise en hızlı frameworklerinden bir tanesi, <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">**NodeJS** ve **Go** ile ise eşdeğer performansa sahip.</a>.
+* Gerçekten etkileyici bir performansa sahip. Python'un ise en hızlı frameworklerinden bir tanesi, <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">**NodeJS** ve **Go** ile ise eşdeğer performansa sahip.</a>.
 * **WebSocket** desteği.
 * **GraphQL** desteği.
-* Kullanım halinde arka plan işlevleri.
-* Başlatma ve kapatma eventleri(startup and shutdown).
-* Test sunucusu `requests` üzerine kurulu.
+* Çalışma anında arka planda iş  parçacıkları çalıştırabilme imkanı.
+* Başlatma ve kapatma anında kod çalıştırabilme(startup and shutdown).
+* HTTPX kütüphanesi üzerine kurulu test sistemi sunar.
 * **CORS**, GZip, Static dosyalar, Streaming responseları.
 * **Session and Cookie** desteği.
-* 100% test kapsayıcılığı.
-* 100% typeları belirtilmiş codebase.
+* Bütün kod tabanı 100% test ile kapsanmıştır.
+* Bütün kod tabanı 100% tip belirteçleriyle desteklenmiştir.
 
-## Pydantic özellikleri
+## Pydantic Özellikleri
 
-**FastAPI** ile <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
+**FastAPI**  <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> ile tamamen uyumlu ve üzerine kuruludur. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
 
 Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> databaseler ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
 
@@ -194,7 +193,7 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 
 * **Kafa karıştırmaz**:
     * Farklı bir syntax öğrenmenize gerek kalmaz,
-    * Eğer Python typelarını nasıl kullanacağını biliyorsan Pydantic kullanmayı da biliyorsundur.
+    * Eğer Python tiplerini nasıl kullanacağını biliyorsan Pydantic kullanmayı da biliyorsundur.
 * Kullandığın geliştirme araçları ile iyi çalışır **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE</abbr>/<abbr title="Code errorlarınızı inceleyen program">linter</abbr>/brain**:
     * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin
 * **Hızlı**:
