@@ -707,13 +707,10 @@ async def request_body_to_args(
                     except AttributeError:
                         errors.append(get_missing_field_error(loc))
                         continue
-            if (
-                value is None
-                or (
-                    isinstance(field_info, params.Form)
-                    and is_sequence_field(field)
-                    and len(value) == 0
-                )
+            if value is None or (
+                isinstance(field_info, params.Form)
+                and is_sequence_field(field)
+                and len(value) == 0
             ):
                 if field.required:
                     errors.append(get_missing_field_error(loc))
