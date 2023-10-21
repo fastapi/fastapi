@@ -1,4 +1,4 @@
-# Tutorial - User Guide - Intro
+# Tutorial - User Guide
 
 This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
