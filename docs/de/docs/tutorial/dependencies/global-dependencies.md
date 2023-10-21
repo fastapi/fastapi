@@ -31,4 +31,4 @@ Und alle Ideen aus dem Abschnitt über das [Hinzufügen von `dependencies` zu de
 
 ## Abhängigkeiten für Gruppen von *Pfadoperationen*
 
-Wenn Sie später lesen, wie Sie größere Anwendungen strukturieren ([Größere Anwendungen – Mehrere Dateien](../../tutorial/bigger-applications.md){.internal-link target=_blank}), möglicherweise mit mehreren Dateien, lernen Sie, wie Sie einen einzelnen `dependencies`-Parameter für eine Gruppe von *Pfadoperationen* deklarieren.
+Wenn Sie später lesen, wie Sie größere Anwendungen strukturieren ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), möglicherweise mit mehreren Dateien, lernen Sie, wie Sie einen einzelnen `dependencies`-Parameter für eine Gruppe von *Pfadoperationen* deklarieren.
