@@ -56,7 +56,7 @@ Nicht abwärtskompatible Änderungen und neue Funktionen werden in "MINOR"-Versi
 !!! tip
     "MINOR" ist die Zahl in der Mitte, zum Beispiel ist in `0.2.3` die MINOR-Version `2`.
 
-## Upgrade der FastAPI-Version
+## Upgrade der FastAPI-Versionen
 
 Sie sollten Tests für Ihre Anwendung hinzufügen.
 
