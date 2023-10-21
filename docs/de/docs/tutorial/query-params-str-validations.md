@@ -57,7 +57,7 @@ Importieren Sie zuerst:
 
     Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
 
-    Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+    Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ## `Annotated` im Typ des `q`-Parameters verwenden
 
