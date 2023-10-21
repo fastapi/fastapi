@@ -709,7 +709,6 @@ async def request_body_to_args(
                         continue
             if (
                 value is None
-                or (isinstance(field_info, params.Form) and value == "")
                 or (
                     isinstance(field_info, params.Form)
                     and is_sequence_field(field)
