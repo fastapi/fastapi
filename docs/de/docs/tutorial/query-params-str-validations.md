@@ -127,7 +127,7 @@ FastAPI wird nun:
 
 Frühere Versionen von FastAPI (vor <abbr title="vor 2023-03">0.95.0</abbr>) benötigten `Query` als Defaultwert des Parameters, statt es innerhalb von `Annotated` unterzubringen. Die Chance ist groß, dass Sie Quellcode sehen, der das immer noch so macht, darum erkläre ich es Ihnen.
 
-!!! tip
+!!! tip "Tipp"
     Verwenden Sie für neuen Code, und wann immer möglich, `Annotated`, wie oben erklärt. Es gibt mehrere Vorteile (unten erläutert) und keine Nachteile. 🍰
 
 So würden Sie `Query()` als Defaultwert Ihres Funktionsparameters verwenden, den Parameter `max_length` auf 50 gesetzt:
@@ -259,7 +259,7 @@ Sie können auch einen Parameter `min_length` hinzufügen:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -268,7 +268,7 @@ Sie können auch einen Parameter `min_length` hinzufügen:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -299,7 +299,7 @@ Sie können einen <abbr title="Ein regulärer Ausdruck, auch regex oder regexp g
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -308,7 +308,7 @@ Sie können einen <abbr title="Ein regulärer Ausdruck, auch regex oder regexp g
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11"
@@ -359,7 +359,7 @@ Beispielsweise könnten Sie den `q` Query-Parameter so deklarieren, dass er eine
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -413,14 +413,14 @@ Wenn Sie einen Parameter erforderlich machen wollen, während Sie `Query` verwen
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
     ```
 
-    !!! tip
+    !!! tip "Tipp"
         Beachten Sie, dass, obwohl in diesem Fall `Query()` der Funktionsparameter-Defaultwert ist, wir nicht `default=None` zu `Query()` hinzufügen.
 
         Verwenden Sie bitte trotzdem die `Annotated`-Version. 😉
@@ -443,7 +443,7 @@ Es gibt eine Alternative, die explizit deklariert, dass ein Wert erforderlich is
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -483,7 +483,7 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -492,17 +492,17 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Pydantic, welches die gesamte Daten-Validierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
 
-!!! tip
+!!! tip "Tipp"
     Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
 
 ## Query-Parameter-Liste / Mehrere Werte
@@ -531,7 +531,7 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -540,7 +540,7 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 === "Python 3.9+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -549,7 +549,7 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -575,7 +575,7 @@ Die Antwort auf diese URL wäre also:
 }
 ```
 
-!!! tip
+!!! tip "Tipp"
     Um einen Query-Parameter vom Typ `list` zu deklarieren, wie im Beispiel oben, müssen Sie explizit `Query` verwenden, sonst würde der Parameter als Requestbody interpretiert werden.
 
 Die interaktive API-Dokumentation wird entsprechend aktualisiert und erlaubt jetzt mehrere Werte.
@@ -600,7 +600,7 @@ Und Sie können auch eine Default-`list`e von Werten definieren, wenn keine übe
 
 === "Python 3.9+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -609,7 +609,7 @@ Und Sie können auch eine Default-`list`e von Werten definieren, wenn keine übe
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -651,7 +651,7 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]` (oder `list[s
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -696,7 +696,7 @@ Sie können einen Titel hinzufügen – `title`:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
@@ -705,7 +705,7 @@ Sie können einen Titel hinzufügen – `title`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -734,7 +734,7 @@ Und eine Beschreibung – `description`:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="12"
@@ -743,7 +743,7 @@ Und eine Beschreibung – `description`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="13"
@@ -788,7 +788,7 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -797,7 +797,7 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -832,7 +832,7 @@ In diesem Fall fügen Sie den Parameter `deprecated=True` zu `Query` hinzu.
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
@@ -841,7 +841,7 @@ In diesem Fall fügen Sie den Parameter `deprecated=True` zu `Query` hinzu.
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="18"
@@ -876,7 +876,7 @@ Um einen Query-Parameter vom generierten OpenAPI-Schema auszuschließen (und dah
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
@@ -885,7 +885,7 @@ Um einen Query-Parameter vom generierten OpenAPI-Schema auszuschließen (und dah
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
