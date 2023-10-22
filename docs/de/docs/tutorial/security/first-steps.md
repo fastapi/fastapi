@@ -212,7 +212,7 @@ Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pf
 !!! info "Technische Details"
     **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitssystem in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
 
-    Alle Sicherheits-Tools, die in OpenAPI integriert sind (und die automatische API-Dokumentation), erben von `SecurityBase`, so weiß **FastAPI**, wie es sie in OpenAPI integrieren muss.
+    Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische API-Dokumentation), erben von `SecurityBase`, so weiß **FastAPI**, wie es sie in OpenAPI integrieren muss.
 
 ## Was es macht
 
