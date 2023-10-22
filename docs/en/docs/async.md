@@ -409,7 +409,7 @@ Still, in both situations, chances are that **FastAPI** will [still be faster](/
 
 ### Dependencies
 
-The same applies for [dependencies](/tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](/tutorial/dependencies/){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies
 
