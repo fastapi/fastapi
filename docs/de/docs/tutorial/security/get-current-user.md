@@ -16,7 +16,7 @@ Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injectio
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -53,7 +53,7 @@ So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch üb
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="3  10-14"
@@ -62,7 +62,7 @@ So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch üb
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="5  12-16"
@@ -99,7 +99,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="23"
@@ -108,7 +108,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="25"
@@ -139,7 +139,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17-20  24-25"
@@ -148,7 +148,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19-22  26-27"
@@ -179,7 +179,7 @@ Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="29"
@@ -188,7 +188,7 @@ Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="31"
@@ -199,7 +199,7 @@ Beachten Sie, dass wir als Typ von `current_user` das Pydantic-Modell `User` dek
 
 Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen helfen.
 
-!!! tip
+!!! tip "Tipp"
     Sie erinnern sich vielleicht, dass Requestbodys ebenfalls mit Pydantic-Modellen deklariert werden.
 
     Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
@@ -261,7 +261,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="28-30"
@@ -270,7 +270,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="30-32"
