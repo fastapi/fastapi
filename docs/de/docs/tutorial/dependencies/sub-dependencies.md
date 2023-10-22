@@ -30,7 +30,7 @@ Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
 
 === "Python 3.10 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="6-7"
@@ -39,7 +39,7 @@ Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8-9"
@@ -74,7 +74,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstelle
 
 === "Python 3.10 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11"
@@ -83,7 +83,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstelle
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="13"
@@ -121,7 +121,7 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 === "Python 3.10 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19"
@@ -130,7 +130,7 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="22"
@@ -170,7 +170,7 @@ In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -186,7 +186,7 @@ Einfach Funktionen, die genauso aussehen wie *Pfadoperation-Funktionen*.
 
 Dennoch ist es sehr mächtig und ermöglicht Ihnen die Deklaration beliebig tief verschachtelter Abhängigkeits-"Graphen" (Bäume).
 
-!!! tip
+!!! tip "Tipp"
     All dies scheint angesichts dieser einfachen Beispiele möglicherweise nicht so nützlich zu sein.
 
     Aber Sie werden in den Kapiteln über **Sicherheit** sehen, wie nützlich das ist.
