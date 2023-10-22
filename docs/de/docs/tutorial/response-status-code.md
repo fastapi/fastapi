@@ -54,7 +54,7 @@ Kurz:
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
 * `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
-!!! tip
+!!! tip "Tipp"
     Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a>.
 
 ## Abkürzung, um die Namen zu erinnern
