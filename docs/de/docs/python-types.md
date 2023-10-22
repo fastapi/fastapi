@@ -200,14 +200,14 @@ Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Li
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Die inneren Typen in den eckigen Klammern werden als "Typ-Parameter" bezeichnet.
 
     In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder `list` in Python 3.9 und darüber).
 
 Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist ein String – `str`.
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie Python 3.9 oder höher verwenden, müssen Sie `List` nicht von `typing` importieren, Sie können stattdessen den regulären `list`-Typ verwenden.
 
 Auf diese Weise kann Ihr Editor Sie auch bei der Bearbeitung von Einträgen aus der Liste unterstützen:
@@ -471,7 +471,7 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 
 Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
 
-!!! tip
+!!! tip "Tipp"
     Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
 
 ## Typ-Hinweise mit Metadaten-Annotationen
@@ -506,7 +506,7 @@ Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standa
 
 Später werden Sie sehen, wie **mächtig** es sein kann.
 
-!!! tip
+!!! tip "Tipp"
     Der Umstand, dass es **Standard Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 
     Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python Tools und Bibliotheken sein wird. 🚀
