@@ -26,7 +26,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -35,7 +35,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="3"
@@ -75,7 +75,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
@@ -84,7 +84,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -100,7 +100,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 ## Sortieren Sie die Parameter, wie Sie möchten
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
 Nehmen wir an, Sie möchten den Query-Parameter `q` als erforderlichen `str` deklarieren.
@@ -119,7 +119,7 @@ Sie können Ihre Funktion also so deklarieren:
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -142,7 +142,7 @@ Aber behalten Sie im Kopf, dass Sie dieses Problem nicht haben, wenn Sie `Annota
 
 ## Sortieren Sie die Parameter wie Sie möchten: Tricks
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
 Hier ein **kleiner Trick**, der nützlich sein kann, aber Sie werden ihn nicht oft brauchen.
@@ -199,7 +199,7 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
@@ -227,7 +227,7 @@ Das Gleiche trifft zu auf:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -258,7 +258,7 @@ Dasselbe gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11"
