@@ -223,13 +223,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="6  12-13"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -251,13 +251,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  19-21"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -345,13 +345,13 @@ def get_settings():
     {!> ../../../docs_src/settings/app03_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  11"
     {!> ../../../docs_src/settings/app03_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
