@@ -28,7 +28,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17-19"
@@ -37,7 +37,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19-21"
@@ -130,7 +130,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="20"
@@ -139,7 +139,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="22"
@@ -204,7 +204,7 @@ Zum Beispiel:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="25"
@@ -213,7 +213,7 @@ Zum Beispiel:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="27"
@@ -257,7 +257,7 @@ so wie in:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="15"
@@ -266,7 +266,7 @@ so wie in:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
