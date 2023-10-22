@@ -168,7 +168,7 @@ Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 !!! info
     Wenn Sie ein sehr strenger "Pythonista" sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
 
-    Das liegt daran, dass FastAPI denselben Namen wie in der OpenAPI-Spezifikation verwendet. Sodass Sie, wenn Sie mehr über eines dieser Sicherheitssysteme herausfinden möchten, den Namen einfach kopieren und einfügen können, um weitere Informationen darüber zu erhalten.
+    Das liegt daran, dass FastAPI denselben Namen wie in der OpenAPI-Spezifikation verwendet. Sodass Sie, wenn Sie mehr über eines dieser Sicherheitsschemas herausfinden möchten, den Namen einfach kopieren und einfügen können, um weitere Informationen darüber zu erhalten.
 
 Die Variable `oauth2_scheme` ist eine Instanz von `OAuth2PasswordBearer`, aber auch ein "Callable".
 
@@ -207,10 +207,10 @@ Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 
-**FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein "Sicherheitssystem" im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
+**FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein "Sicherheitsschema" im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
 !!! info "Technische Details"
-    **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitssystem in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
+    **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
 
     Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische API-Dokumentation), erben von `SecurityBase`, so weiß **FastAPI**, wie es sie in OpenAPI integrieren muss.
 
