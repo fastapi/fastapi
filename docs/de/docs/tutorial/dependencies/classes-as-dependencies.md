@@ -26,7 +26,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependab
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -35,7 +35,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependab
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11"
@@ -123,7 +123,7 @@ Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9-13"
@@ -132,7 +132,7 @@ Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11-15"
@@ -161,7 +161,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -170,7 +170,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="12"
@@ -199,7 +199,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="6"
@@ -208,7 +208,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -249,7 +249,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
@@ -258,7 +258,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19"
@@ -279,7 +279,7 @@ Beachten Sie, wie wir `CommonQueryParams` im obigen Code zweimal schreiben:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -308,7 +308,7 @@ In diesem Fall hat das erste `CommonQueryParams` in:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -327,7 +327,7 @@ Sie könnten tatsächlich einfach schreiben:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -356,7 +356,7 @@ Sie könnten tatsächlich einfach schreiben:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
@@ -365,7 +365,7 @@ Sie könnten tatsächlich einfach schreiben:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19"
@@ -388,7 +388,7 @@ Aber Sie sehen, dass wir hier etwas Codeduplizierung haben, indem wir `CommonQue
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -409,7 +409,7 @@ Anstatt zu schreiben:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -426,7 +426,7 @@ Anstatt zu schreiben:
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -457,7 +457,7 @@ Dasselbe Beispiel würde dann so aussehen:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
@@ -466,7 +466,7 @@ Dasselbe Beispiel würde dann so aussehen:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="19"
@@ -475,7 +475,7 @@ Dasselbe Beispiel würde dann so aussehen:
 
 ... und **FastAPI** wird wissen, was zu tun ist.
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie das eher verwirrt, als Ihnen zu helfen, ignorieren Sie es, Sie *brauchen* es nicht.
 
     Es ist nur eine Abkürzung. Es geht **FastAPI** darum, Ihnen dabei zu helfen, Codeverdoppelung zu minimieren.
