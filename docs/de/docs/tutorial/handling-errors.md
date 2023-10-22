@@ -84,7 +84,7 @@ Aber falls es in einem fortgeschrittenen Szenario notwendig ist, können Sie ben
 
 ## Benutzerdefinierte Exceptionhandler definieren
 
-Sie können benutzerdefinierte <abbr title="Exceptionhandler – Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> hinzufügen, mithilfe <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">derselben Tools für Exceptions von Starlette</a>.
+Sie können benutzerdefinierte <abbr title="Exceptionhandler – Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> hinzufügen, mithilfe <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">derselben Werkzeuge für Exceptions von Starlette</a>.
 
 Nehmen wir an, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 
@@ -236,7 +236,7 @@ Und **FastAPI**s `HTTPException`-Fehlerklasse erbt von Starlettes `HTTPException
 
 Der einzige Unterschied ist, dass **FastAPI**s `HTTPException` Ihnen erlaubt, Header zur Response hinzuzufügen.
 
-Das wird intern gebraucht/verwendet für OAuth 2.0 und für einige Sicherheits-Tools.
+Das wird intern gebraucht/verwendet für OAuth 2.0 und für einige Sicherheits-Werkzeuge.
 
 Sie können also weiterhin **FastAPI**s `HTTPException` wie üblich in Ihrem Code werfen.
 
