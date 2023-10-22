@@ -4,11 +4,11 @@ Python isteğe bağlı olarak "<abbr title="'tür ek açıklamaları' olarak da 
 
  **"Tip belirteçleri"** (veya ek açıklamalar) bir değişkenin <abbr title="örneğin: str, int, float, bool">tipinin</abbr> belirtilmesine olanak sağlayan özel bir sözdizimidir.
 
-Değişkenleriniz için tip bildirerek, editörler ve araçlar size daha iyi bir kullanım deneyimi sağlayabilir.
+Değişkenleriniz için tip bildirmeniz, bazı kod editörleri ve araçlardan daha iyi destek almanıza yardımcı olur.
 
 Bu sayfa Python tip belirteçleriyle ilgili **hızlı bir başlangıç rehberi/bilgi tazeleyici** görevindedir. İçeriği ise FastAPI ile kullanılacak minimum gereksinimleri kapsar, ki bu dağın görünen yüzü.
 
-**FastAPI**'nin tamamı bu tip belirteçlere dayanır ve bunlar birçok avantaj ve fayda sağlar.
+**FastAPI**'ın tamamı bu tip belirteçlere dayanır ve bunlar birçok avantaj ve fayda sağlar.
 
 Ancak hiç **FastAPI** kullanmasanız bile, bu konu hakkında biraz bilgi edinmeniz yararınıza olacaktır.
 
@@ -43,9 +43,13 @@ Fonksiyon sırayla şunları yapar:
 
 Bu program son derece basitti.
 
-Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. Ancak metin içerisindeki ilk harfi büyük harfe dönüştüren metodu hatırlamanız gerekecek.
+Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. 
 
- `upper` mıydı? Yoksa  `uppercase`' mi? `first_uppercase`? Ya da `capitalize`?
+İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. 
+
+Ancak metin içerisindeki ilk harfi büyük harfe dönüştüren metodu çağırmanız gerekecek.
+
+`upper` mıydı? Yoksa  `uppercase`' mi? `first_uppercase`? Ya da `capitalize`?
 
 Ardından, programcıların en iyi dostu olan otomatik tamamlamayı kullanarak işinizi kolaylaştırdınız.
 
@@ -127,9 +131,9 @@ Az önce tip belirteçlerinin en çok kullanıldığı ana yeri gördünüz.
 
 ### Basit Tipler
 
-Elbette sadece `str` değil, tüm standart Python tipleri kullanabilirsiniz.
+Elbette sadece `str` değil, tüm standart Python tiplerini kullanabilirsiniz.
 
-Örneğin şunları da kullanabilirsiniz:
+Örneğin:
 
 * `int`
 * `float`
@@ -140,23 +144,23 @@ Elbette sadece `str` değil, tüm standart Python tipleri kullanabilirsiniz.
 {!../../../docs_src/python_types/tutorial005.py!}
 ```
 
-### Tip Parametreleri ile Generic Tipler
+### Tip Parametreleri ile Genel Tipler
 
-"dict", "list", "set" ve "tuple" gibi başka değerler içerebilen bazı veri yapıları vardır. Ve dahili değerler de kendi türlerine sahip olabilirler.
+`dict`, `list`, `set` ve `tuple` gibi başka değerler içerebilen bazı veri yapıları vardır. Ve dahili değerler de kendi türlerine sahip olabilirler.
 
-Dahili tipleri olan bu tiplere "**generic**"(jenerik) tipler denir. Ve bunları iç tipleriyle bile bildirmek mümkündür.
+Dahili tipleri olan bu tiplere "**generic**" (jenerik) tipler denir. Ve bunları iç tipleriyle bile belirtmek mümkündür.
 
-Bu tipleri ve dahili tpileri bildirmek için standart Python küyüphanesi "typing"i kullanabilirsiniz. Bu tür tip belirteçlerini desteklemek için özel olarak mevcuttur.
+Bu tipleri ve dahili tpileri bildirmek için standart Python küyüphanesi `typing`i kullanabilirsiniz. Bu tür tip belirteçlerini desteklemek için özel olarak mevcuttur.
 
 #### Python'ın Yeni Versiyonları İçin
 
-Yazım kullanan `sözdizimi`, Python 3.6'dan Python 3.9, Python 3.10 vb. dahil olmak üzere en son sürümlere kadar tüm sürümlerle **uyumludur**.
+Yazım kullanan `typing`, Python 3.6'dan Python 3.9, Python 3.10 vb. dahil olmak üzere en son sürümlere kadar tüm sürümlerle **uyumludur**.
 
-Python geliştikçe, **yeni sürümler** bu `belirteç` (tip eki) açıklamaları için gelişmiş destekle birlikte gelir ve çoğu durumda tür ek açıklamalarını bildirmek için yazım modülünü içe aktarmanıza ve kullanmanıza bile gerek kalmaz.
+Python geliştikçe, yeni sürümler daha gelişmiş tip belirteç desteğiyle birlikte gelir ve çoğu durumda tip belirteçi tanımlamak için `typing` modülünü projenize dahil etmenize bile gerek kalmaz.
 
 Projeniz için Python'un daha yeni bir sürümünü seçebilir ve böylece ekstra basitleştirilmiş özelliklerden yararlanabilirsiniz.
 
-Tüm dokümanlarda Python'un her sürümüyle uyumlu örnekler bulabilirsiniz (eğer bir farklılık oluştuysa).
+Tüm dokümanlarda (eğer bir farklılık oluştuysa) Python'ın her sürümüyle uyumlu örnekler bulabilirsiniz.
 
 Örneğin "**Python 3.6+**" Python 3.6 veya üzeri (3.7, 3.8, 3.9, 3.10, vb. dahil) ile uyumlu olduğu anlamına gelir. Ve "**Python 3.9+**" Python 3.9 veya üzeri (3.10 vb. dahil) ile uyumlu olduğu anlamına gelir.
 
@@ -168,11 +172,11 @@ Tüm dokümanlarda Python'un her sürümüyle uyumlu örnekler bulabilirsiniz (e
 
 === "Python 3.9+"
 
-    Declare the variable, with the same colon (`:`) syntax.
+    Değişkeni aynı iki nokta üst üste (`:`) sözdizimiyle bildirin.
 
-    As the type, put `list`.
+    Tür olarak `liste` yazın.
 
-    As the list is a type that contains some internal types, you put them in square brackets:
+    Liste bazı dahili türleri içeren bir tür olduğundan, bunları köşeli parantez içine alırsınız:
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006_py39.py!}
@@ -188,34 +192,35 @@ Tüm dokümanlarda Python'un her sürümüyle uyumlu örnekler bulabilirsiniz (e
 
     Değişkenin tipini yine iki nokta üstüste (`:`) ile belirleyin ve tip olarak `List` kullanın.
 
-    Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli parantez içine alırsınız:
+    Liste tanımlarken dahil tip tanımlayabiliz, bunu köşeli parantez içerisinde gerçekleştirebilirsiniz:
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/python_types/tutorial006.py!}
+    ```
 
-!!! ipucu
+!!! bilgi
     Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
 
-    Bu durumda `str`, `List`e iletilen tür parametresidir (veya Python 3.9+ için `list`)
+    Bu durumda `str`, `List`e iletilen tür parametresidir (veya Python 3.9+ için `list`) iletilen bir tür parametresidir.
 
 Bunun anlamı şudur: "`items` değişkeni bir `list`tir ve bu listedeki öğelerin her biri bir `str`dir".
 
-!!! tip
-    Python 3.9 veya daha üstünü kullanıyorsanız, `List`i `typing`den import etmek zorunda değilsiniz, bunun yerine aynı normal `list` türünü kullanabilirsiniz.
+!!! ipucu
+    Python 3.9 veya daha üstünü kullanıyorsanız, `List`i `typing`den modülünden projenize dahil etmek zorunda değilsiniz, bunun her zamanki normal `list` türünü kullanabilirsiniz.
 
 Bunu yaparak, editörünüz listedeki öğeleri işlerken bile destek sağlayabilir:
 
 <img src="/img/python-types/image05.png">
 
-Tipler olmadan bunu başarmak neredeyse imkansızdır.
+Tipler olmasaydı bunu elde etmek neredeyse imkansızdı.
 
-Değişken öğenin `list` öğelerindeki `items`dan biri olduğuna dikkat edin.
+Şuna dikkat edin: `item` değişkeni, `items` listesinde bulunan elemanlardan birisi.
 
 Yine de editör bunun bir `str` olduğunu biliyor ve bunun için destek sağlıyor.
 
 #### `Tuple` ve `Set`
 
-`Tuple` ve `set`lerin tiplerini bildirmek için de aynısını yapıyoruz:
+`Tuple` ve `set`lerin tiplerini belirtmek için de aynısını yapıyoruz:
 
 === "Python 3.9+"
 
@@ -257,16 +262,16 @@ Bir `dict` tanımlamak için virgülle ayrılmış iki parametre verebilirsiniz.
 Bu şu anlama gelir:
 
 *  `prices` değişkeni `dict` tipindedir:
-    *  `dict` değişkeninin `key` değeri  `str` tipindedir (herbir item'ın "name" değeri).
-    *  `dict` değişkeninin `value` değeri `float` tipindedir (lherbir item'ın "price" değeri).
+    * `dict` değişkeninin `key` değeri `str` tipindedir (herbir item'ın "name" değeri).
+    * `dict` değişkeninin `value` değeri `float` tipindedir (herbir item'ın "price" değeri).
 
 #### Union
 
 Bir değişkenin `int` veya `str` gibi **çeşitli türlerden** herhangi biri olabileceğini bildirebilirsiniz.
 
-Python 3.6 ve üzeri sürümlerde (Python 3.10 dahil) `typing`den `Union` türünü kullanabilir ve kabul edilecek olası türleri köşeli parantezlerin içine koyabilirsiniz.
+Python 3.6 ve üzeri sürümlerde (Python 3.10 dahil) `typing`den `Union` türünü kullanabilir ve değişkenin alabileceği veri tiplerini köşeli parantezlerin içine yerleştirebilirsiniz.
 
-Python 3.10'da olası türleri dikey bir <abbr title='"bitsel veya operatör" olarak da adlandırılır, ancak bu anlam burada geçerli değildir'>çubukla (`|`)</abbr> (|) ayırabileceğiniz yeni bir **sözdizimi** de var.
+Python 3.10'da olası türleri dikey bir <abbr title='"bitsel veya operatör" olarak da adlandırılır, ancak bu anlam burada geçerli değildir'>çubukla (`|`)</abbr> ayırabileceğiniz yeni bir **sözdizimi** de var.
 
 === "Python 3.10+"
 
@@ -280,19 +285,19 @@ Python 3.10'da olası türleri dikey bir <abbr title='"bitsel veya operatör" ol
     {!> ../../../docs_src/python_types/tutorial008b.py!}
     ```
 
-Her iki durumda da bu, `item`in bir `int` veya `str` olabileceği anlamına gelir.
+Her iki kullanımda `item`ın bir `int` veya `str` değer alabileceğini ifade eder.
 
 #### `None` Kullanımı
 
-Bir değerin `str` gibi bir türe sahip olabileceğini, ancak `None` da olabileceğini bildirebilirsiniz.
+Bir değer `str` bir tipe sahip olabileceği gibi, `None` tipine de sahip olabilir.
 
-Python 3.6 ve üzeri sürümlerde (Python 3.10 dahil) `typing` modülünden `Optional`ı içe aktarıp kullanarak bildirebilirsiniz.
+Python 3.6 ve üzeri sürümlerde (Python 3.10 dahil) `typing` modülünden `Optional`ı içe aktarıp kullanabilirsiniz.
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Sadece `str` yerine `Optional[str]` kullanmak, düzenleyicinin bir değerin aslında `None` da olabileceğini ve gelen değerin `str` olmadığı durumlarda hataları tespit etmenize yardımcı olmasını sağlar.
+Sadece `str` yerine `Optional[str]` kullanmak, editörün bir değerin aslında `None` da olabileceğini ve gelen değerin `str` olmadığı durumlarda hataları tespit etmenize yardımcı olmasını sağlar.
 
 `Optional[Something]` aslında `Union[Something, None]` için bir kısayoldur, eşdeğerdirler.
 
