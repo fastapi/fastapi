@@ -26,7 +26,7 @@ Importieren Sie es zuerst:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="2"
@@ -35,7 +35,7 @@ Importieren Sie es zuerst:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="4"
@@ -69,7 +69,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9-12"
@@ -78,7 +78,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11-14"
@@ -96,7 +96,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
 
     Denken Sie daran, dass `Query`, `Path` und andere von `fastapi` tatsächlich Funktionen sind, die spezielle Klassen zurückgeben.
 
-!!! tip
+!!! tip "Tipp"
     Beachten Sie, dass jedes Modell-Attribut mit einem Typ, Defaultwert und `Field` die gleiche Struktur hat wie ein Parameter einer Pfadoperation-Funktion, nur mit `Field` statt `Path`, `Query`, `Body`.
 
 ## Zusätzliche Information hinzufügen
