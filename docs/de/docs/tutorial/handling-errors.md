@@ -63,7 +63,7 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 }
 ```
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie eine `HTTPException` werfen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
 
     Zum Beispiel ein `dict`, eine `list`, usw.
