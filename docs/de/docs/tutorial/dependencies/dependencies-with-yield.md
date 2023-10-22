@@ -4,7 +4,7 @@ FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title='Man
 
 Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte danach.
 
-!!! tip
+!!! tip "Tipp"
     Stellen Sie sicher, dass Sie `yield` nur einmal pro Abhängigkeit verwenden.
 
 !!! note "Technische Details"
@@ -39,7 +39,7 @@ Der auf die `yield`-Anweisung folgende Code wird ausgeführt, nachdem die Respon
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-!!! tip
+!!! tip "Tipp"
     Sie können `async`hrone oder normale Funktionen verwenden.
 
     **FastAPI** wird bei jeder das Richtige tun, so wie auch bei normalen Abhängigkeiten.
@@ -80,7 +80,7 @@ Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `de
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="4  12  20"
@@ -107,7 +107,7 @@ Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` 
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="16-17  24-25"
@@ -147,7 +147,7 @@ Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnt
 
 Wenn Sie benutzerdefinierte Exceptions haben, die Sie handhaben möchten, *bevor* Sie die Response zurückgeben, was möglicherweise die Response ändert, vielleicht sogar eine `HTTPException` auslöst, dann erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank}.
 
-!!! tip
+!!! tip "Tipp"
     Sie können immer noch Exceptions werfen, einschließlich `HTTPException`, *vor* dem `yield`. Aber nicht danach.
 
 Die Ausführungsreihenfolge ähnelt mehr oder weniger dem folgenden Diagramm. Die Zeit verläuft von oben nach unten. Und jede Spalte ist einer der interagierenden oder Code-ausführenden Teilnehmer.
@@ -197,7 +197,7 @@ participant tasks as Hintergrund-Tasks
 
     Nachdem eine dieser Responses gesendet wurde, kann keine weitere Response gesendet werden.
 
-!!! tip
+!!! tip "Tipp"
     Obiges Diagramm verwendet `HTTPException`, aber Sie können auch jede andere Exception auslösen, für die Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} erstellt haben.
 
     Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten übergeben, einschließlich `HTTPException`, und dann **erneut** an die Exceptionhandler. Wenn für diese Exception kein Exceptionhandler vorhanden ist, wird sie von der internen Default `ServerErrorMiddleware` gehandhabt, was einen HTTP-Statuscode 500 zurückgibt, um den Client darüber zu informieren, dass ein Fehler auf dem Server aufgetreten ist.
@@ -237,7 +237,7 @@ Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` ve
 {!../../../docs_src/dependencies/tutorial010.py!}
 ```
 
-!!! tip
+!!! tip "Tipp"
     Andere Möglichkeiten, einen Kontextmanager zu erstellen, sind:
 
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> oder
