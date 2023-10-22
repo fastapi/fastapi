@@ -50,7 +50,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="6-7"
@@ -59,7 +59,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8-11"
@@ -113,7 +113,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -122,7 +122,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="3"
@@ -153,7 +153,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11  16"
@@ -162,7 +162,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="15  20"
@@ -179,7 +179,7 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
-!!! tip
+!!! tip "Tipp"
     Im nächsten Kapitel erfahren Sie, welche anderen "Dinge", außer Funktionen, Sie als Abhängigkeiten verwenden können.
 
 Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
@@ -236,7 +236,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Das ist schlicht Standard Python, es wird als "Typ-Alias" bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
     Da **FastAPI** jedoch auf Standard Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
