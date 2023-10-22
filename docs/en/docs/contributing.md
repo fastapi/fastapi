@@ -388,7 +388,7 @@ You can make the first pull request with those two files, `docs/ht/mkdocs.yml` a
 
 * However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
     * Search for such links in the translated document using the regex `#[^# ]`.
-    * Search in all documents already translated into your language, using the regex `your-translated-document\.md#`.
+    * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
     * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
 
 #### Preview the result
