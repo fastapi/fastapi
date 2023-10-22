@@ -66,7 +66,7 @@ OpenAPI bietet die Möglichkeit, mehrere Sicherheits"systeme" zu definieren.
 
 Durch deren Verwendung können Sie alle diese Standards-basierten Tools nutzen, einschließlich dieser interaktiven Dokumentationssysteme.
 
-OpenAPI definiert die folgenden Sicherheitssysteme:
+OpenAPI definiert die folgenden Sicherheitsschemas:
 
 * `apiKey`: ein anwendungsspezifischer Schlüssel, der stammen kann von:
     * Einem Query-Parameter.
@@ -94,7 +94,7 @@ OpenAPI definiert die folgenden Sicherheitssysteme:
 
 ## **FastAPI** Tools
 
-FastAPI stellt für jedes dieser Sicherheitssysteme im Modul `fastapi.security` verschiedene Tools bereit, die die Verwendung dieser Sicherheitsmechanismen vereinfachen.
+FastAPI stellt für jedes dieser Sicherheitsschemas im Modul `fastapi.security` verschiedene Tools bereit, die die Verwendung dieser Sicherheitsmechanismen vereinfachen.
 
 In den nächsten Kapiteln erfahren Sie, wie Sie mit diesen von **FastAPI** bereitgestellten Tools Sicherheit zu Ihrer API hinzufügen.
 
