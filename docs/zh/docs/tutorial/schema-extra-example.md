@@ -16,7 +16,7 @@
     {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-23"
     {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
@@ -34,7 +34,7 @@
     {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10-13"
     {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
@@ -61,7 +61,7 @@
     {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23-28"
     {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
@@ -76,7 +76,7 @@
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         尽可能选择使用 `Annotated` 的版本。

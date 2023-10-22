@@ -18,7 +18,7 @@ First import `Header`:
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -33,7 +33,7 @@ First import `Header`:
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -60,7 +60,7 @@ The first value is the default value, you can pass all the extra validation or a
     {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial001_an.py!}
@@ -75,7 +75,7 @@ The first value is the default value, you can pass all the extra validation or a
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -120,7 +120,7 @@ If for some reason you need to disable automatic conversion of underscores to hy
     {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/header_params/tutorial002_an.py!}
@@ -135,7 +135,7 @@ If for some reason you need to disable automatic conversion of underscores to hy
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -169,7 +169,7 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
     {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial003_an.py!}
@@ -193,7 +193,7 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

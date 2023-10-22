@@ -107,7 +107,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 ## 必要条件
 
-Python 3.7+
+Python 3.8+
 
 FastAPI は巨人の肩の上に立っています。
 

@@ -79,7 +79,7 @@ def test_openapi_schema():
                                 "schema": {
                                     "title": "Items",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/ItemInput"},
+                                    "items": {"$ref": "#/components/schemas/Item"},
                                 }
                             }
                         },
@@ -134,14 +134,14 @@ def test_openapi_schema():
             "schemas": {
                 "Author": {
                     "title": "Author",
-                    "required": ["name", "items"],
+                    "required": ["name"],
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "items": {
                             "title": "Items",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/ItemOutput"},
+                            "items": {"$ref": "#/components/schemas/Item"},
                         },
                     },
                 },
@@ -156,27 +156,15 @@ def test_openapi_schema():
                         }
                     },
                 },
-                "ItemInput": {
+                "Item": {
                     "title": "Item",
                     "required": ["name"],
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "description": {
-                            "title": "Description",
                             "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                    },
-                },
-                "ItemOutput": {
-                    "title": "Item",
-                    "required": ["name", "description"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
                             "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
                         },
                     },
                 },

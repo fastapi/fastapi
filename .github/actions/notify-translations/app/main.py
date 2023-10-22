@@ -9,7 +9,7 @@ import httpx
 from github import Github
 from pydantic import BaseModel, BaseSettings, SecretStr
 
-awaiting_label = "awaiting review"
+awaiting_label = "awaiting-review"
 lang_all_label = "lang-all"
 approved_label = "approved-2"
 translations_path = Path(__file__).parent / "translations.yml"
