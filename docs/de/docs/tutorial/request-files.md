@@ -27,7 +27,7 @@ Importieren Sie `File` und `UploadFile` von `fastapi`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -52,7 +52,7 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -64,7 +64,7 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
 
     Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `File` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben
 
-!!! tip
+!!! tip "Tipp"
     Um Datei-Bodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
 Die Dateien werden als "Formulardaten" hochgeladen.
@@ -93,7 +93,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="12"
@@ -189,7 +189,7 @@ Sie können eine Datei optional machen, indem Sie Standard Typ-Annotationen verw
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7  15"
@@ -198,7 +198,7 @@ Sie können eine Datei optional machen, indem Sie Standard Typ-Annotationen verw
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9  17"
@@ -223,7 +223,7 @@ Sie können auch `File()` zusammen mit `UploadFile` verwenden, um zum Beispiel z
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7  13"
@@ -252,7 +252,7 @@ Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
 === "Python 3.9+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8  13"
@@ -261,7 +261,7 @@ Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10  15"
@@ -293,7 +293,7 @@ Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu se
 
 === "Python 3.9+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9  16"
@@ -302,7 +302,7 @@ Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu se
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="11  18"
