@@ -23,7 +23,7 @@ Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definie
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -48,7 +48,7 @@ Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Q
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
