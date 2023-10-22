@@ -225,7 +225,7 @@ Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI am Laufen zu erhalt
 
 Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord-Chatserver</a> 👥 bei und treffen Sie sich mit anderen Mitgliedern der FastAPI-Community.
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie Fragen haben, stellen Sie sie bei <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Diskussionen</a>, es besteht eine viel bessere Chance, dass Sie hier Hilfe von den [FastAPI-Experten](fastapi-people.md#experten){.internal-link target=_blank} erhalten.
 
     Nutzen Sie den Chat nur für andere allgemeine Gespräche.
