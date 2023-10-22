@@ -360,7 +360,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
 
     Aber Pydantic hat automatische Daten-Konvertierung.
