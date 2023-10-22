@@ -14,7 +14,7 @@ hide:
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="path, endpoints yada routes olarak da isimlendirilebilir">adres</abbr> <abbr title="HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonlarını </abbr>parametreleri, gövde talebi, güvenlik gibi şeyler dahil olmak üzere bunların tanımlamalarının yapılması.
 * Otomatik olarak veri modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ile beraber dökümante edilmesi (OpenAPI'n kendisi zaten JSON Schema'ya dayanıyor).
 * Titiz bir çalışmanın sonucunda yukarıdaki standartlara uygun bir framework oluşturduk. Standartları pastanın üzerine sonradan eklenmiş bir çilek olarak görmedik.* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="path, endpoints yada routes olarak da isimlendirilebilir">adres</abbr> <abbr title="HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonlarını </abbr>parametreleri, gövde talebi, güvenlik gibi şeyler dahil olmak üzere bunların tanımlamalarının yapılması.
-* Ayrıca bu bir çok dilde kullanılabilecek **client code generation** kullanımına da izin veriyor.
+* Ayrıca bu bir çok dilde kullanılabilecek <abbr title="client code generation">**istemci taraflı kod oluşturucu**</abbr> kullanımına da izin veriyor.
 
 ### Otomatik Dokümantasyon
 
@@ -79,7 +79,7 @@ Bütün framework kolay ve sezgisel olması için tasarlandı, verilen bütün k
 
 Son yapılan Python geliştiricileri anketinde, açık ara <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">en çok kullanılan özellik "otomatik tamamlama" idi.</a>.
 
-Bütün **FastAPI** frameworkü otomatik tamamlama açısından geliştiriciyi tatmin etmek üzerine tasarlandı. Otomatik tamamlama her yerde çalışıyor.
+**FastAPI** frameworkü baştan sona otomatik tamamlama açısından geliştiriciyi tatmin etmek üzerine tasarlandı. Otomatik tamamlama her yerde çalışıyor.
 
 Dokümantasyona tekrardan çok nadir olarak geleceksin.
 
@@ -106,12 +106,12 @@ Hepsi varsayılan olarak **çalışıyor**.
 ### Doğrulama
 
 * Neredeyse bütün (ya da hepsi?) Python **veri tipleri** için doğrulama, kapsadıkları:
-    * JSON objeleri (`dict`).
+    * JSON nesneleri (`dict`).
     * JSON array (`list`) item tipini belirtirken.
     * String (`str`) parametresi, minimum ve maksimum uzunluk gibi sınırlandırmalar yaparken.
     * Numaralar (`int`, `float`) maksimum ve minimum gibi sınırlandırmalar yaparken.
 
-* Bunlar gibi en yabancıl tiplerle bile doğrulama yapabiliyorsunuz.:
+* Bunlar gibi sık kullanılmayan tiplerle bile doğrulama yapabiliyorsunuz:
     * URL.
     * Email.
     * UUID.
@@ -183,9 +183,9 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 
 Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> veritabanları ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
 
-Bu ayrıca şu anlama da geliyor, bir çok durumda requestten gelen objeyi **direkt olarak database**'e her şeyi otomatik olarak doğrulanmış bir biçimde aktarabilirisin.
+Bu ayrıca şu anlama da geliyor, bir çok durumda requestten gelen nesneyi **direkt olarak database**'e her şeyi otomatik olarak doğrulanmış bir biçimde aktarabilirisin.
 
-Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiyle doğrulanmış bir biçimde gönderebilirsiniz.
+Aynı şekilde, veritabanından gelen nesneyi de **direkt olarak isteğe** de tamamiyle doğrulanmış bir biçimde gönderebilirsiniz.
 
 **FastAPI** ile beraber **Pydantic**'in bütün özelliklerine sahip olacaksınız (FastAPI data kontrolünü Pydantic'in üzerine kurduğu için):
 
@@ -197,7 +197,7 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 * **En kompleks** yapıları bile doğrula:
     * Hiyerarşik Pydantic modellerinin kullanımı ile beraber, Python `typing`’s `List` and `Dict`, vs gibi şeyleri doğrula.
     * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor.
-    * Pydantic, JSON objen ne kadar derin (nested) olursa olsun doğrulamasını ve gösterimini yapıyor.
+    * Pydantic, JSON nesnen ne kadar derin (nested) olursa olsun doğrulamasını ve gösterimini yapıyor.
 * **Genişletilebilir**:
     * Pydantic özelleştirilmiş data tiplerinin tanımlanmasının yapılmasına izin veriyor ayrıca validator decoratorü ile senin doğrulamaları genişletip, kendi doğrulayıcılarını yazmana izin veriyor.
 * 100% test kapsayıcılığı.
