@@ -1,4 +1,9 @@
-# Özelikler
+---
+hide:
+  - navigation
+---
+
+# Özellikler
 
 ## FastAPI Özellikleri
 
@@ -6,16 +11,14 @@
 
 ### Açık Kaynak Standartlar Üzerine Kurulu
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="also known as: endpoints, routes">path</abbr> <abbr title=" HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonları </abbr>parametreleri, body talebi, güvenlik  gibi şeyler dahil olmak üzere deklare bunların deklare edilmesi.
-* Otomatik olarak data modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ile beraber dokümante edilmesi (OpenAPI'n kendisi zaten JSON Schema'ya dayanıyor).
-* Titiz bir çalışmanın sonucunda yukarıdaki standartlara uygun bir framework oluşturduk. Standartları pastanın üzerine sonradan eklenmiş bir çilek olarak görmedik.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="path, endpoints yada routes olarak da isimlendirilebilir">adres</abbr> <abbr title="HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonlarını </abbr>parametreleri, gövde talebi, güvenlik gibi şeyler dahil olmak üzere bunların tanımlamalarının yapılması.
+* Otomatik olarak veri modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ile beraber dökümante edilmesi (OpenAPI'n kendisi zaten JSON Schema'ya dayanıyor).
+* Titiz bir çalışmanın sonucunda yukarıdaki standartlara uygun bir framework oluşturduk. Standartları pastanın üzerine sonradan eklenmiş bir çilek olarak görmedik.* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> oluşturduğumuz <abbr title="path, endpoints yada routes olarak da isimlendirilebilir">adres</abbr> <abbr title="HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonlarını </abbr>parametreleri, gövde talebi, güvenlik gibi şeyler dahil olmak üzere bunların tanımlamalarının yapılması.
 * Ayrıca bu bir çok dilde kullanılabilecek **client code generation** kullanımına da izin veriyor.
 
 ### Otomatik Dokümantasyon
 
-
-OpenAPI standartlarına dayalı bir framework olarak, geliştiricilerin birden çok seçeneği var, varsayılan olarak gelen 2 farklı interaktif API dokümantasyonu ve web kullanıcı arayüzü var.
-
+Etkileşimli API Dokümantasyonu ve Web Kullanıcı Arayüzü: Bu framework OpenAPI standartlarına dayalı olduğu için, birden fazla opsiyonumuz var ve bunlardan iki tanesi kullanımınıza hazır.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a> interaktif olarak API'ınızı tarayıcı üzerinden çağırıp test edebilmenize olanak sağlıyor.
 
@@ -27,10 +30,9 @@ OpenAPI standartlarına dayalı bir framework olarak, geliştiricilerin birden �
 
 ### Sadece Modern Python
 
-Tamamen **Python 3.8**'nın tip belirteçlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
+Tamamen **Python 3.6**'nın tip belirteçlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
 
-
-Eğer Python tip belirteçlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz atabilirsin: [Python Types](python-types.md){.internal-link target=_blank}.
+Eğer Python tip belirteçlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise (FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz atabilirsin: [Python Types](python-types.md){.internal-link target=_blank}.
 
 Standart Python'u tiplerini belirterek yazıyorsun:
 
@@ -66,10 +68,10 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
+!!! info "Bilgi"
     `**second_user_data` şu anlama geliyor:
 
-    Key-Value çiftini direkt olarak  `second_user_data` dictionarysine kaydet , yaptığın şey buna eşit olacak: `User(id=4, name="Mary", joined="2018-11-30")`
+    Anahtar-Değer çiftini doğrudan `second_user_data` sözlüğüne kaydet, bu işlemin sonucunda alacağınız çıktı: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ### Editor Desteği
 
@@ -91,8 +93,7 @@ Editörün sana nasıl yardım ettiğine bir bak:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-
-Daha önceden düşünüp en imkansız diyebileceğin durumlarda bile otomatik tamamlama alacaksın, örnek olarak `price` JSON body içerisinde (nested bir JSON body de olabilirdi.) direkt olarak istekten geliyor, bu durumda bile otomatik tamamlama sağlıyor.
+Daha önceden düşünüp en imkansız diyebileceğin durumlarda bile otomatik tamamlama alacaksın, örnek olarak `price` JSON içerisinde (iç içer bir JSON'da olabilirdi.) direkt olarak istekten geliyor, bu durumda bile otomatik tamamlama sağlıyor.
 
 Artık key isimlerini yanlış yazma, dokümantasyona dönüp deliler gibi yukarı aşağı sayfada gezmek ve en sonunda `username` mi yoksa `user_name` mi kullandım gibi sorular yok.
 
@@ -101,7 +102,6 @@ Artık key isimlerini yanlış yazma, dokümantasyona dönüp deliler gibi yukar
 Her şey için mantıklı bir **varsayılanı** var. Parametrelerini opsiyonel olarak tanımlayıp API'nı istediğin gibi modifiye edebilirsin.
 
 Hepsi varsayılan olarak **çalışıyor**.
-
 
 ### Doğrulama
 
@@ -121,7 +121,7 @@ Bütün doğrulama olayları çok güçlü bir kütüphane sayesinde yapılıyor
 
 ### Güvenlik ve Kimlik Doğrulama
 
-Güvenlik ve doğrulama database ve data modellerinden taviz vermeden entegre edilebilir durumda.
+Güvenlik ve doğrulama veritabanı ve veri modellerinden taviz vermeden entegre edilebilir durumda.
 
 Bütün güvenlik şemaları OpenAPI'da tanımlanmış durumda, kapsadıkları:
 
@@ -129,61 +129,59 @@ Bütün güvenlik şemaları OpenAPI'da tanımlanmış durumda, kapsadıkları:
 * **OAuth2** (ve **JWT tokenleriyle** beraber). Bu öğretici içeriğe göz atabilirsin [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
 * API anahtarları:
     * Headerlar.
-    * Query parametreleri.
-    * Cookies, vs.
+    * Sorgu parametreleri.
+    * Çerezler vb
 
 Bütün güvenlik özellikleri Starlette'den geliyor (**session cookies'de** dahil olmak üzere).
 
 Bütün hepsi tekrardan kullanılabilir aletler ve bileşenler olarak, kolayca sistemlerinize, data depolarınıza, ilişkisel ve NoSQL databaselerinize entegre edebileceğiniz şekilde yapıldı.
 
-### Dependency Injection
+### Bağımlılık Enjeksiyonu
 
-FastAPI'ın inanılmaz derecede kullanımı kolay, fakat inanılmaz derecede güçlü <abbr title='"components", "resources", "services", "providers" olarak da bilinen'><strong>Dependency Injection </strong></abbr> sistemi var.
+FastAPI'ın inanılmaz derecede kullanımı kolay, fakat inanılmaz derecede güçlü <abbr title='"bileşen", "kaynak", "servis", "sağlayıcı" olarak da bilinen'><strong>Bağımlılık Enjeksiyonu </strong></abbr> sistemi var.
 
-* Dependencylerin bile dependencies'i olabiliyor, FastAPI bunun  için **graph of "dependency"** yaratıyor.
+* Bağımlılıkların bile bağımlılıkları olabiliyor, FastAPI bunun  için **"bağımlılık" grafiği** oluşturuyor.
 * Hepsi **otomatik olarak** FastAPI tarafından hallediliyor.
-* Bütün zorunlulukların gelen datalara bağlı olarak farklı gereksinimleri olabiliyor, ilave path operasyonlarının kısıtlamaları ve otomatik dokümantasyonu da ayrıca yapılıyor .
-* Path operasyonu parametreleri içerisinde belirtilen gereksinimler için bile **Otomatik doğrulama** yapılabiliyor.
-* Kompleks kimlik doğrulama sistemleri için destek, **database bağlantıları**, vs.
-* **Taviz yok** hiçbir şeyden taviz vermeden, database frontend vs. Bütün hepsinin kolayca entegre edilebiliyor.
+* Bütün zorunlulukların gelen datalara bağlı olarak farklı gereksinimleri olabiliyor, ilave yol operasyonlarının kısıtlamaları ve otomatik dokümantasyonu da ayrıca yapılıyor .
+* Yol operasyonu parametreleri içerisinde belirtilen gereksinimler için bile **Otomatik doğrulama** yapılabiliyor.
+* Kompleks kimlik doğrulama sistemleri için destek, **veritabanı bağlantıları**, vb.
+* **Taviz yok** hiçbir şeyden taviz vermeden, database frontend vb. Bütün hepsinin kolayca entegre edilebiliyor.
 
-### Sınırsız "Plugin"
+### Sınırsız "Eklenti"
 
-Başka bir deyişle, plug-inlere ihtiyacımız yok, import edip direkt olarak kullanmaya başlayabiliriz.
+Başka bir deyişle, eklentilere ihtiyacımız yok, import edip direkt olarak kullanmaya başlayabiliriz.
 
-Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber) tasarlandı, sen bir "plug-in" yaratıp 2 satır kod ile, *path operasyonlarında* kullandığımız syntax ve aynı yapı ile koduna entregre edebilirsin.
+Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber) tasarlandı, sen bir "eklenti" oluşturup 2 satır kod ile, *yol operasyonlarında* kullandığımız syntax ve aynı yapı ile koduna entregre edebilirsin.
 
+### Tamamen Test Edilmiş ve Güvenilir
 
-### Tamamen Test Edildiş ve Güvenilir
-
-* 100% <abbr title="Kodun ne kadarının test edildiği">testle kapsanmış</abbr>.
-* 100% <abbr title="Python tip belirteçleri bazı kod editörleri ve araçlarda daha iyi destek sunar">tipleri belirtilmiş</abbr> kod tabanı.
-* FastAPI ile yapılan bir çok proje insanlar tarafından kullanılıyor.
+* %100 <abbr title="Kodun ne kadarının test edildiği">testle kapsanmış</abbr>.
+* %100 <abbr title="Python tip belirteçleri bazı kod editörleri ve araçlarda daha iyi destek sunar">tipleri belirtilmiş</abbr> kod tabanı.
+* Son kullanıcılar tarafından kullanılan FastAPI ile geliştirilmiş bir çok proje bulunuyor.
 
 ## Starlette Özellikleri
 
 **FastAPI**, <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> ile tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Starlette kodu da çalışacaktır.
 
-`FastAPI` aslında `Starlette`'nin alt katmanında kullanan bir üst framework. Eğer Starlette'nin nasıl kullanılacağını biliyor isen, çoğu işlevini aynı şekilde yapıyor.
+`FastAPI` aslında `Starlette`'nin alt katmanında kullanan bir üst framework. Eğer Starlette'nin nasıl kullanılacağını biliyorsanız, çoğu işlevini aynı şekilde yapıyor.
 
 **FastAPI** ile beraber **Starlette**'nin bütün özelliklerine de sahip olacaksınız (FastAPI aslında Starlette'nin steroid basmış hali):
 
 * Gerçekten etkileyici bir performansa sahip. Python'un ise en hızlı frameworklerinden bir tanesi, <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">**NodeJS** ve **Go** ile ise eşdeğer performansa sahip.</a>.
 * **WebSocket** desteği.
-* **GraphQL** desteği.
 * Çalışma anında arka planda iş  parçacıkları çalıştırabilme imkanı.
-* Başlatma ve kapatma anında kod çalıştırabilme(startup and shutdown).
+* Başlatma ve kapatma anında kod çalıştırabilme (startup and shutdown).
 * HTTPX kütüphanesi üzerine kurulu test sistemi sunar.
-* **CORS**, GZip, Static dosyalar, Streaming responseları.
-* **Session and Cookie** desteği.
-* Bütün kod tabanı 100% test ile kapsanmıştır.
-* Bütün kod tabanı 100% tip belirteçleriyle desteklenmiştir.
+* **CORS**, GZip, Static dosyalar, Streaming yanıtları.
+* **Oturum and Çerez** desteği.
+* Kod tabanının tamamen (100%) test ile kapsanmıştır.
+* Kod tabanının tamamen (100%) tip belirteçleriyle desteklenmiştir.
 
 ## Pydantic Özellikleri
 
-**FastAPI**  <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> ile tamamen uyumlu ve üzerine kuruludur. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
+**FastAPI**  <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> ile tamamen uyumlu ve üzerine kurulu. Sonuç olarak sahip olduğunuz herhangi bir Pydantic kodu FastAPI ile birlikte çalışacaktır.
 
-Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> databaseler ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
+Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> veritabanları ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
 
 Bu ayrıca şu anlama da geliyor, bir çok durumda requestten gelen objeyi **direkt olarak database**'e her şeyi otomatik olarak doğrulanmış bir biçimde aktarabilirisin.
 
@@ -192,16 +190,14 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 **FastAPI** ile beraber **Pydantic**'in bütün özelliklerine sahip olacaksınız (FastAPI data kontrolünü Pydantic'in üzerine kurduğu için):
 
 * **Kafa karıştırmaz**:
-    * Farklı bir syntax öğrenmenize gerek kalmaz,
+    * Farklı bir sözyazımı öğrenmenize gerek kalmaz,
     * Eğer Python tiplerini nasıl kullanacağını biliyorsan Pydantic kullanmayı da biliyorsundur.
 * Kullandığın geliştirme araçları ile iyi çalışır **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE</abbr>/<abbr title="Code errorlarınızı inceleyen program">linter</abbr>/brain**:
-    * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin
-* **Hızlı**:
-    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
+    * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin.
 * **En kompleks** yapıları bile doğrula:
     * Hiyerarşik Pydantic modellerinin kullanımı ile beraber, Python `typing`’s `List` and `Dict`, vs gibi şeyleri doğrula.
-    * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor
-    * Pydantic, JSON objen ne kadar derin (nested) olursa olsun doğrulamasını ve gösterimini yapıyor
+    * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor.
+    * Pydantic, JSON objen ne kadar derin (nested) olursa olsun doğrulamasını ve gösterimini yapıyor.
 * **Genişletilebilir**:
     * Pydantic özelleştirilmiş data tiplerinin tanımlanmasının yapılmasına izin veriyor ayrıca validator decoratorü ile senin doğrulamaları genişletip, kendi doğrulayıcılarını yazmana izin veriyor.
 * 100% test kapsayıcılığı.
