@@ -43,9 +43,9 @@ Fonksiyon sırayla şunları yapar:
 
 Bu program son derece basitti.
 
-Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün.
+Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. 
 
-İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır.
+İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. 
 
 Ancak metin içerisindeki ilk harfi büyük harfe dönüştüren metodu çağırmanız gerekecek.
 
@@ -534,5 +534,5 @@ Bütün bunlar kulağa soyut gelebilir. Merak etme. Tüm bunları çalışırken
 
 Önemli olan, standart Python türlerini tek bir yerde kullanarak (daha fazla sınıf, dekoratör vb. eklemek yerine), **FastAPI**'nin bizim için işi yapmasını sağlamak.
 
-!!! info
+!!! bilgi
    Tüm öğreticiyi zaten okuduysanız ve türler hakkında daha fazla bilgi için geri döndüyseniz, iyi bir kaynak:<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> the "cheat sheet" from `mypy`</a>.
