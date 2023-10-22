@@ -413,7 +413,7 @@ The same applies for [dependencies](/tutorial/dependencies/){.internal-link targ
 
 ### Sub-dependencies
 
-You can have multiple dependencies and [sub-dependencies](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](/tutorial/dependencies/sub-dependencies/){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 
