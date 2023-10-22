@@ -78,7 +78,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 
 FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typ-Deklaration **zu konvertieren und filtern**.
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie in Ihrem Editor strikte Typ-Checks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='"Irgend etwas"'>`Any`</abbr> deklarieren.
 
     So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
@@ -421,7 +421,7 @@ dann ist FastAPI klug genug (tatsächlich ist Pydantic klug genug) zu erkennen, 
 
 Diese Felder werden also in der JSON-Response enthalten sein.
 
-!!! tip
+!!! tip "Tipp"
     Beachten Sie, dass Defaultwerte alles Mögliche sein können, nicht nur `None`.
 
     Sie können eine Liste (`[]`), ein `float` `10.5`, usw. sein.
@@ -434,7 +434,7 @@ Diese nehmen ein `set` von `str`s entgegen, welches Namen von Attributen sind, d
 
 Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Modell haben und ein paar Daten von der Ausgabe ausschließen wollen.
 
-!!! tip
+!!! tip "Tipp"
     Es wird dennoch empfohlen, dass Sie die Ideen von oben verwenden, also mehrere Klassen statt dieser Parameter.
 
     Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
@@ -453,7 +453,7 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
     {!> ../../../docs_src/response_model/tutorial005.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Die Syntax `{"name", "description"}` erzeugt ein `set` mit diesen zwei Werten.
 
     Äquivalent zu `set(["name", "description"])`.
