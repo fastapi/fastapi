@@ -34,7 +34,7 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python
@@ -147,14 +147,14 @@ Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wi
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="6"
     {!> ../../../docs_src/security/tutorial001.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Hier bezieht sich `tokenUrl="token"` auf ein relatives URL-`token`, das wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
 
     Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
@@ -198,7 +198,7 @@ Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
