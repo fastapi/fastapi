@@ -96,7 +96,7 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-!!! tip
+!!! tip "Tipp"
     Aktivieren Sie jedes Mal, wenn Sie ein neues Package mit `pip` in dieser Umgebung installieren, die Umgebung erneut.
 
     Dadurch wird sichergestellt, dass Sie, wenn Sie ein von diesem Package installiertes Terminalprogramm verwenden, das Programm aus Ihrer lokalen Umgebung verwenden und kein anderes, das global installiert sein könnte.
@@ -154,7 +154,7 @@ Die Dokumentation verwendet <a href="https://www.mkdocs.org/" class="external-li
 
 Und es gibt zusätzliche Tools/Skripte für Übersetzungen, in `./scripts/docs.py`.
 
-!!! tip
+!!! tip "Tipp"
     Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
 
 Die gesamte Dokumentation befindet sich im Markdown-Format im Verzeichnis `./docs/en/`.
@@ -197,7 +197,7 @@ Das stellt die Dokumentation unter `http://127.0.0.1:8008` bereit.
 
 Auf diese Weise können Sie die Dokumentation/Quelldateien bearbeiten und die Änderungen live sehen.
 
-!!! tip
+!!! tip "Tipp"
     Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
     Gehen Sie in das Verzeichnis für die entsprechende Sprache. Das für die englischsprachige Hauptdokumentation befindet sich unter `docs/en/`:
@@ -259,7 +259,7 @@ Hier sind die Schritte, die Ihnen bei Übersetzungen helfen.
 
 * Sehen Sie diese Pull Requests durch (Review), schlagen Sie Änderungen vor, oder segnen Sie sie ab (Approval). Bei den Sprachen, die ich nicht spreche, warte ich, bis mehrere andere die Übersetzung durchgesehen haben, bevor ich den Pull Request merge.
 
-!!! tip
+!!! tip "Tipp"
     Sie können <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">Kommentare mit Änderungsvorschlägen</a> zu vorhandenen Pull Requests hinzufügen.
 
     Schauen Sie sich die Dokumentation an, <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">wie man ein Review zu einem Pull Request hinzufügt</a>, welches den PR absegnet oder Änderungen vorschlägt.
@@ -276,7 +276,7 @@ Angenommen, Sie möchten eine Seite für eine Sprache übersetzen, die bereits �
 
 Im Spanischen lautet der Zwei-Buchstaben-Code `es`. Das Verzeichnis für spanische Übersetzungen befindet sich also unter `docs/es/`.
 
-!!! tip
+!!! tip "Tipp"
     Die Haupt ("offizielle") Sprache ist Englisch und befindet sich unter `docs/en/`.
 
 Führen Sie nun den Live-Server für die Dokumentation auf Spanisch aus:
@@ -294,7 +294,7 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-!!! tip
+!!! tip "Tipp"
     Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
     Gehen Sie in das Sprachverzeichnis, für die spanischen Übersetzungen ist das `docs/es/`:
@@ -327,7 +327,7 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
+!!! tip "Tipp"
     Beachten Sie, dass die einzige Änderung in Pfad und Dateiname der Sprachcode ist, von `en` zu `es`.
 
 Wenn Sie in Ihrem Browser nachsehen, werden Sie feststellen, dass die Dokumentation jetzt Ihren neuen Abschnitt anzeigt (die Info-Box oben ist verschwunden). 🎉
@@ -363,7 +363,7 @@ Obiges Kommando hat eine Datei `docs/ht/mkdocs.yml` mit einer Minimal-Konfigurat
 INHERIT: ../en/mkdocs.yml
 ```
 
-!!! tip
+!!! tip "Tipp"
     Sie können diese Datei mit diesem Inhalt auch einfach manuell erstellen.
 
 Das Kommando hat auch eine Dummy-Datei `docs/ht/index.md` für die Hauptseite erstellt. Sie können mit der Übersetzung dieser Datei beginnen.
