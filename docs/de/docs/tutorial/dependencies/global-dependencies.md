@@ -20,7 +20,7 @@ In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="15"
