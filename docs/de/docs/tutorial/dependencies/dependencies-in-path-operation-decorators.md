@@ -28,7 +28,7 @@ Es sollte eine `list`e von `Depends()` sein:
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="17"
@@ -37,7 +37,7 @@ Es sollte eine `list`e von `Depends()` sein:
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
-!!! tip
+!!! tip "Tipp"
     Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
 
     Wenn Sie `dependencies` im *Pfadoperation-Dekorator* verwenden, stellen Sie sicher, dass sie ausgeführt werden, während gleichzeitig Ihr Editor/Ihre Tools keine Fehlermeldungen ausgeben.
@@ -71,7 +71,7 @@ Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhä
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="6  11"
@@ -96,7 +96,7 @@ Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeit
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8  13"
@@ -123,7 +123,7 @@ Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Si
 
 === "Python 3.8 nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9  14"
