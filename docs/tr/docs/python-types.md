@@ -43,9 +43,9 @@ Fonksiyon sırayla şunları yapar:
 
 Bu program son derece basitti.
 
-Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün. 
+Şimdi, bu programı sıfırdan yazmaya başladığınızı düşünün.
 
-İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır. 
+İlk adım, fonksiyonun tanımına başlamak ve gerekli parametreleri hazırlamaktır.
 
 Ancak metin içerisindeki ilk harfi büyük harfe dönüştüren metodu çağırmanız gerekecek.
 
