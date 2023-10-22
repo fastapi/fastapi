@@ -32,7 +32,7 @@ Heutzutage ist es nicht sehr populär und wird kaum verwendet.
 
 OAuth2 spezifiziert nicht, wie die Kommunikation verschlüsselt werden soll, sondern erwartet, dass Ihre Anwendung mit HTTPS bereitgestellt wird.
 
-!!! tip
+!!! tip "Tipp"
     Im Abschnitt über **Deployment** erfahren Sie, wie Sie HTTPS mithilfe von Traefik und Let's Encrypt kostenlos einrichten.
 
 
@@ -87,7 +87,7 @@ OpenAPI definiert die folgenden Sicherheitssysteme:
     * Diese automatische Erkennung ist es, die in der OpenID Connect Spezifikation definiert ist.
 
 
-!!! tip
+!!! tip "Tipp"
     Auch die Integration anderer Authentifizierungs-/Autorisierungsanbieter wie Google, Facebook, Twitter, GitHub, usw. ist möglich und relativ einfach.
 
     Das komplexeste Problem besteht darin, einen Authentifizierungs-/Autorisierungsanbieter wie solche aufzubauen, aber **FastAPI** reicht Ihnen die Tools, das einfach zu erledigen, während Ihnen die schwere Arbeit abgenommen wird.
