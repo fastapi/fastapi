@@ -25,7 +25,7 @@ Importieren Sie `Form` von `fastapi`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -50,7 +50,7 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -66,7 +66,7 @@ Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (u
 !!! info
     `Form` ist eine Klasse, die direkt von `Body` erbt.
 
-!!! tip
+!!! tip "Tipp"
     Um Formular-Bodys zu deklarieren, verwenden Sie explizit `Form`, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
 ## Über "Formularfelder"
