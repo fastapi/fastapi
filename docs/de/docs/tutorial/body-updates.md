@@ -142,7 +142,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
     {!> ../../../docs_src/body_updates/tutorial002.py!}
     ```
 
-!!! tip
+!!! tip "Tipp"
     Sie können tatsächlich die gleiche Technik mit einer HTTP `PUT` Operation verwenden.
 
     Aber dieses Beispiel verwendet `PATCH`, da dieses für solche Anwendungsfälle geschaffen wurde.
