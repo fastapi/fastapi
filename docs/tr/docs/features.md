@@ -134,7 +134,7 @@ Bütün güvenlik şemaları OpenAPI'da tanımlanmış durumda, kapsadıkları:
 
 Bütün güvenlik özellikleri Starlette'den geliyor (**session cookies'de** dahil olmak üzere).
 
-Bütün hepsi tekrardan kullanılabilir aletler ve bileşenler olarak, kolayca sistemlerinize, data depolarınıza, ilişkisel ve NoSQL databaselerinize entegre edebileceğiniz şekilde yapıldı.
+Bunların tamamı tekrardan kullanılabilir araçlar ve bileşenler olarak, sistemlerinize, veri depolarınıza, ilişkisel ve NoSQL veritabanlarınıza kolayca entegre edebileceğiniz şekilde yapıldı
 
 ### Bağımlılık Enjeksiyonu
 
