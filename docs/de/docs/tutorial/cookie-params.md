@@ -26,7 +26,7 @@ Importieren Sie zuerst `Cookie`:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -35,7 +35,7 @@ Importieren Sie zuerst `Cookie`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="3"
@@ -68,7 +68,7 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -77,7 +77,7 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
