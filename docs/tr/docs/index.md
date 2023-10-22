@@ -31,16 +31,16 @@ FastAPI, Python <abbr title="Python 3.8 ve üzeri">3.8+</abbr>'nin standart <abb
 
 Temel özellikleri şunlardır:
 
-* **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [En hızlı Python framework'lerinden bir tanesi](#performans).
+* **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [En hızlı Python framework'lerinden bir tanesidir](#performans).
 * **Kodlaması Hızlı**: Geliştirme hızını yaklaşık %200 ile %300 aralığında arttırır. *
 * **Daha az hata**: İnsan (geliştirici) kaynaklı hataları yaklaşık %40 azaltır. *
-* **Sezgisel**: Şahane editör desteği. Her yerde <abbr title="Otomatik Tamamlama: auto-complete, autocompletion, IntelliSense">otomatik tamamlama</abbr>. Hata ayıklama ile daha az zaman harcayacaksınız.
+* **Sezgisel**: Muhteşem bir editör desteği. Her yerde <abbr title="Otomatik Tamamlama: auto-complete, autocompletion, IntelliSense">otomatik tamamlama</abbr>. Hata ayıklama ile daha az zaman harcayacaksınız.
 * **Kolay**: Öğrenmesi ve kullanması kolay olacak şekilde tasarlandı. Doküman okuma ile daha az zaman harcayacaksınız.
-* **Kısa**: Minimum kod tekrarı. Her parametre tanımlamasında birden fazla özellik ve daha az hata.
-* **Güçlü**: Otomatik ve etkileşimli dokümantasyon ile birlikte, kullanıma hazır kod elde et.
+* **Kısa**: Kod tekrarı minimize edildi. Her parametre tanımlamasında birden fazla özellik ve daha az hatayla karşılaşacaksınız.
+* **Güçlü**: Otomatik ve etkileşimli dokümantasyon ile birlikte, kullanıma hazır kod elde edebilirsiniz.
 * **Standard öncelikli**: API'lar için açık standartlara dayalı (ve tamamen uyumlu); <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eski adıyla Swagger) ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* kanılar, dahili geliştirme ekibinin geliştirdikleri ürünlere yaptıkları testlere dayanmaktadır.</small>
+<small>* ilgili kanılar, dahili geliştirme ekibinin geliştirdikleri ürünlere yaptıkları testlere dayanmaktadır.</small>
 
 ## Sponsorlar
 
@@ -297,7 +297,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-Sunucu otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn` komutuyla birlikte `--reload` parametresini kullandık).
+Sunucu otomatik olarak yeniden başlamış olmalı (çünkü yukarıda `uvicorn` komutuyla birlikte `--reload` parametresini kullandık).
 
 ### Etkileşimli API Dokümantasyonundaki Değişimi Görelim
 
