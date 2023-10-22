@@ -47,7 +47,7 @@ Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten a
 !!! info
     In diesem Beispiel verwenden wir zwei erfundene benutzerdefinierte Header `X-Key` und `X-Token`.
 
-    Aber in realen Fällen würden Sie bei der Implementierung von Sicherheit mehr Vorteile durch die Verwendung der integrierten [Sicherheits-Tools (siehe nächstes Kapitel)](../security/index.md){.internal-link target=_blank} erzielen.
+    Aber in realen Fällen würden Sie bei der Implementierung von Sicherheit mehr Vorteile durch die Verwendung der integrierten [Sicherheits-Werkzeuge (siehe nächstes Kapitel)](../security/index.md){.internal-link target=_blank} erzielen.
 
 ## Abhängigkeitsfehler und -Rückgabewerte
 
