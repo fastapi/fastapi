@@ -134,7 +134,7 @@ Aber Sie bekommen die gleiche Editor-Unterstützung in <a href="https://www.jetb
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip
+!!! tip "Tipp"
     Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
 
     Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
