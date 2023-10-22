@@ -223,7 +223,7 @@ INFO:     Application startup complete.
 `uvicorn main:app` komutunu şu şekilde açıklayabiliriz:
 
 * `main`: dosya olan `main.py` (yani Python "modülü").
-* `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` objesi.
+* `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` nesnesi.
 * `--reload`: kod değişikliklerinin ardından sunucuyu otomatik olarak yeniden başlatır. Bu parameteyi sadece geliştirme aşamasında kullanmalıyız.
 
 </details>
@@ -352,7 +352,7 @@ item: Item
     * Tip kontrolü.
 * Veri Doğrulama:
     * Veri geçerli değilse, otomatik olarak açıklayıcı hatalar gösterir.
-    * Çok <abbr title="Derin / İç içe: Nested">derin</abbr> JSON objelerinde bile doğrulama yapar.
+    * Çok <abbr title="Derin / İç içe: Nested">derin</abbr> JSON nesnelerinde bile doğrulama yapar.
 * Gelen verinin <abbr title="Dönüşüm: serialization, parsing, marshalling olarak da biliniyor">dönüşümünü</abbr> aşağıdaki veri tiplerini kullanarak gerçekleştirir:
     * JSON.
     * Yol parametreleri.
@@ -363,8 +363,8 @@ item: Item
     * Dosyalar.
 * Giden verinin <abbr title="Dönüşüm: serialization, parsing, marshalling olarak da biliniyor">dönüşümünü</abbr> aşağıdaki veri tiplerini kullanarak gerçekleştirir (JSON olarak):
     * Python tiplerinin (`str`, `int`, `float`, `bool`, `list`, vb) dönüşümü.
-    * `datetime` objesi.
-    * `UUID` objesi.
+    * `datetime` nesnesi.
+    * `UUID` nesnesi.
     * Veritabanı modelleri.
     * ve çok daha fazlası...
 * 2 alternatif kullanıcı arayüzü dahil olmak üzere, otomatik etkileşimli API dokümantasyonu sağlar:
@@ -385,8 +385,8 @@ Az önceki örneğe geri dönelim, **FastAPI**'ın yapacaklarına bir bakış at
     * `name` adında zorunlu bir parametre olup olmadığını ve varsa tipinin `str` olup olmadığını kontol edecek.
     * `price` adında zorunlu bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
     * `is_offer` adında opsiyonel bir parametre olup olmadığını ve varsa tipinin `float` olup olmadığını kontol edecek.
-    * Bunların hepsi en derin JSON objelerinde bile çalışacak.
-* Verilerin JSON'a ve JSON'ın python objesine dönüşümü otomatik olarak yapılacak.
+    * Bunların hepsi en derin JSON nesnelerinde bile çalışacak.
+* Verilerin JSON'a ve JSON'ın python nesnesine dönüşümü otomatik olarak yapılacak.
 * Her şeyi OpenAPI ile uyumlu bir şekilde otomatik olarak dokümanlayacak ve bunlarda aşağıdaki gibi kullanılabilecek:
     * Etkileşimli dokümantasyon sistemleri.
     * Bir çok programlama dili için otomatik istemci kodu üretim sistemleri.
@@ -451,9 +451,9 @@ Pydantic tarafında kullanılan:
 
 Starlette tarafında kullanılan:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Eğer `TestClient` yapısını kullanacaksanız gerekli.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Eğer varsayılan template konfigürasyonunu kullanacaksanız gerekli.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Eğer `request.form()` ile form <abbr title="HTTP isteği ile gelen string veriyi Python objesine çevirme.">dönüşümü</abbr> desteğini kullanacaksanız gerekli.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Eğer `TestClient` yapısını kullanacaksanız gereklidir.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Eğer varsayılan template konfigürasyonunu kullanacaksanız gereklidir.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Eğer `request.form()` ile form <abbr title="HTTP isteği ile gelen string veriyi Python nesnesine çevirme.">dönüşümü</abbr> desteğini kullanacaksanız gereklidir.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` desteği için gerekli.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - `SchemaGenerator` desteği için gerekli (Muhtemelen FastAPI kullanırken ihtiyacınız olmaz).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse` kullanacaksanız gerekli.
@@ -461,7 +461,7 @@ Starlette tarafında kullanılan:
 Hem FastAPI hem de Starlette tarafından kullanılan:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı servis edecek web sunucusu görevini üstlenir.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse` kullanacaksanız gerekli.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse` kullanacaksanız gereklidir.
 
 Bunların hepsini `pip install fastapi[all]` ile yükleyebilirsin.
 
