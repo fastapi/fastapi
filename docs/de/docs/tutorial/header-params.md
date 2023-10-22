@@ -26,7 +26,7 @@ Importieren Sie zuerst `Header`:
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="1"
@@ -35,7 +35,7 @@ Importieren Sie zuerst `Header`:
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="3"
@@ -68,7 +68,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -77,7 +77,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -128,7 +128,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="8"
@@ -137,7 +137,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="10"
@@ -177,7 +177,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 === "Python 3.10+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="7"
@@ -186,7 +186,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 === "Python 3.9+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
@@ -195,7 +195,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 === "Python 3.8+ nicht annotiert"
 
-    !!! tip
+    !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
     ```Python hl_lines="9"
