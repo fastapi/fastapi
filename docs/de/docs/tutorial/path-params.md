@@ -144,7 +144,7 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
 !!! info
     <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
 
-!!! tip
+!!! tip "Tipp"
     Falls Sie sich fragen, was "AlexNet", "ResNet" und "LeNet" ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
 
 ### Deklarieren Sie einen *Pfad-Parameter*
@@ -181,7 +181,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip
+!!! tip "Tipp"
     Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
 
 #### *Enum-Member* zurückgeben
@@ -235,7 +235,7 @@ Sie verwenden das also wie folgt:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip
+!!! tip "Tipp"
     Der Parameter könnte einen führenden Schrägstrich (`/`) haben, wie etwa in `/home/johndoe/myfile.txt`.
 
     In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
