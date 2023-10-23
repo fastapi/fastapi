@@ -311,7 +311,7 @@ Możesz również zdefiniować to jako normalną funkcję zamiast `async def`:
 ```
 
 !!! note
-    Jeśli nie znasz różnicy, sprawdź [Async: *"In a hurry?"*](/async/#in-a-hurry){.internal-link target=_blank}.
+    Jeśli nie znasz różnicy, sprawdź [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ### Krok 5: zwróć zawartość
 

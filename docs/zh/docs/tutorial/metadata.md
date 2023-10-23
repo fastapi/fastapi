@@ -59,7 +59,7 @@
 ```
 
 !!! 信息
-    阅读更多关于标签的信息[路径操作配置](../path-operation-configuration/#tags){.internal-link target=_blank}。
+    阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags){.internal-link target=_blank}。
 
 ### 查看文档
 

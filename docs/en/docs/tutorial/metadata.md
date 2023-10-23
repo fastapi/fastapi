@@ -77,7 +77,7 @@ Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assig
 ```
 
 !!! info
-    Read more about tags in [Path Operation Configuration](../path-operation-configuration/#tags){.internal-link target=_blank}.
+    Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
 
 ### Check the docs
 

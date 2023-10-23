@@ -28,7 +28,7 @@ And an `APIRoute` subclass to use that custom request class.
 ### Create a custom `GzipRequest` class
 
 !!! tip
-    This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](./middleware.md#gzipmiddleware){.internal-link target=_blank}.
+    This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
 
 First, we create a `GzipRequest` class, which will overwrite the `Request.body()` method to decompress the body in the presence of an appropriate header.
 
