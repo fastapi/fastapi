@@ -118,7 +118,7 @@ $ uvicorn main:app --reload
     {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="69-70  83"
     {!> ../../../docs_src/websockets/tutorial002_an.py!}
@@ -133,7 +133,7 @@ $ uvicorn main:app --reload
     {!> ../../../docs_src/websockets/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ 非带注解版本"
+=== "Python 3.8+ 非带注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -181,7 +181,7 @@ $ uvicorn main:app --reload
     {!> ../../../docs_src/websockets/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="81-83"
     {!> ../../../docs_src/websockets/tutorial003.py!}
