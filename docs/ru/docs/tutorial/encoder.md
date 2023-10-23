@@ -34,7 +34,7 @@
 
 В данном примере она преобразует Pydantic модель в `dict`, а `datetime` - в `str`.
 
-Результатом её вызова является объект, который может быть закодирован с помощью функции из стандартной библиотеки Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
+Результатом её вызова является объект, который может быть закодирован с помощью функции из стандартной библиотеки Python – <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
 
 Функция не возвращает большой `str`, содержащий данные в формате JSON (в виде строки). Она возвращает стандартную структуру данных Python (например, `dict`) со значениями и подзначениями, которые совместимы с JSON.
 
