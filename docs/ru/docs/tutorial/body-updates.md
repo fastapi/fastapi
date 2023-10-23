@@ -2,7 +2,7 @@
 
 ## Полное обновление с помощью `PUT`
 
-Для полного обновления элемента можно воспользоваться <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> операцией.
+Для полного обновления элемента можно воспользоваться операцией <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a>.
 
 Вы можете использовать функцию `jsonable_encoder` для преобразования входных данных в JSON, так как нередки случаи, когда работать можно только с простыми типами данных (например, для хранения в NoSQL-базе данных).
 
