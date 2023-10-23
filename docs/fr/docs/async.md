@@ -365,7 +365,7 @@ Quand vous déclarez une *fonction de chemin* avec un `def` normal et non `async
 
 Si vous venez d'un autre framework asynchrone qui ne fonctionne pas comme de la façon décrite ci-dessus et que vous êtes habitués à définir des *fonctions de chemin* basiques avec un simple `def` pour un faible gain de performance (environ 100 nanosecondes), veuillez noter que dans **FastAPI**, l'effet serait plutôt contraire. Dans ces cas-là, il vaut mieux utiliser `async def` à moins que votre *fonction de chemin* utilise du code qui effectue des opérations <abbr title="Input/Output ou Entrées et Sorties ">I/O</abbr> bloquantes.
 
-Au final, dans les deux situations, il est fort probable que **FastAPI** soit tout de même [plus rapide](/#performance){.internal-link target=_blank} que (ou au moins de vitesse égale à) votre framework précédent.
+Au final, dans les deux situations, il est fort probable que **FastAPI** soit tout de même [plus rapide](index.md#performance){.internal-link target=_blank} que (ou au moins de vitesse égale à) votre framework précédent.
 
 ### Dépendances
 

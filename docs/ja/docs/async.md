@@ -368,7 +368,7 @@ async def read_burgers():
 
 上記の方法と違った方法の別の非同期フレームワークから来ており、小さなパフォーマンス向上 (約100ナノ秒) のために通常の `def` を使用して些細な演算のみ行う *path operation 関数* を定義するのに慣れている場合は、**FastAPI**ではまったく逆の効果になることに注意してください。このような場合、*path operation 関数* がブロッキング<abbr title="入力/出力: ディスクの読み取りまたは書き込み、ネットワーク通信。">I/O</abbr>を実行しないのであれば、`async def` の使用をお勧めします。
 
-それでも、どちらの状況でも、**FastAPI**が過去のフレームワークよりも (またはそれに匹敵するほど) [高速になる](/#performance){.internal-link target=_blank}可能性があります。
+それでも、どちらの状況でも、**FastAPI**が過去のフレームワークよりも (またはそれに匹敵するほど) [高速になる](index.md#performance){.internal-link target=_blank}可能性があります。
 
 ### 依存関係
 

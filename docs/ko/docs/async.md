@@ -379,7 +379,7 @@ FastAPI를 사용하지 않더라도, 높은 호환성 및 <a href="https://anyi
 
 만약 상기에 묘사된대로 동작하지 않는 비동기 프로그램을 사용해왔고 약간의 성능 향상 (약 100 나노초)을 위해 `def`를 사용해서 계산만을 위한 사소한 *경로 작동 함수*를 정의해왔다면, **FastAPI**는 이와는 반대라는 것에 주의하십시오. 이러한 경우에, *경로 작동 함수*가 블로킹 <abbr title="Input/Output: 디스크 읽기 또는 쓰기, 네트워크 통신.">I/O</abbr>를 수행하는 코드를 사용하지 않는 한 `async def`를 사용하는 편이 더 낫습니다.
 
-하지만 두 경우 모두, FastAPI가 당신이 전에 사용하던 프레임워크보다 [더 빠를](/#performance){.internal-link target=_blank} (최소한 비견될) 확률이 높습니다.
+하지만 두 경우 모두, FastAPI가 당신이 전에 사용하던 프레임워크보다 [더 빠를](index.md#performance){.internal-link target=_blank} (최소한 비견될) 확률이 높습니다.
 
 ### 의존성
 

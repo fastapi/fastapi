@@ -405,7 +405,7 @@ async def read_burgers():
 
 🚥 👆 👟 ⚪️➡️ ➕1️⃣ 🔁 🛠️ 👈 🔨 🚫 👷 🌌 🔬 🔛 &amp; 👆 ⚙️ ⚖ 🙃 📊-🕴 *➡ 🛠️ 🔢* ⏮️ ✅ `def` 🤪 🎭 📈 (🔃 1️⃣0️⃣0️⃣ 💓), 🙏 🗒 👈 **FastAPI** ⭐ 🔜 🔄. 👫 💼, ⚫️ 👻 ⚙️ `async def` 🚥 👆 *➡ 🛠️ 🔢* ⚙️ 📟 👈 🎭 🚧 <abbr title="Input/Output: disk reading or writing, network communications.">👤/🅾</abbr>.
 
-, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](/#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
+, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](index.md#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
 
 ### 🔗
 
