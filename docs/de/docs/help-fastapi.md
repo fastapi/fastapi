@@ -12,7 +12,7 @@ Und es gibt auch viele Möglichkeiten, Hilfe zu bekommen.
 
 ## Newsletter abonnieren
 
-Sie können den (unregelmäßig erscheinenden) [**FastAPI and Friends**-Newsletter](/newsletter/){.internal-link target=_blank} abonnieren, um auf dem Laufenden zu bleiben:
+Sie können den (unregelmäßig erscheinenden) [**FastAPI and Friends**-Newsletter](newsletter.md){.internal-link target=_blank} abonnieren, um auf dem Laufenden zu bleiben:
 
 * Neuigkeiten über FastAPI and Friends 🚀
 * Anleitungen 📝
