@@ -94,7 +94,7 @@ def read_url():
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
-Benim Django REST Framework'ünden istediğim ana özellik otomatik API dökümantasyonuydu. 
+Benim Django REST Framework'ünden istediğim ana özellik otomatik API dökümantasyonuydu.
 
 Daha sonra API'ları dökümanlamak için Swagger adında JSON (veya JSON'un bir uzantısı olan YAML'ı) kullanan bir standart olduğunu buldum.
 
@@ -129,7 +129,7 @@ API'lara gereken bir diğer büyük özellik ise veri doğrulamadır, yani verin
 Bir veri doğrulama sistemi yokken bütün bu kontrolleri koda dökerek kendiniz yapmak zorunda kalırdınız.
 
 Marshmallow bu özellikleri sağlamak için geliştirilmişti. Benim de geçmişte oldukça sık kullandığım harika bir kütüphanedir.
- 
+
 Ama... Python'un tip belirteçleri gelmeden önce oluşturulmuştu. Yani her <abbr title="Verilerin nasıl oluşturulması gerektiğinin tanımı">şemayı</abbr> tanımlamak için Marshmallow'un sunduğu spesifik araçları ve sınıfları kullanmanız gerekiyordu.
 
 !!! check "**FastAPI**'a nasıl ilham verdi?"
@@ -162,7 +162,7 @@ APISpec pek çok framework için bir <abbr title="Eklenti: Plug-In">eklenti</abb
 Flask, Starlette, Responder ve benzerlerinde bu şekilde çalışıyor.
 
 Fakat sonrasında yine mikro syntax problemiyle karşılaşıyoruz. Python metinlerinin içinde koskoca bir YAML oluyor.
- 
+
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
 !!! info "Bilgi"
@@ -176,7 +176,7 @@ Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Mars
 Flask-apispec ise Webargs, Marshmallow ve APISpec'i birbirine bağlayan bir Flask <abbr title="Eklenti: Plug-In">eklentisi</abbr>.
 
 Webargs ve Marshmallow'daki bilgiyi APISpec ile otomatik OpenAPI şemaları üretmek için kullanıyor.
- 
+
 Hak ettiği değeri görmeyen, harika bir araç. Piyasadaki çoğu Flask <abbr title="Eklenti: Plug-In">eklentisinden</abbr> çok daha popüler olmalı. Hak ettiği değeri görmüyor oluşunun sebebi ise dökümantasyonun çok kısa ve soyut olması olabilir.
 
 Böylece Flask-apispec, Python döküman dizilerine YAML gibi farklı bir syntax yazma sorununu çözmüş oldu.
@@ -208,11 +208,11 @@ Angular 2'den ilham alan, içine gömülü bir <abbr title="Bağımlılık enjek
 Parametreler TypeScript tipleri (Python tip belirteçlerine benzer) ile açıklandığından editör desteği oldukça iyi.
 
 Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, bunlara dayanarak aynı anda veri doğrulaması, veri dönüşümü ve dökümantasyon tanımlanamıyor. Bundan ve bazı tasarım tercihlerinden dolayı veri doğrulaması, dönüşümü ve otomatik şema üretimi için pek çok yere dekorator eklemek gerekiyor. Bu da projeyi oldukça detaylandırıyor.
- 
+
 İç içe geçen derin modelleri pek iyi işleyemiyor. Yani eğer istekteki JSON gövdesi derin bir JSON objesiyse düzgün bir şekilde dökümante edilip doğrulanamıyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
-    Güzel bir editör desteği için Python tiplerini kullanmalı. 
+    Güzel bir editör desteği için Python tiplerini kullanmalı.
 
     Güçlü bir bağımlılık enjeksiyon sistemine sahip olmalı. Kod tekrarını minimuma indirecek bir yol bulmalı.
 
@@ -287,8 +287,8 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
     Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
 
     **FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
-    
-    **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı. 
+
+    **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
 
@@ -337,8 +337,8 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.  
- 
+Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.
+
 Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor. Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
 
 !!! check "**FastAPI** nerede kullanıyor?"
@@ -355,7 +355,7 @@ Kullanımı çok kolay ve sezgisel, kolaylıkla genişletilebilecek ve modüler 
 
 Sahip olduğu bir kaç özellik:
 
-* Cidden etkileyici bir performans. 
+* Cidden etkileyici bir performans.
 * WebSocket desteği.
 * İşlem-içi arka plan görevleri.
 * Başlatma ve kapanış olayları.
@@ -384,7 +384,7 @@ Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı ola
     Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
 
     `FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfından miras alıyor!
-    
+
     Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendirilmiş hali olan **FastAPI** ile doğrudan yapabilirsiniz.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
