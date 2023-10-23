@@ -2,7 +2,7 @@
 
 ## Additional Features
 
-There are some extra features to handle security apart from the ones covered in the [Tutorial - User Guide: Security](../../tutorial/security/){.internal-link target=_blank}.
+There are some extra features to handle security apart from the ones covered in the [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
 
 !!! tip
     The next sections are **not necessarily "advanced"**.
@@ -11,6 +11,6 @@ There are some extra features to handle security apart from the ones covered in 
 
 ## Read the Tutorial first
 
-The next sections assume you already read the main [Tutorial - User Guide: Security](../../tutorial/security/){.internal-link target=_blank}.
+The next sections assume you already read the main [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
 
 They are all based on the same concepts, but allow some extra functionalities.
