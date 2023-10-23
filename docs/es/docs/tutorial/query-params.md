@@ -194,4 +194,4 @@ En este caso hay 3 parámetros de query:
 * `limit`, un `int` opcional.
 
 !!! tip "Consejo"
-    También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#predefined-values){.internal-link target=_blank}.
+    También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.

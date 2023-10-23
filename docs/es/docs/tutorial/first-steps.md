@@ -310,7 +310,7 @@ También podrías definirla como una función normal, en vez de `async def`:
 ```
 
 !!! note "Nota"
-    Si no sabes la diferencia, revisa el [Async: *"¿Tienes prisa?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Si no sabes la diferencia, revisa el [Async: *"¿Tienes prisa?"*](../async.md#tienes-prisa){.internal-link target=_blank}.
 
 ### Paso 5: devuelve el contenido
 
