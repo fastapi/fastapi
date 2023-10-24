@@ -146,8 +146,9 @@ if PYDANTIC_V2:
             # self._type_adapter.validate_python(value)
             if isinstance(value, list):
                 return [
-                    field.serialize(
+                    self._type_adapter.dump_python(
                         item,
+                        mode=mode,
                         include=include,
                         exclude=exclude,
                         by_alias=by_alias,
@@ -157,6 +158,7 @@ if PYDANTIC_V2:
                     )
                     for item in value
                 ]
+
             return self._type_adapter.dump_python(
                 value,
                 mode=mode,
