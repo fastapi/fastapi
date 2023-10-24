@@ -145,15 +145,18 @@ if PYDANTIC_V2:
             # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
             if isinstance(value, list):
-                return [field.serialize(
-                    item,
-                    include=include,
-                    exclude=exclude,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_defaults=exclude_defaults,
-                    exclude_none=exclude_none,
-                ) for item in value]
+                return [
+                    field.serialize(
+                        item,
+                        include=include,
+                        exclude=exclude,
+                        by_alias=by_alias,
+                        exclude_unset=exclude_unset,
+                        exclude_defaults=exclude_defaults,
+                        exclude_none=exclude_none,
+                    )
+                    for item in value
+                ]
             return self._type_adapter.dump_python(
                 value,
                 mode=mode,
