@@ -289,7 +289,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
     但是，dotenv 文件实际上不一定要具有确切的文件名。
 
-Pydantic 支持使用外部库从这些类型的文件中读取。您可以在<a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic 设置: Dotenv (.env) 支持</a>中阅读更多相关信息。
+Pydantic 支持使用外部库从这些类型的文件中读取。您可以在<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic 设置: Dotenv (.env) 支持</a>中阅读更多相关信息。
 
 !!! tip
     要使其工作，您需要执行 `pip install python-dotenv`。
