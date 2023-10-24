@@ -299,6 +299,8 @@ extra:
     name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
+  - link: /zh-hant/
+    name: zh - 繁體中文
 extra_css:
 - css/termynal.css
 - css/custom.css
