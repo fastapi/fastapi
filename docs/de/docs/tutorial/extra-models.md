@@ -11,7 +11,7 @@ Insbesondere Nutzer-Modelle, denn:
 !!! danger "Gefahr"
     Speichern Sie niemals das Klartext-Passwort eines Nutzers. Speichern Sie immer den "sicheren Hash", den Sie verifizieren können.
 
-    Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#password-hashing){.internal-link target=_blank} werden Sie lernen, was ein "Passwort-Hash" ist.
+    Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein "Passwort-Hash" ist.
 
 ## Mehrere Modelle
 
