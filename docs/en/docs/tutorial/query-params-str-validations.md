@@ -737,7 +737,7 @@ And a `description`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="12"
+    ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
     ```
 
@@ -835,7 +835,7 @@ Then pass the parameter `deprecated=True` to `Query`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="17"
+    ```Python hl_lines="16"
     {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
     ```
 
