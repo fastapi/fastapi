@@ -2,14 +2,14 @@
 
 Fahren wir beim letzten Beispiel fort. Es gibt normalerweise mehrere zusammengehörende Modelle.
 
-Insbesondere Nutzer-Modelle, denn:
+Insbesondere Benutzer-Modelle, denn:
 
 * Das **hereinkommende Modell** sollte ein Passwort haben können.
 * Das **herausgehende Modell** sollte kein Passwort haben.
 * Das **Datenbank-Modell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender "Fingerabdruck" eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
 
 !!! danger "Gefahr"
-    Speichern Sie niemals das Klartext-Passwort eines Nutzers. Speichern Sie immer den "sicheren Hash", den Sie verifizieren können.
+    Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den "sicheren Hash", den Sie verifizieren können.
 
     Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein "Passwort-Hash" ist.
 
@@ -249,4 +249,4 @@ In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.
 
 Verwenden Sie gerne mehrere Pydantic-Modelle und vererben Sie je nach Bedarf.
 
-Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit verschiedene Zustände annehmen kann. So wie unsere Nutzer-"Einheit", welche einen Zustand mit `password`, einen mit `password_hash` und einen ohne Passwort hatte.
+Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit verschiedene Zustände annehmen kann. So wie unsere Benutzer-"Einheit", welche einen Zustand mit `password`, einen mit `password_hash` und einen ohne Passwort hatte.
