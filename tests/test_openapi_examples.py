@@ -28,7 +28,7 @@ def examples(
                 "value": {"data": "Data in Body examples, example2"},
             },
         },
-    )
+    ),
 ):
     return item
 
