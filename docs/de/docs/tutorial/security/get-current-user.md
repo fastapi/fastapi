@@ -1,4 +1,4 @@
-# Aktuellen Nutzer abrufen
+# Aktuellen Benutzer abrufen
 
 Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* einen `token` vom Typ `str` überreicht:
 
@@ -25,11 +25,11 @@ Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injectio
 
 Aber das ist immer noch nicht so nützlich.
 
-Lassen wir es uns den aktuellen Nutzer überreichen.
+Lassen wir es uns den aktuellen Benutzer überreichen.
 
-## Ein Nutzer-Modell erstellen
+## Ein Benutzer-Modell erstellen
 
-Erstellen wir zunächst ein Pydantic-Nutzer-Modell.
+Erstellen wir zunächst ein Pydantic-Benutzer-Modell.
 
 So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch überall sonst verwenden:
 
@@ -115,7 +115,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-## Den Nutzer holen
+## Den Benutzer holen
 
 `get_current_user` wird eine von uns erstellte (gefakte) Hilfsfunktion verwenden, welche einen Token vom Typ `str` entgegennimmt und unser Pydantic-`User`-Modell zurückgibt:
 
@@ -155,7 +155,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-## Den aktuellen Nutzer einfügen
+## Den aktuellen Benutzer einfügen
 
 Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *Pfadoperation* verwenden:
 
@@ -211,7 +211,7 @@ Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen
 
 ## Andere Modelle
 
-Sie können jetzt den aktuellen Nutzer direkt in den *Pfadoperation-Funktionen* abrufen und die Sicherheitsmechanismen auf **Dependency Injection** Ebene handhaben, mittels `Depends`.
+Sie können jetzt den aktuellen Benutzer direkt in den *Pfadoperation-Funktionen* abrufen und die Sicherheitsmechanismen auf **Dependency Injection** Ebene handhaben, mittels `Depends`.
 
 Und Sie können alle Modelle und Daten für die Sicherheitsanforderungen verwenden (in diesem Fall ein Pydantic-Modell `User`).
 
@@ -221,7 +221,7 @@ Möchten Sie eine `id` und eine `email` und keinen `username` in Ihrem Modell ha
 
 Möchten Sie nur ein `str` haben? Oder nur ein `dict`? Oder direkt eine Instanz eines Modells einer Datenbank-Klasse? Es funktioniert alles auf die gleiche Weise.
 
-Sie haben eigentlich keine Nutzer, die sich bei Ihrer Anwendung anmelden, sondern Roboter, Bots oder andere Systeme, die nur über einen Zugriffstoken verfügen? Auch hier funktioniert alles gleich.
+Sie haben eigentlich keine Benutzer, die sich bei Ihrer Anwendung anmelden, sondern Roboter, Bots oder andere Systeme, die nur über einen Zugriffstoken verfügen? Auch hier funktioniert alles gleich.
 
 Verwenden Sie einfach jede Art von Modell, jede Art von Klasse, jede Art von Datenbank, die Sie für Ihre Anwendung benötigen. **FastAPI** deckt das alles mit seinem Dependency Injection System ab.
 
@@ -279,10 +279,10 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
 
 ## Zusammenfassung
 
-Sie können jetzt den aktuellen Nutzer direkt in Ihrer *Pfadoperation-Funktion* abrufen.
+Sie können jetzt den aktuellen Benutzer direkt in Ihrer *Pfadoperation-Funktion* abrufen.
 
 Wir haben bereits die Hälfte geschafft.
 
-Wir müssen jetzt nur noch eine *Pfadoperation* hinzufügen, mittels der der Nutzer/Client tatsächlich seinen `username` und `password` senden kann.
+Wir müssen jetzt nur noch eine *Pfadoperation* hinzufügen, mittels der der Benutzer/Client tatsächlich seinen `username` und `password` senden kann.
 
 Das kommt als nächstes.
