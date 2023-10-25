@@ -105,9 +105,9 @@ Mehrere davon werden wir in den nächsten Kapiteln erkunden.
 
 Wenn Sie *Pfadoperationen* erstellen, haben Sie manchmal einen fixen Pfad.
 
-Etwa `/users/me`, um Daten über den aktuellen Nutzer zu erhalten.
+Etwa `/users/me`, um Daten über den aktuellen Benutzer zu erhalten.
 
-Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifischen Nutzer zu erhalten, mittels einer Nutzer-ID.
+Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifischen Benutzer zu erhalten, mittels einer Benutzer-ID.
 
 Weil *Pfadoperationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
 
