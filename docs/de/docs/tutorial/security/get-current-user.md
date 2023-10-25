@@ -1,6 +1,6 @@
 # Aktuellen Nutzer abrufen
 
-Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* ein `token` vom Typ `str` überreicht:
+Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* einen `token` vom Typ `str` überreicht:
 
 === "Python 3.9+"
 
@@ -77,7 +77,7 @@ Erinnern Sie sich, dass Abhängigkeiten Unterabhängigkeiten haben können?
 
 `get_current_user` wird seinerseits von `oauth2_scheme` abhängen, das wir zuvor erstellt haben.
 
-So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere neue Abhängigkeit `get_current_user` von der Unterabhängigkeit `oauth2_scheme` ein `token` vom Typ `str`:
+So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere neue Abhängigkeit `get_current_user` von der Unterabhängigkeit `oauth2_scheme` einen `token` vom Typ `str`:
 
 === "Python 3.10+"
 
@@ -117,7 +117,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 ## Den Nutzer holen
 
-`get_current_user` wird eine von uns erstellte (gefakte) Hilfsfunktion verwenden, welche ein Token vom Typ `str` entgegennimmt und unser Pydantic-`User`-Modell zurückgibt:
+`get_current_user` wird eine von uns erstellte (gefakte) Hilfsfunktion verwenden, welche einen Token vom Typ `str` entgegennimmt und unser Pydantic-`User`-Modell zurückgibt:
 
 === "Python 3.10+"
 
@@ -221,7 +221,7 @@ Möchten Sie eine `id` und eine `email` und keinen `username` in Ihrem Modell ha
 
 Möchten Sie nur ein `str` haben? Oder nur ein `dict`? Oder direkt eine Instanz eines Modells einer Datenbank-Klasse? Es funktioniert alles auf die gleiche Weise.
 
-Sie haben eigentlich keine Nutzer, die sich bei Ihrer Anwendung anmelden, sondern Roboter, Bots oder andere Systeme, die nur über ein Zugriffstoken verfügen? Auch hier funktioniert alles gleich.
+Sie haben eigentlich keine Nutzer, die sich bei Ihrer Anwendung anmelden, sondern Roboter, Bots oder andere Systeme, die nur über einen Zugriffstoken verfügen? Auch hier funktioniert alles gleich.
 
 Verwenden Sie einfach jede Art von Modell, jede Art von Klasse, jede Art von Datenbank, die Sie für Ihre Anwendung benötigen. **FastAPI** deckt das alles mit seinem Dependency Injection System ab.
 
