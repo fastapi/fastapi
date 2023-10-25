@@ -167,11 +167,11 @@ path -> item_id
 
 **FastAPI** verwendet diesen, sodass Sie, wenn Sie ein Pydantic-Modell für `response_model` verwenden, und ihre Daten fehlerhaft sind, einen Fehler in ihrem Log sehen.
 
-Aber der Client/Nutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">"Internal Server Error"</abbr> mit einem HTTP-Statuscode `500`.
+Aber der Client/Benutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">"Internal Server Error"</abbr> mit einem HTTP-Statuscode `500`.
 
 Das ist, wie es sein sollte, denn wenn Sie einen Pydantic-`ValidationError` in Ihrer *Response* oder irgendwo sonst in ihrem Code haben (es sei denn, im *Request* des Clients), ist das tatsächlich ein Bug in ihrem Code.
 
-Und während Sie den Fehler beheben, sollten ihre Clients/Nutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
+Und während Sie den Fehler beheben, sollten ihre Clients/Benutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
 
 ### den `HTTPException`-Handler überschreiben
 
@@ -192,7 +192,7 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 
 Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen Daten.
 
-Sie könnten diesen verwenden, während Sie Ihre Anwendung entwickeln, um den Body zu loggen und zu debuggen, ihn zum Nutzer zurückzugeben, usw.
+Sie könnten diesen verwenden, während Sie Ihre Anwendung entwickeln, um den Body zu loggen und zu debuggen, ihn zum Benutzer zurückzugeben, usw.
 
 ```Python hl_lines="14"
 {!../../../docs_src/handling_errors/tutorial005.py!}
