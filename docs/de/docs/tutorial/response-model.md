@@ -127,11 +127,11 @@ Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu 
     {!> ../../../docs_src/response_model/tutorial002.py!}
     ```
 
-Immer wenn jetzt ein Browser einen Nutzer mit Passwort erzeugt, gibt die API dasselbe Passwort in der Response zurück.
+Immer wenn jetzt ein Browser einen Benutzer mit Passwort erzeugt, gibt die API dasselbe Passwort in der Response zurück.
 
-Hier ist das möglicherweise kein Problem, da es derselbe Nutzer ist, der das Passwort sendet.
+Hier ist das möglicherweise kein Problem, da es derselbe Benutzer ist, der das Passwort sendet.
 
-Aber wenn wir dasselbe Modell für eine andere *Pfadoperation* verwenden, könnten wir das Passwort dieses Nutzers zu jedem Client schicken.
+Aber wenn wir dasselbe Modell für eine andere *Pfadoperation* verwenden, könnten wir das Passwort dieses Benutzers zu jedem Client schicken.
 
 !!! danger "Gefahr"
     Speichern Sie niemals das Klartext-Passwort eines Benutzers, oder versenden Sie es in einer Response wie dieser, wenn Sie sich nicht der resultierenden Gefahren bewusst sind und nicht wissen, was Sie tun.
