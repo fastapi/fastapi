@@ -2,4 +2,4 @@
 set -x
 
 ruff fastapi tests docs_src scripts --fix
-black fastapi tests docs_src scripts
+ruff format fastapi tests docs_src scripts
