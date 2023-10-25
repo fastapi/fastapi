@@ -237,15 +237,15 @@ UserInDB(
 !!! info
     Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#uber-user_indict){.internal-link target=_blank}.
 
-## Das Token zurückgeben
+## Den Token zurückgeben
 
 Die Antwort des `token`-Endpunkts muss ein JSON-Objekt sein.
 
 Es sollte einen `token_type` haben. Da wir in unserem Fall "Bearer"-Token verwenden, sollte der Token-Typ "`bearer`" sein.
 
-Und es sollte ein `access_token` haben, mit einem String, der unser Zugriffstoken enthält.
+Und es sollte einen `access_token` haben, mit einem String, der unseren Zugriffstoken enthält.
 
-In diesem einfachen Beispiel gehen wir einfach völlig unsicher vor und geben denselben `username` wie das Token zurück.
+In diesem einfachen Beispiel gehen wir einfach völlig unsicher vor und geben denselben `username` wie der Token zurück.
 
 !!! tip "Tipp"
     Im nächsten Kapitel sehen Sie eine wirklich sichere Implementierung mit Passwort-Hashing und <abbr title="JSON Web Tokens">JWT</abbr>-Tokens.
