@@ -108,13 +108,13 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
     * Ein "Token" ist lediglich ein String mit einem Inhalt, den wir später verwenden können, um diesen Benutzer zu verifizieren.
     * Normalerweise läuft ein Token nach einiger Zeit ab.
         * Daher muss sich der Benutzer irgendwann später erneut anmelden.
-        * Und wenn das Token gestohlen wird, ist das Risiko geringer. Es handelt sich nicht um einen dauerhaften Schlüssel, der (in den meisten Fällen) für immer funktioniert.
-* Das Frontend speichert dieses Token vorübergehend irgendwo.
+        * Und wenn der Token gestohlen wird, ist das Risiko geringer. Es handelt sich nicht um einen dauerhaften Schlüssel, der (in den meisten Fällen) für immer funktioniert.
+* Das Frontend speichert diesen Token vorübergehend irgendwo.
 * Der Benutzer klickt im Frontend, um zu einem anderen Abschnitt der Frontend-Web-Anwendung zu gelangen.
 * Das Frontend muss weitere Daten von der API abrufen.
     * Es benötigt jedoch eine Authentifizierung für diesen bestimmten Endpunkt.
     * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer` plus dem Token.
-    * Wenn das Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
+    * Wenn der Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
 
 ## **FastAPI**s `OAuth2PasswordBearer`
 
@@ -131,7 +131,7 @@ In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem 
 
     In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen brauchen.
 
-Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um ein Token zu erhalten.
+Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
 === "Python 3.9+"
 
@@ -155,13 +155,13 @@ Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wi
     ```
 
 !!! tip "Tipp"
-    Hier bezieht sich `tokenUrl="token"` auf ein relatives URL-`token`, das wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
+    Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
 
     Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
 
     Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
 
-Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern deklariert, dass die URL `/token` diejenige sein wird, die der Client verwenden soll, um das Token abzurufen. Diese Information wird in OpenAPI und dann in den interaktiven API-Dokumentationssystemen verwendet.
+Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern deklariert, dass die URL `/token` diejenige sein wird, die der Client verwenden soll, um den Token abzurufen. Diese Information wird in OpenAPI und dann in den interaktiven API-Dokumentationssystemen verwendet.
 
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
@@ -216,11 +216,11 @@ Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pf
 
 ## Was es macht
 
-FastAPI wird im Request nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und das Token als `str` zurückgeben.
+FastAPI wird im Request nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und den Token als `str` zurückgeben.
 
-Wenn es keinen `Authorization`-Header sieht, oder der Wert kein `Bearer`-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
+Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer`-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
 
-Sie müssen nicht einmal prüfen, ob das Token existiert, um einen Fehler zurückzugeben. Seien Sie sicher, dass Ihre Funktion, wenn sie ausgeführt wird, ein `str` in diesem Token enthält.
+Sie müssen nicht einmal prüfen, ob der Token existiert, um einen Fehler zurückzugeben. Seien Sie sicher, dass Ihre Funktion, wenn sie ausgeführt wird, ein `str` in diesem Token enthält.
 
 Sie können das bereits in der interaktiven Dokumentation ausprobieren:
 
