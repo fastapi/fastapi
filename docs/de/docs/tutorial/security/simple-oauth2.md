@@ -10,7 +10,7 @@ OAuth2 spezifiziert, dass der Client/Benutzer bei Verwendung des "Password Flow"
 
 Und die Spezifikation sagt, dass die Felder so benannt werden müssen. `user-name` oder `email` würde also nicht funktionieren.
 
-Aber keine Sorge, Sie können sie Ihren Endnutzern im Frontend so anzeigen, wie Sie möchten.
+Aber keine Sorge, Sie können sie Ihren Endbenutzern im Frontend so anzeigen, wie Sie möchten.
 
 Und Ihre Datenbankmodelle können beliebige andere Namen verwenden.
 
@@ -116,9 +116,9 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
 
     In diesem Beispiel verwenden wir keine `scopes`, aber die Funktionalität ist vorhanden, wenn Sie sie benötigen.
 
-Rufen Sie nun die Nutzerdaten aus der (gefakten) Datenbank ab, für diesen `username` aus dem Formularfeld.
+Rufen Sie nun die Benutzerdaten aus der (gefakten) Datenbank ab, für diesen `username` aus dem Formularfeld.
 
-Wenn es keinen solchen Nutzer gibt, geben wir die Fehlermeldung "Incorrect username or password" zurück.
+Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung "Incorrect username or password" zurück.
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
@@ -160,7 +160,7 @@ Für den Fehler verwenden wir die Exception `HTTPException`:
 
 ### Das Passwort überprüfen
 
-Zu diesem Zeitpunkt liegen uns die Nutzerdaten aus unserer Datenbank vor, das Passwort haben wir jedoch noch nicht überprüft.
+Zu diesem Zeitpunkt liegen uns die Benutzerdaten aus unserer Datenbank vor, das Passwort haben wir jedoch noch nicht überprüft.
 
 Lassen Sie uns diese Daten zunächst in das Pydantic-Modell `UserInDB` einfügen.
 
@@ -370,7 +370,7 @@ Klicken Sie auf den Button "Authorize".
 
 Verwenden Sie die Anmeldedaten:
 
-Nutzer: `johndoe`
+Benutzer: `johndoe`
 
 Passwort: `secret`.
 
@@ -380,11 +380,11 @@ Nach der Authentifizierung im System sehen Sie Folgendes:
 
 <img src="/img/tutorial/security/image05.png">
 
-### Die eigenen Nutzerdaten ansehen
+### Die eigenen Benutzerdaten ansehen
 
 Verwenden Sie nun die Operation `GET` mit dem Pfad `/users/me`.
 
-Sie erhalten Ihre Nutzerdaten:
+Sie erhalten Ihre Benutzerdaten:
 
 ```JSON
 {
@@ -406,11 +406,11 @@ Wenn Sie auf das Schlosssymbol klicken und sich abmelden und dann den gleichen V
 }
 ```
 
-### Inaktiver Nutzer
+### Inaktiver Benutzer
 
-Versuchen Sie es nun mit einem inaktiven Nutzer und authentisieren Sie sich mit:
+Versuchen Sie es nun mit einem inaktiven Benutzer und authentisieren Sie sich mit:
 
-Nutzer: `alice`.
+Benutzer: `alice`.
 
 Passwort: `secret2`.
 
