@@ -5,4 +5,4 @@ set -x
 
 mypy fastapi
 ruff fastapi tests docs_src scripts
-black fastapi tests --check
+ruff format fastapi tests --check
