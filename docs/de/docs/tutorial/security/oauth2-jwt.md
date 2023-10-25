@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 Und kopieren Sie die Ausgabe in die Variable `SECRET_KEY` (verwenden Sie nicht die im Beispiel).
 
-Erstellen Sie eine Variable `ALGORITHM` mit dem Algorithmus, der zum Signieren des JWT-Tokens verwendet wird, und setzen Sie ihn auf `"HS256"`.
+Erstellen Sie eine Variable `ALGORITHM` für den Algorithmus, der zum Signieren des JWT-Tokens verwendet wird, und setzen Sie sie auf `"HS256"`.
 
 Erstellen Sie eine Variable für das Ablaufdatum des Tokens.
 
@@ -302,13 +302,13 @@ Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
 
 Die JWT-Spezifikation besagt, dass es einen Schlüssel `sub` mit dem Subjekt des Tokens gibt.
 
-Die Verwendung ist optional, aber dort würden Sie die Identifikation des Benutzers hintun, daher verwenden wir das hier.
+Die Verwendung ist optional, aber dort würden Sie die Identifikation des Benutzers speichern, daher verwenden wir das hier.
 
 JWT kann auch für andere Dinge verwendet werden, abgesehen davon, einen Benutzer zu identifizieren und ihm zu erlauben, Operationen direkt auf Ihrer API auszuführen.
 
 Sie könnten beispielsweise ein "Auto" oder einen "Blog-Beitrag" identifizieren.
 
-Anschließend können Sie Berechtigungen für diese Entität hinzufügen, etwa "Fahren" (für das Auto) oder "Bearbeiten" (für den Blog).
+Anschließend könnten Sie Berechtigungen für diese Entität hinzufügen, etwa "Fahren" (für das Auto) oder "Bearbeiten" (für den Blog).
 
 Und dann könnten Sie diesen JWT-Token einem Benutzer (oder Bot) geben und dieser könnte ihn verwenden, um diese Aktionen auszuführen (das Auto fahren oder den Blog-Beitrag bearbeiten), ohne dass er überhaupt ein Konto haben müsste, einfach mit dem JWT-Token, den Ihre API dafür generiert hat.
 
