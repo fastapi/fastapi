@@ -2,7 +2,7 @@
 
 Gefällt Ihnen **FastAPI**?
 
-Möchten Sie FastAPI, anderen Nutzern und dem Autor helfen?
+Möchten Sie FastAPI, anderen Benutzern und dem Autor helfen?
 
 Oder möchten Sie Hilfe zu **FastAPI** erhalten?
 
@@ -93,7 +93,7 @@ So helfen Sie anderen bei Fragen (in Diskussionen oder Problemen):
 
 * Überprüfen Sie dann, ob die Frage (die überwiegende Mehrheit sind Fragen) **klar** ist.
 
-* In vielen Fällen handelt es sich bei der gestellten Frage um eine Lösung, die der Nutzer sich vorstellt, aber es könnte eine **bessere** Lösung geben. Wenn Sie das Problem und den Anwendungsfall besser verstehen, können Sie eine bessere **Alternativlösung** vorschlagen.
+* In vielen Fällen handelt es sich bei der gestellten Frage um eine Lösung, die der Benutzer sich vorstellt, aber es könnte eine **bessere** Lösung geben. Wenn Sie das Problem und den Anwendungsfall besser verstehen, können Sie eine bessere **Alternativlösung** vorschlagen.
 
 * Wenn Sie die Frage nicht verstehen können, fragen Sie nach weiteren **Details**.
 
