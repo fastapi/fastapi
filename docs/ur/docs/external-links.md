@@ -21,87 +21,22 @@
 </div>
 <br>
 
-## <div style="text-align: right;">مضامین</div>
-### <div style="text-align: right;">انگریزی</div>
 
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.english %}
- <li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
+{% for section_name, section_content in external_links.items() %}
+
+## <div style="text-align: right;">{{ section_name }}</div>
+
+{% for lang_name, lang_content in section_content.items() %}
+
+### <div style="text-align: right;">{{ lang_name }}</div>
+
+{% for item in lang_content %}
+
+* <div style="text-align: right;"><a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.</div>
+
 {% endfor %}
-</ul>
-{% endif %}
-
-### <div style="text-align: right;">جاپانی</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.japanese %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
-</ul>
-{% endif %}
-
-### <div style="text-align: right;">ویتنامی</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.vietnamese %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
 {% endfor %}
-</ul>
-{% endif %}
-
-### <div style="text-align: right;">روسی</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.russian %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
-{% endfor %}
-</ul>
-{% endif %}
-
-
-### <div style="text-align: right;">جرمن</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.german %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
-{% endfor %}
-</ul>
-{% endif %}
-
-### <div style="text-align: right;">تائیوانی</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.articles.taiwanese %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
-{% endfor %}
-</ul>
-{% endif %}
-
-## <div style="text-align: right;">پوڈکاسٹ</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.podcasts.english %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
-{% endfor %}
-</ul>
-{% endif %}
-
-## <div style="text-align: right;">بات چیت</div>
-
-{% if external_links %}
-<ul style="direction: rtl;">
-{% for article in external_links.talks.english %}
-<li><div style="text-align: right;"><a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> کی طرف سے <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.</div></li>
-{% endfor %}
-</ul>
-{% endif %}
 
 
 ## <div style="text-align: right;">پروجیکٹس</div>
