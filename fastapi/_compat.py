@@ -197,9 +197,9 @@ if PYDANTIC_V2:
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-            json_schema[
-                "title"
-            ] = field.field_info.title or field.alias.title().replace("_", " ")
+            json_schema["title"] = (
+                field.field_info.title or field.alias.title().replace("_", " ")
+            )
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
