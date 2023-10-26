@@ -1,4 +1,4 @@
-# <div style="text-align: right;">بینچ مارکس</div>
+# بینچ مارکس
 
 انڈیپنڈنٹ ٹیک امپور بینچ مارک **FASTAPI** Uvicorn کے تحت چلنے والی ایپلی کیشنز کو <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> ایک تیز رفتار Python فریم ورک میں سے ایک </a> ، صرف Starlette اور Uvicorn کے نیچے ( FASTAPI  کے ذریعہ اندرونی طور پر استعمال کیا جاتا ہے ) (*)
 

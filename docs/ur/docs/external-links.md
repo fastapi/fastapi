@@ -1,4 +1,4 @@
-# <div style="text-align: right;">بیرونی روابط اور مضامین</div>
+# بیرونی روابط اور مضامین
 
 <div style="direction: rtl;">
     <div style="direction: ltr; text-align: right;">
