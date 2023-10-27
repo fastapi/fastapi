@@ -87,7 +87,7 @@ def test_openapi_schema():
                                     }
                                 )
                             }
-                        }
+                        },
                     },
                 }
             }

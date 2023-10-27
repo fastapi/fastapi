@@ -96,7 +96,7 @@ def test_openapi_schema(client: TestClient):
                                     }
                                 )
                             }
-                        }
+                        },
                     },
                 }
             }
