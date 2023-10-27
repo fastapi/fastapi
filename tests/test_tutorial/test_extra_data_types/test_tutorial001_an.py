@@ -67,6 +67,7 @@ def test_openapi_schema():
                         }
                     ],
                     "requestBody": {
+                        "required": True,
                         "content": {
                             "application/json": {
                                 "schema": IsDict(
@@ -100,31 +101,11 @@ def test_openapi_schema():
                         "start_datetime": IsDict(
                             {
                                 "title": "Start Datetime",
-                                "anyOf": [
-                                    {"type": "string", "format": "date-time"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Start Datetime",
                                 "type": "string",
                                 "format": "date-time",
                             }
                         ),
                         "end_datetime": IsDict(
-                            {
-                                "title": "End Datetime",
-                                "anyOf": [
-                                    {"type": "string", "format": "date-time"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
                             {
                                 "title": "End Datetime",
                                 "type": "string",
@@ -151,21 +132,12 @@ def test_openapi_schema():
                         "process_after": IsDict(
                             {
                                 "title": "Process After",
-                                "anyOf": [
-                                    {"type": "string", "format": "duration"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Process After",
-                                "type": "number",
-                                "format": "time-delta",
+                                "type": "string",
+                                "format": "duration",
                             }
                         ),
                     },
+                    "required": ["start_datetime", "end_datetime", "process_after"],
                 },
                 "ValidationError": {
                     "title": "ValidationError",
