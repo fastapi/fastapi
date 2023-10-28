@@ -136,7 +136,7 @@ We will now use a simple dependency to read a custom `X-Token` header:
 !!! tip
     We are using an invented header to simplify this example.
 
-    But in real cases you will get better results using the integrated [Security utilities](./security/index.md){.internal-link target=_blank}.
+    But in real cases you will get better results using the integrated [Security utilities](security/index.md){.internal-link target=_blank}.
 
 ## Another module with `APIRouter`
 

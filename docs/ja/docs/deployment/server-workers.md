@@ -13,13 +13,13 @@
 
 アプリケーションをデプロイする際には、**複数のコア**を利用し、そしてより多くのリクエストを処理できるようにするために、プロセスの**レプリケーション**を持つことを望むでしょう。
 
-前のチャプターである[デプロイメントのコンセプト](./concepts.md){.internal-link target=_blank}にて見てきたように、有効な戦略がいくつかあります。
+前のチャプターである[デプロイメントのコンセプト](concepts.md){.internal-link target=_blank}にて見てきたように、有効な戦略がいくつかあります。
 
 ここでは<a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a>が**Uvicornのワーカー・プロセス**を管理する場合の使い方について紹介していきます。
 
 !!! info
     <!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
-    DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}
+    DockerやKubernetesなどのコンテナを使用している場合は、次の章で詳しく説明します： [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}
 
     特に**Kubernetes**上で実行する場合は、おそらく**Gunicornを使用せず**、**コンテナごとに単一のUvicornプロセス**を実行することになりますが、それについてはこの章の後半で説明します。
 
@@ -167,7 +167,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## コンテナとDocker
 <!-- NOTE: the current version of docker.md is outdated compared to English one.  -->
-次章の[コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}では、その他の**デプロイのコンセプト**を扱うために実施するであろう戦略をいくつか紹介します。
+次章の[コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}では、その他の**デプロイのコンセプト**を扱うために実施するであろう戦略をいくつか紹介します。
 
 また、**GunicornとUvicornワーカー**を含む**公式Dockerイメージ**と、簡単なケースに役立ついくつかのデフォルト設定も紹介します。
 

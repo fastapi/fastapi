@@ -50,7 +50,7 @@
 
 ### **FastAPI** app 文件
 
-假设你有一个像 [更大的应用](./bigger-applications.md){.internal-link target=_blank} 中所描述的文件结构:
+假设你有一个像 [更大的应用](bigger-applications.md){.internal-link target=_blank} 中所描述的文件结构:
 
 ```
 .

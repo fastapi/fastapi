@@ -108,7 +108,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 🌅 ⚠ 🌌 ⚫️ ✔️ 📁 `requirements.txt` ⏮️ 📦 📛 &amp; 👫 ⏬, 1️⃣ 📍 ⏸.
 
-👆 🔜 ↗️ ⚙️ 🎏 💭 👆 ✍ [🔃 FastAPI ⏬](./versions.md){.internal-link target=_blank} ⚒ ↔ ⏬.
+👆 🔜 ↗️ ⚙️ 🎏 💭 👆 ✍ [🔃 FastAPI ⏬](versions.md){.internal-link target=_blank} ⚒ ↔ ⏬.
 
 🖼, 👆 `requirements.txt` 💪 👀 💖:
 
@@ -373,7 +373,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## 🛠️ 🔧
 
-➡️ 💬 🔄 🔃 🎏 [🛠️ 🔧](./concepts.md){.internal-link target=_blank} ⚖ 📦.
+➡️ 💬 🔄 🔃 🎏 [🛠️ 🔧](concepts.md){.internal-link target=_blank} ⚖ 📦.
 
 📦 ✴️ 🧰 📉 🛠️ **🏗 &amp; 🛠️** 🈸, ✋️ 👫 🚫 🛠️ 🎯 🎯 🍵 👉 **🛠️ 🔧**, &amp; 📤 📚 💪 🎛.
 
@@ -514,7 +514,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## 🛂 ☁ 🖼 ⏮️ 🐁 - Uvicorn
 
-📤 🛂 ☁ 🖼 👈 🔌 🐁 🏃‍♂ ⏮️ Uvicorn 👨‍🏭, ℹ ⏮️ 📃: [💽 👨‍🏭 - 🐁 ⏮️ Uvicorn](./server-workers.md){.internal-link target=_blank}.
+📤 🛂 ☁ 🖼 👈 🔌 🐁 🏃‍♂ ⏮️ Uvicorn 👨‍🏭, ℹ ⏮️ 📃: [💽 👨‍🏭 - 🐁 ⏮️ Uvicorn](server-workers.md){.internal-link target=_blank}.
 
 👉 🖼 🔜 ⚠ ✴️ ⚠ 🔬 🔛: [📦 ⏮️ 💗 🛠️ &amp; 🎁 💼](#containers-with-multiple-processes-and-special-cases).
 

@@ -341,6 +341,6 @@ $ uvicorn main:app --root-path /api/v1
 
 ## 🗜 🎧-🈸
 
-🚥 👆 💪 🗻 🎧-🈸 (🔬 [🎧 🈸 - 🗻](./sub-applications.md){.internal-link target=_blank}) ⏪ ⚙️ 🗳 ⏮️ `root_path`, 👆 💪 ⚫️ 🛎, 👆 🔜 ⌛.
+🚥 👆 💪 🗻 🎧-🈸 (🔬 [🎧 🈸 - 🗻](sub-applications.md){.internal-link target=_blank}) ⏪ ⚙️ 🗳 ⏮️ `root_path`, 👆 💪 ⚫️ 🛎, 👆 🔜 ⌛.
 
 FastAPI 🔜 🔘 ⚙️ `root_path` 🎆, ⚫️ 🔜 👷. 👶

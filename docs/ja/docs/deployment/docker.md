@@ -117,7 +117,7 @@ FastAPI用の**Dockerイメージ**を、**公式Python**イメージに基づ�
 
 最も一般的な方法は、`requirements.txt` ファイルにパッケージ名とそのバージョンを 1 行ずつ書くことです。
 
-もちろん、[FastAPI バージョンについて](./versions.md){.internal-link target=_blank}で読んだのと同じアイデアを使用して、バージョンの範囲を設定します。
+もちろん、[FastAPI バージョンについて](versions.md){.internal-link target=_blank}で読んだのと同じアイデアを使用して、バージョンの範囲を設定します。
 
 例えば、`requirements.txt` は次のようになります：
 
@@ -384,7 +384,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## デプロイメントのコンセプト
 
-コンテナという観点から、[デプロイのコンセプト](./concepts.md){.internal-link target=_blank}に共通するいくつかについて、もう一度説明しましょう。
+コンテナという観点から、[デプロイのコンセプト](concepts.md){.internal-link target=_blank}に共通するいくつかについて、もう一度説明しましょう。
 
 コンテナは主に、アプリケーションの**ビルドとデプロイ**のプロセスを簡素化するためのツールですが、これらの**デプロイのコンセプト**を扱うための特定のアプローチを強制するものではないです。
 
@@ -531,7 +531,7 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 ## Gunicornによる公式Dockerイメージ - Uvicorn
 
-前の章で詳しく説明したように、Uvicornワーカーで動作するGunicornを含む公式のDockerイメージがあります： [Server Workers - Gunicorn と Uvicorn](./server-workers.md){.internal-link target=_blank}で詳しく説明しています。
+前の章で詳しく説明したように、Uvicornワーカーで動作するGunicornを含む公式のDockerイメージがあります： [Server Workers - Gunicorn と Uvicorn](server-workers.md){.internal-link target=_blank}で詳しく説明しています。
 
 このイメージは、主に上記で説明した状況で役に立つでしょう： [複数のプロセスと特殊なケースを持つコンテナ（Containers with Multiple Processes and Special Cases）](#containers-with-multiple-processes-and-special-cases)
 

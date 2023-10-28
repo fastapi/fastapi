@@ -13,12 +13,12 @@ Up to this point, with all the tutorials in the docs, you have probably been run
 
 When deploying applications you will probably want to have some **replication of processes** to take advantage of **multiple cores** and to be able to handle more requests.
 
-As you saw in the previous chapter about [Deployment Concepts](./concepts.md){.internal-link target=_blank}, there are multiple strategies you can use.
+As you saw in the previous chapter about [Deployment Concepts](concepts.md){.internal-link target=_blank}, there are multiple strategies you can use.
 
 Here I'll show you how to use <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> with **Uvicorn worker processes**.
 
 !!! info
-    If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
+    If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
 
     In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
 
@@ -165,7 +165,7 @@ From the list of deployment concepts from above, using workers would mainly help
 
 ## Containers and Docker
 
-In the next chapter about [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank} I'll tell some strategies you could use to handle the other **deployment concepts**.
+In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll tell some strategies you could use to handle the other **deployment concepts**.
 
 I'll also show you the **official Docker image** that includes **Gunicorn with Uvicorn workers** and some default configurations that can be useful for simple cases.
 

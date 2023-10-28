@@ -30,7 +30,7 @@
 ## セキュリティ - HTTPS
 
 <!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
-[前チャプターのHTTPSについて](./https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
+[前チャプターのHTTPSについて](https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
 
 通常、アプリケーションサーバにとって**外部の**コンポーネントである**TLS Termination Proxy**によって提供されることが一般的です。このプロキシは通信の暗号化を担当します。
 
@@ -188,7 +188,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 ### ワーカー・プロセス と ポート
 <!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
 
-[HTTPSについて](./https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
+[HTTPSについて](https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
 
 これはいまだに同じです。
 
@@ -247,7 +247,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
     これらの**コンテナ**やDockerそしてKubernetesに関する項目が、まだあまり意味をなしていなくても心配しないでください。
     <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
 
-    コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
+    コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します: [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}.
 
 ## 開始前の事前のステップ
 
@@ -282,7 +282,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 
 !!! tip
    <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
-   コンテナを使った具体的な例については、次の章で紹介します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
+   コンテナを使った具体的な例については、次の章で紹介します: [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}.
 
 ## リソースの利用
 

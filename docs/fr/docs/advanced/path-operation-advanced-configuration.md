@@ -59,7 +59,7 @@ Cela définit les métadonnées sur la réponse principale d'une *opération de 
 
 Vous pouvez également déclarer des réponses supplémentaires avec leurs modèles, codes de statut, etc.
 
-Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le lire sur [Réponses supplémentaires dans OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le lire sur [Réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ## OpenAPI supplémentaire
 
@@ -75,7 +75,7 @@ Il inclut les `tags`, `parameters`, `requestBody`, `responses`, etc.
 Ce schéma OpenAPI spécifique aux *operations* est normalement généré automatiquement par **FastAPI**, mais vous pouvez également l'étendre.
 
 !!! Astuce
-    Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+    Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 Vous pouvez étendre le schéma OpenAPI pour une *opération de chemin* en utilisant le paramètre `openapi_extra`.
 

@@ -70,4 +70,4 @@ $ uvicorn main:app --reload
 
 &amp; 🎧-🈸 💪 ✔️ 🚮 👍 📌 🎧-🈸 &amp; 🌐 🔜 👷 ☑, ↩️ FastAPI 🍵 🌐 👉 `root_path`Ⓜ 🔁.
 
-👆 🔜 💡 🌅 🔃 `root_path` &amp; ❔ ⚙️ ⚫️ 🎯 📄 🔃 [⛅ 🗳](./behind-a-proxy.md){.internal-link target=_blank}.
+👆 🔜 💡 🌅 🔃 `root_path` &amp; ❔ ⚙️ ⚫️ 🎯 📄 🔃 [⛅ 🗳](behind-a-proxy.md){.internal-link target=_blank}.

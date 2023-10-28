@@ -534,7 +534,7 @@ current_user.items
 
     👉 🌌 👥 ⚒ 💭 💽 🎉 🕧 📪 ⏮️ 📨. 🚥 📤 ⚠ ⏪ 🏭 📨.
 
-    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
 
 &amp; ⤴️, 🕐❔ ⚙️ 🔗 *➡ 🛠️ 🔢*, 👥 📣 ⚫️ ⏮️ 🆎 `Session` 👥 🗄 🔗 ⚪️➡️ 🇸🇲.
 
