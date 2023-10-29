@@ -7,7 +7,7 @@ Mit `File` können sie vom Client hochzuladende Dateien definieren.
 
     Z.B. `pip install python-multipart`.
 
-    Das, weil hochgeladene Dateien als "Formulardaten" gesendet werden.
+    Das, weil hochgeladene Dateien als „Formulardaten“ gesendet werden.
 
 ## `File` importieren
 
@@ -67,7 +67,7 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
 !!! tip "Tipp"
     Um Datei-Bodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
-Die Dateien werden als "Formulardaten" hochgeladen.
+Die Dateien werden als „Formulardaten“ hochgeladen.
 
 Wenn Sie den Typ Ihrer *Pfadoperation-Funktion* als `bytes` deklarieren, wird **FastAPI** die Datei für Sie auslesen, und Sie erhalten den Inhalt als `bytes`.
 
@@ -103,7 +103,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
 * Sie müssen `File()` nicht als Parameter-Defaultwert verwenden.
-* Es wird eine <abbr title='Aufgespult, Warteschlangenartig'>"Spool"</abbr>-Datei verwendet:
+* Es wird eine <abbr title='Aufgespult, Warteschlangenartig'>„Spool“</abbr>-Datei verwendet:
     * Eine Datei, die bis zu einem bestimmten Größen-Limit im Arbeitsspeicher behalten wird, und wenn das Limit überschritten wird, auf der Festplatte gespeichert wird.
 * Das bedeutet, es wird für große Dateien wie Bilder, Videos, große Binärdateien, usw. gut funktionieren, ohne den ganzen Arbeitsspeicher aufzubrauchen.
 * Sie können Metadaten aus der hochgeladenen Datei auslesen.
@@ -116,7 +116,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
 * `filename`: Ein `str` mit dem ursprünglichen Namen der hochgeladenen Datei (z.B. `meinbild.jpg`).
 * `content_type`: Ein `str` mit dem Inhaltstyp (MIME-Typ / Medientyp) (z.B. `image/jpeg`).
-* `file`: Ein <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (ein <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein "file-like"-Objekt erwarten.
+* `file`: Ein <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (ein <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein „file-like“-Objekt erwarten.
 
 `UploadFile` hat die folgenden `async`hronen Methoden. Sie alle rufen die entsprechenden Methoden des darunterliegenden Datei-Objekts auf (wobei intern `SpooledTemporaryFile` verwendet wird).
 
@@ -127,7 +127,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
     * Das ist besonders dann nützlich, wenn Sie `await myfile.read()` einmal ausführen und dann diese Inhalte erneut auslesen müssen.
 * `close()`: Schließt die Datei.
 
-Da alle diese Methoden `async`hron sind, müssen Sie sie `await`en ("erwarten").
+Da alle diese Methoden `async`hron sind, müssen Sie sie `await`en („erwarten“).
 
 Zum Beispiel können Sie innerhalb einer `async` *Pfadoperation-Funktion* den Inhalt wie folgt auslesen:
 
@@ -147,14 +147,14 @@ contents = myfile.file.read()
 !!! note "Technische Details zu Starlette"
     **FastAPI**s `UploadFile` erbt direkt von **Starlette**s `UploadFile`, fügt aber ein paar notwendige Teile hinzu, um es kompatibel mit **Pydantic** und anderen Teilen von FastAPI zu machen.
 
-## Was sind "Formulardaten"
+## Was sind „Formulardaten“
 
-HTML-Formulare (`<form></form>`) senden die Daten in einer "speziellen" Kodierung zum Server, welche sich von JSON unterscheidet.
+HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodierung zum Server, welche sich von JSON unterscheidet.
 
 **FastAPI** stellt sicher, dass diese Daten korrekt ausgelesen werden, statt JSON zu erwarten.
 
 !!! note "Technische Details"
-    Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>"media type"</abbr> `application/x-www-form-urlencoded` kodiert.
+    Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
     Sollte das Formular aber Dateien enthalten, dann werden diese mit `multipart/form-data` kodiert. Wenn Sie `File` verwenden, wird **FastAPI** wissen, dass es die Dateien vom korrekten Teil des Bodys holen muss.
 
