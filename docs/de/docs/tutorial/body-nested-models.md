@@ -22,7 +22,7 @@ Das bewirkt, dass `tags` eine Liste ist, wenngleich es nichts über den Typ der 
 
 ## Listen mit Typ-Parametern als Felder
 
-Aber Python erlaubt es, Listen mit inneren Typen, auch "Typ-Parameter" genannt, zu deklarieren.
+Aber Python erlaubt es, Listen mit inneren Typen, auch „Typ-Parameter“ genannt, zu deklarieren.
 
 ### `List` von `typing` importieren
 
@@ -39,7 +39,7 @@ In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Py
 Um Typen wie `list`, `dict`, `tuple` mit inneren Typ-Parametern (inneren Typen) zu deklarieren:
 
 * Wenn Sie eine Python Version kleiner als 3.9 verwenden, importieren Sie das Äquivalent zum entsprechenden Typ vom `typing`-Modul
-* Überreichen Sie den/die inneren Typ(en) von eckigen Klammern umschlossen, `[` und `]`, als "Typ-Parameter"
+* Überreichen Sie den/die inneren Typ(en) von eckigen Klammern umschlossen, `[` und `]`, als „Typ-Parameter“
 
 In Python 3.9 wäre das:
 
@@ -59,7 +59,7 @@ Das ist alles Standard Python-Syntax für Typ-Deklarationen.
 
 Verwenden Sie dieselbe Standard Syntax für Modell-Attribute mit inneren Typen.
 
-In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine "Liste von Strings" ist:
+In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine „Liste von Strings“ ist:
 
 === "Python 3.10+"
 
@@ -117,7 +117,7 @@ Jedes Attribut eines Pydantic-Modells hat einen Typ.
 
 Aber dieser Typ kann selbst ein anderes Pydantic-Modell sein.
 
-Sie können also tief verschachtelte JSON-"Objekte" deklarieren, mit spezifischen Attribut-Namen, -Typen, und -Validierungen.
+Sie können also tief verschachtelte JSON-„Objekte“ deklarieren, mit spezifischen Attribut-Namen, -Typen, und -Validierungen.
 
 Alles das beliebig tief verschachtelt.
 
