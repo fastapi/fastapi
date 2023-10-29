@@ -10,7 +10,7 @@ Sie können jetzt Produktionsanwendungen mit **FastAPI** erstellen (und das tun 
 
 ## `fastapi`-Version pinnen
 
-Als Erstes sollten Sie die Version von **FastAPI**, die Sie verwenden, an die höchste Version "pinnen", von der Sie wissen, dass sie für Ihre Anwendung korrekt funktioniert.
+Als Erstes sollten Sie die Version von **FastAPI**, die Sie verwenden, an die höchste Version „pinnen“, von der Sie wissen, dass sie für Ihre Anwendung korrekt funktioniert.
 
 Angenommen, Sie verwenden in Ihrer Anwendung die Version `0.45.0`.
 
@@ -40,10 +40,10 @@ Die verfügbaren Versionen können Sie in den [Release Notes](../release-notes.m
 
 Gemäß den Konventionen zur semantischen Versionierung könnte jede Version unter `1.0.0` potenziell nicht abwärtskompatible Änderungen hinzufügen.
 
-FastAPI folgt auch der Konvention, dass jede "PATCH"-Versionsänderung für Bugfixes und abwärtskompatible Änderungen gedacht ist.
+FastAPI folgt auch der Konvention, dass jede „PATCH“-Versionsänderung für Bugfixes und abwärtskompatible Änderungen gedacht ist.
 
 !!! tip "Tipp"
-    Der "PATCH" ist die letzte Zahl, zum Beispiel ist in `0.2.3` die PATCH-Version `3`.
+    Der „PATCH“ ist die letzte Zahl, zum Beispiel ist in `0.2.3` die PATCH-Version `3`.
 
 Sie sollten also in der Lage sein, eine Version wie folgt anzupinnen:
 
@@ -51,10 +51,10 @@ Sie sollten also in der Lage sein, eine Version wie folgt anzupinnen:
 fastapi>=0.45.0,<0.46.0
 ```
 
-Nicht abwärtskompatible Änderungen und neue Funktionen werden in "MINOR"-Versionen hinzugefügt.
+Nicht abwärtskompatible Änderungen und neue Funktionen werden in „MINOR“-Versionen hinzugefügt.
 
 !!! tip "Tipp"
-    "MINOR" ist die Zahl in der Mitte, zum Beispiel ist in `0.2.3` die MINOR-Version `2`.
+    „MINOR“ ist die Zahl in der Mitte, zum Beispiel ist in `0.2.3` die MINOR-Version `2`.
 
 ## Upgrade der FastAPI-Versionen
 
