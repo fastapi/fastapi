@@ -72,14 +72,14 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
     ```
 
 !!! note "Hinweis"
-    Beachten Sie, dass `response_model` ein Parameter der "Dekorator"-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
+    Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
 
 `response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modell-Feld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z.B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
 
 FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typ-Deklaration **zu konvertieren und filtern**.
 
 !!! tip "Tipp"
-    Wenn Sie in Ihrem Editor strikte Typ-Checks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='"Irgend etwas"'>`Any`</abbr> deklarieren.
+    Wenn Sie in Ihrem Editor strikte Typ-Checks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
 
     So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
 
@@ -276,7 +276,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Kindklasse von `R
 
 Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Response-Modell von dieser Typ-Annotation zu erstellen, und scheitern.
 
-Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: "Irgendeiner dieser Typen"'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
+Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
 === "Python 3.10+"
 
