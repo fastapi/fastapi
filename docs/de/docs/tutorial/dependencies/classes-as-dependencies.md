@@ -4,7 +4,7 @@ Bevor wir tiefer in das **Dependency Injection** System eintauchen, lassen Sie u
 
 ## Ein `dict` aus dem vorherigen Beispiel
 
-Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit ("Dependable") zurückgegeben:
+Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Dependable“) zurückgegeben:
 
 === "Python 3.10+"
 
@@ -54,9 +54,9 @@ Bisher haben Sie Abhängigkeiten gesehen, die als Funktionen deklariert wurden.
 
 Das ist jedoch nicht die einzige Möglichkeit, Abhängigkeiten zu deklarieren (obwohl es wahrscheinlich die gebräuchlichste ist).
 
-Der springende Punkt ist, dass eine Abhängigkeit aufrufbar ("callable") sein sollte.
+Der springende Punkt ist, dass eine Abhängigkeit aufrufbar („callable“) sein sollte.
 
-Ein "**Callable**" in Python ist etwas, das wie eine Funktion aufgerufen werden kann ("to call").
+Ein „**Callable**“ in Python ist etwas, das wie eine Funktion aufgerufen werden kann („to call“).
 
 Wenn Sie also ein Objekt `something` haben (das möglicherweise _keine_ Funktion ist) und Sie es wie folgt aufrufen (ausführen) können:
 
@@ -70,7 +70,7 @@ oder
 something(some_argument, some_keyword_argument="foo")
 ```
 
-dann ist das ein "Callable" (ein "Aufrufbares").
+dann ist das ein „Callable“ (ein „Aufrufbares“).
 
 ## Klassen als Abhängigkeiten
 
@@ -95,13 +95,13 @@ Eine Python-Klasse ist also auch ein **Callable**.
 
 Darum können Sie in **FastAPI** auch eine Python-Klasse als Abhängigkeit verwenden.
 
-Was FastAPI tatsächlich prüft, ist, ob es sich um ein "Callable" (Funktion, Klasse oder irgendetwas anderes) handelt und ob die Parameter definiert sind.
+Was FastAPI tatsächlich prüft, ist, ob es sich um ein „Callable“ (Funktion, Klasse oder irgendetwas anderes) handelt und ob die Parameter definiert sind.
 
-Wenn Sie **FastAPI** ein "Callable" als Abhängigkeit übergeben, analysiert es die Parameter dieses "Callables" und verarbeitet sie auf die gleiche Weise wie die Parameter einer *Pfadoperation-Funktion*. Einschließlich Unterabhängigkeiten.
+Wenn Sie **FastAPI** ein „Callable“ als Abhängigkeit übergeben, analysiert es die Parameter dieses „Callables“ und verarbeitet sie auf die gleiche Weise wie die Parameter einer *Pfadoperation-Funktion*. Einschließlich Unterabhängigkeiten.
 
 Das gilt auch für Callables ohne Parameter. So wie es auch für *Pfadoperation-Funktionen* ohne Parameter gilt.
 
-Dann können wir das "Dependable" `common_parameters` der Abhängigkeit von oben in die Klasse `CommonQueryParams` ändern:
+Dann können wir das „Dependable“ `common_parameters` der Abhängigkeit von oben in die Klasse `CommonQueryParams` ändern:
 
 === "Python 3.10+"
 
@@ -215,7 +215,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-Diese Parameter werden von **FastAPI** verwendet, um die Abhängigkeit "aufzulösen".
+Diese Parameter werden von **FastAPI** verwendet, um die Abhängigkeit „aufzulösen“.
 
 In beiden Fällen wird sie haben:
 
@@ -265,7 +265,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
     {!> ../../../docs_src/dependencies/tutorial002.py!}
     ```
 
-**FastAPI** ruft die Klasse `CommonQueryParams` auf. Dadurch wird eine "Instanz" dieser Klasse erstellt und die Instanz wird als Parameter `commons` an Ihre Funktion überreicht.
+**FastAPI** ruft die Klasse `CommonQueryParams` auf. Dadurch wird eine „Instanz“ dieser Klasse erstellt und die Instanz wird als Parameter `commons` an Ihre Funktion überreicht.
 
 ## Typ-Annotation vs. `Depends`
 
