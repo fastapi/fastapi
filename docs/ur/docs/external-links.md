@@ -1,15 +1,13 @@
 # بیرونی روابط اور مضامین
 
-<div style="direction: rtl;">
-    <div style="direction: ltr; text-align: right;">
-        ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے۔ <span style="margin-right: 0;"><b>FastAPI</b></span>
-    </div>
+
+<div style="direction: ltr; text-align: right;">
+    ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے۔ <span style="margin-right: 0;"><b>FastAPI</b></span>
 </div>
+
 <br>
-<div style="direction: rtl;">
-    <div style="direction: ltr; text-align: right;">
-    سے متعلق بہت ساری پوسٹس، آرٹیکلز، ٹولز اور پروجیکٹس ہیں۔  <span style="margin-right: 0;"><b>FastAPI</b></span>
-    </div>
+<div style="direction: ltr; text-align: right;">
+سے متعلق بہت ساری پوسٹس، آرٹیکلز، ٹولز اور پروجیکٹس ہیں۔  <span style="margin-right: 0;"><b>FastAPI</b></span>
 </div>
 <br>
 <div style="text-align: right;">
