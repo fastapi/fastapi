@@ -6,7 +6,7 @@ Lassen Sie uns nun auf dem vorherigen Kapitel aufbauen und die fehlenden Teile h
 
 Wir werden **FastAPIs** Sicherheits-Werkzeuge verwenden, um den `username` und das `password` entgegenzunehmen.
 
-OAuth2 spezifiziert, dass der Client/Benutzer bei Verwendung des "Password Flow" (den wir verwenden) die Felder `username` und `password` als Formulardaten senden muss.
+OAuth2 spezifiziert, dass der Client/Benutzer bei Verwendung des „Password Flow“ (den wir verwenden) die Felder `username` und `password` als Formulardaten senden muss.
 
 Und die Spezifikation sagt, dass die Felder so benannt werden müssen. `user-name` oder `email` würde also nicht funktionieren.
 
@@ -20,11 +20,11 @@ Die Spezifikation besagt auch, dass `username` und `password` als Formulardaten 
 
 ### <abbr title="Geltungsbereich">`scope`</abbr>
 
-Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" ("Geltungsbereich") senden kann.
+Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" („Geltungsbereich“) senden kann.
 
-Der Name des Formularfelds lautet `scope` (im Singular), tatsächlich handelt es sich jedoch um einen langen String mit durch Leerzeichen getrennten "Scopes".
+Der Name des Formularfelds lautet `scope` (im Singular), tatsächlich handelt es sich jedoch um einen langen String mit durch Leerzeichen getrennten „Scopes“.
 
-Jeder "Scope" ist nur ein String (ohne Leerzeichen).
+Jeder „Scope“ ist nur ein String (ohne Leerzeichen).
 
 Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu deklarieren, zum Beispiel:
 
@@ -33,7 +33,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
 !!! info
-    In OAuth2 ist ein "scope" nur eine Zeichenfolge, die eine bestimmte erforderliche Berechtigung deklariert.
+    In OAuth2 ist ein „Scope“ nur eine Zeichenfolge, die eine bestimmte erforderliche Berechtigung deklariert.
 
     Es spielt keine Rolle, ob sie andere Zeichen wie `:` enthält oder ob es eine URL ist.
 
@@ -90,7 +90,7 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
 * Dem `username`.
 * Dem `password`.
 * Einem optionalen `scope`-Feld als langem String, bestehend aus durch Leerzeichen getrennten Strings.
-* Einem optionalen `grant_type` ("Art der Anmeldung").
+* Einem optionalen `grant_type` („Art der Anmeldung“).
 
 !!! tip "Tipp"
     Die OAuth2-Spezifikation *erfordert* tatsächlich ein Feld `grant_type` mit dem festen Wert `password`, aber `OAuth2PasswordRequestForm` erzwingt dies nicht.
@@ -118,7 +118,7 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
 
 Rufen Sie nun die Benutzerdaten aus der (gefakten) Datenbank ab, für diesen `username` aus dem Formularfeld.
 
-Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung "Incorrect username or password" zurück.
+Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung „Incorrect username or password“ zurück.
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
@@ -170,7 +170,7 @@ Wenn die Passwörter nicht übereinstimmen, geben wir denselben Fehler zurück.
 
 #### Passwort-Hashing
 
-"Hashing" bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
+„Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
 Immer wenn Sie genau denselben Inhalt (genau dasselbe Passwort) übergeben, erhalten Sie genau denselben Kauderwelsch.
 
@@ -241,7 +241,7 @@ UserInDB(
 
 Die Antwort des `token`-Endpunkts muss ein JSON-Objekt sein.
 
-Es sollte einen `token_type` haben. Da wir in unserem Fall "Bearer"-Token verwenden, sollte der Token-Typ "`bearer`" sein.
+Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ "`bearer`" sein.
 
 Und es sollte einen `access_token` haben, mit einem String, der unseren Zugriffstoken enthält.
 
@@ -348,7 +348,7 @@ In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer
 !!! info
     Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
 
-    Jeder HTTP-(Fehler-)Statuscode 401 "UNAUTHORIZED" soll auch einen `WWW-Authenticate`-Header zurückgeben.
+    Jeder HTTP-(Fehler-)Statuscode 401 „UNAUTHORIZED“ soll auch einen `WWW-Authenticate`-Header zurückgeben.
 
     Im Fall von Bearer-Tokens (in unserem Fall) sollte der Wert dieses Headers `Bearer` lauten.
 
@@ -366,7 +366,7 @@ In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer
 
 ### Authentifizieren
 
-Klicken Sie auf den Button "Authorize".
+Klicken Sie auf den Button „Authorize“.
 
 Verwenden Sie die Anmeldedaten:
 
@@ -416,7 +416,7 @@ Passwort: `secret2`.
 
 Und versuchen Sie, die Operation `GET` mit dem Pfad `/users/me` zu verwenden.
 
-Sie erhalten die Fehlermeldung "Inactive user":
+Sie erhalten die Fehlermeldung „Inactive user“:
 
 ```JSON
 {
@@ -430,6 +430,6 @@ Sie verfügen jetzt über die Tools, um ein vollständiges Sicherheitssystem bas
 
 Mit diesen Tools können Sie das Sicherheitssystem mit jeder Datenbank und jedem Benutzer oder Datenmodell kompatibel machen.
 
-Das einzige fehlende Detail ist, dass es noch nicht wirklich "sicher" ist.
+Das einzige fehlende Detail ist, dass es noch nicht wirklich „sicher“ ist.
 
 Im nächsten Kapitel erfahren Sie, wie Sie eine sichere Passwort-Hashing-Bibliothek und <abbr title="JSON Web Tokens">JWT</abbr>-Token verwenden.
