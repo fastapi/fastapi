@@ -57,7 +57,7 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
     {!> ../../../docs_src/request_forms/tutorial001.py!}
     ```
 
-Zum Beispiel stellt eine der Möglichkeiten, die OAuth2 Spezifikation zu verwenden (genannt <abbr title='"Passwort-Fluss"'>"password flow"</abbr>), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
+Zum Beispiel stellt eine der Möglichkeiten, die OAuth2 Spezifikation zu verwenden (genannt <abbr title='„Passwort-Fluss“'>„password flow“</abbr>), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
 
 Die <abbr title="Specification – Spezifikation">Spec</abbr> erfordert, dass die Felder exakt `username` und `password` genannt werden und als Formularfelder, nicht JSON, gesendet werden.
 
@@ -69,14 +69,14 @@ Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (u
 !!! tip "Tipp"
     Um Formular-Bodys zu deklarieren, verwenden Sie explizit `Form`, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
-## Über "Formularfelder"
+## Über „Formularfelder“
 
-HTML-Formulare (`<form></form>`) senden die Daten in einer "speziellen" Kodierung zum Server, welche sich von JSON unterscheidet.
+HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodierung zum Server, welche sich von JSON unterscheidet.
 
 **FastAPI** stellt sicher, dass diese Daten korrekt ausgelesen werden, statt JSON zu erwarten.
 
 !!! note "Technische Details"
-    Daten aus Formularen werden normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>"media type"</abbr> `application/x-www-form-urlencoded` kodiert.
+    Daten aus Formularen werden normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
     Wenn das Formular stattdessen Dateien enthält, werden diese mit `multipart/form-data` kodiert. Im nächsten Kapitel erfahren Sie mehr über die Handhabung von Dateien.
 
