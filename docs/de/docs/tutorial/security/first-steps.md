@@ -48,7 +48,7 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 
     Z.B. `pip install python-multipart`.
 
-    Das, weil **OAuth2** "Formulardaten" zum Senden von `username` und `password` verwendet.
+    Das, weil **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
 
 Führen Sie das Beispiel aus mit:
 
@@ -71,7 +71,7 @@ Sie werden etwa Folgendes sehen:
 <img src="/img/tutorial/security/image01.png">
 
 !!! check "Authorize-Button!"
-    Sie haben bereits einen glänzenden, neuen "Authorize"-Button.
+    Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
 
     Und Ihre *Pfadoperation* hat in der oberen rechten Ecke ein kleines Schloss, auf das Sie klicken können.
 
@@ -94,7 +94,7 @@ Und es kann auch von Ihnen selbst verwendet werden, um dieselbe Anwendung zu deb
 
 Lassen Sie uns nun etwas zurückgehen und verstehen, was das alles ist.
 
-Der `password`-"Flow" ist eine der in OAuth2 definierten Wege ("Flows") zur Handhabung von Sicherheit und Authentifizierung.
+Der `password`-„Flow“ ist eine der in OAuth2 definierten Wege („Flows“) zur Handhabung von Sicherheit und Authentifizierung.
 
 OAuth2 wurde so konzipiert, dass das Backend oder die API unabhängig vom Server sein kann, der den Benutzer authentifiziert.
 
@@ -104,8 +104,8 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 
 * Der Benutzer gibt den `username` und das `password` im Frontend ein und drückt `Enter`.
 * Das Frontend (das im Browser des Benutzers läuft) sendet diesen `username` und das `password` an eine bestimmte URL in unserer API (deklariert mit `tokenUrl="token"`).
-* Die API überprüft den `username` und das `password` und antwortet mit einem "Token" (wir haben davon noch nichts implementiert).
-    * Ein "Token" ist lediglich ein String mit einem Inhalt, den wir später verwenden können, um diesen Benutzer zu verifizieren.
+* Die API überprüft den `username` und das `password` und antwortet mit einem „Token“ (wir haben davon noch nichts implementiert).
+    * Ein „Token“ ist lediglich ein String mit einem Inhalt, den wir später verwenden können, um diesen Benutzer zu verifizieren.
     * Normalerweise läuft ein Token nach einiger Zeit ab.
         * Daher muss sich der Benutzer irgendwann später erneut anmelden.
         * Und wenn der Token gestohlen wird, ist das Risiko geringer. Es handelt sich nicht um einen dauerhaften Schlüssel, der (in den meisten Fällen) für immer funktioniert.
@@ -123,7 +123,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem **Bearer**-Token. Wir machen das mit der Klasse `OAuth2PasswordBearer`.
 
 !!! info
-    Ein "Bearer"-Token ist nicht die einzige Option.
+    Ein „Bearer“-Token ist nicht die einzige Option.
 
     Aber es ist die beste für unseren Anwendungsfall.
 
@@ -166,11 +166,11 @@ Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
 !!! info
-    Wenn Sie ein sehr strenger "Pythonista" sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
+    Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
 
     Das liegt daran, dass FastAPI denselben Namen wie in der OpenAPI-Spezifikation verwendet. Sodass Sie, wenn Sie mehr über eines dieser Sicherheitsschemas herausfinden möchten, den Namen einfach kopieren und einfügen können, um weitere Informationen darüber zu erhalten.
 
-Die Variable `oauth2_scheme` ist eine Instanz von `OAuth2PasswordBearer`, aber auch ein "Callable".
+Die Variable `oauth2_scheme` ist eine Instanz von `OAuth2PasswordBearer`, aber auch ein „Callable“.
 
 Es könnte wie folgt aufgerufen werden:
 
@@ -207,7 +207,7 @@ Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 
-**FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein "Sicherheitsschema" im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
+**FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein „Sicherheitsschema“ im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
 !!! info "Technische Details"
     **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
