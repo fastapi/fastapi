@@ -154,7 +154,7 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 !!! check
     OpenAPI verlangt, dass jede *Pfadoperation* über eine Beschreibung der Response verfügt.
 
-    Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für "Erfolgreiche Response" erstellen.
+    Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolgreiche Response“ erstellen.
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 
