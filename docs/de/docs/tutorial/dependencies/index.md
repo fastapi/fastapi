@@ -4,11 +4,11 @@
 
 Es ist so konzipiert, sehr einfach zu verwenden zu sein und es jedem Entwickler sehr leicht zu machen, andere Komponenten mit **FastAPI** zu integrieren.
 
-## Was ist "Dependency Injection"
+## Was ist „Dependency Injection“
 
-**"Dependency Injection"** bedeutet in der Programmierung, dass es für Ihren Code (in diesem Fall Ihre *Pfadoperation-Funktionen*) eine Möglichkeit gibt, Dinge zu deklarieren, die er verwenden möchte und die er zum Funktionieren benötigt: "Abhängigkeiten" – "Dependencies".
+**„Dependency Injection“** bedeutet in der Programmierung, dass es für Ihren Code (in diesem Fall Ihre *Pfadoperation-Funktionen*) eine Möglichkeit gibt, Dinge zu deklarieren, die er verwenden möchte und die er zum Funktionieren benötigt: „Abhängigkeiten“ – „Dependencies“.
 
-Das System (in diesem Fall **FastAPI**) kümmert sich dann darum, Ihren Code mit den erforderlichen Abhängigkeiten zu versorgen ("die Abhängigkeiten einfügen" – "inject the dependencies").
+Das System (in diesem Fall **FastAPI**) kümmert sich dann darum, Ihren Code mit den erforderlichen Abhängigkeiten zu versorgen („die Abhängigkeiten einfügen“ – „inject the dependencies“).
 
 Das ist sehr nützlich, wenn Sie:
 
@@ -25,7 +25,7 @@ Sehen wir uns ein sehr einfaches Beispiel an. Es ist so einfach, dass es vorerst
 
 Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection** Systems konzentrieren.
 
-### Erstellen Sie eine Abhängigkeit (<abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">"Dependable"</abbr>)
+### Erstellen Sie eine Abhängigkeit (<abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">„Dependable“</abbr>)
 
 Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
@@ -72,7 +72,7 @@ Das war's schon.
 
 Und sie hat die gleiche Form und Struktur wie alle Ihre *Pfadoperation-Funktionen*.
 
-Sie können sie sich als *Pfadoperation-Funktion* ohne den "Dekorator" (ohne `@app.get("/some-path")`) vorstellen.
+Sie können sie sich als *Pfadoperation-Funktion* ohne den „Dekorator“ (ohne `@app.get("/some-path")`) vorstellen.
 
 Und sie kann alles zurückgeben, was Sie möchten.
 
@@ -129,7 +129,7 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">"Dependant"</abbr>
+### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr>
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
@@ -180,11 +180,11 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
 !!! tip "Tipp"
-    Im nächsten Kapitel erfahren Sie, welche anderen "Dinge", außer Funktionen, Sie als Abhängigkeiten verwenden können.
+    Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
 
 Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
 
-* Ihre Abhängigkeitsfunktion ("dependable") mit den richtigen Parametern aufzurufen.
+* Ihre Abhängigkeitsfunktion („Dependable“) mit den richtigen Parametern aufzurufen.
 * Sich das Ergebnis von dieser Funktion zu holen.
 * Dieses Ergebnis dem Parameter Ihrer *Pfadoperation-Funktion* zuzuweisen.
 
@@ -202,7 +202,7 @@ common_parameters --> read_users
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
 !!! check
-    Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu "registrieren" oder so ähnlich.
+    Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
 
     Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
 
@@ -237,7 +237,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
     ```
 
 !!! tip "Tipp"
-    Das ist schlicht Standard Python, es wird als "Typ-Alias" bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+    Das ist schlicht Standard Python, es wird als „Typ-Alias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
     Da **FastAPI** jedoch auf Standard Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
 
@@ -256,7 +256,7 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
 !!! note "Hinweis"
-    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *"In Eile?"*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
 
 ## Integriert in OpenAPI
 
@@ -274,9 +274,9 @@ Tatsächlich funktionieren alle (oder die meisten) Web-Frameworks auf die gleich
 
 Sie rufen diese Funktionen niemals direkt auf. Sie werden von Ihrem Framework aufgerufen (in diesem Fall **FastAPI**).
 
-Mit dem Dependency Injection System können Sie **FastAPI** ebenfalls mitteilen, dass Ihre *Pfadoperation-Funktion* von etwas anderem "abhängt", das vor Ihrer *Pfadoperation-Funktion* ausgeführt werden soll, und **FastAPI** kümmert sich darum, es auszuführen und die Ergebnisse zu "injizieren".
+Mit dem Dependency Injection System können Sie **FastAPI** ebenfalls mitteilen, dass Ihre *Pfadoperation-Funktion* von etwas anderem „abhängt“, das vor Ihrer *Pfadoperation-Funktion* ausgeführt werden soll, und **FastAPI** kümmert sich darum, es auszuführen und die Ergebnisse zu „injizieren“.
 
-Andere gebräuchliche Begriffe für dieselbe Idee der "Abhängigkeitsinjektion" sind:
+Andere gebräuchliche Begriffe für dieselbe Idee der „Abhängigkeitsinjektion“ sind:
 
 * Ressourcen
 * Provider
@@ -286,7 +286,7 @@ Andere gebräuchliche Begriffe für dieselbe Idee der "Abhängigkeitsinjektion" 
 
 ## **FastAPI**-Plug-ins
 
-Integrationen und "Plug-in"s können mit dem **Dependency Injection** System erstellt werden. Aber tatsächlich besteht **keine Notwendigkeit, "Plug-ins" zu erstellen**, da es durch die Verwendung von Abhängigkeiten möglich ist, eine unendliche Anzahl von Integrationen und Interaktionen zu deklarieren, die dann für Ihre *Pfadoperation-Funktionen* verfügbar sind.
+Integrationen und „Plug-ins“ können mit dem **Dependency Injection** System erstellt werden. Aber tatsächlich besteht **keine Notwendigkeit, „Plug-ins“ zu erstellen**, da es durch die Verwendung von Abhängigkeiten möglich ist, eine unendliche Anzahl von Integrationen und Interaktionen zu deklarieren, die dann für Ihre *Pfadoperation-Funktionen* verfügbar sind.
 
 Und Abhängigkeiten können auf sehr einfache und intuitive Weise erstellt werden, sodass Sie einfach die benötigten Python-Packages importieren und sie in wenigen Codezeilen, *im wahrsten Sinne des Wortes*, mit Ihren API-Funktionen integrieren.
 
