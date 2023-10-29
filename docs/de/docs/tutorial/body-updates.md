@@ -40,7 +40,7 @@ Das bedeutet, dass, wenn Sie den Artikel `bar` aktualisieren wollen, mittels `PU
 
 das Eingabemodell nun den Defaultwert `"tax": 10.5` hat, weil Sie das bereits gespeicherte Attribut `"tax": 20.2` nicht mit übergeben haben.
 
-Die Daten werden darum mit einem "neuen" `tax`-Wert von `10.5` abgespeichert.
+Die Daten werden darum mit einem „neuen“ `tax`-Wert von `10.5` abgespeichert.
 
 ## Teilweises Ersetzen mit `PATCH`
 
