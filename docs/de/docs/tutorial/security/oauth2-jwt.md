@@ -8,7 +8,7 @@ Wir bauen auf dem vorherigen Kapitel auf.
 
 ## Über JWT
 
-JWT bedeutet "JSON Web Tokens".
+JWT bedeutet „JSON Web Tokens“.
 
 Es ist ein Standard, um ein JSON-Objekt in einem langen, kompakten String ohne Leerzeichen zu kodieren. Das sieht so aus:
 
@@ -51,7 +51,7 @@ Hier verwenden wir das empfohlene: <a href="https://cryptography.io/" class="ext
 
 ## Passwort-Hashing
 
-"Hashing" bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
+„Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
 Immer wenn Sie genau denselben Inhalt (genau dasselbe Passwort) übergeben, erhalten Sie genau denselben Kauderwelsch.
 
@@ -69,7 +69,7 @@ PassLib ist ein großartiges Python-Package, um Passwort-Hashes zu handhaben.
 
 Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen zu arbeiten.
 
-Der empfohlene Algorithmus ist "Bcrypt".
+Der empfohlene Algorithmus ist „Bcrypt“.
 
 Installieren Sie also PassLib mit Bcrypt:
 
@@ -94,7 +94,7 @@ $ pip install "passlib[bcrypt]"
 
 Importieren Sie die benötigten Tools aus `passlib`.
 
-Erstellen Sie einen PassLib-"Kontext". Der wird für das Hashen und Verifizieren von Passwörtern verwendet.
+Erstellen Sie einen PassLib-„Kontext“. Der wird für das Hashen und Verifizieren von Passwörtern verwendet.
 
 !!! tip "Tipp"
     Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich deprecateter Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
@@ -298,7 +298,7 @@ Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
-### Technische Details zum JWT-"Subjekt" `sub`
+### Technische Details zum JWT-„Subjekt“ `sub`
 
 Die JWT-Spezifikation besagt, dass es einen Schlüssel `sub` mit dem Subjekt des Tokens gibt.
 
@@ -306,9 +306,9 @@ Die Verwendung ist optional, aber dort würden Sie die Identifikation des Benutz
 
 JWT kann auch für andere Dinge verwendet werden, abgesehen davon, einen Benutzer zu identifizieren und ihm zu erlauben, Operationen direkt auf Ihrer API auszuführen.
 
-Sie könnten beispielsweise ein "Auto" oder einen "Blog-Beitrag" identifizieren.
+Sie könnten beispielsweise ein „Auto“ oder einen „Blog-Beitrag“ identifizieren.
 
-Anschließend könnten Sie Berechtigungen für diese Entität hinzufügen, etwa "Fahren" (für das Auto) oder "Bearbeiten" (für den Blog).
+Anschließend könnten Sie Berechtigungen für diese Entität hinzufügen, etwa „Fahren“ (für das Auto) oder „Bearbeiten“ (für den Blog).
 
 Und dann könnten Sie diesen JWT-Token einem Benutzer (oder Bot) geben und dieser könnte ihn verwenden, um diese Aktionen auszuführen (das Auto fahren oder den Blog-Beitrag bearbeiten), ohne dass er überhaupt ein Konto haben müsste, einfach mit dem JWT-Token, den Ihre API dafür generiert hat.
 
@@ -362,7 +362,7 @@ Wenn Sie die Developer Tools öffnen, können Sie sehen, dass die gesendeten Dat
 
 ## Fortgeschrittene Verwendung mit `scopes`
 
-OAuth2 hat ein Konzept von <abbr title="Geltungsbereiche">"Scopes"</abbr>.
+OAuth2 hat ein Konzept von <abbr title="Geltungsbereiche">„Scopes“</abbr>.
 
 Sie können diese verwenden, um einem JWT-Token einen bestimmten Satz von Berechtigungen zu übergeben.
 
@@ -390,4 +390,4 @@ Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu verei
 
 Und Sie können sichere Standardprotokolle wie OAuth2 auf relativ einfache Weise verwenden und implementieren.
 
-Im **Handbuch für fortgeschrittene Benutzer** erfahren Sie mehr darüber, wie Sie OAuth2-"Scopes" für ein feingranuliertes Berechtigungssystem verwenden, das denselben Standards folgt. OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, Twitter, usw. verwendet wird, um Drittanbieteranwendungen zu autorisieren, im Namen ihrer Benutzer mit ihren APIs zu interagieren.
+Im **Handbuch für fortgeschrittene Benutzer** erfahren Sie mehr darüber, wie Sie OAuth2-„Scopes“ für ein feingranuliertes Berechtigungssystem verwenden, das denselben Standards folgt. OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, Twitter, usw. verwendet wird, um Drittanbieteranwendungen zu autorisieren, im Namen ihrer Benutzer mit ihren APIs zu interagieren.
