@@ -6,9 +6,9 @@ Diese können so **tief** verschachtelt sein, wie nötig.
 
 **FastAPI** kümmert sich darum, sie aufzulösen.
 
-## Erste Abhängigkeit, "Dependable"
+## Erste Abhängigkeit, „Dependable“
 
-Sie könnten eine erste Abhängigkeit ("Dependable") wie folgt erstellen:
+Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
 === "Python 3.10+"
 
@@ -50,9 +50,9 @@ Diese deklariert einen optionalen Abfrageparameter `q` vom Typ `str` und gibt ih
 
 Das ist recht einfach (nicht sehr nützlich), hilft uns aber dabei, uns auf die Funktionsweise der Unterabhängigkeiten zu konzentrieren.
 
-## Zweite Abhängigkeit, "Dependable" und "Dependant"
+## Zweite Abhängigkeit, „Dependable“ und „Dependant“
 
-Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstellen, die gleichzeitig eine eigene Abhängigkeit deklariert (also auch ein "Dependant" ist):
+Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erstellen, die gleichzeitig eine eigene Abhängigkeit deklariert (also auch ein „Dependant“ ist):
 
 === "Python 3.10+"
 
@@ -92,7 +92,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein "Dependable") erstelle
 
 Betrachten wir die deklarierten Parameter:
 
-* Obwohl diese Funktion selbst eine Abhängigkeit ist ("Dependable", etwas hängt von ihr ab), deklariert sie auch eine andere Abhängigkeit ("Dependant", sie hängt von etwas anderem ab).
+* Obwohl diese Funktion selbst eine Abhängigkeit ist („Dependable“, etwas hängt von ihr ab), deklariert sie auch eine andere Abhängigkeit („Dependant“, sie hängt von etwas anderem ab).
     * Sie hängt von `query_extractor` ab und weist den von diesem zurückgegebenen Wert dem Parameter `q` zu.
 * Sie deklariert außerdem ein optionales `last_query`-Cookie, ein `str`.
     * Wenn der Benutzer keine Query `q` übermittelt hat, verwenden wir die zuletzt übermittelte Query, die wir zuvor in einem Cookie gespeichert haben.
@@ -157,7 +157,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Wenn eine Ihrer Abhängigkeiten mehrmals für dieselbe *Pfadoperation* deklariert wird, beispielsweise wenn mehrere Abhängigkeiten eine gemeinsame Unterabhängigkeit haben, wird **FastAPI** diese Unterabhängigkeit nur einmal pro Request aufrufen.
 
-Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, der bereits berechnete/generierte Werte zwischenspeichert, um sie später wiederzuverwenden, anstatt sie erneut zu berechnen.">"Cache"</abbr> und übergibt diesen gecachten Wert an alle "Dependanten", die ihn in diesem spezifischen Request benötigen, anstatt die Abhängigkeit mehrmals für denselben Request aufzurufen.
+Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, der bereits berechnete/generierte Werte zwischenspeichert, um sie später wiederzuverwenden, anstatt sie erneut zu berechnen.">„Cache“</abbr> und übergibt diesen gecachten Wert an alle „Dependanten“, die ihn in diesem spezifischen Request benötigen, anstatt die Abhängigkeit mehrmals für denselben Request aufzurufen.
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in derselben Anfrage aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
@@ -184,7 +184,7 @@ Abgesehen von all den ausgefallenen Wörtern, die hier verwendet werden, ist das
 
 Einfach Funktionen, die genauso aussehen wie *Pfadoperation-Funktionen*.
 
-Dennoch ist es sehr mächtig und ermöglicht Ihnen die Deklaration beliebig tief verschachtelter Abhängigkeits-"Graphen" (Bäume).
+Dennoch ist es sehr mächtig und ermöglicht Ihnen die Deklaration beliebig tief verschachtelter Abhängigkeits-„Graphen“ (Bäume).
 
 !!! tip "Tipp"
     All dies scheint angesichts dieser einfachen Beispiele möglicherweise nicht so nützlich zu sein.
