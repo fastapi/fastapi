@@ -1,8 +1,8 @@
 # Einführung in Python-Typen
 
-Python hat Unterstützung für optionale "Typ-Hinweise" (Englisch: "Type Hints"). Auch "Typ Annotationen" genannt.
+Python hat Unterstützung für optionale „Typ-Hinweise“ (Englisch: „Type Hints“). Auch „Typ Annotationen“ genannt.
 
-Diese **"Typ-Hinweise"** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="Zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
+Diese **„Typ-Hinweise“** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="Zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
 
 Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Tools bessere Unterstützung bieten.
 
@@ -47,7 +47,7 @@ Aber nun stellen Sie sich vor, Sie würden es selbst schreiben.
 
 Irgendwann sind die Funktions-Parameter fertig, Sie starten mit der Definition des Körpers ...
 
-Aber dann müssen Sie "diese Methode aufrufen, die den ersten Buchstaben in Großbuchstaben umwandelt".
+Aber dann müssen Sie „diese Methode aufrufen, die den ersten Buchstaben in Großbuchstaben umwandelt“.
 
 War es `upper`? War es `uppercase`? `first_uppercase`? `capitalize`?
 
@@ -77,7 +77,7 @@ zu:
 
 Das war's.
 
-Das sind die "Typ-Hinweise":
+Das sind die „Typ-Hinweise“:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
@@ -97,11 +97,11 @@ Und das Hinzufügen von Typ-Hinweisen ändert normalerweise nichts an dem, was o
 
 Aber jetzt stellen Sie sich vor, Sie sind wieder mitten in der Erstellung dieser Funktion, aber mit Typ-Hinweisen.
 
-An derselben Stelle versuchen Sie, die Autovervollständigung mit "Strg+Leertaste" auszulösen, und Sie sehen:
+An derselben Stelle versuchen Sie, die Autovervollständigung mit „Strg+Leertaste“ auszulösen, und Sie sehen:
 
 <img src="/img/python-types/image02.png">
 
-Hier können Sie durch die Optionen blättern, bis Sie diejenige finden, bei der es "Klick" macht:
+Hier können Sie durch die Optionen blättern, bis Sie diejenige finden, bei der es „Klick“ macht:
 
 <img src="/img/python-types/image03.png">
 
@@ -148,7 +148,7 @@ Zum Beispiel diese:
 
 Es gibt Datenstrukturen, die andere Werte enthalten können, wie etwa `dict`, `list`, `set` und `tuple`. Die inneren Werte können auch ihren eigenen Typ haben.
 
-Diese Typen mit inneren Typen werden "**generische**" Typen genannt. Es ist möglich, sie mit ihren inneren Typen zu deklarieren.
+Diese Typen mit inneren Typen werden „**generische**“ Typen genannt. Es ist möglich, sie mit ihren inneren Typen zu deklarieren.
 
 Um diese Typen und die inneren Typen zu deklarieren, können Sie Pythons Standardmodul `typing` verwenden. Es existiert speziell für die Unterstützung dieser Typ-Hinweise.
 
@@ -162,9 +162,9 @@ Wenn Sie eine neuere Python-Version für Ihr Projekt wählen können, werden Sie
 
 In der gesamten Dokumentation gibt es Beispiele, welche kompatibel mit unterschiedlichen Python-Versionen sind (wenn es Unterschiede gibt).
 
-Zum Beispiel bedeutet "**Python 3.6+**", dass das Beispiel kompatibel mit Python 3.6 oder höher ist (inklusive 3.7, 3.8, 3.9, 3.10, usw.). Und "**Python 3.9+**" bedeutet, es ist kompatibel mit Python 3.9 oder höher (inklusive 3.10, usw.).
+Zum Beispiel bedeutet „**Python 3.6+**“, dass das Beispiel kompatibel mit Python 3.6 oder höher ist (inklusive 3.7, 3.8, 3.9, 3.10, usw.). Und „**Python 3.9+**“ bedeutet, es ist kompatibel mit Python 3.9 oder höher (inklusive 3.10, usw.).
 
-Wenn Sie über die **neueste Version von Python** verfügen, verwenden Sie die Beispiele für die neueste Version, diese werden die **beste und einfachste Syntax** haben, zum Beispiel, "**Python 3.10+**".
+Wenn Sie über die **neueste Version von Python** verfügen, verwenden Sie die Beispiele für die neueste Version, diese werden die **beste und einfachste Syntax** haben, zum Beispiel, „**Python 3.10+**“.
 
 #### Liste
 
@@ -201,7 +201,7 @@ Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Li
     ```
 
 !!! tip "Tipp"
-    Die inneren Typen in den eckigen Klammern werden als "Typ-Parameter" bezeichnet.
+    Die inneren Typen in den eckigen Klammern werden als „Typ-Parameter“ bezeichnet.
 
     In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder `list` in Python 3.9 und darüber).
 
@@ -273,7 +273,7 @@ Sie können deklarieren, dass eine Variable einer von **verschiedenen Typen** se
 
 In Python 3.6 und höher (inklusive Python 3.10) können Sie den `Union`-Typ von `typing` verwenden und die möglichen Typen innerhalb der eckigen Klammern auflisten.
 
-In Python 3.10 gibt es zusätzlich eine **neue Syntax**, die es erlaubt, die möglichen Typen getrennt von einem <abbr title='Allgemein: "oder". In anderem Zusammenhang auch "Bitweises ODER", aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> aufzulisten.
+In Python 3.10 gibt es zusätzlich eine **neue Syntax**, die es erlaubt, die möglichen Typen getrennt von einem <abbr title='Allgemein: „oder“. In anderem Zusammenhang auch „Bitweises ODER“, aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> aufzulisten.
 
 === "Python 3.10+"
 
@@ -330,7 +330,7 @@ Wenn Sie eine Python Version unterhalb 3.10 verwenden, hier ist mein sehr **subj
 * 🚨 Vermeiden Sie `Optional[SomeType]`
 * Stattdessen ✨ **verwenden Sie `Union[SomeType, None]`** ✨.
 
-Beide sind äquivalent und im Hintergrund dasselbe, aber ich empfehle `Union` statt `Optional`, weil das Wort "**optional**" impliziert, dass dieser Wert, zum Beispiel als Funktionsparameter, optional ist. Tatsächlich bedeutet es aber nur "Der Wert kann `None` sein", selbst wenn der Wert nicht optional ist und benötigt wird.
+Beide sind äquivalent und im Hintergrund dasselbe, aber ich empfehle `Union` statt `Optional`, weil das Wort „**optional**“ impliziert, dass dieser Wert, zum Beispiel als Funktionsparameter, optional ist. Tatsächlich bedeutet es aber nur „Der Wert kann `None` sein“, selbst wenn der Wert nicht optional ist und benötigt wird.
 
 Ich denke, `Union[SomeType, None]` ist expliziter bezüglich seiner Bedeutung.
 
@@ -381,7 +381,7 @@ Diese Typen, die Typ-Parameter in eckigen Klammern akzeptieren, werden **generis
     * `Optional` (so wie unter Python 3.8)
     * ... und andere.
 
-    In Python 3.10 können Sie als Alternative zu den Generics `Union` und `Optional` den <abbr title='Allgemein: "oder". In anderem Zusammenhang auch "Bitweises ODER", aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> verwenden, um Vereinigungen von Typen zu deklarieren, das ist besser und einfacher.
+    In Python 3.10 können Sie als Alternative zu den Generics `Union` und `Optional` den <abbr title='Allgemein: „oder“. In anderem Zusammenhang auch „Bitweises ODER“, aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> verwenden, um Vereinigungen von Typen zu deklarieren, das ist besser und einfacher.
 
 === "Python 3.9+"
 
@@ -428,15 +428,15 @@ Und wiederum bekommen Sie die volle Editor-Unterstützung:
 
 <img src="/img/python-types/image06.png">
 
-Beachten Sie, das bedeutet: "`one_person` ist eine **Instanz** der Klasse `Person`".
+Beachten Sie, das bedeutet: „`one_person` ist eine **Instanz** der Klasse `Person`“.
 
-Es bedeutet nicht: "`one_person` ist die **Klasse** genannt `Person`".
+Es bedeutet nicht: „`one_person` ist die **Klasse** genannt `Person`“.
 
 ## Pydantic Modelle
 
 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> ist eine Python-Bibliothek für die Validierung von Daten.
 
-Sie deklarieren die "Form" der Daten als Klassen mit Attributen.
+Sie deklarieren die „Form“ der Daten als Klassen mit Attributen.
 
 Und jedes Attribut hat einen Typ.
 
@@ -534,4 +534,4 @@ Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das
 Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
 !!! info
-    Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der "Cheat Sheet" von `mypy`</a>.
+    Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der „Cheat Sheet“ von `mypy`</a>.
