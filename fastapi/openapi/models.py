@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Type, Union
 
@@ -55,13 +56,16 @@ except ImportError:  # pragma: no cover
             return with_info_plain_validator_function(cls._validate)
 
 
+_FASTAPI_OPENAPI_DEFER_BUILD = "FASTAPI_OPENAPI_DEFER_BUILD" in os.environ
+
+
 class Contact(BaseModel):
     name: Optional[str] = None
     url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -75,7 +79,7 @@ class License(BaseModel):
     url: Optional[AnyUrl] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -93,7 +97,7 @@ class Info(BaseModel):
     version: str
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -107,7 +111,7 @@ class ServerVariable(BaseModel):
     description: Optional[str] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -121,7 +125,7 @@ class Server(BaseModel):
     variables: Optional[Dict[str, ServerVariable]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -146,7 +150,7 @@ class XML(BaseModel):
     wrapped: Optional[bool] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -159,7 +163,7 @@ class ExternalDocumentation(BaseModel):
     url: AnyUrl
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -254,7 +258,7 @@ class Schema(BaseModel):
     ] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -274,7 +278,10 @@ class Example(TypedDict, total=False):
     externalValue: Optional[AnyUrl]
 
     if PYDANTIC_V2:  # type: ignore [misc]
-        __pydantic_config__ = {"extra": "allow"}
+        __pydantic_config__ = {
+            "extra": "allow",
+            "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD,
+        }
 
     else:
 
@@ -297,7 +304,7 @@ class Encoding(BaseModel):
     allowReserved: Optional[bool] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -312,7 +319,7 @@ class MediaType(BaseModel):
     encoding: Optional[Dict[str, Encoding]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -335,7 +342,7 @@ class ParameterBase(BaseModel):
     content: Optional[Dict[str, MediaType]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -358,7 +365,7 @@ class RequestBody(BaseModel):
     required: Optional[bool] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -375,7 +382,7 @@ class Link(BaseModel):
     server: Optional[Server] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -390,7 +397,7 @@ class Response(BaseModel):
     links: Optional[Dict[str, Union[Link, Reference]]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -414,7 +421,7 @@ class Operation(BaseModel):
     servers: Optional[List[Server]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -438,7 +445,7 @@ class PathItem(BaseModel):
     parameters: Optional[List[Union[Parameter, Reference]]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -458,7 +465,7 @@ class SecurityBase(BaseModel):
     description: Optional[str] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -493,7 +500,7 @@ class OAuthFlow(BaseModel):
     scopes: Dict[str, str] = {}
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -525,7 +532,7 @@ class OAuthFlows(BaseModel):
     authorizationCode: Optional[OAuthFlowAuthorizationCode] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -562,7 +569,7 @@ class Components(BaseModel):
     pathItems: Optional[Dict[str, Union[PathItem, Reference]]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -576,7 +583,7 @@ class Tag(BaseModel):
     externalDocs: Optional[ExternalDocumentation] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -598,7 +605,7 @@ class OpenAPI(BaseModel):
     externalDocs: Optional[ExternalDocumentation] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
