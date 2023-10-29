@@ -2,7 +2,7 @@
 
 Es gibt viele Wege, Sicherheit, Authentifizierung und Autorisierung zu handhaben.
 
-Und normalerweise ist es ein komplexes und "schwieriges" Thema.
+Und normalerweise ist es ein komplexes und „schwieriges“ Thema.
 
 In vielen Frameworks und Systemen erfordert allein die Handhabung von Sicherheit und Authentifizierung viel Aufwand und Code (in vielen Fällen kann er 50 % oder mehr des gesamten geschriebenen Codes ausmachen).
 
@@ -20,9 +20,9 @@ OAuth2 ist eine Spezifikation, die verschiedene Möglichkeiten zur Handhabung vo
 
 Es handelt sich um eine recht umfangreiche Spezifikation, und sie deckt mehrere komplexe Anwendungsfälle ab.
 
-Sie umfasst Möglichkeiten zur Authentifizierung mithilfe eines "Dritten" ("third party").
+Sie umfasst Möglichkeiten zur Authentifizierung mithilfe eines „Dritten“ („third party“).
 
-Das ist es, was alle diese "Login mit Facebook, Google, Twitter, GitHub"-Systeme unter der Haube verwenden.
+Das ist es, was alle diese „Login mit Facebook, Google, Twitter, GitHub“-Systeme unter der Haube verwenden.
 
 ### OAuth 1
 
@@ -46,9 +46,9 @@ Beispielsweise verwendet der Google Login OpenID Connect (welches seinerseits OA
 
 Aber der Facebook Login unterstützt OpenID Connect nicht. Es hat seine eigene Variante von OAuth2.
 
-### OpenID (nicht "OpenID Connect")
+### OpenID (nicht „OpenID Connect“)
 
-Es gab auch eine "OpenID"-Spezifikation. Sie versuchte das Gleiche zu lösen wie **OpenID Connect**, basierte aber nicht auf OAuth2.
+Es gab auch eine „OpenID“-Spezifikation. Sie versuchte das Gleiche zu lösen wie **OpenID Connect**, basierte aber nicht auf OAuth2.
 
 Es handelte sich also um ein komplett zusätzliches System.
 
@@ -62,7 +62,7 @@ OpenAPI (früher bekannt als Swagger) ist die offene Spezifikation zum Erstellen
 
 Das ist es, was erlaubt, mehrere automatische interaktive Dokumentations-Oberflächen, Codegenerierung, usw. zu haben.
 
-OpenAPI bietet die Möglichkeit, mehrere Sicherheits"systeme" zu definieren.
+OpenAPI bietet die Möglichkeit, mehrere Sicherheits„systeme“ zu definieren.
 
 Durch deren Verwendung können Sie alle diese Standards-basierten Tools nutzen, einschließlich dieser interaktiven Dokumentationssysteme.
 
@@ -76,12 +76,12 @@ OpenAPI definiert die folgenden Sicherheitsschemas:
     * `bearer`: ein Header `Authorization` mit dem Wert `Bearer` plus einem Token. Dies wird von OAuth2 geerbt.
     * HTTP Basic Authentication.
     * HTTP Digest, usw.
-* `oauth2`: Alle OAuth2-Methoden zum Umgang mit Sicherheit (genannt "Flows").
+* `oauth2`: Alle OAuth2-Methoden zum Umgang mit Sicherheit (genannt „Flows“).
     * Mehrere dieser Flows eignen sich zum Aufbau eines OAuth 2.0-Authentifizierungsanbieters (wie Google, Facebook, Twitter, GitHub usw.):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
-    * Es gibt jedoch einen bestimmten "Flow", der perfekt für die direkte Abwicklung der Authentifizierung in derselben Anwendung verwendet werden kann:
+    * Es gibt jedoch einen bestimmten „Flow“, der perfekt für die direkte Abwicklung der Authentifizierung in derselben Anwendung verwendet werden kann:
         * `password`: Einige der nächsten Kapitel werden Beispiele dafür behandeln.
 * `openIdConnect`: bietet eine Möglichkeit, zu definieren, wie OAuth2-Authentifizierungsdaten automatisch ermittelt werden können.
     * Diese automatische Erkennung ist es, die in der OpenID Connect Spezifikation definiert ist.
