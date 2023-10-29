@@ -1,6 +1,6 @@
 # Cookie-Parameter
 
-So wie `Query`- und `Path`-Parameter können Sie auch <abbr title='Cookie – "Keks": Mechanismus, der kurze Daten in Textform im Browser des Benutzers speichert und abfragt'>Cookie</abbr>-Parameter definieren.
+So wie `Query`- und `Path`-Parameter können Sie auch <abbr title='Cookie – „Keks“: Mechanismus, der kurze Daten in Textform im Browser des Benutzers speichert und abfragt'>Cookie</abbr>-Parameter definieren.
 
 ## `Cookie` importieren
 
