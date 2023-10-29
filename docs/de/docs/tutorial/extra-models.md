@@ -6,12 +6,12 @@ Insbesondere Benutzer-Modelle, denn:
 
 * Das **hereinkommende Modell** sollte ein Passwort haben können.
 * Das **herausgehende Modell** sollte kein Passwort haben.
-* Das **Datenbank-Modell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender "Fingerabdruck" eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
+* Das **Datenbank-Modell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender „Fingerabdruck“ eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
 
 !!! danger "Gefahr"
-    Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den "sicheren Hash", den Sie verifizieren können.
+    Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den „sicheren Hash“, den Sie verifizieren können.
 
-    Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein "Passwort-Hash" ist.
+    Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein „Passwort-Hash“ ist.
 
 ## Mehrere Modelle
 
@@ -70,7 +70,7 @@ bekommen wir ein Python `dict`:
 
 #### Ein `dict` entpacken
 
-Wenn wir ein `dict` wie `user_dict` nehmen, und es einer Funktion (oder Klassenmethode) mittels `**user_dict` übergeben, wird Python es "entpacken". Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüsselwort-Argumente übergeben.
+Wenn wir ein `dict` wie `user_dict` nehmen, und es einer Funktion (oder Klassenmethode) mittels `**user_dict` übergeben, wird Python es „entpacken“. Es wird die Schlüssel und Werte von `user_dict` direkt als Schlüsselwort-Argumente übergeben.
 
 Wenn wir also das `user_dict` von oben nehmen und schreiben:
 
@@ -115,7 +115,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.dict())
 ```
 
-... weil `user_in.dict()` ein `dict` ist, und dann lassen wir Python es "entpacken", indem wir es `UserInDB` übergeben, mit vorangestelltem `**`.
+... weil `user_in.dict()` ein `dict` ist, und dann lassen wir Python es „entpacken“, indem wir es `UserInDB` übergeben, mit vorangestelltem `**`.
 
 Wir erhalten also ein Pydantic-Modell aus den Daten eines anderen Pydantic-Modells.
 
@@ -249,4 +249,4 @@ In diesem Fall können Sie `typing.Dict` verwenden (oder nur `dict` in Python 3.
 
 Verwenden Sie gerne mehrere Pydantic-Modelle und vererben Sie je nach Bedarf.
 
-Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit verschiedene Zustände annehmen kann. So wie unsere Benutzer-"Einheit", welche einen Zustand mit `password`, einen mit `password_hash` und einen ohne Passwort hatte.
+Sie brauchen kein einzelnes Datenmodell pro Einheit, wenn diese Einheit verschiedene Zustände annehmen kann. So wie unsere Benutzer-„Einheit“, welche einen Zustand mit `password`, einen mit `password_hash` und einen ohne Passwort hatte.
