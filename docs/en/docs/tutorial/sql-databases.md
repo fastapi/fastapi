@@ -301,7 +301,7 @@ while Pydantic *models* declare the types using `:`, the new type annotation syn
 name: str
 ```
 
-Have it in mind, so you don't get confused when using `=` and `:` with them.
+Keep these in mind, so you don't get confused when using `=` and `:` with them.
 
 ### Create Pydantic *models* / schemas for reading / returning
 
