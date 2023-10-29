@@ -205,7 +205,7 @@ Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen
     Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
 
 !!! check
-    Die Art und Weise, wie dieses System von Abhängigkeiten konzipiert ist, ermöglicht es uns, verschiedene Abhängigkeiten (verschiedene "Dependables") zu haben, die alle ein `User`-Modell zurückgeben.
+    Die Art und Weise, wie dieses System von Abhängigkeiten konzipiert ist, ermöglicht es uns, verschiedene Abhängigkeiten (verschiedene „Dependables“) zu haben, die alle ein `User`-Modell zurückgeben.
 
     Wir sind nicht darauf beschränkt, nur eine Abhängigkeit zu haben, die diesen Typ von Daten zurückgeben kann.
 
