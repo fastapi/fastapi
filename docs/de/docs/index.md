@@ -71,45 +71,45 @@ Seine Schlüssel-Merkmale sind:
 
 ## Meinungen
 
-"_[...] Ich verwende **FastAPI** heutzutage sehr oft. [...] Ich habe tatsächlich vor, es für alle **ML-Dienste meines Teams bei Microsoft** zu verwenden. Einige davon werden in das Kernprodukt **Windows** und einige **Office**-Produkte integriert._"
+„_[...] Ich verwende **FastAPI** heutzutage sehr oft. [...] Ich habe tatsächlich vor, es für alle **ML-Dienste meines Teams bei Microsoft** zu verwenden. Einige davon werden in das Kernprodukt **Windows** und einige **Office**-Produkte integriert._“
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_Wir haben die **FastAPI**-Bibliothek genommen, um einen **REST**-Server zu erstellen, der abgefragt werden kann, um **Vorhersagen** zu erhalten. [für Ludwig]_"
+„_Wir haben die **FastAPI**-Bibliothek genommen, um einen **REST**-Server zu erstellen, der abgefragt werden kann, um **Vorhersagen** zu erhalten. [für Ludwig]_“
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_**Netflix** freut sich, die Open-Source-Veröffentlichung unseres **Krisenmanagement**-Orchestrierung-Frameworks bekannt zu geben: **Dispatch**! [erstellt mit **FastAPI**]_"
+„_**Netflix** freut sich, die Open-Source-Veröffentlichung unseres **Krisenmanagement**-Orchestrierung-Frameworks bekannt zu geben: **Dispatch**! [erstellt mit **FastAPI**]_“
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_Ich bin überglücklich mit **FastAPI**. Es macht so viel Spaß!_"
+„_Ich bin überglücklich mit **FastAPI**. Es macht so viel Spaß!_“
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Host des <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> Podcast</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._"
+„_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Autor von <a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_Wenn Sie ein **modernes Framework** zum Erstellen von REST-APIs erlernen möchten, schauen Sie sich **FastAPI** an. [...] Es ist schnell, einfach zu verwenden und leicht zu erlernen [...]_"
+„_Wenn Sie ein **modernes Framework** zum Erstellen von REST-APIs erlernen möchten, schauen Sie sich **FastAPI** an. [...] Es ist schnell, einfach zu verwenden und leicht zu erlernen [...]_“
 
-"_Wir haben zu **FastAPI** für unsere **APIs** gewechselt [...] Ich denke, es wird Ihnen gefallen [...]_"
+„_Wir haben zu **FastAPI** für unsere **APIs** gewechselt [...] Ich denke, es wird Ihnen gefallen [...]_“
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Gründer von <a href="https://explosion.ai" target="_blank">Explosion AI</a> - Autoren von <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(Ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
-"_Falls irgendjemand eine Produktions-Python-API erstellen möchte, kann ich **FastAPI** wärmstens empfehlen. Es ist **wunderschön konzipiert**, **einfach zu verwenden** und **hoch skalierbar**; es ist zu einer **Schlüsselkomponente** in unserer API-First-Entwicklungsstrategie geworden und treibt viele Automatisierungen und Dienste an, wie etwa unseren virtuellen TAC-Ingenieur._"
+„_Falls irgendjemand eine Produktions-Python-API erstellen möchte, kann ich **FastAPI** wärmstens empfehlen. Es ist **wunderschön konzipiert**, **einfach zu verwenden** und **hoch skalierbar**; es ist zu einer **Schlüsselkomponente** in unserer API-First-Entwicklungsstrategie geworden und treibt viele Automatisierungen und Dienste an, wie etwa unseren virtuellen TAC-Ingenieur._“
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(Ref)</small></a></div>
 
@@ -205,7 +205,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Anmerkung**:
 
-Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _"In Eile?"_ über <a href="https://fastapi.tiangolo.com/de/async/#in-eile" target="_blank">`async` und `await` in der Dokumentation</a> an.
+Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _„In Eile?“_ über <a href="https://fastapi.tiangolo.com/de/async/#in-eile" target="_blank">`async` und `await` in der Dokumentation</a> an.
 </details>
 
 ### Starten
@@ -231,7 +231,7 @@ INFO:     Application startup complete.
 
 Der Befehl `uvicorn main:app` bezieht sich auf:
 
-* `main`: die Datei `main.py` (das Python "Modul").
+* `main`: die Datei `main.py` (das Python „Modul“).
 * `app`: das Objekt, das innerhalb von `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
 * `--reload`: lässt den Server nach Codeänderungen neu starten. Tun Sie das nur während der Entwicklung.
 
@@ -316,11 +316,11 @@ Gehen Sie jetzt auf <a href="http://127.0.0.1:8000/docs" class="external-link" t
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Klicken Sie auf die Taste "Try it out", damit können Sie die Parameter ausfüllen und direkt mit der API interagieren:
+* Klicken Sie auf die Taste „Try it out“, damit können Sie die Parameter ausfüllen und direkt mit der API interagieren:
 
 ![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Klicken Sie dann auf die Taste "Execute", die Benutzeroberfläche wird mit Ihrer API kommunizieren, sendet die Parameter, holt die Ergebnisse und zeigt sie auf dem Bildschirm an:
+* Klicken Sie dann auf die Taste „Execute“, die Benutzeroberfläche wird mit Ihrer API kommunizieren, sendet die Parameter, holt die Ergebnisse und zeigt sie auf dem Bildschirm an:
 
 ![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -462,7 +462,7 @@ Wird von Starlette verwendet:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - erforderlich, wenn Sie die Standardkonfiguration für Templates verwenden möchten.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren der Zeichenfolge, die aus einer HTTP-Anfrage stammt, nach Python-Daten">"parsen"</abbr> möchten.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren der Zeichenfolge, die aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - erforderlich für `SessionMiddleware` Unterstützung.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - erforderlich für Starlette's `SchemaGenerator` Unterstützung (Sie brauchen das wahrscheinlich nicht mit FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - erforderlich, wenn Sie `UJSONResponse` verwenden möchten.
