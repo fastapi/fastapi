@@ -18,26 +18,26 @@ Hey! 👋
 </div>
 {% endif %}
 
-Ben **FastAPI** 'nin yazarı ve geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
+Ben **FastAPI**'nin yazarı ve geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
  [FastAPI yardım - yardım al - Yazar ile iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ... Burada size harika FastAPI topluluğunu göstermek istiyorum.
 
 ---
 
-**FastAPI** topluluğundan destek alıyor. Ve katkıda bulunanları vurgulamak istiyorum.
+**FastAPI**, topluluğundan çok destek alıyor. Ben de onların katkısını vurgulamak istiyorum.
 
-İşte o mükemmel insanlar:
+O mükemmel insanlar:
 
-* [GitHubdaki sorunları (issues) çözmelerinde diğerlerine yardım et](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Pull Requests oluşturun](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Pull Requests 'leri gözden geçirin, [özelliklede çevirileri](contributing.md#translations){.internal-link target=_blank}.
+* [GitHubdaki sorunları (issues) çözmelerinde diğerlerine yardım ediyor](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [Pull Requests oluşturuyor](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
+* Pull Requests'leri gözden geçiriyorlar, [özellikle çeviriler için bu çok önemli](contributing.md#translations){.internal-link target=_blank}.
 
-Onlara bir alkış. 👏 🙇
+Onları bir alkışlayalım. 👏 🙇
 
-## Geçen ayın en aktif kullanıcıları
+## Geçen Ayın En Aktif Kullanıcıları
 
-Bunlar geçen ay boyunca [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan ](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} kullanıcılar  ☕
+Bunlar geçen ay boyunca [GitHub'da başkalarına en çok yardımcı olan](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} kullanıcılar. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -53,9 +53,9 @@ Bunlar geçen ay boyunca [GitHub' da başkalarına sorunlarında (issues) en ço
 
 İşte **FastAPI Uzmanları**. 🤓
 
-Bunlar *tüm zamanlar boyunca* [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} kullanıcılar.
+Uzmanlarımız ise *tüm zamanlar boyunca* [GitHub'da diğerlerine sorunlarında en çok yardımcı olan](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} insanlar.
 
-Başkalarına yardım ederek uzman olduklarını kanıtladılar. ✨
+Bir çok kullanıcıya yardım ederek uzman olduklarını kanıtladılar! ✨
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -67,13 +67,13 @@ Başkalarına yardım ederek uzman olduklarını kanıtladılar. ✨
 </div>
 {% endif %}
 
-## En fazla katkıda bulunanlar
+## En Fazla Katkıda Bulunanlar
 
-işte **En fazla katkıda bulunanlar**. 👷
+Şimdi ise sıra **en fazla katkıda bulunanlar**da. 👷
 
-Bu kullanıcılar en çok [Pull Requests oluşturan](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} ve onu kaynak koduna *birleştirenler*.
+Bu kullanıcılar en çok [kaynak koduyla birleştirilen Pull Request'lere](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} sahip!
 
-Kaynak koduna, belgelere, çevirilere vb. katkıda bulundular. 📦
+Kaynak koduna, dökümantasyona, çevirilere ve bir sürü şeye katkıda bulundular. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -85,19 +85,19 @@ Kaynak koduna, belgelere, çevirilere vb. katkıda bulundular. 📦
 </div>
 {% endif %}
 
-Çok fazla katkıda bulunan var (binden fazla), hepsini şurda görebilirsin: <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Katkıda Bulunanlar</a>. 👷
+Bunlar dışında katkıda bulunan bir sürü insan var (yüzden fazla), hepsini <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Katkıda Bulunanlar</a> sayfasında görebilirsin. 👷
 
-## En fazla inceleme yapanlar
+## En Fazla Değerlendirme Yapanlar
 
-İşte **En fazla inceleme yapanlar**. 🕵️
+İşte **en çok değerlendirme yapanlar**. 🕵️
 
-### Çeviri için İncelemeler
+### Çeviri Değerlendirmeleri
 
-Yalnızca birkaç dil konuşabiliyorum (ve çok da iyi değilim 😅). Bu yüzden döküman çevirilerini [**onaylama yetkisi**](contributing.md#translations){.internal-link target=_blank} siz inceleyenlere aittir. Sizler olmadan diğer birkaç dilde dokümantasyon olmazdı.
+Yalnızca birkaç dil konuşabiliyorum (ve çok da iyi değilim 😅). Bu yüzden değerlendirme yapanların da döküman çevirilerini [**onaylama yetkisi**](contributing.md#translations){.internal-link target=_blank} var. Onlar olmasaydı çeşitli dillerde dökümantasyon da olmazdı.
 
 ---
 
-**En fazla inceleme yapanlar** 🕵️ kodun, belgelerin ve özellikle **çevirilerin** kalitesini sağlamak için diğerlerinden daha fazla pull requests incelemiştir.
+**En fazla değerlendirme yapanlar** 🕵️ kodun, dökümantasyonun ve özellikle **çevirilerin** Pull Request'lerini inceleyerek kalitesinden emin oldular.
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -113,7 +113,7 @@ Yalnızca birkaç dil konuşabiliyorum (ve çok da iyi değilim 😅). Bu yüzde
 
 işte **Sponsorlarımız**. 😎
 
-**FastAPI** ve diğer projelerde çalışmamı destekliyorlar, özellikle de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsorları</a>.
+Çoğunlukla <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsorları</a> aracılığıyla olmak üzere, **FastAPI** ve diğer projelerde çalışmamı destekliyorlar.
 
 ### Altın Sponsorlar
 
@@ -169,10 +169,10 @@ işte **Sponsorlarımız**. 😎
 
 Bu sayfanın temel amacı, topluluğun başkalarına yardım etme çabasını vurgulamaktır.
 
-Özellikle normalde daha az görünür olan ve çoğu durumda daha zahmetli olan, diğerlerine sorunlar konusunda yardımcı olmak ve pull requests'leri gözden geçirmek gibi çabalar dahil.
+Özellikle normalde daha az görünür olan ve çoğu durumda daha zahmetli olan, diğerlerine sorunlar konusunda yardımcı olmak ve Pull Request'leri gözden geçirmek gibi çabalar dahil.
 
-Veriler ayda bir hesaplanır, işte kaynak kodu okuyabilirsin :<a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+Veriler ayda bir hesaplanır, <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">kaynak kodu buradan</a> okuyabilirsin.
 
-Burada sponsorların katkılarını da tekrardan vurgulamak isterim.
+Burada sponsorların katkılarını da vurguluyorum.
 
-Ayrıca algoritmayı, bölümleri, eşikleri vb. güncelleme hakkımı da saklı tutarım (her ihtimale karşı 🤷).
+Ayrıca algoritmayı, bölümleri, eşikleri vb. güncelleme hakkımı da saklı tutuyorum (her ihtimale karşı 🤷).
