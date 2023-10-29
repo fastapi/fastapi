@@ -1,6 +1,6 @@
 # Pfad-Parameter
 
-Sie können Pfad-"Parameter" oder -"Variablen" mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
+Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
@@ -38,7 +38,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 !!! check
     Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
 
-    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">"parsen"</abbr>.
+    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
 
 ## Daten-Validierung
 
@@ -145,7 +145,7 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
     <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
 
 !!! tip "Tipp"
-    Falls Sie sich fragen, was "AlexNet", "ResNet" und "LeNet" ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
+    Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
 
 ### Deklarieren Sie einen *Pfad-Parameter*
 
