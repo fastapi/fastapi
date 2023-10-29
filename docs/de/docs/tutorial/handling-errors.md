@@ -13,7 +13,7 @@ Sie müssten beispielsweise einem Client sagen:
 
 In diesen Fällen geben Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (400 bis 499) zurück.
 
-Das ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese "200"er Statuscodes bedeuten, dass der Request in einem bestimmten Aspekt ein "Success" ("Erfolg") war.
+Das ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“er Statuscodes bedeuten, dass der Request in einem bestimmten Aspekt ein „Success“ („Erfolg“) war.
 
 Die Statuscodes im 400er-Bereich bedeuten hingegen, dass es einen Fehler gab.
 
@@ -55,7 +55,7 @@ Wenn der Client `http://example.com/items/foo` anfragt (ein `item_id` `"foo"`), 
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der "Not Found"-Fehler), und eine JSON-Response wie folgt:
+Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „Not Found“-Fehler), und eine JSON-Response wie folgt:
 
 ```JSON
 {
@@ -167,7 +167,7 @@ path -> item_id
 
 **FastAPI** verwendet diesen, sodass Sie, wenn Sie ein Pydantic-Modell für `response_model` verwenden, und ihre Daten fehlerhaft sind, einen Fehler in ihrem Log sehen.
 
-Aber der Client/Benutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">"Internal Server Error"</abbr> mit einem HTTP-Statuscode `500`.
+Aber der Client/Benutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">„Internal Server Error“</abbr> mit einem HTTP-Statuscode `500`.
 
 Das ist, wie es sein sollte, denn wenn Sie einen Pydantic-`ValidationError` in Ihrer *Response* oder irgendwo sonst in ihrem Code haben (es sei denn, im *Request* des Clients), ist das tatsächlich ein Bug in ihrem Code.
 
