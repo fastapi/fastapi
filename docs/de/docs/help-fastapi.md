@@ -25,15 +25,15 @@ Sie können den (unregelmäßig erscheinenden) [**FastAPI and Friends**-Newslett
 
 ## **FastAPI** auf GitHub einen Stern geben
 
-Sie können FastAPI auf GitHub "starren" (durch Klicken auf den Stern-Button oben rechts): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+Sie können FastAPI auf GitHub „starren“ (durch Klicken auf den Stern-Button oben rechts): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
 
 Durch das Hinzufügen eines Sterns können andere Benutzer es leichter finden und sehen, dass es für andere bereits nützlich war.
 
 ## Das GitHub-Repository auf Releases beobachten
 
-Sie können FastAPI in GitHub beobachten (Klicken Sie oben rechts auf den Button "watch"): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Sie können FastAPI in GitHub beobachten (Klicken Sie oben rechts auf den Button „watch“): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-Dort können Sie "Releases only" auswählen.
+Dort können Sie „Releases only“ auswählen.
 
 Auf diese Weise erhalten Sie Benachrichtigungen (per E-Mail), wenn es einen neuen Release (eine neue Version) von **FastAPI** mit Fehlerbehebungen und neuen Funktionen gibt.
 
@@ -124,9 +124,9 @@ Wenn die Person antwortet, besteht eine hohe Chance, dass Sie ihr Problem gelös
 
 ## Das GitHub-Repository beobachten
 
-Sie können FastAPI auf GitHub "beobachten" (Klicken Sie oben rechts auf die Schaltfläche "watch"): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank" >https://github.com/tiangolo/fastapi</a>. 👀
+Sie können FastAPI auf GitHub „beobachten“ (Klicken Sie oben rechts auf die Schaltfläche „watch“): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank" >https://github.com/tiangolo/fastapi</a>. 👀
 
-Wenn Sie dann "Watching" statt "Releases only" auswählen, erhalten Sie Benachrichtigungen, wenn jemand ein neues Issue eröffnet oder eine neue Frage stellt. Sie können auch spezifizieren, dass Sie nur über neue Issues, Diskussionen, PRs, usw. benachrichtigt werden möchten.
+Wenn Sie dann „Watching“ statt „Releases only“ auswählen, erhalten Sie Benachrichtigungen, wenn jemand ein neues Issue eröffnet oder eine neue Frage stellt. Sie können auch spezifizieren, dass Sie nur über neue Issues, Diskussionen, PRs, usw. benachrichtigt werden möchten.
 
 Dann können Sie versuchen, bei der Lösung solcher Fragen zu helfen.
 
@@ -232,7 +232,7 @@ Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link
 
 ### Den Chat nicht für Fragen verwenden
 
-Bedenken Sie, da Chats mehr "freie Konversation" ermöglichen, dass es verlockend ist, Fragen zu stellen, die zu allgemein und schwierig zu beantworten sind, sodass Sie möglicherweise keine Antworten erhalten.
+Bedenken Sie, da Chats mehr „freie Konversation“ ermöglichen, dass es verlockend ist, Fragen zu stellen, die zu allgemein und schwierig zu beantworten sind, sodass Sie möglicherweise keine Antworten erhalten.
 
 Auf GitHub hilft Ihnen die Vorlage dabei, die richtige Frage zu schreiben, sodass Sie leichter eine gute Antwort erhalten oder das Problem sogar selbst lösen können, noch bevor Sie fragen. Und auf GitHub kann ich sicherstellen, dass ich immer alles beantworte, auch wenn es einige Zeit dauert. Ich persönlich kann das mit den Chat-Systemen nicht machen. 😅
 
