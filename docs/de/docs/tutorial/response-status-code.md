@@ -13,7 +13,7 @@ So wie ein Response-Modell, können Sie auch einen HTTP-Statuscode für die Resp
 ```
 
 !!! note "Hinweis"
-    Beachten Sie, dass `status_code` ein Parameter der "Dekorator"-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
+    Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
 
 Dem `status_code`-Parameter wird eine Zahl mit dem HTTP-Statuscode übergeben.
 
@@ -43,14 +43,14 @@ Diese Statuscodes haben einen Namen zugeordnet, um sie besser zu erkennen, aber 
 
 Kurz:
 
-* `100` und darüber stehen für "Information". Diese verwenden Sie selten direkt. Responses mit diesen Statuscodes können keinen Body haben.
-* **`200`** und darüber stehen für Responses, die "Successful" ("Erfolgreich") waren. Diese verwenden Sie am häufigsten.
-    * `200` ist der Default-Statuscode, welcher bedeutet, alles ist "OK".
-    * Ein anderes Beispiel ist `201`, "Created" ("Erzeugt"). Wird in der Regel verwendet, wenn ein neuer Datensatz in der Datenbank erzeugt wurde.
-    * Ein spezieller Fall ist `204`, "No Content" ("Kein Inhalt"). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der zum Client zurückgeschickt wird, diese Response hat also keinen Body.
-* **`300`** und darüber steht für "Redirection" ("Umleitung").  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, "Not Modified" ("Nicht verändert"), welche keinen haben darf.
-* **`400`** und darüber stehen für "Client error"-Responses ("Client-Fehler"). Auch diese verwenden Sie am häufigsten.
-    * Ein Beispiel ist `404`, für eine "Not Found"-Response ("Nicht gefunden").
+* `100` und darüber stehen für „Information“. Diese verwenden Sie selten direkt. Responses mit diesen Statuscodes können keinen Body haben.
+* **`200`** und darüber stehen für Responses, die „Successful“ („Erfolgreich“) waren. Diese verwenden Sie am häufigsten.
+    * `200` ist der Default-Statuscode, welcher bedeutet, alles ist „OK“.
+    * Ein anderes Beispiel ist `201`, „Created“ („Erzeugt“). Wird in der Regel verwendet, wenn ein neuer Datensatz in der Datenbank erzeugt wurde.
+    * Ein spezieller Fall ist `204`, „No Content“ („Kein Inhalt“). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der zum Client zurückgeschickt wird, diese Response hat also keinen Body.
+* **`300`** und darüber steht für „Redirection“ („Umleitung“).  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, „Not Modified“ („Nicht verändert“), welche keinen haben darf.
+* **`400`** und darüber stehen für „Client error“-Responses („Client-Fehler“). Auch diese verwenden Sie am häufigsten.
+    * Ein Beispiel ist `404`, für eine „Not Found“-Response („Nicht gefunden“).
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
 * `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
@@ -65,7 +65,7 @@ Schauen wir uns das vorherige Beispiel noch einmal an:
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-`201` ist der Statuscode für "Created" ("Erzeugt").
+`201` ist der Statuscode für „Created“ („Erzeugt“).
 
 Aber Sie müssen sich nicht daran erinnern, welcher dieser Codes was bedeutet.
 
