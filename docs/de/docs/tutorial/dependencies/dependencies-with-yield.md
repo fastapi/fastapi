@@ -1,6 +1,6 @@
 # Abhängigkeiten mit yield
 
-FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title='Manchmal auch genannt "exit", "cleanup", "teardown", "close", "context managers", ...'>zusätzliche Schritte ausführen</abbr>.
+FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title='Manchmal auch genannt „exit“, „cleanup“, „teardown“, „close“, „context managers“, ...'>zusätzliche Schritte ausführen</abbr>.
 
 Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte danach.
 
@@ -48,7 +48,7 @@ Der auf die `yield`-Anweisung folgende Code wird ausgeführt, nachdem die Respon
 
 Wenn Sie einen `try`-Block in einer Abhängigkeit mit `yield` verwenden, empfangen Sie alle Exceptions, die bei Verwendung der Abhängigkeit geworfen wurden.
 
-Wenn beispielsweise ein Code irgendwann in der Mitte, in einer anderen Abhängigkeit oder in einer *Pfadoperation*, ein "Rollback" einer Datenbanktransaktion oder einen anderen Fehler verursacht, empfangen Sie die resultierende Exception in Ihrer Abhängigkeit.
+Wenn beispielsweise ein Code irgendwann in der Mitte, in einer anderen Abhängigkeit oder in einer *Pfadoperation*, ein „Rollback“ einer Datenbanktransaktion oder einen anderen Fehler verursacht, empfangen Sie die resultierende Exception in Ihrer Abhängigkeit.
 
 Sie können also mit `except SomeException` diese bestimmte Exception innerhalb der Abhängigkeit handhaben.
 
@@ -60,9 +60,9 @@ Auf die gleiche Weise können Sie `finally` verwenden, um sicherzustellen, dass 
 
 ## Unterabhängigkeiten mit `yield`.
 
-Sie können Unterabhängigkeiten und "Bäume" von Unterabhängigkeiten beliebiger Größe und Form haben, und einige oder alle davon können `yield` verwenden.
+Sie können Unterabhängigkeiten und „Bäume“ von Unterabhängigkeiten beliebiger Größe und Form haben, und einige oder alle davon können `yield` verwenden.
 
-**FastAPI** stellt sicher, dass der "Exit-Code" in jeder Abhängigkeit mit `yield` in der richtigen Reihenfolge ausgeführt wird.
+**FastAPI** stellt sicher, dass der „Exit-Code“ in jeder Abhängigkeit mit `yield` in der richtigen Reihenfolge ausgeführt wird.
 
 Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `dependency_a` abhängen:
 
@@ -143,7 +143,7 @@ Hintergrund-Tasks werden ausgeführt, *nachdem* die Antwort gesendet wurde. Es g
 
 Aber wenn ein Hintergrund-Task einen DB-Error erzeugt, können Sie zumindest ein Rollback durchführen, oder die Session innerhalb der Abhängigkeit mit `yield` sauber schließen, und den Fehler möglicherweise protokollieren oder an ein Remote-Tracking-System melden.
 
-Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnte, machen Sie das Normale/"Pythonische" und fügen Sie in diesem Codeabschnitt einen `try`-Block ein.
+Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnte, machen Sie das Normale/„Pythonische“ und fügen Sie in diesem Codeabschnitt einen `try`-Block ein.
 
 Wenn Sie benutzerdefinierte Exceptions haben, die Sie handhaben möchten, *bevor* Sie die Response zurückgeben, was möglicherweise die Response ändert, vielleicht sogar eine `HTTPException` auslöst, dann erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank}.
 
@@ -204,9 +204,9 @@ participant tasks as Hintergrund-Tasks
 
 ## Kontextmanager
 
-### Was sind "Kontextmanager"
+### Was sind „Kontextmanager“
 
-"Kontextmanager" (Englisch "Context Manager") sind bestimmte Python-Objekte, die Sie in einer `with`-Anweisung verwenden können.
+„Kontextmanager“ (Englisch „Context Manager“) sind bestimmte Python-Objekte, die Sie in einer `with`-Anweisung verwenden können.
 
 Beispielsweise können Sie <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">`with` verwenden, um eine Datei auszulesen</a>:
 
@@ -216,7 +216,7 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-Im Hintergrund erstellt das `open("./somefile.txt")` ein Objekt, das als "Kontextmanager" bezeichnet wird.
+Im Hintergrund erstellt das `open("./somefile.txt")` ein Objekt, das als „Kontextmanager“ bezeichnet wird.
 
 Dieser stellt sicher dass, wenn der `with`-Block beendet ist, die Datei geschlossen wird, auch wenn Exceptions geworfen wurden.
 
@@ -225,7 +225,7 @@ Wenn Sie eine Abhängigkeit mit `yield` erstellen, konvertiert **FastAPI** diese
 ### Kontextmanager in Abhängigkeiten mit `yield` verwenden
 
 !!! warning "Achtung"
-    Dies ist mehr oder weniger eine "fortgeschrittene" Idee.
+    Dies ist mehr oder weniger eine „fortgeschrittene“ Idee.
 
     Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie das vielleicht vorerst überspringen.
 
