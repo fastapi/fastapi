@@ -321,7 +321,7 @@ Dieses bestimmte reguläre Suchmuster prüft, ob der erhaltene Parameter-Wert:
 * `fixedquery`: den exakten Text `fixedquery` hat.
 * `$`: danach endet, keine weiteren Zeichen hat als `fixedquery`.
 
-Wenn Sie sich verloren fühlen bei all diesen **"Regulärer Ausdruck"**-Konzepten, keine Sorge. Reguläre Ausdrücke sind für viele Menschen ein schwieriges Thema. Sie können auch ohne reguläre Ausdrücke eine ganze Menge machen.
+Wenn Sie sich verloren fühlen bei all diesen **„Regulärer Ausdruck“**-Konzepten, keine Sorge. Reguläre Ausdrücke sind für viele Menschen ein schwieriges Thema. Sie können auch ohne reguläre Ausdrücke eine ganze Menge machen.
 
 Aber wenn Sie sie brauchen und sie lernen, wissen Sie, dass Sie sie bereits direkt in **FastAPI** verwenden können.
 
@@ -451,7 +451,7 @@ Es gibt eine Alternative, die explizit deklariert, dass ein Wert erforderlich is
     ```
 
 !!! info
-    Falls Sie das `...` bisher noch nicht gesehen haben: Es ist ein spezieller einzelner Wert, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Teil von Python und wird "Ellipsis" genannt</a> (Deutsch: Ellipse).
+    Falls Sie das `...` bisher noch nicht gesehen haben: Es ist ein spezieller einzelner Wert, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Teil von Python und wird „Ellipsis“ genannt</a> (Deutsch: Ellipse).
 
     Es wird von Pydantic und FastAPI verwendet, um explizit zu deklarieren, dass ein Wert erforderlich ist.
 
