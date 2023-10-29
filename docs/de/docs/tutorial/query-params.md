@@ -1,6 +1,6 @@
 # Query-Parameter
 
-Wenn Sie in ihrer Funktion Parameter deklarieren, die nicht Teil der Pfad-Parameter sind, dann werden diese automatisch als "Query"-Parameter interpretiert.
+Wenn Sie in ihrer Funktion Parameter deklarieren, die nicht Teil der Pfad-Parameter sind, dann werden diese automatisch als „Query“-Parameter interpretiert.
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial001.py!}
@@ -19,14 +19,14 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 * `skip`: mit dem Wert `0`
 * `limit`: mit dem Wert `10`
 
-Da sie Teil der URL sind, sind sie "naturgemäß" Strings.
+Da sie Teil der URL sind, sind sie „naturgemäß“ Strings.
 
 Aber wenn Sie sie mit Python-Typen deklarieren (im obigen Beispiel als `int`), werden sie zu diesem Typ konvertiert, und gegen diesen validiert.
 
 Die gleichen Prozesse, die für Pfad-Parameter stattfinden, werden auch auf Query-Parameter angewendet:
 
 * Editor Unterstützung (natürlich)
-* <abbr title="Konvertieren des Strings, der von einer HTTP-Anfrage kommt, in Python-Daten">"Parsen"</abbr> der Daten
+* <abbr title="Konvertieren des Strings, der von einer HTTP-Anfrage kommt, in Python-Daten">„Parsen“</abbr> der Daten
 * Daten-Validierung
 * Automatische Dokumentation
 
