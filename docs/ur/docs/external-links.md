@@ -1,5 +1,4 @@
-# بیرونی روابط اور مضامین
-
+# <div style="text-align: right;">بیرونی روابط اور مضامین</div>
 
 <div style="direction: ltr; text-align: right;">
     ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے۔ <span style="margin-right: 0;"><b>FastAPI</b></span>
