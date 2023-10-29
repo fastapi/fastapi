@@ -96,7 +96,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs
 
 `Header` hat weitere Funktionalität, zusätzlich zu der, die `Path`, `Query` und `Cookie` bereitstellen.
 
-Die meisten Standard-Header benutzen als Trennzeichen einen Bindestrich, auch bekannt als das "minus symbol" (`-`).
+Die meisten Standard-Header benutzen als Trennzeichen einen Bindestrich, auch bekannt als das „Minus-Symbol“ (`-`).
 
 Aber eine Variable wie `user-agent` ist in Python nicht gültig.
 
