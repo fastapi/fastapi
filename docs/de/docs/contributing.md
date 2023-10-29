@@ -123,12 +123,12 @@ Wenn Sie eine Python-Datei erstellen, die FastAPI importiert und verwendet, und 
 
 Und wenn Sie diesen lokalen FastAPI-Quellcode aktualisieren und dann die Python-Datei erneut ausführen, wird die neue Version von FastAPI verwendet, die Sie gerade bearbeitet haben.
 
-Auf diese Weise müssen Sie Ihre lokale Version nicht "installieren", um jede Änderung testen zu können.
+Auf diese Weise müssen Sie Ihre lokale Version nicht „installieren“, um jede Änderung testen zu können.
 
 !!! note "Technische Details"
     Das geschieht nur, wenn Sie die Installation mit der enthaltenen `requirements.txt` durchführen, anstatt `pip install fastapi` direkt auszuführen.
 
-    Das liegt daran, dass in der Datei `requirements.txt` die lokale Version von FastAPI mit der Option `-e` für die Installation im "editierbaren" Modus markiert ist.
+    Das liegt daran, dass in der Datei `requirements.txt` die lokale Version von FastAPI mit der Option `-e` für die Installation im „editierbaren“ Modus markiert ist.
 
 ### Den Code formatieren
 
@@ -277,14 +277,14 @@ Angenommen, Sie möchten eine Seite für eine Sprache übersetzen, die bereits �
 Im Spanischen lautet der Zwei-Buchstaben-Code `es`. Das Verzeichnis für spanische Übersetzungen befindet sich also unter `docs/es/`.
 
 !!! tip "Tipp"
-    Die Haupt ("offizielle") Sprache ist Englisch und befindet sich unter `docs/en/`.
+    Die Haupt („offizielle“) Sprache ist Englisch und befindet sich unter `docs/en/`.
 
 Führen Sie nun den Live-Server für die Dokumentation auf Spanisch aus:
 
 <div class="termy">
 
 ```console
-// Verwenden Sie das Kommando "live" und fügen Sie den Sprach-Code als Argument hinten an
+// Verwenden Sie das Kommando „live“ und fügen Sie den Sprach-Code als Argument hinten an
 $ python ./scripts/docs.py live es
 
 <span style="color: green;">[INFO]</span> Serving on http://127.0.0.1:8008
@@ -368,7 +368,7 @@ INHERIT: ../en/mkdocs.yml
 
 Das Kommando hat auch eine Dummy-Datei `docs/ht/index.md` für die Hauptseite erstellt. Sie können mit der Übersetzung dieser Datei beginnen.
 
-Sie können nun mit den obigen Instruktionen für eine "vorhandene Sprache" fortfahren.
+Sie können nun mit den obigen Instruktionen für eine „vorhandene Sprache“ fortfahren.
 
 Fügen Sie dem ersten Pull Request beide Dateien `docs/ht/mkdocs.yml` und `docs/ht/index.md` bei. 🎉
 
@@ -388,8 +388,8 @@ Fügen Sie dem ersten Pull Request beide Dateien `docs/ht/mkdocs.yml` und `docs/
 
 * Wenn ein Markdown-Dokument übersetzt ist, ändern sich allerdings unter Umständen die `#hash-teile` in Links zu dessen Überschriften. Aktualisieren Sie diese Links, wenn möglich.
     * Suchen Sie im übersetzten Dokument nach solchen Links mit dem Regex `#[^# ]`.
-    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option "Edit" -> "Find in Files".
-    * Übersetzen Sie bei der Übersetzung eines Dokuments nicht "im Voraus" `#hash-teile`, die zu Überschriften in noch nicht übersetzten Dokumenten verlinken.
+    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option „Edit“ -> „Find in Files“.
+    * Übersetzen Sie bei der Übersetzung eines Dokuments nicht „im Voraus“ `#hash-teile`, die zu Überschriften in noch nicht übersetzten Dokumenten verlinken.
 
 #### Vorschau des Ergebnisses
 
@@ -402,7 +402,7 @@ Bauen Sie dazu zunächst die gesamte Dokumentation:
 <div class="termy">
 
 ```console
-// Verwenden Sie das Kommando "build-all", das wird ein wenig dauern
+// Verwenden Sie das Kommando „build-all“, das wird ein wenig dauern
 $ python ./scripts/docs.py build-all
 
 Building docs for: en
@@ -419,7 +419,7 @@ Dieses können Sie dann mit dem Befehl `serve` bereitstellen:
 <div class="termy">
 
 ```console
-// Verwenden Sie das Kommando "serve" nachdem Sie "build-all" ausgeführt haben.
+// Verwenden Sie das Kommando „serve“ nachdem Sie „build-all“ ausgeführt haben.
 $ python ./scripts/docs.py serve
 
 Warning: this is a very simple server. For development, use mkdocs serve instead.
