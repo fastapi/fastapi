@@ -53,7 +53,7 @@ Wenn Sie jedoch den oben genannten Schritten folgen, können einige Performance-
 
 ## Technische Details
 
-Moderne Versionen von Python unterstützen **"asynchronen Code"** unter Verwendung sogenannter **"Coroutinen"** mithilfe der Syntax **`async`** und **`await`**.
+Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async`** und **`await`**.
 
 Nehmen wir obigen Satz in den folgenden Abschnitten Schritt für Schritt unter die Lupe:
 
@@ -63,15 +63,15 @@ Nehmen wir obigen Satz in den folgenden Abschnitten Schritt für Schritt unter d
 
 ## Asynchroner Code
 
-Asynchroner Code bedeutet lediglich, dass die Sprache 💬 eine Möglichkeit hat, dem Computersystem / Programm 🤖 mitzuteilen, dass es 🤖 an einem bestimmten Punkt im Code darauf warten muss, dass *etwas anderes* irgendwo anders fertig wird. Nehmen wir an, *etwas anderes* ist hier "Langsam-Datei" 📝.
+Asynchroner Code bedeutet lediglich, dass die Sprache 💬 eine Möglichkeit hat, dem Computersystem / Programm 🤖 mitzuteilen, dass es 🤖 an einem bestimmten Punkt im Code darauf warten muss, dass *etwas anderes* irgendwo anders fertig wird. Nehmen wir an, *etwas anderes* ist hier „Langsam-Datei“ 📝.
 
-Während der Zeit, die "Langsam-Datei" 📝 benötigt, kann das System also andere Aufgaben erledigen.
+Während der Zeit, die „Langsam-Datei“ 📝 benötigt, kann das System also andere Aufgaben erledigen.
 
 Dann kommt das System / Programm 🤖 bei jeder Gelegenheit zurück, wenn es entweder wieder wartet, oder wann immer es 🤖 die ganze Arbeit erledigt hat, die zu diesem Zeitpunkt zu tun war. Und es 🤖 wird nachschauen, ob eine der Aufgaben, auf die es gewartet hat, fertig damit ist, zu tun, was sie tun sollte.
 
-Dann nimmt es 🤖 die erste erledigte Aufgabe (sagen wir, unsere "Langsam-Datei" 📝) und bearbeitet sie weiter.
+Dann nimmt es 🤖 die erste erledigte Aufgabe (sagen wir, unsere „Langsam-Datei“ 📝) und bearbeitet sie weiter.
 
-Das "Warten auf etwas anderes" bezieht sich normalerweise auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen, die relativ "langsam" sind (im Vergleich zur Geschwindigkeit des Prozessors und des Arbeitsspeichers), wie etwa das Warten darauf, dass:
+Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen, die relativ „langsam“ sind (im Vergleich zur Geschwindigkeit des Prozessors und des Arbeitsspeichers), wie etwa das Warten darauf, dass:
 
 * die Daten des Clients über das Netzwerk empfangen wurden
 * die von Ihrem Programm gesendeten Daten vom Client über das Netzwerk empfangen wurden
@@ -82,19 +82,19 @@ Das "Warten auf etwas anderes" bezieht sich normalerweise auf <abbr title="Input
 * eine Datenbankabfrage die Ergebnisse zurückgegeben hat
 * usw.
 
-Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch "I/O-lastige" ("I/O bound") Operationen.
+Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch „I/O-lastige“ („I/O bound“) Operationen.
 
-"Asynchron", sagt man, weil das Computersystem / Programm nicht mit einer langsamen Aufgabe "synchronisiert" werden muss und nicht auf den genauen Moment warten muss, in dem die Aufgabe beendet ist, ohne dabei etwas zu tun, um schließlich das Ergebnis der Aufgabe zu übernehmen und die Arbeit fortsetzen zu können.
+„Asynchron“, sagt man, weil das Computersystem / Programm nicht mit einer langsamen Aufgabe „synchronisiert“ werden muss und nicht auf den genauen Moment warten muss, in dem die Aufgabe beendet ist, ohne dabei etwas zu tun, um schließlich das Ergebnis der Aufgabe zu übernehmen und die Arbeit fortsetzen zu können.
 
-Da es sich stattdessen um ein "asynchrones" System handelt, kann die Aufgabe nach Abschluss ein wenig (einige Mikrosekunden) in der Schlange warten, bis das System / Programm seine anderen Dinge erledigt hat und zurückkommt, um die Ergebnisse entgegenzunehmen und mit ihnen weiterzuarbeiten.
+Da es sich stattdessen um ein „asynchrones“ System handelt, kann die Aufgabe nach Abschluss ein wenig (einige Mikrosekunden) in der Schlange warten, bis das System / Programm seine anderen Dinge erledigt hat und zurückkommt, um die Ergebnisse entgegenzunehmen und mit ihnen weiterzuarbeiten.
 
-Für "synchron" (im Gegensatz zu "asynchron") wird auch oft der Begriff "sequentiell" verwendet, da das System / Programm alle Schritte in einer Sequenz ("der Reihe nach") ausführt, bevor es zu einer anderen Aufgabe wechselt, auch wenn diese Schritte mit Warten verbunden sind.
+Für „synchron“ (im Gegensatz zu „asynchron“) wird auch oft der Begriff „sequentiell“ verwendet, da das System / Programm alle Schritte in einer Sequenz („der Reihe nach“) ausführt, bevor es zu einer anderen Aufgabe wechselt, auch wenn diese Schritte mit Warten verbunden sind.
 
 ### Nebenläufigkeit und Hamburger
 
-Diese oben beschriebene Idee von **asynchronem** Code wird manchmal auch **"Nebenläufigkeit"** genannt. Sie unterscheidet sich von **"Parallelität"**.
+Diese oben beschriebene Idee von **asynchronem** Code wird manchmal auch **„Nebenläufigkeit“** genannt. Sie unterscheidet sich von **„Parallelität“**.
 
-**Nebenläufigkeit** und **Parallelität** beziehen sich beide auf "verschiedene Dinge, die mehr oder weniger gleichzeitig passieren".
+**Nebenläufigkeit** und **Parallelität** beziehen sich beide auf „verschiedene Dinge, die mehr oder weniger gleichzeitig passieren“.
 
 Aber die Details zwischen *Nebenläufigkeit* und *Parallelität* sind ziemlich unterschiedlich.
 
@@ -143,23 +143,23 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 Stellen Sie sich vor, Sie wären das Computersystem / Programm 🤖 in dieser Geschichte.
 
-Während Sie an der Schlange stehen, sind Sie einfach untätig 😴, warten darauf, dass Sie an die Reihe kommen, und tun nichts sehr "Produktives". Aber die Schlange ist schnell abgearbeitet, weil der Kassierer nur die Bestellungen entgegennimmt (und nicht zubereitet), also ist das vertretbar.
+Während Sie an der Schlange stehen, sind Sie einfach untätig 😴, warten darauf, dass Sie an die Reihe kommen, und tun nichts sehr „Produktives“. Aber die Schlange ist schnell abgearbeitet, weil der Kassierer nur die Bestellungen entgegennimmt (und nicht zubereitet), also ist das vertretbar.
 
-Wenn Sie dann an der Reihe sind, erledigen Sie tatsächliche "produktive" Arbeit, Sie gehen das Menü durch, entscheiden sich, was Sie möchten, bekunden Ihre und die Wahl Ihres Schwarms, bezahlen, prüfen, ob Sie die richtige Menge Geld oder die richtige Karte geben, prüfen, ob die Rechnung korrekt ist, prüfen, dass die Bestellung die richtigen Artikel enthält, usw.
+Wenn Sie dann an der Reihe sind, erledigen Sie tatsächliche „produktive“ Arbeit, Sie gehen das Menü durch, entscheiden sich, was Sie möchten, bekunden Ihre und die Wahl Ihres Schwarms, bezahlen, prüfen, ob Sie die richtige Menge Geld oder die richtige Karte geben, prüfen, ob die Rechnung korrekt ist, prüfen, dass die Bestellung die richtigen Artikel enthält, usw.
 
-Aber dann, auch wenn Sie Ihre Burger noch nicht haben, ist Ihre Interaktion mit dem Kassierer erst mal "auf Pause" ⏸, weil Sie warten müssen 🕙, bis Ihre Burger fertig sind.
+Aber dann, auch wenn Sie Ihre Burger noch nicht haben, ist Ihre Interaktion mit dem Kassierer erst mal „auf Pause“ ⏸, weil Sie warten müssen 🕙, bis Ihre Burger fertig sind.
 
-Aber wenn Sie sich von der Theke entfernt haben und mit der Nummer für die Bestellung an einem Tisch sitzen, können Sie Ihre Aufmerksamkeit auf Ihren Schwarm lenken und an dieser Aufgabe "arbeiten" ⏯ 🤓. Sie machen wieder etwas sehr "Produktives" und flirten mit Ihrem Schwarm 😍.
+Aber wenn Sie sich von der Theke entfernt haben und mit der Nummer für die Bestellung an einem Tisch sitzen, können Sie Ihre Aufmerksamkeit auf Ihren Schwarm lenken und an dieser Aufgabe „arbeiten“ ⏯ 🤓. Sie machen wieder etwas sehr „Produktives“ und flirten mit Ihrem Schwarm 😍.
 
-Dann sagt der Kassierer 💁 "Ich bin mit dem Burger fertig", indem er Ihre Nummer auf dem Display über der Theke anzeigt, aber Sie springen nicht sofort wie verrückt auf, wenn das Display auf Ihre Nummer springt. Sie wissen, dass niemand Ihnen Ihre Burger wegnimmt, denn Sie haben die Nummer Ihrer Bestellung, und andere Leute haben andere Nummern.
+Dann sagt der Kassierer 💁 „Ich bin mit dem Burger fertig“, indem er Ihre Nummer auf dem Display über der Theke anzeigt, aber Sie springen nicht sofort wie verrückt auf, wenn das Display auf Ihre Nummer springt. Sie wissen, dass niemand Ihnen Ihre Burger wegnimmt, denn Sie haben die Nummer Ihrer Bestellung, und andere Leute haben andere Nummern.
 
 Also warten Sie darauf, dass Ihr Schwarm ihre Geschichte zu Ende erzählt (die aktuelle Arbeit ⏯ / bearbeitete Aufgabe beendet 🤓), lächeln sanft und sagen, dass Sie die Burger holen ⏸.
 
-Dann gehen Sie zur Theke 🔀, zur ursprünglichen Aufgabe, die nun erledigt ist ⏯, nehmen die Burger auf, sagen Danke, und bringen sie zum Tisch. Damit ist dieser Schritt / diese Aufgabe der Interaktion mit der Theke abgeschlossen ⏹. Das wiederum schafft eine neue Aufgabe, "Burger essen" 🔀 ⏯, aber die vorherige Aufgabe "Burger holen" ist erledigt ⏹.
+Dann gehen Sie zur Theke 🔀, zur ursprünglichen Aufgabe, die nun erledigt ist ⏯, nehmen die Burger auf, sagen Danke, und bringen sie zum Tisch. Damit ist dieser Schritt / diese Aufgabe der Interaktion mit der Theke abgeschlossen ⏹. Das wiederum schafft eine neue Aufgabe, „Burger essen“ 🔀 ⏯, aber die vorherige Aufgabe „Burger holen“ ist erledigt ⏹.
 
 ### Parallele Hamburger
 
-Stellen wir uns jetzt vor, dass es sich hierbei nicht um "nebenläufige Hamburger", sondern um "parallele Hamburger" handelt.
+Stellen wir uns jetzt vor, dass es sich hierbei nicht um „nebenläufige Hamburger“, sondern um „parallele Hamburger“ handelt.
 
 Sie gehen los mit Ihrem Schwarm, um paralleles Fast Food zu bekommen.
 
@@ -183,7 +183,7 @@ Sie warten, vor der Theke stehend 🕙, damit niemand außer Ihnen Ihre Burger e
 
 Da Sie und Ihr Schwarm damit beschäftigt sind, niemanden vor sich zu lassen, der Ihre Burger nimmt, wenn sie ankommen, können Sie Ihrem Schwarm keine Aufmerksamkeit schenken. 😞
 
-Das ist "synchrone" Arbeit, Sie sind mit dem Kassierer/Koch "synchronisiert" 👨‍🍳. Sie müssen warten 🕙 und genau in dem Moment da sein, in dem der Kassierer/Koch 👨‍🍳 die Burger zubereitet hat und Ihnen gibt, sonst könnte jemand anderes sie nehmen.
+Das ist „synchrone“ Arbeit, Sie sind mit dem Kassierer/Koch „synchronisiert“ 👨‍🍳. Sie müssen warten 🕙 und genau in dem Moment da sein, in dem der Kassierer/Koch 👨‍🍳 die Burger zubereitet hat und Ihnen gibt, sonst könnte jemand anderes sie nehmen.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
@@ -204,7 +204,7 @@ Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 v
 
 ---
 
-In diesem Szenario der parallelen Hamburger sind Sie ein Computersystem / Programm 🤖 mit zwei Prozessoren (Sie und Ihr Schwarm), die beide warten 🕙 und ihre Aufmerksamkeit darauf verwenden, "lange Zeit vor der Theke zu warten" 🕙.
+In diesem Szenario der parallelen Hamburger sind Sie ein Computersystem / Programm 🤖 mit zwei Prozessoren (Sie und Ihr Schwarm), die beide warten 🕙 und ihre Aufmerksamkeit darauf verwenden, „lange Zeit vor der Theke zu warten“ 🕙.
 
 Der Fast-Food-Laden verfügt über 8 Prozessoren (Kassierer/Köche). Während der nebenläufige Burger-Laden nur zwei hatte (einen Kassierer und einen Koch).
 
@@ -214,7 +214,7 @@ Dennoch ist das schlussendliche Benutzererlebnis nicht das Beste. 😞
 
 Dies wäre die parallele äquivalente Geschichte für Hamburger. 🍔
 
-Für ein "realeres" Beispiel hierfür, stellen Sie sich eine Bank vor.
+Für ein „realeres“ Beispiel hierfür, stellen Sie sich eine Bank vor.
 
 Bis vor kurzem hatten die meisten Banken mehrere Kassierer 👨‍💼👨‍💼👨‍💼👨‍💼 und eine große Warteschlange 🕙🕙🕙🕙🕙🕙🕙🕙.
 
@@ -226,7 +226,7 @@ Sie würden Ihren Schwarm 😍 wahrscheinlich nicht mitnehmen wollen, um Besorgu
 
 ### Hamburger Schlussfolgerung
 
-In diesem Szenario "Fast Food Burger mit Ihrem Schwarm" ist es viel sinnvoller, ein nebenläufiges System zu haben ⏸🔀⏯, da viel gewartet wird 🕙.
+In diesem Szenario „Fast Food Burger mit Ihrem Schwarm“ ist es viel sinnvoller, ein nebenläufiges System zu haben ⏸🔀⏯, da viel gewartet wird 🕙.
 
 Das ist auch bei den meisten Webanwendungen der Fall.
 
@@ -234,7 +234,7 @@ Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so g
 
 Und dann warten 🕙, bis die Responses zurückkommen.
 
-Dieses "Warten" 🕙 wird in Mikrosekunden gemessen, aber zusammenfassend lässt sich sagen, dass am Ende eine Menge gewartet wird.
+Dieses „Warten“ 🕙 wird in Mikrosekunden gemessen, aber zusammenfassend lässt sich sagen, dass am Ende eine Menge gewartet wird.
 
 Deshalb ist es sehr sinnvoll, asynchronen ⏸🔀⏯ Code für Web-APIs zu verwenden.
 
@@ -268,7 +268,7 @@ Aber wenn Sie in diesem Fall die acht Ex-Kassierer/Köche/jetzt Reinigungskräft
 
 In diesem Szenario wäre jede einzelne Reinigungskraft (einschließlich Ihnen) ein Prozessor, der seinen Teil der Arbeit erledigt.
 
-Und da die meiste Ausführungszeit durch tatsächliche Arbeit (anstatt durch Warten) in Anspruch genommen wird und die Arbeit in einem Computer von einer <abbr title="Central Processing Unit – Zentrale Recheneinheit">CPU</abbr> erledigt wird, werden diese Probleme als "CPU-lastig" ("CPU bound") bezeichnet.
+Und da die meiste Ausführungszeit durch tatsächliche Arbeit (anstatt durch Warten) in Anspruch genommen wird und die Arbeit in einem Computer von einer <abbr title="Central Processing Unit – Zentrale Recheneinheit">CPU</abbr> erledigt wird, werden diese Probleme als „CPU-lastig“ („CPU bound“) bezeichnet.
 
 ---
 
@@ -278,7 +278,7 @@ Zum Beispiel:
 
 * **Audio-** oder **Bildbearbeitung**.
 * **Computer Vision**: Ein Bild besteht aus Millionen von Pixeln, jedes Pixel hat 3 Werte / Farben, die Verarbeitung erfordert normalerweise, Berechnungen mit diesen Pixeln durchzuführen, alles zur gleichen Zeit.
-* **Maschinelles Lernen**: Normalerweise sind viele "Matrix"- und "Vektor"-Multiplikationen erforderlich. Stellen Sie sich eine riesige Tabelle mit Zahlen vor, in der Sie alle Zahlen gleichzeitig multiplizieren.
+* **Maschinelles Lernen**: Normalerweise sind viele „Matrix“- und „Vektor“-Multiplikationen erforderlich. Stellen Sie sich eine riesige Tabelle mit Zahlen vor, in der Sie alle Zahlen gleichzeitig multiplizieren.
 * **Deep Learning**: Dies ist ein Teilgebiet des maschinellen Lernens, daher gilt das Gleiche. Es ist nur so, dass es nicht eine einzige Tabelle mit Zahlen zum Multiplizieren gibt, sondern eine riesige Menge davon, und in vielen Fällen verwendet man einen speziellen Prozessor, um diese Modelle zu erstellen und / oder zu verwenden.
 
 ### Nebenläufigkeit + Parallelität: Web + maschinelles Lernen
@@ -293,7 +293,7 @@ Wie Sie diese Parallelität in der Produktion erreichen, erfahren Sie im Abschni
 
 ## `async` und `await`.
 
-Moderne Versionen von Python verfügen über eine sehr intuitive Möglichkeit, asynchronen Code zu schreiben. Dadurch sieht es wie normaler "sequentieller" Code aus und übernimmt im richtigen Moment das "Warten" für Sie.
+Moderne Versionen von Python verfügen über eine sehr intuitive Möglichkeit, asynchronen Code zu schreiben. Dadurch sieht es wie normaler „sequentieller“ Code aus und übernimmt im richtigen Moment das „Warten“ für Sie.
 
 Wenn es einen Vorgang gibt, der erfordert, dass gewartet wird, bevor die Ergebnisse zurückgegeben werden, und der diese neue Python-Funktionalität unterstützt, können Sie ihn wie folgt schreiben:
 
@@ -320,9 +320,9 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-Mit `async def` weiß Python, dass es innerhalb dieser Funktion auf `await`-Ausdrücke achten muss und dass es die Ausführung dieser Funktion "anhalten" ⏸ und etwas anderes tun kann 🔀, bevor es zurückkommt.
+Mit `async def` weiß Python, dass es innerhalb dieser Funktion auf `await`-Ausdrücke achten muss und dass es die Ausführung dieser Funktion „anhalten“ ⏸ und etwas anderes tun kann 🔀, bevor es zurückkommt.
 
-Wenn Sie eine `async def`-Funktion aufrufen möchten, müssen Sie sie "erwarten" ("await"). Das folgende wird also nicht funktionieren:
+Wenn Sie eine `async def`-Funktion aufrufen möchten, müssen Sie sie „erwarten“ („await“). Das folgende wird also nicht funktionieren:
 
 ```Python
 # Das funktioniert nicht, weil get_burgers definiert wurde mit: async def
@@ -344,11 +344,11 @@ async def read_burgers():
 
 Ihnen ist wahrscheinlich aufgefallen, dass `await` nur innerhalb von Funktionen verwendet werden kann, die mit `async def` definiert sind.
 
-Gleichzeitig müssen aber mit `async def` definierte Funktionen "erwartet" ("awaited") werden. Daher können Funktionen mit `async def` nur innerhalb von Funktionen aufgerufen werden, die auch mit `async def` definiert sind.
+Gleichzeitig müssen aber mit `async def` definierte Funktionen „erwartet“ („awaited“) werden. Daher können Funktionen mit `async def` nur innerhalb von Funktionen aufgerufen werden, die auch mit `async def` definiert sind.
 
 Daraus resultiert das Ei-und-Huhn-Problem: Wie ruft man die erste `async` Funktion auf?
 
-Wenn Sie mit **FastAPI** arbeiten, müssen Sie sich darüber keine Sorgen machen, da diese "erste" Funktion Ihre *Pfadoperation-Funktion* sein wird und FastAPI weiß, was zu tun ist.
+Wenn Sie mit **FastAPI** arbeiten, müssen Sie sich darüber keine Sorgen machen, da diese „erste“ Funktion Ihre *Pfadoperation-Funktion* sein wird und FastAPI weiß, was zu tun ist.
 
 Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie dies auch tun.
 
@@ -372,19 +372,19 @@ Davor war der Umgang mit asynchronem Code jedoch deutlich komplexer und schwieri
 
 In früheren Versionen von Python hätten Sie Threads oder <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> verwenden können. Der Code ist jedoch viel komplexer zu verstehen, zu debuggen und nachzuvollziehen.
 
-In früheren Versionen von NodeJS / Browser JavaScript hätten Sie "Callbacks" verwendet. Was zur <a href="http://callbackhell.com/" class="external-link" target="_blank">Callback-Hölle</a> führt.
+In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur <a href="http://callbackhell.com/" class="external-link" target="_blank">Callback-Hölle</a> führt.
 
 ## Coroutinen
 
 **Coroutine** ist nur ein schicker Begriff für dasjenige, was von einer `async def`-Funktion zurückgegeben wird. Python weiß, dass es so etwas wie eine Funktion ist, die es starten kann und die irgendwann endet, aber auch dass sie pausiert ⏸ werden kann, wann immer darin ein `await` steht.
 
-Aber all diese Funktionalität der Verwendung von asynchronem Code mit `async` und `await` wird oft als Verwendung von "Coroutinen" zusammengefasst. Es ist vergleichbar mit dem Hauptmerkmal von Go, den "Goroutinen".
+Aber all diese Funktionalität der Verwendung von asynchronem Code mit `async` und `await` wird oft als Verwendung von „Coroutinen“ zusammengefasst. Es ist vergleichbar mit dem Hauptmerkmal von Go, den „Goroutinen“.
 
 ## Fazit
 
 Sehen wir uns den gleichen Satz von oben noch mal an:
 
-> Moderne Versionen von Python unterstützen **"asynchronen Code"** unter Verwendung sogenannter **"Coroutinen"** mithilfe der Syntax **`async`** und **`await`**.
+> Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async`** und **`await`**.
 
 Das sollte jetzt mehr Sinn ergeben. ✨
 
