@@ -78,7 +78,7 @@ my_second_user: User = User(**second_user_data)
 
 Das ganze Framework wurde so entworfen, dass es einfach und intuitiv zu benutzen ist; alle Entscheidungen wurden auf mehreren Editoren getestet, sogar vor der Implementierung, um die bestmögliche Entwicklererfahrung zu gewährleisten.
 
-In der letzten Python Entwickler Umfrage wurde klar, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">dass die meist genutzte Funktion die "Autovervollständigung" ist</a>.
+In der letzten Python Entwickler Umfrage wurde klar, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">dass die meist genutzte Funktion die „Autovervollständigung“ ist</a>.
 
 Das gesamte **FastAPI**-Framework ist darauf ausgelegt, das zu erfüllen. Autovervollständigung funktioniert überall.
 
@@ -102,7 +102,7 @@ Nie wieder falsche Schlüsselnamen tippen, Hin und Herhüpfen zwischen der Dokum
 
 Es gibt für alles sensible **Defaultwerte**, mit optionaler Konfiguration überall. Alle Parameter können feinjustiert werden, damit sie tun, was Sie benötigen, und die API definieren, die Sie brauchen.
 
-Aber standardmäßig **"funktioniert einfach"** alles.
+Aber standardmäßig **„funktioniert einfach alles“**.
 
 ### Validierung
 
@@ -141,7 +141,7 @@ Alles als wiederverwendbare Tools und Komponenten gebaut, die einfach in ihre Sy
 
 FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abbr title='Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Resourcen, Dienste, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 
-* Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **"Graph" von Abhängigkeiten** entsteht.
+* Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **„Graph“ von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.
 * Alle Abhängigkeiten können Daten von Anfragen anfordern und das Verhalten von **Pfadoperationen** und der automatisierten Dokumentation **modifizieren**.
 * **Automatische Validierung** selbst für solche Parameter von *Pfadoperationen*, welche in Abhängigkeiten definiert sind.
