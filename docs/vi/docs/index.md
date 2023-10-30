@@ -154,7 +154,7 @@ $ pip install "uvicorn[standard]"
 * Tạo một tệp tin `main.py` như sau:
 
 ```Python
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
@@ -167,7 +167,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -177,7 +177,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 Nếu code của bạn sử dụng `async` / `await`, hãy sử dụng `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
@@ -190,7 +190,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -280,7 +280,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -289,7 +289,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 

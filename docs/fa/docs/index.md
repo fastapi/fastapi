@@ -143,7 +143,7 @@ $ pip install "uvicorn[standard]"
 * فایلی به نام  `main.py` با محتوای زیر ایجاد کنید :
 
 ```Python
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
@@ -156,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -270,7 +270,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -279,7 +279,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 

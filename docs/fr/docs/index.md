@@ -153,7 +153,7 @@ $ pip install "uvicorn[standard]"
 * Créez un fichier `main.py` avec :
 
 ```Python
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
@@ -166,7 +166,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -176,7 +176,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 Si votre code utilise `async` / `await`, utilisez `async def` :
 
 ```Python hl_lines="9  14"
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
@@ -189,7 +189,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -268,7 +268,7 @@ Maintenant, modifiez le fichier `main.py` pour recevoir <abbr title="en anglais 
 Déclarez ce corps en utilisant les types Python standards, grâce à Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -279,7 +279,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -288,7 +288,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 
