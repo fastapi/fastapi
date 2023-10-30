@@ -372,25 +372,6 @@ You can continue with the previous instructions for an "Existing Language" for t
 
 You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
 
-#### Tips and tricks for translation
-
-* Translate only the Markdown documents (`.md`). Do not translate the code examples at `./docs_src`.
-
-* In code blocks within the Markdown document, translate comments (`# a comment`), but leave the rest unchanged.
-
-* Do not change anything enclosed in "``" (inline code).
-
-* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
-
-* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
-
-* Do not change the paths in links to images, code files, Markdown documents.
-
-* However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
-    * Search for such links in the translated document using the regex `#[^# ]`.
-    * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
-    * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
-
 #### Preview the result
 
 As already mentioned above, You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
@@ -429,6 +410,25 @@ Serving at: http://127.0.0.1:8008
 ```
 
 </div>
+
+#### Translation specific tips and guidelines
+
+* Translate only the Markdown documents (`.md`). Do not translate the code examples at `./docs_src`.
+
+* In code blocks within the Markdown document, translate comments (`# a comment`), but leave the rest unchanged.
+
+* Do not change anything enclosed in "``" (inline code).
+
+* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
+
+* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
+
+* Do not change the paths in links to images, code files, Markdown documents.
+
+* However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
+    * Search for such links in the translated document using the regex `#[^# ]`.
+    * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
+    * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
 
 ## Tests
 
