@@ -372,25 +372,6 @@ Sie können nun mit den obigen Instruktionen für eine „vorhandene Sprache“ 
 
 Fügen Sie dem ersten Pull Request beide Dateien `docs/ht/mkdocs.yml` und `docs/ht/index.md` bei. 🎉
 
-#### Tipps und Tricks bei der Übersetzung
-
-* Übersetzen Sie nur die Markdown-Dokumente (`.md`). Übersetzen Sie nicht die Codebeispiele unter `./docs_src`.
-
-* In Codeblöcken innerhalb des Markdown-Dokuments, übersetzen Sie Kommentare (`# ein Kommentar`), aber lassen Sie den Rest unverändert.
-
-* Ändern Sie nichts, was in "``" (Inline-Code) eingeschlossen ist.
-
-* In Zeilen, die mit `===` oder `!!!` beginnen, übersetzen Sie nur den ` "... Text ..."`-Teil. Lassen Sie den Rest unverändert.
-
-* Sie können Info-Boxen wie `!!! warning` mit beispielsweise `!!! warning "Achtung"` übersetzen. Aber ändern Sie nicht das Wort direkt nach dem `!!!`, es bestimmt die Farbe der Info-Box.
-
-* Ändern Sie nicht die Pfade in Links zu Bildern, Codedateien, Markdown Dokumenten.
-
-* Wenn ein Markdown-Dokument übersetzt ist, ändern sich allerdings unter Umständen die `#hash-teile` in Links zu dessen Überschriften. Aktualisieren Sie diese Links, wenn möglich.
-    * Suchen Sie im übersetzten Dokument nach solchen Links mit dem Regex `#[^# ]`.
-    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option „Edit“ -> „Find in Files“.
-    * Übersetzen Sie bei der Übersetzung eines Dokuments nicht „im Voraus“ `#hash-teile`, die zu Überschriften in noch nicht übersetzten Dokumenten verlinken.
-
 #### Vorschau des Ergebnisses
 
 Wie bereits oben erwähnt, können Sie `./scripts/docs.py` mit dem Befehl `live` verwenden, um eine Vorschau der Ergebnisse anzuzeigen (oder `mkdocs serve`).
@@ -429,6 +410,25 @@ Serving at: http://127.0.0.1:8008
 ```
 
 </div>
+
+#### Übersetzungsspezifische Tipps und Richtlinien
+
+* Übersetzen Sie nur die Markdown-Dokumente (`.md`). Übersetzen Sie nicht die Codebeispiele unter `./docs_src`.
+
+* In Codeblöcken innerhalb des Markdown-Dokuments, übersetzen Sie Kommentare (`# ein Kommentar`), aber lassen Sie den Rest unverändert.
+
+* Ändern Sie nichts, was in "``" (Inline-Code) eingeschlossen ist.
+
+* In Zeilen, die mit `===` oder `!!!` beginnen, übersetzen Sie nur den ` "... Text ..."`-Teil. Lassen Sie den Rest unverändert.
+
+* Sie können Info-Boxen wie `!!! warning` mit beispielsweise `!!! warning "Achtung"` übersetzen. Aber ändern Sie nicht das Wort direkt nach dem `!!!`, es bestimmt die Farbe der Info-Box.
+
+* Ändern Sie nicht die Pfade in Links zu Bildern, Codedateien, Markdown Dokumenten.
+
+* Wenn ein Markdown-Dokument übersetzt ist, ändern sich allerdings unter Umständen die `#hash-teile` in Links zu dessen Überschriften. Aktualisieren Sie diese Links, wenn möglich.
+    * Suchen Sie im übersetzten Dokument nach solchen Links mit dem Regex `#[^# ]`.
+    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option „Edit“ -> „Find in Files“.
+    * Übersetzen Sie bei der Übersetzung eines Dokuments nicht „im Voraus“ `#hash-teile`, die zu Überschriften in noch nicht übersetzten Dokumenten verlinken.
 
 ## Tests
 
