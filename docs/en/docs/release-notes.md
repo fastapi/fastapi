@@ -13,7 +13,7 @@ hide:
 ### Fixes
 
 * 📌 Pin Swagger UI version to 5.9.0 temporarily to handle a bug crashing it in 5.9.1. PR [#10529](https://github.com/tiangolo/fastapi/pull/10529) by [@alejandraklachquin](https://github.com/alejandraklachquin).
-    * This is not really a bug in FastAPI but in Swagger UI, nevertheless pinning the version will work while a soulution is found on the [Swagger UI side](https://github.com/swagger-api/swagger-ui/issues/9337).
+    * This is not really a bug in FastAPI but in Swagger UI, nevertheless pinning the version will work while a solution is found on the [Swagger UI side](https://github.com/swagger-api/swagger-ui/issues/9337).
 
 ### Docs
 
