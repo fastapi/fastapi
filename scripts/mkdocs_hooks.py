@@ -8,18 +8,23 @@ from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import Link, Navigation, Section
 from mkdocs.structure.pages import Page
 
+non_traslated_sections = [
+    "reference/",
+    "release-notes.md",
+]
 
-@lru_cache()
+
+@lru_cache
 def get_missing_translation_content(docs_dir: str) -> str:
     docs_dir_path = Path(docs_dir)
     missing_translation_path = docs_dir_path.parent.parent / "missing-translation.md"
     return missing_translation_path.read_text(encoding="utf-8")
 
 
-@lru_cache()
+@lru_cache
 def get_mkdocs_material_langs() -> List[str]:
     material_path = Path(material.__file__).parent
-    material_langs_path = material_path / "partials" / "languages"
+    material_langs_path = material_path / "templates" / "partials" / "languages"
     langs = [file.stem for file in material_langs_path.glob("*.html")]
     return langs
 
@@ -123,6 +128,9 @@ def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
     if isinstance(page.file, EnFile):
+        for excluded_section in non_traslated_sections:
+            if page.file.src_path.startswith(excluded_section):
+                return markdown
         missing_translation_content = get_missing_translation_content(config.docs_dir)
         header = ""
         body = markdown
