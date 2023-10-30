@@ -7,6 +7,9 @@ hide:
 
 ## Latest Changes
 
+
+## 0.104.1
+
 ### Fixes
 
 * 📌 Pin Swagger UI version to 5.9.0 temporarily to handle a bug crashing it in 5.9.1. PR [#10529](https://github.com/tiangolo/fastapi/pull/10529) by [@alejandraklachquin](https://github.com/alejandraklachquin).
