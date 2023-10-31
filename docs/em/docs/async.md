@@ -409,11 +409,11 @@ async def read_burgers():
 
 ### 🔗
 
-🎏 ✔ [🔗](/tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
+🎏 ✔ [🔗](./tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
 
 ### 🎧-🔗
 
-👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
+👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
 
 ### 🎏 🚙 🔢
 
