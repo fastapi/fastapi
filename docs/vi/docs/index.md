@@ -31,7 +31,7 @@ FastAPI là một web framework hiện đại, hiệu năng cao để xây dựn
 
 Những tính năng như:
 
-* **Nhanh**: Hiệu năng rất cao khi so sánh với **NodeJS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#performance).
+* **Nhanh**: Hiệu năng rất cao khi so sánh với **NodeJS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#hieu-nang).
 * **Code nhanh**: Tăng tốc độ phát triển tính năng từ 200% tới 300%. *
 * **Ít lỗi hơn**: Giảm khoảng 40% những lỗi phát sinh bởi con người (nhà phát triển). *
 * **Trực giác tốt hơn**: Được các trình soạn thảo hỗ tuyệt vời. <abbr title="như auto-complete, autocompletion, IntelliSense">Completion</abbr> mọi nơi. Ít thời gian gỡ lỗi.
