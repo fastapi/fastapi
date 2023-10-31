@@ -409,11 +409,11 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 ### 依赖
 
-这同样适用于[依赖](/tutorial/dependencies/index.md){.internal-link target=_blank}。如果一个依赖是标准的 `def` 函数而不是 `async def`，它将被运行在外部线程池中。
+这同样适用于[依赖](./tutorial/dependencies/index.md){.internal-link target=_blank}。如果一个依赖是标准的 `def` 函数而不是 `async def`，它将被运行在外部线程池中。
 
 ### 子依赖
 
-你可以拥有多个相互依赖的依赖以及[子依赖](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} （作为函数的参数），它们中的一些可能是通过 `async def` 声明，也可能是通过 `def` 声明。它们仍然可以正常工作，这些通过 `def` 声明的函数将会在外部线程中调用（来自线程池），而不是"被等待"。
+你可以拥有多个相互依赖的依赖以及[子依赖](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} （作为函数的参数），它们中的一些可能是通过 `async def` 声明，也可能是通过 `def` 声明。它们仍然可以正常工作，这些通过 `def` 声明的函数将会在外部线程中调用（来自线程池），而不是"被等待"。
 
 ### 其他函数
 
