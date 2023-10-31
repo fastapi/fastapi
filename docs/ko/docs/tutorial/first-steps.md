@@ -310,7 +310,7 @@ API를 빌드하는 동안 일반적으로 특정 행동을 수행하기 위해 
 ```
 
 !!! note 참고
-    차이점을 모르겠다면 [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}을 확인하세요.
+    차이점을 모르겠다면 [Async: *"바쁘신 경우"*](../async.md#_1){.internal-link target=_blank}을 확인하세요.
 
 ### 5 단계: 콘텐츠 반환
 

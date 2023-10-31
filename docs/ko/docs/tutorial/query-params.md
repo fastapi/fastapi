@@ -195,4 +195,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `limit`, 선택적인 `int`.
 
 !!! tip "팁"
-    [경로 매개변수](path-params.md#predefined-values){.internal-link target=_blank}와 마찬가지로 `Enum`을 사용할 수 있습니다.
+    [경로 매개변수](path-params.md#_8){.internal-link target=_blank}와 마찬가지로 `Enum`을 사용할 수 있습니다.
