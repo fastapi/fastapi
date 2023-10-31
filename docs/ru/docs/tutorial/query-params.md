@@ -222,4 +222,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `limit`, необязательный `int`.
 
 !!! подсказка
-    Вы можете использовать класс `Enum` также, как ранее применяли его с [Path-параметрами](path-params.md#predefined-values){.internal-link target=_blank}.
+    Вы можете использовать класс `Enum` также, как ранее применяли его с [Path-параметрами](path-params.md#_7){.internal-link target=_blank}.
