@@ -30,7 +30,7 @@ Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un mod
 !!! note "Remarque"
     Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
-!!! Info
+!!! info
     La clé `model` ne fait pas partie d'OpenAPI.
 
     **FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
@@ -175,7 +175,7 @@ Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, 
 !!! note "Remarque"
     Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
-!!! Info
+!!! info
     À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
 
     Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
