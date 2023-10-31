@@ -38,5 +38,5 @@ O resultado de chamar a função é algo que pode ser codificado com o padrão d
 
 A função não retorna um grande `str` contendo os dados no formato JSON (como uma string). Mas sim, retorna uma estrutura de dados padrão do Python (por exemplo, um `dict`) com valores e subvalores compatíveis com JSON.
 
-!!! nota
+!!! note "Nota"
     `jsonable_encoder` é realmente usado pelo **FastAPI** internamente para converter dados. Mas também é útil em muitos outros cenários.

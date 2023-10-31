@@ -109,7 +109,7 @@ Assim podendo tentar ajudar a resolver essas questões.
 Entre no 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">server de conversa do Discord</a> 👥 e conheça novas pessoas da comunidade
 do FastAPI.
 
-!!! dica
+!!! tip "Dica"
     Para perguntas, pergunte nas <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
 
     Use o chat apenas para outro tipo de assunto.

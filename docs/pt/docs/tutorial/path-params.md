@@ -24,7 +24,7 @@ Você pode declarar o tipo de um parâmetro na função usando as anotações pa
 
 Nesse caso, `item_id` está sendo declarado como um `int`.
 
-!!! Check Verifique
+!!! check "Verifique"
 	Isso vai dar à você suporte do seu editor dentro das funções, com verificações de erros, autocompletar, etc.
 
 ## Conversão de <abbr title="também conhecido como: serialização, parsing, marshalling">dados</abbr>
@@ -35,7 +35,7 @@ Se você rodar esse exemplo e abrir o seu navegador em <a href="http://127.0.0.1
 {"item_id":3}
 ```
 
-!!! Verifique
+!!! check "Verifique"
 	Observe que o valor recebido pela função (e também retornado por ela) é `3`, como um Python `int`, não como uma string `"3"`.
 
 	Então, com essa declaração de tipo, o **FastAPI** dá pra você um <abbr title="convertendo a string que veio do request HTTP em um dado Python">"parsing"</abbr> automático no request .
@@ -63,7 +63,7 @@ devido ao parâmetro da rota `item_id` ter um valor `"foo"`, que não é um `int
 
 O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! Verifique
+!!! check "Verifique"
 	Então, com a mesma declaração de tipo do Python, o **FastAPI** dá pra você validação de dados.
 
 	Observe que o erro também mostra claramente o ponto exato onde a validação não passou.
@@ -76,7 +76,7 @@ Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
+!!! check "Verifique"
 	Novamente, apenas com a mesma declaração de tipo do Python, o **FastAPI** te dá de forma automática e interativa a documentação (integrada com o Swagger UI).
 
 	Veja que o parâmetro de rota está declarado como sendo um inteiro (int).
@@ -131,10 +131,10 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! informação
+!!! info "informação"
     <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (ou enums) estão disponíveis no Python</a> desde a versão 3.4.
 
-!!! dica
+!!! tip "Dica"
 	Se você está se perguntando, "AlexNet", "ResNet", e "LeNet" são apenas nomes de <abbr title="técnicamente, modelos de arquitetura de Deep Learning">modelos</abbr> de Machine Learning (aprendizado de máquina).
 
 ### Declare um *parâmetro de rota*
@@ -171,7 +171,7 @@ Você pode ter o valor exato de enumerate (um `str` nesse caso) usando `model_na
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! conselho
+!!! tip "Dica"
 	Você também poderia acessar o valor `"lenet"` com `ModelName.lenet.value`
 
 #### Retorne *membros de enumeration*
@@ -225,7 +225,7 @@ Então, você poderia usar ele com:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! dica
+!!! tip "Dica"
 	Você poderia precisar que o parâmetro contivesse `/home/johndoe/myfile.txt`, com uma barra no inicio (`/`).
 
 	Neste caso, a URL deveria ser: `/files//home/johndoe/myfile.txt`, com barra dupla (`//`) entre `files` e `home`.

@@ -20,7 +20,7 @@ E você também pode declarar parâmetros de corpo como opcionais, definindo o v
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-!!! nota
+!!! note "Nota"
     Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
 
 ## Múltiplos parâmetros de corpo
@@ -69,7 +69,7 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
 }
 ```
 
-!!! nota
+!!! note "Nota"
     Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
 
 

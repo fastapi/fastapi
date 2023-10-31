@@ -1,6 +1,6 @@
 # Réponses supplémentaires dans OpenAPI
 
-!!! Attention
+!!! warning "Attention"
     Ceci concerne un sujet plutôt avancé.
 
     Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
@@ -27,7 +27,7 @@ Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un mod
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! Remarque
+!!! note "Remarque"
     Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
 !!! Info
@@ -172,7 +172,7 @@ Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, 
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! Remarque
+!!! note "Remarque"
     Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
 !!! Info

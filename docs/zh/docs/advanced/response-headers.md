@@ -25,7 +25,7 @@
 ```
 
 
-!!! 注意 "技术细节"
+!!! note "技术细节"
     你也可以使用`from starlette.responses import Response`或`from starlette.responses import JSONResponse`。
 
     **FastAPI**提供了与`fastapi.responses`相同的`starlette.responses`，只是为了方便开发者。但是，大多数可用的响应都直接来自Starlette。
