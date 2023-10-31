@@ -79,7 +79,7 @@ You can create the *path operations* for that module using `APIRouter`.
 
 You import it and create an "instance" the same way you would with the class `FastAPI`:
 
-```Python hl_lines="1  3"
+```Python hl_lines="1  3" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -89,7 +89,7 @@ And then you use it to declare your *path operations*.
 
 Use it the same way you would use the `FastAPI` class:
 
-```Python hl_lines="6  11  16"
+```Python hl_lines="6  11  16" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -114,13 +114,13 @@ We will now use a simple dependency to read a custom `X-Token` header:
 
 === "Python 3.9+"
 
-    ```Python hl_lines="3  6-8"
+    ```Python hl_lines="3  6-8" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="1  5-7"
+    ```Python hl_lines="1  5-7" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
     ```
 
@@ -129,7 +129,7 @@ We will now use a simple dependency to read a custom `X-Token` header:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="1  4-6"
+    ```Python hl_lines="1  4-6" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
     ```
 
@@ -160,7 +160,7 @@ We know all the *path operations* in this module have the same:
 
 So, instead of adding all that to each *path operation*, we can add it to the `APIRouter`.
 
-```Python hl_lines="5-10  16  21"
+```Python hl_lines="5-10  16  21" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -212,7 +212,7 @@ And we need to get the dependency function from the module `app.dependencies`, t
 
 So we use a relative import with `..` for the dependencies:
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -282,7 +282,7 @@ We are not adding the prefix `/items` nor the `tags=["items"]` to each *path ope
 
 But we can still add _more_ `tags` that will be applied to a specific *path operation*, and also some extra `responses` specific to that *path operation*:
 
-```Python hl_lines="30-31"
+```Python hl_lines="30-31" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -307,7 +307,7 @@ You import and create a `FastAPI` class as normally.
 
 And we can even declare [global dependencies](dependencies/global-dependencies.md){.internal-link target=_blank} that will be combined with the dependencies for each `APIRouter`:
 
-```Python hl_lines="1  3  7"
+```Python hl_lines="1  3  7" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -315,7 +315,7 @@ And we can even declare [global dependencies](dependencies/global-dependencies.m
 
 Now we import the other submodules that have `APIRouter`s:
 
-```Python hl_lines="5"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -377,7 +377,7 @@ The `router` from `users` would overwrite the one from `items` and we wouldn't b
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 
-```Python hl_lines="5"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -385,7 +385,7 @@ So, to be able to use both of them in the same file, we import the submodules di
 
 Now, let's include the `router`s from the submodules `users` and `items`:
 
-```Python hl_lines="10-11"
+```Python hl_lines="10-11" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -418,7 +418,7 @@ It contains an `APIRouter` with some admin *path operations* that your organizat
 
 For this example it will be super simple. But let's say that because it is shared with other projects in the organization, we cannot modify it and add a `prefix`, `dependencies`, `tags`, etc. directly to the `APIRouter`:
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/internal/admin.py"
 {!../../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
@@ -426,7 +426,7 @@ But we still want to set a custom `prefix` when including the `APIRouter` so tha
 
 We can declare all that without having to modify the original `APIRouter` by passing those parameters to `app.include_router()`:
 
-```Python hl_lines="14-17"
+```Python hl_lines="14-17" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -449,7 +449,7 @@ We can also add *path operations* directly to the `FastAPI` app.
 
 Here we do it... just to show that we can 🤷:
 
-```Python hl_lines="21-23"
+```Python hl_lines="21-23" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 

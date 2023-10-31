@@ -79,7 +79,7 @@
 
 你可以导入它并通过与 `FastAPI` 类相同的方式创建一个「实例」：
 
-```Python hl_lines="1  3"
+```Python hl_lines="1  3" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -89,7 +89,7 @@
 
 使用方式与 `FastAPI` 类相同：
 
-```Python hl_lines="6  11  16"
+```Python hl_lines="6  11  16" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -112,7 +112,7 @@
 
 现在我们将使用一个简单的依赖项来读取一个自定义的 `X-Token` 请求首部：
 
-```Python hl_lines="1  4-6"
+```Python hl_lines="1  4-6" title="app/dependencies.py"
 {!../../../docs_src/bigger_applications/app/dependencies.py!}
 ```
 
@@ -143,7 +143,7 @@
 
 因此，我们可以将其添加到 `APIRouter` 中，而不是将其添加到每个路径操作中。
 
-```Python hl_lines="5-10  16  21"
+```Python hl_lines="5-10  16  21" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -195,7 +195,7 @@ async def read_item(item_id: str):
 
 因此，我们通过 `..` 对依赖项使用了相对导入：
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -265,7 +265,7 @@ from ...dependencies import get_token_header
 
 但是我们仍然可以添加*更多*将会应用于特定的*路径操作*的 `tags`，以及一些特定于该*路径操作*的额外 `responses`：
 
-```Python hl_lines="30-31"
+```Python hl_lines="30-31" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -290,7 +290,7 @@ from ...dependencies import get_token_header
 
 我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md){.internal-link target=_blank}，它会和每个 `APIRouter` 的依赖项组合在一起：
 
-```Python hl_lines="1  3  7"
+```Python hl_lines="1  3  7" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -298,7 +298,7 @@ from ...dependencies import get_token_header
 
 现在，我们导入具有 `APIRouter` 的其他子模块：
 
-```Python hl_lines="5"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -360,7 +360,7 @@ from .routers.users import router
 
 因此，为了能够在同一个文件中使用它们，我们直接导入子模块：
 
-```Python hl_lines="4"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -368,7 +368,7 @@ from .routers.users import router
 
 现在，让我们来包含来自 `users` 和 `items` 子模块的 `router`。
 
-```Python hl_lines="10-11"
+```Python hl_lines="10-11" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -401,7 +401,7 @@ from .routers.users import router
 
 对于此示例，它将非常简单。但是假设由于它是与组织中的其他项目所共享的，因此我们无法对其进行修改，以及直接在 `APIRouter` 中添加 `prefix`、`dependencies`、`tags` 等：
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/internal/admin.py"
 {!../../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
@@ -409,7 +409,7 @@ from .routers.users import router
 
 我们可以通过将这些参数传递给 `app.include_router()` 来完成所有的声明，而不必修改原始的 `APIRouter`：
 
-```Python hl_lines="14-17"
+```Python hl_lines="14-17" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -432,7 +432,7 @@ from .routers.users import router
 
 这里我们这样做了...只是为了表明我们可以做到🤷：
 
-```Python hl_lines="21-23"
+```Python hl_lines="21-23" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 

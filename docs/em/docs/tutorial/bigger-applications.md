@@ -79,7 +79,7 @@
 
 👆 🗄 ⚫️ &amp; ✍ "👐" 🎏 🌌 👆 🔜 ⏮️ 🎓 `FastAPI`:
 
-```Python hl_lines="1  3"
+```Python hl_lines="1  3" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -89,7 +89,7 @@
 
 ⚙️ ⚫️ 🎏 🌌 👆 🔜 ⚙️ `FastAPI` 🎓:
 
-```Python hl_lines="6  11  16"
+```Python hl_lines="6  11  16" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -112,7 +112,7 @@
 
 👥 🔜 🔜 ⚙️ 🙅 🔗 ✍ 🛃 `X-Token` 🎚:
 
-```Python hl_lines="1  4-6"
+```Python hl_lines="1  4-6" title="app/dependencies.py"
 {!../../../docs_src/bigger_applications/app/dependencies.py!}
 ```
 
@@ -143,7 +143,7 @@
 
 , ↩️ ❎ 🌐 👈 🔠 *➡ 🛠️*, 👥 💪 🚮 ⚫️ `APIRouter`.
 
-```Python hl_lines="5-10  16  21"
+```Python hl_lines="5-10  16  21" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -195,7 +195,7 @@ async def read_item(item_id: str):
 
 👥 ⚙️ ⚖ 🗄 ⏮️ `..` 🔗:
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -265,7 +265,7 @@ that 🔜 ⛓:
 
 ✋️ 👥 💪 🚮 _🌅_ `tags` 👈 🔜 ✔ 🎯 *➡ 🛠️*, &amp; ➕ `responses` 🎯 👈 *➡ 🛠️*:
 
-```Python hl_lines="30-31"
+```Python hl_lines="30-31" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -290,7 +290,7 @@ that 🔜 ⛓:
 
 &amp; 👥 💪 📣 [🌐 🔗](dependencies/global-dependencies.md){.internal-link target=_blank} 👈 🔜 🌀 ⏮️ 🔗 🔠 `APIRouter`:
 
-```Python hl_lines="1  3  7"
+```Python hl_lines="1  3  7" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -298,7 +298,7 @@ that 🔜 ⛓:
 
 🔜 👥 🗄 🎏 🔁 👈 ✔️ `APIRouter`Ⓜ:
 
-```Python hl_lines="5"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -360,7 +360,7 @@ from .routers.users import router
 
 , 💪 ⚙️ 👯‍♂️ 👫 🎏 📁, 👥 🗄 🔁 🔗:
 
-```Python hl_lines="4"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -368,7 +368,7 @@ from .routers.users import router
 
 🔜, ➡️ 🔌 `router`Ⓜ ⚪️➡️ 🔁 `users` &amp; `items`:
 
-```Python hl_lines="10-11"
+```Python hl_lines="10-11" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -401,7 +401,7 @@ from .routers.users import router
 
 👉 🖼 ⚫️ 🔜 💎 🙅. ✋️ ➡️ 💬 👈 ↩️ ⚫️ 💰 ⏮️ 🎏 🏗 🏢, 👥 🚫🔜 🔀 ⚫️ &amp; 🚮 `prefix`, `dependencies`, `tags`, ♒️. 🔗 `APIRouter`:
 
-```Python hl_lines="3"
+```Python hl_lines="3" title="app/internal/admin.py"
 {!../../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
@@ -409,7 +409,7 @@ from .routers.users import router
 
 👥 💪 📣 🌐 👈 🍵 ✔️ 🔀 ⏮️ `APIRouter` 🚶‍♀️ 👈 🔢 `app.include_router()`:
 
-```Python hl_lines="14-17"
+```Python hl_lines="14-17" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -432,7 +432,7 @@ from .routers.users import router
 
 📥 👥 ⚫️... 🎦 👈 👥 💪 🤷:
 
-```Python hl_lines="21-23"
+```Python hl_lines="21-23" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
