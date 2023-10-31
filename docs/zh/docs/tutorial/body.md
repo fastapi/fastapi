@@ -192,4 +192,4 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 ## 不使用 Pydantic
 
-如果你不想使用 Pydantic 模型，你还可以使用 **Body** 参数。请参阅文档 [请求体 - 多个参数：请求体中的单一值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+如果你不想使用 Pydantic 模型，你还可以使用 **Body** 参数。请参阅文档 [请求体 - 多个参数：请求体中的单一值](body-multiple-params.md#_2){.internal-link target=_blank}。

@@ -11,7 +11,7 @@
 !!! danger
     永远不要存储用户的明文密码。始终存储一个可以用于验证的「安全哈希值」。
 
-    如果你尚未了解该知识，你可以在[安全章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}中学习何为「密码哈希值」。
+    如果你尚未了解该知识，你可以在[安全章节](security/simple-oauth2.md#_3){.internal-link target=_blank}中学习何为「密码哈希值」。
 
 ## 多个模型
 
