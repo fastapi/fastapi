@@ -78,7 +78,7 @@
 
 📚 💼 👆 5️⃣📆 ⏪ 💭 ❔ 📚 ❔. 👶
 
-🚥 👆 🤝 📚 👫👫 ⏮️ 👫 ❔, 👆 🔜 ▶️️ 🛂 [FastAPI 🕴](fastapi-people.md#experts){.internal-link target=_blank}. 👶
+🚥 👆 🤝 📚 👫👫 ⏮️ 👫 ❔, 👆 🔜 ▶️️ 🛂 [FastAPI 🕴](fastapi-people.md#_2){.internal-link target=_blank}. 👶
 
 💭, 🏆 ⚠ ☝: 🔄 😇. 👫👫 👟 ⏮️ 👫 😩 &amp; 📚 💼 🚫 💭 🏆 🌌, ✋️ 🔄 🏆 👆 💪 😇. 👶
 
@@ -198,7 +198,7 @@
 * 🔧 🤭 👆 🔎 🔛 🧾.
 * 💰 📄, 📹, ⚖️ 📻 👆 ✍ ⚖️ 🔎 🔃 FastAPI <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">✍ 👉 📁</a>.
     * ⚒ 💭 👆 🚮 👆 🔗 ▶️ 🔗 📄.
-* ℹ [💬 🧾](contributing.md#translations){.internal-link target=_blank} 👆 🇪🇸.
+* ℹ [💬 🧾](contributing.md#_9){.internal-link target=_blank} 👆 🇪🇸.
     * 👆 💪 ℹ 📄 ✍ ✍ 🎏.
 * 🛠️ 🆕 🧾 📄.
 * 🔧 ♻ ❔/🐛.
@@ -215,8 +215,8 @@
 
 👑 📋 👈 👆 💪 ▶️️ 🔜:
 
-* [ℹ 🎏 ⏮️ ❔ 📂](#help-others-with-questions-in-github){.internal-link target=_blank} (👀 📄 🔛).
-* [📄 🚲 📨](#review-pull-requests){.internal-link target=_blank} (👀 📄 🔛).
+* [ℹ 🎏 ⏮️ ❔ 📂](#i){.internal-link target=_blank} (👀 📄 🔛).
+* [📄 🚲 📨](#i){.internal-link target=_blank} (👀 📄 🔛).
 
 👈 2️⃣ 📋 ⚫️❔ **🍴 🕰 🏆**. 👈 👑 👷 🏆 FastAPI.
 
@@ -227,7 +227,7 @@
 🛑 👶 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">😧 💬 💽</a> 👶 &amp; 🤙 👅 ⏮️ 🎏 FastAPI 👪.
 
 !!! tip
-    ❔, 💭 👫 <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">📂 💬</a>, 📤 🌅 👍 🤞 👆 🔜 📨 ℹ [FastAPI 🕴](fastapi-people.md#experts){.internal-link target=_blank}.
+    ❔, 💭 👫 <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">📂 💬</a>, 📤 🌅 👍 🤞 👆 🔜 📨 ℹ [FastAPI 🕴](fastapi-people.md#_2){.internal-link target=_blank}.
 
     ⚙️ 💬 🕴 🎏 🏢 💬.
 
@@ -237,7 +237,7 @@
 
 📂, 📄 🔜 🦮 👆 ✍ ▶️️ ❔ 👈 👆 💪 🌖 💪 🤚 👍 ❔, ⚖️ ❎ ⚠ 👆 ⏭ 💬. &amp; 📂 👤 💪 ⚒ 💭 👤 🕧 ❔ 🌐, 🚥 ⚫️ ✊ 🕰. 👤 💪 🚫 🤙 👈 ⏮️ 💬 ⚙️. 👶
 
-💬 💬 ⚙️ 🚫 💪 📇 📂, ❔ &amp; ❔ 5️⃣📆 🤚 💸 💬. &amp; 🕴 🕐 📂 💯 ▶️️ [FastAPI 🕴](fastapi-people.md#experts){.internal-link target=_blank}, 👆 🔜 🌅 🎲 📨 🌅 🙋 📂.
+💬 💬 ⚙️ 🚫 💪 📇 📂, ❔ &amp; ❔ 5️⃣📆 🤚 💸 💬. &amp; 🕴 🕐 📂 💯 ▶️️ [FastAPI 🕴](fastapi-people.md#_2){.internal-link target=_blank}, 👆 🔜 🌅 🎲 📨 🌅 🙋 📂.
 
 🔛 🎏 🚄, 📤 💯 👩‍💻 💬 ⚙️, 📤 ↕ 🤞 👆 🔜 🔎 👱 💬 📤, 🌖 🌐 🕰. 👶
 

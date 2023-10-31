@@ -310,7 +310,7 @@ https://example.com/items/foo
 ```
 
 !!! note
-    🚥 👆 🚫 💭 🔺, ✅ [🔁: *"🏃 ❓"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+    🚥 👆 🚫 💭 🔺, ✅ [🔁: *"🏃 ❓"*](../async.md#_2){.internal-link target=_blank}.
 
 ### 🔁 5️⃣: 📨 🎚
 

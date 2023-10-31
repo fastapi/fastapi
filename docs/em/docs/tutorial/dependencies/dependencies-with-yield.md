@@ -99,7 +99,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 ⚫️ 5️⃣📆 😋 🤚 `HTTPException` ⚖️ 🎏 🚪 📟, ⏮️ `yield`. ✋️ **⚫️ 🏆 🚫 👷**.
 
-🚪 📟 🔗 ⏮️ `yield` 🛠️ *⏮️* 📨 📨, [⚠ 🐕‍🦺](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} 🔜 ✔️ ⏪ 🏃. 📤 🕳 😽 ⚠ 🚮 👆 🔗 🚪 📟 (⏮️ `yield`).
+🚪 📟 🔗 ⏮️ `yield` 🛠️ *⏮️* 📨 📨, [⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank} 🔜 ✔️ ⏪ 🏃. 📤 🕳 😽 ⚠ 🚮 👆 🔗 🚪 📟 (⏮️ `yield`).
 
 , 🚥 👆 🤚 `HTTPException` ⏮️ `yield`, 🔢 (⚖️ 🙆 🛃) ⚠ 🐕‍🦺 👈 ✊ `HTTPException`Ⓜ &amp; 📨 🇺🇸🔍 4️⃣0️⃣0️⃣ 📨 🏆 🚫 📤 ✊ 👈 ⚠ 🚫🔜.
 
@@ -111,7 +111,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 🚥 👆 ✔️ 📟 👈 👆 💭 💪 🤚 ⚠, 🏆 😐/"🙃" 👜 &amp; 🚮 `try` 🍫 👈 📄 📟.
 
-🚥 👆 ✔️ 🛃 ⚠ 👈 👆 🔜 💖 🍵 *⏭* 🛬 📨 &amp; 🎲 ❎ 📨, 🎲 🙋‍♀ `HTTPException`, ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+🚥 👆 ✔️ 🛃 ⚠ 👈 👆 🔜 💖 🍵 *⏭* 🛬 📨 &amp; 🎲 ❎ 📨, 🎲 🙋‍♀ `HTTPException`, ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank}.
 
 !!! tip
     👆 💪 🤚 ⚠ 🔌 `HTTPException` *⏭* `yield`. ✋️ 🚫 ⏮️.
@@ -164,7 +164,7 @@ participant tasks as Background tasks
     ⏮️ 1️⃣ 📚 📨 📨, 🙅‍♂ 🎏 📨 💪 📨.
 
 !!! tip
-    👉 📊 🎦 `HTTPException`, ✋️ 👆 💪 🤚 🙆 🎏 ⚠ ❔ 👆 ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+    👉 📊 🎦 `HTTPException`, ✋️ 👆 💪 🤚 🙆 🎏 ⚠ ❔ 👆 ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank}.
 
     🚥 👆 🤚 🙆 ⚠, ⚫️ 🔜 🚶‍♀️ 🔗 ⏮️ 🌾, 🔌 `HTTPException`, &amp; ⤴️ **🔄** ⚠ 🐕‍🦺. 🚥 📤 🙅‍♂ ⚠ 🐕‍🦺 👈 ⚠, ⚫️ 🔜 ⤴️ 🍵 🔢 🔗 `ServerErrorMiddleware`, 🛬 5️⃣0️⃣0️⃣ 🇺🇸🔍 👔 📟, ➡️ 👩‍💻 💭 👈 📤 ❌ 💽.
 

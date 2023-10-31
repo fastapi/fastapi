@@ -31,7 +31,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 🔑 ⚒:
 
-* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#performance).
+* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#_15).
 * **⏩ 📟**: 📈 🚅 🛠️ ⚒ 🔃 2️⃣0️⃣0️⃣ 💯 3️⃣0️⃣0️⃣ 💯. *
 * **👩‍❤‍👨 🐛**: 📉 🔃 4️⃣0️⃣ 💯 🗿 (👩‍💻) 📉 ❌. *
 * **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠️</abbr> 🌐. 🌘 🕰 🛠️.

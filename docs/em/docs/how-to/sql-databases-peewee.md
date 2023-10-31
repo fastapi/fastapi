@@ -86,7 +86,7 @@ connect_args={"check_same_thread": False}
 
 !!! info "📡 ℹ"
 
-    ⚫️❔ 🎏 📡 ℹ [🗄 (🔗) 💽](../tutorial/sql-databases.md#note){.internal-link target=_blank} ✔.
+    ⚫️❔ 🎏 📡 ℹ [🗄 (🔗) 💽](../tutorial/sql-databases.md#_7){.internal-link target=_blank} ✔.
 
 ### ⚒ 🏒 🔁-🔗 `PeeweeConnectionState`
 
