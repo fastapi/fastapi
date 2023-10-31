@@ -144,7 +144,7 @@ UserInDB(
 
 !!! info "说明"
 
-    `user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user_indict){.internal-link target=_blank}。
+    `user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#user_indict){.internal-link target=_blank}。
 
 ## 返回 Token
 

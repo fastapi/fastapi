@@ -257,7 +257,7 @@ And you can declare dependencies with `async def` inside of normal `def` *path o
 It doesn't matter. **FastAPI** will know what to do.
 
 !!! note
-    If you don't know, check the [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} section about `async` and `await` in the docs.
+    If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
 
 ## Integrated with OpenAPI
 

@@ -12,7 +12,7 @@ Istnieje również kilka sposobów uzyskania pomocy.
 
 ## Zapisz się do newslettera
 
-Możesz zapisać się do rzadkiego [newslettera o **FastAPI i jego przyjaciołach**](/newsletter/){.internal-link target=_blank}, aby być na bieżąco z:
+Możesz zapisać się do rzadkiego [newslettera o **FastAPI i jego przyjaciołach**](newsletter.md){.internal-link target=_blank}, aby być na bieżąco z:
 
 * Aktualnościami o FastAPI i przyjaciołach 🚀
 * Przewodnikami 📝
@@ -215,8 +215,8 @@ Jest wiele pracy do zrobienia, a w większości przypadków **TY** możesz to zr
 
 Główne zadania, które możesz wykonać teraz to:
 
-* [Pomóc innym z pytaniami na GitHubie](#help-others-with-questions-in-github){.internal-link target=_blank} (zobacz sekcję powyżej).
-* [Oceniać Pull Requesty](#review-pull-requests){.internal-link target=_blank} (zobacz sekcję powyżej).
+* [Pomóc innym z pytaniami na GitHubie](#pomagaj-innym-odpowiadajac-na-ich-pytania-na-githubie){.internal-link target=_blank} (zobacz sekcję powyżej).
+* [Oceniać Pull Requesty](#przegladaj-pull-requesty){.internal-link target=_blank} (zobacz sekcję powyżej).
 
 Te dwie czynności **zajmują najwięcej czasu**. To główna praca związana z utrzymaniem FastAPI.
 
