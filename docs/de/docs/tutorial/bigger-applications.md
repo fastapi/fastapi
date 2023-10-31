@@ -79,7 +79,7 @@ Sie können die *Pfadoperationen* für dieses Modul mit `APIRouter` erstellen.
 
 Sie importieren ihn und erstellen eine „Instanz“ auf die gleiche Weise wie mit der Klasse `FastAPI`:
 
-```Python hl_lines="3  5"
+```Python hl_lines="1  3" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -89,7 +89,7 @@ Und dann verwenden Sie ihn, um Ihre *Pfadoperationen* zu deklarieren.
 
 Verwenden Sie ihn auf die gleiche Weise wie die Klasse `FastAPI`:
 
-```Python hl_lines="8  13  18"
+```Python hl_lines="6  11  16" title="app/routers/users.py"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -114,13 +114,13 @@ Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefiniert
 
 === "Python 3.9+"
 
-    ```Python hl_lines="5  8-10"
+    ```Python hl_lines="3  6-8" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="3  7-9"
+    ```Python hl_lines="1  5-7" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
     ```
 
@@ -129,7 +129,7 @@ Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefiniert
     !!! tip "Tipp"
         Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="3  6-8"
+    ```Python hl_lines="1  4-6" title="app/dependencies.py"
     {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
     ```
 
@@ -160,7 +160,7 @@ Wir wissen, dass alle *Pfadoperationen* in diesem Modul folgendes haben:
 
 Anstatt also alles zu jeder *Pfadoperation* hinzuzufügen, können wir es dem `APIRouter` hinzufügen.
 
-```Python hl_lines="7-12  18  23"
+```Python hl_lines="5-10  16  21" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -212,7 +212,7 @@ Und wir müssen die Abhängigkeitsfunktion aus dem Modul `app.dependencies` impo
 
 Daher verwenden wir einen relativen Import mit `..` für die Abhängigkeiten:
 
-```Python hl_lines="5"
+```Python hl_lines="3" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -282,7 +282,7 @@ Wir fügen weder das Präfix `/items` noch `tags=["items"]` zu jeder *Pfadoperat
 
 Aber wir können immer noch _mehr_ `tags` hinzufügen, die auf eine bestimmte *Pfadoperation* angewendet werden, sowie einige zusätzliche `responses`, die speziell für diese *Pfadoperation* gelten:
 
-```Python hl_lines="32-33"
+```Python hl_lines="30-31" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -307,7 +307,7 @@ Sie importieren und erstellen wie gewohnt eine `FastAPI`-Klasse.
 
 Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies.md){.internal-link target=_blank} deklarieren, die mit den Abhängigkeiten für jeden `APIRouter` kombiniert werden:
 
-```Python hl_lines="3  5  9"
+```Python hl_lines="1  3  7" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -315,7 +315,7 @@ Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies
 
 Jetzt importieren wir die anderen Submodule, die `APIRouter` haben:
 
-```Python hl_lines="7"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -377,7 +377,7 @@ würde der `router` von `users` den von `items` überschreiben und wir könnten 
 
 Um also beide in derselben Datei verwenden zu können, importieren wir die Submodule direkt:
 
-```Python hl_lines="7"
+```Python hl_lines="5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -386,7 +386,7 @@ Um also beide in derselben Datei verwenden zu können, importieren wir die Submo
 
 Inkludieren wir nun die `router` aus diesen Submodulen `users` und `items`:
 
-```Python hl_lines="12-13"
+```Python hl_lines="10-11" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -419,7 +419,7 @@ Sie enthält einen `APIRouter` mit einigen administrativen *Pfadoperationen*, di
 
 In diesem Beispiel wird es ganz einfach sein. Nehmen wir jedoch an, dass wir, da sie mit anderen Projekten in der Organisation geteilt wird, sie nicht ändern und kein `prefix`, `dependencies`, `tags`, usw. direkt zum `APIRouter` hinzufügen können:
 
-```Python hl_lines="5"
+```Python hl_lines="3" title="app/internal/admin.py"
 {!../../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
@@ -427,7 +427,7 @@ Aber wir möchten immer noch ein benutzerdefiniertes `prefix` festlegen, wenn wi
 
 Wir können das alles deklarieren, ohne den ursprünglichen `APIRouter` ändern zu müssen, indem wir diese Parameter an `app.include_router()` übergeben:
 
-```Python hl_lines="16-19"
+```Python hl_lines="14-17" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -450,7 +450,7 @@ Wir können *Pfadoperationen* auch direkt zur `FastAPI`-App hinzufügen.
 
 Hier machen wir es ... nur um zu zeigen, dass wir es können 🤷:
 
-```Python hl_lines="23-25"
+```Python hl_lines="21-23" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
