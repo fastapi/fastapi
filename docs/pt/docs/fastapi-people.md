@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Pessoas do FastAPI
 
 FastAPI possue uma comunidade incrível que recebe pessoas de todos os níveis.
