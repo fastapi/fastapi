@@ -1,5 +1,3 @@
-# app/internal/admin.py
-
 from fastapi import APIRouter
 
 router = APIRouter()

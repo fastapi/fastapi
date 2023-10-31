@@ -1,5 +1,3 @@
-# app/dependencies.py
-
 from fastapi import Header, HTTPException
 
 
