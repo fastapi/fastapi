@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI Topluluğu
 
 FastAPI, her kökenden insanı ağırlayan harika bir topluluğa sahip.

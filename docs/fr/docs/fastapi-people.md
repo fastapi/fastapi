@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # La communauté FastAPI
 
 FastAPI a une communauté extraordinaire qui accueille des personnes de tous horizons.

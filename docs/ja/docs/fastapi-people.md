@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI People
 
 FastAPIには、様々なバックグラウンドの人々を歓迎する素晴らしいコミュニティがあります。
