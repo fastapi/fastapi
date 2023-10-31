@@ -59,7 +59,7 @@ Cela définit les métadonnées sur la réponse principale d'une *opération de 
 
 Vous pouvez également déclarer des réponses supplémentaires avec leurs modèles, codes de statut, etc.
 
-Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le lire sur [Réponses supplémentaires dans OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le lire sur [Réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ## OpenAPI supplémentaire
 

@@ -59,7 +59,7 @@ That defines the metadata about the main response of a *path operation*.
 
 You can also declare additional responses with their models, status codes, etc.
 
-There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ## OpenAPI Extra
 
@@ -77,7 +77,7 @@ This *path operation*-specific OpenAPI schema is normally generated automaticall
 !!! tip
     This is a low level extension point.
 
-    If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+    If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 You can extend the OpenAPI schema for a *path operation* using the parameter `openapi_extra`.
 
