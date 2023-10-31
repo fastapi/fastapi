@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Recursos
 
 ## Recursos do FastAPI

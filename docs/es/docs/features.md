@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Características
 
 ## Características de FastAPI

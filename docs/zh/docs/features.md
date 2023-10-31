@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # 特性
 
 ## FastAPI 特性
