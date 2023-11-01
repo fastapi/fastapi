@@ -1,5 +1,8 @@
 sponsors:
-- - login: bump-sh
+- - login: codacy
+    avatarUrl: https://avatars.githubusercontent.com/u/1834093?v=4
+    url: https://github.com/codacy
+  - login: bump-sh
     avatarUrl: https://avatars.githubusercontent.com/u/33217836?v=4
     url: https://github.com/bump-sh
   - login: cryptapi
@@ -11,9 +14,6 @@ sponsors:
   - login: fern-api
     avatarUrl: https://avatars.githubusercontent.com/u/102944815?v=4
     url: https://github.com/fern-api
-  - login: nanram22
-    avatarUrl: https://avatars.githubusercontent.com/u/116367316?v=4
-    url: https://github.com/nanram22
 - - login: nihpo
     avatarUrl: https://avatars.githubusercontent.com/u/1841030?u=0264956d7580f7e46687a762a7baa629f84cf97c&v=4
     url: https://github.com/nihpo
@@ -32,12 +32,12 @@ sponsors:
   - login: deepset-ai
     avatarUrl: https://avatars.githubusercontent.com/u/51827949?v=4
     url: https://github.com/deepset-ai
+  - login: databento
+    avatarUrl: https://avatars.githubusercontent.com/u/64141749?v=4
+    url: https://github.com/databento
   - login: svix
     avatarUrl: https://avatars.githubusercontent.com/u/80175132?v=4
     url: https://github.com/svix
-  - login: databento-bot
-    avatarUrl: https://avatars.githubusercontent.com/u/98378480?u=494f679996e39427f7ddb1a7de8441b7c96fb670&v=4
-    url: https://github.com/databento-bot
   - login: VincentParedes
     avatarUrl: https://avatars.githubusercontent.com/u/103889729?v=4
     url: https://github.com/VincentParedes
@@ -65,10 +65,7 @@ sponsors:
   - login: Trivie
     avatarUrl: https://avatars.githubusercontent.com/u/8161763?v=4
     url: https://github.com/Trivie
-- - login: moellenbeck
-    avatarUrl: https://avatars.githubusercontent.com/u/169372?v=4
-    url: https://github.com/moellenbeck
-  - login: birkjernstrom
+- - login: birkjernstrom
     avatarUrl: https://avatars.githubusercontent.com/u/281715?u=4be14b43f76b4bd497b1941309bb390250b405e6&v=4
     url: https://github.com/birkjernstrom
   - login: yasyf
@@ -83,15 +80,15 @@ sponsors:
   - login: mainframeindustries
     avatarUrl: https://avatars.githubusercontent.com/u/55092103?v=4
     url: https://github.com/mainframeindustries
+  - login: deployplex
+    avatarUrl: https://avatars.githubusercontent.com/u/57115726?v=4
+    url: https://github.com/deployplex
 - - login: povilasb
     avatarUrl: https://avatars.githubusercontent.com/u/1213442?u=b11f58ed6ceea6e8297c9b310030478ebdac894d&v=4
     url: https://github.com/povilasb
   - login: primer-io
     avatarUrl: https://avatars.githubusercontent.com/u/62146168?v=4
     url: https://github.com/primer-io
-- - login: NateXVI
-    avatarUrl: https://avatars.githubusercontent.com/u/48195620?u=4bc8751ae50cb087c40c1fe811764aa070b9eea6&v=4
-    url: https://github.com/NateXVI
 - - login: Kludex
     avatarUrl: https://avatars.githubusercontent.com/u/7353520?u=62adc405ef418f4b6c8caa93d3eb8ab107bc4927&v=4
     url: https://github.com/Kludex
@@ -125,12 +122,12 @@ sponsors:
   - login: tcsmith
     avatarUrl: https://avatars.githubusercontent.com/u/989034?u=7d8d741552b3279e8f4d3878679823a705a46f8f&v=4
     url: https://github.com/tcsmith
-  - login: mrkmcknz
-    avatarUrl: https://avatars.githubusercontent.com/u/1089376?u=2b9b8a8c25c33a4f6c220095638bd821cdfd13a3&v=4
-    url: https://github.com/mrkmcknz
   - login: mickaelandrieu
     avatarUrl: https://avatars.githubusercontent.com/u/1247388?u=599f6e73e452a9453f2bd91e5c3100750e731ad4&v=4
     url: https://github.com/mickaelandrieu
+  - login: knallgelb
+    avatarUrl: https://avatars.githubusercontent.com/u/2358812?u=c48cb6362b309d74cbf144bd6ad3aed3eb443e82&v=4
+    url: https://github.com/knallgelb
   - login: Shark009
     avatarUrl: https://avatars.githubusercontent.com/u/3163309?u=0c6f4091b0eda05c44c390466199826e6dc6e431&v=4
     url: https://github.com/Shark009
@@ -174,7 +171,7 @@ sponsors:
     avatarUrl: https://avatars.githubusercontent.com/u/6152183?u=c485eefca5c6329600cae63dd35e4f5682ce6924&v=4
     url: https://github.com/iwpnd
   - login: FernandoCelmer
-    avatarUrl: https://avatars.githubusercontent.com/u/6262214?u=ab6108a843a2fb9df0934f482375d2907609f3ff&v=4
+    avatarUrl: https://avatars.githubusercontent.com/u/6262214?u=d29fff3fd862fda4ca752079f13f32e84c762ea4&v=4
     url: https://github.com/FernandoCelmer
   - login: simw
     avatarUrl: https://avatars.githubusercontent.com/u/6322526?v=4
@@ -188,6 +185,9 @@ sponsors:
   - login: wdwinslow
     avatarUrl: https://avatars.githubusercontent.com/u/11562137?u=dc01daafb354135603a263729e3d26d939c0c452&v=4
     url: https://github.com/wdwinslow
+  - login: drcat101
+    avatarUrl: https://avatars.githubusercontent.com/u/11951946?u=e714b957185b8cf3d301cced7fc3ad2842122c6a&v=4
+    url: https://github.com/drcat101
   - login: jsoques
     avatarUrl: https://avatars.githubusercontent.com/u/12414216?u=620921d94196546cc8b9eae2cc4cbc3f95bab42f&v=4
     url: https://github.com/jsoques
@@ -212,9 +212,6 @@ sponsors:
   - login: Filimoa
     avatarUrl: https://avatars.githubusercontent.com/u/21352040?u=0be845711495bbd7b756e13fcaeb8efc1ebd78ba&v=4
     url: https://github.com/Filimoa
-  - login: rahulsalgare
-    avatarUrl: https://avatars.githubusercontent.com/u/21974430?u=ade6f182b94554ab8491d7421de5e78f711dcaf8&v=4
-    url: https://github.com/rahulsalgare
   - login: BrettskiPy
     avatarUrl: https://avatars.githubusercontent.com/u/30988215?u=d8a94a67e140d5ee5427724b292cc52d8827087a&v=4
     url: https://github.com/BrettskiPy
@@ -269,9 +266,12 @@ sponsors:
   - login: pyt3h
     avatarUrl: https://avatars.githubusercontent.com/u/99658549?v=4
     url: https://github.com/pyt3h
-- - login: SebTota
-    avatarUrl: https://avatars.githubusercontent.com/u/25122511?v=4
-    url: https://github.com/SebTota
+  - login: apitally
+    avatarUrl: https://avatars.githubusercontent.com/u/138365043?v=4
+    url: https://github.com/apitally
+- - login: getsentry
+    avatarUrl: https://avatars.githubusercontent.com/u/1396951?v=4
+    url: https://github.com/getsentry
 - - login: pawamoy
     avatarUrl: https://avatars.githubusercontent.com/u/3999221?u=b030e4c89df2f3a36bc4710b925bdeb6745c9856&v=4
     url: https://github.com/pawamoy
@@ -299,6 +299,9 @@ sponsors:
   - login: securancy
     avatarUrl: https://avatars.githubusercontent.com/u/606673?v=4
     url: https://github.com/securancy
+  - login: natehouk
+    avatarUrl: https://avatars.githubusercontent.com/u/805439?u=d8e4be629dc5d7efae7146157e41ee0bd129d9bc&v=4
+    url: https://github.com/natehouk
   - login: browniebroke
     avatarUrl: https://avatars.githubusercontent.com/u/861044?u=5abfca5588f3e906b31583d7ee62f6de4b68aa24&v=4
     url: https://github.com/browniebroke
@@ -323,9 +326,9 @@ sponsors:
   - login: anthonycorletti
     avatarUrl: https://avatars.githubusercontent.com/u/3477132?v=4
     url: https://github.com/anthonycorletti
-  - login: nikeee
-    avatarUrl: https://avatars.githubusercontent.com/u/4068864?u=bbe73151f2b409c120160d032dc9aa6875ef0c4b&v=4
-    url: https://github.com/nikeee
+  - login: erhan
+    avatarUrl: https://avatars.githubusercontent.com/u/3872888?u=cd9a20fcd33c5598d9d7797a78dedfc9148592f6&v=4
+    url: https://github.com/erhan
   - login: Alisa-lisa
     avatarUrl: https://avatars.githubusercontent.com/u/4137964?u=e7e393504f554f4ff15863a1e01a5746863ef9ce&v=4
     url: https://github.com/Alisa-lisa
@@ -366,7 +369,7 @@ sponsors:
     avatarUrl: https://avatars.githubusercontent.com/u/8574425?u=aad2a9674273c9275fe414d99269b7418d144089&v=4
     url: https://github.com/albertkun
   - login: xncbf
-    avatarUrl: https://avatars.githubusercontent.com/u/9462045?u=866a1311e4bd3ec5ae84185c4fcc99f397c883d7&v=4
+    avatarUrl: https://avatars.githubusercontent.com/u/9462045?u=05cb2d7c797a02f666805ad4639d9582f31d432c&v=4
     url: https://github.com/xncbf
   - login: DMantis
     avatarUrl: https://avatars.githubusercontent.com/u/9536869?v=4
@@ -398,9 +401,6 @@ sponsors:
   - login: jangia
     avatarUrl: https://avatars.githubusercontent.com/u/17927101?u=9261b9bb0c3e3bb1ecba43e8915dc58d8c9a077e&v=4
     url: https://github.com/jangia
-  - login: timzaz
-    avatarUrl: https://avatars.githubusercontent.com/u/19709244?u=264d7db95c28156363760229c30ee1116efd4eeb&v=4
-    url: https://github.com/timzaz
   - login: shuheng-liu
     avatarUrl: https://avatars.githubusercontent.com/u/22414322?u=813c45f30786c6b511b21a661def025d8f7b609e&v=4
     url: https://github.com/shuheng-liu
@@ -419,15 +419,15 @@ sponsors:
   - login: joerambo
     avatarUrl: https://avatars.githubusercontent.com/u/26282974?v=4
     url: https://github.com/joerambo
-  - login: msniezynski
-    avatarUrl: https://avatars.githubusercontent.com/u/27588547?u=0e3be5ac57dcfdf124f470bcdf74b5bf79af1b6c&v=4
-    url: https://github.com/msniezynski
   - login: rlnchow
     avatarUrl: https://avatars.githubusercontent.com/u/28018479?u=a93ca9cf1422b9ece155784a72d5f2fdbce7adff&v=4
     url: https://github.com/rlnchow
   - login: mertguvencli
     avatarUrl: https://avatars.githubusercontent.com/u/29762151?u=16a906d90df96c8cff9ea131a575c4bc171b1523&v=4
     url: https://github.com/mertguvencli
+  - login: White-Mask
+    avatarUrl: https://avatars.githubusercontent.com/u/31826970?u=8625355dc25ddf9c85a8b2b0b9932826c4c8f44c&v=4
+    url: https://github.com/White-Mask
   - login: HosamAlmoghraby
     avatarUrl: https://avatars.githubusercontent.com/u/32025281?u=aa1b09feabccbf9dc506b81c71155f32d126cefa&v=4
     url: https://github.com/HosamAlmoghraby
@@ -435,14 +435,11 @@ sponsors:
     avatarUrl: https://avatars.githubusercontent.com/u/33275230?u=eb223cad27017bb1e936ee9b429b450d092d0236&v=4
     url: https://github.com/engineerjoe440
   - login: bnkc
-    avatarUrl: https://avatars.githubusercontent.com/u/34930566?u=1a104991a2ea90bfe304bc0b9ef191c7e4891a0e&v=4
+    avatarUrl: https://avatars.githubusercontent.com/u/34930566?u=ea88e4bd668c984cff1bca3e71ab2deb37fafdc4&v=4
     url: https://github.com/bnkc
   - login: declon
     avatarUrl: https://avatars.githubusercontent.com/u/36180226?v=4
     url: https://github.com/declon
-  - login: miraedbswo
-    avatarUrl: https://avatars.githubusercontent.com/u/36796047?u=9e7a5b3e558edc61d35d0f9dfac37541bae7f56d&v=4
-    url: https://github.com/miraedbswo
   - login: DSMilestone6538
     avatarUrl: https://avatars.githubusercontent.com/u/37230924?u=f299dce910366471523155e0cb213356d34aadc1&v=4
     url: https://github.com/DSMilestone6538
@@ -458,9 +455,6 @@ sponsors:
   - login: ArtyomVancyan
     avatarUrl: https://avatars.githubusercontent.com/u/44609997?v=4
     url: https://github.com/ArtyomVancyan
-  - login: josehenriqueroveda
-    avatarUrl: https://avatars.githubusercontent.com/u/46685746?u=2e672057a7dbe1dba47e57c378fc0cac336022eb&v=4
-    url: https://github.com/josehenriqueroveda
   - login: hgalytoby
     avatarUrl: https://avatars.githubusercontent.com/u/50397689?u=f4888c2c54929bd86eed0d3971d09fcb306e5088&v=4
     url: https://github.com/hgalytoby
@@ -473,12 +467,18 @@ sponsors:
   - login: 0417taehyun
     avatarUrl: https://avatars.githubusercontent.com/u/63915557?u=47debaa860fd52c9b98c97ef357ddcec3b3fb399&v=4
     url: https://github.com/0417taehyun
+  - login: fernandosmither
+    avatarUrl: https://avatars.githubusercontent.com/u/66154723?u=a76a037b5d674938a75d2cff862fb6dfd63ec214&v=4
+    url: https://github.com/fernandosmither
   - login: romabozhanovgithub
     avatarUrl: https://avatars.githubusercontent.com/u/67696229?u=e4b921eef096415300425aca249348f8abb78ad7&v=4
     url: https://github.com/romabozhanovgithub
   - login: mbukeRepo
     avatarUrl: https://avatars.githubusercontent.com/u/70356088?u=d2eb23e2b222a3b316c4183b05a3236b32819dc2&v=4
     url: https://github.com/mbukeRepo
+  - login: PelicanQ
+    avatarUrl: https://avatars.githubusercontent.com/u/77930606?v=4
+    url: https://github.com/PelicanQ
 - - login: ssbarnea
     avatarUrl: https://avatars.githubusercontent.com/u/102495?u=b4bf6818deefe59952ac22fec6ed8c76de1b8f7c&v=4
     url: https://github.com/ssbarnea
@@ -491,18 +491,15 @@ sponsors:
   - login: sadikkuzu
     avatarUrl: https://avatars.githubusercontent.com/u/23168063?u=d179c06bb9f65c4167fcab118526819f8e0dac17&v=4
     url: https://github.com/sadikkuzu
-  - login: samnimoh
-    avatarUrl: https://avatars.githubusercontent.com/u/33413170?u=147bc516be6cb647b28d7e3b3fea3a018a331145&v=4
-    url: https://github.com/samnimoh
+  - login: msniezynski
+    avatarUrl: https://avatars.githubusercontent.com/u/27588547?u=0e3be5ac57dcfdf124f470bcdf74b5bf79af1b6c&v=4
+    url: https://github.com/msniezynski
   - login: danburonline
     avatarUrl: https://avatars.githubusercontent.com/u/34251194?u=2cad4388c1544e539ecb732d656e42fb07b4ff2d&v=4
     url: https://github.com/danburonline
   - login: rwxd
     avatarUrl: https://avatars.githubusercontent.com/u/40308458?u=cd04a39e3655923be4f25c2ba8a5a07b3da3230a&v=4
     url: https://github.com/rwxd
-  - login: shywn-mrk
-    avatarUrl: https://avatars.githubusercontent.com/u/51455763?u=389e2608e4056fe5e1f23e9ad56a9415277504d3&v=4
-    url: https://github.com/shywn-mrk
-  - login: almeida-matheus
-    avatarUrl: https://avatars.githubusercontent.com/u/66216198?u=54335eaa0ced626be5c1ff52fead1ebc032286ec&v=4
-    url: https://github.com/almeida-matheus
+  - login: IvanReyesO7
+    avatarUrl: https://avatars.githubusercontent.com/u/74359151?u=4b2c368f71e1411b462a8c2290c920ad35dc1af8&v=4
+    url: https://github.com/IvanReyesO7
