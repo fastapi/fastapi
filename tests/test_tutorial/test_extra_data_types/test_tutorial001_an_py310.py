@@ -144,6 +144,14 @@ def test_openapi_schema(client: TestClient):
                                 "type": "string",
                                 "format": "duration",
                             }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Process After",
+                                "type": "number",
+                                "format": "time-delta",
+                            }
                         ),
                     },
                     "required": ["start_datetime", "end_datetime", "process_after"],
