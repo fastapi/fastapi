@@ -23,7 +23,7 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
 
 For large responses, returning a `Response` directly is much faster than returning a dictionary.
 
-This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+This is because by default, FastAPI will inspect every item inside and make sure it is serializable as JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
 
 But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
 
@@ -73,7 +73,7 @@ The same example from above, returning an `HTMLResponse`, could look like:
     A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
 
 !!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
+    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
 
 ### Document in OpenAPI and override `Response`
 
@@ -216,11 +216,11 @@ This includes many libraries to interact with cloud storage, video processing, a
 
 1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
 2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
-3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function (`iterfile`).
 
     So, it is a generator function that transfers the "generating" work to something else internally.
 
-    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
+    By doing it this way, we can put it in a `with` block, and that way, ensure that the file-like object is closed after finishing.
 
 !!! tip
     Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.

@@ -47,7 +47,7 @@ Here we are using the recommended one: <a href="https://cryptography.io/" class=
 !!! tip
     This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
 
-    But it was updated to use Python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
+    But it was updated to use python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
 
 ## Password hashing
 
@@ -260,7 +260,7 @@ If the token is invalid, return an HTTP error right away.
 
 Create a `timedelta` with the expiration time of the token.
 
-Create a real JWT access token and return it
+Create a real JWT access token and return it.
 
 === "Python 3.10+"
 

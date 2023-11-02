@@ -192,7 +192,7 @@ That's why in this example we have to declare it in the `response_model` paramet
 
 ## Return Type and Data Filtering
 
-Let's continue from the previous example. We wanted to **annotate the function with one type** but return something that includes **more data**.
+Let's continue from the previous example. We wanted to **annotate the function with one type** but return something that includes **less data**.
 
 We want FastAPI to keep **filtering** the data using the response model.
 
@@ -258,7 +258,7 @@ The most common case would be [returning a Response directly as explained later 
 {!> ../../../docs_src/response_model/tutorial003_02.py!}
 ```
 
-This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass) of `Response`.
+This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.
 
 And tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.
 
@@ -338,7 +338,7 @@ Your response model could have default values, like:
 
 * `description: Union[str, None] = None` (or `str | None = None` in Python 3.10) has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
-* `tags: List[str] = []` as a default of an empty list: `[]`.
+* `tags: List[str] = []` has a default of an empty list: `[]`.
 
 but you might want to omit them from the result if they were not actually stored.
 

@@ -49,7 +49,7 @@ And you can also declare body parameters as optional, by setting the default to 
 
 ## Multiple body parameters
 
-In the previous example, the *path operations* would expect a JSON body with the attributes of an `Item`, like:
+In the previous example, the *path operation* would expect a JSON body with the attributes of an `Item`, like:
 
 ```JSON
 {
@@ -95,7 +95,6 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 
 !!! note
     Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
-
 
 **FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives it's specific content and the same for `user`.
 

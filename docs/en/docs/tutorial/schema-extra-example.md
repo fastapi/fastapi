@@ -38,7 +38,7 @@ That extra info will be added as-is to the output **JSON Schema** for that model
 
     In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
 
-    You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
+    You can set `json_schema_extra` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
 === "Pydantic v1"
 
@@ -305,7 +305,7 @@ This new `examples` field in JSON Schema is **just a `list`** of examples, not a
 
 ### Pydantic and FastAPI `examples`
 
-When you add `examples` inside of a Pydantic model, using `schema_extra` or `Field(examples=["something"])` that example is added to the **JSON Schema** for that Pydantic model.
+When you add `examples` inside a Pydantic model, using `schema_extra` or `Field(examples=["something"])` that example is added to the **JSON Schema** for that Pydantic model.
 
 And that **JSON Schema** of the Pydantic model is included in the **OpenAPI** of your API, and then it's used in the docs UI.
 

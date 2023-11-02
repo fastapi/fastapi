@@ -70,7 +70,7 @@ we would get a Python `dict` with:
 
 #### Unwrapping a `dict`
 
-If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unwrap" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
+If we take a `dict` like `user_dict` and pass it to a function (or class method) with `**user_dict`, Python will "unwrap" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
 
 So, continuing with the `user_dict` from above, writing:
 
@@ -78,7 +78,7 @@ So, continuing with the `user_dict` from above, writing:
 UserInDB(**user_dict)
 ```
 
-Would result in something equivalent to:
+would result in something equivalent to:
 
 ```Python
 UserInDB(
@@ -140,7 +140,7 @@ UserInDB(
 ```
 
 !!! warning
-    The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
+    The supporting additional functions `fake_password_hasher` and `fake_save_user` are just to demo a possible flow of the data, but they of course are not providing any real security.
 
 ## Reduce duplication
 
@@ -172,7 +172,7 @@ That way, we can declare just the differences between the models (with plaintext
 
 ## `Union` or `anyOf`
 
-You can declare a response to be the `Union` of two types, that means, that the response would be any of the two.
+You can declare a response to be the `Union` of more than one type, that means, that the response would be any of them.
 
 It will be defined in OpenAPI with `anyOf`.
 
@@ -205,7 +205,7 @@ If it was in a type annotation we could have used the vertical bar, as:
 some_variable: PlaneItem | CarItem
 ```
 
-But if we put that in `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
 
 ## List of models
 
