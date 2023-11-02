@@ -41,6 +41,7 @@ jobs:
         category: "/language:${{matrix.language}}"
     
     - name: Check for Vulnerabilities
+      id: check-for-vulnerabilities
       run: |
         if [ -e codeql-results/codeql-results.sarif ]; then
           echo "Checking for vulnerabilities..."
@@ -49,16 +50,24 @@ jobs:
             echo "Vulnerabilities found. Merging is disabled."
             echo "::set-output name=status::failure"
           fi
-        fi
       working-directory: ${{ github.workspace }}
     
     - name: Prevent Merge
-      if: steps.set-status.outputs.status == 'failure'
+      if: steps.check-for-vulnerabilities.outputs.status == 'failure'
       run: |
         echo "Preventing merging due to vulnerabilities..."
-        # You can use GitHub API, branch protection, or any other method to prevent merging here.
-        # Example: Use GitHub API to protect the branch
-        GITHUB_TOKEN=$GITHUB_TOKEN node your-script-to-protect-branch.js
+        # Use the GitHub API to protect the branch
+        # Replace 'your-branch-name' with the name of your branch
+        branch_name="feature"
+        GITHUB_TOKEN=$GITHUB_TOKEN
+        protection_url="https://api.github.com/repos/${{ github.repository }}/branches/${branch_name}/protection"
+        protection_data='{"required_status_checks": null, "enforce_admins": {"enabled": true}, "restrictions": null}'
+        response=$(curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -d "$protection_data" $protection_url)
+        if [ "$response" = "" ]; then
+          echo "Merge button disabled for branch $branch_name"
+        else
+          echo "Failed to disable merge button for branch $branch_name"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       working-directory: ${{ github.workspace }}
