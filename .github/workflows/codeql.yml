@@ -1,45 +1,29 @@
-name: "CodeQL"
+name: "Disable Merge on Vulnerability"
 
 on:
   push:
     branches: [ "feature" ]
   pull_request:
     branches: [ "feature" ]
-  schedule:
-    - cron: '40 12 * * 0'
 
 jobs:
   analyze:
     name: Analyze
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'python' ]
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
     
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
-      with:
-        category: "/language:${{matrix.language}}"
-    
+
     - name: Check for Vulnerabilities
       id: check-for-vulnerabilities
       run: |
@@ -47,27 +31,22 @@ jobs:
           echo "Checking for vulnerabilities..."
           if grep -q 'critical-vulnerability' codeql-results/codeql-results.sarif; then
             echo "Critical vulnerabilities found!"
-            echo "Vulnerabilities found. Merging is disabled."
-            echo "::set-output name=status::failure"
+            echo "Vulnerabilities found. Disabling merging..."
+            GITHUB_TOKEN=$GITHUB_TOKEN
+            branch_name=$(jq -r .ref <<< $GITHUB_EVENT_PATH)
+            protection_url="https://api.github.com/repos/${{ github.repository }}/branches/${branch_name}/protection"
+            protection_data='{"required_status_checks": null, "enforce_admins": {"enabled": true}, "restrictions": null}'
+            response=$(curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -d "$protection_data" $protection_url)
+            if [ "$response" = "" ]; then
+              echo "Merge button disabled for branch $branch_name"
+            else
+              echo "Failed to disable merge button for branch $branch_name"
+            fi
           fi
-      working-directory: ${{ github.workspace }}
-    
-    - name: Prevent Merge
+        fi
+
+    - name: Post Vulnerability Check
       if: steps.check-for-vulnerabilities.outputs.status == 'failure'
       run: |
-        echo "Preventing merging due to vulnerabilities..."
-        # Use the GitHub API to protect the branch
-        # Replace 'your-branch-name' with the name of your branch
-        branch_name="feature"
-        GITHUB_TOKEN=$GITHUB_TOKEN
-        protection_url="https://api.github.com/repos/${{ github.repository }}/branches/${feature}/protection"
-        protection_data='{"required_status_checks": null, "enforce_admins": {"enabled": true}, "restrictions": null}'
-        response=$(curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -d "$protection_data" $protection_url)
-        if [ "$response" = "" ]; then
-          echo "Merge button disabled for branch $branch_name"
-        else
-          echo "Failed to disable merge button for branch $branch_name"
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      working-directory: ${{ github.workspace }}
+        echo "Vulnerabilities found. Merging is disabled."
+      continue-on-error: true
