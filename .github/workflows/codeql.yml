@@ -60,7 +60,7 @@ jobs:
         # Replace 'your-branch-name' with the name of your branch
         branch_name="feature"
         GITHUB_TOKEN=$GITHUB_TOKEN
-        protection_url="https://api.github.com/repos/${{ github.repository }}/branches/${branch_name}/protection"
+        protection_url="https://api.github.com/repos/${{ github.repository }}/branches/${feature}/protection"
         protection_data='{"required_status_checks": null, "enforce_admins": {"enabled": true}, "restrictions": null}'
         response=$(curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -d "$protection_data" $protection_url)
         if [ "$response" = "" ]; then
