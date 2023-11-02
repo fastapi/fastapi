@@ -2,9 +2,9 @@ name: "Disable Merge on Vulnerability"
 
 on:
   push:
-    branches: [ "feature" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "feature" ]
+    branches: [ "master" ]
 
 jobs:
   analyze:
