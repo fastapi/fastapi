@@ -206,7 +206,7 @@ Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de 
 
 Dans ces cas, vous pouvez utiliser la technique Python "d'affection par décomposition" (appelé _unpacking_ en anglais) d'un `dict` avec `**dict_to_unpack` :
 
-``` Python
+```Python
 old_dict = {
     "old key": "old value",
     "second old key": "second old value",
@@ -216,7 +216,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
 
-``` Python
+```Python
 {
     "old key": "old value",
     "second old key": "second old value",

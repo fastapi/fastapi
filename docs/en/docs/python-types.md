@@ -186,7 +186,7 @@ For example, let's define a variable to be a `list` of `str`.
 
     From `typing`, import `List` (with a capital `L`):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 

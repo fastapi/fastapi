@@ -186,7 +186,7 @@ Ví dụ, hãy định nghĩa một biến là `list` các `str`.
 
     Từ `typing`, import `List` (với chữ cái `L` viết hoa):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
