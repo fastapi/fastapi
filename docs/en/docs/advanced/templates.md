@@ -42,7 +42,7 @@ $ pip install jinja2
 !!! note "Technical Details"
     You could also use `from starlette.templating import Jinja2Templates`.
 
-    **FastAPI** provides the same `starlette.templating` as `fastapi.templating` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request` and `StaticFiles`.
+    **FastAPI** provides the same `starlette.templating` as `fastapi.templating` just as a convenience for you, the developer. But it comes directly from Starlette. The same with `Request` and `StaticFiles`.
 
 ## Writing templates
 

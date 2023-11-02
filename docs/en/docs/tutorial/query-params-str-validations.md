@@ -123,7 +123,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old) `Query` as the default value
+## Alternative (old): `Query` as the default value
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -170,7 +170,7 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 !!! info
     Have in mind that the most important part to make a parameter optional is the part:
@@ -369,7 +369,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 !!! note
     Having a default value of any type, including `None`, makes the parameter optional (not required).
 
-## Make it required
+## Required params
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -457,7 +457,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 
 This will let **FastAPI** know that this parameter is required.
 
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -633,7 +633,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
@@ -852,7 +852,7 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameter from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 

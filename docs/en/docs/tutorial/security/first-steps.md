@@ -41,7 +41,6 @@ Copy the example in a file `main.py`:
     {!> ../../../docs_src/security/tutorial001.py!}
     ```
 
-
 ## Run it
 
 !!! info

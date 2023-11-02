@@ -43,7 +43,7 @@ These status codes have a name associated to recognize them, but the important p
 
 In short:
 
-* `100` and above are for "Information". You rarely use them directly.  Responses with these status codes cannot have a body.
+* `100` and above are for "Information". You rarely use them directly. Responses with these status codes cannot have a body.
 * **`200`** and above are for "Successful" responses. These are the ones you would use the most.
     * `200` is the default status code, which means everything was "OK".
     * Another example would be `201`, "Created". It is commonly used after creating a new record in the database.

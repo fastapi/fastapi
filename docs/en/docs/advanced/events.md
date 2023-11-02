@@ -39,7 +39,7 @@ Here we are simulating the expensive *startup* operation of loading the model by
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
 
 !!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+    The "shutdown" would happen when you are **stopping** the application.
 
     Maybe you need to start a new version, or you just got tired of running it. 🤷
 
@@ -153,7 +153,7 @@ Just a technical detail for the curious nerds. 🤓
 Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
 
 !!! info
-    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan docs</a>.
 
     Including how to handle lifespan state that can be used in other areas of your code.
 

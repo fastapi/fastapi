@@ -30,7 +30,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ### Just Modern Python
 
-It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
+It's all based on standard **Python 3.8 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
 If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
 
