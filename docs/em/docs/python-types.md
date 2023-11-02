@@ -168,7 +168,7 @@ John Doe
 
     ⚪️➡️ `typing`, 🗄 `List` (⏮️ 🔠 `L`):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
