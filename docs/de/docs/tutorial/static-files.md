@@ -34,6 +34,6 @@ Das `name="static"` gibt dieser Unteranwendung einen Namen, der intern von **Fas
 
 Alle diese Parameter können anders als "`static`" lauten, passen Sie sie an die Bedürfnisse und spezifischen Details Ihrer eigenen Anwendung an.
 
-## Mehr Info
+## Weitere Informationen
 
 Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.
