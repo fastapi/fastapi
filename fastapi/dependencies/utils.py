@@ -208,16 +208,28 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-    fields = getattr(call, "model_fields", {})
+    if PYDANTIC_V2:
+        fields = getattr(call, "model_fields", {})
+    else:
+        fields = getattr(call, "__fields__", {})
     if len(fields):
         alias_dict = {}
         query_extra_info = {}
         for param in fields:
-            query_extra_info[param] = dict(fields[param].__repr_args__())
+            if PYDANTIC_V2:
+                query_extra_info[param] = dict(fields[param].__repr_args__())
+            else:
+                query_extra_info[param] = dict(fields[param].field_info.__repr_args__())
+                
             if "alias" in query_extra_info[param]:
-                query_extra_info[query_extra_info[param]["alias"]] = dict(
-                    fields[param].__repr_args__()
-                )
+                if PYDANTIC_V2:
+                    query_extra_info[query_extra_info[param]["alias"]] = dict(
+                        fields[param].__repr_args__()
+                    )
+                else:
+                    query_extra_info[query_extra_info[param]["alias"]] = dict(
+                        fields[param].field_info.__repr_args__()
+                    )
                 alias_dict[query_extra_info[param]["alias"]] = param
             query_extra_info[param]["default"] = (
                 Required
