@@ -220,7 +220,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
                 query_extra_info[param] = dict(fields[param].__repr_args__())
             else:
                 query_extra_info[param] = dict(fields[param].field_info.__repr_args__())
-                
+
             if "alias" in query_extra_info[param]:
                 if PYDANTIC_V2:
                     query_extra_info[query_extra_info[param]["alias"]] = dict(

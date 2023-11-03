@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 
-
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 app = FastAPI()
@@ -358,9 +357,13 @@ def test_openapi_schema_with_query_dependency():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     if PYDANTIC_V2:
-        assert response.json() == openapi_schema_with_not_omitted_description_pydantic_v2
+        assert (
+            response.json() == openapi_schema_with_not_omitted_description_pydantic_v2
+        )
     else:
-        assert response.json() == openapi_schema_with_not_omitted_description_pydantic_v1        
+        assert (
+            response.json() == openapi_schema_with_not_omitted_description_pydantic_v1
+        )
 
 
 def test_response():
