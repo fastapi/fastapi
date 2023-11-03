@@ -1,4 +1,4 @@
-# Konfiguration der Pfadoperation
+# Pfadoperation-Konfiguration
 
 Es gibt mehrere Konfigurations-Parameter, die Sie Ihrem *Pfadoperation-Dekorator* übergeben können.
 
