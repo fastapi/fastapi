@@ -107,7 +107,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 요구사항
 
-Python 3.7+
+Python 3.8+
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
@@ -437,7 +437,6 @@ item: Item
 
 Pydantic이 사용하는:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 더 빠른 JSON <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"파싱"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 이메일 유효성 검사.
 
 Starlette이 사용하는:

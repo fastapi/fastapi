@@ -1,4 +1,4 @@
-# Tutorial - Guía de Usuario - Introducción
+# Tutorial - Guía de Usuario
 
 Este tutorial te muestra cómo usar **FastAPI** con la mayoría de sus características paso a paso.
 
