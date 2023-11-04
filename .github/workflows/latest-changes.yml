@@ -24,6 +24,6 @@ jobs:
         with:
           token: ${{ secrets.FULL_STACK_FASTAPI_POSTGRESQL_LATEST_CHANGES }}
       - uses: docker://tiangolo/latest-changes:0.2.0
-      - uses: tiangolo/latest-changes@main
+      # - uses: tiangolo/latest-changes@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
