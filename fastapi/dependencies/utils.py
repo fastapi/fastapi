@@ -239,22 +239,13 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
         typed_params = []
 
         for param in signature.parameters.values():
-            if param.name in alias_dict:
-                original_param_name = alias_dict[param.name]
-                created_param = inspect.Parameter(
-                    name=original_param_name,
-                    kind=param.kind,
-                    default=params.Param(**query_extra_info[original_param_name]),
-                    annotation=get_typed_annotation(param.annotation, globalns),
-                )
-            else:
-                created_param = inspect.Parameter(
-                    name=param.name,
-                    kind=param.kind,
-                    default=params.Param(**query_extra_info[param.name]),
-                    annotation=get_typed_annotation(param.annotation, globalns),
-                )
-
+            param_name = param.name if param.name not in alias_dict else alias_dict[param.name]
+            created_param = inspect.Parameter(
+                name=param_name,
+                kind=param.kind,
+                default=params.Param(**query_extra_info[param_name]),
+                annotation=get_typed_annotation(param.annotation, globalns),
+            )
             typed_params.append(created_param)
     else:
         typed_params = [
