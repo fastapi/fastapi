@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.POETRY_VERSION_PLUGIN_LATEST_CHANGES }}
+          token: ${{ secrets.FULL_STACK_FASTAPI_POSTGRESQL_LATEST_CHANGES }}
       - uses: docker://tiangolo/latest-changes:0.2.0
       - uses: tiangolo/latest-changes@main
         with:
