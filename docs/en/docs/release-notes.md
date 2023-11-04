@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
 * 👷 Upgrade latest-changes GitHub Action. PR [#10587](https://github.com/tiangolo/fastapi/pull/10587) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.104.1
