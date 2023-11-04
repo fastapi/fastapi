@@ -239,7 +239,9 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
         typed_params = []
 
         for param in signature.parameters.values():
-            param_name = param.name if param.name not in alias_dict else alias_dict[param.name]
+            param_name = (
+                param.name if param.name not in alias_dict else alias_dict[param.name]
+            )
             created_param = inspect.Parameter(
                 name=param_name,
                 kind=param.kind,
