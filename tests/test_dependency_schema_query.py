@@ -378,6 +378,9 @@ def test_response():
         "tax": 9.0,
         "extra_optional_attributes": "alias_query",
     }
+    if not PYDANTIC_V2:
+        expected_response.pop("extra_optional_attributes")
+        expected_response["extra_optional_attributes_alias"] = None
     response = client.get(
         "/item",
         params={
@@ -405,6 +408,9 @@ def test_response():
         "tax": 9.0,
         "extra_optional_attributes": "alias_query",
     }
+    if not PYDANTIC_V2:
+        expected_response.pop("extra_optional_attributes")
+        expected_response["extra_optional_attributes_alias"] = None    
     response = client.get(
         "/item",
         params={
@@ -432,6 +438,9 @@ def test_response():
         "tax": 9.0,
         "extra_optional_attributes": "alias_query",
     }
+    if not PYDANTIC_V2:
+        expected_response.pop("extra_optional_attributes")
+        expected_response["extra_optional_attributes_alias"] = None    
     response = client.get(
         "/item",
         params={
