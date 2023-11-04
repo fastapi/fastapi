@@ -1,0 +1,29 @@
+name: Latest Changes
+
+on:
+  pull_request_target:
+    branches:
+      - master
+    types:
+      - closed
+  workflow_dispatch:
+    inputs:
+      number:
+        description: PR number
+        required: true
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: 'false'
+
+jobs:
+  latest-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.POETRY_VERSION_PLUGIN_LATEST_CHANGES }}
+      - uses: docker://tiangolo/latest-changes:0.2.0
+      - uses: tiangolo/latest-changes@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
