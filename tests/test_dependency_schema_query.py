@@ -410,7 +410,7 @@ def test_response():
     }
     if not PYDANTIC_V2:
         expected_response.pop("extra_optional_attributes")
-        expected_response["extra_optional_attributes_alias"] = None    
+        expected_response["extra_optional_attributes_alias"] = None
     response = client.get(
         "/item",
         params={
@@ -440,7 +440,7 @@ def test_response():
     }
     if not PYDANTIC_V2:
         expected_response.pop("extra_optional_attributes")
-        expected_response["extra_optional_attributes_alias"] = None    
+        expected_response["extra_optional_attributes_alias"] = None
     response = client.get(
         "/item",
         params={
