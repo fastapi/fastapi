@@ -156,7 +156,7 @@ Since you are now running the Uvicorn server directly from your code, you can ca
 
 * Simply click on the green triangle that appears to the left of the line `if __name__ == "__main__":` and select "Debug 'myapp'".
 
-* The debugger is started. A console will open at the bottom showing that the uvicorn development server is starting.
+* The debugger starts. A console window opens at the bottom, showing that the Uvicorn development server is booting.
 
 * Then continue as under [Visual Studio Code](#visual-studio-code): Set breakpoints, load the page in the browser, examine the current state of your application. And again, this time at the bottom, you have buttons to continue debugging, stop debugging, etc. It looks something like this:
 
