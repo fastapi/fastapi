@@ -154,7 +154,7 @@ will not be executed.
 
 Since you are now running the Uvicorn server directly from your code, you can call your Python program (your FastAPI application) directly from the PyCharm debugger (or other editors' debuggers).
 
-* Simply click on the green triangle that appears in the line next to the `if __name__ == "__main__":` and select "Debug 'myapp'".
+* Simply click on the green triangle that appears to the left of the line `if __name__ == "__main__":` and select "Debug 'myapp'".
 
 * The debugger is started. A console will open at the bottom showing that the uvicorn development server is starting.
 
