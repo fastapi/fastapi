@@ -154,7 +154,7 @@ nicht ausgeführt.
 
 Da Sie den Uvicorn-Server nun direkt aus Ihrem Code heraus ausführen, können Sie Ihr Python-Programm (Ihre FastAPI-Anwendung) direkt über den PyCharm Debugger (oder Debuggern von anderen Editoren) aufrufen.
 
-* Klicken Sie einfach auf das grüne Dreieck, das in der Zeile neben dem `if __name__ == "__main__":` erscheint, und wählen Sie „Debug 'myapp'“.
+* Klicken Sie einfach auf das grüne Dreieck, das links neben der Zeile `if __name__ == "__main__":` erscheint, und wählen Sie „Debug 'myapp'“.
 
 * Der Debugger wird gestartet. Unten öffnen sich eine Konsole, die anzeigt, dass der uvicorn Entwicklungsserver gestartet wird.
 
