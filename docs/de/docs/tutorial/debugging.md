@@ -71,7 +71,7 @@ In VS Code können Sie diese Anwendung nun wie folgt debuggen:
 
 * Um das Debuggen zu beenden, klicken Sie (eventuell mehrmals) auf den Stop-Button im selben Kästchen. Der Entwicklungsserver wird beendet.
 
-Damit wissen Sie das Notwendige, um Ihre Anwendung in VS Code zu debuggen! 🚀
+Damit wissen Sie die Grundlagen, um Ihre Anwendung in VS Code zu debuggen! 🚀
 
 ## PyCharm
 
@@ -162,4 +162,4 @@ Da Sie den Uvicorn-Server nun direkt aus Ihrem Code heraus ausführen, können S
 
 <img src="/img/tutorial/debugging/image02.png">
 
-Und damit wissen Sie auch das Notwendige, um Ihre Anwendung in PyCharm zu debuggen! 🚀
+Und damit kennen Sie auch die Grundlagen, um Ihre Anwendung in PyCharm zu debuggen! 🚀
