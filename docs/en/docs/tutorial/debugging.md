@@ -87,7 +87,7 @@ Import `uvicorn` and run it directly:
 
 ### About `__name__ == "__main__"`
 
-The main purpose of `__name__ == "__main__"` is to have a block of code that runs when your file is accessed with:
+The main purpose of `__name__ == "__main__"` is to have a block of code that runs when your module (your source code file, here `myapp.py`) is run with:
 
 <div class="termy">
 
@@ -97,7 +97,7 @@ $ python myapp.py
 
 </div>
 
-but which is not called when another file imports it, as in:
+but which is not called when another module imports it, as in:
 
 ```Python
 from myapp import app
@@ -105,7 +105,7 @@ from myapp import app
 
 #### More details
 
-If you run your file with:
+If you run your module with:
 
 <div class="termy">
 
@@ -115,7 +115,7 @@ $ python myapp.py
 
 </div>
 
-then the internal variable `__name__` in your file, which is automatically created by Python, will have the string `"__main__"` as its value.
+then the internal variable `__name__` in your module, which is automatically created by Python, will have the string `"__main__"` as its value.
 
 So the section:
 
@@ -129,7 +129,7 @@ is executed.
 
 This will not happen if you import this module (this file).
 
-So if you have another file `importer.py` with:
+So if you have another module `importer.py` with:
 
 ```Python
 from myapp import app
