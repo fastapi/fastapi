@@ -57,7 +57,7 @@ In VS Code, you can now debug this application like this:
 
 * Debugging begins. A box appears at the top with buttons, for example to continue debugging after a breakpoint or to end debugging.
 
-* The FastAPI development server is starting, as you can see in the terminal that opens below.
+* The FastAPI development server is starting, as you can see in the terminal that opens at the bottom.
 
 * Now in `myapp.py`, for example on the last line of the function, add a breakpoint by clicking on the red dot that appears when you hover over the line number.
 
@@ -87,7 +87,7 @@ Import `uvicorn` and run it directly:
 
 ### About `__name__ == "__main__"`
 
-The main purpose of `__name__ == "__main__"` is to have a block of code that runs when your module (your source code file, here `myapp.py`) is run with:
+The main purpose of `__name__ == "__main__"` is to have a block of code that is executed when your file is called with:
 
 <div class="termy">
 
@@ -97,7 +97,7 @@ $ python myapp.py
 
 </div>
 
-but which is not called when another module imports it, as in:
+but which is not executed when another file imports it, as in:
 
 ```Python
 from myapp import app
@@ -105,7 +105,7 @@ from myapp import app
 
 #### More details
 
-If you run your module with:
+If you run your file with:
 
 <div class="termy">
 
@@ -115,7 +115,7 @@ $ python myapp.py
 
 </div>
 
-then the internal variable `__name__` in your module, which is automatically created by Python, will have the string `"__main__"` as its value.
+then the internal variable `__name__` in your file, which is automatically created by Python, will have the string `"__main__"` as its value.
 
 So the section:
 
@@ -123,13 +123,13 @@ So the section:
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-is executed.
+will be executed.
 
 ---
 
-This will not happen if you import this module (this file).
+This won't happen if you import that module (file).
 
-So if you have another module `importer.py` with:
+So if you have another file `importer.py` with:
 
 ```Python
 from myapp import app
@@ -137,7 +137,7 @@ from myapp import app
 # More code here
 ```
 
-in this case, the automatically created variable `__name__` in `myapp.py` will not have the value `"__main__"`.
+in that case, the automatically created variable `__name__` in `myapp.py` will not have the value `"__main__"`.
 
 So the line:
 
@@ -145,10 +145,10 @@ So the line:
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-is not executed.
+will not be executed.
 
 !!! info
-    For more information, see the <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">official Python documentation</a>.
+    For more information, check the <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">official Python docs</a>.
 
 ### Run the code with the debugger
 
