@@ -71,7 +71,7 @@ In VS Code, you can now debug this application like this:
 
 * To stop debugging, click (possibly several times) on the Stop button in the same box. The development server is stopped.
 
-Now you know what you need, to debug your application in VS Code! 🚀
+Now you know the basics of debugging your application in VS Code! 🚀
 
 ## PyCharm
 
@@ -162,4 +162,4 @@ Since you are now running the Uvicorn server directly from your code, you can ca
 
 <img src="/img/tutorial/debugging/image02.png">
 
-And with that you know what you need, to debug your application in PyCharm! 🚀
+And with that you also know the basics of debugging your application in PyCharm! 🚀
