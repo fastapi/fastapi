@@ -427,7 +427,7 @@ Serving at: http://127.0.0.1:8008
 
 * Wenn ein Markdown-Dokument übersetzt ist, ändern sich allerdings unter Umständen die `#hash-teile` in Links zu dessen Überschriften. Aktualisieren Sie diese Links, wenn möglich.
     * Suchen Sie im übersetzten Dokument nach solchen Links mit dem Regex `#[^# ]`.
-    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option „Edit“ -> „Find in Files“.
+    * Suchen Sie in allen bereits in ihre Sprache übersetzen Dokumenten nach `ihr-ubersetztes-dokument.md`. VS Code hat beispielsweise eine Option „Bearbeiten“ -> „In Dateien suchen“.
     * Übersetzen Sie bei der Übersetzung eines Dokuments nicht „im Voraus“ `#hash-teile`, die zu Überschriften in noch nicht übersetzten Dokumenten verlinken.
 
 ## Tests
