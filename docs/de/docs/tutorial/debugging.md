@@ -87,7 +87,7 @@ Importieren Sie  `uvicorn` und führen Sie es direkt aus:
 
 ### Über `__name__ == "__main__"`
 
-Der Hauptzweck von `__name__ == "__main__"` besteht darin, einen Codeblock zu haben, der ausgeführt wird, wenn Ihr Modul (Ihre Quellcode-Datei, hier `myapp.py`) aufgerufen wird mit:
+Der Hauptzweck von `__name__ == "__main__"` besteht darin, einen Codeblock zu haben, der ausgeführt wird, wenn Ihre Datei aufgerufen wird mit:
 
 <div class="termy">
 
@@ -97,7 +97,7 @@ $ python myapp.py
 
 </div>
 
-der aber nicht aufgerufen wird, wenn eine anderes Modul es importiert, wie in:
+der aber nicht ausgeführt wird, wenn eine andere Datei sie importiert, wie in:
 
 ```Python
 from myapp import app
@@ -105,7 +105,7 @@ from myapp import app
 
 #### Weitere Details
 
-Wenn Sie Ihr Modul ausführen mit:
+Wenn Sie Ihre Datei ausführen mit:
 
 <div class="termy">
 
@@ -115,7 +115,7 @@ $ python myapp.py
 
 </div>
 
-dann wird die interne Variable `__name__` in Ihrem Modul, welche automatisch von Python erstellt wird, als Wert den String `"__main__"` haben.
+dann wird die interne Variable `__name__` in Ihrer Datei, welche automatisch von Python erstellt wird, als Wert den String `"__main__"` haben.
 
 Also wird der Abschnitt:
 
@@ -129,7 +129,7 @@ ausgeführt.
 
 Dies wird nicht passieren, wenn Sie dieses Modul (diese Datei) importieren.
 
-Wenn Sie also eine anderes Modul `importer.py` haben mit:
+Wenn Sie also eine andere Datei `importer.py` haben mit:
 
 ```Python
 from myapp import app
@@ -137,7 +137,7 @@ from myapp import app
 # Hier mehr Code
 ```
 
-wird in diesem Fall die automatisch erstellte Variable `__name__` in `myapp.py` nicht den Wert `"__main__"` haben.
+wird in dem Fall die automatisch erstellte Variable `__name__` in `myapp.py` nicht den Wert `"__main__"` haben.
 
 Also wird die Zeile:
 
