@@ -140,7 +140,7 @@ Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefiniert
 
 ## Ein weiteres Modul mit `APIRouter`.
 
-Nehmen wir an, Sie haben im Modul unter `app/routers/items.py` auch die Endpunkte, die für die Verarbeitung von „Items“ („Dingen“) aus Ihrer Anwendung vorgesehen sind.
+Nehmen wir an, Sie haben im Modul unter `app/routers/items.py` auch die Endpunkte, die für die Verarbeitung von Artikeln („Items“) aus Ihrer Anwendung vorgesehen sind.
 
 Sie haben *Pfadoperationen* für:
 
@@ -183,7 +183,7 @@ Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperat
 !!! tip "Tipp"
     Beachten Sie, dass ähnlich wie bei [Abhängigkeiten in *Pfadoperation-Dekoratoren*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} kein Wert an Ihre *Pfadoperation-Funktion* übergeben wird.
 
-Das Endergebnis ist, dass die Pfade für diese Items jetzt wie folgt lauten:
+Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 * `/items/`
 * `/items/{item_id}`
