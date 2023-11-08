@@ -85,7 +85,7 @@ Your new file structure could look like this:
 ├── app
 │   ├── __init__.py
 │   ├── main.py
-└── static/
+|   ├── static/
 ```
 
 ### Download the files
@@ -110,10 +110,10 @@ After that, your file structure could look like:
 ├── app
 │   ├── __init__.py
 │   ├── main.py
-└── static
-    ├── redoc.standalone.js
-    ├── swagger-ui-bundle.js
-    └── swagger-ui.css
+|   ├── static/
+              ├── redoc.standalone.js
+              ├── swagger-ui-bundle.js
+              └── swagger-ui.css
 ```
 
 ### Serve the static files
