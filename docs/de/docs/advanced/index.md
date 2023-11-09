@@ -23,7 +23,7 @@ Obwohl das [Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link 
 
 Oder Sie belegen einfach lieber andere Kurse, weil diese besser zu Ihrem Lernstil passen.
 
-Einige Kursanbieter ✨ [**sponsern FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, dies gewährleistet die kontinuierliche und gesunde **Entwicklung** von FastAPI und seinem **Ökosystem**.
+Einige Kursanbieter ✨ [**sponsern FastAPI**](../help-fastapi.md#den-autor-sponsern){.internal-link target=_blank} ✨, dies gewährleistet die kontinuierliche und gesunde **Entwicklung** von FastAPI und seinem **Ökosystem**.
 
 Und es zeigt deren wahres Engagement für FastAPI und seine **Gemeinschaft** (Sie), da diese Ihnen nicht nur eine **gute Lernerfahrung** bieten möchten, sondern auch sicherstellen möchten, dass Sie über ein **gutes und gesundes Framework verfügen **, FastAPI. 🙇
 
