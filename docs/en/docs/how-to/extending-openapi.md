@@ -26,6 +26,7 @@ And that function `get_openapi()` receives as parameters:
 * `summary`: A short summary of the API.
 * `description`: The description of your API, this can include markdown and will be shown in the docs.
 * `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
+* `field_names_by_alias`: A boolean indicating whether to use the field names or the alias names for the models.
 
 !!! info
     The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by FastAPI 0.99.0 and above.
