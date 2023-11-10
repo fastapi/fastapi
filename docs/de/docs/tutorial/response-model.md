@@ -226,7 +226,7 @@ Sehen wir uns zunächst an, wie Editor, mypy und andere Tools dies sehen würden
 
 Wir annotieren den Funktionsrückgabetyp als `BaseUser`, geben aber tatsächlich eine `UserIn`-Instanz zurück.
 
-Für den Editor, mypy und andere Tools ist das kein Problem, da `UserIn` eine Kindklasse von `BaseUser` ist (Salopp: `UserIn` ist ein `BaseUser`). Es handelt sich um einen *gültigen* Typ, solange irgendetwas überreicht wird, das ein `BaseUser` ist.
+Für den Editor, mypy und andere Tools ist das kein Problem, da `UserIn` eine Unterklasse von `BaseUser` ist (Salopp: `UserIn` ist ein `BaseUser`). Es handelt sich um einen *gültigen* Typ, solange irgendetwas überreicht wird, das ein `BaseUser` ist.
 
 ### FastAPI Datenfilterung
 
@@ -258,19 +258,19 @@ Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, 
 {!> ../../../docs_src/response_model/tutorial003_02.py!}
 ```
 
-Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Kindklasse von) `Response` ist.
+Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Unterklasse von) `Response` ist.
 
-Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Kindklassen von `Response` sind, die Typ-Annotation ist daher korrekt.
+Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Unterklassen von `Response` sind, die Typ-Annotation ist daher korrekt.
 
-### Eine Kindklasse von Response annotieren
+### Eine Unterklasse von Response annotieren
 
-Sie können auch eine Kindklasse von `Response` in der Typ-Annotation verwenden.
+Sie können auch eine Unterklasse von `Response` in der Typ-Annotation verwenden.
 
 ```Python hl_lines="8-9"
 {!> ../../../docs_src/response_model/tutorial003_03.py!}
 ```
 
-Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Kindklasse von `Response` ist, und FastAPI sich um diesen einfachen Anwendungsfall automatisch kümmert.
+Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `Response` ist, und FastAPI sich um diesen einfachen Anwendungsfall automatisch kümmert.
 
 ### Ungültige Rückgabetyp-Annotationen
 
@@ -290,7 +290,7 @@ Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen be
     {!> ../../../docs_src/response_model/tutorial003_04.py!}
     ```
 
-... das scheitert, da die Typ-Annotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Kindklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
+... das scheitert, da die Typ-Annotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Unterklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
 
 ### Response-Modell deaktivieren
 
