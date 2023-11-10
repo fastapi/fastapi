@@ -277,7 +277,7 @@ Und Sie können auch Validierungen für Zahlen deklarieren:
 * `le`: `l`ess than or `e`qual – kleiner oder gleich
 
 !!! info
-    `Query`, `Path`, und andere Klassen, die Sie später kennenlernen, sind Kindklassen einer allgemeinen `Param`-Klasse.
+    `Query`, `Path`, und andere Klassen, die Sie später kennenlernen, sind Unterklassen einer allgemeinen `Param`-Klasse.
 
     Sie alle teilen dieselben Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
 
