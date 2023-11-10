@@ -88,11 +88,11 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
 `Field` funktioniert genauso wie `Query`, `Path` und `Body`, es hat die gleichen Parameter, usw.
 
 !!! note "Technische Details"
-    Tatsächlich erstellen `Query`, `Path` und andere, die sie kennenlernen werden, Instanzen von Kindklassen einer allgemeinen Klasse `Param`, die ihrerseits eine Kindklasse von Pydantics `FieldInfo`-Klasse ist.
+    Tatsächlich erstellen `Query`, `Path` und andere, die sie kennenlernen werden, Instanzen von Unterklassen einer allgemeinen Klasse `Param`, die ihrerseits eine Unterklasse von Pydantics `FieldInfo`-Klasse ist.
 
     Und Pydantics `Field` gibt ebenfalls eine Instanz von `FieldInfo` zurück.
 
-    `Body` gibt auch Instanzen einer Kindklasse von `FieldInfo` zurück. Und später werden Sie andere sehen, die Kindklassen der `Body`-Klasse sind.
+    `Body` gibt auch Instanzen einer Unterklasse von `FieldInfo` zurück. Und später werden Sie andere sehen, die Unterklassen der `Body`-Klasse sind.
 
     Denken Sie daran, dass `Query`, `Path` und andere von `fastapi` tatsächlich Funktionen sind, die spezielle Klassen zurückgeben.
 
