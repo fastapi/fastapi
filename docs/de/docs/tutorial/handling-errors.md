@@ -163,7 +163,7 @@ path -> item_id
 !!! warning "Achtung"
     Das folgende sind technische Details, die Sie überspringen können, wenn sie für Sie nicht wichtig sind.
 
-`RequestValidationError` ist eine Kindklasse von Pydantics <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** verwendet diesen, sodass Sie, wenn Sie ein Pydantic-Modell für `response_model` verwenden, und ihre Daten fehlerhaft sind, einen Fehler in ihrem Log sehen.
 
