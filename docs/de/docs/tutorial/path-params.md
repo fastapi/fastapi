@@ -131,7 +131,7 @@ Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie
 
 ### Erstellen Sie eine `Enum`-Klasse
 
-Importieren Sie `Enum` und erstellen Sie eine Kindklasse, die von `str` und `Enum` erbt.
+Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
 
 Indem Sie von `str` erben, weiß die API Dokumentation, dass die Werte des Enums vom Typ `str` sein müssen, und wird in der Lage sein, korrekt zu rendern.
 
