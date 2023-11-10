@@ -347,6 +347,7 @@ else:
     @dataclass
     class GenerateJsonSchema:  # type: ignore[no-redef]
         ref_template: str
+        by_alias: bool = True
 
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
