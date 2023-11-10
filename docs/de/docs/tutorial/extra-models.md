@@ -152,7 +152,7 @@ Unsere Modelle teilen alle eine Menge der Daten und verdoppeln Attribut-Namen un
 
 Das können wir besser machen.
 
-Wir deklarieren ein `UserBase`-Modell, das als Basis für unsere anderen Modelle dient. Dann können wir Kindklassen erstellen, die seine Attribute (Typ-Deklarationen, Validierungen, usw.) erben.
+Wir deklarieren ein `UserBase`-Modell, das als Basis für unsere anderen Modelle dient. Dann können wir Unterklassen erstellen, die seine Attribute (Typ-Deklarationen, Validierungen, usw.) erben.
 
 Die ganze Daten-Konvertierung, -Validierung, -Dokumentation, usw. wird immer noch wie gehabt funktionieren.
 
