@@ -16,7 +16,7 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 
 ## Pfad-Parameter mit Typen
 
-Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard Python Typ-Annotationen:
+Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typ-Annotationen:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -127,7 +127,7 @@ Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinsti
 
 ## Vordefinierte Parameterwerte
 
-Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard Python <abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
+Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
 
 ### Erstellen Sie eine `Enum`-Klasse
 
