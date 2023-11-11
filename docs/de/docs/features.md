@@ -34,7 +34,7 @@ Alles basiert auf **Python 3.8 Typ**-Deklarationen (dank Pydantic). Es muss kein
 
 Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
 
-Sie schreiben Standard Python mit Typen:
+Sie schreiben Standard-Python mit Typen:
 
 ```Python
 from typing import List, Dict
