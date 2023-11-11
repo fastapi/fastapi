@@ -72,7 +72,7 @@ OpenAPI definiert die folgenden Sicherheitsschemas:
     * Einem Query-Parameter.
     * Einem Header.
     * Einem Cookie.
-* `http`: Standard HTTP-Authentifizierungssysteme, einschließlich:
+* `http`: Standard-HTTP-Authentifizierungssysteme, einschließlich:
     * `bearer`: ein Header `Authorization` mit dem Wert `Bearer` plus einem Token. Dies wird von OAuth2 geerbt.
     * HTTP Basic Authentication.
     * HTTP Digest, usw.
