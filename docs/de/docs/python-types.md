@@ -131,7 +131,7 @@ Das ist auch meistens, wie sie in **FastAPI** verwendet werden.
 
 ### Einfache Typen
 
-Sie können alle Standard Python-Typen deklarieren, nicht nur `str`.
+Sie können alle Standard-Python-Typen deklarieren, nicht nur `str`.
 
 Zum Beispiel diese:
 
@@ -502,12 +502,12 @@ Aber Sie können `Annotated` nutzen, um **FastAPI** mit Metadaten zu versorgen, 
 
 Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind Metadaten für andere Tools.
 
-Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standard Python ist. 😎
+Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standard-Python ist. 😎
 
 Später werden Sie sehen, wie **mächtig** es sein kann.
 
 !!! tip "Tipp"
-    Der Umstand, dass es **Standard Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
+    Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 
     Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python Tools und Bibliotheken sein wird. 🚀
 
@@ -531,7 +531,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typ-Hinweisen, und Sie erhalten:
 
 Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank}.
 
-Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
+Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard-Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
 !!! info
     Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der „Cheat Sheet“ von `mypy`</a>.
