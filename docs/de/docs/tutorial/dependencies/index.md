@@ -237,9 +237,9 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
     ```
 
 !!! tip "Tipp"
-    Das ist schlicht Standard Python, es wird als „Typ-Alias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+    Das ist schlicht Standard-Python, es wird als „Typ-Alias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
-    Da **FastAPI** jedoch auf Standard Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
+    Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
 
 Die Abhängigkeiten funktionieren weiterhin wie erwartet, und das **Beste daran** ist, dass die **Typinformationen erhalten bleiben**, was bedeutet, dass Ihr Editor Ihnen weiterhin **automatische Vervollständigung**, **Inline-Fehler**, usw. bieten kann. Das Gleiche gilt für andere Tools wie `mypy`.
 
