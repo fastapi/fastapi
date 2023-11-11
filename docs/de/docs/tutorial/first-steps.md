@@ -141,7 +141,7 @@ Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generier
 
     Sie können alle <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>-Funktionalitäten auch mit `FastAPI` nutzen.
 
-### Schritt 2: Erzeugen einer `FastAPI` "Instanz"
+### Schritt 2: Erzeugen einer `FastAPI`-"Instanz"
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
