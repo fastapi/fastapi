@@ -58,9 +58,15 @@ if PYDANTIC_V2:
     from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as general_plain_validator_function,
-    )
+
+    try:
+        from pydantic_core.core_schema import (
+            with_info_plain_validator_function as with_info_plain_validator_function,
+        )
+    except ImportError:  # pragma: no cover
+        from pydantic_core.core_schema import (
+            general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
+        )
 
     Required = PydanticUndefined
     Undefined = PydanticUndefined
@@ -191,9 +197,9 @@ if PYDANTIC_V2:
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-            json_schema[
-                "title"
-            ] = field.field_info.title or field.alias.title().replace("_", " ")
+            json_schema["title"] = (
+                field.field_info.title or field.alias.title().replace("_", " ")
+            )
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
@@ -345,7 +351,7 @@ else:
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
-    def general_plain_validator_function(  # type: ignore[misc]
+    def with_info_plain_validator_function(  # type: ignore[misc]
         function: Callable[..., Any],
         *,
         ref: Union[str, None] = None,

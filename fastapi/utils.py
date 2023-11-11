@@ -117,7 +117,7 @@ def create_cloned_field(
     if PYDANTIC_V2:
         return field
     # cloned_types caches already cloned types to support recursive models and improve
-    # performance by avoiding unecessary cloning
+    # performance by avoiding unnecessary cloning
     if cloned_types is None:
         cloned_types = _CLONED_TYPES_CACHE
 
@@ -152,7 +152,8 @@ def create_cloned_field(
         ]
     if field.key_field:  # type: ignore[attr-defined]
         new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
-            field.key_field, cloned_types=cloned_types  # type: ignore[attr-defined]
+            field.key_field,  # type: ignore[attr-defined]
+            cloned_types=cloned_types,
         )
     new_field.validators = field.validators  # type: ignore[attr-defined]
     new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]

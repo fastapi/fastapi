@@ -55,9 +55,7 @@ def test_openapi_schema(client: TestClient):
                             "description": "Successful Response",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -89,9 +87,7 @@ def test_openapi_schema(client: TestClient):
                             "description": "Successful Response",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -119,7 +115,7 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -129,35 +125,9 @@ def test_openapi_schema(client: TestClient):
         },
         "components": {
             "schemas": {
-                "Item-Input": {
-                    "title": "Item",
+                "Item": {
                     "type": "object",
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "description": {
-                            "title": "Description",
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "price": {
-                            "title": "Price",
-                            "anyOf": [{"type": "number"}, {"type": "null"}],
-                        },
-                        "tax": {"title": "Tax", "type": "number", "default": 10.5},
-                        "tags": {
-                            "title": "Tags",
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "default": [],
-                        },
-                    },
-                },
-                "Item-Output": {
                     "title": "Item",
-                    "type": "object",
-                    "required": ["name", "description", "price", "tax", "tags"],
                     "properties": {
                         "name": {
                             "anyOf": [{"type": "string"}, {"type": "null"}],
