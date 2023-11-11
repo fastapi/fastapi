@@ -36,7 +36,7 @@ hide:
 
 ---
 
-FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
+FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard-Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
 
 Seine Schlüssel-Merkmale sind:
 
@@ -274,7 +274,7 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 Ändern Sie jetzt die Datei `main.py`, um den <abbr title="Body – Körper, Inhalt: Der eigentliche Inhalt einer Nachricht, nicht die Metadaten">Body</abbr> einer `PUT`-Anfrage zu empfangen.
 
-Deklarieren Sie den Body mithilfe von Standard Python Typen, dank Pydantic.
+Deklarieren Sie den Body mithilfe von Standard-Python-Typen, dank Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
