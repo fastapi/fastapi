@@ -176,7 +176,7 @@ Sie können deklarieren, dass eine Response eine <abbr title="Union – Verbund,
 
 Das wird in OpenAPI mit `anyOf` angezeigt.
 
-Um das zu tun, verwenden Sie Pythons Standard Typ-Hinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Um das zu tun, verwenden Sie Pythons Standard-Typ-Hinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note "Hinweis"
     Listen Sie, wenn Sie eine <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, denjenigen Typ zuerst, der am spezifischsten ist, gefolgt von den weniger spezifischen Typen. Im Beispiel oben, in `Union[PlaneItem, CarItem]` also den spezifischeren `PlaneItem` vor dem weniger spezifischen `CarItem`.
