@@ -126,7 +126,7 @@ Sie können Ihre Funktion also so deklarieren:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
     ```
 
-Aber behalten Sie im Kopf, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden, da Sie nicht die Funktions-Parameter-Defaultwerte für `Query()` oder `Path()` verwenden.
+Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden, da Sie nicht die Funktions-Parameter-Defaultwerte für `Query()` oder `Path()` verwenden.
 
 === "Python 3.9+"
 
@@ -166,7 +166,7 @@ Python macht nichts mit diesem `*`, aber es wird wissen, dass alle folgenden Par
 
 ### Besser mit `Annotated`
 
-Behalten Sie im Kopf, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem nicht haben, weil Sie keine Defaultwerte für Ihre Funktionsparameter haben. Sie müssen daher wahrscheinlich auch nicht `*` verwenden.
+Bedenken Sie, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem nicht haben, weil Sie keine Defaultwerte für Ihre Funktionsparameter haben. Sie müssen daher wahrscheinlich auch nicht `*` verwenden.
 
 === "Python 3.9+"
 
