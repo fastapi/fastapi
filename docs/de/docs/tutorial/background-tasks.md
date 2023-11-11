@@ -25,7 +25,7 @@ Importieren Sie zunächst `BackgroundTasks` und definieren Sie einen Parameter i
 
 Erstellen Sie eine Funktion, die als Hintergrund-Task ausgeführt werden soll.
 
-Es handelt sich schlicht um eine Standard Funktion, die Parameter empfangen kann.
+Es handelt sich schlicht um eine Standard-Funktion, die Parameter empfangen kann.
 
 Es kann sich um eine `async def`- oder normale `def`-Funktion handeln. **FastAPI** weiß, wie damit zu verfahren ist.
 
