@@ -124,7 +124,7 @@ Das OpenAPI-Schema ist die Grundlage für die beiden enthaltenen interaktiven Do
 
 Es gibt dutzende Alternativen, die alle auf OpenAPI basieren. Sie können jede dieser Alternativen problemlos zu Ihrer mit **FastAPI** erstellten Anwendung hinzufügen.
 
-Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generieren, die mit Ihrer API kommunizieren. Zum Beispiel für Frontend-, Mobil- oder IoT-Anwendungen.
+Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generieren, die mit Ihrer API kommunizieren. Zum Beispiel für Frontend-, Mobile- oder IoT-Anwendungen.
 
 ## Rückblick, Schritt für Schritt
 
