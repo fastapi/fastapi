@@ -248,7 +248,7 @@ Wir werden sie auch "**Operationen**" nennen.
 Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von Anfragen zuständig ist, die an:
 
  * den Pfad `/`
- * unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code> Operation</abbr> gehen
+ * unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
 
 !!! Info "`@decorator` Information"
     Diese `@something`-Syntax wird in Python als "Dekorator" bezeichnet.
