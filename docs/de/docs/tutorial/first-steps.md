@@ -27,7 +27,7 @@ $ uvicorn main:app --reload
 !!! Hinweis
     Der Befehl `uvicorn main:app` bezieht sich auf:
 
-    * `main`: die Datei `main.py` (das sogenannte Python "Modul").
+    * `main`: die Datei `main.py` (das sogenannte Python-"Modul").
     * `app`: das Objekt, welches in der Datei `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
     * `--reload`: lässt den Server nach Codeänderungen neu starten. Sollte nur für Entwicklungszwecke verwendet werden.
 
