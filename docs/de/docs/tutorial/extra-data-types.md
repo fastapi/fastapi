@@ -43,7 +43,7 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
         * Bei Responses wird das `set` in eine `list`e umgewandelt.
         * Das generierte Schema zeigt an, dass die `set`-Werte eindeutig sind (unter Verwendung von JSON Schemas `uniqueItems`).
 * `bytes`:
-    * Standard Python-`bytes`.
+    * Standard Python `bytes`.
     * In Requests und Responses werden sie als `str` behandelt.
     * Das generierte Schema wird anzeigen, dass es sich um einen `str` mit `binary` „Format“ handelt.
 * `Decimal`:
