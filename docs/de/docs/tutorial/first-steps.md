@@ -51,7 +51,7 @@ Sie werden folgende JSON-Antwort sehen:
 
 ### Interaktive API-Dokumentation
 
-Gehen Sie als Nächstes zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs </a>.
+Gehen Sie als Nächstes auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs </a>.
 
 Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereitgestellt durch <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
