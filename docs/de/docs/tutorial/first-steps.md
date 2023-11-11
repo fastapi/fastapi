@@ -151,7 +151,7 @@ In diesem Beispiel ist die Variable `app` eine "Instanz" der Klasse `FastAPI`.
 
 Dies wird der Hauptinteraktionspunkt für die Erstellung all Ihrer APIs sein.
 
-Die Variable `app`  ist dieselbe, auf die sich der Befehl `uvicorn` bezieht:
+Die Variable `app` ist dieselbe, auf die sich der Befehl `uvicorn` bezieht:
 
 <div class="termy">
 
