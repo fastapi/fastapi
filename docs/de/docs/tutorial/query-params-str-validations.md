@@ -173,7 +173,7 @@ q: str | None = None
 Nur, dass die `Query`-Versionen den Parameter explizit als Query-Parameter deklarieren.
 
 !!! info
-    Behalten Sie in Kopf, dass:
+    Bedenken Sie, dass:
 
     ```Python
     = None
@@ -199,7 +199,7 @@ Das wird die Daten validieren, einen verständlichen Fehler ausgeben, wenn die D
 
 ### `Query` als Defaultwert oder in `Annotated`
 
-Behalten Sie im Kopf, dass wenn Sie `Query` innerhalb von `Annotated` benutzen, Sie den `default`-Parameter für `Query` nicht verwenden dürfen.
+Bedenken Sie, dass wenn Sie `Query` innerhalb von `Annotated` benutzen, Sie den `default`-Parameter für `Query` nicht verwenden dürfen.
 
 Setzen Sie stattdessen den Defaultwert des Funktionsparameters, sonst wäre es inkonsistent.
 
