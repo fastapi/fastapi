@@ -35,7 +35,7 @@ Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
 
 Dann deklarieren Sie Ihr Datenmodell als eine Klasse, die von `BaseModel` erbt.
 
-Verwenden Sie Standard Python-Typen für die Klassenattribute:
+Verwenden Sie Standard-Python-Typen für die Klassenattribute:
 
 === "Python 3.10+"
 
