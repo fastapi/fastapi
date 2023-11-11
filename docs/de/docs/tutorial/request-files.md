@@ -71,7 +71,7 @@ Die Dateien werden als „Formulardaten“ hochgeladen.
 
 Wenn Sie den Typ Ihrer *Pfadoperation-Funktion* als `bytes` deklarieren, wird **FastAPI** die Datei für Sie auslesen, und Sie erhalten den Inhalt als `bytes`.
 
-Behalten Sie im Kopf, dass das bedeutet, dass sich der gesamte Inhalt der Datei im Arbeitsspeicher befindet. Das wird für kleinere Dateien gut funktionieren.
+Bedenken Sie, dass das bedeutet, dass sich der gesamte Inhalt der Datei im Arbeitsspeicher befindet. Das wird für kleinere Dateien gut funktionieren.
 
 Aber es gibt viele Fälle, in denen Sie davon profitieren, `UploadFile` zu verwenden.
 
