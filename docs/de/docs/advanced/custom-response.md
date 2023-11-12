@@ -106,7 +106,7 @@ Bedenken Sie, dass Sie `Response` verwenden können, um alles andere zurückzuge
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
 ### `Response`
 
