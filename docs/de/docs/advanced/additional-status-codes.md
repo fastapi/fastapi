@@ -66,4 +66,4 @@ Um dies zu erreichen, importieren Sie `JSONResponse` und geben Sie Ihren Inhalt 
 
 Wenn Sie zusätzliche Statuscodes und Responses direkt zurückgeben, werden diese nicht in das OpenAPI-Schema (die API-Dokumentation) aufgenommen, da FastAPI keine Möglichkeit hat, im Voraus zu wissen, was Sie zurückgeben werden.
 
-Sie können das jedoch in Ihrem Code dokumentieren, indem Sie Folgendes verwenden: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+Sie können das jedoch in Ihrem Code dokumentieren, indem Sie Folgendes verwenden: [Zusätzliche Responses](additional-responses.md){.internal-link target=_blank}.
