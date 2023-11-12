@@ -59,7 +59,7 @@ Das definiert die Metadaten der Haupt-Response einer *Pfadoperation*.
 
 Sie können auch zusätzliche Responses mit deren Modellen, Statuscodes usw. deklarieren.
 
-Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es unter [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} lesen.
+Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es unter [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} lesen.
 
 ## OpenAPI-Extra
 
@@ -77,7 +77,7 @@ Dieses *Pfadoperation*-spezifische OpenAPI-Schema wird normalerweise automatisch
 !!! tip "Tipp"
     Dies ist ein Low-Level Erweiterungspunkt.
 
-    Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
+    Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
 
 Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie den Parameter `openapi_extra` verwenden.
 
