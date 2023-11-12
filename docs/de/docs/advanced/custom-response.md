@@ -112,7 +112,7 @@ Bedenken Sie, dass Sie `Response` verwenden können, um alles andere zurückzuge
 
 Die Hauptklasse `Response`, alle anderen Responses erben von ihr.
 
-Sie können sie direkt zurücksenden.
+Sie können sie direkt zurückgeben.
 
 Sie akzeptiert die folgenden Parameter:
 
