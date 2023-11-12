@@ -147,7 +147,7 @@ Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generier
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-In diesem Beispiel ist die Variable `app` eine "Instanz" der Klasse `FastAPI`.
+In diesem Beispiel ist die Variable `app` eine „Instanz“ der Klasse `FastAPI`.
 
 Dies wird der Hauptinteraktionspunkt für die Erstellung all Ihrer APIs sein.
 
