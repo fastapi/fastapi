@@ -58,6 +58,6 @@ Sie könnten Ihren XML-Inhalt als String in eine `Response` einfügen und sie zu
 
 Wenn Sie eine `Response` direkt zurücksenden, werden deren Daten weder validiert, konvertiert (serialisiert), noch automatisch dokumentiert.
 
-Sie können sie aber trotzdem wie unter [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} beschrieben dokumentieren.
+Sie können sie aber trotzdem wie unter [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} beschrieben dokumentieren.
 
 In späteren Abschnitten erfahren Sie, wie Sie diese benutzerdefinierten `Response`s verwenden/deklarieren und gleichzeitig über automatische Datenkonvertierung, Dokumentation, usw. verfügen.
