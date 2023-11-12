@@ -109,7 +109,7 @@ Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-I
 !!! note "Technische Details"
     Sie können auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette. Das Gleiche gilt für `Request`.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `Request`.
 
 ## Die Default-Exceptionhandler überschreiben
 
@@ -186,7 +186,7 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
 ### Den `RequestValidationError`-Body verwenden
 
