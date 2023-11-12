@@ -82,7 +82,7 @@ Diese sind nur eine Annehmlichkeit und enthalten die gleiche Nummer, aber auf di
 !!! note "Technische Details"
     Sie können auch `from starlette import status` verwenden.
 
-    **FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für den Entwickler. Aber sie kommen direkt von Starlette.
+    **FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für Sie, den Entwickler. Sie kommen aber direkt von Starlette.
 
 ## Den Defaultwert ändern
 
