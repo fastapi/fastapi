@@ -2,9 +2,9 @@
 
 Standardmäßig gibt **FastAPI** die Responses mittels `JSONResponse` zurück.
 
-Sie können das überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
+Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
 
-Wenn Sie jedoch direkt eine `Response` zurückgeben, werden die Daten nicht automatisch konvertiert und die Dokumentation wird nicht automatisch generiert (wird zum Beispiel nicht den spezifischen „Medientyp“ im HTTP-Header `Content-Type` als Teil der generierten OpenAPI enthalten).
+Wenn Sie jedoch direkt eine `Response` zurückgeben, werden die Daten nicht automatisch konvertiert und die Dokumentation wird nicht automatisch generiert (zum Beispiel wird der spezifische 'Medientyp', der im HTTP-Header `Content-Type` angegeben ist, nicht automatisch in die generierte OpenAPI-Dokumentation aufgenommen).
 
 Sie können aber auch die `Response`, die Sie verwenden möchten, im *Pfadoperation-Dekorator* deklarieren.
 
@@ -17,11 +17,11 @@ Und wenn diese `Response` einen JSON-Medientyp (`application/json`) hat, wie es 
 
 ## `ORJSONResponse` verwenden
 
-Um beispielsweise Performanz herauszuquetschen, können Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> installieren und verwenden, und die Response als `ORJSONResponse` deklarieren.
+Um beispielsweise Leistung zu maximieren, können Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> installieren und verwenden, und die Response als `ORJSONResponse` deklarieren.
 
 Importieren Sie die `Response`-Klasse (-Unterklasse), die Sie verwenden möchten, und deklarieren Sie sie im *Pfadoperation-Dekorator*.
 
-Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` viel schneller als die Rückgabe eines Dicts.
+Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` viel schneller als ein Dictionary zurückzugeben.
 
 Das liegt daran, dass FastAPI standardmäßig jedes enthaltene Element überprüft und sicherstellt, dass es als JSON serialisierbar ist, und zwar unter Verwendung desselben [JSON-kompatiblen Encoders](../tutorial/encoder.md){.internal-link target=_blank}, der im Tutorial erläutert wurde. Dadurch können Sie **beliebige Objekte** zurückgeben, zum Beispiel Datenbankmodelle.
 
@@ -61,7 +61,7 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 
 ### Eine `Response` zurückgeben
 
-Wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt, können Sie die Response auch direkt in Ihrer *Pfadoperation* überschreiben, indem Sie sie zurückgeben.
+Wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt, können Sie die Response auch direkt in Ihrer *Pfadoperation* überschreiben, indem Sie diese zurückgeben.
 
 Das gleiche Beispiel von oben, das eine `HTMLResponse` zurückgibt, könnte so aussehen:
 
@@ -106,7 +106,7 @@ Bedenken Sie, dass Sie `Response` verwenden können, um alles andere zurückzuge
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
 ### `Response`
 
@@ -121,7 +121,7 @@ Sie akzeptiert die folgenden Parameter:
 * `headers` – Ein `dict` von Strings.
 * `media_type` – Ein `str`, der den Medientyp angibt. Z.B. `"text/html"`.
 
-FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Es wird außerdem einen Content-Type-Header einfügen, der auf dem media_type basiert, und für Texttypen einen Zeichensatz anfügen.
+FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem media_type basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
@@ -154,7 +154,7 @@ Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjs
 Eine alternative JSON-Antwort mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
 !!! warning "Achtung"
-    `ujson` ist bei der Behandlung einiger Randfälle weniger sorgfältig als Pythons eingebaute Implementierung.
+    `ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
@@ -208,15 +208,15 @@ Wenn Sie ein dateiähnliches (file-like) Objekt haben (z. B. das von `open()` zu
 
 Auf diese Weise müssen Sie nicht alles zuerst in den Arbeitsspeicher lesen und können diese Generatorfunktion an `StreamingResponse` übergeben und zurückgeben.
 
-Dazu beinhaltet viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbeitung und andere.
+Dies umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbeitung und anderen.
 
 ```{ .python .annotate hl_lines="2  10-12  14" }
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
 1. Das ist die Generatorfunktion. Es handelt sich um eine „Generatorfunktion“, da sie `yield`-Anweisungen enthält.
-2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiähnliche Objekt geschlossen wird, nachdem die Generatorfunktion abgeschlossen ist. Also, nachdem sie mit dem Senden der Response fertig ist.
-3. Dieses `yield from` weist die Funktion an, über das Ding namens `file_like` zu iterieren. Und dann für jeden iterierten Teil, diesen Teil so zurückzugeben, als wenn er aus dieser Generatorfunktion (`iterfile`) stammen würde.
+2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiähnliche Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem diese mit dem Senden der Response fertig ist.
+3. Dieses `yield from` weist die Funktion an, über das als `file_like` benannte Objekt zu iterieren. Und dann für jeden iterierten Teil, diesen Teil so zurückzugeben, als wenn er aus dieser Generatorfunktion (`iterfile`) stammen würde.
 
     Es handelt sich also hier um eine Generatorfunktion, die die „generierende“ Arbeit intern auf etwas anderes überträgt.
 
@@ -256,7 +256,7 @@ Sie können Ihre eigene benutzerdefinierte Response-Klasse erstellen, die von `R
 
 Nehmen wir zum Beispiel an, dass Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> verwenden möchten, aber mit einigen benutzerdefinierten Einstellungen, die in der enthaltenen `ORJSONResponse`-Klasse nicht verwendet werden.
 
-Nehmen wir an, Sie möchten, dass sie eingerücktes und formatiertes JSON zurückgibt, also möchten Sie die orjson-Option `orjson.OPT_INDENT_2` verwenden.
+Stellen Sie sich vor, Sie möchten, dass Ihre Antwort eingerücktes und formatiertes JSON zurückgibt. Dafür möchten Sie die orjson-Option `orjson.OPT_INDENT_2` verwenden.
 
 Sie könnten eine `CustomORJSONResponse` erstellen. Das Wichtigste, was Sie tun müssen, ist, eine `Response.render(content)`-Methode zu erstellen, die den Inhalt als `bytes` zurückgibt:
 
@@ -284,7 +284,7 @@ Natürlich werden Sie wahrscheinlich viel bessere Möglichkeiten finden, Vorteil
 
 Beim Erstellen einer **FastAPI**-Klasseninstanz oder eines `APIRouter`s können Sie angeben, welche Response-Klasse standardmäßig verwendet werden soll.
 
-Der Parameter, der das definiert, ist `default_response_class`.
+Der Parameter, der dies definiert, ist `default_response_class`.
 
 Im folgenden Beispiel verwendet **FastAPI** standardmäßig `ORJSONResponse` in allen *Pfadoperationen*, anstelle von `JSONResponse`.
 
