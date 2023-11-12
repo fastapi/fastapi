@@ -297,4 +297,4 @@ Im folgenden Beispiel verwendet **FastAPI** standardmäßig `ORJSONResponse` in 
 
 ## Zusätzliche Dokumentation
 
-Sie können auch den Medientyp und viele andere Details in OpenAPI mit `responses` deklarieren: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Sie können auch den Medientyp und viele andere Details in OpenAPI mit `responses` deklarieren: [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
