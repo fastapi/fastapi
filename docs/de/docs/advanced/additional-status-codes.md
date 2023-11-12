@@ -60,7 +60,7 @@ Um dies zu erreichen, importieren Sie `JSONResponse` und geben Sie Ihren Inhalt 
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import JSONResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette. Das Gleiche gilt für `status`.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `status`.
 
 ## OpenAPI- und API-Dokumentation
 
