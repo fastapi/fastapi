@@ -19,6 +19,11 @@ try:
 except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
 
+try:
+    import msgspec
+except ImportError:  # pragma: nocover
+    msgspec = None  # type: ignore
+
 
 class UJSONResponse(JSONResponse):
     """
@@ -46,3 +51,15 @@ class ORJSONResponse(JSONResponse):
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
         )
+
+
+class MsgSpecJSONResponse(JSONResponse):
+    """
+    JSON response using the high-performance msgspec library to serialize data to JSON.
+    """
+
+    def render(self, content: Any) -> bytes:
+        assert (
+            msgspec is not None
+        ), "msgspec must be installed to use MsgSpecJSONResponse"
+        return msgspec.json.encode(content)
