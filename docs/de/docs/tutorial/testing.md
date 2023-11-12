@@ -37,7 +37,7 @@ Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken,
 !!! note "Technische Details"
     Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
-    **FastAPI** stellt denselben `starlette.testclient` auch via `fastapi.testclient` bereit, als Annehmlichkeit für den Entwickler. Aber es kommt tatsächlich direkt von Starlette.
+    **FastAPI** stellt denselben `starlette.testclient` auch via `fastapi.testclient` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
 
 !!! tip "Tipp"
     Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z.B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
