@@ -38,7 +38,7 @@ In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import JSONResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
+    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
 ## Eine benutzerdefinierte `Response` zurückgeben
 
