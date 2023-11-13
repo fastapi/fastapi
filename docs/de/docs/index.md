@@ -241,7 +241,7 @@ Der Befehl `uvicorn main:app` bezieht sich auf:
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Sie erhalten die JSON-Antwort:
+Sie erhalten die JSON-Response:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
