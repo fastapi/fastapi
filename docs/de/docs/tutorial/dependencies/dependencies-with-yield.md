@@ -133,13 +133,13 @@ Sie haben gesehen, dass Ihre Abhängigkeiten `yield` verwenden können und `try`
 
 Es könnte verlockend sein, im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches zu werfen. Aber **das wird nicht funktionieren**.
 
-Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Antwort gesendet wurde, [Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} wurden also bereits ausgeführt. Niemand fängt Exceptions, die im Exit-Code ihrer Abhängigkeiten (nach dem `yield`) geworfen werden.
+Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Response gesendet wurde, [Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} wurden also bereits ausgeführt. Niemand fängt Exceptions, die im Exit-Code ihrer Abhängigkeiten (nach dem `yield`) geworfen werden.
 
-Wenn Sie also nach dem `yield` eine `HTTPException` auslösen, ist der standardmäßige (oder ein beliebiger benutzerdefinierter) Exceptionhandler, der `HTTPException` abfängt und eine HTTP 400 Antwort zurückgibt, nicht mehr da, um diese Exception abzufangen.
+Wenn Sie also nach dem `yield` eine `HTTPException` auslösen, ist der standardmäßige (oder ein beliebiger benutzerdefinierter) Exceptionhandler, der `HTTPException` abfängt und eine HTTP 400 Response zurückgibt, nicht mehr da, um diese Exception abzufangen.
 
 Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z.B. eine DB-Session), beispielsweise von Hintergrund-Tasks verwendet werden kann.
 
-Hintergrund-Tasks werden ausgeführt, *nachdem* die Antwort gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Antwort zu ändern.
+Hintergrund-Tasks werden ausgeführt, *nachdem* die Response gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Response zu ändern.
 
 Aber wenn ein Hintergrund-Task einen DB-Error erzeugt, können Sie zumindest ein Rollback durchführen, oder die Session innerhalb der Abhängigkeit mit `yield` sauber schließen, und den Fehler möglicherweise protokollieren oder an ein Remote-Tracking-System melden.
 
