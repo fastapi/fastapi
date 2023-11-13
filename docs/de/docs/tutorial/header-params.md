@@ -1,6 +1,6 @@
 # Header-Parameter
 
-So wie `Query`-, `Path`-, und `Cookie`-Parameter können Sie auch <abbr title='Header – Kopfzeilen, Header, Header-Felder: Schlüssel-Wert-Metadaten, die vom Client bei der Anfrage, und vom Server bei der Antwort gesendet werden'>Header</abbr>-Parameter definieren.
+So wie `Query`-, `Path`-, und `Cookie`-Parameter können Sie auch <abbr title='Header – Kopfzeilen, Header, Header-Felder: Schlüssel-Wert-Metadaten, die vom Client beim Request, und vom Server bei der Response gesendet werden'>Header</abbr>-Parameter definieren.
 
 ## `Header` importieren
 
@@ -209,7 +209,7 @@ X-Token: foo
 X-Token: bar
 ```
 
-Dann wäre die Antwort:
+Dann wäre die Response:
 
 ```JSON
 {
