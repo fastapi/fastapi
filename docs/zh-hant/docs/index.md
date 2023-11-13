@@ -21,26 +21,26 @@
 
 ---
 
-**文檔**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**文件**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**程式碼**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**程式碼**： <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.7+ 並採用標準 Python 類型提示。
+FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.8+ 並採用標準 Python 類別提示。
 
-主要特點包含:
+主要特點包含：
 
-- **快速**: 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
-- **快速開發**: 提高開發功能的速度約 200% 至 300%。 \*
-- **更少的 Bug**: 減少約 40% 的人為（開發者）導致的錯誤。 \*
-- **直觀**: 具有出色的編輯器支持，處處都有 <abbr title="也被稱為自動完成、智能感知">自動補全</abbr> 減少偵錯時間。
-- **簡單**: 設計上易於使用和學習，大幅減少閱讀文件的時間。
-- **簡潔**: 最小化程式碼重複性。可以通過不同的參數聲明來實現更豐富的功能，和更少的錯誤。
-- **穩健**: 立即獲得生產級可用的程式碼，還有自動生成互動式文檔。
-- **標準化**: 基於 (完全兼容) OpenAPIs 的相關標準: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (之前被稱為 Swagger) 和 <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
+- **快速**： 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
+- **快速開發**： 提高開發功能的速度約 200% 至 300%。 \*
+- **更少的 Bug**： 減少約 40% 的人為（開發者）導致的錯誤。 \*
+- **直觀**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntellisSense">自動補全</abbr>以減少偵錯時間。
+- **簡單**： 設計上易於使用和學習，大幅減少閱讀文件的時間。
+- **簡潔**： 最小化程式碼重複性。可以通過不同的參數聲明來實現更豐富的功能，和更少的錯誤。
+- **穩健**： 立即獲得生產級可用的程式碼，還有自動生成互動式文件。
+- **標準化**： 基於 (且完全相容於) OpenAPIs 的相關標準：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>（之前被稱為 Swagger）和<a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
 
-<small>\* 基於內部開發團隊在建立生產應用時的測試預估。</small>
+<small>\* 基於內部開發團隊在建立生產應用程式時的測試預估。</small>
 
 ## 贊助
 
@@ -73,7 +73,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 ---
 
-"_**Netflix** 很榮幸地宣布開源**危機管理**協調框架: **Dispatch**! [是使用 **FastAPI** 架構]_"
+"_**Netflix** 很榮幸地宣布開源**危機管理**協調框架： **Dispatch**! [是使用 **FastAPI** 架構]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
@@ -105,22 +105,22 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 ---
 
-## **Typer**，命令行中的 FastAPI
+## **Typer**，命令列中的 FastAPI
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-如果你不是在開發網頁 API，而是正在開發一個在終端機中運行的<abbr title="Command Line Interface">命令行</abbr>應用，不妨嘗試 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
+如果你不是在開發網頁 API，而是正在開發一個在終端機中運行的<abbr title="Command Line Interface">命令列</abbr>應用程式，不妨嘗試 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
 
-**Typer** 是 FastAPI's 的小兄弟。 他立志成為命令行的 **FastAPI**。 ⌨️ 🚀
+**Typer** 是 FastAPI 的小兄弟。他立志成為命令列的 **FastAPI**。 ⌨️ 🚀
 
 ## 安裝需求
 
-Python 3.7+
+Python 3.8+
 
-FastAPI 是建立在以下巨人的肩膀上:
+FastAPI 是建立在以下巨人的肩膀上：
 
 - <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 負責網頁的部分
-- <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 負責數據的部分
+- <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 負責資料的部分
 
 ## 安裝
 
@@ -134,7 +134,7 @@ $ pip install fastapi
 
 </div>
 
-你同時也會需要 ASGI 伺服器，像是 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+你同時也會需要 ASGI 伺服器，像是 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -150,7 +150,7 @@ $ pip install "uvicorn[standard]"
 
 ### 建立
 
-- 建立一個 python 檔案 `main.py`，並寫入以下程式碼:
+- 建立一個 python 檔案 `main.py`，並寫入以下程式碼：
 
 ```Python
 from typing import Union
@@ -173,7 +173,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <details markdown="1">
 <summary>或可以使用 <code>async def</code>...</summary>
 
-如果你的程式使用 `async` / `await`，請使用 `async def`:
+如果你的程式使用 `async` / `await`，請使用 `async def`：
 
 ```Python hl_lines="9  14"
 from typing import Union
@@ -193,7 +193,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**注意**:
+**注意**：
 
 如果你不知道是否會用到，可以查看 _"In a hurry?"_ 章節中，關於 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` 和 `await` 的部分</a>。
 
@@ -201,7 +201,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 ### 運行
 
-使用以下命令運行伺服器:
+使用以下命令運行伺服器：
 
 <div class="termy">
 
@@ -220,44 +220,44 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>關於指令 <code>uvicorn main:app --reload</code>...</summary>
 
-該指令 `uvicorn main:app` 指的是:
+該指令 `uvicorn main:app` 指的是：
 
-- `main`: `main.py` 檔案 (一個 python 的 "模組")。
-- `app`: 在 `main.py` 檔案中，使用 `app = FastAPI()` 建立的物件。
-- `--reload`: 程式碼更改後會自動重新啟動，請僅在開發時使用此參數。
+- `main`：`main.py` 檔案（一個 python 的 "模組"）。
+- `app`：在 `main.py` 檔案中，使用 `app = FastAPI()` 建立的物件。
+- `--reload`：程式碼更改後會自動重新啟動，請僅在開發時使用此參數。
 
 </details>
 
 ### 檢查
 
-使用瀏覽器訪問 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>。
+使用瀏覽器開啟 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>。
 
-你將會看到以下的 JSON 回應:
+你將會看到以下的 JSON 回應：
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-你已經建立了一個具有以下功能的 API:
+你已經建立了一個具有以下功能的 API：
 
-- 通過路徑 `/` 和 `/items/{item_id}` 接受 HTTP 請求。
-- 已上路經都接受 `GET` <em>請求</em> (也被稱為 HTTP _方法_)。
-- 路徑 `/items/{item_id}` 有一個 `int` 類型的 `item_id` 參數。
-- 路徑 `/items/{item_id}` 有一個 `str` 類型的查詢參數 `q`。
+- 透過路徑 `/` 和 `/items/{item_id}` 接受 HTTP 請求。
+- 以上路經都接受 `GET` <em>請求</em>（也被稱為 HTTP _方法_）。
+- 路徑 `/items/{item_id}` 有一個 `int` 型別的 `item_id` 參數。
+- 路徑 `/items/{item_id}` 有一個 `str` 型別的查詢參數 `q`。
 
 ### 互動式 API 文件
 
-開啟瀏覽器訪問 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+使用瀏覽器開啟 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
-你會看到自動生成的互動式 API 文件 (由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 生成):
+你會看到自動生成的互動式 API 文件（由 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 生成）：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### ReDoc API 文件
 
-開啟瀏覽器訪問 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
+使用瀏覽器開啟 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-你將看到 ReDoc 文件 (由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 生成):
+你將看到 ReDoc 文件 (由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 生成)：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -265,7 +265,7 @@ INFO:     Application startup complete.
 
 現在繼續修改 `main.py` 檔案，來接收一個帶有 body 的 `PUT` 請求.
 
-我們使用 Pydantic 來使用標準的 Python 類型聲明請求。
+我們使用 Pydantic 來使用標準的 Python 型別聲明請求。
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -297,29 +297,29 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-伺服器將自動重修載入 (因為在上一步中，你向 `uvicorn` 命令添加了 `--reload` 的參數)。
+伺服器將自動重修載入（因為在上一步中，你向 `uvicorn` 命令添加了 `--reload` 的選項）。
 
 ### 互動式 API 文件升級
 
-開啟瀏覽器訪問 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+使用瀏覽器開啟 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
-- 互動式 API 文件會自動更新，並加入新的 body 請求:
+- 互動式 API 文件會自動更新，並加入新的 body 請求：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-- 點擊 "Try it out" 按鈕， 你可以填寫參數並直接與 API 互動:
+- 點擊 "Try it out" 按鈕， 你可以填寫參數並直接與 API 互動：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-- 然後點擊 "Execute" 按鈕，用戶介面將會向 API 發送請求，並將結果顯示在螢幕上:
+- 然後點擊 "Execute" 按鈕，用戶介面將會向 API 發送請求，並將結果顯示在螢幕上：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### ReDoc API 文件升級
 
-開啟瀏覽器訪問 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
+使用瀏覽器開啟 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-- ReDoc API 文件會自動更新，並加入新的參數和 body 請求:
+- ReDoc API 文件會自動更新，並加入新的參數和 body 請求：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -329,31 +329,31 @@ def update_item(item_id: int, item: Item):
 
 你使用 Python 標準類型來完成聲明。
 
-你不需要學習新的語法、類、方法或函式庫等等。
+你不需要學習新的語法、類別、方法或函式庫等等。
 
-只需要使用 **Python 3.7 以上的版本**.
+只需要使用 **Python 3.8 以上的版本**。
 
-舉個範例，比如宣告 int 的型態:
+舉個範例，比如宣告 int 的型別：
 
 ```Python
-item_id: int
+item_id： int
 ```
 
-或是一個更複雜的 `Item` 模型:
+或是一個更複雜的 `Item` 模型：
 
 ```Python
 item: Item
 ```
 
-在進行一次宣告後，你將獲得:
+在進行一次宣告後，你將獲得：
 
-- 編輯器支持:
+- 編輯器支援：
   - 自動補全
-  - 型態檢查
-- 資料驗證:
+  - 型別檢查
+- 資料驗證：
   - 驗證失敗時自動生成清楚的錯誤訊息
   - 可驗證多層巢狀的 JSON 物件
-- <abbr title="也被稱為: 序列化或解析">轉換</abbr> 輸入的資料: 轉換來自網路請求到 Python 數據類型。包含以下數據:
+- <abbr title="也被稱為： 序列化或解析">轉換</abbr> 輸入的資料： 轉換來自網路請求到 Python 數據類型。包含以下數據：
   - JSON.
   - 路徑參數
   - 查詢參數
@@ -361,19 +361,19 @@ item: Item
   - 請求標頭
   - 表單
   - 文件
-- <abbr title="也被稱為: 序列化或解析">轉換</abbr> 輸出的資料: 轉換 Python 數據類型到網路傳輸的 JSON:
+- <abbr title="也被稱為： 序列化或解析">轉換</abbr> 輸出的資料： 轉換 Python 數據類型到網路傳輸的 JSON：
   - 轉換 Python 類型 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
   - `datetime` 物件
   - `UUID` 物件
   - 數據模型
   - ...還有其他更多
-- 自動生成的 API 文件，包含 2 種類型的使用介面:
+- 自動生成的 API 文件，包含 2 種類型的使用介面：
   - Swagger UI
   - ReDoc
 
 ---
 
-回到前面的的程式碼範例，**FastAPI** 還會:
+回到前面的的程式碼範例，**FastAPI** 還會：
 
 - 驗證 `GET` 和 `PUT` 請求路徑中是否包含 `item_id`。
 - 驗證 `GET` 和 `PUT` 請求中的 `item_id` 是否是 `int` 類型。
@@ -381,54 +381,54 @@ item: Item
 - 查看 `GET` 請求中是否有命名為 `q` 的查詢參數 (例如 `http://127.0.0.1:8000/items/foo?q=somequery`)。
   - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
   - 如果沒有宣告 `None`，則此參數將會是必填 (例如 `PUT` 範例的請求 body)。
-- 對於 `PUT` 的請求 `/items/{item_id}`，將會讀取 body 為 JSON:
-  - 驗證是否有必填屬性 `name` 且型態是 `str`。
-  - 驗證是否有必填屬性 `price` 且型態是 `float`。
-  - 驗證是否有選填屬性 `is_offer` 且型態是 `bool`。
+- 對於 `PUT` 的請求 `/items/{item_id}`，將會讀取 body 為 JSON：
+  - 驗證是否有必填屬性 `name` 且型別是 `str`。
+  - 驗證是否有必填屬性 `price` 且型別是 `float`。
+  - 驗證是否有選填屬性 `is_offer` 且型別是 `bool`。
   - 以上驗證都適用於多層次巢狀 JSON 物件。
 - 自動轉換 JSON 格式。
-- 透過 OpenAPI 文件來記錄所有內容，可以被用於:
+- 透過 OpenAPI 文件來記錄所有內容，可以被用於：
   - 互動式文件系統。
-  - 自動為多種程式語言生成客戶端的程式碼
+  - 自動為多種程式語言生成用戶端的程式碼
 - 提供兩種交互式文件介面
 
 ---
 
 雖然我們只敘述了表面的功能，但其實你已經理解了它是如何運行。
 
-試著修改以下程式碼:
+試著修改以下程式碼：
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-從:
+從：
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-修改為:
+修改為：
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-然後觀察你的編輯器，會自動補全並且還知道他們的型態:
+然後觀察你的編輯器，會自動補全並且還知道他們的型別：
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 有關更多功能的完整範例，可以參考 <a href="https://fastapi.tiangolo.com/tutorial/">教學 - 使用者指南</a>。
 
-**劇透警告**: 教學 - 使用者指南內容有:
+**劇透警告**： 教學 - 使用者指南內容有：
 
-- 對來自不同地方的 **參數** 進行宣告: 像是 **headers**, **cookies**, **form 表單** 以及 **上傳檔案**。
+- 對來自不同地方的**參數**進行宣告：像是 **headers**, **cookies**, **form 表單**以及**上傳檔案**。
 - 如何設定 **驗證限制** 像是 `maximum_length` or `regex`。
 - 簡單且非常容易使用的 **<abbr title="也被稱為元件、資源、提供者、服務或是注入">依賴注入</abbr>** 系統。
 - 安全性和身份驗證，包含提供支援 **OAuth2**、**JWT tokens** 和 **HTTP Basic** 驗證。
 - 更進階 (但同樣簡單) 的宣告 **多層次的巢狀 JSON 格式** (感謝 Pydantic)。
 - **GraphQL** 與 <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 以及其他的相關函式庫進行整合。
-- 更多其他的功能 (感謝 Starlette) 像是:
+- 更多其他的功能 (感謝 Starlette) 像是：
   - **WebSockets**
   - 於 HTTPX 和 `pytest` 的非常簡單測試
   - **CORS**
@@ -443,22 +443,22 @@ item: Item
 
 ## 可選的依賴套件
 
-用於 Pydantic:
+用於 Pydantic：
 
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用於電子郵件驗證。
 - <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - 用於設置管理。
 - <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - 用於與 Pydantic 一起使用的額外類型。
 
-用於 Starlette:
+用於 Starlette：
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient`時必須安裝。
-- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默認的模板配置時必須安裝。
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用預設的模板配置時必須安裝。
 - <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要使用 `request.form()` 對表單進行<abbr title="轉換來自表單的 HTTP 請求到 Python 資料類型"> "解析" </abbr>時安裝。
-- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要使用 `SessionMiddleware` 支持時安裝。
-- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 用於支持 Starlette 的 `SchemaGenerator` (如果你使用 FastAPI，可能不需要它)。
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要使用 `SessionMiddleware` 支援時安裝。
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 用於支援 Starlette 的 `SchemaGenerator` (如果你使用 FastAPI，可能不需要它)。
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 時必須安裝。
 
-用於 FastAPI / Starlette:
+用於 FastAPI / Starlette：
 
 - <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用於加載和運行應用程式的服務器。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse`時必須安裝。
