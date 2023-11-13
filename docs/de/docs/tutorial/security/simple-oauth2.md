@@ -239,7 +239,7 @@ UserInDB(
 
 ## Den Token zurückgeben
 
-Die Antwort des `token`-Endpunkts muss ein JSON-Objekt sein.
+Die Response des `token`-Endpunkts muss ein JSON-Objekt sein.
 
 Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ "`bearer`" sein.
 
