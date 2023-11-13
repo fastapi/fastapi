@@ -8,7 +8,7 @@ Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax d
 
 Der Wert des Pfad-Parameters `item_id` wird Ihrer Funktion als das Argument `item_id` übergeben.
 
-Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> gehen, sehen Sie als Antwort:
+Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> gehen, sehen Sie als Response:
 
 ```JSON
 {"item_id":"foo"}
@@ -29,7 +29,7 @@ In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
 ## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr>
 
-Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> öffnen, sehen Sie als Antwort:
+Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> öffnen, sehen Sie als Response:
 
 ```JSON
 {"item_id":3}
@@ -194,7 +194,7 @@ Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings)
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-In Ihrem Client erhalten Sie eine JSON-Antwort, wie etwa:
+In Ihrem Client erhalten Sie eine JSON-Response, wie etwa:
 
 ```JSON
 {
