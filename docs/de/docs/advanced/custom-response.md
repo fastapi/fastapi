@@ -151,7 +151,7 @@ Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjs
 
 ### `UJSONResponse`
 
-Eine alternative JSON-Antwort mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
 !!! warning "Achtung"
     `ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
