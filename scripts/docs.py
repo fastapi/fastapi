@@ -53,9 +53,6 @@ def get_lang_paths() -> List[Path]:
 def lang_callback(lang: Optional[str]) -> Union[str, None]:
     if lang is None:
         return None
-    if not lang.isalpha() or len(lang) != 2:
-        typer.echo("Use a 2 letter language code, like: es")
-        raise typer.Abort()
     lang = lang.lower()
     return lang
 
@@ -79,8 +76,6 @@ def callback() -> None:
 def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     """
     Generate a new docs translation directory for the language LANG.
-
-    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
     """
     new_path: Path = Path("docs") / lang
     if new_path.exists():
