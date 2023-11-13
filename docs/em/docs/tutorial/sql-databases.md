@@ -569,7 +569,7 @@ current_user.items
 
 === "🐍 3️⃣.9️⃣ &amp; 🔛"
 
-    ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
+    ```Python hl_lines="21-26  29-32  35-40  43-50  53-56"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
