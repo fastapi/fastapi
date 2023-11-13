@@ -26,7 +26,7 @@ FastAPI wird diesen Rückgabetyp verwenden, um:
 
 * Die zurückzugebenden Daten zu **validieren**.
     * Wenn die Daten ungültig sind (Sie haben z.B. ein Feld vergessen), bedeutet das, *Ihr* Anwendungscode ist fehlerhaft, er gibt nicht zurück, was er sollte, und daher wird ein <abbr title="Server-Fehler">Server-Error</abbr> ausgegeben, statt falscher Daten. So können Sie und ihre Clients sicher sein, dass diese die erwarteten Daten, in der richtigen Form erhalten.
-* In der OpenAPI *Pfadoperation* ein **JSON-Schema** für die Antwort hinzuzufügen.
+* In der OpenAPI *Pfadoperation* ein **JSON-Schema** für die Response hinzuzufügen.
     * Dieses wird von der **automatischen Dokumentation** verwendet.
     * Es wird auch von automatisch Client-Code-generierenden Tools verwendet.
 
@@ -342,7 +342,7 @@ Ihr Response-Modell könnte Defaultwerte haben, wie:
 
 Aber Sie möchten diese vielleicht vom Resultat ausschließen, wenn Sie gar nicht gesetzt wurden.
 
-Wenn Sie zum Beispiel Modelle mit vielen optionalen Attributen in einer NoSQL-Datenbank haben, und Sie möchten nicht ellenlange JSON-Antworten voller Defaultwerte senden.
+Wenn Sie zum Beispiel Modelle mit vielen optionalen Attributen in einer NoSQL-Datenbank haben, und Sie möchten nicht ellenlange JSON-Responses voller Defaultwerte senden.
 
 ### Den `response_model_exclude_unset`-Parameter verwenden
 
@@ -368,7 +368,7 @@ Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unse
 
 Die Defaultwerte werden dann nicht in der Response enthalten sein, sondern nur die tatsächlich gesetzten Werte.
 
-Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wird (ohne die Defaultwerte) die Antwort sein:
+Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wird (ohne die Defaultwerte) die Response sein:
 
 ```JSON
 {
