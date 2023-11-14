@@ -231,7 +231,7 @@ Der **Default**wert des **Funktionsparameters** ist der **tatsächliche Default*
 
 Sie können die Funktion ohne FastAPI an **anderen Stellen aufrufen**, und es wird **wie erwartet funktionieren**. Wenn es einen **erforderlichen** Parameter gibt (ohne Defaultwert), und Sie führen die Funktion ohne den benötigten Parameter aus, dann wird Ihr **Editor** Sie das mit einem Fehler wissen lassen, und **Python** wird sich auch beschweren.
 
-Wenn Sie aber nicht `Annotated` benutzen und stattdessen die **(alte) Variante mit einem Defaultwert**, dann müssen Sie, wenn Sie die Funktion ohne FastAPI an **anderen Stellen** aufrufen, sich daran **erinnern**, die Argumente der Funktion zu übergeben, damit es richtig funktioniert. Ansonsten erhalten Sie unerwartete Werte (z.B. `QueryInfo` oder etwas Ähnliches, statt `str`). Ihr Editor kann ihnen nicht helfen, und Python wird die Funktion ohne Beschwerden ausführen, es sei denn, die Operationen innerhalb werfen einen Fehler.
+Wenn Sie aber nicht `Annotated` benutzen und stattdessen die **(alte) Variante mit einem Defaultwert**, dann müssen Sie, wenn Sie die Funktion ohne FastAPI an **anderen Stellen** aufrufen, sich daran **erinnern**, die Argumente der Funktion zu übergeben, damit es richtig funktioniert. Ansonsten erhalten Sie unerwartete Werte (z.B. `QueryInfo` oder etwas Ähnliches, statt `str`). Ihr Editor kann ihnen nicht helfen, und Python wird die Funktion ohne Beschwerden ausführen, es sei denn, die Operationen innerhalb lösen einen Fehler aus.
 
 Da `Annotated` mehrere Metadaten haben kann, können Sie dieselbe Funktion auch mit anderen Tools verwenden, wie etwa <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
