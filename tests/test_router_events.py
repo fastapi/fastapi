@@ -21,6 +21,9 @@ def state() -> State:
     return State()
 
 
+@pytest.mark.filterwarnings(
+    r"ignore:\s*on_event is deprecated, use lifespan event handlers instead.*:DeprecationWarning"
+)
 def test_router_events(state: State) -> None:
     app = FastAPI()
 

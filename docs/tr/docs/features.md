@@ -27,7 +27,7 @@ OpenAPI standartlarına dayalı olan bir framework olarak, geliştiricilerin bir
 
 ### Sadece modern Python
 
-Tamamiyle standartlar **Python 3.6**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
+Tamamiyle standartlar **Python 3.8**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
 
 
 Eğer Python type hintlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz at: [Python Types](python-types.md){.internal-link target=_blank}.

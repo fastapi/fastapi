@@ -56,12 +56,17 @@ if PYDANTIC_V2:
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import CoreSchema as CoreSchema
-    from pydantic_core import MultiHostUrl as MultiHostUrl
     from pydantic_core import PydanticUndefined, PydanticUndefinedType
     from pydantic_core import Url as Url
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as general_plain_validator_function,
-    )
+
+    try:
+        from pydantic_core.core_schema import (
+            with_info_plain_validator_function as with_info_plain_validator_function,
+        )
+    except ImportError:  # pragma: no cover
+        from pydantic_core.core_schema import (
+            general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
+        )
 
     Required = PydanticUndefined
     Undefined = PydanticUndefined
@@ -182,15 +187,19 @@ if PYDANTIC_V2:
         field_mapping: Dict[
             Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
         ],
+        separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
+        override_mode: Union[Literal["validation"], None] = (
+            None if separate_input_output_schemas else "validation"
+        )
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = field_mapping[(field, field.mode)]
+        json_schema = field_mapping[(field, override_mode or field.mode)]
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-            json_schema[
-                "title"
-            ] = field.field_info.title or field.alias.title().replace("_", " ")
+            json_schema["title"] = (
+                field.field_info.title or field.alias.title().replace("_", " ")
+            )
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
@@ -201,14 +210,19 @@ if PYDANTIC_V2:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
+        separate_input_output_schemas: bool = True,
     ) -> Tuple[
         Dict[
             Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
         ],
         Dict[str, Dict[str, Any]],
     ]:
+        override_mode: Union[Literal["validation"], None] = (
+            None if separate_input_output_schemas else "validation"
+        )
         inputs = [
-            (field, field.mode, field._type_adapter.core_schema) for field in fields
+            (field, override_mode or field.mode, field._type_adapter.core_schema)
+            for field in fields
         ]
         field_mapping, definitions = schema_generator.generate_definitions(
             inputs=inputs
@@ -294,9 +308,6 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
         UndefinedType as UndefinedType,  # noqa: F401
     )
-    from pydantic.networks import (  # type: ignore[no-redef]
-        MultiHostDsn as MultiHostUrl,  # noqa: F401
-    )
     from pydantic.schema import (
         field_schema,
         get_flat_models_from_fields,
@@ -340,7 +351,7 @@ else:
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
-    def general_plain_validator_function(  # type: ignore[misc]
+    def with_info_plain_validator_function(  # type: ignore[misc]
         function: Callable[..., Any],
         *,
         ref: Union[str, None] = None,
@@ -433,6 +444,7 @@ else:
         field_mapping: Dict[
             Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
         ],
+        separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
         return field_schema(  # type: ignore[no-any-return]
@@ -448,6 +460,7 @@ else:
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
         model_name_map: ModelNameMap,
+        separate_input_output_schemas: bool = True,
     ) -> Tuple[
         Dict[
             Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue

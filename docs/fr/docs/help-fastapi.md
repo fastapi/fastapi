@@ -36,8 +36,8 @@ Vous pouvez :
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me suivre sur **Twitter**</a>.
     * Dites-moi comment vous utilisez FastAPI (j'adore entendre ça).
     * Entendre quand je fais des annonces ou que je lance de nouveaux outils.
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Vous connectez à moi sur **Linkedin**</a>.
-    * Etre notifié quand je fais des annonces ou que je lance de nouveaux outils (bien que j'utilise plus souvent Twitte 🤷‍♂).
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Vous connectez à moi sur **LinkedIn**</a>.
+    * Etre notifié quand je fais des annonces ou que je lance de nouveaux outils (bien que j'utilise plus souvent Twitter 🤷‍♂).
 * Lire ce que j’écris (ou me suivre) sur <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> ou <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Lire d'autres idées, articles, et sur les outils que j'ai créés.
     * Suivez-moi pour lire quand je publie quelque chose de nouveau.
@@ -83,24 +83,6 @@ Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" 
 * Proposer de nouvelles sections de documentation.
 * Pour corriger une Issue/Bug existant.
 * Pour ajouter une nouvelle fonctionnalité.
-
-## Rejoindre le chat
-
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Rejoindre le chat à https://gitter.im/tiangolo/fastapi">
-</a>
-
-Rejoignez le chat sur Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
-
-Vous pouvez y avoir des conversations rapides avec d'autres personnes, aider les autres, partager des idées, etc.
-
-Mais gardez à l'esprit que, comme il permet une "conversation plus libre", il est facile de poser des questions trop générales et plus difficiles à répondre, de sorte que vous risquez de ne pas recevoir de réponses.
-
-Dans les Issues de GitHub, le modèle vous guidera pour écrire la bonne question afin que vous puissiez plus facilement obtenir une bonne réponse, ou même résoudre le problème vous-même avant même de le poser. Et dans GitHub, je peux m'assurer que je réponds toujours à tout, même si cela prend du temps. Je ne peux pas faire cela personnellement avec le chat Gitter. 😅
-
-Les conversations dans Gitter ne sont pas non plus aussi facilement consultables que dans GitHub, de sorte que les questions et les réponses peuvent se perdre dans la conversation.
-
-De l'autre côté, il y a plus de 1000 personnes dans le chat, il y a donc de fortes chances que vous y trouviez quelqu'un à qui parler, presque tout le temps. 😄
 
 ## Parrainer l'auteur
 
