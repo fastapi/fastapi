@@ -12,13 +12,13 @@
     {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial012_an.py!}
     ```
 
-=== "Python 3.6 non-Annotated"
+=== "Python 3.8 non-Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать 'Annotated' версию, если это возможно.

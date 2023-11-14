@@ -12,7 +12,7 @@
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body_fields/tutorial001.py!}
@@ -31,7 +31,7 @@
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11-14"
     {!> ../../../docs_src/body_fields/tutorial001.py!}

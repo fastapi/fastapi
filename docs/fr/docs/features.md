@@ -25,7 +25,7 @@ Documentation d'API interactive et interface web d'exploration. Comme le framewo
 
 ### Faite en python moderne
 
-Tout est basé sur la déclaration de type standard de **Python 3.6** (grâce à Pydantic). Pas de nouvelles syntaxes à apprendre. Juste du Python standard et moderne.
+Tout est basé sur la déclaration de type standard de **Python 3.8** (grâce à Pydantic). Pas de nouvelles syntaxes à apprendre. Juste du Python standard et moderne.
 
 Si vous souhaitez un rappel de 2 minutes sur l'utilisation des types en Python (même si vous ne comptez pas utiliser FastAPI), jetez un oeil au tutoriel suivant: [Python Types](python-types.md){.internal-link target=_blank}.
 

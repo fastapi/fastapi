@@ -35,7 +35,7 @@ Let's start with a simple FastAPI application:
     {!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11  14-15  18  19  23"
     {!> ../../../docs_src/generate_clients/tutorial001.py!}
@@ -147,7 +147,7 @@ For example, you could have a section for **items** and another section for **us
     {!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23  28  36"
     {!> ../../../docs_src/generate_clients/tutorial002.py!}
@@ -204,7 +204,7 @@ You can then pass that custom function to **FastAPI** as the `generate_unique_id
     {!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8-9  12"
     {!> ../../../docs_src/generate_clients/tutorial003.py!}

@@ -1,4 +1,14 @@
-from typing import Any, Callable, Dict, Iterable, Type, TypeVar, cast
+from typing import (
+    Any,
+    BinaryIO,
+    Callable,
+    Dict,
+    Iterable,
+    Optional,
+    Type,
+    TypeVar,
+    cast,
+)
 
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -14,9 +24,120 @@ from starlette.datastructures import Headers as Headers  # noqa: F401
 from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
+from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
 
 class UploadFile(StarletteUploadFile):
+    """
+    A file uploaded in a request.
+
+    Define it as a *path operation function* (or dependency) parameter.
+
+    If you are using a regular `def` function, you can use the `upload_file.file`
+    attribute to access the raw standard Python file (blocking, not async), useful and
+    needed for non-async code.
+
+    Read more about it in the
+    [FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).
+
+    ## Example
+
+    ```python
+    from typing import Annotated
+
+    from fastapi import FastAPI, File, UploadFile
+
+    app = FastAPI()
+
+
+    @app.post("/files/")
+    async def create_file(file: Annotated[bytes, File()]):
+        return {"file_size": len(file)}
+
+
+    @app.post("/uploadfile/")
+    async def create_upload_file(file: UploadFile):
+        return {"filename": file.filename}
+    ```
+    """
+
+    file: Annotated[
+        BinaryIO,
+        Doc("The standard Python file object (non-async)."),
+    ]
+    filename: Annotated[Optional[str], Doc("The original file name.")]
+    size: Annotated[Optional[int], Doc("The size of the file in bytes.")]
+    headers: Annotated[Headers, Doc("The headers of the request.")]
+    content_type: Annotated[
+        Optional[str], Doc("The content type of the request, from the headers.")
+    ]
+
+    async def write(
+        self,
+        data: Annotated[
+            bytes,
+            Doc(
+                """
+                The bytes to write to the file.
+                """
+            ),
+        ],
+    ) -> None:
+        """
+        Write some bytes to the file.
+
+        You normally wouldn't use this from a file you read in a request.
+
+        To be awaitable, compatible with async, this is run in threadpool.
+        """
+        return await super().write(data)
+
+    async def read(
+        self,
+        size: Annotated[
+            int,
+            Doc(
+                """
+                The number of bytes to read from the file.
+                """
+            ),
+        ] = -1,
+    ) -> bytes:
+        """
+        Read some bytes from the file.
+
+        To be awaitable, compatible with async, this is run in threadpool.
+        """
+        return await super().read(size)
+
+    async def seek(
+        self,
+        offset: Annotated[
+            int,
+            Doc(
+                """
+                The position in bytes to seek to in the file.
+                """
+            ),
+        ],
+    ) -> None:
+        """
+        Move to a position in the file.
+
+        Any next read or write will be done from that position.
+
+        To be awaitable, compatible with async, this is run in threadpool.
+        """
+        return await super().seek(offset)
+
+    async def close(self) -> None:
+        """
+        Close the file.
+
+        To be awaitable, compatible with async, this is run in threadpool.
+        """
+        return await super().close()
+
     @classmethod
     def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
         yield cls.validate

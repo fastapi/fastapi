@@ -26,7 +26,7 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
     {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  26"
     {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
@@ -41,7 +41,7 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
     {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

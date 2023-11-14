@@ -363,7 +363,7 @@ It will have the database connection open at the beginning and will just wait so
 
 This will easily let you test that your app with Peewee and FastAPI is behaving correctly with all the stuff about threads.
 
-If you want to check how Peewee would break your app if used without modification, go the the `sql_app/database.py` file and comment the line:
+If you want to check how Peewee would break your app if used without modification, go the `sql_app/database.py` file and comment the line:
 
 ```Python
 # db._state = PeeweeConnectionState()

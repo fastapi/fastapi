@@ -20,7 +20,7 @@
     {!> ../../../docs_src/response_model/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001.py!}
@@ -78,7 +78,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -92,7 +92,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -106,7 +106,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003.py!}
