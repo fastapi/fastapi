@@ -1,7 +1,6 @@
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
-from types import FrameType
 from typing import (
     Any,
     Callable,
@@ -209,7 +208,6 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-    call_frame = get_first_outer_frame()
 
     typed_params = [
         inspect.Parameter(
@@ -219,7 +217,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             annotation=get_typed_annotation(
                 param.annotation,
                 globalns,
-                getattr(call_frame, "f_locals", {}),
+                collect_outer_locals(),
             ),
         )
         for param in signature.parameters.values()
@@ -228,15 +226,26 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
-def get_first_outer_frame() -> Optional[FrameType]:
+def collect_outer_locals() -> Dict[str, Any]:
     frame = inspect.currentframe()
+
+    locals = {}
+    finded = False
     while frame is not None:
+        # filter all venv frames
+        if "site-packages" in frame.f_code.co_filename:
+            break
+
+        if finded:
+            locals.update(frame.f_locals)
+
+        # Find first FastAPI outer frame
         if frame.f_code.co_name == "decorator":
-            return frame.f_back
+            finded = True
 
         frame = frame.f_back
 
-    return None
+    return locals
 
 
 def get_typed_annotation(
@@ -251,7 +260,6 @@ def get_typed_annotation(
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     signature = inspect.signature(call)
     annotation = signature.return_annotation
-    call_frame = get_first_outer_frame()
 
     if annotation is inspect.Signature.empty:
         return None
@@ -260,7 +268,7 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     return get_typed_annotation(
         annotation,
         globalns,
-        getattr(call_frame, "f_locals", {}),
+        collect_outer_locals(),
     )
 
 
