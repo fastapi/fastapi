@@ -519,7 +519,7 @@ class FastAPI(Starlette):
                 """
                 **Attention**: This parameter is deprecated.
 
-                The recommended approach for managing startup and shutdown 
+                The recommended approach for managing startup and shutdown
                 is by utilizing the lifespan parameter within the FastAPI app.
                 """
             ),
@@ -540,7 +540,7 @@ class FastAPI(Starlette):
                 """
                 **Attention**: This parameter is deprecated.
 
-                The recommended approach for managing startup and shutdown 
+                The recommended approach for managing startup and shutdown
                 is by utilizing the lifespan parameter within the FastAPI app.
                 """
             ),

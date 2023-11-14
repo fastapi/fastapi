@@ -694,7 +694,7 @@ class APIRouter(routing.Router):
                 """
                 **Attention**: This parameter is deprecated.
 
-                The recommended approach for managing startup and shutdown 
+                The recommended approach for managing startup and shutdown
                 is by utilizing the lifespan parameter within the APIRouter.
                 """
             ),
@@ -715,7 +715,7 @@ class APIRouter(routing.Router):
                 """
                 **Attention**: This parameter is deprecated.
 
-                The recommended approach for managing startup and shutdown 
+                The recommended approach for managing startup and shutdown
                 is by utilizing the lifespan parameter within the APIRouter.
                 """
             ),
