@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.8+ 並採用標準 Python 類別提示。
+FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.8+ 並採用標準 Python 型別提示。
 
 主要特點包含：
 
