@@ -345,7 +345,7 @@ Nehmen wir zum Beispiel diese Funktion:
 Der Parameter `name` ist definiert als `Optional[str]`, aber er ist **nicht optional**, Sie können die Funktion nicht ohne diesen Parameter aufrufen:
 
 ```Python
-say_hi()  # Oh, nein, das wirft einen Fehler! 😱
+say_hi()  # Oh, nein, das löst einen Fehler aus! 😱
 ```
 
 Der `name` Parameter wird **immer noch benötigt** (nicht *optional*), weil er keinen Default-Wert hat. `name` akzeptiert aber dennoch `None` als Wert:
