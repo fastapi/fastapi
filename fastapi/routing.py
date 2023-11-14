@@ -120,19 +120,6 @@ def _prepare_response_content(
         return dataclasses.asdict(res)
     return res
 
-
-def _merge_lifespan_context(
-    original_context: Lifespan[Any], nested_context: Lifespan[Any]
-) -> Lifespan[Any]:
-    @asynccontextmanager
-    async def merged_lifespan(app: AppType) -> AsyncIterator[Mapping[str, Any]]:
-        async with original_context(app) as maybe_self_context:
-            async with nested_context(app) as maybe_nested_context:
-                yield {**(maybe_self_context or {}), **(maybe_nested_context or {})}
-
-    return merged_lifespan
-
-
 async def serialize_response(
     *,
     field: Optional[ModelField] = None,
@@ -1299,10 +1286,6 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
-        self.lifespan_context = _merge_lifespan_context(
-            self.lifespan_context,
-            router.lifespan_context,
-        )
 
     def get(
         self,
