@@ -59,7 +59,8 @@ foo_is_short = {
                 "loc": ["query", "foo"],
                 "msg": (
                     # PydanticV2.4
-                    IsStr("String should have at least 1 characters") or
+                    IsStr("String should have at least 1 characters")
+                    or
                     # PydanticV2.5
                     IsStr("String should have at least 1 character"),
                 ),
