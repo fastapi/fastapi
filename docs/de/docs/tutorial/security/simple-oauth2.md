@@ -35,7 +35,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 !!! info
     In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
-    Es spielt keine Rolle, ob sie andere Zeichen wie `:` enthält oder ob es eine URL ist.
+    Es spielt keine Rolle, ob er andere Zeichen wie `:` enthält oder ob es eine URL ist.
 
     Diese Details sind implementierungsspezifisch.
 
