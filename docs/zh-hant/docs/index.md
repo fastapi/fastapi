@@ -34,7 +34,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 - **快速**： 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
 - **快速開發**： 提高開發功能的速度約 200% 至 300%。 \*
 - **更少的 Bug**： 減少約 40% 的人為（開發者）導致的錯誤。 \*
-- **直觀**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntellisSense">自動補全</abbr>以減少偵錯時間。
+- **直觀**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntelliSense">自動補全</abbr>以減少偵錯時間。
 - **簡單**： 設計上易於使用和學習，大幅減少閱讀文件的時間。
 - **簡潔**： 最小化程式碼重複性。可以通過不同的參數聲明來實現更豐富的功能，和更少的錯誤。
 - **穩健**： 立即獲得生產級可用的程式碼，還有自動生成互動式文件。
@@ -95,11 +95,11 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 "_我們的 **APIs** 已經改用 **FastAPI** [...] 我想你會喜歡它 [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 創辦人 - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_如果有人想要建立一個生產環境的 Python API，我強烈推薦 **FastAPI**. 它**設計精美**，**使用簡單**且**高度可擴充**，它已成為我們 API 優先開發策略中的**關鍵組件**，並且驅動了許多自動化服務，例如我們的 Virtual TAC Engineer。_"
+"_如果有人想要建立一個生產環境的 Python API，我強烈推薦 **FastAPI**，它**設計精美**，**使用簡單**且**高度可擴充**，它已成為我們 API 優先開發策略中的**關鍵組件**，並且驅動了許多自動化服務，例如我們的 Virtual TAC Engineer。_"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
@@ -263,7 +263,7 @@ INFO:     Application startup complete.
 
 ## 範例升級
 
-現在繼續修改 `main.py` 檔案，來接收一個帶有 body 的 `PUT` 請求.
+現在繼續修改 `main.py` 檔案，來接收一個帶有 body 的 `PUT` 請求。
 
 我們使用 Pydantic 來使用標準的 Python 型別聲明請求。
 
@@ -325,9 +325,9 @@ def update_item(item_id: int, item: Item):
 
 ### 總結
 
-總結來說， 你就像宣告函式的參數類型一樣，只宣告了一次請求參數和請求主體參數等類型。
+總結來說， 你就像宣告函式的參數型別一樣，只宣告了一次請求參數和請求主體參數等型別。
 
-你使用 Python 標準類型來完成聲明。
+你使用 Python 標準型別來完成聲明。
 
 你不需要學習新的語法、類別、方法或函式庫等等。
 
@@ -336,7 +336,7 @@ def update_item(item_id: int, item: Item):
 舉個範例，比如宣告 int 的型別：
 
 ```Python
-item_id： int
+item_id: int
 ```
 
 或是一個更複雜的 `Item` 模型：
@@ -353,21 +353,21 @@ item: Item
 - 資料驗證：
   - 驗證失敗時自動生成清楚的錯誤訊息
   - 可驗證多層巢狀的 JSON 物件
-- <abbr title="也被稱為： 序列化或解析">轉換</abbr> 輸入的資料： 轉換來自網路請求到 Python 數據類型。包含以下數據：
-  - JSON.
+- <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸入的資料： 轉換來自網路請求到 Python 資料型別。包含以下數據：
+  - JSON
   - 路徑參數
   - 查詢參數
   - Cookies
   - 請求標頭
   - 表單
   - 文件
-- <abbr title="也被稱為： 序列化或解析">轉換</abbr> 輸出的資料： 轉換 Python 數據類型到網路傳輸的 JSON：
-  - 轉換 Python 類型 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
+- <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸出的資料： 轉換 Python 資料型別到網路傳輸的 JSON：
+  - 轉換 Python 型別 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
   - `datetime` 物件
   - `UUID` 物件
   - 數據模型
   - ...還有其他更多
-- 自動生成的 API 文件，包含 2 種類型的使用介面：
+- 自動生成的 API 文件，包含 2 種不同的使用介面：
   - Swagger UI
   - ReDoc
 
@@ -376,7 +376,7 @@ item: Item
 回到前面的的程式碼範例，**FastAPI** 還會：
 
 - 驗證 `GET` 和 `PUT` 請求路徑中是否包含 `item_id`。
-- 驗證 `GET` 和 `PUT` 請求中的 `item_id` 是否是 `int` 類型。
+- 驗證 `GET` 和 `PUT` 請求中的 `item_id` 是否是 `int` 型別。
   - 如果驗證失敗，將會返回清楚有用的錯誤訊息。
 - 查看 `GET` 請求中是否有命名為 `q` 的查詢參數 (例如 `http://127.0.0.1:8000/items/foo?q=somequery`)。
   - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
@@ -447,13 +447,13 @@ item: Item
 
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用於電子郵件驗證。
 - <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - 用於設置管理。
-- <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - 用於與 Pydantic 一起使用的額外類型。
+- <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - 用於與 Pydantic 一起使用的額外型別。
 
 用於 Starlette：
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient`時必須安裝。
 - <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用預設的模板配置時必須安裝。
-- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要使用 `request.form()` 對表單進行<abbr title="轉換來自表單的 HTTP 請求到 Python 資料類型"> "解析" </abbr>時安裝。
+- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要使用 `request.form()` 對表單進行<abbr title="轉換來自表單的 HTTP 請求到 Python 資料型別"> "解析" </abbr>時安裝。
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要使用 `SessionMiddleware` 支援時安裝。
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 用於支援 Starlette 的 `SchemaGenerator` (如果你使用 FastAPI，可能不需要它)。
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 時必須安裝。
