@@ -33,7 +33,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
 !!! info
-    In OAuth2 ist ein „Scope“ nur eine Zeichenfolge, die eine bestimmte erforderliche Berechtigung deklariert.
+    In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
     Es spielt keine Rolle, ob sie andere Zeichen wie `:` enthält oder ob es eine URL ist.
 
