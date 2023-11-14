@@ -216,7 +216,11 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param.annotation, globalns, getattr(call_frame, "f_locals", {}),),
+            annotation=get_typed_annotation(
+                param.annotation,
+                globalns,
+                getattr(call_frame, "f_locals", {}),
+            ),
         )
         for param in signature.parameters.values()
     ]
@@ -235,7 +239,9 @@ def get_first_outer_frame() -> Optional[FrameType]:
     return None
 
 
-def get_typed_annotation(annotation: Any, globalns: Dict[str, Any], localns: Dict[str, Any]) -> Any:
+def get_typed_annotation(
+    annotation: Any, globalns: Dict[str, Any], localns: Dict[str, Any]
+) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, localns)
@@ -251,7 +257,11 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
         return None
 
     globalns = getattr(call, "__globals__", {})
-    return get_typed_annotation(annotation, globalns, getattr(call_frame, "f_locals", {}),)
+    return get_typed_annotation(
+        annotation,
+        globalns,
+        getattr(call_frame, "f_locals", {}),
+    )
 
 
 def get_dependant(
