@@ -1,5 +1,5 @@
 import pytest
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsStr
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
@@ -57,7 +57,12 @@ foo_is_short = {
             {
                 "ctx": {"min_length": 1},
                 "loc": ["query", "foo"],
-                "msg": "String should have at least 1 character",
+                "msg": (
+                    # PydanticV2.4
+                    IsStr("String should have at least 1 characters") or
+                    # PydanticV2.5
+                    IsStr("String should have at least 1 character"),
+                ),
                 "type": "string_too_short",
                 "input": "",
                 "url": match_pydantic_error_url("string_too_short"),
