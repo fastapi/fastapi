@@ -190,7 +190,7 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 ... wie wir es beabsichtigt hatten.
 
-* Sie werden mit einer Liste von Tags gekennzeichnet, die eine einzelne Zeichenfolge `"items"` enthält.
+* Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String `"items"` enthält.
     * Diese „Tags“ sind besonders nützlich für die automatischen interaktiven Dokumentationssysteme (unter Verwendung von OpenAPI).
 * Alle enthalten die vordefinierten `responses`.
 * Für alle diese *Pfadoperationen* wird die Liste der `dependencies` ausgewertet/ausgeführt, bevor sie selbst ausgeführt werden.
