@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -105,3 +107,26 @@ def test_openapi_schema():
             }
         },
     }
+
+
+def test_get_with_local_declared_body():
+    def init_app() -> FastAPI:
+        app = FastAPI()
+
+        class LocalProduct(BaseModel):
+            name: str
+            description: str = None  # type: ignore
+            price: float
+
+
+        @app.get("/product")
+        async def create_item(product: LocalProduct):
+            return product
+
+        return app
+
+    client = TestClient(init_app())
+
+    body = {"name": "Foo", "description": "Some description", "price": 5.5}
+    response = client.request("GET", "/product", json=body)
+    assert response.json() == body
