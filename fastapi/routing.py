@@ -3,16 +3,14 @@ import dataclasses
 import email.message
 import inspect
 import json
-from contextlib import AsyncExitStack, asynccontextmanager
+from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
-    AsyncIterator,
     Callable,
     Coroutine,
     Dict,
     List,
-    Mapping,
     Optional,
     Sequence,
     Set,
@@ -69,7 +67,7 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.routing import Mount as Mount  # noqa
-from starlette.types import AppType, ASGIApp, Lifespan, Scope
+from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
 
@@ -119,6 +117,7 @@ def _prepare_response_content(
     elif dataclasses.is_dataclass(res):
         return dataclasses.asdict(res)
     return res
+
 
 async def serialize_response(
     *,

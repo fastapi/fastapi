@@ -75,6 +75,7 @@ foo_is_short = {
     ]
 }
 
+
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
     [
