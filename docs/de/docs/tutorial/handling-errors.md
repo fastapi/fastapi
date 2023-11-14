@@ -29,17 +29,17 @@ Um HTTP-Responses mit Fehlern zum Client zurückzugeben, verwenden Sie `HTTPExce
 {!../../../docs_src/handling_errors/tutorial001.py!}
 ```
 
-### Eine `HTTPException` in Ihrem Code werfen
+### Eine `HTTPException` in Ihrem Code auslösen
 
 `HTTPException` ist eine normale Python-<abbr title="Exception – Ausnahme, Fehler: Python-Objekt, das einen Fehler nebst Metadaten repräsentiert">Exception</abbr> mit einigen zusätzlichen Daten, die für APIs relevant sind.
 
-Weil es eine Python-Exception ist, geben Sie sie nicht zurück, (`return`), sondern Sie werfen sie (`raise`).
+Weil es eine Python-Exception ist, geben Sie sie nicht zurück, (`return`), sondern Sie lösen sie aus (`raise`).
 
-Das bedeutet auch, wenn Sie in einer Hilfsfunktion sind, die Sie von ihrer *Pfadoperation-Funktion* aus aufrufen, und Sie werfen eine `HTTPException` von innerhalb dieser Hilfsfunktion, dann wird der Rest der *Pfadoperation-Funktion* nicht ausgeführt, sondern der Request wird sofort abgebrochen und der HTTP-Error der `HTTP-Exception` wird zum Client gesendet.
+Das bedeutet auch, wenn Sie in einer Hilfsfunktion sind, die Sie von ihrer *Pfadoperation-Funktion* aus aufrufen, und Sie lösen eine `HTTPException` von innerhalb dieser Hilfsfunktion aus, dann wird der Rest der *Pfadoperation-Funktion* nicht ausgeführt, sondern der Request wird sofort abgebrochen und der HTTP-Error der `HTTP-Exception` wird zum Client gesendet.
 
-Der Vorteil, eine Exception zu werfen (`raise`), statt sie zurückzugeben (`return`) wird im Abschnitt über Abhängigkeiten und Sicherheit klarer werden.
+Der Vorteil, eine Exception auszulösen (`raise`), statt sie zurückzugeben (`return`) wird im Abschnitt über Abhängigkeiten und Sicherheit klarer werden.
 
-Im folgenden Beispiel werfen wir, wenn der Client eine ID anfragt, die nicht existiert, eine Exception mit dem Statuscode `404`.
+Im folgenden Beispiel lösen wir, wenn der Client eine ID anfragt, die nicht existiert, eine Exception mit dem Statuscode `404` aus.
 
 ```Python hl_lines="11"
 {!../../../docs_src/handling_errors/tutorial001.py!}
@@ -64,7 +64,7 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 ```
 
 !!! tip "Tipp"
-    Wenn Sie eine `HTTPException` werfen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
+    Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
 
     Zum Beispiel ein `dict`, eine `list`, usw.
 
@@ -121,7 +121,7 @@ Sie können diese Exceptionhandler mit ihren eigenen überschreiben.
 
 ### Request-Validierung-Exceptions überschreiben
 
-Wenn ein Request ungültige Daten enthält, wirft **FastAPI** intern einen `RequestValidationError`.
+Wenn ein Request ungültige Daten enthält, löst **FastAPI** intern einen `RequestValidationError` aus.
 
 Und bietet auch einen Default-Exceptionhandler dafür.
 
@@ -238,11 +238,11 @@ Der einzige Unterschied ist, dass **FastAPI**s `HTTPException` Ihnen erlaubt, He
 
 Das wird intern gebraucht/verwendet für OAuth 2.0 und für einige Sicherheits-Werkzeuge.
 
-Sie können also weiterhin **FastAPI**s `HTTPException` wie üblich in Ihrem Code werfen.
+Sie können also weiterhin **FastAPI**s `HTTPException` wie üblich in Ihrem Code auslösen.
 
 Aber wenn Sie einen Exceptionhandler registrieren, registrieren Sie ihn für Starlettes `HTTPException`.
 
-Auf diese Weise wird Ihr Handler, wenn irgendein Teil von Starlettes internem Code, oder eine Starlette-Erweiterung, oder -Plugin eine Starlette-`HTTPException` wirft, in der Lage sein, diese zu fangen und zu handhaben.
+Auf diese Weise wird Ihr Handler, wenn irgendein Teil von Starlettes internem Code, oder eine Starlette-Erweiterung, oder -Plugin eine Starlette-`HTTPException` auslöst, in der Lage sein, diese zu fangen und zu handhaben.
 
 Damit wir in diesem Beispiel beide `HTTPException`s im selben Code haben können, benennen wir Starlettes Exception um zu `StarletteHTTPException`:
 
