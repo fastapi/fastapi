@@ -78,7 +78,7 @@ Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhä
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-### Exceptions werfen
+### Exceptions auslösen
 
 Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeiten:
 
