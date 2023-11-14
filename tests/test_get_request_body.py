@@ -118,9 +118,8 @@ def test_get_with_local_declared_body():
             description: str = None  # type: ignore
             price: float
 
-
         @app.get("/product")
-        async def create_item(product: LocalProduct):
+        async def create_item(product: LocalProduct) -> LocalProduct:
             return product
 
         return app
