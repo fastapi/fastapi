@@ -131,7 +131,7 @@ Sie können beliebige Kombinationen von Abhängigkeiten haben.
 
 Sie haben gesehen, dass Ihre Abhängigkeiten `yield` verwenden können und `try`-Blöcke haben können, die Ausnahmen abfangen.
 
-Es könnte verlockend sein, im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches zu werfen. Aber **das wird nicht funktionieren**.
+Es könnte verlockend sein, im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches auszulösen. Aber **das wird nicht funktionieren**.
 
 Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Response gesendet wurde, [Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} wurden also bereits ausgeführt. Niemand fängt Exceptions, die im Exit-Code ihrer Abhängigkeiten (nach dem `yield`) geworfen werden.
 
@@ -148,7 +148,7 @@ Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnt
 Wenn Sie benutzerdefinierte Exceptions haben, die Sie handhaben möchten, *bevor* Sie die Response zurückgeben, was möglicherweise die Response ändert, vielleicht sogar eine `HTTPException` auslöst, dann erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank}.
 
 !!! tip "Tipp"
-    Sie können immer noch Exceptions werfen, einschließlich `HTTPException`, *vor* dem `yield`. Aber nicht danach.
+    Sie können immer noch Exceptions auslösen, einschließlich `HTTPException`, *vor* dem `yield`. Aber nicht danach.
 
 Die Ausführungsreihenfolge ähnelt mehr oder weniger dem folgenden Diagramm. Die Zeit verläuft von oben nach unten. Und jede Spalte ist einer der interagierenden oder Code-ausführenden Teilnehmer.
 
@@ -161,21 +161,21 @@ participant dep as Abhängigkeit mit yield
 participant operation as Pfadoperation
 participant tasks as Hintergrund-Tasks
 
-    Note over client,tasks: Kann eine Exception für eine Abhängigkeit werfen, die nach dem Senden der Response gehandhabt wird
-    Note over client,operation: Kann eine HTTPException werfen und die Response ändern
+    Note over client,tasks: Kann eine Exception für eine Abhängigkeit auslösen, die nach dem Senden der Response gehandhabt wird
+    Note over client,operation: Kann eine HTTPException auslösen und die Response ändern
     client ->> dep: Startet den Request
     Note over dep: Führt den Code bis zum yield aus
-    opt Wirft
-        dep -->> handler: Wirft HTTPException
+    opt Löst aus
+        dep -->> handler: Löst HTTPException aus
         handler -->> client: HTTP-Error-Response
-        dep -->> dep: Wirft andere Exception
+        dep -->> dep: Löst andere Exception aus
     end
     dep ->> operation: Führt Abhängigkeit aus, z.B. DB-Session
-    opt Wirft
-        operation -->> dep: Wirft HTTPException
+    opt Löst aus
+        operation -->> dep: Löst HTTPException aus
         dep -->> handler: Leitet Exception automatisch weiter
         handler -->> client: HTTP-Error-Response
-        operation -->> dep: Wirft andere Exception
+        operation -->> dep: Löst andere Exception aus
         dep -->> handler: Leitet Exception automatisch weiter
     end
     operation ->> client: Sendet Response an Client
@@ -183,8 +183,8 @@ participant tasks as Hintergrund-Tasks
     opt Tasks
         operation -->> tasks: Sendet Hintergrund-Tasks
     end
-    opt Wirft andere Exception
-        tasks -->> dep: Wirft andere Exception
+    opt Löst andere Exception aus
+        tasks -->> dep: Löst andere Exception aus
     end
     Note over dep: Nach dem yield
     opt Handhabt andere Exception
