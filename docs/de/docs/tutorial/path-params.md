@@ -1,6 +1,6 @@
 # Pfad-Parameter
 
-Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python <abbr title="Format String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format Strings</abbr> verwendet wird:
+Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python-<abbr title="Format-String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format-Strings</abbr> verwendet wird:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
@@ -66,7 +66,7 @@ Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
-    Sprich, mit der gleichen Python Typ Deklaration gibt Ihnen **FastAPI** Daten-Validierung.
+    Sprich, mit der gleichen Python-Typ-Deklaration gibt Ihnen **FastAPI** Daten-Validierung.
 
     Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
 
@@ -79,7 +79,7 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Wiederum, mit dieser gleichen Python Typ Deklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+    Wiederum, mit dieser gleichen Python-Typ-Deklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 
     Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
@@ -161,7 +161,7 @@ Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann d
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Mit Python *<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten
+### Mit Python-*<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten
 
 Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der möglichen Werte einer Enumeration">Member</abbr> eines Enums* sein.
 
@@ -245,7 +245,7 @@ Sie verwenden das also wie folgt:
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
 
 * Editor-Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
-* Daten "<abbr title="Den String, der von einer HTTP Anfrage kommt, nach Python Daten konvertieren">parsen</abbr>"
+* Daten "<abbr title="Den String, der von einer HTTP Anfrage kommt, nach Python-Daten konvertieren">parsen</abbr>"
 * Daten-Validierung
 * API-Annotationen und automatische Dokumentation
 
