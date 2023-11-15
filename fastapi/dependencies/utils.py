@@ -232,10 +232,6 @@ def collect_outer_locals() -> Dict[str, Any]:
     locals = {}
     finded = False
     while frame is not None:
-        # filter all venv frames
-        if "site-packages" in frame.f_code.co_filename:
-            break
-
         if finded:
             locals.update(frame.f_locals)
 
