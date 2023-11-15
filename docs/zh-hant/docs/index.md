@@ -32,9 +32,9 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 主要特點包含：
 
 - **快速**： 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
-- **快速開發**： 提高開發功能的速度約 200% 至 300%。 \*
+- **極速開發**： 提高開發功能的速度約 200% 至 300%。 \*
 - **更少的 Bug**： 減少約 40% 的人為（開發者）導致的錯誤。 \*
-- **直觀**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntelliSense">自動補全</abbr>以減少偵錯時間。
+- **直覺**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntelliSense">自動補全</abbr>以減少偵錯時間。
 - **簡單**： 設計上易於使用和學習，大幅減少閱讀文件的時間。
 - **簡潔**： 最小化程式碼重複性。可以通過不同的參數聲明來實現更豐富的功能，和更少的錯誤。
 - **穩健**： 立即獲得生產級可用的程式碼，還有自動生成互動式文件。
@@ -61,7 +61,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 ## 評價
 
-"_[...] 近期大量的使用 **FastAPI**。 [...] 目前正在計畫在微軟團隊的機器學習服務中導入。其中一些正在整合到核心的 **Windows** 產品和一些 **Office** 產品。_"
+"_[...] 近期大量的使用 **FastAPI**。 [...] 目前正在計畫在**微軟**團隊的**機器學習**服務中導入。其中一些正在整合到核心的 **Windows** 產品和一些 **Office** 產品。_"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
@@ -73,7 +73,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 ---
 
-"_**Netflix** 很榮幸地宣布開源**危機管理**協調框架： **Dispatch**! [是使用 **FastAPI** 架構]_"
+"_**Netflix** 很榮幸地宣布開源**危機管理**協調框架： **Dispatch**! [是使用 **FastAPI** 建構]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
@@ -117,7 +117,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 
 Python 3.8+
 
-FastAPI 是建立在以下巨人的肩膀上：
+FastAPI 是站在以下巨人的肩膀上：
 
 - <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 負責網頁的部分
 - <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 負責資料的部分
@@ -134,7 +134,7 @@ $ pip install fastapi
 
 </div>
 
-你同時也會需要 ASGI 伺服器，像是 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
+你同時也會需要 ASGI 伺服器用於生產環境，像是 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -201,7 +201,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 ### 運行
 
-使用以下命令運行伺服器：
+使用以下指令運行伺服器：
 
 <div class="termy">
 
@@ -297,7 +297,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-伺服器將自動重修載入（因為在上一步中，你向 `uvicorn` 命令添加了 `--reload` 的選項）。
+伺服器將自動重新載入（因為在上一步中，你向 `uvicorn` 指令添加了 `--reload` 的選項）。
 
 ### 互動式 API 文件升級
 
@@ -311,7 +311,7 @@ def update_item(item_id: int, item: Item):
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-- 然後點擊 "Execute" 按鈕，用戶介面將會向 API 發送請求，並將結果顯示在螢幕上：
+- 然後點擊 "Execute" 按鈕，使用者介面將會向 API 發送請求，並將結果顯示在螢幕上：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -348,28 +348,28 @@ item: Item
 在進行一次宣告後，你將獲得：
 
 - 編輯器支援：
-  - 自動補全
-  - 型別檢查
+    - 自動補全
+    - 型別檢查
 - 資料驗證：
-  - 驗證失敗時自動生成清楚的錯誤訊息
-  - 可驗證多層巢狀的 JSON 物件
+    - 驗證失敗時自動生成清楚的錯誤訊息
+    - 可驗證多層巢狀的 JSON 物件
 - <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸入的資料： 轉換來自網路請求到 Python 資料型別。包含以下數據：
-  - JSON
-  - 路徑參數
-  - 查詢參數
-  - Cookies
-  - 請求標頭
-  - 表單
-  - 文件
+    - JSON
+    - 路徑參數
+    - 查詢參數
+    - Cookies
+    - 請求標頭
+    - 表單
+    - 文件
 - <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸出的資料： 轉換 Python 資料型別到網路傳輸的 JSON：
-  - 轉換 Python 型別 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
-  - `datetime` 物件
-  - `UUID` 物件
-  - 數據模型
-  - ...還有其他更多
+    - 轉換 Python 型別 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
+    - `datetime` 物件
+    - `UUID` 物件
+    - 數據模型
+    - ...還有其他更多
 - 自動生成的 API 文件，包含 2 種不同的使用介面：
-  - Swagger UI
-  - ReDoc
+    - Swagger UI
+    - ReDoc
 
 ---
 
@@ -377,24 +377,24 @@ item: Item
 
 - 驗證 `GET` 和 `PUT` 請求路徑中是否包含 `item_id`。
 - 驗證 `GET` 和 `PUT` 請求中的 `item_id` 是否是 `int` 型別。
-  - 如果驗證失敗，將會返回清楚有用的錯誤訊息。
+    - 如果驗證失敗，將會返回清楚有用的錯誤訊息。
 - 查看 `GET` 請求中是否有命名為 `q` 的查詢參數 (例如 `http://127.0.0.1:8000/items/foo?q=somequery`)。
-  - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
-  - 如果沒有宣告 `None`，則此參數將會是必填 (例如 `PUT` 範例的請求 body)。
+    - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
+    - 如果沒有宣告 `None`，則此參數將會是必填 (例如 `PUT` 範例的請求 body)。
 - 對於 `PUT` 的請求 `/items/{item_id}`，將會讀取 body 為 JSON：
-  - 驗證是否有必填屬性 `name` 且型別是 `str`。
-  - 驗證是否有必填屬性 `price` 且型別是 `float`。
-  - 驗證是否有選填屬性 `is_offer` 且型別是 `bool`。
-  - 以上驗證都適用於多層次巢狀 JSON 物件。
+    - 驗證是否有必填屬性 `name` 且型別是 `str`。
+    - 驗證是否有必填屬性 `price` 且型別是 `float`。
+    - 驗證是否有選填屬性 `is_offer` 且型別是 `bool`。
+    - 以上驗證都適用於多層次巢狀 JSON 物件。
 - 自動轉換 JSON 格式。
 - 透過 OpenAPI 文件來記錄所有內容，可以被用於：
-  - 互動式文件系統。
-  - 自動為多種程式語言生成用戶端的程式碼
-- 提供兩種交互式文件介面
+    - 互動式文件系統。
+    - 自動為多種程式語言生成用戶端的程式碼。
+- 提供兩種交互式文件介面。
 
 ---
 
-雖然我們只敘述了表面的功能，但其實你已經理解了它是如何運行。
+雖然我們只敘述了表面的功能，但其實你已經理解了它是如何執行。
 
 試著修改以下程式碼：
 
@@ -429,15 +429,15 @@ item: Item
 - 更進階 (但同樣簡單) 的宣告 **多層次的巢狀 JSON 格式** (感謝 Pydantic)。
 - **GraphQL** 與 <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 以及其他的相關函式庫進行整合。
 - 更多其他的功能 (感謝 Starlette) 像是：
-  - **WebSockets**
-  - 於 HTTPX 和 `pytest` 的非常簡單測試
-  - **CORS**
-  - **Cookie Sessions**
-  - ...以及更多
+    - **WebSockets**
+    - 於 HTTPX 和 `pytest` 的非常簡單測試
+    - **CORS**
+    - **Cookie Sessions**
+    - ...以及更多
 
 ## 效能
 
-來自獨立機構 TechEmpower 的測試結果，顯示在 Uvicorn 運行下的 **FastAPI** 是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python 框架之一</a>， 僅次於 Starlette 和 Uvicorn 本身 (兩者是 FastAPI 的底層)。 (\*)
+來自獨立機構 TechEmpower 的測試結果，顯示在 Uvicorn 執行下的 **FastAPI** 是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python 框架之一</a>， 僅次於 Starlette 和 Uvicorn 本身 (兩者是 FastAPI 的底層)。 (\*)
 
 想了解更多訊息，可以參考 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">測試結果</a>。
 
@@ -446,7 +446,7 @@ item: Item
 用於 Pydantic：
 
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用於電子郵件驗證。
-- <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - 用於設置管理。
+- <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - 用於設定管理。
 - <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - 用於與 Pydantic 一起使用的額外型別。
 
 用於 Starlette：
