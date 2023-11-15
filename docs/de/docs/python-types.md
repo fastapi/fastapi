@@ -325,7 +325,7 @@ Das bedeutet auch, dass Sie in Python 3.10 `Something | None` verwenden können:
 
 #### `Union` oder `Optional` verwenden?
 
-Wenn Sie eine Python Version unterhalb 3.10 verwenden, hier ist mein sehr **subjektiver** Standpunkt dazu:
+Wenn Sie eine Python-Version unterhalb 3.10 verwenden, hier ist mein sehr **subjektiver** Standpunkt dazu:
 
 * 🚨 Vermeiden Sie `Optional[SomeType]`
 * Stattdessen ✨ **verwenden Sie `Union[SomeType, None]`** ✨.
@@ -509,7 +509,7 @@ Später werden Sie sehen, wie **mächtig** es sein kann.
 !!! tip "Tipp"
     Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 
-    Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python Tools und Bibliotheken sein wird. 🚀
+    Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python-Tools und -Bibliotheken sein wird. 🚀
 
 ## Typ-Hinweise in **FastAPI**
 
