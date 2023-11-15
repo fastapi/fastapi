@@ -32,7 +32,7 @@ Interaktive API-Dokumentation und erkundbare Web-Benutzeroberflächen. Da das Fr
 
 Alles basiert auf **Python 3.8 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
-Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
+Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python-Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
 
 Sie schreiben Standard-Python mit Typen:
 
@@ -78,7 +78,7 @@ my_second_user: User = User(**second_user_data)
 
 Das ganze Framework wurde so entworfen, dass es einfach und intuitiv zu benutzen ist; alle Entscheidungen wurden auf mehreren Editoren getestet, sogar vor der Implementierung, um die bestmögliche Entwicklererfahrung zu gewährleisten.
 
-In der letzten Python Entwickler Umfrage wurde klar, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">dass die meist genutzte Funktion die „Autovervollständigung“ ist</a>.
+In der letzten Python-Entwickler-Umfrage wurde klar, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">dass die meist genutzte Funktion die „Autovervollständigung“ ist</a>.
 
 Das gesamte **FastAPI**-Framework ist darauf ausgelegt, das zu erfüllen. Autovervollständigung funktioniert überall.
 
@@ -106,7 +106,7 @@ Aber standardmäßig **„funktioniert einfach alles“**.
 
 ### Validierung
 
-* Validierung für die meisten (oder alle?) Python **Datentypen**, hierzu gehören:
+* Validierung für die meisten (oder alle?) Python-**Datentypen**, hierzu gehören:
     * JSON Objekte (`dict`).
     * JSON Listen (`list`), die den Typ ihrer Elemente definieren.
     * Strings (`str`) mit definierter minimaler und maximaler Länge.
@@ -157,7 +157,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 ### Getestet
 
 * 100 % <abbr title="Der Prozentsatz an Code, der automatisch getestet wird">Testabdeckung</abbr>.
-* 100 % <abbr title="Python Typ Annotationen, mit denen Ihr Editor und andere exteren Werkezuge Sie besser unterstützen können">Typen annotiert</abbr>.
+* 100 % <abbr title="Python-Typ-Annotationen, mit denen Ihr Editor und andere exteren Werkezuge Sie besser unterstützen können">Typen annotiert</abbr>.
 * Verwendet in Produktionsanwendungen.
 
 ## Starlette's Merkmale
@@ -168,7 +168,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 
 Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette auf Steroiden ist):
 
-* Schwer beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python Frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
+* Schwer beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python-Frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
 * **WebSocket**-Unterstützung.
 * Hintergrundaufgaben im selben Prozess.
 * Ereignisse beim Starten und Herunterfahren.
@@ -196,7 +196,7 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
 * Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">Linter</abbr>/Gehirn**:
     * Weil Pydantics Datenstrukturen einfach nur Instanzen ihrer definierten Klassen sind; Autovervollständigung, Linting, mypy und ihre Intuition sollten alle einwandfrei mit ihren validierten Daten funktionieren.
 * Validierung von **komplexen Strukturen**:
-    * Benutzung von hierarchischen Pydantic-Modellen, Python `typing`s `List` und `Dict`, etc.
+    * Benutzung von hierarchischen Pydantic-Modellen, Python-`typing`s `List` und `Dict`, etc.
     * Die Validierer erlauben es, komplexe Datenschemen klar und einfach zu definieren, überprüft und dokumentiert als JSON Schema.
     * Sie können tief **verschachtelte JSON** Objekte haben, die alle validiert und annotiert sind.
 * **Erweiterbar**:
