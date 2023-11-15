@@ -1,6 +1,6 @@
 # OAuth2-Scopes
 
-Sie können OAuth2-Scopes direkt in **FastAPI** verwenden, sie sind nahtlos integriert.
+Sie können OAuth2-<abbr title="Geltungsbereiche">Scopes</abbr> direkt in **FastAPI** verwenden, sie sind nahtlos integriert.
 
 Das ermöglicht es Ihnen, ein feingranuliertes Berechtigungssystem nach dem OAuth2-Standard in Ihre OpenAPI-Anwendung (und deren API-Dokumentation) zu integrieren.
 
@@ -159,13 +159,13 @@ Da wir diese Scopes jetzt deklarieren, werden sie in der API-Dokumentation angez
 
 Und Sie können auswählen, auf welche Scopes Sie Zugriff haben möchten: `me` und `items`.
 
-Dies ist derselbe Mechanismus, der verwendet wird, wenn Sie beim Anmelden mit Facebook, Google, GitHub, usw. Berechtigungen erteilen:
+Das ist derselbe Mechanismus, der verwendet wird, wenn Sie beim Anmelden mit Facebook, Google, GitHub, usw. Berechtigungen erteilen:
 
 <img src="/img/tutorial/security/image11.png">
 
 ## JWT-Token mit Scopes
 
-Ändern Sie nun die *Pfadoperation* des Tokens, um die angeforderten Scopes zurückzugeben.
+Ändern Sie nun die Token-*Pfadoperation*, um die angeforderten Scopes zurückzugeben.
 
 Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine Eigenschaft `scopes` mit einer `list`e von `str`s für jeden Scope, den es im Request erhalten hat.
 
