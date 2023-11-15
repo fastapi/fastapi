@@ -51,7 +51,7 @@ Verwenden Sie Standard-Python-Typen für die Klassenattribute:
 
 Wie auch bei Query-Parametern gilt, wenn ein Modell-Attribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Ansonsten ist es erforderlich. Verwenden Sie `None`, um es als optional zu kennzeichnen.
 
-Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python `dict`) wie dieses:
+Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python-`dict`) wie dieses:
 
 ```JSON
 {
