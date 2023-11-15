@@ -25,16 +25,16 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
     * Ein standardmäßiger „universell eindeutiger Bezeichner“ („Universally Unique Identifier“), der in vielen Datenbanken und Systemen als ID üblich ist.
     * Wird in Requests und Responses als `str` dargestellt.
 * `datetime.datetime`:
-    * Ein Python `datetime.datetime`.
+    * Ein Python-`datetime.datetime`.
     * Wird in Requests und Responses als `str` im ISO 8601-Format dargestellt, etwa: `2008-09-15T15:53:00+05:00`.
 * `datetime.date`:
-    * Python `datetime.date`.
+    * Python-`datetime.date`.
     * Wird in Requests und Responses als `str` im ISO 8601-Format dargestellt, etwa: `2008-09-15`.
 * `datetime.time`:
-    * Ein Python `datetime.time`.
+    * Ein Python-`datetime.time`.
     * Wird in Requests und Responses als `str` im ISO 8601-Format dargestellt, etwa: `14:23:55.003`.
 * `datetime.timedelta`:
-    * Ein Python `datetime.timedelta`.
+    * Ein Python-`datetime.timedelta`.
     * Wird in Requests und Responses als `float` der Gesamtsekunden dargestellt.
     * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#json_encoders" class="external-link" target="_blank">Weitere Informationen finden Sie in der Dokumentation</a>.
 * `frozenset`:
@@ -43,11 +43,11 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
         * Bei Responses wird das `set` in eine `list`e umgewandelt.
         * Das generierte Schema zeigt an, dass die `set`-Werte eindeutig sind (unter Verwendung von JSON Schemas `uniqueItems`).
 * `bytes`:
-    * Standard Python `bytes`.
+    * Standard-Python-`bytes`.
     * In Requests und Responses werden sie als `str` behandelt.
     * Das generierte Schema wird anzeigen, dass es sich um einen `str` mit `binary` „Format“ handelt.
 * `Decimal`:
-    * Standard Python `Decimal`.
+    * Standard-Python-`Decimal`.
     * In Requests und Responses wird es wie ein `float` behandelt.
 * Sie können alle gültigen Pydantic-Datentypen hier überprüfen: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
 
