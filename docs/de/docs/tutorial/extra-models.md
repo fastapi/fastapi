@@ -57,7 +57,7 @@ Wenn wir es ausgeben:
 print(user_dict)
 ```
 
-bekommen wir ein Python `dict`:
+bekommen wir ein Python-`dict`:
 
 ```Python
 {
