@@ -562,7 +562,7 @@ Dann, mit einer URL wie:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-bekommen Sie alle `q`-*Query-Parameter*-Werte (`foo` und `bar`) in einer Python Liste – `list` – in ihrer *Pfadoperation-Funktion*, im Funktionsparameter `q`, überreicht.
+bekommen Sie alle `q`-*Query-Parameter*-Werte (`foo` und `bar`) in einer Python-Liste – `list` – in ihrer *Pfadoperation-Funktion*, im Funktionsparameter `q`, überreicht.
 
 Die Response für diese URL wäre also:
 
