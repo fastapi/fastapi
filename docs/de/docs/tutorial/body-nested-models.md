@@ -4,7 +4,7 @@ Mit **FastAPI** können Sie (dank Pydantic) beliebig tief verschachtelte Modelle
 
 ## Listen als Felder
 
-Sie können ein Attribut als Sub-Typ definieren, zum Beispiel eine Python `list`e.
+Sie können ein Attribut als Sub-Typ definieren, zum Beispiel eine Python-`list`e.
 
 === "Python 3.10+"
 
@@ -38,7 +38,7 @@ In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Py
 
 Um Typen wie `list`, `dict`, `tuple` mit inneren Typ-Parametern (inneren Typen) zu deklarieren:
 
-* Wenn Sie eine Python Version kleiner als 3.9 verwenden, importieren Sie das Äquivalent zum entsprechenden Typ vom `typing`-Modul
+* Wenn Sie eine Python-Version kleiner als 3.9 verwenden, importieren Sie das Äquivalent zum entsprechenden Typ vom `typing`-Modul
 * Überreichen Sie den/die inneren Typ(en) von eckigen Klammern umschlossen, `[` und `]`, als „Typ-Parameter“
 
 In Python 3.9 wäre das:
