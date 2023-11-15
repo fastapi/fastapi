@@ -1,6 +1,22 @@
 # Full Stack FastAPI and PostgreSQL - Base Project Generator
 
-[![Build Status](https://travis-ci.com/tiangolo/full-stack-fastapi-postgresql.svg?branch=master)](https://travis-ci.com/tiangolo/full-stack-fastapi-postgresql)
+## 🚨 Warning: in (re) construction 😎 🏗️
+
+This project is currently being restructured, don't use it right now, hold for a bit.
+
+In the next couple of months it will be ready. 😎 🚀
+
+Some of the future new features and changes:
+
+* Upgrade to the latest FastAPI.
+* Migration from SQLAlchemy to SQLModel.
+* Upgrade to Pydantic v2.
+* Refactor and simplification of most of the code, a lot of the complexity won't be necessary anymore.
+* Migrate from Vue.js 2 to React with hooks and TypeScript.
+* Move from Docker Swarm Model to Kubernetes.
+* GitHub Actions for CI.
+
+---
 
 Generate a backend and frontend stack using Python, including interactive API documentation.
 
