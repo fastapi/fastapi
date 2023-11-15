@@ -24,7 +24,7 @@ hide:
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Unterstützte Python Versionen">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Unterstützte Python-Versionen">
 </a>
 </p>
 
@@ -36,7 +36,7 @@ hide:
 
 ---
 
-FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard-Python <abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
+FastAPI ist ein modernes, schnelles (hoch performantes) Web-Framework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard-Python-<abbr title="Das Hinzufügen von Typ-Informationen zu Variablen und Rückgabewerten von Funktionen">Type Hints</abbr>.
 
 Seine Schlüssel-Merkmale sind:
 
@@ -231,7 +231,7 @@ INFO:     Application startup complete.
 
 Der Befehl `uvicorn main:app` bezieht sich auf:
 
-* `main`: die Datei `main.py` (das Python „Modul“).
+* `main`: die Datei `main.py` (das Python-„Modul“).
 * `app`: das Objekt, das innerhalb von `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
 * `--reload`: lässt den Server nach Codeänderungen neu starten. Tun Sie das nur während der Entwicklung.
 
@@ -336,11 +336,11 @@ Und nun gehen Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link
 
 Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, etc. als Funktionsparameter.
 
-Das machen Sie mit modernen Standard Python Typen.
+Das machen Sie mit modernen Standard-Python-Typen.
 
 Sie müssen keine neue Syntax, Methoden oder Klassen einer bestimmten Bibliothek usw. lernen.
 
-Nur Standard **Python 3.8+**.
+Nur Standard-**Python 3.8+**.
 
 Zum Beispiel für ein `int`:
 
