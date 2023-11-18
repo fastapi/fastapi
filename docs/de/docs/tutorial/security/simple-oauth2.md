@@ -172,7 +172,7 @@ Wenn die Passwörter nicht übereinstimmen, geben wir denselben Fehler zurück.
 
 „Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
-Immer wenn Sie genau denselben Inhalt (genau dasselbe Passwort) übergeben, erhalten Sie genau denselben Kauderwelsch.
+Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben, erhalten Sie genau den gleichen Kauderwelsch.
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
@@ -180,7 +180,7 @@ Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
-Der Dieb kann also nicht versuchen, dieselben Passwörter in einem anderen System zu verwenden (da viele Benutzer überall dasselbe Passwort verwenden, wäre dies gefährlich).
+Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
 === "Python 3.10+"
 
