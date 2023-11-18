@@ -53,7 +53,7 @@ Hier verwenden wir das empfohlene: <a href="https://cryptography.io/" class="ext
 
 „Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
-Immer wenn Sie genau denselben Inhalt (genau dasselbe Passwort) übergeben, erhalten Sie genau denselben Kauderwelsch.
+Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben, erhalten Sie genau den gleichen Kauderwelsch.
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
@@ -61,7 +61,7 @@ Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
-Der Dieb kann also nicht versuchen, dieselben Passwörter in einem anderen System zu verwenden (da viele Benutzer überall dasselbe Passwort verwenden, wäre dies gefährlich).
+Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
 ## `passlib` installieren
 
@@ -86,7 +86,7 @@ $ pip install "passlib[bcrypt]"
 !!! tip "Tipp"
     Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plug-in, oder vielen anderen erstellt wurden.
 
-    So könnten Sie beispielsweise dieselben Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
+    So könnten Sie beispielsweise die gleichen Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
 
     Und Ihre Benutzer könnten sich gleichzeitig über Ihre Django-Anwendung oder Ihre **FastAPI**-Anwendung anmelden.
 
@@ -314,7 +314,7 @@ Und dann könnten Sie diesen JWT-Token einem Benutzer (oder Bot) geben und diese
 
 Mit diesen Ideen kann JWT für weitaus anspruchsvollere Szenarien verwendet werden.
 
-In diesen Fällen könnten mehrere dieser Entitäten dieselbe ID haben, sagen wir `foo` (ein Benutzer `foo`, ein Auto `foo` und ein Blog-Beitrag `foo`).
+In diesen Fällen könnten mehrere dieser Entitäten die gleiche ID haben, sagen wir `foo` (ein Benutzer `foo`, ein Auto `foo` und ein Blog-Beitrag `foo`).
 
 Deshalb, um ID-Kollisionen zu vermeiden, könnten Sie beim Erstellen des JWT-Tokens für den Benutzer, dem Wert des `sub`-Schlüssels ein Präfix, z.B. `username:` voranstellen. In diesem Beispiel hätte der Wert von `sub` also auch `username:johndoe` sein können.
 
