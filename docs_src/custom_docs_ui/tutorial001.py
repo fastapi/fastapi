@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.openapi.docs import (
     get_redoc_html,
-    get_swagger_ui_html,
     get_scalar_html,
+    get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
 
@@ -33,6 +33,7 @@ async def redoc_html():
         redoc_js_url="https://unpkg.com/redoc@next/bundles/redoc.standalone.js",
     )
 
+
 @app.get("/scalar", include_in_schema=False)
 async def scalar_html():
     return get_scalar_html(
@@ -40,6 +41,7 @@ async def scalar_html():
         title=app.title + " - Scalar",
         scalar_js_url="https://cdn.jsdelivr.net/npm/@scalar/api-reference",
     )
+
 
 @app.get("/users/{username}")
 async def read_user(username: str):

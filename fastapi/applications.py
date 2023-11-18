@@ -1073,7 +1073,7 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
-        
+
         if self.openapi_url and self.scalar_url:
 
             async def scalar_html(req: Request) -> HTMLResponse:

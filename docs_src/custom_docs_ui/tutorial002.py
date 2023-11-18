@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.openapi.docs import (
     get_redoc_html,
-    get_swagger_ui_html,
     get_scalar_html,
+    get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
 from fastapi.staticfiles import StaticFiles
@@ -35,6 +35,7 @@ async def redoc_html():
         title=app.title + " - ReDoc",
         redoc_js_url="/static/redoc.standalone.js",
     )
+
 
 @app.get("/scalar", include_in_schema=False)
 async def scalar_html():

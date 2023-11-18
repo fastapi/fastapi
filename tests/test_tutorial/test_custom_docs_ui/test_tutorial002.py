@@ -35,6 +35,7 @@ def test_redoc_html(client: TestClient):
     assert response.status_code == 200, response.text
     assert "/static/redoc.standalone.js" in response.text
 
+
 def test_scalar_html(client: TestClient):
     response = client.get("/scalar")
     assert response.status_code == 200, response.text

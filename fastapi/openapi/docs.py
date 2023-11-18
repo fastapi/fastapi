@@ -157,6 +157,7 @@ def get_swagger_ui_html(
     """
     return HTMLResponse(html)
 
+
 def get_scalar_html(
     *,
     openapi_url: Annotated[
@@ -246,6 +247,7 @@ def get_scalar_html(
     </html>
     """
     return HTMLResponse(html)
+
 
 def get_redoc_html(
     *,
