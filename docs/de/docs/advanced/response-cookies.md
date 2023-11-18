@@ -42,7 +42,7 @@ Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 !!! note "Technische Details"
     Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 
-    **FastAPI** bietet die gleichen `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
     Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird, stellt **FastAPI** diese auch unter `fastapi.Response` bereit.
 
