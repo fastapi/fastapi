@@ -520,7 +520,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typ-Hinweisen, und Sie erhalten:
 * **Editor-Unterstützung**.
 * **Typ-Prüfungen**.
 
-... und **FastAPI** verwendet die gleichen Deklarationen, um:
+... und **FastAPI** verwendet dieselben Deklarationen, um:
 
 * **Anforderungen** zu definieren: aus Anfrage-Pfadparametern, Abfrageparametern, Header-Feldern, Bodys, Abhängigkeiten, usw.
 * **Daten umzuwandeln**: aus der Anfrage in den erforderlichen Typ.
