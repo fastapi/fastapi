@@ -9,7 +9,7 @@ Bisher haben Sie gängige Datentypen verwendet, wie zum Beispiel:
 
 Sie können aber auch komplexere Datentypen verwenden.
 
-Und Sie haben immer noch die gleichen Funktionen wie bisher gesehen:
+Und Sie haben immer noch dieselbe Funktionalität wie bisher gesehen:
 
 * Großartige Editor-Unterstützung.
 * Datenkonvertierung bei eingehenden Requests.
