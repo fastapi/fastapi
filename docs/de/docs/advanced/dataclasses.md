@@ -12,7 +12,7 @@ Das ist dank **Pydantic** ebenfalls möglich, da es <a href="https://pydantic-do
 
 Auch wenn im obige Code Pydantic nicht explizit vorkommt, verwendet FastAPI Pydantic, um diese Standard-Datenklassen in Pydantics eigene Variante von Datenklassen zu konvertieren.
 
-Und natürlich wird dasselbe unterstützt:
+Und natürlich wird das gleiche unterstützt:
 
 * Validierung der Daten
 * Serialisierung der Daten
