@@ -276,7 +276,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Response-Modell von dieser Typ-Annotation zu erstellen, und scheitern.
 
-Dasselbe wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
+Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
 === "Python 3.10+"
 
@@ -403,7 +403,7 @@ Aber wenn ihre Daten Werte für Modellfelder mit Defaultwerten haben, wie etwa d
 
 dann werden diese Werte in der Response enthalten sein.
 
-#### Daten mit denselben Werten wie die Defaultwerte
+#### Daten mit den gleichen Werten wie die Defaultwerte
 
 Wenn Daten die gleichen Werte haben wie ihre Defaultwerte, wie etwa der Artikel mit der ID `baz`:
 
