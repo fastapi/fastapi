@@ -75,7 +75,7 @@ Sie können die Hilfsvariablen von `fastapi.status` verwenden.
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 
-Diese sind nur eine Annehmlichkeit und enthalten die gleiche Nummer, aber auf diese Weise können Sie die Autovervollständigung ihres Editors verwenden, um sie zu finden:
+Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese Weise können Sie die Autovervollständigung ihres Editors verwenden, um sie zu finden:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
