@@ -12,7 +12,7 @@ Das System (in diesem Fall **FastAPI**) kümmert sich dann darum, Ihren Code mit
 
 Das ist sehr nützlich, wenn Sie:
 
-* Eine gemeinsame Logik haben (dieselbe Code-Logik immer und immer wieder).
+* Eine gemeinsame Logik haben (die gleiche Code-Logik immer und immer wieder).
 * Datenbankverbindungen teilen.
 * Sicherheit, Authentifizierung, Rollenanforderungen, usw. durchsetzen.
 * Und viele andere Dinge ...
@@ -243,11 +243,11 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
 
 Die Abhängigkeiten funktionieren weiterhin wie erwartet, und das **Beste daran** ist, dass die **Typinformationen erhalten bleiben**, was bedeutet, dass Ihr Editor Ihnen weiterhin **automatische Vervollständigung**, **Inline-Fehler**, usw. bieten kann. Das Gleiche gilt für andere Tools wie `mypy`.
 
-Das ist besonders nützlich, wenn Sie es in einer **großen Codebasis** verwenden, in der Sie in **vielen *Pfadoperationen*** immer wieder **die gleichen Abhängigkeiten** verwenden.
+Das ist besonders nützlich, wenn Sie es in einer **großen Codebasis** verwenden, in der Sie in **vielen *Pfadoperationen*** immer wieder **dieselben Abhängigkeiten** verwenden.
 
 ## `async` oder nicht `async`
 
-Da Abhängigkeiten auch von **FastAPI** aufgerufen werden (so wie Ihre *Pfadoperation-Funktionen*), gelten beim Definieren Ihrer Funktionen dieselben Regeln.
+Da Abhängigkeiten auch von **FastAPI** aufgerufen werden (so wie Ihre *Pfadoperation-Funktionen*), gelten beim Definieren Ihrer Funktionen die gleichen Regeln.
 
 Sie können `async def` oder einfach `def` verwenden.
 
