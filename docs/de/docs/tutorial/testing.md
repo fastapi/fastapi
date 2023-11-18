@@ -156,7 +156,7 @@ Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisiere
 
 Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie nicht wissen, wie das geht, können Sie suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
 
-Dann machen Sie in Ihren Tests einfach dasselbe.
+Dann machen Sie in Ihren Tests einfach das gleiche.
 
 Z.B.:
 
