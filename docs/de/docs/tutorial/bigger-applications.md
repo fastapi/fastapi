@@ -48,7 +48,7 @@ Nehmen wir an, Sie haben eine Dateistruktur wie diese:
 
 <img src="/img/tutorial/bigger-applications/package.svg">
 
-Dieselbe Dateistruktur mit Kommentaren:
+Die gleiche Dateistruktur mit Kommentaren:
 
 ```
 .
@@ -337,7 +337,7 @@ bedeutet:
 
 Das Modul `items` verfügt über eine Variable `router` (`items.router`). Das ist dieselbe, die wir in der Datei `app/routers/items.py` erstellt haben, es ist ein `APIRouter`-Objekt.
 
-Und dann machen wir dasselbe für das Modul `users`.
+Und dann machen wir das gleiche für das Modul `users`.
 
 Wir könnten sie auch wie folgt importieren:
 
