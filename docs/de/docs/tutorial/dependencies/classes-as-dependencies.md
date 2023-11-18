@@ -74,7 +74,7 @@ dann ist das ein „Callable“ (ein „Aufrufbares“).
 
 ## Klassen als Abhängigkeiten
 
-Möglicherweise stellen Sie fest, dass Sie zum Erstellen einer Instanz einer Python-Klasse dieselbe Syntax verwenden.
+Möglicherweise stellen Sie fest, dass Sie zum Erstellen einer Instanz einer Python-Klasse die gleiche Syntax verwenden.
 
 Zum Beispiel:
 
