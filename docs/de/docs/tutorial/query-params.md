@@ -42,7 +42,7 @@ Wenn Sie also zur URL:
 http://127.0.0.1:8000/items/
 ```
 
-gehen, so ist das dasselbe wie die URL:
+gehen, so ist das das gleiche wie die URL:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
@@ -223,4 +223,4 @@ In diesem Fall gibt es drei Query-Parameter:
 * `limit`, ein optionales `int`.
 
 !!! tip "Tipp"
-    Sie können auch `Enum`s verwenden, auf dieselbe Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
+    Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
