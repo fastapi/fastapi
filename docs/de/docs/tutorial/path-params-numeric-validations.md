@@ -242,7 +242,7 @@ Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than – größe
 
 `0.5` wäre also ein gültiger Wert, aber nicht `0.0` oder `0`.
 
-Dasselbe gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr>.
+Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr>.
 
 === "Python 3.9+"
 
@@ -279,7 +279,7 @@ Und Sie können auch Validierungen für Zahlen deklarieren:
 !!! info
     `Query`, `Path`, und andere Klassen, die Sie später kennenlernen, sind Unterklassen einer allgemeinen `Param`-Klasse.
 
-    Sie alle teilen dieselben Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
+    Sie alle teilen die gleichen Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
 
 !!! note "Technische Details"
     `Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
