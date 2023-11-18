@@ -221,7 +221,7 @@ Zum Beispiel:
     ```
 
 !!! info
-    `Body` hat dieselben zusätzlichen Validierungs- und Metadaten-Parameter wie `Query` und `Path` und andere, die Sie später kennenlernen.
+    `Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query` und `Path` und andere, die Sie später kennenlernen.
 
 ## Einen einzelnen Body-Parameter einbetten
 
