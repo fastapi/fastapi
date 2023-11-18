@@ -70,4 +70,4 @@ Auf diese Weise weiß die Unteranwendung, dass sie dieses Pfadpräfix für die B
 
 Und die Unteranwendung könnte auch ihre eigenen gemounteten Unteranwendungen haben und alles würde korrekt funktionieren, da FastAPI sich um alle diese `root_path`s automatisch kümmert.
 
-Mehr über den `root_path` und dessen explizite Verwendung erfahren Sie im Abschnitt [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Mehr über den `root_path` und dessen explizite Verwendung erfahren Sie im Abschnitt [Hinter einem Proxy](behind-a-proxy.md){.internal-link target=_blank}.
