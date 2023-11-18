@@ -366,7 +366,7 @@ Diese Art der Verwendung von `async` und `await` ist in der Sprache relativ neu.
 
 Aber sie erleichtert die Arbeit mit asynchronem Code erheblich.
 
-Dieselbe Syntax (oder fast identisch) wurde kürzlich auch in moderne Versionen von JavaScript (im Browser und in NodeJS) aufgenommen.
+Die gleiche Syntax (oder fast identisch) wurde kürzlich auch in moderne Versionen von JavaScript (im Browser und in NodeJS) aufgenommen.
 
 Davor war der Umgang mit asynchronem Code jedoch deutlich komplexer und schwieriger.
 
