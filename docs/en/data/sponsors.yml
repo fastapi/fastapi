@@ -42,6 +42,9 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
+  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
+    title: Take code reviews from hours to minutes
+    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
