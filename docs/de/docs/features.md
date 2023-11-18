@@ -152,7 +152,7 @@ FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abb
 
 Oder mit anderen Worten, sie werden nicht benötigt. Importieren und nutzen Sie den Code, den Sie brauchen.
 
-Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abhängigkeiten), dass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen Code erstellen können. Hierbei nutzen Sie dieselbe Struktur und Syntax, wie bei *Pfadoperationen*.
+Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abhängigkeiten), dass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen Code erstellen können. Hierbei nutzen Sie die gleiche Struktur und Syntax, wie bei *Pfadoperationen*.
 
 ### Getestet
 
@@ -186,7 +186,7 @@ Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Obj
 
 Daher können Sie in vielen Fällen das Objekt einer Anfrage **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
 
-Dasselbe gilt auch für die andere Richtung: Sie können in vielen Fällen das Objekt aus der Datenbank **direkt zum Client** schicken.
+Das gleiche gilt auch für die andere Richtung: Sie können in vielen Fällen das Objekt aus der Datenbank **direkt zum Client** schicken.
 
 Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für die gesamte Datenverarbeitung Pydantic nutzt):
 
