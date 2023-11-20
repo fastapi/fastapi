@@ -262,7 +262,7 @@ You will see the automatic interactive API documentation (provided by <a href="h
 
 ### Alternative API docs
 
-Here are some alternatives to Swagger UI: Redocly & Scalar.
+Here are some alternatives to Swagger UI: Redoc & Scalar.
 
 Go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -332,7 +332,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 ### Alternative API docs upgrade
 
-Here are some alternatives to Swagger UI: Redocly & Scalar.
+Here are some alternatives to Swagger UI: Redoc & Scalar.
 
 Go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
