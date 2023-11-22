@@ -192,3 +192,8 @@ def get_enum_status_code():
 @app.get("/query/frozenset")
 def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
     return ",".join(map(str, sorted(query)))
+
+
+@app.api_route("/multiple-methods", methods=["GET", "POST"])
+def multiple_methods():
+    return {"message": "Hello World"}

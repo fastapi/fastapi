@@ -1163,9 +1163,46 @@ def test_openapi_schema():
                     },
                 }
             },
+            "/multiple-methods": {
+                "get": {
+                    "summary": "Multiple Methods",
+                    "operationId": "multiple_methods_multiple_methods_get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}}
+                        }
+                    }
+                },
+                "post": {
+                    "summary": "Multiple Methods",
+                    "operationId": "multiple_methods_multiple_methods_post",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "components": {
             "schemas": {
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
                 "ValidationError": {
                     "title": "ValidationError",
                     "required": ["loc", "msg", "type"],
@@ -1180,17 +1217,6 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
                     },
                 },
             }
