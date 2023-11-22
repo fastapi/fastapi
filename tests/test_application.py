@@ -1170,9 +1170,9 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}}
+                            "content": {"application/json": {"schema": {}}},
                         }
-                    }
+                    },
                 },
                 "post": {
                     "summary": "Multiple Methods",
@@ -1180,15 +1180,11 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {}
-                                }
-                            }
+                            "content": {"application/json": {"schema": {}}},
                         }
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
         "components": {
             "schemas": {
