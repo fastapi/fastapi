@@ -1,4 +1,4 @@
-from typing import Union
+from typing import List, Union
 
 import pytest
 from dirty_equals import IsDict
@@ -31,7 +31,7 @@ async def unrelated(foo: Annotated[str, object()]):
 
 
 @app.get("/nested-annotated-list")
-async def nested_annotated_list(foo: Union[Annotated[list[str], Query()], None] = None):
+async def nested_annotated_list(foo: Union[Annotated[List[str], Query()], None] = None):
     return {"foo": foo}
 
 
