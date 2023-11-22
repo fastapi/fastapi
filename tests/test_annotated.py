@@ -1,3 +1,5 @@
+from typing import Union
+
 import pytest
 from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI, Query
@@ -25,6 +27,11 @@ async def multiple(foo: Annotated[str, object(), Query(min_length=1)]):
 
 @app.get("/unrelated")
 async def unrelated(foo: Annotated[str, object()]):
+    return {"foo": foo}
+
+
+@app.get("/nested-annotated-list")
+async def nested_annotated_list(foo: Union[Annotated[list[str], Query()], None] = None):
     return {"foo": foo}
 
 
@@ -89,6 +96,7 @@ foo_is_short = {
         ("/multiple?foo=", 422, foo_is_short),
         ("/unrelated?foo=bar", 200, {"foo": "bar"}),
         ("/unrelated", 422, foo_is_missing),
+        ("/nested-annotated-list?foo=bar&foo=baz", 200, {"foo": ["bar", "baz"]}),
     ],
 )
 def test_get(path, expected_status, expected_response):
@@ -280,6 +288,47 @@ def test_openapi_schema():
                     },
                 }
             },
+            "/nested-annotated-list": {
+                "get": {
+                    "summary": "Nested Annotated List",
+                    "operationId": "nested_annotated_list_nested_annotated_list_get",
+                    "parameters": [
+                        {
+                            "name": "foo",
+                            "in": "query",
+                            "required": False,
+                            "schema": {
+                                "anyOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "title": "Foo"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}}
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                },
+            }
         },
         "components": {
             "schemas": {
