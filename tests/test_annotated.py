@@ -297,19 +297,26 @@ def test_openapi_schema():
                             "name": "foo",
                             "in": "query",
                             "required": False,
-                            "schema": {
+                            "schema": IsDict({
                                 "anyOf": [
-                                    {"type": "array", "items": {"type": "string"}},
-                                    {"type": "null"},
+                                    {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
                                 ],
-                                "title": "Foo",
-                            },
+                                "title": "Foo"
+                            })
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict({"items": {"type": "string"}, "type": "array", "title": "Foo"})
                         }
                     ],
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {"application/json": {"schema": {}}}
                         },
                         "422": {
                             "description": "Validation Error",
@@ -323,7 +330,7 @@ def test_openapi_schema():
                         },
                     },
                 },
-            },
+            }
         },
         "components": {
             "schemas": {
