@@ -299,22 +299,17 @@ def test_openapi_schema():
                             "required": False,
                             "schema": {
                                 "anyOf": [
-                                    {
-                                        "type": "array",
-                                        "items": {"type": "string"}
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
+                                    {"type": "array", "items": {"type": "string"}},
+                                    {"type": "null"},
                                 ],
-                                "title": "Foo"
-                            }
+                                "title": "Foo",
+                            },
                         }
                     ],
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}}
+                            "content": {"application/json": {"schema": {}}},
                         },
                         "422": {
                             "description": "Validation Error",
@@ -328,7 +323,7 @@ def test_openapi_schema():
                         },
                     },
                 },
-            }
+            },
         },
         "components": {
             "schemas": {
