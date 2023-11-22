@@ -416,7 +416,7 @@ class FastAPI(Starlette):
                 ```python
                 from fastapi import FastAPI
 
-                app = FastAPI(docs_url="/documentation", redoc_url=None)
+                app = FastAPI(docs_url="/documentation", redoc_url=None, scalar_url=None)
                 ```
                 """
             ),
