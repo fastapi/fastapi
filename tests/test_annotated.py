@@ -68,9 +68,7 @@ foo_is_short = {
             {
                 "ctx": {"limit_value": 1},
                 "loc": ["query", "foo"],
-                "msg": IsStr(
-                    regex="ensure this value has at least 1 characters?"
-                ),
+                "msg": IsStr(regex="ensure this value has at least 1 characters?"),
                 "type": "value_error.any_str.min_length",
             }
         )
