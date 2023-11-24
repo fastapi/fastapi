@@ -5,35 +5,33 @@ description = ""
 authors = ["Admin <admin@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-uvicorn = ">=0.24.0.post1"
-fastapi = "^0.54.1"
-python-multipart = "^0.0.5"
-email-validator = "^1.0.5"
-requests = "^2.23.0"
-celery = "^4.4.2"
-passlib = {extras = ["bcrypt"], version = "^1.7.2"}
-tenacity = "^6.1.0"
-pydantic = "^1.4"
-emails = "^0.5.15"
-raven = "^6.10.0"
-gunicorn = "^20.0.4"
-jinja2 = "^2.11.2"
-psycopg2-binary = "^2.8.5"
-alembic = "^1.4.2"
-sqlalchemy = "^1.3.16"
-pytest = "^5.4.1"
-python-jose = {extras = ["cryptography"], version = "^3.1.0"}
+python = "^3.10"
+uvicorn = "^0.24.0.post1"
+fastapi = "^0.104.1"
+python-multipart = "^0.0.6"
+email-validator = "^2.1.0.post1"
+celery = "^5.3.5"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+tenacity = "^8.2.3"
+pydantic = "<2.0"
+emails = "^0.6"
 
-[tool.poetry.dev-dependencies]
-mypy = ">=1.7.0"
-black = ">=23.11.0"
-isort = "^4.3.21"
-autoflake = "^1.3.1"
-flake8 = "^3.7.9"
-pytest = "^5.4.1"
-sqlalchemy-stubs = "^0.3"
-pytest-cov = "^2.8.1"
+gunicorn = "^21.2.0"
+jinja2 = "^3.1.2"
+alembic = "^1.12.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+httpx = "^0.25.1"
+psycopg = {extras = ["binary"], version = "^3.1.13"}
+sqlmodel = "^0.0.12"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.7.0"
+black = "^23.11.0"
+isort = "^5.12.0"
+autoflake = "^2.2.1"
+flake8 = "^6.1.0"
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
 
 [tool.isort]
 multi_line_output = 3
@@ -43,4 +41,3 @@ line_length = 88
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-
