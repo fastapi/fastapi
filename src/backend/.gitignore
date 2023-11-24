@@ -1,2 +1,3 @@
 __pycache__
 app.egg-info
+*.pyc
