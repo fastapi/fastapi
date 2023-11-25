@@ -30,6 +30,7 @@ theme:
   - content.code.annotate
   - content.code.copy
   - content.code.select
+  - navigation.tabs
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -52,142 +53,174 @@ plugins:
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+  mkdocstrings:
+    handlers:
+      python:
+        options:
+          extensions:
+            - griffe_typingdoc
+          show_root_heading: true
+          show_if_no_docstring: true
+          preload_modules: [httpx, starlette]
+          inherited_members: true
+          members_order: source
+          separate_signature: true
+          unwrap_annotated: true
+          filters: ["!^_"]
+          merge_init_into_class: true
+          docstring_section_style: spacy
+          signature_crossrefs: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
 nav:
 - FastAPI: index.md
-- Languages:
-  - en: /
-  - de: /de/
-  - em: /em/
-  - es: /es/
-  - fa: /fa/
-  - fr: /fr/
-  - he: /he/
-  - id: /id/
-  - ja: /ja/
-  - ko: /ko/
-  - pl: /pl/
-  - pt: /pt/
-  - ru: /ru/
-  - tr: /tr/
-  - uk: /uk/
-  - ur: /ur/
-  - vi: /vi/
-  - yo: /yo/
-  - zh: /zh/
 - features.md
+- Learn:
+  - learn/index.md
+  - python-types.md
+  - async.md
+  - Tutorial - User Guide:
+    - tutorial/index.md
+    - tutorial/first-steps.md
+    - tutorial/path-params.md
+    - tutorial/query-params.md
+    - tutorial/body.md
+    - tutorial/query-params-str-validations.md
+    - tutorial/path-params-numeric-validations.md
+    - tutorial/body-multiple-params.md
+    - tutorial/body-fields.md
+    - tutorial/body-nested-models.md
+    - tutorial/schema-extra-example.md
+    - tutorial/extra-data-types.md
+    - tutorial/cookie-params.md
+    - tutorial/header-params.md
+    - tutorial/response-model.md
+    - tutorial/extra-models.md
+    - tutorial/response-status-code.md
+    - tutorial/request-forms.md
+    - tutorial/request-files.md
+    - tutorial/request-forms-and-files.md
+    - tutorial/handling-errors.md
+    - tutorial/path-operation-configuration.md
+    - tutorial/encoder.md
+    - tutorial/body-updates.md
+    - Dependencies:
+      - tutorial/dependencies/index.md
+      - tutorial/dependencies/classes-as-dependencies.md
+      - tutorial/dependencies/sub-dependencies.md
+      - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+      - tutorial/dependencies/global-dependencies.md
+      - tutorial/dependencies/dependencies-with-yield.md
+    - Security:
+      - tutorial/security/index.md
+      - tutorial/security/first-steps.md
+      - tutorial/security/get-current-user.md
+      - tutorial/security/simple-oauth2.md
+      - tutorial/security/oauth2-jwt.md
+    - tutorial/middleware.md
+    - tutorial/cors.md
+    - tutorial/sql-databases.md
+    - tutorial/bigger-applications.md
+    - tutorial/background-tasks.md
+    - tutorial/metadata.md
+    - tutorial/static-files.md
+    - tutorial/testing.md
+    - tutorial/debugging.md
+  - Advanced User Guide:
+    - advanced/index.md
+    - advanced/path-operation-advanced-configuration.md
+    - advanced/additional-status-codes.md
+    - advanced/response-directly.md
+    - advanced/custom-response.md
+    - advanced/additional-responses.md
+    - advanced/response-cookies.md
+    - advanced/response-headers.md
+    - advanced/response-change-status-code.md
+    - advanced/advanced-dependencies.md
+    - Advanced Security:
+      - advanced/security/index.md
+      - advanced/security/oauth2-scopes.md
+      - advanced/security/http-basic-auth.md
+    - advanced/using-request-directly.md
+    - advanced/dataclasses.md
+    - advanced/middleware.md
+    - advanced/sub-applications.md
+    - advanced/behind-a-proxy.md
+    - advanced/templates.md
+    - advanced/websockets.md
+    - advanced/events.md
+    - advanced/testing-websockets.md
+    - advanced/testing-events.md
+    - advanced/testing-dependencies.md
+    - advanced/testing-database.md
+    - advanced/async-tests.md
+    - advanced/settings.md
+    - advanced/openapi-callbacks.md
+    - advanced/openapi-webhooks.md
+    - advanced/wsgi.md
+    - advanced/generate-clients.md
+  - Deployment:
+    - deployment/index.md
+    - deployment/versions.md
+    - deployment/https.md
+    - deployment/manually.md
+    - deployment/concepts.md
+    - deployment/cloud.md
+    - deployment/server-workers.md
+    - deployment/docker.md
+  - How To - Recipes:
+    - how-to/index.md
+    - how-to/general.md
+    - how-to/sql-databases-peewee.md
+    - how-to/async-sql-encode-databases.md
+    - how-to/nosql-databases-couchbase.md
+    - how-to/graphql.md
+    - how-to/custom-request-and-route.md
+    - how-to/conditional-openapi.md
+    - how-to/extending-openapi.md
+    - how-to/separate-openapi-schemas.md
+    - how-to/custom-docs-ui-assets.md
+    - how-to/configure-swagger-ui.md
+- Reference (Code API):
+  - reference/index.md
+  - reference/fastapi.md
+  - reference/parameters.md
+  - reference/status.md
+  - reference/uploadfile.md
+  - reference/exceptions.md
+  - reference/dependencies.md
+  - reference/apirouter.md
+  - reference/background.md
+  - reference/request.md
+  - reference/websockets.md
+  - reference/httpconnection.md
+  - reference/response.md
+  - reference/responses.md
+  - reference/middleware.md
+  - OpenAPI:
+    - reference/openapi/index.md
+    - reference/openapi/docs.md
+    - reference/openapi/models.md
+  - reference/security/index.md
+  - reference/encoders.md
+  - reference/staticfiles.md
+  - reference/templating.md
+  - reference/testclient.md
 - fastapi-people.md
-- python-types.md
-- Tutorial - User Guide:
-  - tutorial/index.md
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-  - tutorial/body.md
-  - tutorial/query-params-str-validations.md
-  - tutorial/path-params-numeric-validations.md
-  - tutorial/body-multiple-params.md
-  - tutorial/body-fields.md
-  - tutorial/body-nested-models.md
-  - tutorial/schema-extra-example.md
-  - tutorial/extra-data-types.md
-  - tutorial/cookie-params.md
-  - tutorial/header-params.md
-  - tutorial/response-model.md
-  - tutorial/extra-models.md
-  - tutorial/response-status-code.md
-  - tutorial/request-forms.md
-  - tutorial/request-files.md
-  - tutorial/request-forms-and-files.md
-  - tutorial/handling-errors.md
-  - tutorial/path-operation-configuration.md
-  - tutorial/encoder.md
-  - tutorial/body-updates.md
-  - Dependencies:
-    - tutorial/dependencies/index.md
-    - tutorial/dependencies/classes-as-dependencies.md
-    - tutorial/dependencies/sub-dependencies.md
-    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
-    - tutorial/dependencies/global-dependencies.md
-    - tutorial/dependencies/dependencies-with-yield.md
-  - Security:
-    - tutorial/security/index.md
-    - tutorial/security/first-steps.md
-    - tutorial/security/get-current-user.md
-    - tutorial/security/simple-oauth2.md
-    - tutorial/security/oauth2-jwt.md
-  - tutorial/middleware.md
-  - tutorial/cors.md
-  - tutorial/sql-databases.md
-  - tutorial/bigger-applications.md
-  - tutorial/background-tasks.md
-  - tutorial/metadata.md
-  - tutorial/static-files.md
-  - tutorial/testing.md
-  - tutorial/debugging.md
-- Advanced User Guide:
-  - advanced/index.md
-  - advanced/path-operation-advanced-configuration.md
-  - advanced/additional-status-codes.md
-  - advanced/response-directly.md
-  - advanced/custom-response.md
-  - advanced/additional-responses.md
-  - advanced/response-cookies.md
-  - advanced/response-headers.md
-  - advanced/response-change-status-code.md
-  - advanced/advanced-dependencies.md
-  - Advanced Security:
-    - advanced/security/index.md
-    - advanced/security/oauth2-scopes.md
-    - advanced/security/http-basic-auth.md
-  - advanced/using-request-directly.md
-  - advanced/dataclasses.md
-  - advanced/middleware.md
-  - advanced/sub-applications.md
-  - advanced/behind-a-proxy.md
-  - advanced/templates.md
-  - advanced/websockets.md
-  - advanced/events.md
-  - advanced/testing-websockets.md
-  - advanced/testing-events.md
-  - advanced/testing-dependencies.md
-  - advanced/testing-database.md
-  - advanced/async-tests.md
-  - advanced/settings.md
-  - advanced/openapi-callbacks.md
-  - advanced/openapi-webhooks.md
-  - advanced/wsgi.md
-  - advanced/generate-clients.md
-- async.md
-- Deployment:
-  - deployment/index.md
-  - deployment/versions.md
-  - deployment/https.md
-  - deployment/manually.md
-  - deployment/concepts.md
-  - deployment/cloud.md
-  - deployment/server-workers.md
-  - deployment/docker.md
-- How To - Recipes:
-  - how-to/index.md
-  - how-to/general.md
-  - how-to/sql-databases-peewee.md
-  - how-to/async-sql-encode-databases.md
-  - how-to/nosql-databases-couchbase.md
-  - how-to/graphql.md
-  - how-to/custom-request-and-route.md
-  - how-to/conditional-openapi.md
-  - how-to/extending-openapi.md
-  - how-to/separate-openapi-schemas.md
-  - how-to/custom-docs-ui-assets.md
-  - how-to/configure-swagger-ui.md
-- project-generation.md
-- alternatives.md
-- history-design-future.md
-- external-links.md
-- benchmarks.md
-- help-fastapi.md
-- newsletter.md
-- contributing.md
+- Resources:
+  - resources/index.md
+  - project-generation.md
+  - external-links.md
+  - newsletter.md
+- About:
+  - about/index.md
+  - alternatives.md
+  - history-design-future.md
+  - benchmarks.md
+- Help:
+  - help/index.md
+  - help-fastapi.md
+  - contributing.md
 - release-notes.md
 markdown_extensions:
   toc:

@@ -14,6 +14,9 @@ gold:
   - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
     title: Automate FastAPI documentation generation with Bump.sh
     img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
+  - url: https://reflex.dev
+    title: Reflex
+    img: https://fastapi.tiangolo.com/img/sponsors/reflex.png
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
@@ -39,6 +42,9 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
+  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
+    title: Take code reviews from hours to minutes
+    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
