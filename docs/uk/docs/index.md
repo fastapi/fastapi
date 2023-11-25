@@ -233,7 +233,7 @@ INFO:     Application startup complete.
 {"item_id": 5, "q": "somequery"}
 ```
 
-Ви вже створили API який:
+Ви вже створили API, який:
 
 * Отримує HTTP запити за _шляхами_ `/` та `/items/{item_id}`.
 * Обидва _шляхи_ приймають `GET` <em>операції</em> (також відомі як HTTP _методи_).
@@ -250,7 +250,7 @@ INFO:     Application startup complete.
 
 ### Альтернативні документації API
 
-Тепер, перейдемо сюди <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Тепер перейдемо сюди <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 Ви побачите альтернативну автоматичну документацію (створену завдяки  <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
@@ -258,7 +258,7 @@ INFO:     Application startup complete.
 
 ## Приклад оновлення
 
-Тепер модифікуйте файл `main.py` щоб отримати вміст запиту `PUT`.
+Тепер модифікуйте файл `main.py`, щоб отримати вміст запиту `PUT`.
 
 Оголошуйте вміст запиту за допомогою стандартних типів Python завдяки Pydantic.
 
@@ -344,7 +344,7 @@ item: Item
 
 * Підтримку редактора, включаючи:
     * Варіанти заповнення.
-    * Перевірка типів.
+    * Перевірку типів.
 * Перевірку даних:
     * Автоматичні та зрозумілі помилки, у разі некоректних даних.
     * Перевірка навіть для JSON з високим рівнем вкладеності.
@@ -362,7 +362,7 @@ item: Item
     * `UUID` об'єкти.
     * Моделі бази даних.
     * ...та багато іншого.
-* Автоматична інтерактивна документація API, включаючи 2 альтернативні інтерфейси користувача:
+* Автоматичну інтерактивну документацію API, включаючи 2 альтернативні інтерфейси користувача:
     * Swagger UI.
     * ReDoc.
 
@@ -441,7 +441,7 @@ Pydantic використовує:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - для валідації електронної пошти.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - для управління налаштуваннями.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - для додаткових типів що можуть бути використані з Pydantic.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - для додаткових типів, що можуть бути використані з Pydantic.
 
 
 Starlette використовує:
