@@ -15,6 +15,7 @@ log.txt
 Pipfile.lock
 env3.*
 env
+.python-version
 docs_build
 site_build
 venv
