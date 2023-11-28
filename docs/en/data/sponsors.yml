@@ -17,6 +17,9 @@ gold:
   - url: https://reflex.dev
     title: Reflex
     img: https://fastapi.tiangolo.com/img/sponsors/reflex.png
+  - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
+    title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
+    img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
