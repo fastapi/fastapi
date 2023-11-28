@@ -48,7 +48,6 @@ The key features are:
 
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
 <a href="https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" target="_blank" title="Build, run and scale your apps on a modern, reliable, and secure PaaS."><img src="https://fastapi.tiangolo.com/img/sponsors/platform-sh.png"></a>
-<a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=main-badge" target="_blank" title="Fern | SDKs and API docs"><img src="https://fastapi.tiangolo.com/img/sponsors/fern.svg"></a>
 <a href="https://www.porter.run" target="_blank" title="Deploy FastAPI on AWS with a few clicks"><img src="https://fastapi.tiangolo.com/img/sponsors/porter.png"></a>
 <a href="https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor" target="_blank" title="Automate FastAPI documentation generation with Bump.sh"><img src="https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg"></a>
 <a href="https://reflex.dev" target="_blank" title="Reflex"><img src="https://fastapi.tiangolo.com/img/sponsors/reflex.png"></a>
