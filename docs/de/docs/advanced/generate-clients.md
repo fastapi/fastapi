@@ -20,10 +20,9 @@ Einige von diesen ✨ [**sponsern FastAPI**](../help-fastapi.md#den-autor-sponse
 
 Und es zeigt deren wahres Engagement für FastAPI und seine **Community** (Sie), da diese Ihnen nicht nur einen **guten Service** bieten möchten, sondern auch sicherstellen möchten, dass Sie über ein **gutes und gesundes Framework** verfügen, FastAPI. 🙇
 
-Vielleicht möchten Sie deren Dienste ausprobieren und deren Anleitungen folgen:
+Beispielsweise könnten Sie <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> ausprobieren.
 
-* <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-generate-clients" class="external-link" target="_blank">Fern</a>
-* <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+Es gibt auch mehrere andere Unternehmen, welche ähnliche Dienste anbieten und die Sie online suchen und finden können. 🤓
 
 ## Einen TypeScript-Frontend-Client generieren
 
