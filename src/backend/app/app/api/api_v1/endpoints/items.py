@@ -3,13 +3,10 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
-from app.api import deps
-from app.models import Item, ItemCreate, ItemOut, ItemUpdate, User
+from app.api.deps import CurrentUser, SessionDep
+from app.models import Item, ItemCreate, ItemOut, ItemUpdate
 
 router = APIRouter()
-
-SessionDep = Annotated[Session, Depends(deps.get_db)]
-CurrentUser = Annotated[User, Depends(deps.get_current_active_user)]
 
 
 @router.get("/")

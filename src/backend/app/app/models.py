@@ -17,6 +17,12 @@ class UserCreate(UserBase):
     password: str
 
 
+class UserCreateOpen(SQLModel):
+    email: EmailStr
+    password: str
+    full_name: Union[str, None] = None
+
+
 # Properties to receive via API on update, all are optional
 class UserUpdate(UserBase):
     email: Union[EmailStr, None] = None
