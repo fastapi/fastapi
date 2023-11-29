@@ -119,8 +119,6 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
 
     These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of additional alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
-    For example, you could try <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-alternatives" class="external-link" target="_blank">Fern</a> which is also a FastAPI sponsor. 😎🎉
-
 ### Flask REST frameworks
 
 There are several Flask REST frameworks, but after investing the time and work into investigating them, I found that many are discontinued or abandoned, with several standing issues that made them unfit.
