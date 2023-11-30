@@ -19,7 +19,7 @@ async def read_items(
             pattern="^fixedquery$",
             deprecated=True,
         ),
-    ] = None
+    ] = None,
 ):
     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:

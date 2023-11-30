@@ -36,7 +36,7 @@ site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
 
-@lru_cache()
+@lru_cache
 def is_mkdocs_insiders() -> bool:
     version = metadata.version("mkdocs-material")
     return "insiders" in version
@@ -104,7 +104,7 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
 def build_lang(
     lang: str = typer.Argument(
         ..., callback=lang_callback, autocompletion=complete_existing_lang
-    )
+    ),
 ) -> None:
     """
     Build the docs for a language.
@@ -251,7 +251,7 @@ def serve() -> None:
 def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
-    )
+    ),
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
