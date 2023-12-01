@@ -82,7 +82,7 @@ And because you are using `StaticFiles`, that CSS file would be served automatic
 
   Another way to affect the generated URLs is to customize `uvicorn` with arguments like `proxy-headers`, `root-path`, and `forwarded-allow-ips`.
   See <a href="https://www.uvicorn.org/settings/#http">uvicorn's docs on settings</a>.
-   
+
 ## More details
 
 For more details, including how to test templates, check <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.
