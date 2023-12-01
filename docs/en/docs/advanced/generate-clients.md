@@ -87,7 +87,7 @@ It could look like this:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
   },
   "author": "",
   "license": "",
@@ -106,7 +106,7 @@ After having that NPM `generate-client` script there, you can run it with:
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios
+> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes
 ```
 
 </div>
@@ -246,7 +246,7 @@ Now as the end result is in a file `openapi.json`, you would modify the `package
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
   },
   "author": "",
   "license": "",
