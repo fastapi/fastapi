@@ -49,7 +49,7 @@ und wir rufen seine `.dict()`-Methode auf:
 user_dict = user_in.dict()
 ```
 
-dann haben wir jetzt in der Variable `user_dict` ein `dict` mit den gleichen Daten (es ist ein `dict` statt eines Pydantic-Modell-Objekts).
+dann haben wir jetzt in der Variable `user_dict` ein `dict` mit den gleichen Daten (es ist ein `dict` statt eines Pydantic-Modellobjekts).
 
 Wenn wir es ausgeben:
 
