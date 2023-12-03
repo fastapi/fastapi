@@ -19,7 +19,7 @@ Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Sc
 
 ## Eine Datenbank-Abhängigkeit mit `yield`.
 
-Sie könnten damit beispielsweise eine Datenbank-Session erstellen und diese nach Abschluss schließen.
+Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach Abschluss schließen.
 
 Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine Response gesendet wird:
 
