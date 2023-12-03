@@ -74,7 +74,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 !!! note "Hinweis"
     Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
 
-`response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modell-Feld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z.B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
+`response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modellfeld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z.B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
 
 FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typ-Deklaration **zu konvertieren und filtern**.
 
