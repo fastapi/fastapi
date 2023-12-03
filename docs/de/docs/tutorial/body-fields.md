@@ -45,9 +45,9 @@ Importieren Sie es zuerst:
 !!! warning "Achtung"
     Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
 
-## Modell-Attribute deklarieren
+## Modellattribute deklarieren
 
-Dann können Sie `Field` mit Modell-Attributen deklarieren:
+Dann können Sie `Field` mit Modellattributen deklarieren:
 
 === "Python 3.10+"
 
@@ -97,7 +97,7 @@ Dann können Sie `Field` mit Modell-Attributen deklarieren:
     Denken Sie daran, dass `Query`, `Path` und andere von `fastapi` tatsächlich Funktionen sind, die spezielle Klassen zurückgeben.
 
 !!! tip "Tipp"
-    Beachten Sie, dass jedes Modell-Attribut mit einem Typ, Defaultwert und `Field` die gleiche Struktur hat wie ein Parameter einer Pfadoperation-Funktion, nur mit `Field` statt `Path`, `Query`, `Body`.
+    Beachten Sie, dass jedes Modellattribut mit einem Typ, Defaultwert und `Field` die gleiche Struktur hat wie ein Parameter einer Pfadoperation-Funktion, nur mit `Field` statt `Path`, `Query`, `Body`.
 
 ## Zusätzliche Information hinzufügen
 
@@ -110,6 +110,6 @@ Sie werden später mehr darüber lernen, wie man zusätzliche Information unterb
 
 ## Zusammenfassung
 
-Sie können Pydantics `Field` verwenden, um zusätzliche Validierungen und Metadaten für Modell-Attribute zu deklarieren.
+Sie können Pydantics `Field` verwenden, um zusätzliche Validierungen und Metadaten für Modellattribute zu deklarieren.
 
 Sie können auch Extra-Schlüssel verwenden, um zusätzliche JSON-Schema-Metadaten zu überreichen.
