@@ -65,7 +65,7 @@ Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen w
     Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `File` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben
 
 !!! tip "Tipp"
-    Um Datei-Bodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
+    Um Dateibodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
 Die Dateien werden als „Formulardaten“ hochgeladen.
 
