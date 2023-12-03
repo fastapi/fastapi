@@ -21,7 +21,7 @@ Importieren Sie zunächst `BackgroundTasks` und definieren Sie einen Parameter i
 
 **FastAPI** erstellt für Sie das Objekt vom Typ `BackgroundTasks` und übergibt es als diesen Parameter.
 
-## Eine Task-Funktion erstellen
+## Eine Taskfunktion erstellen
 
 Erstellen Sie eine Funktion, die als Hintergrundtask ausgeführt werden soll.
 
@@ -29,7 +29,7 @@ Es handelt sich schlicht um eine Standard-Funktion, die Parameter empfangen kann
 
 Es kann sich um eine `async def`- oder normale `def`-Funktion handeln. **FastAPI** weiß, wie damit zu verfahren ist.
 
-In diesem Fall schreibt die Task-Funktion in eine Datei (den Versand einer E-Mail simulierend).
+In diesem Fall schreibt die Taskfunktion in eine Datei (den Versand einer E-Mail simulierend).
 
 Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir die Funktion mit normalem `def`:
 
@@ -47,9 +47,9 @@ Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir di
 
 `.add_task()` erhält als Argumente:
 
-* Eine Task-Funktion, die im Hintergrund ausgeführt wird (`write_notification`).
-* Eine beliebige Folge von Argumenten, die der Reihe nach an die Task-Funktion übergeben werden sollen (`email`).
-* Alle Schlüsselwort-Argumente, die an die Task-Funktion übergeben werden sollen (`message="some notification"`).
+* Eine Taskfunktion, die im Hintergrund ausgeführt wird (`write_notification`).
+* Eine beliebige Folge von Argumenten, die der Reihe nach an die Taskfunktion übergeben werden sollen (`email`).
+* Alle Schlüsselwort-Argumente, die an die Taskfunktion übergeben werden sollen (`message="some notification"`).
 
 ## Dependency Injection
 
