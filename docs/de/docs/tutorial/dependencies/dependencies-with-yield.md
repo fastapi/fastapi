@@ -137,11 +137,11 @@ Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Res
 
 Wenn Sie also nach dem `yield` eine `HTTPException` auslösen, ist der standardmäßige (oder ein beliebiger benutzerdefinierter) Exceptionhandler, der `HTTPException` abfängt und eine HTTP 400 Response zurückgibt, nicht mehr da, um diese Exception abzufangen.
 
-Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z.B. eine DB-Session), beispielsweise von Hintergrund-Tasks verwendet werden kann.
+Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z.B. eine DB-Session), beispielsweise von Hintergrundtasks verwendet werden kann.
 
-Hintergrund-Tasks werden ausgeführt, *nachdem* die Response gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Response zu ändern.
+Hintergrundtasks werden ausgeführt, *nachdem* die Response gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Response zu ändern.
 
-Aber wenn ein Hintergrund-Task einen DB-Error erzeugt, können Sie zumindest ein Rollback durchführen, oder die Session innerhalb der Abhängigkeit mit `yield` sauber schließen, und den Fehler möglicherweise protokollieren oder an ein Remote-Tracking-System melden.
+Aber wenn ein Hintergrundtask einen DB-Error erzeugt, können Sie zumindest ein Rollback durchführen, oder die Session innerhalb der Abhängigkeit mit `yield` sauber schließen, und den Fehler möglicherweise protokollieren oder an ein Remote-Tracking-System melden.
 
 Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnte, machen Sie das Normale/„Pythonische“ und fügen Sie in diesem Codeabschnitt einen `try`-Block ein.
 
@@ -159,7 +159,7 @@ participant client as Client
 participant handler as Exceptionhandler
 participant dep as Abhängigkeit mit yield
 participant operation as Pfadoperation
-participant tasks as Hintergrund-Tasks
+participant tasks as Hintergrundtasks
 
     Note over client,tasks: Kann eine Exception für eine Abhängigkeit auslösen, die nach dem Senden der Response gehandhabt wird
     Note over client,operation: Kann eine HTTPException auslösen und die Response ändern
@@ -181,7 +181,7 @@ participant tasks as Hintergrund-Tasks
     operation ->> client: Sendet Response an Client
     Note over client,operation: Response wurde gesendet, kann nicht mehr geändert werden
     opt Tasks
-        operation -->> tasks: Sendet Hintergrund-Tasks
+        operation -->> tasks: Sendet Hintergrundtasks
     end
     opt Löst andere Exception aus
         tasks -->> dep: Löst andere Exception aus
