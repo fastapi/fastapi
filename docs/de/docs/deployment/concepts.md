@@ -179,19 +179,19 @@ Wenn Sie eine FastAPI-Anwendung verwenden und ein Serverprogramm wie Uvicorn ver
 
 In vielen Fällen möchten Sie jedoch mehrere Prozesse gleichzeitig ausführen.
 
-### Mehrere Prozesse – Workers
+### Mehrere Prozesse – Worker
 
 Wenn Sie mehr Clients haben, als ein einzelner Prozess verarbeiten kann (z.B. wenn die virtuelle Maschine nicht sehr groß ist) und die CPU des Servers **mehrere Kerne** hat, dann könnten **mehrere Prozesse** gleichzeitig mit derselben Anwendung laufen und alle Requests unter sich verteilen.
 
 Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als **<abbr title="Arbeiter">Worker</abbr>** bezeichnet.
 
-### Worker-Prozesse und Ports
+### Workerprozesse und Ports
 
 Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md){.internal-link target=_blank}, dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
 
 Das ist immer noch wahr.
 
-Um also **mehrere Prozesse** gleichzeitig zu haben, muss es einen **einzelnen Prozess geben, der einen Port überwacht**, welcher dann die Kommunikation auf irgendeine Weise an jeden Worker-Prozess überträgt.
+Um also **mehrere Prozesse** gleichzeitig zu haben, muss es einen **einzelnen Prozess geben, der einen Port überwacht**, welcher dann die Kommunikation auf irgendeine Weise an jeden Workerprozess überträgt.
 
 ### Arbeitsspeicher pro Prozess
 
@@ -207,11 +207,11 @@ Und wenn Ihr entfernter Server oder Ihre virtuelle Maschine nur über 3 GB RAM v
 
 ### Mehrere Prozesse – Ein Beispiel
 
-Im folgenden Beispiel gibt es einen **Manager-Prozess**, welcher zwei **Worker-Prozesse** startet und steuert.
+Im folgenden Beispiel gibt es einen **Manager-Prozess**, welcher zwei **Workerprozesse** startet und steuert.
 
-Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port** lauscht. Und er würde die gesamte Kommunikation an die Worker-Prozesse weiterleiten.
+Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port** lauscht. Und er würde die gesamte Kommunikation an die Workerprozesse weiterleiten.
 
-Diese Worker-Prozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
+Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
 
 <img src="/img/deployment/concepts/process-ram.svg">
 
@@ -230,9 +230,9 @@ Die wichtigste zu berücksichtigende Einschränkung besteht darin, dass es eine 
 Hier sind einige mögliche Kombinationen und Strategien:
 
 * **Gunicorn**, welches **Uvicorn-Worker** managt
-    * Gunicorn wäre der **Prozessmanager**, der die **IP** und den **Port** überwacht, die Replikation würde durch **mehrere Uvicorn-Worker-Prozesse** erfolgen
+    * Gunicorn wäre der **Prozessmanager**, der die **IP** und den **Port** überwacht, die Replikation würde durch **mehrere Uvicorn-Workerprozesse** erfolgen
 * **Uvicorn**, welches **Uvicorn-Worker** managt
-    * Ein Uvicorn-**Prozessmanager** würde der **IP** am **Port** lauschen, und er würde **mehrere Uvicorn-Worker-Prozesse** starten.
+    * Ein Uvicorn-**Prozessmanager** würde der **IP** am **Port** lauschen, und er würde **mehrere Uvicorn-Workerprozesse** starten.
 * **Kubernetes** und andere verteilte **Containersysteme**
     * Etwas in der **Kubernetes**-Ebene würde die **IP** und den **Port** abhören. Die Replikation hätte **mehrere Container**, in jedem wird jeweils **ein Uvicorn-Prozess** ausgeführt.
 * **Cloud-Dienste**, welche das für Sie erledigen
