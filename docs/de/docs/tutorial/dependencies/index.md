@@ -270,7 +270,7 @@ Die interaktive Dokumentation enthält also auch alle Informationen aus diesen A
 
 Näher betrachtet, werden *Pfadoperation-Funktionen* deklariert, um verwendet zu werden, wann immer ein *Pfad* und eine *Operation* übereinstimmen, und dann kümmert sich **FastAPI** darum, die Funktion mit den richtigen Parametern aufzurufen, die Daten aus der Anfrage extrahierend.
 
-Tatsächlich funktionieren alle (oder die meisten) Web-Frameworks auf die gleiche Weise.
+Tatsächlich funktionieren alle (oder die meisten) Webframeworks auf die gleiche Weise.
 
 Sie rufen diese Funktionen niemals direkt auf. Sie werden von Ihrem Framework aufgerufen (in diesem Fall **FastAPI**).
 
