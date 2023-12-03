@@ -57,7 +57,7 @@ my_list: List[str]
 
 Das ist alles Standard-Python-Syntax für Typ-Deklarationen.
 
-Verwenden Sie dieselbe Standard-Syntax für Modellattribute mit inneren Typen.
+Verwenden Sie dieselbe Standardsyntax für Modellattribute mit inneren Typen.
 
 In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine „Liste von Strings“ ist:
 
