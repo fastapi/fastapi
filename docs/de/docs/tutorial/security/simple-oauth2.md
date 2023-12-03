@@ -85,7 +85,7 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-`OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formular-Body deklariert mit:
+`OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formularbody deklariert mit:
 
 * Dem `username`.
 * Dem `password`.
