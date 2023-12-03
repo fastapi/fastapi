@@ -1,6 +1,6 @@
-# Hintergrund-Tasks
+# Hintergrundtasks
 
-Sie können Hintergrund-Tasks (Hintergrund-Aufgaben) definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
+Sie können Hintergrundtasks (Hintergrund-Aufgaben) definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
 
 Das ist nützlich für Vorgänge, die nach einem Request ausgeführt werden müssen, bei denen der Client jedoch nicht unbedingt auf den Abschluss des Vorgangs warten muss, bevor er die Response erhält.
 
@@ -23,7 +23,7 @@ Importieren Sie zunächst `BackgroundTasks` und definieren Sie einen Parameter i
 
 ## Eine Task-Funktion erstellen
 
-Erstellen Sie eine Funktion, die als Hintergrund-Task ausgeführt werden soll.
+Erstellen Sie eine Funktion, die als Hintergrundtask ausgeführt werden soll.
 
 Es handelt sich schlicht um eine Standard-Funktion, die Parameter empfangen kann.
 
@@ -37,9 +37,9 @@ Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir di
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
-## Den Hintergrund-Task hinzufügen
+## Den Hintergrundtask hinzufügen
 
-Übergeben Sie innerhalb Ihrer *Pfadoperation-Funktion* Ihre Task-Funktion mit der Methode `.add_task()` an das *Hintergrund-Tasks*-Objekt:
+Übergeben Sie innerhalb Ihrer *Pfadoperation-Funktion* Ihre Taskfunktion mit der Methode `.add_task()` an das *Hintergrundtasks*-Objekt:
 
 ```Python hl_lines="14"
 {!../../../docs_src/background_tasks/tutorial001.py!}
@@ -55,7 +55,7 @@ Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir di
 
 Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einbringen von Abhängigkeiten">Dependency Injection</abbr> System. Sie können einen Parameter vom Typ `BackgroundTasks` auf mehreren Ebenen deklarieren: in einer *Pfadoperation-Funktion*, in einer Abhängigkeit (Dependable), in einer Unterabhängigkeit usw.
 
-**FastAPI** weiß, was jeweils zu tun ist und wie dasselbe Objekt wiederverwendet werden kann, sodass alle Hintergrund-Tasks zusammengeführt und anschließend im Hintergrund ausgeführt werden:
+**FastAPI** weiß, was jeweils zu tun ist und wie dasselbe Objekt wiederverwendet werden kann, sodass alle Hintergrundtasks zusammengeführt und anschließend im Hintergrund ausgeführt werden:
 
 === "Python 3.10+"
 
@@ -95,9 +95,9 @@ Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einb
 
 In obigem Beispiel werden die Nachrichten, *nachdem* die Response gesendet wurde, in die Datei `log.txt` geschrieben.
 
-Wenn im Request ein Query-Parameter enthalten war, wird dieser in einem Hintergrund-Task in das Log geschrieben.
+Wenn im Request ein Query-Parameter enthalten war, wird dieser in einem Hintergrundtask in das Log geschrieben.
 
-Und dann schreibt ein weiterer Hintergrund-Task, der in der *Pfadoperation-Funktion* erstellt wird, eine Nachricht unter Verwendung des Pfad-Parameters `email`.
+Und dann schreibt ein weiterer Hintergrundtask, der in der *Pfadoperation-Funktion* erstellt wird, eine Nachricht unter Verwendung des Pfad-Parameters `email`.
 
 ## Technische Details
 
@@ -109,18 +109,18 @@ Indem Sie nur `BackgroundTasks` (und nicht `BackgroundTask`) verwenden, ist es d
 
 Es ist immer noch möglich, `BackgroundTask` allein in FastAPI zu verwenden, aber Sie müssen das Objekt in Ihrem Code erstellen und eine Starlette-`Response` zurückgeben, die es enthält.
 
-Weitere Details finden Sie in der <a href="https://www.starlette.io/background/" class="external-link" target="_blank">offiziellen Starlette-Dokumentation für Hintergrund-Tasks</a>.
+Weitere Details finden Sie in der <a href="https://www.starlette.io/background/" class="external-link" target="_blank">offiziellen Starlette-Dokumentation für Hintergrundtasks</a>.
 
 ## Vorbehalt
 
 Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nicht unbedingt vom selben Prozess ausgeführt werden müssen (z. B. müssen Sie Speicher, Variablen, usw. nicht gemeinsam nutzen), könnte die Verwendung anderer größerer Tools wie z.B. <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a> von Vorteil sein.
 
-Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrund-Tasks in mehreren Prozessen und insbesondere auf mehreren Servern.
+Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrundtasks in mehreren Prozessen und insbesondere auf mehreren Servern.
 
 Um ein Beispiel zu sehen, sehen Sie sich die [Projektgeneratoren](../project-generation.md){.internal-link target=_blank} an. Sie alle enthalten Celery, bereits konfiguriert.
 
-Wenn Sie jedoch über dieselbe **FastAPI**-Anwendung auf Variablen und Objekte zugreifen oder kleine Hintergrund-Tasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
+Wenn Sie jedoch über dieselbe **FastAPI**-Anwendung auf Variablen und Objekte zugreifen oder kleine Hintergrundtasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
 
 ## Zusammenfassung
 
-Importieren und verwenden Sie `BackgroundTasks` mit Parametern in *Pfadoperation-Funktionen* und Abhängigkeiten, um Hintergrund-Tasks hinzuzufügen.
+Importieren und verwenden Sie `BackgroundTasks` mit Parametern in *Pfadoperation-Funktionen* und Abhängigkeiten, um Hintergrundtasks hinzuzufügen.
