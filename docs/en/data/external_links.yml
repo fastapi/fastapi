@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://blog.apitally.io/fastapi-application-monitoring-made-easy
+    title: FastAPI application monitoring made easy
   - author: Adejumo Ridwan Suleiman
     author_link: https://www.linkedin.com/in/adejumoridwan/
     link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
