@@ -111,12 +111,12 @@ async def get_sync(state: str = Depends(generator_state)):
 
 
 @app.get("/async_ctxmgr")
-async def get_async(state: str = Depends(asyncgen_state_ctxmgr)):
+async def get_async_ctxmgr(state: str = Depends(asyncgen_state_ctxmgr)):
     return state
 
 
 @app.get("/sync_ctxmgr")
-async def get_sync(state: str = Depends(generator_state_ctxmgr)):
+async def get_sync_ctxmgr(state: str = Depends(generator_state_ctxmgr)):
     return state
 
 
