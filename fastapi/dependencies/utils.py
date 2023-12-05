@@ -598,7 +598,13 @@ async def solve_dependencies(
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
-            solved = await run_in_threadpool(call, **sub_values)
+            stack = request.scope.get("fastapi_astack")
+            assert isinstance(stack, AsyncExitStack)
+            called = run_in_threadpool(call, **sub_values)
+            if hasattr(called, "__aenter__"):
+                solved = await stack.enter_async_context(called)
+            else:
+                solved = await called
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
