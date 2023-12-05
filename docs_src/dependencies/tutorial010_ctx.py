@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 
+
 @asynccontextmanager
 async def get_db():
     db = DBSession()
