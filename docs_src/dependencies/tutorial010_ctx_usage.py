@@ -1,0 +1,3 @@
+async def migrate():
+    with get_db() as db:
+        ...
