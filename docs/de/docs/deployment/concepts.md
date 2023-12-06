@@ -241,7 +241,7 @@ Hier sind einige mögliche Kombinationen und Strategien:
 !!! tip "Tipp"
     Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
 
-    Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+    Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
 
 ## Schritte vor dem Start
 
@@ -273,7 +273,7 @@ Hier sind einige mögliche Ideen:
     * Sie benötigen immer noch eine Möglichkeit, *dieses* Bash-Skript zu starten/neu zu starten, Fehler zu erkennen, usw.
 
 !!! tip "Tipp"
-    Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+    Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
 
 ## Ressourcennutzung
 
