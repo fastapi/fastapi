@@ -1,6 +1,6 @@
 # Harici Bağlantılar ve Makaleler
 
-**FastAPI**'ın sürekli büyüyen harika bir var.
+**FastAPI** sürekli büyüyen harika bir topluluğa sahiptir.
 
 **FastAPI** ile alakalı birçok yazı, makale, araç ve proje bulunmaktadır.
 
