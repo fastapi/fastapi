@@ -121,7 +121,7 @@ Sie können also tief verschachtelte JSON-„Objekte“ deklarieren, mit spezifi
 
 Alles das beliebig tief verschachtelt.
 
-### Ein Kind-Modell definieren
+### Ein Kindmodell definieren
 
 Wir können zum Beispiel ein `Image`-Modell definieren.
 
@@ -143,7 +143,7 @@ Wir können zum Beispiel ein `Image`-Modell definieren.
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
     ```
 
-### Das Kind-Modell als Typ verwenden
+### Das Kindmodell als Typ verwenden
 
 Und dann können wir es als Typ eines Attributes verwenden.
 
@@ -216,7 +216,7 @@ Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarie
 
 Es wird getestet, ob der String eine gültige URL ist, und als solche wird er in JSON Schema / OpenAPI dokumentiert.
 
-## Attribute mit Listen von Kind-Modellen
+## Attribute mit Listen von Kindmodellen
 
 Sie können Pydantic-Modelle auch als Typen innerhalb von `list`, `set`, usw. verwenden:
 
