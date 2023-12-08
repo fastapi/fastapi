@@ -152,4 +152,4 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 
     Wenn Sie also Teil-Aktualisierungen empfangen wollen, die alle Attribute auslassen können, müssen Sie ein Modell haben, dessen Attribute alle als optional gekennzeichnet sind (mit Defaultwerten oder `None`).
 
-    Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extra-Modelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
+    Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
