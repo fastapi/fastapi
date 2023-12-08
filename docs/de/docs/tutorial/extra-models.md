@@ -1,12 +1,12 @@
-# Extra-Modelle
+# Extramodelle
 
 Fahren wir beim letzten Beispiel fort. Es gibt normalerweise mehrere zusammengehörende Modelle.
 
-Insbesondere Benutzer-Modelle, denn:
+Insbesondere Benutzermodelle, denn:
 
 * Das **hereinkommende Modell** sollte ein Passwort haben können.
 * Das **herausgehende Modell** sollte kein Passwort haben.
-* Das **Datenbank-Modell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender „Fingerabdruck“ eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
+* Das **Datenbankmodell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender „Fingerabdruck“ eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
 
 !!! danger "Gefahr"
     Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den „sicheren Hash“, den Sie verifizieren können.
