@@ -27,9 +27,9 @@ Aber das ist immer noch nicht so nützlich.
 
 Lassen wir es uns den aktuellen Benutzer überreichen.
 
-## Ein Benutzer-Modell erstellen
+## Ein Benutzermodell erstellen
 
-Erstellen wir zunächst ein Pydantic-Benutzer-Modell.
+Erstellen wir zunächst ein Pydantic-Benutzermodell.
 
 So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch überall sonst verwenden:
 
