@@ -1,4 +1,4 @@
-# Response-Modell – Rückgabetyp
+# Responsemodell – Rückgabetyp
 
 Sie können den Typ der <abbr title="Response – Antwort: Daten, die zum anfragenden Client zurückgeschickt werden">Response</abbr> deklarieren, indem Sie den **Rückgabetyp** der *Pfadoperation* annotieren.
 
@@ -89,7 +89,7 @@ Wenn sowohl Rückgabetyp als auch `response_model` deklariert sind, hat `respons
 
 So können Sie korrekte Typ-Annotationen zu ihrer Funktion hinzufügen, die von ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
 
-Sie können auch `response_model=None` verwenden, um das Erstellen eines Response-Modells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
+Sie können auch `response_model=None` verwenden, um das Erstellen eines Responsemodells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
 
 ## Dieselben Eingabedaten zurückgeben
 
@@ -136,9 +136,9 @@ Aber wenn wir dasselbe Modell für eine andere *Pfadoperation* verwenden, könnt
 !!! danger "Gefahr"
     Speichern Sie niemals das Klartext-Passwort eines Benutzers, oder versenden Sie es in einer Response wie dieser, wenn Sie sich nicht der resultierenden Gefahren bewusst sind und nicht wissen, was Sie tun.
 
-## Ausgabe-Modell hinzufügen
+## Ausgabemodell hinzufügen
 
-Wir können stattdessen ein Eingabe-Modell mit dem Klartext-Passwort, und ein Ausgabe-Modell ohne das Passwort erstellen:
+Wir können stattdessen ein Eingabemodell mit dem Klartext-Passwort, und ein Ausgabemodell ohne das Passwort erstellen:
 
 === "Python 3.10+"
 
@@ -180,7 +180,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
     {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
-Darum wird **FastAPI** sich darum kümmern, dass alle Daten, die nicht im Ausgabe-Modell deklariert sind, herausgefiltert werden (mittels Pydantic).
+Darum wird **FastAPI** sich darum kümmern, dass alle Daten, die nicht im Ausgabemodell deklariert sind, herausgefiltert werden (mittels Pydantic).
 
 ### `response_model` oder Rückgabewert
 
@@ -194,7 +194,7 @@ Darum müssen wir es in diesem Fall im `response_model`-Parameter deklarieren.
 
 Führen wir unser vorheriges Beispiel fort. Wir wollten **die Funktion mit einem Typ annotieren**, aber etwas zurückgeben, das **weniger Daten** enthält.
 
-Wir möchten auch, dass FastAPI die Daten weiterhin, dem Response-Modell entsprechend, **filtert**.
+Wir möchten auch, dass FastAPI die Daten weiterhin, dem Responsemodell entsprechend, **filtert**.
 
 Im vorherigen Beispiel mussten wir den `response_model`-Parameter verwenden, weil die Klassen unterschiedlich waren. Das bedeutet aber auch, wir bekommen keine Unterstützung vom Editor und anderen Tools, die den Funktions-Rückgabewert überprüfen.
 
@@ -238,7 +238,7 @@ Auf diese Weise erhalten Sie das beste beider Welten: Sowohl Typ-Annotationen mi
 
 ## Anzeige in der Dokumentation
 
-Wenn Sie sich die automatische Dokumentation betrachten, können Sie sehen, dass Eingabe- und Ausgabe-Modell beide ihr eigenes JSON-Schema haben:
+Wenn Sie sich die automatische Dokumentation betrachten, können Sie sehen, dass Eingabe- und Ausgabemodell beide ihr eigenes JSON-Schema haben:
 
 <img src="/img/tutorial/response-model/image01.png">
 
@@ -274,7 +274,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 ### Ungültige Rückgabetyp-Annotationen
 
-Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Response-Modell von dieser Typ-Annotation zu erstellen, und scheitern.
+Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typ-Annotation zu erstellen, und scheitern.
 
 Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
@@ -292,13 +292,13 @@ Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen
 
 ... das scheitert, da die Typ-Annotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Unterklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
 
-### Response-Modell deaktivieren
+### Responsemodell deaktivieren
 
 Beim Beispiel oben fortsetzend, mögen Sie vielleicht die standardmäßige Daten-Validierung, -Dokumentation, -Filterung, usw., die von FastAPI durchgeführt wird, nicht haben.
 
 Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unterstützung von Editoren und Typ-Checkern (z.B. mypy) zu erhalten.
 
-In diesem Fall können Sie die Generierung des Response-Modells abschalten, indem Sie `response_model=None` setzen:
+In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem Sie `response_model=None` setzen:
 
 === "Python 3.10+"
 
@@ -312,11 +312,11 @@ In diesem Fall können Sie die Generierung des Response-Modells abschalten, inde
     {!> ../../../docs_src/response_model/tutorial003_05.py!}
     ```
 
-Das bewirkt, dass FastAPI die Generierung des Response-Modells unterlässt, und damit können Sie jede gewünschte Rückgabetyp-Annotation haben, ohne dass es Ihre FastAPI-Anwendung beeinflusst. 🤓
+Das bewirkt, dass FastAPI die Generierung des Responsemodells unterlässt, und damit können Sie jede gewünschte Rückgabetyp-Annotation haben, ohne dass es Ihre FastAPI-Anwendung beeinflusst. 🤓
 
-## Parameter für die Enkodierung des Response-Modells
+## Parameter für die Enkodierung des Responsemodells
 
-Ihr Response-Modell könnte Defaultwerte haben, wie:
+Ihr Responsemodell könnte Defaultwerte haben, wie:
 
 === "Python 3.10+"
 
@@ -476,6 +476,6 @@ Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ei
 
 ## Zusammenfassung
 
-Verwenden Sie den Parameter `response_model` im *Pfadoperation-Dekorator*, um Response-Modelle zu definieren, und besonders, um private Daten herauszufiltern.
+Verwenden Sie den Parameter `response_model` im *Pfadoperation-Dekorator*, um Responsemodelle zu definieren, und besonders, um private Daten herauszufiltern.
 
 Verwenden Sie `response_model_exclude_unset`, um nur explizit gesetzte Werte zurückzugeben.
