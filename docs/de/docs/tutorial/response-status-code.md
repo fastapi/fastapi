@@ -1,6 +1,6 @@
 # Response-Statuscode
 
-So wie ein Response-Modell, können Sie auch einen HTTP-Statuscode für die Response deklarieren, mithilfe des Parameters `status_code`, und zwar in jeder der *Pfadoperationen*:
+So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Response deklarieren, mithilfe des Parameters `status_code`, und zwar in jeder der *Pfadoperationen*:
 
 * `@app.get()`
 * `@app.post()`
