@@ -374,7 +374,7 @@ item: Item
     * Konvertieren von Python-Typen (`str`, `int`, `float`, `bool`, `list`, usw.).
     * `Datetime`-Objekte.
     * `UUID`-Objekte.
-    * Datenbank-Modelle.
+    * Datenbankmodelle.
     * ... und viele mehr.
 * Automatische interaktive API-Dokumentation, einschließlich 2 alternativer Benutzeroberflächen:
     * Swagger UI.
