@@ -1,8 +1,8 @@
 # How-To – Rezepte
 
-Hier finden Sie verschiedene Rezepte oder „How-To“-Anleitungen zu **verschiedenen Themen**.
+Hier finden Sie verschiedene Rezepte und „How-To“-Anleitungen zu **verschiedenen Themen**.
 
-Die meisten dieser Ideen sind mehr oder weniger **unabhängig** voneinander, und in den meisten Fällen sollten Sie diese nur studieren müssen, wenn sie direkt auf **Ihr Projekt** anwendbar sind.
+Die meisten dieser Ideen sind mehr oder weniger **unabhängig**, und in den meisten Fällen müssen Sie diese nur studieren, wenn sie direkt auf **Ihr Projekt** anwendbar sind.
 
 Wenn etwas für Ihr Projekt interessant und nützlich erscheint, lesen Sie es, andernfalls überspringen Sie es einfach.
 
