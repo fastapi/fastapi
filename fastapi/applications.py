@@ -450,7 +450,7 @@ class FastAPI(Starlette):
             Doc(
                 """
                 The path to the alternative automatic interactive API documentation
-                provided by ReDoc.
+                provided by Scalar.
 
                 The default URL is `/scalar`. You can disable it by setting it to `None`.
 
