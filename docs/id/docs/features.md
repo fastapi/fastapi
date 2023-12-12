@@ -142,7 +142,7 @@ FastAPI menyertakan fitur yang sangat mudah digunakan, namun sangat kuat <abbr t
 * Dukungan untuk sistem autentikasi penggunaan yang kompleks, **koneksi database**, dll.
 * **Tanpa kompromi** dengan database, frontend, dll. Namun integrasi yang mudah dengan semuanya.
 
-### "plug-ins" Tanpa Batas 
+### "plug-ins" Tanpa Batas
 
 atau dengan kata lain, tidak butuh, impor dan gunakan kode yang kamu perlukan.
 
