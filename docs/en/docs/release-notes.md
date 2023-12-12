@@ -5,9 +5,9 @@ hide:
 
 # Release Notes
 
-## 0.105.0
-
 ## Latest Changes
+
+## 0.105.0
 
 ### Features
 
