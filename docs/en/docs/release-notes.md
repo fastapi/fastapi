@@ -13,6 +13,10 @@ hide:
 
 * ✨ Add support for multiple Annotated annotations, e.g. `Annotated[str, Field(), Query()]`. PR [#10773](https://github.com/tiangolo/fastapi/pull/10773) by [@tiangolo](https://github.com/tiangolo).
 
+### Refactors
+
+* 🔥 Remove unused NoneType. PR [#10774](https://github.com/tiangolo/fastapi/pull/10774) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Tweak default suggested configs for generating clients. PR [#10736](https://github.com/tiangolo/fastapi/pull/10736) by [@tiangolo](https://github.com/tiangolo).
