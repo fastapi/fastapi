@@ -346,8 +346,6 @@ def analyze_param(
             fastapi_annotation: Union[
                 FieldInfo, params.Depends, None
             ] = fastapi_specific_annotations[-1]
-        elif fastapi_annotations:
-            fastapi_annotation = fastapi_annotations[-1]
         else:
             fastapi_annotation = None
         if isinstance(fastapi_annotation, FieldInfo):
