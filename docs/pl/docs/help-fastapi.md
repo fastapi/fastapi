@@ -231,8 +231,6 @@ Dołącz do 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" t
 
     Używaj czatu tylko do innych ogólnych rozmów.
 
-Istnieje również poprzedni <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">czat na Gitter</a>, ale ponieważ nie ma tam kanałów i zaawansowanych funkcji, rozmowy są trudniejsze, dlatego teraz zalecany jest Discord.
-
 ### Nie zadawaj pytań na czacie
 
 Miej na uwadze, że ponieważ czaty pozwalają na bardziej "swobodną rozmowę", łatwo jest zadawać pytania, które są zbyt ogólne i trudniejsze do odpowiedzi, więc możesz nie otrzymać odpowiedzi.

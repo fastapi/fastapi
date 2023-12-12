@@ -626,9 +626,7 @@ class SecurityScopes:
                 The list of all the scopes required by dependencies.
                 """
             ),
-        ] = (
-            scopes or []
-        )
+        ] = scopes or []
         self.scope_str: Annotated[
             str,
             Doc(

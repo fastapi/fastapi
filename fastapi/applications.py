@@ -86,13 +86,6 @@ class FastAPI(Starlette):
                 **Note**: you probably shouldn't use this parameter, it is inherited
                 from Starlette and supported for compatibility.
 
-                In FastAPI, you normally would use the *path operation* decorators,
-                like:
-
-                * `app.get()`
-                * `app.post()`
-                * etc.
-
                 ---
 
                 A list of routes to serve incoming HTTP and WebSocket requests.
@@ -903,9 +896,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ] = (
-            webhooks or routing.APIRouter()
-        )
+        ] = webhooks or routing.APIRouter()
         self.root_path = root_path or openapi_prefix
         self.state: Annotated[
             State,
@@ -958,7 +949,7 @@ class FastAPI(Starlette):
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
-        ] = ({} if exception_handlers is None else dict(exception_handlers))
+        ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
