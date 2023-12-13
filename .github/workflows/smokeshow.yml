@@ -24,7 +24,7 @@ jobs:
 
       - run: pip install smokeshow
 
-      - uses: dawidd6/action-download-artifact@v2.28.0
+      - uses: dawidd6/action-download-artifact@v3.0.0
         with:
           github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
           workflow: test.yml
