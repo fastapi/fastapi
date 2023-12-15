@@ -122,10 +122,6 @@ def get_param_sub_dependant(
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
-        else:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
     return dependant
 
 
@@ -139,10 +135,6 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
-        else:
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
