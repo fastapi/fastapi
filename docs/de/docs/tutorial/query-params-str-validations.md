@@ -327,7 +327,7 @@ Aber wenn Sie sie brauchen und sie lernen, wissen Sie, dass Sie sie bereits dire
 
 ### Pydantic v1 `regex` statt `pattern`
 
-Vor Pydantic Version 2 und vor FastAPI Version 0.100.0, war der Name des Parameters `regex` statt `pattern`, aber das ist jetzt <abbr title="deprecated – veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr>.
+Vor Pydantic Version 2 und vor FastAPI Version 0.100.0, war der Name des Parameters `regex` statt `pattern`, aber das ist jetzt <abbr title="deprecatet – veraltet: Es soll nicht mehr verwendet werden">deprecatet</abbr>.
 
 Sie könnten immer noch Code sehen, der den alten Namen verwendet:
 
@@ -337,7 +337,7 @@ Sie könnten immer noch Code sehen, der den alten Namen verwendet:
     {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
     ```
 
-Beachten Sie aber, dass das deprecated ist, und zum neuen Namen `pattern` geändert werden sollte. 🤓
+Beachten Sie aber, dass das deprecatet ist, und zum neuen Namen `pattern` geändert werden sollte. 🤓
 
 ## Defaultwerte
 
@@ -804,11 +804,11 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
     {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
     ```
 
-## Parameter als deprecated ausweisen
+## Parameter als deprecatet ausweisen
 
 Nehmen wir an, Sie mögen diesen Parameter nicht mehr.
 
-Sie müssen ihn eine Weile dort belassen, weil Clients ihn benutzen, aber Sie möchten, dass die Dokumentation klar anzeigt, dass er <abbr title="deprecated – veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> ist.
+Sie müssen ihn eine Weile dort belassen, weil Clients ihn benutzen, aber Sie möchten, dass die Dokumentation klar anzeigt, dass er <abbr title="deprecatet – veraltet: Es soll nicht mehr verwendet werden">deprecatet</abbr> ist.
 
 In diesem Fall fügen Sie den Parameter `deprecated=True` zu `Query` hinzu.
 
