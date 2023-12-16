@@ -8,5 +8,3 @@ Wenn etwas für Ihr Projekt interessant und nützlich erscheint, lesen Sie es, a
 
 !!! tip "Tipp"
     Wenn Sie strukturiert **FastAPI lernen** möchten (empfohlen), lesen Sie stattdessen Kapitel für Kapitel das [Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank}.
-
-Test Test Test
