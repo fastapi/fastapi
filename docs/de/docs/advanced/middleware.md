@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-Aber FastAPI (eigentlich Starlette) bietet eine einfachere Möglichkeit, welche sicherstellt, dass die internen Middlewares zur Behandlung von Server-Fehlern und benutzerdefinierten Exception-Handlern ordnungsgemäß funktionieren.
+Aber FastAPI (eigentlich Starlette) bietet eine einfachere Möglichkeit, welche sicherstellt, dass die internen Middlewares zur Behandlung von Serverfehlern und benutzerdefinierten Exceptionhandlern ordnungsgemäß funktionieren.
 
 Dazu verwenden Sie `app.add_middleware()` (wie schon im Beispiel für CORS gesehen).
 
