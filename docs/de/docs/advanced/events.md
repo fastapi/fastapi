@@ -89,7 +89,7 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 {!../../../docs_src/events/tutorial003.py!}
 ```
 
-## Alternative Events (deprecated)
+## Alternative Events (deprecatet)
 
 !!! warning "Achtung"
     Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben.
