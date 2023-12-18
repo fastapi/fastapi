@@ -137,7 +137,7 @@ Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Res
 
 Wenn Sie also nach dem `yield` eine `HTTPException` auslösen, ist der standardmäßige (oder ein beliebiger benutzerdefinierter) Exceptionhandler, der `HTTPException` abfängt und eine HTTP 400 Response zurückgibt, nicht mehr da, um diese Exception abzufangen.
 
-Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z.B. eine DB-Session), beispielsweise von Hintergrundtasks verwendet werden kann.
+Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z. B. eine DB-Session), beispielsweise von Hintergrundtasks verwendet werden kann.
 
 Hintergrundtasks werden ausgeführt, *nachdem* die Response gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Response zu ändern.
 
@@ -170,7 +170,7 @@ participant tasks as Hintergrundtasks
         handler -->> client: HTTP-Error-Response
         dep -->> dep: Löst andere Exception aus
     end
-    dep ->> operation: Führt Abhängigkeit aus, z.B. DB-Session
+    dep ->> operation: Führt Abhängigkeit aus, z. B. DB-Session
     opt Löst aus
         operation -->> dep: Löst HTTPException aus
         dep -->> handler: Leitet Exception automatisch weiter
@@ -188,7 +188,7 @@ participant tasks as Hintergrundtasks
     end
     Note over dep: Nach dem yield
     opt Handhabt andere Exception
-        dep -->> dep: Handhabt Exception, kann Response nicht ändern. Schließt z.B. DB-Session.
+        dep -->> dep: Handhabt Exception, kann Response nicht ändern. Schließt z. B. DB-Session.
     end
 ```
 
