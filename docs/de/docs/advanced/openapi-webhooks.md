@@ -18,7 +18,7 @@ Die gesamte **Logik** zur Registrierung der URLs für Webhooks und der Code zum 
 
 ## Webhooks mit **FastAPI** und OpenAPI dokumentieren
 
-Mit **FastAPI** können Sie mithilfe von OpenAPI die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre Anwendung senden kann (z.B. `POST`, `PUT`, usw.) und die Request**bodys** definieren, die Ihre Anwendung senden würde.
+Mit **FastAPI** können Sie mithilfe von OpenAPI die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre Anwendung senden kann (z. B. `POST`, `PUT`, usw.) und die Request**bodys** definieren, die Ihre Anwendung senden würde.
 
 Dies kann es Ihren Benutzern viel einfacher machen, **deren APIs zu implementieren**, um Ihre **Webhook**-Requests zu empfangen. Möglicherweise können diese sogar einen Teil des eigenem API-Codes automatisch generieren.
 
@@ -40,7 +40,7 @@ Die von Ihnen definierten Webhooks landen im **OpenAPI**-Schema und der automati
 
 Beachten Sie, dass Sie bei Webhooks tatsächlich keinen *Pfad* (wie `/items/`) deklarieren, sondern dass der Text, den Sie dort übergeben, lediglich eine **Kennzeichnung** des Webhooks (der Name des Events) ist. Zum Beispiel ist in `@app.webhooks.post("new-subscription")` der Webhook-Name `new-subscription`.
 
-Das liegt daran, dass erwartet wird, dass **Ihre Benutzer** den tatsächlichen **URL-Pfad**, an dem diese den Webhook-Request empfangen möchten, auf andere Weise definieren (z.B. über ein Web-Dashboard).
+Das liegt daran, dass erwartet wird, dass **Ihre Benutzer** den tatsächlichen **URL-Pfad**, an dem diese den Webhook-Request empfangen möchten, auf andere Weise definieren (z. B. über ein Web-Dashboard).
 
 ### Es in der Dokumentation ansehen
 
