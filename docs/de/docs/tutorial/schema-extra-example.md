@@ -208,7 +208,7 @@ Jedes spezifische Beispiel-`dict` in den `examples` kann Folgendes enthalten:
 
 * `summary`: Kurze Beschreibung für das Beispiel.
 * `description`: Eine lange Beschreibung, die Markdown-Text enthalten kann.
-* `value`: Dies ist das tatsächlich angezeigte Beispiel, z.B. ein `dict`.
+* `value`: Dies ist das tatsächlich angezeigte Beispiel, z. B. ein `dict`.
 * `externalValue`: Alternative zu `value`, eine URL, die auf das Beispiel verweist. Allerdings wird dies möglicherweise nicht von so vielen Tools unterstützt wie `value`.
 
 Sie können es so verwenden:
