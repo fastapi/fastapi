@@ -8,7 +8,7 @@ Dazu können Sie die `WSGIMiddleware` verwenden und damit Ihre WSGI-Anwendung wr
 
 Sie müssen `WSGIMiddleware` importieren.
 
-Wrappen Sie dann die WSGI-Anwendung (z.B. Flask) mit der Middleware.
+Wrappen Sie dann die WSGI-Anwendung (z. B. Flask) mit der Middleware.
 
 Und dann mounten Sie das auf einem Pfad.
 
