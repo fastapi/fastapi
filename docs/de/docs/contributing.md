@@ -46,7 +46,7 @@ Aktivieren Sie die neue Umgebung mit:
 
 === "Windows Bash"
 
-    Oder, wenn Sie Bash für Windows verwenden (z.B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+    Oder, wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
     <div class="termy">
 
@@ -214,7 +214,7 @@ Auf diese Weise können Sie die Dokumentation/Quelldateien bearbeiten und die Ä
 
 #### Gleichzeitig Apps und Dokumentation
 
-Wenn Sie die Beispiele ausführen, mit z.B.:
+Wenn Sie die Beispiele ausführen, mit z. B.:
 
 <div class="termy">
 
@@ -321,7 +321,7 @@ Nehmen wir nun an, Sie möchten eine Übersetzung für den Abschnitt [Features](
 docs/en/docs/features.md
 ```
 
-* Fügen Sie sie an genau derselben Stelle ein, jedoch für die Sprache, die Sie übersetzen möchten, z.B.:
+* Fügen Sie sie an genau derselben Stelle ein, jedoch für die Sprache, die Sie übersetzen möchten, z. B.:
 
 ```
 docs/es/docs/features.md
