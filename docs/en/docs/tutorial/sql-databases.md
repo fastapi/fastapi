@@ -474,11 +474,11 @@ The steps are:
 
     and then we are passing the `dict`'s key-value pairs as the keyword arguments to the SQLAlchemy `Item`, with:
 
-    `Item(**model_dump())`
+    `Item(**item.model_dump())`
 
     And then we pass the extra keyword argument `owner_id` that is not provided by the Pydantic *model*, with:
 
-    `Item(**model_dump(), owner_id=user_id)`
+    `Item(**item.model_dump(), owner_id=user_id)`
 
 ## Main **FastAPI** app
 
