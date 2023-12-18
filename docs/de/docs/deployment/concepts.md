@@ -13,7 +13,7 @@ Einige wichtige Konzepte sind:
 
 Wir werden sehen, wie diese sich auf das **Deployment** auswirken.
 
-Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu bedienen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z.B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
+Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu bedienen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
 
 Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen bereitstellen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
 
@@ -53,7 +53,7 @@ In den nächsten Kapiteln zeige ich Ihnen einige konkrete Beispiele.
 
 ---
 
-Die nächsten zu berücksichtigenden Konzepte drehen sich dann um das Programm, das Ihre eigentliche API ausführt (z.B. Uvicorn).
+Die nächsten zu berücksichtigenden Konzepte drehen sich dann um das Programm, das Ihre eigentliche API ausführt (z. B. Uvicorn).
 
 ## Programm und Prozess
 
@@ -100,11 +100,11 @@ Und es wird funktionieren und **während der Entwicklung** nützlich sein.
 
 Wenn Ihre Verbindung zum Server jedoch unterbrochen wird, wird der **laufende Prozess** wahrscheinlich abstürzen.
 
-Und wenn der Server neu gestartet wird (z.B. nach Updates oder Migrationen vom Cloud-Anbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
+Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloud-Anbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
 
 ### Beim Hochfahren automatisch ausführen
 
-Im Allgemeinen möchten Sie wahrscheinlich, dass das Serverprogramm (z.B. Uvicorn) beim Hochfahren des Servers automatisch gestartet wird und kein **menschliches Eingreifen** erforderlich ist, sodass immer ein Prozess mit Ihrer API ausgeführt wird (z.B. Uvicorn, welches Ihre FastAPI-Anwendung ausführt).
+Im Allgemeinen möchten Sie wahrscheinlich, dass das Serverprogramm (z. B. Uvicorn) beim Hochfahren des Servers automatisch gestartet wird und kein **menschliches Eingreifen** erforderlich ist, sodass immer ein Prozess mit Ihrer API ausgeführt wird (z. B. Uvicorn, welches Ihre FastAPI-Anwendung ausführt).
 
 ### Separates Programm
 
@@ -181,7 +181,7 @@ In vielen Fällen möchten Sie jedoch mehrere Prozesse gleichzeitig ausführen.
 
 ### Mehrere Prozesse – Worker
 
-Wenn Sie mehr Clients haben, als ein einzelner Prozess verarbeiten kann (z.B. wenn die virtuelle Maschine nicht sehr groß ist) und die CPU des Servers **mehrere Kerne** hat, dann könnten **mehrere Prozesse** gleichzeitig mit derselben Anwendung laufen und alle Requests unter sich verteilen.
+Wenn Sie mehr Clients haben, als ein einzelner Prozess verarbeiten kann (z. B. wenn die virtuelle Maschine nicht sehr groß ist) und die CPU des Servers **mehrere Kerne** hat, dann könnten **mehrere Prozesse** gleichzeitig mit derselben Anwendung laufen und alle Requests unter sich verteilen.
 
 Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als **<abbr title="Arbeiter">Worker</abbr>** bezeichnet.
 
