@@ -264,8 +264,8 @@ Der zweite Typ-Parameter ist für die Werte des `dict`:
 Das bedeutet:
 
 * Die Variable `prices` ist ein `dict`:
-    * Die Schlüssel dieses `dict` sind vom Typ `str` (z.B. die Namen der einzelnen Artikel).
-    * Die Werte dieses `dict` sind vom Typ `float` (z.B. der Preis jedes Artikels).
+    * Die Schlüssel dieses `dict` sind vom Typ `str` (z. B. die Namen der einzelnen Artikel).
+    * Die Werte dieses `dict` sind vom Typ `float` (z. B. der Preis jedes Artikels).
 
 #### <abbr title="Union – Verbund, Einheit‚ Vereinigung: Eines von Mehreren">Union</abbr>
 
