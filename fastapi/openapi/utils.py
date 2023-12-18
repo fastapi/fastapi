@@ -42,6 +42,8 @@ validation_error_definition = {
             "type": "array",
             "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
         },
+        "input": {"title": "Input", "type": "any"},
+        "url": {"title": "URL", "type": "string"},
         "msg": {"title": "Message", "type": "string"},
         "type": {"title": "Error Type", "type": "string"},
     },
