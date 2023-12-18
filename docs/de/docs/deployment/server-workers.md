@@ -177,4 +177,4 @@ Sie können **Gunicorn** (oder auch Uvicorn) als Prozessmanager mit Uvicorn-Work
 
 Sie können diese Tools und Ideen nutzen, wenn Sie **Ihr eigenes Deployment-System** einrichten und sich dabei selbst um die anderen Deployment-Konzepte kümmern.
 
-Schauen Sie sich das nächste Kapitel an, um mehr über **FastAPI** mit Containern (z.B. Docker und Kubernetes) zu erfahren. Sie werden sehen, dass diese Tools auch einfache Möglichkeiten bieten, die anderen **Deployment-Konzepte** zu lösen. ✨
+Schauen Sie sich das nächste Kapitel an, um mehr über **FastAPI** mit Containern (z. B. Docker und Kubernetes) zu erfahren. Sie werden sehen, dass diese Tools auch einfache Möglichkeiten bieten, die anderen **Deployment-Konzepte** zu lösen. ✨
