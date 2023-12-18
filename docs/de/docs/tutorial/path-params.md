@@ -186,7 +186,7 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 
 #### *Enum-Member* zurückgeben
 
-Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschachtelt in einem JSON-Body (z.B. als `dict`).
+Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschachtelt in einem JSON-Body (z. B. als `dict`).
 
 Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings), bevor sie zum Client übertragen werden:
 
