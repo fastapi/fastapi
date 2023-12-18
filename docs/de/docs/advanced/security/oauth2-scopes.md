@@ -31,7 +31,7 @@ Der Inhalt jedes dieser Strings kann ein beliebiges Format haben, sollte jedoch 
 
 Diese Scopes stellen „Berechtigungen“ dar.
 
-In OpenAPI (z.B. der API-Dokumentation) können Sie „Sicherheitsschemas“ definieren.
+In OpenAPI (z. B. der API-Dokumentation) können Sie „Sicherheitsschemas“ definieren.
 
 Wenn eines dieser Sicherheitsschemas OAuth2 verwendet, können Sie auch Scopes deklarieren und verwenden.
 
