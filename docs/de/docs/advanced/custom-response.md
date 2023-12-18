@@ -119,7 +119,7 @@ Sie akzeptiert die folgenden Parameter:
 * `content` – Ein `str` oder `bytes`.
 * `status_code` – Ein `int`-HTTP-Statuscode.
 * `headers` – Ein `dict` von Strings.
-* `media_type` – Ein `str`, der den Medientyp angibt. Z.B. `"text/html"`.
+* `media_type` – Ein `str`, der den Medientyp angibt. Z. B. `"text/html"`.
 
 FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem media_type basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
