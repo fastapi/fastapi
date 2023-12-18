@@ -5,7 +5,7 @@ Mit `File` können sie vom Client hochzuladende Dateien definieren.
 !!! info
     Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Z.B. `pip install python-multipart`.
+    Z. B. `pip install python-multipart`.
 
     Das, weil hochgeladene Dateien als „Formulardaten“ gesendet werden.
 
@@ -114,8 +114,8 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
 `UploadFile` hat die folgenden Attribute:
 
-* `filename`: Ein `str` mit dem ursprünglichen Namen der hochgeladenen Datei (z.B. `meinbild.jpg`).
-* `content_type`: Ein `str` mit dem Inhaltstyp (MIME-Typ / Medientyp) (z.B. `image/jpeg`).
+* `filename`: Ein `str` mit dem ursprünglichen Namen der hochgeladenen Datei (z. B. `meinbild.jpg`).
+* `content_type`: Ein `str` mit dem Inhaltstyp (MIME-Typ / Medientyp) (z. B. `image/jpeg`).
 * `file`: Ein <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (ein <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> Objekt). Das ist das tatsächliche Python-Objekt, das Sie direkt anderen Funktionen oder Bibliotheken übergeben können, welche ein „file-like“-Objekt erwarten.
 
 `UploadFile` hat die folgenden `async`hronen Methoden. Sie alle rufen die entsprechenden Methoden des darunterliegenden Datei-Objekts auf (wobei intern `SpooledTemporaryFile` verwendet wird).
@@ -123,7 +123,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 * `write(daten)`: Schreibt `daten` (`str` oder `bytes`) in die Datei.
 * `read(anzahl)`: Liest `anzahl` (`int`) bytes/Zeichen aus der Datei.
 * `seek(versatz)`: Geht zur Position `versatz` (`int`) in der Datei.
-    * Z.B. würde `await myfile.seek(0)` zum Anfang der Datei gehen.
+    * Z. B. würde `await myfile.seek(0)` zum Anfang der Datei gehen.
     * Das ist besonders dann nützlich, wenn Sie `await myfile.read()` einmal ausführen und dann diese Inhalte erneut auslesen müssen.
 * `close()`: Schließt die Datei.
 
