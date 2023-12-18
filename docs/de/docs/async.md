@@ -301,7 +301,7 @@ Wenn es einen Vorgang gibt, der erfordert, dass gewartet wird, bevor die Ergebni
 burgers = await get_burgers(2)
 ```
 
-Der Schlüssel hier ist das `await`. Es teilt Python mit, dass es warten ⏸ muss, bis `get_burgers(2)` seine Aufgabe erledigt hat 🕙, bevor die Ergebnisse in `burgers` gespeichert werden. Damit weiß Python, dass es in der Zwischenzeit etwas anderes tun kann 🔀 ⏯ (z.B. einen weiteren Request empfangen).
+Der Schlüssel hier ist das `await`. Es teilt Python mit, dass es warten ⏸ muss, bis `get_burgers(2)` seine Aufgabe erledigt hat 🕙, bevor die Ergebnisse in `burgers` gespeichert werden. Damit weiß Python, dass es in der Zwischenzeit etwas anderes tun kann 🔀 ⏯ (z. B. einen weiteren Request empfangen).
 
 Damit `await` funktioniert, muss es sich in einer Funktion befinden, die diese Asynchronität unterstützt. Dazu deklarieren Sie sie einfach mit `async def`:
 
@@ -358,7 +358,7 @@ Starlette (und **FastAPI**) basiert auf <a href="https://anyio.readthedocs.io/en
 
 Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschritten nebenläufigen und parallelen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
 
-Und selbst wenn Sie FastAPI nicht verwenden würden, könnten Sie auch Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> so schreiben, dass sie hoch kompatibel sind und Sie dessen Vorteile nutzen können (z.B. *strukturierte Nebenläufigkeit*).
+Und selbst wenn Sie FastAPI nicht verwenden würden, könnten Sie auch Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> so schreiben, dass sie hoch kompatibel sind und Sie dessen Vorteile nutzen können (z. B. *strukturierte Nebenläufigkeit*).
 
 ### Andere Formen von asynchronem Code
 
