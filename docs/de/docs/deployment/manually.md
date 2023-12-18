@@ -12,7 +12,7 @@ Es gibt 3 Hauptalternativen:
 
 Bei den Benennungen gibt es ein kleines Detail, das Sie beachten sollten. 💡
 
-Das Wort „**Server**“ bezieht sich häufig sowohl auf den entfernten-/Cloud-Computer (die physische oder virtuelle Maschine) als auch auf das Programm, das auf dieser Maschine ausgeführt wird (z.B. Uvicorn).
+Das Wort „**Server**“ bezieht sich häufig sowohl auf den entfernten-/Cloud-Computer (die physische oder virtuelle Maschine) als auch auf das Programm, das auf dieser Maschine ausgeführt wird (z. B. Uvicorn).
 
 Denken Sie einfach daran, wenn Sie „Server“ im Allgemeinen lesen, dass es sich auf eines dieser beiden Dinge beziehen kann.
 
@@ -59,7 +59,7 @@ Sie können einen ASGI-kompatiblen Server installieren mit:
 
 ## Das Serverprogramm ausführen
 
-Anschließend können Sie Ihre Anwendung auf die gleiche Weise ausführen, wie Sie es in den Tutorials getan haben, jedoch ohne die Option `--reload`, z.B.:
+Anschließend können Sie Ihre Anwendung auf die gleiche Weise ausführen, wie Sie es in den Tutorials getan haben, jedoch ohne die Option `--reload`, z. B.:
 
 === "Uvicorn"
 
@@ -131,7 +131,7 @@ Jetzt können Sie Trio intern in Ihrer Anwendung verwenden. Oder noch besser: Si
 
 ## Konzepte des Deployments
 
-Obige Beispiele führen das Serverprogramm (z.B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z.B. `80`).
+Obige Beispiele führen das Serverprogramm (z. B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z. B. `80`).
 
 Das ist die Grundidee. Aber Sie möchten sich wahrscheinlich um einige zusätzliche Dinge kümmern, wie zum Beispiel:
 
