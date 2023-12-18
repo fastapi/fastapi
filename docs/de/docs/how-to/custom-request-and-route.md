@@ -15,7 +15,7 @@ Wenn Sie beispielsweise den Requestbody lesen oder manipulieren möchten, bevor 
 
 Einige Anwendungsfälle sind:
 
-* Konvertieren von Nicht-JSON-Requestbodys nach JSON (z.B. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Konvertieren von Nicht-JSON-Requestbodys nach JSON (z. B. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
 * Dekomprimierung gzip-komprimierter Requestbodys.
 * Automatisches Loggen aller Requestbodys.
 
