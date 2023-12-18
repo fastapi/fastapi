@@ -45,7 +45,7 @@ Sie können die verwendeten Zeilen aus dem Docstring einer *Pfadoperation-Funkti
 
 Das Hinzufügen eines `\f` (ein maskiertes „Form Feed“-Zeichen) führt dazu, dass **FastAPI** die für OpenAPI verwendete Ausgabe an dieser Stelle abschneidet.
 
-Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z.B. Sphinx) können den Rest verwenden.
+Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) können den Rest verwenden.
 
 ```Python hl_lines="19-29"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
