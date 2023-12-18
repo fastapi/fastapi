@@ -128,7 +128,7 @@ Der Client sendet also einen **HTTPS-Request**. Das ist einfach ein HTTP-Request
 
 ### Den Request entschlüsseln
 
-Der TLS-Terminierungsproxy würde die vereinbarte Verschlüsselung zum **Entschlüsseln des Requests** verwenden und den **einfachen (entschlüsselten) HTTP-Request** an den Prozess weiterleiten, der die Anwendung ausführt (z.B. einen Prozess, bei dem Uvicorn die FastAPI-Anwendung ausführt).
+Der TLS-Terminierungsproxy würde die vereinbarte Verschlüsselung zum **Entschlüsseln des Requests** verwenden und den **einfachen (entschlüsselten) HTTP-Request** an den Prozess weiterleiten, der die Anwendung ausführt (z. B. einen Prozess, bei dem Uvicorn die FastAPI-Anwendung ausführt).
 
 <img src="/img/deployment/https/https05.svg">
 
@@ -179,7 +179,7 @@ Um dies zu erreichen und den unterschiedlichen Anwendungsanforderungen gerecht z
     * Das ist einer der Gründe, warum es sehr nützlich ist, wenn derselbe TLS-Terminierungsproxy auch den Zertifikats-Erneuerungsprozess übernimmt.
     * Andernfalls müssen Sie möglicherweise den TLS-Terminierungsproxy vorübergehend stoppen, das Programm starten, welches die neuen Zertifikate beschafft, diese dann mit dem TLS-Terminierungsproxy konfigurieren und dann den TLS-Terminierungsproxy neu starten. Das ist nicht ideal, da Ihre Anwendung(en) während der Zeit, in der der TLS-Terminierungsproxy ausgeschaltet ist, nicht erreichbar ist/sind.
 
-Dieser ganze Erneuerungsprozess, während die Anwendung weiterhin bereitgestellt wird, ist einer der Hauptgründe, warum Sie ein **separates System zur Verarbeitung von HTTPS** mit einem TLS-Terminierungsproxy haben möchten, anstatt einfach die TLS-Zertifikate direkt mit dem Anwendungsserver zu verwenden (z.B. Uvicorn).
+Dieser ganze Erneuerungsprozess, während die Anwendung weiterhin bereitgestellt wird, ist einer der Hauptgründe, warum Sie ein **separates System zur Verarbeitung von HTTPS** mit einem TLS-Terminierungsproxy haben möchten, anstatt einfach die TLS-Zertifikate direkt mit dem Anwendungsserver zu verwenden (z. B. Uvicorn).
 
 ## Zusammenfassung
 
