@@ -146,7 +146,7 @@ Bedenken Sie, dass ein Proxy mit abgetrennten Pfadpräfix nur eine von vielen Ko
 
 Wahrscheinlich wird in vielen Fällen die Standardeinstellung sein, dass der Proxy kein abgetrenntes Pfadpräfix hat.
 
-In einem solchen Fall (ohne ein abgetrenntes Pfadpräfix) würde der Proxy auf etwas wie `https://myawesomeapp.com` lauschen, und wenn der Browser dann zu `https://myawesomeapp.com/api/v1/` wechselt, und Ihr Server (z.B. Uvicorn) auf `http://127.0.0.1:8000` lauscht, würde der Proxy (ohne ein abgetrenntes Pfadpräfix) über denselben Pfad auf Uvicorn zugreifen: `http://127.0.0.1:8000/api/v1/app`.
+In einem solchen Fall (ohne ein abgetrenntes Pfadpräfix) würde der Proxy auf etwas wie `https://myawesomeapp.com` lauschen, und wenn der Browser dann zu `https://myawesomeapp.com/api/v1/` wechselt, und Ihr Server (z. B. Uvicorn) auf `http://127.0.0.1:8000` lauscht, würde der Proxy (ohne ein abgetrenntes Pfadpräfix) über denselben Pfad auf Uvicorn zugreifen: `http://127.0.0.1:8000/api/v1/app`.
 
 ## Lokal testen mit Traefik
 
