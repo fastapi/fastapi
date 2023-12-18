@@ -342,7 +342,7 @@ Das ist nützlich, wenn Sie Schlüssel empfangen, deren Namen Sie nicht bereits 
 
 ---
 
-Ein anderer nützlicher Anwendungsfall ist, wenn Sie Schlüssel eines anderen Typs haben wollen, z.B. `int`.
+Ein anderer nützlicher Anwendungsfall ist, wenn Sie Schlüssel eines anderen Typs haben wollen, z. B. `int`.
 
 Das schauen wir uns mal an.
 
