@@ -21,7 +21,7 @@ Wenn Sie Ihre API sichern möchten, gibt es mehrere bessere Dinge, die Sie tun k
 * Fügen Sie bei Bedarf detailliertere Berechtigungskontrollen mit OAuth2-Scopes hinzu.
 * ... usw.
 
-Dennoch kann es sein, dass Sie einen ganz bestimmten Anwendungsfall haben, bei dem Sie die API-Dokumentation für eine bestimmte Umgebung (z.B. für die Produktion) oder abhängig von Konfigurationen aus Umgebungsvariablen wirklich deaktivieren müssen.
+Dennoch kann es sein, dass Sie einen ganz bestimmten Anwendungsfall haben, bei dem Sie die API-Dokumentation für eine bestimmte Umgebung (z. B. für die Produktion) oder abhängig von Konfigurationen aus Umgebungsvariablen wirklich deaktivieren müssen.
 
 ## Bedingte OpenAPI aus Einstellungen und Umgebungsvariablen
 
