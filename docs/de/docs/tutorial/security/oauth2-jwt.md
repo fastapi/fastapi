@@ -316,7 +316,7 @@ Mit diesen Ideen kann JWT für weitaus anspruchsvollere Szenarien verwendet werd
 
 In diesen Fällen könnten mehrere dieser Entitäten die gleiche ID haben, sagen wir `foo` (ein Benutzer `foo`, ein Auto `foo` und ein Blog-Beitrag `foo`).
 
-Deshalb, um ID-Kollisionen zu vermeiden, könnten Sie beim Erstellen des JWT-Tokens für den Benutzer, dem Wert des `sub`-Schlüssels ein Präfix, z.B. `username:` voranstellen. In diesem Beispiel hätte der Wert von `sub` also auch `username:johndoe` sein können.
+Deshalb, um ID-Kollisionen zu vermeiden, könnten Sie beim Erstellen des JWT-Tokens für den Benutzer, dem Wert des `sub`-Schlüssels ein Präfix, z. B. `username:` voranstellen. In diesem Beispiel hätte der Wert von `sub` also auch `username:johndoe` sein können.
 
 Der wesentliche Punkt ist, dass der `sub`-Schlüssel in der gesamten Anwendung eine eindeutige Kennung haben sollte, und er sollte ein String sein.
 
