@@ -5,7 +5,7 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 !!! info
     Um Formulare zu verwenden, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Z.B. `pip install python-multipart`.
+    Z. B. `pip install python-multipart`.
 
 ## `Form` importieren
 
@@ -61,7 +61,7 @@ Zum Beispiel stellt eine der Möglichkeiten, die OAuth2 Spezifikation zu verwend
 
 Die <abbr title="Specification – Spezifikation">Spec</abbr> erfordert, dass die Felder exakt `username` und `password` genannt werden und als Formularfelder, nicht JSON, gesendet werden.
 
-Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (und `Query`, `Path`, `Cookie`), inklusive Validierung, Beispielen, einem Alias (z.B. `user-name` statt `username`), usw.
+Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (und `Query`, `Path`, `Cookie`), inklusive Validierung, Beispielen, einem Alias (z. B. `user-name` statt `username`), usw.
 
 !!! info
     `Form` ist eine Klasse, die direkt von `Body` erbt.
