@@ -93,8 +93,8 @@ Um die Callback-*Pfadoperation* zu erstellen, verwenden Sie denselben `APIRouter
 
 Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 
-* Sie sollte wahrscheinlich eine Deklaration des Bodys enthalten, die sie erhalten soll, z.B. `body: InvoiceEvent`.
-* Und sie könnte auch eine Deklaration der Response enthalten, die zurückgegeben werden soll, z.B. `response_model=InvoiceEventReceived`.
+* Sie sollte wahrscheinlich eine Deklaration des Bodys enthalten, die sie erhalten soll, z. B. `body: InvoiceEvent`.
+* Und sie könnte auch eine Deklaration der Response enthalten, die zurückgegeben werden soll, z. B. `response_model=InvoiceEventReceived`.
 
 ```Python hl_lines="16-18  21-22  28-32"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
