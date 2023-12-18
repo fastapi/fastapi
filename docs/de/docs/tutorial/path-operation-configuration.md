@@ -160,13 +160,13 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 
 ## Eine *Pfadoperation* deprecaten
 
-Wenn Sie eine *Pfadoperation* als <abbr title="deprecatet – veraltet: Es soll nicht mehr verwendet werden">deprecatet</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
+Wenn Sie eine *Pfadoperation* als <abbr title="deprecated – obsolet, veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
-Sie wird in der interaktiven Dokumentation gut sichtbar als deprecatet markiert werden:
+Sie wird in der interaktiven Dokumentation gut sichtbar als deprecated markiert werden:
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 
