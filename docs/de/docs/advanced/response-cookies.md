@@ -33,7 +33,7 @@ Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 !!! tip "Tipp"
     Beachten Sie, dass, wenn Sie eine Response direkt zurückgeben, anstatt den `Response`-Parameter zu verwenden, FastAPI diese direkt zurückgibt.
 
-    Sie müssen also sicherstellen, dass Ihre Daten vom richtigen Typ sind. Z.B. sollten diese mit JSON kompatibel sein, wenn Sie eine `JSONResponse` zurückgeben.
+    Sie müssen also sicherstellen, dass Ihre Daten vom richtigen Typ sind. Z. B. sollten diese mit JSON kompatibel sein, wenn Sie eine `JSONResponse` zurückgeben.
 
     Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten gefiltert werden sollen.
 
