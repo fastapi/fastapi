@@ -11,7 +11,7 @@ Damit können Sie <a href="https://docs.pytest.org/" class="external-link" targe
 !!! info
     Um `TestClient` zu verwenden, installieren Sie zunächst <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
-    Z.B. `pip install httpx`.
+    Z. B. `pip install httpx`.
 
 Importieren Sie `TestClient`.
 
@@ -40,7 +40,7 @@ Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken,
     **FastAPI** stellt denselben `starlette.testclient` auch via `fastapi.testclient` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
 
 !!! tip "Tipp"
-    Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z.B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
+    Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
 
 ## Tests separieren
 
@@ -158,7 +158,7 @@ Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie ni
 
 Dann machen Sie in Ihren Tests einfach das gleiche.
 
-Z.B.:
+Z. B.:
 
 * Um einen *Pfad*- oder *Query*-Parameter zu übergeben, fügen Sie ihn der URL selbst hinzu.
 * Um einen JSON-Body zu übergeben, übergeben Sie ein Python-Objekt (z. B. ein `dict`) an den Parameter `json`.
