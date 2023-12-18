@@ -38,7 +38,7 @@ Um beispielsweise eine weitere Response mit dem Statuscode `404` und einem Pydan
     Die richtige Stelle ist:
 
     * Im Schlüssel `content`, der als Wert ein weiteres JSON-Objekt (`dict`) hat, welches Folgendes enthält:
-        * Ein Schlüssel mit dem Medientyp, z.B. `application/json`, der als Wert ein weiteres JSON-Objekt hat, welches Folgendes enthält:
+        * Ein Schlüssel mit dem Medientyp, z. B. `application/json`, der als Wert ein weiteres JSON-Objekt hat, welches Folgendes enthält:
             * Ein Schlüssel `schema`, der als Wert das JSON-Schema aus dem Modell hat, hier ist die richtige Stelle.
                 * **FastAPI** fügt hier eine Referenz auf die globalen JSON-Schemas an einer anderen Stelle in Ihrer OpenAPI hinzu, anstatt es direkt einzubinden. Auf diese Weise können andere Anwendungen und Clients diese JSON-Schemas direkt verwenden, bessere Tools zur Codegenerierung bereitstellen, usw.
 
