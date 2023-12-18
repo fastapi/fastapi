@@ -60,7 +60,7 @@ Im vorherigen Beispiel erwartete die *Pfadoperation* einen JSON-Body mit den Att
 }
 ```
 
-Aber Sie können auch mehrere Body-Parameter deklarieren, z.B. `item` und `user`:
+Aber Sie können auch mehrere Body-Parameter deklarieren, z. B. `item` und `user`:
 
 === "Python 3.10+"
 
