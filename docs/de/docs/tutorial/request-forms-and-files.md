@@ -5,7 +5,7 @@ Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definie
 !!! info
     Um hochgeladene Dateien und/oder Formulardaten zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Z.B. `pip install python-multipart`.
+    Z. B. `pip install python-multipart`.
 
 ## `File` und `Form` importieren
 
