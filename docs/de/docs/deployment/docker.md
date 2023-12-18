@@ -49,7 +49,7 @@ Im Gegensatz zu einem „**Containerimage**“, bei dem es sich um den gespeiche
 
 Wenn der **Container** gestartet und ausgeführt wird (gestartet von einem **Containerimage**), kann er Dateien, Umgebungsvariablen usw. erstellen oder ändern. Diese Änderungen sind nur in diesem Container vorhanden, nicht im zugrunde liegenden bestehen Containerimage (werden nicht auf der Festplatte gespeichert).
 
-Ein Containerimage ist vergleichbar mit der **Programmdatei** und ihrem Inhalt, z.B. `python` und eine Datei `main.py`.
+Ein Containerimage ist vergleichbar mit der **Programmdatei** und ihrem Inhalt, z. B. `python` und eine Datei `main.py`.
 
 Und der **Container** selbst (im Gegensatz zum **Containerimage**) ist die tatsächlich laufende Instanz des Images, vergleichbar mit einem **Prozess**. Tatsächlich läuft ein Container nur, wenn er einen **laufenden Prozess** hat (und normalerweise ist es nur ein einzelner Prozess). Der Container stoppt, wenn kein Prozess darin ausgeführt wird.
 
@@ -426,7 +426,7 @@ Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) *
 !!! tip "Tipp"
     Die gleiche **TLS-Terminierungsproxy**-Komponente, die für HTTPS verwendet wird, wäre wahrscheinlich auch ein **Load Balancer**.
 
-Und wenn Sie mit Containern arbeiten, verfügt das gleiche System, mit dem Sie diese starten und verwalten, bereits über interne Tools, um die **Netzwerkkommunikation** (z.B. HTTP-Requests) von diesem **Load Balancer** (das könnte auch ein **TLS-Terminierungsproxy** sein) zu den Containern mit Ihrer Anwendung weiterzuleiten.
+Und wenn Sie mit Containern arbeiten, verfügt das gleiche System, mit dem Sie diese starten und verwalten, bereits über interne Tools, um die **Netzwerkkommunikation** (z. B. HTTP-Requests) von diesem **Load Balancer** (das könnte auch ein **TLS-Terminierungsproxy** sein) zu den Containern mit Ihrer Anwendung weiterzuleiten.
 
 ### Ein Load Balancer – mehrere Workercontainer
 
@@ -436,7 +436,7 @@ Jeder dieser Container, in denen Ihre Anwendung ausgeführt wird, verfügt norma
 
 Und das verteilte Containersystem mit dem **Load Balancer** würde **die Requests abwechselnd** an jeden einzelnen Container mit Ihrer Anwendung verteilen. Jeder Request könnte also von einem der mehreren **replizierten Container** verarbeitet werden, in denen Ihre Anwendung ausgeführt wird.
 
-Und normalerweise wäre dieser **Load Balancer** in der Lage, Requests zu verarbeiten, die an *andere* Anwendungen in Ihrem Cluster gerichtet sind (z.B. eine andere Domain oder unter einem anderen URL-Pfad-Präfix), und würde diese Kommunikation an die richtigen Container weiterleiten für *diese andere* Anwendung, die in Ihrem Cluster ausgeführt wird.
+Und normalerweise wäre dieser **Load Balancer** in der Lage, Requests zu verarbeiten, die an *andere* Anwendungen in Ihrem Cluster gerichtet sind (z. B. eine andere Domain oder unter einem anderen URL-Pfad-Präfix), und würde diese Kommunikation an die richtigen Container weiterleiten für *diese andere* Anwendung, die in Ihrem Cluster ausgeführt wird.
 
 ### Ein Prozess pro Container
 
@@ -472,7 +472,7 @@ Beispielsweise könnten Sie (abhängig von Ihrem Setup) ein Tool wie einen Prome
 
 Wenn Sie in hier **mehrere Container** hätten, würde Prometheus beim **Lesen der Metriken** standardmäßig jedes Mal diejenigen für **einen einzelnen Container** abrufen (für den Container, der den spezifischen Request verarbeitet hat), anstatt die **akkumulierten Metriken** für alle replizierten Container abzurufen.
 
-In diesem Fall könnte einfacher sein, **einen Container** mit **mehreren Prozessen** und ein lokales Tool (z.B. einen Prometheus-Exporter) in demselben Container zu haben, welches Prometheus-Metriken für alle internen Prozesse sammelt und diese Metriken für diesen einzelnen Container offenlegt.
+In diesem Fall könnte einfacher sein, **einen Container** mit **mehreren Prozessen** und ein lokales Tool (z. B. einen Prometheus-Exporter) in demselben Container zu haben, welches Prometheus-Metriken für alle internen Prozesse sammelt und diese Metriken für diesen einzelnen Container offenlegt.
 
 ---
 
@@ -489,7 +489,7 @@ Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, de
 
 Wenn Sie **einen einzelnen Prozess pro Container** ausführen, wird von jedem dieser Container (mehr als einer, wenn sie repliziert werden) eine mehr oder weniger klar definierte, stabile und begrenzte Menge an Arbeitsspeicher verbraucht.
 
-Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z.B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von denen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
+Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z. B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von denen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
 
 Wenn Ihre Anwendung **einfach** ist, wird dies wahrscheinlich **kein Problem darstellen** und Sie müssen möglicherweise keine festen Speichergrenzen angeben. Wenn Sie jedoch **viel Speicher verbrauchen** (z. B. bei **Modellen für maschinelles Lernen**), sollten Sie überprüfen, wie viel Speicher Sie verbrauchen, und die **Anzahl der Container** anpassen, die in **jeder Maschine** ausgeführt werden. (und möglicherweise weitere Maschinen zu Ihrem Cluster hinzufügen).
 
@@ -497,16 +497,16 @@ Wenn Sie **mehrere Prozesse pro Container** ausführen (zum Beispiel mit dem off
 
 ## Schritte vor dem Start und Container
 
-Wenn Sie Container (z.B. Docker, Kubernetes) verwenden, können Sie hauptsächlich zwei Ansätze verwenden.
+Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächlich zwei Ansätze verwenden.
 
 ### Mehrere Container
 
-Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z.B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
+Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
 !!! info
     Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init-Container</a>.
 
-Wenn es in Ihrem Anwendungsfall kein Problem darstellt, diese vorherigen Schritte **mehrmals parallel** auszuführen (z.B. wenn Sie keine Datenbankmigrationen ausführen, sondern nur prüfen, ob die Datenbank bereits bereit ist), können Sie sie auch einfach in jedem Container direkt vor dem Start des Hauptprozesses einfügen.
+Wenn es in Ihrem Anwendungsfall kein Problem darstellt, diese vorherigen Schritte **mehrmals parallel** auszuführen (z. B. wenn Sie keine Datenbankmigrationen ausführen, sondern nur prüfen, ob die Datenbank bereits bereit ist), können Sie sie auch einfach in jedem Container direkt vor dem Start des Hauptprozesses einfügen.
 
 ### Einzelner Container
 
@@ -682,7 +682,7 @@ CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port"
 
 ## Zusammenfassung
 
-Mithilfe von Containersystemen (z.B. mit **Docker** und **Kubernetes**) ist es ziemlich einfach, alle **Deployment-Konzepte** zu handhaben:
+Mithilfe von Containersystemen (z. B. mit **Docker** und **Kubernetes**) ist es ziemlich einfach, alle **Deployment-Konzepte** zu handhaben:
 
 * HTTPS
 * Beim Hochfahren ausführen
