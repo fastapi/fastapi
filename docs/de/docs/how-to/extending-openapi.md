@@ -21,7 +21,7 @@ Ist das nicht der Fall, wird er mithilfe der Hilfsfunktion unter `fastapi.openap
 Und diese Funktion `get_openapi()` erhält als Parameter:
 
 * `title`: Der OpenAPI-Titel, der in der Dokumentation angezeigt wird.
-* `version`: Die Version Ihrer API, z.B. `2.5.0`.
+* `version`: Die Version Ihrer API, z. B. `2.5.0`.
 * `openapi_version`: Die Version der verwendeten OpenAPI-Spezifikation. Standardmäßig die neueste Version: `3.1.0`.
 * `summary`: Eine kurze Zusammenfassung der API.
 * `description`: Die Beschreibung Ihrer API. Dies kann Markdown enthalten und wird in der Dokumentation angezeigt.
