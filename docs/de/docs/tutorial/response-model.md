@@ -25,7 +25,7 @@ Hierbei können Sie **Typ-Annotationen** genauso verwenden, wie Sie es bei Werte
 FastAPI wird diesen Rückgabetyp verwenden, um:
 
 * Die zurückzugebenden Daten zu **validieren**.
-    * Wenn die Daten ungültig sind (Sie haben z.B. ein Feld vergessen), bedeutet das, *Ihr* Anwendungscode ist fehlerhaft, er gibt nicht zurück, was er sollte, und daher wird ein <abbr title="Server-Fehler">Server-Error</abbr> ausgegeben, statt falscher Daten. So können Sie und ihre Clients sicher sein, dass diese die erwarteten Daten, in der richtigen Form erhalten.
+    * Wenn die Daten ungültig sind (Sie haben z. B. ein Feld vergessen), bedeutet das, *Ihr* Anwendungscode ist fehlerhaft, er gibt nicht zurück, was er sollte, und daher wird ein <abbr title="Server-Fehler">Server-Error</abbr> ausgegeben, statt falscher Daten. So können Sie und ihre Clients sicher sein, dass diese die erwarteten Daten, in der richtigen Form erhalten.
 * In der OpenAPI *Pfadoperation* ein **JSON-Schema** für die Response hinzuzufügen.
     * Dieses wird von der **automatischen Dokumentation** verwendet.
     * Es wird auch von automatisch Client-Code-generierenden Tools verwendet.
@@ -39,9 +39,9 @@ Aber am wichtigsten:
 
 Es gibt Fälle, da möchten oder müssen Sie Daten zurückgeben, die nicht genau dem entsprechen, was der Typ deklariert.
 
-Zum Beispiel könnten Sie **ein Dict zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Daten-Dokumentation, -Validierung, usw. für das Objekt, welches Sie zurückgeben (z.B. ein Dict oder ein Datenbank-Objekt).
+Zum Beispiel könnten Sie **ein Dict zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Daten-Dokumentation, -Validierung, usw. für das Objekt, welches Sie zurückgeben (z. B. ein Dict oder ein Datenbank-Objekt).
 
-Würden Sie eine hierfür eine Rückgabetyp-Annotation verwenden, dann würden Tools und Editoren (korrekterweise) Fehler ausgeben, die Ihnen sagen, dass Ihre Funktion einen Typ zurückgibt (z.B. ein Dict), der sich unterscheidet von dem, was Sie deklariert haben (z.B. ein Pydantic-Modell).
+Würden Sie eine hierfür eine Rückgabetyp-Annotation verwenden, dann würden Tools und Editoren (korrekterweise) Fehler ausgeben, die Ihnen sagen, dass Ihre Funktion einen Typ zurückgibt (z. B. ein Dict), der sich unterscheidet von dem, was Sie deklariert haben (z. B. ein Pydantic-Modell).
 
 In solchen Fällen können Sie statt des Rückgabetyps den **Pfadoperation-Dekorator**-Parameter `response_model` verwenden.
 
@@ -74,7 +74,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 !!! note "Hinweis"
     Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
 
-`response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modellfeld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z.B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
+`response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modellfeld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z. B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
 
 FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typ-Deklaration **zu konvertieren und filtern**.
 
@@ -110,7 +110,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 !!! info
     Um `EmailStr` zu verwenden, installieren Sie zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
 
-    Z.B. `pip install email-validator`
+    Z. B. `pip install email-validator`
     oder `pip install pydantic[email]`.
 
 Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu deklarieren:
@@ -274,7 +274,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 ### Ungültige Rückgabetyp-Annotationen
 
-Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z.B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typ-Annotation zu erstellen, und scheitern.
+Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z. B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typ-Annotation zu erstellen, und scheitern.
 
 Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
@@ -296,7 +296,7 @@ Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen
 
 Beim Beispiel oben fortsetzend, mögen Sie vielleicht die standardmäßige Daten-Validierung, -Dokumentation, -Filterung, usw., die von FastAPI durchgeführt wird, nicht haben.
 
-Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unterstützung von Editoren und Typ-Checkern (z.B. mypy) zu erhalten.
+Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unterstützung von Editoren und Typ-Checkern (z. B. mypy) zu erhalten.
 
 In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem Sie `response_model=None` setzen:
 
