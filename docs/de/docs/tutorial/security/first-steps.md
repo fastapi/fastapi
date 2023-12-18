@@ -46,7 +46,7 @@ Kopieren Sie das Beispiel in eine Datei `main.py`:
 !!! info
     Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Z.B. `pip install python-multipart`.
+    Z. B. `pip install python-multipart`.
 
     Das, weil **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
 
