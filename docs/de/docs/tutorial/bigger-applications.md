@@ -54,15 +54,15 @@ Die gleiche Dateistruktur mit Kommentaren:
 .
 ├── app                  # „app“ ist ein Python-Package
 │   ├── __init__.py      # diese Datei macht „app“ zu einem „Python-Package“
-│   ├── main.py          # „main“-Modul, z.B. import app.main
-│   ├── dependencies.py  # „dependencies“-Modul, z.B. import app.dependencies
+│   ├── main.py          # „main“-Modul, z. B. import app.main
+│   ├── dependencies.py  # „dependencies“-Modul, z. B. import app.dependencies
 │   └── routers          # „routers“ ist ein „Python-Subpackage“
 │   │   ├── __init__.py  # macht „routers“ zu einem „Python-Subpackage“
-│   │   ├── items.py     # „items“-Submodul, z.B. import app.routers.items
-│   │   └── users.py     # „users“-Submodul, z.B. import app.routers.users
+│   │   ├── items.py     # „items“-Submodul, z. B. import app.routers.items
+│   │   └── users.py     # „users“-Submodul, z. B. import app.routers.users
 │   └── internal         # „internal“ ist ein „Python-Subpackage“
 │       ├── __init__.py  # macht „internal“ zu einem „Python-Subpackage“
-│       └── admin.py     # „admin“-Submodul, z.B. import app.internal.admin
+│       └── admin.py     # „admin“-Submodul, z. B. import app.internal.admin
 ```
 
 ## `APIRouter`
