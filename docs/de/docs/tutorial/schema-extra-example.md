@@ -54,7 +54,7 @@ Diese zusätzlichen Informationen werden unverändert zum für dieses Modell aus
 !!! info
     OpenAPI 3.1.0 (verwendet seit FastAPI 0.99.0) hat Unterstützung für `examples` hinzugefügt, was Teil des **JSON Schema** Standards ist.
 
-    Zuvor unterstützte es nur das Schlüsselwort `example` mit einem einzigen Beispiel. Dieses wird weiterhin von OpenAPI 3.1.0 unterstützt, ist jedoch <abbr title="deprecatet – veraltet: Es soll nicht mehr verwendet werden">deprecatet</abbr> und nicht Teil des JSON Schema Standards. Wir empfehlen Ihnen daher, von `example` nach `examples` zu migrieren. 🤓
+    Zuvor unterstützte es nur das Schlüsselwort `example` mit einem einzigen Beispiel. Dieses wird weiterhin von OpenAPI 3.1.0 unterstützt, ist jedoch <abbr title="deprecated – obsolet, veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> und nicht Teil des JSON Schema Standards. Wir empfehlen Ihnen daher, von `example` nach `examples` zu migrieren. 🤓
 
     Mehr erfahren Sie am Ende dieser Seite.
 
@@ -294,7 +294,7 @@ Aber dann fügte JSON Schema ein <a href="https://json-schema.org/draft/2019-09/
 
 Und dann basierte das neue OpenAPI 3.1.0 auf der neuesten Version (JSON Schema 2020-12), die dieses neue Feld `examples` enthielt.
 
-Und jetzt hat dieses neue `examples`-Feld Vorrang vor dem alten (und benutzerdefinierten) `example`-Feld, im Singular, das jetzt deprecatet ist.
+Und jetzt hat dieses neue `examples`-Feld Vorrang vor dem alten (und benutzerdefinierten) `example`-Feld, im Singular, das jetzt deprecated ist.
 
 Dieses neue `examples`-Feld in JSON Schema ist **nur eine `list`e** von Beispielen, kein Dict mit zusätzlichen Metadaten wie an den anderen Stellen in OpenAPI (oben beschrieben).
 
