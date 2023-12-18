@@ -2,7 +2,7 @@
 
 In vielen Fällen benötigt Ihre Anwendung möglicherweise einige externe Einstellungen oder Konfigurationen, zum Beispiel geheime Schlüssel, Datenbank-Anmeldeinformationen, Anmeldeinformationen für E-Mail-Dienste, usw.
 
-Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z.B. Datenbank-URLs. Und vieles könnten schützenswerte, geheime Daten sein.
+Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z. B. Datenbank-URLs. Und vieles könnten schützenswerte, geheime Daten sein.
 
 Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestellt, die von der Anwendung gelesen werden.
 
@@ -160,7 +160,7 @@ Importieren Sie `BaseSettings` aus Pydantic und erstellen Sie eine Unterklasse, 
 
 Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute mit Typannotationen und möglicherweise Defaultwerten.
 
-Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z.B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
+Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
 === "Pydantic v2"
 
@@ -182,7 +182,7 @@ Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für
 
 Wenn Sie dann eine Instanz dieser `Settings`-Klasse erstellen (in diesem Fall als `settings`-Objekt), liest Pydantic die Umgebungsvariablen ohne Berücksichtigung der Groß- und Kleinschreibung. Eine Variable `APP_NAME` in Großbuchstaben wird also als Attribut `app_name` gelesen.
 
-Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `settings`-Objekt verwenden, verfügen Sie über Daten mit den von Ihnen deklarierten Typen (z.B. ist `items_per_user` ein `int`).
+Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `settings`-Objekt verwenden, verfügen Sie über Daten mit den von Ihnen deklarierten Typen (z. B. ist `items_per_user` ein `int`).
 
 ### `settings` verwenden
 
