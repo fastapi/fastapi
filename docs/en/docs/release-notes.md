@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+* 👥 Update FastAPI People. PR [#10567](https://github.com/tiangolo/fastapi/pull/10567) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.105.0
 
 ### Features
