@@ -33,7 +33,9 @@ def get_db(db_state=Depends(reset_db_state)):
 def create_user(user: schemas.UserCreate):
     db_user = crud.get_user_by_email(email=user.email)
     if db_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered"
+        )
     return crud.create_user(user=user)
 
 
@@ -49,7 +51,9 @@ def read_users(skip: int = 0, limit: int = 100):
 def read_user(user_id: int):
     db_user = crud.get_user(user_id=user_id)
     if db_user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
     return db_user
 
 
