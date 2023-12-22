@@ -261,50 +261,77 @@ def get_request_handler(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=dependant,
-            body=body,
-            dependency_overrides_provider=dependency_overrides_provider,
-        )
-        values, errors, background_tasks, sub_response, _ = solved_result
-        if errors:
-            raise RequestValidationError(_normalize_errors(errors), body=body)
-        else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
-
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            current_status_code = (
-                status_code if status_code else sub_response.status_code
-            )
-            if current_status_code is not None:
-                response_args["status_code"] = current_status_code
-            if sub_response.status_code:
-                response_args["status_code"] = sub_response.status_code
-            content = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(response.status_code):
-                response.body = b""
-            response.headers.raw.extend(sub_response.headers.raw)
-            return response
+        validation_error: Optional[RequestValidationError] = None
+        dependency_error: Optional[Exception] = None
+        endpoint_error: Optional[Exception] = None
+        response: Union[Response, None] = None
+        async with AsyncExitStack() as async_exit_stack:
+            try:
+                solved_result = await solve_dependencies(
+                    request=request,
+                    dependant=dependant,
+                    body=body,
+                    dependency_overrides_provider=dependency_overrides_provider,
+                    async_exit_stack=async_exit_stack,
+                )
+                values, errors, background_tasks, sub_response, _ = solved_result
+            except Exception as e:
+                dependency_error = e
+                raise e
+            if errors:
+                validation_error = RequestValidationError(
+                    _normalize_errors(errors), body=body
+                )
+                raise validation_error
+            else:
+                try:
+                    raw_response = await run_endpoint_function(
+                        dependant=dependant, values=values, is_coroutine=is_coroutine
+                    )
+                except Exception as e:
+                    endpoint_error = e
+                    raise e
+                if isinstance(raw_response, Response):
+                    if raw_response.background is None:
+                        raw_response.background = background_tasks
+                    response = raw_response
+                else:
+                    response_args: Dict[str, Any] = {"background": background_tasks}
+                    # If status_code was set, use it, otherwise use the default from the
+                    # response class, in the case of redirect it's 307
+                    current_status_code = (
+                        status_code if status_code else sub_response.status_code
+                    )
+                    if current_status_code is not None:
+                        response_args["status_code"] = current_status_code
+                    if sub_response.status_code:
+                        response_args["status_code"] = sub_response.status_code
+                    content = await serialize_response(
+                        field=response_field,
+                        response_content=raw_response,
+                        include=response_model_include,
+                        exclude=response_model_exclude,
+                        by_alias=response_model_by_alias,
+                        exclude_unset=response_model_exclude_unset,
+                        exclude_defaults=response_model_exclude_defaults,
+                        exclude_none=response_model_exclude_none,
+                        is_coroutine=is_coroutine,
+                    )
+                    response = actual_response_class(content, **response_args)
+                    if not is_body_allowed_for_status_code(response.status_code):
+                        response.body = b""
+                    response.headers.raw.extend(sub_response.headers.raw)
+        # This exception was possibly handled by the dependency but it should
+        # still bubble up so that the ServerErrorMiddleware can return a 500
+        # or the ExceptionMiddleware can catch and handle any other exceptions
+        if validation_error:
+            raise validation_error
+        if dependency_error:
+            raise dependency_error
+        if endpoint_error:
+            raise endpoint_error
+        assert response is not None, "An error occurred while generating the request"
+        return response
 
     return app
 
@@ -313,16 +340,18 @@ def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
-        solved_result = await solve_dependencies(
-            request=websocket,
-            dependant=dependant,
-            dependency_overrides_provider=dependency_overrides_provider,
-        )
-        values, errors, _, _2, _3 = solved_result
-        if errors:
-            raise WebSocketRequestValidationError(_normalize_errors(errors))
-        assert dependant.call is not None, "dependant.call must be a function"
-        await dependant.call(**values)
+        async with AsyncExitStack() as async_exit_stack:
+            solved_result = await solve_dependencies(
+                request=websocket,
+                dependant=dependant,
+                dependency_overrides_provider=dependency_overrides_provider,
+                async_exit_stack=async_exit_stack,
+            )
+            values, errors, _, _2, _3 = solved_result
+            if errors:
+                raise WebSocketRequestValidationError(_normalize_errors(errors))
+            assert dependant.call is not None, "dependant.call must be a function"
+            await dependant.call(**values)
 
     return app
 

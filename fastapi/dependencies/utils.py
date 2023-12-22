@@ -529,6 +529,7 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    async_exit_stack: AsyncExitStack,
 ) -> Tuple[
     Dict[str, Any],
     List[Any],
@@ -575,6 +576,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            async_exit_stack=async_exit_stack,
         )
         (
             sub_values,
@@ -590,10 +592,8 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+                call=call, stack=async_exit_stack, sub_values=sub_values
             )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
