@@ -468,4 +468,3 @@ Ezeket mind telepítheted a `pip install "fastapi[all]"` paranccsal.
 
 ## Licensz
 Ez a projekt az MIT license, licensz alatt fut
-
