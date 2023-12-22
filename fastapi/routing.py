@@ -216,56 +216,61 @@ def get_request_handler(
         actual_response_class = response_class
 
     async def app(request: Request) -> Response:
-        try:
-            body: Any = None
-            if body_field:
-                if is_body_form:
-                    body = await request.form()
-                    stack = request.scope.get("fastapi_astack")
-                    assert isinstance(stack, AsyncExitStack)
-                    stack.push_async_callback(body.close)
-                else:
-                    body_bytes = await request.body()
-                    if body_bytes:
-                        json_body: Any = Undefined
-                        content_type_value = request.headers.get("content-type")
-                        if not content_type_value:
-                            json_body = await request.json()
-                        else:
-                            message = email.message.Message()
-                            message["content-type"] = content_type_value
-                            if message.get_content_maintype() == "application":
-                                subtype = message.get_content_subtype()
-                                if subtype == "json" or subtype.endswith("+json"):
-                                    json_body = await request.json()
-                        if json_body != Undefined:
-                            body = json_body
-                        else:
-                            body = body_bytes
-        except json.JSONDecodeError as e:
-            raise RequestValidationError(
-                [
-                    {
-                        "type": "json_invalid",
-                        "loc": ("body", e.pos),
-                        "msg": "JSON decode error",
-                        "input": {},
-                        "ctx": {"error": e.msg},
-                    }
-                ],
-                body=e.doc,
-            ) from e
-        except HTTPException:
-            raise
-        except Exception as e:
-            raise HTTPException(
-                status_code=400, detail="There was an error parsing the body"
-            ) from e
-        validation_error: Optional[RequestValidationError] = None
-        dependency_error: Optional[Exception] = None
-        endpoint_error: Optional[Exception] = None
+        exception_to_reraise: Optional[Exception] = None
         response: Union[Response, None] = None
         async with AsyncExitStack() as async_exit_stack:
+            # TODO: remove this scope later, after a few releases
+            # This scope fastapi_astack is no longer used by FastAPI, kept for
+            # compatibility, just in case
+            request.scope["fastapi_astack"] = async_exit_stack
+            try:
+                body: Any = None
+                if body_field:
+                    if is_body_form:
+                        body = await request.form()
+                        async_exit_stack.push_async_callback(body.close)
+                    else:
+                        body_bytes = await request.body()
+                        if body_bytes:
+                            json_body: Any = Undefined
+                            content_type_value = request.headers.get("content-type")
+                            if not content_type_value:
+                                json_body = await request.json()
+                            else:
+                                message = email.message.Message()
+                                message["content-type"] = content_type_value
+                                if message.get_content_maintype() == "application":
+                                    subtype = message.get_content_subtype()
+                                    if subtype == "json" or subtype.endswith("+json"):
+                                        json_body = await request.json()
+                            if json_body != Undefined:
+                                body = json_body
+                            else:
+                                body = body_bytes
+            except json.JSONDecodeError as e:
+                validation_error = RequestValidationError(
+                    [
+                        {
+                            "type": "json_invalid",
+                            "loc": ("body", e.pos),
+                            "msg": "JSON decode error",
+                            "input": {},
+                            "ctx": {"error": e.msg},
+                        }
+                    ],
+                    body=e.doc,
+                )
+                exception_to_reraise = validation_error
+                raise validation_error from e
+            except HTTPException as e:
+                exception_to_reraise = e
+                raise
+            except Exception as e:
+                http_error = HTTPException(
+                    status_code=400, detail="There was an error parsing the body"
+                )
+                exception_to_reraise = http_error
+                raise http_error from e
             try:
                 solved_result = await solve_dependencies(
                     request=request,
@@ -276,12 +281,13 @@ def get_request_handler(
                 )
                 values, errors, background_tasks, sub_response, _ = solved_result
             except Exception as e:
-                dependency_error = e
+                exception_to_reraise = e
                 raise e
             if errors:
                 validation_error = RequestValidationError(
                     _normalize_errors(errors), body=body
                 )
+                exception_to_reraise = validation_error
                 raise validation_error
             else:
                 try:
@@ -289,7 +295,7 @@ def get_request_handler(
                         dependant=dependant, values=values, is_coroutine=is_coroutine
                     )
                 except Exception as e:
-                    endpoint_error = e
+                    exception_to_reraise = e
                     raise e
                 if isinstance(raw_response, Response):
                     if raw_response.background is None:
@@ -324,12 +330,8 @@ def get_request_handler(
         # This exception was possibly handled by the dependency but it should
         # still bubble up so that the ServerErrorMiddleware can return a 500
         # or the ExceptionMiddleware can catch and handle any other exceptions
-        if validation_error:
-            raise validation_error
-        if dependency_error:
-            raise dependency_error
-        if endpoint_error:
-            raise endpoint_error
+        if exception_to_reraise:
+            raise exception_to_reraise
         assert response is not None, "An error occurred while generating the request"
         return response
 
@@ -341,6 +343,10 @@ def get_websocket_app(
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
+            # TODO: remove this scope later, after a few releases
+            # This scope fastapi_astack is no longer used by FastAPI, kept for
+            # compatibility, just in case
+            websocket.scope["fastapi_astack"] = async_exit_stack
             solved_result = await solve_dependencies(
                 request=websocket,
                 dependant=dependant,
