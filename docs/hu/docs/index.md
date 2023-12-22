@@ -244,7 +244,7 @@ A `uvicorn main:app` parancs a következőre utal:
 
 ### Ellenőrizd
 
-	Nyisd meg a böngésződ a következő címen: <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+Nyisd meg a böngésződ a következő címen: <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
 A következő JSON választ fogod látni:
 
