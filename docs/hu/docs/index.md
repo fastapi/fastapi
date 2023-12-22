@@ -397,7 +397,7 @@ Visszatérve az előző kód példához. A **FastAPI**:
     * `None` nélkül ez a mező kötelező lenne (mint például a body `PUT` kérések esetén).
 * a `/items/{item_id}` címre érkező `PUT` kérések esetén, a JSON-t a következőképpen olvassa be:
     * Ellenőrzi hogy létezik a kötelező `name` nevű attribútum és `string`.
-    * Ellenőrzi hogy létezik a kötelező `price` nevű attribútum és `float`. 
+    * Ellenőrzi hogy létezik a kötelező `price` nevű attribútum és `float`.
     * Ellenőrzi hogy létezik a `is_offer` nevű opcionális paraméter, ami ha létezik akkor `bool`
     * Ez ágyazott JSON objektumokkal is működik
 * JSONről való automatikus konvertálás.
