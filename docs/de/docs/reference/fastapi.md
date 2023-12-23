@@ -1,4 +1,4 @@
-Klasse `FastAPI`.
+# `FastAPI` Klasse
 
 Hier sind die Referenzinformationen für die Klasse `FastAPI` mit all ihren Parametern, Attributen und Methoden.
 
