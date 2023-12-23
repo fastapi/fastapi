@@ -1,8 +1,8 @@
-# `FastAPI` Klasse
+# `FastAPI`-Klasse
 
 Hier sind die Referenzinformationen für die Klasse `FastAPI` mit all ihren Parametern, Attributen und Methoden.
 
-Sie können die Klasse `FastAPI` direkt von `fastapi` importieren:
+Sie können die `FastAPI`-Klasse direkt von `fastapi` importieren:
 
 ```python
 from fastapi import FastAPI
