@@ -1,4 +1,4 @@
-# `UploadFile` Klasse
+# `UploadFile`-Klasse
 
 Sie können *Pfadoperation-Funktionsparameter* als Parameter vom Typ `UploadFile` definieren, um Dateien aus dem Request zu erhalten.
 
