@@ -623,6 +623,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        add_auto_options_route: bool = False,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -671,7 +672,8 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
-        self._update_auto_options_routes(route, path)
+        if add_auto_options_route:
+            self._update_auto_options_routes(route, path)
 
     def _update_auto_options_routes(self, new_route: APIRoute, path: str) -> None:
         auto_options_index: Optional[int] = None
@@ -730,6 +732,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -758,6 +761,7 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                add_auto_options_route=add_auto_options_route,
             )
             return func
 
@@ -957,6 +961,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -983,6 +988,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def put(
