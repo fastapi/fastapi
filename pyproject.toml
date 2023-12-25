@@ -84,6 +84,12 @@ module = "fastapi.tests.*"
 ignore_missing_imports = true
 check_untyped_defs = true
 
+[[tool.mypy.overrides]]
+module = "docs_src.*"
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
+
 [tool.pytest.ini_options]
 addopts = [
   "--strict-config",
@@ -167,6 +173,9 @@ ignore = [
 "docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
+"docs_src/dependencies/tutorial008b.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
 
 
 [tool.ruff.isort]
