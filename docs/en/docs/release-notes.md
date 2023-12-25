@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+Using resources from dependencies with `yield` in background tasks is no longer supported.
+
+This change is what supports the new features, read below. 🤓
+
 ### Dependencies with `yield`, `HTTPException` and Background Tasks
 
 Dependencies with `yield` now can raise `HTTPException` and other exceptions after `yield`. 🎉
