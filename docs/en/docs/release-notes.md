@@ -9,6 +9,46 @@ hide:
 
 ### Dependencies with `yield`, `HTTPException` and Background Tasks
 
+Dependencies with `yield` now can raise `HTTPException` and other exceptions after `yield`. 🎉
+
+Read the new docs here: [Dependencies with `yield` and `HTTPException`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception).
+
+```Python
+from fastapi import Depends, FastAPI, HTTPException
+from typing_extensions import Annotated
+
+app = FastAPI()
+
+
+data = {
+    "plumbus": {"description": "Freshly pickled plumbus", "owner": "Morty"},
+    "portal-gun": {"description": "Gun to create portals", "owner": "Rick"},
+}
+
+
+class OwnerError(Exception):
+    pass
+
+
+def get_username():
+    try:
+        yield "Rick"
+    except OwnerError as e:
+        raise HTTPException(status_code=400, detail=f"Onwer error: {e}")
+
+
+@app.get("/items/{item_id}")
+def get_item(item_id: str, username: Annotated[str, Depends(get_username)]):
+    if item_id not in data:
+        raise HTTPException(status_code=404, detail="Item not found")
+    item = data[item_id]
+    if item["owner"] != username:
+        raise OwnerError(username)
+    return item
+```
+
+---
+
 Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
@@ -65,7 +105,7 @@ participant tasks as Background tasks
     end
 ```
 
-The new execution flow can be found in the docs: [Dependencies with `yield`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#execution-of-dependencies-with-yield).
+The new execution flow can be found in the docs: [Execution of dependencies with `yield`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#execution-of-dependencies-with-yield).
 
 ### Internal
 
