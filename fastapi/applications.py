@@ -319,6 +319,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -345,6 +346,7 @@ class FastAPI(Starlette):
             name=name,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def api_route(
@@ -375,6 +377,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -402,6 +405,7 @@ class FastAPI(Starlette):
                 name=name,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                add_auto_options_route=add_auto_options_route,
             )
             return func
 
@@ -497,6 +501,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
@@ -522,6 +527,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def put(
@@ -552,6 +558,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.put(
             path,
@@ -577,6 +584,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def post(
@@ -607,6 +615,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.post(
             path,
@@ -632,6 +641,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def delete(
@@ -662,6 +672,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.delete(
             path,
@@ -687,6 +698,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def options(
@@ -717,6 +729,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.options(
             path,
@@ -742,6 +755,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=False,
         )
 
     def head(
@@ -772,6 +786,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.head(
             path,
@@ -797,6 +812,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def patch(
@@ -827,6 +843,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.patch(
             path,
@@ -852,6 +869,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def trace(
@@ -882,6 +900,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.trace(
             path,
@@ -907,6 +926,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def websocket_route(
