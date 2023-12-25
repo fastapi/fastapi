@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.106.0
+
 ### Breaking Changes
 
 Using resources from dependencies with `yield` in background tasks is no longer supported.
