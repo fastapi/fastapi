@@ -1019,6 +1019,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1045,6 +1046,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def post(
@@ -1075,6 +1077,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1101,6 +1104,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def delete(
@@ -1131,6 +1135,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1157,6 +1162,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def options(
@@ -1187,6 +1193,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1213,6 +1220,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=False,
         )
 
     def head(
@@ -1243,6 +1251,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1269,6 +1278,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def patch(
@@ -1299,6 +1309,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1325,6 +1336,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def trace(
@@ -1355,6 +1367,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1381,6 +1394,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def on_event(
