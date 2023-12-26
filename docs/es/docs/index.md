@@ -23,7 +23,7 @@
 **Código Fuente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.6+ basado en las anotaciones de tipos estándar de Python.
+FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.8+ basado en las anotaciones de tipos estándar de Python.
 
 Sus características principales son:
 
@@ -106,7 +106,7 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.7+
+Python 3.8+
 
 FastAPI está sobre los hombros de gigantes:
 
@@ -319,7 +319,7 @@ Lo haces con tipos modernos estándar de Python.
 
 No tienes que aprender una sintáxis nueva, los métodos o clases de una library específica, etc.
 
-Solo **Python 3.6+** estándar.
+Solo **Python 3.8+** estándar.
 
 Por ejemplo, para un `int`:
 
@@ -433,7 +433,6 @@ Para entender más al respecto revisa la sección <a href="https://fastapi.tiang
 
 Usadas por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de JSON más rápido.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validación de emails.
 
 Usados por Starlette:

@@ -118,13 +118,13 @@ We will now use a simple dependency to read a custom `X-Token` header:
     {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  5-7"
     {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -377,7 +377,7 @@ The `router` from `users` would overwrite the one from `items` and we wouldn't b
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 
-```Python hl_lines="4"
+```Python hl_lines="5"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
