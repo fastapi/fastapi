@@ -1,8 +1,8 @@
 # Abhängigkeiten mit yield
 
-FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title='Manchmal auch genannt „exit“, „cleanup“, „teardown“, „close“, „context managers“, ...'>zusätzliche Schritte ausführen</abbr>.
+FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title="Manchmal auch genannt „Exit Code“, „Cleanup Code“, „Teardown Code“, „Closing Code“, „Kontext Manager Exit Code“, usw.">zusätzliche Schritte ausführen</abbr>.
 
-Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte danach.
+Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte / den zusätzlichen Code danach.
 
 !!! tip "Tipp"
     Stellen Sie sicher, dass Sie `yield` nur einmal pro Abhängigkeit verwenden.
@@ -21,7 +21,7 @@ Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Sc
 
 Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach Abschluss schließen.
 
-Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine Response gesendet wird:
+Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine Response erzeugt wird:
 
 ```Python hl_lines="2-4"
 {!../../../docs_src/dependencies/tutorial007.py!}
@@ -40,7 +40,7 @@ Der auf die `yield`-Anweisung folgende Code wird ausgeführt, nachdem die Respon
 ```
 
 !!! tip "Tipp"
-    Sie können `async`hrone oder normale Funktionen verwenden.
+    Sie können `async`hrone oder reguläre Funktionen verwenden.
 
     **FastAPI** wird bei jeder das Richtige tun, so wie auch bei normalen Abhängigkeiten.
 
@@ -114,7 +114,7 @@ Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` 
     {!> ../../../docs_src/dependencies/tutorial008.py!}
     ```
 
-Auf die gleiche Weise könnten Sie Abhängigkeiten mischen, die `yield`en oder `return`en.
+Auf die gleiche Weise könnten Sie einige Abhängigkeiten mit `yield` und einige andere Abhängigkeiten mit `return` haben, und alle können beliebig voneinander abhängen.
 
 Und Sie könnten eine einzelne Abhängigkeit haben, die auf mehreren ge`yield`eten Abhängigkeiten basiert, usw.
 
@@ -129,26 +129,40 @@ Sie können beliebige Kombinationen von Abhängigkeiten haben.
 
 ## Abhängigkeiten mit `yield` und `HTTPException`.
 
-Sie haben gesehen, dass Ihre Abhängigkeiten `yield` verwenden können und `try`-Blöcke haben können, die Ausnahmen abfangen.
+Sie haben gesehen, dass Ihre Abhängigkeiten `yield` verwenden können und `try`-Blöcke haben können, die Exceptions abfangen.
 
-Es könnte verlockend sein, im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches auszulösen. Aber **das wird nicht funktionieren**.
-
-Der Exit-Code in Abhängigkeiten mit `yield` wird ausgeführt, *nachdem* die Response gesendet wurde, [Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} wurden also bereits ausgeführt. Niemand fängt Exceptions, die im Exit-Code ihrer Abhängigkeiten (nach dem `yield`) geworfen werden.
-
-Wenn Sie also nach dem `yield` eine `HTTPException` auslösen, ist der standardmäßige (oder ein beliebiger benutzerdefinierter) Exceptionhandler, der `HTTPException` abfängt und eine HTTP 400 Response zurückgibt, nicht mehr da, um diese Exception abzufangen.
-
-Das ist es was erlaubt, dass alles, was in der Abhängigkeit erstellt wurde (z. B. eine DB-Session), beispielsweise von Hintergrundtasks verwendet werden kann.
-
-Hintergrundtasks werden ausgeführt, *nachdem* die Response gesendet wurde. Es gibt also keine Möglichkeit, eine `HTTPException` auszulösen, da es nicht einmal eine Möglichkeit gibt, die *bereits gesendete* Response zu ändern.
-
-Aber wenn ein Hintergrundtask einen DB-Error erzeugt, können Sie zumindest ein Rollback durchführen, oder die Session innerhalb der Abhängigkeit mit `yield` sauber schließen, und den Fehler möglicherweise protokollieren oder an ein Remote-Tracking-System melden.
-
-Wenn Sie Code haben, von dem Sie wissen, dass er eine Exception auslösen könnte, machen Sie das Normale/„Pythonische“ und fügen Sie in diesem Codeabschnitt einen `try`-Block ein.
-
-Wenn Sie benutzerdefinierte Exceptions haben, die Sie handhaben möchten, *bevor* Sie die Response zurückgeben, was möglicherweise die Response ändert, vielleicht sogar eine `HTTPException` auslöst, dann erstellen Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank}.
+Auf die gleiche Weise könnten Sie im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches auslösen.
 
 !!! tip "Tipp"
-    Sie können immer noch Exceptions auslösen, einschließlich `HTTPException`, *vor* dem `yield`. Aber nicht danach.
+
+    Dies ist eine etwas fortgeschrittene Technik, die Sie in den meisten Fällen nicht wirklich benötigen, da Sie Exceptions (einschließlich `HTTPException`) innerhalb des restlichen Anwendungscodes auslösen können, beispielsweise in der *Pfadoperation-Funktion*.
+
+    Aber es ist für Sie da, wenn Sie es brauchen. 🤓
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="18-22  31"
+    {!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="17-21  30"
+    {!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+    ```
+
+=== "Python 3.8+ nicht annotiert"
+
+    !!! tip "Tipp"
+        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+    ```Python hl_lines="16-20  29"
+    {!> ../../../docs_src/dependencies/tutorial008b.py!}
+    ```
+
+Eine Alternative zum Abfangen von Exceptions (und möglicherweise auch zum Auslösen einer weiteren `HTTPException`) besteht darin, einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} zu erstellen.
+
+## Ausführung von Abhängigkeiten mit `yield`
 
 Die Ausführungsreihenfolge ähnelt mehr oder weniger dem folgenden Diagramm. Die Zeit verläuft von oben nach unten. Und jede Spalte ist einer der interagierenden oder Code-ausführenden Teilnehmer.
 
@@ -161,22 +175,21 @@ participant dep as Abhängigkeit mit yield
 participant operation as Pfadoperation
 participant tasks as Hintergrundtasks
 
-    Note over client,tasks: Kann eine Exception für eine Abhängigkeit auslösen, die nach dem Senden der Response gehandhabt wird
-    Note over client,operation: Kann eine HTTPException auslösen und die Response ändern
+    Note over client,operation: Kann Exceptions auslösen, inklusive HTTPException
     client ->> dep: Startet den Request
     Note over dep: Führt den Code bis zum yield aus
-    opt Löst aus
-        dep -->> handler: Löst HTTPException aus
+    opt Löst Exception aus
+        dep -->> handler: Löst Exception aus
         handler -->> client: HTTP-Error-Response
-        dep -->> dep: Löst andere Exception aus
     end
     dep ->> operation: Führt Abhängigkeit aus, z. B. DB-Session
     opt Löst aus
-        operation -->> dep: Löst HTTPException aus
-        dep -->> handler: Leitet Exception automatisch weiter
+        operation -->> dep: Löst Exception aus (z. B. HTTPException)
+        opt Handhabt
+            dep -->> dep: Kann Exception abfangen, eine neue HTTPException auslösen, andere Exceptions auslösen
+            dep -->> handler: Leitet Exception automatisch weiter
+        end
         handler -->> client: HTTP-Error-Response
-        operation -->> dep: Löst andere Exception aus
-        dep -->> handler: Leitet Exception automatisch weiter
     end
     operation ->> client: Sendet Response an Client
     Note over client,operation: Response wurde gesendet, kann nicht mehr geändert werden
@@ -184,11 +197,7 @@ participant tasks as Hintergrundtasks
         operation -->> tasks: Sendet Hintergrundtasks
     end
     opt Löst andere Exception aus
-        tasks -->> dep: Löst andere Exception aus
-    end
-    Note over dep: Nach dem yield
-    opt Handhabt andere Exception
-        dep -->> dep: Handhabt Exception, kann Response nicht ändern. Schließt z. B. DB-Session.
+        tasks -->> tasks: Handhabt Exception im Hintergrundtask-Code
     end
 ```
 
@@ -198,9 +207,32 @@ participant tasks as Hintergrundtasks
     Nachdem eine dieser Responses gesendet wurde, kann keine weitere Response gesendet werden.
 
 !!! tip "Tipp"
-    Obiges Diagramm verwendet `HTTPException`, aber Sie können auch jede andere Exception auslösen, für die Sie einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} erstellt haben.
+    Obiges Diagramm verwendet `HTTPException`, aber Sie können auch jede andere Exception auslösen, die Sie in einer Abhängigkeit mit `yield` abfangen, oder mit einem [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} erstellt haben.
 
-    Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten übergeben, einschließlich `HTTPException`, und dann **erneut** an die Exceptionhandler. Wenn für diese Exception kein Exceptionhandler vorhanden ist, wird sie von der internen Default `ServerErrorMiddleware` gehandhabt, was einen HTTP-Statuscode 500 zurückgibt, um den Client darüber zu informieren, dass ein Fehler auf dem Server aufgetreten ist.
+    Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten übergeben, einschließlich `HTTPException`, und dann **erneut** an die Exceptionhandler. Wenn es für diese Exception keinen Exceptionhandler gibt, wird sie von der internen Default-`ServerErrorMiddleware` gehandhabt, was einen HTTP-Statuscode 500 zurückgibt, um den Client darüber zu informieren, dass ein Fehler auf dem Server aufgetreten ist.
+
+## Abhängigkeiten mit `yield`, `HTTPException` und Hintergrundtasks
+
+!!! warning "Achtung"
+    Sie benötigen diese technischen Details höchstwahrscheinlich nicht, Sie können diesen Abschnitt überspringen und weiter unten fortfahren.
+
+    Diese Details sind vor allem dann nützlich, wenn Sie eine Version von FastAPI vor 0.106.0 verwendet haben und Ressourcen aus Abhängigkeiten mit `yield` in Hintergrundtasks verwendet haben.
+
+Vor FastAPI 0.106.0 war das Auslösen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, *nachdem* die Response gesendet wurde, die [Exceptionhandler](../handling-errors/#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} wären also bereits ausgeführt worden.
+
+Dies wurde hauptsächlich so konzipiert, damit die gleichen Objekte, die durch Abhängigkeiten ge`yield`et werden, innerhalb von Hintergrundtasks verwendet werden können, da der Exit-Code ausgeführt wird, nachdem die Hintergrundtasks abgeschlossen sind.
+
+Da dies jedoch bedeuten würde, darauf zu warten, dass die Response durch das Netzwerk reist, während eine Ressource unnötigerweise in einer Abhängigkeit mit yield gehalten wird (z. B. eine Datenbankverbindung), wurde dies in FastAPI 0.106.0 geändert.
+
+!!! tip "Tipp"
+
+    Darüber hinaus handelt es sich bei einem Hintergrundtask normalerweise um einen unabhängigen Satz von Logik, der separat behandelt werden sollte, mit eigenen Ressourcen (z. B. einer eigenen Datenbankverbindung).
+
+    Auf diese Weise erhalten Sie wahrscheinlich saubereren Code.
+
+Wenn Sie sich früher auf dieses Verhalten verlassen haben, sollten Sie jetzt die Ressourcen für Hintergrundtasks innerhalb des Hintergrundtasks selbst erstellen und intern nur Daten verwenden, die nicht von den Ressourcen von Abhängigkeiten mit `yield` abhängen.
+
+Anstatt beispielsweise dieselbe Datenbanksitzung zu verwenden, würden Sie eine neue Datenbanksitzung innerhalb des Hintergrundtasks erstellen und die Objekte mithilfe dieser neuen Sitzung aus der Datenbank abrufen. Und anstatt das Objekt aus der Datenbank als Parameter an die Hintergrundtask-Funktion zu übergeben, würden Sie die ID dieses Objekts übergeben und das Objekt dann innerhalb der Hintergrundtask-Funktion erneut laden.
 
 ## Kontextmanager
 
@@ -220,7 +252,7 @@ Im Hintergrund erstellt das `open("./somefile.txt")` ein Objekt, das als „Kont
 
 Dieser stellt sicher dass, wenn der `with`-Block beendet ist, die Datei geschlossen wird, auch wenn Exceptions geworfen wurden.
 
-Wenn Sie eine Abhängigkeit mit `yield` erstellen, konvertiert **FastAPI** diese intern in einen Kontextmanager und kombiniert sie mit einigen anderen zugehörigen Tools.
+Wenn Sie eine Abhängigkeit mit `yield` erstellen, erstellt **FastAPI** dafür intern einen Kontextmanager und kombiniert ihn mit einigen anderen zugehörigen Tools.
 
 ### Kontextmanager in Abhängigkeiten mit `yield` verwenden
 
