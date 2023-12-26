@@ -40,7 +40,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.27.0,<0.28.0",
+    "starlette>=0.28.0,<0.29.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
     # TODO: remove this pin after upgrading Starlette 0.31.1
