@@ -63,7 +63,7 @@ def get_username():
     try:
         yield "Rick"
     except OwnerError as e:
-        raise HTTPException(status_code=400, detail=f"Onwer error: {e}")
+        raise HTTPException(status_code=400, detail=f"Owner error: {e}")
 
 
 @app.get("/items/{item_id}")
