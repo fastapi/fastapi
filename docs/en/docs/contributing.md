@@ -233,8 +233,6 @@ This helps to make sure that:
 * The documentation examples can be run as is.
 * Most of the features are covered by the documentation, ensured by test coverage.
 
-
-
 #### Apps and docs at the same time
 
 If you run the examples with, e.g.:
