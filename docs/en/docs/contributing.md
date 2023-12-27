@@ -150,34 +150,7 @@ For it to sort them correctly, you need to have FastAPI installed locally in you
 
 First, make sure you set up your environment as described above, that will install all the requirements.
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
-
-And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
-
-!!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
-
-All the documentation is in Markdown format in the directory `./docs/en/`.
-
-Many of the tutorials have blocks of code.
-
-In most of the cases, these blocks of code are actual complete applications that can be run as is.
-
-In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
-
-And those Python files are included/injected in the documentation when generating the site.
-
-### Docs for tests
-
-Most of the tests actually run against the example source files in the documentation.
-
-This helps to make sure that:
-
-* The documentation is up-to-date.
-* The documentation examples can be run as is.
-* Most of the features are covered by the documentation, ensured by test coverage.
-
-#### Live preview
+### Docs live
 
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
@@ -212,22 +185,6 @@ That way, you can edit the documentation/source files and see the changes live.
     $ mkdocs serve --dev-addr 8008
     ```
 
-#### Apps and docs at the same time
-
-If you run the examples with, e.g.:
-
-<div class="termy">
-
-```console
-$ uvicorn tutorial001:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
-
 #### Typer CLI (optional)
 
 The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
@@ -246,6 +203,53 @@ Completion will take effect once you restart the terminal.
 ```
 
 </div>
+
+### Docs Structure
+
+The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+
+And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
+
+!!! tip
+    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+
+All the documentation is in Markdown format in the directory `./docs/en/`.
+
+Many of the tutorials have blocks of code.
+
+In most of the cases, these blocks of code are actual complete applications that can be run as is.
+
+In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
+
+And those Python files are included/injected in the documentation when generating the site.
+
+### Docs for tests
+
+Most of the tests actually run against the example source files in the documentation.
+
+This helps to make sure that:
+
+* The documentation is up-to-date.
+* The documentation examples can be run as is.
+* Most of the features are covered by the documentation, ensured by test coverage.
+
+
+
+#### Apps and docs at the same time
+
+If you run the examples with, e.g.:
+
+<div class="termy">
+
+```console
+$ uvicorn tutorial001:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
 
 ### Translations
 
