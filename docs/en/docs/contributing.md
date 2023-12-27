@@ -151,7 +151,6 @@ For it to sort them correctly, you need to have FastAPI installed locally in you
 First, make sure you set up your environment as described above, that will install all the requirements.
 
 ### Docs live
-### Docs live
 
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
@@ -271,9 +270,7 @@ Here are the steps to help with translations.
 
 * Check if there's a <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-* Add a single pull request per page translated. That will make it much easier for others to review it.
-
-For the languages I don't speak, I'll wait for several others to review the translation before merging.
+* If you translate pages, add a single pull request per page translated. That will make it much easier for others to review it.
 
 * To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
