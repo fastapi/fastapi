@@ -1,8 +1,6 @@
-from typing import Annotated, Any, List
+from typing import Any, List
 
-from fastapi import APIRouter, Body, Depends, HTTPException
-from fastapi.encoders import jsonable_encoder
-from pydantic.networks import EmailStr
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import select
 
 from app import crud
@@ -12,7 +10,14 @@ from app.api.deps import (
     get_current_active_superuser,
 )
 from app.core.config import settings
-from app.models import User, UserCreate, UserCreateOpen, UserOut, UserUpdate
+from app.models import (
+    User,
+    UserCreate,
+    UserCreateOpen,
+    UserOut,
+    UserUpdate,
+    UserUpdateMe,
+)
 from app.utils import send_new_account_email
 
 router = APIRouter()
@@ -54,29 +59,24 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> Any:
     return user
 
 
-# TODO: Refactor when SQLModel has update
-# @router.put("/me")
-# def update_user_me(
-#     *,
-#     session: SessionDep,
-#     password: Annotated[str, Body(None)],
-#     full_name: Annotated[str, Body(None)],
-#     email: Annotated[EmailStr, Body(None)],
-#     current_user: CurrentUser,
-# ) -> UserOut:
-#     """
-#     Update own user.
-#     """
-#     current_user_data = jsonable_encoder(current_user)
-#     user_in = UserUpdate(**current_user_data)
-#     if password is not None:
-#         user_in.password = password
-#     if full_name is not None:
-#         user_in.full_name = full_name
-#     if email is not None:
-#         user_in.email = email
-#     user = crud.user.update(session, session_obj=current_user, obj_in=user_in)
-#     return user
+@router.put("/me", response_model=UserOut)
+def update_user_me(
+    *, session: SessionDep, body: UserUpdateMe, current_user: CurrentUser
+) -> Any:
+    """
+    Update own user.
+    """
+    # TODO: Refactor when SQLModel has update
+    # current_user_data = jsonable_encoder(current_user)
+    # user_in = UserUpdate(**current_user_data)
+    # if password is not None:
+    #     user_in.password = password
+    # if full_name is not None:
+    #     user_in.full_name = full_name
+    # if email is not None:
+    #     user_in.email = email
+    # user = crud.user.update(session, session_obj=current_user, obj_in=user_in)
+    # return user
 
 
 @router.get("/me", response_model=UserOut)
@@ -127,22 +127,27 @@ def read_user_by_id(
     return user
 
 
-# TODO: Refactor when SQLModel has update
-# @router.put("/{user_id}", dependencies=[Depends(get_current_active_superuser)])
-# def update_user(
-#     *,
-#     session: SessionDep,
-#     user_id: int,
-#     user_in: UserUpdate,
-# ) -> UserOut:
-#     """
-#     Update a user.
-#     """
-#     user = session.get(User, user_id)
-#     if not user:
-#         raise HTTPException(
-#             status_code=404,
-#             detail="The user with this username does not exist in the system",
-#         )
-#     user = crud.user.update(session, db_obj=user, obj_in=user_in)
-#     return user # type: ignore
+@router.put(
+    "/{user_id}",
+    dependencies=[Depends(get_current_active_superuser)],
+    response_model=UserOut,
+)
+def update_user(
+    *,
+    session: SessionDep,
+    user_id: int,
+    user_in: UserUpdate,
+) -> Any:
+    """
+    Update a user.
+    """
+
+    # TODO: Refactor when SQLModel has update
+    # user = session.get(User, user_id)
+    # if not user:
+    #     raise HTTPException(
+    #         status_code=404,
+    #         detail="The user with this username does not exist in the system",
+    #     )
+    # user = crud.user.update(session, db_obj=user, obj_in=user_in)
+    # return user

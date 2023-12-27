@@ -29,6 +29,11 @@ class UserUpdate(UserBase):
     password: Union[str, None] = None
 
 
+class UserUpdateMe(BaseModel):
+    password: Union[str, None] = None
+    full_name: Union[str, None] = None
+    email: Union[EmailStr, None] = None
+
 # Database model, database table inferred from class name
 class User(UserBase, table=True):
     id: Union[int, None] = Field(default=None, primary_key=True)
@@ -86,6 +91,7 @@ class Token(BaseModel):
 # Contents of JWT token
 class TokenPayload(BaseModel):
     sub: Union[int, None] = None
+
 
 class NewPassword(BaseModel):
     token: str

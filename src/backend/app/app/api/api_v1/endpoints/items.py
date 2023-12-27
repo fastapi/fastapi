@@ -1,7 +1,7 @@
-from typing import Annotated, Any
+from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import Session, select
+from fastapi import APIRouter, HTTPException
+from sqlmodel import select
 
 from app.api.deps import CurrentUser, SessionDep
 from app.models import Item, ItemCreate, ItemOut, ItemUpdate
@@ -90,4 +90,4 @@ def delete_item(session: SessionDep, current_user: CurrentUser, id: int) -> Any:
         raise HTTPException(status_code=400, detail="Not enough permissions")
     session.delete(item)
     session.commit()
-    return item 
+    return item
