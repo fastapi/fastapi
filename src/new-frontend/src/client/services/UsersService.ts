@@ -5,6 +5,8 @@
 import type { UserCreate } from '../models/UserCreate';
 import type { UserCreateOpen } from '../models/UserCreateOpen';
 import type { UserOut } from '../models/UserOut';
+import type { UserUpdate } from '../models/UserUpdate';
+import type { UserUpdateMe } from '../models/UserUpdateMe';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -74,6 +76,28 @@ requestBody: UserCreate,
     }
 
     /**
+     * Update User Me
+     * Update own user.
+     * @returns UserOut Successful Response
+     * @throws ApiError
+     */
+    public static updateUserMe({
+requestBody,
+}: {
+requestBody: UserUpdateMe,
+}): CancelablePromise<UserOut> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/users/me',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
      * Create User Open
      * Create new user without the need to be logged in.
      * @returns UserOut Successful Response
@@ -112,6 +136,33 @@ userId: number,
             path: {
                 'user_id': userId,
             },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update User
+     * Update a user.
+     * @returns UserOut Successful Response
+     * @throws ApiError
+     */
+    public static updateUser({
+userId,
+requestBody,
+}: {
+userId: number,
+requestBody: UserUpdate,
+}): CancelablePromise<UserOut> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/users/{user_id}',
+            path: {
+                'user_id': userId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },

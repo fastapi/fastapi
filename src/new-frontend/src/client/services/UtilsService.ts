@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Msg } from '../models/Msg';
+import type { Message } from '../models/Message';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -13,14 +13,14 @@ export class UtilsService {
     /**
      * Test Celery
      * Test Celery worker.
-     * @returns Msg Successful Response
+     * @returns Message Successful Response
      * @throws ApiError
      */
     public static testCelery({
 requestBody,
 }: {
-requestBody: Msg,
-}): CancelablePromise<Msg> {
+requestBody: Message,
+}): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/utils/test-celery/',
@@ -35,14 +35,14 @@ requestBody: Msg,
     /**
      * Test Email
      * Test emails.
-     * @returns Msg Successful Response
+     * @returns Message Successful Response
      * @throws ApiError
      */
     public static testEmail({
 emailTo,
 }: {
 emailTo: string,
-}): CancelablePromise<Msg> {
+}): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/utils/test-email/',

@@ -3,10 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type User = {
-    email?: string;
-    is_active?: boolean;
-    is_superuser?: boolean;
+export type UserUpdateMe = {
+    password?: string;
     full_name?: string;
-    id?: number;
+    email?: string;
 };

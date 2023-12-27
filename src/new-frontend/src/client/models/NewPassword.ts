@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Msg = {
-    msg: string;
+export type NewPassword = {
+    token: string;
+    new_password: string;
 };

@@ -3,10 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Body_login_login_access_token } from '../models/Body_login_login_access_token';
-import type { Body_login_reset_password } from '../models/Body_login_reset_password';
-import type { Msg } from '../models/Msg';
+import type { Message } from '../models/Message';
+import type { NewPassword } from '../models/NewPassword';
 import type { Token } from '../models/Token';
-import type { User } from '../models/User';
+import type { UserOut } from '../models/UserOut';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -39,10 +39,10 @@ formData: Body_login_login_access_token,
     /**
      * Test Token
      * Test access token
-     * @returns User Successful Response
+     * @returns UserOut Successful Response
      * @throws ApiError
      */
-    public static testToken(): CancelablePromise<User> {
+    public static testToken(): CancelablePromise<UserOut> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/login/test-token',
@@ -52,14 +52,14 @@ formData: Body_login_login_access_token,
     /**
      * Recover Password
      * Password Recovery
-     * @returns Msg Successful Response
+     * @returns Message Successful Response
      * @throws ApiError
      */
     public static recoverPassword({
 email,
 }: {
 email: string,
-}): CancelablePromise<Msg> {
+}): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/password-recovery/{email}',
@@ -75,14 +75,14 @@ email: string,
     /**
      * Reset Password
      * Reset password
-     * @returns Msg Successful Response
+     * @returns Message Successful Response
      * @throws ApiError
      */
     public static resetPassword({
 requestBody,
 }: {
-requestBody: Body_login_reset_password,
-}): CancelablePromise<Msg> {
+requestBody: NewPassword,
+}): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/reset-password/',
