@@ -18,18 +18,24 @@ from app.utils import send_new_account_email
 router = APIRouter()
 
 
-@router.get("/", dependencies=[Depends(get_current_active_superuser)])
-def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> List[UserOut]:
+@router.get(
+    "/",
+    dependencies=[Depends(get_current_active_superuser)],
+    response_model=List[UserOut],
+)
+def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     """
     Retrieve users.
     """
     statement = select(User).offset(skip).limit(limit)
     users = session.exec(statement).all()
-    return users  # type: ignore
+    return users
 
 
-@router.post("/", dependencies=[Depends(get_current_active_superuser)])
-def create_user(*, session: SessionDep, user_in: UserCreate) -> UserOut:
+@router.post(
+    "/", dependencies=[Depends(get_current_active_superuser)], response_model=UserOut
+)
+def create_user(*, session: SessionDep, user_in: UserCreate) -> Any:
     """
     Create new user.
     """
@@ -45,7 +51,7 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> UserOut:
         send_new_account_email(
             email_to=user_in.email, username=user_in.email, password=user_in.password
         )
-    return user  # type: ignore
+    return user
 
 
 # TODO: Refactor when SQLModel has update
@@ -73,16 +79,16 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> UserOut:
 #     return user
 
 
-@router.get("/me")
-def read_user_me(session: SessionDep, current_user: CurrentUser) -> UserOut:
+@router.get("/me", response_model=UserOut)
+def read_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
     """
     Get current user.
     """
-    return current_user  # type: ignore
+    return current_user
 
 
-@router.post("/open")
-def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> UserOut:
+@router.post("/open", response_model=UserOut)
+def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> Any:
     """
     Create new user without the need to be logged in.
     """
@@ -99,26 +105,26 @@ def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> UserOut:
         )
     user_create = UserCreate.from_orm(user_in)
     user = crud.create_user(session=session, user_create=user_create)
-    return user  # type: ignore
+    return user
 
 
-@router.get("/{user_id}")
+@router.get("/{user_id}", response_model=UserOut)
 def read_user_by_id(
     user_id: int, session: SessionDep, current_user: CurrentUser
-) -> UserOut:
+) -> Any:
     """
     Get a specific user by id.
     """
     user = session.get(User, user_id)
     if user == current_user:
-        return user  # type: ignore
+        return user
     if not current_user.is_superuser:
         raise HTTPException(
             # TODO: Review status code
             status_code=400,
             detail="The user doesn't have enough privileges",
         )
-    return user  # type: ignore
+    return user
 
 
 # TODO: Refactor when SQLModel has update

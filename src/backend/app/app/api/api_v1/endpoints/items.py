@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
@@ -9,17 +9,17 @@ from app.models import Item, ItemCreate, ItemOut, ItemUpdate
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=list[ItemOut])
 def read_items(
     session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
-) -> list[ItemOut]:
+) -> Any:
     """
     Retrieve items.
     """
 
     if current_user.is_superuser:
         statement = select(Item).offset(skip).limit(limit)
-        return session.exec(statement).all()  # type: ignore
+        return session.exec(statement).all()
     else:
         statement = (
             select(Item)
@@ -27,11 +27,11 @@ def read_items(
             .offset(skip)
             .limit(limit)
         )
-        return session.exec(statement).all()  # type: ignore
+        return session.exec(statement).all()
 
 
-@router.get("/{id}")
-def read_item(session: SessionDep, current_user: CurrentUser, id: int) -> ItemOut:
+@router.get("/{id}", response_model=ItemOut)
+def read_item(session: SessionDep, current_user: CurrentUser, id: int) -> Any:
     """
     Get item by ID.
     """
@@ -40,13 +40,13 @@ def read_item(session: SessionDep, current_user: CurrentUser, id: int) -> ItemOu
         raise HTTPException(status_code=404, detail="Item not found")
     if not current_user.is_superuser and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    return item  # type: ignore
+    return item
 
 
-@router.post("/")
+@router.post("/", response_model=ItemOut)
 def create_item(
     *, session: SessionDep, current_user: CurrentUser, item_in: ItemCreate
-) -> ItemOut:
+) -> Any:
     """
     Create new item.
     """
@@ -54,13 +54,13 @@ def create_item(
     session.add(item)
     session.commit()
     session.refresh(item)
-    return item  # type: ignore
+    return item
 
 
-@router.put("/{id}")
+@router.put("/{id}", response_model=ItemOut)
 def update_item(
     *, session: SessionDep, current_user: CurrentUser, id: int, item_in: ItemUpdate
-) -> ItemOut:
+) -> Any:
     """
     Update an item.
     """
@@ -75,11 +75,11 @@ def update_item(
     session.add(item)
     session.commit()
     session.refresh(item)
-    return item  # type: ignore
+    return item
 
 
-@router.delete("/{id}")
-def delete_item(session: SessionDep, current_user: CurrentUser, id: int) -> ItemOut:
+@router.delete("/{id}", response_model=ItemOut)
+def delete_item(session: SessionDep, current_user: CurrentUser, id: int) -> Any:
     """
     Delete an item.
     """
@@ -90,4 +90,4 @@ def delete_item(session: SessionDep, current_user: CurrentUser, id: int) -> Item
         raise HTTPException(status_code=400, detail="Not enough permissions")
     session.delete(item)
     session.commit()
-    return item  # type: ignore
+    return item 
