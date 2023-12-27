@@ -150,34 +150,7 @@ Damit es sie richtig sortiert, muss FastAPI lokal in Ihrer Umgebung installiert 
 
 Stellen Sie zunächst sicher, dass Sie Ihre Umgebung wie oben beschrieben einrichten, was alles Benötigte installiert.
 
-Die Dokumentation verwendet <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
-
-Und es gibt zusätzliche Tools/Skripte für Übersetzungen, in `./scripts/docs.py`.
-
-!!! tip "Tipp"
-    Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
-
-Die gesamte Dokumentation befindet sich im Markdown-Format im Verzeichnis `./docs/en/`.
-
-Viele der Tutorials enthalten Codeblöcke.
-
-In den meisten Fällen handelt es sich bei diesen Codeblöcken um vollständige Anwendungen, die unverändert ausgeführt werden können.
-
-Tatsächlich sind diese Codeblöcke nicht Teil des Markdowns, sondern Python-Dateien im Verzeichnis `./docs_src/`.
-
-Und diese Python-Dateien werden beim Generieren der Site in die Dokumentation eingefügt.
-
-### Dokumentation für Tests
-
-Tatsächlich arbeiten die meisten Tests mit den Beispielquelldateien in der Dokumentation.
-
-Dadurch wird sichergestellt, dass:
-
-* Die Dokumentation aktuell ist.
-* Die Dokumentationsbeispiele ohne Änderung ausgeführt werden können.
-* Die meisten Funktionalitäten durch die Dokumentation abgedeckt werden, sichergestellt durch die Testabdeckung.
-
-#### Live-Vorschau
+### Dokumentation live
 
 Während der lokalen Entwicklung gibt es ein Skript, das die Site erstellt, auf Änderungen prüft und direkt neu lädt (Live Reload):
 
@@ -212,22 +185,6 @@ Auf diese Weise können Sie die Dokumentation/Quelldateien bearbeiten und die Ä
     $ mkdocs serve --dev-addr 8008
     ```
 
-#### Gleichzeitig Apps und Dokumentation
-
-Wenn Sie die Beispiele ausführen, mit z. B.:
-
-<div class="termy">
-
-```console
-$ uvicorn tutorial001:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-wird das, da Uvicorn standardmäßig den Port `8000` verwendet, mit der Dokumentation auf dem Port `8008` nicht in Konflikt geraten.
-
 #### Typer-CLI (optional)
 
 Die Anleitung hier zeigt Ihnen, wie Sie das Skript unter `./scripts/docs.py` direkt mit dem `python` Programm verwenden.
@@ -246,6 +203,51 @@ Completion will take effect once you restart the terminal.
 ```
 
 </div>
+
+### Dokumentationsstruktur
+
+Die Dokumentation verwendet <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+
+Und es gibt zusätzliche Tools/Skripte für Übersetzungen, in `./scripts/docs.py`.
+
+!!! tip "Tipp"
+    Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
+
+Die gesamte Dokumentation befindet sich im Markdown-Format im Verzeichnis `./docs/en/`.
+
+Viele der Tutorials enthalten Codeblöcke.
+
+In den meisten Fällen handelt es sich bei diesen Codeblöcken um vollständige Anwendungen, die unverändert ausgeführt werden können.
+
+Tatsächlich sind diese Codeblöcke nicht Teil des Markdowns, sondern Python-Dateien im Verzeichnis `./docs_src/`.
+
+Und diese Python-Dateien werden beim Generieren der Site in die Dokumentation eingefügt.
+
+### Dokumentation für Tests
+
+Tatsächlich arbeiten die meisten Tests mit den Beispielquelldateien in der Dokumentation.
+
+Dadurch wird sichergestellt, dass:
+
+* Die Dokumentation aktuell ist.
+* Die Dokumentationsbeispiele ohne Änderung ausgeführt werden können.
+* Die meisten Funktionalitäten durch die Dokumentation abgedeckt werden, sichergestellt durch die Testabdeckung.
+
+#### Gleichzeitig Apps und Dokumentation
+
+Wenn Sie die Beispiele ausführen, mit z. B.:
+
+<div class="termy">
+
+```console
+$ uvicorn tutorial001:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+wird das, da Uvicorn standardmäßig den Port `8000` verwendet, mit der Dokumentation auf dem Port `8008` nicht in Konflikt geraten.
 
 ### Übersetzungen
 
