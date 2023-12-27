@@ -42,7 +42,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version:
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
       fail-fast: false
     steps:
