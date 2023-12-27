@@ -229,9 +229,17 @@ Aber für den generierten Client könnten wir die OpenAPI-Operation-IDs direkt v
 
 Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dann mit einem Skript wie dem folgenden **den vorangestellten Tag entfernen**:
 
-```Python
-{!../../../docs_src/generate_clients/tutorial004.py!}
-```
+=== "Python"
+
+    ```Python
+    {!> ../../../docs_src/generate_clients/tutorial004.py!}
+    ```
+
+=== "Node.js"
+
+    ```Javascript
+    {!> ../../../docs_src/generate_clients/tutorial004.js!}
+    ```
 
 Damit würden die Operation-IDs von Dingen wie `items-get_items` in `get_items` umbenannt, sodass der Client-Generator einfachere Methodennamen generieren kann.
 
