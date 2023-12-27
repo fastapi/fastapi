@@ -25,14 +25,16 @@ $ pip install jinja2
 * Importieren Sie `Jinja2Templates`.
 * Erstellen Sie ein `templates`-Objekt, das Sie später wiederverwenden können.
 * Deklarieren Sie einen `Request`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
-* Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, und übergeben Sie den `request` als eines der Schlüssel-Wert-Paare im Jinja2-„Kontext“.
+* Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-Dictionary mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-```Python hl_lines="4  11  15-16"
+```Python hl_lines="4  11  15-18"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
 !!! note "Hinweis"
-    Beachten Sie, dass Sie den `request` als Teil der Schlüssel-Wert-Paare im Kontext für Jinja2 übergeben müssen. Sie müssen ihn also auch in Ihrer *Pfadoperation* deklarieren.
+    Vor FastAPI 0.108.0 und Starlette 0.29.0 war `name` der erste Parameter.
+
+    Außerdem wurde in früheren Versionen das `request`-Objekt als Teil der Schlüssel-Wert-Paare im Kontext für Jinja2 übergeben.
 
 !!! tip "Tipp"
     Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationsoberfläche erkennen, dass die Response HTML sein wird.
@@ -58,7 +60,7 @@ Es wird die `id` anzeigen, die aus dem „Kontext“-`dict` stammt, welches Sie 
 
 ## Templates und statische Dateien
 
-Und Sie können `url_for()` auch innerhalb des Templates verwenden, beispielsweise mit den von Ihnen gemounteten `StaticFiles`.
+Sie können `url_for()` auch innerhalb des Templates verwenden, beispielsweise mit den von Ihnen gemounteten `StaticFiles`.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
