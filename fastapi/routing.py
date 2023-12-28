@@ -840,7 +840,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
-        add_auto_options_route: bool = False,
+        add_auto_options_route: Optional[bool] = False,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -907,7 +907,7 @@ class APIRouter(routing.Router):
 
         if "OPTIONS" not in new_route.methods:
 
-            async def options_route():
+            async def options_route() -> Response:
                 return Response(headers={"Allow": ", ".join(allowed_methods)})
 
             self.routes.append(
@@ -949,7 +949,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
-        add_auto_options_route: bool = False,
+        add_auto_options_route: Optional[bool] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
