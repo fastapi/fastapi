@@ -158,7 +158,7 @@ $ pip install "fastapi[all]"
 
 Importieren Sie `BaseSettings` aus Pydantic und erstellen Sie eine Unterklasse, ganz ähnlich wie bei einem Pydantic-Modell.
 
-Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute mit Typ-Annotationen und möglicherweise Defaultwerten.
+Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute mit Typannotationen und möglicherweise Defaultwerten.
 
 Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
