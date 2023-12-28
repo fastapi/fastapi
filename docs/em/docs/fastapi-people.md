@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI 👫👫
 
 FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
@@ -18,7 +23,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 </div>
 {% endif %}
 
-👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮️ 📕](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮️ 📕](help-fastapi.md#_3){.internal-link target=_blank}.
 
 ...✋️ 📥 👤 💚 🎦 👆 👪.
 
@@ -28,15 +33,15 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 👫 👫👫 👈:
 
-* [ℹ 🎏 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
-* [✍ 🚲 📨](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* 📄 🚲 📨, [✴️ ⚠ ✍](contributing.md#translations){.internal-link target=_blank}.
+* [ℹ 🎏 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank}.
+* [✍ 🚲 📨](help-fastapi.md#_15){.internal-link target=_blank}.
+* 📄 🚲 📨, [✴️ ⚠ ✍](contributing.md#_9){.internal-link target=_blank}.
 
 👏 👫. 👶 👶
 
 ## 🌅 🦁 👩‍💻 🏁 🗓️
 
-👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} ⏮️ 🏁 🗓️. 👶
+👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank} ⏮️ 🏁 🗓️. 👶
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -52,7 +57,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 📥 **FastAPI 🕴**. 👶
 
-👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} 🔘 *🌐 🕰*.
+👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank} 🔘 *🌐 🕰*.
 
 👫 ✔️ 🎦 🕴 🤝 📚 🎏. 👶
 
@@ -70,7 +75,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 📥 **🔝 👨‍🔬**. 👶
 
-👉 👩‍💻 ✔️ [✍ 🏆 🚲 📨](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} 👈 ✔️ *🔗*.
+👉 👩‍💻 ✔️ [✍ 🏆 🚲 📨](help-fastapi.md#_15){.internal-link target=_blank} 👈 ✔️ *🔗*.
 
 👫 ✔️ 📉 ℹ 📟, 🧾, ✍, ♒️. 👶
 
@@ -92,7 +97,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 ### 📄 ✍
 
-👤 🕴 💬 👩‍❤‍👨 🇪🇸 (&amp; 🚫 📶 👍 👶). , 👨‍🔬 🕐 👈 ✔️ [**🏋️ ✔ ✍**](contributing.md#translations){.internal-link target=_blank} 🧾. 🍵 👫, 📤 🚫🔜 🧾 📚 🎏 🇪🇸.
+👤 🕴 💬 👩‍❤‍👨 🇪🇸 (&amp; 🚫 📶 👍 👶). , 👨‍🔬 🕐 👈 ✔️ [**🏋️ ✔ ✍**](contributing.md#_9){.internal-link target=_blank} 🧾. 🍵 👫, 📤 🚫🔜 🧾 📚 🎏 🇪🇸.
 
 ---
 

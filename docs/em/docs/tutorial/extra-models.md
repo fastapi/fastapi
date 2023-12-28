@@ -11,7 +11,7 @@
 !!! danger
     🙅 🏪 👩‍💻 🔢 🔐. 🕧 🏪 "🔐 #️⃣" 👈 👆 💪 ⤴️ ✔.
 
-    🚥 👆 🚫 💭, 👆 🔜 💡 ⚫️❔ "🔐#️⃣" [💂‍♂ 📃](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+    🚥 👆 🚫 💭, 👆 🔜 💡 ⚫️❔ "🔐#️⃣" [💂‍♂ 📃](security/simple-oauth2.md#_4){.internal-link target=_blank}.
 
 ## 💗 🏷
 

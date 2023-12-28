@@ -210,4 +210,4 @@
 
 ## 🍵 Pydantic
 
-🚥 👆 🚫 💚 ⚙️ Pydantic 🏷, 👆 💪 ⚙️ **💪** 🔢. 👀 🩺 [💪 - 💗 🔢: ⭐ 💲 💪](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+🚥 👆 🚫 💚 ⚙️ Pydantic 🏷, 👆 💪 ⚙️ **💪** 🔢. 👀 🩺 [💪 - 💗 🔢: ⭐ 💲 💪](body-multiple-params.md#_2){.internal-link target=_blank}.
