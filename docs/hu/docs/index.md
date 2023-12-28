@@ -394,7 +394,7 @@ Visszatérve az előző kód példához. A **FastAPI**:
 
 ---
 
-We just scratched the surface, but you already get the idea of how it all works.
+Eddig csak a felszínt kapargattuk, de a lényeg hogy most már könnyebben érthető hogyan működik.
 
 Próbáld kicserélni a következő sorban:
 
