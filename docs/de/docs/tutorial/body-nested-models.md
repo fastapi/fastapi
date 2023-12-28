@@ -26,7 +26,7 @@ Aber Python erlaubt es, Listen mit inneren Typen, auch „Typ-Parameter“ genan
 
 ### `List` von `typing` importieren
 
-In Python 3.9 oder darüber können Sie einfach `list` verwenden, um diese Typ-Annotationen zu deklarieren, wie wir unten sehen werden. 💡
+In Python 3.9 oder darüber können Sie einfach `list` verwenden, um diese Typannotationen zu deklarieren, wie wir unten sehen werden. 💡
 
 In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Pythons Standardmodul `typing` importieren.
 
@@ -55,7 +55,7 @@ from typing import List
 my_list: List[str]
 ```
 
-Das ist alles Standard-Python-Syntax für Typ-Deklarationen.
+Das ist alles Standard-Python-Syntax für Typdeklarationen.
 
 Verwenden Sie dieselbe Standardsyntax für Modellattribute mit inneren Typen.
 
@@ -117,7 +117,7 @@ Jedes Attribut eines Pydantic-Modells hat einen Typ.
 
 Aber dieser Typ kann selbst ein anderes Pydantic-Modell sein.
 
-Sie können also tief verschachtelte JSON-„Objekte“ deklarieren, mit spezifischen Attribut-Namen, -Typen, und -Validierungen.
+Sie können also tief verschachtelte JSON-„Objekte“ deklarieren, mit spezifischen Attributnamen, -typen, und -validierungen.
 
 Alles das beliebig tief verschachtelt.
 
@@ -184,15 +184,15 @@ Das würde bedeuten, dass **FastAPI** einen Body erwartet wie:
 Wiederum, nur mit dieser Deklaration erhalten Sie von **FastAPI**:
 
 * Editor-Unterstützung (Codevervollständigung, usw.), selbst für verschachtelte Modelle
-* Daten-Konvertierung
-* Daten-Validierung
+* Datenkonvertierung
+* Datenvalidierung
 * Automatische Dokumentation
 
 ## Spezielle Typen und Validierungen
 
 Abgesehen von normalen einfachen Typen, wie `str`, `int`, `float`, usw. können Sie komplexere einfache Typen verwenden, die von `str` erben.
 
-Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantics Typ-Übersicht</a> an. Sie werden im nächsten Kapitel ein paar Beispiele kennenlernen.
+Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantics Typübersicht</a> an. Sie werden im nächsten Kapitel ein paar Beispiele kennenlernen.
 
 Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Instanz von Pydantics `HttpUrl` sein soll, anstelle eines `str`:
 
@@ -363,7 +363,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
 !!! tip "Tipp"
     Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
 
-    Aber Pydantic hat automatische Daten-Konvertierung.
+    Aber Pydantic hat automatische Datenkonvertierung.
 
     Das bedeutet, dass Ihre API-Clients nur Strings senden können, aber solange diese Strings nur Zahlen enthalten, wird Pydantic sie konvertieren und validieren.
 
@@ -376,7 +376,7 @@ Mit **FastAPI** haben Sie die maximale Flexibilität von Pydantic-Modellen, wäh
 Aber mit all den Vorzügen:
 
 * Editor-Unterstützung (Codevervollständigung überall)
-* Daten-Konvertierung (auch bekannt als Parsen, Serialisierung)
-* Daten-Validierung
+* Datenkonvertierung (auch bekannt als Parsen, Serialisierung)
+* Datenvalidierung
 * Schema-Dokumentation
 * Automatische Dokumentation
