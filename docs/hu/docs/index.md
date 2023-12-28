@@ -111,7 +111,7 @@ Kulcs funkciók:
 
 Ha egy olyan CLI alkalmazást fejlesztesz amit a parancssorban kell használni webes API helyett, tekintsd meg: <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** a FastAPI kistestvére. A **CLI-k FastAPI-ja**. ⌨️ 🚀
+**Typer** a FastAPI kistestvére. A **CLI-k FastAPI-ja**. ⌨️ 🚀
 
 ## Követelmények
 
@@ -257,7 +257,7 @@ Az automatikus interaktív API dokumentációt fogod látni (amit a <a href="htt
 
 És most menj el a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> címre.
 
-Az alternatív automatikus dokumentációt fogod látni. (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Az alternatív automatikus dokumentációt fogod látni. (lásd <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -325,7 +325,7 @@ Most menj el a <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ### Összefoglalás
 
-Összegzésül, you declare **egyszer** a paraméterek, body, stb típusát funkciós paraméterekként.
+Összegzésül, deklarálod **egyszer** a paraméterek, body, stb típusát funkciós paraméterekként.
 
 Ezt standard modern Python típusokkal csinálod.
 
@@ -376,7 +376,7 @@ item: Item
 Visszatérve az előző kód példához. A **FastAPI**:
 
 * Validálja hogy van egy `item_id` mező a `GET` és `PUT` kérésekben.
-* Vali Dálya hogy az `item_id` `int` típusú a `GET` és `PUT` kérésekben.
+* Validálja hogy az `item_id` `int` típusú a `GET` és `PUT` kérésekben.
     * Ha nem akkor látni fogunk egy tiszta hibát ezzel kapcsolatban.
 * ellenőrzi hogyha van egy opcionális query paraméter `q` névvel (azaz `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` kérések esetén.
     * Mivel a `q` paraméter `= None`-al van deklarálva, ezért opcionális.
@@ -402,13 +402,13 @@ Próbáld kicserélni a következő sorban:
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...ezt:
+...ezt:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...err:
+...erre:
 
 ```Python
         ... "item_price": item.price ...
