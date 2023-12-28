@@ -21,7 +21,7 @@ Und wenn Sie eine `Response` zurückgeben, wird **FastAPI** diese direkt weiterl
 
 Es wird keine Datenkonvertierung mit Pydantic-Modellen durchführen, es wird den Inhalt nicht in irgendeinen Typ konvertieren, usw.
 
-Dadurch haben Sie viel Flexibilität. Sie können jeden Datentyp zurückgeben, jede Datendeklaration oder -Validierung überschreiben, usw.
+Dadurch haben Sie viel Flexibilität. Sie können jeden Datentyp zurückgeben, jede Datendeklaration oder -validierung überschreiben, usw.
 
 ## Verwendung des `jsonable_encoder` in einer `Response`
 
