@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -321,7 +330,7 @@ def update_item(item_id: int, item: Item):
 
 Таким образом, вы объявляете **один раз** типы параметров, тело и т. д. в качестве параметров функции.
 
-Вы делаете это испльзуя стандартную современную типизацию Python.
+Вы делаете это используя стандартную современную типизацию Python.
 
 Вам не нужно изучать новый синтаксис, методы или классы конкретной библиотеки и т. д.
 
