@@ -43,7 +43,7 @@ Auf diese Weise wird deren Schema in der Benutzeroberfläche der API-Dokumentati
 
 ## Datenklassen in verschachtelten Datenstrukturen
 
-Sie können `dataclasses` auch mit anderen Typannotationen kombinieren, um verschachtelte Datenstrukturen zu erstellen.
+Sie können `dataclasses` auch mit anderen Typ-Annotationen kombinieren, um verschachtelte Datenstrukturen zu erstellen.
 
 In einigen Fällen müssen Sie möglicherweise immer noch Pydantics Version von `dataclasses` verwenden. Zum Beispiel, wenn Sie Fehler in der automatisch generierten API-Dokumentation haben.
 
@@ -61,7 +61,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
 4. Die Datenklasse `Author` wird im `response_model`-Parameter verwendet.
 
-5. Sie können andere Standard-Typannotationen mit Datenklassen als Requestbody verwenden.
+5. Sie können andere Standard-Typ-Annotationen mit Datenklassen als Requestbody verwenden.
 
     In diesem Fall handelt es sich um eine Liste von `Item`-Datenklassen.
 
@@ -69,9 +69,9 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
     FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <abbr title="Konvertieren der Daten in ein übertragbares Format">serialisieren</abbr>.
 
-7. Hier verwendet das `response_model` als Typannotation eine Liste von `Author`-Datenklassen.
+7. Hier verwendet das `response_model` als Typ-Annotation eine Liste von `Author`-Datenklassen.
 
-    Auch hier können Sie `dataclasses` mit Standard-Typannotationen kombinieren.
+    Auch hier können Sie `dataclasses` mit Standard-Typ-Annotationen kombinieren.
 
 8. Beachten Sie, dass diese *Pfadoperation-Funktion* reguläres `def` anstelle von `async def` verwendet.
 
@@ -83,7 +83,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
     FastAPI verwendet den Parameter `response_model` (der Datenklassen enthält), um die Response zu konvertieren.
 
-Sie können `dataclasses` mit anderen Typannotationen auf vielfältige Weise kombinieren, um komplexe Datenstrukturen zu bilden.
+Sie können `dataclasses` mit anderen Typ-Annotationen auf vielfältige Weise kombinieren, um komplexe Datenstrukturen zu bilden.
 
 Weitere Einzelheiten finden Sie in den Bemerkungen im Quellcode oben.
 
