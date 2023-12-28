@@ -35,7 +35,7 @@ Kulcs funkciók:
 * **Gyorsan kódolható**: A funkciók fejlesztési sebességét 200-300 százalékkal megnöveli. *
 * **Kevesebb hiba**: Körülbelül 40%-al csökkenti az emberi (fejlesztői) hibák számát. *
 * **Intuitív**: Kiváló szerkesztő támogatás. <abbr title="más néven auto-complete, autocompletion, IntelliSense">Kiegészítés</abbr> mindenhol. Kevesebb hibakereséssel töltött idő.
-* **Wgyszerű**: Egyszerű tanulásra és használatra tervezve. Kevesebb dokumentáció olvasással töltött idő.
+* **Egyszerű**: Egyszerű tanulásra és használatra tervezve. Kevesebb dokumentáció olvasással töltött idő.
 * **Rövid**: Kód duplikáció minimalizálása. Több funkció minden paraméter deklarálásával. Kevesebb hiba.
 * **Robosztus**: Production ready kód. Automatikus interaktív dokumentáció val.
 * **Szabvány alapú**: Az API-ok nyílt szabványaira alapuló (és azokkal teljesen kompatibilis): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (korábban Swagger néven ismert) and <a href="https://json-schema.org/" class="external-link" target="_blank"> és a JSON Schema</a>.
