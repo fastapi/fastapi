@@ -437,7 +437,7 @@ Teljesebb példákért és funkciókért tekintsd meg a <a href="https://fastapi
 
 ## Teljesítmény
 
-Független TechEmpower benchmarkok azt mutatják, hogy alkalmazások amik **FastAPI**-t használnak és Uvicorn alatt futnak <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> hogy a **FastAPI** az egyik leggyorsabb az elérhető keretrendszerek közül</a>, csak a Starlette és Uvicorn mögött (amiket a FastAPI is használ). (*)
+A független TechEmpower benchmarkok szerint az Uvicorn alatt futó **FastAPI** alkalmazások az <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">egyik leggyorsabb Python keretrendszerek közé tartoznak</a>, éppen lemaradva a Starlette és az Uvicorn (melyeket a FastAPI belsőleg használ) mögött.(*)
 
 Ezeknek a további megértéséhez: <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
