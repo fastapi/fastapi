@@ -91,7 +91,7 @@ Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche
 
 ## Resultate
 
-Mit nur dieser Python-Typ-Deklaration, wird **FastAPI**:
+Mit nur dieser Python-Typdeklaration, wird **FastAPI**:
 
 * Den Requestbody als JSON lesen.
 * Die entsprechenden Typen konvertieren (falls nötig).
@@ -114,11 +114,11 @@ Und werden auch verwendet in der API-Dokumentation innerhalb jeder *Pfadoperatio
 
 ## Editor Unterstützung
 
-In ihrem Editor, innerhalb Ihrer Funktion, erhalten Sie Typ-Hinweise und Code-Vervollständigung überall (was nicht der Fall wäre, wenn Sie ein `dict` anstelle eines Pydantic Modells erhalten hätten):
+In ihrem Editor, innerhalb Ihrer Funktion, erhalten Sie Typhinweise und Code-Vervollständigung überall (was nicht der Fall wäre, wenn Sie ein `dict` anstelle eines Pydantic Modells erhalten hätten):
 
 <img src="/img/tutorial/body/image03.png">
 
-Sie bekommen auch Fehler-Meldungen für inkorrekte Typ-Operationen:
+Sie bekommen auch Fehler-Meldungen für inkorrekte Typoperationen:
 
 <img src="/img/tutorial/body/image04.png">
 
@@ -140,7 +140,7 @@ Aber Sie bekommen die gleiche Editor-Unterstützung in <a href="https://www.jetb
     Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
 
     * Code-Vervollständigung
-    * Typ-Überprüfungen
+    * Typüberprüfungen
     * Refaktorisierung
     * Suchen
     * Inspektionen
