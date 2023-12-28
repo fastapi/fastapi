@@ -16,7 +16,7 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 
 ## Pfad-Parameter mit Typen
 
-Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typ-Annotationen:
+Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typannotationen:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -38,9 +38,9 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 !!! check
     Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
 
-    Sprich, mit dieser Typ-Deklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+    Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
 
-## Daten-Validierung
+## Datenvalidierung
 
 Wenn Sie aber im Browser <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> besuchen, erhalten Sie eine hübsche HTTP-Fehlermeldung:
 
@@ -66,7 +66,7 @@ Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
-    Sprich, mit der gleichen Python-Typ-Deklaration gibt Ihnen **FastAPI** Daten-Validierung.
+    Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
 
     Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
 
@@ -79,7 +79,7 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Wiederum, mit dieser gleichen Python-Typ-Deklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+    Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 
     Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
@@ -95,7 +95,7 @@ Und viele weitere kompatible Tools. Inklusive Codegenerierung für viele Sprache
 
 ## Pydantic
 
-Die ganze Daten-Validierung wird hinter den Kulissen von <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> durchgeführt, Sie profitieren also von dessen Vorteilen. Und Sie wissen, dass Sie in guten Händen sind.
+Die ganze Datenvalidierung wird hinter den Kulissen von <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> durchgeführt, Sie profitieren also von dessen Vorteilen. Und Sie wissen, dass Sie in guten Händen sind.
 
 Sie können für Typ Deklarationen auch `str`, `float`, `bool` und viele andere komplexe Datentypen verwenden.
 
@@ -242,11 +242,11 @@ Sie verwenden das also wie folgt:
 
 ## Zusammenfassung
 
-In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typ-Deklarationen:
+In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typdeklarationen:
 
 * Editor-Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
 * Daten "<abbr title="Den String, der von einer HTTP Anfrage kommt, nach Python-Daten konvertieren">parsen</abbr>"
-* Daten-Validierung
+* Datenvalidierung
 * API-Annotationen und automatische Dokumentation
 
 Und Sie müssen sie nur einmal deklarieren.
