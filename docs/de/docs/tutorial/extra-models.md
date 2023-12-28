@@ -152,9 +152,9 @@ Unsere Modelle teilen alle eine Menge der Daten und verdoppeln Attribut-Namen un
 
 Das können wir besser machen.
 
-Wir deklarieren ein `UserBase`-Modell, das als Basis für unsere anderen Modelle dient. Dann können wir Unterklassen erstellen, die seine Attribute (Typ-Deklarationen, Validierungen, usw.) erben.
+Wir deklarieren ein `UserBase`-Modell, das als Basis für unsere anderen Modelle dient. Dann können wir Unterklassen erstellen, die seine Attribute (Typdeklarationen, Validierungen, usw.) erben.
 
-Die ganze Daten-Konvertierung, -Validierung, -Dokumentation, usw. wird immer noch wie gehabt funktionieren.
+Die ganze Datenkonvertierung, -validierung, -dokumentation, usw. wird immer noch wie gehabt funktionieren.
 
 Auf diese Weise beschreiben wir nur noch die Unterschiede zwischen den Modellen (mit Klartext-`password`, mit `hashed_password`, und ohne Passwort):
 
@@ -176,7 +176,7 @@ Sie können deklarieren, dass eine Response eine <abbr title="Union – Verbund,
 
 Das wird in OpenAPI mit `anyOf` angezeigt.
 
-Um das zu tun, verwenden Sie Pythons Standard-Typ-Hinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Um das zu tun, verwenden Sie Pythons Standard-Typhinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note "Hinweis"
     Listen Sie, wenn Sie eine <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, denjenigen Typ zuerst, der am spezifischsten ist, gefolgt von den weniger spezifischen Typen. Im Beispiel oben, in `Union[PlaneItem, CarItem]` also den spezifischeren `PlaneItem` vor dem weniger spezifischen `CarItem`.
@@ -197,15 +197,15 @@ Um das zu tun, verwenden Sie Pythons Standard-Typ-Hinweis <a href="https://docs.
 
 In diesem Beispiel übergeben wir dem Argument `response_model` den Wert `Union[PlaneItem, CarItem]`.
 
-Da wir es als **Wert einem Argument überreichen**, statt es als **Typ-Annotation** zu verwenden, müssen wir `Union` verwenden, selbst in Python 3.10.
+Da wir es als **Wert einem Argument überreichen**, statt es als **Typannotation** zu verwenden, müssen wir `Union` verwenden, selbst in Python 3.10.
 
-Wenn es eine Typ-Annotation gewesen wäre, hätten wir auch den vertikalen Trennstrich verwenden können, wie in:
+Wenn es eine Typannotation gewesen wäre, hätten wir auch den vertikalen Trennstrich verwenden können, wie in:
 
 ```Python
 some_variable: PlaneItem | CarItem
 ```
 
-Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, erhalten wir eine Fehlermeldung, da Python versucht, eine **ungültige Operation** zwischen `PlaneItem` und `CarItem` durchzuführen, statt es als Typ-Annotation zu interpretieren.
+Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, erhalten wir eine Fehlermeldung, da Python versucht, eine **ungültige Operation** zwischen `PlaneItem` und `CarItem` durchzuführen, statt es als Typannotation zu interpretieren.
 
 ## Listen von Modellen
 
