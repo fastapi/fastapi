@@ -84,7 +84,7 @@ $ pip install "passlib[bcrypt]"
 </div>
 
 !!! tip "Tipp"
-    Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plug-in, oder vielen anderen erstellt wurden.
+    Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plugin, oder vielen anderen erstellt wurden.
 
     So könnten Sie beispielsweise die gleichen Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
 
