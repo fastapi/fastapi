@@ -1,4 +1,4 @@
-# Query-Parameter und Validierung von Strings
+# Query-Parameter und Stringvalidierung
 
 **FastAPI** erlaubt es Ihnen, Ihre Parameter zusätzlich zu validieren, und zusätzliche Informationen hinzuzufügen.
 
@@ -61,11 +61,11 @@ Importieren Sie zuerst:
 
 ## `Annotated` im Typ des `q`-Parameters verwenden
 
-Erinnern Sie sich, wie ich in [Einführung in Python-Typen](../python-types.md#typ-hinweise-mit-metadaten-annotationen){.internal-link target=_blank} sagte, dass Sie mittels `Annotated` Metadaten zu Ihren Parametern hinzufügen können?
+Erinnern Sie sich, wie ich in [Einführung in Python-Typen](../python-types.md#typhinweise-mit-metadaten-annotationen){.internal-link target=_blank} sagte, dass Sie mittels `Annotated` Metadaten zu Ihren Parametern hinzufügen können?
 
 Jetzt ist es an der Zeit, das mit FastAPI auszuprobieren. 🚀
 
-Wir hatten diese Typ-Annotation:
+Wir hatten diese Typannotation:
 
 === "Python 3.10+"
 
@@ -500,7 +500,7 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
     ```
 
 !!! tip "Tipp"
-    Pydantic, welches die gesamte Daten-Validierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
+    Pydantic, welches die gesamte Datenvalidierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
 
 !!! tip "Tipp"
     Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
