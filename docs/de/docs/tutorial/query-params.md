@@ -27,7 +27,7 @@ Die gleichen Prozesse, die für Pfad-Parameter stattfinden, werden auch auf Quer
 
 * Editor Unterstützung (natürlich)
 * <abbr title="Konvertieren des Strings, der von einer HTTP-Anfrage kommt, in Python-Daten">„Parsen“</abbr> der Daten
-* Daten-Validierung
+* Datenvalidierung
 * Automatische Dokumentation
 
 ## Defaultwerte
@@ -80,7 +80,7 @@ In diesem Fall wird der Funktionsparameter `q` optional, und standardmäßig `No
 !!! check
     Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
 
-## Query-Parameter Typ-Konvertierung
+## Query-Parameter Typkonvertierung
 
 Sie können auch `bool`-Typen deklarieren und sie werden konvertiert:
 
