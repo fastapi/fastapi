@@ -119,7 +119,7 @@ Diese Handler kümmern sich darum, Default-JSON-Responses zurückzugeben, wenn S
 
 Sie können diese Exceptionhandler mit ihren eigenen überschreiben.
 
-### Request-Validierung-Exceptions überschreiben
+### Requestvalidierung-Exceptions überschreiben
 
 Wenn ein Request ungültige Daten enthält, löst **FastAPI** intern einen `RequestValidationError` aus.
 
