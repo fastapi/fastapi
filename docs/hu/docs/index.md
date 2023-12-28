@@ -414,7 +414,7 @@ Próbáld kicserélni a következő sorban:
         ... "item_price": item.price ...
 ```
 
-... És figyeld meg hogy a szerkesztőt automatikusan tudni fogja a típusokat és kiegészíti azokat:
+... És figyeld meg hogy a szerkesztő automatikusan tudni fogja a típusokat és kiegészíti azokat:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
