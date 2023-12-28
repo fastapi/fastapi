@@ -46,7 +46,7 @@ Importieren Sie zuerst `Header`:
 
 Dann deklarieren Sie Ihre Header-Parameter, auf die gleiche Weise, wie Sie auch `Path`-, `Query`-, und `Cookie`-Parameter deklarieren.
 
-Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra-Validierungs- und Beschreibungs-Parameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
+Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs- und Beschreibungsparameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
 
 === "Python 3.10+"
 
@@ -151,7 +151,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 Es ist möglich, doppelte Header zu empfangen. Also den gleichen Header mit unterschiedlichen Werten.
 
-Sie können solche Fälle deklarieren, indem Sie in der Typ-Deklaration eine Liste verwenden.
+Sie können solche Fälle deklarieren, indem Sie in der Typdeklaration eine Liste verwenden.
 
 Sie erhalten dann alle Werte von diesem doppelten Header als Python-`list`e.
 
