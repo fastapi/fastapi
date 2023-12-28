@@ -236,7 +236,7 @@ Das Gleiche trifft zu auf:
 
 ## Validierung von Zahlen: Floats, größer und kleiner
 
-Zahlen-Validierung funktioniert auch für <abbr title="Kommazahl">`float`</abbr>-Werte.
+Zahlenvalidierung funktioniert auch für <abbr title="Kommazahl">`float`</abbr>-Werte.
 
 Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than – größer als"><code>gt</code></abbr> zu deklarieren, und nicht nur <abbr title="greater than or equal – größer oder gleich"><code>ge</code></abbr>, da Sie hiermit bestimmen können, dass ein Wert, zum Beispiel, größer als `0` sein muss, obwohl er kleiner als `1` ist.
 
@@ -267,7 +267,7 @@ Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></a
 
 ## Zusammenfassung
 
-Mit `Query` und `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und String-Validierungen deklarieren, so wie in [Query-Parameter und String-Validierungen](query-params-str-validations.md){.internal-link target=_blank} beschrieben.
+Mit `Query` und `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie Metadaten und Stringvalidierungen deklarieren, so wie in [Query-Parameter und Stringvalidierungen](query-params-str-validations.md){.internal-link target=_blank} beschrieben.
 
 Und Sie können auch Validierungen für Zahlen deklarieren:
 
