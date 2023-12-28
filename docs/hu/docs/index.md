@@ -195,8 +195,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Megjegyzés**:
 
-Ha nem tudod, tekintsd meg a
-If you don't know, check the _"Sietsz?"_ szekciót <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` és `await`-ről dokumentációba</a>.
+Ha nem tudod, tekintsd meg a _"Sietsz?"_ szekciót <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` és `await`-ről dokumentációba</a>.
 
 </details>
 
