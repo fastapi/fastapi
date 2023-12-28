@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -24,11 +33,11 @@
 
 ---
 
-FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.8 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
 
 主な特徴:
 
-- **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげです)。 [最も高速な Python フレームワークの一つです](#performance).
+- **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげです)。 [最も高速な Python フレームワークの一つです](#_10).
 
 - **高速なコーディング**: 開発速度を約 200%~300%向上させます。 \*
 - **少ないバグ**: 開発者起因のヒューマンエラーを約 40％削減します。 \*
@@ -317,7 +326,7 @@ def update_item(item_id: int, item: Item):
 
 新しい構文や特定のライブラリのメソッドやクラスなどを覚える必要はありません。
 
-単なる標準的な**3.6 以降の Python**です。
+単なる標準的な**3.8 以降の Python**です。
 
 例えば、`int`の場合:
 
