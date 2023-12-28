@@ -420,7 +420,7 @@ Próbáld kicserélni a következő sorban:
 
 Teljesebb példákért és funkciókért tekintsd meg a <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a> -t.
 
-**Spoiler veszélz**: a tutorial - user guidehoz tartozik:
+**Spoiler veszély**: a Tutorial - User Guidehoz tartozik:
 
 * **Paraméterek** deklarációja különböző helyekről: **header-ök**, **cookie-k**, **form mezők** és **fájlok**.
 * Hogyan állíts be **validációs feltételeket** mint a `maximum_length` vagy a `regex`.
