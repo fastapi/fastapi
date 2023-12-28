@@ -267,7 +267,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
 **FastAPI** ruft die Klasse `CommonQueryParams` auf. Dadurch wird eine „Instanz“ dieser Klasse erstellt und die Instanz wird als Parameter `commons` an Ihre Funktion überreicht.
 
-## Typ-Annotation vs. `Depends`
+## Typannotation vs. `Depends`
 
 Beachten Sie, wie wir `CommonQueryParams` im obigen Code zweimal schreiben:
 
@@ -315,7 +315,7 @@ In diesem Fall hat das erste `CommonQueryParams` in:
     commons: CommonQueryParams ...
     ```
 
-... keine besondere Bedeutung für **FastAPI**. FastAPI verwendet es nicht für die Datenkonvertierung, -Validierung, usw. (da es dafür `Depends(CommonQueryParams)` verwendet).
+... keine besondere Bedeutung für **FastAPI**. FastAPI verwendet es nicht für die Datenkonvertierung, -validierung, usw. (da es dafür `Depends(CommonQueryParams)` verwendet).
 
 Sie könnten tatsächlich einfach schreiben:
 
