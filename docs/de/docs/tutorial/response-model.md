@@ -2,7 +2,7 @@
 
 Sie können den Typ der <abbr title="Response – Antwort: Daten, die zum anfragenden Client zurückgeschickt werden">Response</abbr> deklarieren, indem Sie den **Rückgabetyp** der *Pfadoperation* annotieren.
 
-Hierbei können Sie **Typ-Annotationen** genauso verwenden, wie Sie es bei Werten von Funktions-**Parametern** machen; verwenden Sie Pydantic-Modelle, Listen, Dicts und skalare Werte wie Nummern, Booleans, usw.
+Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten von Funktions-**Parametern** machen; verwenden Sie Pydantic-Modelle, Listen, Dicts und skalare Werte wie Nummern, Booleans, usw.
 
 === "Python 3.10+"
 
@@ -39,7 +39,7 @@ Aber am wichtigsten:
 
 Es gibt Fälle, da möchten oder müssen Sie Daten zurückgeben, die nicht genau dem entsprechen, was der Typ deklariert.
 
-Zum Beispiel könnten Sie **ein Dict zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Daten-Dokumentation, -Validierung, usw. für das Objekt, welches Sie zurückgeben (z. B. ein Dict oder ein Datenbank-Objekt).
+Zum Beispiel könnten Sie **ein Dict zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Datendokumentation, -validierung, usw. für das Objekt, welches Sie zurückgeben (z. B. ein Dict oder ein Datenbank-Objekt).
 
 Würden Sie eine hierfür eine Rückgabetyp-Annotation verwenden, dann würden Tools und Editoren (korrekterweise) Fehler ausgeben, die Ihnen sagen, dass Ihre Funktion einen Typ zurückgibt (z. B. ein Dict), der sich unterscheidet von dem, was Sie deklariert haben (z. B. ein Pydantic-Modell).
 
@@ -76,10 +76,10 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 
 `response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modellfeld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z. B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
 
-FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typ-Deklaration **zu konvertieren und filtern**.
+FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typdeklaration **zu konvertieren und filtern**.
 
 !!! tip "Tipp"
-    Wenn Sie in Ihrem Editor strikte Typ-Checks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
+    Wenn Sie in Ihrem Editor strikte Typchecks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
 
     So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
 
@@ -87,7 +87,7 @@ FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, vali
 
 Wenn sowohl Rückgabetyp als auch `response_model` deklariert sind, hat `response_model` die Priorität und wird von FastAPI bevorzugt verwendet.
 
-So können Sie korrekte Typ-Annotationen zu ihrer Funktion hinzufügen, die von ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
+So können Sie korrekte Typannotationen zu ihrer Funktion hinzufügen, die von ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
 
 Sie können auch `response_model=None` verwenden, um das Erstellen eines Responsemodells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
 
@@ -200,7 +200,7 @@ Im vorherigen Beispiel mussten wir den `response_model`-Parameter verwenden, wei
 
 Aber in den meisten Fällen, wenn wir so etwas machen, wollen wir nur, dass das Modell einige der Daten **filtert/entfernt**, so wie in diesem Beispiel.
 
-Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil aus den Typ-Annotationen in der Funktion zu ziehen, was vom Editor und von Tools besser unterstützt wird, während wir gleichzeitig FastAPIs **Datenfilterung** behalten.
+Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil aus den Typannotationen in der Funktion zu ziehen, was vom Editor und von Tools besser unterstützt wird, während wir gleichzeitig FastAPIs **Datenfilterung** behalten.
 
 === "Python 3.10+"
 
@@ -218,7 +218,7 @@ Damit erhalten wir Tool-Unterstützung, vom Editor und mypy, da dieser Code hins
 
 Wie funktioniert das? Schauen wir uns das mal an. 🤓
 
-### Typ-Annotationen und Tooling
+### Typannotationen und Tooling
 
 Sehen wir uns zunächst an, wie Editor, mypy und andere Tools dies sehen würden.
 
@@ -234,7 +234,7 @@ FastAPI seinerseits wird den Rückgabetyp sehen und sicherstellen, dass das, was
 
 FastAPI macht intern mehrere Dinge mit Pydantic, um sicherzustellen, dass obige Ähnlichkeitsregeln der Klassenvererbung nicht auf die Filterung der zurückgegebenen Daten angewendet werden, sonst könnten Sie am Ende mehr Daten zurückgeben als gewollt.
 
-Auf diese Weise erhalten Sie das beste beider Welten: Sowohl Typ-Annotationen mit **Tool-Unterstützung** als auch **Datenfilterung**.
+Auf diese Weise erhalten Sie das beste beider Welten: Sowohl Typannotationen mit **Tool-Unterstützung** als auch **Datenfilterung**.
 
 ## Anzeige in der Dokumentation
 
@@ -260,11 +260,11 @@ Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, 
 
 Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Unterklasse von) `Response` ist.
 
-Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Unterklassen von `Response` sind, die Typ-Annotation ist daher korrekt.
+Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Unterklassen von `Response` sind, die Typannotation ist daher korrekt.
 
 ### Eine Unterklasse von Response annotieren
 
-Sie können auch eine Unterklasse von `Response` in der Typ-Annotation verwenden.
+Sie können auch eine Unterklasse von `Response` in der Typannotation verwenden.
 
 ```Python hl_lines="8-9"
 {!> ../../../docs_src/response_model/tutorial003_03.py!}
@@ -274,7 +274,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 ### Ungültige Rückgabetyp-Annotationen
 
-Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z. B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typ-Annotation zu erstellen, und scheitern.
+Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z. B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typannotation zu erstellen, und scheitern.
 
 Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
@@ -290,13 +290,13 @@ Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen
     {!> ../../../docs_src/response_model/tutorial003_04.py!}
     ```
 
-... das scheitert, da die Typ-Annotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Unterklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
+... das scheitert, da die Typannotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Unterklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
 
 ### Responsemodell deaktivieren
 
-Beim Beispiel oben fortsetzend, mögen Sie vielleicht die standardmäßige Daten-Validierung, -Dokumentation, -Filterung, usw., die von FastAPI durchgeführt wird, nicht haben.
+Beim Beispiel oben fortsetzend, mögen Sie vielleicht die standardmäßige Datenvalidierung, -Dokumentation, -Filterung, usw., die von FastAPI durchgeführt wird, nicht haben.
 
-Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unterstützung von Editoren und Typ-Checkern (z. B. mypy) zu erhalten.
+Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unterstützung von Editoren und Typcheckern (z. B. mypy) zu erhalten.
 
 In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem Sie `response_model=None` setzen:
 
