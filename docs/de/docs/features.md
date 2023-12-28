@@ -157,7 +157,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 ### Getestet
 
 * 100 % <abbr title="Der Prozentsatz an Code, der automatisch getestet wird">Testabdeckung</abbr>.
-* 100 % <abbr title="Python-Typ-Annotationen, mit denen Ihr Editor und andere exteren Werkezuge Sie besser unterstützen können">Typen annotiert</abbr>.
+* 100 % <abbr title="Python-Typannotationen, mit denen Ihr Editor und andere exteren Werkezuge Sie besser unterstützen können">Typen annotiert</abbr>.
 * Verwendet in Produktionsanwendungen.
 
 ## Starlette's Merkmale
