@@ -46,7 +46,7 @@ Importieren Sie zuerst `Cookie`:
 
 Dann deklarieren Sie Ihre Cookie-Parameter, auf die gleiche Weise, wie Sie auch `Path`- und `Query`-Parameter deklarieren.
 
-Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra-Validierungs- und Beschreibungs-Parameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
+Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs- und Beschreibungsparameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
 
 === "Python 3.10+"
 
