@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Pessoas do FastAPI
 
 FastAPI possue uma comunidade incrível que recebe pessoas de todos os níveis.
@@ -18,7 +23,7 @@ Este sou eu:
 </div>
 {% endif %}
 
-Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#conect-se-com-o-autor){.internal-link target=_blank}.
 
 ...Mas aqui eu quero mostrar a você a comunidade.
 
@@ -28,15 +33,15 @@ Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em 
 
 Estas são as pessoas que:
 
-* [Help others with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Revisar Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
+* [Help others with issues (questions) in GitHub](help-fastapi.md#responda-perguntas-no-github){.internal-link target=_blank}.
+* [Create Pull Requests](help-fastapi.md#crie-um-pull-request){.internal-link target=_blank}.
+* Revisar Pull Requests, [especially important for translations](contributing.md#traducoes){.internal-link target=_blank}.
 
 Uma salva de palmas para eles. 👏 🙇
 
 ## Usuários mais ativos do ultimo mês
 
-Estes são os usuários que estão [helping others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} durante o ultimo mês. ☕
+Estes são os usuários que estão [helping others the most with issues (questions) in GitHub](help-fastapi.md#responda-perguntas-no-github){.internal-link target=_blank} durante o ultimo mês. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -53,7 +58,7 @@ Estes são os usuários que estão [helping others the most with issues (questio
 Aqui está os **Especialistas do FastAPI**. 🤓
 
 
-Estes são os usuários que [helped others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} em *todo o tempo*.
+Estes são os usuários que [helped others the most with issues (questions) in GitHub](help-fastapi.md#responda-perguntas-no-github){.internal-link target=_blank} em *todo o tempo*.
 
 Eles provaram ser especialistas ajudando muitos outros. ✨
 
@@ -71,7 +76,7 @@ Eles provaram ser especialistas ajudando muitos outros. ✨
 
 Aqui está os **Top Contribuidores**. 👷
 
-Esses usuários têm [created the most Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} que tem sido *mergeado*.
+Esses usuários têm [created the most Pull Requests](help-fastapi.md#crie-um-pull-request){.internal-link target=_blank} que tem sido *mergeado*.
 
 Eles contribuíram com o código-fonte, documentação, traduções, etc. 📦
 
@@ -93,7 +98,7 @@ Esses usuários são os **Top Revisores**. 🕵️
 
 ### Revisões para Traduções
 
-Eu só falo algumas línguas (e não muito bem 😅). Então, os revisores são aqueles que têm o [**poder de aprovar traduções**](contributing.md#translations){.internal-link target=_blank} da documentação. Sem eles, não haveria documentação em vários outros idiomas.
+Eu só falo algumas línguas (e não muito bem 😅). Então, os revisores são aqueles que têm o [**poder de aprovar traduções**](contributing.md#traducoes){.internal-link target=_blank} da documentação. Sem eles, não haveria documentação em vários outros idiomas.
 
 ---
 
