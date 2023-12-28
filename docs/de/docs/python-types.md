@@ -1,19 +1,19 @@
 # Einführung in Python-Typen
 
-Python hat Unterstützung für optionale „Typ-Hinweise“ (Englisch: „Type Hints“). Auch „Typ Annotationen“ genannt.
+Python hat Unterstützung für optionale „Typhinweise“ (Englisch: „Type Hints“). Auch „Typ Annotationen“ genannt.
 
-Diese **„Typ-Hinweise“** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="Zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
+Diese **„Typhinweise“** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="Zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
 
 Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Tools bessere Unterstützung bieten.
 
-Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typ-Hinweise. Sie deckt nur das Minimum ab, das nötig ist, um diese mit **FastAPI** zu verwenden ... was tatsächlich sehr wenig ist.
+Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typhinweise. Sie deckt nur das Minimum ab, das nötig ist, um diese mit **FastAPI** zu verwenden ... was tatsächlich sehr wenig ist.
 
-**FastAPI** basiert vollständig auf diesen Typ-Hinweisen, sie geben der Anwendung viele Vorteile und Möglichkeiten.
+**FastAPI** basiert vollständig auf diesen Typhinweisen, sie geben der Anwendung viele Vorteile und Möglichkeiten.
 
 Aber selbst wenn Sie **FastAPI** nie verwenden, wird es für Sie nützlich sein, ein wenig darüber zu lernen.
 
 !!! note "Hinweis"
-    Wenn Sie ein Python-Experte sind und bereits alles über Typ-Hinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
+    Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
 
 ## Motivation
 
@@ -77,7 +77,7 @@ zu:
 
 Das war's.
 
-Das sind die „Typ-Hinweise“:
+Das sind die „Typhinweise“:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
@@ -93,9 +93,9 @@ Das ist eine andere Sache.
 
 Wir verwenden Doppelpunkte (`:`), nicht Gleichheitszeichen (`=`).
 
-Und das Hinzufügen von Typ-Hinweisen ändert normalerweise nichts an dem, was ohne sie passieren würde.
+Und das Hinzufügen von Typhinweisen ändert normalerweise nichts an dem, was ohne sie passieren würde.
 
-Aber jetzt stellen Sie sich vor, Sie sind wieder mitten in der Erstellung dieser Funktion, aber mit Typ-Hinweisen.
+Aber jetzt stellen Sie sich vor, Sie sind wieder mitten in der Erstellung dieser Funktion, aber mit Typhinweisen.
 
 An derselben Stelle versuchen Sie, die Autovervollständigung mit „Strg+Leertaste“ auszulösen, und Sie sehen:
 
@@ -107,7 +107,7 @@ Hier können Sie durch die Optionen blättern, bis Sie diejenige finden, bei der
 
 ## Mehr Motivation
 
-Sehen Sie sich diese Funktion an, sie hat bereits Typ-Hinweise:
+Sehen Sie sich diese Funktion an, sie hat bereits Typhinweise:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
@@ -125,7 +125,7 @@ Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mi
 
 ## Deklarieren von Typen
 
-Sie haben gerade den Haupt-Einsatzort für die Deklaration von Typ-Hinweisen gesehen. Als Funktionsparameter.
+Sie haben gerade den Haupt-Einsatzort für die Deklaration von Typhinweisen gesehen. Als Funktionsparameter.
 
 Das ist auch meistens, wie sie in **FastAPI** verwendet werden.
 
@@ -150,13 +150,13 @@ Es gibt Datenstrukturen, die andere Werte enthalten können, wie etwa `dict`, `l
 
 Diese Typen mit inneren Typen werden „**generische**“ Typen genannt. Es ist möglich, sie mit ihren inneren Typen zu deklarieren.
 
-Um diese Typen und die inneren Typen zu deklarieren, können Sie Pythons Standardmodul `typing` verwenden. Es existiert speziell für die Unterstützung dieser Typ-Hinweise.
+Um diese Typen und die inneren Typen zu deklarieren, können Sie Pythons Standardmodul `typing` verwenden. Es existiert speziell für die Unterstützung dieser Typhinweise.
 
 #### Neuere Python-Versionen
 
 Die Syntax, welche `typing` verwendet, ist **kompatibel** mit allen Versionen, von Python 3.6 aufwärts zu den neuesten, inklusive Python 3.9, Python 3.10, usw.
 
-Mit der Weiterentwicklung von Python kommen **neuere Versionen** heraus, mit verbesserter Unterstützung für Typ-Annotationen, und in vielen Fällen müssen Sie gar nicht mehr das `typing`-Modul importieren, um Typ-Annotationen zu schreiben.
+Mit der Weiterentwicklung von Python kommen **neuere Versionen** heraus, mit verbesserter Unterstützung für Typannotationen, und in vielen Fällen müssen Sie gar nicht mehr das `typing`-Modul importieren, um Typannotationen zu schreiben.
 
 Wenn Sie eine neuere Python-Version für Ihr Projekt wählen können, werden Sie aus dieser zusätzlichen Vereinfachung Nutzen ziehen können.
 
@@ -474,9 +474,9 @@ Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutze
 !!! tip "Tipp"
     Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
 
-## Typ-Hinweise mit Metadaten-Annotationen
+## Typhinweise mit Metadaten-Annotationen
 
-Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typ-Hinweisen unterzubringen, mittels `Annotated`.
+Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typhinweisen unterzubringen, mittels `Annotated`.
 
 === "Python 3.9+"
 
@@ -511,13 +511,13 @@ Später werden Sie sehen, wie **mächtig** es sein kann.
 
     Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python-Tools und -Bibliotheken sein wird. 🚀
 
-## Typ-Hinweise in **FastAPI**
+## Typhinweise in **FastAPI**
 
-**FastAPI** macht sich diese Typ-Hinweise zunutze, um mehrere Dinge zu tun.
+**FastAPI** macht sich diese Typhinweise zunutze, um mehrere Dinge zu tun.
 
-Mit **FastAPI** deklarieren Sie Parameter mit Typ-Hinweisen, und Sie erhalten:
+Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 
-* **Editor-Unterstützung**.
+* **Editorunterstützung**.
 * **Typ-Prüfungen**.
 
 ... und **FastAPI** verwendet dieselben Deklarationen, um:
