@@ -418,7 +418,7 @@ Próbáld kicserélni a következő sorban:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Teljesebb példákért és funkciókért tekintsd meg a<a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+Teljesebb példákért és funkciókért tekintsd meg a <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a> -t.
 
 **Spoiler veszélz**: a tutorial - user guidehoz tartozik:
 
