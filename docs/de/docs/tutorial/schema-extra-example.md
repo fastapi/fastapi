@@ -4,7 +4,7 @@ Sie können Beispiele für die Daten deklarieren, die Ihre Anwendung empfangen k
 
 Hier sind mehrere Möglichkeiten, das zu tun.
 
-## Zusätzliche JSON-Schema-Daten in Pydantic-Modellen
+## Zusätzliche JSON-Schemadaten in Pydantic-Modellen
 
 Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, welche dem generierten JSON-Schema hinzugefügt werden.
 
