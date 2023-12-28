@@ -39,7 +39,7 @@ Here we are simulating the expensive *startup* operation of loading the model by
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
 
 !!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+    The *shutdown* would happen when you are **stopping** the application.
 
     Maybe you need to start a new version, or you just got tired of running it. 🤷
 
@@ -92,7 +92,7 @@ The `lifespan` parameter of the `FastAPI` app takes an **async context manager**
 ## Alternative Events (deprecated)
 
 !!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above.
+    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
 
     You can probably skip this part.
 
@@ -153,10 +153,10 @@ Just a technical detail for the curious nerds. 🤓
 Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
 
 !!! info
-    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan docs</a>.
 
     Including how to handle lifespan state that can be used in other areas of your code.
 
 ## Sub Applications
 
-🚨 Have in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.

@@ -47,7 +47,7 @@ Here we are using the recommended one: <a href="https://cryptography.io/" class=
 !!! tip
     This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
 
-    But it was updated to use Python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
+    But it was updated to use python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
 
 ## Password hashing
 
@@ -260,7 +260,7 @@ If the token is invalid, return an HTTP error right away.
 
 Create a `timedelta` with the expiration time of the token.
 
-Create a real JWT access token and return it
+Create a real JWT access token and return it.
 
 === "Python 3.10+"
 
@@ -285,7 +285,7 @@ Create a real JWT access token and return it
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="114-127"
+    ```Python hl_lines="114-129"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -294,7 +294,7 @@ Create a real JWT access token and return it
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="115-128"
+    ```Python hl_lines="115-130"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
@@ -318,7 +318,7 @@ In those cases, several of those entities could have the same ID, let's say `foo
 
 So, to avoid ID collisions, when creating the JWT token for the user, you could prefix the value of the `sub` key, e.g. with `username:`. So, in this example, the value of `sub` could have been: `username:johndoe`.
 
-The important thing to have in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
+The important thing to keep in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
 
 ## Check it
 

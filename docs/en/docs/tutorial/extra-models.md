@@ -29,6 +29,11 @@ Here's a general idea of how the models could look like with their password fiel
     {!> ../../../docs_src/extra_models/tutorial001.py!}
     ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 ### About `**user_in.dict()`
 
 #### Pydantic's `.dict()`
@@ -78,7 +83,7 @@ So, continuing with the `user_dict` from above, writing:
 UserInDB(**user_dict)
 ```
 
-Would result in something equivalent to:
+would result in something equivalent to:
 
 ```Python
 UserInDB(
@@ -140,7 +145,7 @@ UserInDB(
 ```
 
 !!! warning
-    The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
+    The supporting additional functions `fake_password_hasher` and `fake_save_user` are just to demo a possible flow of the data, but they of course are not providing any real security.
 
 ## Reduce duplication
 
@@ -172,7 +177,7 @@ That way, we can declare just the differences between the models (with plaintext
 
 ## `Union` or `anyOf`
 
-You can declare a response to be the `Union` of two types, that means, that the response would be any of the two.
+You can declare a response to be the `Union` of more than one type, that means, that the response would be any of them.
 
 It will be defined in OpenAPI with `anyOf`.
 
@@ -205,7 +210,7 @@ If it was in a type annotation we could have used the vertical bar, as:
 some_variable: PlaneItem | CarItem
 ```
 
-But if we put that in `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
 
 ## List of models
 

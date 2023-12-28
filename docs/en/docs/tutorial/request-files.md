@@ -71,7 +71,7 @@ The files will be uploaded as "form data".
 
 If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
 
-Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
+Keep in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
@@ -116,7 +116,7 @@ Using `UploadFile` has several advantages over `bytes`:
 
 * `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).
 * `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).
-* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
+* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file object that you can pass directly to other functions or libraries that expect a "file-like" object.
 
 `UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 

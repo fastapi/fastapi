@@ -237,7 +237,7 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 === "Node.js"
 
-    ```Python
+    ```Javascript
     {!> ../../../docs_src/generate_clients/tutorial004.js!}
     ```
 
@@ -271,7 +271,7 @@ After generating the new client, you would now have **clean method names**, with
 
 ## Benefits
 
-When using the automatically generated clients you would **autocompletion** for:
+When using the automatically generated clients you would get **autocompletion** for:
 
 * Methods.
 * Request payloads in the body, query parameters, etc.

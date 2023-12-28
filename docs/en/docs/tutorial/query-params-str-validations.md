@@ -123,7 +123,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old) `Query` as the default value
+## Alternative (old): `Query` as the default value
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -170,10 +170,10 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 !!! info
-    Have in mind that the most important part to make a parameter optional is the part:
+    Keep in mind that the most important part to make a parameter optional is the part:
 
     ```Python
     = None
@@ -199,7 +199,7 @@ This will validate the data, show a clear error when the data is not valid, and 
 
 ### `Query` as the default value or in `Annotated`
 
-Have in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
+Keep in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
 
 Instead use the actual default value of the function parameter. Otherwise, it would be inconsistent.
 
@@ -369,7 +369,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 !!! note
     Having a default value of any type, including `None`, makes the parameter optional (not required).
 
-## Make it required
+## Required params
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -457,7 +457,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 
 This will let **FastAPI** know that this parameter is required.
 
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -500,7 +500,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
     ```
 
 !!! tip
-    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a>.
 
 !!! tip
     Remember that in most of the cases, when something is required, you can simply omit the default, so you normally don't have to use `...`.
@@ -633,7 +633,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
@@ -659,7 +659,7 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
     ```
 
 !!! note
-    Have in mind that in this case, FastAPI won't check the contents of the list.
+    Keep in mind that in this case, FastAPI won't check the contents of the list.
 
     For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
 
@@ -670,7 +670,7 @@ You can add more information about the parameter.
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 
 !!! note
-    Have in mind that different tools might have different levels of OpenAPI support.
+    Keep in mind that different tools might have different levels of OpenAPI support.
 
     Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
 
@@ -852,7 +852,7 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameter from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
