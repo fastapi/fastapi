@@ -210,7 +210,7 @@ Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI
 
 In den Beispielen oben sehen Sie, dass es ein kleines bisschen **Codeverdoppelung** gibt.
 
-Wenn Sie die Abhängigkeit `common_parameters()` verwenden, müssen Sie den gesamten Parameter mit der Typ-Annotation und `Depends()` schreiben:
+Wenn Sie die Abhängigkeit `common_parameters()` verwenden, müssen Sie den gesamten Parameter mit der Typannotation und `Depends()` schreiben:
 
 ```Python
 commons: Annotated[dict, Depends(common_parameters)]
@@ -237,7 +237,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
     ```
 
 !!! tip "Tipp"
-    Das ist schlicht Standard-Python, es wird als „Typ-Alias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+    Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
     Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
 
@@ -260,7 +260,7 @@ Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
 ## Integriert in OpenAPI
 
-Alle Request-Deklarationen, -Validierungen und -Anforderungen Ihrer Abhängigkeiten (und Unterabhängigkeiten) werden in dasselbe OpenAPI-Schema integriert.
+Alle Requestdeklarationen, -validierungen und -anforderungen Ihrer Abhängigkeiten (und Unterabhängigkeiten) werden in dasselbe OpenAPI-Schema integriert.
 
 Die interaktive Dokumentation enthält also auch alle Informationen aus diesen Abhängigkeiten:
 
@@ -284,9 +284,9 @@ Andere gebräuchliche Begriffe für dieselbe Idee der „Abhängigkeitsinjektion
 * Injectables
 * Komponenten
 
-## **FastAPI**-Plug-ins
+## **FastAPI**-Plugins
 
-Integrationen und „Plug-ins“ können mit dem **Dependency Injection** System erstellt werden. Aber tatsächlich besteht **keine Notwendigkeit, „Plug-ins“ zu erstellen**, da es durch die Verwendung von Abhängigkeiten möglich ist, eine unendliche Anzahl von Integrationen und Interaktionen zu deklarieren, die dann für Ihre *Pfadoperation-Funktionen* verfügbar sind.
+Integrationen und „Plugins“ können mit dem **Dependency Injection** System erstellt werden. Aber tatsächlich besteht **keine Notwendigkeit, „Plugins“ zu erstellen**, da es durch die Verwendung von Abhängigkeiten möglich ist, eine unendliche Anzahl von Integrationen und Interaktionen zu deklarieren, die dann für Ihre *Pfadoperation-Funktionen* verfügbar sind.
 
 Und Abhängigkeiten können auf sehr einfache und intuitive Weise erstellt werden, sodass Sie einfach die benötigten Python-Packages importieren und sie in wenigen Codezeilen, *im wahrsten Sinne des Wortes*, mit Ihren API-Funktionen integrieren.
 
