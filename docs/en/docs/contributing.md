@@ -150,32 +150,7 @@ For it to sort them correctly, you need to have FastAPI installed locally in you
 
 First, make sure you set up your environment as described above, that will install all the requirements.
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
-
-And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
-
-!!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
-
-All the documentation is in Markdown format in the directory `./docs/en/`.
-
-Many of the tutorials have blocks of code.
-
-In most of the cases, these blocks of code are actual complete applications that can be run as is.
-
-In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
-
-And those Python files are included/injected in the documentation when generating the site.
-
-### Docs for tests
-
-Most of the tests actually run against the example source files in the documentation.
-
-This helps making sure that:
-
-* The documentation is up to date.
-* The documentation examples can be run as is.
-* Most of the features are covered by the documentation, ensured by test coverage.
+### Docs live
 
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
@@ -228,6 +203,37 @@ Completion will take effect once you restart the terminal.
 ```
 
 </div>
+
+### Docs Structure
+
+The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+
+And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
+
+!!! tip
+    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+
+All the documentation is in Markdown format in the directory `./docs/en/`.
+
+Many of the tutorials have blocks of code.
+
+In most of the cases, these blocks of code are actual complete applications that can be run as is.
+
+In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
+
+And those Python files are included/injected in the documentation when generating the site.
+
+### Docs for tests
+
+Most of the tests actually run against the example source files in the documentation.
+
+This helps making sure that:
+
+* The documentation is up to date.
+* The documentation examples can be run as is.
+* Most of the features are covered by the documentation, ensured by test coverage.
+
+
 
 ### Apps and docs at the same time
 
