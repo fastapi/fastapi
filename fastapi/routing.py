@@ -190,6 +190,7 @@ async def run_endpoint_function(
     if is_coroutine:
         return await dependant.call(**values)
     else:
+        # Needs to be checked
         return await run_in_threadpool(dependant.call, **values)
 
 
