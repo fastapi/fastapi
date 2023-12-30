@@ -1,5 +1,5 @@
 import inspect
-from contextlib import contextmanager
+from contextlib import AsyncExitStack, contextmanager
 from copy import deepcopy
 from typing import (
     Any,
@@ -46,7 +46,6 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
-    AsyncExitStack,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -325,10 +324,11 @@ def analyze_param(
     field_info = None
     depends = None
     type_annotation: Any = Any
-    if (
-        annotation is not inspect.Signature.empty
-        and get_origin(annotation) is Annotated
-    ):
+    use_annotation: Any = Any
+    if annotation is not inspect.Signature.empty:
+        use_annotation = annotation
+        type_annotation = annotation
+    if get_origin(use_annotation) is Annotated:
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]
         fastapi_annotations = [
@@ -336,14 +336,21 @@ def analyze_param(
             for arg in annotated_args[1:]
             if isinstance(arg, (FieldInfo, params.Depends))
         ]
-        assert (
-            len(fastapi_annotations) <= 1
-        ), f"Cannot specify multiple `Annotated` FastAPI arguments for {param_name!r}"
-        fastapi_annotation = next(iter(fastapi_annotations), None)
+        fastapi_specific_annotations = [
+            arg
+            for arg in fastapi_annotations
+            if isinstance(arg, (params.Param, params.Body, params.Depends))
+        ]
+        if fastapi_specific_annotations:
+            fastapi_annotation: Union[
+                FieldInfo, params.Depends, None
+            ] = fastapi_specific_annotations[-1]
+        else:
+            fastapi_annotation = None
         if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
-                field_info=fastapi_annotation, annotation=annotation
+                field_info=fastapi_annotation, annotation=use_annotation
             )
             assert field_info.default is Undefined or field_info.default is Required, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
@@ -356,8 +363,6 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
-    elif annotation is not inspect.Signature.empty:
-        type_annotation = annotation
 
     if isinstance(value, params.Depends):
         assert depends is None, (
@@ -402,15 +407,15 @@ def analyze_param(
             # We might check here that `default_value is Required`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
-            field_info = params.Path(annotation=type_annotation)
+            field_info = params.Path(annotation=use_annotation)
         elif is_uploadfile_or_nonable_uploadfile_annotation(
             type_annotation
         ) or is_uploadfile_sequence_annotation(type_annotation):
-            field_info = params.File(annotation=type_annotation, default=default_value)
+            field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
-            field_info = params.Body(annotation=type_annotation, default=default_value)
+            field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
-            field_info = params.Query(annotation=type_annotation, default=default_value)
+            field_info = params.Query(annotation=use_annotation, default=default_value)
 
     field = None
     if field_info is not None:
@@ -424,8 +429,8 @@ def analyze_param(
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
-        use_annotation = get_annotation_from_field_info(
-            type_annotation,
+        use_annotation_from_field_info = get_annotation_from_field_info(
+            use_annotation,
             field_info,
             param_name,
         )
@@ -436,7 +441,7 @@ def analyze_param(
         field_info.alias = alias
         field = create_response_field(
             name=param_name,
-            type_=use_annotation,
+            type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
             required=field_info.default in (Required, Undefined),
@@ -466,16 +471,17 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
 
 
 def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
-    field_info = cast(params.Param, field.field_info)
-    if field_info.in_ == params.ParamTypes.path:
+    field_info = field.field_info
+    field_info_in = getattr(field_info, "in_", None)
+    if field_info_in == params.ParamTypes.path:
         dependant.path_params.append(field)
-    elif field_info.in_ == params.ParamTypes.query:
+    elif field_info_in == params.ParamTypes.query:
         dependant.query_params.append(field)
-    elif field_info.in_ == params.ParamTypes.header:
+    elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
         assert (
-            field_info.in_ == params.ParamTypes.cookie
+            field_info_in == params.ParamTypes.cookie
         ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
         dependant.cookie_params.append(field)
 
@@ -522,6 +528,7 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    async_exit_stack: AsyncExitStack,
 ) -> Tuple[
     Dict[str, Any],
     List[Any],
@@ -568,6 +575,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            async_exit_stack=async_exit_stack,
         )
         (
             sub_values,
@@ -583,10 +591,8 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+                call=call, stack=async_exit_stack, sub_values=sub_values
             )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
