@@ -27,7 +27,7 @@ $ pip install jinja2
 * 📣 `Request` 🔢 *➡ 🛠️* 👈 🔜 📨 📄.
 * ⚙️ `templates` 👆 ✍ ✍ &amp; 📨 `TemplateResponse`, 🚶‍♀️ `request` 1️⃣ 🔑-💲 👫 Jinja2️⃣ "🔑".
 
-```Python hl_lines="4  11  15-16"
+```Python hl_lines="4  11  15-18"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
