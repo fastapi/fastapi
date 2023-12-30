@@ -931,11 +931,12 @@ class APIRouter(routing.Router):
         auto_options_index: Optional[int] = None
         allowed_methods: Set[str] = set()
         for index, route in enumerate(self.routes):
-            if route.path == new_route.path:
-                if hasattr(route, "is_auto_options") and route.is_auto_options:
-                    auto_options_index = index
-                else:
-                    allowed_methods.update(route.methods)
+            if isinstance(route, APIRoute):
+                if route.path == new_route.path:
+                    if hasattr(route, "is_auto_options") and route.is_auto_options:
+                        auto_options_index = index
+                    else:
+                        allowed_methods.update(route.methods)
 
         if auto_options_index is not None:
             self.routes.pop(auto_options_index)
