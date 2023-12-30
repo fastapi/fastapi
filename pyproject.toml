@@ -40,11 +40,9 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.27.0,<0.28.0",
+    "starlette>=0.29.0,<0.33.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
-    # TODO: remove this pin after upgrading Starlette 0.31.1
-    "anyio>=3.7.1,<4.0.0",
 ]
 dynamic = ["version"]
 
@@ -83,6 +81,12 @@ ignore_missing_imports = true
 module = "fastapi.tests.*"
 ignore_missing_imports = true
 check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "docs_src.*"
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
 
 [tool.pytest.ini_options]
 addopts = [
@@ -167,6 +171,9 @@ ignore = [
 "docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
+"docs_src/dependencies/tutorial008b.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
 
 
 [tool.ruff.isort]
