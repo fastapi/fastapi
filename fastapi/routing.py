@@ -950,7 +950,7 @@ class APIRouter(routing.Router):
                     self.prefix + path,
                     endpoint=options_route,
                     methods=["OPTIONS"],
-                    include_in_schema=False,
+                    include_in_schema=True,
                     is_auto_options=True,
                 )
             )
