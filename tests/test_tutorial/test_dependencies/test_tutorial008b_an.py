@@ -14,7 +14,7 @@ def test_get_no_item():
 def test_owner_error():
     response = client.get("/items/plumbus")
     assert response.status_code == 400, response.text
-    assert response.json() == {"detail": "Onwer error: Rick"}
+    assert response.json() == {"detail": "Owner error: Rick"}
 
 
 def test_get_item():
