@@ -7,6 +7,27 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix typo in dependencies with yield source examples. PR [#10847](https://github.com/tiangolo/fastapi/pull/10847) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.108.0
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.107.0
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette to 0.28.0. PR [#9636](https://github.com/tiangolo/fastapi/pull/9636) by [@adriangb](https://github.com/adriangb).
+
+### Docs
+
+* 📝 Add docs: Node.js script alternative to update OpenAPI for generated clients. PR [#10845](https://github.com/tiangolo/fastapi/pull/10845) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Restructure Docs section in Contributing page. PR [#10844](https://github.com/tiangolo/fastapi/pull/10844) by [@alejsdev](https://github.com/alejsdev).
+
 ## 0.106.0
 
 ### Breaking Changes
@@ -42,7 +63,7 @@ def get_username():
     try:
         yield "Rick"
     except OwnerError as e:
-        raise HTTPException(status_code=400, detail=f"Onwer error: {e}")
+        raise HTTPException(status_code=400, detail=f"Owner error: {e}")
 
 
 @app.get("/items/{item_id}")
