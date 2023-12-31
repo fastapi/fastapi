@@ -18,7 +18,7 @@
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3-4"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -33,7 +33,7 @@
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
@@ -67,7 +67,7 @@
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
@@ -82,7 +82,7 @@
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
@@ -117,7 +117,7 @@
 
 Поэтому вы можете определить функцию так:
 
-=== "Python 3.6 без Annotated"
+=== "Python 3.8 без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
@@ -134,7 +134,7 @@
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
@@ -174,7 +174,7 @@ Python не будет ничего делать с `*`, но он будет з
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
@@ -192,13 +192,13 @@ Python не будет ничего делать с `*`, но он будет з
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
@@ -220,13 +220,13 @@ Python не будет ничего делать с `*`, но он будет з
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
@@ -251,13 +251,13 @@ Python не будет ничего делать с `*`, но он будет з
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
     ```
 
-=== "Python 3.6+ без Annotated"
+=== "Python 3.8+ без Annotated"
 
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.

@@ -1,5 +1,7 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py310
 
@@ -12,45 +14,64 @@ def get_client():
     return client
 
 
-item_id_not_int = {
-    "detail": [
-        {
-            "loc": ["path", "item_id"],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        }
-    ]
-}
+@needs_py310
+def test_post_body_q_bar_content(client: TestClient):
+    response = client.put("/items/5?q=bar", json={"name": "Foo", "price": 50.5})
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": 5,
+        "item": {
+            "name": "Foo",
+            "price": 50.5,
+            "description": None,
+            "tax": None,
+        },
+        "q": "bar",
+    }
 
 
 @needs_py310
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/5?q=bar",
-            {"name": "Foo", "price": 50.5},
-            200,
-            {
-                "item_id": 5,
-                "item": {
-                    "name": "Foo",
-                    "price": 50.5,
-                    "description": None,
-                    "tax": None,
-                },
-                "q": "bar",
-            },
-        ),
-        ("/items/5?q=bar", None, 200, {"item_id": 5, "q": "bar"}),
-        ("/items/5", None, 200, {"item_id": 5}),
-        ("/items/foo", None, 422, item_id_not_int),
-    ],
-)
-def test_post_body(path, body, expected_status, expected_response, client: TestClient):
-    response = client.put(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_post_no_body_q_bar(client: TestClient):
+    response = client.put("/items/5?q=bar", json=None)
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 5, "q": "bar"}
+
+
+@needs_py310
+def test_post_no_body(client: TestClient):
+    response = client.put("/items/5", json=None)
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 5}
+
+
+@needs_py310
+def test_post_id_foo(client: TestClient):
+    response = client.put("/items/foo", json=None)
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["path", "item_id"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "foo",
+                    "url": match_pydantic_error_url("int_parsing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["path", "item_id"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                }
+            ]
+        }
+    )
 
 
 @needs_py310
@@ -95,7 +116,16 @@ def test_openapi_schema(client: TestClient):
                         },
                         {
                             "required": False,
-                            "schema": {"title": "Q", "type": "string"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Q", "type": "string"}
+                            ),
                             "name": "q",
                             "in": "query",
                         },
@@ -103,7 +133,19 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [
+                                            {"$ref": "#/components/schemas/Item"},
+                                            {"type": "null"},
+                                        ],
+                                        "title": "Item",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {"$ref": "#/components/schemas/Item"}
+                                )
                             }
                         }
                     },
@@ -118,9 +160,27 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                         "price": {"title": "Price", "type": "number"},
-                        "description": {"title": "Description", "type": "string"},
-                        "tax": {"title": "Tax", "type": "number"},
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                     },
                 },
                 "ValidationError": {
