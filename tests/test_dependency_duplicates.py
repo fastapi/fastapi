@@ -1,7 +1,9 @@
 from typing import List
 
+from dirty_equals import IsDict
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -47,15 +49,30 @@ async def no_duplicates_sub(
 def test_no_duplicates_invalid():
     response = client.post("/no-duplicates", json={"item": {"data": "myitem"}})
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "item2"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "item2"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "item2"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 def test_no_duplicates():

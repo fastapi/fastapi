@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.dependencies.tutorial001_an import app
@@ -52,7 +53,16 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Q", "type": "string"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Q", "type": "string"}
+                            ),
                             "name": "q",
                             "in": "query",
                         },
@@ -102,7 +112,16 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Q", "type": "string"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Q", "type": "string"}
+                            ),
                             "name": "q",
                             "in": "query",
                         },

@@ -10,8 +10,8 @@ class Item(BaseModel):
     price: float
     tax: float | None = None
 
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "examples": [
                 {
                     "name": "Foo",
@@ -21,6 +21,7 @@ class Item(BaseModel):
                 }
             ]
         }
+    }
 
 
 @app.put("/items/{item_id}")

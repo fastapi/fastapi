@@ -1,7 +1,9 @@
 from unittest.mock import patch
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py310
 
@@ -14,86 +16,189 @@ def client():
     return client
 
 
-price_missing = {
-    "detail": [
-        {
-            "loc": ["body", "price"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-price_not_float = {
-    "detail": [
-        {
-            "loc": ["body", "price"],
-            "msg": "value is not a valid float",
-            "type": "type_error.float",
-        }
-    ]
-}
-
-name_price_missing = {
-    "detail": [
-        {
-            "loc": ["body", "name"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "price"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-    ]
-}
-
-body_missing = {
-    "detail": [
-        {"loc": ["body"], "msg": "field required", "type": "value_error.missing"}
-    ]
-}
+@needs_py310
+def test_body_float(client: TestClient):
+    response = client.post("/items/", json={"name": "Foo", "price": 50.5})
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Foo",
+        "price": 50.5,
+        "description": None,
+        "tax": None,
+    }
 
 
 @needs_py310
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/",
-            {"name": "Foo", "price": 50.5},
-            200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5"},
-            200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo"},
-            200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo", "tax": 0.3},
-            200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": 0.3},
-        ),
-        ("/items/", {"name": "Foo"}, 422, price_missing),
-        ("/items/", {"name": "Foo", "price": "twenty"}, 422, price_not_float),
-        ("/items/", {}, 422, name_price_missing),
-        ("/items/", None, 422, body_missing),
-    ],
-)
-def test_post_body(path, body, expected_status, expected_response, client: TestClient):
-    response = client.post(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_post_with_str_float(client: TestClient):
+    response = client.post("/items/", json={"name": "Foo", "price": "50.5"})
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Foo",
+        "price": 50.5,
+        "description": None,
+        "tax": None,
+    }
+
+
+@needs_py310
+def test_post_with_str_float_description(client: TestClient):
+    response = client.post(
+        "/items/", json={"name": "Foo", "price": "50.5", "description": "Some Foo"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Foo",
+        "price": 50.5,
+        "description": "Some Foo",
+        "tax": None,
+    }
+
+
+@needs_py310
+def test_post_with_str_float_description_tax(client: TestClient):
+    response = client.post(
+        "/items/",
+        json={"name": "Foo", "price": "50.5", "description": "Some Foo", "tax": 0.3},
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Foo",
+        "price": 50.5,
+        "description": "Some Foo",
+        "tax": 0.3,
+    }
+
+
+@needs_py310
+def test_post_with_only_name(client: TestClient):
+    response = client.post("/items/", json={"name": "Foo"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "price"],
+                    "msg": "Field required",
+                    "input": {"name": "Foo"},
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "price"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@needs_py310
+def test_post_with_only_name_price(client: TestClient):
+    response = client.post("/items/", json={"name": "Foo", "price": "twenty"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "float_parsing",
+                    "loc": ["body", "price"],
+                    "msg": "Input should be a valid number, unable to parse string as a number",
+                    "input": "twenty",
+                    "url": match_pydantic_error_url("float_parsing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "price"],
+                    "msg": "value is not a valid float",
+                    "type": "type_error.float",
+                }
+            ]
+        }
+    )
+
+
+@needs_py310
+def test_post_with_no_data(client: TestClient):
+    response = client.post("/items/", json={})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "name"],
+                    "msg": "Field required",
+                    "input": {},
+                    "url": match_pydantic_error_url("missing"),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "price"],
+                    "msg": "Field required",
+                    "input": {},
+                    "url": match_pydantic_error_url("missing"),
+                },
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "name"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["body", "price"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+            ]
+        }
+    )
+
+
+@needs_py310
+def test_post_with_none(client: TestClient):
+    response = client.post("/items/", json=None)
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @needs_py310
@@ -104,37 +209,69 @@ def test_post_broken_body(client: TestClient):
         content="{some broken json}",
     )
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", 1],
-                "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
-                "type": "value_error.jsondecode",
-                "ctx": {
-                    "msg": "Expecting property name enclosed in double quotes",
-                    "doc": "{some broken json}",
-                    "pos": 1,
-                    "lineno": 1,
-                    "colno": 2,
-                },
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "json_invalid",
+                    "loc": ["body", 1],
+                    "msg": "JSON decode error",
+                    "input": {},
+                    "ctx": {
+                        "error": "Expecting property name enclosed in double quotes"
+                    },
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", 1],
+                    "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+                    "type": "value_error.jsondecode",
+                    "ctx": {
+                        "msg": "Expecting property name enclosed in double quotes",
+                        "doc": "{some broken json}",
+                        "pos": 1,
+                        "lineno": 1,
+                        "colno": 2,
+                    },
+                }
+            ]
+        }
+    )
 
 
 @needs_py310
 def test_post_form_for_json(client: TestClient):
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body"],
-                "msg": "value is not a valid dict",
-                "type": "type_error.dict",
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "model_attributes_type",
+                    "loc": ["body"],
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
+                    "input": "name=Foo&price=50.5",
+                    "url": match_pydantic_error_url("model_attributes_type"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "value is not a valid dict",
+                    "type": "type_error.dict",
+                }
+            ]
+        }
+    )
 
 
 @needs_py310
@@ -175,32 +312,91 @@ def test_no_content_type_is_json(client: TestClient):
 @needs_py310
 def test_wrong_headers(client: TestClient):
     data = '{"name": "Foo", "price": 50.5}'
-    invalid_dict = {
-        "detail": [
-            {
-                "loc": ["body"],
-                "msg": "value is not a valid dict",
-                "type": "type_error.dict",
-            }
-        ]
-    }
-
     response = client.post(
         "/items/", content=data, headers={"Content-Type": "text/plain"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == invalid_dict
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "model_attributes_type",
+                    "loc": ["body"],
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
+                    "input": '{"name": "Foo", "price": 50.5}',
+                    "url": match_pydantic_error_url("model_attributes_type"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "value is not a valid dict",
+                    "type": "type_error.dict",
+                }
+            ]
+        }
+    )
 
     response = client.post(
         "/items/", content=data, headers={"Content-Type": "application/geo+json-seq"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == invalid_dict
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "model_attributes_type",
+                    "loc": ["body"],
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
+                    "input": '{"name": "Foo", "price": 50.5}',
+                    "url": match_pydantic_error_url("model_attributes_type"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "value is not a valid dict",
+                    "type": "type_error.dict",
+                }
+            ]
+        }
+    )
     response = client.post(
         "/items/", content=data, headers={"Content-Type": "application/not-really-json"}
     )
     assert response.status_code == 422, response.text
-    assert response.json() == invalid_dict
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "model_attributes_type",
+                    "loc": ["body"],
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
+                    "input": '{"name": "Foo", "price": 50.5}',
+                    "url": match_pydantic_error_url("model_attributes_type"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "value is not a valid dict",
+                    "type": "type_error.dict",
+                }
+            ]
+        }
+    )
 
 
 @needs_py310
@@ -258,8 +454,26 @@ def test_openapi_schema(client: TestClient):
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "price": {"title": "Price", "type": "number"},
-                        "description": {"title": "Description", "type": "string"},
-                        "tax": {"title": "Tax", "type": "number"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                     },
                 },
                 "ValidationError": {

@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -32,7 +33,6 @@ def test(path, headers, expected_status, expected_response, client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    # insert_assert(response.json())
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -44,11 +44,23 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {
-                                "title": "X-Token",
-                                "type": "array",
-                                "items": {"type": "string"},
-                            },
+                            "schema": IsDict(
+                                {
+                                    "title": "X-Token",
+                                    "anyOf": [
+                                        {"type": "array", "items": {"type": "string"}},
+                                        {"type": "null"},
+                                    ],
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "title": "X-Token",
+                                    "type": "array",
+                                    "items": {"type": "string"},
+                                }
+                            ),
                             "name": "x-token",
                             "in": "header",
                         }
