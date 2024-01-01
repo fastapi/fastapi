@@ -11,14 +11,14 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
     任何一个可以与以下内容一起使用的函数：
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或者 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或者
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     都可以作为 **FastAPI** 的依赖项。
 
     实际上，FastAPI内部就使用了这两个装饰器。
-    
-    
+
+
 ## 使用 `yield` 的数据库依赖项
 
 例如，您可以使用这种方式创建一个数据库会话，并在完成后关闭它。
@@ -108,7 +108,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
     ```
 
 === "Python 3.6+ non-Annotated"
-    
+
     !!! tip
         如果可能，请尽量使用“ Annotated”版本。
 
@@ -129,7 +129,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
     这是由 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>完成的。
 
     **FastAPI** 在内部使用它们来实现这一点。
-    
+
 
 ## 使用 `yield` 和 `HTTPException` 的依赖项
 
