@@ -92,7 +92,7 @@ There are many other ASGI middlewares.
 
 For example:
 
-* <a href="https://docs.sentry.io/platforms/python/asgi/" class="external-link" target="_blank">Sentry</a>
+* <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 

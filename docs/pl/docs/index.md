@@ -106,7 +106,7 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.7+
+Python 3.8+
 
 FastAPI oparty jest na:
 
@@ -321,7 +321,7 @@ Robisz to tak samo jak ze standardowymi typami w Pythonie.
 
 Nie musisz sie uczyć żadnej nowej składni, metod lub klas ze specyficznych bibliotek itp.
 
-Po prostu standardowy **Python 3.6+**.
+Po prostu standardowy **Python 3.8+**.
 
 Na przykład, dla danych typu `int`:
 
@@ -435,7 +435,6 @@ Aby dowiedzieć się o tym więcej, zobacz sekcję <a href="https://fastapi.tian
 
 Używane przez Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - dla szybszego <abbr title="przetwarzania stringa który przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> danych JSON.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - dla walidacji adresów email.
 
 Używane przez Starlette:

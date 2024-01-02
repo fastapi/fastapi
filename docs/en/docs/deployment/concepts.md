@@ -235,7 +235,7 @@ Here are some possible combinations and strategies:
     * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**
 * **Kubernetes** and other distributed **container systems**
     * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running
-* **Cloud services** that handle this for your
+* **Cloud services** that handle this for you
     * The cloud service will probably **handle replication for you**. It would possibly let you define **a process to run**, or a **container image** to use, in any case, it would most probably be **a single Uvicorn process**, and the cloud service would be in charge of replicating it.
 
 !!! tip

@@ -107,7 +107,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 ## 必要条件
 
-Python 3.7+
+Python 3.8+
 
 FastAPI は巨人の肩の上に立っています。
 
@@ -431,7 +431,6 @@ item: Item
 
 Pydantic によって使用されるもの:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - より速い JSON への<abbr title="converting the string that comes from an HTTP request into Python data">"変換"</abbr>.
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
 
 Starlette によって使用されるもの:
