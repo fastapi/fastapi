@@ -247,8 +247,7 @@ def get_redoc_html(
     """
 
     current_redoc_ui_parameters = redoc_ui_default_parameters.copy()
-    if redoc_ui_parameters:
-        current_redoc_ui_parameters.update(redoc_ui_parameters)
+    current_redoc_ui_parameters.update(redoc_ui_parameters or {})
 
     def add_redoc_ui_parameters() -> str:
         _props = ""
