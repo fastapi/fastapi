@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -5,14 +14,17 @@
     <em>FastAPI framework, alto desempeño, fácil de aprender, rápido de programar, listo para producción</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -23,12 +35,12 @@
 **Código Fuente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
+
 FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.8+ basado en las anotaciones de tipos estándar de Python.
 
 Sus características principales son:
 
 * **Rapidez**: Alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks de Python más rápidos](#rendimiento).
-
 * **Rápido de programar**: Incrementa la velocidad de desarrollo entre 200% y 300%. *
 * **Menos errores**: Reduce los errores humanos (de programador) aproximadamente un 40%. *
 * **Intuitivo**: Gran soporte en los editores con <abbr title="conocido en inglés como auto-complete, autocompletion, IntelliSense, completion">auto completado</abbr> en todas partes. Gasta menos tiempo <abbr title="buscando y corrigiendo errores">debugging</abbr>.
@@ -96,6 +108,12 @@ Sus características principales son:
 
 ---
 
+"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
+
+---
+
 ## **Typer**, el FastAPI de las CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
@@ -144,8 +162,9 @@ $ pip install "uvicorn[standard]"
 * Crea un archivo `main.py` con:
 
 ```Python
-from fastapi import FastAPI
 from typing import Union
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -165,9 +184,10 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Si tu código usa `async` / `await`, usa `async def`:
 
-```Python hl_lines="7  12"
-from fastapi import FastAPI
+```Python hl_lines="9  14"
 from typing import Union
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -256,10 +276,11 @@ Ahora modifica el archivo `main.py` para recibir un <abbr title="cuerpo del mens
 
 Declara el body usando las declaraciones de tipo estándares de Python gracias a Pydantic.
 
-```Python hl_lines="2  7-10  23-25"
+```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Union
 
 app = FastAPI()
 
@@ -415,9 +436,9 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 * Un sistema de **<abbr title="también conocido en inglés cómo: components, resources, providers, services, injectables">Dependency Injection</abbr>** poderoso y fácil de usar.
 * Seguridad y autenticación incluyendo soporte para **OAuth2** con **JWT tokens** y **HTTP Basic** auth.
 * Técnicas más avanzadas, pero igual de fáciles, para declarar **modelos de JSON profundamente anidados** (gracias a Pydantic).
+* **GraphQL** integrado con <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otras libraries.
 * Muchas características extra (gracias a Starlette) como:
     * **WebSockets**
-    * **GraphQL**
     * pruebas extremadamente fáciles con HTTPX y `pytest`
     * **CORS**
     * **Cookie Sessions**
@@ -434,6 +455,8 @@ Para entender más al respecto revisa la sección <a href="https://fastapi.tiang
 Usadas por Pydantic:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validación de emails.
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - para la gestión de configuración.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - para tipos extras utilizados con Pydantic.
 
 Usados por Starlette:
 
