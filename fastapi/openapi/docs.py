@@ -22,7 +22,19 @@ swagger_ui_default_parameters: Annotated[
     "showCommonExtensions": True,
 }
 
-redoc_ui_default_parameters: Dict[str, Any] = {}
+redoc_ui_default_parameters: Annotated[
+    Dict[str, Any],
+    Doc(
+        """
+        Default configurations for Redoc UI.
+
+        You can use it as a template to add any other configurations needed.
+        
+        Available options can be found here:
+        https://github.com/Redocly/redoc/blob/main/docs/config.md#theme-settings
+        """
+    ),
+] = {}
 
 
 def get_swagger_ui_html(
@@ -207,7 +219,16 @@ def get_redoc_html(
             """
         ),
     ] = True,
-    redoc_ui_parameters: Optional[Dict[str, Any]] = None,
+    redoc_ui_parameters: Annotated[
+        Optional[Dict[str, Any]],
+        Doc(
+            """
+            Configuration parameters for Redoc UI.
+
+            It defaults to [redoc_ui_default_parameters][fastapi.openapi.docs.redoc_ui_default_parameters].
+            """
+        ),
+    ] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML response that loads ReDoc for the alternative
