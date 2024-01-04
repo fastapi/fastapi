@@ -29,7 +29,7 @@ redoc_ui_default_parameters: Annotated[
         Default configurations for Redoc UI.
 
         You can use it as a template to add any other configurations needed.
-        
+
         Available options can be found here:
         https://github.com/Redocly/redoc/blob/main/docs/config.md#theme-settings
         """
