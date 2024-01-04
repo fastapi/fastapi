@@ -34,7 +34,12 @@ redoc_ui_default_parameters: Annotated[
         https://github.com/Redocly/redoc/blob/main/docs/config.md#theme-settings
         """
     ),
-] = {}
+] = {
+    "theme": {
+        "typography": {"code": {"wrap": True}},
+    },
+    "hide-download-button": False
+}
 
 
 def get_swagger_ui_html(
