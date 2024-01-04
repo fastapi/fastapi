@@ -38,7 +38,7 @@ redoc_ui_default_parameters: Annotated[
     "theme": {
         "typography": {"code": {"wrap": True}},
     },
-    "hide-download-button": False
+    "hide-download-button": False,
 }
 
 
