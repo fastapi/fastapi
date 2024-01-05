@@ -381,7 +381,7 @@ INHERIT: ../en/mkdocs.yml
 
 #### 预览结果
 
-您可以执行 `./scripts/docs.py live` 命令来预览结果（或者 `mkdocs serve`）。
+你可以执行 `./scripts/docs.py live` 命令来预览结果（或者 `mkdocs serve`）。
 
 但是当你完成翻译后，你可以像在线上展示一样测试所有内容，包括所有其他语言。
 
