@@ -1,4 +1,4 @@
-# Parámetros de path
+# Parámetros de <abbr title="también conocido en inglés como: path">Ruta</abbr>
 
 Puedes declarar los "parámetros" o "variables" con la misma sintaxis que usan los format strings de Python:
 
@@ -6,7 +6,7 @@ Puedes declarar los "parámetros" o "variables" con la misma sintaxis que usan l
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-El valor del parámetro de path `item_id` será pasado a tu función como el argumento `item_id`.
+El valor del parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr> `item_id` será pasado a tu función como el argumento `item_id`.
 
 Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás una respuesta de:
 
@@ -14,9 +14,9 @@ Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/fo
 {"item_id":"foo"}
 ```
 
-## Parámetros de path con tipos
+## Parámetros de <abbr title="también conocido en inglés como: path">Ruta</abbr> con tipos
 
-Puedes declarar el tipo de un parámetro de path en la función usando las anotaciones de tipos estándar de Python:
+Puedes declarar el tipo de un parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr> en la función usando las anotaciones de tipos estándar de Python:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -46,20 +46,22 @@ Pero si abres tu navegador en <a href="http://127.0.0.1:8000/items/foo" class="e
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "path",
-                "item_id"
-            ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
-        }
-    ]
+  "detail": [
+    {
+      "type": "int_parsing",
+      "loc": [
+        "path",
+        "item_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "foo",
+      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+    }
+  ]
 }
 ```
 
-debido a que el parámetro de path `item_id` tenía el valor `"foo"`, que no es un `int`.
+debido a que el parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr> `item_id` tenía el valor `"foo"`, que no es un `int`.
 
 El mismo error aparecería si pasaras un `float` en vez de un `int` como en: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
@@ -79,11 +81,11 @@ Cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="externa
 !!! check "Revisa"
     Nuevamente, con la misma declaración de tipo de Python, **FastAPI** te da documentación automática e interactiva (integrándose con Swagger UI)
 
-    Observa que el parámetro de path está declarado como un integer.
+    Observa que el parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr> está declarado como un integer.
 
 ## Beneficios basados en estándares, documentación alternativa
 
-Debido a que el schema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramientas compatibles.
+Debido a que el schema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramientas compatibles.
 
 Es por esto que **FastAPI** mismo provee una documentación alternativa de la API (usando ReDoc), a la que puedes acceder en <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
@@ -101,23 +103,31 @@ Exploraremos varios de estos tipos en los próximos capítulos del tutorial.
 
 ## El orden importa
 
-Cuando creas *operaciones de path* puedes encontrarte con situaciones en las que tengas un path fijo.
+Cuando creas *operaciones de <abbr title="también conocido en inglés como: path">ruta</abbr>* puedes encontrarte con situaciones en las que tengas una <abbr title="también conocido en inglés como: path">ruta</abbr> fija.
 
 Digamos algo como `/users/me` que sea para obtener datos del usuario actual.
 
-... y luego puedes tener el path `/users/{user_id}` para obtener los datos sobre un usuario específico asociados a un ID de usuario.
+... y luego puedes tener la <abbr title="también conocido en inglés como: path">ruta</abbr> `/users/{user_id}` para obtener los datos sobre un usuario específico asociados a un ID de usuario.
 
-Porque las *operaciones de path* son evaluadas en orden, tienes que asegurarte de que el path para `/users/me` sea declarado antes que el path para `/users/{user_id}`:
+Porque las *operaciones de <abbr title="también conocido en inglés como: path">ruta</abbr>* son evaluadas en orden, tienes que asegurarte de que la <abbr title="también conocido en inglés como: path">ruta</abbr> para `/users/me` sea declarado antes que la <abbr title="también conocido en inglés como: path">ruta</abbr> para `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-De otra manera el path para `/users/{user_id}` coincidiría también con `/users/me` "pensando" que está recibiendo el parámetro `user_id` con el valor `"me"`.
+De otra manera la <abbr title="también conocido en inglés como: path">ruta</abbr> para `/users/{user_id}` coincidiría también con `/users/me` "pensando" que está recibiendo el parámetro `user_id` con el valor `"me"`.
+
+De manera similar, no puedes redefinir una operación de ruta:
+
+```Python hl_lines="6  11"
+{!../../../docs_src/path_params/tutorial003b.py!}
+```
+
+Siempre se utilizará la primero ruta encontrada.
 
 ## Valores predefinidos
 
-Si tienes una *operación de path* que recibe un *parámetro de path* pero quieres que los valores posibles del *parámetro de path* sean predefinidos puedes usar un <abbr title="Enumeration">`Enum`</abbr> estándar de Python.
+Si tienes una *operación de <abbr title="también conocido en inglés como: path">ruta</abbr>* que recibe un *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* pero quieres que los valores posibles del *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* sean predefinidos puedes usar un <abbr title="Enumeration">`Enum`</abbr> estándar de Python.
 
 ### Crea una clase `Enum`
 
@@ -137,9 +147,9 @@ Luego crea atributos de clase con valores fijos, que serán los valores disponib
 !!! tip "Consejo"
     Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Tecnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
 
-### Declara un *parámetro de path*
+### Declara un *parámetro de <abbr title="también conocido en inglés como: path">Ruta</abbr>*
 
-Luego, crea un *parámetro de path* con anotaciones de tipos usando la clase enum que creaste (`ModelName`):
+Luego, crea un *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* con anotaciones de tipos usando la clase enum que creaste (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -147,23 +157,23 @@ Luego, crea un *parámetro de path* con anotaciones de tipos usando la clase enu
 
 ### Revisa la documentación
 
-Debido a que los valores disponibles para el *parámetro de path* están predefinidos, la documentación interactiva los puede mostrar bien:
+Debido a que los valores disponibles para el *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* están predefinidos, la documentación interactiva los puede mostrar bien:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Trabajando con los *enumerations* de Python
+### Trabajando con las *<abbr title="también conocido como: Enum">enumeraciones</abbr>* de Python
 
-El valor del *parámetro de path* será un *enumeration member*.
+El valor del *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* será un *miembros del Enum*.
 
-#### Compara *enumeration members*
+#### Compara *miembros de la enumeración*
 
-Puedes compararlo con el *enumeration member* en el enum (`ModelName`) que creaste:
+Puedes compararlo con el *miembros del enum** en el enum (`ModelName`) que creaste:
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### Obtén el *enumeration value*
+#### Obtén el *Valor del miembro de la enumeración*
 
 Puedes obtener el valor exacto (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
 
@@ -174,9 +184,9 @@ Puedes obtener el valor exacto (un `str` en este caso) usando `model_name.value`
 !!! tip "Consejo"
     También podrías obtener el valor `"lenet"` con `ModelName.lenet.value`.
 
-#### Devuelve *enumeration members*
+#### Devuelve los *miembros de la enumeración*
 
-Puedes devolver *enum members* desde tu *operación de path* inclusive en un body de JSON anidado (por ejemplo, un `dict`).
+Puedes devolver *enum members* desde tu *operación de <abbr title="también conocido en inglés como: path">ruta</abbr>* inclusive en un body de JSON anidado (por ejemplo, un `dict`).
 
 Ellos serán convertidos a sus valores correspondientes (strings en este caso) antes de devolverlos al cliente:
 
@@ -193,31 +203,31 @@ En tu cliente obtendrás una respuesta en JSON como:
 }
 ```
 
-## Parámetros de path parameters que contienen paths
+## Parámetros de <abbr title="también conocido en inglés como: path">ruta</abbr> que contienen <abbr title="también conocido en inglés como: path">rutas</abbr>
 
-Digamos que tienes una *operación de path* con un path `/files/{file_path}`.
+Digamos que tienes una *operación de <abbr title="también conocido en inglés como: path">ruta</abbr>* con una <abbr title="también conocido en inglés como: path">ruta</abbr> `/files/{file_path}`.
 
-Pero necesitas que el mismo `file_path` contenga un path como `home/johndoe/myfile.txt`.
+Pero necesitas que el mismo `file_path` contenga una <abbr title="también conocido en inglés como: path">ruta</abbr> como `home/johndoe/myfile.txt`.
 
 Entonces, la URL para ese archivo sería algo como: `/files/home/johndoe/myfile.txt`.
 
 ### Soporte de OpenAPI
 
-OpenAPI no soporta una manera de declarar un *parámetro de path* que contenga un path, dado que esto podría llevar a escenarios que son difíciles de probar y definir.
+OpenAPI no soporta una manera de declarar un *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* que contenga una <abbr title="también conocido en inglés como: path">ruta</abbr>, dado que esto podría llevar a escenarios que son difíciles de probar y definir.
 
 Sin embargo, lo puedes hacer en **FastAPI** usando una de las herramientas internas de Starlette.
 
-La documentación seguirá funcionando, aunque no añadirá ninguna información diciendo que el parámetro debería contener un path.
+La documentación seguirá funcionando, aunque no añadirá ninguna información diciendo que el parámetro debería contener una <abbr title="también conocido en inglés como: path">ruta</abbr>.
 
-### Convertidor de path
+### Convertidor de ruta
 
-Usando una opción directamente desde Starlette puedes declarar un *parámetro de path* que contenga un path usando una URL como:
+Usando una opción directamente desde Starlette puedes declarar un *parámetro de <abbr title="también conocido en inglés como: path">ruta</abbr>* que contenga una <abbr title="también conocido en inglés como: path">ruta</abbr> usando una URL como:
 
 ```
 /files/{file_path:path}
 ```
 
-En este caso el nombre del parámetro es `file_path` y la última parte, `:path`, le dice que el parámetro debería coincidir con cualquier path.
+En este caso el nombre del parámetro es `file_path` y la última parte, `:path`, le dice que el parámetro debería coincidir con cualquier <abbr title="también conocido en inglés como: path">ruta</abbr>.
 
 Entonces lo puedes usar con:
 
