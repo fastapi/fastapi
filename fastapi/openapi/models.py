@@ -65,7 +65,6 @@ class BaseConfig(BaseModel):
 
         class Config:
             extra = "allow"
-        
 
 
 class Contact(BaseConfig):
