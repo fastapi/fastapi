@@ -12,7 +12,7 @@
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -85,7 +85,7 @@ fluffy = Cat(name="Mr Fluffy")
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11-15"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
