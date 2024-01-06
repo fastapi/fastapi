@@ -233,10 +233,10 @@ if PYDANTIC_V2:
         origin = get_origin(annotation)
         if origin is Union:
             args = get_args(annotation)
-            first_argument = args[0]
-            if hasattr(first_argument, "__origin__"):
-                if first_argument.__origin__ in sequence_types:
-                    return True
+            for arg in args:
+                if hasattr(arg, "__origin__"):
+                    if arg.__origin__ in sequence_types:
+                        return True
         return False
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
