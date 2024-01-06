@@ -713,6 +713,7 @@ async def request_body_to_args(
                     except AttributeError:
                         errors.append(get_missing_field_error(loc))
                         continue
+            field_info = field.field_info
             if (
                 value is None
                 or (isinstance(field_info, params.Form) and value == "")
