@@ -134,6 +134,9 @@ def get_sub_dependant(
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
+    expose = True
+    if isinstance(depends, params.Service):
+        expose = False
     if isinstance(depends, params.Security):
         dependency_scopes = depends.scopes
         security_scopes.extend(dependency_scopes)
@@ -149,6 +152,7 @@ def get_sub_dependant(
         call=dependency,
         name=name,
         security_scopes=security_scopes,
+        expose=expose,
         use_cache=depends.use_cache,
     )
     if security_requirement:
@@ -244,6 +248,7 @@ def get_dependant(
     call: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    expose: bool = True,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -254,6 +259,7 @@ def get_dependant(
         name=name,
         path=path,
         security_scopes=security_scopes,
+        expose=expose,
         use_cache=use_cache,
     )
     for param_name, param in signature_params.items():
@@ -283,7 +289,9 @@ def get_dependant(
             ), f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             continue
         assert param_field is not None
-        if is_body_param(param_field=param_field, is_path_param=is_path_param):
+        if not expose:
+            continue
+        elif is_body_param(param_field=param_field, is_path_param=is_path_param):
             dependant.body_params.append(param_field)
         else:
             add_param_to_fields(field=param_field, dependant=dependant)
@@ -567,6 +575,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                expose=sub_dependant.expose,
             )
 
         solved_result = await solve_dependencies(

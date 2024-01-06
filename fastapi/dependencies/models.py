@@ -32,6 +32,7 @@ class Dependant:
         background_tasks_param_name: Optional[str] = None,
         security_scopes_param_name: Optional[str] = None,
         security_scopes: Optional[List[str]] = None,
+        expose: bool = True,
         use_cache: bool = True,
         path: Optional[str] = None,
     ) -> None:
@@ -51,6 +52,7 @@ class Dependant:
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
+        self.expose = expose
         self.use_cache = use_cache
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path

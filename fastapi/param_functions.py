@@ -2246,9 +2246,15 @@ def Depends(  # noqa: N802
     ] = True,
 ) -> Any:
     """
-    Declare a FastAPI dependency.
+    Declare a FastAPI Field dependency.
 
-    It takes a single "dependable" callable (like a function).
+    Objects of annotated class are automatically created and filled up by FastAPI
+    dependency injection mechanism (they should be annotated with `Body()`/`Query()`/etc).
+
+    Fields are automatically exposed to OpenAPI schema.
+
+    It takes a single "dependable" callable (like a function) which is factory creating objects of
+    annotated class. If "dependable" is omitted, FastAPI will use class constructor.
 
     Don't call it directly, FastAPI will call it for you.
 
@@ -2266,6 +2272,7 @@ def Depends(  # noqa: N802
 
 
     async def common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):
+        # Query params
         return {"q": q, "skip": skip, "limit": limit}
 
 
@@ -2298,7 +2305,7 @@ def Security(  # noqa: N802
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
-            intentionaly vague and interpretable. It normally refers to permissions,
+            intentionally vague and interpretable. It normally refers to permissions,
             in cases to roles.
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
@@ -2358,3 +2365,82 @@ def Security(  # noqa: N802
     ```
     """
     return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+
+
+def Service(  # noqa: N802
+    dependency: Annotated[
+        Optional[Callable[..., Any]],
+        Doc(
+            """
+            A "dependable" callable (like a function).
+
+            Don't call it directly, FastAPI will call it for you, just pass the object
+            directly.
+            """
+        ),
+    ] = None,
+    *,
+    use_cache: Annotated[
+        bool,
+        Doc(
+            """
+            By default, after a dependency is called the first time in a request, if
+            the dependency is declared again for the rest of the request (for example
+            if the dependency is needed by several dependencies), the value will be
+            re-used for the rest of the request.
+
+            Set `use_cache` to `False` to disable this behavior and ensure the
+            dependency is called again (if declared more than once) in the same request.
+            """
+        ),
+    ] = True,
+) -> Any:
+    """
+    Declare a FastAPI Service dependency.
+
+    Objects of annotated class are automatically created and filled up by FastAPI
+    dependency injection mechanism (they should be annotated with `Depends()`/`Service()`).
+
+    Unlike `Depends()`, `Service()` does not expose fields to OpenAPI schema.
+
+    It takes a single "dependable" callable (like a function) which is factory creating objects of
+    annotated class. If "dependable" is omitted, FastAPI will use class constructor.
+
+    Don't call it directly, FastAPI will call it for you.
+
+    Read more about it in the
+    [FastAPI docs for Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/).
+
+    **Example**
+
+    ```python
+    from typing import Annotated
+
+    from fastapi import FastAPI, Service, Depends
+
+    from sqlalchemy import select
+    from sqlalchemy.ext.asyncio import AsyncSession
+
+    from .models import Item
+    from .db import async_session_factory
+
+
+    app = FastAPI()
+    app.dependency_overrides[AsyncSession] = async_session_factory
+
+
+    class ItemsService:
+        def __init__(self, session: Annotated[AsyncSession, Depends()]):
+            self.session = session
+
+        async def get_items(self) -> list[Item]:
+            result = await session.scalars(select(Item))
+            return result.all()
+
+
+    @app.get("/items/")
+    async def read_items(items_service: Annotated[ItemsService, Service()]) -> list[Item]:
+        return await items_service.get_items()
+    ```
+    """
+    return params.Service(dependency=dependency, use_cache=use_cache)

@@ -760,7 +760,10 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
+        use_cache: bool = True,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
@@ -781,3 +784,7 @@ class Security(Depends):
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
         self.scopes = scopes or []
+
+
+class Service(Depends):
+    pass
