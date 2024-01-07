@@ -15,7 +15,7 @@ Para declarar un cuerpo de **<abbr title="tambien conocido como solicitud. En in
 
     Como no es recomendado, las documentaciones interactivas de Swagger UI no mostrarán la documentación del cuerpo cuando se use `GET`, y es posible que los servidores proxy en el medio no lo admitan.
 
-## Importar `BaseModel` de Pydantic 
+## Importar `BaseModel` de Pydantic
 
 Primero, necesitas importar `BaseModel` desde `pydantic`:
 
