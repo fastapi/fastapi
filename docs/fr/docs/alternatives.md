@@ -387,7 +387,7 @@ Gérer toute la validation des données, leur sérialisation et la documentation
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web assynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
+Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web asynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
 
 Il est très simple et intuitif. Il est conçu pour être facilement extensible et avoir des composants modulaires.
 

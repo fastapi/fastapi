@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.security.tutorial003 import app
@@ -126,16 +127,46 @@ def test_openapi_schema():
                     "required": ["username", "password"],
                     "type": "object",
                     "properties": {
-                        "grant_type": {
-                            "title": "Grant Type",
-                            "pattern": "password",
-                            "type": "string",
-                        },
+                        "grant_type": IsDict(
+                            {
+                                "title": "Grant Type",
+                                "anyOf": [
+                                    {"pattern": "password", "type": "string"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Grant Type",
+                                "pattern": "password",
+                                "type": "string",
+                            }
+                        ),
                         "username": {"title": "Username", "type": "string"},
                         "password": {"title": "Password", "type": "string"},
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": {"title": "Client Id", "type": "string"},
-                        "client_secret": {"title": "Client Secret", "type": "string"},
+                        "client_id": IsDict(
+                            {
+                                "title": "Client Id",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Id", "type": "string"}
+                        ),
+                        "client_secret": IsDict(
+                            {
+                                "title": "Client Secret",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Secret", "type": "string"}
+                        ),
                     },
                 },
                 "ValidationError": {

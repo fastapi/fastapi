@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.cookie_params.tutorial001 import app
@@ -56,7 +57,16 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {"title": "Ads Id", "type": "string"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Ads Id",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Ads Id", "type": "string"}
+                            ),
                             "name": "ads_id",
                             "in": "cookie",
                         }

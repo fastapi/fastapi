@@ -236,7 +236,6 @@ Então, você poderia usar ele com:
 Com o **FastAPI**, usando as declarações de tipo do Python, você obtém:
 
 * Suporte no editor: verificação de erros, e opção de autocompletar, etc.
-* Parsing de dados
 * "<abbr title="convertendo uma string que vem de um request HTTP em dado Python">Parsing</abbr>" de dados
 * Validação de dados
 * Anotação da API e documentação automática

@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.extra_data_types.tutorial001_an import app
@@ -68,9 +69,22 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                                            }
+                                        ],
+                                        "title": "Body",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                                    }
+                                )
                             }
                         }
                     },
@@ -83,26 +97,74 @@ def test_openapi_schema():
                     "title": "Body_read_items_items__item_id__put",
                     "type": "object",
                     "properties": {
-                        "start_datetime": {
-                            "title": "Start Datetime",
-                            "type": "string",
-                            "format": "date-time",
-                        },
-                        "end_datetime": {
-                            "title": "End Datetime",
-                            "type": "string",
-                            "format": "date-time",
-                        },
-                        "repeat_at": {
-                            "title": "Repeat At",
-                            "type": "string",
-                            "format": "time",
-                        },
-                        "process_after": {
-                            "title": "Process After",
-                            "type": "number",
-                            "format": "time-delta",
-                        },
+                        "start_datetime": IsDict(
+                            {
+                                "title": "Start Datetime",
+                                "anyOf": [
+                                    {"type": "string", "format": "date-time"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Start Datetime",
+                                "type": "string",
+                                "format": "date-time",
+                            }
+                        ),
+                        "end_datetime": IsDict(
+                            {
+                                "title": "End Datetime",
+                                "anyOf": [
+                                    {"type": "string", "format": "date-time"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "End Datetime",
+                                "type": "string",
+                                "format": "date-time",
+                            }
+                        ),
+                        "repeat_at": IsDict(
+                            {
+                                "title": "Repeat At",
+                                "anyOf": [
+                                    {"type": "string", "format": "time"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Repeat At",
+                                "type": "string",
+                                "format": "time",
+                            }
+                        ),
+                        "process_after": IsDict(
+                            {
+                                "title": "Process After",
+                                "anyOf": [
+                                    {"type": "string", "format": "duration"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Process After",
+                                "type": "number",
+                                "format": "time-delta",
+                            }
+                        ),
                     },
                 },
                 "ValidationError": {

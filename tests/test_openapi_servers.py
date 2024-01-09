@@ -1,3 +1,4 @@
+from dirty_equals import IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -35,10 +36,20 @@ def test_openapi_schema():
         "servers": [
             {"url": "/", "description": "Default, relative server"},
             {
-                "url": "http://staging.localhost.tiangolo.com:8000",
+                "url": IsOneOf(
+                    "http://staging.localhost.tiangolo.com:8000/",
+                    # TODO: remove when deprecating Pydantic v1
+                    "http://staging.localhost.tiangolo.com:8000",
+                ),
                 "description": "Staging but actually localhost still",
             },
-            {"url": "https://prod.example.com"},
+            {
+                "url": IsOneOf(
+                    "https://prod.example.com/",
+                    # TODO: remove when deprecating Pydantic v1
+                    "https://prod.example.com",
+                )
+            },
         ],
         "paths": {
             "/foo": {

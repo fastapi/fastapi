@@ -43,7 +43,7 @@ It is just a function that can take all the same parameters that a *path operati
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -58,7 +58,7 @@ It is just a function that can take all the same parameters that a *path operati
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -106,7 +106,7 @@ And then it just returns a `dict` containing those values.
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -121,7 +121,7 @@ And then it just returns a `dict` containing those values.
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -146,7 +146,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16  21"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -161,7 +161,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -231,7 +231,7 @@ But because we are using `Annotated`, we can store that `Annotated` value in a v
     {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19  24"
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
