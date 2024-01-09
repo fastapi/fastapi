@@ -3,6 +3,7 @@ name: Label Approved
 on:
   schedule:
     - cron: "0 12 * * *"
+  workflow_dispatch:
 
 jobs:
   label-approved:
@@ -13,6 +14,6 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - uses: docker://tiangolo/label-approved:0.0.3
+    - uses: docker://tiangolo/label-approved:0.0.4
       with:
         token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
