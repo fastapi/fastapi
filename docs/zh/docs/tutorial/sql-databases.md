@@ -78,9 +78,23 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 
 现在让我们看看每个文件/模块的作用。
 
+## 安装 SQLAlchemy
+
+先下载`SQLAlchemy`所需要的依赖：
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 ## 创建 SQLAlchemy 部件
 
-让我们涉及到文件`sql_app/database.py`。
+让我们转到文件`sql_app/database.py`。
 
 ### 导入 SQLAlchemy 部件
 

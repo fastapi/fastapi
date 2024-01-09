@@ -323,7 +323,7 @@ def update_item(item_id: int, item: Item):
 
 새로운 문법, 특정 라이브러리의 메소드나 클래스 등을 배울 필요가 없습니다.
 
-그저 표준 **Python 3.6+**입니다.
+그저 표준 **Python 3.8+** 입니다.
 
 예를 들어, `int`에 대해선:
 
