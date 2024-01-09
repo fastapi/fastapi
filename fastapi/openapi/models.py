@@ -7,7 +7,7 @@ from fastapi._compat import (
     GetJsonSchemaHandler,
     JsonSchemaValue,
     _model_rebuild,
-    general_plain_validator_function,
+    with_info_plain_validator_function,
 )
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
@@ -52,7 +52,7 @@ except ImportError:  # pragma: no cover
         def __get_pydantic_core_schema__(
             cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
         ) -> CoreSchema:
-            return general_plain_validator_function(cls._validate)
+            return with_info_plain_validator_function(cls._validate)
 
 
 class Contact(BaseModel):
