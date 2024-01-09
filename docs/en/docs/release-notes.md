@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `openapi-callbacks.md`. PR [#10673](https://github.com/tiangolo/fastapi/pull/10673) by [@kayjan](https://github.com/kayjan).
 * ✏️ Fix typo in `fastapi/routing.py` . PR [#10520](https://github.com/tiangolo/fastapi/pull/10520) by [@sepsh](https://github.com/sepsh).
 * 📝 Replace HTTP code returned in case of existing user error in docs for testing. PR [#4482](https://github.com/tiangolo/fastapi/pull/4482) by [@TristanMarion](https://github.com/TristanMarion).
 * 📝 Add blog for FastAPI & Supabase. PR [#6018](https://github.com/tiangolo/fastapi/pull/6018) by [@theinfosecguy](https://github.com/theinfosecguy).
