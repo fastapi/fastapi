@@ -17,6 +17,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/learn/index.md`. PR [#10479](https://github.com/tiangolo/fastapi/pull/10479) by [@KAZAMA-DREAM](https://github.com/KAZAMA-DREAM).
 * 🌐 Add Russian translation for `docs/ru/docs/learn/index.md`. PR [#10539](https://github.com/tiangolo/fastapi/pull/10539) by [@AlertRED](https://github.com/AlertRED).
 * 🌐 Update SQLAlchemy instruction in Chinese translation `docs/zh/docs/tutorial/sql-databases.md`. PR [#9712](https://github.com/tiangolo/fastapi/pull/9712) by [@Royc30ne](https://github.com/Royc30ne).
 * 🌐 Add Turkish translation for `docs/tr/docs/external-links.md`. PR [#10549](https://github.com/tiangolo/fastapi/pull/10549) by [@hasansezertasan](https://github.com/hasansezertasan).
