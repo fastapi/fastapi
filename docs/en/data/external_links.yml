@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Keshav Malik
+    author_link: https://theinfosecguy.xyz/
+    link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
+    title: Building a CRUD API with FastAPI and Supabase
   - author: Adejumo Ridwan Suleiman
     author_link: https://www.linkedin.com/in/adejumoridwan/
     link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
