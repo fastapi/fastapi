@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add warning about lifecycle events with `AsyncClient`. PR [#4167](https://github.com/tiangolo/fastapi/pull/4167) by [@andrew-chang-dewitt](https://github.com/andrew-chang-dewitt).
 * ✏️ Fix typos in `/docs/reference/exceptions.md` and `/en/docs/reference/status.md`. PR [#10809](https://github.com/tiangolo/fastapi/pull/10809) by [@clarencepenz](https://github.com/clarencepenz).
 * ✏️ Fix typo in `openapi-callbacks.md`. PR [#10673](https://github.com/tiangolo/fastapi/pull/10673) by [@kayjan](https://github.com/kayjan).
 * ✏️ Fix typo in `fastapi/routing.py` . PR [#10520](https://github.com/tiangolo/fastapi/pull/10520) by [@sepsh](https://github.com/sepsh).
