@@ -58,15 +58,18 @@ plugins:
       python:
         options:
           extensions:
-            - griffe_typingdoc
+          - griffe_typingdoc
           show_root_heading: true
           show_if_no_docstring: true
-          preload_modules: [httpx, starlette]
+          preload_modules:
+          - httpx
+          - starlette
           inherited_members: true
           members_order: source
           separate_signature: true
           unwrap_annotated: true
-          filters: ["!^_"]
+          filters:
+          - '!^_'
           merge_init_into_class: true
           docstring_section_style: spacy
           signature_crossrefs: true
@@ -261,14 +264,10 @@ extra:
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
   alternate:
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /de/
-    name: de - Deutsch
   - link: /
     name: en - English
-  - link: /em/
-    name: 😉
+  - link: /de/
+    name: de - Deutsch
   - link: /es/
     name: es - español
   - link: /fa/
@@ -277,6 +276,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he - עברית
+  - link: /hu/
+    name: hu - magyar
   - link: /id/
     name: id - Bahasa Indonesia
   - link: /ja/
@@ -292,15 +293,17 @@ extra:
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
-    name: uk
+    name: uk - українська мова
   - link: /ur/
-    name: ur
+    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
+  - link: /em/
+    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css
