@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Persian translation for `docs/fa/docs/features.md`. PR [#5887](https://github.com/tiangolo/fastapi/pull/5887) by [@amirilf](https://github.com/amirilf).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/additional-responses.md`. PR [#10325](https://github.com/tiangolo/fastapi/pull/10325) by [@ShuibeiC](https://github.com/ShuibeiC).
 * 🌐 Fix typos in Russian translations for `docs/ru/docs/tutorial/background-tasks.md`, `docs/ru/docs/tutorial/body-nested-models.md`, `docs/ru/docs/tutorial/debugging.md`, `docs/ru/docs/tutorial/testing.md`. PR [#10311](https://github.com/tiangolo/fastapi/pull/10311) by [@AlertRED](https://github.com/AlertRED).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/request-files.md`. PR [#10332](https://github.com/tiangolo/fastapi/pull/10332) by [@AlertRED](https://github.com/AlertRED).
