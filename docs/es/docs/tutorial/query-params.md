@@ -1,12 +1,12 @@
-# <abbr title="conocido en inglés como: query parameters">Parámetros de Consulta</abbr>
+# Parámetros de <abbr title="conocido en español como: de consulta">Query</abbr>
 
-Cuando declaras otros parámetros de la función que no hacen parte de los parámetros de <abbr title="conocido en inglés como: path">ruta</abbr> estos se interpretan automáticamente como parámetros de <abbr title="conocido en inglés como: query">"consulta"</abbr>.
+Cuando declaras otros parámetros de la función que no hacen parte de los parámetros de <abbr title="conocido en español como: ruta">path</abbr> estos se interpretan automáticamente como parámetros de <abbr title="conocido en español como: consulta">"query"</abbr>.
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-La consulta o query es el conjunto de pares de <abbr title="conocido en español como: clave-valor o llave-valor">key-value</abbr> que van después del `?` en la URL, separados por caracteres `&`.
+La <abbr title="conocido en español como: consulta">query</abbr> es el conjunto de pares de <abbr title="conocido en español como: clave-valor o llave-valor">key-value</abbr> que van después del `?` en la URL, separados por caracteres `&`.
 
 Por ejemplo, en la URL:
 
@@ -23,7 +23,7 @@ Dado que son parte de la URL son strings "naturalmente".
 
 Pero cuando los declaras con tipos de Python (en el ejemplo arriba, como `int`) son convertidos a ese tipo y son validados con él.
 
-Todo el proceso que aplicaba a los parámetros de path también aplica a los parámetros de consulta:
+Todo el proceso que aplicaba a los parámetros de path también aplica a los parámetros de <abbr title="conocido en español como: consulta">query</abbr>:
 
 * Soporte del editor (obviamente)
 * <abbr title="convertir el string que viene de un HTTP request a datos de Python">"Parsing"</abbr> de datos
@@ -32,7 +32,7 @@ Todo el proceso que aplicaba a los parámetros de path también aplica a los par
 
 ## Configuraciones por defecto
 
-Como los parámetros de consulta no están fijos en una parte de la ruta pueden ser opcionales y pueden tener valores por defecto.
+Como los parámetros de <abbr title="conocido en español como: consulta">query</abbr> no están fijos en una parte de la <abbr title="conocido en español como: ruta">path</abbr> pueden ser opcionales y pueden tener valores por defecto.
 
 El ejemplo arriba tiene `skip=0` y `limit=10` como los valores por defecto.
 
@@ -61,7 +61,7 @@ Los valores de los parámetros en tu función serán:
 
 ## Parámetros opcionales
 
-Del mismo modo puedes declarar parámetros de consulta opcionales definiendo el valor por defecto como `None`:
+Del mismo modo puedes declarar parámetros de <abbr title="conocido en español como: consulta">query</abbr> opcionales definiendo el valor por defecto como `None`:
 
 === "Python 3.10+"
 
@@ -78,9 +78,9 @@ Del mismo modo puedes declarar parámetros de consulta opcionales definiendo el 
 En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
 
 !!! check "Revisa"
-    También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de ruta `item_id` es un parámetro de ruta y que `q` no lo es, y por lo tanto es un parámetro de consulta.
+    También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de <abbr title="conocido en español como: ruta">path</abbr> `item_id` es un parámetro de <abbr title="conocido en español como: ruta">path</abbr> y que `q` no lo es, y por lo tanto es un parámetro de <abbr title="conocido en español como: consulta">query</abbr>.
 
-## Conversión de tipos de parámetros de consulta
+## Conversión de tipos de parámetros de <abbr title="conocido en español como: consulta">query</abbr>
 
 También puedes declarar tipos `bool` y serán convertidos:
 
@@ -129,9 +129,9 @@ http://127.0.0.1:8000/items/foo?short=yes
 o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.) tu función verá el parámetro `short` con un valor `bool` de `True`. Si no, lo verá como `False`.
 
 
-## Múltiples parámetros de ruta y consulta
+## Múltiples parámetros de <abbr title="conocido en español como: ruta">path</abbr> y <abbr title="conocido en español como: consulta">query</abbr>
 
-Puedes declarar múltiples parámetros de ruta y parámetros de consulta al mismo tiempo. **FastAPI** sabe cuál es cuál.
+Puedes declarar múltiples parámetros de <abbr title="conocido en español como: ruta">path</abbr> y parámetros de <abbr title="conocido en español como: consulta">query</abbr> al mismo tiempo. **FastAPI** sabe cuál es cuál.
 
 No los tienes que declarar en un orden específico.
 
@@ -149,19 +149,19 @@ Serán detectados por nombre:
     {!> ../../../docs_src/query_params/tutorial004.py!}
     ```
 
-## Parámetros de consulta requeridos
+## Parámetros de <abbr title="conocido en español como: consulta">query</abbr> requeridos
 
-Cuando declaras un valor por defecto para los parámetros que no son de ruta (por ahora solo hemos visto parámetros de consulta), entonces no es requerido.
+Cuando declaras un valor por defecto para los parámetros que no son de <abbr title="conocido en español como: ruta">path</abbr> (por ahora solo hemos visto parámetros de <abbr title="conocido en español como: consulta">query</abbr>), entonces no es requerido.
 
 Si no quieres añadir un valor específico sino solo hacerlo opcional, pon el valor por defecto como `None`.
 
-Pero cuando quieres hacer que un parámetro de consulta sea requerido, puedes simplemente no declararle un valor por defecto:
+Pero cuando quieres hacer que un parámetro de <abbr title="conocido en español como: consulta">query</abbr> sea requerido, puedes simplemente no declararle un valor por defecto:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
-Aquí el parámetro de consulta `needy` es un parámetro de consulta requerido, del tipo `str`.
+Aquí el parámetro de <abbr title="conocido en español como: consulta">query</abbr> `needy` es un parámetro de <abbr title="conocido en español como: consulta">query</abbr> requerido, del tipo `str`.
 
 Si abres tu navegador en una URL como:
 
@@ -217,11 +217,11 @@ Por supuesto que también puedes definir algunos parámetros como requeridos, co
     {!> ../../../docs_src/query_params/tutorial006.py!}
     ```
 
-En este caso hay 3 parámetros de consulta:
+En este caso hay 3 parámetros de <abbr title="conocido en español como: consulta">query</abbr>:
 
 * `needy`, un `str` requerido.
 * `skip`, un `int` con un valor por defecto de `0`.
 * `limit`, un `int` opcional.
 
 !!! tip "Consejo"
-    También podrías usar los `Enum`s de la misma manera que con los [Parámetros de Ruta](path-params.md#predefined-values){.internal-link target=_blank}.
+    También podrías usar los `Enum`s de la misma manera que con los [Parámetros del Path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
