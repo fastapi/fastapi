@@ -277,8 +277,9 @@ def update_config() -> None:
     new_alternate: List[Dict[str, str]] = []
     # Language names sourced from https://quickref.me/iso-639-1
     # Contributors may wish to update or change these, e.g. to fix capitalization.
-    local_language_names: Dict[str, str] = json.loads(
-        (Path(__file__).parent / "../docs/language_names.json").read_text()
+    language_names_path = Path(__file__).parent / "../docs/language_names.yml"
+    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+        language_names_path.read_text(encoding="utf-8")
     )
     for lang_path in get_lang_paths():
         if lang_path.name in {"en", "em"} or not lang_path.is_dir():
