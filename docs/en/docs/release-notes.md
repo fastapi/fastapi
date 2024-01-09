@@ -17,6 +17,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Hungarian translation for `/docs/hu/docs/index.md`. PR [#10812](https://github.com/tiangolo/fastapi/pull/10812) by [@takacs](https://github.com/takacs).
 * 🌐 Add Turkish translation for `docs/tr/docs/newsletter.md`. PR [#10550](https://github.com/tiangolo/fastapi/pull/10550) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Spanish translation for `docs/es/docs/help/index.md`. PR [#10907](https://github.com/tiangolo/fastapi/pull/10907) by [@pablocm83](https://github.com/pablocm83).
 * 🌐 Add Spanish translation for `docs/es/docs/about/index.md`. PR [#10908](https://github.com/tiangolo/fastapi/pull/10908) by [@pablocm83](https://github.com/pablocm83).
