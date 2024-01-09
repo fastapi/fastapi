@@ -17,6 +17,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/deployment/server-workers.md`. PR [#10292](https://github.com/tiangolo/fastapi/pull/10292) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/cloud.md`. PR [#10291](https://github.com/tiangolo/fastapi/pull/10291) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/manually.md`. PR [#10279](https://github.com/tiangolo/fastapi/pull/10279) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/https.md`. PR [#10277](https://github.com/tiangolo/fastapi/pull/10277) by [@xzmeng](https://github.com/xzmeng).
