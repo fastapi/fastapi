@@ -8,7 +8,7 @@ app = FastAPI()
 
 class Subscription(BaseModel):
     username: str
-    montly_fee: float
+    monthly_fee: float
     start_date: datetime
 
 
