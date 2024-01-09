@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update example source files for SQL databases with SQLAlchemy. PR [#9508](https://github.com/tiangolo/fastapi/pull/9508) by [@s-mustafa](https://github.com/s-mustafa).
 * 📝 Update code examples in docs for body, replace name `create_item` with `update_item` when appropriate. PR [#5913](https://github.com/tiangolo/fastapi/pull/5913) by [@OttoAndrey](https://github.com/OttoAndrey).
 * ✏️ Fix typo in dependencies with yield source examples. PR [#10847](https://github.com/tiangolo/fastapi/pull/10847) by [@tiangolo](https://github.com/tiangolo).
 
