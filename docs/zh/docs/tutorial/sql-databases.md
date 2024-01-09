@@ -77,6 +77,7 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 该文件`__init__.py`只是一个空文件，但它告诉 Python 其中`sql_app`的所有模块（Python 文件）都是一个包。
 
 现在让我们看看每个文件/模块的作用。
+
 ## 安装 SQLAlchemy
 
 先下载`SQLAlchemy`所需要的依赖：
@@ -123,7 +124,6 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 !!! tip
 
     如果您想使用不同的数据库，这是就是您必须修改的地方。
-
 
 ### 创建 SQLAlchemy 引擎
 
