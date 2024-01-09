@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typos in `docs/en/docs/alternatives.md` and `docs/en/docs/tutorial/dependencies/index.md`. PR [#10906](https://github.com/tiangolo/fastapi/pull/10906) by [@s111d](https://github.com/s111d).
 * ✏️ Fix typos in `docs/en/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#10834](https://github.com/tiangolo/fastapi/pull/10834) by [@Molkree](https://github.com/Molkree).
 * 📝 Add article: "Building a RESTful API with FastAPI: Secure Signup and Login Functionality Included". PR [#9733](https://github.com/tiangolo/fastapi/pull/9733) by [@dxphilo](https://github.com/dxphilo).
 * 📝 Add warning about lifecycle events with `AsyncClient`. PR [#4167](https://github.com/tiangolo/fastapi/pull/4167) by [@andrew-chang-dewitt](https://github.com/andrew-chang-dewitt).
