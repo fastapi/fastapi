@@ -14,7 +14,7 @@ E você também pode declarar parâmetros de corpo como opcionais, definindo o v
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -44,7 +44,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
@@ -87,7 +87,7 @@ Se você declará-lo como é, porque é um valor singular, o **FastAPI** assumir
 
 Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -143,7 +143,7 @@ Por exemplo:
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -172,7 +172,7 @@ como em:
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}

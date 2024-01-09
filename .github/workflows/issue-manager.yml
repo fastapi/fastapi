@@ -19,6 +19,10 @@ jobs:
     if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: tiangolo/issue-manager@0.4.0
         with:
           token: ${{ secrets.FASTAPI_ISSUE_MANAGER }}
