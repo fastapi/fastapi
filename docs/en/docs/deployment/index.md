@@ -1,4 +1,4 @@
-# Deployment - Intro
+# Deployment
 
 Deploying a **FastAPI** application is relatively easy.
 

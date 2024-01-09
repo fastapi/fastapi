@@ -1,0 +1,6 @@
+# Define this here and not in the main mkdocs.yml file because that one is auto
+# updated and written, and the script would remove the env var
+INHERIT: !ENV [INSIDERS_FILE, '../en/mkdocs.no-insiders.yml']
+markdown_extensions:
+  pymdownx.highlight:
+    linenums: !ENV [LINENUMS, false]

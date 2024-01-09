@@ -1,5 +1,25 @@
-articles:
-  english:
+Articles:
+  English:
+  - author: John Philip
+    author_link: https://medium.com/@amjohnphilip
+    link: https://python.plainenglish.io/building-a-restful-api-with-fastapi-secure-signup-and-login-functionality-included-45cdbcb36106
+    title: "Building a RESTful API with FastAPI: Secure Signup and Login Functionality Included"
+  - author: Keshav Malik
+    author_link: https://theinfosecguy.xyz/
+    link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
+    title: Building a CRUD API with FastAPI and Supabase
+  - author: Adejumo Ridwan Suleiman
+    author_link: https://www.linkedin.com/in/adejumoridwan/
+    link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
+    title: Build an SMS Spam Classifier Serverless Database with FaunaDB and FastAPI
+  - author: Raf Rasenberg
+    author_link: https://rafrasenberg.com/about/
+    link: https://rafrasenberg.com/fastapi-lambda/
+    title: 'FastAPI lambda container: serverless simplified'
+  - author: Teresa N. Fontanella De Santis
+    author_link: https://dev.to/
+    link: https://dev.to/teresafds/authorization-on-fastapi-with-casbin-41og
+    title: Authorization on FastAPI with Casbin
   - author: WayScript
     author_link: https://www.wayscript.com
     link: https://blog.wayscript.com/fast-api-quickstart/
@@ -224,7 +244,11 @@ articles:
     author_link: https://medium.com/@krishnardt365
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
-  german:
+  German:
+  - author: Marcel Sander (actidoo)
+    author_link: https://www.actidoo.com
+    link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
+    title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
@@ -233,7 +257,7 @@ articles:
     author_link: https://hellocoding.de/autor/felix-schuermeyer/
     link: https://hellocoding.de/blog/coding-language/python/fastapi
     title: REST-API Programmieren mittels Python und dem FastAPI Modul
-  japanese:
+  Japanese:
   - author: '@bee2'
     author_link: https://qiita.com/bee2
     link: https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9
@@ -282,7 +306,7 @@ articles:
     author_link: https://qiita.com/mtitg
     link: https://qiita.com/mtitg/items/47770e9a562dd150631d
     title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
-  russian:
+  Russian:
   - author: Troy Köhler
     author_link: https://www.linkedin.com/in/trkohler/
     link: https://trkohler.com/fast-api-introduction-to-framework
@@ -295,13 +319,18 @@ articles:
     author_link: https://habr.com/ru/users/57uff3r/
     link: https://habr.com/ru/post/454440/
     title: 'Мелкая питонячая радость #2: Starlette - Солидная примочка – FastAPI'
-  vietnamese:
+  Vietnamese:
   - author: Nguyễn Nhân
     author_link: https://fullstackstation.com/author/figonking/
     link: https://fullstackstation.com/fastapi-trien-khai-bang-docker/
     title: 'FASTAPI: TRIỂN KHAI BẰNG DOCKER'
-podcasts:
-  english:
+  Taiwanese:
+  - author: Leon
+    author_link: http://editor.leonh.space/
+    link: https://editor.leonh.space/2022/tortoise/
+    title: 'Tortoise ORM / FastAPI 整合快速筆記'
+Podcasts:
+  English:
   - author: Podcast.`__init__`
     author_link: https://www.pythonpodcast.com/
     link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
@@ -310,8 +339,8 @@ podcasts:
     author_link: https://pythonbytes.fm/
     link: https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855
     title: FastAPI on PythonBytes
-talks:
-  english:
+Talks:
+  English:
   - author: Sebastián Ramírez (tiangolo)
     author_link: https://twitter.com/tiangolo
     link: https://www.youtube.com/watch?v=PnpTY1f4k2U
