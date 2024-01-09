@@ -122,7 +122,7 @@
     {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_an/main.py!}
@@ -137,7 +137,7 @@
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
     ```
 
-=== "Python 3.6+  без Annotated"
+=== "Python 3.8+  без Annotated"
 
     !!! tip "Подсказка"
         По возможности используйте версию с `Annotated`.

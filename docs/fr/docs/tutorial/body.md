@@ -98,7 +98,7 @@ Et vous obtenez aussi de la vérification d'erreur pour les opérations incorrec
 
 <img src="/img/tutorial/body/image04.png">
 
-Ce n'est pas un hasard, ce framework entier a été bati avec ce design comme objectif.
+Ce n'est pas un hasard, ce framework entier a été bâti avec ce design comme objectif.
 
 Et cela a été rigoureusement testé durant la phase de design, avant toute implémentation, pour s'assurer que cela fonctionnerait avec tous les éditeurs.
 

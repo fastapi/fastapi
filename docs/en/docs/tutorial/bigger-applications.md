@@ -118,13 +118,13 @@ We will now use a simple dependency to read a custom `X-Token` header:
     {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  5-7"
     {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
