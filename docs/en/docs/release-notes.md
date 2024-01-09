@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Replace HTTP code returned in case of existing user error in docs for testing. PR [#4482](https://github.com/tiangolo/fastapi/pull/4482) by [@TristanMarion](https://github.com/TristanMarion).
 * 📝 Add blog for FastAPI & Supabase. PR [#6018](https://github.com/tiangolo/fastapi/pull/6018) by [@theinfosecguy](https://github.com/theinfosecguy).
 * 📝 Update example source files for SQL databases with SQLAlchemy. PR [#9508](https://github.com/tiangolo/fastapi/pull/9508) by [@s-mustafa](https://github.com/s-mustafa).
 * 📝 Update code examples in docs for body, replace name `create_item` with `update_item` when appropriate. PR [#5913](https://github.com/tiangolo/fastapi/pull/5913) by [@OttoAndrey](https://github.com/OttoAndrey).
