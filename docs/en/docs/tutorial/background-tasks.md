@@ -69,7 +69,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
     {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14  16  23  26"
     {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
@@ -84,7 +84,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
