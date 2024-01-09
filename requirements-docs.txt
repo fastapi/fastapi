@@ -1,0 +1,19 @@
+-e .
+-r requirements-docs-tests.txt
+mkdocs-material==9.4.7
+mdx-include >=1.4.1,<2.0.0
+mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
+mkdocs-redirects>=1.2.1,<1.3.0
+typer-cli >=0.0.13,<0.0.14
+typer[all] >=0.6.1,<0.8.0
+pyyaml >=5.3.1,<7.0.0
+# For Material for MkDocs, Chinese search
+jieba==0.42.1
+# For image processing by Material for MkDocs
+pillow==10.1.0
+# For image processing by Material for MkDocs
+cairosvg==2.7.0
+mkdocstrings[python]==0.23.0
+griffe-typingdoc==0.2.2
+# For griffe, it formats with black
+black==23.3.0

@@ -1,4 +1,4 @@
-# Guia de Usuário Avançado - Introdução
+# Guia de Usuário Avançado
 
 ## Recursos Adicionais
 

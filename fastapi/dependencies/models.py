@@ -1,7 +1,7 @@
 from typing import Any, Callable, List, Optional, Sequence
 
+from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
-from pydantic.fields import ModelField
 
 
 class SecurityRequirement:
