@@ -12,7 +12,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -30,7 +30,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}

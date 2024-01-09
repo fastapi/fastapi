@@ -26,7 +26,7 @@ Tài liệu tương tác API và web giao diện người dùng. Là một frame
 
 ### Chỉ cần phiên bản Python hiện đại
 
-Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.6** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
+Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.8** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
 
 Nếu bạn cần 2 phút để làm mới lại cách sử dụng các kiểu dữ liệu mới của Python (thậm chí nếu bạn không sử dụng FastAPI), xem hướng dẫn ngắn: [Kiểu dữ liệu Python](python-types.md){.internal-link target=_blank}.
 
