@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: John Philip
+    author_link: https://medium.com/@amjohnphilip
+    link: https://python.plainenglish.io/building-a-restful-api-with-fastapi-secure-signup-and-login-functionality-included-45cdbcb36106
+    title: "Building a RESTful API with FastAPI: Secure Signup and Login Functionality Included"
   - author: Keshav Malik
     author_link: https://theinfosecguy.xyz/
     link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
