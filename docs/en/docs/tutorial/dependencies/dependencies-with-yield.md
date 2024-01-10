@@ -249,7 +249,7 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-Underneath, the `open("./somefile.txt")` creates an object that is a called a "Context Manager".
+Underneath, the `open("./somefile.txt")` creates an object that is called a "Context Manager".
 
 When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 
