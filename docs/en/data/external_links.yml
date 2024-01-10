@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://blog.apitally.io/fastapi-application-monitoring-made-easy
+    title: FastAPI application monitoring made easy
   - author: John Philip
     author_link: https://medium.com/@amjohnphilip
     link: https://python.plainenglish.io/building-a-restful-api-with-fastapi-secure-signup-and-login-functionality-included-45cdbcb36106
