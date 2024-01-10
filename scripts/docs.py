@@ -274,22 +274,24 @@ def live(
 def update_config() -> None:
     config = get_en_config()
     languages = [{"en": "/"}]
-    alternate: List[Dict[str, str]] = config["extra"].get("alternate", [])
-    alternate_dict = {alt["link"]: alt["name"] for alt in alternate}
     new_alternate: List[Dict[str, str]] = []
+    # Language names sourced from https://quickref.me/iso-639-1
+    # Contributors may wish to update or change these, e.g. to fix capitalization.
+    language_names_path = Path(__file__).parent / "../docs/language_names.yml"
+    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+        language_names_path.read_text(encoding="utf-8")
+    )
     for lang_path in get_lang_paths():
-        if lang_path.name == "en" or not lang_path.is_dir():
+        if lang_path.name in {"en", "em"} or not lang_path.is_dir():
             continue
-        name = lang_path.name
-        languages.append({name: f"/{name}/"})
+        code = lang_path.name
+        languages.append({code: f"/{code}/"})
     for lang_dict in languages:
-        name = list(lang_dict.keys())[0]
-        url = lang_dict[name]
-        if url not in alternate_dict:
-            new_alternate.append({"link": url, "name": name})
-        else:
-            use_name = alternate_dict[url]
-            new_alternate.append({"link": url, "name": use_name})
+        code = list(lang_dict.keys())[0]
+        url = lang_dict[code]
+        use_name = f"{code} - {local_language_names[code]}"
+        new_alternate.append({"link": url, "name": use_name})
+    new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
     en_config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
