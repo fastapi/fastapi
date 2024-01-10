@@ -36,6 +36,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
@@ -111,6 +112,15 @@ filterwarnings = [
     "ignore::trio.TrioDeprecationWarning",
     # TODO remove pytest-cov
     'ignore::pytest.PytestDeprecationWarning:pytest_cov',
+    # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
+    # https://github.com/sqlalchemy/sqlalchemy/commit/59521abcc0676e936b31a523bd968fc157fef0c2
+    'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
+    # TODO: remove after upgrading python-jose to a version that explicitly supports Python 3.12
+    # also, if it won't receive an update, consider replacing python-jose with some alternative
+    # related issues:
+    #   - https://github.com/mpdavis/python-jose/issues/332
+    #   - https://github.com/mpdavis/python-jose/issues/334
+    'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
 ]
 
 [tool.coverage.run]
