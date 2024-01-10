@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Visual Studio Code Team
+    author_link: https://code.visualstudio.com/
+    link: https://code.visualstudio.com/docs/python/tutorial-fastapi
+    title: FastAPI Tutorial in Visual Studio Code
   - author: Apitally
     author_link: https://apitally.io
     link: https://blog.apitally.io/fastapi-application-monitoring-made-easy
