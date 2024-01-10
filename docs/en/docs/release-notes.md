@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix broken link in `docs/en/docs/tutorial/sql-databases.md`. PR [#10765](https://github.com/tiangolo/fastapi/pull/10765) by [@HurSungYun](https://github.com/HurSungYun).
 * 📝 Add External Link: FastAPI application monitoring made easy. PR [#10917](https://github.com/tiangolo/fastapi/pull/10917) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Generate automatic language names for docs translations. PR [#5354](https://github.com/tiangolo/fastapi/pull/5354) by [@jakul](https://github.com/jakul).
 * ✏️ Fix typos in `docs/en/docs/alternatives.md` and `docs/en/docs/tutorial/dependencies/index.md`. PR [#10906](https://github.com/tiangolo/fastapi/pull/10906) by [@s111d](https://github.com/s111d).
