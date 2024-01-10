@@ -451,6 +451,11 @@ The steps are:
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 !!! tip
     The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
 
