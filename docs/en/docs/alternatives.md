@@ -191,7 +191,7 @@ This solved having to write YAML (another syntax) inside of Python docstrings.
 
 This combination of Flask, Flask-apispec with Marshmallow and Webargs was my favorite backend stack until building **FastAPI**.
 
-Using it led to the creation of several Flask full-stack generators. These are the main stack I (and several external teams) have been using up to now:
+Using it led to the creation of several Flask full-stack generators. These are the main stacks I (and several external teams) have been using up to now:
 
 * <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
