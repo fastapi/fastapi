@@ -12,7 +12,7 @@ Primeiro, importe `Path` de `fastapi`:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -30,7 +30,7 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}

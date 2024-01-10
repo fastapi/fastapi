@@ -84,6 +84,9 @@ response = client.get('/')
 !!! tip
     Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
 
+!!! warning
+    If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="florimondmanca/asgi-lifespan" class="external-link" target="_blank">https://github.com/florimondmanca/asgi-lifespan#usage</a>.
+
 ## Other Asynchronous Function Calls
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.

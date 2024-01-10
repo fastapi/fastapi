@@ -119,8 +119,6 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
 
     These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of additional alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
-    For example, you could try <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-alternatives" class="external-link" target="_blank">Fern</a> which is also a FastAPI sponsor. 😎🎉
-
 ### Flask REST frameworks
 
 There are several Flask REST frameworks, but after investing the time and work into investigating them, I found that many are discontinued or abandoned, with several standing issues that made them unfit.
@@ -187,7 +185,7 @@ It's a Flask plug-in, that ties together Webargs, Marshmallow and APISpec.
 
 It uses the information from Webargs and Marshmallow to automatically generate OpenAPI schemas, using APISpec.
 
-It's a great tool, very under-rated. It should be way more popular than many Flask plug-ins out there. It might be due to its documentation being too concise and abstract.
+It's a great tool, very underrated. It should be way more popular than many Flask plug-ins out there. It might be due to its documentation being too concise and abstract.
 
 This solved having to write YAML (another syntax) inside of Python docstrings.
 
@@ -265,7 +263,7 @@ I discovered Molten in the first stages of building **FastAPI**. And it has quit
 
 It doesn't use a data validation, serialization and documentation third-party library like Pydantic, it has its own. So, these data type definitions would not be reusable as easily.
 
-It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high-performance provided by tools like Uvicorn, Starlette and Sanic.
+It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high performance provided by tools like Uvicorn, Starlette and Sanic.
 
 The dependency injection system requires pre-registration of the dependencies and the dependencies are solved based on the declared types. So, it's not possible to declare more than one "component" that provides a certain type.
 
@@ -359,7 +357,7 @@ It is comparable to Marshmallow. Although it's faster than Marshmallow in benchm
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
+Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web applications">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
 
 It is very simple and intuitive. It's designed to be easily extensible, and have modular components.
 

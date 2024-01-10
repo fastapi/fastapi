@@ -18,7 +18,7 @@ You can use the `jsonable_encoder` to convert the input data to data that can be
     {!> ../../../docs_src/body_updates/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="30-35"
     {!> ../../../docs_src/body_updates/tutorial001.py!}
@@ -79,7 +79,7 @@ Then you can use this to generate a `dict` with only the data that was set (sent
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="34"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
@@ -103,7 +103,7 @@ Like `stored_item_model.copy(update=update_data)`:
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="35"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
@@ -136,7 +136,7 @@ In summary, to apply partial updates you would:
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="30-37"
     {!> ../../../docs_src/body_updates/tutorial002.py!}
