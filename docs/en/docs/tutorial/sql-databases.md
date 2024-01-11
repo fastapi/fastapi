@@ -1,5 +1,12 @@
 # SQL (Relational) Databases
 
+!!! info
+    These docs are about to be updated. 🎉
+
+    The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
+
+    The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
+
 **FastAPI** doesn't require you to use a SQL (relational) database.
 
 But you can use any relational database that you want.
@@ -262,22 +269,22 @@ So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.8+"
 
-    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 #### SQLAlchemy style and Pydantic style
@@ -294,7 +301,7 @@ while Pydantic *models* declare the types using `:`, the new type annotation syn
 name: str
 ```
 
-Have it in mind, so you don't get confused when using `=` and `:` with them.
+Keep these in mind, so you don't get confused when using `=` and `:` with them.
 
 ### Create Pydantic *models* / schemas for reading / returning
 
@@ -306,22 +313,22 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13-15  29-32"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.8+"
 
-    ```Python hl_lines="13-15  29-32"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15-17  31-34"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -335,22 +342,22 @@ This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="ex
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13  17-18  29  34-35"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.8+"
 
-    ```Python hl_lines="13  17-18  29  34-35"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15  19-20  31  36-37"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -444,6 +451,11 @@ The steps are:
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 !!! tip
     The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
 
@@ -481,16 +493,16 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 In a very simplistic way create the database tables:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 #### Alembic Note
@@ -515,16 +527,16 @@ For that, we will create a new dependency with `yield`, as explained before in t
 
 Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="15-20"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="13-18"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="15-20"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info
@@ -540,16 +552,16 @@ And then, when using the dependency in a *path operation function*, we declare i
 
 This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="24  32  38  47  53"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="22  30  36  45  51"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="24  32  38  47  53"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info "Technical Details"
@@ -561,16 +573,16 @@ This will then give us better editor support inside the *path operation function
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
@@ -617,7 +629,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 ```
 
 !!! info
-    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../advanced/async-sql-databases.md){.internal-link target=_blank}.
+    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
 
 !!! note "Very Technical Details"
     If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
@@ -654,22 +666,22 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 * `sql_app/schemas.py`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.8+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 * `sql_app/crud.py`:
@@ -680,16 +692,16 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 * `sql_app/main.py`:
 
-=== "Python 3.6 and above"
-
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 ## Check it
@@ -739,16 +751,16 @@ A "middleware" is basically a function that is always executed for each request,
 
 The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="14-22"
-    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="12-20"
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="14-22"
+    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
     ```
 
 !!! info
