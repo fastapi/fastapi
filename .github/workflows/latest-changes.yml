@@ -24,7 +24,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # To allow latest-changes to commit to the main branch
           token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
@@ -34,9 +34,12 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-      - uses: docker://tiangolo/latest-changes:0.0.3
+      - uses: docker://tiangolo/latest-changes:0.3.0
+      # - uses: tiangolo/latest-changes@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
-          latest_changes_header: '## Latest Changes\n\n'
+          latest_changes_header: '## Latest Changes'
+          end_regex: '^## '
           debug_logs: true
+          label_header_prefix: '### '

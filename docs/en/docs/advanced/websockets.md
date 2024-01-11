@@ -124,7 +124,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
     {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="69-70  83"
     {!> ../../../docs_src/websockets/tutorial002_an.py!}
@@ -139,7 +139,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
     {!> ../../../docs_src/websockets/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -191,7 +191,7 @@ When a WebSocket connection is closed, the `await websocket.receive_text()` will
     {!> ../../../docs_src/websockets/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="81-83"
     {!> ../../../docs_src/websockets/tutorial003.py!}
