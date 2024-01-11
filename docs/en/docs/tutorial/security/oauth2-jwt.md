@@ -285,7 +285,7 @@ Create a real JWT access token and return it
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="114-127"
+    ```Python hl_lines="114-129"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -294,7 +294,7 @@ Create a real JWT access token and return it
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="115-128"
+    ```Python hl_lines="115-130"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
