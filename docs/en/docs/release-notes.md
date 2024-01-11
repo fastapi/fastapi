@@ -11,6 +11,10 @@ hide:
 
 * ✨ Add support for Python 3.12. PR [#10666](https://github.com/tiangolo/fastapi/pull/10666) by [@Jamim](https://github.com/Jamim).
 
+### Upgrades
+
+* ⬆️ Upgrade Starlette to >=0.35.0,<0.36.0. PR [#10938](https://github.com/tiangolo/fastapi/pull/10938) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * ✏️ Fix typo in `docs/en/docs/alternatives.md`. PR [#10931](https://github.com/tiangolo/fastapi/pull/10931) by [@s111d](https://github.com/s111d).
