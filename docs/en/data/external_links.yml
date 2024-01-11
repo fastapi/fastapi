@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Ankit Anchlia
+    author_link: https://linkedin.com/in/aanchlia21
+    link: https://hackernoon.com/explore-how-to-effectively-use-jwt-with-fastapi
+    title: Explore How to Effectively Use JWT With FastAPI
   - author: Nicoló Lino
     author_link: https://www.nlino.com
     link: https://github.com/softwarebloat/python-tracing-demo
