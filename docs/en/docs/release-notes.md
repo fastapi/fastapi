@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add location info to `tutorial/bigger-applications.md`. PR [#10552](https://github.com/tiangolo/fastapi/pull/10552) by [@nilslindemann](https://github.com/nilslindemann).
+
 ## 0.109.0
 
 ### Features
