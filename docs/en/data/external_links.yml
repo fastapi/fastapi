@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Mikhail Rozhkov, Elena Samuylova
+    author_link: https://www.linkedin.com/in/mnrozhkov/
+    link: https://www.evidentlyai.com/blog/fastapi-tutorial
+    title: ML serving and monitoring with FastAPI and Evidently
   - author: Visual Studio Code Team
     author_link: https://code.visualstudio.com/
     link: https://code.visualstudio.com/docs/python/tutorial-fastapi
