@@ -349,6 +349,10 @@ Podcasts:
     title: FastAPI on PythonBytes
 Talks:
   English:
+  - author: Jeny Sadadia
+    author_link: https://github.com/JenySadadia
+    link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
+    title: 'PyCon AU 2023: Testing asynchronous applications with FastAPI and pytest'
   - author: Sebastián Ramírez (tiangolo)
     author_link: https://twitter.com/tiangolo
     link: https://www.youtube.com/watch?v=PnpTY1f4k2U
