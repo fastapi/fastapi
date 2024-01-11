@@ -170,7 +170,7 @@ $ openssl rand -hex 32
 
 创建并返回真正的 JWT 访问令牌。
 
-```Python hl_lines="115-128"
+```Python hl_lines="115-130"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
