@@ -1,5 +1,21 @@
 Articles:
   English:
+  - author: Visual Studio Code Team
+    author_link: https://code.visualstudio.com/
+    link: https://code.visualstudio.com/docs/python/tutorial-fastapi
+    title: FastAPI Tutorial in Visual Studio Code
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://blog.apitally.io/fastapi-application-monitoring-made-easy
+    title: FastAPI application monitoring made easy
+  - author: John Philip
+    author_link: https://medium.com/@amjohnphilip
+    link: https://python.plainenglish.io/building-a-restful-api-with-fastapi-secure-signup-and-login-functionality-included-45cdbcb36106
+    title: "Building a RESTful API with FastAPI: Secure Signup and Login Functionality Included"
+  - author: Keshav Malik
+    author_link: https://theinfosecguy.xyz/
+    link: https://blog.theinfosecguy.xyz/building-a-crud-api-with-fastapi-and-supabase-a-step-by-step-guide
+    title: Building a CRUD API with FastAPI and Supabase
   - author: Adejumo Ridwan Suleiman
     author_link: https://www.linkedin.com/in/adejumoridwan/
     link: https://medium.com/python-in-plain-english/build-an-sms-spam-classifier-serverless-database-with-faunadb-and-fastapi-23dbb275bc5b
@@ -333,6 +349,10 @@ Podcasts:
     title: FastAPI on PythonBytes
 Talks:
   English:
+  - author: Jeny Sadadia
+    author_link: https://github.com/JenySadadia
+    link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
+    title: 'PyCon AU 2023: Testing asynchronous applications with FastAPI and pytest'
   - author: Sebastián Ramírez (tiangolo)
     author_link: https://twitter.com/tiangolo
     link: https://www.youtube.com/watch?v=PnpTY1f4k2U
