@@ -202,10 +202,6 @@ Takes an async generator or a normal generator/iterator and streams the response
 {!../../../docs_src/custom_response/tutorial007.py!}
 ```
 
-For reference, `StreamingResponse` comes from [`starlette`](https://github.com/encode/starlette).
-More information on it can be found in Starlette's docs:
-https://www.starlette.io/responses/#streamingresponse.
-
 #### Using `StreamingResponse` with file-like objects
 
 If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
@@ -228,6 +224,12 @@ This includes many libraries to interact with cloud storage, video processing, a
 
 !!! tip
     Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+
+#### `StreamingResponse` Implementation
+
+`StreamingResponse` is imported from [Starlette](https://github.com/encode/starlette) into FastAPI.
+Thus, more information on `StreamingResponse` can be found in the Starlette docs:
+https://www.starlette.io/responses/#streamingresponse
 
 ### `FileResponse`
 
