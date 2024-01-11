@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.109.0
+
 ### Features
 
 * ✨ Add support for Python 3.12. PR [#10666](https://github.com/tiangolo/fastapi/pull/10666) by [@Jamim](https://github.com/Jamim).
