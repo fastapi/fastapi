@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Nicoló Lino
+    author_link: https://www.nlino.com
+    link: https://github.com/softwarebloat/python-tracing-demo
+    title: Instrument a FastAPI service adding tracing with OpenTelemetry and send/show traces in Grafana Tempo
   - author: Mikhail Rozhkov, Elena Samuylova
     author_link: https://www.linkedin.com/in/mnrozhkov/
     link: https://www.evidentlyai.com/blog/fastapi-tutorial
