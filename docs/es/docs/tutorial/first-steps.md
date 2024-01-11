@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Paso 3: crea un *operación de path*
+### Paso 3: crea una *operación de path*
 
 #### Path
 
