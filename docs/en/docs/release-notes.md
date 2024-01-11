@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Replace `email` with `username` in `docs_src/security/tutorial007` code examples. PR [#10649](https://github.com/tiangolo/fastapi/pull/10649) by [@nilslindemann](https://github.com/nilslindemann).
 * 📝 Add VS Code tutorial link. PR [#10592](https://github.com/tiangolo/fastapi/pull/10592) by [@nilslindemann](https://github.com/nilslindemann).
 * 📝 Add notes about Pydantic v2's new `.model_dump()`. PR [#10929](https://github.com/tiangolo/fastapi/pull/10929) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Fix broken link in `docs/en/docs/tutorial/sql-databases.md`. PR [#10765](https://github.com/tiangolo/fastapi/pull/10765) by [@HurSungYun](https://github.com/HurSungYun).
