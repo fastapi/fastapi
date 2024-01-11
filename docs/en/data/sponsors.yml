@@ -5,15 +5,21 @@ gold:
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
-  - url: https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=main-badge
-    title: Fern | SDKs and API docs
-    img: https://fastapi.tiangolo.com/img/sponsors/fern.svg
   - url: https://www.porter.run
     title: Deploy FastAPI on AWS with a few clicks
     img: https://fastapi.tiangolo.com/img/sponsors/porter.png
   - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
     title: Automate FastAPI documentation generation with Bump.sh
-    img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.png
+    img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
+  - url: https://reflex.dev
+    title: Reflex
+    img: https://fastapi.tiangolo.com/img/sponsors/reflex.png
+  - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
+    title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
+    img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
+  - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
+    title: Auth, user management and more for your B2B product
+    img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
@@ -39,13 +45,13 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
+  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
+    title: Take code reviews from hours to minutes
+    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
     img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
-  - url: https://www.flint.sh
-    title: IT expertise, consulting and development by passionate people
-    img: https://fastapi.tiangolo.com/img/sponsors/flint.png
   - url: https://bit.ly/3JJ7y5C
     title: Build cross-modal and multimodal applications on the cloud
     img: https://fastapi.tiangolo.com/img/sponsors/jina2.svg

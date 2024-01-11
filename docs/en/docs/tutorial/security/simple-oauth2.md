@@ -61,7 +61,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  79"
     {!> ../../../docs_src/security/tutorial003_an.py!}
@@ -76,7 +76,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
     {!> ../../../docs_src/security/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -134,7 +134,7 @@ For the error, we use the exception `HTTPException`:
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  80-82"
     {!> ../../../docs_src/security/tutorial003_an.py!}
@@ -149,7 +149,7 @@ For the error, we use the exception `HTTPException`:
     {!> ../../../docs_src/security/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -194,7 +194,7 @@ So, the thief won't be able to try to use those same passwords in another system
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="83-86"
     {!> ../../../docs_src/security/tutorial003_an.py!}
@@ -209,7 +209,7 @@ So, the thief won't be able to try to use those same passwords in another system
     {!> ../../../docs_src/security/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -264,7 +264,7 @@ For this simple example, we are going to just be completely insecure and return 
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="88"
     {!> ../../../docs_src/security/tutorial003_an.py!}
@@ -279,7 +279,7 @@ For this simple example, we are going to just be completely insecure and return 
     {!> ../../../docs_src/security/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -321,7 +321,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="59-67  70-75  95"
     {!> ../../../docs_src/security/tutorial003_an.py!}
@@ -336,7 +336,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
     {!> ../../../docs_src/security/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
