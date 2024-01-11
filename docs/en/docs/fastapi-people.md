@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI People
 
 FastAPI has an amazing community that welcomes people from all backgrounds.

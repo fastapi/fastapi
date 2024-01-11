@@ -1,4 +1,4 @@
-# Samouczek - Wprowadzenie
+# Samouczek
 
 Ten samouczek pokaże Ci, krok po kroku, jak używać większości funkcji **FastAPI**.
 

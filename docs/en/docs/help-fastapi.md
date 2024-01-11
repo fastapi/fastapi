@@ -121,7 +121,7 @@ If they reply, there's a high chance you would have solved their problem, congra
 * Now, if that solved their problem, you can ask them to:
 
     * In GitHub Discussions: mark the comment as the **answer**.
-    * In GitHub Issues: **close** the issue**.
+    * In GitHub Issues: **close** the issue.
 
 ## Watch the GitHub repository
 
@@ -230,8 +230,6 @@ Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" targ
     For questions, ask them in <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
 
     Use the chat only for other general conversations.
-
-There is also the previous <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>, but as it doesn't have channels and advanced features, conversations are more difficult, so Discord is now the recommended system.
 
 ### Don't use the chat for questions
 

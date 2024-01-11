@@ -1,4 +1,4 @@
-# Dependencies - First Steps
+# Dependencies
 
 **FastAPI** has a very powerful but intuitive **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 
@@ -43,7 +43,7 @@ It is just a function that can take all the same parameters that a *path operati
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -58,7 +58,7 @@ It is just a function that can take all the same parameters that a *path operati
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -85,6 +85,13 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
 ### Import `Depends`
 
 === "Python 3.10+"
@@ -99,7 +106,7 @@ And then it just returns a `dict` containing those values.
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -114,7 +121,7 @@ And then it just returns a `dict` containing those values.
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -139,7 +146,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="16  21"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
@@ -154,7 +161,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -224,7 +231,7 @@ But because we are using `Annotated`, we can store that `Annotated` value in a v
     {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19  24"
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
@@ -280,9 +287,9 @@ Other common terms for this same idea of "dependency injection" are:
 
 ## **FastAPI** plug-ins
 
-Integrations and "plug-in"s can be built using the **Dependency Injection** system. But in fact, there is actually **no need to create "plug-ins"**, as by using dependencies it's possible to declare an infinite number of integrations and interactions that become available to your *path operation functions*.
+Integrations and "plug-ins" can be built using the **Dependency Injection** system. But in fact, there is actually **no need to create "plug-ins"**, as by using dependencies it's possible to declare an infinite number of integrations and interactions that become available to your *path operation functions*.
 
-And dependencies can be created in a very simple and intuitive way that allow you to just import the Python packages you need, and integrate them with your API functions in a couple of lines of code, *literally*.
+And dependencies can be created in a very simple and intuitive way that allows you to just import the Python packages you need, and integrate them with your API functions in a couple of lines of code, *literally*.
 
 You will see examples of this in the next chapters, about relational and NoSQL databases, security, etc.
 
