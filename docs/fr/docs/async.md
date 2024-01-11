@@ -250,7 +250,7 @@ Par exemple :
 
 ### Concurrence + Parallélisme : Web + Machine Learning
 
-Avec **FastAPI** vous pouvez bénéficier de la concurrence qui est très courante en developement web (c'est l'attrait principal de NodeJS).
+Avec **FastAPI** vous pouvez bénéficier de la concurrence qui est très courante en développement web (c'est l'attrait principal de NodeJS).
 
 Mais vous pouvez aussi profiter du parallélisme et multiprocessing afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
 

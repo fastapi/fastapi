@@ -36,7 +36,7 @@ body:
           required: true
         - label: I already read and followed all the tutorial in the docs and didn't find an answer.
           required: true
-        - label: I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/samuelcolvin/pydantic).
+        - label: I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/pydantic/pydantic).
           required: true
         - label: I already checked if it is not related to FastAPI but to [Swagger UI](https://github.com/swagger-api/swagger-ui).
           required: true
@@ -120,6 +120,20 @@ body:
 
         ```bash
         python -c "import fastapi; print(fastapi.__version__)"
+        ```
+    validations:
+      required: true
+  - type: input
+    id: pydantic-version
+    attributes:
+      label: Pydantic Version
+      description: |
+        What Pydantic version are you using?
+
+        You can find the Pydantic version with:
+
+        ```bash
+        python -c "import pydantic; print(pydantic.version.VERSION)"
         ```
     validations:
       required: true

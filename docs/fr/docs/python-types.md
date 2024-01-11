@@ -119,7 +119,7 @@ Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'aut
 
 <img src="/img/python-types/image04.png">
 
-Maintenant que vous avez connaissance du problème, convertissez `age` en <abbr title="string">chaine de caractères</abbr> grâce à `str(age)` :
+Maintenant que vous avez connaissance du problème, convertissez `age` en <abbr title="string">chaîne de caractères</abbr> grâce à `str(age)` :
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
