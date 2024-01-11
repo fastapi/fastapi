@@ -301,7 +301,7 @@ while Pydantic *models* declare the types using `:`, the new type annotation syn
 name: str
 ```
 
-Have it in mind, so you don't get confused when using `=` and `:` with them.
+Keep these in mind, so you don't get confused when using `=` and `:` with them.
 
 ### Create Pydantic *models* / schemas for reading / returning
 
@@ -450,6 +450,11 @@ The steps are:
 ```Python hl_lines="18-24  31-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
+
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
 
 !!! tip
     The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
@@ -624,7 +629,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 ```
 
 !!! info
-    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../advanced/async-sql-databases.md){.internal-link target=_blank}.
+    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
 
 !!! note "Very Technical Details"
     If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
