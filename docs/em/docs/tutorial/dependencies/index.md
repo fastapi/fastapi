@@ -1,4 +1,4 @@
-# 🔗 - 🥇 🔁
+# 🔗
 
 **FastAPI** ✔️ 📶 🏋️ ✋️ 🏋️ **<abbr title="also known as components, resources, providers, services, injectables">🔗 💉</abbr>** ⚙️.
 

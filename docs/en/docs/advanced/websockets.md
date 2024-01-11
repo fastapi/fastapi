@@ -124,7 +124,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
     {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="69-70  83"
     {!> ../../../docs_src/websockets/tutorial002_an.py!}
@@ -139,7 +139,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
     {!> ../../../docs_src/websockets/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -191,7 +191,7 @@ When a WebSocket connection is closed, the `await websocket.receive_text()` will
     {!> ../../../docs_src/websockets/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="81-83"
     {!> ../../../docs_src/websockets/tutorial003.py!}
@@ -212,7 +212,7 @@ Client #1596980209979 left the chat
 !!! tip
     The app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.
 
-    But have in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
+    But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
 
     If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
 
