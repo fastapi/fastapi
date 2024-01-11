@@ -4,7 +4,7 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 ## Developing
 
-If you already cloned the [fastapi repository](https://github.com/tiangolo/fastapi){.internal-link target=_blank} and you want to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
 
 ### Virtual environment with `venv`
 
@@ -376,7 +376,7 @@ You can make the first pull request with those two files, `docs/ht/mkdocs.yml` a
 
 #### Preview the result
 
-As already mentioned above, You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
+As already mentioned above, you can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
 
 Once you are done, you can also test it all as it would look online, including all the other languages.
 
