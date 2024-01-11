@@ -114,8 +114,6 @@
 
     聊天室仅供闲聊。
 
-我们之前还使用过 <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>，但它不支持频道等高级功能，聊天也比较麻烦，所以现在推荐使用 Discord。
-
 ### 别在聊天室里提问
 
 注意，聊天室更倾向于“闲聊”，经常有人会提出一些笼统得让人难以回答的问题，所以在这里提问一般没人回答。
