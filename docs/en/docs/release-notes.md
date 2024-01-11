@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add hyperlink to `docs/en/docs/tutorial/static-files.md`. PR [#10243](https://github.com/tiangolo/fastapi/pull/10243) by [@hungtsetse](https://github.com/hungtsetse).
 * 📝 Add External Link: Instrument a FastAPI service adding tracing with OpenTelemetry and send/show traces in Grafana Tempo. PR [#9440](https://github.com/tiangolo/fastapi/pull/9440) by [@softwarebloat](https://github.com/softwarebloat).
 * 📝 Review and rewording of `en/docs/contributing.md`. PR [#10480](https://github.com/tiangolo/fastapi/pull/10480) by [@nilslindemann](https://github.com/nilslindemann).
 * 📝 Add External Link: ML serving and monitoring with FastAPI and Evidently. PR [#9701](https://github.com/tiangolo/fastapi/pull/9701) by [@mnrozhkov](https://github.com/mnrozhkov).
