@@ -13,7 +13,7 @@ bearer_scheme = HTTPBearer()
 
 class Subscription(BaseModel):
     username: str
-    montly_fee: float
+    monthly_fee: float
     start_date: datetime
 
 
@@ -93,7 +93,7 @@ def test_openapi_schema():
                 "Subscription": {
                     "properties": {
                         "username": {"type": "string", "title": "Username"},
-                        "montly_fee": {"type": "number", "title": "Montly Fee"},
+                        "monthly_fee": {"type": "number", "title": "Monthly Fee"},
                         "start_date": {
                             "type": "string",
                             "format": "date-time",
@@ -101,7 +101,7 @@ def test_openapi_schema():
                         },
                     },
                     "type": "object",
-                    "required": ["username", "montly_fee", "start_date"],
+                    "required": ["username", "monthly_fee", "start_date"],
                     "title": "Subscription",
                 },
                 "ValidationError": {
