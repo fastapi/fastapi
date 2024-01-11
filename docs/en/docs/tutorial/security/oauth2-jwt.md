@@ -318,7 +318,7 @@ In those cases, several of those entities could have the same ID, let's say `foo
 
 So, to avoid ID collisions, when creating the JWT token for the user, you could prefix the value of the `sub` key, e.g. with `username:`. So, in this example, the value of `sub` could have been: `username:johndoe`.
 
-The important thing to have in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
+The important thing to keep in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
 
 ## Check it
 
