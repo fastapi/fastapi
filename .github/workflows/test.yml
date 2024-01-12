@@ -105,7 +105,7 @@ jobs:
           # cache: "pip"
           # cache-dependency-path: pyproject.toml
       - name: Get coverage files
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage
