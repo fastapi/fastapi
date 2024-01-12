@@ -10,7 +10,7 @@
     {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
