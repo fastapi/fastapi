@@ -92,7 +92,7 @@ The `lifespan` parameter of the `FastAPI` app takes an **async context manager**
 ## Alternative Events (deprecated)
 
 !!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above.
+    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
 
     You can probably skip this part.
 
