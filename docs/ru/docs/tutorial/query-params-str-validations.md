@@ -741,7 +741,7 @@ http://localhost:8000/items/
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="12"
+    ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
     ```
 
@@ -839,7 +839,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
     !!! tip "Подсказка"
         Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="17"
+    ```Python hl_lines="16"
     {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
     ```
 

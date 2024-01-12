@@ -14,14 +14,14 @@ non_traslated_sections = [
 ]
 
 
-@lru_cache()
+@lru_cache
 def get_missing_translation_content(docs_dir: str) -> str:
     docs_dir_path = Path(docs_dir)
     missing_translation_path = docs_dir_path.parent.parent / "missing-translation.md"
     return missing_translation_path.read_text(encoding="utf-8")
 
 
-@lru_cache()
+@lru_cache
 def get_mkdocs_material_langs() -> List[str]:
     material_path = Path(material.__file__).parent
     material_langs_path = material_path / "templates" / "partials" / "languages"
