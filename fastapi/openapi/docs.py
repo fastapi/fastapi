@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
@@ -45,7 +45,7 @@ def get_swagger_ui_html(
         ),
     ],
     swagger_js_url: Annotated[
-        str,
+        Union[str, list[str]],
         Doc(
             """
             The URL to use to load the Swagger UI JavaScript.
@@ -55,7 +55,7 @@ def get_swagger_ui_html(
         ),
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
     swagger_css_url: Annotated[
-        str,
+        Union[str, list[str]],
         Doc(
             """
             The URL to use to load the Swagger UI CSS.
@@ -114,19 +114,37 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
-    html = f"""
+    html = """
     <!DOCTYPE html>
     <html>
-    <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
+    <head>"""
+
+    if isinstance(swagger_css_url, list):
+        html += "\n".join(
+            [
+                f"""<link type="text/css" rel="stylesheet" href="{url}">"""
+                for url in swagger_css_url
+            ]
+        )
+    else:
+        html += f"""<link type="text/css" rel="stylesheet" href="{swagger_css_url}">"""
+
+    html += f"""
     <link rel="shortcut icon" href="{swagger_favicon_url}">
     <title>{title}</title>
     </head>
     <body>
     <div id="swagger-ui">
-    </div>
-    <script src="{swagger_js_url}"></script>
-    <!-- `SwaggerUIBundle` is now available on the page -->
+    </div>"""
+
+    if isinstance(swagger_js_url, list):
+        html += "\n".join(
+            [f"""<script src="{url}"></script>""" for url in swagger_js_url]
+        )
+    else:
+        html += f"""<script src="{swagger_js_url}"></script>"""
+
+    html += f"""<!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
         url: '{openapi_url}',
