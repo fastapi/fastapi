@@ -443,7 +443,7 @@ def test_openapi():
         assert issubclass(w[-1].category, UserWarning)
         assert "Duplicate Operation ID" in str(w[-1].message)
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/override1": {

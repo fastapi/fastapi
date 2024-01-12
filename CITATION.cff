@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: FastAPI
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Sebastián
+    family-names: Ramírez
+    email: tiangolo@gmail.com
+identifiers:
+repository-code: 'https://github.com/tiangolo/fastapi'
+url: 'https://fastapi.tiangolo.com'
+abstract: >-
+  FastAPI framework, high performance, easy to learn, fast to code,
+  ready for production
+keywords:
+  - fastapi
+  - pydantic
+  - starlette
+license: MIT
