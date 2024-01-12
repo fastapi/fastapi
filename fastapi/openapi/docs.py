@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
@@ -45,7 +45,7 @@ def get_swagger_ui_html(
         ),
     ],
     swagger_js_url: Annotated[
-        Union[str, list[str]],
+        Union[str, List[str]],
         Doc(
             """
             The URL to use to load the Swagger UI JavaScript.
@@ -55,7 +55,7 @@ def get_swagger_ui_html(
         ),
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
     swagger_css_url: Annotated[
-        Union[str, list[str]],
+        Union[str, List[str]],
         Doc(
             """
             The URL to use to load the Swagger UI CSS.
