@@ -32,6 +32,25 @@ def test_strings_in_custom_swagger():
     assert swagger_favicon_url in body_content
 
 
+def test_list_of_strings_in_css_and_js():
+    swagger_js_url = ["swagger_fake_file_1.js", "swagger_fake_file_2.js"]
+    swagger_css_url = ["swagger_fake_file_1.css", "swagger_fake_file_2.css"]
+    swagger_favicon_url = "swagger_fake_file.png"
+    html = get_swagger_ui_html(
+        openapi_url="/docs",
+        title="title",
+        swagger_js_url=swagger_js_url,
+        swagger_css_url=swagger_css_url,
+        swagger_favicon_url=swagger_favicon_url,
+    )
+    body_content = html.body.decode()
+    assert swagger_js_url[0] in body_content
+    assert swagger_js_url[1] in body_content
+    assert swagger_css_url[0] in body_content
+    assert swagger_css_url[1] in body_content
+    assert swagger_favicon_url in body_content
+
+
 def test_strings_in_generated_redoc():
     sig = inspect.signature(get_redoc_html)
     redoc_js_url = sig.parameters.get("redoc_js_url").default  # type: ignore
