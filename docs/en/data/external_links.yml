@@ -40,10 +40,6 @@ Articles:
     author_link: https://dev.to/
     link: https://dev.to/teresafds/authorization-on-fastapi-with-casbin-41og
     title: Authorization on FastAPI with Casbin
-  - author: WayScript
-    author_link: https://www.wayscript.com
-    link: https://blog.wayscript.com/fast-api-quickstart/
-    title: Quickstart Guide to Build and Host Responsive APIs with Fast API and WayScript
   - author: New Relic
     author_link: https://newrelic.com
     link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
@@ -96,10 +92,6 @@ Articles:
     author_link: https://dev.to/factorlive
     link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
     title: Python Facebook messenger webhook with FastAPI on Glitch
-  - author: Dom Patmore
-    author_link: https://twitter.com/dompatmore
-    link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
-    title: Authenticate Your FastAPI App with auth0
   - author: Valon Januzaj
     author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
     link: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
@@ -112,10 +104,6 @@ Articles:
     author_link: https://twitter.com/louis_guitton
     link: https://guitton.co/posts/fastapi-monitoring/
     title: How to monitor your FastAPI service
-  - author: Julien Harbulot
-    author_link: https://julienharbulot.com/
-    link: https://julienharbulot.com/notification-server.html
-    title: HTTP server to display desktop notifications
   - author: Precious Ndubueze
     author_link: https://medium.com/@gabbyprecious2000
     link: https://medium.com/@gabbyprecious2000/creating-a-crud-app-with-fastapi-part-one-7c049292ad37
@@ -164,18 +152,10 @@ Articles:
     author_link: https://wuilly.com/
     link: https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/
     title: Real-time Notifications with Python and Postgres
-  - author: Benjamin Ramser
-    author_link: https://iwpnd.pw
-    link: https://iwpnd.pw/articles/2020-03/apache-kafka-fastapi-geostream
-    title: Apache Kafka producer and consumer with FastAPI and aiokafka
   - author: Navule Pavan Kumar Rao
     author_link: https://www.linkedin.com/in/navule/
     link: https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/
     title: Create and Deploy FastAPI app to Heroku without using Docker
-  - author: Benjamin Ramser
-    author_link: https://iwpnd.pw
-    link: https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda
-    title: How to continuously deploy a FastAPI to AWS Lambda with AWS SAM
   - author: Arthur Henrique
     author_link: https://twitter.com/arthurheinrique
     link: https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb
@@ -200,10 +180,6 @@ Articles:
     author_link: https://dev.to/dbanty
     link: https://dev.to/dbanty/why-i-m-leaving-flask-3ki6
     title: Why I'm Leaving Flask
-  - author: Rob Wagner
-    author_link: https://robwagner.dev/
-    link: https://robwagner.dev/tortoise-fastapi-setup/
-    title: Setting up Tortoise ORM with FastAPI
   - author: Mike Moritz
     author_link: https://medium.com/@mike.p.moritz
     link: https://medium.com/@mike.p.moritz/using-docker-compose-to-deploy-a-lightweight-python-rest-api-with-a-job-queue-37e6072a209b
