@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ✅ Re-enable test in `tests/test_tutorial/test_header_params/test_tutorial003.py` after fix in Starlette. PR [#10904](https://github.com/tiangolo/fastapi/pull/10904) by [@ooknimm](https://github.com/ooknimm).
+
 ### Docs
 
 * 📝 Add warning about lifespan functions and backwards compatibility with events. PR [#10734](https://github.com/tiangolo/fastapi/pull/10734) by [@jacob-indigo](https://github.com/jacob-indigo).
