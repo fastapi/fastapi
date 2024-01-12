@@ -324,6 +324,7 @@ def jsonable_encoder(
         data = dict(obj)
     except Exception as e:
         errors: List[Exception] = []
+        errors.append(Exception(f"Exception while encoding {obj}"))
         errors.append(e)
         try:
             data = vars(obj)
