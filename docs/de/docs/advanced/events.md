@@ -92,7 +92,7 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 ## Alternative Events (deprecated)
 
 !!! warning "Achtung"
-    Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben.
+    Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben. Wenn Sie einen `lifespan`-Parameter übergeben, werden die `startup`- und `shutdown`-Eventhandler nicht mehr aufgerufen. Es ist entweder alles `lifespan` oder alles Events, nicht beides.
 
     Sie können diesen Teil wahrscheinlich überspringen.
 
