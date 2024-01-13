@@ -43,7 +43,7 @@ Diese Zeile zeigt die URL, unter der Ihre Anwendung auf Ihrem lokalen Computer b
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000.</a>
 
-Sie werden folgende JSON-Antwort sehen:
+Sie werden folgende JSON-Response sehen:
 
 ```JSON
 {"message": "Hello World"}
