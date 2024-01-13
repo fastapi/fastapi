@@ -44,11 +44,11 @@
         * 产生的模式将指定那些 `set` 的值是唯一的 (使用 JSON 模式的 `uniqueItems`)。
 * `bytes`:
     * 标准的 Python `bytes`。
-    * 在请求和相应中被当作 `str` 处理。
+    * 在请求和响应中被当作 `str` 处理。
     * 生成的模式将指定这个 `str` 是 `binary` "格式"。
 * `Decimal`:
     * 标准的 Python `Decimal`。
-    * 在请求和相应中被当做 `float` 一样处理。
+    * 在请求和响应中被当做 `float` 一样处理。
 * 您可以在这里检查所有有效的pydantic数据类型: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic data types</a>.
 
 ## 例子

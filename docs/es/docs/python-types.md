@@ -1,8 +1,8 @@
 # Introducción a los Tipos de Python
 
-Python tiene soporte para <abbr title="en español, anotaciones de tipo.">"type hints"</abbr> opcionales (también se conocido como "type annotations").
+Python tiene soporte para <abbr title="en español, anotaciones de tipo.">"type hints"</abbr> opcionales (también son conocidos como "type annotations").
 
-Estos **type hints** o anotaciones son una sintáxis especial que permite declarar el <abbr title="por ejemplo: str, int, float, bool">tipo</abbr> de una variable.
+Estos **type hints** son una nueva sintaxis, desde Python 3.6+, que permite declarar el <abbr title="por ejemplo: str, int, float, bool">tipo</abbr> de una variable.
 
 Usando las declaraciones de tipos para tus variables, los editores y herramientas pueden proveerte un soporte mejor.
 
@@ -33,7 +33,7 @@ La función hace lo siguiente:
 
 * Toma un `first_name` y un `last_name`.
 * Convierte la primera letra de cada uno en una letra mayúscula con `title()`.
-* Las <abbr title="las junta como si fuesen una. Con el contenido de una después de la otra. En inlgés: concatenate.">concatena</abbr> con un espacio en la mitad.
+* Las <abbr title="las junta como si fuesen una. Con el contenido de una después de la otra. En inglés: concatenate.">concatena</abbr> con un espacio en la mitad.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -51,9 +51,9 @@ Pero, luego tienes que llamar "ese método que convierte la primera letra en una
 
 Cómo era `upper`? O era `uppercase`? `first_uppercase`? `capitalize`?
 
-Luego lo intentas con el viejo amigo de los programadores, el autocompletado del editor.
+Luego lo intentas con el viejo amigo de los programadores, el auto-completado del editor.
 
-Escribes el primer parámetro de la función `first_name`, luego un punto (`.`) y luego presionas `Ctrl+Space` para iniciar el autocompletado.
+Escribes el primer parámetro de la función `first_name`, luego un punto (`.`) y luego presionas `Ctrl+Space` para iniciar el auto-completado.
 
 Tristemente, no obtienes nada útil:
 
@@ -97,7 +97,7 @@ Añadir los type hints normalmente no cambia lo que sucedería si ellos no estuv
 
 Pero ahora imagina que nuevamente estás creando la función, pero con los type hints.
 
-En el mismo punto intentas iniciar el autocompletado con `Ctrl+Space` y ves:
+En el mismo punto intentas iniciar el auto-completado con `Ctrl+Space` y ves:
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image02.png">
 
@@ -113,7 +113,7 @@ Mira esta función que ya tiene type hints:
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Como el editor conoce el tipo de las variables no solo obtienes autocompletado, si no que también obtienes chequeo de errores:
+Como el editor conoce el tipo de las variables no solo obtienes auto-completado, si no que también obtienes chequeo de errores:
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image04.png">
 
@@ -190,7 +190,7 @@ Por ejemplo, vamos a definir una variable para que sea una `list` compuesta de `
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
-    Declara la variable con la misma sintáxis de los dos puntos (`:`).
+Declara la variable con la misma sintaxis de los dos puntos (`:`).
 
     Como tipo, pon la `List` importada desde typing`.
 
@@ -214,7 +214,9 @@ Con esta declaración tu editor puede proveerte soporte inclusive mientras está
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image05.png">
 
-Sin tipos el autocompletado en este tipo de estructura es casi imposible de lograr:
+Sin tipos el auto-completado en este tipo de estructura es casi imposible de lograr:
+
+<img src="https://fastapi.tiangolo.com/img/python-types/image05.png">
 
 Observa que la variable `item` es unos de los elementos en la lista `items`.
 
