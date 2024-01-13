@@ -106,7 +106,7 @@ In many cases they will only copy a fragment of the code, but that's not enough 
 
 * You can ask them to provide a <a href="https://stackoverflow.com/help/minimal-reproducible-example" class="external-link" target="_blank">minimal, reproducible, example</a>, that you can **copy-paste** and run locally to see the same error or behavior they are seeing, or to understand their use case better.
 
-* If you are feeling too generous, you can try to **create an example** like that yourself, just based on the description of the problem. Just have in mind that this might take a lot of time and it might be better to ask them to clarify the problem first.
+* If you are feeling too generous, you can try to **create an example** like that yourself, just based on the description of the problem. Just keep in mind that this might take a lot of time and it might be better to ask them to clarify the problem first.
 
 ### Suggest solutions
 
@@ -148,7 +148,7 @@ Again, please try your best to be kind. 🤗
 
 ---
 
-Here's what to have in mind and how to review a pull request:
+Here's what to keep in mind and how to review a pull request:
 
 ### Understand the problem
 
@@ -233,7 +233,7 @@ Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" targ
 
 ### Don't use the chat for questions
 
-Have in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
+Keep in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
 
 In GitHub, the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
 
