@@ -29,6 +29,11 @@ Hier der generelle Weg, wie die Modelle mit ihren Passwort-Feldern aussehen kön
     {!> ../../../docs_src/extra_models/tutorial001.py!}
     ```
 
+!!! info
+    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+
+    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
 ### Über `**user_in.dict()`
 
 #### Pydantic's `.dict()`
