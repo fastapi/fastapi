@@ -23,7 +23,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Basado en estándares**: Basado en (y totalmente compatible con) los estándares abiertos para API:<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
     * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Muchas otras características**</a> incluyendo validación automática, serialización, interactive documentación interactiva, autenticación con tokens OAuth2 JWT, etc..
 * **Seguridad de contraseñas** hashing por defecto.
-* Autenticación via **JWT token**.
+* Autenticación vía **JWT token**.
 * Modelos **SQLAlchemy** (independiente de las extensiones Flask, por lo que se pueden usar directamente con los workers de Celery).
 * Modelos iniciales básicos para usuarios (modificarlos y eliminarlos según sea necesario).
 * Migraciones **Alembic**.
