@@ -85,7 +85,7 @@ response = client.get('/')
     Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
 
 !!! warning
-    If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="florimondmanca/asgi-lifespan" class="external-link" target="_blank">https://github.com/florimondmanca/asgi-lifespan#usage</a>.
+    If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
 
 ## Other Asynchronous Function Calls
 
