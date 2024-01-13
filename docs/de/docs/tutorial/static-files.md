@@ -22,7 +22,7 @@ Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisc
 
 Dies unterscheidet sich von der Verwendung eines `APIRouter`, da eine gemountete Anwendung völlig unabhängig ist. Die OpenAPI und Dokumentation Ihrer Hauptanwendung enthalten nichts von der gemounteten Anwendung, usw.
 
-Weitere Informationen hierzu finden Sie im **Handbuch für fortgeschrittene Benutzer**.
+Weitere Informationen hierzu finden Sie im [Handbuch für fortgeschrittene Benutzer](../advanced/index.md){.internal-link target=_blank}.
 
 ## Einzelheiten
 
