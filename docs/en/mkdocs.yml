@@ -58,15 +58,18 @@ plugins:
       python:
         options:
           extensions:
-            - griffe_typingdoc
+          - griffe_typingdoc
           show_root_heading: true
           show_if_no_docstring: true
-          preload_modules: [httpx, starlette]
+          preload_modules:
+          - httpx
+          - starlette
           inherited_members: true
           members_order: source
           separate_signature: true
           unwrap_annotated: true
-          filters: ["!^_"]
+          filters:
+          - '!^_'
           merge_init_into_class: true
           docstring_section_style: spacy
           signature_crossrefs: true
@@ -264,25 +267,25 @@ extra:
   - link: /
     name: en - English
   - link: /de/
-    name: de
-  - link: /em/
-    name: 😉
+    name: de - Deutsch
   - link: /es/
     name: es - español
   - link: /fa/
-    name: fa
+    name: fa - فارسی
   - link: /fr/
     name: fr - français
   - link: /he/
-    name: he
+    name: he - עברית
+  - link: /hu/
+    name: hu - magyar
   - link: /id/
-    name: id
+    name: id - Bahasa Indonesia
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
   - link: /pl/
-    name: pl
+    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -290,15 +293,17 @@ extra:
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
-    name: uk
+    name: uk - українська мова
   - link: /ur/
-    name: ur
+    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
+  - link: /em/
+    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css
