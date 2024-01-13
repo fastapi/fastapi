@@ -59,9 +59,14 @@ Das bedeutet, sie senden nur die Daten, die Sie aktualisieren wollen, der Rest b
 
 ### Pydantics `exclude_unset`-Parameter verwenden
 
-Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter in der `.dict()`-Methode von Pydantic-Modellen sehr nützlich.
+Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter in der `.model_dump()`-Methode von Pydantic-Modellen sehr nützlich.
 
-Wie in `item.dict(exclude_unset=True)`.
+Wie in `item.model_dump(exclude_unset=True)`.
+
+!!! info
+    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+
+    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
 
 Das wird ein `dict` erstellen, mit nur den Daten, die gesetzt wurden als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
@@ -87,9 +92,14 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) 
 
 ### Pydantics `update`-Parameter verwenden
 
-Jetzt können Sie eine Kopie des existierenden Modells mittels `.copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
+Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
 
-Wie in `stored_item_model.copy(update=update_data)`:
+!!! info
+    In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
+
+    Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
+Wie in `stored_item_model.model_copy(update=update_data)`:
 
 === "Python 3.10+"
 
@@ -120,7 +130,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
     * So ersetzen Sie nur die tatsächlich vom Benutzer gesetzten Werte, statt dass bereits gespeicherte Werte mit Defaultwerten des Modells überschrieben werden.
 * Erzeugen Sie eine Kopie ihres gespeicherten Modells, wobei Sie die Attribute mit den empfangenen Teil-Ersetzungen aktualisieren (mittels des `update`-Parameters).
 * Konvertieren Sie das kopierte Modell zu etwas, das in ihrer Datenbank gespeichert werden kann (indem Sie beispielsweise `jsonable_encoder` verwenden).
-    * Das ist vergleichbar dazu, die `.dict()`-Methode des Modells erneut aufzurufen, aber es wird sicherstellen, dass die Werte zu Daten konvertiert werden, die ihrerseits zu JSON konvertiert werden können, zum Beispiel `datetime` zu `str`.
+    * Das ist vergleichbar dazu, die `.model_dump()`-Methode des Modells erneut aufzurufen, aber es wird sicherstellen, dass die Werte zu Daten konvertiert werden, die ihrerseits zu JSON konvertiert werden können, zum Beispiel `datetime` zu `str`.
 * Speichern Sie die Daten in Ihrer Datenbank.
 * Geben Sie das aktualisierte Modell zurück.
 
