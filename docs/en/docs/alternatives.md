@@ -191,7 +191,7 @@ This solved having to write YAML (another syntax) inside of Python docstrings.
 
 This combination of Flask, Flask-apispec with Marshmallow and Webargs was my favorite backend stack until building **FastAPI**.
 
-Using it led to the creation of several Flask full-stack generators. These are the main stack I (and several external teams) have been using up to now:
+Using it led to the creation of several Flask full-stack generators. These are the main stacks I (and several external teams) have been using up to now:
 
 * <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
@@ -211,7 +211,7 @@ This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework ins
 
 It achieves something somewhat similar to what can be done with Flask-apispec.
 
-It has an integrated dependency injection system, inspired by Angular two. It requires pre-registering the "injectables" (like all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
+It has an integrated dependency injection system, inspired by Angular 2. It requires pre-registering the "injectables" (like all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
 
 As the parameters are described with TypeScript types (similar to Python type hints), editor support is quite good.
 

@@ -53,9 +53,6 @@ def get_lang_paths() -> List[Path]:
 def lang_callback(lang: Optional[str]) -> Union[str, None]:
     if lang is None:
         return None
-    if not lang.isalpha() or len(lang) != 2:
-        typer.echo("Use a 2 letter language code, like: es")
-        raise typer.Abort()
     lang = lang.lower()
     return lang
 
@@ -289,6 +286,12 @@ def update_config() -> None:
     for lang_dict in languages:
         code = list(lang_dict.keys())[0]
         url = lang_dict[code]
+        if code not in local_language_names:
+            print(
+                f"Missing language name for: {code}, "
+                "update it in docs/language_names.yml"
+            )
+            raise typer.Abort()
         use_name = f"{code} - {local_language_names[code]}"
         new_alternate.append({"link": url, "name": use_name})
     new_alternate.append({"link": "/em/", "name": "😉"})
