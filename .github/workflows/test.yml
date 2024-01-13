@@ -19,7 +19,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           # Issue ref: https://github.com/actions/setup-python/issues/436
@@ -42,7 +42,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version:
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
       fail-fast: false
     steps:
@@ -52,7 +57,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           # Issue ref: https://github.com/actions/setup-python/issues/436
@@ -93,7 +98,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.8'
           # Issue ref: https://github.com/actions/setup-python/issues/436
