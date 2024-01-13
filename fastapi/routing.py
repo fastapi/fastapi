@@ -4328,7 +4328,7 @@ class APIRouter(routing.Router):
         app = FastAPI()
         router = APIRouter()
 
-        @router.put("/items/{item_id}")
+        @router.trace("/items/{item_id}")
         def trace_item(item_id: str):
             return None
 
