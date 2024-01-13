@@ -4,7 +4,7 @@ Hace algún tiempo, <a href="https://github.com/tiangolo/fastapi/issues/3#issuec
 
 > ¿Cuál es la historia de este proyecto? Parece haber llegado de la nada a ser asombroso en unas pocas semanas [...]
 
-Aquí un poco de esa historia.
+Aquí explico.
 
 ## Alternativas
 
@@ -44,7 +44,7 @@ Luego dediqué algún tiempo a diseñar la "API" de desarrollador que quería te
 
 Probé varias ideas en los editores de Python más populares: PyCharm, VS Code, editores basados en Jedi.
 
-Según la última <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Encuesta para Desarrolladores de Python< /a>, que cubre alrededor del 80% de los usuarios.
+Según la última <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Encuesta para Desarrolladores de Python</a>, que cubre alrededor del 80% de los usuarios.
 
 Significa que **FastAPI** fue probado específicamente con los editores utilizados por el 80% de los desarrolladores de Python. Y como la mayoría de los demás editores tienden a trabajar de manera similar, todos sus beneficios deberían funcionar para prácticamente todos los editores.
 
@@ -54,7 +54,7 @@ Todo de una manera que brindó la mejor experiencia de desarrollo para todos los
 
 ## Requisitos
 
-Después de probar varias alternativas, decidí que iba a utilizar <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**< /a> por sus ventajas.
+Después de probar varias alternativas, decidí que iba a utilizar <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> por sus ventajas.
 
 Luego contribuí para que fuera totalmente compatible con el esquema JSON, para soportar diferentes formas de definir declaraciones de restricciones y para mejorar la compatibilidad con el editor (verificaciones de tipos, autocompletado) basado en las pruebas en varios editores.
 
@@ -66,7 +66,7 @@ Cuando comencé a crear **FastAPI**, la mayoría de las piezas ya estaban en su 
 
 ## Futuro
 
-en este punto, ya está claro que **FastAPI** con sus ideas está siendo útil para muchas personas.
+En este punto, ya está claro que **FastAPI** con sus ideas está siendo útil para muchas personas.
 
 Se está eligiendo entre alternativas anteriores porque se adapta mejor a muchos casos de uso.
 
