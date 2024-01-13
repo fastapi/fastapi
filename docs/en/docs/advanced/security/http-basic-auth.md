@@ -105,7 +105,7 @@ if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-But right at the moment Python compares the first `j` in `johndoe` to the first `s` in `stanleyjobson`, it will return `False`, because it already knows that those two strings are not the same, thinking that "there's no need to waste more computation comparing the rest of the letters". And your application will say "incorrect user or password".
+But right at the moment Python compares the first `j` in `johndoe` to the first `s` in `stanleyjobson`, it will return `False`, because it already knows that those two strings are not the same, thinking that "there's no need to waste more computation comparing the rest of the letters". And your application will say "Incorrect username or password".
 
 But then the attackers try with username `stanleyjobsox` and password `love123`.
 
@@ -116,11 +116,11 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and `stanleyjobson` before realizing that both strings are not the same. So it will take some extra microseconds to reply back "incorrect user or password".
+Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and `stanleyjobson` before realizing that both strings are not the same. So it will take some extra microseconds to reply back "Incorrect username or password".
 
 #### The time to answer helps the attackers
 
-At that point, by noticing that the server took some microseconds longer to send the "incorrect user or password" response, the attackers will know that they got _something_ right, some of the initial letters were right.
+At that point, by noticing that the server took some microseconds longer to send the "Incorrect username or password" response, the attackers will know that they got _something_ right, some of the initial letters were right.
 
 And then they can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
 
