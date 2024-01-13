@@ -46,21 +46,61 @@ $ pip install jinja2
 
 ## Templates erstellen
 
-Dann können Sie unter `templates/item.html` ein Template erstellen:
+Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. folgendem Inhalt:
 
 ```jinja hl_lines="7"
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-Es wird die `id` anzeigen, die aus dem „Kontext“-`dict` stammt, welches Sie übergeben haben:
+### Template-Kontextwerte
+
+Im HTML, welches enthält:
+
+{% raw %}
+
+```jinja
+Item ID: {{ id }}
+```
+
+{% endraw %}
+
+... wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
 
 ```Python
-{"request": request, "id": id}
+{"id": id}
+```
+
+Mit beispielsweise einer ID `42` würde das wie folgt gerendert werden:
+
+```html
+Item ID: 42
+```
+
+### Template-`url_for`-Argumente
+
+Sie können `url_for()` auch innerhalb des Templates verwenden, es nimmt als Argumente dieselben Argumente, die von Ihrer *Pfadoperation-Funktion* verwendet werden.
+
+Der Abschnitt mit:
+
+{% raw %}
+
+```jinja
+<a href="{{ url_for('read_item', id=id) }}">
+```
+
+{% endraw %}
+
+... generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
+
+Mit beispielsweise der ID `42` würde dies Folgendes ergeben:
+
+```html
+<a href="/items/42">
 ```
 
 ## Templates und statische Dateien
 
-Sie können `url_for()` auch innerhalb des Templates verwenden, beispielsweise mit den von Ihnen gemounteten `StaticFiles`.
+Sie können `url_for()` innerhalb des Templates auch beispielsweise mit den `StaticFiles` verwenden, die Sie mit `name="static"` gemountet haben.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
