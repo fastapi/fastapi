@@ -301,7 +301,7 @@ while Pydantic *models* declare the types using `:`, the new type annotation syn
 name: str
 ```
 
-Have it in mind, so you don't get confused when using `=` and `:` with them.
+Keep these in mind, so you don't get confused when using `=` and `:` with them.
 
 ### Create Pydantic *models* / schemas for reading / returning
 
@@ -451,6 +451,11 @@ The steps are:
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 !!! tip
     The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
 
@@ -508,7 +513,7 @@ And you would also use Alembic for "migrations" (that's its main job).
 
 A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
 
-You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
+You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
 
 ### Create a dependency
 
@@ -624,7 +629,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 ```
 
 !!! info
-    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../advanced/async-sql-databases.md){.internal-link target=_blank}.
+    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
 
 !!! note "Very Technical Details"
     If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
