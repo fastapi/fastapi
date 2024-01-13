@@ -37,6 +37,6 @@ Create a response as described in [Return a Response Directly](response-directly
 
 ## Custom Headers
 
-Have in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
+Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
 
 But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
