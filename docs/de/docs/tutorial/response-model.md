@@ -378,6 +378,11 @@ Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wir
 ```
 
 !!! info
+    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+
+    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
+!!! info
     FastAPI verwendet `.dict()` von Pydantic Modellen, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">mit dessen `exclude_unset`-Parameter</a>, um das zu erreichen.
 
 !!! info
