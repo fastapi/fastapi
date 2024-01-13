@@ -25,7 +25,7 @@ Puedes declarar el tipo de un parámetro de path en la función usando las anota
 En este caso, `item_id` es declarado como un `int`.
 
 !!! check "Revisa"
-    Esto te dará soporte en el editor dentro de tu función, con chequeos de errores, autocompletado, etc.
+    Esto te dará soporte en el editor dentro de tu función, con chequeo de errores, auto-completado, etc.
 
 ## <abbr title="también conocido en inglés como: serialization, parsing, marshalling">Conversión</abbr> de datos
 
@@ -135,7 +135,7 @@ Luego crea atributos de clase con valores fijos, que serán los valores disponib
     Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (o enums) están disponibles en Python</a> desde la versión 3.4.
 
 !!! tip "Consejo"
-    Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Tecnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
+    Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Técnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
 
 ### Declara un *parámetro de path*
 
@@ -234,7 +234,7 @@ Entonces lo puedes usar con:
 
 Con **FastAPI**, usando declaraciones de tipo de Python intuitivas y estándares, obtienes:
 
-* Soporte en el editor: chequeos de errores, auto-completado, etc.
+* Soporte en el editor: chequeo de errores, auto-completado, etc.
 * "<abbr title="convertir el string que viene de un HTTP request a datos de Python">Parsing</abbr>" de datos
 * Validación de datos
 * Anotación de la API y documentación automática
