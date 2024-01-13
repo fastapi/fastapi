@@ -357,7 +357,7 @@ Es ist vergleichbar mit Marshmallow. Obwohl es in Benchmarks schneller als Marsh
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette ist ein leichtgewichtiges <abbr title="Der neue Standard für die Erstellung asynchroner Python-Webs">ASGI</abbr>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
+Starlette ist ein leichtgewichtiges <abbr title="Der neue Standard für die Erstellung asynchroner Python-Webanwendungen">ASGI</abbr>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
 
 Es ist sehr einfach und intuitiv. Es ist so konzipiert, dass es leicht erweiterbar ist und über modulare Komponenten verfügt.
 
