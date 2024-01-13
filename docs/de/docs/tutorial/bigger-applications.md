@@ -315,7 +315,7 @@ Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies
 
 Jetzt importieren wir die anderen Submodule, die `APIRouter` haben:
 
-```Python hl_lines="5" title="app/main.py"
+```Python hl_lines="4-5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
