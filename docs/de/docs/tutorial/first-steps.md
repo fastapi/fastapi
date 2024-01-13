@@ -81,7 +81,7 @@ Diese Schemadefinition enthält Ihre API-Pfade, die möglichen Parameter, welche
 
 #### Daten-„Schema“
 
-Der Begriff „Schema“ kann sich auch auf die Form von Daten beziehen, wie z.B. einen JSON-Inhalt.
+Der Begriff „Schema“ kann sich auch auf die Form von Daten beziehen, wie z. B. einen JSON-Inhalt.
 
 In diesem Fall sind die JSON-Attribute und deren Datentypen, usw. gemeint.
 
@@ -328,6 +328,6 @@ Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert we
 
 * Importieren Sie `FastAPI`.
 * Erstellen Sie eine `app` Instanz.
-* Schreiben Sie einen **Pfadoperation-Dekorator** (wie z.B. `@app.get("/")`).
-* Schreiben Sie eine **Pfadoperation-Funktion** (wie z.B. oben `def root(): ...`).
-* Starten Sie den Entwicklungsserver (z.B. `uvicorn main:app --reload`).
+* Schreiben Sie einen **Pfadoperation-Dekorator** (wie z. B. `@app.get("/")`).
+* Schreiben Sie eine **Pfadoperation-Funktion** (wie z. B. oben `def root(): ...`).
+* Starten Sie den Entwicklungsserver (z. B. `uvicorn main:app --reload`).
