@@ -4,7 +4,7 @@ Vielleicht möchten Sie sich zuerst die grundlegenden Möglichkeiten anschauen, 
 
 ## Entwicklung
 
-Wenn Sie das [Repository](https://github.com/tiangolo/fastapi){.internal-link target=_blank} bereits geklont haben und tief in den Code eintauchen wollen, hier einen Leitfaden zum Einrichten Ihrer Umgebung.
+Wenn Sie das <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">fastapi Repository</a> bereits geklont haben und tief in den Code eintauchen möchten, hier einen Leitfaden zum Einrichten Ihrer Umgebung.
 
 ### Virtuelle Umgebung mit `venv`
 
