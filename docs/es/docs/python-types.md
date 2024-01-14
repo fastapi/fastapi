@@ -190,7 +190,7 @@ Por ejemplo, vamos a definir una variable para que sea una `list` compuesta de `
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
-Declara la variable con la misma sintaxis de los dos puntos (`:`).
+    Declara la variable con la misma sintaxis de los dos puntos (`:`).
 
     Como tipo, pon la `List` importada desde typing`.
 
@@ -474,7 +474,7 @@ Un ejemplo de la documentación oficial de Pydantic:
 Vas a ver mucho más de esto en práctica en el [Tutorial - Guía de Usuario](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip "Consejo"
-    Pydantic tiene un comportamiento especial cuando usas `Optional` o `Union[Something, None]` sin un valor predeterminado, puedes leer más sobre esto en la documentación de Pydantic acerca de <a href="https://pydantic-docs.helpmanual .io/usage/models/#required-optional-fields" class="external-link" target="_blank">Campos opcionales obligatorios</a>.
+    Pydantic tiene un comportamiento especial cuando usas `Optional` o `Union[Something, None]` sin un valor predeterminado, puedes leer más sobre esto en la documentación de Pydantic acerca de <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Campos opcionales obligatorios</a>.
 
 ## <abbr title="en español, anotaciones de tipo.">"Type Hints"</abbr> con Anotaciones de Metadatos
 
@@ -504,7 +504,7 @@ Pero puedes usar este espacio en `Annotated` para proporcionar a **FastAPI** met
 
 Lo importante que debe recordar es que **el primer *argumento de tipo*** que pasa a `Annotated` es el **tipo real**. El resto son solo metadatos para otras herramientas.
 
-Por ahora, sólo necesitas saber que `Annotated` existe y que es tandard Python. 😎
+Por ahora, sólo necesitas saber que `Annotated` existe y que es estándar de Python. 😎
 
 Más adelante verás lo **poderoso** que puede ser.
 
