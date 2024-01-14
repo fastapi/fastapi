@@ -20,6 +20,11 @@ def create_item(item: Item):
     return item
 
 
+@app.delete("/items/{item_id}")
+def delete_item(item_id: str, item: Item):
+    return {"item_id": item_id, "item": item}
+
+
 @app.head("/items/{item_id}", add_auto_options_route=True)
 def head_item(item_id: str):
     return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
@@ -44,6 +49,36 @@ def test_get_api_route():
     assert response.json() == {"hello": "world"}
 
 
+def test_post_api_route():
+    response = client.post("/items/", json={"name": "CoolItem"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "CoolItem"}
+
+
+def test_delete():
+    response = client.request("DELETE", "/items/foo", json={"name": "Foo"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"item_id": "foo", "item": {"name": "Foo"}}
+
+
+def test_head():
+    response = client.head("/items/foo")
+    assert response.status_code == 200, response.text
+    assert response.headers["x-fastapi-item-id"] == "foo"
+
+
+def test_patch():
+    response = client.patch("/items/foo", json={"name": "Foo"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"item_id": "foo", "item": {"name": "Foo"}}
+
+
+def test_trace():
+    response = client.request("trace", "/items/foo")
+    assert response.status_code == 200, response.text
+    assert response.headers["content-type"] == "message/http"
+
+
 def test_get_auto_options():
     response = client.options("/home")
     assert response.status_code == 200, response.text
@@ -58,11 +93,18 @@ def test_post_auto_options():
     assert response.headers.raw[0][1].decode("utf-8") == "POST"
 
 
+def test_head_auto_options():
+    response = client.head("/items/foo")
+    assert response.status_code == 200, response.text
+    assert response.headers["x-fastapi-item-id"] == "foo"
+
+
 def test_other_auto_options():
     response = client.options("/items/foo")
     assert response.status_code == 200, response.text
     assert response.headers.raw[0][0].decode("utf-8") == "allow"
     assert set(response.headers.raw[0][1].decode("utf-8").split(", ")) == {
+        "DELETE",
         "HEAD",
         "PATCH",
         "TRACE",
@@ -140,6 +182,42 @@ def test_openapi_schema():
                 },
             },
             "/items/{item_id}": {
+                "delete": {
+                    "summary": "Delete Item",
+                    "operationId": "delete_item_items__item_id__delete",
+                    "parameters": [
+                        {
+                            "name": "item_id",
+                            "in": "path",
+                            "required": True,
+                            "schema": {"type": "string", "title": "Item Id"},
+                        }
+                    ],
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                },
                 "head": {
                     "summary": "Head Item",
                     "operationId": "head_item_items__item_id__head",
