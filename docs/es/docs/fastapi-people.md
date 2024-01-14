@@ -23,7 +23,7 @@ Este soy yo:
 </div>
 {% endif %}
 
-Yo soy el creador y el mantenedor de **FastAPI**. Puedes leer más sobre eso en [Ayuda FastAPI - Obtener ayuda - Conectar con el autor](help-fastapi.md#conectar-con-el-autor){.internal-link target=_blank}.
+Yo soy el creador y el mantenedor de **FastAPI**. Puedes leer más sobre eso en [Ayuda FastAPI - Obtener ayuda - Conectar con el autor](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...Pero aquí quiero mostrarte la comunidad.
 
@@ -33,15 +33,15 @@ Yo soy el creador y el mantenedor de **FastAPI**. Puedes leer más sobre eso en 
 
 Estas son las personas que:
 
-* [Ayuda a otros con preguntas en GitHub](help-fastapi.md#ayuda-a-otros-con-preguntas-en-github){.internal-link target=_blank}.
-* [Crea Pull Requests](help-fastapi.md#crea-un-pull-request){.internal-link target=_blank}.
-* Revisa Pull Requests, [especialmente importante para las traducciones](contributing.md#traducciones){.internal-link target=_blank}.
+* [Ayuda a otros con preguntas en GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
+* [Crea Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
+* Revisa Pull Requests, [especialmente importante para las traducciones](contributing.md#translations){.internal-link target=_blank}.
 
 Un aplauso para ellos. 👏 🙇
 
 ## Usuarios más activos el mes pasado
 
-Estos son los usuarios que han estado [ayudando más a otros con preguntas en GitHub](help-fastapi.md#ayuda-a-otros-con-preguntas-en-github){.internal-link target=_blank} durante el mes pasado. ☕
+Estos son los usuarios que han estado [ayudando más a otros con preguntas en GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} durante el mes pasado. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -57,7 +57,7 @@ Estos son los usuarios que han estado [ayudando más a otros con preguntas en Gi
 
 Aquí están los **Expertos de FastAPI**. 🤓
 
-Estos son los usuarios que han [ayudado más a otros con preguntas en GitHub](help-fastapi.md#ayuda-a-otros-con-preguntas-en-github){.internal-link target=_blank} durante *todo el tiempo*.
+Estos son los usuarios que han [ayudado más a otros con preguntas en GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} durante *todo el tiempo*.
 
 Han demostrado ser expertos ayudando a muchos otros. ✨
 
@@ -75,7 +75,7 @@ Han demostrado ser expertos ayudando a muchos otros. ✨
 
 Aquí están los **Principales Colaboradores**. 👷
 
-Estos usuarios han [creado la mayor cantidad de Pull Requests](help-fastapi.md#crea-un-pull-request){.internal-link target=_blank} que se han *<abbr title="en español conocido como: fusionado, mezclado">merged</abbr>*.
+Estos usuarios han [creado la mayor cantidad de Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} que se han *<abbr title="en español conocido como: fusionado, mezclado">merged</abbr>*.
 
 Han contribuido con código fuente, documentación, traducciones, etc. 📦
 
@@ -97,7 +97,7 @@ Estos usuarios son los **Principales Revisores**. 🕵️
 
 ### Revisiones sobre Traducciones
 
-Sólo hablo algunos idiomas (y no muy bien 😅). Entonces, los revisores son los que tienen el [**poder de aprobar traducciones**](contributing.md#traducciones){.internal-link target=_blank} de la documentación. Sin ellos, no habría documentación en otros idiomas.
+Sólo hablo algunos idiomas (y no muy bien 😅). Entonces, los revisores son los que tienen el [**poder de aprobar traducciones**](contributing.md#translations){.internal-link target=_blank} de la documentación. Sin ellos, no habría documentación en otros idiomas.
 
 ---
 
