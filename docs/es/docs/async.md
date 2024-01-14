@@ -45,7 +45,7 @@ Si simplemente no lo sabes, usa `def` normal.
 
 ---
 
-**Nota**: puedes mezclar `def` y `async def` en tus *<abbr title="funciones de operación de ruta">path operation functions</abbr>* tanto como lo necesites y definir cada una utilizando la mejor opción para ti. FastAPI hará lo correcto con ellos.
+**Nota**: Puedes mezclar `def` y `async def` en tus *<abbr title="funciones de operación de ruta">path operation functions</abbr>* tanto como lo necesites y definir cada una utilizando la mejor opción para ti. FastAPI hará lo correcto con ellos.
 
 De todos modos, en cualquiera de los casos anteriores, FastAPI seguirá funcionando de forma asíncrona y será extremadamente rápido.
 
@@ -264,7 +264,7 @@ Podrías tener turnos como en el ejemplo de las hamburguesas, primero la sala de
 
 Tomaría la misma cantidad de tiempo terminar con o sin turnos (concurrencia) y habrías hecho la misma cantidad de trabajo.
 
-Pero en este caso, si pudieras traer a los 8 ex cajeros / cocineros / ahora limpiadores 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, y cada uno de ellos (y tú) podría tomar una zona de la casa para limpiarla, podría hacer todo el trabajo en **paralelo**, con la ayuda adicional y terminar mucho antes.
+Pero en este caso, si pudieras traer a los 8 ex cajeros / cocineros / ahora limpiadores 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, y cada uno de ellos (y tú) podrían tomar una zona de la casa para limpiarla, podrías hacer todo el trabajo en **paralelo**, con la ayuda adicional y terminar mucho antes.
 
 En este escenario, cada uno de los limpiadores (incluido tú) sería un procesador, haciendo su parte del trabajo.
 
@@ -320,7 +320,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-Con `async def`, Python sabe que, dentro de esa función, debe tener en cuenta las expresiones `wait` y que puede "pausar" ⏸ la ejecución de esa función e ir a hacer otra cosa 🔀 antes de regresar.
+Con `async def`, Python sabe que, dentro de esa función, debe tener en cuenta las expresiones `await` y que puede "pausar" ⏸ la ejecución de esa función e ir a hacer otra cosa 🔀 antes de regresar.
 
 Cuando desees llamar a una función `async def`, debes "esperarla". Entonces, esto no funcionará:
 
@@ -405,7 +405,7 @@ Cuando declaras una *path operation function* con `def` normal en lugar de `asyn
 
 Si vienes de otro framework asíncrono que no funciona de la manera descrita anteriormente y estás acostumbrado a definir *path operation functions* del tipo sólo cálculo con `def` simple para una pequeña ganancia de rendimiento (aproximadamente 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen un código que realice el bloqueo <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más rápido](./index.md#rendimiento){.internal-link target=_blank}{.internal-link target=_blank} que (o al menos comparable) a tu framework anterior.
+Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más rápido](./index.md#rendimiento){.internal-link target=_blank} que (o al menos comparable) a tu framework anterior.
 
 ### Dependencias
 
