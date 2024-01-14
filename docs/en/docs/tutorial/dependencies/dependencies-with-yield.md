@@ -160,7 +160,7 @@ The same way, you could raise an `HTTPException` or similar in the exit code, af
     {!> ../../../docs_src/dependencies/tutorial008b.py!}
     ```
 
-An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is ot create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is to create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
 ## Execution of dependencies with `yield`
 
@@ -249,7 +249,7 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-Underneath, the `open("./somefile.txt")` creates an object that is a called a "Context Manager".
+Underneath, the `open("./somefile.txt")` creates an object that is called a "Context Manager".
 
 When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 

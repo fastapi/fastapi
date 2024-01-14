@@ -114,6 +114,11 @@ Create the *path operation function* to create notes:
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 !!! Note
     Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
 
