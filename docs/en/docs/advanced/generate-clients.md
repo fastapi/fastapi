@@ -229,9 +229,17 @@ But for the generated client we could **modify** the OpenAPI operation IDs right
 
 We could download the OpenAPI JSON to a file `openapi.json` and then we could **remove that prefixed tag** with a script like this:
 
-```Python
-{!../../../docs_src/generate_clients/tutorial004.py!}
-```
+=== "Python"
+
+    ```Python
+    {!> ../../../docs_src/generate_clients/tutorial004.py!}
+    ```
+
+=== "Node.js"
+
+    ```Python
+    {!> ../../../docs_src/generate_clients/tutorial004.js!}
+    ```
 
 With that, the operation IDs would be renamed from things like `items-get_items` to just `get_items`, that way the client generator can generate simpler method names.
 
