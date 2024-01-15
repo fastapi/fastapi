@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -8,10 +9,18 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
 
-    class Config:
-        schema_extra = {
-            "x-something-internal": {"level": 4},
+    if PYDANTIC_V2:
+        model_config = {
+            "json_schema_extra": {
+                "x-something-internal": {"level": 4},
+            }
         }
+    else:
+
+        class Config:
+            schema_extra = {
+                "x-something-internal": {"level": 4},
+            }
 
 
 @app.get("/foo", response_model=Item)

@@ -34,7 +34,7 @@ async def hidden_query(
 
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/hidden_cookie": {
