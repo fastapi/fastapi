@@ -28,7 +28,7 @@ $ uvicorn main:app --reload
 
 Se **RECOMIENDA** que escribas o copies el código, lo edites y lo ejecutes localmente.
 
-Usarlo en tu editor de código es lo que realmente te muestra los beneficios de FastAPI, al ver la poca cantidad de código que tienes que escribir, todas las verificaciones de tipo, autocompletado, etc.
+Usarlo en tu editor de código es lo que realmente te muestra los beneficios de FastAPI, al ver la poca cantidad de código que tienes que escribir, todas las verificaciones de tipo, auto-completado, etc.
 
 ---
 

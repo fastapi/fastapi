@@ -75,7 +75,7 @@ Let's first check all the normal Peewee code, create a Peewee database:
 ```
 
 !!! tip
-    Have in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
+    Keep in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
 
 #### Note
 
@@ -493,7 +493,7 @@ This means that, with Peewee's current implementation, multiple tasks could be u
 
 Python 3.7 has <a href="https://docs.python.org/3/library/contextvars.html" class="external-link" target="_blank">`contextvars`</a> that can create a local variable very similar to `threading.local`, but also supporting these async features.
 
-There are several things to have in mind.
+There are several things to keep in mind.
 
 The `ContextVar` has to be created at the top of the module, like:
 
