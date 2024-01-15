@@ -25,7 +25,7 @@ async def update_item(
     item: Item,
     user: User,
     importance: int = Body(gt=0),
-    q: Union[str, None] = None
+    q: Union[str, None] = None,
 ):
     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
     if q:

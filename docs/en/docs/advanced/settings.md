@@ -125,7 +125,34 @@ That means that any value read in Python from an environment variable will be a 
 
 ## Pydantic `Settings`
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+
+### Install `pydantic-settings`
+
+First, install the `pydantic-settings` package:
+
+<div class="termy">
+
+```console
+$ pip install pydantic-settings
+---> 100%
+```
+
+</div>
+
+It also comes included when you install the `all` extras with:
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[all]"
+---> 100%
+```
+
+</div>
+
+!!! info
+    In Pydantic v1 it came included with the main package. Now it is distributed as this independent package so that you can choose to install it or not if you don't need that functionality.
 
 ### Create the `Settings` object
 
@@ -135,9 +162,20 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-```Python hl_lines="2  5-8  11"
-{!../../../docs_src/settings/tutorial001.py!}
-```
+=== "Pydantic v2"
+
+    ```Python hl_lines="2  5-8  11"
+    {!> ../../../docs_src/settings/tutorial001.py!}
+    ```
+
+=== "Pydantic v1"
+
+    !!! info
+        In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
+
+    ```Python hl_lines="2  5-8  11"
+    {!> ../../../docs_src/settings/tutorial001_pv1.py!}
+    ```
 
 !!! tip
     If you want something quick to copy and paste, don't use this example, use the last one below.
@@ -216,20 +254,54 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-```Python hl_lines="5  11-12"
-{!../../../docs_src/settings/app02/main.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="6  12-13"
+    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="6  12-13"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="5  11-12"
+    {!> ../../../docs_src/settings/app02/main.py!}
+    ```
 
 !!! tip
-    We'll discuss the `@lru_cache()` in a bit.
+    We'll discuss the `@lru_cache` in a bit.
 
     For now you can assume `get_settings()` is a normal function.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-```Python hl_lines="16  18-20"
-{!../../../docs_src/settings/app02/main.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="17  19-21"
+    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="17  19-21"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="16  18-20"
+    {!> ../../../docs_src/settings/app02/main.py!}
+    ```
 
 ### Settings and testing
 
@@ -254,7 +326,7 @@ This practice is common enough that it has a name, these environment variables a
 
     But a dotenv file doesn't really have to have that exact filename.
 
-Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
 !!! tip
     For this to work, you need to `pip install python-dotenv`.
@@ -272,14 +344,28 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-```Python hl_lines="9-10"
-{!../../../docs_src/settings/app03/config.py!}
-```
+=== "Pydantic v2"
 
-Here we create a class `Config` inside of your Pydantic `Settings` class, and set the `env_file` to the filename with the dotenv file we want to use.
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/settings/app03_an/config.py!}
+    ```
 
-!!! tip
-    The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
+    !!! tip
+        The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+=== "Pydantic v1"
+
+    ```Python hl_lines="9-10"
+    {!> ../../../docs_src/settings/app03_an/config_pv1.py!}
+    ```
+
+    !!! tip
+        The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+!!! info
+    In Pydantic version 1 the configuration was done in an internal class `Config`, in Pydantic version 2 it's done in an attribute `model_config`. This attribute takes a `dict`, and to get autocompletion and inline errors you can import and use `SettingsConfigDict` to define that `dict`.
+
+Here we define the config `env_file` inside of your Pydantic `Settings` class, and set the value to the filename with the dotenv file we want to use.
 
 ### Creating the `Settings` only once with `lru_cache`
 
@@ -302,24 +388,41 @@ def get_settings():
 
 we would create that object for each request, and we would be reading the `.env` file for each request. ⚠️
 
-But as we are using the `@lru_cache()` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
+But as we are using the `@lru_cache` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-```Python hl_lines="1  10"
-{!../../../docs_src/settings/app03/main.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="1  11"
+    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1  11"
+    {!> ../../../docs_src/settings/app03_an/main.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="1  10"
+    {!> ../../../docs_src/settings/app03/main.py!}
+    ```
 
 Then for any subsequent calls of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 
 #### `lru_cache` Technical Details
 
-`@lru_cache()` modifies the function it decorates to return the same value that was returned the first time, instead of computing it again, executing the code of the function every time.
+`@lru_cache` modifies the function it decorates to return the same value that was returned the first time, instead of computing it again, executing the code of the function every time.
 
 So, the function below it will be executed once for each combination of arguments. And then the values returned by each of those combinations of arguments will be used again and again whenever the function is called with exactly the same combination of arguments.
 
 For example, if you have a function:
 
 ```Python
-@lru_cache()
+@lru_cache
 def say_hi(name: str, salutation: str = "Ms."):
     return f"Hello {salutation} {name}"
 ```
@@ -371,7 +474,7 @@ In the case of our dependency `get_settings()`, the function doesn't even take a
 
 That way, it behaves almost as if it was just a global variable. But as it uses a dependency function, then we can override it easily for testing.
 
-`@lru_cache()` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache()`</a>.
+`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
 
 ## Recap
 
@@ -379,4 +482,4 @@ You can use Pydantic Settings to handle the settings or configurations for your 
 
 * By using a dependency you can simplify testing.
 * You can use `.env` files with it.
-* Using `@lru_cache()` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.
+* Using `@lru_cache` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.

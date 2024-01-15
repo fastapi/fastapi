@@ -6,16 +6,40 @@ You can define Header parameters the same way you define `Query`, `Path` and `Co
 
 First import `Header`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
+    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/header_params/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/header_params/tutorial001.py!}
     ```
 
 ## Declare `Header` parameters
@@ -24,16 +48,40 @@ Then declare the header parameters using the same structure as with `Path`, `Que
 
 The first value is the default value, you can pass all the extra validation or annotation parameters:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
+    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/header_params/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/header_params/tutorial001.py!}
     ```
 
 !!! note "Technical Details"
@@ -60,16 +108,40 @@ So, you can use `user_agent` as you normally would in Python code, instead of ne
 
 If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002.py!}
+    {!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/header_params/tutorial002_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/header_params/tutorial002.py!}
     ```
 
 !!! warning
@@ -85,22 +157,49 @@ You will receive all the values from the duplicate header as a Python `list`.
 
 For example, to declare a header of `X-Token` that can appear more than once, you can write:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003.py!}
+    {!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/header_params/tutorial003_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.9+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.8+ non-Annotated"
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/header_params/tutorial003.py!}
     ```
 
 If you communicate with that *path operation* sending two HTTP headers like:
