@@ -55,7 +55,7 @@
 
 ここでは、上記の型のいくつかを使用したパラメータを持つ*path operation*の例を示します。
 
-```Python hl_lines="1 2 12 13 14 15 16"
+```Python hl_lines="1 2 12-16"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
