@@ -6,7 +6,7 @@ Learn more about it below. 👇
 
 ## Versions
 
-The latest versions of FastAPI are supported.
+The latest version of FastAPI is supported.
 
 You are encouraged to [write tests](https://fastapi.tiangolo.com/tutorial/testing/) for your application and update your FastAPI version frequently after ensuring that your tests are passing. This way you will benefit from the latest features, bug fixes, and **security fixes**.
 

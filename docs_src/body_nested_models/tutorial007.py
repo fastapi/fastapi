@@ -1,4 +1,4 @@
-from typing import List, Optional, Set
+from typing import List, Set, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
@@ -13,16 +13,16 @@ class Image(BaseModel):
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: Union[str, None] = None
     price: float
-    tax: Optional[float] = None
+    tax: Union[float, None] = None
     tags: Set[str] = set()
-    images: Optional[List[Image]] = None
+    images: Union[List[Image], None] = None
 
 
 class Offer(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: Union[str, None] = None
     price: float
     items: List[Item]
 

@@ -75,7 +75,7 @@ http://127.0.0.1:8000/items/?skip=20
 !!! note "참고"
     FastAPI는 `q`가 `= None`이므로 선택적이라는 것을 인지합니다.
 
-    `Optional[str]`에 있는 `Optional`은 FastAPI(FastAPI는 `str` 부분만 사용합니다)가 사용하는게 아니지만, `Optional[str]`은 편집기에게 코드에서 오류를 찾아낼 수 있게 도와줍니다.
+    `Union[str, None]`에 있는 `Union`은 FastAPI(FastAPI는 `str` 부분만 사용합니다)가 사용하는게 아니지만, `Union[str, None]`은 편집기에게 코드에서 오류를 찾아낼 수 있게 도와줍니다.
 
 ## 쿼리 매개변수 형변환
 

@@ -10,11 +10,11 @@ There are 3 main alternatives:
 
 ## Server Machine and Server Program
 
-There's a small detail about names to have in mind. 💡
+There's a small detail about names to keep in mind. 💡
 
 The word "**server**" is commonly used to refer to both the remote/cloud computer (the physical or virtual machine) and also the program that is running on that machine (e.g. Uvicorn).
 
-Just have that in mind when you read "server" in general, it could refer to one of those two things.
+Just keep in mind that when you read "server" in general, it could refer to one of those two things.
 
 When referring to the remote machine, it's common to call it **server**, but also **machine**, **VM** (virtual machine), **node**. Those all refer to some type of remote machine, normally running Linux, where you run programs.
 
@@ -38,7 +38,7 @@ You can install an ASGI compatible server with:
 
     !!! tip
         By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
-        
+
         That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
 === "Hypercorn"
@@ -59,7 +59,7 @@ You can install an ASGI compatible server with:
 
 ## Run the Server Program
 
-You can then your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
+You can then run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
 === "Uvicorn"
 
@@ -89,7 +89,7 @@ You can then your application the same way you have done in the tutorials, but w
     Remember to remove the `--reload` option if you were using it.
 
     The `--reload` option consumes much more resources, is more unstable, etc.
-    
+
     It helps a lot during **development**, but you **shouldn't** use it in **production**.
 
 ## Hypercorn with Trio

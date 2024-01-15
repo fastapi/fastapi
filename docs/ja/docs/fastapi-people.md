@@ -115,6 +115,8 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 彼らは、<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a> を介して私の **FastAPI** などに関する活動を支援してくれています。
 
+{% if sponsors %}
+
 {% if sponsors.gold %}
 
 ### Gold Sponsors
@@ -140,6 +142,8 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 {% for sponsor in sponsors.bronze -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
+{% endif %}
+
 {% endif %}
 
 ### Individual Sponsors

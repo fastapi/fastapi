@@ -1,6 +1,6 @@
 # Handling Errors
 
-There are many situations in where you need to notify an error to a client that is using your API.
+There are many situations in which you need to notify an error to a client that is using your API.
 
 This client could be a browser with a frontend, a code from someone else, an IoT device, etc.
 
@@ -163,7 +163,7 @@ path -> item_id
 !!! warning
     These are technical details that you might skip if it's not important for you now.
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
@@ -252,9 +252,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### Re-use **FastAPI**'s exception handlers
 
-You could also just want to use the exception somehow, but then use the same default exception handlers from **FastAPI**.
-
-You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
+If you want to use the exception along with the same default exception handlers from  **FastAPI**, You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
 ```Python hl_lines="2-5  15  21"
 {!../../../docs_src/handling_errors/tutorial006.py!}

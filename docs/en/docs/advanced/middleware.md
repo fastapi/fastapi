@@ -68,7 +68,7 @@ Enforces that all incoming requests have a correctly set `Host` header, in order
 
 The following arguments are supported:
 
-* `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains to allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
+* `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
 
 If an incoming request does not validate correctly then a `400` response will be sent.
 
@@ -92,7 +92,7 @@ There are many other ASGI middlewares.
 
 For example:
 
-* <a href="https://docs.sentry.io/platforms/python/asgi/" class="external-link" target="_blank">Sentry</a>
+* <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
