@@ -23,7 +23,7 @@
 **Código Fuente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.6+ basado en las anotaciones de tipos estándar de Python.
+FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.8+ basado en las anotaciones de tipos estándar de Python.
 
 Sus características principales son:
 
@@ -37,7 +37,7 @@ Sus características principales son:
 * **Robusto**: Crea código listo para producción con documentación automática interactiva.
 * **Basado en estándares**: Basado y totalmente compatible con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (conocido previamente como Swagger) y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno contruyendo aplicaciones listas para producción.</small>
+<small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno construyendo aplicaciones listas para producción.</small>
 
 ## Sponsors
 
@@ -106,7 +106,7 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.7+
+Python 3.8+
 
 FastAPI está sobre los hombros de gigantes:
 
@@ -295,11 +295,11 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Haz clíck en el botón de "Try it out" que te permite llenar los parámetros e interactuar directamente con la API:
+* Haz click en el botón de "Try it out" que te permite llenar los parámetros e interactuar directamente con la API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Luego haz clíck en el botón de "Execute". La interfaz de usuario se comunicará con tu API, enviará los parámetros y recibirá los resultados para mostrarlos en pantalla:
+* Luego haz click en el botón de "Execute". La interfaz de usuario se comunicará con tu API, enviará los parámetros y recibirá los resultados para mostrarlos en pantalla:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -317,9 +317,9 @@ En resumen, declaras los tipos de parámetros, body, etc. **una vez** como pará
 
 Lo haces con tipos modernos estándar de Python.
 
-No tienes que aprender una sintáxis nueva, los métodos o clases de una library específica, etc.
+No tienes que aprender una sintaxis nueva, los métodos o clases de una library específica, etc.
 
-Solo **Python 3.6+** estándar.
+Solo **Python 3.8+** estándar.
 
 Por ejemplo, para un `int`:
 
