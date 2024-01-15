@@ -1,3 +1,5 @@
+from typing import Any
+
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
 
@@ -18,5 +20,5 @@ class UserOut(BaseModel):
 
 
 @app.post("/user/", response_model=UserOut)
-async def create_user(user: UserIn):
+async def create_user(user: UserIn) -> Any:
     return user

@@ -283,7 +283,7 @@ For example:
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attractive of NodeJS).
+With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
@@ -409,11 +409,11 @@ Still, in both situations, chances are that **FastAPI** will [still be faster](/
 
 ### Dependencies
 
-The same applies for [dependencies](/tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](./tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies
 
-You can have multiple dependencies and [sub-dependencies](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 
