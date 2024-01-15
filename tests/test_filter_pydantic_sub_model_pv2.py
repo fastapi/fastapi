@@ -12,7 +12,7 @@ from .utils import needs_pydanticv2
 
 @pytest.fixture(name="client")
 def get_client():
-    from pydantic import BaseModel, FieldValidationInfo, field_validator
+    from pydantic import BaseModel, ValidationInfo, field_validator
 
     app = FastAPI()
 
@@ -28,7 +28,7 @@ def get_client():
         foo: ModelB
 
         @field_validator("name")
-        def lower_username(cls, name: str, info: FieldValidationInfo):
+        def lower_username(cls, name: str, info: ValidationInfo):
             if not name.endswith("A"):
                 raise ValueError("name must end in A")
             return name

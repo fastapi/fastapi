@@ -18,7 +18,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
@@ -33,7 +33,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         尽可能选择使用 `Annotated` 的版本。
@@ -61,7 +61,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
@@ -76,7 +76,7 @@
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         尽可能选择使用 `Annotated` 的版本。
