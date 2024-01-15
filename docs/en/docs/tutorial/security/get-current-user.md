@@ -8,13 +8,13 @@ In the previous chapter the security system (which is based on the dependency in
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -45,7 +45,7 @@ The same way we use Pydantic to declare bodies, we can use it anywhere else:
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  13-17"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -60,7 +60,7 @@ The same way we use Pydantic to declare bodies, we can use it anywhere else:
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -91,7 +91,7 @@ The same as we were doing before in the *path operation* directly, our new depen
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="26"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -106,7 +106,7 @@ The same as we were doing before in the *path operation* directly, our new depen
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -131,7 +131,7 @@ The same as we were doing before in the *path operation* directly, our new depen
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20-23  27-28"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -146,7 +146,7 @@ The same as we were doing before in the *path operation* directly, our new depen
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -171,7 +171,7 @@ So now we can use the same `Depends` with our `get_current_user` in the *path op
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="32"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -186,7 +186,7 @@ So now we can use the same `Depends` with our `get_current_user` in the *path op
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -227,7 +227,7 @@ Just use any kind of model, any kind of class, any kind of database that you nee
 
 ## Code size
 
-This example might seem verbose. Have in mind that we are mixing security, data models, utility functions and *path operations* in the same file.
+This example might seem verbose. Keep in mind that we are mixing security, data models, utility functions and *path operations* in the same file.
 
 But here's the key point.
 
@@ -253,7 +253,7 @@ And all these thousands of *path operations* can be as small as 3 lines:
     {!> ../../../docs_src/security/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="31-33"
     {!> ../../../docs_src/security/tutorial002_an.py!}
@@ -268,7 +268,7 @@ And all these thousands of *path operations* can be as small as 3 lines:
     {!> ../../../docs_src/security/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

@@ -66,7 +66,7 @@ Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le 
 Lorsque vous déclarez un *chemin* dans votre application, **FastAPI** génère automatiquement les métadonnées concernant ce *chemin* à inclure dans le schéma OpenAPI.
 
 !!! note "Détails techniques"
-    La spécification OpenAPI appelle ces métaonnées des <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objets d'opération</a>.
+    La spécification OpenAPI appelle ces métadonnées des <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objets d'opération</a>.
 
 Il contient toutes les informations sur le *chemin* et est utilisé pour générer automatiquement la documentation.
 

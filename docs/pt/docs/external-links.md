@@ -9,70 +9,21 @@ Aqui tem uma lista, incompleta, de algumas delas.
 !!! tip "Dica"
     Se você tem um artigo, projeto, ferramenta ou qualquer coisa relacionada ao **FastAPI** que ainda não está listada aqui, crie um <a href="https://github.com/tiangolo/fastapi/edit/master/docs/external-links.md" class="external-link" target="_blank">_Pull Request_ adicionando ele</a>.
 
-## Artigos
+{% for section_name, section_content in external_links.items() %}
 
-### Inglês
+## {{ section_name }}
 
-{% if external_links %}
-{% for article in external_links.articles.english %}
+{% for lang_name, lang_content in section_content.items() %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+### {{ lang_name }}
+
+{% for item in lang_content %}
+
+* <a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.
+
 {% endfor %}
-{% endif %}
-
-### Japonês
-
-{% if external_links %}
-{% for article in external_links.articles.japanese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
-{% endif %}
-
-### Vietnamita
-
-{% if external_links %}
-{% for article in external_links.articles.vietnamese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
-{% endif %}
-
-### Russo
-
-{% if external_links %}
-{% for article in external_links.articles.russian %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### Alemão
-
-{% if external_links %}
-{% for article in external_links.articles.german %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Podcasts
-
-{% if external_links %}
-{% for article in external_links.podcasts.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Palestras
-
-{% if external_links %}
-{% for article in external_links.talks.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
 
 ## Projetos
 
