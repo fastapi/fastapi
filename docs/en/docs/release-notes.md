@@ -9,6 +9,10 @@ hide:
 
 * ✏️ Fix Pydantic method name in `docs/en/docs/advanced/path-operation-advanced-configuration.md`. PR [#10826](https://github.com/tiangolo/fastapi/pull/10826) by [@ahmedabdou14](https://github.com/ahmedabdou14).
 
+### Features
+
+* ✨  Include HTTP 205 in status codes with no body. PR [#10969](https://github.com/tiangolo/fastapi/pull/10969) by [@tiangolo](https://github.com/tiangolo).
+
 ### Refactors
 
 * ✅ Refactor tests for duplicate operation ID generation for compatibility with other tools running the FastAPI test suite. PR [#10876](https://github.com/tiangolo/fastapi/pull/10876) by [@emmettbutler](https://github.com/emmettbutler).
@@ -18,6 +22,8 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `fastapi/security/oauth2.py`. PR [#10972](https://github.com/tiangolo/fastapi/pull/10972) by [@RafalSkolasinski](https://github.com/RafalSkolasinski).
+* 📝 Update `HTTPException` details in `docs/en/docs/tutorial/handling-errors.md`. PR [#5418](https://github.com/tiangolo/fastapi/pull/5418) by [@papb](https://github.com/papb).
 * ✏️ A few tweaks in `docs/de/docs/tutorial/first-steps.md`. PR [#10959](https://github.com/tiangolo/fastapi/pull/10959) by [@nilslindemann](https://github.com/nilslindemann).
 * ✏️ Fix link in `docs/en/docs/advanced/async-tests.md`. PR [#10960](https://github.com/tiangolo/fastapi/pull/10960) by [@nilslindemann](https://github.com/nilslindemann).
 * ✏️ Fix typos for Spanish documentation. PR [#10957](https://github.com/tiangolo/fastapi/pull/10957) by [@jlopezlira](https://github.com/jlopezlira).
@@ -38,6 +44,22 @@ hide:
 
 ### Translations
 
+* ✏️ Fix typo error in `docs/ko/docs/tutorial/path-params.md`. PR [#10758](https://github.com/tiangolo/fastapi/pull/10758) by [@2chanhaeng](https://github.com/2chanhaeng).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#1961](https://github.com/tiangolo/fastapi/pull/1961) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#1960](https://github.com/tiangolo/fastapi/pull/1960) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/sub-dependencies.md`. PR [#1959](https://github.com/tiangolo/fastapi/pull/1959) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/background-tasks.md`. PR [#2668](https://github.com/tiangolo/fastapi/pull/2668) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/index.md` and `docs/ja/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#1958](https://github.com/tiangolo/fastapi/pull/1958) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/response-model.md`. PR [#1938](https://github.com/tiangolo/fastapi/pull/1938) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/body-multiple-params.md`. PR [#1903](https://github.com/tiangolo/fastapi/pull/1903) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/path-params-numeric-validations.md`. PR [#1902](https://github.com/tiangolo/fastapi/pull/1902) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/python-types.md`. PR [#1899](https://github.com/tiangolo/fastapi/pull/1899) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/handling-errors.md`. PR [#1953](https://github.com/tiangolo/fastapi/pull/1953) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/response-status-code.md`. PR [#1942](https://github.com/tiangolo/fastapi/pull/1942) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/extra-models.md`. PR [#1941](https://github.com/tiangolo/fastapi/pull/1941) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese tranlsation for `docs/ja/docs/tutorial/schema-extra-example.md`. PR [#1931](https://github.com/tiangolo/fastapi/pull/1931) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/body-nested-models.md`. PR [#1930](https://github.com/tiangolo/fastapi/pull/1930) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/body-fields.md`. PR [#1923](https://github.com/tiangolo/fastapi/pull/1923) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add German translation for `docs/de/docs/tutorial/index.md`. PR [#9502](https://github.com/tiangolo/fastapi/pull/9502) by [@fhabers21](https://github.com/fhabers21).
 * 🌐 Add German translation for `docs/de/docs/tutorial/background-tasks.md`. PR [#10566](https://github.com/tiangolo/fastapi/pull/10566) by [@nilslindemann](https://github.com/nilslindemann).
 * ✏️ Fix typo in `docs/ru/docs/index.md`. PR [#10672](https://github.com/tiangolo/fastapi/pull/10672) by [@Delitel-WEB](https://github.com/Delitel-WEB).
@@ -46,6 +68,7 @@ hide:
 
 ### Internal
 
+* 👷 Add changes-requested handling in GitHub Action issue manager. PR [#10971](https://github.com/tiangolo/fastapi/pull/10971) by [@tiangolo](https://github.com/tiangolo).
 * 🔧  Group dependencies on dependabot updates. PR [#10952](https://github.com/tiangolo/fastapi/pull/10952) by [@Kludex](https://github.com/Kludex).
 * ⬆ Bump actions/setup-python from 4 to 5. PR [#10764](https://github.com/tiangolo/fastapi/pull/10764) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.8.10 to 1.8.11. PR [#10731](https://github.com/tiangolo/fastapi/pull/10731) by [@dependabot[bot]](https://github.com/apps/dependabot).
