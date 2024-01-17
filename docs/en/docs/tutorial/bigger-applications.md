@@ -315,7 +315,7 @@ And we can even declare [global dependencies](dependencies/global-dependencies.m
 
 Now we import the other submodules that have `APIRouter`s:
 
-```Python hl_lines="5" title="app/main.py"
+```Python hl_lines="4-5" title="app/main.py"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
