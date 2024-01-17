@@ -33,7 +33,7 @@ For example, to declare another response with a status code `404` and a Pydantic
 !!! info
     The `model` key is not part of OpenAPI.
 
-    **FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
+    **FastAPI** will take the Pydantic model from there, generate the JSON Schema, and put it in the correct place.
 
     The correct place is:
 

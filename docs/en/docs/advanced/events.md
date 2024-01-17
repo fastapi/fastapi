@@ -39,7 +39,7 @@ Here we are simulating the expensive *startup* operation of loading the model by
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
 
 !!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+    The *shutdown* would happen when you are **stopping** the application.
 
     Maybe you need to start a new version, or you just got tired of running it. 🤷
 

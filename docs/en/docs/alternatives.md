@@ -298,7 +298,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 
     Hug inspired **FastAPI** to declare a `response` parameter in functions to set headers and cookies.
 
-### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
+### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (≦ 0.5)
 
 Right before deciding to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
 

@@ -170,7 +170,7 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 !!! info
     Keep in mind that the most important part to make a parameter optional is the part:

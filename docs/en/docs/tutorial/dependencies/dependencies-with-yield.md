@@ -5,7 +5,7 @@ FastAPI supports dependencies that do some <abbr title='sometimes also called "e
 To do this, use `yield` instead of `return`, and write the extra steps (code) after.
 
 !!! tip
-    Make sure to use `yield` one single time.
+    Make sure to use `yield` one single time per dependency.
 
 !!! note "Technical Details"
     Any function that is valid to use with:
