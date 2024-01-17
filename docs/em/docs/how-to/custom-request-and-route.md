@@ -28,7 +28,7 @@
 ### ✍ 🛃 `GzipRequest` 🎓
 
 !!! tip
-    👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](./middleware.md#gzipmiddleware){.internal-link target=_blank}.
+    👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
 
 🥇, 👥 ✍ `GzipRequest` 🎓, ❔ 🔜 📁 `Request.body()` 👩‍🔬 🗜 💪 🔍 ☑ 🎚.
 
