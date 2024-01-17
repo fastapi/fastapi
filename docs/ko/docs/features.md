@@ -11,7 +11,7 @@ hide:
 
 ### 개방형 표준을 기반으로
 
-* <abbr title="also known as: endpoints, routes">경로</abbr><abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">작동</abbr>, 매개변수, 본문 요청, 보안 그 외의 선언을 포함한 API 생성을 위한 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>
+* <abbr title="엔드포인트, 라우트로도 알려져 있습니다">경로</abbr><abbr title="POST, GET, PUT, DELETE와 같은 HTTP 메소드로 알려져 있습니다">작동</abbr>, 매개변수, 본문 요청, 보안 그 외의 선언을 포함한 API 생성을 위한 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>
 * <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI 자체가 JSON Schema를 기반으로 하고 있습니다)를 사용한 자동 데이터 모델 문서화.
 * 단순히 떠올려서 덧붙인 기능이 아닙니다. 세심한 검토를 거친 후, 이러한 표준을 기반으로 설계되었습니다.
 * 이는 또한 다양한 언어로 자동적인 **클라이언트 코드 생성**을 사용할 수 있게 지원합니다.
@@ -83,7 +83,7 @@ my_second_user: User = User(**second_user_data)
 
 여러분은 문서로 다시 돌아올 일이 거의 없을 겁니다.
 
-다음은 편집기가 어떻게 여러분을 도와주는지 입니다:
+다음은 편집기가 어떻게 여러분을 도와주는지 보여줍니다:
 
 * <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>에서:
 
@@ -97,19 +97,19 @@ my_second_user: User = User(**second_user_data)
 
 잘못된 키 이름을 적을 일도, 문서를 왔다 갔다할 일도 없으며, 혹은 마지막으로 `username` 또는 `user_name`을 사용했는지 찾기 위해 위 아래로 스크롤할 일도 없습니다.
 
-### Short
+### 토막 정보
 
-어느 곳에서나 선택적 구성이 가능한 모든 것에 합리적인 기본값이 설정되어 있습니다. 모든 매개변수는 여러분이 필요하거나, 여러분이 원하는 API 정의하기 위해 미세하게 조정될 수 있습니다.
+어느 곳에서나 선택적 구성이 가능한 모든 것에 합리적인 기본값이 설정되어 있습니다. 모든 매개변수는 여러분이 필요하거나, 원하는 API를 정의하기 위해 미세하게 조정할 수 있습니다.
 
 하지만 기본적으로 모든 것이 "그냥 작동합니다".
 
 ### 검증
 
 * 다음을 포함한, 대부분의 (혹은 모든?) 파이썬 **데이터 타입** 검증할 수 있습니다:
-    * JSON 객체 (`딕셔너리`).
-    * 아이템 타입을 정의하는 JSON 배열 (`리스트`).
+    * JSON 객체 (`dict`).
+    * 아이템 타입을 정의하는 JSON 배열 (`list`).
     * 최소 길이와 최대 길이를 정의하는 문자열 (`str`) 필드.
-    * 최소값과 최대값을 가지는 숫자 (`int`, `float`), 그 외.
+    * 최솟값과 최댓값을 가지는 숫자 (`int`, `float`), 그 외.
 
 * 다음과 같이 더욱 이색적인 타입에 대해 검증할 수 있습니다:
     * URL.
@@ -181,13 +181,13 @@ FastAPI는 사용하기 매우 간편하지만, 엄청난 <abbr title='"컴포�
 
 **FastAPI**는 <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>을 기반으로 하며 Pydantic과 완벽하게 호환됩니다. 그래서 어느 추가적인 Pydantic 코드를 여러분이 가지고 있든 작동할 것입니다.
 
-Pydantic을 기반으로 하는, 데이터 베이스를 위한 <abbr title="Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr>을 포함한 외부 라이브러리를 포함합니다.
+Pydantic을 기반으로 하는, 데이터베이스를 위한 <abbr title="Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr>을 포함한 외부 라이브러리를 포함합니다.
 
 이는 모든 것이 자동으로 검증되기 때문에, 많은 경우에서 요청을 통해 얻은 동일한 객체를, **직접 데이터베이스로** 넘겨줄 수 있습니다.
 
 반대로도 마찬가지이며, 많은 경우에서 여러분은 **직접 클라이언트로** 그저 객체를 넘겨줄 수 있습니다.
 
-**FastAPI**를 사용하면 (모든 데이터 처리를 위해 FastAPI가 Pydantic을 기반으로 하기 있기에) **Pydantic**의 기능을 얻게 됩니다:
+**FastAPI**를 사용하면 (모든 데이터 처리를 위해 FastAPI가 Pydantic을 기반으로 하기 있기에) **Pydantic**의 모든 기능을 얻게 됩니다:
 
 * **어렵지 않은 언어**:
     * 새로운 스키마 정의 마이크로 언어를 배우지 않아도 됩니다.
@@ -199,5 +199,5 @@ Pydantic을 기반으로 하는, 데이터 베이스를 위한 <abbr title="Obje
     * 그리고 검증자는 복잡한 데이터 스키마를 명확하고 쉽게 정의 및 확인하며 JSON 스키마로 문서화합니다.
     * 여러분은 깊게 **중첩된 JSON** 객체를 가질 수 있으며, 이 객체 모두 검증하고 설명을 붙일 수 있습니다.
 * **확장 가능성**:
-    * Pydantic은 사용자 정의 데이터 타입을 정의할 수 있게 하거나, 검증자 데코레이터가 붙은 모델의 메서드를 사용하여 검증을 확장할 수 있습니다.
+    * Pydantic은 사용자 정의 데이터 타입을 정의할 수 있게 하거나, 검증자 데코레이터가 붙은 모델의 메소드를 사용하여 검증을 확장할 수 있습니다.
 * 100% 테스트 범위.
