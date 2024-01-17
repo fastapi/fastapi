@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # ویژگی ها
 
 ## ویژگی های FastAPI
