@@ -369,7 +369,7 @@ Quando você declara uma *função de operação de rota* com `def` normal ao in
 
 Se você está chegando de outro framework assíncrono que não faz o trabalho descrito acima e você está acostumado a definir triviais *funções de operação de rota* com simples `def` para ter um mínimo ganho de performance (cerca de 100 nanosegundos), por favor observe que no **FastAPI** o efeito pode ser bem o oposto. Nesses casos, é melhor usar `async def` a menos que suas *funções de operação de rota* utilizem código que performem bloqueamento <abbr title="Input/Output: disco lendo ou escrevendo, comunicações de rede.">IO</abbr>.
 
-Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](/#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
+Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](index.md#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
 
 ### Dependências
 
