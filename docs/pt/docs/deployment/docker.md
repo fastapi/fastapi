@@ -109,7 +109,7 @@ Isso pode depender principalmente da ferramenta que você usa para **instalar** 
 
 O caminho mais comum de fazer isso é ter um arquivo `requirements.txt` com os nomes dos pacotes e suas versões, um por linha.
 
-Você, naturalmente, usaria as mesmas ideias que você leu em [Sobre Versões do FastAPI](./versions.md){.internal-link target=_blank} para definir os intervalos de versões.
+Você, naturalmente, usaria as mesmas ideias que você leu em [Sobre Versões do FastAPI](versions.md){.internal-link target=_blank} para definir os intervalos de versões.
 
 Por exemplo, seu `requirements.txt` poderia parecer com:
 
@@ -374,7 +374,7 @@ Então ajuste o comando Uvicorn para usar o novo módulo `main` em vez de `app.m
 
 ## Conceitos de Implantação
 
-Vamos falar novamente sobre alguns dos mesmos [Conceitos de Implantação](./concepts.md){.internal-link target=_blank} em termos de contêineres.
+Vamos falar novamente sobre alguns dos mesmos [Conceitos de Implantação](concepts.md){.internal-link target=_blank} em termos de contêineres.
 
 Contêineres são principalmente uma ferramenta para simplificar o processo de **construção e implantação** de um aplicativo, mas eles não impõem uma abordagem particular para lidar com esses **conceitos de implantação** e existem várias estratégias possíveis.
 
@@ -515,7 +515,7 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 ## Imagem Oficial do Docker com Gunicorn - Uvicorn
 
-Há uma imagem oficial do Docker que inclui o Gunicorn executando com trabalhadores Uvicorn, conforme detalhado em um capítulo anterior: [Server Workers - Gunicorn com Uvicorn](./server-workers.md){.internal-link target=_blank}.
+Há uma imagem oficial do Docker que inclui o Gunicorn executando com trabalhadores Uvicorn, conforme detalhado em um capítulo anterior: [Server Workers - Gunicorn com Uvicorn](server-workers.md){.internal-link target=_blank}.
 
 Essa imagem seria útil principalmente nas situações descritas acima em: [Contêineres com Múltiplos Processos e Casos Especiais](#contêineres-com-múltiplos-processos-e-casos-Especiais).
 

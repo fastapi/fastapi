@@ -119,7 +119,7 @@
 !!! tip
     👥 ⚙️ 💭 🎚 📉 👉 🖼.
 
-    ✋️ 🎰 💼 👆 🔜 🤚 👍 🏁 ⚙️ 🛠️ [💂‍♂ 🚙](./security/index.md){.internal-link target=_blank}.
+    ✋️ 🎰 💼 👆 🔜 🤚 👍 🏁 ⚙️ 🛠️ [💂‍♂ 🚙](security/index.md){.internal-link target=_blank}.
 
 ## ➕1️⃣ 🕹 ⏮️ `APIRouter`
 
