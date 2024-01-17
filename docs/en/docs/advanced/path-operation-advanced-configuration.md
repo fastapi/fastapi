@@ -83,7 +83,7 @@ You can extend the OpenAPI schema for a *path operation* using the parameter `op
 
 ### OpenAPI Extensions
 
-This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
+This `openapi_extra` can be helpful, for example, to declare <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions" class="external-link" target="_blank">OpenAPI Extensions</a>:
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
