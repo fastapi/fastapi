@@ -116,7 +116,7 @@ common_parameters --> read_users
 
 !!! note "笔记"
 
-    如里不了解异步，请参阅[异步：*“着急了？”*](../../async.md){.internal-link target=_blank} 一章中 `async` 和 `await` 的内容。
+    如里不了解异步，请参阅[异步：*“着急了？”*](../../async.md#_1){.internal-link target=_blank} 一章中 `async` 和 `await` 的内容。
 
 ## 与 OpenAPI 集成
 

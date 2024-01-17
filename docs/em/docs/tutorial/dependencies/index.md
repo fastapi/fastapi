@@ -137,7 +137,7 @@ common_parameters --> read_users
 ⚫️ 🚫 🤔. **FastAPI** 🔜 💭 ⚫️❔.
 
 !!! note
-    🚥 👆 🚫 💭, ✅ [🔁: *"🏃 ❓" *](../../async.md){.internal-link target=_blank} 📄 🔃 `async` &amp; `await` 🩺.
+    🚥 👆 🚫 💭, ✅ [🔁: *"🏃 ❓" *](../../async.md#_2){.internal-link target=_blank} 📄 🔃 `async` &amp; `await` 🩺.
 
 ## 🛠️ ⏮️ 🗄
 

@@ -113,7 +113,7 @@ common_parameters --> read_users
 それは重要ではありません。**FastAPI** は何をすべきかを知っています。
 
 !!! note "備考"
-    わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+    わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md#_1){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
 
 ## OpenAPIとの統合
 
