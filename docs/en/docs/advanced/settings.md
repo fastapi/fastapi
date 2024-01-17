@@ -232,7 +232,7 @@ And then use it in a file `main.py`:
 ```
 
 !!! tip
-    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+    You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 ## Settings in a dependency
 

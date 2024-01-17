@@ -1,6 +1,6 @@
 # Alternatives, Inspiration and Comparisons
 
-What inspired **FastAPI**, how it compares to other alternatives and what it learned from them.
+What inspired **FastAPI**, how it compares to alternatives and what it learned from them.
 
 ## Intro
 
@@ -117,7 +117,7 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
     * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
     * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
-    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of additional alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
+    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
 ### Flask REST frameworks
 
@@ -291,7 +291,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 !!! info
     Hug was created by Timothy Crosley, the same creator of <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, a great tool to automatically sort imports in Python files.
 
-!!! check "Ideas inspired in **FastAPI**"
+!!! check "Ideas inspiring **FastAPI**"
     Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
     Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.

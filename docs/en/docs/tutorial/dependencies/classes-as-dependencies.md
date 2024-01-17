@@ -334,7 +334,7 @@ You could actually write just:
     commons = Depends(CommonQueryParams)
     ```
 
-..as in:
+...as in:
 
 === "Python 3.10+"
 

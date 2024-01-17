@@ -83,7 +83,7 @@ So, continuing with the `user_dict` from above, writing:
 UserInDB(**user_dict)
 ```
 
-Would result in something equivalent to:
+would result in something equivalent to:
 
 ```Python
 UserInDB(
