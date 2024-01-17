@@ -620,7 +620,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     🚥 👆 💪 🔗 👆 🔗 💽 🔁, 👀 [🔁 🗄 (🔗) 💽](../advanced/async-sql-databases.md){.internal-link target=_blank}.
 
 !!! note "📶 📡 ℹ"
-    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#very-technical-details){.internal-link target=_blank} 🩺.
+    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#i_2){.internal-link target=_blank} 🩺.
 
 ## 🛠️
 

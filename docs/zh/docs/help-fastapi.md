@@ -72,7 +72,7 @@
 
 您可以查看<a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">现有 issues</a>，并尝试帮助其他人解决问题，说不定您能解决这些问题呢。🤓
 
-如果帮助很多人解决了问题，您就有可能成为 [FastAPI 的官方专家](fastapi-people.md#experts){.internal-link target=_blank}。🎉
+如果帮助很多人解决了问题，您就有可能成为 [FastAPI 的官方专家](fastapi-people.md#_3){.internal-link target=_blank}。🎉
 
 ## 监听 GitHub 资源库
 
@@ -98,7 +98,7 @@
 * 修改文档错别字
 * <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">编辑这个文件</a>，分享 FastAPI 的文章、视频、博客，不论是您自己的，还是您看到的都成
     * 注意，添加的链接要放在对应区块的开头
-* [翻译文档](contributing.md#translations){.internal-link target=_blank}
+* [翻译文档](contributing.md#_8){.internal-link target=_blank}
     * 审阅别人翻译的文档
 * 添加新的文档内容
 * 修复现有问题/Bug
@@ -110,7 +110,7 @@
 
 !!! tip "提示"
 
-    如有问题，请在 <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub Issues</a> 里提问，在这里更容易得到 [FastAPI 专家](fastapi-people.md#experts){.internal-link target=_blank}的帮助。
+    如有问题，请在 <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub Issues</a> 里提问，在这里更容易得到 [FastAPI 专家](fastapi-people.md#_3){.internal-link target=_blank}的帮助。
 
     聊天室仅供闲聊。
 
@@ -120,7 +120,7 @@
 
 GitHub Issues 里提供了模板，指引您提出正确的问题，有利于获得优质的回答，甚至可能解决您还没有想到的问题。而且就算答疑解惑要耗费不少时间，我还是会尽量在 GitHub 里回答问题。但在聊天室里，我就没功夫这么做了。😅
 
-聊天室里的聊天内容也不如 GitHub 里好搜索，聊天里的问答很容易就找不到了。只有在 GitHub Issues 里的问答才能帮助您成为  [FastAPI 专家](fastapi-people.md#experts){.internal-link target=_blank}，在 GitHub Issues 中为您带来更多关注。
+聊天室里的聊天内容也不如 GitHub 里好搜索，聊天里的问答很容易就找不到了。只有在 GitHub Issues 里的问答才能帮助您成为  [FastAPI 专家](fastapi-people.md#_3){.internal-link target=_blank}，在 GitHub Issues 中为您带来更多关注。
 
 另一方面，聊天室里有成千上万的用户，在这里，您有很大可能遇到聊得来的人。😄
 

@@ -34,7 +34,7 @@ Ben **FastAPI** 'nin yazarı ve geliştiricisiyim. Bununla ilgili daha fazla bil
 
 İşte o mükemmel insanlar:
 
-* [GitHubdaki sorunları (issues) çözmelerinde diğerlerine yardım et](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [GitHubdaki sorunları (issues) çözmelerinde diğerlerine yardım et](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Pull Requests oluşturun](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * Pull Requests 'leri gözden geçirin, [özelliklede çevirileri](contributing.md#translations){.internal-link target=_blank}.
 
@@ -42,7 +42,7 @@ Onlara bir alkış. 👏 🙇
 
 ## Geçen ayın en aktif kullanıcıları
 
-Bunlar geçen ay boyunca [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan ](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} kullanıcılar  ☕
+Bunlar geçen ay boyunca [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan ](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} kullanıcılar  ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -58,7 +58,7 @@ Bunlar geçen ay boyunca [GitHub' da başkalarına sorunlarında (issues) en ço
 
 İşte **FastAPI Uzmanları**. 🤓
 
-Bunlar *tüm zamanlar boyunca* [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} kullanıcılar.
+Bunlar *tüm zamanlar boyunca* [GitHub' da başkalarına sorunlarında (issues) en çok yardımcı olan](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} kullanıcılar.
 
 Başkalarına yardım ederek uzman olduklarını kanıtladılar. ✨
 
