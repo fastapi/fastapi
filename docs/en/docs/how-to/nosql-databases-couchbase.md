@@ -1,4 +1,4 @@
-# NoSQL (Distributed / Big Data) Databases with Couchbase
+# ~~NoSQL (Distributed / Big Data) Databases with Couchbase~~ (deprecated)
 
 !!! info
     These docs are about to be updated. 🎉
@@ -6,6 +6,9 @@
     The current version assumes Pydantic v1.
 
     The new docs will hopefully use Pydantic v2 and will use <a href="https://art049.github.io/odmantic/" class="external-link" target="_blank">ODMantic</a> with MongoDB.
+
+!!! warning "Deprecated"
+    This tutorial is deprecated and will be removed in a future version.
 
 **FastAPI** can also be integrated with any <abbr title="Distributed database (Big Data), also 'Not Only SQL'">NoSQL</abbr>.
 
