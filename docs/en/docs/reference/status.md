@@ -19,7 +19,7 @@ For example:
 It can be convenient to quickly access HTTP (and WebSocket) status codes in your app, using autocompletion for the name without having to remember the integer status codes by memory.
 
 Read more about it in the
-[FastAPI docs about Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
+[FastAPI docs about Response Status Code](../tutorial/response-status-code.md).
 
 ## Example
 

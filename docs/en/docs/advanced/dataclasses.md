@@ -77,7 +77,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
     As always, in FastAPI you can combine `def` and `async def` as needed.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank" class="internal-link">`async` and `await`</a>.
+    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
 
