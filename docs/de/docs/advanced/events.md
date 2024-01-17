@@ -39,7 +39,7 @@ Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird unmittelbar vor dem *Herunterfahren* ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
 !!! tip "Tipp"
-    Das „Herunterfahren“ würde erfolgen, wenn Sie die Anwendung **stoppen**.
+    Das *Herunterfahren* würde erfolgen, wenn Sie die Anwendung **stoppen**.
 
     Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach satt, sie auszuführen. 🤷
 
