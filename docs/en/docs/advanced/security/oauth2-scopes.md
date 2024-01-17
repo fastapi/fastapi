@@ -79,7 +79,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  152"
+    ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  154"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -88,7 +88,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  153"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -97,7 +97,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  153"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -199,7 +199,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="152"
+    ```Python hl_lines="154"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -208,7 +208,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="153"
+    ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -217,7 +217,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="153"
+    ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -265,7 +265,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  138  165"
+    ```Python hl_lines="3  138  167"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -274,7 +274,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  166"
+    ```Python hl_lines="4  139  168"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -283,7 +283,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  166"
+    ```Python hl_lines="4  139  168"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
