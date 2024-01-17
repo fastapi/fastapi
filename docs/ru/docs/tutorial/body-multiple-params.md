@@ -20,7 +20,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
@@ -35,7 +35,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! Заметка
         Рекомендуется использовать версию с `Annotated`, если это возможно.
@@ -68,7 +68,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
@@ -123,7 +123,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
@@ -138,7 +138,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! Заметка
         Рекомендуется использовать `Annotated` версию, если это возможно.
@@ -197,7 +197,7 @@ q: str | None = None
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="28"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
@@ -212,7 +212,7 @@ q: str | None = None
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! Заметка
         Рекомендуется использовать `Annotated` версию, если это возможно.
@@ -250,7 +250,7 @@ item: Item = Body(embed=True)
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
@@ -265,7 +265,7 @@ item: Item = Body(embed=True)
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! Заметка
         Рекомендуется использовать `Annotated` версию, если это возможно.

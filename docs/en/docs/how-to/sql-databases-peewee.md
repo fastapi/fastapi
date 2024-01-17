@@ -1,4 +1,7 @@
-# SQL (Relational) Databases with Peewee
+# ~~SQL (Relational) Databases with Peewee~~ (deprecated)
+
+!!! warning "Deprecated"
+    This tutorial is deprecated and will be removed in a future version.
 
 !!! warning
     If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
@@ -75,7 +78,7 @@ Let's first check all the normal Peewee code, create a Peewee database:
 ```
 
 !!! tip
-    Have in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
+    Keep in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
 
 #### Note
 
@@ -363,7 +366,7 @@ It will have the database connection open at the beginning and will just wait so
 
 This will easily let you test that your app with Peewee and FastAPI is behaving correctly with all the stuff about threads.
 
-If you want to check how Peewee would break your app if used without modification, go the the `sql_app/database.py` file and comment the line:
+If you want to check how Peewee would break your app if used without modification, go the `sql_app/database.py` file and comment the line:
 
 ```Python
 # db._state = PeeweeConnectionState()
@@ -493,7 +496,7 @@ This means that, with Peewee's current implementation, multiple tasks could be u
 
 Python 3.7 has <a href="https://docs.python.org/3/library/contextvars.html" class="external-link" target="_blank">`contextvars`</a> that can create a local variable very similar to `threading.local`, but also supporting these async features.
 
-There are several things to have in mind.
+There are several things to keep in mind.
 
 The `ContextVar` has to be created at the top of the module, like:
 

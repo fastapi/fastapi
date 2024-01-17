@@ -101,7 +101,7 @@ But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** wi
 
 Here are some of the available responses.
 
-Have in mind that you can use `Response` to return anything else, or even create a custom sub-class.
+Keep in mind that you can use `Response` to return anything else, or even create a custom sub-class.
 
 !!! note "Technical Details"
     You could also use `from starlette.responses import HTMLResponse`.

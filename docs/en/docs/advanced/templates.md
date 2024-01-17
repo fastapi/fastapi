@@ -25,14 +25,16 @@ $ pip install jinja2
 * Import `Jinja2Templates`.
 * Create a `templates` object that you can re-use later.
 * Declare a `Request` parameter in the *path operation* that will return a template.
-* Use the `templates` you created to render and return a `TemplateResponse`, passing the `request` as one of the key-value pairs in the Jinja2 "context".
+* Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
-```Python hl_lines="4  11  15-16"
+```Python hl_lines="4  11  15-18"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
 !!! note
-    Notice that you have to pass the `request` as part of the key-value pairs in the context for Jinja2. So, you also have to declare it in your *path operation*.
+    Before FastAPI 0.108.0, Starlette 0.29.0, the `name` was the first parameter.
+
+    Also, before that, in previous versions, the `request` object was passed as part of the key-value pairs in the context for Jinja2.
 
 !!! tip
     By declaring `response_class=HTMLResponse` the docs UI will be able to know that the response will be HTML.
@@ -44,21 +46,61 @@ $ pip install jinja2
 
 ## Writing templates
 
-Then you can write a template at `templates/item.html` with:
+Then you can write a template at `templates/item.html` with, for example:
 
 ```jinja hl_lines="7"
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-It will show the `id` taken from the "context" `dict` you passed:
+### Template Context Values
+
+In the HTML that contains:
+
+{% raw %}
+
+```jinja
+Item ID: {{ id }}
+```
+
+{% endraw %}
+
+...it will show the `id` taken from the "context" `dict` you passed:
 
 ```Python
-{"request": request, "id": id}
+{"id": id}
+```
+
+For example, with an ID of `42`, this would render:
+
+```html
+Item ID: 42
+```
+
+### Template `url_for` Arguments
+
+You can also use `url_for()` inside of the template, it takes as arguments the same arguments that would be used by your *path operation function*.
+
+So, the section with:
+
+{% raw %}
+
+```jinja
+<a href="{{ url_for('read_item', id=id) }}">
+```
+
+{% endraw %}
+
+...will generate a link to the same URL that would be handled by the *path operation function* `read_item(id=id)`.
+
+For example, with an ID of `42`, this would render:
+
+```html
+<a href="/items/42">
 ```
 
 ## Templates and static files
 
-And you can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted.
+You can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted with the `name="static"`.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
