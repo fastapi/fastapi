@@ -1,6 +1,6 @@
 # Zusätzliche Statuscodes
 
-Standardmäßig gibt **FastAPI** die Responses als `JSONResponse` zurück und fügt den Inhalt, den Sie von Ihrer *Pfadoperation* zurückgeben, in diese `JSONResponse` ein.
+Standardmäßig liefert **FastAPI** die Rückgabewerte (Responses) als `JSONResponse` zurück und fügt den Inhalt der jeweiligen *Pfadoperation* in das `JSONResponse` Objekt ein.
 
 Es wird der Default-Statuscode oder derjenige verwendet, den Sie in Ihrer *Pfadoperation* festgelegt haben.
 
@@ -10,9 +10,9 @@ Wenn Sie neben dem Hauptstatuscode weitere Statuscodes zurückgeben möchten, k�
 
 Angenommen, Sie möchten eine *Pfadoperation* haben, die das Aktualisieren von Artikeln ermöglicht und bei Erfolg den HTTP-Statuscode 200 „OK“ zurückgibt.
 
-Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Elemente vorher nicht vorhanden waren, werden sie erstellt und der HTTP-Statuscode 201 „Created“ zurückgegeben.
+Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Elemente vorher nicht vorhanden waren, werden diese Elemente erstellt und der HTTP-Statuscode 201 „Created“ zurückgegeben.
 
-Um dies zu erreichen, importieren Sie `JSONResponse` und geben Sie Ihren Inhalt damit direkt zurück, den gewünschten `status_code` setzend:
+Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt direkt zurück, indem Sie den gewünschten `status_code` setzen:
 
 === "Python 3.10+"
 
