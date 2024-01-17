@@ -174,9 +174,6 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -184,6 +181,9 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
+    - how-to/sql-databases-peewee.md
+    - how-to/async-sql-encode-databases.md
+    - how-to/nosql-databases-couchbase.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -242,6 +242,7 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
+  pymdownx.tilde:
   attr_list: null
   md_in_html: null
 extra:

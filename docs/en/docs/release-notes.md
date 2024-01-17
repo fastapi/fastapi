@@ -22,6 +22,7 @@ hide:
 
 ### Docs
 
+* 📝 Deprecate old tutorials: Peewee, Couchbase, encode/databases. PR [#10979](https://github.com/tiangolo/fastapi/pull/10979) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix typo in `fastapi/security/oauth2.py`. PR [#10972](https://github.com/tiangolo/fastapi/pull/10972) by [@RafalSkolasinski](https://github.com/RafalSkolasinski).
 * 📝 Update `HTTPException` details in `docs/en/docs/tutorial/handling-errors.md`. PR [#5418](https://github.com/tiangolo/fastapi/pull/5418) by [@papb](https://github.com/papb).
 * ✏️ A few tweaks in `docs/de/docs/tutorial/first-steps.md`. PR [#10959](https://github.com/tiangolo/fastapi/pull/10959) by [@nilslindemann](https://github.com/nilslindemann).
@@ -44,6 +45,7 @@ hide:
 
 ### Translations
 
+* ✏️ Tweak the german translation of `docs/de/docs/tutorial/index.md`. PR [#10962](https://github.com/tiangolo/fastapi/pull/10962) by [@nilslindemann](https://github.com/nilslindemann).
 * ✏️ Fix typo error in `docs/ko/docs/tutorial/path-params.md`. PR [#10758](https://github.com/tiangolo/fastapi/pull/10758) by [@2chanhaeng](https://github.com/2chanhaeng).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#1961](https://github.com/tiangolo/fastapi/pull/1961) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#1960](https://github.com/tiangolo/fastapi/pull/1960) by [@SwftAlpc](https://github.com/SwftAlpc).

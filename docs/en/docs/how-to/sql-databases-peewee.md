@@ -1,4 +1,7 @@
-# SQL (Relational) Databases with Peewee
+# ~~SQL (Relational) Databases with Peewee~~ (deprecated)
+
+!!! warning "Deprecated"
+    This tutorial is deprecated and will be removed in a future version.
 
 !!! warning
     If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
