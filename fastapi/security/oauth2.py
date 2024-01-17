@@ -85,7 +85,7 @@ class OAuth2PasswordRequestForm:
         ],
         password: Annotated[
             str,
-            Form(),
+            Form(format='password'),
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
@@ -239,7 +239,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
         ],
         password: Annotated[
             str,
-            Form(),
+            Form(format='password'),
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
