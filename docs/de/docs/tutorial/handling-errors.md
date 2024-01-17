@@ -234,9 +234,7 @@ Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind, und w
 
 Und **FastAPI**s `HTTPException`-Fehlerklasse erbt von Starlettes `HTTPException`-Fehlerklasse.
 
-Der einzige Unterschied ist, dass **FastAPI**s `HTTPException` Ihnen erlaubt, Header zur Response hinzuzufügen.
-
-Das wird intern gebraucht/verwendet für OAuth 2.0 und für einige Sicherheits-Werkzeuge.
+Der einzige Unterschied besteht darin, dass **FastAPIs** `HTTPException` alles für das Feld `detail` akzeptiert, was nach JSON konvertiert werden kann, während Starlettes `HTTPException` nur Strings zulässt.
 
 Sie können also weiterhin **FastAPI**s `HTTPException` wie üblich in Ihrem Code auslösen.
 
