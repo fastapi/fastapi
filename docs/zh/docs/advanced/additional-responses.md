@@ -21,10 +21,10 @@
 ```
 
 
-!!! Note
+!!! note
 	请记住，您必须直接返回 `JSONResponse` 。
 
-!!! Info
+!!! info
 	`model` 密钥不是OpenAPI的一部分。
 	**FastAPI**将从那里获取`Pydantic`模型，生成` JSON Schema` ，并将其放在正确的位置。
 	- 正确的位置是：
@@ -163,10 +163,10 @@
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! Note
+!!! note
 	- 请注意，您必须直接使用 `FileResponse` 返回图像。
 
-!!! Info
+!!! info
 	- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
 	- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
 

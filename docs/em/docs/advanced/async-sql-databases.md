@@ -90,7 +90,7 @@
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! Note
+!!! note
     👀 👈 👥 🔗 ⏮️ 💽 ⚙️ `await`, *➡ 🛠️ 🔢* 📣 ⏮️ `async`.
 
 ### 👀 `response_model=List[Note]`
@@ -107,7 +107,7 @@
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! Note
+!!! note
     👀 👈 👥 🔗 ⏮️ 💽 ⚙️ `await`, *➡ 🛠️ 🔢* 📣 ⏮️ `async`.
 
 ### 🔃 `{**note.dict(), "id": last_record_id}`
