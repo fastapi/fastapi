@@ -76,8 +76,6 @@ def callback() -> None:
 def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     """
     Generate a new docs translation directory for the language LANG.
-
-    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
     """
     new_path: Path = Path("docs") / lang
     if new_path.exists():
