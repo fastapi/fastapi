@@ -303,6 +303,8 @@ extra:
     name: yo - Yorùbá
   - link: /zh/
     name: zh - 汉语
+  - link: /zh-hant/
+    name: zh - 繁體中文
   - link: /em/
     name: 😉
 extra_css:
