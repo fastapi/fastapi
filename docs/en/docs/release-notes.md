@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/learn/index.md`. PR [#10977](https://github.com/tiangolo/fastapi/pull/10977) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Initialize translations for Traditional Chinese. PR [#10505](https://github.com/tiangolo/fastapi/pull/10505) by [@hsuanchi](https://github.com/hsuanchi).
 * ✏️ Tweak the german translation of `docs/de/docs/tutorial/index.md`. PR [#10962](https://github.com/tiangolo/fastapi/pull/10962) by [@nilslindemann](https://github.com/nilslindemann).
 * ✏️ Fix typo error in `docs/ko/docs/tutorial/path-params.md`. PR [#10758](https://github.com/tiangolo/fastapi/pull/10758) by [@2chanhaeng](https://github.com/2chanhaeng).
