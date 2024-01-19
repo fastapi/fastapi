@@ -222,19 +222,19 @@ If the token is invalid, return an HTTP error right away.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="33-34 89-106"
     {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="33-34 89-106"
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="90-107"
+    ```Python hl_lines="34-35 90-107"
     {!> ../../../docs_src/security/tutorial004_an.py!}
     ```
 
@@ -243,7 +243,7 @@ If the token is invalid, return an HTTP error right away.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="88-105"
+    ```Python hl_lines="32-33 88-105"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -252,7 +252,7 @@ If the token is invalid, return an HTTP error right away.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="33-34 89-106"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
