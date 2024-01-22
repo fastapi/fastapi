@@ -242,7 +242,7 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
-  pymdownx.tilde:
+  pymdownx.tilde: null
   attr_list: null
   md_in_html: null
 extra:
@@ -267,6 +267,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /bn/
+    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
@@ -304,7 +306,7 @@ extra:
   - link: /zh/
     name: zh - 汉语
   - link: /zh-hant/
-    name: zh - 繁體中文
+    name: zh-hant - 繁體中文
   - link: /em/
     name: 😉
 extra_css:
