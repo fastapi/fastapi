@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/extra-data-types.md`. PR [#1932](https://github.com/tiangolo/fastapi/pull/1932) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add Turkish translation for `docs/tr/docs/async.md`. PR [#5191](https://github.com/tiangolo/fastapi/pull/5191) by [@BilalAlpaslan](https://github.com/BilalAlpaslan).
 * 🌐 Add Turkish translation for `docs/tr/docs/project-generation.md`. PR [#5192](https://github.com/tiangolo/fastapi/pull/5192) by [@BilalAlpaslan](https://github.com/BilalAlpaslan).
 * 🌐 Add Korean translation for `docs/ko/docs/deployment/docker.md`. PR [#5657](https://github.com/tiangolo/fastapi/pull/5657) by [@nearnear](https://github.com/nearnear).
