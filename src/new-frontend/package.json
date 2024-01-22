@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios"
+    "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios --exportSchemas true"
   },
   "dependencies": {
     "axios": "1.6.2",

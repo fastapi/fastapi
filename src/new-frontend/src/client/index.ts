@@ -22,6 +22,21 @@ export type { UserUpdate } from './models/UserUpdate';
 export type { UserUpdateMe } from './models/UserUpdateMe';
 export type { ValidationError } from './models/ValidationError';
 
+export { $Body_login_login_access_token } from './schemas/$Body_login_login_access_token';
+export { $HTTPValidationError } from './schemas/$HTTPValidationError';
+export { $ItemCreate } from './schemas/$ItemCreate';
+export { $ItemOut } from './schemas/$ItemOut';
+export { $ItemUpdate } from './schemas/$ItemUpdate';
+export { $Message } from './schemas/$Message';
+export { $NewPassword } from './schemas/$NewPassword';
+export { $Token } from './schemas/$Token';
+export { $UserCreate } from './schemas/$UserCreate';
+export { $UserCreateOpen } from './schemas/$UserCreateOpen';
+export { $UserOut } from './schemas/$UserOut';
+export { $UserUpdate } from './schemas/$UserUpdate';
+export { $UserUpdateMe } from './schemas/$UserUpdateMe';
+export { $ValidationError } from './schemas/$ValidationError';
+
 export { ItemsService } from './services/ItemsService';
 export { LoginService } from './services/LoginService';
 export { UsersService } from './services/UsersService';
