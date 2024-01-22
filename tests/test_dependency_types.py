@@ -152,7 +152,7 @@ async def get_partial_function_dependency(
 async def get_partial_async_function_dependency(
     value: str = Depends(
         partial(async_function_dependency, "partial-async-function-dependency")
-    )
+    ),
 ) -> str:
     return value
 
@@ -182,7 +182,7 @@ async def get_partial_callable_dependency(
 async def get_partial_callable_gen_dependency(
     value: str = Depends(
         partial(callable_gen_dependency, "partial-callable-gen-dependency")
-    )
+    ),
 ) -> str:
     return value
 
