@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Turkish translation for `docs/tr/docs/project-generation.md`. PR [#5192](https://github.com/tiangolo/fastapi/pull/5192) by [@BilalAlpaslan](https://github.com/BilalAlpaslan).
 * 🌐 Add Korean translation for `docs/ko/docs/deployment/docker.md`. PR [#5657](https://github.com/tiangolo/fastapi/pull/5657) by [@nearnear](https://github.com/nearnear).
 * 🌐 Add Korean translation for `docs/ko/docs/deployment/server-workers.md`. PR [#4935](https://github.com/tiangolo/fastapi/pull/4935) by [@jujumilk3](https://github.com/jujumilk3).
 * 🌐 Add Korean translation for `docs/ko/docs/deployment/index.md`. PR [#4561](https://github.com/tiangolo/fastapi/pull/4561) by [@jujumilk3](https://github.com/jujumilk3).
