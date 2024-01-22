@@ -7,6 +7,22 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 
+def function_dependency(value: str) -> str:
+    return value
+
+
+async def async_function_dependency(value: str) -> str:
+    return value
+
+
+def gen_dependency(value: str) -> str:
+    yield value
+
+
+async def async_gen_dependency(value: str) -> str:
+    return value
+
+
 class CallableDependency:
     def __call__(self, value: str) -> str:
         return value
@@ -106,6 +122,10 @@ client = TestClient(app)
 @pytest.mark.parametrize(
     "route,value",
     [
+        ("/function-dependency", "function-dependency"),
+        ("/async-function-dependency", "async-function-dependency"),
+        ("/gen-dependency", "gen-dependency"),
+        ("/async-gen-dependency", "async-gen-dependency"),
         ("/callable-dependency", "callable-dependency"),
         ("/callable-gen-dependency", "callable-gen-dependency"),
         ("/async-callable-dependency", "async-callable-dependency"),
@@ -116,7 +136,7 @@ client = TestClient(app)
         ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
     ],
 )
-def test_class_dependency(route: str, value: str) -> None:
+def test_dependency_types(route: str, value: str) -> None:
     response = client.get(route, params={"value": value})
     assert response.status_code == 200, response.text
     assert response.json() == value
