@@ -31,5 +31,9 @@ jobs:
               "answered": {
                 "delay": 864000,
                 "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+              },
+              "changes-requested": {
+                "delay": 2628000,
+                "message": "As this PR had requested changes to be applied but has been inactive for a while, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
               }
             }
