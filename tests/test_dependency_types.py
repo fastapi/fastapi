@@ -1,5 +1,5 @@
-from typing import AsyncGenerator, Generator
 from functools import partial
+from typing import AsyncGenerator, Generator
 
 import pytest
 from fastapi import Depends, FastAPI
@@ -71,7 +71,9 @@ async def get_function_dependency(value: str = Depends(function_dependency)) -> 
 
 
 @app.get("/async-function-dependency")
-async def get_async_function_dependency(value: str = Depends(async_function_dependency)) -> str:
+async def get_async_function_dependency(
+    value: str = Depends(async_function_dependency),
+) -> str:
     return value
 
 
@@ -91,7 +93,9 @@ async def get_callable_dependency(value: str = Depends(callable_dependency)) -> 
 
 
 @app.get("/callable-gen-dependency")
-async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependency)) -> str:
+async def get_callable_gen_dependency(
+    value: str = Depends(callable_gen_dependency),
+) -> str:
     return value
 
 
@@ -138,73 +142,109 @@ async def get_asynchronous_method_gen_dependency(
 
 
 @app.get("/partial-function-dependency")
-async def get_partial_function_dependency(value: str = Depends(partial(function_dependency, "partial-function-dependency"))) -> str:
+async def get_partial_function_dependency(
+    value: str = Depends(partial(function_dependency, "partial-function-dependency"))
+) -> str:
     return value
 
 
 @app.get("/partial-async-function-dependency")
-async def get_partial_async_function_dependency(value: str = Depends(partial(async_function_dependency, "partial-async-function-dependency"))) -> str:
+async def get_partial_async_function_dependency(
+    value: str = Depends(
+        partial(async_function_dependency, "partial-async-function-dependency")
+    )
+) -> str:
     return value
 
 
 @app.get("/partial-gen-dependency")
-async def get_partial_gen_dependency(value: str = Depends(partial(gen_dependency, "partial-gen-dependency"))) -> str:
+async def get_partial_gen_dependency(
+    value: str = Depends(partial(gen_dependency, "partial-gen-dependency"))
+) -> str:
     return value
 
 
 @app.get("/partial-async-gen-dependency")
-async def get_partial_async_gen_dependency(value: str = Depends(partial(async_gen_dependency, "partial-async-gen-dependency"))) -> str:
+async def get_partial_async_gen_dependency(
+    value: str = Depends(partial(async_gen_dependency, "partial-async-gen-dependency"))
+) -> str:
     return value
 
 
 @app.get("/partial-callable-dependency")
-async def get_partial_callable_dependency(value: str = Depends(partial(callable_dependency, "partial-callable-dependency"))) -> str:
+async def get_partial_callable_dependency(
+    value: str = Depends(partial(callable_dependency, "partial-callable-dependency"))
+) -> str:
     return value
 
 
 @app.get("/partial-callable-gen-dependency")
-async def get_partial_callable_gen_dependency(value: str = Depends(partial(callable_gen_dependency, "partial-callable-gen-dependency"))) -> str:
+async def get_partial_callable_gen_dependency(
+    value: str = Depends(
+        partial(callable_gen_dependency, "partial-callable-gen-dependency")
+    )
+) -> str:
     return value
 
 
 @app.get("/partial-async-callable-dependency")
 async def get_partial_async_callable_dependency(
-    value: str = Depends(partial(async_callable_dependency, "partial-async-callable-dependency")),
+    value: str = Depends(
+        partial(async_callable_dependency, "partial-async-callable-dependency")
+    ),
 ) -> str:
     return value
 
 
 @app.get("/partial-async-callable-gen-dependency")
 async def get_partial_async_callable_gen_dependency(
-    value: str = Depends(partial(async_callable_gen_dependency, "partial-async-callable-gen-dependency")),
+    value: str = Depends(
+        partial(async_callable_gen_dependency, "partial-async-callable-gen-dependency")
+    ),
 ) -> str:
     return value
 
 
 @app.get("/partial-synchronous-method-dependency")
 async def get_partial_synchronous_method_dependency(
-    value: str = Depends(partial(methods_dependency.synchronous, "partial-synchronous-method-dependency")),
+    value: str = Depends(
+        partial(methods_dependency.synchronous, "partial-synchronous-method-dependency")
+    ),
 ) -> str:
     return value
 
 
 @app.get("/partial-synchronous-method-gen-dependency")
 async def get_partial_synchronous_method_gen_dependency(
-    value: str = Depends(partial(methods_dependency.synchronous_gen, "partial-synchronous-method-gen-dependency")),
+    value: str = Depends(
+        partial(
+            methods_dependency.synchronous_gen,
+            "partial-synchronous-method-gen-dependency",
+        )
+    ),
 ) -> str:
     return value
 
 
 @app.get("/partial-asynchronous-method-dependency")
 async def get_partial_asynchronous_method_dependency(
-    value: str = Depends(partial(methods_dependency.asynchronous, "partial-asynchronous-method-dependency")),
+    value: str = Depends(
+        partial(
+            methods_dependency.asynchronous, "partial-asynchronous-method-dependency"
+        )
+    ),
 ) -> str:
     return value
 
 
 @app.get("/partial-asynchronous-method-gen-dependency")
 async def get_partial_asynchronous_method_gen_dependency(
-    value: str = Depends(partial(methods_dependency.asynchronous_gen, "partial-asynchronous-method-gen-dependency")),
+    value: str = Depends(
+        partial(
+            methods_dependency.asynchronous_gen,
+            "partial-asynchronous-method-gen-dependency",
+        )
+    ),
 ) -> str:
     return value
 
@@ -245,11 +285,26 @@ def test_dependency_types(route: str, value: str) -> None:
         ("/partial-callable-dependency", "partial-callable-dependency"),
         ("/partial-callable-gen-dependency", "partial-callable-gen-dependency"),
         ("/partial-async-callable-dependency", "partial-async-callable-dependency"),
-        ("/partial-async-callable-gen-dependency", "partial-async-callable-gen-dependency"),
-        ("/partial-synchronous-method-dependency", "partial-synchronous-method-dependency"),
-        ("/partial-synchronous-method-gen-dependency", "partial-synchronous-method-gen-dependency"),
-        ("/partial-asynchronous-method-dependency", "partial-asynchronous-method-dependency"),
-        ("/partial-asynchronous-method-gen-dependency", "partial-asynchronous-method-gen-dependency"),
+        (
+            "/partial-async-callable-gen-dependency",
+            "partial-async-callable-gen-dependency",
+        ),
+        (
+            "/partial-synchronous-method-dependency",
+            "partial-synchronous-method-dependency",
+        ),
+        (
+            "/partial-synchronous-method-gen-dependency",
+            "partial-synchronous-method-gen-dependency",
+        ),
+        (
+            "/partial-asynchronous-method-dependency",
+            "partial-asynchronous-method-dependency",
+        ),
+        (
+            "/partial-asynchronous-method-gen-dependency",
+            "partial-asynchronous-method-gen-dependency",
+        ),
     ],
 )
 def test_dependency_types_with_partial(route: str, value: str) -> None:
