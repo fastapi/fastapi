@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Modify the description of `zh` - Traditional Chinese. PR [#10889](https://github.com/tiangolo/fastapi/pull/10889) by [@cherinyy](https://github.com/cherinyy).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/static-files.md`. PR [#2957](https://github.com/tiangolo/fastapi/pull/2957) by [@jeesang7](https://github.com/jeesang7).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/response-model.md`. PR [#2766](https://github.com/tiangolo/fastapi/pull/2766) by [@hard-coders](https://github.com/hard-coders).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/body-multiple-params.md`. PR [#2461](https://github.com/tiangolo/fastapi/pull/2461) by [@PandaHun](https://github.com/PandaHun).
