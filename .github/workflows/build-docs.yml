@@ -57,7 +57,7 @@ jobs:
           pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/squidfunk/mkdocs-material-insiders.git
           pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/griffe-typing-deprecated.git
           pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/mkdocstrings-python.git
-      - name: Verify README
+      - name: Verify Docs
         run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
         id: show-langs
