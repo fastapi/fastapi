@@ -49,54 +49,54 @@ methods_dependency = MethodsDependency()
 
 
 @app.get("/callable-dependency")
-async def get_callable_dependency(value: str = Depends(callable_dependency)):
+async def get_callable_dependency(value: str = Depends(callable_dependency)) -> str:
     return value
 
 
 @app.get("/callable-gen-dependency")
-async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependency)):
+async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependency)) -> str:
     return value
 
 
 @app.get("/async-callable-dependency")
 async def get_async_callable_dependency(
     value: str = Depends(async_callable_dependency),
-):
+) -> str:
     return value
 
 
 @app.get("/async-callable-gen-dependency")
 async def get_async_callable_gen_dependency(
     value: str = Depends(async_callable_gen_dependency),
-):
+) -> str:
     return value
 
 
 @app.get("/synchronous-method-dependency")
 async def get_synchronous_method_dependency(
     value: str = Depends(methods_dependency.synchronous),
-):
+) -> str:
     return value
 
 
 @app.get("/synchronous-method-gen-dependency")
 async def get_synchronous_method_gen_dependency(
     value: str = Depends(methods_dependency.synchronous_gen),
-):
+) -> str:
     return value
 
 
 @app.get("/asynchronous-method-dependency")
 async def get_asynchronous_method_dependency(
     value: str = Depends(methods_dependency.asynchronous),
-):
+) -> str:
     return value
 
 
 @app.get("/asynchronous-method-gen-dependency")
 async def get_asynchronous_method_gen_dependency(
     value: str = Depends(methods_dependency.asynchronous_gen),
-):
+) -> str:
     return value
 
 
@@ -116,7 +116,7 @@ client = TestClient(app)
         ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
     ],
 )
-def test_class_dependency(route, value):
+def test_class_dependency(route: str, value: str) -> None:
     response = client.get(route, params={"value": value})
     assert response.status_code == 200, response.text
     assert response.json() == value
