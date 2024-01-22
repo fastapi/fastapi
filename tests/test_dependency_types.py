@@ -16,12 +16,12 @@ async def async_function_dependency(value: str) -> str:
     return value
 
 
-def gen_dependency(value: str) -> str:
+def gen_dependency(value: str) -> Generator[str, None, None]:
     yield value
 
 
-async def async_gen_dependency(value: str) -> str:
-    return value
+async def async_gen_dependency(value: str) -> AsyncGenerator[str, None]:
+    yield value
 
 
 class CallableDependency:
