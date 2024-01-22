@@ -304,7 +304,7 @@ extra:
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
-    name: zh - 汉语
+    name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
   - link: /em/
