@@ -283,6 +283,8 @@ extra:
     name: hu - magyar
   - link: /id/
     name: id - Bahasa Indonesia
+  - link: /it/
+    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
