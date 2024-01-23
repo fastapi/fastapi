@@ -62,7 +62,7 @@ Geliştirme sırasında, diğer ana gereksinim olan <a href="https://www.starlet
 
 ## Geliştirme
 
-**FastAPI**'ı oluşturmaya başladığımda, parçaların çoğu zaten yerindeydi, tasarım tanımlanmıştı, gereksinimler ve araçlar hazırdı ve standartlar ve tanımlar hakkındaki bilgi net ve tazeydi.
+**FastAPI**'ı oluşturmaya başladığımda, parçaların çoğu zaten yerindeydi, tasarım tanımlanmıştı, gereksinimler ve araçlar hazırdı, standartlar ve tanımlamalar hakkındaki bilgi net ve tazeydi.
 
 ## Gelecek
 
