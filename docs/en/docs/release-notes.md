@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/benchmarks.md`. PR [#10866](https://github.com/tiangolo/fastapi/pull/10866) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Turkish translation for `docs/tr/docs/learn/index.md`. PR [#11014](https://github.com/tiangolo/fastapi/pull/11014) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Persian translation for `docs/fa/docs/tutorial/security/index.md`. PR [#9945](https://github.com/tiangolo/fastapi/pull/9945) by [@mojtabapaso](https://github.com/mojtabapaso).
 * 🌐 Add Turkish translation for `docs/tr/docs/help/index.md`. PR [#11013](https://github.com/tiangolo/fastapi/pull/11013) by [@hasansezertasan](https://github.com/hasansezertasan).
