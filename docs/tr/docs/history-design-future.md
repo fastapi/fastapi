@@ -66,7 +66,7 @@ Geliştirme sırasında, diğer ana gereksinim olan <a href="https://www.starlet
 
 ## Gelecek
 
-Şimdiye kadar, **FastAPI**'ın fikirleri birçok kişiye faydalı olduğu apaçık ortada.
+Şimdiye kadar, **FastAPI**'ın fikirleriyle birçok kişiye faydalı olduğu apaçık ortada.
 
 Birçok kullanım durumuna daha iyi uyduğu için, önceki alternatiflerin yerine seçiliyor.
 
