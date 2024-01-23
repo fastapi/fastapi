@@ -1,11 +1,16 @@
-import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Login from './pages/auth/Login';
+import RecoverPassword from './pages/auth/RecoverPassword';
 
 function App() {
-
-
   return (
-    <>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/recover-password" element={<RecoverPassword />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
