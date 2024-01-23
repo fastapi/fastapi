@@ -12,7 +12,7 @@ Bir süredir karmaşık gereksinimlere sahip API'lar oluşturuyor (Makine Öğre
 
 Bu süreçte birçok alternatifi araştırmak, test etmek ve kullanmak zorunda kaldım.
 
-**FastAPI**'ın geçmişi, büyük ölçüde öncüllerinin geçmişini kapsıyor.
+**FastAPI**'ın geçmişi, büyük ölçüde önceden geliştirilen araçların geçmişini kapsıyor.
 
 [Alternatifler](alternatives.md){.internal-link target=_blank} bölümünde belirtildiği gibi:
 
