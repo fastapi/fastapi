@@ -2,7 +2,7 @@
 
 Sie können Middleware zu **FastAPI**-Anwendungen hinzufügen.
 
-Eine "Middleware" ist eine Funktion, die mit jedem **Request** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
+Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
 
 * Sie nimmt jeden **Request** entgegen, der an Ihre Anwendung gesendet wird.
 * Sie kann dann etwas mit diesem **Request** tun oder beliebigen Code ausführen.
@@ -32,7 +32,7 @@ Die Middleware-Funktion erhält:
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! Tipp
+!!! tip "Tipp"
     Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
 
     Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
