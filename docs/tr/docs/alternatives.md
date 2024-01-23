@@ -100,7 +100,7 @@ def read_url():
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
-Benim Django REST Framework'ünden istediğim ana özellik otomatik API dökümantasyonuydu. 
+Benim Django REST Framework'ünden istediğim ana özellik otomatik API dökümantasyonuydu.
 
 Daha sonra API'ları dökümanlamak için Swagger adında JSON (veya JSON'un bir uzantısı olan YAML'ı) kullanan bir standart olduğunu buldum.
 
@@ -293,8 +293,8 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
     Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
 
     **FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
-    
-    **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı. 
+
+    **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
 
@@ -342,11 +342,17 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
+<<<<<<< HEAD
 Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.  
 
 Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
 Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
+=======
+Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.
+
+Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor. Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
+>>>>>>> 88c6d84911a4bc17f7fe3723ff57e9f692ddf492
 
 !!! check "**FastAPI** nerede kullanıyor?"
     Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
@@ -390,7 +396,7 @@ Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı ola
     Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
 
     `FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfından miras alıyor!
-    
+
     Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendirilmiş hali olan **FastAPI** ile doğrudan yapabilirsiniz.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
