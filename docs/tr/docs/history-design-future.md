@@ -30,7 +30,7 @@ Ancak bir noktada, geçmişteki diğer araçlardan en iyi fikirleri alarak büt�
 
 ## Araştırma
 
-Önceki alternatifleri kullanarak, hepsinden öğrenme şansım oldu, fikirleri alıp, kendim ve çalıştığım geliştirici ekipleri için en iyi şekilde birleştirebildim.
+Önceki alternatifleri kullanarak hepsinden bir şeyler öğrenip, fikirler alıp, bunları kendim ve çalıştığım geliştirici ekipler için en iyi şekilde birleştirebilme şansım oldu.
 
 Mesela, ideal olarak standart Python tip belirteçlerine dayanması gerektiği açıktı.
 
