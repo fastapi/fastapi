@@ -294,7 +294,7 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
     Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
 
     **FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
-    
+
     **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
@@ -343,7 +343,7 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.  
+Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.
 
 Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
