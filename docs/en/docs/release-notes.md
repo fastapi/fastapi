@@ -109,6 +109,7 @@ hide:
 
 ### Internal
 
+* 🔧 Add Italian to `mkdocs.yml`. PR [#11016](https://github.com/tiangolo/fastapi/pull/11016) by [@alejsdev](https://github.com/alejsdev).
 * 🔨 Verify `mkdocs.yml` languages in CI, update `docs.py`. PR [#11009](https://github.com/tiangolo/fastapi/pull/11009) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update config in `label-approved.yml` to accept translations with 1 reviewer. PR [#11007](https://github.com/tiangolo/fastapi/pull/11007) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Add changes-requested handling in GitHub Action issue manager. PR [#10971](https://github.com/tiangolo/fastapi/pull/10971) by [@tiangolo](https://github.com/tiangolo).
