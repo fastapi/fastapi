@@ -1,6 +1,11 @@
+---
+hide:
+  - navigation
+---
+
 # Alternatifler, İlham Kaynakları ve Karşılaştırmalar
 
-**FastAPI**'ye neler ilham verdi? Diğer alternatiflerle karşılaştırıldığında farkları neler? **FastAPI** diğer alternatiflerinden neler öğrendi?
+**FastAPI**'ya neler ilham verdi? Diğer alternatiflerle karşılaştırıldığında farkları neler? **FastAPI** diğer alternatiflerinden neler öğrendi?
 
 ## Giriş
 
@@ -20,11 +25,12 @@ Django geniş çapta güvenilen, Python ekosistemindeki en popüler web framewor
 
 MySQL ve PostgreSQL gibi ilişkisel veritabanlarıyla nispeten sıkı bir şekilde bağlantılıdır. Bu nedenle Couchbase, MongoDB ve Cassandra gibi NoSQL veritabanlarını ana veritabanı motoru olarak kullanmak pek de kolay değil.
 
-Modern ön uçlarda (React, Vue.js ve Angular gibi) veya diğer sistemler (örneğin <abbr title="Nesnelerin interneti: IoT (Internet of Things)">nesnelerin interneti</abbr> cihazları) tarafından kullanılan API'ler yerine arka uçta HTML üretmek için oluşturuldu.
+Modern ön uçlarda (React, Vue.js ve Angular gibi) veya diğer sistemler (örneğin <abbr title="Nesnelerin interneti: IoT (Internet of Things)">nesnelerin interneti</abbr> cihazları) tarafından kullanılan API'lar yerine arka uçta HTML üretmek için oluşturuldu.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
-Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka planda Django kullanan esnek bir araç grubu olarak oluşturuldu. Üstelik Mozilla, Red Hat ve Eventbrite gibi pek çok şirket tarafından kullanılıyor.
+Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka planda Django kullanan esnek bir araç grubu olarak oluşturuldu.
+Üstelik Mozilla, Red Hat ve Eventbrite gibi pek çok şirket tarafından kullanılıyor.
 
 **Otomatik API dökümantasyonu**nun ilk örneklerinden biri olduğu için, **FastAPI** arayışına ilham veren ilk fikirlerden biri oldu.
 
@@ -114,8 +120,6 @@ Swagger bir noktada Linux Foundation'a verildi ve adı OpenAPI olarak değiştir
 
     Yukarıdaki ikisi oldukça popüler ve istikrarlı olduğu için seçildi, ancak hızlı bir araştırma yaparak **FastAPI** ile kullanabileceğiniz pek çok OpenAPI alternatifi arayüz bulabilirsiniz.
 
-    Örneğin <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-alternatives" class="external-link" target="_blank">Fern</a>'i deneyebilirisiniz, kendisi aynı zamanda bir FastAPI sponsoru. 😎🎉
-
 ### Flask REST framework'leri
 
 Pek çok Flask REST framework'ü var, fakat bunları biraz araştırdıktan sonra pek çoğunun artık geliştirilmediğini ve göze batan bazı sorunlarının olduğunu gördüm.
@@ -129,7 +133,7 @@ API'lara gereken bir diğer büyük özellik ise veri doğrulamadır, yani verin
 Bir veri doğrulama sistemi yokken bütün bu kontrolleri koda dökerek kendiniz yapmak zorunda kalırdınız.
 
 Marshmallow bu özellikleri sağlamak için geliştirilmişti. Benim de geçmişte oldukça sık kullandığım harika bir kütüphanedir.
- 
+
 Ama... Python'un tip belirteçleri gelmeden önce oluşturulmuştu. Yani her <abbr title="Verilerin nasıl oluşturulması gerektiğinin tanımı">şemayı</abbr> tanımlamak için Marshmallow'un sunduğu spesifik araçları ve sınıfları kullanmanız gerekiyordu.
 
 !!! check "**FastAPI**'a nasıl ilham verdi?"
@@ -153,16 +157,18 @@ Webargs da harika bir araç ve onu da geçmişte henüz **FastAPI** yokken çok 
 
 ### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
 
-Marshmallow ve Webargs <abbr title="Eklenti: Plug-In">eklentiler</abbr> olarak; veri doğrulama, ayrıştırma ve dönüştürmeyi sağlıyor. Ancak dökümantasyondan hala ses seda yok. Daha sonrasında APISpec oluşturuldu.
+Marshmallow ve Webargs <abbr title="Eklenti: Plug-In">eklentiler</abbr> olarak; veri doğrulama, ayrıştırma ve dönüştürmeyi sağlıyor.
+
+Ancak dökümantasyondan hala ses seda yok. Daha sonrasında ise APISpec geldi.
 
 APISpec pek çok framework için bir <abbr title="Eklenti: Plug-In">eklenti</abbr> olarak kullanılıyor (Starlette için de bir <abbr title="Eklenti: Plug-In">eklentisi</abbr> var).
 
-Şemanın tanımını <abbr title="Route: HTTP isteğinin gittiği yol">route</abbr>'u işleyen her bir fonksiyonun <abbr title="Döküman dizesi: docstring">döküman dizesinin</abbr> içine YAML formatında olacak şekilde yazıyorsunuz, o da OpenAPI şemaları üretiyor.
+Şemanın tanımını <abbr title="Route: HTTP isteğinin gittiği yol">route</abbr>'u işleyen her bir fonksiyonun <abbr title="Döküman dizesi: docstring">döküman dizesinin</abbr> içine YAML formatında olacak şekilde yazıyorsunuz o da OpenAPI şemaları üretiyor.
 
 Flask, Starlette, Responder ve benzerlerinde bu şekilde çalışıyor.
 
 Fakat sonrasında yine mikro syntax problemiyle karşılaşıyoruz. Python metinlerinin içinde koskoca bir YAML oluyor.
- 
+
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
 !!! info "Bilgi"
@@ -176,7 +182,7 @@ Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Mars
 Flask-apispec ise Webargs, Marshmallow ve APISpec'i birbirine bağlayan bir Flask <abbr title="Eklenti: Plug-In">eklentisi</abbr>.
 
 Webargs ve Marshmallow'daki bilgiyi APISpec ile otomatik OpenAPI şemaları üretmek için kullanıyor.
- 
+
 Hak ettiği değeri görmeyen, harika bir araç. Piyasadaki çoğu Flask <abbr title="Eklenti: Plug-In">eklentisinden</abbr> çok daha popüler olmalı. Hak ettiği değeri görmüyor oluşunun sebebi ise dökümantasyonun çok kısa ve soyut olması olabilir.
 
 Böylece Flask-apispec, Python döküman dizilerine YAML gibi farklı bir syntax yazma sorununu çözmüş oldu.
@@ -208,11 +214,11 @@ Angular 2'den ilham alan, içine gömülü bir <abbr title="Bağımlılık enjek
 Parametreler TypeScript tipleri (Python tip belirteçlerine benzer) ile açıklandığından editör desteği oldukça iyi.
 
 Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, bunlara dayanarak aynı anda veri doğrulaması, veri dönüşümü ve dökümantasyon tanımlanamıyor. Bundan ve bazı tasarım tercihlerinden dolayı veri doğrulaması, dönüşümü ve otomatik şema üretimi için pek çok yere dekorator eklemek gerekiyor. Bu da projeyi oldukça detaylandırıyor.
- 
+
 İç içe geçen derin modelleri pek iyi işleyemiyor. Yani eğer istekteki JSON gövdesi derin bir JSON objesiyse düzgün bir şekilde dökümante edilip doğrulanamıyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
-    Güzel bir editör desteği için Python tiplerini kullanmalı. 
+    Güzel bir editör desteği için Python tiplerini kullanmalı.
 
     Güçlü bir bağımlılık enjeksiyon sistemine sahip olmalı. Kod tekrarını minimuma indirecek bir yol bulmalı.
 
@@ -220,14 +226,12 @@ Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, 
 
 Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriydi. Flask'a epey benzeyecek şekilde geliştirilmişti.
 
-
 !!! note "Teknik detaylar"
     <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> içerisinde standart Python `asyncio` döngüsü yerine kullanıldı. `uvloop`'u çok hızlı yapan şey buydu.
 
     Uvicorn ve Starlette'ye ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
-
     Uçuk performans sağlayacak bir yol bulmalı.
 
     Tam da bu yüzden **FastAPI** Starlette'e dayanıyor, çünkü Starlette şu anda kullanılabir en hızlı framework. (üçüncü parti karşılaştırmalı değerlendirmelerce test edildi)
@@ -241,8 +245,8 @@ Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak 
 Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un dizaynından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
-
     Harika bir performans'a sahip olmanın yollarını bulmalı.
+
     Hug ile birlikte (Hug zaten Falcon'a dayandığından) **FastAPI**'ın fonksiyonlarda `cevap` parametresi belirtmesinde ilham kaynağı oldu.
 
     FastAPI'da opsiyonel olmasına rağmen, daha çok header'lar, çerezler ve alternatif durum kodları belirlemede kullanılıyor.
@@ -265,6 +269,8 @@ Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Async
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Model özelliklerinin "standart" değerlerini kullanarak veri tipleri için ekstra veri doğrulama koşulları tanımlamalı. Bu editör desteğini geliştiriyor ve daha önceden Pydantic'te yoktu.
+
+    Bu aslında Pydantic'in de aynı doğrulama stiline geçmesinde ilham kaynağı oldu. Şu anda bütün bu özellikler Pydantic'in yapısında yer alıyor.
 
 ### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
@@ -315,7 +321,6 @@ Geliştiricinin Starlette'e odaklanması gerekince proje de artık bir API web f
 Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bir proje haline geldi.
 
 !!! info "Bilgi"
-
     APIStar, aşağıdaki projeleri de üreten Tom Christie tarafından geliştirildi:
 
     * Django REST Framework
@@ -338,11 +343,12 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.  
- 
-Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor. Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
+
+Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
+
+Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
 
 !!! check "**FastAPI** nerede kullanıyor?"
-
     Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
 
     **FastAPI** yaptığı her şeyin yanı sıra bu JSON Şema verisini alıp daha sonra OpenAPI'ya yerleştiriyor.
@@ -355,7 +361,7 @@ Kullanımı çok kolay ve sezgisel, kolaylıkla genişletilebilecek ve modüler 
 
 Sahip olduğu bir kaç özellik:
 
-* Cidden etkileyici bir performans. 
+* Cidden etkileyici bir performans.
 * WebSocket desteği.
 * İşlem-içi arka plan görevleri.
 * Başlatma ve kapanış olayları.
