@@ -9,7 +9,7 @@ hide:
 
 ## Giriş
 
-Eğer geçmişte diğerlerinin yaptığı çalışmalar olmasaydı **FastAPI**'da var olamazdı.
+Başkalarının daha önceki çalışmaları olmasaydı, **FastAPI** var olmazdı.
 
 Geçmişte oluşturulan pek çok araç **FastAPI**'a ilham kaynağı olmuştur.
 
@@ -43,22 +43,22 @@ Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka p
 
 ### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
-Flask bir <abbr title="Mikro Framework: Micro Framework">mikro framework</abbr> olduğundan Django gibi framework'lerin aksine veritabanı integrasyonu gibi Django ile gelen pek çok özelliği direkt sağlamaz.
+Flask bir <abbr title="Mikro Framework: Micro Framework">mikro framework</abbr> olduğundan Django gibi framework'lerin aksine veritabanı entegrasyonu gibi Django ile gelen pek çok özelliği direkt barındırmaz.
 
-Bu basitlik ve esneklik NoSQL veritabanlarını ana veritabanı sistemi olarak kullanmak gibi şeyler yapmaya olanak sağlar.
+Sağladığı basitlik ve esneklik NoSQL veritabanlarını ana veritabanı sistemi olarak kullanmak gibi şeyler yapmaya olanak sağlar.
 
-Yapısı oldukça basit olduğundan öğrenmesi de nispeten basittir, tabii dökümantasyon bazı noktalarda biraz teknik hale geliyor.
+Yapısı oldukça basit olduğundan öğrenmesi de nispeten basittir, tabii dökümantasyonu bazı noktalarda biraz teknik hale geliyor.
 
 Ayrıca Django ile birlikte gelen veritabanı, kullanıcı yönetimi ve diğer pek çok özelliğe ihtiyaç duymayan uygulamalarda da yaygın olarak kullanılıyor. Ancak bu tür özelliklerin pek çoğu <abbr title="Eklentiler: Plug-Ins">eklentiler</abbr> ile eklenebiliyor.
 
 Uygulama parçalarının böyle ayrılıyor oluşu ve istenilen özelliklerle genişletilebilecek bir <abbr title="Mikro Framework: Micro Framework">mikro framework</abbr> olmak tam da benim istediğim bir özellikti.
 
-Flask'ın basitliği göz önünde bulundurulduğu zaman, API geliştirmek için iyi bir eşleşme gibi görünüyordu. Bulunacak bir sonraki şey ise Flask için bir "Django REST Framework"!
+Flask'ın basitliği göz önünde bulundurulduğu zaman, API geliştirmek için iyi bir seçim gibi görünüyordu. Sıradaki şey ise Flask için bir "Django REST Framework"!
 
 !!! check "**FastAPI**'a nasıl ilham verdi?"
     Gereken araçları ve parçaları birleştirip eşleştirmeyi kolaylaştıracak bir mikro framework olmalı.
 
-    Basit ve kullanması kolay bir <abbr title="Yönlendirme: Routing">routing sistemine</abbr> sahip olmalı.
+    Basit ve kullanması kolay bir <abbr title="Yönlendirme: Routing">yönlendirme sistemine</abbr> sahip olmalı.
 
 ### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
@@ -70,7 +70,7 @@ Ama yine de, FastAPI, Requests'ten oldukça ilham aldı.
 
 **Requests**, <abbr title="API (Application Programming Interface): Uygulama Programlama Arayüzü">API'lar</abbr> ile bir istemci olarak *etkileşime geçmeyi* sağlayan bir kütüphaneyken **FastAPI** bir sunucu olarak <abbr title="API (Application Programming Interface): Uygulama Programlama Arayüzü">API'lar</abbr> oluşturmaya yarar.
 
-Birbirlerini, zıt uçlarda olmalarına rağmen az çok tamamlıyorlar.
+Öyle ya da böyle zıt uçlarda olmalarına rağmen birbirlerini tamamlıyorlar.
 
 Requests oldukça basit ve sezgisel bir tasarıma sahip, kullanması da mantıklı varsayılan değerlerle oldukça kolay. Ama aynı zamanda çok güçlü ve gayet özelleştirilebilir.
 
@@ -78,7 +78,7 @@ Bu yüzden resmi web sitede de söylendiği gibi:
 
 > Requests, tüm zamanların en çok indirilen Python  <abbr title="Paket: Package">paketlerinden</abbr> biridir.
 
-Kullanım şekli bayağı basit. Örneğin bir `GET` isteği yapmak için aşağıdaki yeterli:
+Kullanım şekli oldukça basit. Örneğin bir `GET` isteği yapmak için aşağıdaki yeterli:
 
 ```Python
 response = requests.get("http://example.com/some/url")
