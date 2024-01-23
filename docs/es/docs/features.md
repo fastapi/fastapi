@@ -13,7 +13,7 @@
 
 ### Documentación automática
 
-Documentación interactiva de la API e interfaces web de exploración. Hay múltiples opciones, dos incluídas por defecto, porque el framework está basado en OpenAPI.
+Documentación interactiva de la API e interfaces web de exploración. Hay múltiples opciones, dos incluidas por defecto, porque el framework está basado en OpenAPI.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, con exploración interactiva, llama y prueba tu API directamente desde tu navegador.
 
@@ -25,7 +25,7 @@ Documentación interactiva de la API e interfaces web de exploración. Hay múlt
 
 ### Simplemente Python moderno
 
-Todo está basado en las declaraciones de tipo de **Python 3.8** estándar (gracias a Pydantic). No necesitas aprender una sintáxis nueva, solo Python moderno.
+Todo está basado en las declaraciones de tipo de **Python 3.8** estándar (gracias a Pydantic). No necesitas aprender una sintaxis nueva, solo Python moderno.
 
 Si necesitas un repaso de 2 minutos de cómo usar los tipos de Python (así no uses FastAPI) prueba el tutorial corto: [Python Types](python-types.md){.internal-link target=_blank}.
 
@@ -72,9 +72,9 @@ my_second_user: User = User(**second_user_data)
 
 El framework fue diseñado en su totalidad para ser fácil e intuitivo de usar. Todas las decisiones fueron probadas en múltiples editores antes de comenzar el desarrollo para asegurar la mejor experiencia de desarrollo.
 
-En la última encuesta a desarrolladores de Python fue claro que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la característica más usada es el "autocompletado"</a>.
+En la última encuesta a desarrolladores de Python fue claro que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la característica más usada es el "auto-completado"</a>.
 
-El framework **FastAPI** está creado para satisfacer eso. El autocompletado funciona en todas partes.
+El framework **FastAPI** está creado para satisfacer eso. El auto-completado funciona en todas partes.
 
 No vas a tener que volver a la documentación seguido.
 
@@ -140,13 +140,13 @@ FastAPI incluye un sistema de <abbr title='En español: Inyección de Dependenci
 * Todas las dependencias pueden requerir datos de los requests y aumentar las restricciones del *path operation* y la documentación automática.
 * **Validación automática** inclusive para parámetros del *path operation* definidos en las dependencias.
 * Soporte para sistemas complejos de autenticación de usuarios, **conexiones con bases de datos**, etc.
-* **Sin comprometerse** con bases de datos, frontends, etc. Pero permitiendo integración fácil con todos ellos.
+* **Sin comprometerse** con bases de datos, frontend, etc. Pero permitiendo integración fácil con todos ellos.
 
 ### "Plug-ins" ilimitados
 
 O dicho de otra manera, no hay necesidad para "plug-ins". Importa y usa el código que necesites.
 
-Cualquier integración está diseñada para que sea tan sencilla de usar (con dependencias) que puedas crear un "plug-in" para tu aplicación en dos líneas de código usando la misma estructura y sintáxis que usaste para tus *path operations*.
+Cualquier integración está diseñada para que sea tan sencilla de usar (con dependencias) que puedas crear un "plug-in" para tu aplicación en dos líneas de código usando la misma estructura y sintaxis que usaste para tus *path operations*.
 
 ### Probado
 
@@ -181,7 +181,7 @@ Esto incluye a librerías externas basadas en Pydantic como <abbr title="Object-
 
 Esto también significa que en muchos casos puedes pasar el mismo objeto que obtuviste de un request **directamente a la base de datos**, dado que todo es validado automáticamente.
 
-Lo mismo aplica para el sentido contrario. En muchos casos puedes pasarle el objeto que obtienes de la base de datos **directamente al cliente**.
+Lo mismo aplica para el sentido contrario. En muchos casos puedes pasar el objeto que obtienes de la base de datos **directamente al cliente**.
 
 Con **FastAPI** obtienes todas las características de **Pydantic** (dado que FastAPI está basado en Pydantic para todo el manejo de datos):
 

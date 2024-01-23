@@ -18,13 +18,13 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - run: pip install smokeshow
 
-      - uses: dawidd6/action-download-artifact@v2.28.0
+      - uses: dawidd6/action-download-artifact@v3.0.0
         with:
           github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
           workflow: test.yml

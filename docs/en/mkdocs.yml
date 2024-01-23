@@ -58,15 +58,18 @@ plugins:
       python:
         options:
           extensions:
-            - griffe_typingdoc
+          - griffe_typingdoc
           show_root_heading: true
           show_if_no_docstring: true
-          preload_modules: [httpx, starlette]
+          preload_modules:
+          - httpx
+          - starlette
           inherited_members: true
           members_order: source
           separate_signature: true
           unwrap_annotated: true
-          filters: ["!^_"]
+          filters:
+          - '!^_'
           merge_init_into_class: true
           docstring_section_style: spacy
           signature_crossrefs: true
@@ -171,9 +174,6 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -181,6 +181,9 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
+    - how-to/sql-databases-peewee.md
+    - how-to/async-sql-encode-databases.md
+    - how-to/nosql-databases-couchbase.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -239,6 +242,7 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
+  pymdownx.tilde: null
   attr_list: null
   md_in_html: null
 extra:
@@ -263,26 +267,28 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /bn/
+    name: bn - বাংলা
   - link: /de/
-    name: de
-  - link: /em/
-    name: 😉
+    name: de - Deutsch
   - link: /es/
     name: es - español
   - link: /fa/
-    name: fa
+    name: fa - فارسی
   - link: /fr/
     name: fr - français
   - link: /he/
-    name: he
+    name: he - עברית
+  - link: /hu/
+    name: hu - magyar
   - link: /id/
-    name: id
+    name: id - Bahasa Indonesia
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
   - link: /pl/
-    name: pl
+    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -290,15 +296,19 @@ extra:
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
-    name: uk
+    name: uk - українська мова
   - link: /ur/
-    name: ur
+    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
-    name: zh - 汉语
+    name: zh - 简体中文
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
+  - link: /em/
+    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css
