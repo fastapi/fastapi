@@ -30,6 +30,7 @@ Modern ön uçlarda (React, Vue.js ve Angular gibi) veya diğer sistemler (örne
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
 Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka planda Django kullanan esnek bir araç grubu olarak oluşturuldu.
+
 Üstelik Mozilla, Red Hat ve Eventbrite gibi pek çok şirket tarafından kullanılıyor.
 
 **Otomatik API dökümantasyonu**nun ilk örneklerinden biri olduğu için, **FastAPI** arayışına ilham veren ilk fikirlerden biri oldu.
@@ -293,7 +294,7 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
     Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
 
     **FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
-
+    
     **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
@@ -342,17 +343,11 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-<<<<<<< HEAD
 Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.  
 
 Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
 Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
-=======
-Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürme ve dökümantasyon tanımlamak (JSON Şema kullanarak) için bir kütüphanedir.
-
-Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor. Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
->>>>>>> 88c6d84911a4bc17f7fe3723ff57e9f692ddf492
 
 !!! check "**FastAPI** nerede kullanıyor?"
     Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
