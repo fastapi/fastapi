@@ -45,6 +45,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/help/index.md`. PR [#10983](https://github.com/tiangolo/fastapi/pull/10983) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Add Korean translation for `docs/ko/docs/features.md`. PR [#10976](https://github.com/tiangolo/fastapi/pull/10976) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/security/get-current-user.md`. PR [#5737](https://github.com/tiangolo/fastapi/pull/5737) by [@KdHyeon0661](https://github.com/KdHyeon0661).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/security/first-steps.md`. PR [#10541](https://github.com/tiangolo/fastapi/pull/10541) by [@AlertRED](https://github.com/AlertRED).
