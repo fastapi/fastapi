@@ -126,7 +126,7 @@ oder
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-gehen, oder zu irgendeiner anderen Variante der Groß-/Kleinschreibung (Alles groß, Anfangsbuchstabe groß, usw.), dann wird ihre Funktion den Parameter `short` mit dem `bool`-Wert `True` sehen, ansonsten mit dem Wert `False`.
+gehen, oder zu irgendeiner anderen Variante der Groß-/Kleinschreibung (Alles groß, Anfangsbuchstabe groß, usw.), dann wird Ihre Funktion den Parameter `short` mit dem `bool`-Wert `True` sehen, ansonsten mit dem Wert `False`.
 
 ## Mehrere Pfad- und Query-Parameter
 
@@ -162,7 +162,7 @@ Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie ei
 
 Hier ist `needy` ein erforderlicher Query-Parameter vom Typ `str`.
 
-Wenn Sie in ihrem Browser eine URL wie:
+Wenn Sie in Ihrem Browser eine URL wie:
 
 ```
 http://127.0.0.1:8000/items/foo-item
