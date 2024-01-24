@@ -146,7 +146,7 @@ API'ların ihtiyacı olan bir diğer önemli özellik ise gelen isteklerdeki ver
 
 Webargs, Flask gibi bir kaç framework'ün üzerinde bunu sağlamak için geliştirilen bir araçtır.
 
-Veri doğrulamak için arka planda Marshmallow kullanıyor, hatta aynı geliştiriciler tarafından oluşturuldu.
+Veri doğrulama için arka planda Marshmallow kullanıyor, hatta aynı geliştiriciler tarafından oluşturuldu.
 
 Webargs da harika bir araç ve onu da geçmişte henüz **FastAPI** yokken çok kullandım.
 
