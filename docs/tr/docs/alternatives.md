@@ -170,7 +170,7 @@ Flask, Starlette, Responder ve benzerlerinde bu şekilde çalışıyor.
 
 Fakat sonrasında yine mikro syntax problemiyle karşılaşıyoruz. Python metinlerinin içinde koskoca bir YAML oluyor.
 
-Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
+Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML kodunu güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
 !!! info "Bilgi"
     APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu
