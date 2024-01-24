@@ -131,7 +131,7 @@ API sistemlerine gereken ana özelliklerden biri de koddan veriyi alıp ağ üze
 
 API'lara gereken bir diğer büyük özellik ise veri doğrulamadır, yani verinin çeşitli parametrelere bağlı olarak doğru ve tutarlı olduğundan emin olmaktır. Örneğin bir alanın `int` olmasına karar verdiniz, daha sonra rastgele bir metin değeri almasını istemezsiniz. Bu özellikle sisteme dışarıdan gelen veri için kullanışlı bir özellik oluyor.
 
-Bir veri doğrulama sistemi yokken bütün bu kontrolleri koda dökerek kendiniz yapmak zorunda kalırdınız.
+Bir veri doğrulama sistemi olmazsa bütün bu kontrolleri koda dökerek kendiniz yapmak zorunda kalırdınız.
 
 Marshmallow bu özellikleri sağlamak için geliştirilmişti. Benim de geçmişte oldukça sık kullandığım harika bir kütüphanedir.
 
