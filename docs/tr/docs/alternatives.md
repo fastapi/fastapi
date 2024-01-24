@@ -173,7 +173,7 @@ Fakat sonrasında yine mikro syntax problemiyle karşılaşıyoruz. Python metin
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML kodunu güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
 !!! info "Bilgi"
-    APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu
+    APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu.
 
 !!! check "**FastAPI**'a nasıl ilham verdi?"
     API'lar için açık standart desteği olmalı (OpenAPI gibi).
