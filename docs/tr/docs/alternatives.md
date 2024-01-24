@@ -190,7 +190,7 @@ Böylece Flask-apispec, Python döküman dizilerine YAML gibi farklı bir syntax
 
 **FastAPI**'ı geliştirene dek benim favori arka uç kombinasyonum Flask'in yanında Marshmallow ve Webargs ile birlikte Flask-apispec idi.
 
-Bunu kullanmak, bir kaç <abbr title="full-stack: Hem ön uç hem de arka uç geliştirme">full-stack</abbr> Flask projesi oluşturucusunun yaratılmasına yol açtı. Bunlar benim (ve bir kaç harici ekibin de) şimdiye kadar kullandığı asıl <abbr title="stack: Projeyi geliştirirken kullanılan araçlar dizisi">stack</abbr>:
+Bunu kullanmak, bir kaç <abbr title="full-stack: Hem ön uç hem de arka uç geliştirme">full-stack</abbr> Flask projesi oluşturucusunun yaratılmasına yol açtı. Bunlar benim (ve bir kaç harici ekibin de) şimdiye kadar kullandığı asıl <abbr title="stack: Projeyi geliştirirken kullanılan araçlar dizisi">stack</abbr>ler:
 
 * <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
