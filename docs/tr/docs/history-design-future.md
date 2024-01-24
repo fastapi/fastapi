@@ -46,7 +46,7 @@ Sonrasında, (**FastAPI** kullanan bir geliştirici olarak) sahip olmak istediğ
 
 Bu test, en son <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>'ine göre, kullanıcıların yaklaşık %80'inin kullandığı editörleri kapsıyor.
 
-Bu da demek oluyor ki **FastAPI**, Python geliştiricilerinin %80'inin kullandığı editörlerle test edildi. Ve diğer editörlerin çoğu benzer şekilde çalıştığından, bütün artıları neredeyse tüm editörlerde çalışacaktır.
+Bu da demek oluyor ki **FastAPI**, Python geliştiricilerinin %80'inin kullandığı editörlerle test edildi. Ve diğer editörlerin çoğu benzer şekilde çalıştığından, avantajları neredeyse tüm editörlerde çalışacaktır.
 
 Bu şekilde, kod tekrarını mümkün olduğunca azaltmak, her yerde <abbr title="Otomatik Tamamlama: auto-complete, autocompletion, IntelliSense">otomatik tamamlama</abbr>, tip ve hata kontrollerine sahip olmak için en iyi yolları bulabildim.
 
