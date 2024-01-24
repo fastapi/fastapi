@@ -199,7 +199,7 @@ Bunu kullanmak, bir kaç <abbr title="full-stack: Hem ön uç hem de arka uç ge
 Aynı full-stack üreticiler [**FastAPI** Proje Üreticileri](project-generation.md){.internal-link target=_blank}'nin de temelini oluşturdu.
 
 !!! info "Bilgi"
-    Flask-apispec de aynı Marshmallow geliştiricileri tarafından üretildi
+    Flask-apispec de aynı Marshmallow geliştiricileri tarafından üretildi.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Veri dönüşümü ve veri doğrulamayı tanımlayan kodu kullanarak otomatik olarak OpenAPI şeması oluşturmalı.
