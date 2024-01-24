@@ -36,7 +36,7 @@ Mesela, ideal olarak standart Python tip belirteçlerine dayanması gerektiği a
 
 Ayrıca, en iyi yaklaşım zaten mevcut olan standartları kullanmaktı.
 
-Sonuç olarak, **FastAPI**'ı kodlamaya başlamadan önce birkaç ay boyunca, OpenAPI, JSON Schema, OAuth2 ve benzerlerinin tanımlamalarını inceledim. İlişkilerini, örtüştükleri noktaları ve farklılıklarını anlamaya çalıştım.
+Sonuç olarak, **FastAPI**'ı kodlamaya başlamadan önce, birkaç ay boyunca OpenAPI, JSON Schema, OAuth2 ve benzerlerinin tanımlamalarını inceledim. İlişkilerini, örtüştükleri noktaları ve farklılıklarını anlamaya çalıştım.
 
 ## Tasarım
 
