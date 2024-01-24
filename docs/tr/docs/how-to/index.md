@@ -2,7 +2,7 @@
 
 Burada çeşitli konular hakkında farklı tarifler veya "nasıl yapılır" kılavuzları yer alıyor.
 
-Bu fikirlerin büyük bir kızmı aşağı yukarı **bağımsız** olacaktır ve çoğu durumda **projenize** hitap ediyorsa bunları incelemelisiniz.
+Bu fikirlerin büyük bir kısmı aşağı yukarı **bağımsız** olacaktır, çoğu durumda bunları sadece **projenize** hitap ediyorsa incelemelisiniz. 
 
 Projeniz için ilginç ve yararlı görünen bir şey varsa devam edin ve inceleyin, aksi halde bunları atlayabilirsiniz.
 
