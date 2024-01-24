@@ -168,7 +168,7 @@ APISpec pek çok framework için bir <abbr title="Eklenti: Plug-In">eklenti</abb
 
 Flask, Starlette, Responder ve benzerlerinde bu şekilde çalışıyor.
 
-Fakat sonrasında yine mikro syntax problemiyle karşılaşıyoruz. Python metinlerinin içinde koskoca bir YAML oluyor.
+Fakat sonrasında yine mikro sözdizimi problemiyle karşılaşıyoruz. Python metinlerinin içinde koskoca bir YAML oluyor.
 
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML kodunu güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
