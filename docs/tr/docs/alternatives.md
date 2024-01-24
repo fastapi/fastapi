@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Alternatifler, İlham Kaynakları ve Karşılaştırmalar
 
 **FastAPI**'ya neler ilham verdi? Diğer alternatiflerle karşılaştırıldığında farkları neler? **FastAPI** diğer alternatiflerinden neler öğrendi?
