@@ -8,4 +8,4 @@ Projeniz için ilginç ve yararlı görünen bir şey varsa devam edin ve incele
 
 !!! tip "İpucu"
 
-    **FastAPI**'ı düzgün (ve önerilen) bir şekilde öğrenmek istiyorsanız [Öğretici - Kullanıcı Rehberi](../tutorial/index.md){.internal-link target=_blank}'ni bölüm bölüm okuyun.
+    **FastAPI**'ı düzgün (ve önerilen) şekilde öğrenmek istiyorsanız [Öğretici - Kullanıcı Rehberi](../tutorial/index.md){.internal-link target=_blank}'ni bölüm bölüm okuyun.
