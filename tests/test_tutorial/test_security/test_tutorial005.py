@@ -339,7 +339,11 @@ def test_openapi_schema():
                             }
                         ),
                         "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string", "format": "password"},
+                        "password": {
+                            "title": "Password",
+                            "type": "string",
+                            "format": "password",
+                        },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
                         "client_id": IsDict(
                             {
