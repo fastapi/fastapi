@@ -159,7 +159,7 @@ Ancak dökümantasyondan hala ses seda yok. Daha sonrasında ise APISpec geldi.
 
 APISpec pek çok framework için bir <abbr title="Eklenti: Plug-In">eklenti</abbr> olarak kullanılıyor (Starlette için de bir <abbr title="Eklenti: Plug-In">eklentisi</abbr> var).
 
-Şemanın tanımını <abbr title="Route: HTTP isteğinin gittiği yol">route</abbr>'u işleyen her bir fonksiyonun <abbr title="Döküman dizesi: docstring">döküman dizesinin</abbr> içine YAML formatında olacak şekilde yazıyorsunuz o da OpenAPI şemaları üretiyor.
+Şemanın tanımını <abbr title="Route: HTTP isteğinin gittiği yol">yol</abbr>'a istek geldiğinde çalışan her bir fonksiyonun <abbr title="Döküman dizesi: docstring">döküman dizesinin</abbr> içine YAML formatında olacak şekilde yazıyorsunuz o da OpenAPI şemaları üretiyor.
 
 Flask, Starlette, Responder ve benzerlerinde bu şekilde çalışıyor.
 
