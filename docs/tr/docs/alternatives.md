@@ -137,7 +137,7 @@ Ama... Python'un tip belirteçleri gelmeden önce oluşturulmuştu. Yani her <ab
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
 
-API'ların ihtiyacı olan bir diğer önemli özellik ise gelen isteklerdeki verileri Python objelerine ayrıştırabilmektir (<abbr title="Parsing: dönüştürmek, ayrıştırmak, çözümlemek">parsing</abbr>, <abbr title="Data parsing: Dışarıdan gelen veriyi programlama dilindeki bir objeye çevirmek">data parsing</abbr>)
+API'ların ihtiyacı olan bir diğer önemli özellik ise gelen isteklerdeki verileri Python objelerine <abbr title="Parsing: dönüştürmek, ayrıştırmak, çözümlemek">ayrıştırabilmektir</abbr>.
 
 Webargs, Flask gibi bir kaç framework'ün üzerinde bunu sağlamak için geliştirilen bir araçtır.
 
