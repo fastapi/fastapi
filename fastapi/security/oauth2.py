@@ -85,7 +85,7 @@ class OAuth2PasswordRequestForm:
         ],
         password: Annotated[
             str,
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
@@ -130,7 +130,7 @@ class OAuth2PasswordRequestForm:
         ] = None,
         client_secret: Annotated[
             Union[str, None],
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 If there's a `client_password` (and a `client_id`), they can be sent
