@@ -122,7 +122,7 @@ Pek çok Flask REST framework'ü var, fakat bunları biraz araştırdıktan sonr
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a>
 
-API sistemlerine gereken ana özelliklerden biri de koddan veriyi alıp ağ üzerinde gönderilebilecek bir şeye çevirmek, yani veri <abbr title="Dönüşüm: serialization, parsing, marshalling olarak da biliniyor">dönüşümü</abbr>. Bu işleme veritabanındaki veriyi içeren bir objeyi JSON objesine çevirmek, `datetime` objelerini metinlere çevirmek gibi örnekler verilebilir.
+API sistemlerine gereken ana özelliklerden biri de koddan veriyi alıp ağ üzerinde gönderilebilecek bir şeye çevirmek, yani veri <abbr title="Dönüşüm: serialization, marshalling olarak da biliniyor">dönüşümü</abbr>. Bu işleme veritabanındaki veriyi içeren bir objeyi JSON objesine çevirmek, `datetime` objelerini metinlere çevirmek gibi örnekler verilebilir.
 
 API'lara gereken bir diğer büyük özellik ise veri doğrulamadır, yani verinin çeşitli parametrelere bağlı olarak doğru ve tutarlı olduğundan emin olmaktır. Örneğin bir alanın `int` olmasına karar verdiniz, daha sonra rastgele bir metin değeri almasını istemezsiniz. Bu özellikle sisteme dışarıdan gelen veri için kullanışlı bir özellik oluyor.
 
@@ -326,7 +326,7 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Var oldu.
 
-    Aynı Python veri tipleriyle birden fazla şeyi belirleme ve aynı zamanda harika bir editör desteği sunma, benim muhteşem bulduğum bir fikirdi.
+    Aynı Python veri tipleriyle birden fazla şeyi belirleme (veri doğrulama, veri dönüştürme ve dökümantasyon), bir yandan da harika bir editör desteği sunma, benim muhteşem bulduğum bir fikirdi.
 
     Uzunca bir süre boyunca benzer bir framework arayıp pek çok farklı alternatifi denedikten sonra, APIStar en iyi seçenekti.
 
