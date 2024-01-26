@@ -393,7 +393,7 @@ Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı ola
 
 Uvicorn, uvlook ile httptools üzerine kurulu ışık hzında bir ASGI sunucusudur.
 
-Bir web framework'ünden ziyade bir sunucudur, yani yollara bağlı routing yapmanızı sağlayan araçları yoktur. Bu daha çok Starlette (ya da **FastAPI**) gibi bir framework'ün sunucuya ek olarak sağladığı bir şeydir.
+Bir web framework'ünden ziyade bir sunucudur, yani yollara bağlı yönlendirme yapmanızı sağlayan araçları yoktur. Bu daha çok Starlette (ya da **FastAPI**) gibi bir framework'ün sunucuya ek olarak sağladığı bir şeydir.
 
 Starlette ve **FastAPI** için tavsiye edilen sunucu Uvicorndur.
 
