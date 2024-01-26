@@ -360,7 +360,7 @@ Sahip olduğu bir kaç özellik:
 * Cidden etkileyici bir performans.
 * WebSocket desteği.
 * İşlem-içi arka plan görevleri.
-* Başlatma ve kapanış olayları.
+* Başlatma ve kapatma olayları.
 * HTTPX ile geliştirilmiş bir test istemcisi.
 * CORS, GZip, Static Files ve Streaming cevapları desteği.
 * Session ve Cookie desteği.
