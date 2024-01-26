@@ -225,7 +225,7 @@ Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriyd
 !!! note "Teknik detaylar"
     İçerisinde standart Python `asyncio` döngüsü yerine <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> kullanıldı. Hızının asıl kaynağı buydu.
 
-    Uvicorn ve Starlette'ye ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
+    Uvicorn ve Starlette'e ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Uçuk performans sağlayacak bir yol bulmalı.
@@ -302,7 +302,7 @@ Otomatik veri doğrulama, veri dönüştürme ve farklı yerlerdeki tip belirte�
 
 Gövde şema tanımları Pydantic ile aynı Python tip belirteçlerini kullanmıyordu, biraz daha Marsmallow'a benziyordu. Dolayısıyla editör desteği de o kadar iyi olmazdı ama APIStar eldeki en iyi seçenekti.
 
-O dönemlerde karşılaştırmalarda en iyi performansa sahipti (yalnızca Starlette'ye kaybediyordu).
+O dönemlerde karşılaştırmalarda en iyi performansa sahipti (yalnızca Starlette'e kaybediyordu).
 
 Başlangıçta otomatik API dökümantasyonu sunan bir web arayüzü yoktu, ama ben ona Swagger UI ekleyebileceğimi biliyordum.
 
