@@ -205,7 +205,7 @@ Bu Python bile değil. NestJS, Angulardan ilham almış olan bir JavaScript (Typ
 
 Flask-apispec ile yapılabileceklere nispeten benzeyen bir şey elde ediyor.
 
-Angular 2'den ilham alan, içine gömülü bir <abbr title="Bağımlılık enjeksiyonu: Dependency Injection">bağımlılık enjeksiyonu</abbr> sistemi var. "<abbr title="Injectable: dependency injection sistemi tarafından enjekte edilecek dependency (bağımlılık)">injectable</abbr>"ları önceden kaydetmenizi gerektiriyor, aynı benim bildiğim diğer her bağımlılık enjeksiyonu sisteminde olduğu gibi. Böylece projeyi daha detaylı hale getiriyor ve kod tekrarını da arttırıyor.
+Angular 2'den ilham alan, içine gömülü bir <abbr title="Bağımlılık enjeksiyonu: Dependency Injection">bağımlılık enjeksiyonu</abbr> sistemi var. Bildiğim diğer tüm bağımlılık enjeksiyonu sistemlerinde olduğu gibi"<abbr title="Injectable: dependency injection sistemi tarafından enjekte edilecek dependency (bağımlılık)">bağımlılık</abbr>"ları önceden kaydetmenizi gerektiriyor. Böylece projeyi daha detaylı hale getiriyor ve kod tekrarını da arttırıyor.
 
 Parametreler TypeScript tipleri (Python tip belirteçlerine benzer) ile açıklandığından editör desteği oldukça iyi.
 
