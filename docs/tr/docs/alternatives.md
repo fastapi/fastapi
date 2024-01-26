@@ -342,7 +342,7 @@ Pydantic Python tip belirteçlerine dayanan; veri doğrulama, veri dönüştürm
 
 Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
-Marshmallow ile karşılaştırılabilir bile. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
+Marshmallow ile karşılaştırılabilir. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
 
 !!! check "**FastAPI** nerede kullanıyor?"
     Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
