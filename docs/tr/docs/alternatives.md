@@ -370,7 +370,7 @@ Sahip olduğu bir kaç özellik:
 
 Starlette şu anda test edilen en hızlı Python framework'ü. Yalnızca bir sunucu olan Uvicorn'a yeniliyor, o da zaten bir framework değil.
 
-Starlette bütün basit web mikro framework işlevselliğini sağlıyor.
+Starlette bütün temel web mikro framework işlevselliğini sağlıyor.
 
 Ancak otomatik veri doğrulama, veri dönüştürme ve dökümantasyon sağlamyor.
 
