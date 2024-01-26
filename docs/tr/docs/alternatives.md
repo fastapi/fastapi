@@ -283,7 +283,7 @@ Ayrıca ilginç ve çok rastlanmayan bir özelliği vardı: aynı framework'ü k
 Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığından dolayı Websocket'leri ve diğer şeyleri işleyemiyor, ancak yine de yüksek performansa sahip.
 
 !!! info "Bilgi"
-    Hug, Python dosyalarını otomatik olarak sıralayan harika bir araç olan  <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>'un geliştiricisi Timothy Crosley tarafından üretildi.
+    Hug, Python dosyalarında bulunan dahil etme satırlarını otomatik olarak sıralayan harika bir araç olan <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>'un geliştiricisi Timothy Crosley tarafından geliştirildi.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
