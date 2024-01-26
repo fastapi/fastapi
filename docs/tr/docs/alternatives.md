@@ -294,7 +294,7 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
 
-**FastAPI**'ı geliştirmeye başlamadan önce **APIStar** sunucusunu buldum. Benim aradığım şeylerin neredeyse hepsine sahipti ve harika bir tasarımı vardı.
+**FastAPI**'ı geliştirmeye başlamadan hemen önce **APIStar** sunucusunu buldum. Benim aradığım şeylerin neredeyse hepsine sahipti ve harika bir tasarımı vardı.
 
 Benim şimdiye kadar gördüğüm Python tip belirteçlerini kullanarak parametre ve istekler belirlemeyi uygulayan ilk framework'lerdendi (Molten ve NestJS'den önce). APIStar'ı da aşağı yukarı Hug ile aynı zamanlarda buldum. Fakat APIStar OpenAPI standardını kullanıyordu.
 
