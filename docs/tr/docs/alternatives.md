@@ -223,7 +223,7 @@ Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, 
 Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriydi. Flask'a epey benzeyecek şekilde geliştirilmişti.
 
 !!! note "Teknik detaylar"
-    <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> içerisinde standart Python `asyncio` döngüsü yerine kullanıldı. `uvloop`'u çok hızlı yapan şey buydu.
+    İçerisinde standart Python `asyncio` döngüsü yerine <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> kullanıldı. Hızının asıl kaynağı buydu.
 
     Uvicorn ve Starlette'ye ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
 
