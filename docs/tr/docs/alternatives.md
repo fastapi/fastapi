@@ -201,7 +201,7 @@ Aynı full-stack üreticiler [**FastAPI** Proje Üreticileri](project-generation
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (and <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
 
-Bu Python bile değil. NestJS, Angulardan ilham almış olan bir JavaScript (TypeScript) NodeJS framework'ü.
+Bu Python teknolojisi bile değil. NestJS, Angulardan ilham almış olan bir JavaScript (TypeScript) NodeJS framework'ü.
 
 Flask-apispec ile yapılabileceklere nispeten benzeyen bir şey elde ediyor.
 
