@@ -257,7 +257,7 @@ Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer a
 
 Veri doğrulama, veri dönüştürme ve dökümantasyon için Pydantic gibi bir üçüncü parti kütüphane kullanmıyor, kendi içerisinde bunlara sahip. Yani bu veri tipi tanımlarını tekrar kullanmak pek de kolay değil.
 
-Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr>  yerine <abbr title="WSGI (Web Server Gateway Interface): Web Sunucusu Ağ Geçidi Arabirimi, Pythonda senkron web uygulamaları geliştirmek için eski standart.">WSGI</abbr>'a dayanıyor. Yani Uvicorn, Starlette ve Sanic gibi araçların yüksek performansından faydalanacak şekilde tasarlanmamış.
+Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr> yerine <abbr title="WSGI (Web Server Gateway Interface): Web Sunucusu Ağ Geçidi Arabirimi, Pythonda senkron web uygulamaları geliştirmek için eski standart.">WSGI</abbr>'a dayanıyor. Yani Uvicorn, Starlette ve Sanic gibi araçların yüksek performansından faydalanacak şekilde tasarlanmamış.
 
 <abbr title="Bağımlılık enjeksiyonu: Dependency Injection">Bağımlılık enjeksiyonu</abbr> sistemi bağımlılıkların önceden kaydedilmesini ve sonrasında belirlenen veri tiplerine göre çözülmesini gerektiriyor. Yani spesifik bir tip, birden fazla bileşen ile belirlenemiyor.
 
@@ -332,7 +332,7 @@ Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bi
 
     Sonra APIStar bir sunucu olmayı bıraktı ve Starlette oluşturuldu. Starlette, böyle bir sunucu sistemi için daha iyi bir temel sunuyordu. Bu da **FastAPI**'ın son esin kaynağıydı.
 
-    Ben bu önceki araçlardan öğrendiklerime dayanarak **FastAPI**'ın özelliklerini arttırıp geliştiriyor, typing sistemini ve diğer kısımları iyileştiriyorum ancak yine de **FastAPI**'ı APIStar'ın "ruhani varisi" olarak görüyorum.
+    Ben bu önceki araçlardan öğrendiklerime dayanarak **FastAPI**'ın özelliklerini arttırıp geliştiriyor, <abbr title="Tip desteği (typing support): kod yapısında parametrelere, argümanlara ve objelerin özelliklerine veri tipi atamak">tip desteği</abbr> sistemi ve diğer kısımları iyileştiriyorum ancak yine de **FastAPI**'ı APIStar'ın "ruhani varisi" olarak görüyorum.
 
 ## **FastAPI** Tarafından Kullanılanlar
 
@@ -365,7 +365,7 @@ Sahip olduğu bir kaç özellik:
 * CORS, GZip, Static Files ve Streaming cevapları desteği.
 * Session ve çerez desteği.
 * Kodun %100'ü test kapsamında.
-* Kodun %100'ünde kullanılan veri tipleri açıklanıyor.
+* Kodun %100'ü tip belirteçleriyle desteklenmiştir.
 * Yalnızca bir kaç zorunlu bağımlılığa sahip.
 
 Starlette şu anda test edilen en hızlı Python framework'ü. Yalnızca bir sunucu olan Uvicorn'a yeniliyor, o da zaten bir framework değil.
