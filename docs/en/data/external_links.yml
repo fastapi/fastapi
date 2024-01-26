@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Donny Peeters
+    author_link: https://github.com/Donnype
+    link: https://bitestreams.com/blog/fastapi-sqlalchemy/
+    title: 10 Tips for adding SQLAlchemy to FastAPI
   - author: Jessica Temporal
     author_link: https://jtemporal.com/socials
     link: https://jtemporal.com/tips-on-migrating-from-flask-to-fastapi-and-vice-versa/
