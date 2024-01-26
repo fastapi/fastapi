@@ -353,7 +353,7 @@ Marshmallow ile karşılaştırılabilir. Ancak karşılaştırmalarda Marshmall
 
 Starlette hafif bir <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr> framework'ü ve yüksek performanslı asyncio servisleri oluşturmak için ideal.
 
-Kullanımı çok kolay ve sezgisel, kolaylıkla genişletilebilecek ve modüler bileşenlere sahip olacak şekilde dizayn edildi.
+Kullanımı çok kolay ve sezgisel, kolaylıkla genişletilebilecek ve modüler bileşenlere sahip olacak şekilde tasarlandı.
 
 Sahip olduğu bir kaç özellik:
 
