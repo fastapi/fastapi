@@ -385,7 +385,7 @@ Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı ola
 
     Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
 
-    `FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfından miras alıyor!
+    `FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfını miras alıyor!
 
     Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendirilmiş hali olan **FastAPI** ile doğrudan yapabilirsiniz.
 
