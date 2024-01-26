@@ -230,7 +230,7 @@ Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriyd
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Uçuk performans sağlayacak bir yol bulmalı.
 
-    Tam da bu yüzden **FastAPI** Starlette'e dayanıyor, çünkü Starlette şu anda kullanılabir en hızlı framework. (üçüncü parti karşılaştırmalı değerlendirmelerce test edildi)
+    Tam da bu yüzden **FastAPI** Starlette'e dayanıyor, çünkü Starlette şu anda kullanılabilir en hızlı framework. (üçüncü parti karşılaştırmalı testlerine göre)
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
 
