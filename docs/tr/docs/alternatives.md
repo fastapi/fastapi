@@ -363,7 +363,7 @@ Sahip olduğu bir kaç özellik:
 * Başlatma ve kapatma olayları.
 * HTTPX ile geliştirilmiş bir test istemcisi.
 * CORS, GZip, Static Files ve Streaming cevapları desteği.
-* Session ve Cookie desteği.
+* Session ve çerez desteği.
 * Kodun %100'ü test kapsamında.
 * Kodun %100'ünde kullanılan veri tipleri açıklanıyor.
 * Yalnızca bir kaç zorunlu bağımlılığa sahip.
