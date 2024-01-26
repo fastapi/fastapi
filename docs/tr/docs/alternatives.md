@@ -236,7 +236,7 @@ Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriyd
 
 Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak şekilde Hug gibi diğer framework'lerin temeli olabilmek için tasarlandı.
 
-İki parametre kabul eden fonksiyonler şeklide tasarlandı, biri "istek" ve diğeri ise "cevap". Sonra isteğin çeşitli kısımlarını **okuyup** cevaba **yazıyorsunuz**. Bu tasarımdan dolayı istek parametrelerini ve gövdelerini standart Python tip belirteçlerini kullanarak fonksiyon parametreleriyle belirtmek mümkün değil.
+İki parametre kabul eden fonksiyonlar şeklinde tasarlandı, biri "istek" ve diğeri ise "cevap". Sonra isteğin çeşitli kısımlarını **okuyor**, cevaba ise bir şeyler **yazıyorsunuz**. Bu tasarımdan dolayı istek parametrelerini ve gövdelerini standart Python tip belirteçlerini kullanarak fonksiyon parametreleriyle belirtmek mümkün değil.
 
 Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un tasarımından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
 
