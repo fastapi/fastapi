@@ -261,7 +261,7 @@ Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Async
 
 <abbr title="Bağımlılık enjeksiyonu: Dependency Injection">Bağımlılık enjeksiyonu</abbr> sistemi bağımlılıkların önceden kaydedilmesini ve sonrasında belirlenen veri tiplerine göre çözülmesini gerektiriyor. Yani spesifik bir tip, birden fazla bileşen ile belirlenemiyor.
 
-<abbr title="Route: HTTP isteğinin gittiği yol">Route</abbr>'lar fonksiyonun üstünde endpoint'i işleyen dekoratörler yerine farklı yerlerde tanımlanan fonksiyonlarla belirlenir. Bu Flask (ve Starlette) yerine daha çok Django'nun yaklaşımına daha yakın bir metot. Bu, kodda nispeten birbiriyle sıkı ilişkili olan şeyleri ayırmaya olanak sağlıyor.
+<abbr title="Route: HTTP isteğinin gittiği yol">Yol</abbr>'lar fonksiyonun üstünde endpoint'i işleyen dekoratörler yerine farklı yerlerde tanımlanan fonksiyonlarla belirlenir. Bu Flask (ve Starlette) yerine daha çok Django'nun yaklaşımına daha yakın bir metot. Bu, kodda nispeten birbiriyle sıkı ilişkili olan şeyleri ayırmaya sebep oluyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Model özelliklerinin "standart" değerlerini kullanarak veri tipleri için ekstra veri doğrulama koşulları tanımlamalı. Bu editör desteğini geliştiriyor ve daha önceden Pydantic'te yoktu.
