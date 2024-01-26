@@ -234,11 +234,11 @@ Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriyd
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
 
-Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak şekilde Hug gibi diğer framework'lerin temeli olabilmek için dizayn edildi.
+Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak şekilde Hug gibi diğer framework'lerin temeli olabilmek için tasarlandı.
 
-İki parametre kabul eden fonksiyonler şeklide tasarlandı, biri "istek" ve diğeri ise "cevap". Sonra isteğin çeşitli kısımlarını **okuyup** cevaba **yazıyorsunuz**. Bu dizayndan dolayı istek parametrelerini ve gövdelerini standart Python tip belirteçlerini kullanarak fonksiyon parametreleriyle belirtmek mümkün değil.
+İki parametre kabul eden fonksiyonler şeklide tasarlandı, biri "istek" ve diğeri ise "cevap". Sonra isteğin çeşitli kısımlarını **okuyup** cevaba **yazıyorsunuz**. Bu tasarımdan dolayı istek parametrelerini ve gövdelerini standart Python tip belirteçlerini kullanarak fonksiyon parametreleriyle belirtmek mümkün değil.
 
-Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un dizaynından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
+Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un tasarımından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
 
 !!! check "**FastAPI**'a nasıl ilham oldu?"
     Harika bir performans'a sahip olmanın yollarını bulmalı.
@@ -257,7 +257,7 @@ Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer a
 
 Veri doğrulama, veri dönüştürme ve dökümantasyon için Pydantic gibi bir üçüncü parti kütüphane kullanmıyor, kendi içerisinde bunlara sahip. Yani bu veri tipi tanımlarını tekrar kullanmak pek de kolay değil.
 
-Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr>  yerine <abbr title="WSGI (Web Server Gateway Interface): Web Sunucusu Ağ Geçidi Arabirimi, Pythonda senkron web uygulamaları geliştirmek için eski standart.">WSGI</abbr>'a dayanıyor. Yani Uvicorn, Starlette ve Sanic gibi araçların yüksek performansından faydalanacak şekilde dizayn edilmemiş.
+Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr>  yerine <abbr title="WSGI (Web Server Gateway Interface): Web Sunucusu Ağ Geçidi Arabirimi, Pythonda senkron web uygulamaları geliştirmek için eski standart.">WSGI</abbr>'a dayanıyor. Yani Uvicorn, Starlette ve Sanic gibi araçların yüksek performansından faydalanacak şekilde tasarlanmamış.
 
 <abbr title="Bağımlılık enjeksiyonu: Dependency Injection">Bağımlılık enjeksiyonu</abbr> sistemi bağımlılıkların önceden kaydedilmesini ve sonrasında belirlenen veri tiplerine göre çözülmesini gerektiriyor. Yani spesifik bir tip, birden fazla bileşen ile belirlenemiyor.
 
