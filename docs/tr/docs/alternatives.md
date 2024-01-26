@@ -406,4 +406,4 @@ Starlette ve **FastAPI** için tavsiye edilen sunucu Uvicorndur.
 
 ## Karşılaştırma ve Hız
 
-Uvicorn, Starlette ve FastAPI arasındakı farkı daha iyi anlamak ve karşılaştırma yapmak için [Benchmarks](benchmarks.md){.internal-link target=_blank} bölümüne bakın!
+Uvicorn, Starlette ve FastAPI arasındakı farkı daha iyi anlamak ve karşılaştırma yapmak için [Kıyaslamalar](benchmarks.md){.internal-link target=_blank} bölümüne bakın!
