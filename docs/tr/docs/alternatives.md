@@ -298,7 +298,7 @@ Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığı
 
 Benim şimdiye kadar gördüğüm Python tip belirteçlerini kullanarak parametre ve istekler belirlemeyi uygulayan ilk framework'lerdendi (Molten ve NestJS'den önce). APIStar'ı da aşağı yukarı Hug ile aynı zamanlarda buldum. Fakat APIStar OpenAPI standardını kullanıyordu.
 
-Otomatik veri doğrulama, veri dönüştürme ve farklı yerlerdeki tip belirteçlerine bağlı olarak OpenAPI şeması oluşturma desteği sunuyordu.
+Farklı yerlerdeki tip belirteçlerine bağlı olarak otomatik veri doğrulama, veri dönüştürme ve OpenAPI şeması oluşturma desteği sunuyordu.
 
 Gövde şema tanımları Pydantic ile aynı Python tip belirteçlerini kullanmıyordu, biraz daha Marsmallow'a benziyordu. Dolayısıyla editör desteği de o kadar iyi olmazdı ama APIStar eldeki en iyi seçenekti.
 
