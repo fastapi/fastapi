@@ -18,7 +18,11 @@ In this case, the original path `/app` would actually be served at `/api/v1/app`
 
 Even though all your code is written assuming there's just `/app`.
 
-And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to Uvicorn, keep your application convinced that it is serving at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
+```Python hl_lines="6"
+{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+```
+
+And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to Uvicorn, keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
 Up to here, everything would work as normally.
 
