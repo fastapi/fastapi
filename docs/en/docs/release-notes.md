@@ -48,6 +48,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Spanish translation for `docs/es/docs/features.md`. PR [#10884](https://github.com/tiangolo/fastapi/pull/10884) by [@pablocm83](https://github.com/pablocm83).
 * 🌐 Add Spanish translation for `docs/es/docs/newsletter.md`. PR [#10922](https://github.com/tiangolo/fastapi/pull/10922) by [@pablocm83](https://github.com/pablocm83).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/background-tasks.md`. PR [#5910](https://github.com/tiangolo/fastapi/pull/5910) by [@junah201](https://github.com/junah201).
 * :globe_with_meridians: Add Turkish translation for `docs/tr/docs/alternatives.md`. PR [#10502](https://github.com/tiangolo/fastapi/pull/10502) by [@alperiox](https://github.com/alperiox).
