@@ -1,16 +1,17 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import Cookie, Depends, FastAPI
 
 app = FastAPI()
 
 
-def query_extractor(q: Optional[str] = None):
+def query_extractor(q: Union[str, None] = None):
     return q
 
 
 def query_or_cookie_extractor(
-    q: str = Depends(query_extractor), last_query: Optional[str] = Cookie(None)
+    q: str = Depends(query_extractor),
+    last_query: Union[str, None] = Cookie(default=None),
 ):
     if not q:
         return last_query

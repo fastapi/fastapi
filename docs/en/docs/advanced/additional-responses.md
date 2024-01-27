@@ -23,12 +23,12 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-```Python hl_lines="18  23"
+```Python hl_lines="18  22"
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
 !!! note
-    Have in mind that you have to return the `JSONResponse` directly.
+    Keep in mind that you have to return the `JSONResponse` directly.
 
 !!! info
     The `model` key is not part of OpenAPI.
@@ -36,7 +36,7 @@ For example, to declare another response with a status code `404` and a Pydantic
     **FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
 
     The correct place is:
-    
+
     * In the key `content`, that has as value another JSON object (`dict`) that contains:
         * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
             * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.
@@ -236,5 +236,5 @@ For example:
 
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responsesObject" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.

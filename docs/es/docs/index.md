@@ -23,7 +23,7 @@
 **Código Fuente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.6+ basado en las anotaciones de tipos estándar de Python.
+FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.8+ basado en las anotaciones de tipos estándar de Python.
 
 Sus características principales son:
 
@@ -37,15 +37,18 @@ Sus características principales son:
 * **Robusto**: Crea código listo para producción con documentación automática interactiva.
 * **Basado en estándares**: Basado y totalmente compatible con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (conocido previamente como Swagger) y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno contruyendo aplicaciones listas para producción.</small>
+<small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno construyendo aplicaciones listas para producción.</small>
 
-## Gold Sponsors
+## Sponsors
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -103,7 +106,7 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.6+
+Python 3.8+
 
 FastAPI está sobre los hombros de gigantes:
 
@@ -127,7 +130,7 @@ También vas a necesitar un servidor ASGI para producción cómo <a href="https:
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -142,7 +145,7 @@ $ pip install uvicorn[standard]
 
 ```Python
 from fastapi import FastAPI
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -153,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -164,7 +167,7 @@ Si tu código usa `async` / `await`, usa `async def`:
 
 ```Python hl_lines="7  12"
 from fastapi import FastAPI
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -175,7 +178,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -256,7 +259,7 @@ Declara el body usando las declaraciones de tipo estándares de Python gracias a
 ```Python hl_lines="2  7-10  23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -264,7 +267,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -273,7 +276,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -292,11 +295,11 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Haz clíck en el botón de "Try it out" que te permite llenar los parámetros e interactuar directamente con la API:
+* Haz click en el botón de "Try it out" que te permite llenar los parámetros e interactuar directamente con la API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Luego haz clíck en el botón de "Execute". La interfaz de usuario se comunicará con tu API, enviará los parámetros y recibirá los resultados para mostrarlos en pantalla:
+* Luego haz click en el botón de "Execute". La interfaz de usuario se comunicará con tu API, enviará los parámetros y recibirá los resultados para mostrarlos en pantalla:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -314,9 +317,9 @@ En resumen, declaras los tipos de parámetros, body, etc. **una vez** como pará
 
 Lo haces con tipos modernos estándar de Python.
 
-No tienes que aprender una sintáxis nueva, los métodos o clases de una library específica, etc.
+No tienes que aprender una sintaxis nueva, los métodos o clases de una library específica, etc.
 
-Solo **Python 3.6+** estándar.
+Solo **Python 3.8+** estándar.
 
 Por ejemplo, para un `int`:
 
@@ -415,7 +418,7 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 * Muchas características extra (gracias a Starlette) como:
     * **WebSockets**
     * **GraphQL**
-    * pruebas extremadamente fáciles con `requests` y `pytest`
+    * pruebas extremadamente fáciles con HTTPX y `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...y mucho más.
@@ -430,13 +433,11 @@ Para entender más al respecto revisa la sección <a href="https://fastapi.tiang
 
 Usadas por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de JSON más rápido.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validación de emails.
 
 Usados por Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Requerido si quieres usar el `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Requerido si quieres usar `FileResponse` o `StaticFiles`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si quieres usar el `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si quieres usar la configuración por defecto de templates.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Requerido si quieres dar soporte a  <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de formularios, con `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requerido para dar soporte a `SessionMiddleware`.
