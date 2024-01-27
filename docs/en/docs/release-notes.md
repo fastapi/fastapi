@@ -22,6 +22,7 @@ hide:
 
 ### Docs
 
+* 📝 Tweak docs for Behind a Proxy. PR [#11038](https://github.com/tiangolo/fastapi/pull/11038) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add External Link: 10 Tips for adding SQLAlchemy to FastAPI. PR [#11036](https://github.com/tiangolo/fastapi/pull/11036) by [@Donnype](https://github.com/Donnype).
 * 📝 Add External Link: Tips on migrating from Flask to FastAPI and vice-versa. PR [#11029](https://github.com/tiangolo/fastapi/pull/11029) by [@jtemporal](https://github.com/jtemporal).
 * 📝 Deprecate old tutorials: Peewee, Couchbase, encode/databases. PR [#10979](https://github.com/tiangolo/fastapi/pull/10979) by [@tiangolo](https://github.com/tiangolo).
