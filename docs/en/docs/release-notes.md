@@ -49,6 +49,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/advanced/testing-events.md`. PR [#3818](https://github.com/tiangolo/fastapi/pull/3818) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/testing-websockets.md`. PR [#3817](https://github.com/tiangolo/fastapi/pull/3817) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/testing-database.md`. PR [#3821](https://github.com/tiangolo/fastapi/pull/3821) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/deta.md`. PR [#3837](https://github.com/tiangolo/fastapi/pull/3837) by [@jaystone776](https://github.com/jaystone776).
