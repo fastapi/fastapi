@@ -49,6 +49,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/security/get-current-user.md`. PR [#2681](https://github.com/tiangolo/fastapi/pull/2681) by [@sh0nk](https://github.com/sh0nk).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/advanced-dependencies.md`. PR [#3798](https://github.com/tiangolo/fastapi/pull/3798) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/events.md`. PR [#3815](https://github.com/tiangolo/fastapi/pull/3815) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/behind-a-proxy.md`. PR [#3820](https://github.com/tiangolo/fastapi/pull/3820) by [@jaystone776](https://github.com/jaystone776).
