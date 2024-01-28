@@ -254,7 +254,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
     ✋️ 🇨🇻 📁 🚫 🤙 ✔️ ✔️ 👈 ☑ 📁.
 
-Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
+Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
 
 !!! tip
     👉 👷, 👆 💪 `pip install python-dotenv`.
