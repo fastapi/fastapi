@@ -49,6 +49,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/history-design-future.md`. PR [#3832](https://github.com/tiangolo/fastapi/pull/3832) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/project-generation.md`. PR [#3831](https://github.com/tiangolo/fastapi/pull/3831) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/docker.md`. PR [#10296](https://github.com/tiangolo/fastapi/pull/10296) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Update Spanish translation for `docs/es/docs/features.md`. PR [#10884](https://github.com/tiangolo/fastapi/pull/10884) by [@pablocm83](https://github.com/pablocm83).
