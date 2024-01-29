@@ -21,9 +21,6 @@ gold:
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
 silver:
-  - url: https://www.deta.sh/?ref=fastapi
-    title: The launchpad for all your (team's) ideas
-    img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
   - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
     img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
