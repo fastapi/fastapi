@@ -1845,7 +1845,6 @@ class FastAPI(Starlette):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -2164,6 +2163,8 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2209,6 +2210,8 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs
         )
 
     def post(
