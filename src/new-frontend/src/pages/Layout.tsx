@@ -1,12 +1,13 @@
+import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 
 import { Flex } from '@chakra-ui/react';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
     return (
         <Flex maxW="large" h="auto" position="relative">
             <Sidebar />
-            {children}
+            <Outlet />
         </Flex>
     );
 };
