@@ -348,7 +348,8 @@ item: Item
 
 * Redaktor dəstəyi ilə:
     * Avtomatik tamamlama.
-    * Tip yoxlaması.nması:
+    * Tip yoxlanması.
+* Məlumatların Təsdiqlənməsi:
     * Məlumat etibarsız olduqda avtomatik olaraq aydın xətalar göstərir.
     * Hətta çox dərin JSON obyektlərində belə doğrulama aparır.
     Aşağıdakı məlumat növlərindən istifadə edərək daxil olan məlumatları çevirir:
