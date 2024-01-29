@@ -1,8 +1,8 @@
 # Requestbody
 
-Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu ihrer API senden, dann senden Sie diese als einen **Requestbody** (Deutsch: Anfragekörper).
+Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu Ihrer API senden, dann senden Sie diese als einen **Requestbody** (Deutsch: Anfragekörper).
 
-Ein **Request**body sind Daten, die vom Client zu ihrer API gesendet werden. Ein **Response**body (Deutsch: Antwortkörper) sind Daten, die Ihre API zum Client sendet.
+Ein **Request**body sind Daten, die vom Client zu Ihrer API gesendet werden. Ein **Response**body (Deutsch: Antwortkörper) sind Daten, die Ihre API zum Client sendet.
 
 Ihre API sendet fast immer einen **Response**body. Aber Clients senden nicht unbedingt immer **Request**bodys (sondern nur Metadaten).
 
@@ -114,7 +114,7 @@ Und werden auch verwendet in der API-Dokumentation innerhalb jeder *Pfadoperatio
 
 ## Editor Unterstützung
 
-In ihrem Editor, innerhalb Ihrer Funktion, erhalten Sie Typhinweise und Code-Vervollständigung überall (was nicht der Fall wäre, wenn Sie ein `dict` anstelle eines Pydantic Modells erhalten hätten):
+In Ihrem Editor, innerhalb Ihrer Funktion, erhalten Sie Typhinweise und Code-Vervollständigung überall (was nicht der Fall wäre, wenn Sie ein `dict` anstelle eines Pydantic Modells erhalten hätten):
 
 <img src="/img/tutorial/body/image03.png">
 
@@ -197,14 +197,14 @@ Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** 
     {!> ../../../docs_src/body/tutorial004.py!}
     ```
 
-die Funktionsparameter werden wie folgt erkannt:
+Die Funktionsparameter werden wie folgt erkannt:
 
 * Wenn der Parameter auch im **Pfad** deklariert wurde, wird er als Pfad-Parameter interpretiert.
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
 * Wenn der Parameter vom Typ eines **Pydantic-Modells** ist, wird er als Request**body** interpretiert.
 
 !!! note "Hinweis"
-    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `=None`
+    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
 
     Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
 
