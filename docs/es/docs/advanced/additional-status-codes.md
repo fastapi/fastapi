@@ -23,7 +23,7 @@ Para conseguir esto importa `JSONResponse` y devuelve ahí directamente tu conte
 
     No será serializado con el modelo, etc.
 
-    Asegurate de que la respuesta tenga los datos que quieras, y que los valores sean JSON válidos (si estás usando `JSONResponse`).
+    Asegúrate de que la respuesta tenga los datos que quieras, y que los valores sean JSON válidos (si estás usando `JSONResponse`).
 
 !!! note "Detalles Técnicos"
     También podrías utilizar `from starlette.responses import JSONResponse`.
