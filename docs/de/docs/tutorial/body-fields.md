@@ -106,7 +106,7 @@ Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarier
 Sie werden später mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
 !!! warning "Achtung"
-    Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
+    Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema Ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 
 ## Zusammenfassung
 
