@@ -4,7 +4,7 @@ Mit **FastAPI** können Sie (dank Pydantic) beliebig tief verschachtelte Modelle
 
 ## Listen als Felder
 
-Sie können ein Attribut als Sub-Typ definieren, zum Beispiel eine Python-`list`e.
+Sie können ein Attribut als Kindtyp definieren, zum Beispiel eine Python-`list`e.
 
 === "Python 3.10+"
 
