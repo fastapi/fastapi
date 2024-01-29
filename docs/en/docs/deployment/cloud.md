@@ -14,4 +14,3 @@ You might want to try their services and follow their guides:
 
 * <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
 * <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
-* <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a>
