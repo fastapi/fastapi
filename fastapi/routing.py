@@ -403,7 +403,6 @@ class APIRoute(routing.Route):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
@@ -432,6 +431,8 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -844,7 +845,6 @@ class APIRouter(routing.Router):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
@@ -873,6 +873,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -919,13 +921,14 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            *args,
+            **kwargs
         )
         self.routes.append(route)
 
     def api_route(
         self,
         path: str,
-        *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
@@ -951,6 +954,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -1333,7 +1338,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -1652,6 +1656,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
