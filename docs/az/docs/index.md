@@ -352,7 +352,6 @@ item: Item
 * Məlumatların Təsdiqlənməsi:
     * Məlumat etibarsız olduqda avtomatik olaraq aydın xətalar göstərir.
     * Hətta çox dərin JSON obyektlərində belə doğrulama aparır.
-    Aşağıdakı məlumat növlərindən istifadə edərək daxil olan məlumatları çevirir:
 * Daxil olan məlumatları <abbr title="Çevrilmə: serialization, parsing, marshalling olaraq da bilinir">çevirmək</abbr> üçün aşağıdakı məlumat növlərindən istifadə edilir:
     * JSON.
     * <abbr title="Yol: Path">Yol</abbr> parametrləri.
