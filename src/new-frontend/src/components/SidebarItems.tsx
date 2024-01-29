@@ -12,12 +12,16 @@ const items = [
     { icon: FiLogOut, title: 'Log out' }
 ];
 
-const SidebarItems: React.FC = () => {
+interface SidebarItemsProps {
+    onClose?: () => void;
+}
+
+const SidebarItems: React.FC<SidebarItemsProps> = ({ onClose }) => {
     const listItems = items.map((item) => (
         <Flex w="100%" p={2} key={item.title} _hover={{
             background: "gray.200",
             borderRadius: "12px",
-        }}>
+        }} onClick={onClose}>
             <Link to={item.path || "/"}>
                 <Flex color="teal.500" gap={4}>
                     <Icon as={item.icon} alignSelf="center" />

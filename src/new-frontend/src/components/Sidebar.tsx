@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
                         <Flex flexDir="column" justify="space-between" h="100%">
                             <Box>
                                 <Image src={Logo} alt="Logo" />
-                                <SidebarItems />
+                                <SidebarItems onClose={onClose} />
                             </Box>
                             <UserInfo />
                         </Flex>
