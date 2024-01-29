@@ -104,7 +104,7 @@ Es wird die Validierung dieser zusammengesetzten Daten übernehmen, und sie im O
 
 So wie `Query` und `Path` für Query- und Pfad-Parameter, hat **FastAPI** auch das Äquivalent `Body`, um Extra-Daten für Body-Parameter zu definieren.
 
-Zum Beispiel, das vorherige Modell erweiternd, könnten Sie entscheiden, dass Sie einen weiteren Schlüssel <abbr title="Wichtigkeit">`importance`</abbr> haben möchten, im selben Körper, Seite an Seite mit `item` und `user`.
+Zum Beispiel, das vorherige Modell erweiternd, könnten Sie entscheiden, dass Sie einen weiteren Schlüssel <abbr title="Wichtigkeit">`importance`</abbr> haben möchten, im selben Body, Seite an Seite mit `item` und `user`.
 
 Wenn Sie diesen Parameter einfach so hinzufügen, wird **FastAPI** annehmen, dass es ein Query-Parameter ist.
 
@@ -176,7 +176,7 @@ Da einfache Werte standardmäßig als Query-Parameter interpretiert werden, müs
 q: Union[str, None] = None
 ```
 
-Oder in Python 3.10 oder darüber:
+Oder in Python 3.10 und darüber:
 
 ```Python
 q: str | None = None
@@ -299,9 +299,9 @@ statt:
 
 ## Zusammenfassung
 
-Sie können mehrere Body-Parameter zu ihrer *Pfadoperation-Funktion* hinzufügen.
+Sie können mehrere Body-Parameter zu ihrer *Pfadoperation-Funktion* hinzufügen, obwohl ein Request nur einen einzigen Body enthalten kann.
 
-**FastAPI** wird sich darum kümmern, ihnen korrekte Daten in ihrer Funktion zu überreichen, und das korrekte Schema in der *Pfadoperation* validieren und dokumentieren.
+**FastAPI** wird sich darum kümmern, Ihnen korrekte Daten in Ihrer Funktion zu überreichen, und das korrekte Schema in der *Pfadoperation* zu validieren und zu dokumentieren.
 
 Sie können auch einzelne Werte deklarieren, die als Teil des Bodys empfangen werden.
 
