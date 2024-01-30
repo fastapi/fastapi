@@ -4,8 +4,12 @@ import pytest
 from fastapi import APIRouter, FastAPI
 
 
-@pytest.mark.parametrize('method_name', ["get", "put", "post", "delete", "options", "head", "patch", "trace"])
-@pytest.mark.parametrize('sig_param', inspect.signature(APIRouter.get).parameters.items())
+@pytest.mark.parametrize(
+    "method_name", ["get", "put", "post", "delete", "options", "head", "patch", "trace"]
+)
+@pytest.mark.parametrize(
+    "sig_param", inspect.signature(APIRouter.get).parameters.items()
+)
 def test_signatures_consistency(method_name, sig_param):
     router_method = getattr(APIRouter, method_name)
     app_method = getattr(FastAPI, method_name)

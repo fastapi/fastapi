@@ -1028,6 +1028,7 @@ class FastAPI(Starlette):
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
             if self.swagger_ui_oauth2_redirect_url:
+
                 async def swagger_ui_redirect(req: Request) -> HTMLResponse:
                     return get_swagger_ui_oauth2_redirect_html()
 
@@ -1037,6 +1038,7 @@ class FastAPI(Starlette):
                     include_in_schema=False,
                 )
         if self.openapi_url and self.redoc_url:
+
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
@@ -1828,7 +1830,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            **kwargs
+            **kwargs,
         )
 
     def put(
@@ -2162,7 +2164,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2209,7 +2211,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            **kwargs
+            **kwargs,
         )
 
     def post(
@@ -2543,7 +2545,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2924,7 +2926,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -3300,7 +3302,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3342,7 +3344,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            **kwargs
+            **kwargs,
         )
 
     def head(
@@ -3676,7 +3678,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3718,7 +3720,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            **kwargs
+            **kwargs,
         )
 
     def patch(
@@ -4052,7 +4054,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4099,7 +4101,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             # *args,
-            **kwargs
+            **kwargs,
         )
 
     def trace(
@@ -4475,7 +4477,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            **kwargs
+            **kwargs,
         )
 
     def websocket_route(

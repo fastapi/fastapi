@@ -796,7 +796,7 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -923,7 +923,7 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
-            **kwargs
+            **kwargs,
         )
         self.routes.append(route)
 
@@ -1300,7 +1300,7 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
-                    **kwargs
+                    **kwargs,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
@@ -2428,7 +2428,7 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
