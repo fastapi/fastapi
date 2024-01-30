@@ -10,7 +10,7 @@ from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 
 class OAuth2PasswordRequestForm:
