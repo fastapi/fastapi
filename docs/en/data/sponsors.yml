@@ -23,7 +23,7 @@ gold:
 silver:
   - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
-    img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
+    img: https://fastapi.tiangolo.com/img/sponsors/talkpython-v2.jpg
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
