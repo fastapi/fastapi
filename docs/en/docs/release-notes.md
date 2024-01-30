@@ -141,6 +141,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: TalkPython badge image. PR [#11048](https://github.com/tiangolo/fastapi/pull/11048) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, remove Deta. PR [#11041](https://github.com/tiangolo/fastapi/pull/11041) by [@tiangolo](https://github.com/tiangolo).
 * 💄 Fix CSS breaking RTL languages (erroneously introduced by a previous RTL PR). PR [#11039](https://github.com/tiangolo/fastapi/pull/11039) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add Italian to `mkdocs.yml`. PR [#11016](https://github.com/tiangolo/fastapi/pull/11016) by [@alejsdev](https://github.com/alejsdev).
