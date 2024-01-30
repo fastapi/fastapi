@@ -42,7 +42,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache
         with:
           path: ${{ env.pythonLocation }}
@@ -83,7 +83,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache
         with:
           path: ${{ env.pythonLocation }}
@@ -99,7 +99,7 @@ jobs:
           pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/mkdocstrings-python.git
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
           path: docs/${{ matrix.lang }}/.cache
