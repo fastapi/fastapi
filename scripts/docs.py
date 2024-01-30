@@ -146,14 +146,15 @@ index_sponsors_template = """
 
 
 def generate_readme_content() -> str:
-    en_index = en_docs_path / "docs" / "index.md"
-    content = en_index.read_text("utf-8")
+    en_index = en_docs_path / "index.md"
+    content = en_index.read_text(encoding="utf-8")
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
     sponsors_data_path = en_docs_path / "data" / "sponsors.yml"
     sponsors = mkdocs.utils.yaml_load(sponsors_data_path.read_text(encoding="utf-8"))
     if not (match_start and match_end):
+        
         raise RuntimeError("Couldn't auto-generate sponsors section")
     if not match_pre:
         raise RuntimeError("Couldn't find pre section (<style>) in index.md")
