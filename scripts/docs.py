@@ -146,8 +146,8 @@ index_sponsors_template = """
 
 
 def generate_readme_content() -> str:
-    en_index = en_docs_path / "index.md"
-    content = en_index.read_text(encoding="utf-8")
+    en_index = en_docs_path / "docs" / "index.md"
+    content = en_index.read_text("utf-8")
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
