@@ -1028,7 +1028,6 @@ class FastAPI(Starlette):
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
             if self.swagger_ui_oauth2_redirect_url:
-
                 async def swagger_ui_redirect(req: Request) -> HTMLResponse:
                     return get_swagger_ui_oauth2_redirect_html()
 
@@ -1038,7 +1037,6 @@ class FastAPI(Starlette):
                     include_in_schema=False,
                 )
         if self.openapi_url and self.redoc_url:
-
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
@@ -1469,6 +1467,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -1787,8 +1786,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -1807,6 +1805,7 @@ class FastAPI(Starlette):
         """
         return self.router.get(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -1829,7 +1828,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs
         )
 
@@ -1845,6 +1843,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -2163,7 +2162,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -2226,6 +2224,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -2544,7 +2543,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -2607,6 +2605,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -2925,7 +2924,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -2983,6 +2981,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -3301,7 +3300,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -3321,6 +3319,7 @@ class FastAPI(Starlette):
         """
         return self.router.options(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -3343,7 +3342,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs
         )
 
@@ -3359,6 +3357,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -3677,7 +3676,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -3697,6 +3695,7 @@ class FastAPI(Starlette):
         """
         return self.router.head(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -3719,7 +3718,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs
         )
 
@@ -4053,7 +4051,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
+        # *args,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
@@ -4100,7 +4098,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
+            # *args,
             **kwargs
         )
 
@@ -4116,6 +4114,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -4434,8 +4433,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        *args: Any,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4454,6 +4452,7 @@ class FastAPI(Starlette):
         """
         return self.router.trace(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -4476,7 +4475,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs
         )
 
