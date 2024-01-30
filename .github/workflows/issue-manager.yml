@@ -23,7 +23,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: tiangolo/issue-manager@0.4.0
+      - uses: tiangolo/issue-manager@0.5.0
         with:
           token: ${{ secrets.FASTAPI_ISSUE_MANAGER }}
           config: >
