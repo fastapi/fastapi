@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     # For pull requests it's not necessary to checkout the code but for master it is
-    - uses: dorny/paths-filter@v2
+    - uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: |
