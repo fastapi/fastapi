@@ -984,6 +984,8 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                *args,
+                **kwargs,
             )
             return func
 
@@ -1089,7 +1091,6 @@ class APIRouter(routing.Router):
     def include_router(
         self,
         router: Annotated["APIRouter", Doc("The `APIRouter` to include.")],
-        *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
@@ -1197,6 +1198,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
         """
         Include another `APIRouter` in the same current `APIRouter`.
@@ -1295,6 +1298,8 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
+                    *args,
+                    **kwargs
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
@@ -1702,6 +1707,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def put(
@@ -1716,7 +1723,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -2035,6 +2041,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2084,6 +2092,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def post(
@@ -2098,7 +2108,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -2417,6 +2426,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2466,6 +2477,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def delete(
@@ -2480,7 +2493,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -2799,6 +2811,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -2843,6 +2857,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def options(
@@ -2857,7 +2873,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -3176,6 +3191,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3220,6 +3237,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def head(
@@ -3234,7 +3253,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -3553,6 +3571,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3602,6 +3622,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def patch(
@@ -3616,7 +3638,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -3935,6 +3956,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -3984,6 +4007,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     def trace(
@@ -3998,7 +4023,6 @@ class APIRouter(routing.Router):
                 """
             ),
         ],
-        *,
         response_model: Annotated[
             Any,
             Doc(
@@ -4317,6 +4341,8 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        *args: Any,
+        **kwargs: Any,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4366,6 +4392,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            *args,
+            **kwargs,
         )
 
     @deprecated(
