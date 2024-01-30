@@ -1,10 +1,7 @@
 import inspect
 
 import pytest
-
 from fastapi import APIRouter, FastAPI
-
-method_names = ["get", "put", "post", "delete", "options", "head", "patch", "trace"]
 
 
 @pytest.mark.parametrize('method_name', ["get", "put", "post", "delete", "options", "head", "patch", "trace"])

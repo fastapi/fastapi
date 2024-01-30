@@ -2186,6 +2186,7 @@ class FastAPI(Starlette):
         """
         return self.router.put(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -2208,7 +2209,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs
         )
 
@@ -2567,6 +2567,7 @@ class FastAPI(Starlette):
         """
         return self.router.post(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -2589,7 +2590,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs,
         )
 
@@ -2943,6 +2943,7 @@ class FastAPI(Starlette):
         """
         return self.router.delete(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -2965,7 +2966,6 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs,
         )
 
@@ -3733,6 +3733,7 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+        *args: Any,
         response_model: Annotated[
             Any,
             Doc(
@@ -4051,7 +4052,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
-        # *args,
         **kwargs: Any
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """

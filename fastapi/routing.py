@@ -962,6 +962,7 @@ class APIRouter(routing.Router):
             self.add_api_route(
                 path,
                 func,
+                *args,
                 response_model=response_model,
                 status_code=status_code,
                 tags=tags,
@@ -985,7 +986,6 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
-                *args,
                 **kwargs,
             )
             return func
@@ -1273,6 +1273,7 @@ class APIRouter(routing.Router):
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
+                    *args,
                     response_model=route.response_model,
                     status_code=route.status_code,
                     tags=current_tags,
@@ -1299,7 +1300,6 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
-                    *args,
                     **kwargs
                 )
             elif isinstance(route, routing.Route):
@@ -1685,6 +1685,7 @@ class APIRouter(routing.Router):
         """
         return self.api_route(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -1708,7 +1709,6 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs,
         )
 
@@ -2070,6 +2070,7 @@ class APIRouter(routing.Router):
         """
         return self.api_route(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -2093,7 +2094,6 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs,
         )
 
@@ -2455,6 +2455,7 @@ class APIRouter(routing.Router):
         """
         return self.api_route(
             path,
+            *args,
             response_model=response_model,
             status_code=status_code,
             tags=tags,
@@ -2478,7 +2479,6 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
-            *args,
             **kwargs,
         )
 
