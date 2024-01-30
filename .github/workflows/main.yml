@@ -1,0 +1,19 @@
+name: GitHub Actions
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v3.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
