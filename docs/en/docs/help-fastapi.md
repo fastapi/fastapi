@@ -150,14 +150,6 @@ Again, please try your best to be kind. 🤗
 
 Here's what to keep in mind and how to review a pull request:
 
-### Marking a Comment as the Answer or Closing an Issue
-
-To mark a comment as the answer in GitHub Discussions or close an issue in GitHub Issues, follow these steps:
-
-### Marking a Comment as the Answer or Closing an Issue
-
-To mark a comment as the answer in GitHub Discussions or close an issue in GitHub Issues, follow these steps:
-
 ### Understand the problem
 
 * First, make sure you **understand the problem** that the pull request is trying to solve. It might have a longer discussion in a GitHub Discussion or issue.
