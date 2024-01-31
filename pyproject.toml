@@ -66,6 +66,39 @@ all = [
     "pydantic-settings >=2.0.0",
     "pydantic-extra-types >=2.0.0",
 ]
+httpx = [
+    "httpx >=0.23.0",
+]
+jinja = [
+    "jinja2 >=2.11.2",
+]
+python-multipart = [
+    "python-multipart >=0.0.5",
+]
+itsdangerous = [
+    "itsdangerous >=1.1.0",
+]
+pyyaml = [
+    "pyyaml >=5.3.1",
+]
+ujson = [
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+]
+orjson = [
+    "orjson >=3.2.1",
+]
+email_validator = [
+    "email_validator >=2.0.0",
+]
+uvicorn = [
+    "uvicorn[standard] >=0.12.0",
+]
+pydantic-settings = [
+    "pydantic-settings >=2.0.0",
+]
+pydantic-extra-types = [
+    "pydantic-extra-types >=2.0.0",
+]
 
 [tool.hatch.version]
 path = "fastapi/__init__.py"
