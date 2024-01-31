@@ -49,6 +49,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/middleware.md`. PR [#2829](https://github.com/tiangolo/fastapi/pull/2829) by [@JeongHyeongKim](https://github.com/JeongHyeongKim).
 * 🌐 Add German translation for `docs/de/docs/tutorial/body-nested-models.md`. PR [#10313](https://github.com/tiangolo/fastapi/pull/10313) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Persian translation for `docs/fa/docs/tutorial/middleware.md`. PR [#9695](https://github.com/tiangolo/fastapi/pull/9695) by [@mojtabapaso](https://github.com/mojtabapaso).
 * 🌐 Update Farsi translation for `docs/fa/docs/index.md`. PR [#10216](https://github.com/tiangolo/fastapi/pull/10216) by [@theonlykingpin](https://github.com/theonlykingpin).
