@@ -74,7 +74,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  13  21"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
@@ -101,13 +101,13 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17-18  25-26"
     {!> ../../../docs_src/dependencies/tutorial008_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         如果可能，请尽量使用“ Annotated”版本。
