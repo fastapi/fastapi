@@ -49,6 +49,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#10870](https://github.com/tiangolo/fastapi/pull/10870) by [@zhiquanchi](https://github.com/zhiquanchi).
 * 🌐 Add Chinese translation for `docs/zh/docs/deployment/concepts.md`. PR [#10282](https://github.com/tiangolo/fastapi/pull/10282) by [@xzmeng](https://github.com/xzmeng).
 * 🌐 Add Azerbaijani translation for `docs/az/docs/index.md`. PR [#11047](https://github.com/tiangolo/fastapi/pull/11047) by [@aykhans](https://github.com/aykhans).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/middleware.md`. PR [#2829](https://github.com/tiangolo/fastapi/pull/2829) by [@JeongHyeongKim](https://github.com/JeongHyeongKim).
