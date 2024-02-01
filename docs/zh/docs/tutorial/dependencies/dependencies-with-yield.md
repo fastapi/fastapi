@@ -23,7 +23,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 例如，您可以使用这种方式创建一个数据库会话，并在完成后关闭它。
 
-在发送响应之前，只会执行 "yield "语句及之前的代码：
+在发送响应之前，只会执行 `yield` 语句及之前的代码：
 
 ```Python hl_lines="2-4"
 {!../../../docs_src/dependencies/tutorial007.py!}
