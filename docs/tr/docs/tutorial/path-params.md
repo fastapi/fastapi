@@ -107,7 +107,7 @@ Bunlardan birkaçı, bu eğitimin ileriki bölümlerinde irdelenmiştir.
 
 Farz edelim ki `/users/me` yolu geçerli kullanıcı hakkında bilgi almak için kullanılıyor olsun.
 
-Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıcı hakkında veri almak için kullanıcı ID numarası kullanılan bir yolunuz da mevcut olabilir.  
+Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıcı hakkında veri almak için kullanıcı ID numarası kullanılan bir yolunuz da mevcut olabilir.
 
 *Yol operasyonları* sıralı bir şekilde gözden geçirildiğinden dolayı `/users/me` yolunun `/users/{user_id}` yolundan önce tanımlanmış olmasından emin olmanız gerekmektedir:
 
@@ -133,7 +133,7 @@ Eğer *yol parametresi* alan bir *yol operasyonun* varsa ve olağan ve geçerli 
 
 `Enum` sınıfını içeri aktarıp `str` ile `Enum` sınıflarını miras alan bir alt sınıf yaratalım.
 
-`str` sınıfı miras alındığından dolayı, API dokümanı, değerlerin `string` tipinden olması gerektiğini anlayabilecek ve doğru bir şekilde işlenecektir. 
+`str` sınıfı miras alındığından dolayı, API dokümanı, değerlerin `string` tipinden olması gerektiğini anlayabilecek ve doğru bir şekilde işlenecektir.
 
 Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit değerli öznitelikleri oluşturalım:
 
@@ -221,7 +221,7 @@ Parametrenin bir yol içermesi gerektiğini belirten herhangi bir doküman eklem
 
 ### Yol dönüştürücü
 
-Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gibi bir URL'yi kullanarak *yol* içeren bir *yol parametresi* tanımlayabilirsin: 
+Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gibi bir URL'yi kullanarak *yol* içeren bir *yol parametresi* tanımlayabilirsin:
 
 ```
 /files/{file_path:path}
