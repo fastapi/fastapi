@@ -20,7 +20,9 @@ In VS Code, you can now debug this application like this:
 
 * There, click on the link "create a launch.json file".
 
-* In the dropdown that now appears, select "FastAPI".
+* From the dropdown menu, select "Python Debugger".
+  
+* Next, choose "FastAPI" from the options.
 
 * In the subsequent dropdown, enter the name of your application file, here `myapp.py` (This is only necessary because VS Code did not find a `main.py` file).
 
@@ -53,7 +55,7 @@ In VS Code, you can now debug this application like this:
 
 * The debug configuration you just created will now also appear in the debug panel at the top as "Python: FastAPI".
 
-* Click on the green triangle next to your "Python: FastAPI" configuration, or press the `F5` key.
+* Click on the green triangle next to your "Python Debugger: FastAPI" configuration, or press the `F5` key.
 
 * Debugging begins. A box appears at the top with buttons, for example to continue debugging after a breakpoint or to end debugging.
 
