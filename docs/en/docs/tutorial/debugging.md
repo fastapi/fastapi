@@ -21,7 +21,7 @@ In VS Code, you can now debug this application like this:
 * There, click on the link "create a launch.json file".
 
 * From the dropdown menu, select "Python Debugger".
-  
+
 * Next, choose "FastAPI" from the options.
 
 * In the subsequent dropdown, enter the name of your application file, here `myapp.py` (This is only necessary because VS Code did not find a `main.py` file).
