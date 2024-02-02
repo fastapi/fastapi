@@ -9,7 +9,7 @@ FastAPI, her kökenden insanı ağırlayan harika bir topluluğa sahip.
 
 ## Yazan - Geliştiren
 
-Hey! 👋
+Merhaba! 👋
 
 İşte bu benim:
 
@@ -23,8 +23,7 @@ Hey! 👋
 </div>
 {% endif %}
 
-Ben **FastAPI**'ı oluşturan geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
- [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+Ben **FastAPI**'ı oluşturan geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz: [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...burada size harika FastAPI topluluğunu göstermek istiyorum.
 
