@@ -165,7 +165,7 @@ Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak 
 
 *Yol parametresinin* değeri bir *enumeration üyesi* olacaktır.
 
-#### *Enumeration Üyelerini* Karşılaştır
+#### *Enumeration Üyelerini* Karşılaştıralım
 
 Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration üyesi* ile karşılaştırabilirsiniz:
 
