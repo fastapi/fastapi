@@ -53,7 +53,7 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     }:
         return True
     current_status_code = int(status_code)
-    return not (current_status_code < 200 or current_status_code in {204, 304})
+    return not (current_status_code < 200 or current_status_code in {204, 205, 304})
 
 
 def get_path_param_names(path: str) -> Set[str]:
