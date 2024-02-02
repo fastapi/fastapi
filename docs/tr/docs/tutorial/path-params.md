@@ -16,7 +16,7 @@ Eğer bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" clas
 
 ## Tip İçeren Yol Parametreleri
 
-Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiyonda tanımlayabilirsiniz.
+Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiyonun içerisinde tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
