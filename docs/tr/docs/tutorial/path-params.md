@@ -29,7 +29,7 @@ Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
 ## Veri <abbr title="Dönüşüm: serialization, parsing ve marshalling olarak da biliniyor">Dönüşümü</abbr>
 
-Eğer bu örneği çalıştırıp ve tarayıcınızda <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> sayfasını açarsanız, şöyle bir yanıt ile karşılaşırsınız:
+Eğer bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> sayfasını açarsanız, şöyle bir yanıt ile karşılaşırsınız:
 
 ```JSON
 {"item_id":3}
@@ -38,11 +38,11 @@ Eğer bu örneği çalıştırıp ve tarayıcınızda <a href="http://127.0.0.1:
 !!! check "Ek bilgi"
     Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
 
-    Böylece, bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+    Bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
 
 ## Veri Doğrulama
 
-Fakat, eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> adresine giderseniz, şuna benzer güzel bir HTTP hatası ile karşılaşırsınız:
+Eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> sayfasını açarsanız, şuna benzer güzel bir HTTP hatası ile karşılaşırsınız:
 
 ```JSON
 {
@@ -61,12 +61,12 @@ Fakat, eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="e
 }
 ```
 
-çünkü yol parametresi olan `item_id` değişkeni, veri tipi `int` olmayan `"foo"` gibi bir değere sahipti.
+Çünkü burada `item_id` yol parametresi `int` tipinde bir değer beklerken `"foo"` yani `string` tipinde bir değer almıştı.
 
-Aynı hata `int` yerine `float` bir değer verseydik de ortaya çıkardı, şuradaki gibi: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+Aynı hata <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> sayfasında olduğu gibi `int` yerine `float` bir değer verseydik de ortaya çıkardı.
 
 !!! check "Ek bilgi"
-    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** size veri doğrulaması özelliği sağlar.
+    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
 
     Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
 
@@ -85,19 +85,19 @@ Ayrıca, tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-l
 
 ## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon
 
-Ve türetilmiş olan şema <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standartına uygun olduğu için birçok uyumlu araç bulunmaktadır.
+Oluşturulan şema <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standardına uygun olduğu için birçok uyumlu araç mevcuttur.
 
-Bu sayede, **FastAPI**'ın bizzat kendisi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> linkinden erişebileceğiniz alternatif (Redoc kullanan) bir API dokümantasyonu sağlar:
+Bu sayede, **FastAPI**'ın bizzat kendisi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> sayfasından erişebileceğiniz alternatif (ReDoc kullanan) bir API dokümantasyonu sağlar:
 
 <img src="/img/tutorial/path-params/image02.png">
 
-Aynı şekilde, farklı diller için kod türetme araçları içeren çok sayıda uyumlu araç bulunur.
+Aynı şekilde, farklı diller için kod türetme araçları da dahil olmak üzere çok sayıda uyumlu araç bulunur.
 
 ## Pydantic
 
 Tüm veri doğrulamaları <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> tarafından arka planda gerçekleştirilir, bu sayede tüm avantajlardan faydalanabilirsiniz. Böylece, emin ellerde olduğunuzu hissedebilirsiniz.
 
-Aynı tip tanımlamalarını `str`, `float`, `bool` ile ve diğer kompleks veri tipleri ile de kullanma imkanınız vardır.
+Aynı tip tanımlamalarını `str`, `float`, `bool` ve diğer karmaşık veri tipleri ile kullanma imkanınız vardır.
 
 Bunlardan birkaçı, bu eğitimin ileriki bölümlerinde irdelenmiştir.
 
@@ -107,7 +107,7 @@ Bunlardan birkaçı, bu eğitimin ileriki bölümlerinde irdelenmiştir.
 
 Farz edelim ki `/users/me` yolu geçerli kullanıcı hakkında bilgi almak için kullanılıyor olsun.
 
-Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıcı hakkında veri almak için kullanıcı ID numarası kullanılan bir yolunuz da mevcut olabilir.
+Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıcı hakkında veri almak için kullanıcının ID bilgisini kullanan bir yolunuz da mevcut olabilir.
 
 *Yol operasyonları* sıralı bir şekilde gözden geçirildiğinden dolayı `/users/me` yolunun `/users/{user_id}` yolundan önce tanımlanmış olmasından emin olmanız gerekmektedir:
 
@@ -115,7 +115,7 @@ Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıc�
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Aksi halde, `/users/{user_id}` yolu `"me"` değerini alan `user_id` adlı bir parametresi olduğunu "düşünerek" `/users/me` isimli yol ile eşleşir.
+Aksi halde, `/users/{user_id}` yolu `"me"` değerini alan `user_id` adlı bir parametresi olduğunu "düşünerek" `/users/me` isimli yol ile de eşleşir.
 
 Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 
@@ -123,13 +123,13 @@ Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 {!../../../docs_src/path_params/tutorial003b.py!}
 ```
 
-Yol ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu kullanılacaktır.
+Yol, ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu kullanılacaktır.
 
 ## Ön Tanımlı Değerler
 
 Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve olağan ve geçerli *yol parametresi* değerlerinin ön tanımlı olmasını istiyorsanız, standart Python <abbr title="Enumeration">`Enum`</abbr> kullanabilirsiniz.
 
-### Bir `Enum` Sınıfı Yarat
+### Bir `Enum` Sınıfı Oluşturalım
 
 `Enum` sınıfını içeri aktarıp `str` ile `Enum` sınıflarını miras alan bir alt sınıf yaratalım.
 
@@ -147,7 +147,7 @@ Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit
 !!! tip "İpucu"
     Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
 
-### Bir *Yol Parametresi* Tanımla
+### Bir *Yol Parametresi* Tanımlayalım
 
 Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
 
@@ -155,7 +155,7 @@ Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak 
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-### Dokümana Göz At
+### Dokümana Göz Atalım
 
 *Yol parametresi* için mevcut değerler ön tanımlı olduğundan dolayı, interaktif döküman onları güzel bir şekilde gösterebilir:
 
@@ -173,7 +173,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### *Enumeration Değerini* Elde Et
+#### *Enumeration Değerini* Elde Edelim
 
 `model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
@@ -184,7 +184,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 !!! tip "İpucu"
     `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
 
-#### *Enumeration Üyelerini* Döndür
+#### *Enumeration Üyelerini* Döndürelim
 
 JSON gövdesine (örneğin bir `dict`) gömülü olsalar bile *yol operasyonundaki* *enum üyelerini* döndürebilirsiniz.
 
