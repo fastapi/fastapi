@@ -1,22 +1,22 @@
 # Yol Parametreleri
 
-Yol "parametrelerini" veya "değişkenlerini" Python string biçimlemede kullanılan aynı söz dizimi ile tanımlayabilirsin.
+Yol "parametrelerini" veya "değişkenlerini" Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimi ile tanımlayabilirsiniz.
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-Yol parametresi olan `item_id`'nin değeri, fonksiyonuna `item_id` argümanı olarak geçirilecektir.
+Yol parametresi olan `item_id`'nin değeri, fonksiyonunuza `item_id` argümanı olarak aktarılacaktır.
 
-Demek oluyor ki, eğer bu örneği çalıştırırsan ve <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> sayfasına gidersen, şöyle bir yanıt ile karşılaşacaksın:
+Eğer bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> sayfasına giderseniz, şöyle bir çıktı ile karşılaşırsınız:
 
 ```JSON
 {"item_id":"foo"}
 ```
 
-## Tip içeren yol parametreleri
+## Tip İçeren Yol Parametreleri
 
-Standart Python tip anotasyonları kullanarak yol parametresinin tipini fonksiyonda tanımlayabilirsin.
+Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiyonda tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -24,25 +24,25 @@ Standart Python tip anotasyonları kullanarak yol parametresinin tipini fonksiyo
 
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
-!!! check
-    Bu özellik, fonksiyonunun içinde sana hata denetimi, kod tamamlama ve benzeri gibi özelliklerle birlikte editör desteği kazandıracaktır.
+!!! check "Ek bilgi"
+    Bu sayede fonksiyonun içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
 
-## Veri <abbr title="ayrıca şöyle bilinir: serileştirme, ayrıştırma, hizalama">dönüşümü</abbr>
+## Veri <abbr title="Dönüşüm: serialization, parsing ve marshalling olarak da biliniyor">Dönüşümü</abbr>
 
-Eğer bu örneği çalıştırırsan ve tarayıcında <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> linkini açarsan, şöyle bir yanıt ile karşılaşacaksın:
+Eğer bu örneği çalıştırıp ve tarayıcınızda <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> sayfasını açarsanız, şöyle bir yanıt ile karşılaşırsınız:
 
 ```JSON
 {"item_id":3}
 ```
 
-!!! check
-    Dikkatini çekerim ki, fonksiyonunun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
+!!! check "Ek bilgi"
+    Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
 
-    Böylece, bu tanımlamayla birlikte, **FastAPI** sana otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+    Böylece, bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
 
-## Veri doğrulama
+## Veri Doğrulama
 
-Fakat, eğer tarayıcında <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> adresine gidersen, şuna benzer güzel bir HTTP hatası ile karşılaşacaksın:
+Fakat, eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> adresine giderseniz, şuna benzer güzel bir HTTP hatası ile karşılaşırsınız:
 
 ```JSON
 {
@@ -65,29 +65,29 @@ Fakat, eğer tarayıcında <a href="http://127.0.0.1:8000/items/foo" class="exte
 
 Aynı hata `int` yerine `float` bir değer verseydik de ortaya çıkardı, şuradaki gibi: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
-    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** sana veri doğrulaması özelliği sağlar.
+!!! check "Ek bilgi"
+    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** size veri doğrulaması özelliği sağlar.
 
-    Dikkatini çekerim ki, karşılaştığın hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
+    Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
 
-    Bu özellik, API'ınla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
+    Bu özellik, API'ınızla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
 
 ## Dokümantasyon
 
-Ayrıca, tarayıcını <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresinde açarsan, aşağıdaki gibi otomatik ve interaktif bir API dökümantasyonu ile karşılaşacaksın:
+Ayrıca, tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresinde açarsanız, aşağıdaki gibi otomatik ve interaktif bir API dökümantasyonu ile karşılaşırsınız:
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
-    Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** sana otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
+!!! check "Ek bilgi"
+    Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
 
-    Dikkatini çekerim ki, yol parametresi integer olarak tanımlanmıştır.
+    Dikkatinizi çekerim ki, yol parametresi integer olarak tanımlanmıştır.
 
-## Standartlara dayalı avantajlar, alternatif dokümantasyon
+## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon
 
 Ve türetilmiş olan şema <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standartına uygun olduğu için birçok uyumlu araç bulunmaktadır.
 
-Bu sayede, **FastAPI**'ın kendisi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> linkinden erişebileceğiniz alternatif (Redoc kullanan) bir API dokümantasyonu sağlar:
+Bu sayede, **FastAPI**'ın bizzat kendisi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> linkinden erişebileceğiniz alternatif (Redoc kullanan) bir API dokümantasyonu sağlar:
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -95,15 +95,15 @@ Aynı şekilde, farklı diller için kod türetme araçları içeren çok sayıd
 
 ## Pydantic
 
-Tüm veri doğrulamaları <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> tarafından arka planda gerçekleştirilir, bu sayede tüm avantajlardan faydalanabilirsin. Böylece, emin ellerde olduğunu hissedebilirsin.
+Tüm veri doğrulamaları <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> tarafından arka planda gerçekleştirilir, bu sayede tüm avantajlardan faydalanabilirsiniz. Böylece, emin ellerde olduğunuzu hissedebilirsiniz.
 
-Aynı tip tanımlamalarını `str`, `float`, `bool` ile ve diğer kompleks veri tipleri ile de kullanabilirsin.
+Aynı tip tanımlamalarını `str`, `float`, `bool` ile ve diğer kompleks veri tipleri ile de kullanma imkanınız vardır.
 
 Bunlardan birkaçı, bu eğitimin ileriki bölümlerinde irdelenmiştir.
 
-## Sıralama önem arz eder
+## Sıralama Önem Arz Eder
 
-*Yol operasyonları* tasarlarken sabit yol barındıran durumlar ile karşılaşabilirsin.
+*Yol operasyonları* tasarlarken sabit yol barındıran durumlar ile karşılaşabilirsiniz.
 
 Farz edelim ki `/users/me` yolu geçerli kullanıcı hakkında bilgi almak için kullanılıyor olsun.
 
@@ -125,11 +125,11 @@ Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 
 Yol ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu kullanılacaktır.
 
-## Ön tanımlı değerler
+## Ön Tanımlı Değerler
 
-Eğer *yol parametresi* alan bir *yol operasyonun* varsa ve olağan ve geçerli *yol parametresi* değerlerinin ön tanımlı olmasını istiyorsan, standart Python <abbr title="Enumeration">`Enum`</abbr> kullanabilirsin.
+Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve olağan ve geçerli *yol parametresi* değerlerinin ön tanımlı olmasını istiyorsanız, standart Python <abbr title="Enumeration">`Enum`</abbr> kullanabilirsiniz.
 
-### Bir `Enum` sınıfı yarat
+### Bir `Enum` Sınıfı Yarat
 
 `Enum` sınıfını içeri aktarıp `str` ile `Enum` sınıflarını miras alan bir alt sınıf yaratalım.
 
@@ -141,52 +141,52 @@ Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
+!!! info "Bilgi"
     3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
 
-!!! tip
+!!! tip "İpucu"
     Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
 
-### Bir *yol parametresi* tanımla
+### Bir *Yol Parametresi* Tanımla
 
-Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak tip anotasyonu aracılığıyla bir *yol parametresi* oluşturalım:
+Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-### Dokümana göz at
+### Dokümana Göz At
 
 *Yol parametresi* için mevcut değerler ön tanımlı olduğundan dolayı, interaktif döküman onları güzel bir şekilde gösterebilir:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Python *enumerationları* ile çalışmak
+### Python *Enumerationları* ile Çalışmak
 
 *Yol parametresinin* değeri bir *enumeration üyesi* olacaktır.
 
-#### *Enumeration üyelerini* karşılaştır
+#### *Enumeration Üyelerini* Karşılaştır
 
-Parametreyi, yarattığın enum olan `ModelName` içerisindeki *enumeration üyesi* ile karşılaştırabilirsin:
+Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration üyesi* ile karşılaştırabilirsiniz:
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### *Enumeration değerini* elde et
+#### *Enumeration Değerini* Elde Et
 
-`model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsin:
+`model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
 ```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip
-    `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsin.
+!!! tip "İpucu"
+    `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
 
-#### *Enumeration üyelerini* döndür
+#### *Enumeration Üyelerini* Döndür
 
-JSON gövdesine (örneğin bir `dict`) gömülü olsalar bile *yol operasyonundaki* *enum üyelerini* döndürebilirsin.
+JSON gövdesine (örneğin bir `dict`) gömülü olsalar bile *yol operasyonundaki* *enum üyelerini* döndürebilirsiniz.
 
 Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerine (bu durumda string) dönüştürüleceklerdir:
 
@@ -194,7 +194,7 @@ Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerin
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-İstemci tarafında şuna benzer bir JSON yanıtı göreceksin:
+İstemci tarafında şuna benzer bir JSON yanıtı ile karşılaşırsınız:
 
 ```JSON
 {
@@ -203,25 +203,25 @@ Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerin
 }
 ```
 
-## Yol içeren yol parametreleri
+## Yol İçeren Yol Parametreleri
 
-Farz edelim ki elinde `/files/{file_path}` isminde bir *path operasyonu* var.
+Farz edelim ki elinizde `/files/{file_path}` isminde bir *path operasyonu* var.
 
-Fakat `file_path` değerinin `home/johndoe/myfile.txt` gibi bir *yol* barındırmasını istiyorsun.
+Fakat `file_path` değerinin `home/johndoe/myfile.txt` gibi bir *yol* barındırmasını istiyorsunuz.
 
 Sonuç olarak, oluşturmak istediğin URL `/files/home/johndoe/myfile.txt` gibi bir şey olacaktır.
 
-### OpenAPI desteği
+### OpenAPI Desteği
 
 Test etmesi ve tanımlaması zor senaryolara sebebiyet vereceğinden dolayı OpenAPI, *yol* barındıran *yol parametrelerini* tanımlayacak bir çözüm sunmuyor.
 
-Buna rağmen, bu durumu, Starlette kütüphanesinin dahili araçlarından birini kullanan **FastAPI**'da gerçekleştirebilirsin.
+Buna rağmen, bu durumu, Starlette kütüphanesinin dahili araçlarından birini kullanan **FastAPI**'da gerçekleştirebilirsiniz.
 
 Parametrenin bir yol içermesi gerektiğini belirten herhangi bir doküman eklemememize rağmen dokümanlar yine de çalışacaktır.
 
-### Yol dönüştürücü
+### Yol Dönüştürücü
 
-Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gibi bir URL'yi kullanarak *yol* içeren bir *yol parametresi* tanımlayabilirsin:
+Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gibi bir URL'yi kullanarak *yol* içeren bir *yol parametresi* tanımlayabilirsiniz:
 
 ```
 /files/{file_path:path}
@@ -229,26 +229,26 @@ Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gib
 
 Bu durumda, parametrenin adı `file_path` olacaktır ve son kısım olan `:path` kısmı, parametrenin herhangi bir *yol* ile eşleşmesi gerektiğini belirtecektir.
 
-Böylece şunun gibi bir kullanım yapabilirsin:
+Böylece şunun gibi bir kullanım yapabilirsiniz:
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip
-    Parametrenin `/home/johndoe/myfile.txt` yolunu, baştaki (`/`) işareti ile birlikte kullanman gerektiği durumlar olabilir.
+!!! tip "İpucu"
+    Parametrenin `/home/johndoe/myfile.txt` yolunu, baştaki (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
 
-    Bu durumda, URL `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
+    Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
 
 ## Özet
 
-**FastAPI** ile kısa, sezgisel ve standart Python tip tanımlamaları kullanarak şunları elde edersin:
+**FastAPI** ile kısa, sezgisel ve standart Python tip tanımlamaları kullanarak şunları elde edersiniz:
 
 * Editör desteği: hata denetimi, otomatik tamamlama, vb.
 * Veri "<abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">ayrıştırma</abbr>"
 * Veri doğrulama
 * API anotasyonları ve otomatik dokümantasyon
 
-Ve sadece, bunları bir kez tanımlaman yeterli.
+Ve sadece, bunları bir kez tanımlamanız yeterli.
 
 Diğer frameworkler ile karşılaştırıldığında (ham performans dışında), üstte anlatılan durum muhtemelen **FastAPI**'ın göze çarpan başlıca avantajıdır.
