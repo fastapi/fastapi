@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.109.1
+
 ### Security fixes
 
 * ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDos attack. You can also simply upgrade `python-multipart`.
