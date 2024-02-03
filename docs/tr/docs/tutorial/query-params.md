@@ -19,7 +19,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 * `skip`: değeri `0`'dır
 * `limit`: değeri `10`'dır
 
-Parametreler URL'nin bir parçası oldukları için doğal olarak string olarak değerlendirirler.
+Parametreler URL'nin bir parçası oldukları için doğal olarak string olarak değerlendirilirler.
 
 Fakat, Python tipleri ile tanımlandıkları zaman (yukarıdaki örnekte `int` oldukları gibi), parametreler o tiplere dönüştürülür ve o tipler çerçevesinde doğrulanırlar.
 
@@ -34,7 +34,7 @@ Yol parametreleri için geçerli olan her türlü işlem aynı şekilde sorgu pa
 
 Sorgu parametreleri, adres yolunun sabit bir parçası olmadıklarından dolayı opsiyoneldirler ve varsayılan değere sahip olabilirler.
 
-Yukarıdaki örnekte `skip=0` ve `limit=10` gibi varsayılan değere sahipler.
+Yukarıdaki örnekte `skip=0` ve `limit=10` varsayılan değere sahiplerdir.
 
 Yani, aşağıdaki URL'ye gitmek:
 
@@ -56,8 +56,8 @@ http://127.0.0.1:8000/items/?skip=20
 
 Fonksiyonunuzdaki parametre değerleri aşağıdaki gibi olacaktır:
 
-* `skip=20`: çünkü URL'de böyle tanımlandı
-* `limit=10`: çünkü varsayılan değer buydu
+* `skip=20`: çünkü URL'de böyle tanımlandı.
+* `limit=10`: çünkü varsayılan değer buydu.
 
 ## Opsiyonel Parametreler
 
@@ -126,7 +126,7 @@ veya
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-veya adres, herhangi farklı bir harf varyasyonu içermesi durumuna rağmen (büyük harf, sadece baş harfi büyük kelime, vb.) fonksiyonunuz, `bool` tipli `short` parametresini `True` olarak algılayacaktır. Aksi halde `False` olarak algılanır.
+veya adres, herhangi farklı bir harf varyasyonu içermesi durumuna rağmen (büyük harf, sadece baş harfi büyük kelime, vb.) fonksiyonunuz, `bool` tipli `short` parametresini `True` olarak algılayacaktır. Aksi halde `False` olarak algılanacaktır.
 
 
 ## Çoklu Yol ve Sorgu Parametreleri
