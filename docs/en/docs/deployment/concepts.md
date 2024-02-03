@@ -258,7 +258,7 @@ And you will have to make sure that it's a single process running those previous
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
 !!! tip
-    Also, have in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+    Also, keep in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
 
     In that case, you wouldn't have to worry about any of this. 🤷
 
@@ -297,7 +297,7 @@ You can use simple tools like `htop` to see the CPU and RAM used in your server 
 
 ## Recap
 
-You have been reading here some of the main concepts that you would probably need to have in mind when deciding how to deploy your application:
+You have been reading here some of the main concepts that you would probably need to keep in mind when deciding how to deploy your application:
 
 * Security - HTTPS
 * Running on startup
