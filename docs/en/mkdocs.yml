@@ -267,6 +267,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az - azərbaycan dili
   - link: /bn/
     name: bn - বাংলা
   - link: /de/
@@ -283,6 +285,8 @@ extra:
     name: hu - magyar
   - link: /id/
     name: id - Bahasa Indonesia
+  - link: /it/
+    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
