@@ -25,7 +25,7 @@ Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiy
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
 !!! check "Ek bilgi"
-    Bu sayede fonksiyonun içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
+    Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
 
 ## Veri <abbr title="Dönüşüm: serialization, parsing ve marshalling olarak da biliniyor">Dönüşümü</abbr>
 
@@ -173,7 +173,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### *Enumeration Değerini* Alalım
+#### *Enumeration Değerini* Edinelim
 
 `model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
