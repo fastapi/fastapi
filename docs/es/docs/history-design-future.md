@@ -4,7 +4,7 @@ Hace algún tiempo, <a href="https://github.com/tiangolo/fastapi/issues/3#issuec
 
 > ¿Cuál es la historia de este proyecto? Parece haber llegado de la nada a ser asombroso en unas pocas semanas [...]
 
-Aquí explico.
+Aquí te explico.
 
 ## Alternativas
 
