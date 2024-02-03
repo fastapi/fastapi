@@ -50,7 +50,7 @@ Insbesondere:
     * Berichten Sie mir, wie Sie FastAPI verwenden (das höre ich gerne).
     * Bekommen Sie mit, wenn ich Ankündigungen mache oder neue Tools veröffentliche.
     * Sie können auch <a href="https://twitter.com/fastapi" class="external-link" target="_blank">@fastapi auf Twitter folgen</a> (ein separates Konto).
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Verbinden Sie sich mit mir auf **LinkedIn**</a>.
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Folgen Sie mir auf **LinkedIn**</a>.
     * Bekommen Sie mit, wenn ich Ankündigungen mache oder neue Tools veröffentliche (obwohl ich Twitter häufiger verwende 🤷‍♂).
 * Lesen Sie, was ich schreibe (oder folgen Sie mir) auf <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> oder <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Lesen Sie andere Ideen, Artikel, und erfahren Sie mehr über die von mir erstellten Tools.
