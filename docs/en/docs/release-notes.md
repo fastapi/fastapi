@@ -13,6 +13,8 @@ hide:
 
 * ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDos attack. You can also simply upgrade `python-multipart`.
 
+Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiangolo/fastapi/security/advisories/GHSA-qf9m-vfgh-m389).
+
 ### Features
 
 * ✨  Include HTTP 205 in status codes with no body. PR [#10969](https://github.com/tiangolo/fastapi/pull/10969) by [@tiangolo](https://github.com/tiangolo).
