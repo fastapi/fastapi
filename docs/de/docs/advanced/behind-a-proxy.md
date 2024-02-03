@@ -18,7 +18,11 @@ In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1
 
 Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app` gibt.
 
-Und der Proxy würde das **Pfadpräfix** on-the-fly **"entfernen**", bevor er die Anfrage an Uvicorn übermittelt, Er sorgt dafür, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
+```Python hl_lines="6"
+{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+```
+
+Und der Proxy würde das **Pfadpräfix** on-the-fly **"entfernen**", bevor er die Anfrage an Uvicorn übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
 
 Bis hierher würde alles wie gewohnt funktionieren.
 
