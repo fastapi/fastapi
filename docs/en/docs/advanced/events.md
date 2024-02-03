@@ -92,7 +92,7 @@ The `lifespan` parameter of the `FastAPI` app takes an **async context manager**
 ## Alternative Events (deprecated)
 
 !!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above.
+    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
 
     You can probably skip this part.
 
@@ -159,4 +159,4 @@ Underneath, in the ASGI technical specification, this is part of the <a href="ht
 
 ## Sub Applications
 
-🚨 Have in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.

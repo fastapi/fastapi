@@ -192,13 +192,13 @@ $ openssl rand -hex 32
 
 === "🐍 3️⃣.6️⃣ &amp; 🔛"
 
-    ```Python hl_lines="115-128"
+    ```Python hl_lines="115-130"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
 === "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
-    ```Python hl_lines="114-127"
+    ```Python hl_lines="114-129"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
