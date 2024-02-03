@@ -1,4 +1,4 @@
-# Async SQL (Relational) Databases with Encode/Databases
+# ~~Async SQL (Relational) Databases with Encode/Databases~~ (deprecated)
 
 !!! info
     These docs are about to be updated. 🎉
@@ -6,6 +6,9 @@
     The current version assumes Pydantic v1.
 
     The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> once it is updated to use Pydantic v2 as well.
+
+!!! warning "Deprecated"
+    This tutorial is deprecated and will be removed in a future version.
 
 You can also use <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases`</a> with **FastAPI** to connect to databases using `async` and `await`.
 

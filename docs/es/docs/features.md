@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Características
 
 ## Características de FastAPI
@@ -164,7 +169,6 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 
 * Desempeño realmente impresionante. Es uno <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank"> de los frameworks de Python más rápidos, a la par con **NodeJS** y **Go**</a>.
 * Soporte para **WebSocket**.
-* Soporte para **GraphQL**.
 * <abbr title="En español: tareas que se ejecutan en el fondo, sin frenar requests, en el mismo proceso. En ingles: In-process background tasks">Tareas en background</abbr>.
 * Eventos de startup y shutdown.
 * Cliente de pruebas construido con HTTPX.
@@ -190,8 +194,6 @@ Con **FastAPI** obtienes todas las características de **Pydantic** (dado que Fa
     * Si sabes tipos de Python, sabes cómo usar Pydantic.
 * Interactúa bien con tu **<abbr title="en inglés: Integrated Development Environment, similar a editor de código">IDE</abbr>/<abbr title="Un programa que chequea errores en el código">linter</abbr>/cerebro**:
     * Porque las estructuras de datos de Pydantic son solo <abbr title='En español: ejemplares. Aunque a veces los llaman incorrectamente "instancias"'>instances</abbr> de clases que tu defines, el auto-completado, el linting, mypy y tu intuición deberían funcionar bien con tus datos validados.
-* **Rápido**:
-    * En <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic es más rápido que todas las otras <abbr title='Herramienta, paquete. A veces llamado "librería"'>libraries</abbr> probadas.
 * Valida **estructuras complejas**:
     * Usa modelos jerárquicos de modelos de Pydantic, `typing` de Python,  `List` y `Dict`, etc.
     * Los validadores también permiten que se definan fácil y claramente schemas complejos de datos. Estos son chequeados y documentados como JSON Schema.
