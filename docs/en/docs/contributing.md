@@ -4,11 +4,11 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 ## Developing
 
-If you already cloned the repository and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
 
 ### Virtual environment with `venv`
 
-You can create a virtual environment in a directory using Python's `venv` module:
+You can create an isolated virtual local environment in a directory using Python's `venv` module. Let's do this in the cloned repository (where the `requirements.txt` is):
 
 <div class="termy">
 
@@ -18,7 +18,7 @@ $ python -m venv env
 
 </div>
 
-That will create a directory `./env/` with the Python binaries and then you will be able to install packages for that isolated environment.
+That will create a directory `./env/` with the Python binaries, and then you will be able to install packages for that local environment.
 
 ### Activate the environment
 
@@ -84,7 +84,7 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
-Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
+Make sure you have the latest pip version on your local environment to avoid errors on the next steps:
 
 <div class="termy">
 
@@ -101,7 +101,7 @@ $ python -m pip install --upgrade pip
 
     This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
 
-### pip
+### Install requirements using pip
 
 After activating the environment as described above:
 
@@ -117,20 +117,20 @@ $ pip install -r requirements.txt
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
-#### Using your local FastAPI
+### Using your local FastAPI
 
-If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
+If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your cloned local FastAPI source code.
 
 And if you update that local FastAPI source code when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
 That way, you don't have to "install" your local version to be able to test every change.
 
 !!! note "Technical Details"
-    This only happens when you install using this included `requirements.txt` instead of installing `pip install fastapi` directly.
+    This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
 
-    That is because inside of the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+    That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
 
-### Format
+### Format the code
 
 There is a script that you can run that will format and clean all your code:
 
@@ -227,15 +227,13 @@ And those Python files are included/injected in the documentation when generatin
 
 Most of the tests actually run against the example source files in the documentation.
 
-This helps making sure that:
+This helps to make sure that:
 
-* The documentation is up to date.
+* The documentation is up-to-date.
 * The documentation examples can be run as is.
 * Most of the features are covered by the documentation, ensured by test coverage.
 
-
-
-### Apps and docs at the same time
+#### Apps and docs at the same time
 
 If you run the examples with, e.g.:
 
@@ -259,7 +257,9 @@ Here are the steps to help with translations.
 
 #### Tips and guidelines
 
-* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
+* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
+
+* Review those pull requests, requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
 !!! tip
     You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
@@ -268,19 +268,9 @@ Here are the steps to help with translations.
 
 * Check if there's a <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-* Add a single pull request per page translated. That will make it much easier for others to review it.
+* If you translate pages, add a single pull request per page translated. That will make it much easier for others to review it.
 
-For the languages I don't speak, I'll wait for several others to review the translation before merging.
-
-* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
-    * You could check in the <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussions</a> for your language.
-    * Or you can filter the existing PRs by the ones with the label for your language, for example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3A%22awaiting+review%22" class="external-link" target="_blank">`lang-es`</a>.
-
-* Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
-
-* Use the same images, file names, and links. You don't have to change anything for it to work.
-
-* To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
+* To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
 #### Existing language
 
@@ -323,7 +313,7 @@ $ python ./scripts/docs.py live es
 
 Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
-You will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
+You will see that every language has all the pages. But some pages are not translated and have an info box at the top, about the missing translation.
 
 Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
 
@@ -342,7 +332,7 @@ docs/es/docs/features.md
 !!! tip
     Notice that the only change in the path and file name is the language code, from `en` to `es`.
 
-If you go to your browser you will see that now the docs show your new section. 🎉
+If you go to your browser you will see that now the docs show your new section (the info box at the top is gone). 🎉
 
 Now you can translate it all and see how it looks as you save the file.
 
@@ -386,7 +376,7 @@ You can make the first pull request with those two files, `docs/ht/mkdocs.yml` a
 
 #### Preview the result
 
-You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
+As already mentioned above, you can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
 
 Once you are done, you can also test it all as it would look online, including all the other languages.
 
@@ -422,6 +412,25 @@ Serving at: http://127.0.0.1:8008
 ```
 
 </div>
+
+#### Translation specific tips and guidelines
+
+* Translate only the Markdown documents (`.md`). Do not translate the code examples at `./docs_src`.
+
+* In code blocks within the Markdown document, translate comments (`# a comment`), but leave the rest unchanged.
+
+* Do not change anything enclosed in "``" (inline code).
+
+* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
+
+* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
+
+* Do not change the paths in links to images, code files, Markdown documents.
+
+* However, when a Markdown document is translated, the `#hash-parts` in links to its headings may change. Update these links if possible.
+    * Search for such links in the translated document using the regex `#[^# ]`.
+    * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
+    * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
 
 ## Tests
 

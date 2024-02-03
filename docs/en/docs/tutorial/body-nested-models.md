@@ -361,7 +361,7 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
     ```
 
 !!! tip
-    Have in mind that JSON only supports `str` as keys.
+    Keep in mind that JSON only supports `str` as keys.
 
     But Pydantic has automatic data conversion.
 
