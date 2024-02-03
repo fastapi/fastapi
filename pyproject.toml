@@ -56,7 +56,7 @@ Repository = "https://github.com/tiangolo/fastapi"
 all = [
     "httpx >=0.23.0",
     "jinja2 >=2.11.2",
-    "python-multipart >=0.0.5",
+    "python-multipart >=0.0.7",
     "itsdangerous >=1.1.0",
     "pyyaml >=5.3.1",
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
