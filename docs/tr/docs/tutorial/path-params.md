@@ -115,7 +115,7 @@ Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıc�
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Aksi halde, `/users/{user_id}` yolu `"me"` değerini alan `user_id` adlı bir parametresi olduğunu "düşünerek" `/users/me` isimli yol ile de eşleşir.
+Aksi halde, `/users/{user_id}` yolu `"me"` değerinin `user_id` parametresi için gönderildiğini "düşünerek" `/users/me` ile de eşleşir.
 
 Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 
@@ -127,15 +127,15 @@ Yol, ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu ku
 
 ## Ön Tanımlı Değerler
 
-Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve olağan ve geçerli *yol parametresi* değerlerinin ön tanımlı olmasını istiyorsanız, standart Python <abbr title="Enumeration">`Enum`</abbr> kullanabilirsiniz.
+Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve alabileceği *yol parametresi* değerlerinin ön tanımlı olmasını istiyorsanız, standart Python <abbr title="Enumeration">`Enum`</abbr> tipini kullanabilirsiniz.
 
 ### Bir `Enum` Sınıfı Oluşturalım
 
-`Enum` sınıfını içeri aktarıp `str` ile `Enum` sınıflarını miras alan bir alt sınıf yaratalım.
+`Enum` sınıfını projemize dahil edip `str` ile `Enum` sınıflarını miras alan bir alt sınıf yaratalım.
 
-`str` sınıfı miras alındığından dolayı, API dokümanı, değerlerin `string` tipinden olması gerektiğini anlayabilecek ve doğru bir şekilde işlenecektir.
+`str` sınıfı miras alındığından dolayı, API dokümanı, değerlerin `string` tipinde olması gerektiğini anlayabilecek ve doğru bir şekilde işlenecektir.
 
-Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit değerli öznitelikleri oluşturalım:
+Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit değerli özelliklerini oluşturalım:
 
 ```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -149,7 +149,7 @@ Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit
 
 ### Bir *Yol Parametresi* Tanımlayalım
 
-Sonrasında, yarattığımız (`ModelName`) isimli enum sınıfını kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
+Sonrasında, yarattığımız enum sınıfını (`ModelName`) kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -173,7 +173,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### *Enumeration Değerini* Elde Edelim
+#### *Enumeration Değerini* Alalım
 
 `model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
@@ -205,7 +205,7 @@ Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerin
 
 ## Yol İçeren Yol Parametreleri
 
-Farz edelim ki elinizde `/files/{file_path}` isminde bir *path operasyonu* var.
+Farz edelim ki elinizde `/files/{file_path}` isminde bir *yol operasyonu* var.
 
 Fakat `file_path` değerinin `home/johndoe/myfile.txt` gibi bir *yol* barındırmasını istiyorsunuz.
 
@@ -215,13 +215,13 @@ Sonuç olarak, oluşturmak istediğin URL `/files/home/johndoe/myfile.txt` gibi 
 
 Test etmesi ve tanımlaması zor senaryolara sebebiyet vereceğinden dolayı OpenAPI, *yol* barındıran *yol parametrelerini* tanımlayacak bir çözüm sunmuyor.
 
-Buna rağmen, bu durumu, Starlette kütüphanesinin dahili araçlarından birini kullanan **FastAPI**'da gerçekleştirebilirsiniz.
+Ancak bunu, Starlette kütüphanesinin dahili araçlarından birini kullanarak **FastAPI**'da gerçekleştirebilirsiniz.
 
 Parametrenin bir yol içermesi gerektiğini belirten herhangi bir doküman eklemememize rağmen dokümanlar yine de çalışacaktır.
 
 ### Yol Dönüştürücü
 
-Direkt olarak Starlette kütüphanesinden gelen bir opsiyonu ve aşağıdaki gibi bir URL'yi kullanarak *yol* içeren bir *yol parametresi* tanımlayabilirsiniz:
+Direkt olarak Starlette kütüphanesinden gelen bir opsiyon sayesinde aşağıdaki gibi *yol* içeren bir *yol parametresi* bağlantısı tanımlayabilirsiniz:
 
 ```
 /files/{file_path:path}
@@ -236,7 +236,7 @@ Böylece şunun gibi bir kullanım yapabilirsiniz:
 ```
 
 !!! tip "İpucu"
-    Parametrenin `/home/johndoe/myfile.txt` yolunu, baştaki (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
+    Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
 
     Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
 
@@ -247,7 +247,7 @@ Böylece şunun gibi bir kullanım yapabilirsiniz:
 * Editör desteği: hata denetimi, otomatik tamamlama, vb.
 * Veri "<abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">ayrıştırma</abbr>"
 * Veri doğrulama
-* API anotasyonları ve otomatik dokümantasyon
+* API tanımlamaları ve otomatik dokümantasyon
 
 Ve sadece, bunları bir kez tanımlamanız yeterli.
 
