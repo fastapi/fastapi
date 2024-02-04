@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
    id="svg8"
    version="1.1"
-   viewBox="0 0 346.36511 63.977134"
+   viewBox="0 0 346.52395 63.977134"
    height="63.977139mm"
-   width="346.36511mm">
+   width="346.52396mm"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2" />
   <metadata
@@ -20,26 +20,37 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(30.552089,-55.50154)"
-     id="layer1">
-    <path
-       style="opacity:0.98000004;fill:#009688;fill-opacity:1;stroke-width:3.20526505"
-       id="path817"
-       d="m 1.4365174,55.50154 c -17.6610514,0 -31.9886064,14.327532 -31.9886064,31.988554 0,17.661036 14.327555,31.988586 31.9886064,31.988586 17.6609756,0 31.9885196,-14.32755 31.9885196,-31.988586 0,-17.661022 -14.327544,-31.988554 -31.9885196,-31.988554 z m -1.66678692,57.63069 V 93.067264 H -11.384533 L 4.6417437,61.847974 V 81.912929 H 15.379405 Z" />
-    <text
-       id="text979"
-       y="114.91215"
-       x="52.115433"
-       style="font-style:normal;font-weight:normal;font-size:79.71511078px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:1.99287772;"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:1.99287772;"
-         y="114.91215"
-         x="52.115433"
-         id="tspan977">FastAPI</tspan></text>
+     id="g2149">
+    <g
+       id="g2141">
+      <g
+         id="g2106"
+         transform="matrix(0.96564264,0,0,0.96251987,-899.3295,194.86874)">
+        <circle
+           style="fill:#009688;fill-opacity:0.980392;stroke:none;stroke-width:0.141404;stop-color:#000000"
+           id="path875-5-9-7-3-2-3-9-9-8-0-0-5-87-7"
+           cx="964.56165"
+           cy="-169.22266"
+           r="33.234192" />
+        <path
+           id="rect1249-6-3-4-4-3-6-6-1-2"
+           style="fill:#ffffff;fill-opacity:0.980392;stroke:none;stroke-width:0.146895;stop-color:#000000"
+           d="m 962.2685,-187.40837 -6.64403,14.80375 -3.03599,6.76393 -6.64456,14.80375 30.59142,-21.56768 h -14.35312 l 20.99715,-14.80375 z" />
+      </g>
+      <text
+         id="text979"
+         y="59.410606"
+         x="82.667519"
+         style="font-style:normal;font-weight:normal;font-size:79.7151px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:1.99288"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:1.99288"
+           y="59.410606"
+           x="82.667519"
+           id="tspan977">FastAPI</tspan></text>
+    </g>
   </g>
 </svg>
