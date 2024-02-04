@@ -1,6 +1,6 @@
-# Tutorial - Benutzerhandbuch - Intro
+# Tutorial – Benutzerhandbuch
 
-Diese Anleitung zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** mit den meisten Funktionen nutzen können.
+Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** und die meisten seiner Funktionen verwenden können.
 
 Jeder Abschnitt baut schrittweise auf den vorhergehenden auf. Diese Abschnitte sind aber nach einzelnen Themen gegliedert, sodass Sie direkt zu einem bestimmten Thema übergehen können, um Ihre speziellen API-Anforderungen zu lösen.
 
@@ -12,7 +12,7 @@ Dadurch können Sie jederzeit  zurückkommen und sehen genau das, was Sie benöt
 
 Alle Codeblöcke können kopiert und direkt verwendet werden (da es sich um getestete Python-Dateien handelt).
 
-Um eines der Beispiele auszuführen, kopieren Sie den Code in die Datei `main.py`, und starten Sie `uvicorn` mit:
+Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
 
 <div class="termy">
 
@@ -50,31 +50,31 @@ $ pip install "fastapi[all]"
 
 </div>
 
-...dies beinhaltet auch `uvicorn`, das Sie als Server verwenden können, auf dem Ihr Code läuft.
+... das beinhaltet auch `uvicorn`, welchen Sie als Server verwenden können, der ihren Code ausführt.
 
-!!! Hinweis
-    Sie können die Installation auch in einzelnen Schritten ausführen.
+!!! note "Hinweis"
+    Sie können die einzelnen Teile auch separat installieren.
 
-    Dies werden Sie wahrscheinlich tun, wenn Sie Ihre Anwendung produktiv einsetzen möchten:
+    Das folgende würden Sie wahrscheinlich tun, wenn Sie Ihre Anwendung in der Produktion einsetzen:
 
     ```
     pip install fastapi
     ```
 
-    Installieren Sie auch `uvicorn`, dies arbeitet als Server:
+    Installieren Sie auch `uvicorn` als Server:
 
     ```
     pip install "uvicorn[standard]"
     ```
 
-    Dasselbe gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
+    Das gleiche gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
 
-## Erweitertes Benutzerhandbuch
+## Handbuch für fortgeschrittene Benutzer
 
-Zusätzlich gibt es ein **Erweitertes Benutzerhandbuch**, dies können Sie später nach diesem **Tutorial - Benutzerhandbuch** lesen.
+Es gibt auch ein **Handbuch für fortgeschrittene Benutzer**, welches Sie später nach diesem **Tutorial – Benutzerhandbuch** lesen können.
 
-Das **Erweiterte Benutzerhandbuch** baut auf dieses Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen zusätzliche Funktionen bei.
+Das **Handbuch für fortgeschrittene Benutzer** baut auf diesem Tutorial auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
-Allerdings sollten Sie zuerst das **Tutorial - Benutzerhandbuch** lesen (was Sie gerade lesen).
+Allerdings sollten Sie zuerst das **Tutorial – Benutzerhandbuch** lesen (was Sie hier gerade tun).
 
-Es ist so konzipiert, dass Sie nur mit dem **Tutorial - Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **Erweiterten Benutzerhandbuch** erweitern können.
+Die Dokumentation ist so konzipiert, dass Sie mit dem **Tutorial – Benutzerhandbuch** eine vollständige Anwendung erstellen können und diese dann je nach Bedarf mit einigen der zusätzlichen Ideen aus dem **Handbuch für fortgeschrittene Benutzer** vervollständigen können.
