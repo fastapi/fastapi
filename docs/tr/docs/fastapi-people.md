@@ -23,7 +23,7 @@ Hey! 👋
 </div>
 {% endif %}
 
-Ben **FastAPI**'ı oluşturan geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
+Ben **FastAPI**'ın geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
  [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...burada size harika FastAPI topluluğunu göstermek istiyorum.
