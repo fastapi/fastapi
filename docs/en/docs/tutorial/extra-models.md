@@ -29,6 +29,11 @@ Here's a general idea of how the models could look like with their password fiel
     {!> ../../../docs_src/extra_models/tutorial001.py!}
     ```
 
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
 ### About `**user_in.dict()`
 
 #### Pydantic's `.dict()`
