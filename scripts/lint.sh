@@ -4,5 +4,6 @@ set -e
 set -x
 
 mypy fastapi
-ruff fastapi tests docs_src scripts
+ruff check fastapi tests docs_src scripts
+ruff lint fastapi tests
 ruff format fastapi tests --check
