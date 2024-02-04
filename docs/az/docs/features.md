@@ -6,8 +6,8 @@
 
 ### Açıq standartlara əsaslanır
 
-* API yaratmaq işlərində `<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>`OpenAPI `</strong></a>` buna `<abbr title="also known as: endpoints, routes">`path `</abbr>` `<abbr title=" HTTP metodları olaraq bilinən, POST, GET, PUT, DELETE">`əməliyyatları, `</abbr>`parametrləri, body tələbi, təhlükəsizlik kim şeylər daxildir.
-* Avtomatik olaraq data modelinin `<a href="http://json-schema.org/" class="external-link" target="_blank"><strong>`JSON Schema `</strong></a>` ile birlikdə sənədləşməsi(OpenAPI özü onsuz JSON Schema əsasındadır).
+* API yaratmaq işlərində <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI </strong></a> buna <abbr title="also known as: endpoints, routes">path </abbr> <abbr title=" HTTP metodları olaraq bilinən, POST, GET, PUT, DELETE">əməliyyatları, </abbr>parametrləri, body tələbi, təhlükəsizlik kim şeylər daxildir.
+* Avtomatik olaraq data modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema </strong></a> ile birlikdə sənədləşməsi(OpenAPI özü onsuz JSON Schema əsasındadır).
 * Diqqətli iş nəticəsində yuxarıda göstərilən standartlara uyğun bir framework yaratdıq. Standartları tortun üzərinə sonradan əlavə edilən çiyələk kimi görmədik.
 * Bu həmçinin bir çox dildə istifadə oluna biləcək **client code generator** istifadəsinə də icazə verir.
 
@@ -15,11 +15,11 @@
 
 OpenAPI standartlarına əsaslanan bir framework olaraq, developerlərin birdən çox seçimi var, defolt olaraq gələn 2 fərqli interaktiv API sənədləşməsi və veb istifadəçi interfeysi var.
 
-* `<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>`Swagger UI `</strong></a>` sizə interaktiv olaraq brauzerdən API-ya çağırış etməyə və sınaqdan keçirməyə imkan verir.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI </strong></a> sizə interaktiv olaraq brauzerdən API-ya çağırış etməyə və sınaqdan keçirməyə imkan verir.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* `<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>`ReDoc `</strong></a>` ilə alternativ API sənədləşməsi.
+* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc </strong></a> ilə alternativ API sənədləşməsi.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -73,7 +73,7 @@ my_second_user: User = User(**second_user_data)
 
 Bütün framework istifadəsi asan və intuitiv olmaq üçün hazırlanmışdır, qəbul edilmiş bütün qərarlar developerlə ən yaxşı inkişaf təcrübəsini yaşatmaq üçün, bir çox editorlarda sınaqdan keçirilmişdir.
 
-Python developerləri arasında son sorğuda, açıq ara `<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">`Ən çox istifadə edilən xüsusiyyət "avtomatik tamamlama" idi.`</a>`.
+Python developerləri arasında son sorğuda, açıq ara <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">Ən çox istifadə edilən xüsusiyyət "avtomatik tamamlama" idi.</a>.
 
 Bütün **FastAPI** frameworkü avto-tamamlama baxımından developeri məmnun etmək üçün hazırlandı. Avtomatik tamamlama hər yerdə işləyir.
 
@@ -81,11 +81,11 @@ Bütün **FastAPI** frameworkü avto-tamamlama baxımından developeri məmnun e
 
 Editorun sizə necə kömək etdiyinə baxın:
 
-* `<a href="https://code.visualstudio.com/" class="external-link" target="_blank">`Visual Studio Code `</a>` ilə:
+* <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code </a> ilə:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* `<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">`PyCharm `</a>` ilə:
+* <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm </a> ilə:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -135,7 +135,7 @@ Bütün təkrar istifadə edilə bilən alətlər və komponentlər kimi, rahatl
 
 ### Dependency injection
 
-FastAPI-nin istifadəsi inanılmaz dərəcədə asan, lakin inanılmaz dərəcədə güclü  `<abbr title='"components", "resources", "services", "providers" olaraq da bilinən'><strong>`Dependency Injection `</strong></abbr>` sistemi var.
+FastAPI-nin istifadəsi inanılmaz dərəcədə asan, lakin inanılmaz dərəcədə güclü  <abbr title='"components", "resources", "services", "providers" olaraq da bilinən'><strong>Dependency Injection </strong></abbr> sistemi var.
 
 * Dependencylərin belə dependencies-i olabilər, FastAPI bunun  üçün **graph of "dependency"** yaradır.
 * Bütün bunlar **avtomatik olaraq** FastAPI tərəfindən həlledilir.
@@ -152,19 +152,19 @@ Bütün inteqrasiyalar istifadəsi asan olmaq üzərə (çətinlikləri ilə bir
 
 ### Sınaq edildi
 
-* 100% `<abbr title="Kodun nə qədərinin test edildiyi">`sınaq əhatəsi `</abbr>`.
-* 100% `<abbr title="Python type annotationlar, editor və xarici alətlər sizə daha yaxşı dəstək verə bilər">`typeları tanıdılmış `</abbr>` koda bazası.
+* 100% <abbr title="Kodun nə qədərinin test edildiyi">sınaq əhatəsi </abbr>.
+* 100% <abbr title="Python type annotationlar, editor və xarici alətlər sizə daha yaxşı dəstək verə bilər">typeları tanıdılmış </abbr> koda bazası.
 * İstehsal mühitində olan proqramlarda istifadə olunur.
 
 ## Starlette xüsusiyyətləri
 
-**FastAPI**, `<a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>`Starlette `</strong></a>` ilə tam uyğun gəlir(və ona əsaslanır). Yəni FastAPI üzərinə əlavə edəcəyiniz istenilən Starlette kodu da işliyəcəkdir.
+**FastAPI**, <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette </strong></a> ilə tam uyğun gəlir(və ona əsaslanır). Yəni FastAPI üzərinə əlavə edəcəyiniz istenilən Starlette kodu da işliyəcəkdir.
 
 `FastAPI` əlsində  `Starlette`-nin bir sub-class-ıdır. Yəni, siz Starlette-i bilirsinizsə və ya istifadə edirsinizsə, funksionallığın əksəriyyəti eyni şəkildə işləyir.
 
 **FastAPI** ilə siz həmçinin **Starlette**-in bütün xüsusiyyətlərinə sahib olacaqsınız. (FastAPI əslində Starlette-in steroid basmış halıdır):
 
-* Həqiqətən də cidd təsir edici performansa sahibdir. Python-un isə en sürətli frameworklərindən bir dənəsi, `<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">`**NodeJS** ve **Go** ilə bərabər performansa sahibdir.`</a>`.
+* Həqiqətən də cidd təsir edici performansa sahibdir. Python-un isə en sürətli frameworklərindən bir dənəsi, <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">**NodeJS** ve **Go** ilə bərabər performansa sahibdir.</a>.
 * **WebSocket** dəstəyi.
 * **GraphQL** dəstəyi.
 * İsditafədə halında olan arxa plan tapşırıqları.
@@ -177,9 +177,9 @@ Bütün inteqrasiyalar istifadəsi asan olmaq üzərə (çətinlikləri ilə bir
 
 ## Pydantic xüsusiyyətləri
 
-**FastAPI** `<a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>`Pydantic `</strong></a>` ilə tam uyğundur ve üzərinə qurulub. Yani FastAPI üzərinə nəsə əlavə etsəniz hansısa bir Pydantic kodu da işliyəcəkdir
+**FastAPI** <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic </strong></a> ilə tam uyğundur ve üzərinə qurulub. Yani FastAPI üzərinə nəsə əlavə etsəniz hansısa bir Pydantic kodu da işliyəcəkdir
 
-Bunlara həmçinin Pydantic əsasında qurulmuş əlavə kitabxanlar, databaselər üçün `<abbr title="Object-Relational Mapper">`ORM `</abbr>`  , `<abbr title="Object-Document Mapper">`ODM `</abbr>`  daxildir.
+Bunlara həmçinin Pydantic əsasında qurulmuş əlavə kitabxanlar, databaselər üçün <abbr title="Object-Relational Mapper">ORM </abbr>  , <abbr title="Object-Document Mapper">ODM </abbr>  daxildir.
 
 Bu həm də o deməkdir ki, bir çox hallarda siz obyekti requestdən database-ə hər şey avtomatik olaraq yoxlanılmış şəkildə köçürə bilərsiniz.
 
@@ -190,10 +190,10 @@ Eynilə, siz obyekti verilənlər bazasından **birbaşa request-ə** tam doğru
 * **Baş ağrısı yoxdur**:
   * Fərqli bir sintaksis öyrənməyə ehtiyac yoxdur,
   * Python typelarını necə istifadə edəcəyinizi bilirsinizsə, Pydantic-dən necə istifadə edəcəyinizi də bilirsiniz.
-* İstifadə etdiyiniz development əlatləri ilə yaxşı işləyir **`<abbr title="Integrated Development Environment, kod editörüne benzer">`IDE `</abbr>`/`<abbr title="Code errorlarınızı inceleyen program">`linter `</abbr>`/brain**:
+* İstifadə etdiyiniz development əlatləri ilə yaxşı işləyir **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE </abbr>/<abbr title="Code errorlarınızı inceleyen program">linter </abbr>/brain**:
   * Pydantic'in məlumat strukturları(data structures) əslində sadəcə sizin müəyyən etdiyiniz classlardır; Buna görə də, təsdiqlənmiş məlumatlarınızla avtomatik tamamlama, linting və mypy istifadə edərək heç bir problem olmadan işləyə bilərsiniz.
 * **Sürətli**:
-  * `<a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">`Benchmarklarda `</a>`, Pydantic bütün digər sınaqdan keçmiş kitabxanalardan daha sürətlidir.
+  * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Benchmarklarda </a>, Pydantic bütün digər sınaqdan keçmiş kitabxanalardan daha sürətlidir.
 * **Ən kompleks** **strukturları** belə doğrula(validate):
   * İerarxik Pydantic-in modellərinin istifadəsi ilə birlikdə, Python `typing`’s `List` və  `Dict`, vs kimi şeyləri doğrula.
   * Doğrulayıcılar hətta ən mürəkkəb məlumat sxemlərini təmiz və asanlıqla müəyyən etməyə imkan verir, hamısı JSON sxemləri kimi sənədləşdirilir.
