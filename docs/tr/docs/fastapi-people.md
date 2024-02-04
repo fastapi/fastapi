@@ -23,18 +23,13 @@ Merhaba! 👋
 </div>
 {% endif %}
 
-<<<<<<< HEAD
-Ben **FastAPI**'ı oluşturan geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz: [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
-=======
-Ben **FastAPI**'ın geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
- [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
->>>>>>> 39b894164fa897f35ea63300992324de6630208d
+Ben **FastAPI**'ın geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz: [FastAPI yardım - yardım al -  benimle iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...burada size harika FastAPI topluluğunu göstermek istiyorum.
 
 ---
 
-**FastAPI**, topluluğundan çok destek alıyor. Ben de onların katkısını vurgulamak istiyorum.
+**FastAPI**, topluluğundan çok destek alıyor. Ben de onların katkılarını vurgulamak istiyorum.
 
 Bu insanlar:
 
