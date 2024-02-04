@@ -1,44 +1,32 @@
-# <div>بیرونی روابط اور مضامین</div>
+# بیرونی روابط اور مضامین
 
-<div>
-    ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے <b>FastAPI</b>۔
-</div>
-
+ایک عظیم کمیونٹی مسلسل بڑھ رہی ہے <b>FastAPI</b>۔
 <br>
-<div>
 <b>FastAPI</b> سے متعلق بہت سی پوسٹس، مضامین، ٹولز اور پروجیکٹس ہیں.
-</div>
 <br>
-<div>
-    یہاں ان میں سے کچھ کی ایک نامکمل فہرست ہے۔
-</div>
+یہاں ان میں سے کچھ کی ایک نامکمل فہرست ہے۔
 <br>
-<div>
     !!! ٹپ اگر آپ کے پاس کوئی مضمون، پروجیکٹ، ٹول، یا FastAPI سے متعلق کوئی چیز ہے جو ابھی تک یہاں درج نہیں ہے، تو اسے شامل کرنے کے لیے <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank"> پل کی درخواست</a> بنائیں۔
-</div>
 <br>
-
-
 {% for section_name, section_content in external_links.items() %}
 
-## <div>{{ section_name }}</div>
+## {{ section_name }}
 
 {% for lang_name, lang_content in section_content.items() %}
 
-### <div>{{ lang_name }}</div>
+### {{ lang_name }}
 
 {% for item in lang_content %}
 
-* <div><a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.</div>
+* <a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.
 
 {% endfor %}
 {% endfor %}
 {% endfor %}
 
 
-## <div>پروجیکٹس</div>
-
-<div>'fastapi' عنوان کے ساتھ تازہ ترین GitHub پروجیکٹس:</div>
+## پروجیکٹس
+تازہ ترین GitHub پروجیکٹس موضوع کے ساتھ `fastapi`:
 
 <div class="github-topic-projects">
 </div>
