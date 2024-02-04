@@ -353,7 +353,7 @@ class OAuth2(SecurityBase):
             bool,
             Doc(
                 """
-                By default, if no HTTP Auhtorization header is provided, required for
+                By default, if no HTTP Authorization header is provided, required for
                 OAuth2 authentication, it will automatically cancel the request and
                 send the client an error.
 

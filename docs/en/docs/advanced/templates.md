@@ -46,21 +46,61 @@ $ pip install jinja2
 
 ## Writing templates
 
-Then you can write a template at `templates/item.html` with:
+Then you can write a template at `templates/item.html` with, for example:
 
 ```jinja hl_lines="7"
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-It will show the `id` taken from the "context" `dict` you passed:
+### Template Context Values
+
+In the HTML that contains:
+
+{% raw %}
+
+```jinja
+Item ID: {{ id }}
+```
+
+{% endraw %}
+
+...it will show the `id` taken from the "context" `dict` you passed:
 
 ```Python
-{"request": request, "id": id}
+{"id": id}
+```
+
+For example, with an ID of `42`, this would render:
+
+```html
+Item ID: 42
+```
+
+### Template `url_for` Arguments
+
+You can also use `url_for()` inside of the template, it takes as arguments the same arguments that would be used by your *path operation function*.
+
+So, the section with:
+
+{% raw %}
+
+```jinja
+<a href="{{ url_for('read_item', id=id) }}">
+```
+
+{% endraw %}
+
+...will generate a link to the same URL that would be handled by the *path operation function* `read_item(id=id)`.
+
+For example, with an ID of `42`, this would render:
+
+```html
+<a href="/items/42">
 ```
 
 ## Templates and static files
 
-You can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted.
+You can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted with the `name="static"`.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
