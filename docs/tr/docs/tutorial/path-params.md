@@ -245,7 +245,7 @@ Böylece şunun gibi bir kullanım yapabilirsiniz:
 **FastAPI** ile kısa, sezgisel ve standart Python tip tanımlamaları kullanarak şunları elde edersiniz:
 
 * Editör desteği: hata denetimi, otomatik tamamlama, vb.
-* Veri "<abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">ayrıştırma</abbr>"
+* Veri "<abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">dönüştürme</abbr>"
 * Veri doğrulama
 * API tanımlamaları ve otomatik dokümantasyon
 
