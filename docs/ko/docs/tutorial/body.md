@@ -210,4 +210,4 @@
 
 ## Pydantic없이
 
-만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - 다중 매개변수: 본문에 있는 유일한 값](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} 문서를 확인하세요.
+만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - 다중 매개변수: 본문에 있는 유일한 값](body-multiple-params.md#_2){.internal-link target=_blank} 문서를 확인하세요.

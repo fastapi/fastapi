@@ -90,7 +90,7 @@
 
     옛날 버전을 가지고 있는 경우, `Annotated`를 사용하려 하면 에러를 맞이하게 될 것입니다.
 
-    `Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}를 확실하게 하세요.
+    `Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#fastapi_2){.internal-link target=_blank}를 확실하게 하세요.
 
 ### `Depends` 불러오기
 
