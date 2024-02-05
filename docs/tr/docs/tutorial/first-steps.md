@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
+!!! note "Not"
     `uvicorn main:app` komutu şunu ifade eder:
 
     * `main`: `main.py` dosyası (Python "modülü").
@@ -183,7 +183,7 @@ $ uvicorn main:my_awesome_api --reload
 
 ### Adım 3: *Yol Operasyonu* Oluşturmak
 
-#### Yol
+#### <abbr title="Yol: Path">Yol</abbr>
 
 Burada "yol" bağlantıda bulunan ilk `/` ile başlayan ve sonrasında gelen kısmı ifade eder.
 
@@ -199,34 +199,34 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    Genellikle bir "path", "endpoint" veya "route" olarak adlandırılabilir.
+!!! info "Bilgi"
+    "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılabilir.
 
-Bir API oluştururken, "path", "resource" ile "concern" ayırmanın ana yoludur.
+Bir API oluştururken, "yol", "kaynakları" ile "endişeleri" ayırmanın ana yoludur.
 
-#### İşlemler
+#### Operasyonlar
 
-Burada "işlem" HTTP methodlarından birini ifade eder.
+Burada "operasyon" HTTP "metodlarından" birini ifade eder.
 
-Onlardan biri:
+Bunlardan biri:
 
 * `POST`
 * `GET`
 * `PUT`
 * `DELETE`
 
-... ve daha egzotik olanları:
+...veya daha az kullanılan diğerleri:
 
 * `OPTIONS`
 * `HEAD`
 * `PATCH`
 * `TRACE`
 
-HTTP protokolünde, bu "methodlardan" birini (veya daha fazlasını) kullanarak her path ile iletişim kurabilirsiniz.
+HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her yol ile iletişim kurabilirsiniz.
 
 ---
 
-API'lerinizi oluştururkan, belirli bir işlemi gerçekleştirirken belirli HTTP methodlarını kullanırsınız.
+API'lar oluştururkan, belirli bir amaca hizmet eden belirli HTTP methodlarını kullanırsınız.
 
 Normalde kullanılan:
 
@@ -235,62 +235,61 @@ Normalde kullanılan:
 * `PUT`: veriyi güncellemek.
 * `DELETE`: veriyi silmek.
 
-Bu nedenle, OpenAPI'de HTTP methodlarından her birine "işlem" denir.
+Bu nedenle, OpenAPI'de HTTP methodlarından her birine "operasyon" denir.
 
-Bizde onlara "**işlemler**" diyeceğiz.
+Bizde onlara "**operasyonlar**" diyeceğiz.
 
-#### Bir *Path işlem decoratorleri* tanımlanmak
+#### Bir *Yol Operasyonu Dekoratörü* Tanımlayalım
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`@app.get("/")` **FastAPI'ye** aşağıdaki fonksiyonun adresine giden istekleri işlemekten sorumlu olduğunu söyler:
+`@app.get("/")` **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
 
-* path `/`
-* <abbr title="an HTTP GET method"><code>get</code> işlemi</abbr> kullanılarak
-
+* <abbr title="Bir HTTP GET metodu"><code>get</code> operasyonu</abbr> ile
+* `/` yoluna gelen istekler
 
 !!! info "`@decorator` Bilgisi"
-    Python `@something` şeklinde ifadeleri "decorator" olarak adlandırır.
+    Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
 
-    Decoratoru bir fonksiyonun üzerine koyarsınız. Dekoratif bir şapka gibi (Sanırım terim buradan gelmektedir).
+    Dekoratörü bir fonksiyonun üzerine koyarsınız. Dekoratif bir şapka gibi (sanırım terim buradan geliyor).
 
-    Bir "decorator" fonksiyonu alır ve bazı işlemler gerçekleştir.
+    Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
 
-    Bizim durumumzda decarator **FastAPI'ye** fonksiyonun bir `get` işlemi ile `/` pathine geldiğini söyler.
+    Bizim durumumzda kullandığımız dekoratör **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
 
-    Bu **path işlem decoratordür**
+    Bu bir **yol operasyon dekoratörü**.
 
-Ayrıca diğer işlemleri de kullanabilirsiniz:
+Ayrıca diğer operasyonları de kullanabilirsiniz:
 
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
 
-Ve daha egzotik olanları:
+Daha az kullanılanları da kullanabilirsiniz:
 
 * `@app.options()`
 * `@app.head()`
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    Her işlemi (HTTP method) istediğiniz gibi kullanmakta özgürsünüz.
+!!! tip "İpucu"
+    Her işlemi (HTTP metod) istediğiniz gibi kullanmakta özgürsünüz.
 
-    **FastAPI** herhangi bir özel anlamı zorlamaz.
+    **FastAPI** herhangi bir özel amacı veya anlamı olması konusunda ısrarcı olmaz.
 
     Buradaki bilgiler bir gereklilik değil, bir kılavuz olarak sunulmaktadır.
 
-    Örneğin, GraphQL kullanırkan normalde tüm işlemleri yalnızca `POST` işlemini kullanarak gerçekleştirirsiniz.
+    Mesela GraphQL kullanırkan genelde tüm işlemleri yalnızca `POST` operasyonunu kullanarak gerçekleştirirsiniz.
 
-### Adım 4: **path işlem fonksiyonunu** tanımlayın
+### Adım 4: **Yol Operasyonu Fonksiyonunu** Tanımlayın
 
-Aşağıdakiler bizim **path işlem fonksiyonlarımızdır**:
+Aşağıdakiler bizim **yol operasyonu fonksiyonlarımızdır**:
 
-* **path**: `/`
-* **işlem**: `get`
-* **function**: "decorator"ün altındaki fonksiyondur (`@app.get("/")` altında).
+* **yol**: `/`
+* **operasyon**: `get`
+* **fonksiyon**: "dekorar"ün (`@app.get("/")`) altındaki fonksiyondur.
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -298,7 +297,7 @@ Aşağıdakiler bizim **path işlem fonksiyonlarımızdır**:
 
 Bu bir Python fonksiyonudur.
 
-Bir `GET` işlemi kullanarak "`/`" URL'sine bir istek geldiğinde **FastAPI** tarafından çağrılır.
+Bir `GET` işlemi kullanarak "`/`" bağlantısına bir istek geldiğinde **FastAPI** tarafından çağrılır.
 
 Bu durumda bir `async` fonksiyonudur.
 
@@ -310,27 +309,25 @@ Bunu `async def` yerine normal bir fonksiyon olarakta tanımlayabilirsiniz.
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
+!!! note "Not"
+    Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasını kontrol edebilirsiniz.
 
-    Eğer farkı bilmiyorsanız, [Async: *"Acelesi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} kontrol edebilirsiniz.
-
-### Adım 5: İçeriği geri döndürün
-
+### Adım 5: İçeriği Geri Döndürün
 
 ```Python hl_lines="8"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Bir `dict`, `list` döndürebilir veya `str`, `int` gibi tekil değerler döndürebilirsiniz.
+Bir `dict`, `list`veya `str`, `int` gibi tekil değerler döndürebilirsiniz.
 
-Ayrıca, Pydantic modellerini de döndürebilirsiniz. (Bununla ilgili daha sonra ayrıntılı bilgi göreceksiniz.)
+Ayrıca, Pydantic modellerini de döndürebilirsiniz (bununla ilgili daha sonra ayrıntılı bilgi göreceksiniz).
 
-Otomatik olarak JSON'a dönüştürülecek(ORM'ler vb. dahil) başka birçok nesne ve model vardır. En beğendiklerinizi kullanmayı deneyin, yüksek ihtimalle destekleniyordur.
+Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok nesne ve model vardır. En beğendiklerinizi kullanmayı deneyin, yüksek ihtimalle destekleniyordur.
 
 ## Özet
 
-* `FastAPI`'yi içe aktarın.
-* Bir `app` örneği oluşturun.
-* **path işlem decorator** yazın. (`@app.get("/")` gibi)
-* **path işlem fonksiyonu** yazın. (`def root(): ...` gibi)
-* Development sunucunuzu çalıştırın. (`uvicorn main:app --reload` gibi)
+* `FastAPI`'yı projemize dahil ettik.
+* Bir `app` örneği oluşturduk.
+* **yol operasyonu dekoratörü** (`@app.get("/")` gibi) yazdık.
+* **yol operasyonu fonksiyonu** (`def root(): ...` gibi) yazdık.
+* Geliştirme sunucumuzu (`uvicorn main:app --reload` gibi) çalıştırdık.
