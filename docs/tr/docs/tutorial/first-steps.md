@@ -1,14 +1,14 @@
 # İlk Adımlar
 
-En basit FastAPI dosyası şu şekildedir:
+En basit FastAPI dosyası şu şekilde görünür:
 
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Bunu bir `main.py` dosyasına kopyalayın.
+Yukarıda ki içeriği bir `main.py` dosyasına kopyalayın.
 
-Projeyi çalıştırın:
+Uygulamayı çalıştırın:
 
 <div class="termy">
 
@@ -27,75 +27,75 @@ $ uvicorn main:app --reload
 !!! note
     `uvicorn main:app` komutu şunu ifade eder:
 
-    * `main`: `main.py` dosyası (the Python "module").
+    * `main`: `main.py` dosyası (Python "modülü").
     * `app`: `main.py` dosyası içerisinde `app = FastAPI()` satırıyla oluşturulan nesne.
-    * `--reload`: Kod değişikliği sonrasında sunucunun yeniden başlatılmasını sağlar. Yalnızca geliştirme için kullanın.
+    * `--reload`: Kod içerisinde değişiklik yapıldığında sunucunun yeniden başlatılmasını sağlar. Yalnızca geliştirme aşamasında kullanın.
 
-Çıktıda şu şekilde bir satır vardır:
+Çıktı olarak şöyle bir satır göreceksiniz:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Bu satır, yerel makinenizde uygulamanızın sunulduğu URL'yi gösterir.
+Bu satır, yerel makinenizde uygulamanızın çalıştığı bağlantıyı gösterir.
 
-### Kontrol Et
+### Kontrol Edelim
 
-Tarayıcınızda <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> adresini açın.
+Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> bağlantısına gidin.
 
-Bir JSON yanıtı göreceksiniz:
+Şu lekilde bir JSON yanıtı göreceksiniz:
 
 ```JSON
 {"message": "Hello World"}
 ```
 
-### İnteraktif API dokümantasyonu
+### Etkileşimli API Dokümantasyonu
 
-<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidin.
+Şimdi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> bağlantısını açalım.
 
-Otomatik oluşturulmuş( <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan) interaktif bir API dokümanı göreceksiniz:
+<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan otomatik etkileşimli bir API dokümantasyonu göreceğiz:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternatif API dokümantasyonu
+### Alternatif API Dokümantasyonu
 
-Şimdi, <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresine gidin.
+Şimdi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> bağlantısını açalım.
 
-Otomatik oluşturulmuş(<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan) bir API dokümanı göreceksiniz:
+<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan otomatik dokümantasyonu göreceğiz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI
 
-**FastAPI**, **OpenAPI** standardını kullanarak tüm API'lerinizi açıklayan bir "şema" oluşturur.
+**FastAPI**, **OpenAPI** standardını kullanarak tüm API'ınızın tamamını tanımlayan bir "şema" oluşturur.
 
 #### "Şema"
 
-Bir "şema", bir şeyin tanımı veya açıklamasıdır. Soyut bir açıklamadır, uygulayan kod değildir.
+"Şema", bir şeyin tanımı veya açıklamasıdır. Geliştirilen koddan ziyade soyut bir açıklamadır.
 
-#### API "şemaları"
+#### API "Şemaları"
 
-Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten şartnamelerdir.
+Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten şartnamedir.
 
-Bu şema tanımı, API yollarınızı, aldıkları olası parametreleri vb. içerir.
+Bu şema tanımı, API yollarınızla birlikte aldıkları olası parametreleri gibi tanımlamaları içerir.
 
-#### Data "şema"
+#### Veri "Şeması"
 
 "Şema" terimi, JSON içeriği gibi bazı verilerin şeklini de ifade edebilir.
 
-Bu durumda, JSON öznitelikleri ve sahip oldukları veri türleri vb. anlamına gelir.
+Bu durumda, JSON özellikleri ve sahip oldukları veri türleri gibi anlamına gelir.
 
-#### OpenAPI and JSON Şema
+#### OpenAPI ve JSON Şema
 
 OpenAPI, API'niz için bir API şeması tanımlar. Ve bu şema, JSON veri şemaları standardı olan **JSON Şema** kullanılarak API'niz tarafından gönderilen ve alınan verilerin tanımlarını (veya "şemalarını") içerir.
 
 #### `openapi.json` kontrol et
 
-OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'nizin açıklamalarını içeren bir JSON (şema) oluşturur.
+OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'ınızın tanımlamalarını içeren bir JSON (şema) oluşturur.
 
-Doğrudan şu adreste görebilirsiniz: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Doğrudan şu bağlantıda görebilirsiniz: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
-Aşağıdaki gibi bir şeyle başlayan bir JSON gösterecektir:
+Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 
 ```JSON
 {
@@ -118,7 +118,7 @@ Aşağıdaki gibi bir şeyle başlayan bir JSON gösterecektir:
 ...
 ```
 
-#### OpenAPI ne içindir?
+#### OpenAPI Amacı Nedir?
 
 OpenAPI şeması, dahili olarak bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
