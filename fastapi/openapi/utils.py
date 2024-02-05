@@ -138,7 +138,11 @@ def get_openapi_operation_request_body(
     ],
     separate_input_output_schemas: bool = True,
 ) -> Optional[Dict[str, Any]]:
-    if not body_field:
+    if (
+        not body_field
+        or not isinstance(body_field.field_info, Body)
+        or not body_field.field_info.include_in_schema
+    ):
         return None
     assert isinstance(body_field, ModelField)
     body_schema = get_schema_from_model_field(
@@ -148,7 +152,7 @@ def get_openapi_operation_request_body(
         field_mapping=field_mapping,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    field_info = cast(Body, body_field.field_info)
+    field_info = body_field.field_info
     request_media_type = field_info.media_type
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
