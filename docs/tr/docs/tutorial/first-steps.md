@@ -99,7 +99,7 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -118,17 +118,17 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 ...
 ```
 
-#### OpenAPI Amacı Nedir?
+#### OpenAPI Ne İçindir?
 
-OpenAPI şeması, dahili olarak bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
+OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
-Ve tamamen OpenAPI'ye dayalı düzinelerce alternatif vardır. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
+OpenAPI'ya dayalı düzinelerce alternativ etkileşimli dokümantasyon aracı mevcuttur. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
 
-API'nizle iletişim kuran istemciler için otomatik olarak kod oluşturmak için de kullanabilirsiniz. Örneğin, frontend, mobil veya IoT uygulamaları.
+Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod oluşturabilirsiniz. Mesela, önyüz, mobil veya IoT uygulamaları gibi istemciler.
 
-## Adım adım özet
+## Adım Adım Özetleyelim
 
-### Adım 1: `FastAPI`yi içe aktarın
+### Adım 1: `FastAPI`yı Projemize Dahil Edelim
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -137,11 +137,11 @@ API'nizle iletişim kuran istemciler için otomatik olarak kod oluşturmak için
 `FastAPI`, API'niz için tüm fonksiyonları sağlayan bir Python sınıfıdır.
 
 !!! note "Teknik Detaylar"
-    `FastAPI` doğrudan `Starlette` kalıtım alan bir sınıftır.
+    `FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
 
-    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile de kullanabilirsiniz.
+    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile kullanabilirsiniz.
 
-### Adım 2: Bir `FastAPI` örneği oluşturun
+### Adım 2: Bir `FastAPI` "örneği" oluşturalım
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -149,7 +149,7 @@ API'nizle iletişim kuran istemciler için otomatik olarak kod oluşturmak için
 
 Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
 
-Bu tüm API'yi oluşturmak için ana etkileşim noktası olacaktır.
+Bu tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
 
 `uvicorn` komutunda atıfta bulunulan `app` ile aynıdır.
 
@@ -169,7 +169,7 @@ Uygulamanızı aşağıdaki gibi oluşturursanız:
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-Ve bunu `main.py` dosyasına koyduktan sonra `uvicorn` komutunu şu şekilde çağırabilirsiniz:
+Ve bunu `main.py` dosyasına yerleştirirseniz eğer `uvicorn` komutunu şu şekilde çalıştırabilirsiniz:
 
 <div class="termy">
 
@@ -181,19 +181,19 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Adım 3: *Path işlemleri* oluşturmak
+### Adım 3: *Yol Operasyonu* Oluşturmak
 
-#### Path
+#### Yol
 
-Burada "Path" URL'de ilk "\" ile başlayan son bölümü ifade eder.
+Burada "yol" bağlantıda bulunan ilk `/` ile başlayan ve sonrasında gelen kısmı ifade eder.
 
-Yani, şu şekilde bir URL'de:
+Yani, şu şekilde bir bağlantıda:
 
 ```
 https://example.com/items/foo
 ```
 
-... path şöyle olabilir:
+... yol şöyle olur:
 
 ```
 /items/foo
