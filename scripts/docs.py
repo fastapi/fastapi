@@ -266,7 +266,7 @@ def live(
     mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
 
 
-def update_config() -> None:
+def get_updated_config_content() -> Dict[str, Any]:
     config = get_en_config()
     languages = [{"en": "/"}]
     new_alternate: List[Dict[str, str]] = []
@@ -294,10 +294,40 @@ def update_config() -> None:
         new_alternate.append({"link": url, "name": use_name})
     new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
+    return config
+
+
+def update_config() -> None:
+    config = get_updated_config_content()
     en_config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
         encoding="utf-8",
     )
+
+
+@app.command()
+def verify_config() -> None:
+    """
+    Verify main mkdocs.yml content to make sure it uses the latest language names.
+    """
+    typer.echo("Verifying mkdocs.yml")
+    config = get_en_config()
+    updated_config = get_updated_config_content()
+    if config != updated_config:
+        typer.secho(
+            "docs/en/mkdocs.yml outdated from docs/language_names.yml, "
+            "update language_names.yml and run "
+            "python ./scripts/docs.py update-languages",
+            color=typer.colors.RED,
+        )
+        raise typer.Abort()
+    typer.echo("Valid mkdocs.yml ✅")
+
+
+@app.command()
+def verify_docs():
+    verify_readme()
+    verify_config()
 
 
 @app.command()
