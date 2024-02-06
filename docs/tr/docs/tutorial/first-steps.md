@@ -29,7 +29,7 @@ $ uvicorn main:app --reload
 
     * `main`: `main.py` dosyası (Python "modülü").
     * `app`: `main.py` dosyası içerisinde `app = FastAPI()` satırıyla oluşturulan nesne.
-    * `--reload`: Kod içerisinde değişiklik yapıldığında sunucunun yeniden başlatılmasını sağlar. Yalnızca geliştirme aşamasında kullanın.
+    * `--reload`: Kod içerisinde değişiklik yapıldığında sunucunun yeniden başlatılmasını sağlar. Yalnızca geliştirme aşamasında kullanmaya özen gösteriniz.
 
 Çıktı olarak şöyle bir satır göreceksiniz:
 
