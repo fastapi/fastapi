@@ -43,7 +43,7 @@ Bu satır, yerel makinenizde uygulamanızın çalıştığı bağlantıyı göst
 
 Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> bağlantısına gidin.
 
-Şu lekilde bir JSON yanıtı göreceksiniz:
+Şu şekilde bir JSON yanıtı ile karşılaşacağız:
 
 ```JSON
 {"message": "Hello World"}
