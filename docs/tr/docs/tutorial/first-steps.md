@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Adım 3: *Yol Operasyonu* Oluşturmak
+### Adım 3: Bir *Yol Operasyonu* Oluşturalım
 
 #### <abbr title="Yol: Path">Yol</abbr>
 
