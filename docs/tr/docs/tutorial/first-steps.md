@@ -141,7 +141,7 @@ Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod olu�
 
     Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile kullanabilirsiniz.
 
-### Adım 2: Bir `FastAPI` "örneği" oluşturalım
+### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
