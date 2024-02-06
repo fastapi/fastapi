@@ -25,7 +25,7 @@ $ uvicorn main:app --reload
 </div>
 
 !!! note "Not"
-    `uvicorn main:app` komutu şunu ifade eder:
+    `uvicorn main:app` komutunu şu şekilde açıklayabiliriz:
 
     * `main`: dosya olan `main.py` (yani Python "modülü").
     * `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` nesnesi.
