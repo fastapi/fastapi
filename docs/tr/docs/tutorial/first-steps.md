@@ -75,7 +75,7 @@ Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" ta
 
 #### API "Şemaları"
 
-Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten şartnamedir.
+Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten bir şartnamedir.
 
 Bu şema tanımı, API yollarınızla birlikte aldıkları olası parametreleri gibi tanımlamaları içerir.
 
