@@ -6,7 +6,7 @@ En sade FastAPI dosyası şu şekilde görünür:
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Yukarıda ki içeriği bir `main.py` dosyasına kopyalayın.
+Yukarıdaki içeriği bir `main.py` dosyasına kopyalayalım.
 
 Uygulamayı çalıştıralım:
 
