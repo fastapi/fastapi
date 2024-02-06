@@ -89,7 +89,7 @@ Bu durumda, JSON özellikleri ve sahip oldukları veri türleri gibi anlamların
 
 OpenAPI, API'niz için bir API şeması tanımlar. Ve bu şema, JSON veri şemaları standardı olan **JSON Şema** kullanılarak API'niz tarafından gönderilen ve alınan verilerin tanımlarını (veya "şemalarını") içerir.
 
-#### `openapi.json` kontrol et
+#### `openapi.json` Dosyasına Göz At
 
 Ham OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'ınızın tanımlamalarını içeren bir JSON (şeması) oluşturur.
 
