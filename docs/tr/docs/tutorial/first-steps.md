@@ -235,9 +235,9 @@ Normalde kullanılan:
 * `PUT`: veriyi güncellemek.
 * `DELETE`: veriyi silmek.
 
-Bu nedenle, OpenAPI'de HTTP methodlarından her birine "operasyon" denir.
+Bu nedenle, OpenAPI'da HTTP metodlarından her birine "operasyon" denir.
 
-Bizde onlara "**operasyonlar**" diyeceğiz.
+Biz de onları "**operasyonlar**" olarak adlandıracağız.
 
 #### Bir *Yol Operasyonu Dekoratörü* Tanımlayalım
 
@@ -245,7 +245,7 @@ Bizde onlara "**operasyonlar**" diyeceğiz.
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`@app.get("/")` **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
+`@app.get("/")` dekoratörü, **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
 
 * <abbr title="Bir HTTP GET metodu"><code>get</code> operasyonu</abbr> ile
 * `/` yoluna gelen istekler
@@ -253,15 +253,15 @@ Bizde onlara "**operasyonlar**" diyeceğiz.
 !!! info "`@decorator` Bilgisi"
     Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
 
-    Dekoratörü bir fonksiyonun üzerine koyarsınız. Dekoratif bir şapka gibi (sanırım terim buradan geliyor).
+    Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor), fonksiyonların üzerlerine yerleştirilirler.
 
     Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
 
-    Bizim durumumzda kullandığımız dekoratör **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
+    Bizim durumumuzda, kullandığımız dekoratör, **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
 
-    Bu bir **yol operasyon dekoratörü**.
+    Bu bir **yol operasyonu dekoratörüdür**.
 
-Ayrıca diğer operasyonları de kullanabilirsiniz:
+Ayrıca diğer operasyonları da kullanabilirsiniz:
 
 * `@app.post()`
 * `@app.put()`
@@ -285,11 +285,11 @@ Daha az kullanılanları da kullanabilirsiniz:
 
 ### Adım 4: **Yol Operasyonu Fonksiyonunu** Tanımlayın
 
-Aşağıdakiler bizim **yol operasyonu fonksiyonlarımızdır**:
+Aşağıdaki, bizim **yol operasyonu fonksiyonumuzdur**:
 
 * **yol**: `/`
 * **operasyon**: `get`
-* **fonksiyon**: "dekorar"ün (`@app.get("/")`) altındaki fonksiyondur.
+* **fonksiyon**: "dekoratör"ün (`@app.get("/")`'in) altındaki fonksiyondur.
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -297,13 +297,13 @@ Aşağıdakiler bizim **yol operasyonu fonksiyonlarımızdır**:
 
 Bu bir Python fonksiyonudur.
 
-Bir `GET` işlemi kullanarak "`/`" bağlantısına bir istek geldiğinde **FastAPI** tarafından çağrılır.
+Bu fonksiyon bir `GET` işlemi kullanılarak "`/`" bağlantısına bir istek geldiğinde **FastAPI** tarafından çağrılır.
 
-Bu durumda bir `async` fonksiyonudur.
+Bu durumda bu fonksiyon bir `async` fonksiyondur.
 
 ---
 
-Bunu `async def` yerine normal bir fonksiyon olarakta tanımlayabilirsiniz.
+Bu fonksiyonu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}
@@ -318,9 +318,9 @@ Bunu `async def` yerine normal bir fonksiyon olarakta tanımlayabilirsiniz.
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Bir `dict`, `list`veya `str`, `int` gibi tekil değerler döndürebilirsiniz.
+Bir `dict`, `list` veya `str`, `int` gibi tekil değerler döndürebilirsiniz.
 
-Ayrıca, Pydantic modellerini de döndürebilirsiniz (bununla ilgili daha sonra ayrıntılı bilgi göreceksiniz).
+Ayrıca, Pydantic modelleri de döndürebilirsiniz (bu konu ileriki aşamalarda irdelenecektir).
 
 Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok nesne ve model vardır. En beğendiklerinizi kullanmayı deneyin, yüksek ihtimalle destekleniyordur.
 
@@ -328,6 +328,6 @@ Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok ne
 
 * `FastAPI`'yı projemize dahil ettik.
 * Bir `app` örneği oluşturduk.
-* Bir **yol operasyonu dekoratörü** (`@app.get("/")` gibi) oluşturduk.
-* Bir **yol operasyonu fonksiyonu** (`def root(): ...` gibi) oluşturduk.
+* Bir **yol operasyonu dekoratörü** (`@app.get("/")` gibi) yazdık.
+* Bir **yol operasyonu fonksiyonu** (`def root(): ...` gibi) yazdık.
 * Geliştirme sunucumuzu (`uvicorn main:app --reload` gibi) çalıştırdık.
