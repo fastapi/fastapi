@@ -134,7 +134,7 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`FastAPI`, API'niz için tüm fonksiyonları sağlayan bir Python sınıfıdır.
+`FastAPI`, API'niz için tüm işlevselliği sağlayan bir Python sınıfıdır.
 
 !!! note "Teknik Detaylar"
     `FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
