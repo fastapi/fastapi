@@ -26,7 +26,7 @@ Y luego puedes establecer el `status_code` en ese objeto de respuesta *temporal*
 
 Y luego puedes retornar cualquier objeto que necesites, como normalmente lo harías (un `dict`, un modelo de base de datos, etc).
 
-Y si declaraste un `response_model`, aún se usará para filtrar y convertir el objeto que retornaste.    
+Y si declaraste un `response_model`, aún se usará para filtrar y convertir el objeto que retornaste.
 
 **FastAPI** usará esa respuesta *temporal* para extraer el código de estado (también cookies y headers), y los pondrá en la respuesta final que contiene el valor que retornaste, filtrado por cualquier `response_model`.
 
