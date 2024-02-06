@@ -139,7 +139,7 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 !!! note "Teknik Detaylar"
     `FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
 
-    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile kullanabilirsiniz.
+    <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Adım 3: *Yol Operasyonu* Oluşturmak
+### Adım 3: Bir *Yol Operasyonu* Oluşturalım
 
 #### <abbr title="Yol: Path">Yol</abbr>
 
@@ -222,7 +222,7 @@ Bunlardan biri:
 * `PATCH`
 * `TRACE`
 
-HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her yol ile iletişim kurabilirsiniz.
+HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her bir yol ile iletişim kurabilirsiniz.
 
 ---
 
