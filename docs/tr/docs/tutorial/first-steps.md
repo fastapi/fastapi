@@ -124,7 +124,7 @@ OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sis
 
 OpenAPI'ya dayalı düzinelerce alternatif etkileşimli dokümantasyon aracı mevcuttur. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
 
-Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod oluşturabilirsiniz. Mesela, önyüz, mobil veya IoT uygulamaları gibi istemciler.
+Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gibi istemciler için otomatik olarak kod oluşturabilirsiniz.
 
 ## Adım Adım Özetleyelim
 
