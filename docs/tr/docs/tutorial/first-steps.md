@@ -149,7 +149,7 @@ Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod olu�
 
 Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
 
-Bu tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
+Bu, tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
 
 `uvicorn` komutunda atıfta bulunulan `app` ile aynıdır.
 
