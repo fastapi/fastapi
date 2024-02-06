@@ -122,7 +122,7 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 
 OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
-OpenAPI'ya dayalı düzinelerce alternativ etkileşimli dokümantasyon aracı mevcuttur. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
+OpenAPI'ya dayalı düzinelerce alternatif etkileşimli dokümantasyon aracı mevcuttur. **FastAPI** ile oluşturulmuş uygulamanıza bu alternatiflerden herhangi birini kolayca ekleyebilirsiniz.
 
 Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod oluşturabilirsiniz. Mesela, önyüz, mobil veya IoT uygulamaları gibi istemciler.
 
