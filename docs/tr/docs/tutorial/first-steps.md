@@ -93,7 +93,7 @@ OpenAPI, API'niz için bir API şeması tanımlar. Ve bu şema, JSON veri şemal
 
 Ham OpenAPI şemasının nasıl göründüğünü merak ediyorsanız, FastAPI otomatik olarak tüm API'ınızın tanımlamalarını içeren bir JSON (şeması) oluşturur.
 
-Doğrudan şu bağlantıda görebilirsiniz: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Bu şemayı direkt olarak <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> bağlantısından görüntüleyebilirsiniz.
 
 Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 
