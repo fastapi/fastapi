@@ -1,6 +1,6 @@
 # İlk Adımlar
 
-En basit FastAPI dosyası şu şekilde görünür:
+En sade FastAPI dosyası şu şekilde görünür:
 
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
