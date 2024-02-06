@@ -83,7 +83,7 @@ Bu şema tanımı, API yollarınızla birlikte yollarınızın aldığı olası 
 
 "Şema" terimi, JSON içeriği gibi bazı verilerin şeklini de ifade edebilir.
 
-Bu durumda, JSON özellikleri ve sahip oldukları veri türleri gibi anlamına gelir.
+Bu durumda, JSON özellikleri ve sahip oldukları veri türleri gibi anlamlarına gelir.
 
 #### OpenAPI ve JSON Şema
 
