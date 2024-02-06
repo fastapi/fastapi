@@ -73,7 +73,7 @@ Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" ta
 
 "Şema", bir şeyin tanımı veya açıklamasıdır. Geliştirilen koddan ziyade soyut bir açıklamadır.
 
-#### API "Şemaları"
+#### API "Şeması"
 
 Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten bir şartnamedir.
 
