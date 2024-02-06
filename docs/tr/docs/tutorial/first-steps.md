@@ -31,7 +31,7 @@ $ uvicorn main:app --reload
     * `app`: `main.py` dosyası içerisinde `app = FastAPI()` satırıyla oluşturulan nesne.
     * `--reload`: Kod içerisinde değişiklik yapıldığında sunucunun yeniden başlatılmasını sağlar. Yalnızca geliştirme aşamasında kullanmaya özen gösteriniz.
 
-Çıktı olarak şöyle bir satır göreceksiniz:
+Çıktı olarak şöyle bir satır ile karşılaşacaksınız:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
