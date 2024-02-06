@@ -222,7 +222,7 @@ Bunlardan biri:
 * `PATCH`
 * `TRACE`
 
-HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her yol ile iletişim kurabilirsiniz.
+HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak her bir yol ile iletişim kurabilirsiniz.
 
 ---
 
