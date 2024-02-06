@@ -151,7 +151,7 @@ Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
 
 Bu, tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
 
-`uvicorn` komutunda atıfta bulunulan `app` ile aynıdır.
+Bu `app` değişkeni, `uvicorn` komutunda atıfta bulunulan değişkenin ta kendisidir.
 
 <div class="termy">
 
