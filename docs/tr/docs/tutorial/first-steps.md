@@ -8,7 +8,7 @@ En basit FastAPI dosyası şu şekilde görünür:
 
 Yukarıda ki içeriği bir `main.py` dosyasına kopyalayın.
 
-Uygulamayı çalıştırın:
+Uygulamayı çalıştıralım:
 
 <div class="termy">
 
