@@ -328,6 +328,6 @@ Otomatik olarak JSON'a dönüştürülecek (ORM'ler vb. dahil) başka birçok ne
 
 * `FastAPI`'yı projemize dahil ettik.
 * Bir `app` örneği oluşturduk.
-* **yol operasyonu dekoratörü** (`@app.get("/")` gibi) yazdık.
-* **yol operasyonu fonksiyonu** (`def root(): ...` gibi) yazdık.
+* Bir **yol operasyonu dekoratörü** (`@app.get("/")` gibi) oluşturduk.
+* Bir **yol operasyonu fonksiyonu** (`def root(): ...` gibi) oluşturduk.
 * Geliştirme sunucumuzu (`uvicorn main:app --reload` gibi) çalıştırdık.
