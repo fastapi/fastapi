@@ -139,7 +139,7 @@ Ayrıca API'ınızla iletişim kuracak istemciler için otomatik olarak kod olu�
 !!! note "Teknik Detaylar"
     `FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
 
-    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile kullanabilirsiniz.
+    <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
