@@ -141,7 +141,7 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 
     Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile kullanabilirsiniz.
 
-### Adım 2: Bir `FastAPI` "örneği" oluşturalım
+### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -149,9 +149,9 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 
 Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
 
-Bu tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
+Bu, tüm API'yı oluşturmak için ana etkileşim noktası olacaktır.
 
-`uvicorn` komutunda atıfta bulunulan `app` ile aynıdır.
+Bu `app` değişkeni, `uvicorn` komutunda atıfta bulunulan değişkenin ta kendisidir.
 
 <div class="termy">
 
@@ -200,9 +200,9 @@ https://example.com/items/foo
 ```
 
 !!! info "Bilgi"
-    "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılabilir.
+    "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
 
-Bir API oluştururken, "yol", "kaynakları" ile "endişeleri" ayırmanın ana yoludur.
+Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yoludur.
 
 #### Operasyonlar
 
@@ -226,7 +226,7 @@ HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak h
 
 ---
 
-API'lar oluştururkan, belirli bir amaca hizmet eden belirli HTTP methodlarını kullanırsınız.
+API'lar oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
 
 Normalde kullanılan:
 
