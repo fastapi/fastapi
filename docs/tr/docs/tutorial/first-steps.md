@@ -202,7 +202,7 @@ https://example.com/items/foo
 !!! info "Bilgi"
     "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
 
-Bir API oluştururken, "yol", "kaynakları" ile "endişeleri" ayırmanın ana yoludur.
+Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yoludur.
 
 #### Operasyonlar
 
