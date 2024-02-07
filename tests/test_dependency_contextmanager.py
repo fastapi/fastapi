@@ -1,7 +1,9 @@
+import json
 from typing import Dict
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
+from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -200,6 +202,13 @@ async def get_sync_context_b_bg(
     return state
 
 
+@app.middleware("http")
+async def middleware(request, call_next):
+    response: StreamingResponse = await call_next(request)
+    response.headers["x-state"] = json.dumps(state.copy())
+    return response
+
+
 client = TestClient(app)
 
 
@@ -235,7 +244,16 @@ def test_sync_raise_other():
     assert "/sync_raise" not in errors
 
 
-def test_async_raise():
+def test_async_raise_raises():
+    with pytest.raises(AsyncDependencyError):
+        client.get("/async_raise")
+    assert state["/async_raise"] == "asyncgen raise finalized"
+    assert "/async_raise" in errors
+    errors.clear()
+
+
+def test_async_raise_server_error():
+    client = TestClient(app, raise_server_exceptions=False)
     response = client.get("/async_raise")
     assert response.status_code == 500, response.text
     assert state["/async_raise"] == "asyncgen raise finalized"
@@ -265,12 +283,25 @@ def test_background_tasks():
     assert data["context_b"] == "started b"
     assert data["context_a"] == "started a"
     assert data["bg"] == "not set"
+    middleware_state = json.loads(response.headers["x-state"])
+    assert middleware_state["context_b"] == "finished b with a: started a"
+    assert middleware_state["context_a"] == "finished a"
+    assert middleware_state["bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["bg"] == "bg set - b: started b - a: started a"
+    assert state["bg"] == "bg set - b: finished b with a: started a - a: finished a"
 
 
-def test_sync_raise():
+def test_sync_raise_raises():
+    with pytest.raises(SyncDependencyError):
+        client.get("/sync_raise")
+    assert state["/sync_raise"] == "generator raise finalized"
+    assert "/sync_raise" in errors
+    errors.clear()
+
+
+def test_sync_raise_server_error():
+    client = TestClient(app, raise_server_exceptions=False)
     response = client.get("/sync_raise")
     assert response.status_code == 500, response.text
     assert state["/sync_raise"] == "generator raise finalized"
@@ -306,7 +337,16 @@ def test_sync_sync_raise_other():
     assert "/sync_raise" not in errors
 
 
-def test_sync_async_raise():
+def test_sync_async_raise_raises():
+    with pytest.raises(AsyncDependencyError):
+        client.get("/sync_async_raise")
+    assert state["/async_raise"] == "asyncgen raise finalized"
+    assert "/async_raise" in errors
+    errors.clear()
+
+
+def test_sync_async_raise_server_error():
+    client = TestClient(app, raise_server_exceptions=False)
     response = client.get("/sync_async_raise")
     assert response.status_code == 500, response.text
     assert state["/async_raise"] == "asyncgen raise finalized"
@@ -314,7 +354,16 @@ def test_sync_async_raise():
     errors.clear()
 
 
-def test_sync_sync_raise():
+def test_sync_sync_raise_raises():
+    with pytest.raises(SyncDependencyError):
+        client.get("/sync_sync_raise")
+    assert state["/sync_raise"] == "generator raise finalized"
+    assert "/sync_raise" in errors
+    errors.clear()
+
+
+def test_sync_sync_raise_server_error():
+    client = TestClient(app, raise_server_exceptions=False)
     response = client.get("/sync_sync_raise")
     assert response.status_code == 500, response.text
     assert state["/sync_raise"] == "generator raise finalized"
@@ -346,4 +395,7 @@ def test_sync_background_tasks():
     assert data["sync_bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["sync_bg"] == "sync_bg set - b: started b - a: started a"
+    assert (
+        state["sync_bg"]
+        == "sync_bg set - b: finished b with a: started a - a: finished a"
+    )

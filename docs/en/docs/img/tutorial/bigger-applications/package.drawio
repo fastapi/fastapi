@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e" modified="2020-11-28T18:13:19.199Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="KPHuXUeExV3PdWouu_3U" version="13.6.5">
+    <diagram id="zB4-QXJZ7ScUzHSLnJ1i" name="Page-1">
+        <mxGraphModel dx="1154" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0" extFonts="Roboto^https://fonts.googleapis.com/css?family=Roboto|Roboto Mono, mono^https://fonts.googleapis.com/css?family=Roboto+Mono%2C+mono">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=4;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="280" width="1350" height="620" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font style=&quot;font-size: 24px&quot; face=&quot;Roboto&quot;&gt;Package app&lt;br&gt;app/__init__.py&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=3;fontFamily=Roboto Mono, mono;FType=g;" parent="1" vertex="1">
+                    <mxGeometry x="635" y="310" width="300" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Module app.main&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/main.py&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="430" width="360" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Module app.dependencies&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/dependencies.py&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="565" width="370" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=4;" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="430" width="400" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;font style=&quot;font-size: 24px&quot; face=&quot;Roboto&quot;&gt;Subpackage app.internal&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/internal/__init__.py&lt;/span&gt;&lt;font style=&quot;font-size: 24px&quot; face=&quot;Roboto&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=3;fontFamily=Roboto Mono, mono;FType=g;" parent="1" vertex="1">
+                    <mxGeometry x="1083.8438461538462" y="460" width="292.3076923076923" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Module app.internal.admin&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/internal/admin.py&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="570" width="360" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=4;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="430" width="440" height="410" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font style=&quot;font-size: 24px&quot; face=&quot;Roboto&quot;&gt;Subpackage app.routers&lt;br&gt;app/routers/__init__.py&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=3;fontFamily=Roboto Mono, mono;FType=g;" parent="1" vertex="1">
+                    <mxGeometry x="599.2307692307693" y="460" width="321.53846153846155" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Module app.routers.items&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/routers/items.py&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="570" width="360" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Module app.routers.users&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;app/routers/users.py&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="700" width="360" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
