@@ -18,4 +18,4 @@ Puedes **desplegar un servidor** tú mismo usando un conjunto de herramientas, p
 
 Te enseñaré algunos de los conceptos principales que debes tener en cuenta al desplegar aplicaciones hechas con **FastAPI** (aunque la mayoría de estos conceptos aplican para cualquier otro tipo de aplicación web).
 
-Podrás ver más detalles de las técnicas que tengo en mente en las próximas secciones.✨
+Podrás ver más detalles para tener en cuenta y algunas de las técnicas para hacerlo en las próximas secciones.✨
