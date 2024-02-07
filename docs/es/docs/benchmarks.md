@@ -16,7 +16,7 @@ La jerarquía sería:
 
 * **Uvicorn**: como servidor ASGI
     * **Starlette**: (usa Uvicorn) un microframework web
-         * **FastAPI**: (usa Starlette) un microframework API con varias características adicionales para construir API, con validación de datos, etc.
+         * **FastAPI**: (usa Starlette) un microframework API con varias características adicionales para construir APIs, con validación de datos, etc.
 * **Uvicorn**:
     * Tendrá el mejor rendimiento, ya que no tiene mucho código extra aparte del propio servidor.
     * No escribirías una aplicación directamente en Uvicorn. Eso significaría que tu código tendría que incluir más o menos, al menos, todo el código proporcionado por Starlette (o **FastAPI**). Y si hicieras eso, tu aplicación final tendría la misma sobrecarga que si hubieras usado un framework y minimizado el código de tu aplicación y los errores.
