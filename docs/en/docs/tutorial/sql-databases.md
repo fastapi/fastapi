@@ -307,6 +307,12 @@ So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
 
+=== "Python 3.11"
+
+    ```Python hl_lines="1  4-6  9-10  19-20  23-24"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
+
 === "Python 3.10+"
 
     ```Python hl_lines="1  4-6  9-10  21-22  25-26"
@@ -351,6 +357,12 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
+=== "Python 3.11"
+
+    ```Python hl_lines="13-15  27-30"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
+
 === "Python 3.10+"
 
     ```Python hl_lines="13-15  29-32"
@@ -372,13 +384,26 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 !!! tip
     Notice that the `User`, the Pydantic *model* that will be used when reading a user (returning it from the API) doesn't include the `password`.
 
-### Use Pydantic's `orm_mode`
+### Arbitrary class instances
 
-Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
+=== "Python 3.11"
 
-This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+=== "Python 3.8+"
 
-In the `Config` class, set the attribute `orm_mode = True`.
+    Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
+
+    This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+
+    In the `Config` class, set the attribute `orm_mode = True`.
+
+!!! tip
+    Previous Pydantic versions used and internal `Config` class. Current versions use an attribute, and require `ConfigDict` to be imported.
+
+=== "Python 3.11"
+
+    ```Python hl_lines="13  16 27  31"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
 
 === "Python 3.10+"
 
@@ -755,6 +780,12 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
     ```
 
 * `sql_app/schemas.py`:
+
+=== "Python 3.11"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
 
 === "Python 3.10+"
 
