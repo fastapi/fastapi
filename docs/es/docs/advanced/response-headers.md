@@ -12,7 +12,7 @@ response *temporal*.
 {!../../../docs_src/response_headers/tutorial002.py!}
 ```
 
-Posteriormente, puedes devolver cualquier objeto que necesites, como normalmente harías (un `dict`, un modelo de base de datos, etc)
+Posteriormente, puedes devolver cualquier objeto que necesites, como normalmente harías (un `dict`, un modelo de base de datos, etc).
 
 Si declaraste un `response_model`, este se continuará usando para filtrar y convertir el objeto que devolviste.
 
