@@ -1,11 +1,11 @@
-# Seguridad Avanzada - Introducción
+# Seguridad Avanzada
 
 ## Características Adicionales
 
 Hay algunas características adicionales para manejar la seguridad además de las que se tratan en el [Tutorial - Guía de Usuario: Seguridad](../../tutorial/security/){.internal-link target=_blank}.
 
 !!! tip
-    Las secciones siguientes se consideran **no necesariamente "avanzadas"**. 
+    Las siguientes secciones **no necesariamente son "avanzadas"**.
 
     Y es posible que para tu caso de uso, la solución esté en alguna de ellas.
 
@@ -14,6 +14,5 @@ Hay algunas características adicionales para manejar la seguridad además de la
 
 En las siguientes secciones asumimos que ya has leído el principal [Tutorial - Guía de Usuario: Seguridad](../../tutorial/security/){.internal-link target=_blank}.
 
-
-Las secciones subsiguientes están todas basadas en los mismos conceptos de la sección de seguridad en la guía de usuario, pero se añaden algunas funcionalidades extra. 
+Están basadas en los mismos conceptos, pero permiten algunas funcionalidades adicionales. 
 
