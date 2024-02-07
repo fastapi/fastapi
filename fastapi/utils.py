@@ -1,7 +1,6 @@
 import re
 import warnings
 from dataclasses import is_dataclass
-from enum import Enum
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -16,13 +15,20 @@ from typing import (
 from weakref import WeakKeyDictionary
 
 import fastapi
+from fastapi._compat import (
+    PYDANTIC_V2,
+    BaseConfig,
+    ModelField,
+    PydanticSchemaGenerationError,
+    Undefined,
+    UndefinedType,
+    Validator,
+    lenient_issubclass,
+)
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
-from fastapi.openapi.constants import REF_PREFIX
-from pydantic import BaseConfig, BaseModel, create_model
-from pydantic.class_validators import Validator
-from pydantic.fields import FieldInfo, ModelField, UndefinedType
-from pydantic.schema import model_process_schema
-from pydantic.utils import lenient_issubclass
+from pydantic import BaseModel, create_model
+from pydantic.fields import FieldInfo
+from typing_extensions import Literal
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -47,25 +53,7 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     }:
         return True
     current_status_code = int(status_code)
-    return not (current_status_code < 200 or current_status_code in {204, 304})
-
-
-def get_model_definitions(
-    *,
-    flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
-) -> Dict[str, Any]:
-    definitions: Dict[str, Dict[str, Any]] = {}
-    for model in flat_models:
-        m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )
-        definitions.update(m_definitions)
-        model_name = model_name_map[model]
-        if "description" in m_schema:
-            m_schema["description"] = m_schema["description"].split("\f")[0]
-        definitions[model_name] = m_schema
-    return definitions
+    return not (current_status_code < 200 or current_status_code in {204, 205, 304})
 
 
 def get_path_param_names(path: str) -> Set[str]:
@@ -76,30 +64,40 @@ def create_response_field(
     name: str,
     type_: Type[Any],
     class_validators: Optional[Dict[str, Validator]] = None,
-    default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = True,
+    default: Optional[Any] = Undefined,
+    required: Union[bool, UndefinedType] = Undefined,
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
+    mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
     """
     class_validators = class_validators or {}
-    field_info = field_info or FieldInfo()
-
-    try:
-        return ModelField(
-            name=name,
-            type_=type_,
-            class_validators=class_validators,
-            default=default,
-            required=required,
-            model_config=model_config,
-            alias=alias,
-            field_info=field_info,
+    if PYDANTIC_V2:
+        field_info = field_info or FieldInfo(
+            annotation=type_, default=default, alias=alias
         )
-    except RuntimeError:
+    else:
+        field_info = field_info or FieldInfo()
+    kwargs = {"name": name, "field_info": field_info}
+    if PYDANTIC_V2:
+        kwargs.update({"mode": mode})
+    else:
+        kwargs.update(
+            {
+                "type_": type_,
+                "class_validators": class_validators,
+                "default": default,
+                "required": required,
+                "model_config": model_config,
+                "alias": alias,
+            }
+        )
+    try:
+        return ModelField(**kwargs)  # type: ignore[arg-type]
+    except (RuntimeError, PydanticSchemaGenerationError):
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
             f"check that {type_} is a valid Pydantic field type. "
@@ -116,8 +114,10 @@ def create_cloned_field(
     *,
     cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
+    if PYDANTIC_V2:
+        return field
     # cloned_types caches already cloned types to support recursive models and improve
-    # performance by avoiding unecessary cloning
+    # performance by avoiding unnecessary cloning
     if cloned_types is None:
         cloned_types = _CLONED_TYPES_CACHE
 
@@ -136,30 +136,31 @@ def create_cloned_field(
                     f, cloned_types=cloned_types
                 )
     new_field = create_response_field(name=field.name, type_=use_type)
-    new_field.has_alias = field.has_alias
-    new_field.alias = field.alias
-    new_field.class_validators = field.class_validators
-    new_field.default = field.default
-    new_field.required = field.required
-    new_field.model_config = field.model_config
+    new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
+    new_field.alias = field.alias  # type: ignore[misc]
+    new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
+    new_field.default = field.default  # type: ignore[misc]
+    new_field.required = field.required  # type: ignore[misc]
+    new_field.model_config = field.model_config  # type: ignore[attr-defined]
     new_field.field_info = field.field_info
-    new_field.allow_none = field.allow_none
-    new_field.validate_always = field.validate_always
-    if field.sub_fields:
-        new_field.sub_fields = [
+    new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
+    new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
+    if field.sub_fields:  # type: ignore[attr-defined]
+        new_field.sub_fields = [  # type: ignore[attr-defined]
             create_cloned_field(sub_field, cloned_types=cloned_types)
-            for sub_field in field.sub_fields
+            for sub_field in field.sub_fields  # type: ignore[attr-defined]
         ]
-    if field.key_field:
-        new_field.key_field = create_cloned_field(
-            field.key_field, cloned_types=cloned_types
+    if field.key_field:  # type: ignore[attr-defined]
+        new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
+            field.key_field,  # type: ignore[attr-defined]
+            cloned_types=cloned_types,
         )
-    new_field.validators = field.validators
-    new_field.pre_validators = field.pre_validators
-    new_field.post_validators = field.post_validators
-    new_field.parse_json = field.parse_json
-    new_field.shape = field.shape
-    new_field.populate_validators()
+    new_field.validators = field.validators  # type: ignore[attr-defined]
+    new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]
+    new_field.post_validators = field.post_validators  # type: ignore[attr-defined]
+    new_field.parse_json = field.parse_json  # type: ignore[attr-defined]
+    new_field.shape = field.shape  # type: ignore[attr-defined]
+    new_field.populate_validators()  # type: ignore[attr-defined]
     return new_field
 
 
@@ -172,17 +173,17 @@ def generate_operation_id_for_path(
         DeprecationWarning,
         stacklevel=2,
     )
-    operation_id = name + path
+    operation_id = f"{name}{path}"
     operation_id = re.sub(r"\W", "_", operation_id)
-    operation_id = operation_id + "_" + method.lower()
+    operation_id = f"{operation_id}_{method.lower()}"
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
-    operation_id = route.name + route.path_format
+    operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
-    operation_id = operation_id + "_" + list(route.methods)[0].lower()
+    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
     return operation_id
 
 
@@ -220,3 +221,9 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def match_pydantic_error_url(error_type: str) -> Any:
+    from dirty_equals import IsStr
+
+    return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")

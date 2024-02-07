@@ -97,7 +97,7 @@ And if you see the resulting OpenAPI (at `/openapi.json` in your API), you will 
 
 ```JSON hl_lines="22"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -150,9 +150,20 @@ And you could do this even if the data type in the request is not JSON.
 
 For example, in this application we don't use FastAPI's integrated functionality to extract the JSON Schema from Pydantic models nor the automatic validation for JSON. In fact, we are declaring the request content type as YAML, not JSON:
 
-```Python hl_lines="17-22  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+=== "Pydantic v2"
+
+    ```Python hl_lines="17-22  24"
+    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+    ```
+
+=== "Pydantic v1"
+
+    ```Python hl_lines="17-22  24"
+    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+    ```
+
+!!! info
+    In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_json_schema()`.
 
 Nevertheless, although we are not using the default integrated functionality, we are still using a Pydantic model to manually generate the JSON Schema for the data that we want to receive in YAML.
 
@@ -160,9 +171,20 @@ Then we use the request directly, and extract the body as `bytes`. This means th
 
 And then in our code, we parse that YAML content directly, and then we are again using the same Pydantic model to validate the YAML content:
 
-```Python hl_lines="26-33"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+=== "Pydantic v2"
+
+    ```Python hl_lines="26-33"
+    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+    ```
+
+=== "Pydantic v1"
+
+    ```Python hl_lines="26-33"
+    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+    ```
+
+!!! info
+    In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
 
 !!! tip
     Here we re-use the same Pydantic model.
