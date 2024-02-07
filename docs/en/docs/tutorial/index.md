@@ -1,4 +1,4 @@
-# Tutorial - User Guide - Intro
+# Tutorial - User Guide
 
 This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
@@ -43,7 +43,7 @@ For the tutorial, you might want to install it with all the optional dependencie
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```
@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     Also install `uvicorn` to work as the server:
 
     ```
-    pip install uvicorn
+    pip install "uvicorn[standard]"
     ```
 
     And the same for each of the optional dependencies that you want to use.

@@ -1,6 +1,6 @@
 # Handling Errors
 
-There are many situations in where you need to notify an error to a client that is using your API.
+There are many situations in which you need to notify an error to a client that is using your API.
 
 This client could be a browser with a frontend, a code from someone else, an IoT device, etc.
 
@@ -39,7 +39,7 @@ This also means that if you are inside a utility function that you are calling i
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
-In this example, when the client request an item by an ID that doesn't exist, raise an exception with a status code of `404`:
+In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:
 
 ```Python hl_lines="11"
 {!../../../docs_src/handling_errors/tutorial001.py!}
@@ -163,7 +163,7 @@ path -> item_id
 !!! warning
     These are technical details that you might skip if it's not important for you now.
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
@@ -234,9 +234,7 @@ You will receive a response telling you that the data is invalid containing the 
 
 And **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.
 
-The only difference, is that **FastAPI**'s `HTTPException` allows you to add headers to be included in the response.
-
-This is needed/used internally for OAuth 2.0 and some security utilities.
+The only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it.
 
 So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
 
@@ -252,14 +250,10 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### Re-use **FastAPI**'s exception handlers
 
-You could also just want to use the exception somehow, but then use the same default exception handlers from **FastAPI**.
-
-You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
+If you want to use the exception along with the same default exception handlers from  **FastAPI**, You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
 ```Python hl_lines="2-5  15  21"
 {!../../../docs_src/handling_errors/tutorial006.py!}
 ```
 
-In this example, you are just `print`ing the error with a very expressive message.
-
-But you get the idea, you can use the exception and then just re-use the default exception handlers.
+In this example you are just `print`ing the error with a very expressive message, but you get the idea. You can use the exception and then just re-use the default exception handlers.
