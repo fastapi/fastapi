@@ -121,15 +121,31 @@ Let's refer to the file `sql_app/database.py`.
 
 ### Import the SQLAlchemy parts
 
-```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="1-2"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1-3"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ### Create a database URL for SQLAlchemy
 
-```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="4-5"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="5-6"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
 
@@ -155,9 +171,17 @@ The first step is to create a SQLAlchemy "engine".
 
 We will later use this `engine` in other places.
 
-```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="7-9"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="8-10"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 #### Note
 
@@ -191,9 +215,17 @@ We will use `Session` (the one imported from SQLAlchemy) later.
 
 To create the `SessionLocal` class, use the function `sessionmaker`:
 
-```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ### Create a `Base` class
 
@@ -201,9 +233,17 @@ Now we will use the function `declarative_base()` that returns a class.
 
 Later we will inherit from this class to create each of the database models or classes (the ORM models):
 
-```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ## Create the database models
 
