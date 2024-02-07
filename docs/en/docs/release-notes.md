@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Spanish translation for `docs/es/docs/deployment/index.md` and `~/deployment/versions.md`. PR [#9669](https://github.com/tiangolo/fastapi/pull/9669) by [@pabloperezmoya](https://github.com/pabloperezmoya).
 * 🌐 Add Spanish translation for `docs/es/docs/benchmarks.md`. PR [#10928](https://github.com/tiangolo/fastapi/pull/10928) by [@pablocm83](https://github.com/pablocm83).
 * 🌐 Add Spanish translation for `docs/es/docs/advanced/response-change-status-code.md`. PR [#11100](https://github.com/tiangolo/fastapi/pull/11100) by [@alejsdev](https://github.com/alejsdev).
 
