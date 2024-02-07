@@ -46,6 +46,7 @@ FastAPI también sigue la convención de que cualquier cambio hecho en una <abbr
     El <abbr title="parche">"PATCH"</abbr> es el último número, por ejemplo, en `0.2.3`, la <abbr title="versiones de parche">PATCH version</abbr> es `3`.
 
 Entonces, deberías fijar la versión así:
+
 ```txt
 fastapi>=0.45.0,<0.46.0
 ```
