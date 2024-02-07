@@ -4,9 +4,9 @@
 
 Se agregan nuevas características frecuentemente, se corrigen errores continuamente y el código está constantemente mejorando.
 
-Debido a esto, es porque las actuales versiones son aún `0.x.x`, esto significa que cada versión puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>. Las versiones siguen las convenciones de <a href="https://semver.org/" class="external-link" target="_blank"><abbr title="versionado semántico">*Semantic Versioning*</abbr></a>.
+Por eso las versiones actuales siguen siendo `0.x.x`, esto significa que cada versión puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>. Las versiones siguen las convenciones de <a href="https://semver.org/" class="external-link" target="_blank"><abbr title="versionado semántico">*Semantic Versioning*</abbr></a>.
 
-Puedes crear aplicaciones listas para producción con **FastAPI** ahora mismo (y probablemente ya lo estés haciendo desde hace bastante), solo debes asegurarte de que usas la versión que funciona correctamente con el resto de tu código.
+Puedes crear aplicaciones listas para producción con **FastAPI** ahora mismo (y probablemente lo has estado haciendo por algún tiempo), solo tienes que asegurarte de usar la versión que funciona correctamente con el resto de tu código.
 
 ## Fijar la versión de `fastapi`
 
@@ -28,7 +28,7 @@ fastapi>=0.45.0,<0.46.0
 
 esto significa que usarás la versión `0.45.0` o superiores, pero menores a la versión `0.46.0`, por ejemplo, la versión `0.45.2` sería aceptada.
 
-Si usas otras herramientas para manejar tus instalaciones, como Poetry, Pipenv, u otras, todas estas poseen una forma de definir la versión específica para tus paquetes.
+Si usas cualquier otra herramienta para manejar tus instalaciones, como Poetry, Pipenv, u otras, todas tienen una forma que puedes usar para definir versiones específicas para tus paquetes.
 
 ## Versiones disponibles
 
@@ -48,7 +48,7 @@ Entonces, deberías fijar la versión así:
 fastapi>=0.45.0,<0.46.0
 ```
 
-En las <abbr title="versiones menores">"MINOR" versions</abbr> son añadidas nuevas características y posibles <abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">breaking changes</abbr>.
+En versiones <abbr title="versiones menores">"MINOR"</abbr> son añadidas nuevas características y posibles <abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">breaking changes</abbr>.
 
 !!! tip
     La versión "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la <abbr title="versión menor">"MINOR" version</abbr> es `2`.
