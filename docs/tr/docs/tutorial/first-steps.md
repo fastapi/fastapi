@@ -118,7 +118,7 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 ...
 ```
 
-#### OpenAPI Ne İçindir?
+#### OpenAPI Ne İşe Yarar?
 
 OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
