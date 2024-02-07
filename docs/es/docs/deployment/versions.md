@@ -23,6 +23,7 @@ fastapi==0.45.0
 esto significa que usarás específicamente la versión `0.45.0`.
 
 También puedes fijar las versiones de esta forma:
+
 ```txt
 fastapi>=0.45.0,<0.46.0
 ```
