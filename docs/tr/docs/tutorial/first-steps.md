@@ -226,7 +226,7 @@ HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak h
 
 ---
 
-API'lar oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
+API oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
 
 Normalde kullanılan:
 
