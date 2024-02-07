@@ -72,18 +72,32 @@ In a similar way you could use any other ORM.
 
 For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
 
-```
-.
-└── sql_app
-    ├── __init__.py
-    ├── crud.py
-    ├── database.py
-    ├── main.py
-    ├── models.py
-    └── schemas.py
-```
+=== "Python 3.11"
 
-The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
+    ```
+    .
+    └── sql_app
+        ├── crud.py
+        ├── database.py
+        ├── main.py
+        ├── models.py
+        └── schemas.py
+    ```
+
+=== "Python 3.8+"
+
+    ```
+    .
+    └── sql_app
+        ├── __init__.py
+        ├── crud.py
+        ├── database.py
+        ├── main.py
+        ├── models.py
+        └── schemas.py
+    ```
+
+    The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
 
 Now let's see what each file/module does.
 
@@ -714,7 +728,11 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 `sql_app` should have the following files:
 
-* `sql_app/__init__.py`: is an empty file.
+=== "Python 3.11"
+
+=== "Python 3.8+"
+
+    * `sql_app/__init__.py`: is an empty file.
 
 * `sql_app/database.py`:
 
