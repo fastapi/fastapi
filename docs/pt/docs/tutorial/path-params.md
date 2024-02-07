@@ -72,7 +72,7 @@ O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `i
 
 ## Documentação
 
-Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, você verá de forma automática e interativa a documtação da API como:
+Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, você verá de forma automática e interativa a documentação da API como:
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -236,7 +236,6 @@ Então, você poderia usar ele com:
 Com o **FastAPI**, usando as declarações de tipo do Python, você obtém:
 
 * Suporte no editor: verificação de erros, e opção de autocompletar, etc.
-* Parsing de dados
 * "<abbr title="convertendo uma string que vem de um request HTTP em dado Python">Parsing</abbr>" de dados
 * Validação de dados
 * Anotação da API e documentação automática

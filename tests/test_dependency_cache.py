@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, Security
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, root_validator
 
@@ -56,6 +56,19 @@ async def get_double_model_parsing(
     return {"parsing_counter": counter_holder["parsing_counter"]}
 
 
+@app.get("/scope-counter")
+async def get_scope_counter(
+    count: int = Security(dep_counter),
+    scope_count_1: int = Security(dep_counter, scopes=["scope"]),
+    scope_count_2: int = Security(dep_counter, scopes=["scope"]),
+):
+    return {
+        "counter": count,
+        "scope_counter_1": scope_count_1,
+        "scope_counter_2": scope_count_2,
+    }
+
+
 client = TestClient(app)
 
 
@@ -94,3 +107,13 @@ def test_sub_model_parsing_no_repeatable_parsing():
     response = client.post("/sub-model-parsing/", json={})
     assert response.status_code == 200, response.text
     assert response.json() == {"parsing_counter": 1}
+
+
+def test_security_cache():
+    counter_holder["counter"] = 0
+    response = client.get("/scope-counter/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 1, "scope_counter_1": 2, "scope_counter_2": 2}
+    response = client.get("/scope-counter/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 3, "scope_counter_1": 4, "scope_counter_2": 4}

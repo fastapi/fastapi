@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Paso 3: crea un *operación de path*
+### Paso 3: crea una *operación de path*
 
 #### Path
 
@@ -254,7 +254,7 @@ El `@app.get("/")` le dice a **FastAPI** que la función que tiene justo debajo 
     Esa sintaxis `@algo` se llama un "decorador" en Python.
 
     Lo pones encima de una función. Es como un lindo sombrero decorado (creo que de ahí salió el concepto).
-    
+
     Un "decorador" toma la función que tiene debajo y hace algo con ella.
 
     En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operación** `get`.
@@ -303,7 +303,7 @@ En este caso es una función `async`.
 
 ---
 
-También podrías definirla como una función normal, en vez de `async def`:
+También podrías definirla como una función estándar en lugar de `async def`:
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}

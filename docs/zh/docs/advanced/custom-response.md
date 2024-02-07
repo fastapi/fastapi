@@ -60,7 +60,7 @@
 正如你在 [直接返回响应](response-directly.md){.internal-link target=_blank} 中了解到的，你也可以通过直接返回响应在 *路径操作* 中直接重载响应。
 
 和上面一样的例子，返回一个 `HTMLResponse` 看起来可能是这样：
- 
+
 ```Python hl_lines="2 7 19"
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```

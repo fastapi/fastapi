@@ -98,7 +98,7 @@ Et vous obtenez aussi de la vérification d'erreur pour les opérations incorrec
 
 <img src="/img/tutorial/body/image04.png">
 
-Ce n'est pas un hasard, ce framework entier a été bati avec ce design comme objectif.
+Ce n'est pas un hasard, ce framework entier a été bâti avec ce design comme objectif.
 
 Et cela a été rigoureusement testé durant la phase de design, avant toute implémentation, pour s'assurer que cela fonctionnerait avec tous les éditeurs.
 
@@ -111,7 +111,7 @@ Mais vous auriez le même support de l'éditeur avec <a href="https://www.jetbra
 <img src="/img/tutorial/body/image05.png">
 
 !!! tip "Astuce"
-    Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>.
+    Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
     Ce qui améliore le support pour les modèles Pydantic avec :
 

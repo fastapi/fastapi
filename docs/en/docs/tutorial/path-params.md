@@ -46,16 +46,18 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "path",
-                "item_id"
-            ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
-        }
-    ]
+  "detail": [
+    {
+      "type": "int_parsing",
+      "loc": [
+        "path",
+        "item_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "foo",
+      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+    }
+  ]
 }
 ```
 
@@ -83,7 +85,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 ## Standards-based benefits, alternative documentation
 
-And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
+And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
 Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can access at <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
@@ -114,6 +116,14 @@ Because *path operations* are evaluated in order, you need to make sure that the
 ```
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
+
+Similarly, you cannot redefine a path operation:
+
+```Python hl_lines="6  11"
+{!../../../docs_src/path_params/tutorial003b.py!}
+```
+
+The first one will always be used since the path matches first.
 
 ## Predefined values
 

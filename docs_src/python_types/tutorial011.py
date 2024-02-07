@@ -1,13 +1,13 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Union
 
 from pydantic import BaseModel
 
 
 class User(BaseModel):
     id: int
-    name = "John Doe"
-    signup_ts: Optional[datetime] = None
+    name: str = "John Doe"
+    signup_ts: Union[datetime, None] = None
     friends: List[int] = []
 
 
