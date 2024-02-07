@@ -12,7 +12,7 @@ Esto difiere en las fases de **desarrollo**, donde estás constantemente cambian
 
 ## Estrategias de despliegue
 
-Existe varias formas de hacerlo dependiendo de tu caso de uso específico y las herramientas que uses
+Existe varias formas de hacerlo dependiendo de tu caso de uso específico y las herramientas que uses.
 
 Puedes **desplegar un servidor** tú mismo usando un conjunto de herramientas, puedes usar **servicios en la nube** que haga parte del trabajo por ti, o usar otras posibles opciones.
 
