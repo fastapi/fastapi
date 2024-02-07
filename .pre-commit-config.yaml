@@ -14,7 +14,7 @@ repos:
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.1.2
+    rev: v0.2.0
     hooks:
     -   id: ruff
         args:
