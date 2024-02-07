@@ -9,7 +9,6 @@ Hay algunas características adicionales para manejar la seguridad además de la
 
     Y es posible que para tu caso de uso, la solución esté en alguna de ellas.
 
-
 ## Leer primero el Tutorial
 
 En las siguientes secciones asumimos que ya has leído el principal [Tutorial - Guía de Usuario: Seguridad](../../tutorial/security/){.internal-link target=_blank}.
