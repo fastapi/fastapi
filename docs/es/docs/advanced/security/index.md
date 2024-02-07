@@ -14,5 +14,4 @@ Hay algunas características adicionales para manejar la seguridad además de la
 
 En las siguientes secciones asumimos que ya has leído el principal [Tutorial - Guía de Usuario: Seguridad](../../tutorial/security/){.internal-link target=_blank}.
 
-Están basadas en los mismos conceptos, pero permiten algunas funcionalidades adicionales. 
-
+Están basadas en los mismos conceptos, pero permiten algunas funcionalidades adicionales.
