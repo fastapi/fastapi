@@ -12,20 +12,20 @@ response *temporal*.
 {!../../../docs_src/response_headers/tutorial002.py!}
 ```
 
-Posteriormente, podrá retornar cualquier objeto que necesite, como lo haría normalmente (un `diccionario`, un modelo de base de datos, etc).
+Posteriormente, puedes devolver cualquier objeto que necesites, como normalmente harías (un `dict`, un modelo de base de datos, etc)
 
 Si declaraste un `response_model`, este se continuará usando para filtrar y convertir el objeto que devolviste. 
 
 **FastAPI** usará esa *temporal* response para extraer los headers (al igual que las cookies y el status code), además las pondrá en la respuesta final que contendrá el valor retornado y filtrado por algún `response_model`.
 
-También podrás declarar el parámetro `Response` en dependencias, así como configurar los headers (y las cookies) en ellas.
+También puedes declarar el parámetro `Response` en dependencias, así como configurar los headers (y las cookies) en ellas.
 
 
 ## Retornar una `Response` directamente 
 
 Adicionalmente, puedes añadir headers cuando se retorne una `Response` directamente. 
 
-Para hacer esto, puedes crear una respuesta tal como se describe en [Retornar una respuesta directamente](response-directly.md){.internal-link target=_blank} y pasar los headers como un parámetro adicional, como lo puedes en el ejemplo:
+Crea una respuesta tal como se describe en [Retornar una respuesta directamente](response-directly.md){.internal-link target=_blank} y pasa los headers como un parámetro adicional:
 
 
 ```Python hl_lines="10-12"
