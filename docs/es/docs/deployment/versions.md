@@ -15,6 +15,7 @@ Lo primero que debes hacer en tu proyecto es "fijar" la última versión especí
 Por ejemplo, digamos que estás usando la versión `0.45.0` en tu aplicación.
 
 Si usas el archivo `requirements.txt` puedes especificar la versión con:
+
 ```txt
 fastapi==0.45.0
 ```
