@@ -43,7 +43,7 @@ Bu satır, yerel makinenizde uygulamanızın çalıştığı bağlantıyı göst
 
 Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a> bağlantısına gidin.
 
-Şu lekilde bir JSON yanıtı göreceksiniz:
+Şu şekilde bir JSON yanıtı ile karşılaşacağız:
 
 ```JSON
 {"message": "Hello World"}
@@ -77,7 +77,7 @@ Tarayıcınızı açıp <a href="http://127.0.0.1:8000" class="external-link" ta
 
 Bu durumda, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>, API şemasını nasıl tanımlayacağınızı belirten bir şartnamedir.
 
-Bu şema tanımı, API yollarınızla birlikte yollarınızın aldığı olası parametreleri gibi tanımlamaları içerir.
+Bu şema tanımı, API yollarınızla birlikte yollarınızın aldığı olası parametreler gibi tanımlamaları içerir.
 
 #### Veri "Şeması"
 
@@ -118,7 +118,7 @@ Aşağıdaki gibi başlayan bir JSON ile karşılaşacaksınız:
 ...
 ```
 
-#### OpenAPI Ne İçindir?
+#### OpenAPI Ne İşe Yarar?
 
 OpenAPI şeması, FastAPI projesinde bulunan iki etkileşimli dokümantasyon sistemine güç veren şeydir.
 
@@ -202,7 +202,7 @@ https://example.com/items/foo
 !!! info "Bilgi"
     "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
 
-Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yoludur.
+Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yöntemidir.
 
 #### Operasyonlar
 
@@ -226,7 +226,7 @@ HTTP protokolünde, bu "metodlardan" birini (veya daha fazlasını) kullanarak h
 
 ---
 
-API'lar oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
+API oluştururkan, belirli bir amaca hizmet eden belirli HTTP metodlarını kullanırsınız.
 
 Normalde kullanılan:
 
