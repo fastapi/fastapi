@@ -51,7 +51,7 @@
 
 === "Python 3.10+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="6-7"
@@ -60,7 +60,7 @@
 
 === "Python 3.8+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="8-11"
@@ -114,7 +114,7 @@
 
 === "Python 3.10+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="1"
@@ -123,7 +123,7 @@
 
 === "Python 3.8+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="3"
@@ -154,7 +154,7 @@
 
 === "Python 3.10+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="11  16"
@@ -163,7 +163,7 @@
 
 === "Python 3.8+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="15  20"
@@ -180,7 +180,7 @@
 
 그리고 그 함수는 *경로 작동 함수*가 작동하는 것과 같은 방식으로 매개변수를 받습니다.
 
-!!! 팁
+!!! tip "팁"
     여러분은 다음 장에서 함수를 제외하고서, "다른 것들"이 어떻게 의존성으로 사용되는지 알게 될 것입니다.
 
 새로운 요청이 도착할 때마다, **FastAPI**는 다음을 처리합니다:
@@ -202,7 +202,7 @@ common_parameters --> read_users
 
 이렇게 하면 공용 코드를 한번만 적어도 되며, **FastAPI**는 *경로 작동*을 위해 이에 대한 호출을 처리합니다.
 
-!!! 확인
+!!! check "확인"
     특별한 클래스를 만들지 않아도 되며, 이러한 것 혹은 비슷한 종류를 **FastAPI**에 "등록"하기 위해 어떤 곳에 넘겨주지 않아도 됩니다.
 
     단순히 `Depends`에 넘겨주기만 하면 되며, **FastAPI**는 나머지를 어찌할지 알고 있습니다.
@@ -237,7 +237,7 @@ commons: Annotated[dict, Depends(common_parameters)]
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
     ```
 
-!!! 팁
+!!! tip "팁"
     이는 그저 표준 파이썬이고 "type alias"라고 부르며 사실 **FastAPI**에 국한되는 것은 아닙니다.
 
     하지만, `Annotated`를 포함하여, **FastAPI**가 파이썬 표준을 기반으로 하고 있기에, 이를 여러분의 코드 트릭으로 사용할 수 있습니다. 😎
@@ -256,7 +256,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 아무 문제 없습니다. **FastAPI**는 무엇을 할지 알고 있습니다.
 
-!!! 참고
+!!! note "참고"
     잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
 
 ## OpenAPI와 통합
