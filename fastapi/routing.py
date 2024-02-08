@@ -52,7 +52,7 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel, BaseConfig
+from pydantic import BaseConfig, BaseModel
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -488,7 +488,6 @@ class APIRoute(routing.Route):
                 type_=self.response_model,
                 mode="serialization",
                 model_config=self.response_model_config,
-
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
