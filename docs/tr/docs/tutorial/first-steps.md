@@ -253,7 +253,7 @@ Biz de onları "**operasyonlar**" olarak adlandıracağız.
 !!! info "`@decorator` Bilgisi"
     Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
 
-    Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor), fonksiyonların üzerlerine yerleştirilirler.
+    Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor) fonksiyonların üzerlerine yerleştirilirler.
 
     Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
 
