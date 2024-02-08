@@ -52,7 +52,7 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
+from pydantic import BaseModel, BaseConfig
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -422,6 +422,7 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_config: Type[BaseConfig] = BaseConfig,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -452,6 +453,7 @@ class APIRoute(routing.Route):
         self.response_model_exclude_unset = response_model_exclude_unset
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
+        self.response_model_config = response_model_config
         self.include_in_schema = include_in_schema
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -485,6 +487,8 @@ class APIRoute(routing.Route):
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
+                model_config=self.response_model_config,
+
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
@@ -862,6 +866,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_config: Type[BaseConfig] = BaseConfig,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -912,6 +917,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_config=response_model_config,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -943,6 +949,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_config: Type[BaseConfig] = BaseConfig,
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -973,6 +980,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_config=response_model_config,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -2334,6 +2342,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_config: Annotated[
+            Type[BaseConfig],
+            Doc(
+                """
+                Configuration passed to Pydantic to override the default BaseModel Config.
+                """
+            ),
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2454,6 +2470,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_config=response_model_config,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
