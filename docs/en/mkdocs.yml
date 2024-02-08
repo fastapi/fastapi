@@ -267,6 +267,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az - azərbaycan dili
   - link: /bn/
     name: bn - বাংলা
   - link: /de/

@@ -7,7 +7,39 @@ hide:
 
 ## Latest Changes
 
-* ✏️ Fix Pydantic method name in `docs/en/docs/advanced/path-operation-advanced-configuration.md`. PR [#10826](https://github.com/tiangolo/fastapi/pull/10826) by [@ahmedabdou14](https://github.com/ahmedabdou14).
+### Docs
+
+* ✏️ Fix minor typo in `fastapi/applications.py`. PR [#11099](https://github.com/tiangolo/fastapi/pull/11099) by [@JacobHayes](https://github.com/JacobHayes).
+
+### Translations
+
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/security/index.md`. PR [#2278](https://github.com/tiangolo/fastapi/pull/2278) by [@Xaraxx](https://github.com/Xaraxx).
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/response-headers.md`. PR [#2276](https://github.com/tiangolo/fastapi/pull/2276) by [@Xaraxx](https://github.com/Xaraxx).
+* 🌐 Add Spanish translation for `docs/es/docs/deployment/index.md` and `~/deployment/versions.md`. PR [#9669](https://github.com/tiangolo/fastapi/pull/9669) by [@pabloperezmoya](https://github.com/pabloperezmoya).
+* 🌐 Add Spanish translation for `docs/es/docs/benchmarks.md`. PR [#10928](https://github.com/tiangolo/fastapi/pull/10928) by [@pablocm83](https://github.com/pablocm83).
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/response-change-status-code.md`. PR [#11100](https://github.com/tiangolo/fastapi/pull/11100) by [@alejsdev](https://github.com/alejsdev).
+
+## 0.109.2
+
+### Upgrades
+
+* ⬆️ Upgrade version of Starlette to `>= 0.36.3`. PR [#11086](https://github.com/tiangolo/fastapi/pull/11086) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update Turkish translation for `docs/tr/docs/fastapi-people.md`. PR [#10547](https://github.com/tiangolo/fastapi/pull/10547) by [@alperiox](https://github.com/alperiox).
+
+### Internal
+
+* 🍱 Add new FastAPI logo. PR [#11090](https://github.com/tiangolo/fastapi/pull/11090) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.109.1
+
+### Security fixes
+
+* ⬆️ Upgrade minimum version of `python-multipart` to `>=0.0.7` to fix a vulnerability when using form data with a ReDos attack. You can also simply upgrade `python-multipart`.
+
+Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiangolo/fastapi/security/advisories/GHSA-qf9m-vfgh-m389).
 
 ### Features
 
@@ -46,9 +78,22 @@ hide:
 * 📝 Reword in docs, from "have in mind" to "keep in mind". PR [#10376](https://github.com/tiangolo/fastapi/pull/10376) by [@malicious](https://github.com/malicious).
 * 📝 Add External Link: Talk by Jeny Sadadia. PR [#10265](https://github.com/tiangolo/fastapi/pull/10265) by [@JenySadadia](https://github.com/JenySadadia).
 * 📝 Add location info to `tutorial/bigger-applications.md`. PR [#10552](https://github.com/tiangolo/fastapi/pull/10552) by [@nilslindemann](https://github.com/nilslindemann).
+* ✏️ Fix Pydantic method name in `docs/en/docs/advanced/path-operation-advanced-configuration.md`. PR [#10826](https://github.com/tiangolo/fastapi/pull/10826) by [@ahmedabdou14](https://github.com/ahmedabdou14).
 
 ### Translations
 
+* 🌐 Add Spanish translation for `docs/es/docs/external-links.md`. PR [#10933](https://github.com/tiangolo/fastapi/pull/10933) by [@pablocm83](https://github.com/pablocm83).
+* 🌐 Update Korean translation for `docs/ko/docs/tutorial/first-steps.md`, `docs/ko/docs/tutorial/index.md`, `docs/ko/docs/tutorial/path-params.md`, and `docs/ko/docs/tutorial/query-params.md`. PR [#4218](https://github.com/tiangolo/fastapi/pull/4218) by [@SnowSuno](https://github.com/SnowSuno).
+* 🌐 Add Chinese translation for `docs/zh/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#10870](https://github.com/tiangolo/fastapi/pull/10870) by [@zhiquanchi](https://github.com/zhiquanchi).
+* 🌐 Add Chinese translation for `docs/zh/docs/deployment/concepts.md`. PR [#10282](https://github.com/tiangolo/fastapi/pull/10282) by [@xzmeng](https://github.com/xzmeng).
+* 🌐 Add Azerbaijani translation for `docs/az/docs/index.md`. PR [#11047](https://github.com/tiangolo/fastapi/pull/11047) by [@aykhans](https://github.com/aykhans).
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/middleware.md`. PR [#2829](https://github.com/tiangolo/fastapi/pull/2829) by [@JeongHyeongKim](https://github.com/JeongHyeongKim).
+* 🌐 Add German translation for `docs/de/docs/tutorial/body-nested-models.md`. PR [#10313](https://github.com/tiangolo/fastapi/pull/10313) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add Persian translation for `docs/fa/docs/tutorial/middleware.md`. PR [#9695](https://github.com/tiangolo/fastapi/pull/9695) by [@mojtabapaso](https://github.com/mojtabapaso).
+* 🌐 Update Farsi translation for `docs/fa/docs/index.md`. PR [#10216](https://github.com/tiangolo/fastapi/pull/10216) by [@theonlykingpin](https://github.com/theonlykingpin).
+* 🌐 Add German translation for `docs/de/docs/tutorial/body-fields.md`. PR [#10310](https://github.com/tiangolo/fastapi/pull/10310) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/tutorial/body.md`. PR [#10295](https://github.com/tiangolo/fastapi/pull/10295) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/tutorial/body-multiple-params.md`. PR [#10308](https://github.com/tiangolo/fastapi/pull/10308) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/security/get-current-user.md`. PR [#2681](https://github.com/tiangolo/fastapi/pull/2681) by [@sh0nk](https://github.com/sh0nk).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/advanced-dependencies.md`. PR [#3798](https://github.com/tiangolo/fastapi/pull/3798) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/events.md`. PR [#3815](https://github.com/tiangolo/fastapi/pull/3815) by [@jaystone776](https://github.com/jaystone776).
@@ -135,6 +180,11 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People. PR [#11074](https://github.com/tiangolo/fastapi/pull/11074) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: add Coherence. PR [#11066](https://github.com/tiangolo/fastapi/pull/11066) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Upgrade GitHub Action issue-manager. PR [#11056](https://github.com/tiangolo/fastapi/pull/11056) by [@tiangolo](https://github.com/tiangolo).
+* 🍱 Update sponsors: TalkPython badge. PR [#11052](https://github.com/tiangolo/fastapi/pull/11052) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: TalkPython badge image. PR [#11048](https://github.com/tiangolo/fastapi/pull/11048) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, remove Deta. PR [#11041](https://github.com/tiangolo/fastapi/pull/11041) by [@tiangolo](https://github.com/tiangolo).
 * 💄 Fix CSS breaking RTL languages (erroneously introduced by a previous RTL PR). PR [#11039](https://github.com/tiangolo/fastapi/pull/11039) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add Italian to `mkdocs.yml`. PR [#11016](https://github.com/tiangolo/fastapi/pull/11016) by [@alejsdev](https://github.com/alejsdev).
