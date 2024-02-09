@@ -42,14 +42,14 @@
 
 === "Pydantic v1"
 
-    Pydantic 버전 1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 공식 문서: Schema customization</a>에서 설명하는 것처럼, 내부 클래스인 `Config`와 `schema_extra`를 사용할 것입니다.
+    Pydantic v1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 공식 문서: Schema customization</a>에서 설명하는 것처럼, 내부 클래스인 `Config`와 `schema_extra`를 사용할 것입니다.
 
     `schema_extra`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
 
 !!! tip "팁"
     JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가하기 위해 같은 기술을 사용할 수 있습니다.
 
-    예를 들면, 프론트엔드 사용자 인터페이스에 메타데이터를 추가하거나 등에 사용할 수 있습니다.
+    예를 들면, 프론트엔드 사용자 인터페이스에 메타데이터를 추가하는 등에 사용할 수 있습니다.
 
 !!! info "정보"
     (FastAPI 0.99.0부터 쓰이기 시작한) OpenAPI 3.1.0은 **JSON 스키마** 표준의 일부인 `examples`에 대한 지원을 추가했습니다.
@@ -174,7 +174,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
     {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
     ```
 
-이와같이 하면 이 예제는 그 본문 데이터를 위한 내부 **JSON 스키마**의 일부가 될 것입니다.
+이와 같이 하면 이 예제는 그 본문 데이터를 위한 내부 **JSON 스키마**의 일부가 될 것입니다.
 
 그럼에도 불구하고, 지금 <abbr title="2023-08-26">이 문서를 작성하는 시간</abbr>에, 문서 UI를 보여주는 역할을 맡은 Swagger UI는 **JSON 스키마** 속 데이터를 위한 여러 예제의 표현을 지원하지 않습니다. 하지만 해결 방안을 밑에서 읽어보세요.
 
