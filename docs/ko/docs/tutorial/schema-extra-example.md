@@ -45,17 +45,17 @@
     Pydantic 버전 1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 공식 문서: Schema customization</a>에서 설명하는 것처럼, 내부 클래스인 `Config`와 `schema_extra`를 사용할 것입니다.
 
     `schema_extra`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
-    
+
 !!! tip "팁"
     JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가하기 위해 같은 기술을 사용할 수 있습니다.
-    
+
     예를 들머면, 프론트엔드 사용자 인터페이스에 메타데이터를 추가하거나 등에 사용할 수 있습니다.
 
 !!! info "정보"
     (FastAPI 0.99.0부터 쓰이기 시작한) OpenAPI 3.1.0은 **JSON 스키마** 표준의 일부인 `examples`에 대한 지원을 추가했습니다.
 
     그 전에는, 하나의 예제만 가능한 `example` 키워드만 지원했습니다. 이는 아직 OpenAPI 3.1.0에서 지원하지만, 지원이 종료될 것이며 JSON 스키마 표준에 포함되지 않습니다. 그렇기에 `example`을 `examples`으로 이전하는 것을 추천합니다. 🤓
-    
+
     이 문서 끝에 더 많은 읽을거리가 있습니다.
 
 ## `Field` 추가 인자
@@ -259,7 +259,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 !!! tip "팁"
     이미 **FastAPI**의 **0.99.0 혹은 그 이상** 버전을 사용하고 있다면, 이 세부 사항을 **스킵**해도 상관 없을 것입니다.
-    
+
     세부 사항은 OpenAPI 3.1.0이 사용가능하기 전, 예전 버전과 더 관련있습니다.
 
     간략한 OpenAPI와 JSON 스키마 **역사 강의**로 생각할 수 있습니다. 🤓
@@ -300,7 +300,7 @@ JSON 스키마의 새로운 `examples` 필드는 예제 속 **단순한 `list`**
 
 !!! info "정보"
     더 쉽고 새로운 JSON 스키마와의 통합과 함께 OpenAPI 3.1.0가 배포되었지만, 잠시동안 자동 문서 생성을 제공하는 도구인 Swagger UI는 OpenAPI 3.1.0을 지원하지 않았습니다 (5.0.0 버전부터 지원합니다 🎉).
-    
+
     이로인해, FastAPI 0.99.0 이전 버전은 아직 OpenAPI 3.1.0 보다 낮은 버전을 사용했습니다.
 
 ### Pydantic과 FastAPI `examples`
