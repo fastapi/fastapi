@@ -10,7 +10,7 @@
 
 ## *경로 동작 데코레이터*에 `dependencies` 추가하기
 
-*경로 동작 데코레이터*는 `dependencies`라는 인자를 받습니다.
+*경로 동작 데코레이터*는 `dependencies`라는 선택적인 인자를 받습니다.
 
 그것은 `Depends()`의 `list`여야합니다:
 
