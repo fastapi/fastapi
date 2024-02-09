@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/cookie-params.md`. PR [#11118](https://github.com/tiangolo/fastapi/pull/11118) by [@riroan](https://github.com/riroan).
 * 🌐 Update Korean translation for `/docs/ko/docs/dependencies/index.md`. PR [#11114](https://github.com/tiangolo/fastapi/pull/11114) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Update Korean translation for `/docs/ko/docs/deployment/docker.md`. PR [#11113](https://github.com/tiangolo/fastapi/pull/11113) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Update Turkish translation for `docs/tr/docs/tutorial/first-steps.md`. PR [#11094](https://github.com/tiangolo/fastapi/pull/11094) by [@hasansezertasan](https://github.com/hasansezertasan).
