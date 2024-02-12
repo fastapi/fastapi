@@ -139,7 +139,7 @@ omit = [
     "docs_src/response_model/tutorial003_04_py310.py",
 ]
 
-[tool.ruff]
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
@@ -155,7 +155,7 @@ ignore = [
     "W191",  # indentation contains tabs
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
 "docs_src/dependencies/tutorial007.py" = ["F821"]
 "docs_src/dependencies/tutorial008.py" = ["F821"]
@@ -188,9 +188,9 @@ ignore = [
 "docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
 
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
 
-[tool.ruff.pyupgrade]
+[tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.
 keep-runtime-typing = true
