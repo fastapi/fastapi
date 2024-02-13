@@ -2,7 +2,7 @@
 
 If you are building an application or a web API, it's rarely the case that you can put everything on a single file.
 
-**FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
+**FastAPI** provides a convenient tool to structure your application while keeping all the flexibility.
 
 !!! info
     If you come from Flask, this would be the equivalent of Flask's Blueprints.
