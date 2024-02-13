@@ -161,21 +161,7 @@ if PYDANTIC_V2:
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from
             # ModelField to its JSON Schema.
-            # build a hash from the field_info and name and mode
-            # This method is probably not safe enough... but how can
-            # we easily hash and compare ModelFields builds with the same data?
-            return hash(
-                (
-                    repr(self.field_info),
-                    self.name,
-                    self.mode,
-                )
-            )
-
-        def __eq__(self, other: Any) -> bool:
-            if not isinstance(other, ModelField):
-                return False
-            return self.__hash__() == other.__hash__()
+            return id(self)
 
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
@@ -210,7 +196,20 @@ if PYDANTIC_V2:
             None if separate_input_output_schemas else "validation"
         )
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = field_mapping[(field, override_mode or field.mode)]
+        try:
+            json_schema = field_mapping[(field, override_mode or field.mode)]
+        except KeyError:
+            inputs = [
+                (field, override_mode or field.mode, field._type_adapter.core_schema)
+            ]
+            new_generator = GenerateJsonSchema(
+                ref_template=schema_generator.ref_template
+            )
+            new_field_mapping, definitions = new_generator.generate_definitions(
+                inputs=inputs
+            )
+            field_mapping.update(new_field_mapping)
+            json_schema = field_mapping[(field, override_mode or field.mode)]
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
