@@ -137,6 +137,7 @@ context = '${CONTEXT}'
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
+    "tests/test_dependency_pep695_py312.py"  # syntax error for version < py312
 ]
 
 [tool.ruff]
