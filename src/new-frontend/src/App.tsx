@@ -1,13 +1,15 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
 import Layout from './pages/Layout';
+import NotFound from './pages/NotFound';
 import Login from './pages/auth/Login';
 import RecoverPassword from './pages/auth/RecoverPassword';
 import Admin from './pages/main/Admin';
 import Dashboard from './pages/main/Dashboard';
 import Items from './pages/main/Items';
 import Profile from './pages/main/Profile';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 // Theme
 const theme = extendTheme({
@@ -48,6 +50,7 @@ function App() {
               <Route path="/items" element={<Items />} />
               <Route path="/admin" element={<Admin />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ ChakraProvider>
       </Router>
