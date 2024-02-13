@@ -4,6 +4,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+
 from .utils import needs_py312
 
 
@@ -19,7 +20,7 @@ def test_pep695_type_dependencies():
     app = FastAPI()
 
     @app.get("/")
-    async def get_with_dep(value: DependedValue) -> str:
+    async def get_with_dep(value: DependedValue) -> str:  # noqa
         return f"value: {value}"
 
     client = TestClient(app)
