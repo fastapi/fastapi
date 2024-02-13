@@ -75,7 +75,7 @@ from typing_extensions import Annotated, get_args, get_origin
 
 try:
     from typing_extensions import TypeAliasType
-except ImportError:
+except ImportError:  # pragma: no cover
     TypeAliasType = None  # type: ignore[misc,assignment]
 
 
