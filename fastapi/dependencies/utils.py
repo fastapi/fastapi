@@ -73,6 +73,12 @@ from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
 
+try:
+    from typing import TypeAliasType
+except ImportError:
+    TypeAliasType = None
+
+
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
     'You can install "python-multipart" with: \n\n'
@@ -356,6 +362,9 @@ def analyze_param(
     depends = None
     type_annotation: Any = Any
     use_annotation: Any = Any
+    if TypeAliasType is not None and isinstance(annotation, TypeAliasType):
+        # unpack in case py3.12 type syntax is used
+        annotation = annotation.__value__
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
         type_annotation = annotation
