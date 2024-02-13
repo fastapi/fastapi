@@ -5,6 +5,7 @@
 import type { ItemCreate } from '../models/ItemCreate';
 import type { ItemOut } from '../models/ItemOut';
 import type { ItemUpdate } from '../models/ItemUpdate';
+import type { Message } from '../models/Message';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -113,14 +114,14 @@ requestBody: ItemUpdate,
     /**
      * Delete Item
      * Delete an item.
-     * @returns ItemOut Successful Response
+     * @returns Message Successful Response
      * @throws ApiError
      */
     public static deleteItem({
 id,
 }: {
 id: number,
-}): CancelablePromise<ItemOut> {
+}): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/v1/items/{id}',

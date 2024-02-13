@@ -11,6 +11,7 @@ from app.api.deps import (
 )
 from app.core.config import settings
 from app.models import (
+    Message,
     User,
     UserCreate,
     UserCreateOpen,
@@ -151,3 +152,24 @@ def update_user(
     #     )
     # user = crud.user.update(session, db_obj=user, obj_in=user_in)
     # return user
+
+
+@router.delete("/{user_id}")
+def delete_user(
+    session: SessionDep, current_user: CurrentUser, user_id: int
+) -> Message:
+    """
+    Delete a user.
+    """
+    user = session.get(User, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if not current_user.is_superuser:
+        raise HTTPException(status_code=400, detail="Not enough permissions")
+    if user == current_user:
+        raise HTTPException(
+            status_code=400, detail="Users are not allowed to delete themselves"
+        )
+    session.delete(user)
+    session.commit()
+    return Message(message="User deleted successfully")
