@@ -74,9 +74,9 @@ from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
 
 try:
-    from typing import TypeAliasType
+    from typing_extensions import TypeAliasType
 except ImportError:
-    TypeAliasType = None
+    TypeAliasType = None  # type: ignore[misc,assignment]
 
 
 multipart_not_installed_error = (
