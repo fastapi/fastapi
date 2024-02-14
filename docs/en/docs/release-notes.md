@@ -14,6 +14,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/dependencies/global-dependencies.md`. PR [#11123](https://github.com/tiangolo/fastapi/pull/11123) by [@riroan](https://github.com/riroan).
 * 🌐 Add Korean translation for `/docs/ko/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#11124](https://github.com/tiangolo/fastapi/pull/11124) by [@riroan](https://github.com/riroan).
 * 🌐 Add Korean translation for `/docs/ko/docs/tutorial/schema-extra-example.md`. PR [#11121](https://github.com/tiangolo/fastapi/pull/11121) by [@KaniKim](https://github.com/KaniKim).
 * 🌐 Add Korean translation for `/docs/ko/docs/tutorial/body-fields.md`. PR [#11112](https://github.com/tiangolo/fastapi/pull/11112) by [@KaniKim](https://github.com/KaniKim).
