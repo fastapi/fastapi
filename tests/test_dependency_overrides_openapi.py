@@ -1,6 +1,7 @@
 from typing import Optional
 
 from fastapi import APIRouter, Depends, FastAPI
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -102,6 +103,10 @@ override_simple_openapi_schema = {
         }
     },
 }
+if not PYDANTIC_V2:
+    override_simple_openapi_schema["paths"]["/main-depends/"]["get"]["parameters"][0][
+        "schema"
+    ] = {"title": "Q", "type": "string"}
 
 
 def test_override_simple_openapi():
