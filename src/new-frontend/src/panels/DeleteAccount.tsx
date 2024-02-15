@@ -13,7 +13,7 @@ const DeleteAccount: React.FC = () => {
                 <Text>
                     Are you sure you want to delete your account? This action cannot be undone.
                 </Text>
-                <Button colorScheme='red' mt={4}>
+                <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} mt={4}>
                     Delete
                 </Button>
             </ Container>

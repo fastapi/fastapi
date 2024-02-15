@@ -5,12 +5,12 @@ import { Button, Center, Container, FormControl, Icon, Image, Input, InputGroup,
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
-import Logo from "../../assets/images/fastapi-logo.png";
-import { LoginService } from "../../client";
-import { Body_login_login_access_token as AccessToken } from "../../client/models/Body_login_login_access_token";
+import Logo from "../assets/images/fastapi-logo.svg";
+import { LoginService } from "../client";
+import { Body_login_login_access_token as AccessToken } from "../client/models/Body_login_login_access_token";
 
 const Login: React.FC = () => {
-const [show, setShow] = useBoolean();
+  const [show, setShow] = useBoolean();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<AccessToken>();
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
@@ -62,7 +62,7 @@ const [show, setShow] = useBoolean();
             </Link>
           </Center>
         </FormControl>
-        <Button bg="ui.main" color="white" type="submit">
+        <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} type="submit">
           Log In
         </Button>
       </Container>

@@ -4,9 +4,9 @@ import { Button, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@ch
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { FiTrash, FiEdit } from 'react-icons/fi';
 
-import Delete from '../pages/modals/DeleteAlert';
-import EditUser from '../pages/modals/EditUser';
-import EditItem from '../pages/modals/EditItem';
+import Delete from '../modals/DeleteAlert';
+import EditUser from '../modals/EditUser';
+import EditItem from '../modals/EditItem';
 
 interface ActionsMenuProps {
     type: string;

@@ -3,41 +3,41 @@ import React, { useState } from 'react';
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useToast } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { ItemCreate } from '../../client';
-import { useItemsStore } from '../../store/items-store';
+import { ItemCreate } from '../client';
+import { useItemsStore } from '../store/items-store';
 
-interface CreateItemProps {
+interface AddItemProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const CreateItem: React.FC<CreateItemProps> = ({ isOpen, onClose }) => {
+const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
     const toast = useToast();
     const [isLoading, setIsLoading] = useState(false);
-    const { register, handleSubmit } = useForm<ItemCreate>();
+    const { register, handleSubmit, reset } = useForm<ItemCreate>();
     const { addItem } = useItemsStore();
 
     const onSubmit: SubmitHandler<ItemCreate> = async (data) => {
+        setIsLoading(true);
         try {
-            setIsLoading(true);
             await addItem(data);
-            setIsLoading(false);
-
             toast({
                 title: 'Success!',
                 description: 'Item created successfully.',
                 status: 'success',
                 isClosable: true,
             });
+            reset();
             onClose();
         } catch (err) {
-            setIsLoading(false);
             toast({
                 title: 'Something went wrong.',
                 description: 'Failed to create item. Please try again.',
                 status: 'error',
                 isClosable: true,
             });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -51,7 +51,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ isOpen, onClose }) => {
             >
                 <ModalOverlay />
                 <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-                    <ModalHeader>Create Item</ModalHeader>
+                    <ModalHeader>Add Item</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl>
@@ -59,7 +59,7 @@ const CreateItem: React.FC<CreateItemProps> = ({ isOpen, onClose }) => {
                             <Input
                                 {...register('title')}
                                 placeholder="Title"
-
+                                type="text"
                             />
                         </FormControl>
                         <FormControl mt={4}>
@@ -67,13 +67,13 @@ const CreateItem: React.FC<CreateItemProps> = ({ isOpen, onClose }) => {
                             <Input
                                 {...register('description')}
                                 placeholder="Description"
-
+                                type="text"
                             />
                         </FormControl>
                     </ModalBody>
 
                     <ModalFooter gap={3}>
-                        <Button bg="ui.main" color="white" type="submit" isLoading={isLoading}>
+                        <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isLoading}>
                             Save
                         </Button>
                         <Button onClick={onClose} isDisabled={isLoading}>
@@ -86,4 +86,4 @@ const CreateItem: React.FC<CreateItemProps> = ({ isOpen, onClose }) => {
     );
 };
 
-export default CreateItem;
+export default AddItem;

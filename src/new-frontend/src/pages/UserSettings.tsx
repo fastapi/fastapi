@@ -9,7 +9,7 @@ import UserInformation from '../panels/UserInformation';
 
 
 
-const Profile: React.FC = () => {
+const UserSettings: React.FC = () => {
 
     return (
         <>
@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
                 </Heading>
                 <Tabs variant='enclosed' >
                     <TabList>
-                        <Tab>Profile</Tab>
+                        <Tab>My profile</Tab>
                         <Tab>Password</Tab>
                         <Tab>Appearance</Tab>
                         <Tab>Danger zone</Tab>
@@ -45,5 +45,5 @@ const Profile: React.FC = () => {
     );
 };
 
-export default Profile;
+export default UserSettings;
 

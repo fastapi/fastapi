@@ -24,7 +24,7 @@ const Appearance: React.FC = () => {
                         </Radio>
                     </Stack>
                 </RadioGroup>
-                <Button colorScheme='teal' mt={4}>Save</Button>
+                <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} mt={4}>Save</Button>
             </ Container>
         </>
     );

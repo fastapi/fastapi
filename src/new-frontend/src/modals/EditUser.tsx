@@ -24,16 +24,16 @@ const EditUser: React.FC<EditUserProps> = ({ isOpen, onClose }) => {
                     <ModalBody pb={6}>
                         <FormControl>
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email'  />
+                            <Input placeholder='Email' type="email" />
                         </FormControl>
 
                         <FormControl mt={4}>
                             <FormLabel>Full name</FormLabel>
-                            <Input placeholder='Full name'  />
+                            <Input placeholder='Full name' type="text" />
                         </FormControl>
                         <FormControl mt={4}>
-                            <FormLabel>Set Password</FormLabel>
-                            <Input placeholder='Password' type="password"  />
+                            <FormLabel>Password</FormLabel>
+                            <Input placeholder='Password' type="password" />
                         </FormControl>
                         <Flex>
                             <FormControl mt={4}>
@@ -46,7 +46,7 @@ const EditUser: React.FC<EditUserProps> = ({ isOpen, onClose }) => {
                     </ModalBody>
 
                     <ModalFooter gap={3}>
-                        <Button colorScheme='teal'>
+                        <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }}>
                             Save
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>

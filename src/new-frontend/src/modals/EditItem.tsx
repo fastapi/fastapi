@@ -24,12 +24,12 @@ const EditItem: React.FC<EditItemProps> = ({ isOpen, onClose }) => {
                     <ModalBody pb={6}>
                         <FormControl>
                             <FormLabel>Item</FormLabel>
-                            <Input placeholder='Item'  />
+                            <Input placeholder='Item' type="text" />
                         </FormControl>
 
                         <FormControl mt={4}>
                             <FormLabel>Description</FormLabel>
-                            <Input placeholder='Description'  />
+                            <Input placeholder='Description' type="text" />
                         </FormControl>
                     </ModalBody>
 

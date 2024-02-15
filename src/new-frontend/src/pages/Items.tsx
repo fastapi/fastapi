@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { Container, Flex, Heading, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react';
 
-import ActionsMenu from '../../components/ActionsMenu';
-import Navbar from '../../components/Navbar';
-import { useItemsStore } from '../../store/items-store';
+import ActionsMenu from '../components/ActionsMenu';
+import Navbar from '../components/Navbar';
+import { useItemsStore } from '../store/items-store';
 
 
 const Items: React.FC = () => {
@@ -14,21 +14,23 @@ const Items: React.FC = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
+            setIsLoading(true);
             try {
-                setIsLoading(true);
                 await getItems();
-                setIsLoading(false);
             } catch (err) {
-                setIsLoading(false);
                 toast({
                     title: 'Something went wrong.',
                     description: 'Failed to fetch items. Please try again.',
                     status: 'error',
                     isClosable: true,
                 });
+            } finally {
+                setIsLoading(false);
             }
         }
-        fetchItems();
+        if (items.length === 0) {
+            fetchItems();
+        }
     }, [])
 
 
@@ -53,6 +55,7 @@ const Items: React.FC = () => {
                                     <Th>ID</Th>
                                     <Th>Title</Th>
                                     <Th>Description</Th>
+                                    <Th>Actions</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>

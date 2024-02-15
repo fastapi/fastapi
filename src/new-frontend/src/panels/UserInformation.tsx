@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Button, Container, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 
-import { useUserStore } from '../../store/user-store';
+import { useUserStore } from '../store/user-store';
 
 const UserInformation: React.FC = () => {
     const [editMode, setEditMode] = useState(false);
@@ -39,7 +39,7 @@ const UserInformation: React.FC = () => {
                             </Text>
                     }
                 </FormControl>
-                <Button colorScheme='teal' mt={4} onClick={toggleEditMode}>
+                <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} mt={4} onClick={toggleEditMode}>
                     {editMode ? "Save" : "Edit"}
                 </Button>
             </ Container>

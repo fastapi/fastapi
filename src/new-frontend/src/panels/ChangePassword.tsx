@@ -23,7 +23,7 @@ const ChangePassword: React.FC = () => {
                         <FormLabel color="gray.700">Confirm new password</FormLabel>
                         <Input placeholder='Password' type="password" />
                     </FormControl>
-                    <Button colorScheme='teal' mt={4} type="submit">
+                    <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} mt={4} type="submit">
                         Save
                     </Button>
                 </Box>

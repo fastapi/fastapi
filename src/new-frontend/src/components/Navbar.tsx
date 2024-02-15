@@ -1,28 +1,34 @@
 import React from 'react';
 
-import { Button, Flex, Icon, useDisclosure } from '@chakra-ui/react';
-import { FaPlus } from "react-icons/fa";
+import { Button, Flex, Icon, Input, InputGroup, InputLeftElement, useDisclosure } from '@chakra-ui/react';
+import { FaPlus, FaSearch } from "react-icons/fa";
 
-import CreateItem from '../pages/modals/CreateItem';
-import CreateUser from '../pages/modals/CreateUser';
+import AddUser from '../modals/AddUser';
+import AddItem from '../modals/AddItem';
 
 interface NavbarProps {
     type: string;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ type }) => {
-    const createUserModal = useDisclosure();
-    const createItemModal = useDisclosure();
+    const addUserModal = useDisclosure();
+    const addItemModal = useDisclosure();
 
     return (
         <>
-            <Flex gap={4} py={{ base: "8", md: "4" }} justify={{ base: "center", md: "end" }}>
-                <Button bg="ui.main" color="white" gap={1} fontSize={{ base: "sm", md: "inherit" }} onClick={type === "User" ? createUserModal.onOpen : createItemModal.onOpen}>
-                    <Icon as={FaPlus} /> Create {type}
+            <Flex py={8} gap={4}>
+                <InputGroup w={{ base: "100%", md: "auto" }}>
+                    <InputLeftElement pointerEvents="none">
+                        <Icon as={FaSearch} color="gray.400" />
+                    </InputLeftElement>
+                    <Input type="text" placeholder="Search" fontSize={{ base: "sm", md: "inherit" }} borderRadius="8px" />
+                </InputGroup>
+                <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} gap={1} fontSize={{ base: "sm", md: "inherit" }} onClick={type === "User" ? addUserModal.onOpen : addItemModal.onOpen}>
+                    <Icon as={FaPlus} /> Add {type}
                 </Button>
-                <CreateUser isOpen={createUserModal.isOpen} onClose={createUserModal.onClose} />
-                <CreateItem isOpen={createItemModal.isOpen} onClose={createItemModal.onClose} />
-            </Flex>
+                <AddUser isOpen={addUserModal.isOpen} onClose={addUserModal.onClose} />
+                <AddItem isOpen={addItemModal.isOpen} onClose={addItemModal.onClose} />
+            </Flex >
         </>
     );
 };
