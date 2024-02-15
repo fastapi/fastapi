@@ -1,4 +1,5 @@
 import asyncio
+import codecs
 import dataclasses
 import email.message
 import inspect
@@ -502,6 +503,7 @@ class APIRoute(routing.Route):
             self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
+        self.description = codecs.decode(self.description, "unicode_escape")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
         self.description = self.description.split("\f")[0].strip()
