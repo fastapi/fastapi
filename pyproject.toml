@@ -51,6 +51,7 @@ dynamic = ["version"]
 Homepage = "https://github.com/tiangolo/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/tiangolo/fastapi"
+Changelog = "https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/release-notes.md"
 
 [project.optional-dependencies]
 all = [
