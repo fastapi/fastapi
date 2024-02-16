@@ -7,7 +7,7 @@ import { Flex, useToast } from '@chakra-ui/react';
 import { useUserStore } from '../store/user-store';
 import UserMenu from '../components/UserMenu';
 
-const Root: React.FC = () => {
+const Layout: React.FC = () => {
     const toast = useToast();
     const { getUser } = useUserStore();
 
@@ -39,4 +39,4 @@ const Root: React.FC = () => {
     );
 };
 
-export default Root;
+export default Layout;

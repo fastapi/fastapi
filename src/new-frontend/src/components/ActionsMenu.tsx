@@ -20,7 +20,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, id }) => {
     return (
         <>
             <Menu>
-                <MenuButton as={Button} bg="white" rightIcon={<BsThreeDotsVertical />} variant="unstyled">
+                <MenuButton as={Button} rightIcon={<BsThreeDotsVertical />} variant="unstyled">
                 </MenuButton>
                 <MenuList>
                     <MenuItem onClick={editUserModal.onOpen} icon={<FiEdit fontSize="16px" />}>Edit {type}</MenuItem>

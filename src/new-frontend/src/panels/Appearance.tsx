@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Button, Container, Heading, Radio, RadioGroup, Stack } from '@chakra-ui/react';
+import { Container, Heading, Radio, RadioGroup, Stack, useColorMode } from '@chakra-ui/react';
 
 const Appearance: React.FC = () => {
-    const [value, setValue] = React.useState('system');
+    const { colorMode, toggleColorMode } = useColorMode();
 
     return (
         <>
@@ -11,21 +11,17 @@ const Appearance: React.FC = () => {
                 <Heading size="sm" py={4}>
                     Appearance
                 </Heading>
-                <RadioGroup onChange={setValue} value={value}>
+                <RadioGroup onChange={toggleColorMode} value={colorMode}>
                     <Stack>
-                        <Radio value="system" colorScheme="teal" defaultChecked>
-                            Use system settings (default)
-                        </Radio>
                         <Radio value="light" colorScheme="teal">
-                            Light
+                            Light <i>(default)</i>
                         </Radio>
                         <Radio value="dark" colorScheme="teal">
                             Dark
                         </Radio>
                     </Stack>
                 </RadioGroup>
-                <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} mt={4}>Save</Button>
-            </ Container>
+            </Container>
         </>
     );
 }

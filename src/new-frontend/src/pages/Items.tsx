@@ -44,7 +44,7 @@ const Items: React.FC = () => {
             ) : (
                 items &&
                 <Container maxW="full">
-                    <Heading size="lg" color="gray.700" textAlign={{ base: "center", md: "left" }} pt={12}>
+                    <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
                         Items Management
                     </Heading>
                     <Navbar type={"Item"} />

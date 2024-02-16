@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Box, Button, Container, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react';
+import { Box, Button, Container, FormControl, FormLabel, Heading, Input, useColorModeValue } from '@chakra-ui/react';
 
 const ChangePassword: React.FC = () => {
+    const color = useColorModeValue("gray.700", "white");
 
     return (
         <>
@@ -12,15 +13,15 @@ const ChangePassword: React.FC = () => {
                 </Heading>
                 <Box as="form" display="flex" flexDirection="column" alignItems="start">
                     <FormControl>
-                        <FormLabel color="gray.700">Old password</FormLabel>
+                        <FormLabel color={color}>Old password</FormLabel>
                         <Input placeholder='Password' type="password" />
                     </FormControl>
                     <FormControl mt={4}>
-                        <FormLabel color="gray.700">New password</FormLabel>
+                        <FormLabel color={color}>New password</FormLabel>
                         <Input placeholder='Password' type="password" />
                     </FormControl>
                     <FormControl mt={4}>
-                        <FormLabel color="gray.700">Confirm new password</FormLabel>
+                        <FormLabel color={color}>Confirm new password</FormLabel>
                         <Input placeholder='Password' type="password" />
                     </FormControl>
                     <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} mt={4} type="submit">

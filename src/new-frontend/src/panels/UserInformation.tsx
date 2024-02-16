@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-import { Button, Container, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Button, Container, FormControl, FormLabel, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { useUserStore } from '../store/user-store';
 
 const UserInformation: React.FC = () => {
+    const color = useColorModeValue("gray.700", "white");
     const [editMode, setEditMode] = useState(false);
     const { user } = useUserStore();
 
@@ -20,21 +21,21 @@ const UserInformation: React.FC = () => {
                     User Information
                 </Heading>
                 <FormControl>
-                    <FormLabel color="gray.700">Full name</FormLabel>
+                    <FormLabel color={color}>Full name</FormLabel>
                     {
                         editMode ?
-                            <Input placeholder={user?.full_name || "Full name"} type="text" /> :
-                            <Text>
+                            <Input placeholder={user?.full_name || "Full name"} type="text" size="md" /> :
+                            <Text size="md" py={2}>
                                 {user?.full_name || "N/A"}
                             </Text>
                     }
                 </FormControl>
                 <FormControl mt={4}>
-                    <FormLabel color="gray.700">Email</FormLabel>
+                    <FormLabel color={color}>Email</FormLabel>
                     {
                         editMode ?
-                            <Input placeholder={user?.email} type="text" /> :
-                            <Text>
+                            <Input placeholder={user?.email} type="text" size="md" /> :
+                            <Text size="md" py={2}>
                                 {user?.email || "N/A"}
                             </Text>
                     }

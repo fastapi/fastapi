@@ -42,7 +42,7 @@ const RecoverPassword: React.FC = () => {
         Password Recovery
       </Heading>
       <FormControl id="username">
-        <Text align="center" color="gray.600">
+        <Text align="center">
           A password recovery email will be sent to the registered account.
         </Text>
         <Input

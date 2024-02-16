@@ -3,39 +3,26 @@ import React, { useState } from 'react';
 import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
-import { useItemsStore } from '../store/items-store';
-import { useUsersStore } from '../store/users-store';
-
 interface DeleteProps {
-    type: string;
-    id: number
     isOpen: boolean;
     onClose: () => void;
 }
 
-const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
+const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
     const toast = useToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const { handleSubmit } = useForm();
-    const { deleteItem } = useItemsStore();
-    const { deleteUser } = useUsersStore();
 
     const onSubmit = async () => {
         setIsLoading(true);
         try {
-            type === 'Item' ? await deleteItem(id) : await deleteUser(id);
-            toast({
-                title: "Success",
-                description: `The ${type.toLowerCase()} was deleted successfully.`,
-                status: "success",
-                isClosable: true,
-            });
+            // TODO: Delete user account when API is ready
             onClose();
         } catch (err) {
             toast({
                 title: "An error occurred.",
-                description: `An error occurred while deleting the ${type.toLowerCase()}.`,
+                description: `An error occurred while deleting your account.`,
                 status: "error",
                 isClosable: true,
             });
@@ -56,16 +43,16 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
                 <AlertDialogOverlay>
                     <AlertDialogContent as="form" onSubmit={handleSubmit(onSubmit)}>
                         <AlertDialogHeader>
-                            Delete {type}
+                            Confirmation Required
                         </AlertDialogHeader>
 
                         <AlertDialogBody>
-                            Are you sure? You will not be able to undo this action.
+                            All your account data will be <b>permanently deleted.</b> If you're sure, please click <b>'Confirm'</b> to proceed.
                         </AlertDialogBody>
 
                         <AlertDialogFooter gap={3}>
                             <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isLoading}>
-                                Delete
+                                Confirm
                             </Button>
                             <Button ref={cancelRef} onClick={onClose} isDisabled={isLoading}>
                                 Cancel
@@ -73,9 +60,13 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialogOverlay>
-            </AlertDialog>
+            </AlertDialog >
         </>
     )
 }
 
-export default Delete;
+export default DeleteConfirmation;
+
+
+
+
