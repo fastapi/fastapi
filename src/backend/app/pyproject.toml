@@ -22,7 +22,7 @@ alembic = "^1.12.1"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 httpx = "^0.25.1"
 psycopg = {extras = ["binary"], version = "^3.1.13"}
-sqlmodel = "^0.0.12"
+sqlmodel = "^0.0.16"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.7.0"

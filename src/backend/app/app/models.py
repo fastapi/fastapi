@@ -1,6 +1,6 @@
 from typing import Union
 
-from pydantic import BaseModel, EmailStr
+from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
 
 
@@ -29,10 +29,11 @@ class UserUpdate(UserBase):
     password: Union[str, None] = None
 
 
-class UserUpdateMe(BaseModel):
+class UserUpdateMe(SQLModel):
     password: Union[str, None] = None
     full_name: Union[str, None] = None
     email: Union[EmailStr, None] = None
+
 
 # Database model, database table inferred from class name
 class User(UserBase, table=True):
@@ -78,21 +79,21 @@ class ItemOut(ItemBase):
 
 
 # Generic message
-class Message(BaseModel):
+class Message(SQLModel):
     message: str
 
 
 # JSON payload containing access token
-class Token(BaseModel):
+class Token(SQLModel):
     access_token: str
     token_type: str = "bearer"
 
 
 # Contents of JWT token
-class TokenPayload(BaseModel):
+class TokenPayload(SQLModel):
     sub: Union[int, None] = None
 
 
-class NewPassword(BaseModel):
+class NewPassword(SQLModel):
     token: str
     new_password: str
