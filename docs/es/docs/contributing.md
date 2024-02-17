@@ -132,7 +132,7 @@ De esa manera, no tendrás que "instalar" tu versión local para poder probar ca
 
 ### Formatear el código
 
-Hay un script que puedes ejecutar y que formateará y limpiará todo tu código:
+Hay un script que puedes ejecutar que formateará y limpiará todo tu código:
 
 <div class="termy">
 
@@ -144,11 +144,11 @@ $ bash scripts/format.sh
 
 También ordenará automáticamente todas tus importaciones.
 
-Para ordenarlos correctamente, necesitas tener FastAPI instalado localmente en tu entorno, con el comando de la sección anterior usando `-e`.
+Para ordenarlas correctamente, necesitas tener FastAPI instalado localmente en tu entorno, utilizando el comando de la sección anterior usando `-e`.
 
 ## Documentación
 
-Primero, asegúrese de configurar su entorno como se describe anteriormente, eso instalará todos los requisitos.
+Primero, asegúrese de configurar su entorno como se describe anteriormente, eso instalará todos los requerimientos.
 
 ### Documentación en vivo
 
@@ -189,9 +189,9 @@ De esa manera, puedes editar los archivos de documentación/código fuente y ver
 
 Las instrucciones aquí te muestran cómo utilizar el script en `./scripts/docs.py` directamente con el programa `python`.
 
-Pero también puedes usar <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a> y obtendrás el autocompletado en tu terminal para ver los comandos después de instalar el completamiento.
+Pero también puedes usar <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a> y obtendrás el autocompletado en tu terminal para ver los comandos después de instalar el completado.
 
-Si instalas Typer CLI, puedes instalar el completamiento con:
+Si instalas Typer CLI, puedes instalar el completado con:
 
 <div class="termy">
 
@@ -217,7 +217,7 @@ Toda la documentación está en formato Markdown en el directorio. `./docs/en/`.
 
 Muchos de los tutoriales tienen bloques de código.
 
-En la mayoría de los casos, estos bloques de código son aplicaciones reales completas que se pueden ejecutar tal cual.
+En la mayoría de los casos, estos bloques de código son aplicaciones reales completas que se pueden ejecutar tal cual están.
 
 De hecho, esos bloques de código no están escritos dentro de Markdown, son archivos de Python en el directorio `./docs_src/`.
 
@@ -229,9 +229,9 @@ La mayoría de las pruebas en realidad se ejecutan con los archivos de código f
 
 Esto ayuda a garantizar que:
 
-*La documentación está actualizada.
-* Los ejemplos de documentación se pueden ejecutar tal cual.
-* La mayoría de las características están cubiertas por la documentación, garantizado por la cobertura de las pruebas.
+* La documentación está actualizada.
+* Los ejemplos de documentación se pueden ejecutar tal cual están.
+* La mayoría de las características están cubiertas por la documentación, aseguradas por la cobertura de las pruebas.
 
 #### Aplicaciones y documentación al mismo tiempo
 
@@ -257,9 +257,9 @@ Estos son los pasos para ayudar con las traducciones.
 
 #### Consejos y recomendaciones
 
-* Verifica los <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">pull requests existentes</a> actualmente para tu idioma. Puedes filtrar los pull requests por aquellas que tienen la etiqueta para tu idioma. Por ejemplo, para español, la etiqueta es <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting- revisión" class="external-link" target="_blank">`lang-es`</a>.
+* Revisa los <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">pull requests existentes</a> actualmente para tu idioma. Puedes filtrar los pull requests por aquellos con la etiqueta de tu idioma. Por ejemplo, para español, la etiqueta es <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting- revisión" class="external-link" target="_blank">`lang-es`</a>.
 
-* Revisa esos pull request, solicitando cambios o aprobándolos. Para los idiomas que no hablo, esperaré a que otros revisen la traducción antes de fusionarlos.
+* Revisa esos pull request, solicitando cambios o aprobándolos. Para los idiomas que no hablo, esperaré a que otros revisen la traducción antes de <abbr title="también conocido como: mezclarlos, mergearlos">fusionarlos</abbr>.
 
 !!! tip "Consejo"
     Puedes <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">agregar comentarios con sugerencias de cambios</a> a los pull requests existentes.
