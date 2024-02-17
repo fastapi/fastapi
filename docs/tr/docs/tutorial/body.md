@@ -49,7 +49,7 @@ Sonra, `BaseModel` sınıfını miras alacak bir veri modeli sınıfı tanımlay
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-Sorgu parametrelerinde olduğu gibi, bir model özelliği, varsayılan değere sahipse o özellik zorunlu değildir, eğer sahip değilse zorunludur. `None` kullanılarak özellikler opsiyonel hale getirilebilir.
+Sorgu parametrelerinde olduğu gibi, bir model özelliği, varsayılan değere sahipse o özellik zorunlu değildir, eğer sahip değilse zorunludur. Özellikler, `None` kullanılarak  isteğe bağlı hale getirilebilirler.
 
 Örneğin üstteki model, alttaki gibi bir JSON "`object`"'i (diğer bir adla Python `dict`'i) tanımlar:
 
@@ -62,7 +62,7 @@ Sorgu parametrelerinde olduğu gibi, bir model özelliği, varsayılan değere s
 }
 ```
 
-...`description` ve `tax` alanları (`None` varsayılan değeri sayesinde) opsiyonel olduklarından dolayı alttaki JSON "`object`"'i de geçerli sayılabilirdi:
+...`description` ve `tax` alanları (`None` varsayılan değeri sayesinde) isteğe bağlı olduklarından dolayı alttaki JSON "`object`"'i de geçerli sayılabilirdi:
 
 ```JSON
 {
