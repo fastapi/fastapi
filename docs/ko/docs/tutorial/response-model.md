@@ -1,6 +1,6 @@
 # 응답 모델
 
-어떤 *경로 동작*이든 매개변수 `response_model`를 사용하여 응답을 위한 모델을 선언할 수 있습니다:
+어떤 *경로 작동*이든 매개변수 `response_model`를 사용하여 응답을 위한 모델을 선언할 수 있습니다:
 
 * `@app.get()`
 * `@app.post()`
@@ -13,7 +13,7 @@
 ```
 
 !!! note "참고"
-    `response_model`은 "데코레이터" 메소드(`get`, `post`, 등)의 매개변수입니다. 모든 매개변수들과 본문(body)처럼 *경로 동작 함수*가 아닙니다.
+    `response_model`은 "데코레이터" 메소드(`get`, `post`, 등)의 매개변수입니다. 모든 매개변수들과 본문(body)처럼 *경로 작동 함수*가 아닙니다.
 
 Pydantic 모델 어트리뷰트를 선언한 것과 동일한 타입을 수신하므로 Pydantic 모델이 될 수 있지만, `List[Item]`과 같이 Pydantic 모델들의 `list`일 수도 있습니다.
 
@@ -21,7 +21,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 * 출력 데이터를 타입 선언으로 변환.
 * 데이터 검증.
-* OpenAPI *경로 동작*의 응답에 JSON 스키마 추가.
+* OpenAPI *경로 작동*의 응답에 JSON 스키마 추가.
 * 자동 생성 문서 시스템에 사용.
 
 하지만 가장 중요한 것은:
@@ -49,7 +49,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 이 경우, 사용자가 스스로 비밀번호를 발신했기 때문에 문제가 되지 않을 수 있습니다.
 
-그러나 동일한 모델을 다른 *경로 동작*에서 사용할 경우, 모든 클라이언트에게 사용자의 비밀번호를 발신할 수 있습니다.
+그러나 동일한 모델을 다른 *경로 작동*에서 사용할 경우, 모든 클라이언트에게 사용자의 비밀번호를 발신할 수 있습니다.
 
 !!! danger "위험"
     절대로 사용자의 평문 비밀번호를 저장하거나 응답으로 발신하지 마십시오.
@@ -62,7 +62,7 @@ FastAPI는 이 `response_model`를 사용하여:
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
-여기서 *경로 동작 함수*가 비밀번호를 포함하는 동일한 입력 사용자를 반환할지라도:
+여기서 *경로 작동 함수*가 비밀번호를 포함하는 동일한 입력 사용자를 반환할지라도:
 
 ```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial003.py!}
@@ -104,7 +104,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 ### `response_model_exclude_unset` 매개변수 사용
 
-*경로 동작 데코레이터* 매개변수를 `response_model_exclude_unset=True`로 설정 할 수 있습니다:
+*경로 작동 데코레이터* 매개변수를 `response_model_exclude_unset=True`로 설정 할 수 있습니다:
 
 ```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial004.py!}
@@ -112,7 +112,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 이러한 기본값은 응답에 포함되지 않고 실제로 설정된 값만 포함됩니다.
 
-따라서 해당 *경로 동작*에 ID가 `foo`인 항목(items)을 요청으로 보내면 (기본값을 제외한) 응답은 다음과 같습니다:
+따라서 해당 *경로 작동*에 ID가 `foo`인 항목(items)을 요청으로 보내면 (기본값을 제외한) 응답은 다음과 같습니다:
 
 ```JSON
 {
@@ -173,7 +173,7 @@ ID가 `baz`인 항목(items)처럼 기본값과 동일한 값을 갖는다면:
 
 ### `response_model_include` 및 `response_model_exclude`
 
-*경로 동작 데코레이터* 매개변수 `response_model_include` 및 `response_model_exclude`를 사용할 수 있습니다.
+*경로 작동 데코레이터* 매개변수 `response_model_include` 및 `response_model_exclude`를 사용할 수 있습니다.
 
 이들은 포함(나머지 생략)하거나 제외(나머지 포함) 할 어트리뷰트의 이름과 `str`의 `set`을 받습니다.
 
@@ -205,6 +205,6 @@ Pydantic 모델이 하나만 있고 출력에서 ​​일부 데이터를 제�
 
 ## 요약
 
-응답 모델을 정의하고 개인정보가 필터되는 것을 보장하기 위해 *경로 동작 데코레이터*의 매개변수 `response_model`을 사용하세요.
+응답 모델을 정의하고 개인정보가 필터되는 것을 보장하기 위해 *경로 작동 데코레이터*의 매개변수 `response_model`을 사용하세요.
 
 명시적으로 설정된 값만 반환하려면 `response_model_exclude_unset`을 사용하세요.
