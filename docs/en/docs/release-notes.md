@@ -14,6 +14,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/reference/fastapi.md`. PR [#10813](https://github.com/tiangolo/fastapi/pull/10813) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/newsletter.md`. PR [#10853](https://github.com/tiangolo/fastapi/pull/10853) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/learn/index.md`. PR [#11142](https://github.com/tiangolo/fastapi/pull/11142) by [@hsuanchi](https://github.com/hsuanchi).
 * 🌐 Add Korean translation for `/docs/ko/docs/tutorial/dependencies/global-dependencies.md`. PR [#11123](https://github.com/tiangolo/fastapi/pull/11123) by [@riroan](https://github.com/riroan).
