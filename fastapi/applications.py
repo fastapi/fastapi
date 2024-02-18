@@ -1052,19 +1052,19 @@ class FastAPI(Starlette):
         if self.root_path:
             root_path = scope.get("root_path", "")
             if root_path and self.root_path != root_path:
-                raise RuntimeError(
+                logger.warning(
                     f"The ASGI server is using a different root path than the one "
                     f"configured in FastAPI. The configured root path is: "
                     f"{self.root_path}, the ASGI server root path is: {root_path}. "
+                    f"The former will be used."
                 )
-            else:
-                scope["root_path"] = self.root_path
-                path = scope.get("path")
-                if path and not path.startswith(self.root_path):
-                    scope["path"] = self.root_path + path
-                raw_path: bytes | None = scope.get("raw_path")
-                if raw_path and not raw_path.startswith(self.root_path.encode()):
-                    scope["raw_path"] = self.root_path.encode() + raw_path
+            scope["root_path"] = self.root_path
+            path = scope.get("path")
+            if path and not path.startswith(self.root_path):
+                scope["path"] = self.root_path + path
+            raw_path: bytes | None = scope.get("raw_path")
+            if raw_path and not raw_path.startswith(self.root_path.encode()):
+                scope["raw_path"] = self.root_path.encode() + raw_path
         await super().__call__(scope, receive, send)
 
     def add_api_route(
