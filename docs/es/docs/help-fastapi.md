@@ -30,9 +30,9 @@ Puedes <abbr title="poner estrella">"star"</abbr> a FastAPI en GitHub (haciendo 
 
 Al añadir una estrella, otros usuarios podrán encontrarlo más fácilmente y ver que ya ha sido útil para otros.
 
-## <abbr title="en GitHub es darle segumiento a un proyecto. También conocido en español como: Observar">Observa</abbr> el repositorio de GitHub para conocer los <abbr title="también conocido en español como: lanzamientos, liberaciones">releases</abbr>
+## <abbr title="en GitHub es darle seguimiento a un proyecto. También conocido en español como: Observar">Observa</abbr> el repositorio de GitHub para conocer los <abbr title="también conocido en español como: lanzamientos, liberaciones">releases</abbr>
 
-Puedes <abbr title="en GitHub es darle segumiento a un proyecto. También conocido en español como: Observar">"watch"</abbr> a FastAPI en GitHub (haciendo clic en el botón "watch" en la parte superior derecha): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Puedes <abbr title="en GitHub es darle seguimiento a un proyecto. También conocido en español como: Observar">"watch"</abbr> a FastAPI en GitHub (haciendo clic en el botón "watch" en la parte superior derecha): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
 Allí puede seleccionar "Releases only".
 
@@ -123,11 +123,11 @@ Si responden, hay muchas posibilidades de que hayas resuelto su problema, felici
      * En Discusiones de GitHub: marque el comentario como **respuesta**.
      * En Issues de GitHub: **cerrar** el Issue.
 
-## <abbr title="en GitHub es darle segumiento a un proyecto. También conocido en español como: Observar">Observa</abbr> el repositorio de GitHub
+## <abbr title="en GitHub es darle seguimiento a un proyecto. También conocido en español como: Observar">Observa</abbr> el repositorio de GitHub
 
-Puedes <abbr title="en GitHub es darle segumiento a un proyecto. También conocido en español como: Observar">"watch"</abbr> a FastAPI en GitHub (haciendo clic en el botón "watch" en la parte superior derecha): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Puedes <abbr title="en GitHub es darle seguimiento a un proyecto. También conocido en español como: Observar">"watch"</abbr> a FastAPI en GitHub (haciendo clic en el botón "watch" en la parte superior derecha): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-Si selecciona <abbr title="en GitHub es darle segumiento a un proyecto. También conocido en español como: Observando">"Watching"</abbr> en lugar de <abbr title="en GitHub también conocido en español como: Solo lanzamientos">"Releases only"</abbr>, recibirá notificaciones cuando alguien cree un nuevo problema o pregunta. También puede especificar que solo desea recibir notificaciones sobre nuevas issues, discusiones, PRs, etc.
+Si selecciona <abbr title="en GitHub es darle seguimiento a un proyecto. También conocido en español como: Observando">"Watching"</abbr> en lugar de <abbr title="en GitHub también conocido en español como: Solo lanzamientos">"Releases only"</abbr>, recibirá notificaciones cuando alguien cree un nuevo problema o pregunta. También puede especificar que solo desea recibir notificaciones sobre nuevas issues, discusiones, PRs, etc.
 
 Luego puedes intentar ayudarlos a resolver esas preguntas.
 
@@ -224,7 +224,7 @@ Si puedes ayudarme con eso, **me estás ayudando a mantener FastAPI** y asegurar
 
 ## Únete al chat
 
-Únete al 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">servidor de  chat de Discord</a> 👥 y pasa el rato con otros miembros de la comunidad FastAPI.
+Únete al 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">servidor de chat de Discord</a> 👥 y pasa el rato con otros miembros de la comunidad FastAPI.
 
 !!! tip "Consejo"
     Si tienes preguntas, hazlas en <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Discusiones de GitHub</a> , hay muchas más posibilidades de que reciba ayuda de los [Expertos de FastAPI](fastapi-people.md#expertos){.internal-link target=_blank}.
