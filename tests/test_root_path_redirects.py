@@ -8,7 +8,7 @@ def test_redirects_without_root_path():
 
     @router.get("/hello/")
     def hello_page() -> str:
-        return "Hello, World!"
+        return "Hello, World!"  # pragma: nocover
 
     app.include_router(router)
 
@@ -25,7 +25,7 @@ def test_redirects_with_root_path():
 
     @router.get("/hello/")
     def hello_page() -> str:
-        return "Hello, World!"
+        return "Hello, World!"  # pragma: nocover
 
     app.include_router(router)
 
@@ -42,7 +42,7 @@ def test_invalid_combination_of_root_path():
 
     @router.get("/hello/")
     def hello_page() -> str:
-        return "Hello, World!"
+        return "Hello, World!"  # pragma: nocover
 
     app.include_router(router)
 
