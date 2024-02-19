@@ -1796,7 +1796,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -2178,7 +2178,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -2565,7 +2565,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -2952,7 +2952,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -3334,7 +3334,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -3716,7 +3716,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -4098,7 +4098,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
@@ -4485,7 +4485,7 @@ class FastAPI(Starlette):
             Optional[bool],
             Doc(
                 """
-                Auto create options route.
+                Automatically create a route to handle the OPTIONS HTTP verb.
                 """
             ),
         ] = False,
