@@ -224,4 +224,4 @@ Bu durumda, 3 tane sorgu parametresi var olacaktır:
 * `limit`, isteğe bağlı bir `int`.
 
 !!! tip "İpucu"
-        Ayrıca, [Yol Parametreleri](path-params.md#predefined-values){.internal-link target=_blank}nde de kullanıldığı şekilde `Enum` sınıfından faydalanabilirsiniz.
+    Ayrıca, [Yol Parametrelerinde](path-params.md#predefined-values){.internal-link target=_blank} de kullanıldığı şekilde `Enum` sınıfından faydalanabilirsiniz.
