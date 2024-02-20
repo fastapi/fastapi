@@ -4,7 +4,7 @@ FastAPI 어플리케이션을 배포할 때 일반적인 접근 방법은 **리�
 
 리눅스 컨테이너를 사용하는 데에는 **보안**, **반복 가능성**, **단순함** 등의 장점이 있습니다.
 
-!!! 팁
+!!! tip "팁"
     시간에 쫓기고 있고 이미 이런것들을 알고 있다면 [`Dockerfile`👇](#build-a-docker-image-for-fastapi)로 점프할 수 있습니다.
 
 <details>
@@ -130,7 +130,7 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-!!! 정보
+!!! info "정보"
     패키지 종속성을 정의하고 설치하기 위한 방법과 도구는 다양합니다.
 
     나중에 아래 세션에서 Poetry를 사용한 예시를 보이겠습니다. 👇
@@ -222,7 +222,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     프로그램이 `/code`에서 시작하고 그 속에 `./app` 디렉터리가 여러분의 코드와 함께 들어있기 때문에, **Uvicorn**은 이를 보고 `app`을 `app.main`으로부터 **불러 올** 것입니다.
 
-!!! 팁
+!!! tip "팁"
     각 코드 라인을 코드의 숫자 버블을 클릭하여 리뷰할 수 있습니다. 👆
 
 이제 여러분은 다음과 같은 디렉터리 구조를 가지고 있을 것입니다:
@@ -293,7 +293,7 @@ $ docker build -t myimage .
 
 </div>
 
-!!! 팁
+!!! tip "팁"
     맨 끝에 있는 `.` 에 주목합시다. 이는 `./`와 동등하며, 도커에게 컨테이너 이미지를 빌드하기 위한 디렉터리를 알려줍니다.
 
     이 경우에는 현재 디렉터리(`.`)와 같습니다.
@@ -394,7 +394,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 **HTTPS**와 **인증서**의 **자동** 취득을 다루는 것은 다른 컨테이너가 될 수 있는데, 예를 들어 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>을 사용하는 것입니다.
 
-!!! 팁
+!!! tip "팁"
     Traefik은 도커, 쿠버네티스, 그리고 다른 도구와 통합되어 있어 여러분의 컨테이너를 포함하는 HTTPS를 셋업하고 설정하는 것이 매우 쉽습니다.
 
 대안적으로, HTTPS는 클라우드 제공자에 의해 서비스의 일환으로 다루어질 수도 있습니다 (이때도 어플리케이션은 여전히 컨테이너에서 실행될 것입니다).
@@ -423,7 +423,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 이 요소가 요청들의 **로드**를 읽어들이고 각 워커에게 (바라건대) **균형적으로** 분배한다면, 이 요소는 일반적으로 **로드 밸런서**라고 불립니다.
 
-!!! 팁
+!!! tip "팁"
     HTTPS를 위해 사용된 **TLS 종료 프록시** 요소 또한 **로드 밸런서**가 될 수 있습니다.
 
 또한 컨테이너로 작업할 때, 컨테이너를 시작하고 관리하기 위해 사용한 것과 동일한 시스템은 이미 해당 **로드 밸런서**로 부터 여러분의 앱에 해당하는 컨테이너로 **네트워크 통신**(예를 들어, HTTP 요청)을 전송하는 내부적인 도구를 가지고 있을 것입니다 (여기서도 로드 밸런서는 **TLS 종료 프록시**일 수 있습니다).
@@ -503,7 +503,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 만약 여러분이 **여러개의 컨테이너**를 가지고 있다면, 아마도 각각의 컨테이너는 **하나의 프로세스**를 가지고 있을 것입니다(예를 들어, **쿠버네티스** 클러스터에서). 그러면 여러분은 복제된 워커 컨테이너를 실행하기 **이전에**, 하나의 컨테이너에 있는 **이전의 단계들을** 수행하는 단일 프로세스를 가지는 **별도의 컨테이너들**을 가지고 싶을 것입니다.
 
-!!! 정보
+!!! info "정보"
     만약 여러분이 쿠버네티스를 사용하고 있다면, 아마도 이는 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>일 것입니다.
 
 만약 여러분의 이용 사례에서 이전 단계들을 **병렬적으로 여러번** 수행하는데에 문제가 없다면 (예를 들어 데이터베이스 이전을 실행하지 않고 데이터베이스가 준비되었는지 확인만 하는 경우), 메인 프로세스를 시작하기 전에 이 단계들을 각 컨테이너에 넣을 수 있습니다.
@@ -520,7 +520,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-!!! 경고
+!!! warning "경고"
     여러분이 이 베이스 이미지 또는 다른 유사한 이미지를 필요로 하지 **않을** 높은 가능성이 있으며, [위에서 설명된 것처럼: FastAPI를 위한 도커 이미지 빌드하기](#build-a-docker-image-for-fastapi) 처음부터 이미지를 빌드하는 것이 더 나을 수 있습니다.
 
 이 이미지는 가능한 CPU 코어에 기반한 **몇개의 워커 프로세스**를 설정하는 **자동-튜닝** 메커니즘을 포함하고 있습니다.
@@ -529,7 +529,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 또한 스크립트를 통해 <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**시작하기 전 사전 단계**</a>를 실행하는 것을 지원합니다.
 
-!!! 팁
+!!! tip "팁"
     모든 설정과 옵션을 보려면, 도커 이미지 페이지로 이동합니다: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 ### 공식 도커 이미지에 있는 프로세스 개수
@@ -657,7 +657,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 11. `uvicorn` 커맨드를 실행하여, `app.main`에서 불러온 `app` 객체를 사용하도록 합니다.
 
-!!! 팁
+!!! tip "팁"
     버블 숫자를 클릭해 각 줄이 하는 일을 알아볼 수 있습니다.
 
 **도커 스테이지**란 `Dockefile`의 일부로서 나중에 사용하기 위한 파일들을 생성하기 위한 **일시적인 컨테이너 이미지**로 작동합니다.
