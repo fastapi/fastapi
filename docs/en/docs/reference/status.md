@@ -8,7 +8,7 @@ from fastapi import status
 
 `status` is provided directly by Starlette.
 
-It containes a group of named constants (variables) with integer status codes.
+It contains a group of named constants (variables) with integer status codes.
 
 For example:
 
