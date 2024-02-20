@@ -2343,7 +2343,7 @@ def Security(  # noqa: N802
     ```python
     from typing import Annotated
 
-    from fastapi import Depends, FastAPI
+    from fastapi import Security, FastAPI
 
     from .db import User
     from .security import get_current_active_user
