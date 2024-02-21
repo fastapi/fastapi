@@ -31,8 +31,8 @@ Bu senaryoda, `q` parametresi zorunlu olmasına rağmen tanımlandığında **uz
 
 Bunu sağlamak adına aşağıdaki ifadeleri içeri aktaralım:
 
-* `fastapi` paketinden `Query` 
-* `typing` (Python 3.9 veya daha alt versiyonlarda `typing_extensions`) paketinden `Annotated` 
+* `fastapi` paketinden `Query`
+* `typing` (Python 3.9 veya daha alt versiyonlarda `typing_extensions`) paketinden `Annotated`
 
 === "Python 3.10+"
 
@@ -59,7 +59,7 @@ Bunu sağlamak adına aşağıdaki ifadeleri içeri aktaralım:
 
     `Annotated` ifadesini kullanmadan önce [FastAPI versiyon güncellemesini](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} en az 0.95.1 sürümüne getirdiğinizden emin olun.
 
-## `Annotated` İfadesini `q` Parametresinde Kullanalım 
+## `Annotated` İfadesini `q` Parametresinde Kullanalım
 
 Hatırlarsanız `Annotated` ifadesinin, parametrelere üstveri eklemede kullanılabileceğini [Python Veri Tiplerine Giriş](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} bağlantısında bahsetmiştik.
 
@@ -123,7 +123,7 @@ Bundan sonra FastAPI:
 * Veri geçersiz olduğu durumda istemciye **belirgin bir hata** gösterecek
 * OpenAPI şema *yol operasyonunda* parametreyi **dokümante** edecek (böylece **otomatik dokümantasyon arayüzünde** yer alacak)
 
-## Varsayılan Değer Olarak (Eski) Alternatif `Query` 
+## Varsayılan Değer Olarak (Eski) Alternatif `Query`
 
 FastAPI'ın önceki versiyonları, (<abbr title="2023-03'den önce">0.95.0</abbr>'den önce) `Query`'nin `Annotated` ifadesinin içine konulması yerine fonksiyonda parametrenin varsayılan değeri olmasını zorunlu kılıyordu. Bu tür kullanım içeren kod ile karşılaşma ihtimaliniz yüksek olduğundan dolayı sizleri bu konuda bilgilendirmek isteriz.
 
