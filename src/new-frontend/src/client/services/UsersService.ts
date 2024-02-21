@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Message } from '../models/Message';
+import type { UpdatePassword } from '../models/UpdatePassword';
 import type { UserCreate } from '../models/UserCreate';
 import type { UserCreateOpen } from '../models/UserCreateOpen';
 import type { UserOut } from '../models/UserOut';
@@ -88,8 +89,30 @@ requestBody,
 requestBody: UserUpdateMe,
 }): CancelablePromise<UserOut> {
         return __request(OpenAPI, {
-            method: 'PUT',
+            method: 'PATCH',
             url: '/api/v1/users/me',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update Password Me
+     * Update own password.
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static updatePasswordMe({
+requestBody,
+}: {
+requestBody: UpdatePassword,
+}): CancelablePromise<Message> {
+        return __request(OpenAPI, {
+            method: 'PATCH',
+            url: '/api/v1/users/me/password',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -144,33 +167,6 @@ userId: number,
     }
 
     /**
-     * Update User
-     * Update a user.
-     * @returns UserOut Successful Response
-     * @throws ApiError
-     */
-    public static updateUser({
-userId,
-requestBody,
-}: {
-userId: number,
-requestBody: UserUpdate,
-}): CancelablePromise<UserOut> {
-        return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v1/users/{user_id}',
-            path: {
-                'user_id': userId,
-            },
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-
-    /**
      * Delete User
      * Delete a user.
      * @returns Message Successful Response
@@ -187,6 +183,33 @@ userId: number,
             path: {
                 'user_id': userId,
             },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update User
+     * Update a user.
+     * @returns UserOut Successful Response
+     * @throws ApiError
+     */
+    public static updateUser({
+userId,
+requestBody,
+}: {
+userId: number,
+requestBody: UserUpdate,
+}): CancelablePromise<UserOut> {
+        return __request(OpenAPI, {
+            method: 'PATCH',
+            url: '/api/v1/users/{user_id}',
+            path: {
+                'user_id': userId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },

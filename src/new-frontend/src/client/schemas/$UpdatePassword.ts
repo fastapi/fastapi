@@ -2,14 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $UserUpdateMe = {
+export const $UpdatePassword = {
     properties: {
-        full_name: {
+        current_password: {
     type: 'string',
+    isRequired: true,
 },
-        email: {
+        new_password: {
     type: 'string',
-    format: 'email',
+    isRequired: true,
 },
     },
 } as const;

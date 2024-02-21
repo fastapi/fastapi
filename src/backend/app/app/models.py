@@ -30,9 +30,13 @@ class UserUpdate(UserBase):
 
 
 class UserUpdateMe(SQLModel):
-    password: Union[str, None] = None
     full_name: Union[str, None] = None
     email: Union[EmailStr, None] = None
+
+
+class UpdatePassword(SQLModel):
+    current_password: str
+    new_password: str
 
 
 # Database model, database table inferred from class name

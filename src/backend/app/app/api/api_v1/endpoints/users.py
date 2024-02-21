@@ -10,8 +10,10 @@ from app.api.deps import (
     get_current_active_superuser,
 )
 from app.core.config import settings
+from app.core.security import get_password_hash, verify_password
 from app.models import (
     Message,
+    UpdatePassword,
     User,
     UserCreate,
     UserCreateOpen,
@@ -60,24 +62,40 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> Any:
     return user
 
 
-@router.put("/me", response_model=UserOut)
+@router.patch("/me", response_model=UserOut)
 def update_user_me(
-    *, session: SessionDep, body: UserUpdateMe, current_user: CurrentUser
+    *, session: SessionDep, user_in: UserUpdateMe, current_user: CurrentUser
 ) -> Any:
     """
     Update own user.
     """
-    # TODO: Refactor when SQLModel has update
-    # current_user_data = jsonable_encoder(current_user)
-    # user_in = UserUpdate(**current_user_data)
-    # if password is not None:
-    #     user_in.password = password
-    # if full_name is not None:
-    #     user_in.full_name = full_name
-    # if email is not None:
-    #     user_in.email = email
-    # user = crud.user.update(session, session_obj=current_user, obj_in=user_in)
-    # return user
+
+    user_data = user_in.model_dump(exclude_unset=True)
+    current_user.sqlmodel_update(user_data)
+    session.add(current_user)
+    session.commit()
+    session.refresh(current_user)
+    return current_user
+
+
+@router.patch("/me/password", response_model=Message)
+def update_password_me(
+    *, session: SessionDep, body: UpdatePassword, current_user: CurrentUser
+) -> Any:
+    """
+    Update own password.
+    """
+    if not verify_password(body.current_password, current_user.hashed_password):
+        raise HTTPException(status_code=400, detail="Incorrect password")
+    if body.current_password == body.new_password:
+        raise HTTPException(
+            status_code=400, detail="New password cannot be the same as the current one"
+        )
+    hashed_password = get_password_hash(body.new_password)
+    current_user.hashed_password = hashed_password
+    session.add(current_user)
+    session.commit()
+    return Message(message="Password updated successfully")
 
 
 @router.get("/me", response_model=UserOut)
@@ -128,7 +146,7 @@ def read_user_by_id(
     return user
 
 
-@router.put(
+@router.patch(
     "/{user_id}",
     dependencies=[Depends(get_current_active_superuser)],
     response_model=UserOut,
@@ -143,15 +161,23 @@ def update_user(
     Update a user.
     """
 
-    # TODO: Refactor when SQLModel has update
-    # user = session.get(User, user_id)
-    # if not user:
-    #     raise HTTPException(
-    #         status_code=404,
-    #         detail="The user with this username does not exist in the system",
-    #     )
-    # user = crud.user.update(session, db_obj=user, obj_in=user_in)
-    # return user
+    db_user = session.get(User, user_id)
+    if not db_user:
+        raise HTTPException(
+            status_code=404,
+            detail="The user with this username does not exist in the system",
+        )
+    user_data = user_in.model_dump(exclude_unset=True)
+    extra_data = {}
+    if "password" in user_data:
+        password = user_data["password"]
+        hashed_password = get_password_hash(password)
+        extra_data["hashed_password"] = hashed_password
+    db_user.sqlmodel_update(user_data, update=extra_data)
+    session.add(db_user)
+    session.commit()
+    session.refresh(db_user)
+    return db_user
 
 
 @router.delete("/{user_id}")

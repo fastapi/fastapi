@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UserUpdateMe = {
-    full_name?: string;
-    email?: string;
+export type UpdatePassword = {
+    current_password: string;
+    new_password: string;
 };
