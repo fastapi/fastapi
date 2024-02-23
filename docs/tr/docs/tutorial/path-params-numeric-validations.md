@@ -280,7 +280,7 @@ Ayrıca, sayısal doğrulamalar için de tanımlama yapabilirsiniz:
 !!! info "Bilgi"
     `Query`, `Path` ifadeleri ve ileride göreceğiniz diğer sınıflar `Param` ortak sınıfının alt sınıflarıdır.
 
-    Bunların hepsi, aşina olmuş olduğunuz ek doğrulama ve üstveri tanımlamaları için aynı parametrelerden faydalanır. 
+    Bunların hepsi, aşina olmuş olduğunuz ek doğrulama ve üstveri tanımlamaları için aynı parametrelerden faydalanır.
 
 !!! note "Teknik Detaylar"
     `Query`, `Path` ifadeleri ve `fastapi` paketinden içeri aktarılan diğer ifadeler aslında birer fonksiyondur.
