@@ -8,7 +8,7 @@ Puedes declarar los "parámetros" o "variables" con la misma sintaxis que usan l
 
 El valor del parámetro de <abbr title="también conocido en español como: ruta">path</abbr> `item_id` será pasado a tu función como el argumento `item_id`.
 
-Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás una respuesta de:
+Entonces, si ejecutas este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás una respuesta de:
 
 ```JSON
 {"item_id":"foo"}
@@ -70,7 +70,7 @@ El mismo error aparecería si pasaras un `float` en vez de un `int` como en: <a 
 
     Observa que el error también muestra claramente el punto exacto en el que no pasó la validación.
 
-    Esto es increíblemente útil cuando estás desarrollando y debugging código que interactúa con tu API.
+    Esto es increíblemente útil durante el desarrollo y la depuración del código que interactúa con tu API.
 
 ## Documentación
 
@@ -127,7 +127,7 @@ Siempre se utilizará el primer path encontrado.
 
 ## Valores predefinidos
 
-Si tienes una *operación de <abbr title="también conocido en español como: ruta">path</abbr>* que recibe un *parámetro de <abbr title="también conocido en español como: ruta">path</abbr>* pero quieres que los valores posibles del *parámetro de <abbr title="también conocido en español como: ruta">path</abbr>* sean predefinidos puedes usar un <abbr title="Enumeration">`Enum`</abbr> estándar de Python.
+Si tienes una *operación de <abbr title="también conocido en español como: ruta">path</abbr>* que recibe un *parámetro de <abbr title="también conocido en español como: ruta">path</abbr>*, pero quieres que los valores posibles del *parámetro de <abbr title="también conocido en español como: ruta">path</abbr>* sean predefinidos puedes usar un <abbr title="Enumeration">`Enum`</abbr> estándar de Python.
 
 ### Crea una clase `Enum`
 
