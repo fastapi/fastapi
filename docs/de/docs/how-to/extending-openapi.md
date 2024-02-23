@@ -10,13 +10,13 @@ Der normale (Standard-)Prozess ist wie folgt.
 
 Eine `FastAPI`-Anwendung (-Instanz) verfügt über eine `.openapi()`-Methode, von der erwartet wird, dass sie das OpenAPI-Schema zurückgibt.
 
-Als Teil der Erstellung des Anwendungsobjekts wird eine *Pfadoperation* für `/openapi.json` (oder was auch immer der Wert von `openapi_url` ist) registriert.
+Als Teil der Erstellung des Anwendungsobjekts wird eine *Pfadoperation* für `/openapi.json` (oder welcher Wert für den Parameter `openapi_url` gesetzt wurde) registriert.
 
-Diese gibt lediglich eine JSON-Response zurück, welche das Ergebnis der Methode `.openapi()` der Anwendung ist.
+Diese gibt lediglich eine JSON-Response zurück, mit dem Ergebnis der Methode `.openapi()` der Anwendung.
 
-Standardmäßig überprüft die Methode `.openapi()` die Eigenschaft `.openapi_schema`, um zu sehen, ob diese Inhalt enthält, und gibt diesen zurück.
+Standardmäßig überprüft die Methode `.openapi()` die Eigenschaft `.openapi_schema`, um zu sehen, ob diese Inhalt hat, und gibt diesen zurück.
 
-Ist das nicht der Fall, wird er mithilfe der Hilfsfunktion unter `fastapi.openapi.utils.get_openapi` generiert.
+Ist das nicht der Fall, wird der Inhalt mithilfe der Hilfsfunktion unter `fastapi.openapi.utils.get_openapi` generiert.
 
 Und diese Funktion `get_openapi()` erhält als Parameter:
 
@@ -34,7 +34,7 @@ Und diese Funktion `get_openapi()` erhält als Parameter:
 
 Mithilfe der oben genannten Informationen können Sie dieselbe Hilfsfunktion verwenden, um das OpenAPI-Schema zu generieren und jeden benötigten Teil zu überschreiben.
 
-Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDocs OpenAPI-Erweiterung</a> zum Einbinden eines benutzerdefinierten Logos hinzu..
+Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDocs OpenAPI-Erweiterung</a> zum Einbinden eines benutzerdefinierten Logos hinzu.
 
 ### Normales **FastAPI**
 
@@ -80,7 +80,7 @@ Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
-### Es testen
+### Testen
 
 Sobald Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
 
