@@ -57,7 +57,7 @@ Bunu sağlamak adına aşağıdaki ifadeleri içeri aktaralım:
 
     Daha eski bir sürüme sahipseniz `Annotated` ifadesini kullanırken hata alacaksınızdır.
 
-    `Annotated` ifadesini kullanmadan önce [FastAPI versiyon güncellemesini](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} en az 0.95.1 sürümüne getirdiğinizden emin olun.
+    `Annotated` ifadesini kullanmadan önce [FastAPI versiyon güncellemesini](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} en az 0.95.1 sürümüne getirdiğinizden emin olunuz.
 
 ## `Annotated` İfadesini `q` Parametresinde Kullanalım
 
