@@ -268,7 +268,7 @@ Aynı durum <abbr title="less than"><code>lt (-dan küçük)</code></abbr> için
 
 ## Özet
 
-`Query`, `Path` ifadeleri (ve henüz görmediğiniz diğer ifadeler)  ile birlikte [Sorgu Parametreleri ve String Doğrulamaları](query-params-str-validations.md){.internal-link target=_blank}'nda da olduğu gibi üstveri ve string doğrulamaları tanımlayabilirsiniz.
+`Query`, `Path` ifadeleri (ve henüz görmediğiniz diğer ifadeler) ile birlikte [Sorgu Parametreleri ve String Doğrulamaları](query-params-str-validations.md){.internal-link target=_blank}'nda da olduğu gibi üstveri ve string doğrulamaları tanımlayabilirsiniz.
 
 Ayrıca, sayısal doğrulamalar için de tanımlama yapabilirsiniz:
 
