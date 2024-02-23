@@ -1,12 +1,12 @@
-# <abbr title="tambien conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr>
+# <abbr title="También conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr>
 
 Cuando necesitas enviar datos desde un cliente (digamos, un navegador) a tu API, los envías como un **cuerpo de la petición**.
 
-Un cuerpo de **<abbr title="tambien conocido como solicitud. En inglés: request">petición</abbr>** son datos enviados por el cliente a la API. Un cuerpo de **respuesta** son los datos que la API envía al cliente.
+Un cuerpo de **<abbr title="también conocido como solicitud. En inglés: request">petición</abbr>** son datos enviados por el cliente a la API. Un cuerpo de **respuesta** son los datos que la API envía al cliente.
 
-Tu API casi siempre tiene que enviar un cuerpo de **<abbr title="tambien conocido en inglés como: response">respuesta</abbr>**. Pero los clientes no necesariamente necesitan enviar cuerpos de **<abbr title="tambien conocido como solicitud. En inglés: request">petición</abbr>** todo el tiempo.
+Tu API casi siempre tiene que enviar un cuerpo de **<abbr title="también conocido en inglés como: response">respuesta</abbr>**. Pero los clientes no necesariamente necesitan enviar cuerpos de **<abbr title="también conocido como solicitud. En inglés: request">petición</abbr>** todo el tiempo.
 
-Para declarar un cuerpo de **<abbr title="tambien conocido como solicitud. En inglés: request">petición</abbr>**, utiliza modelos <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> con todo su potencial y beneficios.
+Para declarar un cuerpo de **<abbr title="también conocido como solicitud. En inglés: request">petición</abbr>**, utiliza modelos <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> con todo su potencial y beneficios.
 
 !!! info "Información"
     Para enviar datos, debes usar uno de: `POST` (el más común), `PUT`, `DELETE` o `PATCH`.
@@ -93,18 +93,18 @@ Para agregarlo a su *operación de ruta*, decláralo de la misma manera que decl
 
 Con solo esa declaración de tipo Python, **FastAPI** hará lo siguiente:
 
-* Lee el cuerpo de la <abbr title="tambien conocido como solicitud. En inglés: request">petición</abbr> como JSON.
+* Lee el cuerpo de la <abbr title="también conocido como solicitud. En inglés: request">petición</abbr> como JSON.
 * Convierte los tipos correspondientes (si es necesario).
 * Valida los datos.
      * Si los datos no son válidos, devolverá un error bonito y claro, indicando exactamente dónde y cuál fue el dato incorrecto.
 * Te dará los datos recibidos en el parámetro `item`.
      * Como lo declaraste en la función como de tipo `Item`, también tendrás todo el soporte del editor (completado, etc.) para todos los atributos y sus tipos.
-* Genera definiciones del <a href="https://json-schema.org" class="external-link" target="_blank"><abbr title="tambien conocido en inglés como: JSON Schema">Esquema JSON</abbr></a> para su modelo, que también podrás usarlas en cualquier otro lugar que desees si tiene sentido para tu proyecto.
+* Genera definiciones del <a href="https://json-schema.org" class="external-link" target="_blank"><abbr title="también conocido en inglés como: JSON Schema">Esquema JSON</abbr></a> para su modelo, que también podrás usarlas en cualquier otro lugar que desees si tiene sentido para tu proyecto.
 * Esos esquemas formarán parte del esquema OpenAPI generado y serán utilizados por la documentación automática de las <abbr title="User Interfaces">UIs</abbr>.
 
 ## Documentación automática
 
-Los <abbr title="tambien conocido en inglés como: JSON Schemas">Esquemas JSON</abbr> de tus modelos serán parte de su esquema generado por OpenAPI y se mostrarán en las documentaciones interactivas de la API.:
+Los <abbr title="también conocido en inglés como: JSON Schemas">Esquemas JSON</abbr> de tus modelos serán parte de su esquema generado por OpenAPI y se mostrarán en las documentaciones interactivas de la API:
 
 <img src="/img/tutorial/body/image01.png">
 
@@ -114,7 +114,7 @@ Y también se usará en la documentación de la API dentro de cada *operación d
 
 ## Soporte del editor
 
-En tu editor, dentro de tu función obtendrás sugerencias de tipo y completamiento en todas partes (esto no sucedería si recibiera un `dict` en lugar de un modelo Pydantic):
+En tu editor, dentro de tu función obtendrás sugerencias de tipo y autocompletado en todas partes (esto no sucedería si recibiera un `dict` en lugar de un modelo Pydantic):
 
 <img src="/img/tutorial/body/image03.png">
 
@@ -161,7 +161,7 @@ Dentro de la función, puedes acceder a todos los atributos del modelo de objeto
     {!> ../../../docs_src/body/tutorial002.py!}
     ```
 
-## <abbr title="tambien conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr> + parámetros de ruta
+## <abbr title="también conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr> + parámetros de ruta
 
 Puedes declarar parámetros de ruta y cuerpo de la petición al mismo tiempo.
 
@@ -179,7 +179,7 @@ Puedes declarar parámetros de ruta y cuerpo de la petición al mismo tiempo.
     {!> ../../../docs_src/body/tutorial003.py!}
     ```
 
-## <abbr title="tambien conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr> + ruta + parámetros de consulta
+## <abbr title="también conocido como Cuerpo de la Solicitud. En inglés: Request Body">Cuerpo de la Petición</abbr> + ruta + parámetros de consulta
 
 Puedes declarar **cuerpo**, parámetros  de **ruta** y **consulta**, todos al mismo tiempo.
 
