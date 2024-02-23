@@ -167,7 +167,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 JWTアクセストークンを作成し、それを返します。
 
-```Python hl_lines="115-128"
+```Python hl_lines="115-130"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
