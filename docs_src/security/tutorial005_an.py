@@ -119,7 +119,7 @@ async def get_current_user(
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-        scope: str = payload.get("scope", "") 
+        scope: str = payload.get("scope", "")
         token_scopes = scope.split(" ")
         token_data = TokenData(scopes=token_scopes, username=username)
     except (JWTError, ValidationError):
