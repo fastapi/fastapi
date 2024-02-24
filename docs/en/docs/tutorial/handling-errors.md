@@ -1,6 +1,6 @@
 # Handling Errors
 
-There are many situations in where you need to notify an error to a client that is using your API.
+There are many situations in which you need to notify an error to a client that is using your API.
 
 This client could be a browser with a frontend, a code from someone else, an IoT device, etc.
 
@@ -234,9 +234,7 @@ You will receive a response telling you that the data is invalid containing the 
 
 And **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.
 
-The only difference, is that **FastAPI**'s `HTTPException` allows you to add headers to be included in the response.
-
-This is needed/used internally for OAuth 2.0 and some security utilities.
+The only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it.
 
 So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
 

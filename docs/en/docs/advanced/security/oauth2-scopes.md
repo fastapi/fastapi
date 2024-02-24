@@ -68,7 +68,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="2  4  8  12  47  65  106  108-116  122-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -79,7 +79,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  152"
+    ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  154"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -88,16 +88,16 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  153"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  153"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -121,7 +121,7 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="63-66"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -146,7 +146,7 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -188,7 +188,7 @@ And we return the scopes as part of the JWT token.
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -199,7 +199,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="152"
+    ```Python hl_lines="154"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -208,16 +208,16 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="153"
+    ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="153"
+    ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -254,7 +254,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  140  171"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -265,7 +265,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  138  165"
+    ```Python hl_lines="3  138  167"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -274,16 +274,16 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  166"
+    ```Python hl_lines="4  139  168"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  166"
+    ```Python hl_lines="4  139  168"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -320,7 +320,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8  106"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -344,7 +344,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -377,7 +377,7 @@ In this exception, we include the scopes required (if any) as a string separated
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="106  108-116"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -401,7 +401,7 @@ In this exception, we include the scopes required (if any) as a string separated
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -436,7 +436,7 @@ We also verify that we have a user with that username, and if not, we raise that
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="47  117-128"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -460,7 +460,7 @@ We also verify that we have a user with that username, and if not, we raise that
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -487,7 +487,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005_an.py!}
@@ -511,7 +511,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
