@@ -58,19 +58,19 @@ First, let's quickly see the parts that change from the examples in the main **T
 
 === "Python 3.10+"
 
-    ```Python hl_lines="4  8  12  46  64  105  107-115  121-124  128-134  139  155"
+    ```Python hl_lines="4  8  12  46  64  105  107-115  121-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="2  4  8  12  47  65  106  108-116  122-125  129-135  140  156"
+    ```Python hl_lines="2  4  8  12  47  65  106  108-116  122-126  130-136  141  157"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
@@ -79,7 +79,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  154"
+    ```Python hl_lines="3  7  11  45  63  104  106-114  120-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -88,7 +88,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -97,7 +97,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
+    ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -178,19 +178,19 @@ And we return the scopes as part of the JWT token.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="155"
+    ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="155"
+    ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="156"
+    ```Python hl_lines="157"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
@@ -199,7 +199,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="154"
+    ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -208,7 +208,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="155"
+    ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -217,7 +217,7 @@ And we return the scopes as part of the JWT token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="155"
+    ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -244,19 +244,19 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
 === "Python 3.10+"
 
-    ```Python hl_lines="4  139  170"
+    ```Python hl_lines="4  140  171"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="4  139  170"
+    ```Python hl_lines="4  140  171"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="4  140  171"
+    ```Python hl_lines="4  141  172"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
@@ -265,7 +265,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="3  138  167"
+    ```Python hl_lines="3  139  168"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -274,7 +274,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  168"
+    ```Python hl_lines="4  140  169"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -283,7 +283,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4  139  168"
+    ```Python hl_lines="4  140  169"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -426,19 +426,19 @@ We also verify that we have a user with that username, and if not, we raise that
 
 === "Python 3.10+"
 
-    ```Python hl_lines="46  116-127"
+    ```Python hl_lines="46  116-128"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="46  116-127"
+    ```Python hl_lines="46  116-128"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="47  117-128"
+    ```Python hl_lines="47  117-129"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
@@ -447,7 +447,7 @@ We also verify that we have a user with that username, and if not, we raise that
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="45  115-126"
+    ```Python hl_lines="45  115-127"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -456,7 +456,7 @@ We also verify that we have a user with that username, and if not, we raise that
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="46  116-127"
+    ```Python hl_lines="46  116-128"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -465,7 +465,7 @@ We also verify that we have a user with that username, and if not, we raise that
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="46  116-127"
+    ```Python hl_lines="46  116-128"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
@@ -477,19 +477,19 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
 
 === "Python 3.10+"
 
-    ```Python hl_lines="128-134"
+    ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="128-134"
+    ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="129-135"
+    ```Python hl_lines="129-136"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
@@ -498,7 +498,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="127-133"
+    ```Python hl_lines="128-134"
     {!> ../../../docs_src/security/tutorial005_py310.py!}
     ```
 
@@ -507,7 +507,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="128-134"
+    ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
@@ -516,7 +516,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="128-134"
+    ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
