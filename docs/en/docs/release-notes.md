@@ -10,6 +10,29 @@ hide:
 ### Breaking Changes
 
 * 🐛 Fix unhandled growing memory for internal server errors, refactor dependencies with `yield` and `except` to require raising again as in regular Python. PR [#11191](https://github.com/tiangolo/fastapi/pull/11191) by [@tiangolo](https://github.com/tiangolo).
+    * This is a breaking change (and only slightly) if you used dependencies with `yield`, used `except` in those dependencies, and didn't raise again.
+    * This was reported internally by [@rushilsrivastava](https://github.com/rushilsrivastava) as a memory leak when the server had unhandled exceptions that would produce internal server errors, the memory allocated before that point would not be released.
+    * Read the new docs: [Dependencies with `yield` and `except`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except).
+
+In short, if you had dependencies that looked like:
+
+```Python
+def my_dep():
+    try:
+        yield
+    except SomeException:
+        pass
+```
+
+Now you need to make sure you raise again after `except`, just as you would in regular Python:
+
+```Python
+def my_dep():
+    try:
+        yield
+    except SomeException:
+        raise
+```
 
 ### Docs
 
