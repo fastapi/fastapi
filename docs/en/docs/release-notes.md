@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.110.0
+
 ### Breaking Changes
 
 * 🐛 Fix unhandled growing memory for internal server errors, refactor dependencies with `yield` and `except` to require raising again as in regular Python. PR [#11191](https://github.com/tiangolo/fastapi/pull/11191) by [@tiangolo](https://github.com/tiangolo).
