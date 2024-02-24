@@ -479,13 +479,13 @@ def test_openapi_schema():
                                 "title": "Item Id",
                                 "type": "string",
                                 "examples": ["item_1", "item_2"],
-                            },                            
+                            },
                             "name": "item_id",
-                            "in": "path",                            
+                            "in": "path",
                             "examples": [
                                 {"value": "item_1", "summary": "item_1"},
                                 {"value": "item_2", "summary": "item_2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -511,7 +511,7 @@ def test_openapi_schema():
                     "summary": "Path Example Examples",
                     "operationId": "path_example_examples_path_example_examples__item_id__get",
                     "parameters": [
-                        {                        
+                        {
                             "required": True,
                             "schema": {
                                 "title": "Item Id",
@@ -520,11 +520,11 @@ def test_openapi_schema():
                             },
                             "example": "item_overridden",
                             "name": "item_id",
-                            "in": "path",                                
+                            "in": "path",
                             "examples": [
                                 {"value": "item_1", "summary": "item_1"},
                                 {"value": "item_2", "summary": "item_2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -612,7 +612,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "query1", "summary": "query1"},
                                 {"value": "query2", "summary": "query2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -661,7 +661,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "query1", "summary": "query1"},
                                 {"value": "query2", "summary": "query2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -749,7 +749,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "header1", "summary": "header1"},
                                 {"value": "header2", "summary": "header2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -798,7 +798,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "header1", "summary": "header1"},
                                 {"value": "header2", "summary": "header2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -886,7 +886,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "cookie1", "summary": "cookie1"},
                                 {"value": "cookie2", "summary": "cookie2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
@@ -935,7 +935,7 @@ def test_openapi_schema():
                             "examples": [
                                 {"value": "cookie1", "summary": "cookie1"},
                                 {"value": "cookie2", "summary": "cookie2"},
-                            ],                            
+                            ],
                         }
                     ],
                     "responses": {
