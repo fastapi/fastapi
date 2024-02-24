@@ -120,7 +120,15 @@ def get_openapi_operation_parameters(
             parameter["description"] = field_info.description
         if field_info.openapi_examples:
             parameter["examples"] = jsonable_encoder(field_info.openapi_examples)
-        elif field_info.example != Undefined:
+        elif field_info.examples:
+            if isinstance(field_info.examples, list) and len(field_info.examples) > 0:
+                if isinstance(field_info.examples[0], dict):
+                    parameter["examples"] = jsonable_encoder(field_info.examples)
+                else:
+                    parameter["examples"] = jsonable_encoder(
+                        [{"value": item, "summary": item} for item in field_info.examples]
+                    )
+        if field_info.example != Undefined:
             parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:
             parameter["deprecated"] = field_info.deprecated
