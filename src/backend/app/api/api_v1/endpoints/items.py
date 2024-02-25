@@ -1,10 +1,10 @@
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
-from sqlmodel import select, func
+from sqlmodel import func, select
 
 from app.api.deps import CurrentUser, SessionDep
-from app.models import Item, ItemCreate, ItemOut, ItemUpdate, Message, ItemsOut
+from app.models import Item, ItemCreate, ItemOut, ItemsOut, ItemUpdate, Message
 
 router = APIRouter()
 
@@ -22,7 +22,7 @@ def read_items(
 
     if current_user.is_superuser:
         statement = select(Item).offset(skip).limit(limit)
-        items =  session.exec(statement).all()
+        items = session.exec(statement).all()
     else:
         statement = (
             select(Item)

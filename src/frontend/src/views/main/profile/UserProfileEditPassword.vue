@@ -12,7 +12,7 @@
             <div class="title primary--text text--darken-2" v-else>{{userProfile.email}}</div>
           </div>
           <v-form ref="form">
-            <v-text-field 
+            <v-text-field
               type="password"
               ref="password"
               label="Password"

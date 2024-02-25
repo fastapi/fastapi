@@ -1,16 +1,15 @@
-from .crud_item import item
-from .crud_user import user
-
 # For a new basic set of CRUD operations you could just do
-
 # from .base import CRUDBase
 # from app.models.item import Item
 # from app.schemas.item import ItemCreate, ItemUpdate
-
 # item = CRUDBase[Item, ItemCreate, ItemUpdate](Item)
 from sqlmodel import Session, select
+
 from app.core.security import get_password_hash, verify_password
-from app.models import UserCreate, User
+from app.models import User, UserCreate
+
+from .crud_item import item as item
+from .crud_user import user as user
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
@@ -30,9 +29,9 @@ def get_user_by_email(*, session: Session, email: str) -> User | None:
 
 
 def authenticate(*, session: Session, email: str, password: str) -> User | None:
-    user = get_user_by_email(session=session, email=email)
-    if not user:
+    db_user = get_user_by_email(session=session, email=email)
+    if not db_user:
         return None
-    if not verify_password(password, user.hashed_password):
+    if not verify_password(password, db_user.hashed_password):
         return None
-    return user
+    return db_user

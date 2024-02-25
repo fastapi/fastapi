@@ -1,7 +1,7 @@
-from typing import Any, List
+from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import select, func
+from sqlmodel import func, select
 
 from app import crud
 from app.api.deps import (
@@ -28,9 +28,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/",
-    dependencies=[Depends(get_current_active_superuser)],
-    response_model=UsersOut
+    "/", dependencies=[Depends(get_current_active_superuser)], response_model=UsersOut
 )
 def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     """

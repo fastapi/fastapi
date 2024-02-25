@@ -27,7 +27,7 @@ jobs:
 
       - name: Run tests
         run: docker compose build
-      - name: Docker Compose remove old containers and volumes 
+      - name: Docker Compose remove old containers and volumes
         run: docker compose down -v --remove-orphans
       - name: Docker Compose up
         run: docker compose up -d

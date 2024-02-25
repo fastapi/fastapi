@@ -1,5 +1,3 @@
-from typing import Union
-
 from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
 
@@ -9,7 +7,7 @@ class UserBase(SQLModel):
     email: EmailStr = Field(unique=True, index=True)
     is_active: bool = True
     is_superuser: bool = False
-    full_name: Union[str, None] = None
+    full_name: str | None = None
 
 
 # Properties to receive via API on creation
@@ -20,18 +18,18 @@ class UserCreate(UserBase):
 class UserCreateOpen(SQLModel):
     email: EmailStr
     password: str
-    full_name: Union[str, None] = None
+    full_name: str | None = None
 
 
 # Properties to receive via API on update, all are optional
 class UserUpdate(UserBase):
-    email: Union[EmailStr, None] = None
-    password: Union[str, None] = None
+    email: EmailStr | None = None
+    password: str | None = None
 
 
 class UserUpdateMe(SQLModel):
-    full_name: Union[str, None] = None
-    email: Union[EmailStr, None] = None
+    full_name: str | None = None
+    email: EmailStr | None = None
 
 
 class UpdatePassword(SQLModel):
@@ -41,7 +39,7 @@ class UpdatePassword(SQLModel):
 
 # Database model, database table inferred from class name
 class User(UserBase, table=True):
-    id: Union[int, None] = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     hashed_password: str
     items: list["Item"] = Relationship(back_populates="owner")
 
@@ -59,7 +57,7 @@ class UsersOut(SQLModel):
 # Shared properties
 class ItemBase(SQLModel):
     title: str
-    description: Union[str, None] = None
+    description: str | None = None
 
 
 # Properties to receive on item creation
@@ -69,17 +67,15 @@ class ItemCreate(ItemBase):
 
 # Properties to receive on item update
 class ItemUpdate(ItemBase):
-    title: Union[str, None] = None
+    title: str | None = None
 
 
 # Database model, database table inferred from class name
 class Item(ItemBase, table=True):
-    id: Union[int, None] = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     title: str
-    owner_id: Union[int, None] = Field(
-        default=None, foreign_key="user.id", nullable=False
-    )
-    owner: Union[User, None] = Relationship(back_populates="items")
+    owner_id: int | None = Field(default=None, foreign_key="user.id", nullable=False)
+    owner: User | None = Relationship(back_populates="items")
 
 
 # Properties to return via API, id is always required
@@ -106,7 +102,7 @@ class Token(SQLModel):
 
 # Contents of JWT token
 class TokenPayload(SQLModel):
-    sub: Union[int, None] = None
+    sub: int | None = None
 
 
 class NewPassword(SQLModel):
