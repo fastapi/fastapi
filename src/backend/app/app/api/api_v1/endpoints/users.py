@@ -1,7 +1,7 @@
 from typing import Any, List
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import select
+from sqlmodel import select, func
 
 from app import crud
 from app.api.deps import (
@@ -18,6 +18,7 @@ from app.models import (
     UserCreate,
     UserCreateOpen,
     UserOut,
+    UsersOut,
     UserUpdate,
     UserUpdateMe,
 )
@@ -29,15 +30,20 @@ router = APIRouter()
 @router.get(
     "/",
     dependencies=[Depends(get_current_active_superuser)],
-    response_model=List[UserOut],
+    response_model=UsersOut
 )
 def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     """
     Retrieve users.
     """
+
+    statment = select(func.count()).select_from(User)
+    count = session.exec(statment).one()
+
     statement = select(User).offset(skip).limit(limit)
     users = session.exec(statement).all()
-    return users
+
+    return UsersOut(data=users, count=count)
 
 
 @router.post(

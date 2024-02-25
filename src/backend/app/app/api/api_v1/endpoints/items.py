@@ -1,15 +1,15 @@
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
-from sqlmodel import select
+from sqlmodel import select, func
 
 from app.api.deps import CurrentUser, SessionDep
-from app.models import Item, ItemCreate, ItemOut, ItemUpdate, Message
+from app.models import Item, ItemCreate, ItemOut, ItemUpdate, Message, ItemsOut
 
 router = APIRouter()
 
 
-@router.get("/", response_model=list[ItemOut])
+@router.get("/", response_model=ItemsOut)
 def read_items(
     session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
 ) -> Any:
@@ -17,9 +17,12 @@ def read_items(
     Retrieve items.
     """
 
+    statment = select(func.count()).select_from(Item)
+    count = session.exec(statment).one()
+
     if current_user.is_superuser:
         statement = select(Item).offset(skip).limit(limit)
-        return session.exec(statement).all()
+        items =  session.exec(statement).all()
     else:
         statement = (
             select(Item)
@@ -27,7 +30,9 @@ def read_items(
             .offset(skip)
             .limit(limit)
         )
-        return session.exec(statement).all()
+        items = session.exec(statement).all()
+
+    return ItemsOut(data=items, count=count)
 
 
 @router.get("/{id}", response_model=ItemOut)
