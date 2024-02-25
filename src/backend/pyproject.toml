@@ -27,13 +27,11 @@ sqlmodel = "^0.0.16"
 bcrypt = "4.0.1"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.7.0"
-black = "^23.11.0"
-isort = "^5.12.0"
-autoflake = "^2.2.1"
-flake8 = "^6.1.0"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
+mypy = "^1.8.0"
+ruff = "^0.2.2"
+pre-commit = "^3.6.2"
 
 [tool.isort]
 multi_line_output = 3
@@ -43,3 +41,30 @@ line_length = 88
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "W191",  # indentation contains tabs
+    "B904",  # Allow raising exceptions without from e, for HTTPException
+]
+
+[tool.ruff.lint.pyupgrade]
+# Preserve types, even if a file imports `from __future__ import annotations`.
+keep-runtime-typing = true
