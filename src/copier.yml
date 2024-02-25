@@ -1,0 +1,119 @@
+domain:
+  type: str
+  help: |
+    Which domain name to use for the project, by default,
+    localhost, but you should change it later (in .env)
+  default: localhost
+
+project_name:
+  type: str
+  help: The name of the project, shown to API users (in .env)
+  default: FastAPI Project
+
+stack_name:
+  type: str
+  help: The name of the stack used for Docker Compose labels (no spaces) (in .env)
+  default: fastapi-project
+
+secret_key:
+  type: str
+  help: |
+    'The secret key for the project, used for security,
+    stored in .env, you can generate one with:
+    python -c "import secrets; print(secrets.token_urlsafe(32))"'
+  default: changethis
+
+first_superuser:
+  type: str
+  help: The email of the first superuser (in .env)
+  default: admin@example.com
+
+first_superuser_password:
+  type: str
+  help: The password of the first superuser (in .env)
+  default: changethis
+
+smtp_host:
+  type: str
+  help: The SMTP server host to send emails, you can set it later in .env
+  default: ""
+
+smtp_user:
+  type: str
+  help: The SMTP server user to send emails, you can set it later in .env
+  default: ""
+
+smtp_password:
+  type: str
+  help: The SMTP server password to send emails, you can set it later in .env
+  default: ""
+
+emails_from_email:
+  type: str
+  help: The email account to send emails from, you can set it later in .env
+  default: info@example.com
+
+postgres_password:
+  type: str
+  help: |
+    'The password for the PostgreSQL database, stored in .env,
+    you can generate one with:
+    python -c "import secrets; print(secrets.token_urlsafe(32))"'
+  default: changethis
+
+pgadmin_default_email:
+  type: str
+  help: The default user email for pgAdmin, you can set it later in .env
+  default: admin@example.com
+
+pgadmin_default_password:
+  type: str
+  help: The default user password for pgAdmin, stored in .env
+  default: changethis
+
+sentry_dsn:
+  type: str
+  help: The DSN for Sentry, if you are using it, you can set it later in .env
+  default: ""
+
+_exclude:
+  # Global
+  - .vscode
+  - .mypy_cache
+  - poetry.lock
+  # Python
+  - __pycache__
+  - app.egg-info
+  - "*.pyc"
+  - .mypy_cache
+  - .coverage
+  - htmlcov
+  - poetry.lock
+  - .cache
+  - .venv
+  # Frontend
+  # Logs
+  - logs
+  - "*.log"
+  - npm-debug.log*
+  - yarn-debug.log*
+  - yarn-error.log*
+  - pnpm-debug.log*
+  - lerna-debug.log*
+  - node_modules
+  - dist
+  - dist-ssr
+  - "*.local"
+  # Editor directories and files
+  - .idea
+  - .DS_Store
+  - "*.suo"
+  - "*.ntvs*"
+  - "*.njsproj"
+  - "*.sln"
+  - "*.sw?"
+
+_answers_file: .copier/.copier-answers.yml
+
+_tasks:
+  - "python .copier/update_dotenv.py"
