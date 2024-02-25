@@ -49,32 +49,28 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./backend/app:/app
+      - ./backend/:/app
     environment:
-      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
       - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: backend.dockerfile
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
-        INSTALL_JUPYTER: ${INSTALL_JUPYTER-true}
     # command: sleep infinity  # Infinite loop to keep container alive doing nothing
     command: /start-reload.sh
 
   celeryworker:
     volumes:
-      - ./backend/app:/app
+      - ./backend/:/app
     environment:
       - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
-      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
       - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: celeryworker.dockerfile
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
-        INSTALL_JUPYTER: ${INSTALL_JUPYTER-true}
 
   frontend:
     build:
