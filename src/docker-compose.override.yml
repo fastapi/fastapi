@@ -5,6 +5,7 @@ services:
     ports:
       - "80:80"
       - "8090:8080"
+    # Duplicate the command from docker-compose.yml to add --api.insecure=true
     command:
       # Enable Docker in Traefik, so that it reads labels from Docker services
       - --providers.docker
@@ -13,8 +14,6 @@ services:
       - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG?Variable not set}`)
       # Do not expose all Docker services, only the ones explicitly exposed
       - --providers.docker.exposedbydefault=false
-      # Disable Docker Swarm mode for local development
-      # - --providers.docker.swarmmode
       # Enable the access log, with HTTP requests
       - --accesslog
       # Enable the Traefik log, for configurations and errors
@@ -24,7 +23,6 @@ services:
       # Enable the Dashboard and API in insecure mode for local development
       - --api.insecure=true
     labels:
-      - traefik.enable=true
       - traefik.http.routers.${STACK_NAME?Variable not set}-traefik-public-http.rule=Host(`${DOMAIN?Variable not set}`)
       - traefik.http.services.${STACK_NAME?Variable not set}-traefik-public.loadbalancer.server.port=80
 
@@ -36,13 +34,12 @@ services:
     ports:
       - "5050:5050"
 
-  # Uncomment the section below to be able to debug locally
-  # queue:
-  #   ports:
-  #     - "5671:5671"
-  #     - "5672:5672"
-  #     - "15672:15672"
-  #     - "15671:15671"
+  queue:
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+      - "15671:15671"
       
   flower:
     ports:
@@ -62,13 +59,8 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
         INSTALL_JUPYTER: ${INSTALL_JUPYTER-true}
-    # command: bash -c "while true; do sleep 1; done"  # Infinite loop to keep container live doing nothing
+    # command: sleep infinity  # Infinite loop to keep container alive doing nothing
     command: /start-reload.sh
-    labels:
-      - traefik.enable=true
-      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
-      - traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
-      - traefik.http.services.${STACK_NAME?Variable not set}-backend.loadbalancer.server.port=80
 
   celeryworker:
     volumes:
@@ -90,20 +82,8 @@ services:
       args:
         FRONTEND_ENV: dev
     labels:
-      - traefik.enable=true
-      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
       # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=Host(`old-frontend.localhost.tiangolo.com`)
-      - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
-
-#  new-frontend:
-#    build:
-#      context: ./new-frontend
-#    labels:
-#      - traefik.enable=true
-#      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
-#      - traefik.http.routers.${STACK_NAME?Variable not set}-new-frontend-http.rule=PathPrefix(`/`)
-#      - traefik.http.services.${STACK_NAME?Variable not set}-new-frontend.loadbalancer.server.port=80
 
 networks:
   traefik-public:
