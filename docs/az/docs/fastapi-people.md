@@ -37,7 +37,7 @@ Bu insanlar:
 
 * [GitHub-da başqalarının suallarına kömək edirlər](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Pull Request-lər yaradırlar](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Pull Request-ləri ([xüsusilə tərcümələr üçün vacib olan](contributing.md#translations){.internal-link target=_blank}.) nəzərdən keçirirlər. 
+* Pull Request-ləri ([xüsusilə tərcümələr üçün vacib olan](contributing.md#translations){.internal-link target=_blank}.) nəzərdən keçirirlər.
 
 Bu insanlara təşəkkür edirəm. 👏 🙇
 
@@ -77,7 +77,7 @@ Onlar bir çox insanlara kömək edərək mütəxəssis olduqlarını sübut edi
 
 Burada **Ən yaxşı əməkdaşlar** var. 👷
 
-Bu istifadəçilərin ən çox *birləşdirilmiş* [Pull Request-ləri var](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}. 
+Bu istifadəçilərin ən çox *birləşdirilmiş* [Pull Request-ləri var](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 
 Onlar mənbə kodu, sənədləmə, tərcümələr və s. barədə əmək göstərmişlər. 📦
 
