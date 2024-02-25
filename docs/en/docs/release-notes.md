@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Azerbaijani translation for `docs/az/learn/index.md`. PR [#11192](https://github.com/tiangolo/fastapi/pull/11192) by [@vusallyv](https://github.com/vusallyv).
+
 ## 0.110.0
 
 ### Breaking Changes
