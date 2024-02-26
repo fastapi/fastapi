@@ -10,8 +10,8 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
-            <Container maxW="full" pt={12}>
-                <Text fontSize="2xl">Hi, {user?.full_name || user?.email} 👋🏼</Text>
+            <Container maxW='full' pt={12}>
+                <Text fontSize='2xl'>Hi, {user?.full_name || user?.email} 👋🏼</Text>
                 <Text>Welcome back, nice to see you again!</Text>
             </Container>
         </>

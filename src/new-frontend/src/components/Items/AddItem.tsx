@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useToast } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { ItemCreate } from '../client';
-import { useItemsStore } from '../store/items-store';
+import { ApiError, ItemCreate } from '../../client';
+import useCustomToast from '../../hooks/useCustomToast';
+import { useItemsStore } from '../../store/items-store';
 
 interface AddItemProps {
     isOpen: boolean;
@@ -12,7 +13,7 @@ interface AddItemProps {
 }
 
 const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
-    const toast = useToast();
+    const showToast = useCustomToast();
     const [isLoading, setIsLoading] = useState(false);
     const { register, handleSubmit, reset } = useForm<ItemCreate>();
     const { addItem } = useItemsStore();
@@ -21,21 +22,12 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
         setIsLoading(true);
         try {
             await addItem(data);
-            toast({
-                title: 'Success!',
-                description: 'Item created successfully.',
-                status: 'success',
-                isClosable: true,
-            });
+            showToast('Success!', 'Item created successfully.', 'success');
             reset();
             onClose();
         } catch (err) {
-            toast({
-                title: 'Something went wrong.',
-                description: 'Failed to create item. Please try again.',
-                status: 'error',
-                isClosable: true,
-            });
+            const errDetail = (err as ApiError).body.detail;
+            showToast('Something went wrong.', `${errDetail}`, 'error');
         } finally {
             setIsLoading(false);
         }
@@ -50,30 +42,32 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
                 isCentered
             >
                 <ModalOverlay />
-                <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
+                <ModalContent as='form' onSubmit={handleSubmit(onSubmit)}>
                     <ModalHeader>Add Item</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl>
-                            <FormLabel>Title</FormLabel>
+                            <FormLabel htmlFor='title'>Title</FormLabel>
                             <Input
+                                id='title'
                                 {...register('title')}
-                                placeholder="Title"
-                                type="text"
+                                placeholder='Title'
+                                type='text'
                             />
                         </FormControl>
                         <FormControl mt={4}>
-                            <FormLabel>Description</FormLabel>
+                            <FormLabel htmlFor='description'>Description</FormLabel>
                             <Input
+                                id='description'
                                 {...register('description')}
-                                placeholder="Description"
-                                type="text"
+                                placeholder='Description'
+                                type='text'
                             />
                         </FormControl>
                     </ModalBody>
 
                     <ModalFooter gap={3}>
-                        <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isLoading}>
+                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isLoading}>
                             Save
                         </Button>
                         <Button onClick={onClose} isDisabled={isLoading}>

@@ -1,49 +1,46 @@
 import React from 'react';
 
 import { Container, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import Appearance from '../components/UserSettings/Appearance';
+import ChangePassword from '../components/UserSettings/ChangePassword';
+import DeleteAccount from '../components/UserSettings/DeleteAccount';
+import UserInformation from '../components/UserSettings/UserInformation';
+import { useUserStore } from '../store/user-store';
 
-import Appearance from '../panels/Appearance';
-import ChangePassword from '../panels/ChangePassword';
-import DeleteAccount from '../panels/DeleteAccount';
-import UserInformation from '../panels/UserInformation';
-
-
+const tabsConfig = [
+    { title: 'My profile', component: UserInformation },
+    { title: 'Password', component: ChangePassword },
+    { title: 'Appearance', component: Appearance },
+    { title: 'Danger zone', component: DeleteAccount },
+];
 
 const UserSettings: React.FC = () => {
+    const { user } = useUserStore();
+
+    const finalTabs = user?.is_superuser ? tabsConfig.slice(0, 3) : tabsConfig;
+
 
     return (
-        <>
-            <Container maxW="full">
-                <Heading size="lg" textAlign={{ base: "center", md: "left" }} py={12}>
-                    User Settings
-                </Heading>
-                <Tabs variant='enclosed' >
-                    <TabList>
-                        <Tab>My profile</Tab>
-                        <Tab>Password</Tab>
-                        <Tab>Appearance</Tab>
-                        <Tab>Danger zone</Tab>
-                    </TabList>
-                    <TabPanels>
-                        <TabPanel>
-                            <UserInformation />
+        <Container maxW='full'>
+            <Heading size='lg' textAlign={{ base: 'center', md: 'left' }} py={12}>
+                User Settings
+            </Heading>
+            <Tabs variant='enclosed'>
+                <TabList>
+                    {finalTabs.map((tab, index) => (
+                        <Tab key={index}>{tab.title}</Tab>
+                    ))}
+                </TabList>
+                <TabPanels>
+                    {finalTabs.map((tab, index) => (
+                        <TabPanel key={index}>
+                            <tab.component />
                         </TabPanel>
-                        <TabPanel>
-                            <ChangePassword />
-                        </TabPanel>
-                        <TabPanel>
-                            <Appearance />
-                        </TabPanel>
-                        <TabPanel>
-                            <DeleteAccount />
-                        </TabPanel>
-
-                    </TabPanels>
-                </Tabs>
-            </Container>
-        </>
+                    ))}
+                </TabPanels>
+            </Tabs>
+        </Container>
     );
 };
 
 export default UserSettings;
-

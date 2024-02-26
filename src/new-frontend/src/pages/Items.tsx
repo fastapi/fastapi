@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-import { Container, Flex, Heading, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react';
+import { Container, Flex, Heading, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
-import ActionsMenu from '../components/ActionsMenu';
-import Navbar from '../components/Navbar';
+import { ApiError } from '../client';
+import ActionsMenu from '../components/Common/ActionsMenu';
+import Navbar from '../components/Common/Navbar';
+import useCustomToast from '../hooks/useCustomToast';
 import { useItemsStore } from '../store/items-store';
 
-
 const Items: React.FC = () => {
-    const toast = useToast();
+    const showToast = useCustomToast();
     const [isLoading, setIsLoading] = useState(false);
     const { items, getItems } = useItemsStore();
 
@@ -18,12 +19,8 @@ const Items: React.FC = () => {
             try {
                 await getItems();
             } catch (err) {
-                toast({
-                    title: 'Something went wrong.',
-                    description: 'Failed to fetch items. Please try again.',
-                    status: 'error',
-                    isClosable: true,
-                });
+                const errDetail = (err as ApiError).body.detail;
+                showToast('Something went wrong.', `${errDetail}`, 'error');
             } finally {
                 setIsLoading(false);
             }
@@ -38,18 +35,18 @@ const Items: React.FC = () => {
         <>
             {isLoading ? (
                 // TODO: Add skeleton
-                <Flex justify="center" align="center" height="100vh" width="full">
-                    <Spinner size="xl" color='ui.main' />
+                <Flex justify='center' align='center' height='100vh' width='full'>
+                    <Spinner size='xl' color='ui.main' />
                 </Flex>
             ) : (
                 items &&
-                <Container maxW="full">
-                    <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
+                <Container maxW='full'>
+                    <Heading size='lg' textAlign={{ base: 'center', md: 'left' }} pt={12}>
                         Items Management
                     </Heading>
-                    <Navbar type={"Item"} />
+                    <Navbar type={'Item'} />
                     <TableContainer>
-                        <Table size={{ base: "sm", md: "md" }}>
+                        <Table size={{ base: 'sm', md: 'md' }}>
                             <Thead>
                                 <Tr>
                                     <Th>ID</Th>
@@ -63,9 +60,9 @@ const Items: React.FC = () => {
                                     <Tr key={item.id}>
                                         <Td>{item.id}</Td>
                                         <Td>{item.title}</Td>
-                                        <Td color={!item.description ? "gray.600" : "inherit"}>{item.description || "N/A"}</Td>
+                                        <Td color={!item.description ? 'gray.600' : 'inherit'}>{item.description || 'N/A'}</Td>
                                         <Td>
-                                            <ActionsMenu type={"Item"} id={item.id} />
+                                            <ActionsMenu type={'Item'} id={item.id} />
                                         </Td>
                                     </Tr>
                                 ))}

@@ -3,8 +3,8 @@ import React from 'react';
 import { Button, Flex, Icon, Input, InputGroup, InputLeftElement, useDisclosure } from '@chakra-ui/react';
 import { FaPlus, FaSearch } from "react-icons/fa";
 
-import AddUser from '../modals/AddUser';
-import AddItem from '../modals/AddItem';
+import AddUser from '../Admin/AddUser';
+import AddItem from '../Items/AddItem';
 
 interface NavbarProps {
     type: string;

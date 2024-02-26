@@ -4,7 +4,7 @@ import { Box, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import { FiBriefcase, FiHome, FiSettings, FiUsers } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 
-import { useUserStore } from '../store/user-store';
+import { useUserStore } from '../../store/user-store';
 
 const items = [
     { icon: FiHome, title: 'Dashboard', path: "/" },

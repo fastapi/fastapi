@@ -1,11 +1,13 @@
-import { create } from "zustand";
-import { ItemCreate, ItemOut, ItemsService } from "../client";
+import { create } from 'zustand';
+import { ItemCreate, ItemOut, ItemUpdate, ItemsService } from '../client';
 
-interface ItemsStore { 
+interface ItemsStore {
     items: ItemOut[];
     getItems: () => Promise<void>;
     addItem: (item: ItemCreate) => Promise<void>;
+    editItem: (id: number, item: ItemUpdate) => Promise<void>;
     deleteItem: (id: number) => Promise<void>;
+    resetItems: () => void;
 }
 
 export const useItemsStore = create<ItemsStore>((set) => ({
@@ -15,11 +17,20 @@ export const useItemsStore = create<ItemsStore>((set) => ({
         set({ items: itemsResponse });
     },
     addItem: async (item: ItemCreate) => {
-        const itemResponse = await ItemsService.createItem({ requestBody: item});
+        const itemResponse = await ItemsService.createItem({ requestBody: item });
         set((state) => ({ items: [...state.items, itemResponse] }));
+    },
+    editItem: async (id: number, item: ItemUpdate) => {
+        const itemResponse = await ItemsService.updateItem({ id: id, requestBody: item });
+        set((state) => ({
+            items: state.items.map((item) => (item.id === id ? itemResponse : item))
+        }));
     },
     deleteItem: async (id: number) => {
         await ItemsService.deleteItem({ id });
         set((state) => ({ items: state.items.filter((item) => item.id !== id) }));
+    },
+    resetItems: () => {
+        set({ items: [] });
     }
 }));

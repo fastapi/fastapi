@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Button, Container, FormControl, Heading, Input, Text, useToast } from "@chakra-ui/react";
+import { Button, Container, FormControl, Heading, Input, Text } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { LoginService } from "../client";
+import useCustomToast from "../hooks/useCustomToast";
 
 interface FormData {
   email: string;
@@ -11,20 +12,15 @@ interface FormData {
 
 const RecoverPassword: React.FC = () => {
   const { register, handleSubmit } = useForm<FormData>();
-  const toast = useToast();
+  const showToast = useCustomToast();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const response = await LoginService.recoverPassword({
       email: data.email,
     });
-    console.log(response);
+    console.log(response)
 
-    toast({
-      title: "Email sent.",
-      description: "We sent an email with a link to get back into your account.",
-      status: "success",
-      isClosable: true,
-    });
+    showToast("Email sent.", "We sent an email with a link to get back into your account.", "success");
   };
 
   return (

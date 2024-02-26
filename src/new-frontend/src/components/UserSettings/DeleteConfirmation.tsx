@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useToast } from '@chakra-ui/react';
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import useCustomToast from '../../hooks/useCustomToast';
 
 interface DeleteProps {
     isOpen: boolean;
@@ -9,7 +10,7 @@ interface DeleteProps {
 }
 
 const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
-    const toast = useToast();
+    const showToast = useCustomToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const { handleSubmit } = useForm();
@@ -20,12 +21,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
             // TODO: Delete user account when API is ready
             onClose();
         } catch (err) {
-            toast({
-                title: "An error occurred.",
-                description: `An error occurred while deleting your account.`,
-                status: "error",
-                isClosable: true,
-            });
+            showToast('An error occurred', 'An error occurred while deleting your account.', 'error');
         } finally {
             setIsLoading(false);
         }
@@ -37,21 +33,21 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
                 isOpen={isOpen}
                 onClose={onClose}
                 leastDestructiveRef={cancelRef}
-                size={{ base: "sm", md: "md" }}
+                size={{ base: 'sm', md: 'md' }}
                 isCentered
             >
                 <AlertDialogOverlay>
-                    <AlertDialogContent as="form" onSubmit={handleSubmit(onSubmit)}>
+                    <AlertDialogContent as='form' onSubmit={handleSubmit(onSubmit)}>
                         <AlertDialogHeader>
                             Confirmation Required
                         </AlertDialogHeader>
 
                         <AlertDialogBody>
-                            All your account data will be <b>permanently deleted.</b> If you're sure, please click <b>'Confirm'</b> to proceed.
+                            All your account data will be <strong>permanently deleted.</strong> If you're sure, please click <strong>'Confirm'</strong> to proceed.
                         </AlertDialogBody>
 
                         <AlertDialogFooter gap={3}>
-                            <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isLoading}>
+                            <Button bg='ui.danger' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isLoading}>
                                 Confirm
                             </Button>
                             <Button ref={cancelRef} onClick={onClose} isDisabled={isLoading}>
