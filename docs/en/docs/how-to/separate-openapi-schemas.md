@@ -7,7 +7,7 @@ In fact, in some cases, it will even have **two JSON Schemas** in OpenAPI for th
 Let's see how that works and how to change it if you need to do that.
 
 !!! info
-    In the current behavior of pydantic separate output schemas are only created if the config 
+    In the current behavior of pydantic separate output schemas are only created if the config
     option `json_schema_serialization_defaults_required` is set to `True`.
 
 ## Pydantic Models for Input and Output
