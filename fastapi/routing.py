@@ -208,7 +208,12 @@ def get_request_handler(
     dependency_overrides_provider: Optional[Any] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+    if inspect.isfunction(dependant.call):
+        is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+    else:
+        is_coroutine = asyncio.iscoroutinefunction(
+            getattr(dependant.call, "__call__", dependant.call)  # noqa: B004
+        )
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
