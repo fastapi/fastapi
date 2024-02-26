@@ -6,14 +6,17 @@ In fact, in some cases, it will even have **two JSON Schemas** in OpenAPI for th
 
 Let's see how that works and how to change it if you need to do that.
 
+!!! info
+    In the current behavior of pydantic separate output schemas are only created if config option `json_schema_serialization_defaults_required` is set to `True`.
+
 ## Pydantic Models for Input and Output
 
 Let's say you have a Pydantic model with default values, like this one:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-9]!}
 
     # Code below omitted 👇
     ```
@@ -29,8 +32,8 @@ Let's say you have a Pydantic model with default values, like this one:
 
 === "Python 3.9+"
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-11]!}
 
     # Code below omitted 👇
     ```
@@ -46,8 +49,8 @@ Let's say you have a Pydantic model with default values, like this one:
 
 === "Python 3.8+"
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-11]!}
 
     # Code below omitted 👇
     ```
@@ -67,8 +70,8 @@ If you use this model as an input like here:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-17]!}
 
     # Code below omitted 👇
     ```
@@ -84,8 +87,8 @@ If you use this model as an input like here:
 
 === "Python 3.9+"
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-19]!}
 
     # Code below omitted 👇
     ```
@@ -101,8 +104,8 @@ If you use this model as an input like here:
 
 === "Python 3.8+"
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-19]!}
 
     # Code below omitted 👇
     ```
@@ -132,19 +135,19 @@ But if you use the same model as an output, like here:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="19"
+    ```Python hl_lines="20"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="21"
+    ```Python hl_lines="22"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="21"
+    ```Python hl_lines="22"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
     ```
 
@@ -166,8 +169,8 @@ The way to describe this in OpenAPI, is to mark that field as **required**, beca
 
 Because of that, the JSON Schema for a model can be different depending on if it's used for **input or output**:
 
-* for **input** the `description` will **not be required**
-* for **output** it will be **required** (and possibly `None`, or in JSON terms, `null`)
+- for **input** the `description` will **not be required**
+- for **output** it will be **required** (and possibly `None`, or in JSON terms, `null`)
 
 ### Model for Output in Docs
 
@@ -204,19 +207,19 @@ In that case, you can disable this feature in **FastAPI**, with the parameter `s
 
 === "Python 3.10+"
 
-    ```Python hl_lines="10"
+    ```Python hl_lines="12"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="12"
+    ```Python hl_lines="14"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="12"
+    ```Python hl_lines="14"
     {!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
     ```
 

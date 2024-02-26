@@ -1,10 +1,12 @@
 from typing import Optional
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Item(BaseModel):
+    model_config = ConfigDict(json_schema_serialization_defaults_required=True)
+
     name: str
     description: Optional[str] = None
 
