@@ -13,6 +13,7 @@ def get_client() -> TestClient:
 
 
 @needs_py310
+@needs_pydanticv2
 def test_create_item(client: TestClient) -> None:
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200, response.text
@@ -20,6 +21,7 @@ def test_create_item(client: TestClient) -> None:
 
 
 @needs_py310
+@needs_pydanticv2
 def test_read_items(client: TestClient) -> None:
     response = client.get("/items/")
     assert response.status_code == 200, response.text
