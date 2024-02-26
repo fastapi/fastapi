@@ -235,7 +235,7 @@ Here are some possible combinations and strategies:
     * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**
 * **Kubernetes** and other distributed **container systems**
     * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running
-* **Cloud services** that handle this for your
+* **Cloud services** that handle this for you
     * The cloud service will probably **handle replication for you**. It would possibly let you define **a process to run**, or a **container image** to use, in any case, it would most probably be **a single Uvicorn process**, and the cloud service would be in charge of replicating it.
 
 !!! tip
@@ -258,7 +258,7 @@ And you will have to make sure that it's a single process running those previous
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
 !!! tip
-    Also, have in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+    Also, keep in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
 
     In that case, you wouldn't have to worry about any of this. 🤷
 
@@ -297,7 +297,7 @@ You can use simple tools like `htop` to see the CPU and RAM used in your server 
 
 ## Recap
 
-You have been reading here some of the main concepts that you would probably need to have in mind when deciding how to deploy your application:
+You have been reading here some of the main concepts that you would probably need to keep in mind when deciding how to deploy your application:
 
 * Security - HTTPS
 * Running on startup

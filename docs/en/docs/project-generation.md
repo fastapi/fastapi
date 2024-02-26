@@ -1,6 +1,6 @@
 # Project Generation - Template
 
-You can use a project generator to get started, as it includes a lot of the initial set up, security, database and first API endpoints already done for you.
+You can use a project generator to get started, as it includes a lot of the initial set up, security, database and some API endpoints already done for you.
 
 A project generator will always have a very opinionated setup that you should update and adapt for your own needs, but it might be a good starting point for your project.
 

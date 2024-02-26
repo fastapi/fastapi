@@ -109,16 +109,40 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004.py!}
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="7  49  56-57  60-61  70-76"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6  47  54-55  58-59  68-74"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
 !!! note
@@ -152,16 +176,40 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004.py!}
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="6  12-14  28-30  78-86"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="6  13-15  29-31 79-87"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="5  11-13  27-29  77-85"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="6  12-14  28-30  78-86"
+    {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
 ## Update the dependencies
@@ -172,34 +220,82 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="89-106"
-    {!> ../../../docs_src/security/tutorial004.py!}
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python hl_lines="89-106"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="90-107"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="88-105"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="89-106"
+    {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
 ## Update the `/token` *path operation*
 
 Create a `timedelta` with the expiration time of the token.
 
-Create a real JWT access token and return it.
+Create a real JWT access token and return it
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="115-128"
-    {!> ../../../docs_src/security/tutorial004.py!}
+    ```Python hl_lines="117-132"
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
 
-    ```Python hl_lines="114-127"
+    ```Python hl_lines="117-132"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="118-133"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="114-129"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="115-130"
+    {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
 ### Technical details about the JWT "subject" `sub`
@@ -222,7 +318,7 @@ In those cases, several of those entities could have the same ID, let's say `foo
 
 So, to avoid ID collisions, when creating the JWT token for the user, you could prefix the value of the `sub` key, e.g. with `username:`. So, in this example, the value of `sub` could have been: `username:johndoe`.
 
-The important thing to have in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
+The important thing to keep in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
 
 ## Check it
 
