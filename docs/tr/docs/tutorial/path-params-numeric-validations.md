@@ -113,7 +113,7 @@ Bu durumda, "varsayılan" değeri olmayan bir parametrenin önüne "varsayılan"
 
 Buna rağmen, varsayılan değersiz parametreyi (`q` sorgu parametresini) başa alacak şekilde yeniden sıralayabilirsiniz.
 
-**FastAPI** için bu durumun bir önemi yoktur ve parametreleri isimlerine, tiplerine ve varsayılan tanımlamalarına (`Query`, `Path`, vb) göre sıra fark etmeksizin ayırt edecektir.
+**FastAPI** için bu durumun bir önemi yoktur ve parametreleri isimlerine, tiplerine ve varsayılan tanımlamalarına (`Query`, `Path`, vb.) göre sıra fark etmeksizin ayırt edecektir.
 
 Yani, fonksiyonunuzu bu şekilde tanımlayabilirsiniz:
 
