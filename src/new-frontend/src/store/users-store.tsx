@@ -14,7 +14,7 @@ export const useUsersStore = create<UsersStore>((set) => ({
     users: [],
     getUsers: async () => {
         const usersResponse = await UsersService.readUsers({ skip: 0, limit: 10 });
-        set({ users: usersResponse });
+        set({ users: usersResponse.data });
     },
     addUser: async (user: UserCreate) => {
         const userResponse = await UsersService.createUser({ requestBody: user });

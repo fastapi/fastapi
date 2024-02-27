@@ -3,17 +3,15 @@ import React from 'react';
 import { Box, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiLogOut, FiUser } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
 
 const UserMenu: React.FC = () => {
-    const navigate = useNavigate();
     const { logout } = useAuth();
 
     const handleLogout = async () => {
         logout()
-        navigate('/login');
     };
 
     return (

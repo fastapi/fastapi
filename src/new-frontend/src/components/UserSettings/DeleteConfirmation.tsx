@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 
 import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { ApiError } from '../../client';
+import useAuth from '../../hooks/useAuth';
 import useCustomToast from '../../hooks/useCustomToast';
+import { useUserStore } from '../../store/user-store';
 
 interface DeleteProps {
     isOpen: boolean;
@@ -12,18 +15,19 @@ interface DeleteProps {
 const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
     const showToast = useCustomToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const { handleSubmit } = useForm();
+    const { handleSubmit, formState: { isSubmitting } } = useForm();
+    const { user, deleteUser } = useUserStore();
+    const { logout } = useAuth();
 
     const onSubmit = async () => {
-        setIsLoading(true);
         try {
-            // TODO: Delete user account when API is ready
+            await deleteUser(user!.id);
+            logout();
             onClose();
+            showToast('Success', 'Your account has been successfully deleted.', 'success');
         } catch (err) {
-            showToast('An error occurred', 'An error occurred while deleting your account.', 'error');
-        } finally {
-            setIsLoading(false);
+            const errDetail = (err as ApiError).body.detail;
+            showToast('Something went wrong.', `${errDetail}`, 'error');
         }
     }
 
@@ -47,7 +51,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
                         </AlertDialogBody>
 
                         <AlertDialogFooter gap={3}>
-                            <Button bg='ui.danger' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isLoading}>
+                            <Button bg='ui.danger' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
                                 Confirm
                             </Button>
                             <Button ref={cancelRef} onClick={onClose} isDisabled={isLoading}>

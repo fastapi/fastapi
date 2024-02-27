@@ -14,7 +14,7 @@ export const useItemsStore = create<ItemsStore>((set) => ({
     items: [],
     getItems: async () => {
         const itemsResponse = await ItemsService.readItems({ skip: 0, limit: 10 });
-        set({ items: itemsResponse });
+        set({ items: itemsResponse.data });
     },
     addItem: async (item: ItemCreate) => {
         const itemResponse = await ItemsService.createItem({ requestBody: item });

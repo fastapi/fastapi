@@ -2,11 +2,14 @@ import { useUserStore } from '../store/user-store';
 import { Body_login_login_access_token as AccessToken, LoginService } from '../client';
 import { useUsersStore } from '../store/users-store';
 import { useItemsStore } from '../store/items-store';
+import { useNavigate } from 'react-router-dom';
 
 const useAuth = () => {
     const { user, getUser, resetUser } = useUserStore();
     const { resetUsers } = useUsersStore();
     const { resetItems } = useItemsStore();
+    const navigate = useNavigate();
+
 
     const login = async (data: AccessToken) => {
         const response = await LoginService.loginAccessToken({
@@ -21,6 +24,7 @@ const useAuth = () => {
         resetUser();
         resetUsers();
         resetItems();
+        navigate('/login');
     };
 
     const isLoggedIn = () => {

@@ -1,7 +1,7 @@
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import func, select
+from sqlmodel import func, select, delete
 
 from app import crud
 from app.api.deps import (
@@ -21,6 +21,7 @@ from app.models import (
     UsersOut,
     UserUpdate,
     UserUpdateMe,
+    Item
 )
 from app.utils import send_new_account_email
 
@@ -194,12 +195,14 @@ def delete_user(
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    if not current_user.is_superuser:
-        raise HTTPException(status_code=400, detail="Not enough permissions")
-    if user == current_user:
+
+    if (user == current_user and not current_user.is_superuser) or (user != current_user and current_user.is_superuser):
+        statement = delete(Item).where(Item.owner_id == user_id)
+        session.exec(statement)
+        session.delete(user)
+        session.commit()
+        return Message(message="User deleted successfully")
+    elif user == current_user and current_user.is_superuser:
         raise HTTPException(
-            status_code=400, detail="Users are not allowed to delete themselves"
+            status_code=400, detail="Super users are not allowed to delete themselves"
         )
-    session.delete(user)
-    session.commit()
-    return Message(message="User deleted successfully")

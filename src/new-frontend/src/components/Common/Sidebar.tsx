@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Box, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, Flex, IconButton, Image, Text, useColorModeValue, useDisclosure } from '@chakra-ui/react';
 import { FiLogOut, FiMenu } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../assets/images/fastapi-logo.svg';
 import useAuth from '../../hooks/useAuth';
@@ -16,11 +15,9 @@ const Sidebar: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { user } = useUserStore();
     const { logout } = useAuth();
-    const navigate = useNavigate();
 
     const handleLogout = async () => {
         logout()
-        navigate('/login');
     };
 
 
