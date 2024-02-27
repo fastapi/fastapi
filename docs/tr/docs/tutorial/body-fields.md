@@ -106,7 +106,7 @@ Sonrasında, `Field` ifadesini model özellikleri ile kullanabilirsiniz:
 Dokümantasyona ek bilgi tanımı yapmak, örnek tanımlamaları öğrenilirken irdilenecektir.
 
 !!! warning "Uyarı"
-    `Field` ifadesine geçilen ek anahtarlar da uygulamanızdaki OpenAPI şemasında mevcut olacaktır. 
+    `Field` ifadesine geçilen ek anahtarlar da uygulamanızdaki OpenAPI şemasında mevcut olacaktır.
     Bu anahtarlar, OpenAPI spesifikasyonunun bir parçası olmak zorunda olmadıklarından dolayı [OpenAPI doğrulayıcısı](https://validator.swagger.io/) gibi bazı OpenAPI araçları, oluşturulan şemalar ile uyumlu çalışmayabilir.
 
 ## Özet
