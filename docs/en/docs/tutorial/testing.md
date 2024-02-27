@@ -110,16 +110,40 @@ It has a `POST` operation that could return several errors.
 
 Both *path operations* require an `X-Token` header.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
+    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.9+"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b/main.py!}
     ```
 
 ### Extended testing file
