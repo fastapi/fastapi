@@ -165,6 +165,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Features
 
+* ♻ Refactor items and services endpoints to return count and data, and add CI tests. PR [#599](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/599) by [@estebanx64](https://github.com/estebanx64).
 * ✨ Add support for updating items and upgrade SQLModel to 0.0.16 (which supports model object updates). PR [#601](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/601) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Add dark mode to new-frontend and conditional sidebar items. PR [#600](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/600) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Migrate to RouterProvider and other refactors . PR [#598](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/598) by [@alejsdev](https://github.com/alejsdev).
