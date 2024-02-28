@@ -1,7 +1,7 @@
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import func, select, delete
+from sqlmodel import delete, func, select
 
 from app import crud
 from app.api.deps import (
@@ -12,6 +12,7 @@ from app.api.deps import (
 from app.core.config import settings
 from app.core.security import get_password_hash, verify_password
 from app.models import (
+    Item,
     Message,
     UpdatePassword,
     User,
@@ -21,7 +22,6 @@ from app.models import (
     UsersOut,
     UserUpdate,
     UserUpdateMe,
-    Item
 )
 from app.utils import send_new_account_email
 
