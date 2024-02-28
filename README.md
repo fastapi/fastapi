@@ -225,6 +225,10 @@ After using this generator, your new project (the directory created) will contai
 * Simplify `docker-compose.*.yml` files, refactor deployment to reduce config files. PR [#153](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/153).
 * Simplify env var files, merge to a single `.env` file. PR [#151](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/151).
 
+#### Upgrades
+
+* ⬆ Upgrade code to support pydantic V2. PR [#615](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/615) by [@estebanx64](https://github.com/estebanx64).
+
 #### Docs
 
 * 📝 Update internal README and referred files. PR [#613](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/613) by [@tiangolo](https://github.com/tiangolo).
