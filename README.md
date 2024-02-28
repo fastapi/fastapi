@@ -196,6 +196,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Refactors
 
+* 🚚 Refactor and simplify backend file structure. PR [#609](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/609) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Clean up old files no longer relevant. PR [#608](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/608) by [@tiangolo](https://github.com/tiangolo).
 * ♻ Re-structure Docker Compose files, discard Docker Swarm specific logic. PR [#607](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/607) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor update endpoints and regenerate client for new-frontend. PR [#602](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/602) by [@alejsdev](https://github.com/alejsdev).
