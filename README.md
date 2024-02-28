@@ -165,6 +165,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Features
 
+* ✨ Add state store to new frontend. PR [#592](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/592) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add form validation to Admin, Items and Login. PR [#616](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/616) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Sidebar to new frontend. PR [#587](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/587) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Login to new frontend. PR [#585](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/585) by [@alejsdev](https://github.com/alejsdev).
