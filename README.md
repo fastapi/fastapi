@@ -165,6 +165,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Features
 
+* ✨ Support delete own account and other tweaks. PR [#614](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/614) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Restructure folders, allow editing of users/items, and implement other refactors and improvements. PR [#603](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/603) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Copier, migrate from Cookiecutter, in a way that supports using the project as is, forking or cloning it. PR [#612](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/612) by [@tiangolo](https://github.com/tiangolo).
 * ➕ Replace black, isort, flake8, autoflake with ruff and upgrade mypy. PR [#610](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/610) by [@tiangolo](https://github.com/tiangolo).
