@@ -1,23 +1,35 @@
 import React from 'react';
 
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Button, Center, Container, FormControl, Icon, Image, Input, InputGroup, InputRightElement, Link, useBoolean } from '@chakra-ui/react';
+import { Button, Center, Container, FormControl, FormErrorMessage, Icon, Image, Input, InputGroup, InputRightElement, Link, useBoolean } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 import Logo from '../assets/images/fastapi-logo.svg';
+import { ApiError } from '../client';
 import { Body_login_login_access_token as AccessToken } from '../client/models/Body_login_login_access_token';
 import useAuth from '../hooks/useAuth';
 
 const Login: React.FC = () => {
   const [show, setShow] = useBoolean();
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<AccessToken>();
+  const [error, setError] = React.useState<string | null>(null);
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AccessToken>({
+    mode: 'onBlur',
+    criteriaMode: 'all',
+    defaultValues: {
+      username: '',
+      password: ''
+    }
+  });
   const { login } = useAuth();
 
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
-    await login(data);
-    navigate('/');
+    try {
+      await login(data);
+    } catch (err) {
+      const errDetail = (err as ApiError).body.detail;
+      setError(errDetail)
+    }
   };
 
   return (
@@ -32,11 +44,12 @@ const Login: React.FC = () => {
         gap={4}
         centerContent
       >
-        <Image src={Logo} alt='FastAPI logo' height='auto' maxW='2xs' alignSelf='center' />
-        <FormControl id='email'>
-          <Input {...register('username')} placeholder='Email' type='text' />
+        <Image src={Logo} alt='FastAPI logo' height='auto' maxW='2xs' alignSelf='center' mb={4} />
+        <FormControl id='username' isInvalid={!!errors.username || !!error}>
+          <Input id='username' {...register('username', { pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='text' />
+          {errors.username && <FormErrorMessage>{errors.username.message}</FormErrorMessage>}
         </FormControl>
-        <FormControl id='password'>
+        <FormControl id='password' isInvalid={!!error}>
           <InputGroup>
             <Input
               {...register('password')}
@@ -55,13 +68,16 @@ const Login: React.FC = () => {
               </Icon>
             </InputRightElement>
           </InputGroup>
-          <Center>
-            <Link as={ReactRouterLink} to='/recover-password' color='blue.500' mt={2}>
-              Forgot password?
-            </Link>
-          </Center>
+          {error && <FormErrorMessage>
+            {error}
+          </FormErrorMessage>}
         </FormControl>
-        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit'>
+        <Center>
+          <Link as={ReactRouterLink} to='/recover-password' color='blue.500'>
+            Forgot password?
+          </Link>
+        </Center>
+        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
           Log In
         </Button>
       </Container>

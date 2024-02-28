@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Checkbox, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { UserCreate } from '../../client';
@@ -14,29 +14,35 @@ interface AddUserProps {
 }
 
 interface UserCreateForm extends UserCreate {
-    confirmPassword: string;
+    confirm_password: string;
 
 }
 
 const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
     const showToast = useCustomToast();
-    const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<UserCreateForm>();
+    const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<UserCreateForm>({
+        mode: 'onBlur',
+        criteriaMode: 'all',
+        defaultValues: {
+            email: '',
+            full_name: '',
+            password: '',
+            confirm_password: '',
+            is_superuser: false,
+            is_active: false
+        }
+    });
     const { addUser } = useUsersStore();
 
     const onSubmit: SubmitHandler<UserCreateForm> = async (data) => {
-        if (data.password === data.confirmPassword) {
-            try {
-                await addUser(data);
-                showToast('Success!', 'User created successfully.', 'success');
-                reset();
-                onClose();
-            } catch (err) {
-                const errDetail = (err as ApiError).body.detail;
-                showToast('Something went wrong.', `${errDetail}`, 'error');
-            }
-        } else {
-            // TODO: Complete when form validation is implemented
-            console.log("Passwords don't match")
+        try {
+            await addUser(data);
+            showToast('Success!', 'User created successfully.', 'success');
+            reset();
+            onClose();
+        } catch (err) {
+            const errDetail = (err as ApiError).body.detail;
+            showToast('Something went wrong.', `${errDetail}`, 'error');
         }
     }
 
@@ -53,21 +59,28 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
                     <ModalHeader>Add User</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6} >
-                        <FormControl>
+                        <FormControl isRequired isInvalid={!!errors.email}>
                             <FormLabel htmlFor='email'>Email</FormLabel>
-                            <Input id='email' {...register('email')} placeholder='Email' type='email' />
+                            <Input id='email' {...register('email', { required: 'Email is required', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='email' />
+                            {errors.email && <FormErrorMessage>{errors.email.message}</FormErrorMessage>}
                         </FormControl>
-                        <FormControl mt={4}>
+                        <FormControl mt={4} isInvalid={!!errors.full_name}>
                             <FormLabel htmlFor='name'>Full name</FormLabel>
                             <Input id='name' {...register('full_name')} placeholder='Full name' type='text' />
+                            {errors.full_name && <FormErrorMessage>{errors.full_name.message}</FormErrorMessage>}
                         </FormControl>
-                        <FormControl mt={4}>
+                        <FormControl mt={4} isRequired isInvalid={!!errors.password}>
                             <FormLabel htmlFor='password'>Set Password</FormLabel>
-                            <Input id='password' {...register('password')} placeholder='Password' type='password' />
+                            <Input id='password' {...register('password', { required: 'Password is required', minLength: { value: 8, message: 'Password must be at least 8 characters' } })} placeholder='Password' type='password' />
+                            {errors.password && <FormErrorMessage>{errors.password.message}</FormErrorMessage>}
                         </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel htmlFor='confirmPassword'>Confirm Password</FormLabel>
-                            <Input id='confirmPassword' {...register('confirmPassword')} placeholder='Password' type='password' />
+                        <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
+                            <FormLabel htmlFor='confirm_password'>Confirm Password</FormLabel>
+                            <Input id='confirm_password' {...register('confirm_password', {
+                                required: 'Please confirm your password',
+                                validate: value => value === getValues().password || 'The passwords do not match'
+                            })} placeholder='Password' type='password' />
+                            {errors.confirm_password && <FormErrorMessage>{errors.confirm_password.message}</FormErrorMessage>}
                         </FormControl>
                         <Flex mt={4}>
                             <FormControl>
@@ -79,7 +92,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
                         </Flex>
                     </ModalBody>
                     <ModalFooter gap={3}>
-                        <Button bg='ui.main' color='white' type='submit' isLoading={isSubmitting}>
+                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
                             Save
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>

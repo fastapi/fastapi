@@ -17,21 +17,17 @@ interface DeleteProps {
 const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
     const showToast = useCustomToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const { handleSubmit } = useForm();
+    const { handleSubmit, formState: {isSubmitting} } = useForm();
     const { deleteItem } = useItemsStore();
     const { deleteUser } = useUsersStore();
 
     const onSubmit = async () => {
-        setIsLoading(true);
         try {
             type === 'Item' ? await deleteItem(id) : await deleteUser(id);
             showToast('Success', `The ${type.toLowerCase()} was deleted successfully.`, 'success');
             onClose();
         } catch (err) {
             showToast('An error occurred.', `An error occurred while deleting the ${type.toLowerCase()}.`, 'error');
-        } finally {
-            setIsLoading(false);
         }
     }
 
@@ -56,10 +52,10 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
                         </AlertDialogBody>
 
                         <AlertDialogFooter gap={3}>
-                            <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isLoading}>
+                            <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isSubmitting}>
                                 Delete
                             </Button>
-                            <Button ref={cancelRef} onClick={onClose} isDisabled={isLoading}>
+                            <Button ref={cancelRef} onClick={onClose} isDisabled={isSubmitting}>
                                 Cancel
                             </Button>
                         </AlertDialogFooter>

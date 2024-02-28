@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Checkbox, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { ApiError, UserUpdate } from '../../client';
@@ -19,25 +19,34 @@ interface UserUpdateForm extends UserUpdate {
 
 const EditUser: React.FC<EditUserProps> = ({ user_id, isOpen, onClose }) => {
     const showToast = useCustomToast();
-    const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<UserUpdateForm>();
     const { editUser, users } = useUsersStore();
-
     const currentUser = users.find((user) => user.id === user_id);
+    const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<UserUpdateForm>({
+        mode: 'onBlur',
+        criteriaMode: 'all',
+        defaultValues: {
+            email: currentUser?.email,
+            full_name: currentUser?.full_name,
+            password: '',
+            confirm_password: '',
+            is_superuser: currentUser?.is_superuser,
+            is_active: currentUser?.is_active
+        }
+    });
+
 
     const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
-        if (data.password === data.confirm_password) {
-            try {
-                await editUser(user_id, data);
-                showToast('Success!', 'User updated successfully.', 'success');
-                reset();
-                onClose();
-            } catch (err) {
-                const errDetail = (err as ApiError).body.detail;
-                showToast('Something went wrong.', `${errDetail}`, 'error');
+        try {
+            if (data.password === '') {
+                delete data.password;
             }
-        } else {
-            // TODO: Complete when form validation is implemented
-            console.log("Passwords don't match")
+            await editUser(user_id, data);
+            showToast('Success!', 'User updated successfully.', 'success');
+            reset();
+            onClose();
+        } catch (err) {
+            const errDetail = (err as ApiError).body.detail;
+            showToast('Something went wrong.', `${errDetail}`, 'error');
         }
     }
 
@@ -59,28 +68,33 @@ const EditUser: React.FC<EditUserProps> = ({ user_id, isOpen, onClose }) => {
                     <ModalHeader>Edit User</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <FormControl>
+                        <FormControl isInvalid={!!errors.email}>
                             <FormLabel htmlFor='email'>Email</FormLabel>
-                            <Input id="email" {...register('email')} defaultValue={currentUser?.email} type='email' />
+                            <Input id='email' {...register('email', { pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='email' />
+                            {errors.email && <FormErrorMessage>{errors.email.message}</FormErrorMessage>}
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel htmlFor='name'>Full name</FormLabel>
-                            <Input id="name" {...register('full_name')} defaultValue={currentUser?.full_name} type='text' />
+                            <Input id="name" {...register('full_name')} type='text' />
                         </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel htmlFor='password'>Password</FormLabel>
-                            <Input id="password" {...register('password')} placeholder='••••••••' type='password' />
+                        <FormControl mt={4} isInvalid={!!errors.password}>
+                            <FormLabel htmlFor='password'>Set Password</FormLabel>
+                            <Input id='password' {...register('password', { minLength: { value: 8, message: 'Password must be at least 8 characters' } })} placeholder='••••••••' type='password' />
+                            {errors.password && <FormErrorMessage>{errors.password.message}</FormErrorMessage>}
                         </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel htmlFor='confirmPassword'>Confirmation Password</FormLabel>
-                            <Input id='confirmPassword' {...register('confirm_password')} placeholder='••••••••' type='password' />
+                        <FormControl mt={4} isInvalid={!!errors.confirm_password}>
+                            <FormLabel htmlFor='confirm_password'>Confirm Password</FormLabel>
+                            <Input id='confirm_password' {...register('confirm_password', {
+                                validate: value => value === getValues().password || 'The passwords do not match'
+                            })} placeholder='••••••••' type='password' />
+                            {errors.confirm_password && <FormErrorMessage>{errors.confirm_password.message}</FormErrorMessage>}
                         </FormControl>
                         <Flex>
                             <FormControl mt={4}>
-                                <Checkbox {...register('is_superuser')} defaultChecked={currentUser?.is_superuser} colorScheme='teal'>Is superuser?</Checkbox>
+                                <Checkbox {...register('is_superuser')} colorScheme='teal'>Is superuser?</Checkbox>
                             </FormControl>
                             <FormControl mt={4}>
-                                <Checkbox {...register('is_active')} defaultChecked={currentUser?.is_active} colorScheme='teal'>Is active?</Checkbox>
+                                <Checkbox {...register('is_active')} colorScheme='teal'>Is active?</Checkbox>
                             </FormControl>
                         </Flex>
                     </ModalBody>

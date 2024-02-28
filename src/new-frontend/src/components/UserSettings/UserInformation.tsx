@@ -75,7 +75,7 @@ const UserInformation: React.FC = () => {
                             {editMode ? 'Save' : 'Edit'}
                         </Button>
                         {editMode &&
-                            <Button onClick={onCancel}>
+                            <Button onClick={onCancel} isDisabled={isSubmitting}>
                                 Cancel
                             </Button>}
                     </Flex>

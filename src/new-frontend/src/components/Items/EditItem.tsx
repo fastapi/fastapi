@@ -15,10 +15,9 @@ interface EditItemProps {
 
 const EditItem: React.FC<EditItemProps> = ({ id, isOpen, onClose }) => {
     const showToast = useCustomToast();
-    const { register, handleSubmit, reset, formState: { isSubmitting }, } = useForm<ItemUpdate>();
     const { editItem, items } = useItemsStore();
-
     const currentItem = items.find((item) => item.id === id);
+    const { register, handleSubmit, reset, formState: { isSubmitting }, } = useForm<ItemUpdate>({ defaultValues: { title: currentItem?.title, description: currentItem?.description } });
 
     const onSubmit: SubmitHandler<ItemUpdate> = async (data) => {
         try {
@@ -52,11 +51,11 @@ const EditItem: React.FC<EditItemProps> = ({ id, isOpen, onClose }) => {
                     <ModalBody pb={6}>
                         <FormControl>
                             <FormLabel htmlFor='title'>Title</FormLabel>
-                            <Input id='title' {...register('title')} defaultValue={currentItem?.title} type='text' />
+                            <Input id='title' {...register('title')} type='text' />
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel htmlFor='description'>Description</FormLabel>
-                            <Input id='description' {...register('description')} defaultValue={currentItem?.description} placeholder='Description' type='text' />
+                            <Input id='description' {...register('description')} placeholder='Description' type='text' />
                         </FormControl>
                     </ModalBody>
                     <ModalFooter gap={3}>

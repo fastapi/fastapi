@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { ApiError, ItemCreate } from '../../client';
@@ -14,12 +14,17 @@ interface AddItemProps {
 
 const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
     const showToast = useCustomToast();
-    const [isLoading, setIsLoading] = useState(false);
-    const { register, handleSubmit, reset } = useForm<ItemCreate>();
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ItemCreate>({
+        mode: 'onBlur',
+        criteriaMode: 'all',
+        defaultValues: {
+            title: '',
+            description: '',
+        },
+    });
     const { addItem } = useItemsStore();
 
     const onSubmit: SubmitHandler<ItemCreate> = async (data) => {
-        setIsLoading(true);
         try {
             await addItem(data);
             showToast('Success!', 'Item created successfully.', 'success');
@@ -28,8 +33,6 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
         } catch (err) {
             const errDetail = (err as ApiError).body.detail;
             showToast('Something went wrong.', `${errDetail}`, 'error');
-        } finally {
-            setIsLoading(false);
         }
     };
 
@@ -46,14 +49,15 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
                     <ModalHeader>Add Item</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <FormControl>
+                        <FormControl isRequired isInvalid={!!errors.title}>
                             <FormLabel htmlFor='title'>Title</FormLabel>
                             <Input
                                 id='title'
-                                {...register('title')}
+                                {...register('title', { required: 'Title is required.' })}
                                 placeholder='Title'
                                 type='text'
                             />
+                            {errors.title && <FormErrorMessage>{errors.title.message}</FormErrorMessage>}
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel htmlFor='description'>Description</FormLabel>
@@ -67,10 +71,10 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
                     </ModalBody>
 
                     <ModalFooter gap={3}>
-                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isLoading}>
+                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
                             Save
                         </Button>
-                        <Button onClick={onClose} isDisabled={isLoading}>
+                        <Button onClick={onClose}>
                             Cancel
                         </Button>
                     </ModalFooter>

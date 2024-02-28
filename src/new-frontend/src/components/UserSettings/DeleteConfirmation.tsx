@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
@@ -54,7 +54,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
                             <Button bg='ui.danger' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
                                 Confirm
                             </Button>
-                            <Button ref={cancelRef} onClick={onClose} isDisabled={isLoading}>
+                            <Button ref={cancelRef} onClick={onClose} isDisabled={isSubmitting}>
                                 Cancel
                             </Button>
                         </AlertDialogFooter>
