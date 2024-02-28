@@ -7,6 +7,89 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Azerbaijani translation for `docs/az/learn/index.md`. PR [#11192](https://github.com/tiangolo/fastapi/pull/11192) by [@vusallyv](https://github.com/vusallyv).
+
+### Internal
+
+* 🔧 Update sponsors, remove Jina, remove Powens, move TestDriven.io. PR [#11213](https://github.com/tiangolo/fastapi/pull/11213) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.110.0
+
+### Breaking Changes
+
+* 🐛 Fix unhandled growing memory for internal server errors, refactor dependencies with `yield` and `except` to require raising again as in regular Python. PR [#11191](https://github.com/tiangolo/fastapi/pull/11191) by [@tiangolo](https://github.com/tiangolo).
+    * This is a breaking change (and only slightly) if you used dependencies with `yield`, used `except` in those dependencies, and didn't raise again.
+    * This was reported internally by [@rushilsrivastava](https://github.com/rushilsrivastava) as a memory leak when the server had unhandled exceptions that would produce internal server errors, the memory allocated before that point would not be released.
+    * Read the new docs: [Dependencies with `yield` and `except`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except).
+
+In short, if you had dependencies that looked like:
+
+```Python
+def my_dep():
+    try:
+        yield
+    except SomeException:
+        pass
+```
+
+Now you need to make sure you raise again after `except`, just as you would in regular Python:
+
+```Python
+def my_dep():
+    try:
+        yield
+    except SomeException:
+        raise
+```
+
+### Docs
+
+* ✏️ Fix minor typos in `docs/ko/docs/`. PR [#11126](https://github.com/tiangolo/fastapi/pull/11126) by [@KaniKim](https://github.com/KaniKim).
+* ✏️ Fix minor typo in `fastapi/applications.py`. PR [#11099](https://github.com/tiangolo/fastapi/pull/11099) by [@JacobHayes](https://github.com/JacobHayes).
+
+### Translations
+
+* 🌐 Add German translation for `docs/de/docs/reference/background.md`. PR [#10820](https://github.com/tiangolo/fastapi/pull/10820) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/reference/templating.md`. PR [#10842](https://github.com/tiangolo/fastapi/pull/10842) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/external-links.md`. PR [#10852](https://github.com/tiangolo/fastapi/pull/10852) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Update Turkish translation for `docs/tr/docs/tutorial/query-params.md`. PR [#11162](https://github.com/tiangolo/fastapi/pull/11162) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add German translation for `docs/de/docs/reference/encoders.md`. PR [#10840](https://github.com/tiangolo/fastapi/pull/10840) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/reference/responses.md`. PR [#10825](https://github.com/tiangolo/fastapi/pull/10825) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/reference/request.md`. PR [#10821](https://github.com/tiangolo/fastapi/pull/10821) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add Turkish translation for `docs/tr/docs/tutorial/query-params.md`. PR [#11078](https://github.com/tiangolo/fastapi/pull/11078) by [@emrhnsyts](https://github.com/emrhnsyts).
+* 🌐 Add German translation for `docs/de/docs/reference/fastapi.md`. PR [#10813](https://github.com/tiangolo/fastapi/pull/10813) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add German translation for `docs/de/docs/newsletter.md`. PR [#10853](https://github.com/tiangolo/fastapi/pull/10853) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/learn/index.md`. PR [#11142](https://github.com/tiangolo/fastapi/pull/11142) by [@hsuanchi](https://github.com/hsuanchi).
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/dependencies/global-dependencies.md`. PR [#11123](https://github.com/tiangolo/fastapi/pull/11123) by [@riroan](https://github.com/riroan).
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#11124](https://github.com/tiangolo/fastapi/pull/11124) by [@riroan](https://github.com/riroan).
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/schema-extra-example.md`. PR [#11121](https://github.com/tiangolo/fastapi/pull/11121) by [@KaniKim](https://github.com/KaniKim).
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/body-fields.md`. PR [#11112](https://github.com/tiangolo/fastapi/pull/11112) by [@KaniKim](https://github.com/KaniKim).
+* 🌐 Add Korean translation for `/docs/ko/docs/tutorial/cookie-params.md`. PR [#11118](https://github.com/tiangolo/fastapi/pull/11118) by [@riroan](https://github.com/riroan).
+* 🌐 Update Korean translation for `/docs/ko/docs/dependencies/index.md`. PR [#11114](https://github.com/tiangolo/fastapi/pull/11114) by [@KaniKim](https://github.com/KaniKim).
+* 🌐 Update Korean translation for `/docs/ko/docs/deployment/docker.md`. PR [#11113](https://github.com/tiangolo/fastapi/pull/11113) by [@KaniKim](https://github.com/KaniKim).
+* 🌐 Update Turkish translation for `docs/tr/docs/tutorial/first-steps.md`. PR [#11094](https://github.com/tiangolo/fastapi/pull/11094) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/security/index.md`. PR [#2278](https://github.com/tiangolo/fastapi/pull/2278) by [@Xaraxx](https://github.com/Xaraxx).
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/response-headers.md`. PR [#2276](https://github.com/tiangolo/fastapi/pull/2276) by [@Xaraxx](https://github.com/Xaraxx).
+* 🌐 Add Spanish translation for `docs/es/docs/deployment/index.md` and `~/deployment/versions.md`. PR [#9669](https://github.com/tiangolo/fastapi/pull/9669) by [@pabloperezmoya](https://github.com/pabloperezmoya).
+* 🌐 Add Spanish translation for `docs/es/docs/benchmarks.md`. PR [#10928](https://github.com/tiangolo/fastapi/pull/10928) by [@pablocm83](https://github.com/pablocm83).
+* 🌐 Add Spanish translation for `docs/es/docs/advanced/response-change-status-code.md`. PR [#11100](https://github.com/tiangolo/fastapi/pull/11100) by [@alejsdev](https://github.com/alejsdev).
+
+## 0.109.2
+
+### Upgrades
+
+* ⬆️ Upgrade version of Starlette to `>= 0.36.3`. PR [#11086](https://github.com/tiangolo/fastapi/pull/11086) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update Turkish translation for `docs/tr/docs/fastapi-people.md`. PR [#10547](https://github.com/tiangolo/fastapi/pull/10547) by [@alperiox](https://github.com/alperiox).
+
+### Internal
+
+* 🍱 Add new FastAPI logo. PR [#11090](https://github.com/tiangolo/fastapi/pull/11090) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.109.1
 
 ### Security fixes
@@ -245,7 +328,7 @@ Read more in the [advisory: Content-Type Header ReDoS](https://github.com/tiango
 
 ### Upgrades
 
-* ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. Remove pin of AnyIO `>=3.7.1,<4.0.0`, add support for AnyIO 4.x.x. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.107.0
 
