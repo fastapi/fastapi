@@ -165,6 +165,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Features
 
+* ✨ Add dark mode to new-frontend and conditional sidebar items. PR [#600](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/600) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Migrate to RouterProvider and other refactors . PR [#598](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/598) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add delete_user; refactor delete_item. PR [#594](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/594) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add state store to new frontend. PR [#592](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/592) by [@alejsdev](https://github.com/alejsdev).
