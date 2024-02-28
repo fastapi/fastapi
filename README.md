@@ -165,6 +165,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Features
 
+* ✨ Add Copier, migrate from Cookiecutter, in a way that supports using the project as is, forking or cloning it. PR [#612](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/612) by [@tiangolo](https://github.com/tiangolo).
 * ➕ Replace black, isort, flake8, autoflake with ruff and upgrade mypy. PR [#610](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/610) by [@tiangolo](https://github.com/tiangolo).
 * ♻ Refactor items and services endpoints to return count and data, and add CI tests. PR [#599](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/599) by [@estebanx64](https://github.com/estebanx64).
 * ✨ Add support for updating items and upgrade SQLModel to 0.0.16 (which supports model object updates). PR [#601](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/601) by [@tiangolo](https://github.com/tiangolo).
