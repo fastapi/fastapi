@@ -70,7 +70,7 @@ Bu barədə daha çox məlumat əldə etmək üçün repoya aid sənədlərə ba
 
 ## Full Stack FastAPI MongoDB
 
-...vaxtımın mövcudluğuna və digər faktorlara bağlı olaraq daha sonra gələ bilər. 😅 🎉 
+...vaxtımın mövcudluğuna və digər faktorlara bağlı olaraq daha sonra gələ bilər. 😅 🎉
 
 ## spaCy və FastAPI ilə Maşın Öyrənmə modelləri
 
