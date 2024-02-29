@@ -8,4 +8,6 @@ DecoratedCallable = TypeVar("DecoratedCallable", bound=Callable[..., Any])
 UnionType = getattr(types, "UnionType", Union)
 ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
 IncEx = Union[Set[int], Set[str], Dict[int, Any], Dict[str, Any]]
-FFQuery = Dict[str, Union[str, IncEx]]
+
+class FFQuery(Dict[str, Union[str, IncEx]]):
+    pass
