@@ -1,4 +1,5 @@
 import inspect
+from collections import defaultdict
 from contextlib import AsyncExitStack, contextmanager
 from copy import deepcopy
 from typing import (
@@ -35,7 +36,9 @@ from fastapi._compat import (
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
+    is_scalar_mapping_field,
     is_scalar_sequence_field,
+    is_scalar_sequence_mapping_field,
     is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
@@ -463,6 +466,11 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
         return False
+    elif isinstance(param_field.field_info, params.Query) and (
+        is_scalar_sequence_mapping_field(param_field)
+        or is_scalar_mapping_field(param_field)
+    ):
+        return False
     else:
         assert isinstance(
             param_field.field_info, params.Body
@@ -647,6 +655,10 @@ async def solve_dependencies(
     return values, errors, background_tasks, response, dependency_cache
 
 
+class Marker:
+    pass
+
+
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
@@ -658,6 +670,16 @@ def request_params_to_args(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
+        elif is_scalar_mapping_field(field) and isinstance(
+            received_params, QueryParams
+        ):
+            value = dict(received_params.multi_items()) or field.default
+        elif is_scalar_sequence_mapping_field(field) and isinstance(
+            received_params, QueryParams
+        ):
+            value = defaultdict(list)
+            for k, v in received_params.multi_items():
+                value[k].append(v)
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
@@ -674,6 +696,31 @@ def request_params_to_args(
         v_, errors_ = field.validate(value, values, loc=loc)
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
+        elif (
+            isinstance(errors_, list)
+            and is_scalar_sequence_mapping_field(field)
+            and isinstance(received_params, QueryParams)
+        ):
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+            # remove all invalid parameters
+            marker = Marker()
+            for _, _, key, index in [error["loc"] for error in new_errors]:
+                value[key][index] = marker
+            for key in value:
+                value[key] = [x for x in value[key] if x != marker]
+            v_, _ = field.validate(value, values, loc=loc)
+            values[field.name] = v_
+        elif (
+            isinstance(errors_, list)
+            and is_scalar_mapping_field(field)
+            and isinstance(received_params, QueryParams)
+        ):
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+            # remove all invalid parameters
+            for _, _, key in [error["loc"] for error in new_errors]:
+                value.pop(key)
+            v_, _ = field.validate(value, values, loc=loc)
+            values[field.name] = v_
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             errors.extend(new_errors)

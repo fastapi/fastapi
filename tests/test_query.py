@@ -408,3 +408,36 @@ def test_query_frozenset_query_1_query_1_query_2():
     response = client.get("/query/frozenset/?query=1&query=1&query=2")
     assert response.status_code == 200
     assert response.json() == "1,2"
+
+
+def test_mapping_query():
+    response = client.get("/query/mapping-params/?foo=fuzz&bar=buzz")
+    assert response.status_code == 200
+    assert response.json() == "foo bar fuzz buzz"
+
+
+def test_mapping_with_non_mapping_query():
+    response = client.get("/query/mixed-params/?foo=fuzz&foo=baz&bar=buzz&query=fizz")
+    assert response.status_code == 200
+    assert response.json() == "foo bar fuzz baz baz buzz fizz"
+
+
+def test_mapping_with_non_mapping_query_mixed_types():
+    response = client.get("/query/mixed-type-params/?foo=fuzz&foo=baz&bar=buzz&query=1")
+    assert response.status_code == 200
+    assert (
+        response.json()
+        == "foo bar 1 {'foo': 'baz', 'bar': 'buzz', 'query': '1'}  {'query': 1} {'foo': [], 'bar': [], 'query': [1]}"
+    )
+
+
+def test_sequence_mapping_query():
+    response = client.get("/query/mapping-sequence-params/?foo=1&foo=2")
+    assert response.status_code == 200
+    assert response.json() == "foo bar {'foo': [1, 2]}"
+
+
+def test_sequence_mapping_query_drops_invalid():
+    response = client.get("/query/mapping-sequence-params/?foo=fuzz&foo=buzz")
+    assert response.status_code == 200
+    assert response.json() == "foo bar {'foo': []}"
