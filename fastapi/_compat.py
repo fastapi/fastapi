@@ -17,7 +17,7 @@ from typing import (
 )
 
 from fastapi.exceptions import RequestErrorModel
-from fastapi.types import FFQuery, IncEx, ModelNameMap, UnionType
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
@@ -43,7 +43,8 @@ sequence_annotation_to_type = {
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
 mapping_annotation_to_type = {
-    FFQuery: list,
+    Dict: list,
+    dict: list,
 }
 
 mapping_types = tuple(mapping_annotation_to_type.keys())
@@ -366,7 +367,7 @@ else:
     mapping_shapes = {
         SHAPE_MAPPING,
     }
-    mapping_shapes_to_type = {SHAPE_MAPPING: FFQuery}
+    mapping_shapes_to_type = {SHAPE_MAPPING: Dict}
 
     @dataclass
     class GenerateJsonSchema:  # type: ignore[no-redef]

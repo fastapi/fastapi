@@ -1,8 +1,7 @@
 import http
-from typing import FrozenSet, List, Optional, Union
+from typing import FrozenSet, List, Optional, Union, Dict
 
 from fastapi import FastAPI, Path, Query
-from fastapi.types import FFQuery
 
 app = FastAPI()
 
@@ -186,19 +185,19 @@ def get_query_param_required_type(query: int = Query()):
 
 
 @app.get("/query/mapping-params")
-def get_mapping_query_params(queries: FFQuery[str, str] = Query({})):
+def get_mapping_query_params(queries: Dict[str, str] = Query({})):
     return f"foo bar {queries['foo']} {queries['bar']}"
 
 
 @app.get("/query/mapping-sequence-params")
-def get_sequence_mapping_query_params(queries: FFQuery[str, List[int]] = Query({})):
+def get_sequence_mapping_query_params(queries: Dict[str, List[int]] = Query({})):
     return f"foo bar {dict(queries)}"
 
 
 @app.get("/query/mixed-params")
 def get_mixed_mapping_query_params(
-    sequence_mapping_queries: FFQuery[str, List[Union[str, int]]] = Query({}),
-    mapping_query: FFQuery[str, str] = Query(),
+    sequence_mapping_queries: Dict[str, List[Union[str, int]]] = Query({}),
+    mapping_query: Dict[str, str] = Query(),
     query: str = Query(),
 ):
     return (
@@ -209,9 +208,9 @@ def get_mixed_mapping_query_params(
 
 @app.get("/query/mixed-type-params")
 def get_mixed_mapping_mixed_type_query_params(
-    sequence_mapping_queries: FFQuery[str, List[int]] = Query({}),
-    mapping_query_str: FFQuery[str, str] = Query({}),
-    mapping_query_int: FFQuery[str, int] = Query({}),
+    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
+    mapping_query_str: Dict[str, str] = Query({}),
+    mapping_query_int: Dict[str, int] = Query({}),
     query: int = Query(),
 ):
     return f"foo bar {query} {mapping_query_str}  {mapping_query_int} {dict(sequence_mapping_queries)}"

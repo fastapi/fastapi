@@ -2,7 +2,6 @@ from typing import List
 
 import pytest
 from fastapi import FastAPI, Query
-from fastapi.types import FFQuery
 
 
 def test_invalid_sequence():
@@ -10,5 +9,5 @@ def test_invalid_sequence():
         app = FastAPI()
 
         @app.get("/items/")
-        def read_items(q: FFQuery[str, List[List[str]]] = Query(default=None)):
+        def read_items(q: Dict[str, List[List[str]]] = Query(default=None)):
             pass  # pragma: no cover
