@@ -192,8 +192,6 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
     * Wenn Sie mit Python's Typisierung arbeiten können, können Sie auch mit Pydantic arbeiten.
 * Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">linter</abbr>/Gehirn**:
     * Weil Datenstrukturen von Pydantic einfach nur Instanzen ihrer definierten Klassen sind, sollten Autovervollständigung, Linting, mypy und ihre Intuition einwandfrei funktionieren.
-* **Schnell**:
-    * In <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
 * Validierung von **komplexen Strukturen**:
     * Benutzung von hierachischen Pydantic Schemata, Python `typing`’s `List` und `Dict`, etc.
     * Validierungen erlauben eine klare und einfache Datenschemadefinition, überprüft und dokumentiert als JSON Schema.
