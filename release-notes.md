@@ -49,6 +49,7 @@
 
 ### Refactors
 
+* ♻️ Refactor old CRUD utils and tests. PR [#622](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/622) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update .env to allow local debug for the backend. PR [#618](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/618) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor and update CORS, remove trailing slash from new Pydantic v2. PR [#617](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/617) by [@tiangolo](https://github.com/tiangolo).
 * 🎨 Format files with pre-commit and Ruff. PR [#611](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/611) by [@tiangolo](https://github.com/tiangolo).
