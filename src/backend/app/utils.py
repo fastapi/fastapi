@@ -43,7 +43,7 @@ def send_test_email(email_to: str) -> None:
         email_to=email_to,
         subject_template=subject,
         html_template=template_str,
-        current_environment={"project_name": settings.PROJECT_NAME, "email": email_to},
+        environment={"project_name": settings.PROJECT_NAME, "email": email_to},
     )
 
 
@@ -58,7 +58,7 @@ def send_reset_password_email(email_to: str, email: str, token: str) -> None:
         email_to=email_to,
         subject_template=subject,
         html_template=template_str,
-        current_environment={
+        environment={
             "project_name": settings.PROJECT_NAME,
             "username": email,
             "email": email_to,
@@ -78,7 +78,7 @@ def send_new_account_email(email_to: str, username: str, password: str) -> None:
         email_to=email_to,
         subject_template=subject,
         html_template=template_str,
-        current_environment={
+        environment={
             "project_name": settings.PROJECT_NAME,
             "username": username,
             "password": password,
@@ -104,6 +104,6 @@ def generate_password_reset_token(email: str) -> str:
 def verify_password_reset_token(token: str) -> str | None:
     try:
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-        return decoded_token["email"]
+        return decoded_token["sub"]
     except jwt.JWTError:
         return None

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Container, FormControl, Heading, Input, Text } from "@chakra-ui/react";
+import { Button, Container, FormControl, FormErrorMessage, Heading, Input, Text } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { LoginService } from "../client";
@@ -11,14 +11,13 @@ interface FormData {
 }
 
 const RecoverPassword: React.FC = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>();
   const showToast = useCustomToast();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const response = await LoginService.recoverPassword({
+    await LoginService.recoverPassword({
       email: data.email,
     });
-    console.log(response)
 
     showToast("Email sent.", "We sent an email with a link to get back into your account.", "success");
   };
@@ -37,19 +36,14 @@ const RecoverPassword: React.FC = () => {
       <Heading size="xl" color="ui.main" textAlign="center" mb={2}>
         Password Recovery
       </Heading>
-      <FormControl id="username">
-        <Text align="center">
-          A password recovery email will be sent to the registered account.
-        </Text>
-        <Input
-          {...register("email")}
-
-          mt={4}
-          placeholder="Enter your email"
-          type="text"
-        />
+      <Text align="center">
+        A password recovery email will be sent to the registered account.
+      </Text>
+      <FormControl isInvalid={!!errors.email}>
+        <Input id='email' {...register('email', { required: 'Email is required', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='email' />
+        {errors.email && <FormErrorMessage>{errors.email.message}</FormErrorMessage>}
       </FormControl>
-      <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} type="submit">
+      <Button bg="ui.main" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isSubmitting}>
         Continue
       </Button>
     </Container>
