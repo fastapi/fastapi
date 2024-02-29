@@ -4,12 +4,15 @@ import { useUsersStore } from '../store/users-store';
 import { useItemsStore } from '../store/items-store';
 import { useNavigate } from 'react-router-dom';
 
+const isLoggedIn = () => {
+    return localStorage.getItem('access_token') !== null;
+};
+
 const useAuth = () => {
-    const { user, getUser, resetUser } = useUserStore();
+    const { getUser, resetUser } = useUserStore();
     const { resetUsers } = useUsersStore();
     const { resetItems } = useItemsStore();
     const navigate = useNavigate();
-
 
     const login = async (data: AccessToken) => {
         const response = await LoginService.loginAccessToken({
@@ -17,6 +20,7 @@ const useAuth = () => {
         });
         localStorage.setItem('access_token', response.access_token);
         await getUser();
+        navigate('/');
     };
 
     const logout = () => {
@@ -27,11 +31,8 @@ const useAuth = () => {
         navigate('/login');
     };
 
-    const isLoggedIn = () => {
-        return user !== null;
-    };
-
-    return { login, logout, isLoggedIn };
+    return { login, logout };
 }
 
+export { isLoggedIn };
 export default useAuth;

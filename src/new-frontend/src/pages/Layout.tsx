@@ -6,18 +6,19 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Common/Sidebar';
 import UserMenu from '../components/Common/UserMenu';
 import { useUserStore } from '../store/user-store';
+import { isLoggedIn } from '../hooks/useAuth';
 
 const Layout: React.FC = () => {
     const { getUser } = useUserStore();
 
     useEffect(() => {
-        const token = localStorage.getItem('access_token');
-        if (token) {
-            (async () => {
+        const fetchUser = async () => {
+            if (isLoggedIn()) {
                 await getUser();
-            })();
-        }
-    }, [getUser]);
+            }
+        };
+        fetchUser();
+    }, []);
 
     return (
         <Flex maxW='large' h='auto' position='relative'>

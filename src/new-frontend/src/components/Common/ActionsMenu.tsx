@@ -12,7 +12,7 @@ import Delete from './DeleteAlert';
 interface ActionsMenuProps {
     type: string;
     id: number;
-    disabled: boolean;
+    disabled?: boolean;
 }
 
 const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, id, disabled }) => {

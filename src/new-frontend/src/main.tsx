@@ -6,14 +6,9 @@ import { createStandaloneToast } from '@chakra-ui/toast';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { OpenAPI } from './client';
-import Admin from './pages/Admin';
-import Dashboard from './pages/Dashboard';
-import ErrorPage from './pages/ErrorPage';
-import Items from './pages/Items';
-import Login from './pages/Login';
-import RecoverPassword from './pages/RecoverPassword';
-import Root from './pages/Root';
-import Profile from './pages/UserSettings';
+import { isLoggedIn } from './hooks/useAuth';
+import privateRoutes from './routes/private_route';
+import publicRoutes from './routes/public_route';
 import theme from './theme';
 
 
@@ -23,19 +18,8 @@ OpenAPI.TOKEN = async () => {
 }
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      { path: '/', element: <Dashboard /> },
-      { path: 'items', element: <Items /> },
-      { path: 'admin', element: <Admin /> },
-      { path: 'settings', element: <Profile /> },
-    ],
-  },
-  { path: 'login', element: <Login />, errorElement: <ErrorPage />, },
-  { path: 'recover-password', element: <RecoverPassword />, errorElement: <ErrorPage />, },
+  isLoggedIn() ? privateRoutes() : {},
+  ...publicRoutes(),
 ]);
 
 const { ToastContainer } = createStandaloneToast();
