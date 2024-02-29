@@ -297,7 +297,7 @@ class FastAPI(Starlette):
                 browser tabs open). Or if you want to leave fixed the possible URLs.
 
                 If the servers `list` is not provided, or is an empty `list`, the
-                default value would be a a `dict` with a `url` value of `/`.
+                default value would be a `dict` with a `url` value of `/`.
 
                 Each item in the `list` is a `dict` containing:
 
