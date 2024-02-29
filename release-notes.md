@@ -10,6 +10,7 @@
 
 ### Features
 
+* ✨ Add password reset functionality. PR [#624](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/624) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add private/public routing. PR [#621](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/621) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Add VS Code debug configs. PR [#620](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/620) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Add `Not Found` page. PR [#595](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/595) by [@alejsdev](https://github.com/alejsdev).
