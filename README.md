@@ -202,6 +202,7 @@ After using this generator, your new project (the directory created) will contai
 
 #### Refactors
 
+* 🔧 Update .env to allow local debug for the backend. PR [#618](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/618) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor and update CORS, remove trailing slash from new Pydantic v2. PR [#617](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/617) by [@tiangolo](https://github.com/tiangolo).
 * 🎨 Format files with pre-commit and Ruff. PR [#611](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/611) by [@tiangolo](https://github.com/tiangolo).
 * 🚚 Refactor and simplify backend file structure. PR [#609](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/609) by [@tiangolo](https://github.com/tiangolo).
