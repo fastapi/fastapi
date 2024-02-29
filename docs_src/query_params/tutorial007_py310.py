@@ -1,7 +1,6 @@
 from typing import List
 
 from fastapi import FastAPI, Query
-from fastapi.types import FFQuery
 
 app = FastAPI()
 
@@ -9,9 +8,9 @@ app = FastAPI()
 @app.get("/query/mixed-type-params")
 def get_mixed_mapping_mixed_type_query_params(
     query: int = Query(),
-    mapping_query_str: FFQuery[str, str] = Query({}),
-    mapping_query_int: FFQuery[str, int] = Query({}),
-    sequence_mapping_queries: FFQuery[str, List[int]] = Query({}),
+    mapping_query_str: Dict[str, str] = Query({}),
+    mapping_query_int: Dict[str, int] = Query({}),
+    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
 ):
     return {
         "query": query,
