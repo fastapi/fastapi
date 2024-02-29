@@ -20,10 +20,20 @@ jobs:
   latest-changes:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v4
         with:
+          # To allow latest-changes to commit to the main branch
           token: ${{ secrets.FULL_STACK_FASTAPI_POSTGRESQL_LATEST_CHANGES }}
-      - uses: docker://tiangolo/latest-changes:0.2.0
+      - uses: docker://tiangolo/latest-changes:0.3.0
       # - uses: tiangolo/latest-changes@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          latest_changes_file: ./release-notes.md
+          latest_changes_header: '## Latest Changes'
+          end_regex: '^## '
+          debug_logs: true
+          label_header_prefix: '### '
