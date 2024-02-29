@@ -166,22 +166,12 @@ def update_user(
     Update a user.
     """
 
-    db_user = session.get(User, user_id)
-    if not db_user:
+    db_user = crud.update_user(session=session, user_id=user_id, user_in=user_in)
+    if db_user is None:
         raise HTTPException(
             status_code=404,
             detail="The user with this username does not exist in the system",
         )
-    user_data = user_in.model_dump(exclude_unset=True)
-    extra_data = {}
-    if "password" in user_data:
-        password = user_data["password"]
-        hashed_password = get_password_hash(password)
-        extra_data["hashed_password"] = hashed_password
-    db_user.sqlmodel_update(user_data, update=extra_data)
-    session.add(db_user)
-    session.commit()
-    session.refresh(db_user)
     return db_user
 
 
