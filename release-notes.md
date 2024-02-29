@@ -10,6 +10,7 @@
 
 ### Features
 
+* 🔧 Add VS Code debug configs. PR [#620](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/620) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Add `Not Found` page. PR [#595](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/595) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add new pages, components, panels, modals, and theme; refactor and improvements in existing components. PR [#593](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/593) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Support delete own account and other tweaks. PR [#614](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/614) by [@alejsdev](https://github.com/alejsdev).
