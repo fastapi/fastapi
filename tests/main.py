@@ -1,5 +1,5 @@
 import http
-from typing import FrozenSet, List, Mapping, Optional, Union
+from typing import FrozenSet, List, Optional, Union
 
 from fastapi import FastAPI, Path, Query
 from fastapi.types import FFQuery

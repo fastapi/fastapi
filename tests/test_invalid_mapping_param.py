@@ -1,4 +1,5 @@
-from typing import List, Mapping
+from typing import List
+
 import pytest
 from fastapi import FastAPI, Query
 from fastapi.types import FFQuery

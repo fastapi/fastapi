@@ -9,7 +9,6 @@ from typing import (
     Dict,
     FrozenSet,
     List,
-    Mapping,
     Sequence,
     Set,
     Tuple,
@@ -18,7 +17,7 @@ from typing import (
 )
 
 from fastapi.exceptions import RequestErrorModel
-from fastapi.types import IncEx, ModelNameMap, UnionType, FFQuery
+from fastapi.types import FFQuery, IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
