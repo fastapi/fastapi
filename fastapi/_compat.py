@@ -21,7 +21,7 @@ from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
-from starlette.datastructures import UploadFile
+from starlette.datastructures import Headers, QueryParams, UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
@@ -632,3 +632,16 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+def validate_model_with_config(
+    model_class: Type[BaseModel],
+    received_params: Union[Mapping[str, Any], QueryParams, Headers],
+) -> List[Any]:
+    errors = []
+    if isinstance(model_class, type) and issubclass(model_class, BaseModel):
+        try:
+            model_class(**dict(received_params))
+        except ValidationError as e:
+            errors.extend(_regenerate_error_with_loc(errors=e.errors(), loc_prefix=()))
+    return errors

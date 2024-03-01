@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from fastapi import FastAPI, UploadFile
+from fastapi import Depends, FastAPI, UploadFile
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -91,3 +91,21 @@ def test_is_uploadfile_sequence_annotation():
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+
+
+def test_validate_extra_field_config():
+    app = FastAPI()
+
+    class NoExtraFields(BaseModel):
+        model_config = ConfigDict(extra="forbid")
+        a: int
+        b: int
+
+    @app.get("/")
+    def foo(foo: NoExtraFields = Depends()):
+        return foo
+
+    client = TestClient(app)
+
+    response = client.get("/", params={"a": 1, "b": 2, "c": 2})
+    assert response.status_code == 422, response.text

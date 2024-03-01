@@ -42,6 +42,7 @@ from fastapi._compat import (
     lenient_issubclass,
     sequence_types,
     serialize_sequence_value,
+    validate_model_with_config,
     value_is_sequence,
 )
 from fastapi.background import BackgroundTasks
@@ -602,6 +603,11 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
+
+    params_model_errors = validate_model_with_config(
+        dependant.call, request.query_params
+    )
+
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
@@ -618,7 +624,9 @@ async def solve_dependencies(
     values.update(query_values)
     values.update(header_values)
     values.update(cookie_values)
-    errors += path_errors + query_errors + header_errors + cookie_errors
+    errors += (
+        path_errors + query_errors + header_errors + cookie_errors + params_model_errors
+    )
     if dependant.body_params:
         (
             body_values,
