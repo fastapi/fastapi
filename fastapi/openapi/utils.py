@@ -346,10 +346,8 @@ def get_openapi_path(
                     else:
                         response_schema = {}
 
-                route_responses = dict((str(k), v) for k, v in route.responses.items())
-                if status_code not in route_responses or not route_responses.get(
-                    status_code
-                ).get("superimpose"):
+                route_responses = {str(k): v for k, v in route.responses.items()}
+                if status_code not in route_responses or not route_responses.get(status_code, {}).get('superimpose'):
                     operation.setdefault("responses", {}).setdefault(
                         status_code, {}
                     ).setdefault("content", {}).setdefault(
