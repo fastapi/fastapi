@@ -10,11 +10,11 @@ There are 3 main alternatives:
 
 ## Server Machine and Server Program
 
-There's a small detail about names to have in mind. 💡
+There's a small detail about names to keep in mind. 💡
 
 The word "**server**" is commonly used to refer to both the remote/cloud computer (the physical or virtual machine) and also the program that is running on that machine (e.g. Uvicorn).
 
-Just have that in mind when you read "server" in general, it could refer to one of those two things.
+Just keep in mind that when you read "server" in general, it could refer to one of those two things.
 
 When referring to the remote machine, it's common to call it **server**, but also **machine**, **VM** (virtual machine), **node**. Those all refer to some type of remote machine, normally running Linux, where you run programs.
 
