@@ -5,5 +5,5 @@
 
 export type ItemCreate = {
     title: string;
-    description?: string;
+    description?: (string | null);
 };

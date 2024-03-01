@@ -7,7 +7,6 @@ export const $UserOut = {
         email: {
     type: 'string',
     isRequired: true,
-    format: 'email',
 },
         is_active: {
     type: 'boolean',
@@ -16,7 +15,12 @@ export const $UserOut = {
     type: 'boolean',
 },
         full_name: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
         id: {
     type: 'number',

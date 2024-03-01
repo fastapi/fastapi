@@ -3,7 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ItemUpdate = {
-    title?: (string | null);
-    description?: (string | null);
+import type { ItemOut } from './ItemOut';
+
+export type ItemsOut = {
+    data: Array<ItemOut>;
+    count: number;
 };

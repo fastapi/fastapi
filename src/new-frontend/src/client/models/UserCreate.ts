@@ -7,6 +7,6 @@ export type UserCreate = {
     email: string;
     is_active?: boolean;
     is_superuser?: boolean;
-    full_name?: string;
+    full_name?: (string | null);
     password: string;
 };

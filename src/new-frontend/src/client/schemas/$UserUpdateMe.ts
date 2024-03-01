@@ -5,11 +5,20 @@
 export const $UserUpdateMe = {
     properties: {
         full_name: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
         email: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
-    format: 'email',
+}, {
+    type: 'null',
+}],
 },
     },
 } as const;

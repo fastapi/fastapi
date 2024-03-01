@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { ItemCreate } from '../models/ItemCreate';
 import type { ItemOut } from '../models/ItemOut';
+import type { ItemsOut } from '../models/ItemsOut';
 import type { ItemUpdate } from '../models/ItemUpdate';
 import type { Message } from '../models/Message';
 
@@ -16,7 +17,7 @@ export class ItemsService {
     /**
      * Read Items
      * Retrieve items.
-     * @returns ItemOut Successful Response
+     * @returns ItemsOut Successful Response
      * @throws ApiError
      */
     public static readItems({
@@ -25,7 +26,7 @@ limit = 100,
 }: {
 skip?: number,
 limit?: number,
-}): CancelablePromise<Array<ItemOut>> {
+}): CancelablePromise<ItemsOut> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/items/',

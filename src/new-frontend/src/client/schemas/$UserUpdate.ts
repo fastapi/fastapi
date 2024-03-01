@@ -5,8 +5,12 @@
 export const $UserUpdate = {
     properties: {
         email: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
-    format: 'email',
+}, {
+    type: 'null',
+}],
 },
         is_active: {
     type: 'boolean',
@@ -15,10 +19,20 @@ export const $UserUpdate = {
     type: 'boolean',
 },
         full_name: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
         password: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
     },
 } as const;

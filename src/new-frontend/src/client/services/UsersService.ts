@@ -7,6 +7,7 @@ import type { UpdatePassword } from '../models/UpdatePassword';
 import type { UserCreate } from '../models/UserCreate';
 import type { UserCreateOpen } from '../models/UserCreateOpen';
 import type { UserOut } from '../models/UserOut';
+import type { UsersOut } from '../models/UsersOut';
 import type { UserUpdate } from '../models/UserUpdate';
 import type { UserUpdateMe } from '../models/UserUpdateMe';
 
@@ -19,7 +20,7 @@ export class UsersService {
     /**
      * Read Users
      * Retrieve users.
-     * @returns UserOut Successful Response
+     * @returns UsersOut Successful Response
      * @throws ApiError
      */
     public static readUsers({
@@ -28,7 +29,7 @@ limit = 100,
 }: {
 skip?: number,
 limit?: number,
-}): CancelablePromise<Array<UserOut>> {
+}): CancelablePromise<UsersOut> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/users/',
@@ -167,29 +168,6 @@ userId: number,
     }
 
     /**
-     * Delete User
-     * Delete a user.
-     * @returns Message Successful Response
-     * @throws ApiError
-     */
-    public static deleteUser({
-userId,
-}: {
-userId: number,
-}): CancelablePromise<Message> {
-        return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/api/v1/users/{user_id}',
-            path: {
-                'user_id': userId,
-            },
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-
-    /**
      * Update User
      * Update a user.
      * @returns UserOut Successful Response
@@ -210,6 +188,29 @@ requestBody: UserUpdate,
             },
             body: requestBody,
             mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Delete User
+     * Delete a user.
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteUser({
+userId,
+}: {
+userId: number,
+}): CancelablePromise<Message> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/users/{user_id}',
+            path: {
+                'user_id': userId,
+            },
             errors: {
                 422: `Validation Error`,
             },

@@ -2,19 +2,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $ItemCreate = {
+export const $ItemsOut = {
     properties: {
-        title: {
-    type: 'string',
+        data: {
+    type: 'array',
+    contains: {
+        type: 'ItemOut',
+    },
     isRequired: true,
 },
-        description: {
-    type: 'any-of',
-    contains: [{
-    type: 'string',
-}, {
-    type: 'null',
-}],
+        count: {
+    type: 'number',
+    isRequired: true,
 },
     },
 } as const;

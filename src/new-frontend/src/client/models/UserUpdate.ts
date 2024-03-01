@@ -4,9 +4,9 @@
 /* eslint-disable */
 
 export type UserUpdate = {
-    email?: string;
+    email?: (string | null);
     is_active?: boolean;
     is_superuser?: boolean;
-    full_name?: string;
-    password?: string;
+    full_name?: (string | null);
+    password?: (string | null);
 };

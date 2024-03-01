@@ -5,8 +5,13 @@
 export const $Body_login_login_access_token = {
     properties: {
         grant_type: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
     pattern: 'password',
+}, {
+    type: 'null',
+}],
 },
         username: {
     type: 'string',
@@ -20,10 +25,20 @@ export const $Body_login_login_access_token = {
     type: 'string',
 },
         client_id: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
         client_secret: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
     },
 } as const;

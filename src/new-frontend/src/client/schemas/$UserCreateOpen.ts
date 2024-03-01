@@ -7,14 +7,18 @@ export const $UserCreateOpen = {
         email: {
     type: 'string',
     isRequired: true,
-    format: 'email',
 },
         password: {
     type: 'string',
     isRequired: true,
 },
         full_name: {
+    type: 'any-of',
+    contains: [{
     type: 'string',
+}, {
+    type: 'null',
+}],
 },
     },
 } as const;
