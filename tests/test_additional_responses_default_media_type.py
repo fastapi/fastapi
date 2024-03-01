@@ -3,11 +3,10 @@
     over the default route's response class's media_type.
 """
 
-from pydantic import BaseModel
-from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
+from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
 
 app = FastAPI()
 client = TestClient(app)
@@ -22,7 +21,7 @@ class Error(BaseModel):
     "/a",
     responses={
         HTTP_200_OK: {"superimpose": True, "content": {"text/event-stream": {}}},
-        HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error}
+        HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error},
     },
 )
 def a():
@@ -33,14 +32,19 @@ def a():
     "/b",
     responses={
         str(HTTP_200_OK): {"content": {"text/event-stream": {}}},
-        HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error}
-    }
+        HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error},
+    },
 )
 def b():
     pass  # pragma: no cover
 
 
-@app.get("/c", responses={HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error}})
+@app.get(
+    "/c",
+    responses={
+        HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Error", "model": Error}
+    },
+)
 def c():
     pass  # pragma: no cover
 
@@ -56,10 +60,7 @@ def test_openapi_schema():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "openapi": "3.1.0",
-        "info": {
-            "title": "FastAPI",
-            "version": "0.1.0"
-        },
+        "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/a": {
                 "get": {
@@ -68,23 +69,17 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "text/event-stream": {
-
-                                }
-                            }
+                            "content": {"text/event-stream": {}},
                         },
                         "500": {
                             "description": "Error",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Error"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Error"}
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 }
             },
             "/b": {
@@ -95,27 +90,19 @@ def test_openapi_schema():
                         "200": {
                             "description": "Successful Response",
                             "content": {
-                                "application/json": {
-                                    "schema": {
-
-                                    }
-                                },
-                                "text/event-stream": {
-
-                                }
-                            }
+                                "application/json": {"schema": {}},
+                                "text/event-stream": {},
+                            },
                         },
                         "500": {
                             "description": "Error",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Error"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Error"}
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 }
             },
             "/c": {
@@ -125,25 +112,17 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-
-                                    }
-                                }
-                            }
+                            "content": {"application/json": {"schema": {}}},
                         },
                         "500": {
                             "description": "Error",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Error"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Error"}
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 }
             },
             "/d": {
@@ -153,38 +132,23 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-
-                                    }
-                                }
-                            }
+                            "content": {"application/json": {"schema": {}}},
                         }
-                    }
+                    },
                 }
-            }
+            },
         },
         "components": {
             "schemas": {
                 "Error": {
                     "properties": {
-                        "status": {
-                            "type": "string",
-                            "title": "Status"
-                        },
-                        "title": {
-                            "type": "string",
-                            "title": "Title"
-                        }
+                        "status": {"type": "string", "title": "Status"},
+                        "title": {"type": "string", "title": "Title"},
                     },
                     "type": "object",
-                    "required": [
-                        "status",
-                        "title"
-                    ],
-                    "title": "Error"
+                    "required": ["status", "title"],
+                    "title": "Error",
                 }
             }
-        }
+        },
     }
