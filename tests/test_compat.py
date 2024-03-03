@@ -93,11 +93,30 @@ def test_is_uploadfile_sequence_annotation():
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
 
 
-def test_validate_extra_field_config():
+@needs_pydanticv2
+def test_validate_extra_field_config_pydantic_v2():
     app = FastAPI()
 
     class NoExtraFields(BaseModel):
         model_config = ConfigDict(extra="forbid")
+        a: int
+        b: int
+
+    @app.get("/")
+    def foo(foo: NoExtraFields = Depends()):
+        return foo
+
+    client = TestClient(app)
+
+    response = client.get("/", params={"a": 1, "b": 2, "c": 2})
+    assert response.status_code == 422, response.text
+
+
+@needs_pydanticv1
+def test_validate_extra_field_conf_pydantic_v1():
+    app = FastAPI()
+
+    class NoExtraFields(BaseModel, extra="forbid"):
         a: int
         b: int
 

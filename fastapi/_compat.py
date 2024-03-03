@@ -10,6 +10,7 @@ from typing import (
     FrozenSet,
     List,
     Mapping,
+    Optional,
     Sequence,
     Set,
     Tuple,
@@ -635,7 +636,7 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def validate_model_with_config(
-    model_class: Type[BaseModel],
+    model_class: Optional[Callable[..., Any]],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> List[Any]:
     errors = []
