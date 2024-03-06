@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
 root_path = "/api"
@@ -12,7 +12,10 @@ app = FastAPI(
     redoc_url=None,
 )
 
-app.mount("/static", StaticFiles(directory="tests/test_offline_docs/static"), name="static")
+app.mount(
+    "/static", StaticFiles(directory="tests/test_offline_docs/static"), name="static"
+)
+
 
 @app.get("/")
 async def custom_swagger_ui_html():
@@ -26,6 +29,7 @@ async def custom_swagger_ui_html():
         swagger_js_url="/static/swagger.js",
         swagger_css_url="/static/swagger.css",
     )
+
 
 client = TestClient(app)
 
