@@ -52,6 +52,7 @@
 
 ### Refactors
 
+* ♻ Move project source files to top level from src, update Sentry dependency. PR [#630](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/630) by [@estebanx64](https://github.com/estebanx64).
 * ♻ Refactor Python folder tree. PR [#629](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/629) by [@estebanx64](https://github.com/estebanx64).
 * ♻️ Refactor old CRUD utils and tests. PR [#622](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/622) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update .env to allow local debug for the backend. PR [#618](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/618) by [@tiangolo](https://github.com/tiangolo).
