@@ -32,14 +32,20 @@
     "@types/node": "20.10.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.53.0",
+    "eslint": "8.57.0",
+    "eslint-config-standard-with-typescript": "43.0.1",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-n": "16.6.2",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-react": "7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "openapi-typescript-codegen": "0.25.0",
-    "typescript": "^5.2.2",
+    "prettier": "3.2.5",
+    "typescript": "5.4.2",
     "vite": "^5.0.0"
   }
 }
