@@ -27,7 +27,9 @@ from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
 from ._compat import PYDANTIC_V2, Url, _model_dump
 
-isoformat: Callable[[Union[datetime.date, datetime.time]], str] = methodcaller("isoformat")
+isoformat: Callable[[Union[datetime.date, datetime.time]], str] = methodcaller(
+    "isoformat"
+)
 
 
 # Taken from Pydantic v1 as is
