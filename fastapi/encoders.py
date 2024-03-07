@@ -57,14 +57,14 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
 
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
-    bytes: methodcaller('decode'),
+    bytes: methodcaller("decode"),
     Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
-    datetime.timedelta: methodcaller('total_seconds'),
+    datetime.timedelta: methodcaller("total_seconds"),
     Decimal: decimal_encoder,
-    Enum: attrgetter('value'),
+    Enum: attrgetter("value"),
     frozenset: list,
     deque: list,
     GeneratorType: list,
@@ -76,7 +76,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Network: str,
     NameEmail: str,
     Path: str,
-    Pattern: attrgetter('pattern'),
+    Pattern: attrgetter("pattern"),
     SecretBytes: str,
     SecretStr: str,
     set: list,
