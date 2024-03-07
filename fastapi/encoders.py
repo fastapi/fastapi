@@ -201,14 +201,14 @@ def jsonable_encoder(
     Read more about it in the
     [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
     """
-    custom_encoder = custom_encoder or {}
-    if custom_encoder:
-        if type(obj) in custom_encoder:
-            return custom_encoder[type(obj)](obj)
-        else:
-            for encoder_type, encoder_instance in custom_encoder.items():
-                if isinstance(obj, encoder_type):
-                    return encoder_instance(obj)
+    custom_encoder = custom_encoder or None
+    if custom_encoder is not None:
+        encoder_instance = custom_encoder.get(type(obj))
+        if encoder_instance is not None:
+            return encoder_instance(obj)
+        for encoder_type, encoder_instance in custom_encoder.items():
+            if isinstance(obj, encoder_type):
+                return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
@@ -218,7 +218,7 @@ def jsonable_encoder(
         encoders: Dict[Any, Any] = {}
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
-            if custom_encoder:
+            if custom_encoder is not None:
                 encoders.update(custom_encoder)
         obj_dict = _model_dump(
             obj,
