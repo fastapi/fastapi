@@ -3,4 +3,6 @@
 set -e
 set -x
 
-pytest --cov=app --cov-report=term-missing app/tests "${@}"
+coverage run --source=app -m pytest
+coverage report --show-missing
+coverage html --title "${@}"

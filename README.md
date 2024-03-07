@@ -1,3 +1,11 @@
+<p align="center">
+<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/tiangolo/full-stack-fastapi-postgresql/workflows/Test/badge.svg" alt="Test">
+</a>
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/full-stack-fastapi-postgresql" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/full-stack-fastapi-postgresql.svg" alt="Coverage">
+</p>
+
 # FastAPI Project Template
 
 ## 🚨 Warning: in (re) construction 😎 🏗️
