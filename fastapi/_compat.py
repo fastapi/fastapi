@@ -88,7 +88,10 @@ if PYDANTIC_V2:
 
         @property
         def alias(self) -> str:
-            a = self.field_info.validation_alias or self.field_info.alias
+            a = (
+                isinstance(self.field_info.validation_alias, str)
+                and self.field_info.validation_alias
+            ) or self.field_info.alias
             return a if a is not None else self.name
 
         @property
