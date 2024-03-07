@@ -11,6 +11,7 @@
 
 ### Features
 
+* ⚙️ Add Prettier and ESLint config with pre-commit. PR [#640](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/640) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Add coverage with Smokeshow to CI and badge. PR [#638](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/638) by [@estebanx64](https://github.com/estebanx64).
 * ✨ Migrate to TanStack Query (React Query) and TanStack Router. PR [#637](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/637) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Add setup and teardown database for tests. PR [#626](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/626) by [@estebanx64](https://github.com/estebanx64).
