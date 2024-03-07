@@ -11,6 +11,7 @@ from ipaddress import (
     IPv6Interface,
     IPv6Network,
 )
+from operator import attrgetter, methodcaller
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
@@ -56,14 +57,14 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
 
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
-    bytes: lambda o: o.decode(),
+    bytes: methodcaller('decode'),
     Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
-    datetime.timedelta: lambda td: td.total_seconds(),
+    datetime.timedelta: methodcaller('total_seconds'),
     Decimal: decimal_encoder,
-    Enum: lambda o: o.value,
+    Enum: attrgetter('value'),
     frozenset: list,
     deque: list,
     GeneratorType: list,
@@ -75,7 +76,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Network: str,
     NameEmail: str,
     Path: str,
-    Pattern: lambda o: o.pattern,
+    Pattern: attrgetter('pattern'),
     SecretBytes: str,
     SecretStr: str,
     set: list,
@@ -295,25 +296,24 @@ def jsonable_encoder(
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
-        encoded_list = []
-        for item in obj:
-            encoded_list.append(
-                jsonable_encoder(
-                    item,
-                    include=include,
-                    exclude=exclude,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_defaults=exclude_defaults,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                    sqlalchemy_safe=sqlalchemy_safe,
-                )
+        return [
+            jsonable_encoder(
+                item,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+                custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
             )
-        return encoded_list
+            for item in obj
+        ]
 
-    if type(obj) in ENCODERS_BY_TYPE:
-        return ENCODERS_BY_TYPE[type(obj)](obj)
+    encoder_by_type_instance = ENCODERS_BY_TYPE.get(type(obj))
+    if encoder_by_type_instance is not None:
+        return encoder_by_type_instance(obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():
         if isinstance(obj, classes_tuple):
             return encoder(obj)
