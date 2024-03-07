@@ -90,6 +90,7 @@
 
 ### Docs
 
+* 📝 Refactor README into separate README.md files for backend, frontend, deployment, development. PR [#639](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/639) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update README. PR [#628](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/628) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update GitHub Action latest-changes and move release notes to independent file. PR [#619](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/619) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update internal README and referred files. PR [#613](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/613) by [@tiangolo](https://github.com/tiangolo).
