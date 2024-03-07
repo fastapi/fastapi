@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from 'react-query';
 
-import { UserCreate } from '../../client';
-import useCustomToast from '../../hooks/useCustomToast';
-import { useUsersStore } from '../../store/users-store';
+import { UserCreate, UsersService } from '../../client';
 import { ApiError } from '../../client/core/ApiError';
+import useCustomToast from '../../hooks/useCustomToast';
 
 interface AddUserProps {
     isOpen: boolean;
@@ -19,6 +19,7 @@ interface UserCreateForm extends UserCreate {
 }
 
 const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
     const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<UserCreateForm>({
         mode: 'onBlur',
@@ -32,18 +33,28 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
             is_active: false
         }
     });
-    const { addUser } = useUsersStore();
 
-    const onSubmit: SubmitHandler<UserCreateForm> = async (data) => {
-        try {
-            await addUser(data);
+    const addUser = async (data: UserCreate) => {
+        await UsersService.createUser({ requestBody: data })
+    }
+
+    const mutation = useMutation(addUser, {
+        onSuccess: () => {
             showToast('Success!', 'User created successfully.', 'success');
             reset();
             onClose();
-        } catch (err) {
-            const errDetail = (err as ApiError).body.detail;
+        },
+        onError: (err: ApiError) => {
+            const errDetail = err.body.detail;
             showToast('Something went wrong.', `${errDetail}`, 'error');
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries('users');
         }
+    });
+
+    const onSubmit: SubmitHandler<UserCreateForm> = (data) => {
+        mutation.mutate(data);
     }
 
     return (

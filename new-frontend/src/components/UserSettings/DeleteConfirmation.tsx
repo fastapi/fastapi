@@ -2,10 +2,11 @@ import React from 'react';
 
 import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { ApiError } from '../../client';
+import { useMutation, useQueryClient } from 'react-query';
+
+import { ApiError, UserOut, UsersService } from '../../client';
 import useAuth from '../../hooks/useAuth';
 import useCustomToast from '../../hooks/useCustomToast';
-import { useUserStore } from '../../store/user-store';
 
 interface DeleteProps {
     isOpen: boolean;
@@ -13,22 +14,35 @@ interface DeleteProps {
 }
 
 const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
     const { handleSubmit, formState: { isSubmitting } } = useForm();
-    const { user, deleteUser } = useUserStore();
+    const currentUser = queryClient.getQueryData<UserOut>('currentUser');
     const { logout } = useAuth();
 
-    const onSubmit = async () => {
-        try {
-            await deleteUser(user!.id);
+    const deleteCurrentUser = async (id: number) => {
+        await UsersService.deleteUser({ userId: id });
+    }
+
+    const mutation = useMutation(deleteCurrentUser, {
+        onSuccess: () => {
+            showToast('Success', 'Your account has been successfully deleted.', 'success');
             logout();
             onClose();
-            showToast('Success', 'Your account has been successfully deleted.', 'success');
-        } catch (err) {
-            const errDetail = (err as ApiError).body.detail;
+        },
+        onError: (err: ApiError) => {
+            const errDetail = err.body.detail;
             showToast('Something went wrong.', `${errDetail}`, 'error');
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries('currentUser');
         }
+    })
+
+
+    const onSubmit = async () => {
+        mutation.mutate(currentUser!.id);
     }
 
     return (

@@ -11,6 +11,7 @@ const useCustomToast = () => {
             description,
             status,
             isClosable: true,
+            position: 'bottom-right'
         });
     }, [toast]);
 

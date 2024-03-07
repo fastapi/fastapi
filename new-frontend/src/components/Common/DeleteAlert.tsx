@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from 'react-query';
 
+import { ItemsService, UsersService } from '../../client';
 import useCustomToast from '../../hooks/useCustomToast';
-import { useItemsStore } from '../../store/items-store';
-import { useUsersStore } from '../../store/users-store';
 
 interface DeleteProps {
     type: string;
@@ -15,20 +15,36 @@ interface DeleteProps {
 }
 
 const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
     const cancelRef = React.useRef<HTMLButtonElement | null>(null);
-    const { handleSubmit, formState: {isSubmitting} } = useForm();
-    const { deleteItem } = useItemsStore();
-    const { deleteUser } = useUsersStore();
+    const { handleSubmit, formState: { isSubmitting } } = useForm();
 
-    const onSubmit = async () => {
-        try {
-            type === 'Item' ? await deleteItem(id) : await deleteUser(id);
+    const deleteEntity = async (id: number) => {
+        if (type === 'Item') {
+            await ItemsService.deleteItem({ id: id });
+        } else if (type === 'User') {
+            await UsersService.deleteUser({ userId: id });
+        } else {
+            throw new Error(`Unexpected type: ${type}`);
+        }
+    }
+
+    const mutation = useMutation(deleteEntity, {
+        onSuccess: () => {
             showToast('Success', `The ${type.toLowerCase()} was deleted successfully.`, 'success');
             onClose();
-        } catch (err) {
+        },
+        onError: () => {
             showToast('An error occurred.', `An error occurred while deleting the ${type.toLowerCase()}.`, 'error');
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries(type === 'Item' ? 'items' : 'users');
         }
+    })
+
+    const onSubmit = async () => {
+        mutation.mutate(id);
     }
 
     return (
@@ -37,11 +53,11 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
                 isOpen={isOpen}
                 onClose={onClose}
                 leastDestructiveRef={cancelRef}
-                size={{ base: "sm", md: "md" }}
+                size={{ base: 'sm', md: 'md' }}
                 isCentered
             >
                 <AlertDialogOverlay>
-                    <AlertDialogContent as="form" onSubmit={handleSubmit(onSubmit)}>
+                    <AlertDialogContent as='form' onSubmit={handleSubmit(onSubmit)}>
                         <AlertDialogHeader>
                             Delete {type}
                         </AlertDialogHeader>
@@ -52,7 +68,7 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
                         </AlertDialogBody>
 
                         <AlertDialogFooter gap={3}>
-                            <Button bg="ui.danger" color="white" _hover={{ opacity: 0.8 }} type="submit" isLoading={isSubmitting}>
+                            <Button bg='ui.danger' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
                                 Delete
                             </Button>
                             <Button ref={cancelRef} onClick={onClose} isDisabled={isSubmitting}>

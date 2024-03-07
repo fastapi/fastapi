@@ -1,36 +1,26 @@
-import React, { useEffect, useState } from 'react';
-
 import { Badge, Box, Container, Flex, Heading, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { createFileRoute } from '@tanstack/react-router';
+import { useQuery, useQueryClient } from 'react-query';
 
-import { ApiError } from '../client';
-import ActionsMenu from '../components/Common/ActionsMenu';
-import Navbar from '../components/Common/Navbar';
-import useCustomToast from '../hooks/useCustomToast';
-import { useUserStore } from '../store/user-store';
-import { useUsersStore } from '../store/users-store';
+import { ApiError, UserOut, UsersService } from '../../client';
+import ActionsMenu from '../../components/Common/ActionsMenu';
+import Navbar from '../../components/Common/Navbar';
+import useCustomToast from '../../hooks/useCustomToast';
 
-const Admin: React.FC = () => {
+export const Route = createFileRoute('/_layout/admin')({
+    component: Admin,
+})
+
+function Admin() {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
-    const [isLoading, setIsLoading] = useState(false);
-    const { users, getUsers } = useUsersStore();
-    const { user: currentUser } = useUserStore();
+    const currentUser = queryClient.getQueryData<UserOut>('currentUser');
+    const { data: users, isLoading, isError, error } = useQuery('users', () => UsersService.readUsers({}))
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            setIsLoading(true);
-            try {
-                await getUsers();
-            } catch (err) {
-                const errDetail = (err as ApiError).body.detail;
-                showToast('Something went wrong.', `${errDetail}`, 'error');
-            } finally {
-                setIsLoading(false);
-            }
-        }
-        if (users.length === 0) {
-            fetchUsers();
-        }
-    }, [])
+    if (isError) {
+        const errDetail = (error as ApiError).body?.detail;
+        showToast('Something went wrong.', `${errDetail}`, 'error');
+    }
 
     return (
         <>
@@ -58,7 +48,7 @@ const Admin: React.FC = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {users.map((user) => (
+                                {users.data.map((user) => (
                                     <Tr key={user.id}>
                                         <Td color={!user.full_name ? 'gray.600' : 'inherit'}>{user.full_name || 'N/A'}{currentUser?.id === user.id && <Badge ml='1' colorScheme='teal'>You</Badge>}</Td>
                                         <Td>{user.email}</Td>
@@ -76,7 +66,7 @@ const Admin: React.FC = () => {
                                             </Flex>
                                         </Td>
                                         <Td>
-                                            <ActionsMenu type='User' id={user.id} disabled={currentUser?.id === user.id ? true : false} />
+                                            <ActionsMenu type='User' value={user} disabled={currentUser?.id === user.id ? true : false} />
                                         </Td>
                                     </Tr>
                                 ))}

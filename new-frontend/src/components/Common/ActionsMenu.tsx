@@ -7,15 +7,16 @@ import { FiEdit, FiTrash } from 'react-icons/fi';
 import EditUser from '../Admin/EditUser';
 import EditItem from '../Items/EditItem';
 import Delete from './DeleteAlert';
+import { ItemOut, UserOut } from '../../client';
 
 
 interface ActionsMenuProps {
     type: string;
-    id: number;
+    value: ItemOut | UserOut;
     disabled?: boolean;
 }
 
-const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, id, disabled }) => {
+const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, value, disabled }) => {
     const editUserModal = useDisclosure();
     const deleteModal = useDisclosure();
 
@@ -29,10 +30,10 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, id, disabled }) => {
                     <MenuItem onClick={deleteModal.onOpen} icon={<FiTrash fontSize='16px' />} color='ui.danger'>Delete {type}</MenuItem>
                 </MenuList>
                 {
-                    type === 'User' ? <EditUser user_id={id} isOpen={editUserModal.isOpen} onClose={editUserModal.onClose} />
-                        : <EditItem id={id} isOpen={editUserModal.isOpen} onClose={editUserModal.onClose} />
+                    type === 'User' ? <EditUser user={value as UserOut} isOpen={editUserModal.isOpen} onClose={editUserModal.onClose} />
+                        : <EditItem item={value as ItemOut} isOpen={editUserModal.isOpen} onClose={editUserModal.onClose} />
                 }
-                <Delete type={type} id={id} isOpen={deleteModal.isOpen} onClose={deleteModal.onClose} />
+                <Delete type={type} id={value.id} isOpen={deleteModal.isOpen} onClose={deleteModal.onClose} />
             </Menu>
         </>
     );

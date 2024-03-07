@@ -3,9 +3,9 @@ import React from 'react';
 import { Box, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiLogOut, FiUser } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
+import { Link } from '@tanstack/react-router';
 
 const UserMenu: React.FC = () => {
     const { logout } = useAuth();

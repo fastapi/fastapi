@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from 'react-query';
 
-import { ApiError, ItemCreate } from '../../client';
+import { ApiError, ItemCreate, ItemsService } from '../../client';
 import useCustomToast from '../../hooks/useCustomToast';
-import { useItemsStore } from '../../store/items-store';
 
 interface AddItemProps {
     isOpen: boolean;
@@ -13,6 +13,7 @@ interface AddItemProps {
 }
 
 const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
     const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ItemCreate>({
         mode: 'onBlur',
@@ -22,19 +23,29 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
             description: '',
         },
     });
-    const { addItem } = useItemsStore();
 
-    const onSubmit: SubmitHandler<ItemCreate> = async (data) => {
-        try {
-            await addItem(data);
+    const addItem = async (data: ItemCreate) => {
+        await ItemsService.createItem({ requestBody: data })
+    }
+
+    const mutation = useMutation(addItem, {
+        onSuccess: () => {
             showToast('Success!', 'Item created successfully.', 'success');
             reset();
             onClose();
-        } catch (err) {
-            const errDetail = (err as ApiError).body.detail;
+        },
+        onError: (err: ApiError) => {
+            const errDetail = err.body.detail;
             showToast('Something went wrong.', `${errDetail}`, 'error');
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries('items');
         }
-    };
+    });
+
+    const onSubmit: SubmitHandler<ItemCreate> = (data) => {
+        mutation.mutate(data);
+    }
 
     return (
         <>

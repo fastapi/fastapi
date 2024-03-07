@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Box, Button, Container, FormControl, FormLabel, Heading, Input, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Container, FormControl, FormErrorMessage, FormLabel, Heading, Input, useColorModeValue } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ApiError, UpdatePassword } from '../../client';
+import { useMutation } from 'react-query';
+
+import { ApiError, UpdatePassword, UsersService } from '../../client';
 import useCustomToast from '../../hooks/useCustomToast';
-import { useUserStore } from '../../store/user-store';
 
 interface UpdatePasswordForm extends UpdatePassword {
     confirm_password: string;
@@ -13,19 +14,28 @@ interface UpdatePasswordForm extends UpdatePassword {
 const ChangePassword: React.FC = () => {
     const color = useColorModeValue('gray.700', 'white');
     const showToast = useCustomToast();
-    const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<UpdatePasswordForm>();
-    const { editPassword } = useUserStore();
+    const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<UpdatePasswordForm>({
+        mode: 'onBlur',
+        criteriaMode: 'all'
+    });
 
-    const onSubmit: SubmitHandler<UpdatePasswordForm> = async (data) => {
-        try {
-            await editPassword(data);
+    const UpdatePassword = async (data: UpdatePassword) => {
+        await UsersService.updatePasswordMe({ requestBody: data })
+    }
+
+    const mutation = useMutation(UpdatePassword, {
+        onSuccess: () => {
             showToast('Success!', 'Password updated.', 'success');
             reset();
-        } catch (err) {
-            const errDetail = (err as ApiError).body.detail;
+        },
+        onError: (err: ApiError) => {
+            const errDetail = err.body.detail;
             showToast('Something went wrong.', `${errDetail}`, 'error');
         }
+    })
 
+    const onSubmit: SubmitHandler<UpdatePasswordForm> = async (data) => {
+        mutation.mutate(data);
     }
 
     return (
@@ -35,17 +45,23 @@ const ChangePassword: React.FC = () => {
                     Change Password
                 </Heading>
                 <Box w={{ 'sm': 'full', 'md': '50%' }}>
-                    <FormControl>
-                        <FormLabel color={color} htmlFor='currentPassword'>Current password</FormLabel>
-                        <Input id='currentPassword' {...register('current_password')} placeholder='••••••••' type='password' />
+                    <FormControl isRequired isInvalid={!!errors.current_password}>
+                        <FormLabel color={color} htmlFor='current_password'>Current password</FormLabel>
+                        <Input id='current_password' {...register('current_password', { required: 'Password is required', minLength: { value: 8, message: 'Password must be at least 8 characters' } })} placeholder='Password' type='password' />
+                        {errors.current_password && <FormErrorMessage>{errors.current_password.message}</FormErrorMessage>}
                     </FormControl>
-                    <FormControl mt={4}>
-                        <FormLabel color={color} htmlFor='newPassword'>New password</FormLabel>
-                        <Input id='newPassword' {...register('new_password')} placeholder='••••••••' type='password' />
+                    <FormControl mt={4} isRequired isInvalid={!!errors.new_password}>
+                        <FormLabel htmlFor='password'>Set Password</FormLabel>
+                        <Input id='password' {...register('new_password', { required: 'Password is required', minLength: { value: 8, message: 'Password must be at least 8 characters' } })} placeholder='Password' type='password' />
+                        {errors.new_password && <FormErrorMessage>{errors.new_password.message}</FormErrorMessage>}
                     </FormControl>
-                    <FormControl mt={4}>
-                        <FormLabel color={color} htmlFor='confirmPassword'>Confirm new password</FormLabel>
-                        <Input id='confirmPassword' {...register('confirm_password')} placeholder='••••••••' type='password' />
+                    <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
+                        <FormLabel htmlFor='confirm_password'>Confirm Password</FormLabel>
+                        <Input id='confirm_password' {...register('confirm_password', {
+                            required: 'Please confirm your password',
+                            validate: value => value === getValues().new_password || 'The passwords do not match'
+                        })} placeholder='Password' type='password' />
+                        {errors.confirm_password && <FormErrorMessage>{errors.confirm_password.message}</FormErrorMessage>}
                     </FormControl>
                     <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} mt={4} type='submit' isLoading={isSubmitting}>
                         Save

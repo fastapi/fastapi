@@ -2,13 +2,13 @@ import React from 'react';
 
 import { Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from 'react-query';
 
-import { ApiError, UserUpdate } from '../../client';
+import { ApiError, UserOut, UserUpdate, UsersService } from '../../client';
 import useCustomToast from '../../hooks/useCustomToast';
-import { useUsersStore } from '../../store/users-store';
 
 interface EditUserProps {
-    user_id: number;
+    user: UserOut;
     isOpen: boolean;
     onClose: () => void;
 }
@@ -17,37 +17,39 @@ interface UserUpdateForm extends UserUpdate {
     confirm_password: string;
 }
 
-const EditUser: React.FC<EditUserProps> = ({ user_id, isOpen, onClose }) => {
+const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
+    const queryClient = useQueryClient();
     const showToast = useCustomToast();
-    const { editUser, users } = useUsersStore();
-    const currentUser = users.find((user) => user.id === user_id);
-    const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<UserUpdateForm>({
+
+    const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting, isDirty } } = useForm<UserUpdateForm>({
         mode: 'onBlur',
         criteriaMode: 'all',
-        defaultValues: {
-            email: currentUser?.email,
-            full_name: currentUser?.full_name,
-            password: '',
-            confirm_password: '',
-            is_superuser: currentUser?.is_superuser,
-            is_active: currentUser?.is_active
+        defaultValues: user
+    });
+
+    const updateUser = async (data: UserUpdateForm) => {
+        await UsersService.updateUser({ userId: user.id, requestBody: data });
+    }
+
+    const mutation = useMutation(updateUser, {
+        onSuccess: () => {
+            showToast('Success!', 'User updated successfully.', 'success');
+            onClose();
+        },
+        onError: (err: ApiError) => {
+            const errDetail = err.body.detail;
+            showToast('Something went wrong.', `${errDetail}`, 'error');
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries('users');
         }
     });
 
-
     const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
-        try {
-            if (data.password === '') {
-                delete data.password;
-            }
-            await editUser(user_id, data);
-            showToast('Success!', 'User updated successfully.', 'success');
-            reset();
-            onClose();
-        } catch (err) {
-            const errDetail = (err as ApiError).body.detail;
-            showToast('Something went wrong.', `${errDetail}`, 'error');
+        if (data.password === '') {
+            delete data.password;
         }
+        mutation.mutate(data)
     }
 
     const onCancel = () => {
@@ -70,12 +72,12 @@ const EditUser: React.FC<EditUserProps> = ({ user_id, isOpen, onClose }) => {
                     <ModalBody pb={6}>
                         <FormControl isInvalid={!!errors.email}>
                             <FormLabel htmlFor='email'>Email</FormLabel>
-                            <Input id='email' {...register('email', { pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='email' />
+                            <Input id='email' {...register('email', { required: 'Email is required', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: 'Invalid email address' } })} placeholder='Email' type='email' />
                             {errors.email && <FormErrorMessage>{errors.email.message}</FormErrorMessage>}
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel htmlFor='name'>Full name</FormLabel>
-                            <Input id="name" {...register('full_name')} type='text' />
+                            <Input id='name' {...register('full_name')} type='text' />
                         </FormControl>
                         <FormControl mt={4} isInvalid={!!errors.password}>
                             <FormLabel htmlFor='password'>Set Password</FormLabel>
@@ -100,7 +102,7 @@ const EditUser: React.FC<EditUserProps> = ({ user_id, isOpen, onClose }) => {
                     </ModalBody>
 
                     <ModalFooter gap={3}>
-                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting}>
+                        <Button bg='ui.main' color='white' _hover={{ opacity: 0.8 }} type='submit' isLoading={isSubmitting} isDisabled={!isDirty}>
                             Save
                         </Button>
                         <Button onClick={onCancel}>Cancel</Button>

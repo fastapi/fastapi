@@ -2,16 +2,28 @@ import React from 'react';
 
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Button, Center, Container, FormControl, FormErrorMessage, Icon, Image, Input, InputGroup, InputRightElement, Link, useBoolean } from '@chakra-ui/react';
+import { Link as RouterLink, createFileRoute, redirect } from '@tanstack/react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link as ReactRouterLink } from 'react-router-dom';
 
 import Logo from '../assets/images/fastapi-logo.svg';
 import { ApiError } from '../client';
 import { Body_login_login_access_token as AccessToken } from '../client/models/Body_login_login_access_token';
-import useAuth from '../hooks/useAuth';
+import useAuth, { isLoggedIn } from '../hooks/useAuth';
 
-const Login: React.FC = () => {
+export const Route = createFileRoute('/login')({
+  component: Login,
+  beforeLoad: async () => {
+    if (isLoggedIn()) {
+      throw redirect({
+        to: '/',
+      })
+    }
+  }
+})
+
+function Login() {
   const [show, setShow] = useBoolean();
+  const { login } = useAuth();
   const [error, setError] = React.useState<string | null>(null);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AccessToken>({
     mode: 'onBlur',
@@ -21,7 +33,6 @@ const Login: React.FC = () => {
       password: ''
     }
   });
-  const { login } = useAuth();
 
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
     try {
@@ -73,7 +84,7 @@ const Login: React.FC = () => {
           </FormErrorMessage>}
         </FormControl>
         <Center>
-          <Link as={ReactRouterLink} to='/recover-password' color='blue.500'>
+          <Link as={RouterLink} to='/recover-password' color='blue.500'>
             Forgot password?
           </Link>
         </Center>
