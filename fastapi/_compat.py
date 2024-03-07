@@ -274,8 +274,7 @@ if PYDANTIC_V2:
         *, fields: Sequence[ModelField], model_name: str
     ) -> Type[BaseModel]:
         field_params = {
-            f"{f.alias}": (f.field_info.annotation, f.field_info)
-            for f in fields
+            f"{f.alias}": (f.field_info.annotation, f.field_info) for f in fields
         }
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel

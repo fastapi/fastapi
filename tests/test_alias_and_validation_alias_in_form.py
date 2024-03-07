@@ -1,6 +1,5 @@
-from starlette.testclient import TestClient
-
 from fastapi import FastAPI, Form
+from starlette.testclient import TestClient
 
 app: FastAPI = FastAPI()
 
@@ -8,6 +7,7 @@ app: FastAPI = FastAPI()
 @app.post("/testing_alias")
 async def check_alias(id_test: int = Form(alias="otherId")):
     return {"other_id": id_test}
+
 
 @app.post("/testing_validation_alias")
 async def check_validation_alias(id_test: int = Form(validation_alias="otherId")):
@@ -22,10 +22,12 @@ def test_get_alias():
     assert response.status_code == 200
     assert response.json() == {"other_id": 1}
 
+
 def test_get_validation_alias():
     response = client.post("/testing_validation_alias", data={"otherId": "1"})
     assert response.status_code == 200
     assert response.json() == {"other_id": 1}
+
 
 def test_file_alias_schema():
     response = client.get("/openapi.json")
@@ -41,7 +43,7 @@ def test_file_alias_schema():
 
     assert (
         "otherId"
-        in schema["components"]["schemas"]["Body_check_validation_alias_testing_validation_alias_post"][
-            "properties"
-        ]
+        in schema["components"]["schemas"][
+            "Body_check_validation_alias_testing_validation_alias_post"
+        ]["properties"]
     )
