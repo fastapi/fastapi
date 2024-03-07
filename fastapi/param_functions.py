@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, TypeVar, Union, cast
 
 from fastapi import params
 from fastapi._compat import Undefined
@@ -2217,9 +2217,12 @@ def File(  # noqa: N802
     )
 
 
+DependencyResult = TypeVar("DependencyResult")
+
+
 def Depends(  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Optional[Callable[..., DependencyResult]],
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2244,7 +2247,7 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
-) -> Any:
+) -> DependencyResult:
     """
     Declare a FastAPI dependency.
 
@@ -2274,12 +2277,14 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return cast(
+        DependencyResult, params.Depends(dependency=dependency, use_cache=use_cache)
+    )
 
 
 def Security(  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Optional[Callable[..., DependencyResult]],
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2321,7 +2326,7 @@ def Security(  # noqa: N802
             """
         ),
     ] = True,
-) -> Any:
+) -> DependencyResult:
     """
     Declare a FastAPI Security dependency.
 
@@ -2357,4 +2362,7 @@ def Security(  # noqa: N802
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return cast(
+        DependencyResult,
+        params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache),
+    )
