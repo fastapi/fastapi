@@ -14,7 +14,11 @@ for line in env_content.splitlines():
     for key, value in answers.items():
         upper_key = key.upper()
         if line.startswith(f"{upper_key}="):
-            new_line = line.replace(line, f"{upper_key}={value}")
+            if " " in value:
+                content = f"{upper_key}={value!r}"
+            else:
+                content = f"{upper_key}={value}"
+            new_line = line.replace(line, content)
             lines.append(new_line)
             break
     else:
