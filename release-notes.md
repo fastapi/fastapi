@@ -11,6 +11,7 @@
 
 ### Features
 
+* ✨ Migrate to TanStack Query (React Query) and TanStack Router. PR [#637](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/637) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Add setup and teardown database for tests. PR [#626](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/626) by [@estebanx64](https://github.com/estebanx64).
 * ✨ Update new-frontend client. PR [#625](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/625) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add password reset functionality. PR [#624](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/624) by [@alejsdev](https://github.com/alejsdev).
