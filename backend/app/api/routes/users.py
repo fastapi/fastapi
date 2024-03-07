@@ -144,8 +144,7 @@ def read_user_by_id(
         return user
     if not current_user.is_superuser:
         raise HTTPException(
-            # TODO: Review status code
-            status_code=400,
+            status_code=403,
             detail="The user doesn't have enough privileges",
         )
     return user
@@ -194,5 +193,5 @@ def delete_user(
         return Message(message="User deleted successfully")
     elif user == current_user and current_user.is_superuser:
         raise HTTPException(
-            status_code=400, detail="Super users are not allowed to delete themselves"
+            status_code=403, detail="Super users are not allowed to delete themselves"
         )

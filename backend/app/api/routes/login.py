@@ -9,7 +9,7 @@ from app.api.deps import CurrentUser, SessionDep
 from app.core import security
 from app.core.config import settings
 from app.core.security import get_password_hash
-from app.models import Message, NewPassword, Token, UserOut
+from app.models import Message, NewPassword, Token, User, UserOut
 from app.utils import (
     generate_password_reset_token,
     send_reset_password_email,
@@ -73,10 +73,10 @@ def reset_password(session: SessionDep, body: NewPassword) -> Message:
     """
     Reset password
     """
-    email = verify_password_reset_token(token=body.token)
-    if not email:
+    user_id = verify_password_reset_token(token=body.token)
+    if not user_id:
         raise HTTPException(status_code=400, detail="Invalid token")
-    user = crud.get_user_by_email(session=session, email=email)
+    user = session.get(User, int(user_id))
     if not user:
         raise HTTPException(
             status_code=404,

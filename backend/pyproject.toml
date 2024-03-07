@@ -34,6 +34,7 @@ pytest-cov = "^4.1.0"
 mypy = "^1.8.0"
 ruff = "^0.2.2"
 pre-commit = "^3.6.2"
+pytest-mock = "^3.12.0"
 
 [tool.isort]
 multi_line_output = 3
