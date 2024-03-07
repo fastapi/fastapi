@@ -216,7 +216,7 @@ def jsonable_encoder(
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
         # TODO: remove when deprecating Pydantic v1
-        encoders: Dict[Any, Any] = {}
+        encoders = None
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder is not None:
