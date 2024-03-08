@@ -29,6 +29,7 @@ const UserInformation: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { isSubmitting, errors, isDirty },
   } = useForm<UserOut>({
     mode: 'onBlur',
@@ -128,7 +129,7 @@ const UserInformation: React.FC = () => {
               onClick={toggleEditMode}
               type={editMode ? 'button' : 'submit'}
               isLoading={editMode ? isSubmitting : false}
-              isDisabled={editMode ? !isDirty : false}
+              isDisabled={editMode ? !isDirty || !getValues('email') : false}
             >
               {editMode ? 'Save' : 'Edit'}
             </Button>
