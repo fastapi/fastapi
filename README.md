@@ -37,9 +37,21 @@ Some of the future new features and changes:
 
 [![API docs](img/login.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 
-### Dashboard - Create User
+### Dashboard - Admin
 
 [![API docs](img/dashboard.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Dashboard - Create User
+
+[![API docs](img/dashboard-create.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Dashboard - Items
+
+[![API docs](img/dashboard-items.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Dashboard - User Settings
+
+[![API docs](img/dashboard-user-settings.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 
 ## Technology Stack and Features
 
