@@ -12,6 +12,7 @@
 
 ### Features
 
+* 🎨 Format with Prettier. PR [#646](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/646) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Add tests to raise coverage to at least 90% and fix recover password logic. PR [#632](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/632) by [@estebanx64](https://github.com/estebanx64).
 * ⚙️ Add Prettier and ESLint config with pre-commit. PR [#640](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/640) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Add coverage with Smokeshow to CI and badge. PR [#638](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/638) by [@estebanx64](https://github.com/estebanx64).
