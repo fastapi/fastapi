@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "format": "prettier --write ./src/**/*.{ts,tsx,js,jsx,json,md}",
+    "format": "prettier --write ./src/**/*.{ts,tsx,js,jsx,json,md} --ignore-path .prettierignore",
     "preview": "vite preview",
     "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios --exportSchemas true"
   },
