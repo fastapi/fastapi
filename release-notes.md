@@ -61,6 +61,7 @@
 
 ### Refactors
 
+* 🔥 Remove unused schemas. PR [#656](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/656) by [@alejsdev](https://github.com/alejsdev).
 * 🔥 Remove old frontend. PR [#649](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/649) by [@tiangolo](https://github.com/tiangolo).
 * ♻ Move project source files to top level from src, update Sentry dependency. PR [#630](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/630) by [@estebanx64](https://github.com/estebanx64).
 * ♻ Refactor Python folder tree. PR [#629](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/629) by [@estebanx64](https://github.com/estebanx64).
