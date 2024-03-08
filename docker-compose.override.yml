@@ -72,15 +72,6 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
 
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        FRONTEND_ENV: dev
-    labels:
-      # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=Host(`old-frontend.localhost.tiangolo.com`)
-
 networks:
   traefik-public:
     # For local dev, don't expect an external Traefik network

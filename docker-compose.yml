@@ -2,7 +2,7 @@ version: "3.3"
 services:
 
   proxy:
-    image: traefik:v2.2
+    image: traefik:v2.3
     networks:
       - ${TRAEFIK_PUBLIC_NETWORK?Variable not set}
       - default
@@ -167,24 +167,12 @@ services:
   frontend:
     image: '${DOCKER_IMAGE_FRONTEND?Variable not set}:${TAG-latest}'
     build:
-      context: ./frontend
-      args:
-        FRONTEND_ENV: ${FRONTEND_ENV-production}
-    labels:
-      - traefik.enable=true
-      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
-      - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
-
-#  new-frontend:
-#    image: '${DOCKER_IMAGE_NEW_FRONTEND?Variable not set}:${TAG-latest}'
-#    build:
-#      context: ./new-frontend
-    # labels:
-    #   - traefik.enable=true
-    #   - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
-    #   - traefik.http.routers.${STACK_NAME?Variable not set}-new-frontend-http.rule=PathPrefix(`/`)
-    #   - traefik.http.services.${STACK_NAME?Variable not set}-new-frontend.loadbalancer.server.port=80
+      context: ./new-frontend
+      labels:
+        - traefik.enable=true
+        - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
+        - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
+        - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
 
 volumes:
   app-db-data:
