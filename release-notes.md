@@ -105,6 +105,7 @@
 
 ### Internal
 
+* ⚙️ Add Prettier config. PR [#647](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/647) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update pre-commit config. PR [#645](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/645) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Add dependabot. PR [#547](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/547) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix latest-changes GitHub Action token, strike 2. PR [#546](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/546) by [@tiangolo](https://github.com/tiangolo).
