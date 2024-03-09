@@ -74,7 +74,8 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
             <AlertDialogBody>
               All your account data will be{' '}
               <strong>permanently deleted.</strong> If you are sure, please
-              click <strong>'Confirm'</strong> to proceed.
+              click <strong>"Confirm"</strong> to proceed. This action cannot be
+              undone.
             </AlertDialogBody>
 
             <AlertDialogFooter gap={3}>

@@ -19,8 +19,8 @@ const DeleteAccount: React.FC = () => {
           Delete Account
         </Heading>
         <Text>
-          Are you sure you want to delete your account? This action cannot be
-          undone.
+          Permanently delete your data and everything associated with your
+          account.
         </Text>
         <Button
           bg="ui.danger"
