@@ -52,6 +52,7 @@
 
 ### Fixes
 
+* 🔥 Remove unnecessary validation. PR [#662](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/662) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix bug when editing own user. PR [#651](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/651) by [@alejsdev](https://github.com/alejsdev).
 * 🐛  Add `onClose` to `SidebarItems`. PR [#589](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/589) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix positional argument bug in `init_db.py`. PR [#562](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/562) by [@alejsdev](https://github.com/alejsdev).
