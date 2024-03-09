@@ -118,7 +118,6 @@ OpenAPI یک schema API برای API شما تعریف می کند. و این sc
 
 
 
-...
 ```
 
 #### OpenAPI برای چیست
