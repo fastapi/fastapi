@@ -1,10 +1,10 @@
 <mjml>
-  <mj-body background-color="#fff">
-    <mj-section>
-      <mj-column>
-        <mj-divider border-color="#555"></mj-divider>
-        <mj-text font-size="20px" color="#555" font-family="helvetica">{{ project_name }}</mj-text>
-        <mj-text font-size="16px" color="#555">Test email for: {{ email }}</mj-text>
+  <mj-body background-color="#fafbfc">
+    <mj-section background-color="#fff" padding="40px 20px">
+      <mj-column vertical-align="middle" width="100%">
+        <mj-text align="center" padding="35px" font-size="20px" font-family="Arial, Helvetica, sans-serif" color="#333">{{ project_name }}</mj-text>
+        <mj-text align="center" font-size="16px" padding-left="25px" padding-right="25px" font-family=", sans-serif" color="#555"><span>Test email for: {{ email }}</span></mj-text>
+        <mj-divider border-color="#ccc" border-width="2px"></mj-divider>
       </mj-column>
     </mj-section>
   </mj-body>
