@@ -2,6 +2,9 @@ version: "3.3"
 services:
 
   proxy:
+    image: traefik:v2.3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "80:80"
       - "8090:8080"
@@ -10,10 +13,13 @@ services:
       # Enable Docker in Traefik, so that it reads labels from Docker services
       - --providers.docker
       # Add a constraint to only use services with the label for this stack
-      # from the env var TRAEFIK_TAG
-      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG?Variable not set}`)
+      - --providers.docker.constraints=Label(`traefik.constraint-label`, `traefik-public`)
       # Do not expose all Docker services, only the ones explicitly exposed
       - --providers.docker.exposedbydefault=false
+      # Create an entrypoint "http" listening on port 80
+      - --entrypoints.http.address=:80
+      # Create an entrypoint "https" listening on port 443
+      - --entrypoints.https.address=:443
       # Enable the access log, with HTTP requests
       - --accesslog
       # Enable the Traefik log, for configurations and errors
@@ -23,8 +29,12 @@ services:
       # Enable the Dashboard and API in insecure mode for local development
       - --api.insecure=true
     labels:
-      - traefik.http.routers.${STACK_NAME?Variable not set}-traefik-public-http.rule=Host(`${DOMAIN?Variable not set}`)
-      - traefik.http.services.${STACK_NAME?Variable not set}-traefik-public.loadbalancer.server.port=80
+      # Enable Traefik for this service, to make it available in the public network
+      - traefik.enable=true
+      - traefik.constraint-label=traefik-public
+      # Dummy https-redirect middleware that doesn't really redirect, only to
+      # allow running it locally
+      - traefik.http.middlewares.https-redirect.contenttype.autodetect=false
 
   db:
     ports:
@@ -71,6 +81,13 @@ services:
       dockerfile: celeryworker.dockerfile
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://${DOMAIN?Variable not set}
+        - NODE_ENV=development
 
 networks:
   traefik-public:
