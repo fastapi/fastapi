@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Azerbaijani translation for `docs/az/docs/fastapi-people.md`. PR [#11195](https://github.com/tiangolo/fastapi/pull/11195) by [@vusallyv](https://github.com/vusallyv).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/dependencies/index.md`. PR [#11223](https://github.com/tiangolo/fastapi/pull/11223) by [@kohiry](https://github.com/kohiry).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/query-params.md`. PR [#11242](https://github.com/tiangolo/fastapi/pull/11242) by [@jackleeio](https://github.com/jackleeio).
 * 🌐 Add Azerbaijani translation for `docs/az/learn/index.md`. PR [#11192](https://github.com/tiangolo/fastapi/pull/11192) by [@vusallyv](https://github.com/vusallyv).
