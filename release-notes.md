@@ -61,6 +61,7 @@
 
 ### Refactors
 
+* 💬 Improve Delete Account description and confirmation. PR [#661](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/661) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Refactor email templates. PR [#659](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/659) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update deployment files and docs. PR [#660](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/660) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove unused schemas. PR [#656](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/656) by [@alejsdev](https://github.com/alejsdev).
