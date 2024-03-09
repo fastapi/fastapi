@@ -32,7 +32,7 @@ def test_get_users_normal_user_me(
 def test_create_user_new_email(
     client: TestClient, superuser_token_headers: dict, db: Session, mocker
 ) -> None:
-    mocker.patch("app.utils.send_new_account_email")
+    mocker.patch("app.utils.send_email")
     mocker.patch("app.core.config.settings.EMAILS_ENABLED", True)
     username = random_email()
     password = random_lower_string()
@@ -68,9 +68,7 @@ def test_get_existing_user(
     assert existing_user.email == api_user["email"]
 
 
-def test_get_existing_user_current_user(
-    client: TestClient, db: Session
-) -> None:
+def test_get_existing_user_current_user(client: TestClient, db: Session) -> None:
     username = random_email()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
@@ -184,7 +182,10 @@ def test_update_password_me(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
     new_password = random_lower_string()
-    data = {"current_password": settings.FIRST_SUPERUSER_PASSWORD, "new_password": new_password}
+    data = {
+        "current_password": settings.FIRST_SUPERUSER_PASSWORD,
+        "new_password": new_password,
+    }
     r = client.patch(
         f"{settings.API_V1_STR}/users/me/password",
         headers=superuser_token_headers,
@@ -195,7 +196,10 @@ def test_update_password_me(
     assert updated_user["message"] == "Password updated successfully"
 
     # Revert to the old password to keep consistency in test
-    old_data = {"current_password": new_password, "new_password": settings.FIRST_SUPERUSER_PASSWORD}
+    old_data = {
+        "current_password": new_password,
+        "new_password": settings.FIRST_SUPERUSER_PASSWORD,
+    }
     r = client.patch(
         f"{settings.API_V1_STR}/users/me/password",
         headers=superuser_token_headers,
@@ -222,7 +226,10 @@ def test_update_password_me_incorrect_password(
 def test_update_password_me_same_password_error(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
-    data = {"current_password": settings.FIRST_SUPERUSER_PASSWORD, "new_password": settings.FIRST_SUPERUSER_PASSWORD}
+    data = {
+        "current_password": settings.FIRST_SUPERUSER_PASSWORD,
+        "new_password": settings.FIRST_SUPERUSER_PASSWORD,
+    }
     r = client.patch(
         f"{settings.API_V1_STR}/users/me/password",
         headers=superuser_token_headers,
@@ -230,12 +237,12 @@ def test_update_password_me_same_password_error(
     )
     assert r.status_code == 400
     updated_user = r.json()
-    assert updated_user["detail"] == "New password cannot be the same as the current one"
+    assert (
+        updated_user["detail"] == "New password cannot be the same as the current one"
+    )
 
 
-def test_create_user_open(
-    client: TestClient, mocker
-) -> None:
+def test_create_user_open(client: TestClient, mocker) -> None:
     mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True)
     username = random_email()
     password = random_lower_string()
@@ -251,9 +258,7 @@ def test_create_user_open(
     assert created_user["full_name"] == full_name
 
 
-def test_create_user_open_forbidden_error(
-    client: TestClient, mocker
-) -> None:
+def test_create_user_open_forbidden_error(client: TestClient, mocker) -> None:
     mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", False)
     username = random_email()
     password = random_lower_string()
@@ -267,19 +272,23 @@ def test_create_user_open_forbidden_error(
     assert r.json()["detail"] == "Open user registration is forbidden on this server"
 
 
-def test_create_user_open_already_exists_error(
-    client: TestClient, mocker
-) -> None:
+def test_create_user_open_already_exists_error(client: TestClient, mocker) -> None:
     mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True)
     password = random_lower_string()
     full_name = random_lower_string()
-    data = {"email": settings.FIRST_SUPERUSER, "password": password, "full_name": full_name}
+    data = {
+        "email": settings.FIRST_SUPERUSER,
+        "password": password,
+        "full_name": full_name,
+    }
     r = client.post(
         f"{settings.API_V1_STR}/users/open",
         json=data,
     )
     assert r.status_code == 400
-    assert r.json()["detail"] == "The user with this username already exists in the system"
+    assert (
+        r.json()["detail"] == "The user with this username already exists in the system"
+    )
 
 
 def test_update_user(
@@ -311,7 +320,9 @@ def test_update_user_not_exists(
         json=data,
     )
     assert r.status_code == 404
-    assert r.json()["detail"] == "The user with this username does not exist in the system"
+    assert (
+        r.json()["detail"] == "The user with this username does not exist in the system"
+    )
 
 
 def test_delete_user_super_user(
@@ -331,9 +342,7 @@ def test_delete_user_super_user(
     assert deleted_user["message"] == "User deleted successfully"
 
 
-def test_delete_user_current_user(
-    client: TestClient, db: Session
-) -> None:
+def test_delete_user_current_user(client: TestClient, db: Session) -> None:
     username = random_email()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)

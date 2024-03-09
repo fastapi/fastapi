@@ -39,8 +39,8 @@ def test_use_access_token(
 def test_recovery_password(
     client: TestClient, normal_user_token_headers: dict[str, str], mocker
 ) -> None:
-    mocker.patch("app.utils.send_reset_password_email", return_value=None)
     mocker.patch("app.utils.send_email", return_value=None)
+    mocker.patch("app.core.config.settings.EMAILS_ENABLED", True)
     email = "test@example.com"
     r = client.post(
         f"{settings.API_V1_STR}/password-recovery/{email}",
@@ -75,7 +75,7 @@ def test_reset_password(
     r = client.post(
         f"{settings.API_V1_STR}/reset-password/",
         headers=superuser_token_headers,
-        json=data
+        json=data,
     )
     assert r.status_code == 200
     assert r.json() == {"message": "Password updated successfully"}
@@ -88,7 +88,7 @@ def test_reset_password_invalid_token(
     r = client.post(
         f"{settings.API_V1_STR}/reset-password/",
         headers=superuser_token_headers,
-        json=data
+        json=data,
     )
     response = r.json()
 

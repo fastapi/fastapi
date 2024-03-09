@@ -1,26 +1,38 @@
 import logging
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
 import emails
-from emails.template import JinjaTemplate
-from jose import jwt
+from jinja2 import Template
+from jose import JWTError, jwt
 
 from app.core.config import settings
 
 
+@dataclass
+class EmailData:
+    html_content: str
+    subject: str
+
+
+def render_email_template(*, template_name: str, context: dict[str, Any]):
+    template_str = (Path(settings.EMAIL_TEMPLATES_DIR) / template_name).read_text()
+    html_content = Template(template_str).render(context)
+    return html_content
+
+
 def send_email(
+    *,
     email_to: str,
-    subject_template: str = "",
-    html_template: str = "",
-    environment: dict[str, Any] | None = None,
+    subject: str = "",
+    html_content: str = "",
 ) -> None:
-    current_environment = environment or {}
     assert settings.EMAILS_ENABLED, "no provided configuration for email variables"
     message = emails.Message(
-        subject=JinjaTemplate(subject_template),
-        html=JinjaTemplate(html_template),
+        subject=subject,
+        html=html_content,
         mail_from=(settings.EMAILS_FROM_NAME, settings.EMAILS_FROM_EMAIL),
     )
     smtp_options = {"host": settings.SMTP_HOST, "port": settings.SMTP_PORT}
@@ -30,35 +42,28 @@ def send_email(
         smtp_options["user"] = settings.SMTP_USER
     if settings.SMTP_PASSWORD:
         smtp_options["password"] = settings.SMTP_PASSWORD
-    response = message.send(to=email_to, render=current_environment, smtp=smtp_options)
+    response = message.send(to=email_to, smtp=smtp_options)
     logging.info(f"send email result: {response}")
 
 
-def send_test_email(email_to: str) -> None:
+def generate_test_email(email_to: str) -> EmailData:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - Test email"
-    with open(Path(settings.EMAIL_TEMPLATES_DIR) / "test_email.html") as f:
-        template_str = f.read()
-    send_email(
-        email_to=email_to,
-        subject_template=subject,
-        html_template=template_str,
-        environment={"project_name": settings.PROJECT_NAME, "email": email_to},
+    html_content = render_email_template(
+        template_name="test_email.html",
+        context={"project_name": settings.PROJECT_NAME, "email": email_to},
     )
+    return EmailData(html_content=html_content, subject=subject)
 
 
-def send_reset_password_email(email_to: str, email: str, token: str) -> None:
+def generate_reset_password_email(email_to: str, email: str, token: str) -> EmailData:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - Password recovery for user {email}"
-    with open(Path(settings.EMAIL_TEMPLATES_DIR) / "reset_password.html") as f:
-        template_str = f.read()
     server_host = settings.SERVER_HOST
     link = f"{server_host}/reset-password?token={token}"
-    send_email(
-        email_to=email_to,
-        subject_template=subject,
-        html_template=template_str,
-        environment={
+    html_content = render_email_template(
+        template_name="reset_password.html",
+        context={
             "project_name": settings.PROJECT_NAME,
             "username": email,
             "email": email_to,
@@ -66,19 +71,18 @@ def send_reset_password_email(email_to: str, email: str, token: str) -> None:
             "link": link,
         },
     )
+    return EmailData(html_content=html_content, subject=subject)
 
 
-def send_new_account_email(email_to: str, username: str, password: str) -> None:
+def generate_new_account_email(
+    email_to: str, username: str, password: str
+) -> EmailData:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - New account for user {username}"
-    with open(Path(settings.EMAIL_TEMPLATES_DIR) / "new_account.html") as f:
-        template_str = f.read()
     link = settings.SERVER_HOST
-    send_email(
-        email_to=email_to,
-        subject_template=subject,
-        html_template=template_str,
-        environment={
+    html_content = render_email_template(
+        template_name="new_account.html",
+        context={
             "project_name": settings.PROJECT_NAME,
             "username": username,
             "password": password,
@@ -86,6 +90,7 @@ def send_new_account_email(email_to: str, username: str, password: str) -> None:
             "link": link,
         },
     )
+    return EmailData(html_content=html_content, subject=subject)
 
 
 def generate_password_reset_token(email: str) -> str:
@@ -105,5 +110,5 @@ def verify_password_reset_token(token: str) -> str | None:
     try:
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         return decoded_token["sub"]
-    except jwt.JWTError:
+    except JWTError:
         return None

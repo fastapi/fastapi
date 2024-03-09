@@ -12,7 +12,8 @@ from app.core.security import get_password_hash
 from app.models import Message, NewPassword, Token, User, UserOut
 from app.utils import (
     generate_password_reset_token,
-    send_reset_password_email,
+    generate_reset_password_email,
+    send_email,
     verify_password_reset_token,
 )
 
@@ -62,8 +63,13 @@ def recover_password(email: str, session: SessionDep) -> Message:
             detail="The user with this username does not exist in the system.",
         )
     password_reset_token = generate_password_reset_token(email=email)
-    send_reset_password_email(
+    email_data = generate_reset_password_email(
         email_to=user.email, email=email, token=password_reset_token
+    )
+    send_email(
+        email_to=user.email,
+        subject=email_data.subject,
+        html_content=email_data.html_content,
     )
     return Message(message="Password recovery email sent")
 
