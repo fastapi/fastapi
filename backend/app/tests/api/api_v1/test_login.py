@@ -1,3 +1,4 @@
+from app.utils import generate_password_reset_token
 from fastapi.testclient import TestClient
 
 from app.core.config import settings
@@ -64,13 +65,7 @@ def test_recovery_password_user_not_exits(
 def test_reset_password(
     client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
-    login_data = {
-        "username": settings.FIRST_SUPERUSER,
-        "password": settings.FIRST_SUPERUSER_PASSWORD,
-    }
-    r = client.post(f"{settings.API_V1_STR}/login/access-token", data=login_data)
-    token = r.json().get("access_token")
-
+    token = generate_password_reset_token(email=settings.FIRST_SUPERUSER)
     data = {"new_password": "changethis", "token": token}
     r = client.post(
         f"{settings.API_V1_STR}/reset-password/",

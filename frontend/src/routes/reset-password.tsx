@@ -8,7 +8,7 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react'
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
@@ -36,6 +36,7 @@ function ResetPassword() {
     register,
     handleSubmit,
     getValues,
+    reset,
     formState: { errors },
   } = useForm<NewPasswordForm>({
     mode: 'onBlur',
@@ -45,6 +46,7 @@ function ResetPassword() {
     },
   })
   const showToast = useCustomToast()
+  const navigate = useNavigate()
 
   const resetPassword = async (data: NewPassword) => {
     const token = new URLSearchParams(window.location.search).get('token')
@@ -56,6 +58,8 @@ function ResetPassword() {
   const mutation = useMutation(resetPassword, {
     onSuccess: () => {
       showToast('Success!', 'Password updated.', 'success')
+      reset()
+      navigate({ to: '/login' })
     },
     onError: (err: ApiError) => {
       const errDetail = err.body.detail
