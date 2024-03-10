@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+*  🏷️ Add mypy to the GitHub Action for tests and fixed types in the whole project. PR [#655](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/655) by [@estebanx64](https://github.com/estebanx64).
 * 🙈 Add .prettierignore and include client folder. PR [#648](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/648) by [@alejsdev](https://github.com/alejsdev).
 * ⏪ Revert "⚙️ Add Prettier and ESLint config with pre-commit". PR [#644](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/644) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix copier to handle string vars with spaces in quotes. PR [#631](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/631) by [@estebanx64](https://github.com/estebanx64).
