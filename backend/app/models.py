@@ -25,7 +25,7 @@ class UserCreateOpen(SQLModel):
 # Properties to receive via API on update, all are optional
 # TODO replace email str with EmailStr when sqlmodel supports it
 class UserUpdate(UserBase):
-    email: str | None = None
+    email: str | None = None  # type: ignore
     password: str | None = None
 
 
@@ -70,7 +70,7 @@ class ItemCreate(ItemBase):
 
 # Properties to receive on item update
 class ItemUpdate(ItemBase):
-    title: str | None = None
+    title: str | None = None  # type: ignore
 
 
 # Database model, database table inferred from class name

@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     @field_validator("EMAILS_FROM_NAME")
     def get_project_name(cls, v: str | None, info: ValidationInfo) -> str:
         if not v:
-            return info.data["PROJECT_NAME"]
+            return str(info.data["PROJECT_NAME"])
         return v
 
     EMAIL_RESET_TOKEN_EXPIRE_HOURS: int = 48
@@ -89,7 +89,7 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER: str
     FIRST_SUPERUSER_PASSWORD: str
     USERS_OPEN_REGISTRATION: bool = False
-    model_config = SettingsConfigDict(case_sensitive=True)
+    model_config = SettingsConfigDict(env_file=".env")
 
 
-settings = Settings()
+settings = Settings()  # type: ignore

@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-import emails
+import emails  # type: ignore
 from jinja2 import Template
 from jose import JWTError, jwt
 
@@ -109,6 +109,6 @@ def generate_password_reset_token(email: str) -> str:
 def verify_password_reset_token(token: str) -> str | None:
     try:
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-        return decoded_token["sub"]
+        return str(decoded_token["sub"])
     except JWTError:
         return None

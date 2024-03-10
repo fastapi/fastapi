@@ -3,6 +3,5 @@
 set -x
 
 mypy app
-black app --check
-isort --recursive --check-only app
-flake8
+ruff app
+ruff format app --check

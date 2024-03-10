@@ -1,7 +1,8 @@
-from app.utils import generate_password_reset_token
 from fastapi.testclient import TestClient
+from pytest_mock import MockerFixture
 
 from app.core.config import settings
+from app.utils import generate_password_reset_token
 
 
 def test_get_access_token(client: TestClient) -> None:
@@ -38,7 +39,7 @@ def test_use_access_token(
 
 
 def test_recovery_password(
-    client: TestClient, normal_user_token_headers: dict[str, str], mocker
+    client: TestClient, normal_user_token_headers: dict[str, str], mocker: MockerFixture
 ) -> None:
     mocker.patch("app.utils.send_email", return_value=None)
     mocker.patch("app.core.config.settings.EMAILS_ENABLED", True)
