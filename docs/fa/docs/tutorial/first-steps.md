@@ -27,9 +27,9 @@ $ uvicorn main:app --reload
 !!! نکته
     دستور 'uvicorn main:app' به این موارد اشاره دارد:
 
-    * "main": فایل "main.py" ("ماژول" پایتون).
-    * "app": شی ایجاد شده در "main.py" با خط "app = FastAPI()".
-    * "--reload": سرور را پس از تغییر کد راه اندازی مجدد کنید. فقط برای توسعه استفاده کنید.
+    * فایل "main": فایل "main.py" ("ماژول" پایتون).
+    * برنامه "app": شی ایجاد شده در "main.py" با خط "app = FastAPI()".
+    * دستور "--reload": سرور را پس از تغییر کد راه اندازی مجدد کنید. فقط برای توسعه استفاده کنید.
 
 
 در خروجی، یک خط با چیزی مانند زیر خواهید دید:
@@ -66,33 +66,33 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 
-### OpenAPI
+### اسناد OpenAPI
 
-**FastAPI** با استفاده از استاندارد **OpenAPI** برای تعریف APIها، یک "schema" با تمام API شما ایجاد می کند.
+فریم ورک **FastAPI** با استفاده از استاندارد **OpenAPI** برای تعریف APIها، یک "schema" با تمام API شما ایجاد می کند.
 
-#### "schema" (طرحواره)
+#### (طرحواره) "schema" 
 
-"schema" تعریف یا توصیف چیزی است. نه کدی که آن را پیاده سازی می کند، بلکه فقط یک توضیح انتزاعی است.
+اصطلاح "schema" تعریف یا توصیف چیزی است. نه کدی که آن را پیاده سازی می کند، بلکه فقط یک توضیح انتزاعی است.
 
-#### "schema" API
+#### اسناد "schema" API
 
 در این مورد، <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> مشخصاتی است که نحوه تعریف یک شمای API شما
 
 این تعریف schema شامل مسیرهای API شما، پارامترهای احتمالی آنها و غیره است.
 
 
-#### "schema" داده
+#### اصطلاح  "schema" داده
 
 اصطلاح "schema" ممکن است به شکل برخی از داده‌ها مانند محتوای JSON نیز اشاره داشته باشد.
 
 در آن صورت، این به معنای ویژگی‌های JSON، و انواع داده‌های آنها و غیره است.
 
-#### OpenAPI و JSON Schema
+#### اسناد OpenAPI و JSON Schema
 
-OpenAPI یک schema API برای API شما تعریف می کند. و این schema شامل تعاریف (یا "schema ها") داده های ارسال و دریافت شده توسط API شما با استفاده از **JSON Schema**، استاندارد schema های داده JSON است.
+اسناد OpenAPI یک schema API برای API شما تعریف می کند. و این schema شامل تعاریف (یا "schema ها") داده های ارسال و دریافت شده توسط API شما با استفاده از **JSON Schema**، استاندارد schema های داده JSON است.
 
 
-#### «openapi.json» را بررسی کنید
+#### فایل «openapi.json» را بررسی کنید
 
 اگر کنجکاو هستید که schema OpenAPI خام چگونه به نظر می رسد، FastAPI به طور خودکار یک JSON (شما) با توضیحات همه API شما تولید می کند.
 
@@ -116,13 +116,13 @@ OpenAPI یک schema API برای API شما تعریف می کند. و این sc
                         "content": {
                             "application/json": {
 
-
+...
 
 ```
 
-#### OpenAPI برای چیست
+#### اسناد OpenAPI برای چیست
 
-schema OpenAPI همان چیزی است که دو سیستم اسناد تعاملی را شامل می شود.
+اسناد schema OpenAPI همان چیزی است که دو سیستم اسناد تعاملی را شامل می شود.
 
 و ده ها گزینه جایگزین وجود دارد که همه بر اساس OpenAPI هستند. شما به راحتی می توانید هر یک از آن جایگزین ها را به برنامه خود که با **FastAPI** ساخته شده است اضافه کنید.
 
@@ -134,11 +134,11 @@ schema OpenAPI همان چیزی است که دو سیستم اسناد تعام
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-"FastAPI" یک کلاس پایتون است که تمام عملکردها را برای API شما فراهم می کند.
+فریم ورک "FastAPI" یک کلاس پایتون است که تمام عملکردها را برای API شما فراهم می کند.
 
 
 !!! توجه "جزئیات فنی"
-  «FastAPI» کلاسی است که مستقیماً از «Starlette» به ارث می‌برد.
+  فریم ورک "FastAPI" کلاسی است که مستقیماً از «Starlette» به ارث می‌برد.
        می‌توانید با "FastAPI" نیز از همه قابلیت‌های <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> استفاده کنید.
 
 ### مرحله۲ : یک 'instance' از "FastAPI" ایجاد کنید
@@ -185,9 +185,9 @@ $ uvicorn main:my_awesome_api --reload
 
 ### مرحله ۳: ایجاد یک *path operation* (عملیات مسیر)
 
-#### path
+#### مسیر-path
 
-"path" در اینجا به آخرین قسمت URL که از '/' اول شروع می‌شود، اشاره دارد.
+مسیر یا همان "path" در اینجا به آخرین قسمت URL که از '/' اول شروع می‌شود، اشاره دارد.
 
 بنابراین، در یک URL مانند:
 
@@ -208,9 +208,9 @@ https://example.com/items/foo
 
 هنگام ساختن یک API، «مسیر» راه اصلی برای جداسازی «resources» و «concerns» است.
 
-#### Operation
+#### عملیات-Operation
 
-"Operation" در اینجا به یکی از «روش‌های HTTP» اشاره دارد.
+عملیات-"Operation" در اینجا به یکی از «روش‌های HTTP» اشاره دارد.
 
 یکی از:
 * `POST`
@@ -233,10 +233,10 @@ https://example.com/items/foo
 
 به طور معمول شما استفاده می کنید:
 
-* `POST`: برای ثبت اطلاعات
-* `GET`: برای خواندن اطلاعات
-* `PUT`: برای بروزرسانی اطلاعات
-* `DELETE`: برای پاک کردن اطلاعات
+متد* `POST`: برای ثبت اطلاعات
+متد* `GET`: برای خواندن اطلاعات
+متد* `PUT`: برای بروزرسانی اطلاعات
+متد* `DELETE`: برای پاک کردن اطلاعات
 
 بنابراین، در OpenAPI، به هر یک از متدهای HTTP "operation" گفته می شود.
 
@@ -248,9 +248,9 @@ https://example.com/items/foo
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-'@app.get("/")' به **FastAPI** می‌گوید که تابعی که در زیر آن قرار دارد، مسئول پاسخگویی به درخواست‌هایی است که به این آدرس ارسال می‌شوند:
+در این کد'@app.get("/")' به **FastAPI** می‌گوید که تابعی که در زیر آن قرار دارد، مسئول پاسخگویی به درخواست‌هایی است که به این آدرس ارسال می‌شوند:
 
-* path (مسیر) `/`
+* (مسیر) path  `/`
 * با استفاده از یک operation <abbr title="an HTTP GET"><code>دریافت</code></abbr>
 
 !!! اطلاعات "اطلاعات `@decorator`"
@@ -281,7 +281,7 @@ https://example.com/items/foo
 
 شما آزاد هستید که از هر operation (method HTTP) به دلخواه خود استفاده کنید.
 
-     **FastAPI** هیچ معنای خاصی را اعمال نمی کند.
+     فریم ورک **FastAPI** هیچ معنای خاصی را اعمال نمی کند.
 
      اطلاعات در اینجا به عنوان یک دستورالعمل ارائه شده است، نه یک الزام.
 
@@ -292,7 +292,7 @@ https://example.com/items/foo
 این "**path operation function**" ما است:
 
 * **مسیر**: «/» است.
-* **operation**: "POST" است.
+متد* **operation**: "POST" است.
 * **تابع**: تابع زیر "decorator" است (زیر `@app.get("/")`).
 
 ```"Python hl_lines="7"
@@ -331,8 +331,8 @@ https://example.com/items/foo
 
 ##خلاصه
 
-* "FastAPI" را وارد کنید.
-* یک نمونه "برنامه" ایجاد کنید.
+فریم ورک* "FastAPI" را وارد کنید.
+* یک نمونه "app" ایجاد کنید.
 * یک **path operation decorator** بنویسید (مانند `@app.get("/")`).
-* یک **path operation function** بنویسید (مانند 'def root(: ...' در بالا).
+* یک **path operation function** بنویسید (مانند 'def root(: ...' در زیر آن).
 * سرور توسعه را اجرا کنید (مانند 'uvicorn main:app --reload').
