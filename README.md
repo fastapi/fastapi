@@ -86,17 +86,15 @@ Make sure you at least change the value for `SECRET_KEY` in the main `.env` file
 
 ### Generate secret keys
 
-You will be asked to provide passwords and **secret keys** for several components.
+Some environment variables in the `.env` file have a default value of `changethis`. 
 
-They have a default value of `changethis`. You can also update them later in the `.env` files after generating the project.
-
-You could generate those secrets with:
+You have to change them with a secret key, to generate secret keys you can run the following command:
 
 ```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
 
-Copy the contents and use that as password / secret key. And run that again to generate another secure key.
+Copy the content and use that as password / secret key. And run that again to generate another secure key.
 
 ## How to use it - alternative with Copier
 

@@ -12,12 +12,7 @@ But you have to configure a couple things first. 🤓
 
 * Have a remote server ready and available.
 * Configure the DNS records of your domain to point to the IP of the server you just created.
-* Install and configure [Docker](https://docs.docker.com/engine/install/).
-* Create a remote directory to store your code, for example:
-
-```bash
-mkdir -p /root/code/traefik-public/
-```
+* Install and configure [Docker](https://docs.docker.com/engine/install/) on the remote server (Docker Engine, not Docker Desktop).
 
 ## Public Traefik
 
@@ -27,7 +22,13 @@ You need to do these next steps only once.
 
 ### Traefik Docker Compose
 
-Copy the Traefik Docker Compose file to your server, to your code directory. You could do it with `rsync`:
+* Create a remote directory to store your Traefik Docker Compose file:
+
+```bash
+mkdir -p /root/code/traefik-public/
+```
+
+Copy the Traefik Docker Compose file to your server. You could do it by running the command `rsync` in your local terminal:
 
 ```bash
 rsync -a docker-compose.traefik.yml root@your-server.example.com:/root/code/traefik-public/
@@ -39,7 +40,7 @@ This Traefik will expect a Docker "public network" named `traefik-public` to com
 
 This way, there will be a single public Traefik proxy that handles the communication (HTTP and HTTPS) with the outside world, and then behind that, you could have one or more stacks with different domains, even if they are on the same single server.
 
-To create a Docker "public network" named `traefik-public` run:
+To create a Docker "public network" named `traefik-public` run the following command in your remote server:
 
 ```bash
 docker network create traefik-public
@@ -47,7 +48,7 @@ docker network create traefik-public
 
 ### Traefik Environment Variables
 
-The Traefik Docker Compose file expects some environment variables to be set.
+The Traefik Docker Compose file expects some environment variables to be set in your terminal before starting it. You can do it by running the following commands in your remote server.
 
 * Create the username for HTTP Basic Auth, e.g.:
 
@@ -67,6 +68,12 @@ export PASSWORD=changethis
 export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
 ```
 
+To verify that the hashed password is correct, you can print it:
+
+```bash
+echo $HASHED_PASSWORD
+```
+
 * Create an environment variable with the domain name for your server, e.g.:
 
 ```bash
@@ -83,7 +90,13 @@ export EMAIL=admin@example.com
 
 ### Start the Traefik Docker Compose
 
-Now with the environment variables set and the `docker-compose.traefik.yml` in place, you can start the Traefik Docker Compose:
+Go to the directory where you copied the Traefik Docker Compose file in your remote server:
+
+```bash
+cd /root/code/traefik-public/
+```
+
+Now with the environment variables set and the `docker-compose.traefik.yml` in place, you can start the Traefik Docker Compose running the following command:
 
 ```bash
 docker compose -f docker-compose.traefik.yml up -d
@@ -92,6 +105,8 @@ docker compose -f docker-compose.traefik.yml up -d
 ## Deploy the FastAPI Project
 
 Now that you have Traefik in place you can deploy your FastAPI project with Docker Compose.
+
+**Note**: You might want to jump ahead to the section about Continuous Deployment with GitHub Actions.
 
 ## Environment Variables
 
@@ -111,8 +126,6 @@ export DOMAIN=fastapi-project.example.com
 
 You can set several variables, like:
 
-* `ENVIRONMENT`: The current deployment environment, like `staging` or `production`.
-* `DOMAIN`: The current deployment domain, for example `fastapi-project.example.com`.
 * `BACKEND_CORS_ORIGINS`: A list of allowed CORS origins separated by commas.
 * `SECRET_KEY`: The secret key for the FastAPI project, used to sign tokens.
 * `FIRST_SUPERUSER`: The email of the first superuser, this superuser will be the one that can create new users.
@@ -130,6 +143,18 @@ You can set several variables, like:
 * `PGADMIN_DEFAULT_PASSWORD`: The default password for pgAdmin.
 * `SENTRY_DSN`: The DSN for Sentry, if you are using it.
 * `FLOWER_BASIC_AUTH`: The HTTP Basic Auth for Flower.
+
+### Generate secret keys
+
+Some environment variables in the `.env` file have a default value of `changethis`. 
+
+You have to change them with a secret key, to generate secret keys you can run the following command:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Copy the content and use that as password / secret key. And run that again to generate another secure key.
 
 ### Deploy with Docker Compose
 
@@ -177,7 +202,7 @@ cd
 
 * [Install a GitHub Action self-hosted runner following the official guide](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners#adding-a-self-hosted-runner-to-a-repository).
 
-* When asked about labels, add a label for the environment, e.g. `production`.
+* When asked about labels, add a label for the environment, e.g. `production`. You can also add labels later.
 
 After installing, the guide would tell you to run a command to start the runner. Nevertheless, it would stop once you terminate that process or if your local connection to your server is lost.
 
@@ -195,7 +220,7 @@ After you do it, you would be on the `root` user again. And you will be on the p
 cd /home/github/actions-runner
 ```
 
-* From there, [install the GitHub Actions runner service following the official guide](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service#installing-the-service):
+* Install the self-hosted runner as a service with the user `github`:
 
 ```bash
 ./svc.sh install github
@@ -207,9 +232,19 @@ cd /home/github/actions-runner
 ./svc.sh start
 ```
 
+* Check the status of the service:
+
+```bash
+./svc.sh status
+```
+
+You can read more about it in the official guide: [Configuring the self-hosted runner application as a service](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service).
+
 ### Set Secrets
 
-On your repository, configure secrets for the environment variables you need, the same ones described above, including `DOMAIN`, `SECRET_KEY`, etc. Follow the [official GitHub guide for setting repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+On your repository, configure secrets for the environment variables you need, the same ones described above, including `SECRET_KEY`, etc. Follow the [official GitHub guide for setting repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+
+The current Github Actions workflows expect two secrets: `DOMAIN_STAGING` and `DOMAIN_PRODUCTION`.
 
 ## GitHub Action Deployment Workflows
 
@@ -218,7 +253,7 @@ There are GitHub Action workflows in the `.github/workflows` directory already c
 * `staging`: after pushing (or merging) to the branch `master`.
 * `production`: after publishing a release.
 
-If you need to add extra environments you could use those as starting point.
+If you need to add extra environments you could use those as a starting point.
 
 ## URLs
 
