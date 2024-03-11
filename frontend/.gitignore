@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+openapi.json
 
 # Editor directories and files
 .vscode/*
