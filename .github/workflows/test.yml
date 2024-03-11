@@ -22,16 +22,12 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Run tests
-        run: docker compose build
-      - name: Docker Compose remove old containers and volumes
-        run: docker compose down -v --remove-orphans
-      - name: Docker Compose up
-        run: docker compose up -d
+      - run: docker compose build
+      - run: docker compose down -v --remove-orphans
+      - run: docker compose up -d
       - name: Docker Compose run tests
         run: docker compose exec -T backend bash /app/tests-start.sh "Coverage for ${{ github.sha }}"
-      - name: Docker Compose cleanup
-        run: docker compose down -v --remove-orphans
+      - run: docker compose down -v --remove-orphans
       - name: Store coverage files
         uses: actions/upload-artifact@v3
         with:
