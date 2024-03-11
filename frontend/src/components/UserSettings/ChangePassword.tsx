@@ -21,7 +21,7 @@ interface UpdatePasswordForm extends UpdatePassword {
 }
 
 const ChangePassword: React.FC = () => {
-  const color = useColorModeValue('gray.700', 'white')
+  const color = useColorModeValue('inherit', 'ui.white')
   const showToast = useCustomToast()
   const {
     register,
@@ -114,9 +114,7 @@ const ChangePassword: React.FC = () => {
             )}
           </FormControl>
           <Button
-            bg="ui.main"
-            color="white"
-            _hover={{ opacity: 0.8 }}
+            variant="primary"
             mt={4}
             type="submit"
             isLoading={isSubmitting}

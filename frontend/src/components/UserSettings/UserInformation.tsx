@@ -21,7 +21,7 @@ import useCustomToast from '../../hooks/useCustomToast'
 
 const UserInformation: React.FC = () => {
   const queryClient = useQueryClient()
-  const color = useColorModeValue('gray.700', 'white')
+  const color = useColorModeValue('inherit', 'ui.white')
   const showToast = useCustomToast()
   const [editMode, setEditMode] = useState(false)
   const { user: currentUser } = useAuth()
@@ -109,7 +109,7 @@ const UserInformation: React.FC = () => {
                     message: 'Invalid email address',
                   },
                 })}
-                type="text"
+                type="email"
                 size="md"
               />
             ) : (
@@ -123,9 +123,7 @@ const UserInformation: React.FC = () => {
           </FormControl>
           <Flex mt={4} gap={3}>
             <Button
-              bg="ui.main"
-              color="white"
-              _hover={{ opacity: 0.8 }}
+              variant="primary"
               onClick={toggleEditMode}
               type={editMode ? 'button' : 'submit'}
               isLoading={editMode ? isSubmitting : false}

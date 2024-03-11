@@ -24,9 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ type }) => {
                     <Input type='text' placeholder='Search' fontSize={{ base: 'sm', md: 'inherit' }} borderRadius='8px' />
                 </InputGroup> */}
         <Button
-          bg="ui.main"
-          color="white"
-          _hover={{ opacity: 0.8 }}
+          variant="primary"
           gap={1}
           fontSize={{ base: 'sm', md: 'inherit' }}
           onClick={type === 'User' ? addUserModal.onOpen : addItemModal.onOpen}

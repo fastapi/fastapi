@@ -103,13 +103,7 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
           </ModalBody>
 
           <ModalFooter gap={3}>
-            <Button
-              bg="ui.main"
-              color="white"
-              _hover={{ opacity: 0.8 }}
-              type="submit"
-              isLoading={isSubmitting}
-            >
+            <Button variant="primary" type="submit" isLoading={isSubmitting}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

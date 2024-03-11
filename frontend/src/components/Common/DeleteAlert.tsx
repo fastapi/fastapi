@@ -89,13 +89,7 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
             </AlertDialogBody>
 
             <AlertDialogFooter gap={3}>
-              <Button
-                bg="ui.danger"
-                color="white"
-                _hover={{ opacity: 0.8 }}
-                type="submit"
-                isLoading={isSubmitting}
-              >
+              <Button variant="danger" type="submit" isLoading={isSubmitting}>
                 Delete
               </Button>
               <Button

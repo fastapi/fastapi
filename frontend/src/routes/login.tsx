@@ -93,7 +93,7 @@ function Login() {
               },
             })}
             placeholder="Email"
-            type="text"
+            type="email"
           />
           {errors.username && (
             <FormErrorMessage>{errors.username.message}</FormErrorMessage>

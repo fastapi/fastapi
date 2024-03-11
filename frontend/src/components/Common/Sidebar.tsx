@@ -23,9 +23,9 @@ import SidebarItems from './SidebarItems'
 
 const Sidebar: React.FC = () => {
   const queryClient = useQueryClient()
-  const bgColor = useColorModeValue('white', '#1a202c')
-  const textColor = useColorModeValue('gray', 'white')
-  const secBgColor = useColorModeValue('ui.secondary', '#252d3d')
+  const bgColor = useColorModeValue('ui.white', 'ui.dark')
+  const textColor = useColorModeValue('ui.light', 'ui.white')
+  const secBgColor = useColorModeValue('ui.secondary', 'ui.darkSlate')
   const currentUser = queryClient.getQueryData<UserOut>('currentUser')
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { logout } = useAuth()

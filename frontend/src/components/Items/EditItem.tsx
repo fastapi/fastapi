@@ -104,9 +104,7 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
           </ModalBody>
           <ModalFooter gap={3}>
             <Button
-              bg="ui.main"
-              color="white"
-              _hover={{ opacity: 0.8 }}
+              variant="primary"
               type="submit"
               isLoading={isSubmitting}
               isDisabled={!isDirty}
