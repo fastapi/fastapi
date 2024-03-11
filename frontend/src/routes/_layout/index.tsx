@@ -1,4 +1,4 @@
-import { Container, Text } from '@chakra-ui/react'
+import { Box, Container, Text } from '@chakra-ui/react'
 import { useQueryClient } from 'react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -15,11 +15,13 @@ function Dashboard() {
 
   return (
     <>
-      <Container maxW="full" pt={12}>
+      <Container maxW="full">
+        <Box pt={12} m={4}>
         <Text fontSize="2xl">
           Hi, {currentUser?.full_name || currentUser?.email} 👋🏼
         </Text>
         <Text>Welcome back, nice to see you again!</Text>
+        </Box>
       </Container>
     </>
   )
