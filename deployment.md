@@ -146,7 +146,7 @@ You can set several variables, like:
 
 ### Generate secret keys
 
-Some environment variables in the `.env` file have a default value of `changethis`. 
+Some environment variables in the `.env` file have a default value of `changethis`.
 
 You have to change them with a secret key, to generate secret keys you can run the following command:
 
@@ -244,7 +244,17 @@ You can read more about it in the official guide: [Configuring the self-hosted r
 
 On your repository, configure secrets for the environment variables you need, the same ones described above, including `SECRET_KEY`, etc. Follow the [official GitHub guide for setting repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
-The current Github Actions workflows expect two secrets: `DOMAIN_STAGING` and `DOMAIN_PRODUCTION`.
+The current Github Actions workflows expect these secrets:
+
+* `DOMAIN_PRODUCTION`
+* `DOMAIN_STAGING`
+* `EMAILS_FROM_EMAIL`
+* `FIRST_SUPERUSER`
+* `FIRST_SUPERUSER_PASSWORD`
+* `PGADMIN_DEFAULT_EMAIL`
+* `PGADMIN_DEFAULT_PASSWORD`
+* `POSTGRES_PASSWORD`
+* `SECRET_KEY`
 
 ## GitHub Action Deployment Workflows
 
