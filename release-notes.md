@@ -14,6 +14,7 @@
 
 ### Features
 
+* 👷 Add continuous deployment and refactors needed for it. PR [#667](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/667) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Create endpoint to show password recovery email content and update email template. PR [#664](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/664) by [@alejsdev](https://github.com/alejsdev).
 * 🎨 Format with Prettier. PR [#646](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/646) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Add tests to raise coverage to at least 90% and fix recover password logic. PR [#632](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/632) by [@estebanx64](https://github.com/estebanx64).
