@@ -55,6 +55,7 @@
 
 ### Fixes
 
+* 🐛 Set up Sentry only when used. PR [#671](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/671) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove unnecessary validation. PR [#662](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/662) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix bug when editing own user. PR [#651](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/651) by [@alejsdev](https://github.com/alejsdev).
 * 🐛  Add `onClose` to `SidebarItems`. PR [#589](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/589) by [@alejsdev](https://github.com/alejsdev).
