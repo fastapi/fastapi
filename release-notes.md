@@ -112,6 +112,7 @@
 
 ### Docs
 
+* 📝 Update frontend `README.md`. PR [#675](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/675) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update deployment docs to use a different directory for traefik-public. PR [#670](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/670) by [@tiangolo](https://github.com/tiangolo).
 * 📸 Add new screenshots . PR [#657](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/657) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Refactor README into separate README.md files for backend, frontend, deployment, development. PR [#639](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/639) by [@tiangolo](https://github.com/tiangolo).
