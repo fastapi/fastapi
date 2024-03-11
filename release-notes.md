@@ -122,6 +122,7 @@
 
 ### Internal
 
+* 👷 Tweak test GitHub Action names. PR [#672](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/672) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add `.gitattributes` file to ensure LF endings for `.sh` files. PR [#658](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/658) by [@estebanx64](https://github.com/estebanx64).
 * 🚚 Move new-frontend to frontend. PR [#652](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/652) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Add script for ESLint. PR [#650](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/650) by [@alejsdev](https://github.com/alejsdev).
