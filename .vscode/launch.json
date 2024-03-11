@@ -13,19 +13,16 @@
                 "app.main:app",
                 "--reload"
             ],
-            "cwd": "${workspaceFolder}/src/backend",
+            "cwd": "${workspaceFolder}/backend",
             "jinja": true,
-            "envFile": "${workspaceFolder}/src/.env",
-            "env": {
-                "POSTGRES_SERVER": "localhost"
-            }
+            "envFile": "${workspaceFolder}/.env",
         },
         {
             "type": "chrome",
             "request": "launch",
             "name": "Debug Frontend: Launch Chrome against http://localhost:5173",
             "url": "http://localhost:5173",
-            "webRoot": "${workspaceFolder}/src/new-frontend"
+            "webRoot": "${workspaceFolder}/frontend"
         },
     ]
 }
