@@ -109,6 +109,7 @@
 
 ### Upgrades
 
+* ⬆ Add `uvicorn[standard] to include `watchgod` and `uvloop`. PR [#438](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/438) by [@alonme](https://github.com/alonme).
 * ⬆ Upgrade code to support pydantic V2. PR [#615](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/615) by [@estebanx64](https://github.com/estebanx64).
 
 ### Docs
