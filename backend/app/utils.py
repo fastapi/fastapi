@@ -17,7 +17,7 @@ class EmailData:
     subject: str
 
 
-def render_email_template(*, template_name: str, context: dict[str, Any]):
+def render_email_template(*, template_name: str, context: dict[str, Any]) -> str:
     template_str = (Path(settings.EMAIL_TEMPLATES_DIR) / template_name).read_text()
     html_content = Template(template_str).render(context)
     return html_content
@@ -29,7 +29,7 @@ def send_email(
     subject: str = "",
     html_content: str = "",
 ) -> None:
-    assert settings.EMAILS_ENABLED, "no provided configuration for email variables"
+    assert settings.emails_enabled, "no provided configuration for email variables"
     message = emails.Message(
         subject=subject,
         html=html_content,
@@ -59,8 +59,7 @@ def generate_test_email(email_to: str) -> EmailData:
 def generate_reset_password_email(email_to: str, email: str, token: str) -> EmailData:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - Password recovery for user {email}"
-    server_host = settings.SERVER_HOST
-    link = f"{server_host}/reset-password?token={token}"
+    link = f"{settings.server_host}/reset-password?token={token}"
     html_content = render_email_template(
         template_name="reset_password.html",
         context={
@@ -79,7 +78,6 @@ def generate_new_account_email(
 ) -> EmailData:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - New account for user {username}"
-    link = settings.SERVER_HOST
     html_content = render_email_template(
         template_name="new_account.html",
         context={
@@ -87,7 +85,7 @@ def generate_new_account_email(
             "username": username,
             "password": password,
             "email": email_to,
-            "link": link,
+            "link": settings.server_host,
         },
     )
     return EmailData(html_content=html_content, subject=subject)

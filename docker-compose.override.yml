@@ -24,6 +24,8 @@ services:
       - --accesslog
       # Enable the Traefik log, for configurations and errors
       - --log
+      # Enable debug logging for local development
+      - --log.level=DEBUG
       # Enable the Dashboard and API
       - --api
       # Enable the Dashboard and API in insecure mode for local development
@@ -37,14 +39,17 @@ services:
       - traefik.http.middlewares.https-redirect.contenttype.autodetect=false
 
   db:
+    restart: "no"
     ports:
       - "5432:5432"
 
   pgadmin:
+    restart: "no"
     ports:
       - "5050:5050"
 
   queue:
+    restart: "no"
     ports:
       - "5671:5671"
       - "5672:5672"
@@ -52,16 +57,16 @@ services:
       - "15671:15671"
 
   flower:
+    restart: "no"
     ports:
       - "5555:5555"
 
   backend:
+    restart: "no"
     ports:
       - "8888:8888"
     volumes:
       - ./backend/:/app
-    environment:
-      - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: backend.dockerfile
@@ -71,11 +76,11 @@ services:
     command: /start-reload.sh
 
   celeryworker:
+    restart: "no"
     volumes:
       - ./backend/:/app
     environment:
       - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
-      - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: celeryworker.dockerfile
@@ -83,6 +88,7 @@ services:
         INSTALL_DEV: ${INSTALL_DEV-true}
 
   frontend:
+    restart: "no"
     build:
       context: ./frontend
       args:

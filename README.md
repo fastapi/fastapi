@@ -146,7 +146,6 @@ But don't worry, you can just update any of that in the `.env` files afterwards.
 
 The input variables, with their default values (some auto generated) are:
 
-- `domain`: (default: `"localhost"`) Which domain name to use for the project, by default, localhost, but you should change it later (in .env).
 - `project_name`: (default: `"FastAPI Project"`) The name of the project, shown to API users (in .env).
 - `stack_name`: (default: `"fastapi-project"`) The name of the stack used for Docker Compose labels (no spaces) (in .env).
 - `secret_key`: (default: `"changethis"`) The secret key for the project, used for security, stored in .env, you can generate one with the method above.

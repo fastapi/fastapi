@@ -42,7 +42,8 @@ def test_recovery_password(
     client: TestClient, normal_user_token_headers: dict[str, str], mocker: MockerFixture
 ) -> None:
     mocker.patch("app.utils.send_email", return_value=None)
-    mocker.patch("app.core.config.settings.EMAILS_ENABLED", True)
+    mocker.patch("app.core.config.settings.SMTP_HOST", "smtp.example.com")
+    mocker.patch("app.core.config.settings.SMTP_USER", "admin@example.com")
     email = "test@example.com"
     r = client.post(
         f"{settings.API_V1_STR}/password-recovery/{email}",
