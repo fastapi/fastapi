@@ -16,7 +16,7 @@ But you have to configure a couple things first. 🤓
 * Create a remote directory to store your code, for example:
 
 ```bash
-mkdir -p /root/code/fastapi-project/
+mkdir -p /root/code/traefik-public/
 ```
 
 ## Public Traefik
@@ -30,7 +30,7 @@ You need to do these next steps only once.
 Copy the Traefik Docker Compose file to your server, to your code directory. You could do it with `rsync`:
 
 ```bash
-rsync -a docker-compose.traefik.yml root@your-server.example.com:/root/code/fastapi-project/
+rsync -a docker-compose.traefik.yml root@your-server.example.com:/root/code/traefik-public/
 ```
 
 ### Traefik Public Network
