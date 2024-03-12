@@ -1,5 +1,7 @@
 FROM python:3.10
 
+ENV PYTHONDONTWRITEBYTECODE=1
+
 WORKDIR /app/
 
 # Install Poetry
