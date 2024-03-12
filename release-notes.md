@@ -136,6 +136,7 @@
 
 ### Internal
 
+* ⬆ Bump actions/setup-python from 4 to 5. PR [#641](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/641) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Tweak test GitHub Action names. PR [#672](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/672) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add `.gitattributes` file to ensure LF endings for `.sh` files. PR [#658](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/658) by [@estebanx64](https://github.com/estebanx64).
 * 🚚 Move new-frontend to frontend. PR [#652](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/652) by [@alejsdev](https://github.com/alejsdev).
