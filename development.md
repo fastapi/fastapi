@@ -18,7 +18,7 @@ Check all the corresponding available URLs in the section at the end.
 
 If you are running Docker in an IP address different than `127.0.0.1` (`localhost`), you will need to perform some additional steps. That will be the case if you are running a custom Virtual Machine or your Docker is located in a different machine in your network.
 
-In that case, you will need to use a fake local domain (`dev.example.com`) and make your computer think that the domain is is served by the custom IP (e.g. `192.168.99.150`).
+In that case, you will need to use a fake local domain (`dev.example.com`) and make your computer think that the domain is served by the custom IP (e.g. `192.168.99.150`).
 
 If you have a custom domain like that, you need to add it to the list in the variable `BACKEND_CORS_ORIGINS` in the `.env` file.
 
