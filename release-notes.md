@@ -17,6 +17,7 @@
 
 ### Features
 
+* ✨ Migrate from pgAdmin to Adminer. PR [#692](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/692) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Add support for setting `POSTGRES_PORT`. PR [#333](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/333) by [@uepoch](https://github.com/uepoch).
 * ⬆ Upgrade Flower version and command. PR [#447](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/447) by [@maurob](https://github.com/maurob).
 * 🎨 Improve styles. PR [#673](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/673) by [@alejsdev](https://github.com/alejsdev).
