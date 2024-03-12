@@ -7,7 +7,7 @@ import { useQueryClient } from 'react-query'
 import { UserOut } from '../../client'
 
 const items = [
-  { icon: FiHome, title: 'Dashboard', path: '/' },
+  { icon: FiHome, title: 'Home', path: '/' },
   { icon: FiBriefcase, title: 'Items', path: '/items' },
   { icon: FiSettings, title: 'User Settings', path: '/settings' },
 ]
