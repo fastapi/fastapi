@@ -18,7 +18,9 @@ class EmailData:
 
 
 def render_email_template(*, template_name: str, context: dict[str, Any]) -> str:
-    template_str = (Path(settings.EMAIL_TEMPLATES_DIR) / template_name).read_text()
+    template_str = (
+        Path(__file__).parent / "email-templates" / "build" / template_name
+    ).read_text()
     html_content = Template(template_str).render(context)
     return html_content
 

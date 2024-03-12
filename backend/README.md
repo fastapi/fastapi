@@ -67,6 +67,12 @@ Modify or add SQLModel models for data and SQL tables in `./backend/app/models.p
 
 Add and modify tasks to the Celery worker in `./backend/app/worker.py`.
 
+### VS Code
+
+There are already configurations in place to run the backend through the VS Code debugger, so that you can use breakpoints, pause and explore variables, etc.
+
+The setup is also already configured so you can run the tests through the VS Code Python tests tab.
+
 ### Docker Compose Override
 
 During development, you can change Docker Compose settings that will only affect the local development environment in the file `docker-compose.override.yml`.
