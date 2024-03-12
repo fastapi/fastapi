@@ -14,6 +14,7 @@
 
 ### Features
 
+* ✨ Add support for setting `POSTGRES_PORT`. PR [#333](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/333) by [@uepoch](https://github.com/uepoch).
 * ⬆ Upgrade Flower version and command. PR [#447](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/447) by [@maurob](https://github.com/maurob).
 * 🎨 Improve styles. PR [#673](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/673) by [@alejsdev](https://github.com/alejsdev).
 * 🎨 Update theme. PR [#666](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/666) by [@alejsdev](https://github.com/alejsdev).
