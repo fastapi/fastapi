@@ -10,7 +10,6 @@ uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
 fastapi = "^0.109.1"
 python-multipart = "^0.0.7"
 email-validator = "^2.1.0.post1"
-celery = "^5.3.5"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 tenacity = "^8.2.3"
 pydantic = ">2.0"
@@ -37,7 +36,6 @@ pre-commit = "^3.6.2"
 pytest-mock = "^3.12.0"
 types-python-jose = "^3.3.4.20240106"
 types-passlib = "^1.7.7.20240106"
-celery-types = "^0.22.0"
 
 [tool.isort]
 multi_line_output = 3

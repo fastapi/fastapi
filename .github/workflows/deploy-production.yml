@@ -22,7 +22,6 @@ jobs:
       EMAILS_FROM_EMAIL: ${{ secrets.EMAILS_FROM_EMAIL }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      FLOWER_BASIC_AUTH: ${{ secrets.FLOWER_BASIC_AUTH }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

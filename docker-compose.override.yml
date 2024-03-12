@@ -48,19 +48,6 @@ services:
     ports:
       - "8080:8080"
 
-  queue:
-    restart: "no"
-    ports:
-      - "5671:5671"
-      - "5672:5672"
-      - "15672:15672"
-      - "15671:15671"
-
-  flower:
-    restart: "no"
-    ports:
-      - "5555:5555"
-
   backend:
     restart: "no"
     ports:
@@ -69,23 +56,10 @@ services:
       - ./backend/:/app
     build:
       context: ./backend
-      dockerfile: backend.dockerfile
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
     # command: sleep infinity  # Infinite loop to keep container alive doing nothing
     command: /start-reload.sh
-
-  celeryworker:
-    restart: "no"
-    volumes:
-      - ./backend/:/app
-    environment:
-      - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
-    build:
-      context: ./backend
-      dockerfile: celeryworker.dockerfile
-      args:
-        INSTALL_DEV: ${INSTALL_DEV-true}
 
   frontend:
     restart: "no"

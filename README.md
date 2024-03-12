@@ -155,7 +155,6 @@ The input variables, with their default values (some auto generated) are:
 - `emails_from_email`: (default: `"info@example.com"`) The email account to send emails from, you can set it later in .env.
 - `postgres_password`: (default: `"changethis"`) The password for the PostgreSQL database, stored in .env, you can generate one with the method above.
 - `sentry_dsn`: (default: "") The DSN for Sentry, if you are using it, you can set it later in .env.
-- `flower_basic_auth`: (default: `"admin:changethis"`) The basic auth for Flower, you can set it later in .env.
 
 ## Release Notes
 
