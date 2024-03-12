@@ -73,6 +73,7 @@
 
 ### Refactors
 
+* ♻️ Refactor user update. PR [#689](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/689) by [@alejsdev](https://github.com/alejsdev).
 * 📌 Add Poetry lock to git. PR [#685](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/685) by [@tiangolo](https://github.com/tiangolo).
 * 🎨 Adjust color and spacing. PR [#684](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/684) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Avoid creating unnecessary *.pyc files with PYTHONDONTWRITEBYTECODE=1. PR [#677](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/677) by [@estebanx64](https://github.com/estebanx64).
