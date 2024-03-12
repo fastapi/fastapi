@@ -54,16 +54,6 @@ postgres_password:
     python -c "import secrets; print(secrets.token_urlsafe(32))"'
   default: changethis
 
-pgadmin_default_email:
-  type: str
-  help: The default user email for pgAdmin, you can set it later in .env
-  default: admin@example.com
-
-pgadmin_default_password:
-  type: str
-  help: The default user password for pgAdmin, stored in .env
-  default: changethis
-
 sentry_dsn:
   type: str
   help: The DSN for Sentry, if you are using it, you can set it later in .env

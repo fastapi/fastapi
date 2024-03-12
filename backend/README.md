@@ -21,7 +21,7 @@ Backend, JSON based web API based on OpenAPI: http://localhost/api/
 
 Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost/docs
 
-PGAdmin, PostgreSQL web administration: http://localhost:5050
+Adminer, database web administration: http://localhost:8080
 
 Flower, administration of Celery tasks: http://localhost:5555
 

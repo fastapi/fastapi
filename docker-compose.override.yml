@@ -43,10 +43,10 @@ services:
     ports:
       - "5432:5432"
 
-  pgadmin:
+  adminer:
     restart: "no"
     ports:
-      - "5050:5050"
+      - "8080:8080"
 
   queue:
     restart: "no"

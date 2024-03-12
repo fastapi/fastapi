@@ -12,7 +12,7 @@ But you have to configure a couple things first. 🤓
 
 * Have a remote server ready and available.
 * Configure the DNS records of your domain to point to the IP of the server you just created.
-* Configure a wildcard subdomain for your domain, so that you can have multiple subdomains for different services, e.g. `*.fastapi-project.example.com`. This will be useful for accessing different components, like `traefik.fastapi-project.example.com`, `pgadmin.fastapi-project.example.com`, etc. And also for `staging`, like `staging.fastapi-project.example.com`, `staging.pgadmin.fastapi-project.example.com`, etc.
+* Configure a wildcard subdomain for your domain, so that you can have multiple subdomains for different services, e.g. `*.fastapi-project.example.com`. This will be useful for accessing different components, like `traefik.fastapi-project.example.com`, `adminer.fastapi-project.example.com`, etc. And also for `staging`, like `staging.fastapi-project.example.com`, `staging.adminer.fastapi-project.example.com`, etc.
 * Install and configure [Docker](https://docs.docker.com/engine/install/) on the remote server (Docker Engine, not Docker Desktop).
 
 ## Public Traefik
@@ -141,8 +141,6 @@ You can set several variables, like:
 * `POSTGRES_PASSWORD`: The Postgres password.
 * `POSTGRES_USER`: The Postgres user, you can leave the default.
 * `POSTGRES_DB`: The database name to use for this application. You can leave the default of `app`.
-* `PGADMIN_DEFAULT_EMAIL`: The default email for pgAdmin.
-* `PGADMIN_DEFAULT_PASSWORD`: The default password for pgAdmin.
 * `SENTRY_DSN`: The DSN for Sentry, if you are using it.
 * `FLOWER_BASIC_AUTH`: The HTTP Basic Auth for Flower, like `admin:changethis`.
 
@@ -253,8 +251,6 @@ The current Github Actions workflows expect these secrets:
 * `EMAILS_FROM_EMAIL`
 * `FIRST_SUPERUSER`
 * `FIRST_SUPERUSER_PASSWORD`
-* `PGADMIN_DEFAULT_EMAIL`
-* `PGADMIN_DEFAULT_PASSWORD`
 * `POSTGRES_PASSWORD`
 * `SECRET_KEY`
 
@@ -283,7 +279,7 @@ Backend API docs: `https://fastapi-project.example.com/docs`
 
 Backend API base URL: `https://fastapi-project.example.com/api/`
 
-PGAdmin: `https://pgadmin.fastapi-project.example.com`
+Adminer: `https://adminer.fastapi-project.example.com`
 
 Flower: `https://flower.fastapi-project.example.com`
 
@@ -295,6 +291,6 @@ Backend API docs: `https://staging.fastapi-project.example.com/docs`
 
 Backend API base URL: `https://staging.fastapi-project.example.com/api/`
 
-PGAdmin: `https://staging.pgadmin.fastapi-project.example.com`
+Adminer: `https://staging.adminer.fastapi-project.example.com`
 
 Flower: `https://staging.flower.fastapi-project.example.com`

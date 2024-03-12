@@ -107,7 +107,7 @@ Automatic Interactive Docs (Swagger UI): https://localhost/docs
 
 Automatic Alternative Docs (ReDoc): https://localhost/redoc
 
-PGAdmin: http://localhost:5050
+Adminer: http://localhost:8080
 
 Flower: http://localhost:5555
 
@@ -125,7 +125,7 @@ Automatic Interactive Docs (Swagger UI): https://localhost.tiangolo.com/docs
 
 Automatic Alternative Docs (ReDoc): https://localhost.tiangolo.com/redoc
 
-PGAdmin: http://localhost.tiangolo.com:5050
+Adminer: http://localhost.tiangolo.com:8080
 
 Flower: http://localhost.tiangolo.com:5555
 

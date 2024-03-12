@@ -154,8 +154,6 @@ The input variables, with their default values (some auto generated) are:
 - `smtp_password`: (default: "") The SMTP server password to send emails, you can set it later in .env.
 - `emails_from_email`: (default: `"info@example.com"`) The email account to send emails from, you can set it later in .env.
 - `postgres_password`: (default: `"changethis"`) The password for the PostgreSQL database, stored in .env, you can generate one with the method above.
-- `pgadmin_default_user`: (default: `"admin"`) The default user for pgAdmin, you can set it later in .env.
-- `pgadmin_default_password`: (default: `"changethis"`) The default user password for pgAdmin, stored in .env.
 - `sentry_dsn`: (default: "") The DSN for Sentry, if you are using it, you can set it later in .env.
 - `flower_basic_auth`: (default: `"admin:changethis"`) The basic auth for Flower, you can set it later in .env.
 
