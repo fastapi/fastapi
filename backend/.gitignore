@@ -4,6 +4,5 @@ app.egg-info
 .mypy_cache
 .coverage
 htmlcov
-poetry.lock
 .cache
 .venv
