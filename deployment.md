@@ -137,6 +137,7 @@ You can set several variables, like:
 * `SMTP_PASSWORD`: The SMTP server password to send emails.
 * `EMAILS_FROM_EMAIL`: The email account to send emails from.
 * `POSTGRES_SERVER`: The hostname of the PostgreSQL server. You can leave the default of `db`, provided by the same Docker Compose. You normally wouldn't need to change this unless you are using a third-party provider.
+* `POSTGRES_PORT`: The port of the PostgreSQL server. You can leave the default. You normally wouldn't need to change this unless you are using a third-party provider.
 * `POSTGRES_PASSWORD`: The Postgres password.
 * `POSTGRES_USER`: The Postgres user, you can leave the default.
 * `POSTGRES_DB`: The database name to use for this application. You can leave the default of `app`.
