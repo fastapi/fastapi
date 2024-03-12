@@ -19,12 +19,12 @@ Some of the future new features and changes:
 - [x] Upgrade to the latest FastAPI.
 - [x] Migration from SQLAlchemy to SQLModel.
 - [x] Upgrade to Pydantic v2.
-- [ ] Refactor and simplification of most of the code, a lot of the complexity won't be necessary anymore.
+- [x] Refactor and simplification of most of the code, a lot of the complexity won't be necessary anymore.
 - [x] Automatic TypeScript frontend client generated from the FastAPI API (OpenAPI).
-- [ ] Migrate from Vue.js 2 to React with hooks and TypeScript.
+- [x] Migrate from Vue.js 2 to React 18 with TypeScript.
 - [x] Make the project work as is, allowing to clone and use (not requiring to generate a project with Cookiecutter or Copier)
 - [x] Migrate from Cookiecutter to Copier
-- [ ] Move from Docker Swarm Model to Docker Compose for a simple deployment.
+- [x] Move from Docker Swarm Model to Docker Compose for a simple deployment.
 - [x] GitHub Actions for CI.
 
 ---
