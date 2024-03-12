@@ -17,13 +17,18 @@ def read_items(
     Retrieve items.
     """
 
-    statment = select(func.count()).select_from(Item)
-    count = session.exec(statment).one()
-
     if current_user.is_superuser:
+        statment = select(func.count()).select_from(Item)
+        count = session.exec(statment).one()
         statement = select(Item).offset(skip).limit(limit)
         items = session.exec(statement).all()
     else:
+        statment = (
+            select(func.count())
+            .select_from(Item)
+            .where(Item.owner_id == current_user.id)
+        )
+        count = session.exec(statment).one()
         statement = (
             select(Item)
             .where(Item.owner_id == current_user.id)
