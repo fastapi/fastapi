@@ -170,7 +170,7 @@ def test_update_user_me(
     client: TestClient, normal_user_token_headers: dict[str, str], db: Session
 ) -> None:
     full_name = "Updated Name"
-    email = "updated email"
+    email = random_email()
     data = {"full_name": full_name, "email": email}
     r = client.patch(
         f"{settings.API_V1_STR}/users/me",
@@ -226,6 +226,24 @@ def test_update_password_me_incorrect_password(
     assert r.status_code == 400
     updated_user = r.json()
     assert updated_user["detail"] == "Incorrect password"
+
+
+def test_update_user_me_email_exists(
+    client: TestClient, normal_user_token_headers: dict[str, str], db: Session
+) -> None:
+    username = random_email()
+    password = random_lower_string()
+    user_in = UserCreate(email=username, password=password)
+    user = crud.create_user(session=db, user_create=user_in)
+
+    data = {"email": user.email}
+    r = client.patch(
+        f"{settings.API_V1_STR}/users/me",
+        headers=normal_user_token_headers,
+        json=data,
+    )
+    assert r.status_code == 409
+    assert r.json()["detail"] == "User with this email already exists"
 
 
 def test_update_password_me_same_password_error(
@@ -328,6 +346,29 @@ def test_update_user_not_exists(
     )
     assert r.status_code == 404
     assert r.json()["detail"] == "The user with this id does not exist in the system"
+
+
+def test_update_user_email_exists(
+    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+) -> None:
+    username = random_email()
+    password = random_lower_string()
+    user_in = UserCreate(email=username, password=password)
+    user = crud.create_user(session=db, user_create=user_in)
+
+    username2 = random_email()
+    password2 = random_lower_string()
+    user_in2 = UserCreate(email=username2, password=password2)
+    user2 = crud.create_user(session=db, user_create=user_in2)
+
+    data = {"email": user2.email}
+    r = client.patch(
+        f"{settings.API_V1_STR}/users/{user.id}",
+        headers=superuser_token_headers,
+        json=data,
+    )
+    assert r.status_code == 409
+    assert r.json()["detail"] == "User with this email already exists"
 
 
 def test_delete_user_super_user(
