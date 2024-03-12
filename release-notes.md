@@ -4,6 +4,14 @@
 
 ## 0.6.0
 
+Latest FastAPI, Pydantic, SQLModel 🚀
+
+Brand new frontend with React, TS, Vite, Chakra UI, TanStack Query/Router, generated client/SDK 🎨
+
+CI/CD - GitHub Actions 🤖
+
+Test cov > 90% ✅
+
 ### Features
 
 * ✨ Adopt SQLModel, create models, start using it. PR [#559](https://github.com/tiangolo/full-stack-fastapi-template/pull/559) by [@tiangolo](https://github.com/tiangolo).
