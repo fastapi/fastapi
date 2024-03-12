@@ -70,6 +70,7 @@
 
 ### Refactors
 
+* 👷 Avoid creating unnecessary *.pyc files with PYTHONDONTWRITEBYTECODE=1. PR [#677](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/677) by [@estebanx64](https://github.com/estebanx64).
 * 🔧 Add `SMTP_SSL` option for older SMTP servers. PR [#365](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/365) by [@Metrea](https://github.com/Metrea).
 * ♻️ Refactor logic to allow running pytest tests locally. PR [#683](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/683) by [@tiangolo](https://github.com/tiangolo).
 * ♻ Update error messages. PR [#417](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/417) by [@qu3vipon](https://github.com/qu3vipon).
