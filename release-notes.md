@@ -75,6 +75,7 @@
 
 ### Refactors
 
+* 🔒️ Ensure the default values of "changethis" are not deployed. PR [#698](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/698) by [@tiangolo](https://github.com/tiangolo).
 * ◀ Revert "📸 Rename Dashboard to Home and update screenshots". PR [#697](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/697) by [@alejsdev](https://github.com/alejsdev).
 * 📸 Rename Dashboard to Home and update screenshots. PR [#693](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/693) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fixed items count when retrieving data for all items by user. PR [#695](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/695) by [@estebanx64](https://github.com/estebanx64).
