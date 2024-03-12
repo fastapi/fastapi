@@ -74,6 +74,7 @@
 
 ### Refactors
 
+* 🔥 Remove Celery and Flower, they are currently not used nor recommended. PR [#694](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/694) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Add test for deleting user without privileges. PR [#690](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/690) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Refactor user update. PR [#689](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/689) by [@alejsdev](https://github.com/alejsdev).
 * 📌 Add Poetry lock to git. PR [#685](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/685) by [@tiangolo](https://github.com/tiangolo).
