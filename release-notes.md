@@ -69,6 +69,7 @@
 
 ### Refactors
 
+* ♻ Update error messages. PR [#417](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/417) by [@qu3vipon](https://github.com/qu3vipon).
 * 🔧 Add a default Flower password. PR [#682](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/682) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update VS Code debug config. PR [#676](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/676) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor code structure for tests. PR [#674](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/674) by [@tiangolo](https://github.com/tiangolo).
