@@ -48,7 +48,7 @@ services:
     restart: always
 
   flower:
-    image: mher/flower:0.9.7
+    image: mher/flower:2.0
     restart: always
     networks:
       - traefik-public
@@ -58,7 +58,9 @@ services:
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
     command:
+      - celery
       - "--broker=amqp://guest@queue:5672//"
+      - flower
       # For the "Broker" tab to work in the flower UI, uncomment the following command argument,
       # and change the queue service's image as well
       # - "--broker_api=http://guest:guest@queue:15672/api//"
