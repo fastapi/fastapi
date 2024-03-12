@@ -63,6 +63,7 @@
 
 ### Fixes
 
+* 🐛 Fix allowing a user to update the email to the same email they already have. PR [#696](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/696) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Set up Sentry only when used. PR [#671](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/671) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove unnecessary validation. PR [#662](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/662) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix bug when editing own user. PR [#651](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/651) by [@alejsdev](https://github.com/alejsdev).
