@@ -74,6 +74,7 @@
 
 ### Refactors
 
+* 📸 Rename Dashboard to Home and update screenshots. PR [#693](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/693) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fixed items count when retrieving data for all items by user. PR [#695](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/695) by [@estebanx64](https://github.com/estebanx64).
 * 🔥 Remove Celery and Flower, they are currently not used nor recommended. PR [#694](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/694) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Add test for deleting user without privileges. PR [#690](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/690) by [@alejsdev](https://github.com/alejsdev).
