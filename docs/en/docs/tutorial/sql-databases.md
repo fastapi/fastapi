@@ -72,18 +72,32 @@ In a similar way you could use any other ORM.
 
 For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
 
-```
-.
-└── sql_app
-    ├── __init__.py
-    ├── crud.py
-    ├── database.py
-    ├── main.py
-    ├── models.py
-    └── schemas.py
-```
+=== "Python 3.11"
 
-The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
+    ```
+    .
+    └── sql_app
+        ├── crud.py
+        ├── database.py
+        ├── main.py
+        ├── models.py
+        └── schemas.py
+    ```
+
+=== "Python 3.8+"
+
+    ```
+    .
+    └── sql_app
+        ├── __init__.py
+        ├── crud.py
+        ├── database.py
+        ├── main.py
+        ├── models.py
+        └── schemas.py
+    ```
+
+    The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
 
 Now let's see what each file/module does.
 
@@ -107,15 +121,31 @@ Let's refer to the file `sql_app/database.py`.
 
 ### Import the SQLAlchemy parts
 
-```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="1-2"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1-3"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ### Create a database URL for SQLAlchemy
 
-```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="4-5"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="5-6"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
 
@@ -141,9 +171,17 @@ The first step is to create a SQLAlchemy "engine".
 
 We will later use this `engine` in other places.
 
-```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="7-9"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="8-10"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 #### Note
 
@@ -177,9 +215,17 @@ We will use `Session` (the one imported from SQLAlchemy) later.
 
 To create the `SessionLocal` class, use the function `sessionmaker`:
 
-```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ### Create a `Base` class
 
@@ -187,9 +233,17 @@ Now we will use the function `declarative_base()` that returns a class.
 
 Later we will inherit from this class to create each of the database models or classes (the ORM models):
 
-```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/database.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/sql_databases/sql_app/database.py!}
+    ```
 
 ## Create the database models
 
@@ -210,9 +264,17 @@ Create classes that inherit from it.
 
 These classes are the SQLAlchemy models.
 
-```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="4  7-8  18-19"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/models.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="4  7-8  18-19"
+    {!> ../../../docs_src/sql_databases/sql_app/models.py!}
+    ```
 
 The `__tablename__` attribute tells SQLAlchemy the name of the table to use in the database for each of these models.
 
@@ -226,9 +288,17 @@ We use `Column` from SQLAlchemy as the default value.
 
 And we pass a SQLAlchemy class "type", as `Integer`, `String`, and `Boolean`, that defines the type in the database, as an argument.
 
-```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="1  10-13  21-24"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/models.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1  10-13  21-24"
+    {!> ../../../docs_src/sql_databases/sql_app/models.py!}
+    ```
 
 ### Create the relationships
 
@@ -238,9 +308,17 @@ For this, we use `relationship` provided by SQLAlchemy ORM.
 
 This will become, more or less, a "magic" attribute that will contain the values from other tables related to this one.
 
-```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="2  15  26"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/models.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="2  15  26"
+    {!> ../../../docs_src/sql_databases/sql_app/models.py!}
+    ```
 
 When accessing the attribute `items` in a `User`, as in `my_user.items`, it will have a list of `Item` SQLAlchemy models (from the `items` table) that have a foreign key pointing to this record in the `users` table.
 
@@ -268,6 +346,12 @@ And create an `ItemCreate` and `UserCreate` that inherit from them (so they will
 So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
+
+=== "Python 3.11"
+
+    ```Python hl_lines="1  4-6  9-10  19-20  23-24"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
 
 === "Python 3.10+"
 
@@ -313,6 +397,12 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
+=== "Python 3.11"
+
+    ```Python hl_lines="13-15  27-30"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
+
 === "Python 3.10+"
 
     ```Python hl_lines="13-15  29-32"
@@ -334,13 +424,26 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 !!! tip
     Notice that the `User`, the Pydantic *model* that will be used when reading a user (returning it from the API) doesn't include the `password`.
 
-### Use Pydantic's `orm_mode`
+### Arbitrary class instances
 
-Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
+=== "Python 3.11"
 
-This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+=== "Python 3.8+"
 
-In the `Config` class, set the attribute `orm_mode = True`.
+    Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
+
+    This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+
+    In the `Config` class, set the attribute `orm_mode = True`.
+
+!!! tip
+    Previous Pydantic versions used and internal `Config` class. Current versions use an attribute, and require `ConfigDict` to be imported.
+
+=== "Python 3.11"
+
+    ```Python hl_lines="13  16 27  31"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
 
 === "Python 3.10+"
 
@@ -429,9 +532,17 @@ Create utility functions to:
 * Read multiple users.
 * Read multiple items.
 
-```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/crud.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
+    {!> ../../../docs_src/sql_databases/sql_app/crud.py!}
+    ```
 
 !!! tip
     By creating functions that are only dedicated to interacting with the database (get a user or an item) independent of your *path operation function*, you can more easily reuse them in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for them.
@@ -447,9 +558,17 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
+=== "Python 3.11"
+
+    ```Python hl_lines="18-24  31-36"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/crud.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="18-24  31-36"
+    {!> ../../../docs_src/sql_databases/sql_app/crud.py!}
+    ```
 
 !!! info
     In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
@@ -493,6 +612,12 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 In a very simplistic way create the database tables:
 
+=== "Python 3.11"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/main.py!}
+    ```
+
 === "Python 3.9+"
 
     ```Python hl_lines="7"
@@ -527,13 +652,19 @@ For that, we will create a new dependency with `yield`, as explained before in t
 
 Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
-=== "Python 3.9+"
+=== "Python 3.11"
+
+    ```Python hl_lines="13-18"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/main.py!}
+    ```
+
+=== "Python 3.9"
 
     ```Python hl_lines="13-18"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.8+"
+=== "Python 3.8"
 
     ```Python hl_lines="15-20"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -551,6 +682,12 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
 And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
 
 This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
+
+=== "Python 3.11"
+
+    ```Python hl_lines="22  30  36  45  51"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/main.py!}
+    ```
 
 === "Python 3.9+"
 
@@ -572,6 +709,12 @@ This will then give us better editor support inside the *path operation function
 ### Create your **FastAPI** *path operations*
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
+
+=== "Python 3.11"
+
+    ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/main.py!}
+    ```
 
 === "Python 3.9+"
 
@@ -650,7 +793,11 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 `sql_app` should have the following files:
 
-* `sql_app/__init__.py`: is an empty file.
+=== "Python 3.11"
+
+=== "Python 3.8+"
+
+    * `sql_app/__init__.py`: is an empty file.
 
 * `sql_app/database.py`:
 
@@ -660,11 +807,25 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 * `sql_app/models.py`:
 
-```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+=== "Python 3.11"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app_py311/models.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app/models.py!}
+    ```
 
 * `sql_app/schemas.py`:
+
+=== "Python 3.11"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app_py311/schemas.py!}
+    ```
 
 === "Python 3.10+"
 
@@ -686,11 +847,25 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 
 * `sql_app/crud.py`:
 
-```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
+=== "Python 3.11"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app_py311/crud.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app/crud.py!}
+    ```
 
 * `sql_app/main.py`:
+
+=== "Python 3.11"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app_py311/main.py!}
+    ```
 
 === "Python 3.9+"
 
@@ -750,6 +925,12 @@ A "middleware" is basically a function that is always executed for each request,
 ### Create a middleware
 
 The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
+
+=== "Python 3.11"
+
+    ```Python hl_lines="12-20"
+    {!> ../../../docs_src/sql_databases/sql_app_py311/alt_main.py!}
+    ```
 
 === "Python 3.9+"
 
