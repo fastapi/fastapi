@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* Bump fastapi from 0.104.1 to 0.109.1 in /backend. PR [#687](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/687) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * Bump follow-redirects from 1.15.3 to 1.15.5 in /frontend. PR [#654](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/654) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * Bump vite from 5.0.4 to 5.0.12 in /frontend. PR [#653](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/653) by [@dependabot[bot]](https://github.com/apps/dependabot).
 *  🏷️ Add mypy to the GitHub Action for tests and fixed types in the whole project. PR [#655](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/655) by [@estebanx64](https://github.com/estebanx64).
