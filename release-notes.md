@@ -114,6 +114,7 @@
 
 ### Docs
 
+* 📝 Add docs for wildcard domains. PR [#681](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/681) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add the required GitHub Actions secrets to docs. PR [#679](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/679) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update `README.md` and `deployment.md`. PR [#678](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/678) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update frontend `README.md`. PR [#675](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/675) by [@alejsdev](https://github.com/alejsdev).
