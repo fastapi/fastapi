@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 338.66665 169.33332"
+   height="169.33333mm"
+   width="338.66666mm"
+   sodipodi:docname="github-social-preview.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.90703128"
+     inkscape:cx="761.82599"
+     inkscape:cy="378.708"
+     inkscape:window-width="3440"
+     inkscape:window-height="1403"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+     id="rect853"
+     width="338.66666"
+     height="169.33333"
+     x="-1.0833333e-05"
+     y="0.71613133" />
+  <g
+     id="g1">
+    <g
+       id="g2106"
+       transform="matrix(0.70774989,0,0,0.70546111,-616.80273,204.04667)">
+      <circle
+         style="fill:#009688;fill-opacity:0.980392;stroke:none;stroke-width:0.141404;stop-color:#000000"
+         id="path875-5-9-7-3-2-3-9-9-8-0-0-5-87-7"
+         cx="964.56165"
+         cy="-169.22266"
+         r="33.234192" />
+      <path
+         id="rect1249-6-3-4-4-3-6-6-1-2"
+         style="fill:#ffffff;fill-opacity:0.980392;stroke:none;stroke-width:0.146895;stop-color:#000000"
+         d="m 962.2685,-187.40837 -6.64403,14.80375 -3.03599,6.76393 -6.64456,14.80375 30.59142,-21.56768 h -14.35312 l 20.99715,-14.80375 z" />
+    </g>
+    <text
+       id="text979-3"
+       y="104.76513"
+       x="102.9338"
+       style="font-style:normal;font-weight:normal;font-size:58.4257px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:1.46064"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:1.46064"
+         y="104.76513"
+         x="102.9338"
+         id="tspan977-7">FastAPI</tspan></text>
+  </g>
+  <text
+     id="text979-3-9"
+     y="41.659103"
+     x="111.77306"
+     style="font-style:normal;font-weight:normal;font-size:26.2953px;line-height:1.05;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:0.657384"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:1.05;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:0.657384"
+       y="41.659103"
+       x="111.77306"
+       id="tspan977-7-6">Full Stack</tspan></text>
+  <text
+     id="text979-3-9-3"
+     y="141.81412"
+     x="113.75835"
+     style="font-style:normal;font-weight:normal;font-size:26.2953px;line-height:1.05;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:0.657384"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:1.05;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:0.657384"
+       y="141.81412"
+       x="113.75835"
+       id="tspan977-7-6-2">Template</tspan></text>
+</svg>
