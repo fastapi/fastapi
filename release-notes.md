@@ -122,6 +122,7 @@
 
 ### Upgrades
 
+* Bump python-multipart from 0.0.6 to 0.0.7 in /backend. PR [#686](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/686) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Add `uvicorn[standard] to include `watchgod` and `uvloop`. PR [#438](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/438) by [@alonme](https://github.com/alonme).
 * ⬆ Upgrade code to support pydantic V2. PR [#615](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/615) by [@estebanx64](https://github.com/estebanx64).
 
