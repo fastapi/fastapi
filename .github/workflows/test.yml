@@ -25,7 +25,9 @@ jobs:
       - run: docker compose build
       - run: docker compose down -v --remove-orphans
       - run: docker compose up -d
-      - name: Docker Compose run tests
+      - name: Lint
+        run: docker compose exec -T backend bash /app/scripts/lint.sh
+      - name: Run tests
         run: docker compose exec -T backend bash /app/tests-start.sh "Coverage for ${{ github.sha }}"
       - run: docker compose down -v --remove-orphans
       - name: Store coverage files
