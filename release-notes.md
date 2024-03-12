@@ -130,6 +130,7 @@
 
 ### Docs
 
+* 📝 Update `README.md`. PR [#691](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/691) by [@alejsdev](https://github.com/alejsdev).
 * ✏ Fix typo in `development.md`. PR [#309](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/309) by [@graue70](https://github.com/graue70).
 * 📝 Add docs for wildcard domains. PR [#681](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/681) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add the required GitHub Actions secrets to docs. PR [#679](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/679) by [@tiangolo](https://github.com/tiangolo).
