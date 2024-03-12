@@ -56,7 +56,7 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> Any:
     if user:
         raise HTTPException(
             status_code=400,
-            detail="The user with this username already exists in the system.",
+            detail="The user with this email already exists in the system.",
         )
 
     user = crud.create_user(session=session, user_create=user_in)
@@ -130,7 +130,7 @@ def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> Any:
     if user:
         raise HTTPException(
             status_code=400,
-            detail="The user with this username already exists in the system",
+            detail="The user with this email already exists in the system",
         )
     user_create = UserCreate.from_orm(user_in)
     user = crud.create_user(session=session, user_create=user_create)
@@ -174,7 +174,7 @@ def update_user(
     if db_user is None:
         raise HTTPException(
             status_code=404,
-            detail="The user with this username does not exist in the system",
+            detail="The user with this id does not exist in the system",
         )
     return db_user
 

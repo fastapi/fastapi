@@ -295,9 +295,7 @@ def test_create_user_open_already_exists_error(
         json=data,
     )
     assert r.status_code == 400
-    assert (
-        r.json()["detail"] == "The user with this username already exists in the system"
-    )
+    assert r.json()["detail"] == "The user with this email already exists in the system"
 
 
 def test_update_user(
@@ -329,9 +327,7 @@ def test_update_user_not_exists(
         json=data,
     )
     assert r.status_code == 404
-    assert (
-        r.json()["detail"] == "The user with this username does not exist in the system"
-    )
+    assert r.json()["detail"] == "The user with this id does not exist in the system"
 
 
 def test_delete_user_super_user(
