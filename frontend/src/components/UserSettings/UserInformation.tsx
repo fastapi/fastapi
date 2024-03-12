@@ -90,7 +90,11 @@ const UserInformation: React.FC = () => {
                 size="md"
               />
             ) : (
-              <Text size="md" py={2}>
+              <Text
+                size="md"
+                py={2}
+                color={!currentUser?.full_name ? 'gray.400' : 'inherit'}
+              >
                 {currentUser?.full_name || 'N/A'}
               </Text>
             )}
