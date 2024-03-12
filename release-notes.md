@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.6.0
+
 ### Features
 
 * ✨ Adopt SQLModel, create models, start using it. PR [#559](https://github.com/tiangolo/full-stack-fastapi-template/pull/559) by [@tiangolo](https://github.com/tiangolo).
