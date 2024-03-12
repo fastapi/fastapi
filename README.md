@@ -86,7 +86,7 @@ Make sure you at least change the value for `SECRET_KEY` in the main `.env` file
 
 ### Generate secret keys
 
-Some environment variables in the `.env` file have a default value of `changethis`. 
+Some environment variables in the `.env` file have a default value of `changethis`.
 
 You have to change them with a secret key, to generate secret keys you can run the following command:
 
@@ -157,6 +157,7 @@ The input variables, with their default values (some auto generated) are:
 - `pgadmin_default_user`: (default: `"admin"`) The default user for pgAdmin, you can set it later in .env.
 - `pgadmin_default_password`: (default: `"changethis"`) The default user password for pgAdmin, stored in .env.
 - `sentry_dsn`: (default: "") The DSN for Sentry, if you are using it, you can set it later in .env.
+- `flower_basic_auth`: (default: `"admin:changethis"`) The basic auth for Flower, you can set it later in .env.
 
 ## Release Notes
 

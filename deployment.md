@@ -143,7 +143,7 @@ You can set several variables, like:
 * `PGADMIN_DEFAULT_EMAIL`: The default email for pgAdmin.
 * `PGADMIN_DEFAULT_PASSWORD`: The default password for pgAdmin.
 * `SENTRY_DSN`: The DSN for Sentry, if you are using it.
-* `FLOWER_BASIC_AUTH`: The HTTP Basic Auth for Flower.
+* `FLOWER_BASIC_AUTH`: The HTTP Basic Auth for Flower, like `admin:changethis`.
 
 ### Generate secret keys
 
