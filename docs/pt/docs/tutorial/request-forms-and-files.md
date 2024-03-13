@@ -3,7 +3,7 @@
 Você pode definir arquivos e campos de formulário ao mesmo tempo usando `File` e `Form`.
 
 !!! info "Informação"
-    Para receber arquivos carregados e/ou dados de formulário, primeiro instale <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Para receber arquivos carregados e/ou dados de formulário, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     Por exemplo: `pip install python-multipart`.
 
