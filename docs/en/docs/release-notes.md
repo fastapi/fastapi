@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update `python-multipart` GitHub link in all docs from `https://andrew-d.github.io/python-multipart/` to `https://github.com/Kludex/python-multipart`. PR [#11239](https://github.com/tiangolo/fastapi/pull/11239) by [@joshjhans](https://github.com/joshjhans).
+
 ### Translations
 
 * 🌐 Update Chinese translation for `docs/zh/docs/contributing.md`. PR [#10887](https://github.com/tiangolo/fastapi/pull/10887) by [@Aruelius](https://github.com/Aruelius).
