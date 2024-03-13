@@ -4,6 +4,7 @@
 
 ### Refactors
 
+* 🛠️ Minor changes in frontend. PR [#715](https://github.com/tiangolo/full-stack-fastapi-template/pull/715) by [@alejsdev](https://github.com/alejsdev).
 * ♻ Update Docker image to prevent errors in M1 Macs. PR [#710](https://github.com/tiangolo/full-stack-fastapi-template/pull/710) by [@dudil](https://github.com/dudil).
 * ✏ Fix typo in variable names in `backend/app/api/routes/items.py` and `backend/app/api/routes/users.py`. PR [#711](https://github.com/tiangolo/full-stack-fastapi-template/pull/711) by [@disrupted](https://github.com/disrupted).
 
