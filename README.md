@@ -43,7 +43,7 @@
 
 [![API docs](img/dashboard-user-settings.png)](https://github.com/tiangolo/full-stack-fastapi-template)
 
-### Interactive API documentation
+### Interactive API Documentation
 
 [![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-template)
 
@@ -51,7 +51,7 @@
 
 [![API docs](img/dashboard-dark.png)](https://github.com/tiangolo/full-stack-fastapi-template)
 
-## How to use it
+## How To Use It
 
 You can **just fork or clone** this repository and use it as is.
 
@@ -67,7 +67,7 @@ Before deploying it, make sure you change at least the values for:
 - `FIRST_SUPERUSER_PASSWORD`
 - `POSTGRES_PASSWORD`
 
-### Generate secret keys
+### Generate Secret Keys
 
 Some environment variables in the `.env` file have a default value of `changethis`.
 
@@ -79,7 +79,7 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 
 Copy the content and use that as password / secret key. And run that again to generate another secure key.
 
-## How to use it - alternative with Copier
+## How To Use It - Alternative With Copier
 
 This repository also supports generating a new project using [Copier](https://copier.readthedocs.io).
 
@@ -101,7 +101,7 @@ pipx install copier
 
 **Note**: If you have `pipx`, installing copier is optional, you could run it directly.
 
-### Generate a Project with Copier
+### Generate a Project With Copier
 
 Decide a name for your new project's directory, you will use it below. For example, `my-awesome-project`.
 
@@ -119,7 +119,7 @@ pipx run copier copy https://github.com/tiangolo/full-stack-fastapi-template my-
 
 **Note** the `--trust` option is necessary to be able to execute a [post-creation script](https://github.com/tiangolo/full-stack-fastapi-template/blob/master/.copier/update_dotenv.py) that updates your `.env` files.
 
-### Input variables
+### Input Variables
 
 Copier will ask you for some data, you might want to have at hand before generating the project.
 
