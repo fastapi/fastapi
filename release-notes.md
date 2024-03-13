@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+* 📝 Update `README.md`. PR [#716](https://github.com/tiangolo/full-stack-fastapi-template/pull/716) by [@alejsdev](https://github.com/alejsdev).
+
 ### Refactors
 
 * 🛠️ Minor changes in frontend. PR [#715](https://github.com/tiangolo/full-stack-fastapi-template/pull/715) by [@alejsdev](https://github.com/alejsdev).
