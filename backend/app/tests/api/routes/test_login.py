@@ -1,5 +1,6 @@
+from unittest.mock import patch
+
 from fastapi.testclient import TestClient
-from pytest_mock import MockerFixture
 
 from app.core.config import settings
 from app.utils import generate_password_reset_token
@@ -39,18 +40,18 @@ def test_use_access_token(
 
 
 def test_recovery_password(
-    client: TestClient, normal_user_token_headers: dict[str, str], mocker: MockerFixture
+    client: TestClient, normal_user_token_headers: dict[str, str]
 ) -> None:
-    mocker.patch("app.utils.send_email", return_value=None)
-    mocker.patch("app.core.config.settings.SMTP_HOST", "smtp.example.com")
-    mocker.patch("app.core.config.settings.SMTP_USER", "admin@example.com")
-    email = "test@example.com"
-    r = client.post(
-        f"{settings.API_V1_STR}/password-recovery/{email}",
-        headers=normal_user_token_headers,
-    )
-    assert r.status_code == 200
-    assert r.json() == {"message": "Password recovery email sent"}
+    with patch("app.core.config.settings.SMTP_HOST", "smtp.example.com"), patch(
+        "app.core.config.settings.SMTP_USER", "admin@example.com"
+    ):
+        email = "test@example.com"
+        r = client.post(
+            f"{settings.API_V1_STR}/password-recovery/{email}",
+            headers=normal_user_token_headers,
+        )
+        assert r.status_code == 200
+        assert r.json() == {"message": "Password recovery email sent"}
 
 
 def test_recovery_password_user_not_exits(

@@ -1,5 +1,6 @@
+from unittest.mock import patch
+
 from fastapi.testclient import TestClient
-from pytest_mock import MockerFixture
 from sqlmodel import Session
 
 from app import crud
@@ -31,27 +32,24 @@ def test_get_users_normal_user_me(
 
 
 def test_create_user_new_email(
-    client: TestClient,
-    superuser_token_headers: dict[str, str],
-    db: Session,
-    mocker: MockerFixture,
+    client: TestClient, superuser_token_headers: dict[str, str], db: Session
 ) -> None:
-    mocker.patch("app.utils.send_email")
-    mocker.patch("app.core.config.settings.SMTP_HOST", "smtp.example.com")
-    mocker.patch("app.core.config.settings.SMTP_USER", "admin@example.com")
-    username = random_email()
-    password = random_lower_string()
-    data = {"email": username, "password": password}
-    r = client.post(
-        f"{settings.API_V1_STR}/users/",
-        headers=superuser_token_headers,
-        json=data,
-    )
-    assert 200 <= r.status_code < 300
-    created_user = r.json()
-    user = crud.get_user_by_email(session=db, email=username)
-    assert user
-    assert user.email == created_user["email"]
+    with patch("app.utils.send_email", return_value=None), patch(
+        "app.core.config.settings.SMTP_HOST", "smtp.example.com"
+    ), patch("app.core.config.settings.SMTP_USER", "admin@example.com"):
+        username = random_email()
+        password = random_lower_string()
+        data = {"email": username, "password": password}
+        r = client.post(
+            f"{settings.API_V1_STR}/users/",
+            headers=superuser_token_headers,
+            json=data,
+        )
+        assert 200 <= r.status_code < 300
+        created_user = r.json()
+        user = crud.get_user_by_email(session=db, email=username)
+        assert user
+        assert user.email == created_user["email"]
 
 
 def test_get_existing_user(
@@ -265,55 +263,56 @@ def test_update_password_me_same_password_error(
     )
 
 
-def test_create_user_open(client: TestClient, mocker: MockerFixture) -> None:
-    mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True)
-    username = random_email()
-    password = random_lower_string()
-    full_name = random_lower_string()
-    data = {"email": username, "password": password, "full_name": full_name}
-    r = client.post(
-        f"{settings.API_V1_STR}/users/open",
-        json=data,
-    )
-    assert r.status_code == 200
-    created_user = r.json()
-    assert created_user["email"] == username
-    assert created_user["full_name"] == full_name
+def test_create_user_open(client: TestClient) -> None:
+    with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True):
+        username = random_email()
+        password = random_lower_string()
+        full_name = random_lower_string()
+        data = {"email": username, "password": password, "full_name": full_name}
+        r = client.post(
+            f"{settings.API_V1_STR}/users/open",
+            json=data,
+        )
+        assert r.status_code == 200
+        created_user = r.json()
+        assert created_user["email"] == username
+        assert created_user["full_name"] == full_name
 
 
-def test_create_user_open_forbidden_error(
-    client: TestClient, mocker: MockerFixture
-) -> None:
-    mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", False)
-    username = random_email()
-    password = random_lower_string()
-    full_name = random_lower_string()
-    data = {"email": username, "password": password, "full_name": full_name}
-    r = client.post(
-        f"{settings.API_V1_STR}/users/open",
-        json=data,
-    )
-    assert r.status_code == 403
-    assert r.json()["detail"] == "Open user registration is forbidden on this server"
+def test_create_user_open_forbidden_error(client: TestClient) -> None:
+    with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", False):
+        username = random_email()
+        password = random_lower_string()
+        full_name = random_lower_string()
+        data = {"email": username, "password": password, "full_name": full_name}
+        r = client.post(
+            f"{settings.API_V1_STR}/users/open",
+            json=data,
+        )
+        assert r.status_code == 403
+        assert (
+            r.json()["detail"] == "Open user registration is forbidden on this server"
+        )
 
 
-def test_create_user_open_already_exists_error(
-    client: TestClient, mocker: MockerFixture
-) -> None:
-    mocker.patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True)
-    password = random_lower_string()
-    full_name = random_lower_string()
-    data = {
-        "email": settings.FIRST_SUPERUSER,
-        "password": password,
-        "full_name": full_name,
-    }
-    r = client.post(
-        f"{settings.API_V1_STR}/users/open",
-        json=data,
-    )
-    assert r.status_code == 400
-    assert r.json()["detail"] == "The user with this email already exists in the system"
+def test_create_user_open_already_exists_error(client: TestClient) -> None:
+    with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True):
+        password = random_lower_string()
+        full_name = random_lower_string()
+        data = {
+            "email": settings.FIRST_SUPERUSER,
+            "password": password,
+            "full_name": full_name,
+        }
+        r = client.post(
+            f"{settings.API_V1_STR}/users/open",
+            json=data,
+        )
+        assert r.status_code == 400
+        assert (
+            r.json()["detail"]
+            == "The user with this email already exists in the system"
+        )
 
 
 def test_update_user(

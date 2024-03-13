@@ -29,13 +29,12 @@ sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
-pytest-cov = "^4.1.0"
 mypy = "^1.8.0"
 ruff = "^0.2.2"
 pre-commit = "^3.6.2"
-pytest-mock = "^3.12.0"
 types-python-jose = "^3.3.4.20240106"
 types-passlib = "^1.7.7.20240106"
+coverage = "^7.4.3"
 
 [tool.isort]
 multi_line_output = 3
