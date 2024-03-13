@@ -43,13 +43,13 @@
 
 [![API docs](img/dashboard-user-settings.png)](https://github.com/tiangolo/full-stack-fastapi-template)
 
-### Interactive API Documentation
-
-[![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-template)
-
 ### Dashboard - Dark Mode
 
 [![API docs](img/dashboard-dark.png)](https://github.com/tiangolo/full-stack-fastapi-template)
+
+### Interactive API Documentation
+
+[![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-template)
 
 ## How To Use It
 
