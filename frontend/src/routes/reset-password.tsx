@@ -50,8 +50,9 @@ function ResetPassword() {
 
   const resetPassword = async (data: NewPassword) => {
     const token = new URLSearchParams(window.location.search).get('token')
+    if (!token) return
     await LoginService.resetPassword({
-      requestBody: { new_password: data.new_password, token: token! },
+      requestBody: { new_password: data.new_password, token: token },
     })
   }
 
@@ -62,7 +63,7 @@ function ResetPassword() {
       navigate({ to: '/login' })
     },
     onError: (err: ApiError) => {
-      const errDetail = err.body.detail
+      const errDetail = err.body?.detail
       showToast('Something went wrong.', `${errDetail}`, 'error')
     },
   })

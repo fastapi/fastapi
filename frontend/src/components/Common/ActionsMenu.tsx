@@ -33,7 +33,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, value, disabled }) => {
           as={Button}
           rightIcon={<BsThreeDotsVertical />}
           variant="unstyled"
-        ></MenuButton>
+        />
         <MenuList>
           <MenuItem
             onClick={editUserModal.onOpen}

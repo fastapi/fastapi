@@ -44,7 +44,7 @@ const ChangePassword: React.FC = () => {
       reset()
     },
     onError: (err: ApiError) => {
-      const errDetail = err.body.detail
+      const errDetail = err.body?.detail
       showToast('Something went wrong.', `${errDetail}`, 'error')
     },
   })

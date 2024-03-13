@@ -57,7 +57,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
       onClose()
     },
     onError: (err: ApiError) => {
-      const errDetail = err.body.detail
+      const errDetail = err.body?.detail
       showToast('Something went wrong.', `${errDetail}`, 'error')
     },
     onSettled: () => {
@@ -67,7 +67,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
 
   const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
     if (data.password === '') {
-      delete data.password
+      data.password = undefined
     }
     mutation.mutate(data)
   }

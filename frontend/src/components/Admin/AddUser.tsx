@@ -64,7 +64,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
       onClose()
     },
     onError: (err: ApiError) => {
-      const errDetail = err.body.detail
+      const errDetail = err.body?.detail
       showToast('Something went wrong.', `${errDetail}`, 'error')
     },
     onSettled: () => {
