@@ -4,6 +4,7 @@
 
 ### Docs
 
+* ✏ Update header titles for consistency. PR [#708](https://github.com/tiangolo/full-stack-fastapi-template/pull/708) by [@codesmith-emmy](https://github.com/codesmith-emmy).
 * 📝 Update `README.md`, dark mode screenshot position. PR [#706](https://github.com/tiangolo/full-stack-fastapi-template/pull/706) by [@alejsdev](https://github.com/alejsdev).
 
 ## 0.6.0
