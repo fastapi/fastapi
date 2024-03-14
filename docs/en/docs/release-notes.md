@@ -25,6 +25,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People. PR [#11228](https://github.com/tiangolo/fastapi/pull/11228) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove Jina AI QA Bot from the docs. PR [#11268](https://github.com/tiangolo/fastapi/pull/11268) by [@nan-wang](https://github.com/nan-wang).
 * 🔧 Update sponsors, remove Jina, remove Powens, move TestDriven.io. PR [#11213](https://github.com/tiangolo/fastapi/pull/11213) by [@tiangolo](https://github.com/tiangolo).
 
