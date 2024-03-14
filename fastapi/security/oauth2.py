@@ -441,7 +441,7 @@ class OAuth2PasswordBearer(OAuth2):
             bool,
             Doc(
                 """
-                By default, if no HTTP Auhtorization header is provided, required for
+                By default, if no HTTP Authorization header is provided, required for
                 OAuth2 authentication, it will automatically cancel the request and
                 send the client an error.
 
@@ -543,7 +543,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             bool,
             Doc(
                 """
-                By default, if no HTTP Auhtorization header is provided, required for
+                By default, if no HTTP Authorization header is provided, required for
                 OAuth2 authentication, it will automatically cancel the request and
                 send the client an error.
 
