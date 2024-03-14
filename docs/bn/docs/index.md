@@ -446,7 +446,7 @@ Pydantic দ্বারা ব্যবহৃত:
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - আপনি যদি `TestClient` ব্যবহার করতে চান তাহলে আবশ্যক।
 - <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - আপনি যদি প্রদত্ত টেমপ্লেট রূপরেখা ব্যবহার করতে চান তাহলে প্রয়োজন।
-- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সহায়তা করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সহায়তা করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` সহায়তার জন্য প্রয়োজন।
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - স্টারলেটের SchemaGenerator সাপোর্ট এর জন্য প্রয়োজন (আপনার সম্ভাবত FastAPI প্রয়োজন নেই)।
 - <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` সহায়তার জন্য প্রয়োজন।

@@ -7,8 +7,19 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix typos in docstrings. PR [#11295](https://github.com/tiangolo/fastapi/pull/11295) by [@davidhuser](https://github.com/davidhuser).
+* 🛠️ Improve Node.js script in docs to generate TypeScript clients. PR [#11293](https://github.com/tiangolo/fastapi/pull/11293) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Update examples for tests to replace "inexistent" for "nonexistent". PR [#11220](https://github.com/tiangolo/fastapi/pull/11220) by [@Homesteady](https://github.com/Homesteady).
+* 📝 Update `python-multipart` GitHub link in all docs from `https://andrew-d.github.io/python-multipart/` to `https://github.com/Kludex/python-multipart`. PR [#11239](https://github.com/tiangolo/fastapi/pull/11239) by [@joshjhans](https://github.com/joshjhans).
+
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/index.md`. PR [#9613](https://github.com/tiangolo/fastapi/pull/9613) by [@ElliottLarsen](https://github.com/ElliottLarsen).
+* 🌐 Add German translation for `docs/de/docs/how-to/extending-openapi.md`. PR [#10794](https://github.com/tiangolo/fastapi/pull/10794) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/metadata.md`. PR [#11286](https://github.com/tiangolo/fastapi/pull/11286) by [@jackleeio](https://github.com/jackleeio).
+* 🌐 Update Chinese translation for `docs/zh/docs/contributing.md`. PR [#10887](https://github.com/tiangolo/fastapi/pull/10887) by [@Aruelius](https://github.com/Aruelius).
 * 🌐 Add Azerbaijani translation for `docs/az/docs/fastapi-people.md`. PR [#11195](https://github.com/tiangolo/fastapi/pull/11195) by [@vusallyv](https://github.com/vusallyv).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/dependencies/index.md`. PR [#11223](https://github.com/tiangolo/fastapi/pull/11223) by [@kohiry](https://github.com/kohiry).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/query-params.md`. PR [#11242](https://github.com/tiangolo/fastapi/pull/11242) by [@jackleeio](https://github.com/jackleeio).
@@ -16,6 +27,8 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People. PR [#11228](https://github.com/tiangolo/fastapi/pull/11228) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove Jina AI QA Bot from the docs. PR [#11268](https://github.com/tiangolo/fastapi/pull/11268) by [@nan-wang](https://github.com/nan-wang).
 * 🔧 Update sponsors, remove Jina, remove Powens, move TestDriven.io. PR [#11213](https://github.com/tiangolo/fastapi/pull/11213) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.110.0
