@@ -22,13 +22,7 @@ const DeleteAccount: React.FC = () => {
           Permanently delete your data and everything associated with your
           account.
         </Text>
-        <Button
-          bg="ui.danger"
-          color="white"
-          _hover={{ opacity: 0.8 }}
-          mt={4}
-          onClick={confirmationModal.onOpen}
-        >
+        <Button variant="danger" mt={4} onClick={confirmationModal.onOpen}>
           Delete
         </Button>
         <DeleteConfirmation

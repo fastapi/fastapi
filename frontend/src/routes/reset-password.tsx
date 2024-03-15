@@ -124,12 +124,7 @@ function ResetPassword() {
           <FormErrorMessage>{errors.confirm_password.message}</FormErrorMessage>
         )}
       </FormControl>
-      <Button
-        bg="ui.main"
-        color="white"
-        _hover={{ opacity: 0.8 }}
-        type="submit"
-      >
+      <Button variant="primary" type="submit">
         Reset Password
       </Button>
     </Container>

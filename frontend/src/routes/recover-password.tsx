@@ -82,13 +82,7 @@ function RecoverPassword() {
           <FormErrorMessage>{errors.email.message}</FormErrorMessage>
         )}
       </FormControl>
-      <Button
-        bg="ui.main"
-        color="white"
-        _hover={{ opacity: 0.8 }}
-        type="submit"
-        isLoading={isSubmitting}
-      >
+      <Button variant="primary" type="submit" isLoading={isSubmitting}>
         Continue
       </Button>
     </Container>
