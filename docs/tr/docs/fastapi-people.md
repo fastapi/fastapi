@@ -45,7 +45,7 @@ Geçtiğimiz ay boyunca [GitHub'da diğerlerine en çok yardımcı olan](help-fa
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Cevaplanan soru sayısı: {{ user.count }}</div></div>
 {% endfor %}
@@ -105,7 +105,7 @@ Yalnızca birkaç dil konuşabiliyorum (ve çok da iyi değilim 😅). Bu yüzde
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Değerlendirme sayısı: {{ user.count }}</div></div>
 {% endfor %}
