@@ -47,7 +47,7 @@ Bu istifadəçilər keçən ay [GitHub-da başqalarının suallarına](help-fast
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Cavablandırılmış suallar: {{ user.count }}</div></div>
 {% endfor %}
@@ -65,7 +65,7 @@ Onlar bir çox insanlara kömək edərək mütəxəssis olduqlarını sübut edi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Cavablandırılmış suallar: {{ user.count }}</div></div>
 {% endfor %}
@@ -83,7 +83,7 @@ Onlar mənbə kodu, sənədləmə, tərcümələr və s. barədə əmək göstə
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Request-lər: {{ user.count }}</div></div>
 {% endfor %}
@@ -107,7 +107,7 @@ Başqalarının Pull Request-lərinə **Ən çox rəy verənlər** 🕵️ kodun
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Rəylər: {{ user.count }}</div></div>
 {% endfor %}
