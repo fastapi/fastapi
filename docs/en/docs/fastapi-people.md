@@ -45,7 +45,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_experts %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -59,7 +59,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.three_months_experts %}
+{% for user in people.three_months_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -73,7 +73,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.six_months_experts %}
+{% for user in people.six_months_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -87,7 +87,7 @@ These are the users that have been [helping others the most with questions in Gi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.one_year_experts %}
+{% for user in people.one_year_experts[:20] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -105,7 +105,7 @@ They have proven to be experts by helping many others. ✨
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -123,7 +123,7 @@ They have contributed source code, documentation, translations, etc. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -141,7 +141,7 @@ I only speak a few languages (and not very well 😅). So, the reviewers are the
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_translations_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}
