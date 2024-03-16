@@ -144,7 +144,7 @@ class Author(BaseModel):
     url: str
 
 
-# Issues and Discussions
+# Discussions
 
 
 class CommentsNode(BaseModel):
@@ -355,11 +355,11 @@ def get_graphql_sponsor_edges(*, settings: Settings, after: Union[str, None] = N
 
 
 class DiscussionExpertsResults(BaseModel):
-    commentors: Counter
-    last_month_commentors: Counter
-    three_months_commentors: Counter
-    six_months_commentors: Counter
-    one_year_commentors: Counter
+    commenters: Counter
+    last_month_commenters: Counter
+    three_months_commenters: Counter
+    six_months_commenters: Counter
+    one_year_commenters: Counter
     authors: Dict[str, Author]
 
 
@@ -380,11 +380,11 @@ def get_discussion_nodes(settings: Settings) -> List[DiscussionsNode]:
 def get_discussions_experts(
     discussion_nodes: List[DiscussionsNode]
 ) -> DiscussionExpertsResults:
-    commentors = Counter()
-    last_month_commentors = Counter()
-    three_months_commentors = Counter()
-    six_months_commentors = Counter()
-    one_year_commentors = Counter()
+    commenters = Counter()
+    last_month_commenters = Counter()
+    three_months_commenters = Counter()
+    six_months_commenters = Counter()
+    one_year_commenters = Counter()
     authors: Dict[str, Author] = {}
 
     now = datetime.now(tz=timezone.utc)
@@ -420,22 +420,22 @@ def get_discussions_experts(
                             author_time, reply.createdAt
                         )
         for author_name, author_time in discussion_commentors.items():
-            commentors[author_name] += 1
+            commenters[author_name] += 1
             if author_time > one_month_ago:
-                last_month_commentors[author_name] += 1
+                last_month_commenters[author_name] += 1
             if author_time > three_months_ago:
-                three_months_commentors[author_name] += 1
+                three_months_commenters[author_name] += 1
             if author_time > six_months_ago:
-                six_months_commentors[author_name] += 1
+                six_months_commenters[author_name] += 1
             if author_time > one_year_ago:
-                one_year_commentors[author_name] += 1
+                one_year_commenters[author_name] += 1
     discussion_experts_results = DiscussionExpertsResults(
         authors=authors,
-        commentors=commentors,
-        last_month_commentors=last_month_commentors,
-        three_months_commentors=three_months_commentors,
-        six_months_commentors=six_months_commentors,
-        one_year_commentors=one_year_commentors,
+        commenters=commenters,
+        last_month_commenters=last_month_commenters,
+        three_months_commenters=three_months_commenters,
+        six_months_commenters=six_months_commenters,
+        one_year_commenters=one_year_commenters,
     )
     return discussion_experts_results
 
@@ -454,7 +454,7 @@ def get_pr_nodes(settings: Settings) -> List[PullRequestNode]:
 
 class ContributorsResults(BaseModel):
     contributors: Counter
-    commentors: Counter
+    commenters: Counter
     reviewers: Counter
     translation_reviewers: Counter
     authors: Dict[str, Author]
@@ -462,7 +462,7 @@ class ContributorsResults(BaseModel):
 
 def get_contributors(pr_nodes: List[PullRequestNode]) -> ContributorsResults:
     contributors = Counter()
-    commentors = Counter()
+    commenters = Counter()
     reviewers = Counter()
     translation_reviewers = Counter()
     authors: Dict[str, Author] = {}
@@ -481,7 +481,7 @@ def get_contributors(pr_nodes: List[PullRequestNode]) -> ContributorsResults:
                     continue
                 pr_commentors.add(comment.author.login)
         for author_name in pr_commentors:
-            commentors[author_name] += 1
+            commenters[author_name] += 1
         for review in pr.reviews.nodes:
             if review.author:
                 authors[review.author.login] = review.author
@@ -496,7 +496,7 @@ def get_contributors(pr_nodes: List[PullRequestNode]) -> ContributorsResults:
             contributors[pr.author.login] += 1
     return ContributorsResults(
         contributors=contributors,
-        commentors=commentors,
+        commenters=commenters,
         reviewers=reviewers,
         translation_reviewers=translation_reviewers,
         authors=authors,
@@ -524,19 +524,19 @@ def get_individual_sponsors(settings: Settings):
 def get_top_users(
     *,
     counter: Counter,
-    min_count: int,
     authors: Dict[str, Author],
     skip_users: Container[str],
+    min_count: int = 2,
 ):
     users = []
-    for commentor, count in counter.most_common(50):
-        if commentor in skip_users:
+    for commenter, count in counter.most_common(50):
+        if commenter in skip_users:
             continue
         if count >= min_count:
-            author = authors[commentor]
+            author = authors[commenter]
             users.append(
                 {
-                    "login": commentor,
+                    "login": commenter,
                     "count": count,
                     "avatarUrl": author.avatarUrl,
                     "url": author.url,
@@ -564,65 +564,51 @@ if __name__ == "__main__":
         maintainers.append(
             {
                 "login": login,
-                "answers": experts_results.commentors[login],
+                "answers": experts_results.commenters[login],
                 "prs": contributors_results.contributors[login],
                 "avatarUrl": user.avatarUrl,
                 "url": user.url,
             }
         )
 
-    min_count_expert = 10
-    min_count_last_month = 3
-    min_count_three_months = 5
-    min_count_six_months = 7
-    min_count_contributor = 4
-    min_count_reviewer = 4
     skip_users = maintainers_logins | bot_names
     experts = get_top_users(
-        counter=experts_results.commentors,
-        min_count=min_count_expert,
+        counter=experts_results.commenters,
         authors=authors,
         skip_users=skip_users,
     )
     last_month_experts = get_top_users(
-        counter=experts_results.last_month_commentors,
-        min_count=min_count_last_month,
+        counter=experts_results.last_month_commenters,
         authors=authors,
         skip_users=skip_users,
     )
     three_months_experts = get_top_users(
-        counter=experts_results.three_months_commentors,
-        min_count=min_count_three_months,
+        counter=experts_results.three_months_commenters,
         authors=authors,
         skip_users=skip_users,
     )
     six_months_experts = get_top_users(
-        counter=experts_results.six_months_commentors,
-        min_count=min_count_six_months,
+        counter=experts_results.six_months_commenters,
         authors=authors,
         skip_users=skip_users,
     )
     one_year_experts = get_top_users(
-        counter=experts_results.one_year_commentors,
-        min_count=min_count_expert,
+        counter=experts_results.one_year_commenters,
         authors=authors,
         skip_users=skip_users,
     )
     top_contributors = get_top_users(
         counter=contributors_results.contributors,
-        min_count=min_count_contributor,
         authors=authors,
         skip_users=skip_users,
     )
     top_reviewers = get_top_users(
         counter=contributors_results.reviewers,
-        min_count=min_count_reviewer,
         authors=authors,
         skip_users=skip_users,
     )
     top_translations_reviewers = get_top_users(
         counter=contributors_results.translation_reviewers,
-        min_count=min_count_reviewer,
         authors=authors,
         skip_users=skip_users,
     )
@@ -653,6 +639,8 @@ if __name__ == "__main__":
     github_sponsors = {
         "sponsors": sponsors,
     }
+    # For local development
+    # people_path = Path("../../../../docs/en/data/people.yml")
     people_path = Path("./docs/en/data/people.yml")
     github_sponsors_path = Path("./docs/en/data/github_sponsors.yml")
     people_old_content = people_path.read_text(encoding="utf-8")
