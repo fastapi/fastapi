@@ -39,9 +39,28 @@ These are the people that:
 
 A round of applause to them. 👏 🙇
 
-## FastAPI Experts - Last Month
+## FastAPI Experts
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🙇
+
+They have proven to be **FastAPI Experts** by helping many others. ✨
+
+!!! tip
+    You could become an official FastAPI Expert too!
+
+    Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+
+You can see the **FastAPI Experts** for:
+
+* [Last Month](#fastapi-experts-last-month) 🤓
+* [3 Months](#fastapi-experts-3-months) 😎
+* [6 Months](#fastapi-experts-6-months) 🧐
+* [1 Year](#fastapi-experts-1-year) 🧑‍🔬
+* [**All Time**](#fastapi-experts-all-time) 🧙
+
+### FastAPI Experts - Last Month
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. 🤓
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -53,9 +72,9 @@ These are the users that have been [helping others the most with questions in Gi
 </div>
 {% endif %}
 
-## FastAPI Experts - 3 Months
+### FastAPI Experts - 3 Months
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. 😎
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -67,9 +86,9 @@ These are the users that have been [helping others the most with questions in Gi
 </div>
 {% endif %}
 
-## FastAPI Experts - 6 Months
+### FastAPI Experts - 6 Months
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. 🧐
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -81,9 +100,9 @@ These are the users that have been [helping others the most with questions in Gi
 </div>
 {% endif %}
 
-## FastAPI Experts - 1 Year
+### FastAPI Experts - 1 Year
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. 🧑‍🔬
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -95,13 +114,11 @@ These are the users that have been [helping others the most with questions in Gi
 </div>
 {% endif %}
 
-## FastAPI Experts - All Time
+### FastAPI Experts - All Time
 
-Here are the **FastAPI Experts**. 🤓
+Here are the all time **FastAPI Experts**. 🤓🤯
 
-These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*.
-
-They have proven to be experts by helping many others. ✨
+These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*. 🧙
 
 {% if people %}
 <div class="user-list user-list-center">
