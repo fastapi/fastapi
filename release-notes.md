@@ -4,6 +4,10 @@
 
 * 📝 Update `README.md`. PR [#716](https://github.com/tiangolo/full-stack-fastapi-template/pull/716) by [@alejsdev](https://github.com/alejsdev).
 
+### Fixes
+
+* 🐛 Fix 403 when the frontend has a directory without an index.html. PR [#1094](https://github.com/tiangolo/full-stack-fastapi-template/pull/1094) by [@tiangolo](https://github.com/tiangolo).
+
 ### Refactors
 
 * 🎨 Replace buttons styling for variants for consistency. PR [#722](https://github.com/tiangolo/full-stack-fastapi-template/pull/722) by [@alejsdev](https://github.com/alejsdev).
