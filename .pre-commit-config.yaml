@@ -18,25 +18,6 @@ repos:
         args:
           - --fix
       - id: ruff-format
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.53.0
-    hooks:
-      - id: eslint
-        files: \.[jt]sx?$
-        types: [file]
-        additional_dependencies:
-          - eslint@8.53.0
-          - eslint-plugin-react-hooks@4.6.0
-          - eslint-plugin-react-refresh@0.4.4
-          - "@typescript-eslint/eslint-plugin@6.10.0"
-          - "@typescript-eslint/parser@6.10.0"
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.1.0
-    hooks:
-      - id: prettier
-        files: \.(ts|tsx)$
-        additional_dependencies:
-          - prettier@3.2.5
 
 ci:
   autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
