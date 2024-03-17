@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint ./src --ext .ts,.tsx --fix",
-    "format": "prettier --write ./src/**/*.{ts,tsx,js,jsx,json,md} --ignore-path .prettierignore",
+    "lint": "biome check --apply-unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
     "preview": "vite preview",
     "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios --exportSchemas true"
   },
@@ -28,19 +27,14 @@
     "zustand": "4.5.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.1",
     "@tanstack/router-devtools": "1.19.1",
     "@tanstack/router-vite-plugin": "1.19.0",
     "@types/node": "20.10.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
     "openapi-typescript-codegen": "0.25.0",
-    "prettier": "3.2.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.12"
   }
