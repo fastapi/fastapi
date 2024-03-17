@@ -50,7 +50,7 @@ Url: Type[Any]
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
-    from pydantic import TypeAdapter
+    from pydantic import RootModel, TypeAdapter
     from pydantic import ValidationError as ValidationError
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
         GetJsonSchemaHandler as GetJsonSchemaHandler,
@@ -292,6 +292,12 @@ if PYDANTIC_V2:
             for name, field_info in model.model_fields.items()
         ]
 
+    def root_model_inner_type(annotation: Any) -> Any:
+        if lenient_issubclass(annotation, RootModel):
+            inner = annotation.model_fields["root"].annotation
+            return root_model_inner_type(inner) or inner
+        return None
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
@@ -453,7 +459,10 @@ else:
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        serialized = model.dict(**kwargs)
+        if isinstance(serialized, dict) and "__root__" in serialized:
+            return serialized["__root__"]
+        return serialized
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]
@@ -495,12 +504,21 @@ else:
         )
 
     def is_scalar_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_scalar(inner)
+
         return is_pv1_scalar_field(field)
 
     def is_sequence_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_sequence(inner)
+
         return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_scalar_sequence(inner)
+
         return is_pv1_scalar_sequence_field(field)
 
     def is_bytes_field(field: ModelField) -> bool:
@@ -531,6 +549,15 @@ else:
     def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
         return list(model.__fields__.values())  # type: ignore[attr-defined]
 
+    def root_model_inner_type(annotation: Any) -> Any:
+        if (
+            lenient_issubclass(annotation, BaseModel)
+            and "__root__" in annotation.__fields__
+        ):
+            inner = annotation.__fields__["__root__"].annotation
+            return root_model_inner_type(inner) or inner
+        return None
+
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
@@ -550,6 +577,9 @@ def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_sequence(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
@@ -573,7 +603,25 @@ def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     )
 
 
+def field_annotation_is_root_model(annotation: Union[Type[Any], None]) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        return any(field_annotation_is_root_model(arg) for arg in get_args(annotation))
+
+    return root_model_inner_type(annotation) is not None
+
+
+def resolves_to_basemodel(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return resolves_to_basemodel(inner)
+
+    return lenient_issubclass(annotation, BaseModel)
+
+
 def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_complex(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
@@ -587,11 +635,17 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_scalar(annotation: Any) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_scalar(inner)
+
     # handle Ellipsis here to make tuple[int, ...] work nicely
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
 def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_scalar_sequence(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_scalar_sequence = False

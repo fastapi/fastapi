@@ -220,7 +220,7 @@ def jsonable_encoder(
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}
-        obj_dict = _model_dump(
+        serialized = _model_dump(
             obj,
             mode="json",
             include=include,
@@ -230,10 +230,8 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
-        if "__root__" in obj_dict:
-            obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
-            obj_dict,
+            serialized,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             # TODO: remove when deprecating Pydantic v1
