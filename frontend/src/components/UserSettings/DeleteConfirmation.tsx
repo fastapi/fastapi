@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   AlertDialog,
   AlertDialogBody,
@@ -7,13 +6,14 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
-} from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
+} from "@chakra-ui/react"
+import React from "react"
+import { useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from "react-query"
 
-import { ApiError, UserOut, UsersService } from '../../client'
-import useAuth from '../../hooks/useAuth'
-import useCustomToast from '../../hooks/useCustomToast'
+import { type ApiError, type UserOut, UsersService } from "../../client"
+import useAuth from "../../hooks/useAuth"
+import useCustomToast from "../../hooks/useCustomToast"
 
 interface DeleteProps {
   isOpen: boolean
@@ -28,7 +28,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm()
-  const currentUser = queryClient.getQueryData<UserOut>('currentUser')
+  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
   const { logout } = useAuth()
 
   const deleteCurrentUser = async (id: number) => {
@@ -38,19 +38,19 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
   const mutation = useMutation(deleteCurrentUser, {
     onSuccess: () => {
       showToast(
-        'Success',
-        'Your account has been successfully deleted.',
-        'success',
+        "Success",
+        "Your account has been successfully deleted.",
+        "success",
       )
       logout()
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast('Something went wrong.', `${errDetail}`, 'error')
+      showToast("Something went wrong.", `${errDetail}`, "error")
     },
     onSettled: () => {
-      queryClient.invalidateQueries('currentUser')
+      queryClient.invalidateQueries("currentUser")
     },
   })
 
@@ -64,7 +64,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
         isOpen={isOpen}
         onClose={onClose}
         leastDestructiveRef={cancelRef}
-        size={{ base: 'sm', md: 'md' }}
+        size={{ base: "sm", md: "md" }}
         isCentered
       >
         <AlertDialogOverlay>
@@ -72,7 +72,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
             <AlertDialogHeader>Confirmation Required</AlertDialogHeader>
 
             <AlertDialogBody>
-              All your account data will be{' '}
+              All your account data will be{" "}
               <strong>permanently deleted.</strong> If you are sure, please
               click <strong>"Confirm"</strong> to proceed. This action cannot be
               undone.

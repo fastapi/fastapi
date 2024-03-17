@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from "node:fs"
 
 async function modifyOpenAPIFile(filePath) {
   try {
@@ -26,11 +26,11 @@ async function modifyOpenAPIFile(filePath) {
       filePath,
       JSON.stringify(openapiContent, null, 2),
     )
-    console.log('File successfully modified')
+    console.log("File successfully modified")
   } catch (err) {
-    console.error('Error:', err)
+    console.error("Error:", err)
   }
 }
 
-const filePath = './openapi.json'
+const filePath = "./openapi.json"
 modifyOpenAPIFile(filePath)

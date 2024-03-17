@@ -1,5 +1,4 @@
-import React from 'react'
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import {
   Button,
   Center,
@@ -13,25 +12,26 @@ import {
   InputRightElement,
   Link,
   useBoolean,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
 import {
   Link as RouterLink,
   createFileRoute,
   redirect,
-} from '@tanstack/react-router'
-import { SubmitHandler, useForm } from 'react-hook-form'
+} from "@tanstack/react-router"
+import React from "react"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
-import Logo from '../assets/images/fastapi-logo.svg'
-import { ApiError } from '../client'
-import { Body_login_login_access_token as AccessToken } from '../client/models/Body_login_login_access_token'
-import useAuth, { isLoggedIn } from '../hooks/useAuth'
+import Logo from "../assets/images/fastapi-logo.svg"
+import type { ApiError } from "../client"
+import type { Body_login_login_access_token as AccessToken } from "../client/models/Body_login_login_access_token"
+import useAuth, { isLoggedIn } from "../hooks/useAuth"
 
-export const Route = createFileRoute('/login')({
+export const Route = createFileRoute("/login")({
   component: Login,
   beforeLoad: async () => {
     if (isLoggedIn()) {
       throw redirect({
-        to: '/',
+        to: "/",
       })
     }
   },
@@ -46,11 +46,11 @@ function Login() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<AccessToken>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
+    mode: "onBlur",
+    criteriaMode: "all",
     defaultValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
   })
 
@@ -86,10 +86,10 @@ function Login() {
         <FormControl id="username" isInvalid={!!errors.username || !!error}>
           <Input
             id="username"
-            {...register('username', {
+            {...register("username", {
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Invalid email address',
+                message: "Invalid email address",
               },
             })}
             placeholder="Email"
@@ -102,19 +102,19 @@ function Login() {
         <FormControl id="password" isInvalid={!!error}>
           <InputGroup>
             <Input
-              {...register('password')}
-              type={show ? 'text' : 'password'}
+              {...register("password")}
+              type={show ? "text" : "password"}
               placeholder="Password"
             />
             <InputRightElement
               color="gray.400"
               _hover={{
-                cursor: 'pointer',
+                cursor: "pointer",
               }}
             >
               <Icon
                 onClick={setShow.toggle}
-                aria-label={show ? 'Hide password' : 'Show password'}
+                aria-label={show ? "Hide password" : "Show password"}
               >
                 {show ? <ViewOffIcon /> : <ViewIcon />}
               </Icon>

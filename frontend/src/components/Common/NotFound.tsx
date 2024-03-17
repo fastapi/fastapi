@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button, Container, Text } from '@chakra-ui/react'
-import { Link } from '@tanstack/react-router'
+import { Button, Container, Text } from "@chakra-ui/react"
+import { Link } from "@tanstack/react-router"
+import type React from "react"
 
 const NotFound: React.FC = () => {
   return (

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   FormControl,
@@ -12,12 +11,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
+} from "@chakra-ui/react"
+import type React from "react"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from "react-query"
 
-import { ApiError, ItemCreate, ItemsService } from '../../client'
-import useCustomToast from '../../hooks/useCustomToast'
+import { type ApiError, type ItemCreate, ItemsService } from "../../client"
+import useCustomToast from "../../hooks/useCustomToast"
 
 interface AddItemProps {
   isOpen: boolean
@@ -33,11 +33,11 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ItemCreate>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
+    mode: "onBlur",
+    criteriaMode: "all",
     defaultValues: {
-      title: '',
-      description: '',
+      title: "",
+      description: "",
     },
   })
 
@@ -47,16 +47,16 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
 
   const mutation = useMutation(addItem, {
     onSuccess: () => {
-      showToast('Success!', 'Item created successfully.', 'success')
+      showToast("Success!", "Item created successfully.", "success")
       reset()
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast('Something went wrong.', `${errDetail}`, 'error')
+      showToast("Something went wrong.", `${errDetail}`, "error")
     },
     onSettled: () => {
-      queryClient.invalidateQueries('items')
+      queryClient.invalidateQueries("items")
     },
   })
 
@@ -69,7 +69,7 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={{ base: 'sm', md: 'md' }}
+        size={{ base: "sm", md: "md" }}
         isCentered
       >
         <ModalOverlay />
@@ -81,8 +81,8 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="title">Title</FormLabel>
               <Input
                 id="title"
-                {...register('title', {
-                  required: 'Title is required.',
+                {...register("title", {
+                  required: "Title is required.",
                 })}
                 placeholder="Title"
                 type="text"
@@ -95,7 +95,7 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="description">Description</FormLabel>
               <Input
                 id="description"
-                {...register('description')}
+                {...register("description")}
                 placeholder="Description"
                 type="text"
               />

@@ -1,17 +1,17 @@
-import { Box, Container, Text } from '@chakra-ui/react'
-import { useQueryClient } from 'react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { Box, Container, Text } from "@chakra-ui/react"
+import { createFileRoute } from "@tanstack/react-router"
+import { useQueryClient } from "react-query"
 
-import { UserOut } from '../../client'
+import type { UserOut } from "../../client"
 
-export const Route = createFileRoute('/_layout/')({
+export const Route = createFileRoute("/_layout/")({
   component: Dashboard,
 })
 
 function Dashboard() {
   const queryClient = useQueryClient()
 
-  const currentUser = queryClient.getQueryData<UserOut>('currentUser')
+  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
 
   return (
     <>

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Badge,
   Container,
@@ -7,7 +6,8 @@ import {
   RadioGroup,
   Stack,
   useColorMode,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
+import type React from "react"
 
 const Appearance: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()

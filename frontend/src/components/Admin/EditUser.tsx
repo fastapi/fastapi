@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   Checkbox,
@@ -14,12 +13,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
+} from "@chakra-ui/react"
+import type React from "react"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from "react-query"
 
-import { ApiError, UserOut, UserUpdate, UsersService } from '../../client'
-import useCustomToast from '../../hooks/useCustomToast'
+import {
+  type ApiError,
+  type UserOut,
+  type UserUpdate,
+  UsersService,
+} from "../../client"
+import useCustomToast from "../../hooks/useCustomToast"
 
 interface EditUserProps {
   user: UserOut
@@ -42,8 +47,8 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
     getValues,
     formState: { errors, isSubmitting, isDirty },
   } = useForm<UserUpdateForm>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
+    mode: "onBlur",
+    criteriaMode: "all",
     defaultValues: user,
   })
 
@@ -53,20 +58,20 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
 
   const mutation = useMutation(updateUser, {
     onSuccess: () => {
-      showToast('Success!', 'User updated successfully.', 'success')
+      showToast("Success!", "User updated successfully.", "success")
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast('Something went wrong.', `${errDetail}`, 'error')
+      showToast("Something went wrong.", `${errDetail}`, "error")
     },
     onSettled: () => {
-      queryClient.invalidateQueries('users')
+      queryClient.invalidateQueries("users")
     },
   })
 
   const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
-    if (data.password === '') {
+    if (data.password === "") {
       data.password = undefined
     }
     mutation.mutate(data)
@@ -82,7 +87,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={{ base: 'sm', md: 'md' }}
+        size={{ base: "sm", md: "md" }}
         isCentered
       >
         <ModalOverlay />
@@ -94,11 +99,11 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
               <FormLabel htmlFor="email">Email</FormLabel>
               <Input
                 id="email"
-                {...register('email', {
-                  required: 'Email is required',
+                {...register("email", {
+                  required: "Email is required",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: 'Invalid email address',
+                    message: "Invalid email address",
                   },
                 })}
                 placeholder="Email"
@@ -110,16 +115,16 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel htmlFor="name">Full name</FormLabel>
-              <Input id="name" {...register('full_name')} type="text" />
+              <Input id="name" {...register("full_name")} type="text" />
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.password}>
               <FormLabel htmlFor="password">Set Password</FormLabel>
               <Input
                 id="password"
-                {...register('password', {
+                {...register("password", {
                   minLength: {
                     value: 8,
-                    message: 'Password must be at least 8 characters',
+                    message: "Password must be at least 8 characters",
                   },
                 })}
                 placeholder="Password"
@@ -133,10 +138,10 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
               <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
               <Input
                 id="confirm_password"
-                {...register('confirm_password', {
+                {...register("confirm_password", {
                   validate: (value) =>
                     value === getValues().password ||
-                    'The passwords do not match',
+                    "The passwords do not match",
                 })}
                 placeholder="Password"
                 type="password"
@@ -149,12 +154,12 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
             </FormControl>
             <Flex>
               <FormControl mt={4}>
-                <Checkbox {...register('is_superuser')} colorScheme="teal">
+                <Checkbox {...register("is_superuser")} colorScheme="teal">
                   Is superuser?
                 </Checkbox>
               </FormControl>
               <FormControl mt={4}>
-                <Checkbox {...register('is_active')} colorScheme="teal">
+                <Checkbox {...register("is_active")} colorScheme="teal">
                   Is active?
                 </Checkbox>
               </FormControl>

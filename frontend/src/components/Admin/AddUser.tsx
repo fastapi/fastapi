@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   Checkbox,
@@ -14,13 +13,14 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
+} from "@chakra-ui/react"
+import type React from "react"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from "react-query"
 
-import { UserCreate, UsersService } from '../../client'
-import { ApiError } from '../../client/core/ApiError'
-import useCustomToast from '../../hooks/useCustomToast'
+import { type UserCreate, UsersService } from "../../client"
+import type { ApiError } from "../../client/core/ApiError"
+import useCustomToast from "../../hooks/useCustomToast"
 
 interface AddUserProps {
   isOpen: boolean
@@ -41,13 +41,13 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
     getValues,
     formState: { errors, isSubmitting },
   } = useForm<UserCreateForm>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
+    mode: "onBlur",
+    criteriaMode: "all",
     defaultValues: {
-      email: '',
-      full_name: '',
-      password: '',
-      confirm_password: '',
+      email: "",
+      full_name: "",
+      password: "",
+      confirm_password: "",
       is_superuser: false,
       is_active: false,
     },
@@ -59,16 +59,16 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
 
   const mutation = useMutation(addUser, {
     onSuccess: () => {
-      showToast('Success!', 'User created successfully.', 'success')
+      showToast("Success!", "User created successfully.", "success")
       reset()
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast('Something went wrong.', `${errDetail}`, 'error')
+      showToast("Something went wrong.", `${errDetail}`, "error")
     },
     onSettled: () => {
-      queryClient.invalidateQueries('users')
+      queryClient.invalidateQueries("users")
     },
   })
 
@@ -81,7 +81,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={{ base: 'sm', md: 'md' }}
+        size={{ base: "sm", md: "md" }}
         isCentered
       >
         <ModalOverlay />
@@ -93,11 +93,11 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="email">Email</FormLabel>
               <Input
                 id="email"
-                {...register('email', {
-                  required: 'Email is required',
+                {...register("email", {
+                  required: "Email is required",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: 'Invalid email address',
+                    message: "Invalid email address",
                   },
                 })}
                 placeholder="Email"
@@ -111,7 +111,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="name">Full name</FormLabel>
               <Input
                 id="name"
-                {...register('full_name')}
+                {...register("full_name")}
                 placeholder="Full name"
                 type="text"
               />
@@ -123,11 +123,11 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="password">Set Password</FormLabel>
               <Input
                 id="password"
-                {...register('password', {
-                  required: 'Password is required',
+                {...register("password", {
+                  required: "Password is required",
                   minLength: {
                     value: 8,
-                    message: 'Password must be at least 8 characters',
+                    message: "Password must be at least 8 characters",
                   },
                 })}
                 placeholder="Password"
@@ -145,11 +145,11 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
               <Input
                 id="confirm_password"
-                {...register('confirm_password', {
-                  required: 'Please confirm your password',
+                {...register("confirm_password", {
+                  required: "Please confirm your password",
                   validate: (value) =>
                     value === getValues().password ||
-                    'The passwords do not match',
+                    "The passwords do not match",
                 })}
                 placeholder="Password"
                 type="password"
@@ -162,12 +162,12 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
             </FormControl>
             <Flex mt={4}>
               <FormControl>
-                <Checkbox {...register('is_superuser')} colorScheme="teal">
+                <Checkbox {...register("is_superuser")} colorScheme="teal">
                   Is superuser?
                 </Checkbox>
               </FormControl>
               <FormControl>
-                <Checkbox {...register('is_active')} colorScheme="teal">
+                <Checkbox {...register("is_active")} colorScheme="teal">
                   Is active?
                 </Checkbox>
               </FormControl>

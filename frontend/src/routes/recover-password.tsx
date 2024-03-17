@@ -6,24 +6,24 @@ import {
   Heading,
   Input,
   Text,
-} from '@chakra-ui/react'
-import { createFileRoute, redirect } from '@tanstack/react-router'
-import { SubmitHandler, useForm } from 'react-hook-form'
+} from "@chakra-ui/react"
+import { createFileRoute, redirect } from "@tanstack/react-router"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
-import { LoginService } from '../client'
-import useCustomToast from '../hooks/useCustomToast'
-import { isLoggedIn } from '../hooks/useAuth'
+import { LoginService } from "../client"
+import { isLoggedIn } from "../hooks/useAuth"
+import useCustomToast from "../hooks/useCustomToast"
 
 interface FormData {
   email: string
 }
 
-export const Route = createFileRoute('/recover-password')({
+export const Route = createFileRoute("/recover-password")({
   component: RecoverPassword,
   beforeLoad: async () => {
     if (isLoggedIn()) {
       throw redirect({
-        to: '/',
+        to: "/",
       })
     }
   },
@@ -42,9 +42,9 @@ function RecoverPassword() {
       email: data.email,
     })
     showToast(
-      'Email sent.',
-      'We sent an email with a link to get back into your account.',
-      'success',
+      "Email sent.",
+      "We sent an email with a link to get back into your account.",
+      "success",
     )
   }
 
@@ -68,11 +68,11 @@ function RecoverPassword() {
       <FormControl isInvalid={!!errors.email}>
         <Input
           id="email"
-          {...register('email', {
-            required: 'Email is required',
+          {...register("email", {
+            required: "Email is required",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: 'Invalid email address',
+              message: "Invalid email address",
             },
           })}
           placeholder="Email"

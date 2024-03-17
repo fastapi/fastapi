@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react'
-import { FiBriefcase, FiHome, FiSettings, FiUsers } from 'react-icons/fi'
-import { Link } from '@tanstack/react-router'
-import { useQueryClient } from 'react-query'
+import { Box, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
+import { Link } from "@tanstack/react-router"
+import type React from "react"
+import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
+import { useQueryClient } from "react-query"
 
-import { UserOut } from '../../client'
+import type { UserOut } from "../../client"
 
 const items = [
-  { icon: FiHome, title: 'Dashboard', path: '/' },
-  { icon: FiBriefcase, title: 'Items', path: '/items' },
-  { icon: FiSettings, title: 'User Settings', path: '/settings' },
+  { icon: FiHome, title: "Dashboard", path: "/" },
+  { icon: FiBriefcase, title: "Items", path: "/items" },
+  { icon: FiSettings, title: "User Settings", path: "/settings" },
 ]
 
 interface SidebarItemsProps {
@@ -18,12 +18,12 @@ interface SidebarItemsProps {
 
 const SidebarItems: React.FC<SidebarItemsProps> = ({ onClose }) => {
   const queryClient = useQueryClient()
-  const textColor = useColorModeValue('ui.main', 'ui.white')
-  const bgActive = useColorModeValue('#E2E8F0', '#4A5568')
-  const currentUser = queryClient.getQueryData<UserOut>('currentUser')
+  const textColor = useColorModeValue("ui.main", "ui.white")
+  const bgActive = useColorModeValue("#E2E8F0", "#4A5568")
+  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
 
   const finalItems = currentUser?.is_superuser
-    ? [...items, { icon: FiUsers, title: 'Admin', path: '/admin' }]
+    ? [...items, { icon: FiUsers, title: "Admin", path: "/admin" }]
     : items
 
   const listItems = finalItems.map((item) => (
@@ -36,7 +36,7 @@ const SidebarItems: React.FC<SidebarItemsProps> = ({ onClose }) => {
       activeProps={{
         style: {
           background: bgActive,
-          borderRadius: '12px',
+          borderRadius: "12px",
         },
       }}
       color={textColor}

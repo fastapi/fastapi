@@ -12,33 +12,33 @@ import {
   Th,
   Thead,
   Tr,
-} from '@chakra-ui/react'
-import { createFileRoute } from '@tanstack/react-router'
-import { useQuery, useQueryClient } from 'react-query'
+} from "@chakra-ui/react"
+import { createFileRoute } from "@tanstack/react-router"
+import { useQuery, useQueryClient } from "react-query"
 
-import { ApiError, UserOut, UsersService } from '../../client'
-import ActionsMenu from '../../components/Common/ActionsMenu'
-import Navbar from '../../components/Common/Navbar'
-import useCustomToast from '../../hooks/useCustomToast'
+import { type ApiError, type UserOut, UsersService } from "../../client"
+import ActionsMenu from "../../components/Common/ActionsMenu"
+import Navbar from "../../components/Common/Navbar"
+import useCustomToast from "../../hooks/useCustomToast"
 
-export const Route = createFileRoute('/_layout/admin')({
+export const Route = createFileRoute("/_layout/admin")({
   component: Admin,
 })
 
 function Admin() {
   const queryClient = useQueryClient()
   const showToast = useCustomToast()
-  const currentUser = queryClient.getQueryData<UserOut>('currentUser')
+  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
   const {
     data: users,
     isLoading,
     isError,
     error,
-  } = useQuery('users', () => UsersService.readUsers({}))
+  } = useQuery("users", () => UsersService.readUsers({}))
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
-    showToast('Something went wrong.', `${errDetail}`, 'error')
+    showToast("Something went wrong.", `${errDetail}`, "error")
   }
 
   return (
@@ -53,14 +53,14 @@ function Admin() {
           <Container maxW="full">
             <Heading
               size="lg"
-              textAlign={{ base: 'center', md: 'left' }}
+              textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
               User Management
             </Heading>
-            <Navbar type={'User'} />
+            <Navbar type={"User"} />
             <TableContainer>
-              <Table fontSize="md" size={{ base: 'sm', md: 'md' }}>
+              <Table fontSize="md" size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
                     <Th>Full name</Th>
@@ -73,8 +73,8 @@ function Admin() {
                 <Tbody>
                   {users.data.map((user) => (
                     <Tr key={user.id}>
-                      <Td color={!user.full_name ? 'gray.400' : 'inherit'}>
-                        {user.full_name || 'N/A'}
+                      <Td color={!user.full_name ? "gray.400" : "inherit"}>
+                        {user.full_name || "N/A"}
                         {currentUser?.id === user.id && (
                           <Badge ml="1" colorScheme="teal">
                             You
@@ -82,17 +82,17 @@ function Admin() {
                         )}
                       </Td>
                       <Td>{user.email}</Td>
-                      <Td>{user.is_superuser ? 'Superuser' : 'User'}</Td>
+                      <Td>{user.is_superuser ? "Superuser" : "User"}</Td>
                       <Td>
                         <Flex gap={2}>
                           <Box
                             w="2"
                             h="2"
                             borderRadius="50%"
-                            bg={user.is_active ? 'ui.success' : 'ui.danger'}
+                            bg={user.is_active ? "ui.success" : "ui.danger"}
                             alignSelf="center"
                           />
-                          {user.is_active ? 'Active' : 'Inactive'}
+                          {user.is_active ? "Active" : "Inactive"}
                         </Flex>
                       </Td>
                       <Td>

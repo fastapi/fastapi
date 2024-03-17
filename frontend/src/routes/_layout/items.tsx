@@ -10,16 +10,16 @@ import {
   Th,
   Thead,
   Tr,
-} from '@chakra-ui/react'
-import { createFileRoute } from '@tanstack/react-router'
-import { useQuery } from 'react-query'
+} from "@chakra-ui/react"
+import { createFileRoute } from "@tanstack/react-router"
+import { useQuery } from "react-query"
 
-import { ApiError, ItemsService } from '../../client'
-import ActionsMenu from '../../components/Common/ActionsMenu'
-import Navbar from '../../components/Common/Navbar'
-import useCustomToast from '../../hooks/useCustomToast'
+import { type ApiError, ItemsService } from "../../client"
+import ActionsMenu from "../../components/Common/ActionsMenu"
+import Navbar from "../../components/Common/Navbar"
+import useCustomToast from "../../hooks/useCustomToast"
 
-export const Route = createFileRoute('/_layout/items')({
+export const Route = createFileRoute("/_layout/items")({
   component: Items,
 })
 
@@ -30,11 +30,11 @@ function Items() {
     isLoading,
     isError,
     error,
-  } = useQuery('items', () => ItemsService.readItems({}))
+  } = useQuery("items", () => ItemsService.readItems({}))
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
-    showToast('Something went wrong.', `${errDetail}`, 'error')
+    showToast("Something went wrong.", `${errDetail}`, "error")
   }
 
   return (
@@ -49,14 +49,14 @@ function Items() {
           <Container maxW="full">
             <Heading
               size="lg"
-              textAlign={{ base: 'center', md: 'left' }}
+              textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
               Items Management
             </Heading>
-            <Navbar type={'Item'} />
+            <Navbar type={"Item"} />
             <TableContainer>
-              <Table size={{ base: 'sm', md: 'md' }}>
+              <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
                     <Th>ID</Th>
@@ -70,11 +70,11 @@ function Items() {
                     <Tr key={item.id}>
                       <Td>{item.id}</Td>
                       <Td>{item.title}</Td>
-                      <Td color={!item.description ? 'gray.400' : 'inherit'}>
-                        {item.description || 'N/A'}
+                      <Td color={!item.description ? "gray.400" : "inherit"}>
+                        {item.description || "N/A"}
                       </Td>
                       <Td>
-                        <ActionsMenu type={'Item'} value={item} />
+                        <ActionsMenu type={"Item"} value={item} />
                       </Td>
                     </Tr>
                   ))}

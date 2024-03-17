@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   FormControl,
@@ -12,12 +11,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+} from "@chakra-ui/react"
+import type React from "react"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
-import { useMutation, useQueryClient } from 'react-query'
-import { ApiError, ItemOut, ItemUpdate, ItemsService } from '../../client'
-import useCustomToast from '../../hooks/useCustomToast'
+import { useMutation, useQueryClient } from "react-query"
+import {
+  type ApiError,
+  type ItemOut,
+  type ItemUpdate,
+  ItemsService,
+} from "../../client"
+import useCustomToast from "../../hooks/useCustomToast"
 
 interface EditItemProps {
   item: ItemOut
@@ -34,8 +39,8 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
     reset,
     formState: { isSubmitting, errors, isDirty },
   } = useForm<ItemUpdate>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
+    mode: "onBlur",
+    criteriaMode: "all",
     defaultValues: item,
   })
 
@@ -45,15 +50,15 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
 
   const mutation = useMutation(updateItem, {
     onSuccess: () => {
-      showToast('Success!', 'Item updated successfully.', 'success')
+      showToast("Success!", "Item updated successfully.", "success")
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast('Something went wrong.', `${errDetail}`, 'error')
+      showToast("Something went wrong.", `${errDetail}`, "error")
     },
     onSettled: () => {
-      queryClient.invalidateQueries('items')
+      queryClient.invalidateQueries("items")
     },
   })
 
@@ -71,7 +76,7 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={{ base: 'sm', md: 'md' }}
+        size={{ base: "sm", md: "md" }}
         isCentered
       >
         <ModalOverlay />
@@ -83,8 +88,8 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
               <FormLabel htmlFor="title">Title</FormLabel>
               <Input
                 id="title"
-                {...register('title', {
-                  required: 'Title is required',
+                {...register("title", {
+                  required: "Title is required",
                 })}
                 type="text"
               />
@@ -96,7 +101,7 @@ const EditItem: React.FC<EditItemProps> = ({ item, isOpen, onClose }) => {
               <FormLabel htmlFor="description">Description</FormLabel>
               <Input
                 id="description"
-                {...register('description')}
+                {...register("description")}
                 placeholder="Description"
                 type="text"
               />

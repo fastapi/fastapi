@@ -1,13 +1,13 @@
-import React from 'react'
 import {
   Button,
   Container,
   Heading,
   Text,
   useDisclosure,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
+import type React from "react"
 
-import DeleteConfirmation from './DeleteConfirmation'
+import DeleteConfirmation from "./DeleteConfirmation"
 
 const DeleteAccount: React.FC = () => {
   const confirmationModal = useDisclosure()

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   Menu,
@@ -6,14 +5,15 @@ import {
   MenuItem,
   MenuList,
   useDisclosure,
-} from '@chakra-ui/react'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { FiEdit, FiTrash } from 'react-icons/fi'
+} from "@chakra-ui/react"
+import type React from "react"
+import { BsThreeDotsVertical } from "react-icons/bs"
+import { FiEdit, FiTrash } from "react-icons/fi"
 
-import EditUser from '../Admin/EditUser'
-import EditItem from '../Items/EditItem'
-import Delete from './DeleteAlert'
-import { ItemOut, UserOut } from '../../client'
+import type { ItemOut, UserOut } from "../../client"
+import EditUser from "../Admin/EditUser"
+import EditItem from "../Items/EditItem"
+import Delete from "./DeleteAlert"
 
 interface ActionsMenuProps {
   type: string
@@ -49,7 +49,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, value, disabled }) => {
             Delete {type}
           </MenuItem>
         </MenuList>
-        {type === 'User' ? (
+        {type === "User" ? (
           <EditUser
             user={value as UserOut}
             isOpen={editUserModal.isOpen}

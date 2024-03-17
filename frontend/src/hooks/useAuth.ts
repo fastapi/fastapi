@@ -1,21 +1,21 @@
-import { useQuery } from 'react-query'
-import { useNavigate } from '@tanstack/react-router'
+import { useNavigate } from "@tanstack/react-router"
+import { useQuery } from "react-query"
 
 import {
-  Body_login_login_access_token as AccessToken,
+  type Body_login_login_access_token as AccessToken,
   LoginService,
-  UserOut,
+  type UserOut,
   UsersService,
-} from '../client'
+} from "../client"
 
 const isLoggedIn = () => {
-  return localStorage.getItem('access_token') !== null
+  return localStorage.getItem("access_token") !== null
 }
 
 const useAuth = () => {
   const navigate = useNavigate()
   const { data: user, isLoading } = useQuery<UserOut | null, Error>(
-    'currentUser',
+    "currentUser",
     UsersService.readUserMe,
     {
       enabled: isLoggedIn(),
@@ -26,13 +26,13 @@ const useAuth = () => {
     const response = await LoginService.loginAccessToken({
       formData: data,
     })
-    localStorage.setItem('access_token', response.access_token)
-    navigate({ to: '/' })
+    localStorage.setItem("access_token", response.access_token)
+    navigate({ to: "/" })
   }
 
   const logout = () => {
-    localStorage.removeItem('access_token')
-    navigate({ to: '/login' })
+    localStorage.removeItem("access_token")
+    navigate({ to: "/login" })
   }
 
   return { login, logout, user, isLoading }
