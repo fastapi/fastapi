@@ -33,6 +33,7 @@
 
 ### Internal
 
+* ⬆ Bump dawidd6/action-download-artifact from 3.1.2 to 3.1.4. PR [#1103](https://github.com/tiangolo/full-stack-fastapi-template/pull/1103) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Add Biome to pre-commit config. PR [#1098](https://github.com/tiangolo/full-stack-fastapi-template/pull/1098) by [@alejsdev](https://github.com/alejsdev).
 * 🔥 Delete leftover celery file. PR [#727](https://github.com/tiangolo/full-stack-fastapi-template/pull/727) by [@dr-neptune](https://github.com/dr-neptune).
 * ⚙️ Update pre-commit config with Prettier and ESLint. PR [#714](https://github.com/tiangolo/full-stack-fastapi-template/pull/714) by [@alejsdev](https://github.com/alejsdev).
