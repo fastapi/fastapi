@@ -8,7 +8,7 @@ app = FastAPI()
 router = APIRouter()
 
 
-@router.get("")
+@router.get()
 def get_empty():
     return ["OK"]
 
