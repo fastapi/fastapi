@@ -1320,7 +1320,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -1697,7 +1697,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -2079,7 +2079,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -2461,7 +2461,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -2838,7 +2838,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -3215,7 +3215,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -3597,7 +3597,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
@@ -3979,7 +3979,7 @@ class APIRouter(routing.Router):
                 For example, in `http://example.com/items`, the path is `/items`.
                 """
             ),
-        ],
+        ] = "",
         *,
         response_model: Annotated[
             Any,
