@@ -53,6 +53,7 @@ plugins:
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+      tutorial/project-generation.md: tutorial/project-template.md
   mkdocstrings:
     handlers:
       python:
