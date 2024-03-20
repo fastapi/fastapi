@@ -595,6 +595,17 @@ async def solve_dependencies(
         sub_dependant.cache_key = cast(
             Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
         )
+
+        if sub_dependant.use_cache:
+            # Use a unique object to compare against in case the cached value is None
+            cache_miss = object()
+            cached_value = dependency_cache.get(sub_dependant.cache_key, cache_miss)
+            # If the sub dependant is already cached, skip doing any more work
+            if cached_value is not cache_miss:
+                if sub_dependant.name is not None:
+                    values[sub_dependant.name] = cached_value
+                continue
+
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
         if (
@@ -628,9 +639,7 @@ async def solve_dependencies(
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
+        if is_gen_callable(call) or is_async_gen_callable(call):
             solved = await solve_generator(
                 call=call, stack=async_exit_stack, sub_values=solved_result.values
             )
