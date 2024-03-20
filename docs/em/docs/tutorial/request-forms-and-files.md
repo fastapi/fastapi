@@ -3,7 +3,7 @@
 👆 💪 🔬 📁 &amp; 📨 🏑 🎏 🕰 ⚙️ `File` &amp; `Form`.
 
 !!! info
-    📨 📂 📁 &amp; /⚖️ 📨 📊, 🥇 ❎ <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    📨 📂 📁 &amp; /⚖️ 📨 📊, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     🤶 Ⓜ. `pip install python-multipart`.
 

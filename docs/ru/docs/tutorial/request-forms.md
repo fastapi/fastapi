@@ -3,7 +3,7 @@
 Когда вам нужно получить поля формы вместо JSON, вы можете использовать `Form`.
 
 !!! info "Дополнительная информация"
-    Чтобы использовать формы, сначала установите <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     Например, выполните команду `pip install python-multipart`.
 

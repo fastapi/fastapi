@@ -49,7 +49,7 @@ class OpenIdConnect(SecurityBase):
             bool,
             Doc(
                 """
-                By default, if no HTTP Auhtorization header is provided, required for
+                By default, if no HTTP Authorization header is provided, required for
                 OpenID Connect authentication, it will automatically cancel the request
                 and send the client an error.
 
