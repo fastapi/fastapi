@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 🔥 Remove link to Pydantic's benchmark, on other i18n pages.. PR [#11224](https://github.com/tiangolo/fastapi/pull/11224) by [@hirotoKirimaru](https://github.com/hirotoKirimaru).
 * ✏️ Fix typos in docstrings. PR [#11295](https://github.com/tiangolo/fastapi/pull/11295) by [@davidhuser](https://github.com/davidhuser).
 * 🛠️ Improve Node.js script in docs to generate TypeScript clients. PR [#11293](https://github.com/tiangolo/fastapi/pull/11293) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update examples for tests to replace "inexistent" for "nonexistent". PR [#11220](https://github.com/tiangolo/fastapi/pull/11220) by [@Homesteady](https://github.com/Homesteady).
@@ -16,6 +17,8 @@ hide:
 
 ### Translations
 
+* 🌐 Fix Korean translation for `docs/ko/docs/index.md`. PR [#11296](https://github.com/tiangolo/fastapi/pull/11296) by [@choi-haram](https://github.com/choi-haram).
+* 🌐 Add Korean translation for `docs/ko/docs/about/index.md`. PR [#11299](https://github.com/tiangolo/fastapi/pull/11299) by [@choi-haram](https://github.com/choi-haram).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/index.md`. PR [#9613](https://github.com/tiangolo/fastapi/pull/9613) by [@ElliottLarsen](https://github.com/ElliottLarsen).
 * 🌐 Add German translation for `docs/de/docs/how-to/extending-openapi.md`. PR [#10794](https://github.com/tiangolo/fastapi/pull/10794) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/metadata.md`. PR [#11286](https://github.com/tiangolo/fastapi/pull/11286) by [@jackleeio](https://github.com/jackleeio).
@@ -27,6 +30,9 @@ hide:
 
 ### Internal
 
+* ⬆ Bump dorny/paths-filter from 2 to 3. PR [#11028](https://github.com/tiangolo/fastapi/pull/11028) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump dawidd6/action-download-artifact from 3.0.0 to 3.1.4. PR [#11310](https://github.com/tiangolo/fastapi/pull/11310) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ♻️ Refactor computing FastAPI People, include 3 months, 6 months, 1 year, based on comment date, not discussion date. PR [#11304](https://github.com/tiangolo/fastapi/pull/11304) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#11228](https://github.com/tiangolo/fastapi/pull/11228) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove Jina AI QA Bot from the docs. PR [#11268](https://github.com/tiangolo/fastapi/pull/11268) by [@nan-wang](https://github.com/nan-wang).
 * 🔧 Update sponsors, remove Jina, remove Powens, move TestDriven.io. PR [#11213](https://github.com/tiangolo/fastapi/pull/11213) by [@tiangolo](https://github.com/tiangolo).
