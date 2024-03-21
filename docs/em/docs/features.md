@@ -174,7 +174,7 @@ FastAPI 🔌 📶 ⏩ ⚙️, ✋️ 📶 🏋️ <abbr title='also known as "co
 
 ## Pydantic ⚒
 
-**FastAPI** 🍕 🔗 ⏮️ (&amp; ⚓️ 🔛) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. , 🙆 🌖 Pydantic 📟 👆 ✔️, 🔜 👷.
+**FastAPI** 🍕 🔗 ⏮️ (&amp; ⚓️ 🔛) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. , 🙆 🌖 Pydantic 📟 👆 ✔️, 🔜 👷.
 
 ✅ 🔢 🗃 ⚓️ 🔛 Pydantic, <abbr title="Object-Relational Mapper">🐜</abbr>Ⓜ, <abbr title="Object-Document Mapper">🏭</abbr>Ⓜ 💽.
 

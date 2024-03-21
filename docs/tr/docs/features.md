@@ -182,7 +182,7 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 
 ## Pydantic özellikleri
 
-**FastAPI** ile <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
+**FastAPI** ile <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
 
 Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> databaseler ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
 

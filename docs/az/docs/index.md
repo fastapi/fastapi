@@ -120,7 +120,7 @@ Python 3.8+
 FastAPI nəhənglərin çiyinlərində dayanır:
 
 * Web tərəfi üçün <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-* Data tərəfi üçün <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
+* Data tərəfi üçün <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## Quraşdırma
 

@@ -177,7 +177,7 @@ FastAPI включает в себя чрезвычайно простую в и
 
 ## Особенности и возможности Pydantic
 
-**FastAPI** основан на <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> и полностью совместим с ним. Так что, любой дополнительный код Pydantic, который у вас есть, будет также работать.
+**FastAPI** основан на <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> и полностью совместим с ним. Так что, любой дополнительный код Pydantic, который у вас есть, будет также работать.
 
 Включая внешние библиотеки, также основанные на Pydantic, такие как: <abbr title="Object-Relational Mapper">ORM'ы</abbr>, <abbr title="Object-Document Mapper">ODM'ы</abbr> для баз данных.
 

@@ -121,7 +121,7 @@ Python 3.8+
 FastAPI đứng trên vai những người khổng lồ:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> cho phần web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> cho phần data.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> cho phần data.
 
 ## Cài đặt
 

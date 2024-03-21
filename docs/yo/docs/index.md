@@ -120,7 +120,7 @@ Python 3.8+
 FastAPI dúró lórí àwọn èjìká tí àwọn òmíràn:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fún àwọn ẹ̀yà ayélujára.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> fún àwọn ẹ̀yà àkójọf'áyẹ̀wò.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> fún àwọn ẹ̀yà àkójọf'áyẹ̀wò.
 
 ## Fifi sórí ẹrọ
 

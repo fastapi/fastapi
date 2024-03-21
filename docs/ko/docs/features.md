@@ -179,7 +179,7 @@ FastAPI는 사용하기 매우 간편하지만, 엄청난 <abbr title='"컴포�
 
 ## Pydantic 기능
 
-**FastAPI**는 <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>을 기반으로 하며 Pydantic과 완벽하게 호환됩니다. 그래서 어느 추가적인 Pydantic 코드를 여러분이 가지고 있든 작동할 것입니다.
+**FastAPI**는 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>을 기반으로 하며 Pydantic과 완벽하게 호환됩니다. 그래서 어느 추가적인 Pydantic 코드를 여러분이 가지고 있든 작동할 것입니다.
 
 Pydantic을 기반으로 하는, 데이터베이스를 위한 <abbr title="Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr>을 포함한 외부 라이브러리를 포함합니다.
 
