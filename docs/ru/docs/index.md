@@ -445,7 +445,7 @@ item: Item
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - Обязательно, если вы хотите использовать `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Обязательно, если вы хотите использовать конфигурацию шаблона по умолчанию.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Обязательно, если вы хотите поддерживать форму <abbr title="преобразование строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr> с помощью `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Обязательно, если вы хотите поддерживать форму <abbr title="преобразование строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr> с помощью `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Обязательно, для поддержки `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Обязательно, для поддержки `SchemaGenerator` Starlette (возможно, вам это не нужно с FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Обязательно, если вы хотите использовать `UJSONResponse`.

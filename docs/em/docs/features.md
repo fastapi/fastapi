@@ -189,8 +189,6 @@ FastAPI 🔌 📶 ⏩ ⚙️, ✋️ 📶 🏋️ <abbr title='also known as "co
     * 🚥 👆 💭 🐍 🆎 👆 💭 ❔ ⚙️ Pydantic.
 * 🤾 🎆 ⏮️ 👆 **<abbr title="Integrated Development Environment, similar to a code editor">💾</abbr>/<abbr title="A program that checks for code errors">🧶</abbr>/🧠**:
     * ↩️ Pydantic 📊 📊 👐 🎓 👆 🔬; 🚘-🛠️, 🧽, ✍ &amp; 👆 🤔 🔜 🌐 👷 ☑ ⏮️ 👆 ✔ 💽.
-* **⏩**:
-    *  <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">📇</a> Pydantic ⏩ 🌘 🌐 🎏 💯 🗃.
 * ✔ **🏗 📊**:
     * ⚙️ 🔗 Pydantic 🏷, 🐍 `typing`'Ⓜ `List` &amp; `Dict`, ♒️.
     *  &amp; 💳 ✔ 🏗 💽 🔗 🎯 &amp; 💪 🔬, ✅ &amp; 📄 🎻 🔗.

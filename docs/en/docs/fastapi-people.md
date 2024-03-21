@@ -7,7 +7,7 @@ hide:
 
 FastAPI has an amazing community that welcomes people from all backgrounds.
 
-## Creator - Maintainer
+## Creator
 
 Hey! 👋
 
@@ -23,7 +23,7 @@ This is me:
 </div>
 {% endif %}
 
-I'm the creator and maintainer of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...But here I want to show you the community.
 
@@ -39,13 +39,32 @@ These are the people that:
 
 A round of applause to them. 👏 🙇
 
-## Most active users last month
+## FastAPI Experts
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🙇
+
+They have proven to be **FastAPI Experts** by helping many others. ✨
+
+!!! tip
+    You could become an official FastAPI Expert too!
+
+    Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+
+You can see the **FastAPI Experts** for:
+
+* [Last Month](#fastapi-experts-last-month) 🤓
+* [3 Months](#fastapi-experts-3-months) 😎
+* [6 Months](#fastapi-experts-6-months) 🧐
+* [1 Year](#fastapi-experts-1-year) 🧑‍🔬
+* [**All Time**](#fastapi-experts-all-time) 🧙
+
+### FastAPI Experts - Last Month
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. 🤓
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -53,17 +72,57 @@ These are the users that have been [helping others the most with questions in Gi
 </div>
 {% endif %}
 
-## Experts
+### FastAPI Experts - 3 Months
 
-Here are the **FastAPI Experts**. 🤓
-
-These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*.
-
-They have proven to be experts by helping many others. ✨
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. 😎
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.three_months_experts[:10] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - 6 Months
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. 🧐
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.six_months_experts[:10] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - 1 Year
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. 🧑‍🔬
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.one_year_experts[:20] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - All Time
+
+Here are the all time **FastAPI Experts**. 🤓🤯
+
+These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*. 🧙
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -81,7 +140,7 @@ They have contributed source code, documentation, translations, etc. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -91,21 +150,15 @@ They have contributed source code, documentation, translations, etc. 📦
 
 There are many other contributors (more than a hundred), you can see them all in the <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
 
-## Top Reviewers
+## Top Translation Reviewers
 
-These users are the **Top Reviewers**. 🕵️
-
-### Reviews for Translations
+These users are the **Top Translation Reviewers**. 🕵️
 
 I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
 
----
-
-The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, ensuring the quality of the code, documentation, and especially, the **translations**.
-
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}
