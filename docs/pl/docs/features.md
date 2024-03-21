@@ -189,8 +189,6 @@ Dzięki **FastAPI** otrzymujesz wszystkie funkcje **Pydantic** (ponieważ FastAP
     * Jeśli znasz adnotacje typów Pythona to wiesz jak używać Pydantic.
 * Dobrze współpracuje z Twoim **<abbr title='Skrót od "Integrated Development Environment", podobne do edytora kodu'>IDE</abbr>/<abbr title="Program, który sprawdza Twój kod pod kątem błędów">linterem</abbr>/mózgiem**:
     * Ponieważ struktury danych Pydantic to po prostu instancje klas, które definiujesz; autouzupełnianie, linting, mypy i twoja intuicja powinny działać poprawnie z Twoimi zwalidowanymi danymi.
-* **Szybkość**:
-    * w <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarkach</a> Pydantic jest szybszy niż wszystkie inne testowane biblioteki.
 * Walidacja **złożonych struktur**:
     * Wykorzystanie hierarchicznych modeli Pydantic, Pythonowego modułu `typing` zawierającego `List`, `Dict`, itp.
     * Walidatory umożliwiają jasne i łatwe definiowanie, sprawdzanie złożonych struktur danych oraz dokumentowanie ich jako JSON Schema.
