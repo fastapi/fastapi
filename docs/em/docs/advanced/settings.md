@@ -125,7 +125,7 @@ Hello World from Python
 
 ## Pydantic `Settings`
 
-👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings//" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
+👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
 
 ### ✍ `Settings` 🎚
 
