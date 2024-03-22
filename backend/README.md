@@ -183,7 +183,7 @@ $ alembic revision --autogenerate -m "Add column last_name to User model"
 $ alembic upgrade head
 ```
 
-If you don't want to use migrations at all, uncomment the lines in the file at `./backend/app/db/init_db.py` that end in:
+If you don't want to use migrations at all, uncomment the lines in the file at `./backend/app/core/db.py` that end in:
 
 ```python
 SQLModel.metadata.create_all(engine)
