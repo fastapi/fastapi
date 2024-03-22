@@ -127,7 +127,7 @@ Hello World from Python
 
 ## Pydantic 的 `Settings`
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings//" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
 
 ### 创建 `Settings` 对象
 
