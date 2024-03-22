@@ -174,7 +174,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAP
 
 ## Fonctionnalités de Pydantic
 
-**FastAPI** est totalement compatible avec (et basé sur) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Le code utilisant Pydantic que vous ajouterez fonctionnera donc aussi.
+**FastAPI** est totalement compatible avec (et basé sur) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Le code utilisant Pydantic que vous ajouterez fonctionnera donc aussi.
 
 Inclus des librairies externes basées, aussi, sur Pydantic, servent d'<abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s pour les bases de données.
 

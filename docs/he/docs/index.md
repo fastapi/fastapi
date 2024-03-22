@@ -115,7 +115,7 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 FastAPI עומדת על כתפי ענקיות:
 
 -   <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> לחלקי הרשת.
--   <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> לחלקי המידע.
+-   <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> לחלקי המידע.
 
 ## התקנה
 

@@ -115,7 +115,7 @@ Python 3.6+
 FastAPI è basata su importanti librerie:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> per le parti web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> per le parti dei dati.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> per le parti dei dati.
 
 ## Installazione
 

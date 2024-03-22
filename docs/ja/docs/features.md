@@ -177,7 +177,7 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 
 ## Pydanticの特徴
 
-**FastAPI**は<a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
+**FastAPI**は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
 
 データベースのために<abbr title = "Object-Relational Mapper">ORM</abbr>sや、<abbr title = "Object-Document Mapper">ODM</abbr>sなどの、Pydanticに基づく外部ライブラリを備えています。
 

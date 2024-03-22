@@ -120,7 +120,7 @@ Python 3.8+
 A FastAPI óriások vállán áll:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> a webes részekhez.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
 
 ## Telepítés
 

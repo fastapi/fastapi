@@ -120,7 +120,7 @@ Python 3.8+
 FastAPI iki devin omuzları üstünde duruyor:
 
 * Web tarafı için <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-* Data tarafı için <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
+* Data tarafı için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## Kurulum
 

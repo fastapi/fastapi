@@ -112,7 +112,7 @@ Python 3.7+
 FastAPI কিছু দানবেদের কাঁধে দাঁড়িয়ে আছে:
 
 - <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> ওয়েব অংশের জন্য.
-- <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> ডেটা অংশগুলির জন্য.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> ডেটা অংশগুলির জন্য.
 
 ## ইনস্টলেশন প্রক্রিয়া
 

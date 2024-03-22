@@ -112,7 +112,7 @@ Python 3.8 及更高版本
 FastAPI 站在以下巨人的肩膀之上：
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
 
 ## 安装
 

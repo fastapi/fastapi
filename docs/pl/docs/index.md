@@ -111,7 +111,7 @@ Python 3.8+
 FastAPI oparty jest na:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> dla części webowej.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> dla części obsługujących dane.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> dla części obsługujących dane.
 
 ## Instalacja
 

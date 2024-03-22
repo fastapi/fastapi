@@ -329,7 +329,7 @@ name: str
 
 现在，在用于查询的 Pydantic*模型*`Item`中`User`，添加一个内部`Config`类。
 
-此类[`Config`](https://pydantic-docs.helpmanual.io/usage/model_config/)用于为 Pydantic 提供配置。
+此类[`Config`](https://docs.pydantic.dev/latest/api/config/)用于为 Pydantic 提供配置。
 
 在`Config`类中，设置属性`orm_mode = True`。
 

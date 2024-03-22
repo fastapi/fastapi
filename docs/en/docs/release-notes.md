@@ -3486,7 +3486,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade Pydantic supported version to `0.29.0`.
     * New supported version range is `"pydantic >=0.28,<=0.29.0"`.
-    * This adds support for Pydantic [Generic Models](https://pydantic-docs.helpmanual.io/#generic-models), kudos to [@dmontagu](https://github.com/dmontagu).
+    * This adds support for Pydantic [Generic Models](https://docs.pydantic.dev/latest/#generic-models), kudos to [@dmontagu](https://github.com/dmontagu).
     * PR [#344](https://github.com/tiangolo/fastapi/pull/344).
 
 ## 0.30.1
