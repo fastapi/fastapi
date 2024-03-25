@@ -112,7 +112,7 @@ Neste exemplo, ele iria vincular a um arquivo CSS em `static/styles.css` com:
 {!../../../docs_src/templates/static/styles.css!}
 ```
 
-E como você está usando `StaticFiles`, esse arquivo CSS seria servido automaticamente pela sua aplicação FastAPI na URL `/static/styles.css`.
+E como você está usando `StaticFiles`, este arquivo CSS será automaticamente servido pela sua aplicação FastAPI na URL `/static/styles.css`.
 
 ## Mais detalhes
 
