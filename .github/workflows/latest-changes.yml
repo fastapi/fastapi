@@ -19,6 +19,8 @@ on:
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     steps:
       - name: Dump GitHub context
         env:

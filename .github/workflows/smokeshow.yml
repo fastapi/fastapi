@@ -5,13 +5,13 @@ on:
     workflows: [Test]
     types: [completed]
 
-permissions:
-  statuses: write
-
 jobs:
   smokeshow:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      statuses: write
 
     steps:
       - uses: actions/setup-python@v5
@@ -24,6 +24,7 @@ jobs:
         with:
           workflow: test.yml
           commit: ${{ github.event.workflow_run.head_sha }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: smokeshow upload coverage-html
         env:
