@@ -23,6 +23,9 @@ gold:
   - url: https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=banner%20january%2024
     title: Coherence
     img: https://fastapi.tiangolo.com/img/sponsors/coherence.png
+  - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
+    title: Simplify Full Stack Development with FastAPI & MongoDB
+    img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
 silver:
   - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
