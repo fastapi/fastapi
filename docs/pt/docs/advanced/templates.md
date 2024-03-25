@@ -21,30 +21,30 @@ $ pip install jinja2
 ## Usando `Jinja2Templates`
 
 * Importe `Jinja2Templates`.
-* Crie um `templates` que você pode reutilizar posteriormente.
+* Crie um `templates` que você possa reutilizar posteriormente.
 * Declare um parâmetro `Request` no *path operation* que retornará um template.
-* Use os `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passando o nome do template, o o request object, e um "context" dict com pares key-value a serem usados dentro do template Jinja2.
+* Use o `template` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o request object, e um "context" dict com pares chave-valor a serem usados dentro do template do Jinja2.
 
 ```Python hl_lines="4  11  15-18"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
-!!! Nota
+!!! note
     Antes do FastAPI 0.108.0, Starlette 0.29.0, `name` era o primeiro parâmetro.
 
-    Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares key-value no contexto para Jinja2.
+    Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no "context" dict para o Jinja2.
 
 
-!!! Dica
-    Ao declarar `response_class=HTMLResponse`, a interface dos documentos será capaz de saber que a resposta será HTML.
+!!! tip "Dica"
+    Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
 
 
-!!! Nota "Detalhes Técnicos"
+!!! note "Detalhes Técnicos"
     Você também poderia usar `from starlette.templating import Jinja2Templates`.
 
-    **FastAPI** fornece o mesmo `starlette.templating` como `fastapi.templating` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria das respostas disponíveis vem diretamente do Starlette. O mesmo acontece com `Request` e `StaticFiles`.
+    **FastAPI** fornece o mesmo `starlette.templating` como `fastapi.templating` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria das respostas disponíveis vêm diretamente do Starlette. O mesmo acontece com `Request` e `StaticFiles`.
 
-## Escrevento Templates
+## Escrevendo Templates
 
 Então você pode escrever um template em `templates/item.html`, por exemplo:
 
@@ -52,9 +52,9 @@ Então você pode escrever um template em `templates/item.html`, por exemplo:
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-### Template Context Values
+### Interpolação de Valores no Template
 
-Nesse HTML que contem:
+No código HTML que contém:
 
 {% raw %}
 
@@ -64,23 +64,23 @@ Item ID: {{ id }}
 
 {% endraw %}
 
-...irá mostrar o `id` obtido do "context" `dict` que você passou:
+...aparecerá o `id` obtido do "context" `dict` que você passou:
 
 ```Python
 {"id": id}
 ```
 
-Por exemplo, com um ID de `42`, deveria mostrar:
+Por exemplo, dado um ID de valor `42`, aparecerá:
 
 ```html
 Item ID: 42
 ```
 
-### Template `url_for` Arguments
+### Argumentos do `url_for`
 
-Você pode também usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *path operation function*.
+Você também pode usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *path operation function*.
 
-Então, a seção com:
+Logo, a seção com:
 
 {% raw %}
 
@@ -100,13 +100,13 @@ Por exemplo, com um ID de `42`, isso renderizará:
 
 ## Templates e Arquivos Estáticos
 
-Você também pode usar `url_for()` dentro do template, e usar, por examplo, com o `StaticFiles` que você montou com o `name="static"`.
+Você também pode usar `url_for()` dentro do template e usá-lo, por examplo, com o `StaticFiles` que você montou com o `name="static"`.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-Neste exemplo, ele iria vincular a um arquivo CSS em `static/styles.css` com:
+Neste exemplo, ele seria vinculado a um arquivo CSS em `static/styles.css` com:
 
 ```CSS hl_lines="4"
 {!../../../docs_src/templates/static/styles.css!}
