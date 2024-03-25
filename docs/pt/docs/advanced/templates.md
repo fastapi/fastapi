@@ -90,7 +90,7 @@ Então, a seção com:
 
 {% endraw %}
 
-...irá gerar um link para a mesma URL que seria tratada pela *path operation function* `read_item(id=id)`.
+...irá gerar um link para a mesma URL que será tratada pela *path operation function* `read_item(id=id)`.
 
 Por exemplo, com um ID de `42`, isso renderizará:
 
