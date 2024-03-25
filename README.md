@@ -135,6 +135,10 @@ Before deploying it, make sure you change at least the values for:
 - `FIRST_SUPERUSER_PASSWORD`
 - `POSTGRES_PASSWORD`
 
+You can (and should) pass these as environment variables from secrets.
+
+Read the [deployment.md](./deployment.md) docs for more details.
+
 ### Generate Secret Keys
 
 Some environment variables in the `.env` file have a default value of `changethis`.
@@ -196,7 +200,7 @@ But don't worry, you can just update any of that in the `.env` files afterwards.
 The input variables, with their default values (some auto generated) are:
 
 - `project_name`: (default: `"FastAPI Project"`) The name of the project, shown to API users (in .env).
-- `stack_name`: (default: `"fastapi-project"`) The name of the stack used for Docker Compose labels (no spaces) (in .env).
+- `stack_name`: (default: `"fastapi-project"`) The name of the stack used for Docker Compose labels and project name (no spaces, no periods) (in .env).
 - `secret_key`: (default: `"changethis"`) The secret key for the project, used for security, stored in .env, you can generate one with the method above.
 - `first_superuser`: (default: `"admin@example.com"`) The email of the first superuser (in .env).
 - `first_superuser_password`: (default: `"changethis"`) The password of the first superuser (in .env).

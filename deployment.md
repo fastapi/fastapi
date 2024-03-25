@@ -127,6 +127,8 @@ export DOMAIN=fastapi-project.example.com
 
 You can set several variables, like:
 
+* `PROJECT_NAME`: The name of the project, used in the API for the docs and emails.
+* `STACK_NAME`: The name of the stack used for Docker Compose labels and project name, this should be different for `staging`, `production`, etc. You could use the same domain replacing dots with dashes, e.g. `fastapi-project-example-com` and `staging-fastapi-project-example-com`.
 * `BACKEND_CORS_ORIGINS`: A list of allowed CORS origins separated by commas.
 * `SECRET_KEY`: The secret key for the FastAPI project, used to sign tokens.
 * `FIRST_SUPERUSER`: The email of the first superuser, this superuser will be the one that can create new users.
@@ -254,11 +256,15 @@ The current Github Actions workflows expect these secrets:
 
 * `DOMAIN_PRODUCTION`
 * `DOMAIN_STAGING`
+* `STACK_NAME_PRODUCTION`
+* `STACK_NAME_STAGING`
 * `EMAILS_FROM_EMAIL`
 * `FIRST_SUPERUSER`
 * `FIRST_SUPERUSER_PASSWORD`
 * `POSTGRES_PASSWORD`
 * `SECRET_KEY`
+* `LATEST_CHANGES`
+* `SMOKESHOW_AUTH_KEY`
 
 ## GitHub Action Deployment Workflows
 

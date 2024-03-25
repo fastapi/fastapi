@@ -13,6 +13,7 @@ jobs:
     env:
       ENVIRONMENT: staging
       DOMAIN: ${{ secrets.DOMAIN_STAGING }}
+      STACK_NAME: ${{ secrets.STACK_NAME_STAGING }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FIRST_SUPERUSER: ${{ secrets.FIRST_SUPERUSER }}
       FIRST_SUPERUSER_PASSWORD: ${{ secrets.FIRST_SUPERUSER_PASSWORD }}
@@ -25,5 +26,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: docker compose -f docker-compose.yml build
-      - run: docker compose -f docker-compose.yml up -d
+      - run: docker compose -f docker-compose.yml --project-name ${{ secrets.STACK_NAME_STAGING }} build
+      - run: docker compose -f docker-compose.yml --project-name ${{ secrets.STACK_NAME_STAGING }} up -d
