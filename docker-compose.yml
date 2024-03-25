@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   db:
     image: postgres:12
