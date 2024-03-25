@@ -973,6 +973,7 @@ class APIRouter(routing.Router):
             )
 
             if asyncio.iscoroutinefunction(func):
+
                 async def async_client_wrapper(*args, **kwargs):
                     client: "APIClient" = APIClient.get_active_client()
                     if client:
