@@ -92,7 +92,7 @@ Então, a seção com:
 
 ...irá gerar um link para a mesma URL que seria tratada pela *path operation function* `read_item(id=id)`.
 
-Por exemplo, com um ID de `42`, isso renderizaria:
+Por exemplo, com um ID de `42`, isso renderizará:
 
 ```html
 <a href="/items/42">
