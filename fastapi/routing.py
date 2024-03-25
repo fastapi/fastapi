@@ -1,3 +1,4 @@
+from abc import abstractmethod
 import asyncio
 import dataclasses
 import email.message
@@ -861,7 +862,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
-    ) -> None:
+    ) -> APIRoute:
         route_class = route_class_override or self.route_class
         responses = responses or {}
         combined_responses = {**self.responses, **responses}
@@ -880,6 +881,7 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -909,6 +911,7 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
+        return route
 
     def api_route(
         self,
@@ -941,7 +944,7 @@ class APIRouter(routing.Router):
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_route(
+            route = self.add_api_route(
                 path,
                 func,
                 response_model=response_model,
@@ -968,8 +971,26 @@ class APIRouter(routing.Router):
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
             )
-            return func
 
+            if inspect.isawaitable(func):
+                async def async_client_wrapper(*args, **kwargs):
+                    client: "APIClient" = APIClient.get_active_client()
+                    if client:
+                        return await client.send(route, args, kwargs)
+                    else:
+                        return func(*args, **kwargs)
+
+                return async_client_wrapper
+            else:
+                def client_wrapper(*args, **kwargs):
+                    client: "APIClient" = APIClient.get_active_client()
+                    if client:
+                        # maybe add translation to kwargs here?
+                        return client.send(route, args, kwargs)
+                    else:
+                        return func(*args, **kwargs)
+
+                return client_wrapper
         return decorator
 
     def add_api_websocket_route(
@@ -4383,3 +4404,68 @@ class APIRouter(routing.Router):
             return func
 
         return decorator
+
+class APIClient:
+    """Abstract class for holding configuration for the api
+    client
+    """
+
+    __active_client_stack: List["APIClient"] = []
+    """The active client stack (Thread unsafe!)"""
+
+    @classmethod
+    def get_active_client(cls):
+        """Returns the current active client when using with"""
+        if len(cls.__active_client_stack) == 0:
+            return None
+        return cls.__active_client_stack[-1]
+
+    @abstractmethod
+    def send(route: APIRoute, args:list, kwargs: dict):
+        """Async send an api client method to the specified route.
+
+        Args:
+            route (APIRoute): The route to send the message to
+            args (list): The function arguments
+            kwargs (dict): The function named arguments
+
+        Returns:
+            any: The method api response (can be typed) -> types to be added.
+        """
+        pass
+
+    @abstractmethod
+    async def send_async(route: APIRoute, args:list, kwargs: dict):
+        """Async send an api client method to the specified route.
+
+        Args:
+            route (APIRoute): The route to send the message to
+            args (list): The function arguments
+            kwargs (dict): The function named arguments
+
+        Returns:
+            any: The method api response (can be) -> types to be added.
+        """
+        pass
+
+    def __enter__(self):
+        """Calls when enters with"""
+        self.__active_client_stack.append(self)
+
+    def __exit__(self, *args, **kwargs):
+        """Called when exits with"""
+        if len(self.__active_client_stack) != 1:
+            raise FastAPIError(
+                "Cannot find an active fast api, cannot properly exist 'with' call"
+            )
+        if self.__active_client_stack[-1] != self:
+            raise FastAPIError(
+                "Cannot __exit__ the current fast api client with call,"
+                + " another client is already active (another 'with')"
+            )
+        try:
+            self.__active_client_stack.pop(-1)
+        except IndexError as ex:
+            raise FastAPIError(
+                "Failed to properly exit the fast api with call, failed to delete current from stack"
+            ) from ex
