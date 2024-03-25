@@ -972,7 +972,7 @@ class APIRouter(routing.Router):
                 generate_unique_id_function=generate_unique_id_function,
             )
 
-            if inspect.isawaitable(func):
+            if asyncio.iscoroutinefunction(func):
                 async def async_client_wrapper(*args, **kwargs):
                     client: "APIClient" = APIClient.get_active_client()
                     if client:
