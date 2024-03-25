@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # To allow latest-changes to commit to the main branch
-          token: ${{ secrets.FULL_STACK_FASTAPI_POSTGRESQL_LATEST_CHANGES }}
+          token: ${{ secrets.LATEST_CHANGES }}
       - uses: docker://tiangolo/latest-changes:0.3.0
       # - uses: tiangolo/latest-changes@main
         with:
