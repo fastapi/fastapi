@@ -93,7 +93,7 @@
 
 ## Pydantic
 
-所有的数据校验都由 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 在幕后完成，所以你可以从它所有的优点中受益。并且你知道它在这方面非常胜任。
+所有的数据校验都由 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 在幕后完成，所以你可以从它所有的优点中受益。并且你知道它在这方面非常胜任。
 
 你可以使用同样的类型声明来声明 `str`、`float`、`bool` 以及许多其他的复合数据类型。
 

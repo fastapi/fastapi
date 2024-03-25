@@ -3,7 +3,7 @@
 `File`을 사용하여 클라이언트가 업로드할 파일들을 정의할 수 있습니다.
 
 !!! info "정보"
-    업로드된 파일을 전달받기 위해 먼저 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
+    업로드된 파일을 전달받기 위해 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
 
     예시) `pip install python-multipart`.
 

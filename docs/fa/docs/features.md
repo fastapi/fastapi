@@ -182,7 +182,7 @@ FastAPI شامل یک سیستم <abbr title='همچنین به عنوان "comp
 
 ## ویژگی های Pydantic
 
-**FastAPI** کاملا (و براساس) با <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> سازگار است. بنابراین هرکد Pydantic اضافی که داشته باشید، نیز کار خواهد کرد.
+**FastAPI** کاملا (و براساس) با <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> سازگار است. بنابراین هرکد Pydantic اضافی که داشته باشید، نیز کار خواهد کرد.
 
 از جمله کتابخانه های خارجی نیز مبتنی بر Pydantic میتوان به <abbr title="Object-Relational Mapper">ORM</abbr> و <abbr title="Object-Document Mapper">ODM</abbr> ها برای دیتابیس ها اشاره کرد.
 

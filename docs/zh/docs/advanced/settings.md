@@ -127,7 +127,7 @@ Hello World from Python
 
 ## Pydantic 的 `Settings`
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
 
 ### 创建 `Settings` 对象
 
@@ -314,7 +314,7 @@ APP_NAME="ChimichangApp"
 在这里，我们在 Pydantic 的 `Settings` 类中创建了一个名为 `Config` 的类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
 
 !!! tip
-    `Config` 类仅用于 Pydantic 配置。您可以在<a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
+    `Config` 类仅用于 Pydantic 配置。您可以在<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
 
 ### 使用 `lru_cache` 仅创建一次 `Settings`
 

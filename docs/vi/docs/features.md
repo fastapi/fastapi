@@ -172,7 +172,7 @@ Với **FastAPI**, bạn có được tất cả những tính năng của **Sta
 
 ## Tính năng của Pydantic
 
-**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
+**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
 
 Bao gồm các thư viện bên ngoài cũng dựa trên Pydantic, như <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s cho cơ sở dữ liệu.
 
