@@ -1,9 +1,9 @@
-from abc import abstractmethod
 import asyncio
 import dataclasses
 import email.message
 import inspect
 import json
+from abc import abstractmethod
 from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
@@ -982,6 +982,7 @@ class APIRouter(routing.Router):
 
                 return async_client_wrapper
             else:
+
                 def client_wrapper(*args, **kwargs):
                     client: "APIClient" = APIClient.get_active_client()
                     if client:
@@ -991,6 +992,7 @@ class APIRouter(routing.Router):
                         return func(*args, **kwargs)
 
                 return client_wrapper
+
         return decorator
 
     def add_api_websocket_route(
@@ -4405,6 +4407,7 @@ class APIRouter(routing.Router):
 
         return decorator
 
+
 class APIClient:
     """Abstract class for holding configuration for the api
     client
@@ -4421,7 +4424,7 @@ class APIClient:
         return cls.__active_client_stack[-1]
 
     @abstractmethod
-    def send(route: APIRoute, args:list, kwargs: dict):
+    def send(route: APIRoute, args: list, kwargs: dict):
         """Async send an api client method to the specified route.
 
         Args:
@@ -4435,7 +4438,7 @@ class APIClient:
         pass
 
     @abstractmethod
-    async def send_async(route: APIRoute, args:list, kwargs: dict):
+    async def send_async(route: APIRoute, args: list, kwargs: dict):
         """Async send an api client method to the specified route.
 
         Args:
