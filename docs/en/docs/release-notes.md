@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Upgrade configuration for Ruff v0.2.0. PR [#11075](https://github.com/tiangolo/fastapi/pull/11075) by [@charliermarsh](https://github.com/charliermarsh).
 * 🔧 Update sponsors, add MongoDB. PR [#11346](https://github.com/tiangolo/fastapi/pull/11346) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump dorny/paths-filter from 2 to 3. PR [#11028](https://github.com/tiangolo/fastapi/pull/11028) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump dawidd6/action-download-artifact from 3.0.0 to 3.1.4. PR [#11310](https://github.com/tiangolo/fastapi/pull/11310) by [@dependabot[bot]](https://github.com/apps/dependabot).
