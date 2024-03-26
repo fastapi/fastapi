@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update Ruff config, add extra ignore rule from SQLModel. PR [#11353](https://github.com/tiangolo/fastapi/pull/11353) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade configuration for Ruff v0.2.0. PR [#11075](https://github.com/tiangolo/fastapi/pull/11075) by [@charliermarsh](https://github.com/charliermarsh).
 * 🔧 Update sponsors, add MongoDB. PR [#11346](https://github.com/tiangolo/fastapi/pull/11346) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump dorny/paths-filter from 2 to 3. PR [#11028](https://github.com/tiangolo/fastapi/pull/11028) by [@dependabot[bot]](https://github.com/apps/dependabot).
