@@ -6,7 +6,7 @@ Uma escolha comum é o Jinja2, o mesmo usado pelo Flask e outras ferramentas.
 
 Existem utilitários para configurá-lo facilmente que você pode usar diretamente em sua aplicação **FastAPI** (fornecidos pelo Starlette).
 
-## Instalar dependencias
+## Instalação de dependências
 
 Para instalar o `jinja2`, siga o código abaixo:
 
