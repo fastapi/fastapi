@@ -36,6 +36,7 @@ hide:
 
 ### Internal
 
+* 👷 Disable MkDocs insiders social plugin while an issue in MkDocs Material is handled. PR [#11373](https://github.com/tiangolo/fastapi/pull/11373) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix logic for when to install and use MkDocs Insiders. PR [#11372](https://github.com/tiangolo/fastapi/pull/11372) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Do not use Python packages cache for publish. PR [#11366](https://github.com/tiangolo/fastapi/pull/11366) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add CI to test sdists for redistribution (e.g. Linux distros). PR [#11365](https://github.com/tiangolo/fastapi/pull/11365) by [@tiangolo](https://github.com/tiangolo).
