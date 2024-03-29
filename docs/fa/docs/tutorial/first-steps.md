@@ -4,14 +4,11 @@
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
-
 لطفاً کد زیر را در یک فایل با نام main.py قرار دهید.
 
 برای اجرا به صورت live server ، کد را اجرا کنید.
-
-
 <div class="termy">
-
+    
 ```console
 $ uvicorn main:app --reload
 
