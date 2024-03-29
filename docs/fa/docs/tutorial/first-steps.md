@@ -8,7 +8,7 @@
 
 برای اجرا به صورت live server ، کد را اجرا کنید.
 <div class="termy">
-    
+
 ```console
 $ uvicorn main:app --reload
 
