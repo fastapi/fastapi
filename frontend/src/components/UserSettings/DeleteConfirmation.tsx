@@ -11,7 +11,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
 
-import { UsersService, type ApiError, type UserOut } from "../../client"
+import { type ApiError, type UserOut, UsersService } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import useCustomToast from "../../hooks/useCustomToast"
 

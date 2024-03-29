@@ -9,10 +9,10 @@ import {
   Input,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { useForm, type SubmitHandler } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { useMutation } from "react-query"
 
-import { UsersService, type ApiError, type UpdatePassword } from "../../client"
+import { type ApiError, type UpdatePassword, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
 
 interface UpdatePasswordForm extends UpdatePassword {

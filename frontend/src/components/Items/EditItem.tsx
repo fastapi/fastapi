@@ -12,14 +12,14 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react"
-import { useForm, type SubmitHandler } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
 import { useMutation, useQueryClient } from "react-query"
 import {
-  ItemsService,
   type ApiError,
   type ItemOut,
   type ItemUpdate,
+  ItemsService,
 } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
 

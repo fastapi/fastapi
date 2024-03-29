@@ -12,14 +12,14 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import { useForm, type SubmitHandler } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
 
 import {
-  UsersService,
   type ApiError,
   type UserOut,
   type UserUpdateMe,
+  UsersService,
 } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import useCustomToast from "../../hooks/useCustomToast"

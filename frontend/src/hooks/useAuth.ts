@@ -2,10 +2,10 @@ import { useNavigate } from "@tanstack/react-router"
 import { useQuery } from "react-query"
 
 import {
-  LoginService,
-  UsersService,
   type Body_login_login_access_token as AccessToken,
+  LoginService,
   type UserOut,
+  UsersService,
 } from "../client"
 
 const isLoggedIn = () => {
