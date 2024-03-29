@@ -21,7 +21,7 @@ interface DeleteProps {
   onClose: () => void
 }
 
-const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
+const Delete = ({ type, id, isOpen, onClose }: DeleteProps) => {
   const queryClient = useQueryClient()
   const showToast = useCustomToast()
   const cancelRef = React.useRef<HTMLButtonElement | null>(null)

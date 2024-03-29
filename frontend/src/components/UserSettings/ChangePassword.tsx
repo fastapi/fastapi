@@ -9,18 +9,17 @@ import {
   Input,
   useColorModeValue,
 } from "@chakra-ui/react"
-import type React from "react"
-import { type SubmitHandler, useForm } from "react-hook-form"
+import { useForm, type SubmitHandler } from "react-hook-form"
 import { useMutation } from "react-query"
 
-import { type ApiError, type UpdatePassword, UsersService } from "../../client"
+import { UsersService, type ApiError, type UpdatePassword } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
 
 interface UpdatePasswordForm extends UpdatePassword {
   confirm_password: string
 }
 
-const ChangePassword: React.FC = () => {
+const ChangePassword = () => {
   const color = useColorModeValue("inherit", "ui.white")
   const showToast = useCustomToast()
   const {

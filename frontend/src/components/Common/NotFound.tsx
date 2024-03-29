@@ -1,8 +1,7 @@
 import { Button, Container, Text } from "@chakra-ui/react"
 import { Link } from "@tanstack/react-router"
-import type React from "react"
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
   return (
     <>
       <Container

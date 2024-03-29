@@ -6,7 +6,6 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react"
-import type React from "react"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
@@ -21,7 +20,7 @@ interface ActionsMenuProps {
   disabled?: boolean
 }
 
-const ActionsMenu: React.FC<ActionsMenuProps> = ({ type, value, disabled }) => {
+const ActionsMenu = ({ type, value, disabled }: ActionsMenuProps) => {
   const editUserModal = useDisclosure()
   const deleteModal = useDisclosure()
 

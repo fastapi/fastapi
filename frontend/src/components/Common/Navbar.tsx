@@ -1,5 +1,4 @@
 import { Button, Flex, Icon, useDisclosure } from "@chakra-ui/react"
-import type React from "react"
 import { FaPlus } from "react-icons/fa"
 
 import AddUser from "../Admin/AddUser"
@@ -9,7 +8,7 @@ interface NavbarProps {
   type: string
 }
 
-const Navbar: React.FC<NavbarProps> = ({ type }) => {
+const Navbar = ({ type }: NavbarProps) => {
   const addUserModal = useDisclosure()
   const addItemModal = useDisclosure()
 

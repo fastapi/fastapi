@@ -12,7 +12,6 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import type React from "react"
 import { FiLogOut, FiMenu } from "react-icons/fi"
 import { useQueryClient } from "react-query"
 
@@ -21,7 +20,7 @@ import type { UserOut } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import SidebarItems from "./SidebarItems"
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const queryClient = useQueryClient()
   const bgColor = useColorModeValue("ui.white", "ui.dark")
   const textColor = useColorModeValue("ui.dark", "ui.white")

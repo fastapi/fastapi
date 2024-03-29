@@ -11,22 +11,21 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
-import type React from "react"
 import { useState } from "react"
-import { type SubmitHandler, useForm } from "react-hook-form"
+import { useForm, type SubmitHandler } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
 
 import {
+  UsersService,
   type ApiError,
   type UserOut,
   type UserUpdateMe,
-  UsersService,
 } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import useCustomToast from "../../hooks/useCustomToast"
 import { emailPattern } from "../../utils"
 
-const UserInformation: React.FC = () => {
+const UserInformation = () => {
   const queryClient = useQueryClient()
   const color = useColorModeValue("inherit", "ui.white")
   const showToast = useCustomToast()

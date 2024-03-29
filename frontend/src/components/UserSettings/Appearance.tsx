@@ -7,9 +7,8 @@ import {
   Stack,
   useColorMode,
 } from "@chakra-ui/react"
-import type React from "react"
 
-const Appearance: React.FC = () => {
+const Appearance = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (

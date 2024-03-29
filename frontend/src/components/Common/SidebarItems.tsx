@@ -1,6 +1,5 @@
 import { Box, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
 import { Link } from "@tanstack/react-router"
-import type React from "react"
 import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
 import { useQueryClient } from "react-query"
 
@@ -16,7 +15,7 @@ interface SidebarItemsProps {
   onClose?: () => void
 }
 
-const SidebarItems: React.FC<SidebarItemsProps> = ({ onClose }) => {
+const SidebarItems = ({ onClose }: SidebarItemsProps) => {
   const queryClient = useQueryClient()
   const textColor = useColorModeValue("ui.main", "ui.white")
   const bgActive = useColorModeValue("#E2E8F0", "#4A5568")

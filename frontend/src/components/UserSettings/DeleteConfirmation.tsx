@@ -11,7 +11,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
 
-import { type ApiError, type UserOut, UsersService } from "../../client"
+import { UsersService, type ApiError, type UserOut } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import useCustomToast from "../../hooks/useCustomToast"
 
@@ -20,7 +20,7 @@ interface DeleteProps {
   onClose: () => void
 }
 
-const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
+const DeleteConfirmation = ({ isOpen, onClose }: DeleteProps) => {
   const queryClient = useQueryClient()
   const showToast = useCustomToast()
   const cancelRef = React.useRef<HTMLButtonElement | null>(null)
