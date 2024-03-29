@@ -25,6 +25,7 @@ import {
   UsersService,
 } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
+import { emailPattern } from "../../utils"
 
 interface EditUserProps {
   user: UserOut
@@ -101,10 +102,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
                 id="email"
                 {...register("email", {
                   required: "Email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address",
-                  },
+                  pattern: emailPattern,
                 })}
                 placeholder="Email"
                 type="email"

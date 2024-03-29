@@ -25,6 +25,7 @@ import Logo from "../assets/images/fastapi-logo.svg"
 import type { ApiError } from "../client"
 import type { Body_login_login_access_token as AccessToken } from "../client/models/Body_login_login_access_token"
 import useAuth, { isLoggedIn } from "../hooks/useAuth"
+import { emailPattern } from "../utils"
 
 export const Route = createFileRoute("/login")({
   component: Login,
@@ -87,10 +88,7 @@ function Login() {
           <Input
             id="username"
             {...register("username", {
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address",
-              },
+              pattern: emailPattern,
             })}
             placeholder="Email"
             type="email"
