@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/path-params-numeric-validations.md`. PR [#10307](https://github.com/tiangolo/fastapi/pull/10307) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/query-params-str-validations.md`. PR [#10304](https://github.com/tiangolo/fastapi/pull/10304) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/request-files.md`. PR [#10364](https://github.com/tiangolo/fastapi/pull/10364) by [@nilslindemann](https://github.com/nilslindemann).
 * :globe_with_meridians: Add Portuguese translation for `docs/pt/docs/advanced/templates.md`. PR [#11338](https://github.com/tiangolo/fastapi/pull/11338) by [@SamuelBFavarin](https://github.com/SamuelBFavarin).
