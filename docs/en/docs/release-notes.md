@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/deployment/manually.md`. PR [#10738](https://github.com/tiangolo/fastapi/pull/10738) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/deployment/concepts.md`. PR [#10744](https://github.com/tiangolo/fastapi/pull/10744) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Update German translation for `docs/de/docs/features.md`. PR [#10284](https://github.com/tiangolo/fastapi/pull/10284) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/deployment/server-workers.md`. PR [#10747](https://github.com/tiangolo/fastapi/pull/10747) by [@nilslindemann](https://github.com/nilslindemann).
