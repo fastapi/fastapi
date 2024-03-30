@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/advanced/dataclasses.md`. PR [#10667](https://github.com/tiangolo/fastapi/pull/10667) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/middleware.md`. PR [#10668](https://github.com/tiangolo/fastapi/pull/10668) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/sub-applications.md`. PR [#10671](https://github.com/tiangolo/fastapi/pull/10671) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/websockets.md`. PR [#10687](https://github.com/tiangolo/fastapi/pull/10687) by [@nilslindemann](https://github.com/nilslindemann).
