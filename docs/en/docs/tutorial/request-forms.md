@@ -3,7 +3,7 @@
 When you need to receive form fields instead of JSON, you can use `Form`.
 
 !!! info
-    To use forms, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    To use forms, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -17,13 +17,13 @@ Import `Form` from `fastapi`:
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_forms/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -42,13 +42,13 @@ Create form parameters the same way you would for `Body` or `Query`:
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/request_forms/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

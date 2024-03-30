@@ -160,7 +160,7 @@ path -> item_id
 !!! warning "Aviso"
     Você pode pular estes detalhes técnicos caso eles não sejam importantes para você neste momento.
 
-`RequestValidationError` é uma subclasse do <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a> existente no Pydantic.
+`RequestValidationError` é uma subclasse do <a href="https://docs.pydantic.dev/latest/#error-handling" class="external-link" target="_blank">`ValidationError`</a> existente no Pydantic.
 
 **FastAPI** faz uso dele para que você veja o erro no seu log, caso você utilize um modelo de Pydantic em `response_model`, e seus dados tenham erro.
 

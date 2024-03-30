@@ -227,7 +227,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
     ```
 
 !!! tip
-    Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+    Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
 
 ### ⚙️ Pydantic `Required` ↩️ ❕ (`...`)
 
@@ -371,7 +371,7 @@ http://localhost:8000/items/
 
 === "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
-    ```Python hl_lines="12"
+    ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
     ```
 
@@ -421,7 +421,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 === "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
-    ```Python hl_lines="17"
+    ```Python hl_lines="16"
     {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
     ```
 
