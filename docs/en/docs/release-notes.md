@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/index.md`. PR [#10399](https://github.com/tiangolo/fastapi/pull/10399) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/header-params.md`. PR [#10326](https://github.com/tiangolo/fastapi/pull/10326) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/path-params-numeric-validations.md`. PR [#10307](https://github.com/tiangolo/fastapi/pull/10307) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/query-params-str-validations.md`. PR [#10304](https://github.com/tiangolo/fastapi/pull/10304) by [@nilslindemann](https://github.com/nilslindemann).
