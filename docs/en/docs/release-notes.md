@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/cookie-params.md`. PR [#10323](https://github.com/tiangolo/fastapi/pull/10323) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#10407](https://github.com/tiangolo/fastapi/pull/10407) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/index.md`. PR [#10399](https://github.com/tiangolo/fastapi/pull/10399) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/header-params.md`. PR [#10326](https://github.com/tiangolo/fastapi/pull/10326) by [@nilslindemann](https://github.com/nilslindemann).
