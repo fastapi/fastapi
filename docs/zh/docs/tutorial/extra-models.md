@@ -180,7 +180,7 @@ UserInDB(
 
 
 !!! note
-    定义一个 <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，首先包括最详细的类型，然后是不太详细的类型。在下面的示例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
+    定义一个 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，首先包括最详细的类型，然后是不太详细的类型。在下面的示例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
 
 === "Python 3.10+"
 
