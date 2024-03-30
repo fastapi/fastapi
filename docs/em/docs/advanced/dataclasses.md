@@ -8,7 +8,7 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 {!../../../docs_src/dataclasses/tutorial001.py!}
 ```
 
-👉 🐕‍🦺 👏 **Pydantic**, ⚫️ ✔️ <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">🔗 🐕‍🦺 `dataclasses`</a>.
+👉 🐕‍🦺 👏 **Pydantic**, ⚫️ ✔️ <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">🔗 🐕‍🦺 `dataclasses`</a>.
 
 , ⏮️ 📟 🔛 👈 🚫 ⚙️ Pydantic 🎯, FastAPI ⚙️ Pydantic 🗜 📚 🐩 🎻 Pydantic 👍 🍛 🎻.
 
@@ -91,7 +91,7 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 
 👆 💪 🌀 `dataclasses` ⏮️ 🎏 Pydantic 🏷, 😖 ⚪️➡️ 👫, 🔌 👫 👆 👍 🏷, ♒️.
 
-💡 🌅, ✅ <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/" class="external-link" target="_blank">Pydantic 🩺 🔃 🎻</a>.
+💡 🌅, ✅ <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic 🩺 🔃 🎻</a>.
 
 ## ⏬
 

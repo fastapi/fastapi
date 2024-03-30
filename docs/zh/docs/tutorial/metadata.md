@@ -1,39 +1,34 @@
 # 元数据和文档 URL
+你可以在 FastAPI 应用程序中自定义多个元数据配置。
 
-你可以在 **FastAPI** 应用中自定义几个元数据配置。
+## API 元数据
 
-## 标题、描述和版本
+你可以在设置 OpenAPI 规范和自动 API 文档 UI 中使用的以下字段：
 
-你可以设定：
+| 参数 | 类型 | 描述 |
+|------------|------|-------------|
+| `title` | `str` | API 的标题。 |
+| `summary` | `str` | API 的简短摘要。 <small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。.</small> |
+| `description` | `str` | API 的简短描述。可以使用Markdown。 |
+| `version` | `string` | API 的版本。这是您自己的应用程序的版本，而不是 OpenAPI 的版本。例如 `2.5.0` 。 |
+| `terms_of_service` | `str` | API 服务条款的 URL。如果提供，则必须是 URL。 |
+| `contact` | `dict` | 公开的 API 的联系信息。它可以包含多个字段。<details><summary><code>contact</code> 字段</summary><table><thead><tr><th>参数</th><th>Type</th><th>描述</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>联系人/组织的识别名称。</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>指向联系信息的 URL。必须采用 URL 格式。</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>联系人/组织的电子邮件地址。必须采用电子邮件地址的格式。</td></tr></tbody></table></details> |
+| `license_info` | `dict` | 公开的 API 的许可证信息。它可以包含多个字段。<details><summary><code>license_info</code> 字段</summary><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>必须的</strong> (如果设置了<code>license_info</code>). 用于 API 的许可证名称。</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>一个API的<a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a>许可证表达。 The <code>identifier</code> field is mutually exclusive of the <code>url</code> field. <small>自 OpenAPI 3.1.0、FastAPI 0.99.0 起可用。</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>用于 API 的许可证的 URL。必须采用 URL 格式。</td></tr></tbody></table></details> |
 
-* **Title**：在 OpenAPI 和自动 API 文档用户界面中作为 API 的标题/名称使用。
-* **Description**：在 OpenAPI 和自动 API 文档用户界面中用作 API 的描述。
-* **Version**：API 版本，例如 `v2` 或者 `2.5.0`。
-    * 如果你之前的应用程序版本也使用 OpenAPI 会很有用。
-
-使用 `title`、`description` 和 `version` 来设置它们：
+你可以按如下方式设置它们：
 
 ```Python hl_lines="4-6"
 {!../../../docs_src/metadata/tutorial001.py!}
 ```
+
+!!! tip
+    您可以在 `description` 字段中编写 Markdown，它将在输出中呈现。
 
 通过这样设置，自动 API 文档看起来会像：
 
 <img src="/img/tutorial/metadata/image01.png">
 
 ## 标签元数据
-
-你也可以使用参数 `openapi_tags`，为用于分组路径操作的不同标签添加额外的元数据。
-
-它接受一个列表，这个列表包含每个标签对应的一个字典。
-
-每个字典可以包含：
-
-* `name`（**必要**）：一个 `str`，它与*路径操作*和 `APIRouter` 中使用的 `tags` 参数有相同的标签名。
-* `description`：一个用于简短描述标签的 `str`。它支持 Markdown 并且会在文档用户界面中显示。
-* `externalDocs`：一个描述外部文档的 `dict`：
-    * `description`：用于简短描述外部文档的 `str`。
-    * `url`（**必要**）：外部文档的 URL `str`。
 
 ### 创建标签元数据
 

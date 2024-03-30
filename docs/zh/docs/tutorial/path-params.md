@@ -97,7 +97,7 @@ FastAPI 支持使用 Python 字符串格式化语法声明**路径参数**（**�
 
 ## Pydantic
 
-FastAPI 充分地利用了 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
+FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
 
 同样，`str`、`float`、`bool` 以及很多复合数据类型都可以使用类型声明。
 
