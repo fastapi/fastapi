@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/header-params.md`. PR [#3487](https://github.com/tiangolo/fastapi/pull/3487) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Update Chinese translation for `docs/tutorial/response-status-code.md`. PR [#3498](https://github.com/tiangolo/fastapi/pull/3498) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add German translation for `docs/de/docs/tutorial/security/first-steps.md`. PR [#10432](https://github.com/tiangolo/fastapi/pull/10432) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/events.md`. PR [#10693](https://github.com/tiangolo/fastapi/pull/10693) by [@nilslindemann](https://github.com/nilslindemann).
