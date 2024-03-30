@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Características
 
 ## Características de FastAPI
@@ -13,7 +18,7 @@
 
 ### Documentación automática
 
-Documentación interactiva de la API e interfaces web de exploración. Hay múltiples opciones, dos incluídas por defecto, porque el framework está basado en OpenAPI.
+Documentación interactiva de la API e interfaces web de exploración. Hay múltiples opciones, dos incluidas por defecto, porque el framework está basado en OpenAPI.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, con exploración interactiva, llama y prueba tu API directamente desde tu navegador.
 
@@ -25,7 +30,7 @@ Documentación interactiva de la API e interfaces web de exploración. Hay múlt
 
 ### Simplemente Python moderno
 
-Todo está basado en las declaraciones de tipo de **Python 3.6** estándar (gracias a Pydantic). No necesitas aprender una sintáxis nueva, solo Python moderno.
+Todo está basado en las declaraciones de tipo de **Python 3.8** estándar (gracias a Pydantic). No necesitas aprender una sintaxis nueva, solo Python moderno.
 
 Si necesitas un repaso de 2 minutos de cómo usar los tipos de Python (así no uses FastAPI) prueba el tutorial corto: [Python Types](python-types.md){.internal-link target=_blank}.
 
@@ -72,9 +77,9 @@ my_second_user: User = User(**second_user_data)
 
 El framework fue diseñado en su totalidad para ser fácil e intuitivo de usar. Todas las decisiones fueron probadas en múltiples editores antes de comenzar el desarrollo para asegurar la mejor experiencia de desarrollo.
 
-En la última encuesta a desarrolladores de Python fue claro que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la característica más usada es el "autocompletado"</a>.
+En la última encuesta a desarrolladores de Python fue claro que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la característica más usada es el "auto-completado"</a>.
 
-El framework **FastAPI** está creado para satisfacer eso. El autocompletado funciona en todas partes.
+El framework **FastAPI** está creado para satisfacer eso. El auto-completado funciona en todas partes.
 
 No vas a tener que volver a la documentación seguido.
 
@@ -140,13 +145,13 @@ FastAPI incluye un sistema de <abbr title='En español: Inyección de Dependenci
 * Todas las dependencias pueden requerir datos de los requests y aumentar las restricciones del *path operation* y la documentación automática.
 * **Validación automática** inclusive para parámetros del *path operation* definidos en las dependencias.
 * Soporte para sistemas complejos de autenticación de usuarios, **conexiones con bases de datos**, etc.
-* **Sin comprometerse** con bases de datos, frontends, etc. Pero permitiendo integración fácil con todos ellos.
+* **Sin comprometerse** con bases de datos, frontend, etc. Pero permitiendo integración fácil con todos ellos.
 
 ### "Plug-ins" ilimitados
 
 O dicho de otra manera, no hay necesidad para "plug-ins". Importa y usa el código que necesites.
 
-Cualquier integración está diseñada para que sea tan sencilla de usar (con dependencias) que puedas crear un "plug-in" para tu aplicación en dos líneas de código usando la misma estructura y sintáxis que usaste para tus *path operations*.
+Cualquier integración está diseñada para que sea tan sencilla de usar (con dependencias) que puedas crear un "plug-in" para tu aplicación en dos líneas de código usando la misma estructura y sintaxis que usaste para tus *path operations*.
 
 ### Probado
 
@@ -164,7 +169,6 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 
 * Desempeño realmente impresionante. Es uno <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank"> de los frameworks de Python más rápidos, a la par con **NodeJS** y **Go**</a>.
 * Soporte para **WebSocket**.
-* Soporte para **GraphQL**.
 * <abbr title="En español: tareas que se ejecutan en el fondo, sin frenar requests, en el mismo proceso. En ingles: In-process background tasks">Tareas en background</abbr>.
 * Eventos de startup y shutdown.
 * Cliente de pruebas construido con HTTPX.
@@ -175,13 +179,13 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 
 ## Características de Pydantic
 
-**FastAPI** está basado y es completamente compatible con <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tanto así, que cualquier código de Pydantic que tengas también funcionará.
+**FastAPI** está basado y es completamente compatible con <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tanto así, que cualquier código de Pydantic que tengas también funcionará.
 
 Esto incluye a librerías externas basadas en Pydantic como <abbr title="Object-Relational Mapper">ORM</abbr>s y <abbr title="Object-Document Mapper">ODM</abbr>s para bases de datos.
 
 Esto también significa que en muchos casos puedes pasar el mismo objeto que obtuviste de un request **directamente a la base de datos**, dado que todo es validado automáticamente.
 
-Lo mismo aplica para el sentido contrario. En muchos casos puedes pasarle el objeto que obtienes de la base de datos **directamente al cliente**.
+Lo mismo aplica para el sentido contrario. En muchos casos puedes pasar el objeto que obtienes de la base de datos **directamente al cliente**.
 
 Con **FastAPI** obtienes todas las características de **Pydantic** (dado que FastAPI está basado en Pydantic para todo el manejo de datos):
 
@@ -190,8 +194,6 @@ Con **FastAPI** obtienes todas las características de **Pydantic** (dado que Fa
     * Si sabes tipos de Python, sabes cómo usar Pydantic.
 * Interactúa bien con tu **<abbr title="en inglés: Integrated Development Environment, similar a editor de código">IDE</abbr>/<abbr title="Un programa que chequea errores en el código">linter</abbr>/cerebro**:
     * Porque las estructuras de datos de Pydantic son solo <abbr title='En español: ejemplares. Aunque a veces los llaman incorrectamente "instancias"'>instances</abbr> de clases que tu defines, el auto-completado, el linting, mypy y tu intuición deberían funcionar bien con tus datos validados.
-* **Rápido**:
-    * En <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic es más rápido que todas las otras <abbr title='Herramienta, paquete. A veces llamado "librería"'>libraries</abbr> probadas.
 * Valida **estructuras complejas**:
     * Usa modelos jerárquicos de modelos de Pydantic, `typing` de Python,  `List` y `Dict`, etc.
     * Los validadores también permiten que se definan fácil y claramente schemas complejos de datos. Estos son chequeados y documentados como JSON Schema.

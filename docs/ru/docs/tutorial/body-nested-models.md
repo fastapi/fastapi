@@ -12,7 +12,7 @@
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial001.py!}
@@ -73,7 +73,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial002.py!}
@@ -85,7 +85,7 @@ my_list: List[str]
 
 И в Python есть специальный тип данных для множеств уникальных элементов - `set`.
 
-Тогда мы может обьявить поле `tags` как множество строк:
+Тогда мы можем обьявить поле `tags` как множество строк:
 
 === "Python 3.10+"
 
@@ -99,7 +99,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14"
     {!> ../../../docs_src/body_nested_models/tutorial003.py!}
@@ -137,7 +137,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -159,7 +159,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -192,7 +192,7 @@ my_list: List[str]
 
 Помимо обычных простых типов, таких как `str`, `int`, `float`, и т.д. Вы можете использовать более сложные базовые типы, которые наследуются от типа `str`.
 
-Чтобы увидеть все варианты, которые у вас есть, ознакомьтесь с документацией <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">по необычным типам Pydantic</a>. Вы увидите некоторые примеры в следующей главе.
+Чтобы увидеть все варианты, которые у вас есть, ознакомьтесь с документацией <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">по необычным типам Pydantic</a>. Вы увидите некоторые примеры в следующей главе.
 
 Например, так как в модели `Image` у нас есть поле `url`, то мы можем объявить его как тип `HttpUrl` из модуля Pydantic вместо типа `str`:
 
@@ -208,7 +208,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10"
     {!> ../../../docs_src/body_nested_models/tutorial005.py!}
@@ -232,7 +232,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
@@ -283,7 +283,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14  20  23  27"
     {!> ../../../docs_src/body_nested_models/tutorial007.py!}
@@ -314,7 +314,7 @@ images: list[Image]
     {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_nested_models/tutorial008.py!}
@@ -354,7 +354,7 @@ images: list[Image]
     {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}

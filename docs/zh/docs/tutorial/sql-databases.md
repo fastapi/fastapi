@@ -78,9 +78,23 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 
 现在让我们看看每个文件/模块的作用。
 
+## 安装 SQLAlchemy
+
+先下载`SQLAlchemy`所需要的依赖：
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 ## 创建 SQLAlchemy 部件
 
-让我们涉及到文件`sql_app/database.py`。
+让我们转到文件`sql_app/database.py`。
 
 ### 导入 SQLAlchemy 部件
 
@@ -258,7 +272,7 @@ connect_args={"check_same_thread": False}
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -302,7 +316,7 @@ name: str
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -315,7 +329,7 @@ name: str
 
 现在，在用于查询的 Pydantic*模型*`Item`中`User`，添加一个内部`Config`类。
 
-此类[`Config`](https://pydantic-docs.helpmanual.io/usage/model_config/)用于为 Pydantic 提供配置。
+此类[`Config`](https://docs.pydantic.dev/latest/api/config/)用于为 Pydantic 提供配置。
 
 在`Config`类中，设置属性`orm_mode = True`。
 
@@ -331,7 +345,7 @@ name: str
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -471,7 +485,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -485,7 +499,7 @@ current_user.items
 
 “迁移”是每当您更改 SQLAlchemy 模型的结构、添加新属性等以在数据库中复制这些更改、添加新列、新表等时所需的一组步骤。
 
-您可以在[Project Generation - Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/)。
+您可以在[Project Generation - Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/)。
 
 ### 创建依赖项
 
@@ -505,7 +519,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15-20"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -530,7 +544,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24  32  38  47  53"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -551,7 +565,7 @@ current_user.items
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -650,7 +664,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
@@ -670,7 +684,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
@@ -729,7 +743,7 @@ $ uvicorn sql_app.main:app --reload
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14-22"
     {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}

@@ -1,7 +1,9 @@
+import json
 from typing import Dict
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
+from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -53,6 +55,7 @@ async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
         yield state["/async_raise"]
     except AsyncDependencyError:
         errors.append("/async_raise")
+        raise
     finally:
         state["/async_raise"] = "asyncgen raise finalized"
 
@@ -63,6 +66,7 @@ def generator_state_try(state: Dict[str, str] = Depends(get_state)):
         yield state["/sync_raise"]
     except SyncDependencyError:
         errors.append("/sync_raise")
+        raise
     finally:
         state["/sync_raise"] = "generator raise finalized"
 
@@ -200,6 +204,13 @@ async def get_sync_context_b_bg(
     return state
 
 
+@app.middleware("http")
+async def middleware(request, call_next):
+    response: StreamingResponse = await call_next(request)
+    response.headers["x-state"] = json.dumps(state.copy())
+    return response
+
+
 client = TestClient(app)
 
 
@@ -274,9 +285,13 @@ def test_background_tasks():
     assert data["context_b"] == "started b"
     assert data["context_a"] == "started a"
     assert data["bg"] == "not set"
+    middleware_state = json.loads(response.headers["x-state"])
+    assert middleware_state["context_b"] == "finished b with a: started a"
+    assert middleware_state["context_a"] == "finished a"
+    assert middleware_state["bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["bg"] == "bg set - b: started b - a: started a"
+    assert state["bg"] == "bg set - b: finished b with a: started a - a: finished a"
 
 
 def test_sync_raise_raises():
@@ -382,4 +397,7 @@ def test_sync_background_tasks():
     assert data["sync_bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["sync_bg"] == "sync_bg set - b: started b - a: started a"
+    assert (
+        state["sync_bg"]
+        == "sync_bg set - b: finished b with a: started a - a: finished a"
+    )
