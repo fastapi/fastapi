@@ -6,7 +6,7 @@
 
 你的 API 几乎总是要发送**响应**体。但是客户端并不总是需要发送**请求**体。
 
-我们使用 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求**体，并能够获得它们所具有的所有能力和优点。
+我们使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求**体，并能够获得它们所具有的所有能力和优点。
 
 !!! info
     你不能使用 `GET` 操作（HTTP 方法）发送请求体。

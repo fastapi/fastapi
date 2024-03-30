@@ -440,7 +440,7 @@ Nó không có nghĩa "`one_person`" là một **lớp** gọi là `Person`.
 
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> là một thư viện Python để validate dữ liệu hiệu năng cao.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> là một thư viện Python để validate dữ liệu hiệu năng cao.
 
 Bạn có thể khai báo "hình dạng" của dữa liệu như là các lớp với các thuộc tính.
 
@@ -471,14 +471,14 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
     ```
 
 !!! info
-    Để học nhiều hơn về <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+    Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
 
 **FastAPI** được dựa hoàn toàn trên Pydantic.
 
 Bạn sẽ thấy nhiều ví dụ thực tế hơn trong [Hướng dẫn sử dụng](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip
-    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 
 ## Type Hints với Metadata Annotations

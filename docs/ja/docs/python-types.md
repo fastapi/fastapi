@@ -266,7 +266,7 @@ John Doe
 
 ## Pydanticのモデル
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うためのPythonライブラリです。
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> はデータ検証を行うためのPythonライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
@@ -283,7 +283,7 @@ Pydanticの公式ドキュメントから引用:
 ```
 
 !!! info "情報"
-    Pydanticについてより学びたい方は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">ドキュメントを参照してください</a>.
+    Pydanticについてより学びたい方は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">ドキュメントを参照してください</a>.
 
 **FastAPI** はすべてPydanticをベースにしています。
 

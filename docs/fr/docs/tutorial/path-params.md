@@ -106,7 +106,7 @@ pour de nombreux langages.
 
 ## Pydantic
 
-Toute la validation de données est effectué en arrière-plan avec <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>,
+Toute la validation de données est effectué en arrière-plan avec <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>,
 dont vous bénéficierez de tous les avantages. Vous savez donc que vous êtes entre de bonnes mains.
 
 ## L'ordre importe

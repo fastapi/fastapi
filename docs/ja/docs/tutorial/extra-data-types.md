@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Pythonの`datetime.timedelta`です。
     * リクエストとレスポンスでは合計秒数の`float`で表現されます。
-    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。<a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">詳細はドキュメントを参照してください</a>。
+    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。<a href="https://docs.pydantic.dev/latest/concepts/serialization/" class="external-link" target="_blank">詳細はドキュメントを参照してください</a>。
 * `frozenset`:
     * リクエストとレスポンスでは`set`と同じように扱われます:
         * リクエストでは、リストが読み込まれ、重複を排除して`set`に変換されます。
@@ -50,7 +50,7 @@
     * Pythonの標準的な`Decimal`です。
     * リクエストやレスポンスでは`float`と同じように扱います。
 
-* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic data types</a>。
+* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic data types</a>。
 ## 例
 
 ここでは、上記の型のいくつかを使用したパラメータを持つ*path operation*の例を示します。

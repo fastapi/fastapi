@@ -27,7 +27,7 @@
 ## 実行
 
 !!! info "情報"
-    まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+    まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
     例えば、`pip install python-multipart`。
 

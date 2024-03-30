@@ -179,7 +179,7 @@ UserInDB(
 👈, ⚙️ 🐩 🐍 🆎 🔑 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note
-    🕐❔ ⚖ <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, 🔌 🏆 🎯 🆎 🥇, ⏩ 🌘 🎯 🆎. 🖼 🔛, 🌖 🎯 `PlaneItem` 👟 ⏭ `CarItem` `Union[PlaneItem, CarItem]`.
+    🕐❔ ⚖ <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, 🔌 🏆 🎯 🆎 🥇, ⏩ 🌘 🎯 🆎. 🖼 🔛, 🌖 🎯 `PlaneItem` 👟 ⏭ `CarItem` `Union[PlaneItem, CarItem]`.
 
 === "🐍 3️⃣.6️⃣ &amp; 🔛"
 

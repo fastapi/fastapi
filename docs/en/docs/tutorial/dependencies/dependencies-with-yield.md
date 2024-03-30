@@ -162,6 +162,63 @@ The same way, you could raise an `HTTPException` or similar in the exit code, af
 
 An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is to create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
+## Dependencies with `yield` and `except`
+
+If you catch an exception using `except` in a dependency with `yield` and you don't raise it again (or raise a new exception), FastAPI won't be able to notice there was an exception, the same way that would happen with regular Python:
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="15-16"
+    {!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="14-15"
+    {!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="13-14"
+    {!> ../../../docs_src/dependencies/tutorial008c.py!}
+    ```
+
+In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
+
+### Always `raise` in Dependencies with `yield` and `except`
+
+If you catch an exception in a dependency with `yield`, unless you are raising another `HTTPException` or similar, you should re-raise the original exception.
+
+You can re-raise the same exception using `raise`:
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+    ```
+
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="15"
+    {!> ../../../docs_src/dependencies/tutorial008d.py!}
+    ```
+
+Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
+
 ## Execution of dependencies with `yield`
 
 The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.
@@ -187,7 +244,6 @@ participant tasks as Background tasks
         operation -->> dep: Raise Exception (e.g. HTTPException)
         opt handle
             dep -->> dep: Can catch exception, raise a new HTTPException, raise other exception
-            dep -->> handler: Auto forward exception
         end
         handler -->> client: HTTP error response
     end
@@ -210,14 +266,22 @@ participant tasks as Background tasks
 !!! tip
     This diagram shows `HTTPException`, but you could also raise any other exception that you catch in a dependency with `yield` or with a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
-    If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`, and then **again** to the exception handlers. If there's no exception handler for that exception, it will then be handled by the default internal `ServerErrorMiddleware`, returning a 500 HTTP status code, to let the client know that there was an error in the server.
+    If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`. In most cases you will want to re-raise that same exception or a new one from the dependency with `yield` to make sure it's properly handled.
 
-## Dependencies with `yield`, `HTTPException` and Background Tasks
+## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks
 
 !!! warning
     You most probably don't need these technical details, you can skip this section and continue below.
 
     These details are useful mainly if you were using a version of FastAPI prior to 0.106.0 and used resources from dependencies with `yield` in background tasks.
+
+### Dependencies with `yield` and `except`, Technical Details
+
+Before FastAPI 0.110.0, if you used a dependency with `yield`, and then you captured an exception with `except` in that dependency, and you didn't raise the exception again, the exception would be automatically raised/forwarded to any exception handlers or the internal server error handler.
+
+This was changed in version 0.110.0 to fix unhandled memory consumption from forwarded exceptions without a handler (internal server errors), and to make it consistent with the behavior of regular Python code.
+
+### Background Tasks and Dependencies with `yield`, Technical Details
 
 Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
 
