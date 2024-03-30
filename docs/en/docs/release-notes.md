@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/advanced/response-headers.md`. PR [#10628](https://github.com/tiangolo/fastapi/pull/10628) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/response-change-status-code.md`. PR [#10632](https://github.com/tiangolo/fastapi/pull/10632) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/advanced-dependencies.md`. PR [#10633](https://github.com/tiangolo/fastapi/pull/10633) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/security/index.md`. PR [#10635](https://github.com/tiangolo/fastapi/pull/10635) by [@nilslindemann](https://github.com/nilslindemann).
