@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/advanced/using-request-directly.md`. PR [#3802](https://github.com/tiangolo/fastapi/pull/3802) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/security/http-basic-auth.md`. PR [#3801](https://github.com/tiangolo/fastapi/pull/3801) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/security/oauth2-scopes.md`. PR [#3800](https://github.com/tiangolo/fastapi/pull/3800) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/cookie-params.md`. PR [#3486](https://github.com/tiangolo/fastapi/pull/3486) by [@jaystone776](https://github.com/jaystone776).
