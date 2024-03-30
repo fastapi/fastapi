@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/reference/parameters.md`. PR [#10814](https://github.com/tiangolo/fastapi/pull/10814) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/status.md`. PR [#10815](https://github.com/tiangolo/fastapi/pull/10815) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/uploadfile.md`. PR [#10816](https://github.com/tiangolo/fastapi/pull/10816) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/exceptions.md`. PR [#10817](https://github.com/tiangolo/fastapi/pull/10817) by [@nilslindemann](https://github.com/nilslindemann).
