@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/reference/websockets.md`. PR [#10822](https://github.com/tiangolo/fastapi/pull/10822) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/httpconnection.md`. PR [#10823](https://github.com/tiangolo/fastapi/pull/10823) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/response.md`. PR [#10824](https://github.com/tiangolo/fastapi/pull/10824) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/middleware.md`. PR [#10837](https://github.com/tiangolo/fastapi/pull/10837) by [@nilslindemann](https://github.com/nilslindemann).
