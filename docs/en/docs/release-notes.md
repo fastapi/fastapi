@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/advanced/websockets.md`. PR [#10687](https://github.com/tiangolo/fastapi/pull/10687) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/testing-websockets.md`. PR [#10703](https://github.com/tiangolo/fastapi/pull/10703) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/testing-events.md`. PR [#10704](https://github.com/tiangolo/fastapi/pull/10704) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/advanced/testing-dependencies.md`. PR [#10706](https://github.com/tiangolo/fastapi/pull/10706) by [@nilslindemann](https://github.com/nilslindemann).
