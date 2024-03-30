@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/how-to/configure-swagger-ui.md`. PR [#10804](https://github.com/tiangolo/fastapi/pull/10804) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/how-to/custom-docs-ui-assets.md`. PR [#10803](https://github.com/tiangolo/fastapi/pull/10803) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/parameters.md`. PR [#10814](https://github.com/tiangolo/fastapi/pull/10814) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/reference/status.md`. PR [#10815](https://github.com/tiangolo/fastapi/pull/10815) by [@nilslindemann](https://github.com/nilslindemann).
