@@ -6,7 +6,7 @@ Le corps d'une **requête** est de la donnée envoyée par le client à votre AP
 
 Votre API aura presque toujours à envoyer un corps de **réponse**. Mais un client n'a pas toujours à envoyer un corps de **requête**.
 
-Pour déclarer un corps de **requête**, on utilise les modèles de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> en profitant de tous leurs avantages et fonctionnalités.
+Pour déclarer un corps de **requête**, on utilise les modèles de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> en profitant de tous leurs avantages et fonctionnalités.
 
 !!! info
     Pour envoyer de la donnée, vous devriez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
@@ -98,7 +98,7 @@ Et vous obtenez aussi de la vérification d'erreur pour les opérations incorrec
 
 <img src="/img/tutorial/body/image04.png">
 
-Ce n'est pas un hasard, ce framework entier a été bati avec ce design comme objectif.
+Ce n'est pas un hasard, ce framework entier a été bâti avec ce design comme objectif.
 
 Et cela a été rigoureusement testé durant la phase de design, avant toute implémentation, pour s'assurer que cela fonctionnerait avec tous les éditeurs.
 

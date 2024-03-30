@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from .main import app
@@ -55,7 +56,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/api_route": {
@@ -266,10 +267,17 @@ def test_openapi_schema():
                     "operationId": "get_path_param_id_path_param__item_id__get",
                     "parameters": [
                         {
-                            "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
                             "name": "item_id",
                             "in": "path",
+                            "required": True,
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Item Id",
+                                }
+                            )
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict({"title": "Item Id", "type": "string"}),
                         }
                     ],
                 }
@@ -969,10 +977,17 @@ def test_openapi_schema():
                     "operationId": "get_query_type_optional_query_int_optional_get",
                     "parameters": [
                         {
-                            "required": False,
-                            "schema": {"title": "Query", "type": "integer"},
                             "name": "query",
                             "in": "query",
+                            "required": False,
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "title": "Query",
+                                }
+                            )
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict({"title": "Query", "type": "integer"}),
                         }
                     ],
                 }

@@ -371,7 +371,7 @@ Exister.
 
 ## Utilisés par **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic est une bibliothèque permettant de définir la validation, la sérialisation et la documentation des données (à l'aide de JSON Schema) en se basant sur les Python type hints.
 
@@ -387,7 +387,7 @@ Gérer toute la validation des données, leur sérialisation et la documentation
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web assynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
+Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web asynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
 
 Il est très simple et intuitif. Il est conçu pour être facilement extensible et avoir des composants modulaires.
 
