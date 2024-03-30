@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/advanced/extending-openapi.md`. PR [#3823](https://github.com/tiangolo/fastapi/pull/3823) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/testing-dependencies.md`. PR [#3819](https://github.com/tiangolo/fastapi/pull/3819) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/custom-request-and-route.md`. PR [#3816](https://github.com/tiangolo/fastapi/pull/3816) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Chinese translation for `docs/zh/docs/external-links.md`. PR [#3833](https://github.com/tiangolo/fastapi/pull/3833) by [@jaystone776](https://github.com/jaystone776).
