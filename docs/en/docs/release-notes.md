@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/security/get-current-user.md`. PR [#10439](https://github.com/tiangolo/fastapi/pull/10439) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/request-forms-and-files.md`. PR [#10368](https://github.com/tiangolo/fastapi/pull/10368) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/encoder.md`. PR [#10385](https://github.com/tiangolo/fastapi/pull/10385) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/request-forms.md`. PR [#10361](https://github.com/tiangolo/fastapi/pull/10361) by [@nilslindemann](https://github.com/nilslindemann).
