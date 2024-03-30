@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/security/oauth2-jwt.md`. PR [#10522](https://github.com/tiangolo/fastapi/pull/10522) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/response-model.md`. PR [#10345](https://github.com/tiangolo/fastapi/pull/10345) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/extra-models.md`. PR [#10351](https://github.com/tiangolo/fastapi/pull/10351) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/body-updates.md`. PR [#10396](https://github.com/tiangolo/fastapi/pull/10396) by [@nilslindemann](https://github.com/nilslindemann).
