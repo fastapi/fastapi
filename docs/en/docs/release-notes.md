@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#10422](https://github.com/tiangolo/fastapi/pull/10422) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/global-dependencies.md`. PR [#10420](https://github.com/tiangolo/fastapi/pull/10420) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Update German translation for `docs/de/docs/fastapi-people.md`. PR [#10285](https://github.com/tiangolo/fastapi/pull/10285) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/tutorial/dependencies/sub-dependencies.md`. PR [#10409](https://github.com/tiangolo/fastapi/pull/10409) by [@nilslindemann](https://github.com/nilslindemann).
