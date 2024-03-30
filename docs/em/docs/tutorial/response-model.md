@@ -378,7 +378,7 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 ```
 
 !!! info
-    FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮️ <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
+    FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
 
 !!! info
     👆 💪 ⚙️:
@@ -386,7 +386,7 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    🔬 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 🩺</a> `exclude_defaults` &amp; `exclude_none`.
+    🔬 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 🩺</a> `exclude_defaults` &amp; `exclude_none`.
 
 #### 📊 ⏮️ 💲 🏑 ⏮️ 🔢
 

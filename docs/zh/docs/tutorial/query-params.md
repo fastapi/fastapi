@@ -63,9 +63,18 @@ http://127.0.0.1:8000/items/?skip=20
 
 同理，把默认值设为 `None` 即可声明**可选的**查询参数：
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial002.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial002.py!}
+    ```
+
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 

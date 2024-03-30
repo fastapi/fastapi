@@ -3,7 +3,7 @@
 You can define files to be uploaded by the client using `File`.
 
 !!! info
-    To receive uploaded files, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -19,13 +19,13 @@ Import `File` and `UploadFile` from `fastapi`:
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -44,13 +44,13 @@ Create file parameters the same way you would for `Body` or `Form`:
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -71,7 +71,7 @@ The files will be uploaded as "form data".
 
 If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
 
-Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
+Keep in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
@@ -85,13 +85,13 @@ Define a file parameter with a type of `UploadFile`:
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -181,7 +181,7 @@ You can make a file optional by using standard type annotations and setting a de
     {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10  18"
     {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
@@ -196,7 +196,7 @@ You can make a file optional by using standard type annotations and setting a de
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -215,13 +215,13 @@ You can also use `File()` with `UploadFile`, for example, to set additional meta
     {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8  14"
     {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -244,7 +244,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
     {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="11  16"
     {!> ../../../docs_src/request_files/tutorial002_an.py!}
@@ -259,7 +259,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -285,7 +285,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
     {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12  19-21"
     {!> ../../../docs_src/request_files/tutorial003_an.py!}
@@ -300,7 +300,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
