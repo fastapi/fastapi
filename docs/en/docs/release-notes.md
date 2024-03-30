@@ -22,6 +22,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add German translation for `docs/de/docs/deployment/docker.md`. PR [#10759](https://github.com/tiangolo/fastapi/pull/10759) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/how-to/index.md`. PR [#10769](https://github.com/tiangolo/fastapi/pull/10769) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/how-to/general.md`. PR [#10770](https://github.com/tiangolo/fastapi/pull/10770) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add German translation for `docs/de/docs/how-to/graphql.md`. PR [#10788](https://github.com/tiangolo/fastapi/pull/10788) by [@nilslindemann](https://github.com/nilslindemann).
