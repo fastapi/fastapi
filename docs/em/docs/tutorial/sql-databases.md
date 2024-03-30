@@ -331,7 +331,7 @@ name: str
 
 🔜, Pydantic *🏷* 👂, `Item` &amp; `User`, 🚮 🔗 `Config` 🎓.
 
-👉 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
+👉 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
 
 `Config` 🎓, ⚒ 🔢 `orm_mode = True`.
 

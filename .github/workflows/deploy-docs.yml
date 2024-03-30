@@ -21,7 +21,7 @@ jobs:
           mkdir ./site
       - name: Download Artifact Docs
         id: download
-        uses: dawidd6/action-download-artifact@v3.0.0
+        uses: dawidd6/action-download-artifact@v3.1.4
         with:
           if_no_artifact_found: ignore
           github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}

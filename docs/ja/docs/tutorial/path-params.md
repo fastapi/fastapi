@@ -93,7 +93,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## Pydantic
 
-すべてのデータバリデーションは <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
+すべてのデータバリデーションは <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
 
 `str`、 `float` 、 `bool` および他の多くの複雑なデータ型を型宣言に使用できます。
 
