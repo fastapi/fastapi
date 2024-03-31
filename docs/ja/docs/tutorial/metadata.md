@@ -59,7 +59,7 @@
 ```
 
 !!! info "情報"
-    タグのより詳しい説明を知りたい場合は [Path Operation Configuration](../path-operation-configuration/#tags){.internal-link target=_blank} を参照して下さい。
+    タグのより詳しい説明を知りたい場合は [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank} を参照して下さい。
 
 ### ドキュメントの確認
 
