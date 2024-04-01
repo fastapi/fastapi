@@ -13,7 +13,7 @@ So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Respo
 ```
 
 !!! note "Hinweis"
-    Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
+    Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter und der Body.
 
 Dem `status_code`-Parameter wird eine Zahl mit dem HTTP-Statuscode übergeben.
 
@@ -52,7 +52,7 @@ Kurz:
 * **`400`** und darüber stehen für „Client error“-Responses („Client-Fehler“). Auch diese verwenden Sie am häufigsten.
     * Ein Beispiel ist `404`, für eine „Not Found“-Response („Nicht gefunden“).
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
-* `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
+* `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in Ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
 !!! tip "Tipp"
     Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a>.
@@ -75,7 +75,7 @@ Sie können die Hilfsvariablen von `fastapi.status` verwenden.
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 
-Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese Weise können Sie die Autovervollständigung ihres Editors verwenden, um sie zu finden:
+Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese Weise können Sie die Autovervollständigung Ihres Editors verwenden, um sie zu finden:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
