@@ -208,7 +208,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
      `--no-cache-dir` 选项告诉 `pip` 不要在本地保存下载的包，因为只有当 `pip` 再次运行以安装相同的包时才会这样，但在与容器一起工作时情况并非如此。
 
-     !!! 笔记
+     !!! note "笔记"
          `--no-cache-dir` 仅与 `pip` 相关，与 Docker 或容器无关。
 
      `--upgrade` 选项告诉 `pip` 升级软件包（如果已经安装）。
