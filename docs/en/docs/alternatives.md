@@ -291,7 +291,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 !!! info
     Hug was created by Timothy Crosley, the same creator of <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, a great tool to automatically sort imports in Python files.
 
-!!! check "Ideas inspired in **FastAPI**"
+!!! check "Ideas inspiring **FastAPI**"
     Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
     Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
