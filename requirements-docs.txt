@@ -15,5 +15,5 @@ cairosvg==2.7.0
 mkdocstrings[python]==0.23.0
 griffe-typingdoc==0.2.2
 # For griffe, it formats with black
-black==23.3.0
+black==24.3.0
 mkdocs-macros-plugin==1.0.5
