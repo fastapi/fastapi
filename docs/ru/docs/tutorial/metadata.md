@@ -65,7 +65,7 @@
 ```
 
 !!! info "Дополнительная информация"
-    Узнайте больше о тегах в [Конфигурации операции пути](../path-operation-configuration/#tags){.internal-link target=_blank}.
+    Узнайте больше о тегах в [Конфигурации операции пути](path-operation-configuration.md#tags){.internal-link target=_blank}.
 
 ### Проверьте документацию
 

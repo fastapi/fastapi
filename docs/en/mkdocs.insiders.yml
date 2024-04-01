@@ -1,7 +1,8 @@
 plugins:
-  social:
-    cards_layout_dir: ../en/layouts
-    cards_layout: custom
-    cards_layout_options:
-      logo: ../en/docs/img/icon-white.svg
+  # TODO: Re-enable once this is fixed: https://github.com/squidfunk/mkdocs-material/issues/6983
+  # social:
+  #   cards_layout_dir: ../en/layouts
+  #   cards_layout: custom
+  #   cards_layout_options:
+  #     logo: ../en/docs/img/icon-white.svg
   typeset:
