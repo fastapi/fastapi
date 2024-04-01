@@ -1,6 +1,6 @@
 # Alternatives, Inspiration and Comparisons
 
-What inspired **FastAPI**, how it compares to other alternatives and what it learned from them.
+What inspired **FastAPI**, how it compares to alternatives and what it learned from them.
 
 ## Intro
 
@@ -117,7 +117,7 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
     * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
     * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
-    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of additional alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
+    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
 ### Flask REST frameworks
 
