@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI 社区
 
 FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋友。
