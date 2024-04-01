@@ -73,7 +73,7 @@ The same example from above, returning an `HTMLResponse`, could look like:
     A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
 
 !!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
+    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
 
 ### Document in OpenAPI and override `Response`
 

@@ -397,7 +397,7 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
     These are very technical details of how **FastAPI** works underneath.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+    If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
 
 ### Path operation functions
 
