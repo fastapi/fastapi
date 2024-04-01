@@ -5,7 +5,7 @@
 使用 Linux 容器有几个优点，包括**安全性**、**可复制性**、**简单性**等。
 
 !!! tip
-    赶时间并且已经知道这些东西了？ 跳转到下面的 [`Dockerfile` 👇](#为-fastapi-构建-docker-镜像)。
+    赶时间并且已经知道这些东西了？ 跳转到下面的 [`Dockerfile` 👇](#fastapi-docker_1)。
 
 
 <details>

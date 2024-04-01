@@ -24,7 +24,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% endif %}
 
-私は **FastAPI** の作成者および Maintainer です。詳しくは [FastAPIを応援 - ヘルプの入手 - 開発者とつながる](help-fastapi.md#開発者とつながる){.internal-link target=_blank} に記載しています。
+私は **FastAPI** の作成者および Maintainer です。詳しくは [FastAPIを応援 - ヘルプの入手 - 開発者とつながる](help-fastapi.md#_1){.internal-link target=_blank} に記載しています。
 
 ...ところで、ここではコミュニティを紹介したいと思います。
 

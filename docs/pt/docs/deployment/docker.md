@@ -517,12 +517,12 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 Há uma imagem oficial do Docker que inclui o Gunicorn executando com trabalhadores Uvicorn, conforme detalhado em um capítulo anterior: [Server Workers - Gunicorn com Uvicorn](server-workers.md){.internal-link target=_blank}.
 
-Essa imagem seria útil principalmente nas situações descritas acima em: [Contêineres com Múltiplos Processos e Casos Especiais](#contêineres-com-múltiplos-processos-e-casos-Especiais).
+Essa imagem seria útil principalmente nas situações descritas acima em: [Contêineres com Múltiplos Processos e Casos Especiais](#conteineres-com-multiplos-processos-e-casos-especiais).
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 !!! warning
-    Existe uma grande chance de que você **não** precise dessa imagem base ou de qualquer outra semelhante, e seria melhor construir a imagem do zero, como [descrito acima em: Construa uma Imagem Docker para o FastAPI](#construa-uma-imagem-docker-para-o-fastapi).
+    Existe uma grande chance de que você **não** precise dessa imagem base ou de qualquer outra semelhante, e seria melhor construir a imagem do zero, como [descrito acima em: Construa uma Imagem Docker para o FastAPI](#construindo-uma-imagem-docker-para-fastapi).
 
 Essa imagem tem um mecanismo de **auto-ajuste** incluído para definir o **número de processos trabalhadores** com base nos núcleos de CPU disponíveis.
 
@@ -579,7 +579,7 @@ COPY ./app /app/app
 
 Você provavelmente **não** deve usar essa imagem base oficial (ou qualquer outra semelhante) se estiver usando **Kubernetes** (ou outros) e já estiver definindo **replicação** no nível do cluster, com vários **contêineres**. Nesses casos, é melhor **construir uma imagem do zero** conforme descrito acima: [Construindo uma Imagem Docker para FastAPI](#construindo-uma-imagem-docker-para-fastapi).
 
-Essa imagem seria útil principalmente nos casos especiais descritos acima em [Contêineres com Múltiplos Processos e Casos Especiais](#contêineres-com-múltiplos-processos-e-casos-Especiais). Por exemplo, se sua aplicação for **simples o suficiente** para que a configuração padrão de número de processos com base na CPU funcione bem, você não quer se preocupar com a configuração manual da replicação no nível do cluster e não está executando mais de um contêiner com seu aplicativo. Ou se você estiver implantando com **Docker Compose**, executando em um único servidor, etc.
+Essa imagem seria útil principalmente nos casos especiais descritos acima em [Contêineres com Múltiplos Processos e Casos Especiais](#conteineres-com-multiplos-processos-e-casos-especiais). Por exemplo, se sua aplicação for **simples o suficiente** para que a configuração padrão de número de processos com base na CPU funcione bem, você não quer se preocupar com a configuração manual da replicação no nível do cluster e não está executando mais de um contêiner com seu aplicativo. Ou se você estiver implantando com **Docker Compose**, executando em um único servidor, etc.
 
 ## Deploy da Imagem do Contêiner
 
