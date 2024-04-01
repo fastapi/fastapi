@@ -6,7 +6,7 @@ A **request** body is data sent by the client to your API. A **response** body i
 
 Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
+To declare a **request** body, you use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
     To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.

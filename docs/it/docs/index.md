@@ -115,7 +115,7 @@ Python 3.6+
 FastAPI è basata su importanti librerie:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> per le parti web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> per le parti dei dati.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> per le parti dei dati.
 
 ## Installazione
 
@@ -446,7 +446,7 @@ Usate da Starlette:
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Richiesto se vuoi usare il `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Richiesto se vuoi usare `FileResponse` o `StaticFiles`.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Richiesto se vuoi usare la configurazione template di default.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Richiesto se vuoi supportare il <abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">"parsing"</abbr> con `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Richiesto se vuoi supportare il <abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">"parsing"</abbr> con `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Richiesto per usare `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Richiesto per il supporto dello `SchemaGenerator` di Starlette (probabilmente non ti serve con FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Richiesto per il supporto di `GraphQLApp`.

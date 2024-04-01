@@ -93,7 +93,7 @@
 
 ## Pydantic
 
-모든 데이터 검증은 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
+모든 데이터 검증은 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
 
 `str`, `float`, `bool`, 그리고 다른 여러 복잡한 데이터 타입 선언을 할 수 있습니다.
 

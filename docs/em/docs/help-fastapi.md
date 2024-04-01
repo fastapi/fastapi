@@ -12,7 +12,7 @@
 
 ## 👱📔 📰
 
-👆 💪 👱📔 (🐌) [**FastAPI &amp; 👨‍👧‍👦** 📰](/newsletter/){.internal-link target=_blank} 🚧 ℹ 🔃:
+👆 💪 👱📔 (🐌) [**FastAPI &amp; 👨‍👧‍👦** 📰](newsletter.md){.internal-link target=_blank} 🚧 ℹ 🔃:
 
 * 📰 🔃 FastAPI &amp; 👨‍👧‍👦 👶
 * 🦮 👶
