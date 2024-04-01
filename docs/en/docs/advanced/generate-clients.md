@@ -271,7 +271,7 @@ After generating the new client, you would now have **clean method names**, with
 
 ## Benefits
 
-When using the automatically generated clients you would **autocompletion** for:
+When using the automatically generated clients you would get **autocompletion** for:
 
 * Methods.
 * Request payloads in the body, query parameters, etc.
