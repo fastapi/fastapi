@@ -237,7 +237,7 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 === "Node.js"
 
-    ```Python
+    ```Javascript
     {!> ../../../docs_src/generate_clients/tutorial004.js!}
     ```
 
