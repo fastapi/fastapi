@@ -122,7 +122,7 @@ FastAPI는 이 `response_model`를 사용하여:
 ```
 
 !!! info "정보"
-    FastAPI는 이를 위해 Pydantic 모델의 `.dict()`의 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank"> `exclude_unset` 매개변수</a>를 사용합니다.
+    FastAPI는 이를 위해 Pydantic 모델의 `.dict()`의 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank"> `exclude_unset` 매개변수</a>를 사용합니다.
 
 !!! info "정보"
     아래 또한 사용할 수 있습니다:
@@ -130,7 +130,7 @@ FastAPI는 이 `response_model`를 사용하여:
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 문서</a>에서 `exclude_defaults` 및 `exclude_none`에 대해 설명한 대로 사용할 수 있습니다.
+    <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 문서</a>에서 `exclude_defaults` 및 `exclude_none`에 대해 설명한 대로 사용할 수 있습니다.
 
 #### 기본값이 있는 필드를 갖는 값의 데이터
 

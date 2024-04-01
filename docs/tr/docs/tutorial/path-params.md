@@ -95,7 +95,7 @@ Aynı şekilde, farklı diller için kod türetme araçları da dahil olmak üze
 
 ## Pydantic
 
-Tüm veri doğrulamaları <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> tarafından arka planda gerçekleştirilir, bu sayede tüm avantajlardan faydalanabilirsiniz. Böylece, emin ellerde olduğunuzu hissedebilirsiniz.
+Tüm veri doğrulamaları <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> tarafından arka planda gerçekleştirilir, bu sayede tüm avantajlardan faydalanabilirsiniz. Böylece, emin ellerde olduğunuzu hissedebilirsiniz.
 
 Aynı tip tanımlamalarını `str`, `float`, `bool` ve diğer karmaşık veri tipleri ile kullanma imkanınız vardır.
 
