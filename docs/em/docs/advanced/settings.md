@@ -125,7 +125,7 @@ Hello World from Python
 
 ## Pydantic `Settings`
 
-👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
+👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
 
 ### ✍ `Settings` 🎚
 
@@ -279,7 +279,7 @@ APP_NAME="ChimichangApp"
 📥 👥 ✍ 🎓 `Config` 🔘 👆 Pydantic `Settings` 🎓, &amp; ⚒ `env_file` 📁 ⏮️ 🇨🇻 📁 👥 💚 ⚙️.
 
 !!! tip
-     `Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
+     `Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
 
 ### 🏗 `Settings` 🕴 🕐 ⏮️ `lru_cache`
 

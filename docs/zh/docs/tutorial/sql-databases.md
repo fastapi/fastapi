@@ -78,9 +78,23 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 
 现在让我们看看每个文件/模块的作用。
 
+## 安装 SQLAlchemy
+
+先下载`SQLAlchemy`所需要的依赖：
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 ## 创建 SQLAlchemy 部件
 
-让我们涉及到文件`sql_app/database.py`。
+让我们转到文件`sql_app/database.py`。
 
 ### 导入 SQLAlchemy 部件
 
@@ -315,7 +329,7 @@ name: str
 
 现在，在用于查询的 Pydantic*模型*`Item`中`User`，添加一个内部`Config`类。
 
-此类[`Config`](https://pydantic-docs.helpmanual.io/usage/model_config/)用于为 Pydantic 提供配置。
+此类[`Config`](https://docs.pydantic.dev/latest/api/config/)用于为 Pydantic 提供配置。
 
 在`Config`类中，设置属性`orm_mode = True`。
 
@@ -485,7 +499,7 @@ current_user.items
 
 “迁移”是每当您更改 SQLAlchemy 模型的结构、添加新属性等以在数据库中复制这些更改、添加新列、新表等时所需的一组步骤。
 
-您可以在[Project Generation - Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/)。
+您可以在[Project Generation - Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/)。
 
 ### 创建依赖项
 
