@@ -27,6 +27,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Chinese translation for `docs/tutorial/body-fields.md`. PR [#3496](https://github.com/tiangolo/fastapi/pull/3496) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Update Chinese translation for `docs/tutorial/extra-models.md`. PR [#3497](https://github.com/tiangolo/fastapi/pull/3497) by [@jaystone776](https://github.com/jaystone776).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/metadata.md`. PR [#2667](https://github.com/tiangolo/fastapi/pull/2667) by [@tokusumi](https://github.com/tokusumi).
 * 🌐 Add German translation for `docs/de/docs/contributing.md`. PR [#10487](https://github.com/tiangolo/fastapi/pull/10487) by [@nilslindemann](https://github.com/nilslindemann).
