@@ -12,7 +12,7 @@
 
 ## 👱📔 📰
 
-👆 💪 👱📔 (🐌) [**FastAPI &amp; 👨‍👧‍👦** 📰](/newsletter/){.internal-link target=_blank} 🚧 ℹ 🔃:
+👆 💪 👱📔 (🐌) [**FastAPI &amp; 👨‍👧‍👦** 📰](newsletter.md){.internal-link target=_blank} 🚧 ℹ 🔃:
 
 * 📰 🔃 FastAPI &amp; 👨‍👧‍👦 👶
 * 🦮 👶
@@ -230,8 +230,6 @@
     ❔, 💭 👫 <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">📂 💬</a>, 📤 🌅 👍 🤞 👆 🔜 📨 ℹ [FastAPI 🕴](fastapi-people.md#experts){.internal-link target=_blank}.
 
     ⚙️ 💬 🕴 🎏 🏢 💬.
-
-📤 ⏮️ <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">🥊 💬</a>, ✋️ ⚫️ 🚫 ✔️ 📻 &amp; 🏧 ⚒, 💬 🌖 ⚠, 😧 🔜 👍 ⚙️.
 
 ### 🚫 ⚙️ 💬 ❔
 

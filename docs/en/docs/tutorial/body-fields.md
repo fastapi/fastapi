@@ -18,7 +18,7 @@ First, you have to import it:
     {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body_fields/tutorial001_an.py!}
@@ -33,7 +33,7 @@ First, you have to import it:
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -61,7 +61,7 @@ You can then use `Field` with model attributes:
     {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="12-15"
     {!> ../../../docs_src/body_fields/tutorial001_an.py!}
@@ -76,7 +76,7 @@ You can then use `Field` with model attributes:
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

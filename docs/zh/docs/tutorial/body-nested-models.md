@@ -12,7 +12,7 @@
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial001.py!}
@@ -63,7 +63,7 @@ my_list: List[str]
     {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/body_nested_models/tutorial002.py!}
@@ -89,7 +89,7 @@ Python 具有一种特殊的数据类型来保存一组唯一的元素，即 `se
     {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14"
     {!> ../../../docs_src/body_nested_models/tutorial003.py!}
@@ -127,7 +127,7 @@ Pydantic 模型的每个属性都具有类型。
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9-11"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -149,7 +149,7 @@ Pydantic 模型的每个属性都具有类型。
     {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial004.py!}
@@ -182,7 +182,7 @@ Pydantic 模型的每个属性都具有类型。
 
 除了普通的单一值类型（如 `str`、`int`、`float` 等）外，你还可以使用从 `str` 继承的更复杂的单一值类型。
 
-要了解所有的可用选项，请查看关于 <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">来自 Pydantic 的外部类型</a> 的文档。你将在下一章节中看到一些示例。
+要了解所有的可用选项，请查看关于 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">来自 Pydantic 的外部类型</a> 的文档。你将在下一章节中看到一些示例。
 
 例如，在 `Image` 模型中我们有一个 `url` 字段，我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
 
@@ -198,7 +198,7 @@ Pydantic 模型的每个属性都具有类型。
     {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4  10"
     {!> ../../../docs_src/body_nested_models/tutorial005.py!}
@@ -222,7 +222,7 @@ Pydantic 模型的每个属性都具有类型。
     {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_nested_models/tutorial006.py!}
@@ -273,7 +273,7 @@ Pydantic 模型的每个属性都具有类型。
     {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  14  20  23  27"
     {!> ../../../docs_src/body_nested_models/tutorial007.py!}
@@ -298,7 +298,7 @@ images: List[Image]
     {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_nested_models/tutorial008.py!}
@@ -338,7 +338,7 @@ images: List[Image]
     {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/body_nested_models/tutorial009.py!}

@@ -75,7 +75,7 @@ Ici, le paramètre `q` sera optionnel, et aura `None` comme valeur par défaut.
 !!! note
     **FastAPI** saura que `q` est optionnel grâce au `=None`.
 
-    Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI** n'en utilisera que la partie `str`), mais il servira tout de même à votre editeur de texte pour détecter des erreurs dans votre code.
+    Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI** n'en utilisera que la partie `str`), mais il servira tout de même à votre éditeur de texte pour détecter des erreurs dans votre code.
 
 
 ## Conversion des types des paramètres de requête

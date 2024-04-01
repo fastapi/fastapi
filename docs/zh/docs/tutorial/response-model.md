@@ -20,7 +20,7 @@
     {!> ../../../docs_src/response_model/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001.py!}
@@ -78,7 +78,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -92,7 +92,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -106,7 +106,7 @@ FastAPI 将使用此 `response_model` 来：
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003.py!}
@@ -160,7 +160,7 @@ FastAPI 将使用此 `response_model` 来：
 ```
 
 !!! info
-    FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
+    FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
 
 !!! info
     你还可以使用：
@@ -168,7 +168,7 @@ FastAPI 将使用此 `response_model` 来：
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    参考 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
+    参考 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
 
 #### 默认值字段有实际值的数据
 

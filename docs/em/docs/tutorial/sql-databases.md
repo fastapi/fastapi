@@ -331,7 +331,7 @@ name: str
 
 🔜, Pydantic *🏷* 👂, `Item` &amp; `User`, 🚮 🔗 `Config` 🎓.
 
-👉 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
+👉 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
 
 `Config` 🎓, ⚒ 🔢 `orm_mode = True`.
 
@@ -501,7 +501,7 @@ current_user.items
 
 "🛠️" ⚒ 🔁 💪 🕐❔ 👆 🔀 📊 👆 🇸🇲 🏷, 🚮 🆕 🔢, ♒️. 🔁 👈 🔀 💽, 🚮 🆕 🏓, 🆕 🏓, ♒️.
 
-👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
+👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
 
 ### ✍ 🔗
 

@@ -384,7 +384,7 @@ Hug был одним из первых фреймворков, реализов
 
 ## Что используется в **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic - это библиотека для валидации данных, сериализации и документирования (используя JSON Schema), основываясь на подсказках типов Python, что делает его чрезвычайно интуитивным.
 

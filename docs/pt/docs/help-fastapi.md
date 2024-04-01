@@ -12,7 +12,7 @@ E também existem vários modos de se conseguir ajuda.
 
 ## Inscreva-se na newsletter
 
-Você pode se inscrever (pouco frequente) [**FastAPI e amigos** newsletter](/newsletter/){.internal-link target=_blank} para receber atualizações:
+Você pode se inscrever (pouco frequente) [**FastAPI e amigos** newsletter](newsletter.md){.internal-link target=_blank} para receber atualizações:
 
 * Notícias sobre FastAPI e amigos 🚀
 * Tutoriais 📝
@@ -113,8 +113,6 @@ do FastAPI.
     Para perguntas, pergunte nas <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
 
     Use o chat apenas para outro tipo de assunto.
-
-Também existe o <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">chat do Gitter</a>, porém ele não possuí canais e recursos avançados, conversas são mais engessadas, por isso o Discord é mais recomendado.
 
 ### Não faça perguntas no chat
 
