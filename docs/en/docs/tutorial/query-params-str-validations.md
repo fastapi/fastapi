@@ -369,7 +369,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 !!! note
     Having a default value of any type, including `None`, makes the parameter optional (not required).
 
-## Make it required
+## Required params
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -457,7 +457,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 
 This will let **FastAPI** know that this parameter is required.
 
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -633,7 +633,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
@@ -852,7 +852,7 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameter from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
