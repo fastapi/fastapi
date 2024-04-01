@@ -123,7 +123,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old) `Query` as the default value
+## Alternative (old): `Query` as the default value
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -170,7 +170,7 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 !!! info
     Keep in mind that the most important part to make a parameter optional is the part:
