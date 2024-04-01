@@ -3,7 +3,7 @@
 Quando você precisar receber campos de formulário ao invés de JSON, você pode usar `Form`.
 
 !!! info "Informação"
-    Para usar formulários, primeiro instale <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Para usar formulários, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     Ex: `pip install python-multipart`.
 

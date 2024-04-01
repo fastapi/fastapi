@@ -6,7 +6,7 @@ Aqui estão várias formas de se fazer isso.
 
 ## `schema_extra` do Pydantic
 
-Você pode declarar um `example` para um modelo Pydantic usando `Config` e `schema_extra`, conforme descrito em <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Documentação do Pydantic: Schema customization</a>:
+Você pode declarar um `example` para um modelo Pydantic usando `Config` e `schema_extra`, conforme descrito em <a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Documentação do Pydantic: Schema customization</a>:
 
 ```Python hl_lines="15-23"
 {!../../../docs_src/schema_extra_example/tutorial001.py!}

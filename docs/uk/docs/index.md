@@ -115,7 +115,7 @@ Python 3.8+
 FastAPI стоїть на плечах гігантів:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для web частини.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> для частини даних.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для частини даних.
 
 ## Вставновлення
 
@@ -448,7 +448,7 @@ Starlette використовує:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Необхідно, якщо Ви хочете використовувати `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Необхідно, якщо Ви хочете використовувати шаблони як конфігурацію за замовчуванням.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Необхідно, якщо Ви хочете підтримувати <abbr title="перетворення рядка, який надходить із запиту HTTP, на дані Python">"розбір"</abbr> форми за допомогою `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Необхідно, якщо Ви хочете підтримувати <abbr title="перетворення рядка, який надходить із запиту HTTP, на дані Python">"розбір"</abbr> форми за допомогою `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Необхідно для підтримки `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Необхідно для підтримки Starlette `SchemaGenerator` (ймовірно, вам це не потрібно з FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Необхідно, якщо Ви хочете використовувати `UJSONResponse`.
