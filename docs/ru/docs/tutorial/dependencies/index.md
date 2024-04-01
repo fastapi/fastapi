@@ -90,7 +90,7 @@
 
      Если у вас более старая версия, будут ошибки при попытке использовать `Annotated`.
 
-    Убедитесь, что вы [Обновили FastAPI версию](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} до, как минимум 0.95.1, перед тем как использовать `Annotated`.
+    Убедитесь, что вы [Обновили FastAPI версию](../../deployment/versions.md#fastapi_2){.internal-link target=_blank} до, как минимум 0.95.1, перед тем как использовать `Annotated`.
 
 ### Import `Depends`
 
