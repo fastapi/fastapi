@@ -8,10 +8,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: str | None = Field(
-        default=None, title="The description of the item", max_length=300
-    )
-    price: float = Field(gt=0, description="The price must be greater than zero")
+    description: Annotated[str | None, Field(title="The description of the item", max_length=300)] = None
+    price: Annotated[float, Field(gt=0, description="The price must be greater than zero")]
     tax: float | None = None
 
 
