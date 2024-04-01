@@ -2,7 +2,7 @@
 
 ## Additional Features
 
-The main [Tutorial - User Guide](../tutorial/){.internal-link target=_blank} should be enough to give you a tour through all the main features of **FastAPI**.
+The main [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} should be enough to give you a tour through all the main features of **FastAPI**.
 
 In the next sections you will see other options, configurations, and additional features.
 
@@ -13,13 +13,13 @@ In the next sections you will see other options, configurations, and additional 
 
 ## Read the Tutorial first
 
-You could still use most of the features in **FastAPI** with the knowledge from the main [Tutorial - User Guide](../tutorial/){.internal-link target=_blank}.
+You could still use most of the features in **FastAPI** with the knowledge from the main [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank}.
 
 And the next sections assume you already read it, and assume that you know those main ideas.
 
 ## External Courses
 
-Although the [Tutorial - User Guide](../tutorial/){.internal-link target=_blank} and this **Advanced User Guide** are written as a guided tutorial (like a book) and should be enough for you to **learn FastAPI**, you might want to complement it with additional courses.
+Although the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} and this **Advanced User Guide** are written as a guided tutorial (like a book) and should be enough for you to **learn FastAPI**, you might want to complement it with additional courses.
 
 Or it might be the case that you just prefer to take other courses because they adapt better to your learning style.
 
