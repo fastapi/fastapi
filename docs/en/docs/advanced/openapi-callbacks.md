@@ -131,7 +131,7 @@ with a JSON body of:
 }
 ```
 
-Then *your API* will process the invoice, and at some point later, send a callback request to the `callback_url` (the *external API*):
+then *your API* will process the invoice, and at some point later, send a callback request to the `callback_url` (the *external API*):
 
 ```
 https://www.external.org/events/invoices/2expen51ve
