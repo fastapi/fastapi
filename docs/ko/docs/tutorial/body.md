@@ -6,7 +6,7 @@
 
 여러분의 API는 대부분의 경우 **응답** 본문을 보내야 합니다. 하지만 클라이언트는 **요청** 본문을 매 번 보낼 필요가 없습니다.
 
-**요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
+**요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
 !!! 정보
     데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.

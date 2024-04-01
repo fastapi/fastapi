@@ -3,7 +3,7 @@
 Вы можете определять файлы и поля формы одновременно, используя `File` и `Form`.
 
 !!! info "Дополнительная информация"
-    Чтобы получать загруженные файлы и/или данные форм, сначала установите <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Чтобы получать загруженные файлы и/или данные форм, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     Например: `pip install python-multipart`.
 

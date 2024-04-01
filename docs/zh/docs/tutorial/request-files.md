@@ -6,7 +6,7 @@
 
     因为上传文件以「表单数据」形式发送。
 
-    所以接收上传文件，要预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+    所以接收上传文件，要预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
     例如： `pip install python-multipart`。
 
