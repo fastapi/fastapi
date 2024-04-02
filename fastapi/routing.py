@@ -394,7 +394,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         )
         if middleware is not None:
             for cls, args, kwargs in reversed(middleware):
-                self.app = cls(app=self.app, *args, **kwargs)
+                self.app = cls(app=self.app, *args, **kwargs)  # noqa: B026
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
@@ -470,14 +470,14 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if middleware is not None:
             for cls, args, kwargs in reversed(middleware):
-                self.app = cls(app=self.app, *args, **kwargs)
+                self.app = cls(app=self.app, *args, **kwargs)  # noqa: B026
         if methods is None:
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
-            current_generate_unique_id: Callable[
-                ["APIRoute"], str
-            ] = generate_unique_id_function.value
+            current_generate_unique_id: Callable[["APIRoute"], str] = (
+                generate_unique_id_function.value
+            )
         else:
             current_generate_unique_id = generate_unique_id_function
         self.unique_id = self.operation_id or current_generate_unique_id(self)
@@ -503,9 +503,9 @@ class APIRoute(routing.Route):
             # By being a new field, no inheritance will be passed as is. A new model
             # will always be created.
             # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[
-                ModelField
-            ] = create_cloned_field(self.response_field)
+            self.secure_cloned_response_field: Optional[ModelField] = (
+                create_cloned_field(self.response_field)
+            )
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
@@ -804,7 +804,17 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
-        middleware: Optional[Sequence[Middleware]] = None,
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                A list of middleware to apply to all the *path operations* in this router.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/).
+                """
+            ),
+        ] = None,
     ) -> None:
         super().__init__(
             routes=routes,
