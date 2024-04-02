@@ -405,7 +405,7 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 如果您使用过另一个不以上述方式工作的异步框架，并且您习惯于用普通的 `def` 定义普通的仅计算路径操作函数，以获得微小的性能增益（大约100纳秒），请注意，在 FastAPI 中，效果将完全相反。在这些情况下，最好使用 `async def`，除非路径操作函数内使用执行阻塞 <abbr title="输入/输出：磁盘读写，网络通讯.">I/O</abbr> 的代码。
 
-在这两种情况下，与您之前的框架相比，**FastAPI** 可能[仍然很快](/#performance){.internal-link target=_blank}。
+在这两种情况下，与您之前的框架相比，**FastAPI** 可能[仍然很快](index.md#performance){.internal-link target=_blank}。
 
 ### 依赖
 
