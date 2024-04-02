@@ -54,7 +54,7 @@
 
 ## 📄
 
-⏮️ 🔬 📚 🎛, 👤 💭 👈 👤 🔜 ⚙️ <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> 🚮 📈.
+⏮️ 🔬 📚 🎛, 👤 💭 👈 👤 🔜 ⚙️ <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> 🚮 📈.
 
 ⤴️ 👤 📉 ⚫️, ⚒ ⚫️ 🍕 🛠️ ⏮️ 🎻 🔗, 🐕‍🦺 🎏 🌌 🔬 ⚛ 📄, &amp; 📉 👨‍🎨 🐕‍🦺 (🆎 ✅, ✍) ⚓️ 🔛 💯 📚 👨‍🎨.
 

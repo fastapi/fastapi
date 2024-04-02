@@ -36,7 +36,7 @@
 ```
 
 !!! tip
-     `callback_url` 🔢 🔢 ⚙️ Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">📛</a> 🆎.
+     `callback_url` 🔢 🔢 ⚙️ Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">📛</a> 🆎.
 
 🕴 🆕 👜 `callbacks=messages_callback_router.routes` ❌ *➡ 🛠️ 👨‍🎨*. 👥 🔜 👀 ⚫️❔ 👈 ⏭.
 

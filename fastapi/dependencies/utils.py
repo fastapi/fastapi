@@ -743,7 +743,7 @@ async def request_body_to_args(
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(
-                    fn: Callable[[], Coroutine[Any, Any, Any]]
+                    fn: Callable[[], Coroutine[Any, Any, Any]],
                 ) -> None:
                     result = await fn()
                     results.append(result)  # noqa: B023
