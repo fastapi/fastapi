@@ -21,12 +21,12 @@ export class ItemsService {
      * @throws ApiError
      */
     public static readItems({
-skip,
-limit = 100,
-}: {
-skip?: number,
-limit?: number,
-}): CancelablePromise<ItemsOut> {
+        skip,
+        limit = 100,
+    }: {
+        skip?: number,
+        limit?: number,
+    }): CancelablePromise<ItemsOut> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/items/',
@@ -47,10 +47,10 @@ limit?: number,
      * @throws ApiError
      */
     public static createItem({
-requestBody,
-}: {
-requestBody: ItemCreate,
-}): CancelablePromise<ItemOut> {
+        requestBody,
+    }: {
+        requestBody: ItemCreate,
+    }): CancelablePromise<ItemOut> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/v1/items/',
@@ -69,10 +69,10 @@ requestBody: ItemCreate,
      * @throws ApiError
      */
     public static readItem({
-id,
-}: {
-id: number,
-}): CancelablePromise<ItemOut> {
+        id,
+    }: {
+        id: number,
+    }): CancelablePromise<ItemOut> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/items/{id}',
@@ -92,12 +92,12 @@ id: number,
      * @throws ApiError
      */
     public static updateItem({
-id,
-requestBody,
-}: {
-id: number,
-requestBody: ItemUpdate,
-}): CancelablePromise<ItemOut> {
+        id,
+        requestBody,
+    }: {
+        id: number,
+        requestBody: ItemUpdate,
+    }): CancelablePromise<ItemOut> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/api/v1/items/{id}',
@@ -119,10 +119,10 @@ requestBody: ItemUpdate,
      * @throws ApiError
      */
     public static deleteItem({
-id,
-}: {
-id: number,
-}): CancelablePromise<Message> {
+        id,
+    }: {
+        id: number,
+    }): CancelablePromise<Message> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/v1/items/{id}',

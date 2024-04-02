@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UserCreateOpen = {
+export type UserRegister = {
     email: string;
     password: string;
     full_name?: (string | null);

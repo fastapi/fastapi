@@ -53,24 +53,23 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
     },
   })
 
-  const addUser = async (data: UserCreate) => {
-    await UsersService.createUser({ requestBody: data })
-  }
-
-  const mutation = useMutation(addUser, {
-    onSuccess: () => {
-      showToast("Success!", "User created successfully.", "success")
-      reset()
-      onClose()
+  const mutation = useMutation(
+    (data: UserCreate) => UsersService.createUser({ requestBody: data }),
+    {
+      onSuccess: () => {
+        showToast("Success!", "User created successfully.", "success")
+        reset()
+        onClose()
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("users")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("users")
-    },
-  })
+  )
 
   const onSubmit: SubmitHandler<UserCreateForm> = (data) => {
     mutation.mutate(data)

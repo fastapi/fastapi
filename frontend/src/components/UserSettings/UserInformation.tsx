@@ -27,7 +27,7 @@ import { emailPattern } from "../../utils"
 
 const UserInformation = () => {
   const queryClient = useQueryClient()
-  const color = useColorModeValue("inherit", "ui.white")
+  const color = useColorModeValue("inherit", "ui.light")
   const showToast = useCustomToast()
   const [editMode, setEditMode] = useState(false)
   const { user: currentUser } = useAuth()
@@ -50,23 +50,22 @@ const UserInformation = () => {
     setEditMode(!editMode)
   }
 
-  const updateInfo = async (data: UserUpdateMe) => {
-    await UsersService.updateUserMe({ requestBody: data })
-  }
-
-  const mutation = useMutation(updateInfo, {
-    onSuccess: () => {
-      showToast("Success!", "User updated successfully.", "success")
+  const mutation = useMutation(
+    (data: UserUpdateMe) => UsersService.updateUserMe({ requestBody: data }),
+    {
+      onSuccess: () => {
+        showToast("Success!", "User updated successfully.", "success")
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries("currentUser")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("users")
-      queryClient.invalidateQueries("currentUser")
-    },
-  })
+  )
 
   const onSubmit: SubmitHandler<UserUpdateMe> = async (data) => {
     mutation.mutate(data)
@@ -99,7 +98,7 @@ const UserInformation = () => {
               <Text
                 size="md"
                 py={2}
-                color={!currentUser?.full_name ? "gray.400" : "inherit"}
+                color={!currentUser?.full_name ? "ui.dim" : "inherit"}
               >
                 {currentUser?.full_name || "N/A"}
               </Text>

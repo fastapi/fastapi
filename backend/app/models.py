@@ -16,7 +16,7 @@ class UserCreate(UserBase):
 
 
 # TODO replace email str with EmailStr when sqlmodel supports it
-class UserCreateOpen(SQLModel):
+class UserRegister(SQLModel):
     email: str
     password: str
     full_name: str | None = None

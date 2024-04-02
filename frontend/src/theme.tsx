@@ -13,9 +13,10 @@ const theme = extendTheme({
       secondary: "#EDF2F7",
       success: "#48BB78",
       danger: "#E53E3E",
-      white: "#FFFFFF",
+      light: "#FAFAFA",
       dark: "#1A202C",
       darkSlate: "#252D3D",
+      dim: "#A0AEC0",
     },
   },
   components: {
@@ -23,7 +24,7 @@ const theme = extendTheme({
       variants: {
         primary: {
           backgroundColor: "ui.main",
-          color: "ui.white",
+          color: "ui.light",
           _hover: {
             backgroundColor: "#00766C",
           },
@@ -36,7 +37,7 @@ const theme = extendTheme({
         },
         danger: {
           backgroundColor: "ui.danger",
-          color: "ui.white",
+          color: "ui.light",
           _hover: {
             backgroundColor: "#E32727",
           },

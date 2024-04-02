@@ -18,7 +18,7 @@ const Navbar = ({ type }: NavbarProps) => {
         {/* TODO: Complete search functionality */}
         {/* <InputGroup w={{ base: '100%', md: 'auto' }}>
                     <InputLeftElement pointerEvents='none'>
-                        <Icon as={FaSearch} color='gray.400' />
+                        <Icon as={FaSearch} color='ui.dim' />
                     </InputLeftElement>
                     <Input type='text' placeholder='Search' fontSize={{ base: 'sm', md: 'inherit' }} borderRadius='8px' />
                 </InputGroup> */}

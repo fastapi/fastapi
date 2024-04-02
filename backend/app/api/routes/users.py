@@ -17,8 +17,8 @@ from app.models import (
     UpdatePassword,
     User,
     UserCreate,
-    UserCreateOpen,
     UserOut,
+    UserRegister,
     UsersOut,
     UserUpdate,
     UserUpdateMe,
@@ -122,8 +122,8 @@ def read_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
     return current_user
 
 
-@router.post("/open", response_model=UserOut)
-def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> Any:
+@router.post("/signup", response_model=UserOut)
+def register_user(session: SessionDep, user_in: UserRegister) -> Any:
     """
     Create new user without the need to be logged in.
     """
@@ -138,7 +138,7 @@ def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> Any:
             status_code=400,
             detail="The user with this email already exists in the system",
         )
-    user_create = UserCreate.from_orm(user_in)
+    user_create = UserCreate.model_validate(user_in)
     user = crud.create_user(session=session, user_create=user_create)
     return user
 

@@ -263,14 +263,14 @@ def test_update_password_me_same_password_error(
     )
 
 
-def test_create_user_open(client: TestClient) -> None:
+def test_register_user(client: TestClient) -> None:
     with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True):
         username = random_email()
         password = random_lower_string()
         full_name = random_lower_string()
         data = {"email": username, "password": password, "full_name": full_name}
         r = client.post(
-            f"{settings.API_V1_STR}/users/open",
+            f"{settings.API_V1_STR}/users/signup",
             json=data,
         )
         assert r.status_code == 200
@@ -279,14 +279,14 @@ def test_create_user_open(client: TestClient) -> None:
         assert created_user["full_name"] == full_name
 
 
-def test_create_user_open_forbidden_error(client: TestClient) -> None:
+def test_register_user_forbidden_error(client: TestClient) -> None:
     with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", False):
         username = random_email()
         password = random_lower_string()
         full_name = random_lower_string()
         data = {"email": username, "password": password, "full_name": full_name}
         r = client.post(
-            f"{settings.API_V1_STR}/users/open",
+            f"{settings.API_V1_STR}/users/signup",
             json=data,
         )
         assert r.status_code == 403
@@ -295,7 +295,7 @@ def test_create_user_open_forbidden_error(client: TestClient) -> None:
         )
 
 
-def test_create_user_open_already_exists_error(client: TestClient) -> None:
+def test_register_user_already_exists_error(client: TestClient) -> None:
     with patch("app.core.config.settings.USERS_OPEN_REGISTRATION", True):
         password = random_lower_string()
         full_name = random_lower_string()
@@ -305,7 +305,7 @@ def test_create_user_open_already_exists_error(client: TestClient) -> None:
             "full_name": full_name,
         }
         r = client.post(
-            f"{settings.API_V1_STR}/users/open",
+            f"{settings.API_V1_STR}/users/signup",
             json=data,
         )
         assert r.status_code == 400

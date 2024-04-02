@@ -6,10 +6,10 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react"
+import { Link } from "@tanstack/react-router"
 import { FaUserAstronaut } from "react-icons/fa"
 import { FiLogOut, FiUser } from "react-icons/fi"
 
-import { Link } from "@tanstack/react-router"
 import useAuth from "../../hooks/useAuth"
 
 const UserMenu = () => {

@@ -2,15 +2,23 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $UpdatePassword = {
+export const $UserRegister = {
     properties: {
-        current_password: {
+        email: {
             type: 'string',
             isRequired: true,
         },
-        new_password: {
+        password: {
             type: 'string',
             isRequired: true,
+        },
+        full_name: {
+            type: 'any-of',
+            contains: [{
+                type: 'string',
+            }, {
+                type: 'null',
+            }],
         },
     },
 } as const;

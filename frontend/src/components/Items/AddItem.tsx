@@ -40,24 +40,23 @@ const AddItem = ({ isOpen, onClose }: AddItemProps) => {
     },
   })
 
-  const addItem = async (data: ItemCreate) => {
-    await ItemsService.createItem({ requestBody: data })
-  }
-
-  const mutation = useMutation(addItem, {
-    onSuccess: () => {
-      showToast("Success!", "Item created successfully.", "success")
-      reset()
-      onClose()
+  const mutation = useMutation(
+    (data: ItemCreate) => ItemsService.createItem({ requestBody: data }),
+    {
+      onSuccess: () => {
+        showToast("Success!", "Item created successfully.", "success")
+        reset()
+        onClose()
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("items")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("items")
-    },
-  })
+  )
 
   const onSubmit: SubmitHandler<ItemCreate> = (data) => {
     mutation.mutate(data)

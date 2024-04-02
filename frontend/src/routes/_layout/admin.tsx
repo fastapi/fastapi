@@ -73,7 +73,7 @@ function Admin() {
                 <Tbody>
                   {users.data.map((user) => (
                     <Tr key={user.id}>
-                      <Td color={!user.full_name ? "gray.400" : "inherit"}>
+                      <Td color={!user.full_name ? "ui.dim" : "inherit"}>
                         {user.full_name || "N/A"}
                         {currentUser?.id === user.id && (
                           <Badge ml="1" colorScheme="teal">

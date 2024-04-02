@@ -18,11 +18,9 @@ import {
   createFileRoute,
   redirect,
 } from "@tanstack/react-router"
-import React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 
 import Logo from "../assets/images/fastapi-logo.svg"
-import type { ApiError } from "../client"
 import type { Body_login_login_access_token as AccessToken } from "../client/models/Body_login_login_access_token"
 import useAuth, { isLoggedIn } from "../hooks/useAuth"
 import { emailPattern } from "../utils"
@@ -40,8 +38,7 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const [show, setShow] = useBoolean()
-  const { login } = useAuth()
-  const [error, setError] = React.useState<string | null>(null)
+  const { loginMutation, error } = useAuth()
   const {
     register,
     handleSubmit,
@@ -56,12 +53,7 @@ function Login() {
   })
 
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
-    try {
-      await login(data)
-    } catch (err) {
-      const errDetail = (err as ApiError).body.detail
-      setError(errDetail)
-    }
+    loginMutation.mutate(data)
   }
 
   return (
@@ -105,7 +97,7 @@ function Login() {
               placeholder="Password"
             />
             <InputRightElement
-              color="gray.400"
+              color="ui.dim"
               _hover={{
                 cursor: "pointer",
               }}

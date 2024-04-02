@@ -70,7 +70,7 @@ function Items() {
                     <Tr key={item.id}>
                       <Td>{item.id}</Td>
                       <Td>{item.title}</Td>
-                      <Td color={!item.description ? "gray.400" : "inherit"}>
+                      <Td color={!item.description ? "ui.dim" : "inherit"}>
                         {item.description || "N/A"}
                       </Td>
                       <Td>

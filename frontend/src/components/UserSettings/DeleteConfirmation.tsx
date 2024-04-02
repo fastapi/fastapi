@@ -31,28 +31,27 @@ const DeleteConfirmation = ({ isOpen, onClose }: DeleteProps) => {
   const currentUser = queryClient.getQueryData<UserOut>("currentUser")
   const { logout } = useAuth()
 
-  const deleteCurrentUser = async (id: number) => {
-    await UsersService.deleteUser({ userId: id })
-  }
-
-  const mutation = useMutation(deleteCurrentUser, {
-    onSuccess: () => {
-      showToast(
-        "Success",
-        "Your account has been successfully deleted.",
-        "success",
-      )
-      logout()
-      onClose()
+  const mutation = useMutation(
+    (id: number) => UsersService.deleteUser({ userId: id }),
+    {
+      onSuccess: () => {
+        showToast(
+          "Success",
+          "Your account has been successfully deleted.",
+          "success",
+        )
+        logout()
+        onClose()
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("currentUser")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("currentUser")
-    },
-  })
+  )
 
   const onSubmit = async () => {
     mutation.mutate(currentUser!.id)

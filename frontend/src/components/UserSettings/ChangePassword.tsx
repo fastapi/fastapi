@@ -14,13 +14,14 @@ import { useMutation } from "react-query"
 
 import { type ApiError, type UpdatePassword, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
+import { confirmPasswordRules, passwordRules } from "../../utils"
 
 interface UpdatePasswordForm extends UpdatePassword {
   confirm_password: string
 }
 
 const ChangePassword = () => {
-  const color = useColorModeValue("inherit", "ui.white")
+  const color = useColorModeValue("inherit", "ui.light")
   const showToast = useCustomToast()
   const {
     register,
@@ -33,20 +34,20 @@ const ChangePassword = () => {
     criteriaMode: "all",
   })
 
-  const UpdatePassword = async (data: UpdatePassword) => {
-    await UsersService.updatePasswordMe({ requestBody: data })
-  }
-
-  const mutation = useMutation(UpdatePassword, {
-    onSuccess: () => {
-      showToast("Success!", "Password updated.", "success")
-      reset()
+  const mutation = useMutation(
+    (data: UpdatePassword) =>
+      UsersService.updatePasswordMe({ requestBody: data }),
+    {
+      onSuccess: () => {
+        showToast("Success!", "Password updated.", "success")
+        reset()
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-  })
+  )
 
   const onSubmit: SubmitHandler<UpdatePasswordForm> = async (data) => {
     mutation.mutate(data)
@@ -79,13 +80,7 @@ const ChangePassword = () => {
             <FormLabel htmlFor="password">Set Password</FormLabel>
             <Input
               id="password"
-              {...register("new_password", {
-                required: "Password is required",
-                minLength: {
-                  value: 8,
-                  message: "Password must be at least 8 characters",
-                },
-              })}
+              {...register("new_password", passwordRules())}
               placeholder="Password"
               type="password"
             />
@@ -97,12 +92,7 @@ const ChangePassword = () => {
             <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
             <Input
               id="confirm_password"
-              {...register("confirm_password", {
-                required: "Please confirm your password",
-                validate: (value) =>
-                  value === getValues().new_password ||
-                  "The passwords do not match",
-              })}
+              {...register("confirm_password", confirmPasswordRules(getValues))}
               placeholder="Password"
               type="password"
             />

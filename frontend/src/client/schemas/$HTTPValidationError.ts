@@ -5,10 +5,10 @@
 export const $HTTPValidationError = {
     properties: {
         detail: {
-    type: 'array',
-    contains: {
-        type: 'ValidationError',
-    },
-},
+            type: 'array',
+            contains: {
+                type: 'ValidationError',
+            },
+        },
     },
 } as const;

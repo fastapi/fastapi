@@ -52,23 +52,23 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
     defaultValues: user,
   })
 
-  const updateUser = async (data: UserUpdateForm) => {
-    await UsersService.updateUser({ userId: user.id, requestBody: data })
-  }
-
-  const mutation = useMutation(updateUser, {
-    onSuccess: () => {
-      showToast("Success!", "User updated successfully.", "success")
-      onClose()
+  const mutation = useMutation(
+    (data: UserUpdateForm) =>
+      UsersService.updateUser({ userId: user.id, requestBody: data }),
+    {
+      onSuccess: () => {
+        showToast("Success!", "User updated successfully.", "success")
+        onClose()
+      },
+      onError: (err: ApiError) => {
+        const errDetail = err.body?.detail
+        showToast("Something went wrong.", `${errDetail}`, "error")
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("users")
+      },
     },
-    onError: (err: ApiError) => {
-      const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("users")
-    },
-  })
+  )
 
   const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
     if (data.password === "") {

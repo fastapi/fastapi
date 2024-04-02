@@ -5,11 +5,11 @@
 export const $Token = {
     properties: {
         access_token: {
-    type: 'string',
-    isRequired: true,
-},
+            type: 'string',
+            isRequired: true,
+        },
         token_type: {
-    type: 'string',
-},
+            type: 'string',
+        },
     },
 } as const;

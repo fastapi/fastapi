@@ -22,8 +22,8 @@ import SidebarItems from "./SidebarItems"
 
 const Sidebar = () => {
   const queryClient = useQueryClient()
-  const bgColor = useColorModeValue("ui.white", "ui.dark")
-  const textColor = useColorModeValue("ui.dark", "ui.white")
+  const bgColor = useColorModeValue("ui.light", "ui.dark")
+  const textColor = useColorModeValue("ui.dark", "ui.light")
   const secBgColor = useColorModeValue("ui.secondary", "ui.darkSlate")
   const currentUser = queryClient.getQueryData<UserOut>("currentUser")
   const { isOpen, onOpen, onClose } = useDisclosure()
