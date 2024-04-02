@@ -1,6 +1,6 @@
 import inspect
 from contextlib import AsyncExitStack, contextmanager
-from copy import deepcopy
+from copy import copy, deepcopy
 from typing import (
     Any,
     Callable,
