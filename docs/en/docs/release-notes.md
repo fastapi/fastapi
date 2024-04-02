@@ -13,6 +13,10 @@ hide:
 
 * ♻️ Simplify string format with f-strings in `fastapi/applications.py`. PR [#11335](https://github.com/tiangolo/fastapi/pull/11335) by [@igeni](https://github.com/igeni).
 
+### Upgrades
+
+* ⬆️ Upgrade Starlette to >=0.37.2,<0.38.0, remove Starlette filterwarning for internal tests. PR [#11266](https://github.com/tiangolo/fastapi/pull/11266) by [@nothielf](https://github.com/nothielf).
+
 ### Docs
 
 * 📝 Tweak docs and translations links and remove old docs translations. PR [#11381](https://github.com/tiangolo/fastapi/pull/11381) by [@tiangolo](https://github.com/tiangolo).
