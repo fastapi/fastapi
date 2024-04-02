@@ -424,7 +424,7 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 ## Pydantic 🏷
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 🐍 🗃 🎭 📊 🔬.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 🐍 🗃 🎭 📊 🔬.
 
 👆 📣 "💠" 💽 🎓 ⏮️ 🔢.
 
@@ -455,14 +455,14 @@ say_hi(name=None)  # This works, None is valid 🎉
     ```
 
 !!! info
-    💡 🌖 🔃 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, ✅ 🚮 🩺</a>.
+    💡 🌖 🔃 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, ✅ 🚮 🩺</a>.
 
 **FastAPI** 🌐 ⚓️ 🔛 Pydantic.
 
 👆 🔜 👀 📚 🌅 🌐 👉 💡 [🔰 - 👩‍💻 🦮](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip
-    Pydantic ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+    Pydantic ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
 
 ## 🆎 🔑 **FastAPI**
 

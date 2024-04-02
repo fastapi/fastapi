@@ -26,7 +26,7 @@ A função recebe um objeto, como um modelo Pydantic e retorna uma versão compa
     {!> ../../../docs_src/encoder/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="5  22"
     {!> ../../../docs_src/encoder/tutorial001.py!}

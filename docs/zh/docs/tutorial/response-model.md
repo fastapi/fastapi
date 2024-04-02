@@ -8,9 +8,23 @@
 * `@app.delete()`
 * 等等。
 
-```Python hl_lines="17"
-{!../../../docs_src/response_model/tutorial001.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="17  22  24-27"
+    {!> ../../../docs_src/response_model/tutorial001.py!}
+    ```
 
 !!! note
     注意，`response_model`是「装饰器」方法（`get`，`post` 等）的一个参数。不像之前的所有参数和请求体，它不属于*路径操作函数*。
@@ -58,21 +72,45 @@ FastAPI 将使用此 `response_model` 来：
 
 相反，我们可以创建一个有明文密码的输入模型和一个没有明文密码的输出模型：
 
-```Python hl_lines="9  11  16"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 这样，即便我们的*路径操作函数*将会返回包含密码的相同输入用户：
 
-```Python hl_lines="24"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 ...我们已经将 `response_model` 声明为了不包含密码的 `UserOut` 模型：
 
-```Python hl_lines="22"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
 
 因此，**FastAPI** 将会负责过滤掉未在输出模型中声明的所有数据（使用 Pydantic）。
 
@@ -122,7 +160,7 @@ FastAPI 将使用此 `response_model` 来：
 ```
 
 !!! info
-    FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
+    FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
 
 !!! info
     你还可以使用：
@@ -130,7 +168,7 @@ FastAPI 将使用此 `response_model` 来：
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    参考 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
+    参考 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
 
 #### 默认值字段有实际值的数据
 

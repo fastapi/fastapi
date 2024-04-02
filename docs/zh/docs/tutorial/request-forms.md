@@ -4,7 +4,7 @@
 
 !!! info "说明"
 
-    要使用表单，需预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+    要使用表单，需预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
     例如，`pip install python-multipart`。
 

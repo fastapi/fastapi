@@ -4,7 +4,7 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
 !!! info "说明"
 
-    接收上传文件或表单数据，要预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+    接收上传文件或表单数据，要预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
     例如，`pip install python-multipart`。
 
