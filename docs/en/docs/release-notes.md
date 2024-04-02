@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/debugging.md`. PR [#5695](https://github.com/tiangolo/fastapi/pull/5695) by [@JungWooGeon](https://github.com/JungWooGeon).
+
 ### Internal
 
 * ⬆️ Upgrade version of typer for docs. PR [#11393](https://github.com/tiangolo/fastapi/pull/11393) by [@tiangolo](https://github.com/tiangolo).
