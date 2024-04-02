@@ -9,6 +9,10 @@ hide:
 
 * 👥 Update FastAPI People. PR [#11387](https://github.com/tiangolo/fastapi/pull/11387) by [@tiangolo](https://github.com/tiangolo).
 
+### Fixes
+
+* 🐛 Fix parameterless `Depends()` with generics. PR [#9479](https://github.com/tiangolo/fastapi/pull/9479) by [@nzig](https://github.com/nzig).
+
 ### Refactors
 
 * ♻️ Update mypy. PR [#11049](https://github.com/tiangolo/fastapi/pull/11049) by [@k0t3n](https://github.com/k0t3n).
