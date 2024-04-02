@@ -20,15 +20,32 @@
 
 把下面的示例代码复制到 `main.py`：
 
-```Python
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.9+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 ## 运行
 
 !!! info "说明"
 
-    先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+    先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
     安装命令： `pip install python-multipart`。
 

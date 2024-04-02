@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python3.6+의 API를 빌드하기 위한 웹 프레임워크입니다.
+FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python3.8+의 API를 빌드하기 위한 웹 프레임워크입니다.
 
 주요 특징으로:
 
@@ -107,12 +107,12 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 요구사항
 
-Python 3.7+
+Python 3.8+
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
 * 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-* 데이터 부분을 위한 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
+* 데이터 부분을 위한 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## 설치
 
@@ -323,7 +323,7 @@ def update_item(item_id: int, item: Item):
 
 새로운 문법, 특정 라이브러리의 메소드나 클래스 등을 배울 필요가 없습니다.
 
-그저 표준 **Python 3.6+**입니다.
+그저 표준 **Python 3.8+** 입니다.
 
 예를 들어, `int`에 대해선:
 
@@ -386,7 +386,7 @@ item: Item
 
 ---
 
-우리는 그저 수박 겉핡기만 했을 뿐인데 여러분은 벌써 어떻게 작동하는지 알고 있습니다.
+우리는 그저 수박 겉 핥기만 했을 뿐인데 여러분은 벌써 어떻게 작동하는지 알고 있습니다.
 
 다음 줄을 바꿔보십시오:
 
@@ -437,14 +437,13 @@ item: Item
 
 Pydantic이 사용하는:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 더 빠른 JSON <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"파싱"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 이메일 유효성 검사.
 
 Starlette이 사용하는:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - `TestClient`를 사용하려면 필요.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 기본 템플릿 설정을 사용하려면 필요.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr>의 지원을 원하면 필요.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr>의 지원을 원하면 필요.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette의 `SchemaGenerator` 지원을 위해 필요 (FastAPI와 쓸때는 필요 없을 것입니다).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` 지원을 위해 필요.

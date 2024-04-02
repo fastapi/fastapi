@@ -125,7 +125,7 @@ Hello World from Python
 
 ## Pydantic `Settings`
 
-👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
+👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
 
 ### ✍ `Settings` 🎚
 
@@ -221,7 +221,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 ```
 
 !!! tip
-    👥 🔜 🔬 `@lru_cache()` 🍖.
+    👥 🔜 🔬 `@lru_cache` 🍖.
 
     🔜 👆 💪 🤔 `get_settings()` 😐 🔢.
 
@@ -254,7 +254,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
     ✋️ 🇨🇻 📁 🚫 🤙 ✔️ ✔️ 👈 ☑ 📁.
 
-Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
+Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
 
 !!! tip
     👉 👷, 👆 💪 `pip install python-dotenv`.
@@ -279,7 +279,7 @@ APP_NAME="ChimichangApp"
 📥 👥 ✍ 🎓 `Config` 🔘 👆 Pydantic `Settings` 🎓, &amp; ⚒ `env_file` 📁 ⏮️ 🇨🇻 📁 👥 💚 ⚙️.
 
 !!! tip
-     `Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
+     `Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
 
 ### 🏗 `Settings` 🕴 🕐 ⏮️ `lru_cache`
 
@@ -302,7 +302,7 @@ def get_settings():
 
 👥 🔜 ✍ 👈 🎚 🔠 📨, &amp; 👥 🔜 👂 `.env` 📁 🔠 📨. 👶 👶
 
-✋️ 👥 ⚙️ `@lru_cache()` 👨‍🎨 🔛 🔝, `Settings` 🎚 🔜 ✍ 🕴 🕐, 🥇 🕰 ⚫️ 🤙. 👶 👶
+✋️ 👥 ⚙️ `@lru_cache` 👨‍🎨 🔛 🔝, `Settings` 🎚 🔜 ✍ 🕴 🕐, 🥇 🕰 ⚫️ 🤙. 👶 👶
 
 ```Python hl_lines="1  10"
 {!../../../docs_src/settings/app03/main.py!}
@@ -312,14 +312,14 @@ def get_settings():
 
 #### `lru_cache` 📡 ℹ
 
-`@lru_cache()` 🔀 🔢 ⚫️ 🎀 📨 🎏 💲 👈 📨 🥇 🕰, ↩️ 💻 ⚫️ 🔄, 🛠️ 📟 🔢 🔠 🕰.
+`@lru_cache` 🔀 🔢 ⚫️ 🎀 📨 🎏 💲 👈 📨 🥇 🕰, ↩️ 💻 ⚫️ 🔄, 🛠️ 📟 🔢 🔠 🕰.
 
 , 🔢 🔛 ⚫️ 🔜 🛠️ 🕐 🔠 🌀 ❌. &amp; ⤴️ 💲 📨 🔠 👈 🌀 ❌ 🔜 ⚙️ 🔄 &amp; 🔄 🕐❔ 🔢 🤙 ⏮️ ⚫️❔ 🎏 🌀 ❌.
 
 🖼, 🚥 👆 ✔️ 🔢:
 
 ```Python
-@lru_cache()
+@lru_cache
 def say_hi(name: str, salutation: str = "Ms."):
     return f"Hello {salutation} {name}"
 ```
@@ -371,7 +371,7 @@ participant execute as Execute function
 
 👈 🌌, ⚫️ 🎭 🌖 🚥 ⚫️ 🌐 🔢. ✋️ ⚫️ ⚙️ 🔗 🔢, ⤴️ 👥 💪 🔐 ⚫️ 💪 🔬.
 
-`@lru_cache()` 🍕 `functools` ❔ 🍕 🐍 🐩 🗃, 👆 💪 ✍ 🌅 🔃 ⚫️ <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">🐍 🩺 `@lru_cache()`</a>.
+`@lru_cache` 🍕 `functools` ❔ 🍕 🐍 🐩 🗃, 👆 💪 ✍ 🌅 🔃 ⚫️ <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">🐍 🩺 `@lru_cache`</a>.
 
 ## 🌃
 
@@ -379,4 +379,4 @@ participant execute as Execute function
 
 * ⚙️ 🔗 👆 💪 📉 🔬.
 * 👆 💪 ⚙️ `.env` 📁 ⏮️ ⚫️.
-* ⚙️ `@lru_cache()` ➡️ 👆 ❎ 👂 🇨🇻 📁 🔄 &amp; 🔄 🔠 📨, ⏪ 🤝 👆 🔐 ⚫️ ⏮️ 🔬.
+* ⚙️ `@lru_cache` ➡️ 👆 ❎ 👂 🇨🇻 📁 🔄 &amp; 🔄 🔠 📨, ⏪ 🤝 👆 🔐 ⚫️ ⏮️ 🔬.

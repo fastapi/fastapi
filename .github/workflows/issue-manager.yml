@@ -2,7 +2,7 @@ name: Issue Manager
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "10 3 * * *"
   issue_comment:
     types:
       - created
@@ -16,15 +16,24 @@ on:
 
 jobs:
   issue-manager:
+    if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
-      - uses: tiangolo/issue-manager@0.4.0
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: tiangolo/issue-manager@0.5.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FASTAPI_ISSUE_MANAGER }}
           config: >
             {
               "answered": {
                 "delay": 864000,
                 "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+              },
+              "changes-requested": {
+                "delay": 2628000,
+                "message": "As this PR had requested changes to be applied but has been inactive for a while, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
               }
             }

@@ -6,7 +6,7 @@
 
     因为上传文件以「表单数据」形式发送。
 
-    所以接收上传文件，要预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+    所以接收上传文件，要预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
     例如： `pip install python-multipart`。
 
@@ -130,7 +130,7 @@ contents = myfile.file.read()
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  17"
     {!> ../../../docs_src/request_files/tutorial001_02.py!}
@@ -158,7 +158,7 @@ FastAPI 支持同时上传多个文件。
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/request_files/tutorial002.py!}
@@ -183,7 +183,7 @@ FastAPI 支持同时上传多个文件。
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/request_files/tutorial003.py!}

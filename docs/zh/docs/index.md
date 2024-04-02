@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.6+ 并基于标准的 Python 类型提示。
+FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.8+ 并基于标准的 Python 类型提示。
 
 关键特性:
 
@@ -107,12 +107,12 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 ## 依赖
 
-Python 3.6 及更高版本
+Python 3.8 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
 
 ## 安装
 
@@ -323,7 +323,7 @@ def update_item(item_id: int, item: Item):
 
 你不需要去学习新的语法、了解特定库的方法或类，等等。
 
-只需要使用标准的 **Python 3.6 及更高版本**。
+只需要使用标准的 **Python 3.8 及更高版本**。
 
 举个例子，比如声明 `int` 类型：
 
@@ -437,14 +437,13 @@ item: Item
 
 用于 Pydantic：
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 更快的 JSON <abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>。
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用于 email 校验。
 
 用于 Starlette：
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient` 时安装。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要 `SessionMiddleware` 支持时安装。
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 使用 Starlette 提供的 `SchemaGenerator` 时安装（有 FastAPI 你可能并不需要它）。
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - 需要 `GraphQLApp` 支持时安装。

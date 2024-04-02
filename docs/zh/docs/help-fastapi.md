@@ -12,7 +12,7 @@
 
 ## 订阅新闻邮件
 
-您可以订阅 [**FastAPI 和它的小伙伴** 新闻邮件](/newsletter/){.internal-link target=_blank}（不会经常收到）
+您可以订阅 [**FastAPI 和它的小伙伴** 新闻邮件](newsletter.md){.internal-link target=_blank}（不会经常收到）
 
 * FastAPI 及其小伙伴的新闻 🚀
 * 指南 📝
@@ -113,8 +113,6 @@
     如有问题，请在 <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub Issues</a> 里提问，在这里更容易得到 [FastAPI 专家](fastapi-people.md#experts){.internal-link target=_blank}的帮助。
 
     聊天室仅供闲聊。
-
-我们之前还使用过 <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>，但它不支持频道等高级功能，聊天也比较麻烦，所以现在推荐使用 Discord。
 
 ### 别在聊天室里提问
 

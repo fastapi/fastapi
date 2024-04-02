@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona 3.6+ bazujący na standardowym typowaniu Pythona.
+FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona 3.8+ bazujący na standardowym typowaniu Pythona.
 
 Kluczowe cechy:
 
@@ -106,12 +106,12 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.7+
+Python 3.8+
 
 FastAPI oparty jest na:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> dla części webowej.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> dla części obsługujących dane.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> dla części obsługujących dane.
 
 ## Instalacja
 
@@ -321,7 +321,7 @@ Robisz to tak samo jak ze standardowymi typami w Pythonie.
 
 Nie musisz sie uczyć żadnej nowej składni, metod lub klas ze specyficznych bibliotek itp.
 
-Po prostu standardowy **Python 3.6+**.
+Po prostu standardowy **Python 3.8+**.
 
 Na przykład, dla danych typu `int`:
 
@@ -435,7 +435,6 @@ Aby dowiedzieć się o tym więcej, zobacz sekcję <a href="https://fastapi.tian
 
 Używane przez Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - dla szybszego <abbr title="przetwarzania stringa który przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> danych JSON.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - dla walidacji adresów email.
 
 Używane przez Starlette:
@@ -443,7 +442,7 @@ Używane przez Starlette:
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Wymagane jeżeli chcesz korzystać z `FileResponse` albo `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Wymagane jeżeli chcesz używać domyślnej konfiguracji szablonów.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Wymagane jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Wymagane jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Wymagany dla wsparcia `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Wymagane dla wsparcia `SchemaGenerator` z Starlette (z FastAPI prawdopodobnie tego nie potrzebujesz).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Wymagane dla wsparcia `GraphQLApp`.
