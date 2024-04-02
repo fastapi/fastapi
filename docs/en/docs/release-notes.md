@@ -11,6 +11,7 @@ hide:
 
 ### Refactors
 
+* ♻️ Update mypy. PR [#11049](https://github.com/tiangolo/fastapi/pull/11049) by [@k0t3n](https://github.com/k0t3n).
 * ♻️ Simplify string format with f-strings in `fastapi/applications.py`. PR [#11335](https://github.com/tiangolo/fastapi/pull/11335) by [@igeni](https://github.com/igeni).
 
 ### Upgrades
