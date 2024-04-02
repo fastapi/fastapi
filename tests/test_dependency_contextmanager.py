@@ -55,6 +55,7 @@ async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
         yield state["/async_raise"]
     except AsyncDependencyError:
         errors.append("/async_raise")
+        raise
     finally:
         state["/async_raise"] = "asyncgen raise finalized"
 
@@ -65,6 +66,7 @@ def generator_state_try(state: Dict[str, str] = Depends(get_state)):
         yield state["/sync_raise"]
     except SyncDependencyError:
         errors.append("/sync_raise")
+        raise
     finally:
         state["/sync_raise"] = "generator raise finalized"
 

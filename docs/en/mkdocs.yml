@@ -41,8 +41,13 @@ repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
   search: null
-  markdownextradata:
-    data: ../en/data
+  macros:
+    include_yaml:
+    - external_links: ../en/data/external_links.yml
+    - github_sponsors: ../en/data/github_sponsors.yml
+    - people: ../en/data/people.yml
+    - sponsors_badge: ../en/data/sponsors_badge.yml
+    - sponsors: ../en/data/sponsors.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
@@ -267,6 +272,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az - azərbaycan dili
   - link: /bn/
     name: bn - বাংলা
   - link: /de/

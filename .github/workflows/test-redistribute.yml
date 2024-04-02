@@ -1,0 +1,51 @@
+name: Test Redistribute
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test-redistribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          # Issue ref: https://github.com/actions/setup-python/issues/436
+          # cache: "pip"
+          # cache-dependency-path: pyproject.toml
+      - name: Install build dependencies
+        run: pip install build
+      - name: Build source distribution
+        run: python -m build --sdist
+      - name: Decompress source distribution
+        run: |
+          cd dist
+          tar xvf fastapi*.tar.gz
+      - name: Install test dependencies
+        run: |
+          cd dist/fastapi-*/
+          pip install -r requirements-tests.txt
+      - name: Run source distribution tests
+        run: |
+          cd dist/fastapi-*/
+          bash scripts/test.sh
+      - name: Build wheel distribution
+        run: |
+          cd dist
+          pip wheel --no-deps fastapi-*.tar.gz
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
