@@ -16,6 +16,7 @@
 
 ### Refactors
 
+* ♻️ Refactor and tweaks, rename `UserCreateOpen` to `UserRegister` and others. PR [#1143](https://github.com/tiangolo/full-stack-fastapi-template/pull/1143) by [@alejsdev](https://github.com/alejsdev).
 * 🎨 Format imports. PR [#1140](https://github.com/tiangolo/full-stack-fastapi-template/pull/1140) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Refactor and remove `React.FC`. PR [#1139](https://github.com/tiangolo/full-stack-fastapi-template/pull/1139) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Add email pattern and refactor in frontend. PR [#1138](https://github.com/tiangolo/full-stack-fastapi-template/pull/1138) by [@alejsdev](https://github.com/alejsdev).
