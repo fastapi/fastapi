@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/help-fastapi.md`. PR [#4139](https://github.com/tiangolo/fastapi/pull/4139) by [@kty4119](https://github.com/kty4119).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/events.md`. PR [#5087](https://github.com/tiangolo/fastapi/pull/5087) by [@pers0n4](https://github.com/pers0n4).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/path-operation-configuration.md`. PR [#1954](https://github.com/tiangolo/fastapi/pull/1954) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/request-forms-and-files.md`. PR [#1946](https://github.com/tiangolo/fastapi/pull/1946) by [@SwftAlpc](https://github.com/SwftAlpc).
