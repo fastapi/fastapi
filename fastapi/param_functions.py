@@ -3,7 +3,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 _Unset: Any = Undefined
 
