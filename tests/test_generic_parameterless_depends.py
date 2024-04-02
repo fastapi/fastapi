@@ -31,43 +31,6 @@ async def b(dep: Dep[B]):
 
 client = TestClient(app)
 
-openapi_schema = {
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "openapi": "3.0.2",
-    "paths": {
-        "/a": {
-            "get": {
-                "operationId": "a_a_get",
-                "responses": {
-                    "200": {
-                        "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
-                    }
-                },
-                "summary": "A",
-            }
-        },
-        "/b": {
-            "get": {
-                "operationId": "b_b_get",
-                "responses": {
-                    "200": {
-                        "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
-                    }
-                },
-                "summary": "B",
-            }
-        },
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def test_generic_parameterless_depends():
     response = client.get("/a")
@@ -77,3 +40,38 @@ def test_generic_parameterless_depends():
     response = client.get("/b")
     assert response.status_code == 200, response.text
     assert response.json() == {"cls": "B"}
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "openapi": "3.0.2",
+        "paths": {
+            "/a": {
+                "get": {
+                    "operationId": "a_a_get",
+                    "responses": {
+                        "200": {
+                            "content": {"application/json": {"schema": {}}},
+                            "description": "Successful " "Response",
+                        }
+                    },
+                    "summary": "A",
+                }
+            },
+            "/b": {
+                "get": {
+                    "operationId": "b_b_get",
+                    "responses": {
+                        "200": {
+                            "content": {"application/json": {"schema": {}}},
+                            "description": "Successful " "Response",
+                        }
+                    },
+                    "summary": "B",
+                }
+            },
+        },
+    }
