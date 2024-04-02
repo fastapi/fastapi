@@ -164,6 +164,7 @@ hide:
 
 ### Internal
 
+* 👷 Add cron to run test once a week on monday. PR [#11377](https://github.com/tiangolo/fastapi/pull/11377) by [@estebanx64](https://github.com/estebanx64).
 * ➕ Replace mkdocs-markdownextradata-plugin with mkdocs-macros-plugin. PR [#11383](https://github.com/tiangolo/fastapi/pull/11383) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Disable MkDocs insiders social plugin while an issue in MkDocs Material is handled. PR [#11373](https://github.com/tiangolo/fastapi/pull/11373) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix logic for when to install and use MkDocs Insiders. PR [#11372](https://github.com/tiangolo/fastapi/pull/11372) by [@tiangolo](https://github.com/tiangolo).
