@@ -3,7 +3,6 @@ from typing import Optional
 from annotated_doc import Doc
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
-from fastapi.security.utils import handle_exc_for_ws
 from starlette.exceptions import HTTPException
 from starlette.requests import HTTPConnection
 from starlette.status import HTTP_403_FORBIDDEN
@@ -74,7 +73,6 @@ class OpenIdConnect(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    @handle_exc_for_ws
     async def __call__(self, request: HTTPConnection) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         if not authorization:
