@@ -1,5 +1,22 @@
 Articles:
   English:
+  - author: Kurtis Pykes - NVIDIA
+    link: https://developer.nvidia.com/blog/building-a-machine-learning-microservice-with-fastapi/
+    title: Building a Machine Learning Microservice with FastAPI
+  - author: Ravgeet Dhillon - Twilio
+    link: https://www.twilio.com/en-us/blog/booking-appointments-twilio-notion-fastapi
+    title: Booking Appointments with Twilio, Notion, and FastAPI
+  - author: Abhinav Tripathi - Microsoft Blogs
+    link: https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-python-and-fastapi/
+    title: Write a Python data layer with Azure Cosmos DB and FastAPI
+  - author: Donny Peeters
+    author_link: https://github.com/Donnype
+    link: https://bitestreams.com/blog/fastapi-sqlalchemy/
+    title: 10 Tips for adding SQLAlchemy to FastAPI
+  - author: Jessica Temporal
+    author_link: https://jtemporal.com/socials
+    link: https://jtemporal.com/tips-on-migrating-from-flask-to-fastapi-and-vice-versa/
+    title: Tips on migrating from Flask to FastAPI and vice-versa
   - author: Ankit Anchlia
     author_link: https://linkedin.com/in/aanchlia21
     link: https://hackernoon.com/explore-how-to-effectively-use-jwt-with-fastapi
@@ -302,6 +319,11 @@ Articles:
     author_link: https://qiita.com/mtitg
     link: https://qiita.com/mtitg/items/47770e9a562dd150631d
     title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
+  Portuguese:
+  - author: Jessica Temporal
+    author_link: https://jtemporal.com/socials
+    link: https://jtemporal.com/dicas-para-migrar-de-flask-para-fastapi-e-vice-versa/
+    title: Dicas para migrar uma aplicação de Flask para FastAPI e vice-versa
   Russian:
   - author: Troy Köhler
     author_link: https://www.linkedin.com/in/trkohler/
@@ -327,6 +349,14 @@ Articles:
     title: 'Tortoise ORM / FastAPI 整合快速筆記'
 Podcasts:
   English:
+  - author: Real Python
+    author_link: https://realpython.com/
+    link: https://realpython.com/podcasts/rpp/72/
+    title: Starting With FastAPI and Examining Python's Import System - Episode 72
+  - author: Python Bytes FM
+    author_link: https://pythonbytes.fm/
+    link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
+    title: 'Do you dare to press "."? - Episode 247 - Dan #6: SQLModel - use the same models for SQL and FastAPI'
   - author: Podcast.`__init__`
     author_link: https://www.pythonpodcast.com/
     link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/

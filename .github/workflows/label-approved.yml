@@ -17,3 +17,11 @@ jobs:
     - uses: docker://tiangolo/label-approved:0.0.4
       with:
         token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
+        config: >
+          {
+            "approved-1":
+              {
+                "number": 1,
+                "await_label": "awaiting-review"
+              }
+          }

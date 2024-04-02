@@ -14,7 +14,7 @@ def get_client():
 
         @app.get("/items/")
         async def read_items(
-            q: Annotated[str | None, Query(regex="^fixedquery$")] = None
+            q: Annotated[str | None, Query(regex="^fixedquery$")] = None,
         ):
             if q:
                 return f"Hello {q}"

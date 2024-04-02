@@ -8,6 +8,9 @@ on:
     types:
       - opened
       - synchronize
+  schedule:
+    # cron every week on monday
+    - cron: "0 0 * * 1"
 
 jobs:
   lint:
