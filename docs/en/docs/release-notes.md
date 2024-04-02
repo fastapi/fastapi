@@ -170,6 +170,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pillow from 10.1.0 to 10.2.0. PR [#11011](https://github.com/tiangolo/fastapi/pull/11011) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 23.3.0 to 24.3.0. PR [#11325](https://github.com/tiangolo/fastapi/pull/11325) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Add cron to run test once a week on monday. PR [#11377](https://github.com/tiangolo/fastapi/pull/11377) by [@estebanx64](https://github.com/estebanx64).
 * ➕ Replace mkdocs-markdownextradata-plugin with mkdocs-macros-plugin. PR [#11383](https://github.com/tiangolo/fastapi/pull/11383) by [@tiangolo](https://github.com/tiangolo).
