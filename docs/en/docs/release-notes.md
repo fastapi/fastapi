@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/path-operation-configuration.md`. PR [#1954](https://github.com/tiangolo/fastapi/pull/1954) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/request-forms-and-files.md`. PR [#1946](https://github.com/tiangolo/fastapi/pull/1946) by [@SwftAlpc](https://github.com/SwftAlpc).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#10532](https://github.com/tiangolo/fastapi/pull/10532) by [@AlertRED](https://github.com/AlertRED).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/debugging.md`. PR [#5695](https://github.com/tiangolo/fastapi/pull/5695) by [@JungWooGeon](https://github.com/JungWooGeon).
