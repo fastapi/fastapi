@@ -880,6 +880,7 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+        endpoint.path = path
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
