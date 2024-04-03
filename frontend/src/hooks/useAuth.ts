@@ -37,7 +37,7 @@ const useAuth = () => {
       navigate({ to: "/" })
     },
     onError: (err: ApiError) => {
-      const errDetail = err.body.detail
+      const errDetail = (err.body as any)?.detail
       setError(errDetail)
     },
   })

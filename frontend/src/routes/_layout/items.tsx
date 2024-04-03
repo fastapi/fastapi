@@ -14,7 +14,7 @@ import {
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery } from "react-query"
 
-import { type ApiError, ItemsService } from "../../client"
+import { ItemsService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
 import useCustomToast from "../../hooks/useCustomToast"
@@ -33,7 +33,7 @@ function Items() {
   } = useQuery("items", () => ItemsService.readItems({}))
 
   if (isError) {
-    const errDetail = (error as ApiError).body?.detail
+    const errDetail = (error as any).body?.detail
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
 

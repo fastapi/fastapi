@@ -1,11 +1,7 @@
-/* generated using openapi-typescript-codegen -- do no edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
-export type ApiResult = {
-    readonly url: string;
-    readonly ok: boolean;
-    readonly status: number;
-    readonly statusText: string;
-    readonly body: any;
+export type ApiResult<TData = any> = {
+	readonly body: TData;
+	readonly ok: boolean;
+	readonly status: number;
+	readonly statusText: string;
+	readonly url: string;
 };

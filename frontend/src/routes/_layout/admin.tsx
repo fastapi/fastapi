@@ -16,7 +16,7 @@ import {
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery, useQueryClient } from "react-query"
 
-import { type ApiError, type UserOut, UsersService } from "../../client"
+import { type UserOut, UsersService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
 import useCustomToast from "../../hooks/useCustomToast"
@@ -37,7 +37,7 @@ function Admin() {
   } = useQuery("users", () => UsersService.readUsers({}))
 
   if (isError) {
-    const errDetail = (error as ApiError).body?.detail
+    const errDetail = (error as any).body?.detail
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
 

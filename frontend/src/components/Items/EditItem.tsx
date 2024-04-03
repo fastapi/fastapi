@@ -52,7 +52,7 @@ const EditItem = ({ item, isOpen, onClose }: EditItemProps) => {
         onClose()
       },
       onError: (err: ApiError) => {
-        const errDetail = err.body?.detail
+        const errDetail = (err.body as any)?.detail
         showToast("Something went wrong.", `${errDetail}`, "error")
       },
       onSettled: () => {
