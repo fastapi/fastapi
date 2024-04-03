@@ -6,7 +6,7 @@ Detalles sobre la sintaxis `async def` para *path operation functions* y un poco
 
 <abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
 
-Si estás utilizando libraries de terceros que te dicen que las llames con `await`, del tipo:
+Si estás utilizando librerías de terceros que te dicen que las llames con `await`, del tipo:
 
 ```Python
 results = await some_library()
@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-Si estás utilizando libraries de terceros que se comunican con algo (una base de datos, una API, el sistema de archivos, etc.) y no tienes soporte para `await` (este es el caso para la mayoría de las libraries de bases de datos), declara tus *path operation functions* de forma habitual, con solo `def`, de la siguiente manera:
+Si estás utilizando librerías de terceros que se comunican con algo (una base de datos, una API, el sistema de archivos, etc.) y no tienes soporte para `await` (este es el caso para la mayoría de las librerías de bases de datos), declara tus *path operation functions* de forma habitual, con solo `def`, de la siguiente manera:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -190,7 +190,7 @@ Luego, el cajero / cocinero 👨‍🍳 finalmente regresa con tus hamburguesas 
 
 <img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-05.png" alt="illustration">
 
-Cojes tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
+Coges tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
 
 Sólo las comes y listo 🍔 ⏹.
 
