@@ -1,21 +1,22 @@
-# 额外的模型
+# 更多模型
 
-我们从前面的示例继续，拥有多个相关的模型是很常见的。
+书接上文，多个关联模型这种情况很常见。
 
-对用户模型来说尤其如此，因为：
+特别是用户模型，因为：
 
-* **输入模型**需要拥有密码属性。
-* **输出模型**不应该包含密码。
-* **数据库模型**很可能需要保存密码的哈希值。
+* **输入模型**应该含密码
+* **输出模型**不应含密码
+* **数据库模型**需要加密的密码
 
-!!! danger
-    永远不要存储用户的明文密码。始终存储一个可以用于验证的「安全哈希值」。
+!!! danger "危险"
 
-    如果你尚未了解该知识，你可以在[安全章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}中学习何为「密码哈希值」。
+    千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
+
+    如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是**密码哈希**。
 
 ## 多个模型
 
-下面是应该如何根据它们的密码字段以及使用位置去定义模型的大概思路：
+下面的代码展示了不同模型处理密码字段的方式，及使用位置的大致思路：
 
 === "Python 3.10+"
 
@@ -29,35 +30,35 @@
     {!> ../../../docs_src/extra_models/tutorial001.py!}
     ```
 
-### 关于 `**user_in.dict()`
+### `**user_in.dict()` 简介
 
 #### Pydantic 的 `.dict()`
 
-`user_in` 是一个 `UserIn` 类的 Pydantic 模型.
+`user_in` 是类 `UserIn` 的 Pydantic 模型。
 
-Pydantic 模型具有 `.dict（）` 方法，该方法返回一个拥有模型数据的 `dict`。
+Pydantic 模型支持 `.dict()` 方法，能返回包含模型数据的**字典**。
 
-因此，如果我们像下面这样创建一个 Pydantic 对象 `user_in`：
+因此，如果使用如下方式创建 Pydantic 对象 `user_in`：
 
 ```Python
 user_in = UserIn(username="john", password="secret", email="john.doe@example.com")
 ```
 
-然后我们调用：
+就能以如下方式调用：
 
 ```Python
 user_dict = user_in.dict()
 ```
 
-现在我们有了一个数据位于变量 `user_dict` 中的 `dict`（它是一个 `dict` 而不是 Pydantic 模型对象）。
+现在，变量 `user_dict`中的就是包含数据的**字典**（变量 `user_dict` 是字典，不是 Pydantic 模型对象）。
 
-如果我们调用：
+以如下方式调用：
 
 ```Python
 print(user_dict)
 ```
 
-我们将获得一个这样的 Python `dict`：
+输出的就是 Python **字典**：
 
 ```Python
 {
@@ -70,15 +71,15 @@ print(user_dict)
 
 #### 解包 `dict`
 
-如果我们将 `user_dict` 这样的 `dict` 以 `**user_dict` 形式传递给一个函数（或类），Python将对其进行「解包」。它会将 `user_dict` 的键和值作为关键字参数直接传递。
+把**字典** `user_dict` 以 `**user_dict` 形式传递给函数（或类），Python 会执行**解包**操作。它会把 `user_dict` 的键和值作为关键字参数直接传递。
 
-因此，从上面的 `user_dict` 继续，编写：
+因此，接着上面的 `user_dict` 继续编写如下代码：
 
 ```Python
 UserInDB(**user_dict)
 ```
 
-会产生类似于以下的结果：
+就会生成如下结果：
 
 ```Python
 UserInDB(
@@ -89,7 +90,7 @@ UserInDB(
 )
 ```
 
-或者更确切地，直接使用 `user_dict` 来表示将来可能包含的任何内容：
+或更精准，直接把可能会用到的内容与 `user_dict` 一起使用：
 
 ```Python
 UserInDB(
@@ -100,34 +101,34 @@ UserInDB(
 )
 ```
 
-#### 来自于其他模型内容的 Pydantic 模型
+#### 用其它模型中的内容生成 Pydantic 模型
 
-如上例所示，我们从 `user_in.dict（）` 中获得了 `user_dict`，此代码：
+上例中 ，从 `user_in.dict()` 中得到了 `user_dict`，下面的代码：
 
 ```Python
 user_dict = user_in.dict()
 UserInDB(**user_dict)
 ```
 
-等同于：
+等效于：
 
 ```Python
 UserInDB(**user_in.dict())
 ```
 
-...因为 `user_in.dict()` 是一个 `dict`，然后我们通过以`**`开头传递给 `UserInDB` 来使 Python「解包」它。
+……因为 `user_in.dict()` 是字典，在传递给 `UserInDB` 时，把 `**` 加在  `user_in.dict()` 前，可以让 Python 进行**解包**。
 
-这样，我们获得了一个来自于其他 Pydantic 模型中的数据的 Pydantic 模型。
+这样，就可以用其它 Pydantic 模型中的数据生成 Pydantic 模型。
 
-#### 解包 `dict` 和额外关键字
+#### 解包 `dict` 和更多关键字
 
-然后添加额外的关键字参数 `hashed_password=hashed_password`，例如：
+接下来，继续添加关键字参数 `hashed_password=hashed_password`，例如：
 
 ```Python
 UserInDB(**user_in.dict(), hashed_password=hashed_password)
 ```
 
-...最终的结果如下：
+……输出结果如下：
 
 ```Python
 UserInDB(
@@ -139,24 +140,27 @@ UserInDB(
 )
 ```
 
-!!! warning
-    辅助性的额外函数只是为了演示可能的数据流，但它们显然不能提供任何真正的安全性。
+!!! warning "警告"
+
+    辅助的附加函数只是为了演示可能的数据流，但它们显然不能提供任何真正的安全机制。
 
 ## 减少重复
 
-减少代码重复是 **FastAPI** 的核心思想之一。
+**FastAPI** 的核心思想就是减少代码重复。
 
-因为代码重复会增加出现 bug、安全性问题、代码失步问题（当你在一个位置更新了代码但没有在其他位置更新）等的可能性。
+代码重复会导致 bug、安全问题、代码失步等问题（更新了某个位置的代码，但没有同步更新其它位置的代码）。
 
-上面的这些模型都共享了大量数据，并拥有重复的属性名称和类型。
+上面的这些模型共享了大量数据，拥有重复的属性名和类型。
 
-我们可以做得更好。
+FastAPI 可以做得更好。
 
-我们可以声明一个 `UserBase` 模型作为其他模型的基类。然后我们可以创建继承该模型属性（类型声明，校验等）的子类。
+声明 `UserBase` 模型作为其它模型的基类。然后，用该类衍生出继承其属性（类型声明、验证等）的子类。
 
-所有的数据转换、校验、文档生成等仍将正常运行。
+所有数据转换、校验、文档等功能仍将正常运行。
 
-这样，我们可以仅声明模型之间的差异部分（具有明文的 `password`、具有 `hashed_password` 以及不包括密码）。
+这样，就可以仅声明模型之间的差异部分（具有明文的 `password`、具有 `hashed_password` 以及不包括密码）。
+
+通过这种方式，可以只声明模型之间的区别（分别包含明文密码、哈希密码，以及无密码的模型）。
 
 === "Python 3.10+"
 
@@ -172,15 +176,15 @@ UserInDB(
 
 ## `Union` 或者 `anyOf`
 
-你可以将一个响应声明为两种类型的 `Union`，这意味着该响应将是两种类型中的任何一种。
+响应可以声明为两种类型的 `Union` 类型，即该响应可以是两种类型中的任意类型。
 
-这将在 OpenAPI 中使用 `anyOf` 进行定义。
+在 OpenAPI 中可以使用 `anyOf` 定义。
 
-为此，请使用标准的 Python 类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
+为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
 
+!!! note "笔记"
 
-!!! note
-    定义一个 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，首先包括最详细的类型，然后是不太详细的类型。在下面的示例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
+    定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把详细的类型写在前面，然后是不太详细的类型。下例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
 
 === "Python 3.10+"
 
@@ -196,7 +200,7 @@ UserInDB(
 
 ## 模型列表
 
-你可以用同样的方式声明由对象列表构成的响应。
+使用同样的方式也可以声明由对象列表构成的响应。
 
 为此，请使用标准的 Python `typing.List`：
 
@@ -214,11 +218,11 @@ UserInDB(
 
 ## 任意 `dict` 构成的响应
 
-你还可以使用一个任意的普通 `dict` 声明响应，仅声明键和值的类型，而不使用 Pydantic 模型。
+任意的 `dict` 都能用于声明响应，只要声明键和值的类型，无需使用 Pydantic 模型。
 
-如果你事先不知道有效的字段/属性名称（对于 Pydantic 模型是必需的），这将很有用。
+事先不知道可用的字段 / 属性名时（Pydantic 模型必须知道字段是什么），这种方式特别有用。
 
-在这种情况下，你可以使用 `typing.Dict`：
+此时，可以使用 `typing.Dict`：
 
 === "Python 3.9+"
 
@@ -232,8 +236,8 @@ UserInDB(
     {!> ../../../docs_src/extra_models/tutorial005.py!}
     ```
 
-## 总结
+## 小结
 
-使用多个 Pydantic 模型，并针对不同场景自由地继承。
+针对不同场景，可以随意使用不同的 Pydantic 模型继承定义的基类。
 
-如果一个实体必须能够具有不同的「状态」，你无需为每个状态的实体定义单独的数据模型。以用户「实体」为例，其状态有包含 `password`、包含 `password_hash` 以及不含密码。
+实体必须具有不同的**状态**时，不必为不同状态的实体单独定义数据模型。例如，用户**实体**就有包含 `password`、包含 `password_hash` 以及不含密码等多种状态。
