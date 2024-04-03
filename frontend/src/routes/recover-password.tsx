@@ -86,5 +86,3 @@ function RecoverPassword() {
     </Container>
   )
 }
-
-export default RecoverPassword

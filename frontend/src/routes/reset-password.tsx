@@ -120,5 +120,3 @@ function ResetPassword() {
     </Container>
   )
 }
-
-export default ResetPassword

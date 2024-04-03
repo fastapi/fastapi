@@ -56,5 +56,3 @@ function UserSettings() {
     </Container>
   )
 }
-
-export default UserSettings

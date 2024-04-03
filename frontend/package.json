@@ -23,8 +23,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.49.3",
     "react-icons": "5.0.1",
-    "react-query": "3.39.3",
-    "zustand": "4.5.0"
+    "react-query": "3.39.3"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
