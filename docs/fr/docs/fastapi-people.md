@@ -40,7 +40,7 @@ Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions répondues: {{ user.count }}</div></div>
 {% endfor %}
@@ -58,7 +58,7 @@ Ils ont prouvé qu'ils étaient des experts en aidant beaucoup d'autres personne
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions répondues: {{ user.count }}</div></div>
 {% endfor %}
@@ -76,7 +76,7 @@ Ils ont contribué au code source, à la documentation, aux traductions, etc. �
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -100,7 +100,7 @@ Les **Principaux Reviewers** 🕵️ ont examiné le plus grand nombre de demand
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}

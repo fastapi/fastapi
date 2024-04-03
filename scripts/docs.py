@@ -53,9 +53,6 @@ def get_lang_paths() -> List[Path]:
 def lang_callback(lang: Optional[str]) -> Union[str, None]:
     if lang is None:
         return None
-    if not lang.isalpha() or len(lang) != 2:
-        typer.echo("Use a 2 letter language code, like: es")
-        raise typer.Abort()
     lang = lang.lower()
     return lang
 
@@ -79,8 +76,6 @@ def callback() -> None:
 def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     """
     Generate a new docs translation directory for the language LANG.
-
-    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
     """
     new_path: Path = Path("docs") / lang
     if new_path.exists():
@@ -271,30 +266,68 @@ def live(
     mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
 
 
-def update_config() -> None:
+def get_updated_config_content() -> Dict[str, Any]:
     config = get_en_config()
     languages = [{"en": "/"}]
-    alternate: List[Dict[str, str]] = config["extra"].get("alternate", [])
-    alternate_dict = {alt["link"]: alt["name"] for alt in alternate}
     new_alternate: List[Dict[str, str]] = []
+    # Language names sourced from https://quickref.me/iso-639-1
+    # Contributors may wish to update or change these, e.g. to fix capitalization.
+    language_names_path = Path(__file__).parent / "../docs/language_names.yml"
+    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+        language_names_path.read_text(encoding="utf-8")
+    )
     for lang_path in get_lang_paths():
-        if lang_path.name == "en" or not lang_path.is_dir():
+        if lang_path.name in {"en", "em"} or not lang_path.is_dir():
             continue
-        name = lang_path.name
-        languages.append({name: f"/{name}/"})
+        code = lang_path.name
+        languages.append({code: f"/{code}/"})
     for lang_dict in languages:
-        name = list(lang_dict.keys())[0]
-        url = lang_dict[name]
-        if url not in alternate_dict:
-            new_alternate.append({"link": url, "name": name})
-        else:
-            use_name = alternate_dict[url]
-            new_alternate.append({"link": url, "name": use_name})
+        code = list(lang_dict.keys())[0]
+        url = lang_dict[code]
+        if code not in local_language_names:
+            print(
+                f"Missing language name for: {code}, "
+                "update it in docs/language_names.yml"
+            )
+            raise typer.Abort()
+        use_name = f"{code} - {local_language_names[code]}"
+        new_alternate.append({"link": url, "name": use_name})
+    new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
+    return config
+
+
+def update_config() -> None:
+    config = get_updated_config_content()
     en_config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
         encoding="utf-8",
     )
+
+
+@app.command()
+def verify_config() -> None:
+    """
+    Verify main mkdocs.yml content to make sure it uses the latest language names.
+    """
+    typer.echo("Verifying mkdocs.yml")
+    config = get_en_config()
+    updated_config = get_updated_config_content()
+    if config != updated_config:
+        typer.secho(
+            "docs/en/mkdocs.yml outdated from docs/language_names.yml, "
+            "update language_names.yml and run "
+            "python ./scripts/docs.py update-languages",
+            color=typer.colors.RED,
+        )
+        raise typer.Abort()
+    typer.echo("Valid mkdocs.yml ✅")
+
+
+@app.command()
+def verify_docs():
+    verify_readme()
+    verify_config()
 
 
 @app.command()

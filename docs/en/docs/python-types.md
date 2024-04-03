@@ -434,7 +434,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -465,14 +465,14 @@ An example from the official Pydantic docs:
     ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+    To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
 
 **FastAPI** is all based on Pydantic.
 
 You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip
-    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 ## Type Hints with Metadata Annotations
 

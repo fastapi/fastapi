@@ -22,7 +22,7 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, Url, _model_dump
 
@@ -86,7 +86,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]]
+    type_encoder_map: Dict[Any, Callable[[Any], Any]],
 ) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
     encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
         tuple
