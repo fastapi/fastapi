@@ -1,3 +1,3 @@
 # Sobre
 
-Sobre a FastAPI, seu desenho, inspiração e muito mais. 🤓
+Sobre o FastAPI, seus padrões, inspirações e muito mais. 🤓

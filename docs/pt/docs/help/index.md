@@ -1,3 +1,3 @@
-# Ajuda
+# Ajude
 
-Ajuda e obtenha ajuda, contribua, envolva-se. 🤝
+Ajude e obtenha ajuda, contribua, participe. 🤝

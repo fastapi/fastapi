@@ -1,3 +1,3 @@
 # Recursos
 
-Recursos adicionais, ligações externas, artigos e muito mais. ✈️
+Material complementar, links externos, artigos e muito mais. ✈️
