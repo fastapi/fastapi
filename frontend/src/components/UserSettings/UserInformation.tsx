@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
@@ -50,22 +50,22 @@ const UserInformation = () => {
     setEditMode(!editMode)
   }
 
-  const mutation = useMutation(
-    (data: UserUpdateMe) => UsersService.updateUserMe({ requestBody: data }),
-    {
-      onSuccess: () => {
-        showToast("Success!", "User updated successfully.", "success")
-      },
-      onError: (err: ApiError) => {
-        const errDetail = (err.body as any)?.detail
-        showToast("Something went wrong.", `${errDetail}`, "error")
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("users")
-        queryClient.invalidateQueries("currentUser")
-      },
+  const mutation = useMutation({
+    mutationFn: (data: UserUpdateMe) =>
+      UsersService.updateUserMe({ requestBody: data }),
+    onSuccess: () => {
+      showToast("Success!", "User updated successfully.", "success")
     },
-  )
+    onError: (err: ApiError) => {
+      const errDetail = (err.body as any)?.detail
+      showToast("Something went wrong.", `${errDetail}`, "error")
+    },
+    onSettled: () => {
+      // TODO: can we do just one call now?
+      queryClient.invalidateQueries({ queryKey: ["users"] })
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] })
+    },
+  })
 
   const onSubmit: SubmitHandler<UserUpdateMe> = async (data) => {
     mutation.mutate(data)

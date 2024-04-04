@@ -12,7 +12,7 @@ import {
   Tr,
 } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { ItemsService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
@@ -30,7 +30,10 @@ function Items() {
     isLoading,
     isError,
     error,
-  } = useQuery("items", () => ItemsService.readItems({}))
+  } = useQuery({
+    queryKey: ["items"],
+    queryFn: () => ItemsService.readItems({}),
+  })
 
   if (isError) {
     const errDetail = (error as any).body?.detail

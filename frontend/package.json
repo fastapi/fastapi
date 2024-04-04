@@ -15,6 +15,8 @@
     "@chakra-ui/react": "2.8.2",
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
+    "@tanstack/react-query": "^5.28.14",
+    "@tanstack/react-query-devtools": "^5.28.14",
     "@tanstack/react-router": "1.19.1",
     "axios": "1.6.2",
     "form-data": "4.0.0",
@@ -22,8 +24,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "7.49.3",
-    "react-icons": "5.0.1",
-    "react-query": "3.39.3"
+    "react-icons": "5.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",

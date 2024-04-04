@@ -8,7 +8,7 @@ import {
   Tabs,
 } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
-import { useQueryClient } from "react-query"
+import { useQueryClient } from "@tanstack/react-query"
 
 import type { UserOut } from "../../client"
 import Appearance from "../../components/UserSettings/Appearance"
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/_layout/settings")({
 
 function UserSettings() {
   const queryClient = useQueryClient()
-  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
+  const currentUser = queryClient.getQueryData<UserOut>(["currentUser"])
   const finalTabs = currentUser?.is_superuser
     ? tabsConfig.slice(0, 3)
     : tabsConfig

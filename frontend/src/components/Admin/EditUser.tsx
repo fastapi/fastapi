@@ -15,7 +15,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react"
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
@@ -52,23 +52,21 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
     defaultValues: user,
   })
 
-  const mutation = useMutation(
-    (data: UserUpdateForm) =>
+  const mutation = useMutation({
+    mutationFn: (data: UserUpdateForm) =>
       UsersService.updateUser({ userId: user.id, requestBody: data }),
-    {
-      onSuccess: () => {
-        showToast("Success!", "User updated successfully.", "success")
-        onClose()
-      },
-      onError: (err: ApiError) => {
-        const errDetail = (err.body as any)?.detail
-        showToast("Something went wrong.", `${errDetail}`, "error")
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("users")
-      },
+    onSuccess: () => {
+      showToast("Success!", "User updated successfully.", "success")
+      onClose()
     },
-  )
+    onError: (err: ApiError) => {
+      const errDetail = (err.body as any)?.detail
+      showToast("Something went wrong.", `${errDetail}`, "error")
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] })
+    },
+  })
 
   const onSubmit: SubmitHandler<UserUpdateForm> = async (data) => {
     if (data.password === "") {

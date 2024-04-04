@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { type ApiError, type UserOut, UsersService } from "../../client"
 import useAuth from "../../hooks/useAuth"
@@ -28,30 +28,28 @@ const DeleteConfirmation = ({ isOpen, onClose }: DeleteProps) => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm()
-  const currentUser = queryClient.getQueryData<UserOut>("currentUser")
+  const currentUser = queryClient.getQueryData<UserOut>(["currentUser"])
   const { logout } = useAuth()
 
-  const mutation = useMutation(
-    (id: number) => UsersService.deleteUser({ userId: id }),
-    {
-      onSuccess: () => {
-        showToast(
-          "Success",
-          "Your account has been successfully deleted.",
-          "success",
-        )
-        logout()
-        onClose()
-      },
-      onError: (err: ApiError) => {
-        const errDetail = (err.body as any)?.detail
-        showToast("Something went wrong.", `${errDetail}`, "error")
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("currentUser")
-      },
+  const mutation = useMutation({
+    mutationFn: (id: number) => UsersService.deleteUser({ userId: id }),
+    onSuccess: () => {
+      showToast(
+        "Success",
+        "Your account has been successfully deleted.",
+        "success",
+      )
+      logout()
+      onClose()
     },
-  )
+    onError: (err: ApiError) => {
+      const errDetail = (err.body as any)?.detail
+      showToast("Something went wrong.", `${errDetail}`, "error")
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] })
+    },
+  })
 
   const onSubmit = async () => {
     mutation.mutate(currentUser!.id)

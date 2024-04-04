@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { ItemsService, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
@@ -40,7 +40,8 @@ const Delete = ({ type, id, isOpen, onClose }: DeleteProps) => {
     }
   }
 
-  const mutation = useMutation(deleteEntity, {
+  const mutation = useMutation({
+    mutationFn: deleteEntity,
     onSuccess: () => {
       showToast(
         "Success",
@@ -57,7 +58,9 @@ const Delete = ({ type, id, isOpen, onClose }: DeleteProps) => {
       )
     },
     onSettled: () => {
-      queryClient.invalidateQueries(type === "Item" ? "items" : "users")
+      queryClient.invalidateQueries({
+        queryKey: [type === "Item" ? "items" : "users"],
+      })
     },
   })
 

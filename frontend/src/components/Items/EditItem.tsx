@@ -13,7 +13,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react"
 import { type SubmitHandler, useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
@@ -43,23 +43,21 @@ const EditItem = ({ item, isOpen, onClose }: EditItemProps) => {
     defaultValues: item,
   })
 
-  const mutation = useMutation(
-    (data: ItemUpdate) =>
+  const mutation = useMutation({
+    mutationFn: (data: ItemUpdate) =>
       ItemsService.updateItem({ id: item.id, requestBody: data }),
-    {
-      onSuccess: () => {
-        showToast("Success!", "Item updated successfully.", "success")
-        onClose()
-      },
-      onError: (err: ApiError) => {
-        const errDetail = (err.body as any)?.detail
-        showToast("Something went wrong.", `${errDetail}`, "error")
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("items")
-      },
+    onSuccess: () => {
+      showToast("Success!", "Item updated successfully.", "success")
+      onClose()
     },
-  )
+    onError: (err: ApiError) => {
+      const errDetail = (err.body as any)?.detail
+      showToast("Something went wrong.", `${errDetail}`, "error")
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["items"] })
+    },
+  })
 
   const onSubmit: SubmitHandler<ItemUpdate> = async (data) => {
     mutation.mutate(data)
