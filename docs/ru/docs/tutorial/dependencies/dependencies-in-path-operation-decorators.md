@@ -1,18 +1,18 @@
-# Dependencies in path operation decorators
+# Зависимости в декораторах операции пути
 
-In some cases you don't really need the return value of a dependency inside your *path operation function*.
+В некоторых случаях, возвращаемое значение зависимости не используется внутри *функции операции пути*.
 
-Or the dependency doesn't return a value.
+Или же зависимость не возвращает никакого значения.
 
-But you still need it to be executed/solved.
+Но вам всё еще нужно, чтобы она выполнилась.
 
-For those cases, instead of declaring a *path operation function* parameter with `Depends`, you can add a `list` of `dependencies` to the *path operation decorator*.
+Для таких ситуаций, вместо объявления *функции операции пути* с параметром `Depends`, вы можете добавить список зависимотей `dependencies` в *декоратор операции пути*.
 
-## Add `dependencies` to the *path operation decorator*
+## Добавление `dependencies` в *декоратор операции пути*
 
-The *path operation decorator* receives an optional argument `dependencies`.
+*Декоратор операции пути* получает необязательный аргумент `dependencies`.
 
-It should be a `list` of `Depends()`:
+Это должен быть `list` состоящий из `Depends()`:
 
 === "Python 3.9+"
 
@@ -26,36 +26,36 @@ It should be a `list` of `Depends()`:
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.8 non-Annotated"
+=== "Python 3.8 без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! Подсказка
+        Рекомендуется использовать версию с Annotated если возможно.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-These dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
+Зависимости из dependencies выполнятся так же, как и обычные зависимости. Но их значения (если они были) не будут переданы в *функцию операции пути*.
 
-!!! tip
-    Some editors check for unused function parameters, and show them as errors.
+!!! Подсказка
+    Некоторые редакторы кода определяют неиспользуемые параметры функций и подсвечивают их как ошибку.
 
-    Using these `dependencies` in the *path operation decorator* you can make sure they are executed while avoiding editor/tooling errors.
+    Использование `dependencies` в *декораторе операции пути* гарантирует выполнение зависимостей, избегая при этом предупреждений редактора кода и других инструментов.
 
-    It might also help avoid confusion for new developers that see an unused parameter in your code and could think it's unnecessary.
+    Это также должно помочь предотвратить замешательство у начинающих разработчиков, которые видят неиспользуемые параметры в коде и могут подумать что в них нет необходимости.
 
-!!! info
-    In this example we use invented custom headers `X-Key` and `X-Token`.
+!!! Дополнительная информация
+    В этом примере мы используем выдуманные пользовательские заголовки `X-Key` и `X-Token`.
 
-    But in real cases, when implementing security, you would get more benefits from using the integrated [Security utilities (the next chapter)](../security/index.md){.internal-link target=_blank}.
+    Но в реальных проектах, при внедрении системы безопасности, вы получите больше пользы от использоваания такого подхода [Настройка авторизации (следующая глава)](../security/index.md){.internal-link target=_blank}.
 
-## Dependencies errors and return values
+## Исключения в dependencies и возвращаемые значения
 
-You can use the same dependency *functions* you use normally.
+Вы можете использовать те же *функции* зависимостей, что и обычно.
 
-### Dependency requirements
+### Требования к зависимостям
 
-They can declare request requirements (like headers) or other sub-dependencies:
+Они могут объявлять требования к запросу (например заголовки) или другие подзависимости:
 
 === "Python 3.9+"
 
@@ -69,18 +69,18 @@ They can declare request requirements (like headers) or other sub-dependencies:
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.8 non-Annotated"
+=== "Python 3.8 без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! Подсказка
+        Рекомендуется использовать версию с Annotated если возможно.
 
     ```Python hl_lines="6  11"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-### Raise exceptions
+### Вызов исключений
 
-These dependencies can `raise` exceptions, the same as normal dependencies:
+Зависимости из dependencies могут вызывать исключения с помощью `raise`, как и обычные зависимости:
 
 === "Python 3.9+"
 
@@ -94,20 +94,20 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.8 non-Annotated"
+=== "Python 3.8 без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! Подсказка
+        Рекомендуется использовать версию с Annotated если возможно.
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-### Return values
+### Возвращаемые значения
 
-And they can return values or not, the values won't be used.
+И они могут возвращать значения или нет, эти значения ипользоваться не будут.
 
-So, you can re-use a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
+Таким образом, вы можете переиспользовать обычную зависимость (возвращающую значение), которую вы уже используете где-то в другом месте. И хотя значение не будет использоваться, зависимость будет выполнена:
 
 === "Python 3.9+"
 
@@ -121,19 +121,19 @@ So, you can re-use a normal dependency (that returns a value) you already use so
     {!> ../../../docs_src/dependencies/tutorial006_an.py!}
     ```
 
-=== "Python 3.8 non-Annotated"
+=== "Python 3.8 без Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! Подсказка
+        Рекомендуется использовать версию с Annotated если возможно.
 
     ```Python hl_lines="9  14"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
     ```
 
-## Dependencies for a group of *path operations*
+## Dependencies для группы *операторов путей*
 
-Later, when reading about how to structure bigger applications ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), possibly with multiple files, you will learn how to declare a single `dependencies` parameter for a group of *path operations*.
+Позже, читая о том как структурировать большие приложения ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), возможно, с несколькими файлами, вы узнаете как объявить один параметр `dependencies` для группы *операций путей*.
 
-## Global Dependencies
+## Глобальный Dependencies
 
-Next we will see how to add dependencies to the whole `FastAPI` application, so that they apply to each *path operation*.
+Далее мы увидим, как можно добавить dependencies для всего `FastAPI` приложения, так чтобы они применились к каждой *операции пути*.
