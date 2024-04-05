@@ -42,7 +42,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.mypy]
 strict = true
-exclude = ["venv", "alembic"]
+exclude = ["venv", ".venv", "alembic"]
 
 [tool.ruff]
 target-version = "py310"
