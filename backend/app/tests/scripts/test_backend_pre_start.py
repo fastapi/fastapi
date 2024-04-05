@@ -12,9 +12,12 @@ def test_init_successful_connection() -> None:
     exec_mock = MagicMock(return_value=True)
     session_mock.configure_mock(**{"exec.return_value": exec_mock})
 
-    with patch("sqlmodel.Session", return_value=session_mock), patch.object(
-        logger, "info"
-    ), patch.object(logger, "error"), patch.object(logger, "warn"):
+    with (
+        patch("sqlmodel.Session", return_value=session_mock),
+        patch.object(logger, "info"),
+        patch.object(logger, "error"),
+        patch.object(logger, "warn"),
+    ):
         try:
             init(engine_mock)
             connection_successful = True
