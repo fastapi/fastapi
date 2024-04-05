@@ -57,6 +57,7 @@ select = [
     "B",  # flake8-bugbear
     "C4",  # flake8-comprehensions
     "UP",  # pyupgrade
+    "ARG001", # unused arguments in functions
 ]
 ignore = [
     "E501",  # line too long, handled by black

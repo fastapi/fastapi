@@ -6,7 +6,7 @@ from app.tests.utils.item import create_random_item
 
 
 def test_create_item(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+    client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     data = {"title": "Foo", "description": "Fighters"}
     response = client.post(
@@ -39,7 +39,7 @@ def test_read_item(
 
 
 def test_read_item_not_found(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+    client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     response = client.get(
         f"{settings.API_V1_STR}/items/999",
@@ -96,7 +96,7 @@ def test_update_item(
 
 
 def test_update_item_not_found(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+    client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     data = {"title": "Updated title", "description": "Updated description"}
     response = client.put(
@@ -138,7 +138,7 @@ def test_delete_item(
 
 
 def test_delete_item_not_found(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+    client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     response = client.delete(
         f"{settings.API_V1_STR}/items/999",
