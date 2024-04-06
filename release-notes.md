@@ -18,6 +18,7 @@
 
 ### Refactors
 
+* ♻️ Refactor rename ModelsOut to ModelsPublic. PR [#1154](https://github.com/tiangolo/full-stack-fastapi-template/pull/1154) by [@estebanx64](https://github.com/estebanx64).
 * ♻️ Migrate frontend client generation from `openapi-typescript-codegen` to `@hey-api/openapi-ts`. PR [#1151](https://github.com/tiangolo/full-stack-fastapi-template/pull/1151) by [@alejsdev](https://github.com/alejsdev).
 * 🔥 Remove unused exports and update dependencies. PR [#1146](https://github.com/tiangolo/full-stack-fastapi-template/pull/1146) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update sentry dns initialization following the environment settings. PR [#1145](https://github.com/tiangolo/full-stack-fastapi-template/pull/1145) by [@estebanx64](https://github.com/estebanx64).
