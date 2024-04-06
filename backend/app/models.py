@@ -48,12 +48,12 @@ class User(UserBase, table=True):
 
 
 # Properties to return via API, id is always required
-class UserOut(UserBase):
+class UserPublic(UserBase):
     id: int
 
 
-class UsersOut(SQLModel):
-    data: list[UserOut]
+class UsersPublic(SQLModel):
+    data: list[UserPublic]
     count: int
 
 
@@ -82,13 +82,13 @@ class Item(ItemBase, table=True):
 
 
 # Properties to return via API, id is always required
-class ItemOut(ItemBase):
+class ItemPublic(ItemBase):
     id: int
     owner_id: int
 
 
-class ItemsOut(SQLModel):
-    data: list[ItemOut]
+class ItemsPublic(SQLModel):
+    data: list[ItemPublic]
     count: int
 
 

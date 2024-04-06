@@ -4,12 +4,12 @@ from fastapi import APIRouter, HTTPException
 from sqlmodel import func, select
 
 from app.api.deps import CurrentUser, SessionDep
-from app.models import Item, ItemCreate, ItemOut, ItemsOut, ItemUpdate, Message
+from app.models import Item, ItemCreate, ItemPublic, ItemsPublic, ItemUpdate, Message
 
 router = APIRouter()
 
 
-@router.get("/", response_model=ItemsOut)
+@router.get("/", response_model=ItemsPublic)
 def read_items(
     session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
 ) -> Any:
@@ -37,10 +37,10 @@ def read_items(
         )
         items = session.exec(statement).all()
 
-    return ItemsOut(data=items, count=count)
+    return ItemsPublic(data=items, count=count)
 
 
-@router.get("/{id}", response_model=ItemOut)
+@router.get("/{id}", response_model=ItemPublic)
 def read_item(session: SessionDep, current_user: CurrentUser, id: int) -> Any:
     """
     Get item by ID.
@@ -53,7 +53,7 @@ def read_item(session: SessionDep, current_user: CurrentUser, id: int) -> Any:
     return item
 
 
-@router.post("/", response_model=ItemOut)
+@router.post("/", response_model=ItemPublic)
 def create_item(
     *, session: SessionDep, current_user: CurrentUser, item_in: ItemCreate
 ) -> Any:
@@ -67,7 +67,7 @@ def create_item(
     return item
 
 
-@router.put("/{id}", response_model=ItemOut)
+@router.put("/{id}", response_model=ItemPublic)
 def update_item(
     *, session: SessionDep, current_user: CurrentUser, id: int, item_in: ItemUpdate
 ) -> Any:
