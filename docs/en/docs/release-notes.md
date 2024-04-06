@@ -14,6 +14,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#11411](https://github.com/tiangolo/fastapi/pull/11411) by [@anton2yakovlev](https://github.com/anton2yakovlev).
 * 🌐 Add Portuguese translations for `learn/index.md` `resources/index.md` `help/index.md` `about/index.md`. PR [#10807](https://github.com/tiangolo/fastapi/pull/10807) by [@nazarepiedady](https://github.com/nazarepiedady).
 * 🌐 Update Russian translations for deployments docs. PR [#11271](https://github.com/tiangolo/fastapi/pull/11271) by [@Lufa1u](https://github.com/Lufa1u).
 * 🌐 Add Bengali translations for `docs/bn/docs/python-types.md`. PR [#11376](https://github.com/tiangolo/fastapi/pull/11376) by [@imtiaz101325](https://github.com/imtiaz101325).
