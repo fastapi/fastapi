@@ -22,7 +22,7 @@ export type ItemCreate = {
 
 
 
-export type ItemOut = {
+export type ItemPublic = {
 	title: string;
 	description?: string | null;
 	id: number;
@@ -38,8 +38,8 @@ export type ItemUpdate = {
 
 
 
-export type ItemsOut = {
-	data: Array<ItemOut>;
+export type ItemsPublic = {
+	data: Array<ItemPublic>;
 	count: number;
 };
 
@@ -82,7 +82,7 @@ export type UserCreate = {
 
 
 
-export type UserOut = {
+export type UserPublic = {
 	email: string;
 	is_active?: boolean;
 	is_superuser?: boolean;
@@ -117,8 +117,8 @@ export type UserUpdateMe = {
 
 
 
-export type UsersOut = {
-	data: Array<UserOut>;
+export type UsersPublic = {
+	data: Array<UserPublic>;
 	count: number;
 };
 

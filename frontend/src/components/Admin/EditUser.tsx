@@ -19,7 +19,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
-  type UserOut,
+  type UserPublic,
   type UserUpdate,
   UsersService,
 } from "../../client"
@@ -27,7 +27,7 @@ import useCustomToast from "../../hooks/useCustomToast"
 import { emailPattern } from "../../utils"
 
 interface EditUserProps {
-  user: UserOut
+  user: UserPublic
   isOpen: boolean
   onClose: () => void
 }

@@ -68,7 +68,7 @@ export const $ItemCreate = {
 	},
 } as const;
 
-export const $ItemOut = {
+export const $ItemPublic = {
 	properties: {
 		title: {
 	type: 'string',
@@ -114,12 +114,12 @@ export const $ItemUpdate = {
 	},
 } as const;
 
-export const $ItemsOut = {
+export const $ItemsPublic = {
 	properties: {
 		data: {
 	type: 'array',
 	contains: {
-		type: 'ItemOut',
+		type: 'ItemPublic',
 	},
 	isRequired: true,
 },
@@ -207,7 +207,7 @@ export const $UserCreate = {
 	},
 } as const;
 
-export const $UserOut = {
+export const $UserPublic = {
 	properties: {
 		email: {
 	type: 'string',
@@ -315,12 +315,12 @@ export const $UserUpdateMe = {
 	},
 } as const;
 
-export const $UsersOut = {
+export const $UsersPublic = {
 	properties: {
 		data: {
 	type: 'array',
 	contains: {
-		type: 'UserOut',
+		type: 'UserPublic',
 	},
 	isRequired: true,
 },

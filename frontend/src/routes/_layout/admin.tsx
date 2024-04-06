@@ -16,7 +16,7 @@ import {
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 
-import { type UserOut, UsersService } from "../../client"
+import { type UserPublic, UsersService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
 import useCustomToast from "../../hooks/useCustomToast"
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/_layout/admin")({
 function Admin() {
   const queryClient = useQueryClient()
   const showToast = useCustomToast()
-  const currentUser = queryClient.getQueryData<UserOut>(["currentUser"])
+  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
   const {
     data: users,
     isLoading,

@@ -17,14 +17,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
-  type ItemOut,
+  type ItemPublic,
   type ItemUpdate,
   ItemsService,
 } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
 
 interface EditItemProps {
-  item: ItemOut
+  item: ItemPublic
   isOpen: boolean
   onClose: () => void
 }

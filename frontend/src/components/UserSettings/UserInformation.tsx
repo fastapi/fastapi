@@ -17,7 +17,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import {
   type ApiError,
-  type UserOut,
+  type UserPublic,
   type UserUpdateMe,
   UsersService,
 } from "../../client"
@@ -37,7 +37,7 @@ const UserInformation = () => {
     reset,
     getValues,
     formState: { isSubmitting, errors, isDirty },
-  } = useForm<UserOut>({
+  } = useForm<UserPublic>({
     mode: "onBlur",
     criteriaMode: "all",
     defaultValues: {

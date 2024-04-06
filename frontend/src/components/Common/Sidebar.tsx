@@ -16,7 +16,7 @@ import { FiLogOut, FiMenu } from "react-icons/fi"
 import { useQueryClient } from "@tanstack/react-query"
 
 import Logo from "../../assets/images/fastapi-logo.svg"
-import type { UserOut } from "../../client"
+import type { UserPublic } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import SidebarItems from "./SidebarItems"
 
@@ -25,7 +25,7 @@ const Sidebar = () => {
   const bgColor = useColorModeValue("ui.light", "ui.dark")
   const textColor = useColorModeValue("ui.dark", "ui.light")
   const secBgColor = useColorModeValue("ui.secondary", "ui.darkSlate")
-  const currentUser = queryClient.getQueryData<UserOut>(["currentUser"])
+  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { logout } = useAuth()
 
