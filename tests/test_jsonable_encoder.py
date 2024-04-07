@@ -101,6 +101,18 @@ def test_encode_class():
     }
 
 
+def test_encode_include_other_type_than_set_or_dict():
+    person = Person(name="Foo")
+    pet = Pet(owner=person, name="Firulais")
+    assert jsonable_encoder(pet, include=["name"]) == {"name": "Firulais"}
+
+
+def test_encode_exclude_other_type_than_set_or_dict():
+    person = Person(name="Foo")
+    pet = Pet(owner=person, name="Firulais")
+    assert jsonable_encoder(pet, exclude=["name"]) == {"owner": {"name": "Foo"}}
+
+
 def test_encode_dictable():
     person = DictablePerson(name="Foo")
     pet = DictablePet(owner=person, name="Firulais")
@@ -236,6 +248,24 @@ def test_custom_enum_encoders():
     assert encoded_instance == custom_enum_encoder(instance)
 
 
+@needs_pydanticv2
+def test_custom_encoder_instance():
+    from pydantic import field_serializer
+
+    class MyModel(BaseModel):
+        dt_field: datetime
+
+        @field_serializer("dt_field")
+        def serialize_dt_field(self, dt):
+            return dt.isoformat()
+
+    instance = MyModel(dt_field=datetime(2024, 4, 6, 8))
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={BaseModel: lambda o: o.model_dump()}
+    )
+    assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+
+
 def test_encode_model_with_pure_path():
     class ModelWithPath(BaseModel):
         path: PurePath
@@ -250,6 +280,11 @@ def test_encode_model_with_pure_path():
     test_path = PurePath("/foo", "bar")
     obj = ModelWithPath(path=test_path)
     assert jsonable_encoder(obj) == {"path": str(test_path)}
+
+
+def test_encode_pure_path():
+    path: PurePath = PurePath("/foo", "bar")
+    assert jsonable_encoder(path) == "/foo/bar"
 
 
 def test_encode_model_with_pure_posix_path():
