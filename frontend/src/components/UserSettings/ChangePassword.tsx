@@ -9,8 +9,8 @@ import {
   Input,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { type SubmitHandler, useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
+import { type SubmitHandler, useForm } from "react-hook-form"
 
 import { type ApiError, type UpdatePassword, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"

@@ -12,8 +12,8 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import { FiLogOut, FiMenu } from "react-icons/fi"
 import { useQueryClient } from "@tanstack/react-query"
+import { FiLogOut, FiMenu } from "react-icons/fi"
 
 import Logo from "../../assets/images/fastapi-logo.svg"
 import type { UserPublic } from "../../client"

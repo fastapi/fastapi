@@ -11,8 +11,8 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react"
-import { createFileRoute } from "@tanstack/react-router"
 import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
 
 import { ItemsService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
