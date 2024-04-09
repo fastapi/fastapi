@@ -38,7 +38,7 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const [show, setShow] = useBoolean()
-  const { loginMutation, error } = useAuth()
+  const { loginMutation, error, resetError } = useAuth()
   const {
     register,
     handleSubmit,
@@ -53,7 +53,15 @@ function Login() {
   })
 
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
-    loginMutation.mutate(data)
+    if (isSubmitting) return
+
+    resetError()
+
+    try {
+      await loginMutation.mutateAsync(data)
+    } catch {
+      // error is handled by useAuth hook
+    }
   }
 
   return (

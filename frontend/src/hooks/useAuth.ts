@@ -58,6 +58,7 @@ const useAuth = () => {
     user,
     isLoading,
     error,
+    resetError: () => setError(null),
   }
 }
 
