@@ -43,6 +43,10 @@ const useAuth = () => {
         errDetail = err.message
       }
 
+      if (Array.isArray(errDetail)) {
+        errDetail = "Something went wrong"
+      }
+
       setError(errDetail)
     },
   })

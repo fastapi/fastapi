@@ -92,6 +92,7 @@ function Login() {
             })}
             placeholder="Email"
             type="email"
+            required
           />
           {errors.username && (
             <FormErrorMessage>{errors.username.message}</FormErrorMessage>
@@ -103,6 +104,7 @@ function Login() {
               {...register("password")}
               type={show ? "text" : "password"}
               placeholder="Password"
+              required
             />
             <InputRightElement
               color="ui.dim"
