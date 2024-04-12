@@ -30,7 +30,7 @@ Utilisez l'objet `TestClient` de la même manière que vous le feriez avec `http
     il est utile de remarquer que les fonction de test sont normal `def`, et non `async def`
 
     Et les appel au client sont aussi normaux, pas besoin d'utiliser `await`
-    
+
     Cela permet d'utiliser `pytest` directement sans complication
 
 
@@ -38,18 +38,18 @@ Utilisez l'objet `TestClient` de la même manière que vous le feriez avec `http
     il est aussi possible d'utiliser `from starlette.testclient import TestClient`.
 
     **FastAPI** fournit la même `starlette.testclient` que `fastapi.testclient` pour une simple question de commodité pour vous, développeur. Mais provient directement de Starlette.
-    
+
 
 !!! astuce
     Si vous chercher tout de même à utiliser la foncion `async` dans vos test, à l'exeption d’envoyer des requêtes à votre application FastAPI (par exemple, des fonctions de base de données asynchrones), jetez un coup d’œil aux [Tests asynchrones (en)](../advanced/async-tests.md) {.internal-link target=_blank} dans le tutoriel avancé.
 
 ## tests séparé
 
-Dans une application réelle, vous auriez probablement vos tests dans un fichier différent. 
+Dans une application réelle, vous auriez probablement vos tests dans un fichier différent.
 
 Et votre application **FastAPI** peut également être composée de plusieurs fichiers/modules, etc.
 
-### fichier app de **FastAPI** 
+### fichier app de **FastAPI**
 
 disons que vous ayez une structure de fichier comme décrit dans [application de grande taille (en)](./bigger-applications.md) {.internal-link target=_blank}:
 
@@ -71,7 +71,7 @@ dans le fichier `main.py` vous avez votre application **FastAPI** :
 
 Ensuite, vous pourriez avoir un fichier `test_main.py` avec vos tests. Il pourrait se trouver sur le même paquet Python (le même dossier avec un fichier `__init__.py`):
 
-``` 
+```
 .
 ├── app
 │   ├── __init__.py
@@ -79,9 +79,9 @@ Ensuite, vous pourriez avoir un fichier `test_main.py` avec vos tests. Il pourra
 │   └── test_main.py
 ```
 
-Comme ce fichier se trouve dans le même package, vous pouvez utiliser des importations relatives pour importer l’objet `app` à partir du module `main` (`main.py`): 
+Comme ce fichier se trouve dans le même package, vous pouvez utiliser des importations relatives pour importer l’objet `app` à partir du module `main` (`main.py`):
 
-```Python 
+```Python
 {!../../../docs_src/app_testing/test_main.py!}
 ```
 
@@ -91,7 +91,7 @@ Comme ce fichier se trouve dans le même package, vous pouvez utiliser des impor
 
 Allons plus loin dans cet exemple et ajoutons plus de détails pour voir comment tester différentes pièces.
 
-### fichier app étendu de **FastAPI** 
+### fichier app étendu de **FastAPI**
 
 Continuons avec la même structure de fichier que tout à l'heure:
 
@@ -133,7 +133,7 @@ Les deux *opérations sur chemin d'accès* nécessitent un en-tête `X-Token`.
 
 !!! astuce
 Favoriser l'utilisation de la version `Annoté` si possible.
-        
+
 ```Python
 {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
 ```
@@ -193,7 +193,7 @@ $ pip install pytest
 
 Cela détectera automatiquement les fichiers et les tests, les exécutera et vous rapportera les résultats.
 
-Exécutez les tests avec : 
+Exécutez les tests avec :
 
 <div class="termy">
 
