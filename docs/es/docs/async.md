@@ -190,7 +190,7 @@ Luego, el cajero / cocinero 👨‍🍳 finalmente regresa con tus hamburguesas 
 
 <img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-05.png" alt="illustration">
 
-Cojes tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
+Coges tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
 
 Sólo las comes y listo 🍔 ⏹.
 
