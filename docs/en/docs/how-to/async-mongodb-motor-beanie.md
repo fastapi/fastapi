@@ -46,7 +46,7 @@ app = FastAPI()
 
 @app.post("/items/")
 async def create_item(item: dict) -> str:
-    collection = db.client.mydatabase.items  
+    collection = db.client.mydatabase.items
     result = await collection.insert_one(item)
     return {"id": str(result.inserted_id)}
 ```
