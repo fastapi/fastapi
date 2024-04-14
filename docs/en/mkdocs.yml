@@ -186,6 +186,7 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
+    - how-to/async-mongodb-motor-beanie.md
     - how-to/sql-databases-peewee.md
     - how-to/async-sql-encode-databases.md
     - how-to/nosql-databases-couchbase.md
