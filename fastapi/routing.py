@@ -294,6 +294,7 @@ def get_request_handler(
                         if sub_response.status_code:
                             response_args["status_code"] = sub_response.status_code
                         # Some response classes handle serialization themselves via iteration
+                        content = raw_response
                         if not hasattr(actual_response_class, 'body_iterator'):
                             content = await serialize_response(
                                 field=response_field,
