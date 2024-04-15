@@ -70,7 +70,7 @@ def test_reset_password(
     client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     token = generate_password_reset_token(email=settings.FIRST_SUPERUSER)
-    data = {"new_password": "changethis", "token": token}
+    data = {"new_password": settings.FIRST_SUPERUSER_PASSWORD, "token": token}
     r = client.post(
         f"{settings.API_V1_STR}/reset-password/",
         headers=superuser_token_headers,
