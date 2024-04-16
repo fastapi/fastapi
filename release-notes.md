@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+* 🔧 Ignore `src/routeTree.gen.ts` in biome. PR [#1175](https://github.com/tiangolo/full-stack-fastapi-template/pull/1175) by [@patrick91](https://github.com/patrick91).
+
 ### Features
 
 * ✨ Add support for deploying multiple environments (staging, production) to the same server. PR [#1128](https://github.com/tiangolo/full-stack-fastapi-template/pull/1128) by [@tiangolo](https://github.com/tiangolo).
