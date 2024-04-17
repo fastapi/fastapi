@@ -7,3 +7,58 @@ IF YOU WANT TO MAKE BINARY(DLL) OF FASTAPI APPLICATION THEN YOU CAN FOLLOW THE B
 
 commmands=> pyinstaller --onefile --clean main.py
   then pyinstaller main.spec
+
+
+In this the workers are also addded 
+
+
+main.py file code 
+
+
+
+import uvicorn
+
+
+
+import json
+import multiprocessing
+
+with open('config.json') as config_file:
+    config = json.load(config_file)
+
+workers = int(config.get("deployment", {}).get("workers", 8))
+
+port=config.get("deployment",{}).get("port",8000)
+host =config.get("deployment",{}).get("host","localhost")
+root_path=config.get("deployment").get("root_path")
+
+if __name__ == "__main__":
+    multiprocessing.freeze_support()
+    uvicorn.run("run_app:app", host=host, port=port,workers=workers,reload=False,root_path=root_path)
+
+
+and in the run_app file there is complete code of the application.
+
+
+and in the main.spec file add hidden imports 
+a = Analysis(
+    ['main.py'],
+    pathex=[],
+    binaries=[],
+    datas=[('requirements.txt','.')],
+    hiddenimports=['run_app'],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    noarchive=False,
+)
+pyz = PYZ(a.pure)
+
+
+
+
+
+
+
+
