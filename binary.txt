@@ -9,10 +9,10 @@ commmands=> pyinstaller --onefile --clean main.py
   then pyinstaller main.spec
 
 
-In this the workers are also addded 
+In this the workers are also addded
 
 
-main.py file code 
+main.py file code
 
 
 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 and in the run_app file there is complete code of the application.
 
 
-and in the main.spec file add hidden imports 
+and in the main.spec file add hidden imports
 a = Analysis(
     ['main.py'],
     pathex=[],
@@ -54,11 +54,3 @@ a = Analysis(
     noarchive=False,
 )
 pyz = PYZ(a.pure)
-
-
-
-
-
-
-
-
