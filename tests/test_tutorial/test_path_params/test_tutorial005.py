@@ -1,4 +1,4 @@
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsStr
 from fastapi.testclient import TestClient
 
 from docs_src.path_params.tutorial005 import app
@@ -28,6 +28,22 @@ def test_get_enums_invalid():
     response = client.get("/models/foo")
     assert response.status_code == 422
     assert response.json() == IsDict(
+        # Pydantic 2.7
+        {
+            "detail": [
+                {
+                    "type": "enum",
+                    "loc": ["path", "model_name"],
+                    "msg": "Input should be 'alexnet', 'resnet' or 'lenet'",
+                    "input": "foo",
+                    "ctx": {"expected": "'alexnet', 'resnet' or 'lenet'"},
+                    # e.g. https://errors.pydantic.dev/2.7/v/enum
+                    "url": IsStr(regex=r"https://errors.pydantic.dev/.*/enum")
+                }
+            ]
+        }
+    ) | IsDict(
+        # Pydantic 2.0-2.6
         {
             "detail": [
                 {
