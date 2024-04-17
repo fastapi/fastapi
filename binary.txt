@@ -1,3 +1,5 @@
 IF YOU WANT TO MAKE BINARY(DLL) OF FASTAPI APPLICATION THEN YOU CAN FOLLOW THE BELOW PATH=>
 1) replace the file name of main.py with the any  like  example=> run_app.py
 2) then  make new file name as main.py  and in the main.py file add main function.
+ source path =>backend/app/main.py
+             =>backend/app/run_app.py
