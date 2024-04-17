@@ -38,7 +38,7 @@ def test_get_enums_invalid():
                     "input": "foo",
                     "ctx": {"expected": "'alexnet', 'resnet' or 'lenet'"},
                     # e.g. https://errors.pydantic.dev/2.7/v/enum
-                    "url": IsStr(regex=r"https://errors.pydantic.dev/.*/enum")
+                    "url": IsStr(regex=r"https://errors.pydantic.dev/.*/enum"),
                 }
             ]
         }
