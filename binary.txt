@@ -3,3 +3,7 @@ IF YOU WANT TO MAKE BINARY(DLL) OF FASTAPI APPLICATION THEN YOU CAN FOLLOW THE B
 2) then  make new file name as main.py  and in the main.py file add main function.
  source path =>backend/app/main.py
              =>backend/app/run_app.py
+
+
+commmands=> pyinstaller --onefile --clean main.py
+  then pyinstaller main.spec
