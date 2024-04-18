@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix support for query parameters with list types, handle JSON encoding Pydantic `UndefinedType`. PR [#9929](https://github.com/tiangolo/fastapi/pull/9929) by [@arjwilliams](https://github.com/arjwilliams).
+
 ### Refactors
 
 * ✨ Add support for Pydantic's 2.7 new deprecated Field parameter, remove URL from validation errors response. PR [#11461](https://github.com/tiangolo/fastapi/pull/11461) by [@tiangolo](https://github.com/tiangolo).
