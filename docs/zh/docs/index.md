@@ -23,6 +23,9 @@ hide:
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+</a>
 </p>
 
 ---
@@ -196,7 +199,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Note**:
 
-如果你不知道是否会用到，可以查看文档的 _"In a hurry?"_ 章节中 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">关于 `async` 和 `await` 的部分</a>。
+如果你不知道是否会用到，可以查看文档的 _"In a hurry?"_ 章节中 <a href="https://fastapi.tiangolo.com/zh/async/#in-a-hurry" target="_blank">关于 `async` 和 `await` 的部分</a>。
 
 </details>
 
@@ -419,7 +422,7 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-<a href="https://fastapi.tiangolo.com/tutorial/">教程 - 用户指南</a> 中有包含更多特性的更完整示例。
+<a href="https://fastapi.tiangolo.com/zh/tutorial/">教程 - 用户指南</a> 中有包含更多特性的更完整示例。
 
 **剧透警告**： 教程 - 用户指南中的内容有：
 
@@ -440,7 +443,7 @@ item: Item
 
 独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python web 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
 
-想了解更多，请查阅 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">基准测试</a> 章节。
+想了解更多，请查阅 <a href="https://fastapi.tiangolo.com/zh/benchmarks/" class="internal-link" target="_blank">基准测试</a> 章节。
 
 ## 可选依赖
 
@@ -463,7 +466,7 @@ item: Item
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse` 时安装。
 
-你可以通过 `pip install fastapi[all]` 命令来安装以上所有依赖。
+你可以通过 `pip install "fastapi[all]"` 命令来安装以上所有依赖。
 
 ## 许可协议
 
