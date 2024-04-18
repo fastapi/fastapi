@@ -14,6 +14,7 @@ def get_app():
 
 # TODO: pv2 add version with Pydantic v2
 @needs_pydanticv1
+@pytest.mark.skip(reason="A change in SQLAlchemy conflicts with databases")
 def test_create_read(app: FastAPI):
     with TestClient(app) as client:
         note = {"text": "Foo bar", "completed": False}
