@@ -2,12 +2,9 @@
 
 When you need to declare dependencies with OAuth2 scopes you use `Security()`.
 
-But you still need to define what is the dependable, the callable that you pass as
-a parameter to `Depends()` or `Security()`.
+But you still need to define what is the dependable, the callable that you pass as a parameter to `Depends()` or `Security()`.
 
-There are multiple tools that you can use to create those dependables, and they get
-integrated into OpenAPI so they are shown in the automatic docs UI, they can be used
-by automatically generated clients and SDKs, etc.
+There are multiple tools that you can use to create those dependables, and they get integrated into OpenAPI so they are shown in the automatic docs UI, they can be used by automatically generated clients and SDKs, etc.
 
 You can import them from `fastapi.security`:
 

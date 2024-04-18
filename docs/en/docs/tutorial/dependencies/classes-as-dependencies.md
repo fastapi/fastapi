@@ -271,6 +271,12 @@ Now you can declare your dependency using this class.
 
 Notice how we write `CommonQueryParams` twice in the above code:
 
+=== "Python 3.8+"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
 === "Python 3.8+ non-Annotated"
 
     !!! tip
@@ -278,12 +284,6 @@ Notice how we write `CommonQueryParams` twice in the above code:
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
-
-=== "Python 3.8+"
-
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
 The last `CommonQueryParams`, in:
@@ -334,7 +334,7 @@ You could actually write just:
     commons = Depends(CommonQueryParams)
     ```
 
-..as in:
+...as in:
 
 === "Python 3.10+"
 
@@ -380,6 +380,12 @@ But declaring the type is encouraged as that way your editor will know what will
 
 But you see that we are having some code repetition here, writing `CommonQueryParams` twice:
 
+=== "Python 3.8+"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
 === "Python 3.8+ non-Annotated"
 
     !!! tip
@@ -387,12 +393,6 @@ But you see that we are having some code repetition here, writing `CommonQueryPa
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
-
-=== "Python 3.8+"
-
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
     ```
 
 **FastAPI** provides a shortcut for these cases, in where the dependency is *specifically* a class that **FastAPI** will "call" to create an instance of the class itself.

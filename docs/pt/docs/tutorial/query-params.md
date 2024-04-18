@@ -222,4 +222,4 @@ Nesse caso, existem 3 parâmetros de consulta:
 * `limit`, um `int` opcional.
 
 !!! tip "Dica"
-    Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+    Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#valores-predefinidos){.internal-link target=_blank}.

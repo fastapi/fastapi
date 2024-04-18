@@ -206,5 +206,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `limit`，可选的 `int` 类型参数
 
 !!! tip "提示"
-
-    还可以像在[路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
+    还可以像在[路径参数](path-params.md#_8){.internal-link target=_blank} 中那样使用 `Enum`。

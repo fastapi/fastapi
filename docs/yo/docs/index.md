@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -31,7 +40,7 @@ FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́b�
 
 Àwọn ẹya pàtàkì ni:
 
-* **Ó yára**: Iṣẹ tí ó ga púpọ̀, tí ó wa ni ibamu pẹ̀lú **NodeJS** àti **Go** (ọpẹ si Starlette àti Pydantic). [Ọkan nínú àwọn ìlànà Python ti o yára jùlọ ti o wa](#performance).
+* **Ó yára**: Iṣẹ tí ó ga púpọ̀, tí ó wa ni ibamu pẹ̀lú **NodeJS** àti **Go** (ọpẹ si Starlette àti Pydantic). [Ọkan nínú àwọn ìlànà Python ti o yára jùlọ ti o wa](#isesi).
 * **Ó yára láti kóòdù**: O mu iyara pọ si láti kọ àwọn ẹya tuntun kóòdù nipasẹ "Igba ìdá ọgọ́rùn-ún" (i.e. 200%) si "ọ̀ọ́dúrún ìdá ọgọ́rùn-ún" (i.e. 300%).
 * **Àìtọ́ kékeré**: O n din aṣiṣe ku bi ọgbon ìdá ọgọ́rùn-ún (i.e. 40%) ti eda eniyan (oṣiṣẹ kóòdù) fa. *
 * **Ọgbọ́n àti ìmọ̀**: Atilẹyin olootu nla. <abbr title="a tun le pe ni olùrànlọ́wọ́ alaifiọwọkan alaifọwọyi, olùpari iṣẹ-ṣiṣe, Oloye">Ìparí</abbr> nibi gbogbo. Àkókò díẹ̀ nipa wíwá ibi tí ìṣòro kóòdù wà.

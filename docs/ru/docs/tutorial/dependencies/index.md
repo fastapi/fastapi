@@ -84,13 +84,13 @@
 
 И в конце она возвращает `dict`, содержащий эти значения.
 
-!!! Информация
+!!! info "Информация"
 
     **FastAPI** добавил поддержку для `Annotated` (и начал её рекомендовать) в версии 0.95.0.
 
      Если у вас более старая версия, будут ошибки при попытке использовать `Annotated`.
 
-    Убедитесь, что вы [Обновили FastAPI версию](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} до, как минимум 0.95.1, перед тем как использовать `Annotated`.
+    Убедитесь, что вы [Обновили FastAPI версию](../../deployment/versions.md#fastapi_2){.internal-link target=_blank} до, как минимум 0.95.1, перед тем как использовать `Annotated`.
 
 ### Import `Depends`
 
