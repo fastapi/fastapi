@@ -55,9 +55,7 @@ except ImportError:  # pragma: no cover
             return with_info_plain_validator_function(cls._validate)
 
 
-class BaseConfig(BaseModel):
-    pass
-
+class BaseModelWithConfig(BaseModel):
     if PYDANTIC_V2:
         model_config = {"extra": "allow"}
 
@@ -67,19 +65,19 @@ class BaseConfig(BaseModel):
             extra = "allow"
 
 
-class Contact(BaseConfig):
+class Contact(BaseModelWithConfig):
     name: Optional[str] = None
     url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
 
-class License(BaseConfig):
+class License(BaseModelWithConfig):
     name: str
     identifier: Optional[str] = None
     url: Optional[AnyUrl] = None
 
 
-class Info(BaseConfig):
+class Info(BaseModelWithConfig):
     title: str
     summary: Optional[str] = None
     description: Optional[str] = None
@@ -89,13 +87,13 @@ class Info(BaseConfig):
     version: str
 
 
-class ServerVariable(BaseConfig):
+class ServerVariable(BaseModelWithConfig):
     enum: Annotated[Optional[List[str]], Field(min_length=1)] = None
     default: str
     description: Optional[str] = None
 
 
-class Server(BaseConfig):
+class Server(BaseModelWithConfig):
     url: Union[AnyUrl, str]
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
@@ -110,7 +108,7 @@ class Discriminator(BaseModel):
     mapping: Optional[Dict[str, str]] = None
 
 
-class XML(BaseConfig):
+class XML(BaseModelWithConfig):
     name: Optional[str] = None
     namespace: Optional[str] = None
     prefix: Optional[str] = None
@@ -118,12 +116,12 @@ class XML(BaseConfig):
     wrapped: Optional[bool] = None
 
 
-class ExternalDocumentation(BaseConfig):
+class ExternalDocumentation(BaseModelWithConfig):
     description: Optional[str] = None
     url: AnyUrl
 
 
-class Schema(BaseConfig):
+class Schema(BaseModelWithConfig):
     # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-the-json-schema-core-vocabu
     # Core Vocabulary
     schema_: Optional[str] = Field(default=None, alias="$schema")
@@ -237,7 +235,7 @@ class ParameterInType(Enum):
     cookie = "cookie"
 
 
-class Encoding(BaseConfig):
+class Encoding(BaseModelWithConfig):
     contentType: Optional[str] = None
     headers: Optional[Dict[str, Union["Header", Reference]]] = None
     style: Optional[str] = None
@@ -245,14 +243,14 @@ class Encoding(BaseConfig):
     allowReserved: Optional[bool] = None
 
 
-class MediaType(BaseConfig):
+class MediaType(BaseModelWithConfig):
     schema_: Optional[Union[Schema, Reference]] = Field(default=None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
 
 
-class ParameterBase(BaseConfig):
+class ParameterBase(BaseModelWithConfig):
     description: Optional[str] = None
     required: Optional[bool] = None
     deprecated: Optional[bool] = None
@@ -276,13 +274,13 @@ class Header(ParameterBase):
     pass
 
 
-class RequestBody(BaseConfig):
+class RequestBody(BaseModelWithConfig):
     description: Optional[str] = None
     content: Dict[str, MediaType]
     required: Optional[bool] = None
 
 
-class Link(BaseConfig):
+class Link(BaseModelWithConfig):
     operationRef: Optional[str] = None
     operationId: Optional[str] = None
     parameters: Optional[Dict[str, Union[Any, str]]] = None
@@ -291,14 +289,14 @@ class Link(BaseConfig):
     server: Optional[Server] = None
 
 
-class Response(BaseConfig):
+class Response(BaseModelWithConfig):
     description: str
     headers: Optional[Dict[str, Union[Header, Reference]]] = None
     content: Optional[Dict[str, MediaType]] = None
     links: Optional[Dict[str, Union[Link, Reference]]] = None
 
 
-class Operation(BaseConfig):
+class Operation(BaseModelWithConfig):
     tags: Optional[List[str]] = None
     summary: Optional[str] = None
     description: Optional[str] = None
@@ -314,7 +312,7 @@ class Operation(BaseConfig):
     servers: Optional[List[Server]] = None
 
 
-class PathItem(BaseConfig):
+class PathItem(BaseModelWithConfig):
     ref: Optional[str] = Field(default=None, alias="$ref")
     summary: Optional[str] = None
     description: Optional[str] = None
@@ -337,7 +335,7 @@ class SecuritySchemeType(Enum):
     openIdConnect = "openIdConnect"
 
 
-class SecurityBase(BaseConfig):
+class SecurityBase(BaseModelWithConfig):
     type_: SecuritySchemeType = Field(alias="type")
     description: Optional[str] = None
 
@@ -364,7 +362,7 @@ class HTTPBearer(HTTPBase):
     bearerFormat: Optional[str] = None
 
 
-class OAuthFlow(BaseConfig):
+class OAuthFlow(BaseModelWithConfig):
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str] = {}
 
@@ -386,7 +384,7 @@ class OAuthFlowAuthorizationCode(OAuthFlow):
     tokenUrl: str
 
 
-class OAuthFlows(BaseConfig):
+class OAuthFlows(BaseModelWithConfig):
     implicit: Optional[OAuthFlowImplicit] = None
     password: Optional[OAuthFlowPassword] = None
     clientCredentials: Optional[OAuthFlowClientCredentials] = None
@@ -408,7 +406,7 @@ class OpenIdConnect(SecurityBase):
 SecurityScheme = Union[APIKey, HTTPBase, OAuth2, OpenIdConnect, HTTPBearer]
 
 
-class Components(BaseConfig):
+class Components(BaseModelWithConfig):
     schemas: Optional[Dict[str, Union[Schema, Reference]]] = None
     responses: Optional[Dict[str, Union[Response, Reference]]] = None
     parameters: Optional[Dict[str, Union[Parameter, Reference]]] = None
@@ -422,13 +420,13 @@ class Components(BaseConfig):
     pathItems: Optional[Dict[str, Union[PathItem, Reference]]] = None
 
 
-class Tag(BaseConfig):
+class Tag(BaseModelWithConfig):
     name: str
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
 
-class OpenAPI(BaseConfig):
+class OpenAPI(BaseModelWithConfig):
     openapi: str
     info: Info
     jsonSchemaDialect: Optional[str] = None
