@@ -18,6 +18,7 @@ hide:
 
 ### Docs
 
+* 📝 Update references to UJSON. PR [#11464](https://github.com/tiangolo/fastapi/pull/11464) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Tweak docs and translations links, typos, format. PR [#11389](https://github.com/tiangolo/fastapi/pull/11389) by [@nilslindemann](https://github.com/nilslindemann).
 * 📝 Fix typo in `docs/es/docs/async.md`. PR [#11400](https://github.com/tiangolo/fastapi/pull/11400) by [@fabianfalon](https://github.com/fabianfalon).
 * 📝 Update OpenAPI client generation docs to use `@hey-api/openapi-ts`. PR [#11339](https://github.com/tiangolo/fastapi/pull/11339) by [@jordanshatford](https://github.com/jordanshatford).
