@@ -1,6 +1,5 @@
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from .main import app
 
@@ -18,7 +17,6 @@ def test_query():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -53,7 +51,6 @@ def test_query_not_declared_baz():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -100,7 +97,6 @@ def test_query_int():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -135,7 +131,6 @@ def test_query_int_query_42_5():
                     "loc": ["query", "query"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "42.5",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -164,7 +159,6 @@ def test_query_int_query_baz():
                     "loc": ["query", "query"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "baz",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -193,7 +187,6 @@ def test_query_int_not_declared_baz():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -234,7 +227,6 @@ def test_query_int_optional_query_foo():
                     "loc": ["query", "query"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foo",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -275,7 +267,6 @@ def test_query_int_default_query_foo():
                     "loc": ["query", "query"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foo",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -316,7 +307,6 @@ def test_query_param_required():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -351,7 +341,6 @@ def test_query_param_required_int():
                     "loc": ["query", "query"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -386,7 +375,6 @@ def test_query_param_required_int_query_foo():
                     "loc": ["query", "query"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foo",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
