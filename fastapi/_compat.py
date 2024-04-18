@@ -129,7 +129,7 @@ if PYDANTIC_V2:
                 )
             except ValidationError as exc:
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(), loc_prefix=loc
+                    errors=exc.errors(include_url=False), loc_prefix=loc
                 )
 
         def serialize(
@@ -268,7 +268,7 @@ if PYDANTIC_V2:
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors()[0]
+        ).errors(include_url=False)[0]
         error["input"] = None
         return error  # type: ignore[return-value]
 
