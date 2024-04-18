@@ -182,11 +182,11 @@ For example, let's define a variable to be a `list` of `str`.
     {!> ../../../docs_src/python_types/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     From `typing`, import `List` (with a capital `L`):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
@@ -230,7 +230,7 @@ You would do the same to declare `tuple`s and `set`s:
     {!> ../../../docs_src/python_types/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial007.py!}
@@ -255,7 +255,7 @@ The second type parameter is for the values of the `dict`:
     {!> ../../../docs_src/python_types/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008.py!}
@@ -281,7 +281,7 @@ In Python 3.10 there's also a **new syntax** where you can put the possible type
     {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008b.py!}
@@ -311,13 +311,13 @@ This also means that in Python 3.10, you can use `Something | None`:
     {!> ../../../docs_src/python_types/tutorial009_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009.py!}
     ```
 
-=== "Python 3.6+ alternative"
+=== "Python 3.8+ alternative"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009b.py!}
@@ -375,10 +375,10 @@ These types that take type parameters in square brackets are called **Generic ty
     * `set`
     * `dict`
 
-    And the same as with Python 3.6, from the `typing` module:
+    And the same as with Python 3.8, from the `typing` module:
 
     * `Union`
-    * `Optional` (the same as with Python 3.6)
+    * `Optional` (the same as with Python 3.8)
     * ...and others.
 
     In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types, that's a lot better and simpler.
@@ -392,13 +392,13 @@ These types that take type parameters in square brackets are called **Generic ty
     * `set`
     * `dict`
 
-    And the same as with Python 3.6, from the `typing` module:
+    And the same as with Python 3.8, from the `typing` module:
 
     * `Union`
     * `Optional`
     * ...and others.
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     * `List`
     * `Tuple`
@@ -434,7 +434,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -458,21 +458,21 @@ An example from the official Pydantic docs:
     {!> ../../../docs_src/python_types/tutorial011_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/python_types/tutorial011.py!}
     ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+    To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
 
 **FastAPI** is all based on Pydantic.
 
 You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip
-    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 ## Type Hints with Metadata Annotations
 
@@ -486,7 +486,7 @@ Python also has a feature that allows putting **additional metadata** in these t
     {!> ../../../docs_src/python_types/tutorial013_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     In versions below Python 3.9, you import `Annotated` from `typing_extensions`.
 

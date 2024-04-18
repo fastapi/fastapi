@@ -18,7 +18,11 @@ In this case, the original path `/app` would actually be served at `/api/v1/app`
 
 Even though all your code is written assuming there's just `/app`.
 
-And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to Uvicorn, keep your application convinced that it is serving at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
+```Python hl_lines="6"
+{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+```
+
+And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to Uvicorn, keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
 Up to here, everything would work as normally.
 
@@ -125,7 +129,7 @@ Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--r
 
 ### About `root_path`
 
-Have in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
+Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
 But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
 
@@ -142,7 +146,7 @@ Uvicorn will expect the proxy to access Uvicorn at `http://127.0.0.1:8000/app`, 
 
 ## About proxies with a stripped path prefix
 
-Have in mind that a proxy with stripped path prefix is only one of the ways to configure it.
+Keep in mind that a proxy with stripped path prefix is only one of the ways to configure it.
 
 Probably in many cases the default will be that the proxy doesn't have a stripped path prefix.
 
@@ -341,6 +345,6 @@ and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 
 FastAPI will internally use the `root_path` smartly, so it will just work. ✨

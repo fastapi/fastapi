@@ -69,7 +69,7 @@ http://127.0.0.1:8000/items/?skip=20
     {!> ../../../docs_src/query_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params/tutorial002.py!}
@@ -77,7 +77,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 В этом случае, параметр  `q` будет не обязательным и будет иметь значение `None` по умолчанию.
 
-!!! Важно
+!!! check "Важно"
     Также обратите внимание, что **FastAPI** достаточно умён чтобы заметить, что параметр `item_id` является path-параметром, а `q` нет, поэтому, это параметр запроса.
 
 ## Преобразование типа параметра запроса
@@ -90,7 +90,7 @@ http://127.0.0.1:8000/items/?skip=20
     {!> ../../../docs_src/query_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params/tutorial003.py!}
@@ -143,7 +143,7 @@ http://127.0.0.1:8000/items/foo?short=yes
     {!> ../../../docs_src/query_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="8  10"
     {!> ../../../docs_src/query_params/tutorial004.py!}
@@ -209,7 +209,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
     {!> ../../../docs_src/query_params/tutorial006_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params/tutorial006.py!}
@@ -221,5 +221,5 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`, типа `int` и со значением по умолчанию `0`.
 * `limit`, необязательный `int`.
 
-!!! подсказка
-    Вы можете использовать класс `Enum` также, как ранее применяли его с [Path-параметрами](path-params.md#predefined-values){.internal-link target=_blank}.
+!!! tip "Подсказка"
+    Вы можете использовать класс `Enum` также, как ранее применяли его с [Path-параметрами](path-params.md#_7){.internal-link target=_blank}.

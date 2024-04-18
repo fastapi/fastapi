@@ -6,7 +6,7 @@ A **request** body is data sent by the client to your API. A **response** body i
 
 Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
+To declare a **request** body, you use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
     To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
@@ -25,7 +25,7 @@ First, you need to import `BaseModel` from `pydantic`:
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -43,7 +43,7 @@ Use standard Python types for all the attributes:
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="7-11"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -81,7 +81,7 @@ To add it to your *path operation*, declare it the same way you declared path an
     {!> ../../../docs_src/body/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial001.py!}
@@ -155,7 +155,7 @@ Inside of the function, you can access all the attributes of the model object di
     {!> ../../../docs_src/body/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/body/tutorial002.py!}
@@ -173,7 +173,7 @@ You can declare path parameters and request body at the same time.
     {!> ../../../docs_src/body/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17-18"
     {!> ../../../docs_src/body/tutorial003.py!}
@@ -191,7 +191,7 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
     {!> ../../../docs_src/body/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial004.py!}

@@ -1,5 +1,5 @@
 import pytest
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -151,7 +151,7 @@ def test_token_no_scope(client: TestClient):
 
 
 @needs_py310
-def test_token_inexistent_user(client: TestClient):
+def test_token_nonexistent_user(client: TestClient):
     response = client.get(
         "/users/me",
         headers={
@@ -295,7 +295,11 @@ def test_openapi_schema(client: TestClient):
             "schemas": {
                 "User": {
                     "title": "User",
-                    "required": ["username"],
+                    "required": IsOneOf(
+                        ["username", "email", "full_name", "disabled"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["username"],
+                    ),
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},

@@ -20,7 +20,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
@@ -28,23 +28,23 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать версию с `Annotated`, если это возможно.
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-!!! Заметка
+!!! note "Заметка"
     Заметьте, что в данном случае параметр `item`, который будет взят из тела запроса, необязателен. Так как было установлено значение `None` по умолчанию.
 
 ## Несколько параметров тела запроса
@@ -68,7 +68,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
@@ -93,7 +93,7 @@
 }
 ```
 
-!!! Внимание
+!!! note "Внимание"
     Обратите внимание, что хотя параметр `item` был объявлен таким же способом, как и раньше, теперь предпологается, что он находится внутри тела с ключом `item`.
 
 
@@ -123,7 +123,7 @@
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
@@ -131,16 +131,16 @@
 
 === "Python 3.10+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="22"
@@ -197,7 +197,7 @@ q: str | None = None
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="28"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
@@ -205,23 +205,23 @@ q: str | None = None
 
 === "Python 3.10+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="25"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
-!!! Информация
+!!! info "Информация"
     `Body` также имеет все те же дополнительные параметры валидации и метаданных, как у `Query`,`Path` и других, которые вы увидите позже.
 
 ## Добавление одного body-параметра
@@ -250,7 +250,7 @@ item: Item = Body(embed=True)
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
@@ -258,16 +258,16 @@ item: Item = Body(embed=True)
 
 === "Python 3.10+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
-    !!! Заметка
+    !!! tip "Заметка"
         Рекомендуется использовать `Annotated` версию, если это возможно.
 
     ```Python hl_lines="17"
