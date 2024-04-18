@@ -457,7 +457,6 @@ Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** ch�
 
 Sử dụng bởi Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - <abbr title="chuyển dổi string từ HTTP request sang dữ liệu Python">"Parse"</abbr> JSON nhanh hơn.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - cho email validation.
 
 Sử dụng Starlette:
@@ -467,12 +466,12 @@ Sử dụng Starlette:
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Bắt buộc nếu bạn muốn hỗ trợ <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, form với `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Bắt buộc để hỗ trợ `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Bắt buộc để hỗ trợ `SchemaGenerator` cho Starlette (bạn có thể không cần nó trong FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 
 Sử dụng bởi FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Bắt buộc nếu bạn muốn sử dụng `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 
 Bạn có thể cài đặt tất cả những dependency trên với `pip install "fastapi[all]"`.
 

@@ -465,12 +465,12 @@ Starlette tarafında kullanılan:
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Eğer `request.form()` ile form <abbr title="HTTP isteği ile gelen string veriyi Python nesnesine çevirme.">dönüşümü</abbr> desteğini kullanacaksanız gereklidir.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` desteği için gerekli.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - `SchemaGenerator` desteği için gerekli (Muhtemelen FastAPI kullanırken ihtiyacınız olmaz).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse` kullanacaksanız gerekli.
 
 Hem FastAPI hem de Starlette tarafından kullanılan:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı servis edecek web sunucusu görevini üstlenir.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse` kullanacaksanız gereklidir.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse` kullanacaksanız gerekli.
 
 Bunların hepsini `pip install fastapi[all]` ile yükleyebilirsin.
 

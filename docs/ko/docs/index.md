@@ -456,12 +456,12 @@ Starlette이 사용하는:
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette의 `SchemaGenerator` 지원을 위해 필요 (FastAPI와 쓸때는 필요 없을 것입니다).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` 지원을 위해 필요.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 
 FastAPI / Starlette이 사용하는:
 
 * <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 
 `pip install fastapi[all]`를 통해 이 모두를 설치 할 수 있습니다.
 

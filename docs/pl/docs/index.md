@@ -455,12 +455,12 @@ Używane przez Starlette:
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Wymagany dla wsparcia `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Wymagane dla wsparcia `SchemaGenerator` z Starlette (z FastAPI prawdopodobnie tego nie potrzebujesz).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Wymagane dla wsparcia `GraphQLApp`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Wymagane jeżeli chcesz korzystać z `UJSONResponse`.
 
 Używane przez FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - jako serwer, który ładuje i obsługuje Twoją aplikację.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Wymagane jeżeli chcesz używać `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Wymagane jeżeli chcesz korzystać z `UJSONResponse`.
 
 Możesz zainstalować wszystkie te aplikacje przy pomocy `pip install fastapi[all]`.
 

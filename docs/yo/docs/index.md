@@ -465,12 +465,12 @@ Láti ní òye síi nípa rẹ̀, wo abala àwọn <a href="https://fastapi.tian
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Nílò tí ó bá fẹ́ láti ṣe àtìlẹ́yìn fún <abbr title="tí ó se ìyípadà ọ̀rọ̀-ìyọ̀/òkun-ọ̀rọ̀ tí ó wà láti ìbéèrè HTTP sí inú àkójọf'áyẹ̀wò Python">"àyẹ̀wò"</abbr> fọọmu, pẹ̀lú `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Nílò fún àtìlẹ́yìn `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Nílò fún àtìlẹ́yìn Starlette's `SchemaGenerator` (ó ṣe ṣe kí ó má nílò rẹ̀ fún FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Nílò tí ó bá fẹ́ láti lọ `UJSONResponse`.
 
 Èyí tí FastAPI / Starlette ń lò:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Fún olupin tí yóò sẹ́ àmúyẹ àti tí yóò ṣe ìpèsè fún iṣẹ́ rẹ tàbí ohun èlò rẹ.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Nílò tí ó bá fẹ́ láti lọ `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Nílò tí ó bá fẹ́ láti lọ `UJSONResponse`.
 
 Ó lè fi gbogbo àwọn wọ̀nyí sórí ẹrọ pẹ̀lú `pip install "fastapi[all]"`.
 
