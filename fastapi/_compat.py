@@ -20,10 +20,12 @@ from typing import (
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as PYDANTIC_VERSION
+from pydantic.version import VERSION as P_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
+# Reassign variable to make it reexported for mypy
+PYDANTIC_VERSION = P_VERSION
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 
