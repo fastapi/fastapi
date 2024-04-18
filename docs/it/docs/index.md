@@ -438,7 +438,6 @@ Per approfondire, consulta la sezione <a href="https://fastapi.tiangolo.com/benc
 
 Usate da Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - per un <abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">"parsing"</abbr> di JSON più veloce.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - per la validazione di email.
 
 Usate da Starlette:
@@ -450,12 +449,12 @@ Usate da Starlette:
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Richiesto per usare `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Richiesto per il supporto dello `SchemaGenerator` di Starlette (probabilmente non ti serve con FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Richiesto per il supporto di `GraphQLApp`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Richiesto se vuoi usare `UJSONResponse`.
 
 Usate da FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - per il server che carica e serve la tua applicazione.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ichiesto se vuoi usare `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Richiesto se vuoi usare `UJSONResponse`.
 
 Puoi installarle tutte con `pip install fastapi[all]`.
 
