@@ -28,7 +28,7 @@ Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en uti
 
 Ici, `item_id` est déclaré comme `int`.
 
-!!! hint "Astuce"
+!!! check "vérifier"
     Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
     que des vérifications d'erreur, de l'auto-complétion, etc.
 
@@ -40,7 +40,7 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
 {"item_id":3}
 ```
 
-!!! hint "Astuce"
+!!! check "vérifier"
     Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
     en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
 
@@ -72,7 +72,7 @@ La même erreur se produira si vous passez un nombre flottant (`float`) et non u
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
 
 
-!!! hint "Astuce"
+!!! check "vérifier"
     Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
 
     Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.

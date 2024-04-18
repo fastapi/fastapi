@@ -119,7 +119,7 @@
 !!! tip
     我们正在使用虚构的请求首部来简化此示例。
 
-    但在实际情况下，使用集成的[安全性实用工具](./security/index.md){.internal-link target=_blank}会得到更好的效果。
+    但在实际情况下，使用集成的[安全性实用工具](security/index.md){.internal-link target=_blank}会得到更好的效果。
 
 ## 其他使用 `APIRouter` 的模块
 

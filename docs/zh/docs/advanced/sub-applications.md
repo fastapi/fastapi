@@ -70,4 +70,4 @@ $ uvicorn main:app --reload
 
 并且子应用还可以再挂载子应用，一切都会正常运行，FastAPI 可以自动处理所有 `root_path`。
 
-关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](./behind-a-proxy.md){.internal-link target=_blank}一章。
+关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](behind-a-proxy.md){.internal-link target=_blank}一章。

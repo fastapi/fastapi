@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Основные свойства
 
 ## Основные свойства FastAPI
@@ -66,7 +71,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! Информация
+!!! info "Информация"
     `**second_user_data` означает:
 
     Передать ключи и значения словаря `second_user_data`,  в качестве аргументов типа "ключ-значение", это эквивалентно: `User(id=4, name="Mary", joined="2018-11-30")` .
