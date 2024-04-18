@@ -507,7 +507,6 @@ class OAuthFlowImplicit(OAuthFlow):
 
 class OAuthFlowPassword(OAuthFlow):
     tokenUrl: str
-    refreshUrl: Optional[str]
 
 
 class OAuthFlowClientCredentials(OAuthFlow):
