@@ -3,7 +3,7 @@
 `File` 과 `Form` 을 사용하여 파일과 폼을 함께 정의할 수 있습니다.
 
 !!! info "정보"
-    파일과 폼 데이터를 함께, 또는 각각 업로드하기 위해 먼저 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
+    파일과 폼 데이터를 함께, 또는 각각 업로드하기 위해 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
 
     예 ) `pip install python-multipart`.
 

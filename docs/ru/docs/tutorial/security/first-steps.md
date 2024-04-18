@@ -45,7 +45,7 @@
 ## Запуск
 
 !!! info "Дополнительная информация"
-    Вначале, установите библиотеку <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Вначале, установите библиотеку <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     А именно: `pip install python-multipart`.
 

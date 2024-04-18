@@ -120,7 +120,7 @@ Python 3.8+
 FastAPI repose sur les épaules de géants :
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> pour les parties web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> pour les parties données.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> pour les parties données.
 
 ## Installation
 
@@ -451,7 +451,7 @@ Utilisées par Starlette :
 
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Obligatoire si vous souhaitez utiliser `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire avec `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire avec `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Obligatoire pour la prise en charge de `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Obligatoire pour le support `SchemaGenerator` de Starlette (vous n'en avez probablement pas besoin avec FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.

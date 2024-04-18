@@ -69,7 +69,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
