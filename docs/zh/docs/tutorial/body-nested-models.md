@@ -182,7 +182,7 @@ Pydantic 模型的每个属性都具有类型。
 
 除了普通的单一值类型（如 `str`、`int`、`float` 等）外，你还可以使用从 `str` 继承的更复杂的单一值类型。
 
-要了解所有的可用选项，请查看关于 <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">来自 Pydantic 的外部类型</a> 的文档。你将在下一章节中看到一些示例。
+要了解所有的可用选项，请查看关于 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">来自 Pydantic 的外部类型</a> 的文档。你将在下一章节中看到一些示例。
 
 例如，在 `Image` 模型中我们有一个 `url` 字段，我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
 

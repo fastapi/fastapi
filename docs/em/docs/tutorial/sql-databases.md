@@ -331,7 +331,7 @@ name: str
 
 🔜, Pydantic *🏷* 👂, `Item` &amp; `User`, 🚮 🔗 `Config` 🎓.
 
-👉 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
+👉 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> 🎓 ⚙️ 🚚 📳 Pydantic.
 
 `Config` 🎓, ⚒ 🔢 `orm_mode = True`.
 
@@ -501,7 +501,7 @@ current_user.items
 
 "🛠️" ⚒ 🔁 💪 🕐❔ 👆 🔀 📊 👆 🇸🇲 🏷, 🚮 🆕 🔢, ♒️. 🔁 👈 🔀 💽, 🚮 🆕 🏓, 🆕 🏓, ♒️.
 
-👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
+👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
 
 ### ✍ 🔗
 
@@ -534,7 +534,7 @@ current_user.items
 
     👉 🌌 👥 ⚒ 💭 💽 🎉 🕧 📪 ⏮️ 📨. 🚥 📤 ⚠ ⏪ 🏭 📨.
 
-    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](dependencies/dependencies-with-yield.md#yield-httpexception){.internal-link target=_blank}
 
 &amp; ⤴️, 🕐❔ ⚙️ 🔗 *➡ 🛠️ 🔢*, 👥 📣 ⚫️ ⏮️ 🆎 `Session` 👥 🗄 🔗 ⚪️➡️ 🇸🇲.
 
@@ -620,7 +620,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     🚥 👆 💪 🔗 👆 🔗 💽 🔁, 👀 [🔁 🗄 (🔗) 💽](../advanced/async-sql-databases.md){.internal-link target=_blank}.
 
 !!! note "📶 📡 ℹ"
-    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#very-technical-details){.internal-link target=_blank} 🩺.
+    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#i_2){.internal-link target=_blank} 🩺.
 
 ## 🛠️
 

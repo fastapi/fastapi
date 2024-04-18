@@ -8,7 +8,7 @@
 
 ## Pydantic `schema_extra`
 
-您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
+您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
 
 === "Python 3.10+"
 

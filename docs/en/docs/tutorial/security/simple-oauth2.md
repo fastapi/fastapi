@@ -118,7 +118,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 
 Now, get the user data from the (fake) database, using the `username` from the form field.
 
-If there is no such user, we return an error saying "incorrect username or password".
+If there is no such user, we return an error saying "Incorrect username or password".
 
 For the error, we use the exception `HTTPException`:
 
@@ -416,7 +416,7 @@ Password: `secret2`
 
 And try to use the operation `GET` with the path `/users/me`.
 
-You will get an "inactive user" error, like:
+You will get an "Inactive user" error, like:
 
 ```JSON
 {

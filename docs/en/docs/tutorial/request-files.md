@@ -3,7 +3,7 @@
 You can define files to be uploaded by the client using `File`.
 
 !!! info
-    To receive uploaded files, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -71,7 +71,7 @@ The files will be uploaded as "form data".
 
 If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
 
-Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
+Keep in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
 But there are several cases in which you might benefit from using `UploadFile`.
 

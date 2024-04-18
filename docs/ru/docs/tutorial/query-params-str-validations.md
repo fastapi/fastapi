@@ -479,7 +479,7 @@ q: Union[str, None] = None
     ```
 
 !!! tip "Подсказка"
-    Pydantic, мощь которого используется в FastAPI для валидации и сериализации, имеет специальное поведение для `Optional` или `Union[Something, None]` без значения по умолчанию. Вы можете узнать об этом больше в документации Pydantic, раздел <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Обязательные Опциональные поля</a>.
+    Pydantic, мощь которого используется в FastAPI для валидации и сериализации, имеет специальное поведение для `Optional` или `Union[Something, None]` без значения по умолчанию. Вы можете узнать об этом больше в документации Pydantic, раздел <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Обязательные Опциональные поля</a>.
 
 ### Использование Pydantic's `Required` вместо Ellipsis (`...`)
 

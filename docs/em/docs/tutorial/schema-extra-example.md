@@ -6,7 +6,7 @@
 
 ## Pydantic `schema_extra`
 
-👆 💪 📣 `example` Pydantic 🏷 ⚙️ `Config` &amp; `schema_extra`, 🔬 <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 🩺: 🔗 🛃</a>:
+👆 💪 📣 `example` Pydantic 🏷 ⚙️ `Config` &amp; `schema_extra`, 🔬 <a href="https://docs.pydantic.dev/latest/concepts/json_schema/#customizing-json-schema" class="external-link" target="_blank">Pydantic 🩺: 🔗 🛃</a>:
 
 === "🐍 3️⃣.6️⃣ &amp; 🔛"
 
