@@ -456,12 +456,12 @@ item: Item
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - در صورتی که بخواید از `SessionMiddleware` پشتیبانی کنید.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - برای پشتیبانی `SchemaGenerator` در Starlet (به احتمال زیاد برای کار کردن با FastAPI به آن نیازی پیدا نمی‌کنید).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - در صورتی که از  `GraphQLApp` پشتیبانی می‌کنید.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 استفاده شده توسط FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - برای سرور اجرا کننده برنامه وب.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - در صورتی که بخواهید از `ORJSONResponse` استفاده کنید.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 می‌توان همه این موارد را با استفاده از دستور `pip install fastapi[all]`. به صورت یکجا نصب کرد.
 

@@ -454,7 +454,6 @@ item: Item
 
 ⚙️ Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ⏩ 🎻 <abbr title="converting the string that comes from an HTTP request into Python data">"🎻"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 📧 🔬.
 
 ⚙️ 💃:
@@ -464,12 +463,12 @@ item: Item
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - ✔ `SessionMiddleware` 🐕‍🦺.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ✔ 💃 `SchemaGenerator` 🐕‍🦺 (👆 🎲 🚫 💪 ⚫️ ⏮️ FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 ⚙️ FastAPI / 💃:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 👆 💪 ❎ 🌐 👫 ⏮️ `pip install "fastapi[all]"`.
 
