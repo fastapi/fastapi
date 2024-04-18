@@ -108,7 +108,7 @@ It would depend mainly on the tool you use to **install** those requirements.
 
 The most common way to do it is to have a file `requirements.txt` with the package names and their versions, one per line.
 
-You would of course use the same ideas you read in [About FastAPI versions](./versions.md){.internal-link target=_blank} to set the ranges of versions.
+You would of course use the same ideas you read in [About FastAPI versions](versions.md){.internal-link target=_blank} to set the ranges of versions.
 
 For example, your `requirements.txt` could look like:
 
@@ -373,7 +373,7 @@ Then adjust the Uvicorn command to use the new module `main` instead of `app.mai
 
 ## Deployment Concepts
 
-Let's talk again about some of the same [Deployment Concepts](./concepts.md){.internal-link target=_blank} in terms of containers.
+Let's talk again about some of the same [Deployment Concepts](concepts.md){.internal-link target=_blank} in terms of containers.
 
 Containers are mainly a tool to simplify the process of **building and deploying** an application, but they don't enforce a particular approach to handle these **deployment concepts**, and there are several possible strategies.
 
@@ -514,7 +514,7 @@ If you have a simple setup, with a **single container** that then starts multipl
 
 ## Official Docker Image with Gunicorn - Uvicorn
 
-There is an official Docker image that includes Gunicorn running with Uvicorn workers, as detailed in a previous chapter: [Server Workers - Gunicorn with Uvicorn](./server-workers.md){.internal-link target=_blank}.
+There is an official Docker image that includes Gunicorn running with Uvicorn workers, as detailed in a previous chapter: [Server Workers - Gunicorn with Uvicorn](server-workers.md){.internal-link target=_blank}.
 
 This image would be useful mainly in the situations described above in: [Containers with Multiple Processes and Special Cases](#containers-with-multiple-processes-and-special-cases).
 

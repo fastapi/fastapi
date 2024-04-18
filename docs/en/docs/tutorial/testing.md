@@ -50,7 +50,7 @@ And your **FastAPI** application might also be composed of several files/modules
 
 ### **FastAPI** app file
 
-Let's say you have a file structure as described in [Bigger Applications](./bigger-applications.md){.internal-link target=_blank}:
+Let's say you have a file structure as described in [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .

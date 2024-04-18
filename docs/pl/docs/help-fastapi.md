@@ -78,7 +78,7 @@ Możesz spróbować pomóc innym, odpowiadając w:
 
 W wielu przypadkach możesz już znać odpowiedź na te pytania. 🤓
 
-Jeśli pomożesz wielu ludziom, możesz zostać oficjalnym [Ekspertem FastAPI](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
+Jeśli pomożesz wielu ludziom, możesz zostać oficjalnym [Ekspertem FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}. 🎉
 
 Pamiętaj tylko o najważniejszym: bądź życzliwy. Ludzie przychodzą sfrustrowani i w wielu przypadkach nie zadają pytań w najlepszy sposób, ale mimo to postaraj się być dla nich jak najbardziej życzliwy. 🤗
 
@@ -215,8 +215,8 @@ Jest wiele pracy do zrobienia, a w większości przypadków **TY** możesz to zr
 
 Główne zadania, które możesz wykonać teraz to:
 
-* [Pomóc innym z pytaniami na GitHubie](#help-others-with-questions-in-github){.internal-link target=_blank} (zobacz sekcję powyżej).
-* [Oceniać Pull Requesty](#review-pull-requests){.internal-link target=_blank} (zobacz sekcję powyżej).
+* [Pomóc innym z pytaniami na GitHubie](#pomagaj-innym-odpowiadajac-na-ich-pytania-na-githubie){.internal-link target=_blank} (zobacz sekcję powyżej).
+* [Oceniać Pull Requesty](#przegladaj-pull-requesty){.internal-link target=_blank} (zobacz sekcję powyżej).
 
 Te dwie czynności **zajmują najwięcej czasu**. To główna praca związana z utrzymaniem FastAPI.
 
@@ -226,8 +226,8 @@ Jeśli możesz mi w tym pomóc, **pomożesz mi utrzymać FastAPI** i zapewnisz �
 
 Dołącz do 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">serwera czatu na Discordzie</a> 👥 i spędzaj czas z innymi w społeczności FastAPI.
 
-!!! wskazówka
-    Jeśli masz pytania, zadaj je w <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Dyskusjach na GitHubie</a>, jest dużo większa szansa, że otrzymasz pomoc od [Ekspertów FastAPI](fastapi-people.md#experts){.internal-link target=_blank}.
+!!! tip "Wskazówka"
+    Jeśli masz pytania, zadaj je w <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">Dyskusjach na GitHubie</a>, jest dużo większa szansa, że otrzymasz pomoc od [Ekspertów FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
 
     Używaj czatu tylko do innych ogólnych rozmów.
 
@@ -237,7 +237,7 @@ Miej na uwadze, że ponieważ czaty pozwalają na bardziej "swobodną rozmowę",
 
 Na GitHubie szablon poprowadzi Cię do napisania odpowiedniego pytania, dzięki czemu łatwiej uzyskasz dobrą odpowiedź, a nawet rozwiążesz problem samodzielnie, zanim zapytasz. Ponadto na GitHubie mogę się upewnić, że zawsze odpowiadam na wszystko, nawet jeśli zajmuje to trochę czasu. Osobiście nie mogę tego zrobić z systemami czatu. 😅
 
-Rozmów w systemach czatu nie można tak łatwo przeszukiwać, jak na GitHubie, więc pytania i odpowiedzi mogą zaginąć w rozmowie. A tylko te na GitHubie liczą się do zostania [Ekspertem FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, więc najprawdopodobniej otrzymasz więcej uwagi na GitHubie.
+Rozmów w systemach czatu nie można tak łatwo przeszukiwać, jak na GitHubie, więc pytania i odpowiedzi mogą zaginąć w rozmowie. A tylko te na GitHubie liczą się do zostania [Ekspertem FastAPI](fastapi-people.md#fastapi-experts){.internal-link target=_blank}, więc najprawdopodobniej otrzymasz więcej uwagi na GitHubie.
 
 Z drugiej strony w systemach czatu są tysiące użytkowników, więc jest duża szansa, że znajdziesz tam kogoś do rozmowy, prawie w każdej chwili. 😄
 
