@@ -10,7 +10,7 @@
 
 一个常见的工具是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>。
 
-如果您正在开发**前端**，一个非常有趣的替代方案是 <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a>。
+如果您正在开发**前端**，一个非常有趣的替代方案是 <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>。
 
 ## 生成一个 TypeScript 前端客户端
 
@@ -46,14 +46,14 @@ OpenAPI中所包含的模型里有相同的信息可以用于 **生成客户端�
 
 现在我们有了带有模型的应用，我们可以为前端生成客户端代码。
 
-#### 安装 `openapi-typescript-codegen`
+#### 安装 `openapi-ts`
 
-您可以使用以下工具在前端代码中安装 `openapi-typescript-codegen`:
+您可以使用以下工具在前端代码中安装 `openapi-ts`:
 
 <div class="termy">
 
 ```console
-$ npm install openapi-typescript-codegen --save-dev
+$ npm install @hey-api/openapi-ts --save-dev
 
 ---> 100%
 ```
@@ -62,7 +62,7 @@ $ npm install openapi-typescript-codegen --save-dev
 
 #### 生成客户端代码
 
-要生成客户端代码，您可以使用现在将要安装的命令行应用程序 `openapi`。
+要生成客户端代码，您可以使用现在将要安装的命令行应用程序 `openapi-ts`。
 
 因为它安装在本地项目中，所以您可能无法直接使用此命令，但您可以将其放在 `package.json` 文件中。
 
@@ -75,12 +75,12 @@ $ npm install openapi-typescript-codegen --save-dev
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }
@@ -94,7 +94,7 @@ $ npm install openapi-typescript-codegen --save-dev
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios
+> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
 ```
 
 </div>
@@ -234,12 +234,12 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }

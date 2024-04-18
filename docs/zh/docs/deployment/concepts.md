@@ -25,7 +25,7 @@
 
 ## 安全性 - HTTPS
 
-在[上一章有关 HTTPS](./https.md){.internal-link target=_blank} 中，我们了解了 HTTPS 如何为您的 API 提供加密。
+在[上一章有关 HTTPS](https.md){.internal-link target=_blank} 中，我们了解了 HTTPS 如何为您的 API 提供加密。
 
 我们还看到，HTTPS 通常由应用程序服务器的**外部**组件（**TLS 终止代理**）提供。
 
@@ -191,7 +191,7 @@
 
 ### 工作进程和端口
 
-还记得文档 [About HTTPS](./https.md){.internal-link target=_blank} 中只有一个进程可以侦听服务器中的端口和 IP 地址的一种组合吗？
+还记得文档 [About HTTPS](https.md){.internal-link target=_blank} 中只有一个进程可以侦听服务器中的端口和 IP 地址的一种组合吗？
 
 现在仍然是对的。
 
@@ -249,7 +249,7 @@
 
      如果这些关于 **容器**、Docker 或 Kubernetes 的内容还没有多大意义，请不要担心。
 
-     我将在以后的章节中向您详细介绍容器镜像、Docker、Kubernetes 等：[容器中的 FastAPI - Docker](./docker.md){.internal-link target=_blank}。
+     我将在以后的章节中向您详细介绍容器镜像、Docker、Kubernetes 等：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
 
 ## 启动之前的步骤
 
@@ -284,7 +284,7 @@
 
 !!! tip
 
-     我将在以后的章节中为您提供使用容器执行此操作的更具体示例：[容器中的 FastAPI - Docker](./docker.md){.internal-link target=_blank}。
+     我将在以后的章节中为您提供使用容器执行此操作的更具体示例：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
 
 ## 资源利用率
 

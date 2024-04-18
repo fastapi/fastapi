@@ -14,7 +14,7 @@ Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés 
 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
-!!! Note
+!!! note "Remarque"
     `JSONResponse` est elle-même une sous-classe de `Response`.
 
 Et quand vous retournez une `Response`, **FastAPI** la transmet directement.

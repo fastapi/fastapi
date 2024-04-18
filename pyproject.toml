@@ -41,7 +41,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.36.3,<0.37.0",
+    "starlette>=0.37.2,<0.38.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
@@ -121,9 +121,6 @@ filterwarnings = [
     #   - https://github.com/mpdavis/python-jose/issues/332
     #   - https://github.com/mpdavis/python-jose/issues/334
     'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
-    # TODO: remove after upgrading Starlette to a version including https://github.com/encode/starlette/pull/2406
-    # Probably Starlette 0.36.0
-    "ignore: The 'method' parameter is not used, and it will be removed.:DeprecationWarning:starlette",
 ]
 
 [tool.coverage.run]

@@ -8,7 +8,7 @@
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
-!!! 정보
+!!! info "정보"
     데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
 
     `GET` 요청에 본문을 담아 보내는 것은 명세서에 정의되지 않은 행동입니다. 그럼에도 불구하고, 이 방식은 아주 복잡한/극한의 사용 상황에서만 FastAPI에 의해 지원됩니다.
@@ -134,7 +134,7 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! 팁
+!!! tip "팁"
     만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
 
     다음 사항을 포함해 Pydantic 모델에 대한 편집기 지원을 향상시킵니다:
@@ -203,11 +203,11 @@
 * 만약 매개변수가 (`int`, `float`, `str`, `bool` 등과 같은) **유일한 타입**으로 되어있으면, **쿼리** 매개변수로 해석될 것입니다.
 * 만약 매개변수가 **Pydantic 모델** 타입으로 선언되어 있으면, 요청 **본문**으로 해석될 것입니다.
 
-!!! 참고
+!!! note "참고"
     FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
 
     `Union[str, None]`에 있는 `Union`은 FastAPI에 의해 사용된 것이 아니지만, 편집기로 하여금 더 나은 지원과 에러 탐지를 지원할 것입니다.
 
 ## Pydantic없이
 
-만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - 다중 매개변수: 본문에 있는 유일한 값](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank} 문서를 확인하세요.
+만약 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용할 수도 있습니다. [Body - 다중 매개변수: 본문에 있는 유일한 값](body-multiple-params.md#_2){.internal-link target=_blank} 문서를 확인하세요.

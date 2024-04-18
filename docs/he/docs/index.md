@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -31,7 +40,7 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 תכונות המפתח הן:
 
--   **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם NodeJS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#performance).
+-   **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם NodeJS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#_14).
 
 -   **מהירה לתכנות**: הגבירו את מהירות פיתוח התכונות החדשות בכ - %200 עד %300. \*
 -   **פחות שגיאות**: מנעו כ - %40 משגיאות אנוש (מפתחים). \*
