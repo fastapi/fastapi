@@ -108,7 +108,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 가장 일반적인 방법은 패키지 이름과 버전이 줄 별로 기록된 `requirements.txt` 파일을 만드는 것입니다.
 
-버전의 범위를 설정하기 위해서는 [FastAPI 버전들에 대하여](./versions.md){.internal-link target=_blank}에 쓰여진 것과 같은 아이디어를 사용합니다.
+버전의 범위를 설정하기 위해서는 [FastAPI 버전들에 대하여](versions.md){.internal-link target=_blank}에 쓰여진 것과 같은 아이디어를 사용합니다.
 
 예를 들어, `requirements.txt` 파일은 다음과 같을 수 있습니다:
 
@@ -199,7 +199,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     `--no-cache-dir` 옵션은 `pip`에게 다운로드한 패키지들을 로컬 환경에 저장하지 않도록 전달합니다. 이는 마치 같은 패키지를 설치하기 위해 오직 `pip`만 다시 실행하면 될 것 같지만, 컨테이너로 작업하는 경우 그렇지는 않습니다.
 
-    !!! 노트
+    !!! note "노트"
         `--no-cache-dir` 는 오직 `pip`와 관련되어 있으며, 도커나 컨테이너와는 무관합니다.
 
     `--upgrade` 옵션은 `pip`에게 설치된 패키지들을 업데이트하도록 합니다.
@@ -373,7 +373,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## 배포 개념
 
-이제 컨테이너의 측면에서 [배포 개념](./concepts.md){.internal-link target=_blank}에서 다루었던 것과 같은 배포 개념에 대해 이야기해 보겠습니다.
+이제 컨테이너의 측면에서 [배포 개념](concepts.md){.internal-link target=_blank}에서 다루었던 것과 같은 배포 개념에 대해 이야기해 보겠습니다.
 
 컨테이너는 주로 어플리케이션을 빌드하고 배포하기 위한 과정을 단순화하는 도구이지만, **배포 개념**에 대한 특정한 접근법을 강요하지 않기 때문에 가능한 배포 전략에는 여러가지가 있습니다.
 
@@ -514,7 +514,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## Gunicorn과 함께하는 공식 도커 이미지 - Uvicorn
 
-앞 챕터에서 자세하게 설명된 것 처럼, Uvicorn 워커와 같이 실행되는 Gunicorn을 포함하는 공식 도커 이미지가 있습니다: [서버 워커 - Uvicorn과 함께하는 Gunicorn](./server-workers.md){.internal-link target=_blank}.
+앞 챕터에서 자세하게 설명된 것 처럼, Uvicorn 워커와 같이 실행되는 Gunicorn을 포함하는 공식 도커 이미지가 있습니다: [서버 워커 - Uvicorn과 함께하는 Gunicorn](server-workers.md){.internal-link target=_blank}.
 
 이 이미지는 주로 위에서 설명된 상황에서 유용할 것입니다: [다중 프로세스를 가지는 컨테이너와 특수한 경우들](#containers-with-multiple-processes-and-special-cases).
 

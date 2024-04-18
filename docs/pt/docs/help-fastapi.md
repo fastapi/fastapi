@@ -72,7 +72,7 @@ Adoro ouvir sobre como o **FastAPI** é usado, o que você gosta nele, em qual p
 
 Você pode acompanhar as <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">perguntas existentes</a> e tentar ajudar outros,            . 🤓
 
-Ajudando a responder as questões de varias pessoas, você pode se tornar um [Expert em FastAPI](fastapi-people.md#experts){.internal-link target=_blank} oficial. 🎉
+Ajudando a responder as questões de varias pessoas, você pode se tornar um [Expert em FastAPI](fastapi-people.md#especialistas){.internal-link target=_blank} oficial. 🎉
 
 ## Acompanhe o repositório do GitHub
 
@@ -98,7 +98,7 @@ Assim podendo tentar ajudar a resolver essas questões.
 * Para corrigir um erro de digitação que você encontrou na documentação.
 * Para compartilhar um artigo, video, ou podcast criados por você sobre o FastAPI <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editando este arquivo</a>.
     * Não se esqueça de adicionar o link no começo da seção correspondente.
-* Para ajudar [traduzir a documentação](contributing.md#translations){.internal-link target=_blank} para sua lingua.
+* Para ajudar [traduzir a documentação](contributing.md#traducoes){.internal-link target=_blank} para sua lingua.
     * Também é possivel revisar as traduções já existentes.
 * Para propor novas seções na documentação.
 * Para corrigir um bug/questão.
@@ -109,8 +109,8 @@ Assim podendo tentar ajudar a resolver essas questões.
 Entre no 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">server de conversa do Discord</a> 👥 e conheça novas pessoas da comunidade
 do FastAPI.
 
-!!! dica
-    Para perguntas, pergunte nas <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
+!!! tip "Dica"
+    Para perguntas, pergunte nas <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#especialistas){.internal-link target=_blank}.
 
     Use o chat apenas para outro tipo de assunto.
 
@@ -120,7 +120,7 @@ Tenha em mente que os chats permitem uma "conversa mais livre", dessa forma é m
 
 Nas questões do GitHub o template irá te guiar para que você faça a sua pergunta de um jeito mais correto, fazendo com que você receba respostas mais completas, e até mesmo que você mesmo resolva o problema antes de perguntar. E no GitHub eu garanto que sempre irei responder todas as perguntas, mesmo que leve um tempo. Eu pessoalmente não consigo fazer isso via chat. 😅
 
-Conversas no chat não são tão fáceis de serem encontrados quanto no GitHub, então questões e respostas podem se perder dentro da conversa. E apenas as que estão nas questões do GitHub contam para você se tornar um [Expert em FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, então você receberá mais atenção nas questões do GitHub.
+Conversas no chat não são tão fáceis de serem encontrados quanto no GitHub, então questões e respostas podem se perder dentro da conversa. E apenas as que estão nas questões do GitHub contam para você se tornar um [Expert em FastAPI](fastapi-people.md#especialistas){.internal-link target=_blank}, então você receberá mais atenção nas questões do GitHub.
 
 Por outro lado, existem milhares de usuários no chat, então tem uma grande chance de você encontrar alguém para trocar uma idéia por lá em qualquer horário. 😄
 

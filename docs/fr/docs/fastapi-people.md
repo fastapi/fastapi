@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # La communauté FastAPI
 
 FastAPI a une communauté extraordinaire qui accueille des personnes de tous horizons.
@@ -18,7 +23,7 @@ C'est moi :
 </div>
 {% endif %}
 
-Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus à ce sujet dans [Aide FastAPI - Obtenir de l'aide - Se rapprocher de l'auteur](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus à ce sujet dans [Aide FastAPI - Obtenir de l'aide - Se rapprocher de l'auteur](help-fastapi.md#se-rapprocher-de-lauteur){.internal-link target=_blank}.
 
 ...Mais ici, je veux vous montrer la communauté.
 
@@ -28,15 +33,15 @@ Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus 
 
 Ce sont ces personnes qui :
 
-* [Aident les autres à résoudre des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Créent des Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Review les Pull Requests, [particulièrement important pour les traductions](contributing.md#translations){.internal-link target=_blank}.
+* [Aident les autres à résoudre des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank}.
+* [Créent des Pull Requests](help-fastapi.md#creer-une-pull-request){.internal-link target=_blank}.
+* Review les Pull Requests, [particulièrement important pour les traductions](contributing.md#traductions){.internal-link target=_blank}.
 
 Une salve d'applaudissements pour eux. 👏 🙇
 
 ## Utilisateurs les plus actifs le mois dernier
 
-Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} au cours du dernier mois. ☕
+Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank} au cours du dernier mois. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -52,7 +57,7 @@ Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (
 
 Voici les **Experts FastAPI**. 🤓
 
-Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} depuis *toujours*.
+Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank} depuis *toujours*.
 
 Ils ont prouvé qu'ils étaient des experts en aidant beaucoup d'autres personnes. ✨
 
@@ -70,7 +75,7 @@ Ils ont prouvé qu'ils étaient des experts en aidant beaucoup d'autres personne
 
 Ces utilisateurs sont les **Principaux contributeurs**. 👷
 
-Ces utilisateurs ont [créé le plus grand nombre de demandes Pull Request](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} qui ont été *merged*.
+Ces utilisateurs ont [créé le plus grand nombre de demandes Pull Request](help-fastapi.md#creer-une-pull-request){.internal-link target=_blank} qui ont été *merged*.
 
 Ils ont contribué au code source, à la documentation, aux traductions, etc. 📦
 
@@ -92,7 +97,7 @@ Ces utilisateurs sont les **Principaux Reviewers**. 🕵️
 
 ### Reviewers des traductions
 
-Je ne parle que quelques langues (et pas très bien 😅). Ainsi, les reviewers sont ceux qui ont le [**pouvoir d'approuver les traductions**](contributing.md#translations){.internal-link target=_blank} de la documentation. Sans eux, il n'y aurait pas de documentation dans plusieurs autres langues.
+Je ne parle que quelques langues (et pas très bien 😅). Ainsi, les reviewers sont ceux qui ont le [**pouvoir d'approuver les traductions**](contributing.md#traductions){.internal-link target=_blank} de la documentation. Sans eux, il n'y aurait pas de documentation dans plusieurs autres langues.
 
 ---
 
