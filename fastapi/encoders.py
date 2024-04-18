@@ -24,7 +24,7 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
 
-from ._compat import PYDANTIC_V2, Url, _model_dump
+from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -259,6 +259,8 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
+    if isinstance(obj, UndefinedType):
+        return None
     if isinstance(obj, dict):
         encoded_dict = {}
         allowed_keys = set(obj.keys())
