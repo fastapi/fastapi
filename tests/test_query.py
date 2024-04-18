@@ -396,3 +396,26 @@ def test_query_frozenset_query_1_query_1_query_2():
     response = client.get("/query/frozenset/?query=1&query=1&query=2")
     assert response.status_code == 200
     assert response.json() == "1,2"
+
+
+def test_query_list():
+    response = client.get("/query/list/?device_ids=1&device_ids=2")
+    assert response.status_code == 200
+    assert response.json() == [1, 2]
+
+
+def test_query_list_empty():
+    response = client.get("/query/list/")
+    assert response.status_code == 422
+
+
+def test_query_list_default():
+    response = client.get("/query/list-default/?device_ids=1&device_ids=2")
+    assert response.status_code == 200
+    assert response.json() == [1, 2]
+
+
+def test_query_list_default_empty():
+    response = client.get("/query/list-default/")
+    assert response.status_code == 200
+    assert response.json() == []
