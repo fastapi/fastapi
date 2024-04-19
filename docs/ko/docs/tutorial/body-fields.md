@@ -26,7 +26,7 @@
 
 === "Python 3.10+ Annotated가 없는 경우"
 
-    !!! 팁
+    !!! tip "팁"
         가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
     ```Python hl_lines="2"

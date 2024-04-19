@@ -25,7 +25,7 @@ Copie o exemplo em um arquivo `main.py`:
 
 ## Execute-o
 
-!!! informação
+!!! info "informação"
 	Primeiro, instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
 	Ex: `pip install python-multipart`.
@@ -52,7 +52,7 @@ Você verá algo deste tipo:
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! marque o "botão de Autorizar!"
+!!! check "Botão de Autorizar!"
 	Você já tem um novo "botão de autorizar!".
 
 	E seu *path operation* tem um pequeno cadeado no canto superior direito que você pode clicar.
@@ -61,7 +61,7 @@ E se você clicar, você terá um pequeno formulário de autorização para digi
 
 <img src="/img/tutorial/security/image02.png">
 
-!!! nota
+!!! note "Nota"
 	Não importa o que você digita no formulário, não vai funcionar ainda. Mas nós vamos chegar lá.
 
 Claro que este não é o frontend para os usuários finais, mas é uma ótima ferramenta automática para documentar interativamente toda sua API.
@@ -104,7 +104,7 @@ Então, vamos rever de um ponto de vista simplificado:
 
 Neste exemplo, nós vamos usar o **OAuth2** com o fluxo de **Senha**, usando um token **Bearer**. Fazemos isso usando a classe `OAuth2PasswordBearer`.
 
-!!! informação
+!!! info "informação"
 	Um token "bearer" não é a única opção.
 
 	Mas é a melhor no nosso caso.
@@ -119,7 +119,7 @@ Quando nós criamos uma instância da classe `OAuth2PasswordBearer`, nós passam
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-!!! dica
+!!! tip "Dica"
 	Esse `tokenUrl="token"` se refere a uma URL relativa que nós não criamos ainda. Como é uma URL relativa, é equivalente a `./token`.
 
 	Porque estamos usando uma URL relativa, se sua API estava localizada em `https://example.com/`, então irá referir-se à `https://example.com/token`. Mas se sua API estava localizada em `https://example.com/api/v1/`, então irá referir-se à `https://example.com/api/v1/token`.
@@ -130,7 +130,7 @@ Esse parâmetro não cria um endpoint / *path operation*, mas declara que a URL 
 
 Em breve também criaremos o atual path operation.
 
-!!! informação
+!!! info "informação"
 	Se você é um "Pythonista" muito rigoroso, você pode não gostar do estilo do nome do parâmetro `tokenUrl` em vez de `token_url`.
 
 	Isso ocorre porque está utilizando o mesmo nome que está nas especificações do OpenAPI. Então, se você precisa investigar mais sobre qualquer um desses esquemas de segurança, você pode simplesmente copiar e colar para encontrar mais informações sobre isso.
@@ -157,7 +157,7 @@ Esse dependência vai fornecer uma `str` que é atribuído ao parâmetro `token 
 
 A **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e na documentação da API automática).
 
-!!! informação "Detalhes técnicos"
+!!! info "Detalhes técnicos"
 	**FastAPI** saberá que pode usar a classe `OAuth2PasswordBearer` (declarada na dependência) para definir o esquema de segurança na OpenAPI porque herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda de `fastapi.security.base.Securitybase`.
 
 	 Todos os utilitários de segurança que se integram com OpenAPI (e na documentação da API automática) herdam de `SecurityBase`, é assim que **FastAPI** pode saber como integrá-los no OpenAPI.
