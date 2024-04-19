@@ -15,7 +15,7 @@ from typing_extensions import Annotated, Doc
 
 class HTTPBasicCredentials(BaseModel):
     """
-    The HTTP Basic credendials given as the result of using `HTTPBasic` in a
+    The HTTP Basic credentials given as the result of using `HTTPBasic` in a
     dependency.
 
     Read more about it in the

@@ -221,9 +221,3 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
-
-
-def match_pydantic_error_url(error_type: str) -> Any:
-    from dirty_equals import IsStr
-
-    return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")

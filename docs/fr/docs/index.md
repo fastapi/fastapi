@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -454,12 +463,12 @@ Utilisées par Starlette :
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire avec `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Obligatoire pour la prise en charge de `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Obligatoire pour le support `SchemaGenerator` de Starlette (vous n'en avez probablement pas besoin avec FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
 
 Utilisées par FastAPI / Starlette :
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Pour le serveur qui charge et sert votre application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Obligatoire si vous voulez utiliser `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
 
 Vous pouvez tout installer avec `pip install fastapi[all]`.
 

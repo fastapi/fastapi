@@ -213,4 +213,4 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 
 ## 不使用 Pydantic
 
-即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body){.internal-link target=\_blank}。
+即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#_2){.internal-link target=\_blank}。

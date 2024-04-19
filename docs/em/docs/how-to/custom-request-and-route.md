@@ -28,7 +28,7 @@
 ### ✍ 🛃 `GzipRequest` 🎓
 
 !!! tip
-    👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](./middleware.md#gzipmiddleware){.internal-link target=_blank}.
+    👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
 
 🥇, 👥 ✍ `GzipRequest` 🎓, ❔ 🔜 📁 `Request.body()` 👩‍🔬 🗜 💪 🔍 ☑ 🎚.
 
@@ -76,7 +76,7 @@
 ## 🔐 📨 💪 ⚠ 🐕‍🦺
 
 !!! tip
-    ❎ 👉 🎏 ⚠, ⚫️ 🎲 📚 ⏩ ⚙️ `body` 🛃 🐕‍🦺 `RequestValidationError` ([🚚 ❌](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+    ❎ 👉 🎏 ⚠, ⚫️ 🎲 📚 ⏩ ⚙️ `body` 🛃 🐕‍🦺 `RequestValidationError` ([🚚 ❌](../tutorial/handling-errors.md#requestvalidationerror){.internal-link target=_blank}).
 
     ✋️ 👉 🖼 ☑ &amp; ⚫️ 🎦 ❔ 🔗 ⏮️ 🔗 🦲.
 
