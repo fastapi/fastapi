@@ -191,4 +191,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 !!! tip "豆知識"
 
-    [パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
+    [パスパラメータ](path-params.md#_8){.internal-link target=_blank}と同様に `Enum` を使用できます。

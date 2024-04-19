@@ -7,7 +7,7 @@ from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
 import pytest
-from fastapi._compat import PYDANTIC_V2
+from fastapi._compat import PYDANTIC_V2, Undefined
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, ValidationError
 
@@ -310,3 +310,9 @@ def test_encode_deque_encodes_child_models():
     dq = deque([Model(test="test")])
 
     assert jsonable_encoder(dq)[0]["test"] == "test"
+
+
+@needs_pydanticv2
+def test_encode_pydantic_undefined():
+    data = {"value": Undefined}
+    assert jsonable_encoder(data) == {"value": None}

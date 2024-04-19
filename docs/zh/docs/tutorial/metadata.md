@@ -43,7 +43,7 @@
 
 注意你可以在描述内使用 Markdown，例如「login」会显示为粗体（**login**）以及「fancy」会显示为斜体（_fancy_）。
 
-!!! 提示
+!!! tip "提示"
     不必为你使用的所有标签都添加元数据。
 
 ### 使用你的标签
@@ -54,7 +54,7 @@
 {!../../../docs_src/metadata/tutorial004.py!}
 ```
 
-!!! 信息
+!!! info "信息"
     阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags){.internal-link target=_blank}。
 
 ### 查看文档
