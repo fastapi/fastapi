@@ -451,12 +451,12 @@ Starlette використовує:
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Необхідно, якщо Ви хочете підтримувати <abbr title="перетворення рядка, який надходить із запиту HTTP, на дані Python">"розбір"</abbr> форми за допомогою `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Необхідно для підтримки `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Необхідно для підтримки Starlette `SchemaGenerator` (ймовірно, вам це не потрібно з FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Необхідно, якщо Ви хочете використовувати `UJSONResponse`.
 
 FastAPI / Starlette використовують:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - для сервера, який завантажує та обслуговує вашу програму.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Необхідно, якщо Ви хочете використовувати `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Необхідно, якщо Ви хочете використовувати `UJSONResponse`.
 
 Ви можете встановити все це за допомогою `pip install fastapi[all]`.
 

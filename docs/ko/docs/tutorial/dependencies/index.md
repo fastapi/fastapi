@@ -85,12 +85,12 @@
 
 그 후 위의 값을 포함한 `dict` 자료형으로 반환할 뿐입니다.
 
-!!! 정보
+!!! info "정보"
     FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를 사용하기 권장합니다) 추가했습니다.
 
     옛날 버전을 가지고 있는 경우, `Annotated`를 사용하려 하면 에러를 맞이하게 될 것입니다.
 
-    `Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}를 확실하게 하세요.
+    `Annotated`를 사용하기 전에 최소 0.95.1로 [FastAPI 버전 업그레이드](../../deployment/versions.md#fastapi_2){.internal-link target=_blank}를 확실하게 하세요.
 
 ### `Depends` 불러오기
 
