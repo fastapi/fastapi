@@ -51,7 +51,7 @@ You can:
     * Tell me how you use FastAPI (I love to hear that).
     * Hear when I make announcements or release new tools.
     * You can also <a href="https://twitter.com/fastapi" class="external-link" target="_blank">follow @fastapi on Twitter</a> (a separate account).
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Follow me on **Linkedin**</a>.
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Follow me on **LinkedIn**</a>.
     * Hear when I make announcements or release new tools (although I use Twitter more often 🤷‍♂).
 * Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Read other ideas, articles, and read about tools I have created.
@@ -78,7 +78,7 @@ You can try and help others with their questions in:
 
 In many cases you might already know the answer for those questions. 🤓
 
-If you are helping a lot of people with their questions, you will become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
+If you are helping a lot of people with their questions, you will become an official [FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank}. 🎉
 
 Just remember, the most important point is: try to be kind. People come with their frustrations and in many cases don't ask in the best way, but try as best as you can to be kind. 🤗
 
@@ -227,7 +227,7 @@ If you can help me with that, **you are helping me maintain FastAPI** and making
 Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 and hang out with others in the FastAPI community.
 
 !!! tip
-    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
+    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
 
     Use the chat only for other general conversations.
 
@@ -237,7 +237,7 @@ Keep in mind that as chats allow more "free conversation", it's easy to ask ques
 
 In GitHub, the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
 
-Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub.
+Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub count to become a [FastAPI Expert](fastapi-people.md#fastapi-experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub.
 
 On the other side, there are thousands of users in the chat systems, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
 

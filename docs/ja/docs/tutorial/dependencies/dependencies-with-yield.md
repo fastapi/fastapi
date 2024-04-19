@@ -108,7 +108,7 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 `yield`の後の終了コードで`HTTPException`などを発生させたくなるかもしれません。しかし**それはうまくいきません**
 
-`yield`を持つ依存関係の終了コードは[例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}の*後に*実行されます。依存関係によって投げられた例外を終了コード（`yield`の後）でキャッチするものはなにもありません。
+`yield`を持つ依存関係の終了コードは[例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}の*後に*実行されます。依存関係によって投げられた例外を終了コード（`yield`の後）でキャッチするものはなにもありません。
 
 つまり、`yield`の後に`HTTPException`を発生させた場合、`HTTTPException`をキャッチしてHTTP 400のレスポンスを返すデフォルトの（あるいは任意のカスタムの）例外ハンドラは、その例外をキャッチすることができなくなります。
 
@@ -120,7 +120,7 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 例外が発生する可能性があるコードがある場合は、最も普通の「Python流」なことをして、コードのその部分に`try`ブロックを追加してください。
 
-レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成してください。
+レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成してください。
 
 !!! tip "豆知識"
     `HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
@@ -171,7 +171,7 @@ participant tasks as Background tasks
     いずれかのレスポンスが送信された後、他のレスポンスを送信することはできません。
 
 !!! tip "豆知識"
-    この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
+    この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
 
     しかし例外ハンドラで処理されない例外を発生させた場合は、依存関係の終了コードで処理されます。
 

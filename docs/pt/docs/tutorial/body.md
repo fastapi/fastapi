@@ -162,4 +162,4 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 
 ## Sem o Pydantic
 
-Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#valores-singulares-no-corpo){.internal-link target=_blank}.

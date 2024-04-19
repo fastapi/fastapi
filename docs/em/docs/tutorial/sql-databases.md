@@ -534,7 +534,7 @@ current_user.items
 
     👉 🌌 👥 ⚒ 💭 💽 🎉 🕧 📪 ⏮️ 📨. 🚥 📤 ⚠ ⏪ 🏭 📨.
 
-    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    ✋️ 👆 💪 🚫 🤚 ➕1️⃣ ⚠ ⚪️➡️ 🚪 📟 (⏮️ `yield`). 👀 🌖 [🔗 ⏮️ `yield` &amp; `HTTPException`](dependencies/dependencies-with-yield.md#yield-httpexception){.internal-link target=_blank}
 
 &amp; ⤴️, 🕐❔ ⚙️ 🔗 *➡ 🛠️ 🔢*, 👥 📣 ⚫️ ⏮️ 🆎 `Session` 👥 🗄 🔗 ⚪️➡️ 🇸🇲.
 
@@ -620,7 +620,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     🚥 👆 💪 🔗 👆 🔗 💽 🔁, 👀 [🔁 🗄 (🔗) 💽](../advanced/async-sql-databases.md){.internal-link target=_blank}.
 
 !!! note "📶 📡 ℹ"
-    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#very-technical-details){.internal-link target=_blank} 🩺.
+    🚥 👆 😟 &amp; ✔️ ⏬ 📡 💡, 👆 💪 ✅ 📶 📡 ℹ ❔ 👉 `async def` 🆚 `def` 🍵 [🔁](../async.md#i_2){.internal-link target=_blank} 🩺.
 
 ## 🛠️
 
