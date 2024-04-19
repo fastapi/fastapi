@@ -107,20 +107,16 @@ def test_openapi_schema(client: TestClient):
                     "title": "Body_read_items_items__item_id__put",
                     "type": "object",
                     "properties": {
-                        "start_datetime": IsDict(
-                            {
-                                "title": "Start Datetime",
-                                "type": "string",
-                                "format": "date-time",
-                            }
-                        ),
-                        "end_datetime": IsDict(
-                            {
-                                "title": "End Datetime",
-                                "type": "string",
-                                "format": "date-time",
-                            }
-                        ),
+                        "start_datetime": {
+                            "title": "Start Datetime",
+                            "type": "string",
+                            "format": "date-time",
+                        },
+                        "end_datetime": {
+                            "title": "End Datetime",
+                            "type": "string",
+                            "format": "date-time",
+                        },
                         "repeat_at": IsDict(
                             {
                                 "title": "Repeat At",
