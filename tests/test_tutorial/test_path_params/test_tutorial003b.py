@@ -9,7 +9,7 @@ client = TestClient(t3.app)
 def test_get_users():
     response = client.get("/users")
     assert response.status_code == 200
-    assert response.json() == ['Rick', 'Morty']
+    assert response.json() == ["Rick", "Morty"]
 
 
 def test_routes_created():
