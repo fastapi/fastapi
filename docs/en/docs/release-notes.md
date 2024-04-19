@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix typo in `security/http.py`. PR [#11455](https://github.com/tiangolo/fastapi/pull/11455) by [@omarmoo5](https://github.com/omarmoo5).
+
 ### Internal
 
 * ⬆️ Upgrade MkDocs Material and re-enable cards. PR [#11466](https://github.com/tiangolo/fastapi/pull/11466) by [@tiangolo](https://github.com/tiangolo).
