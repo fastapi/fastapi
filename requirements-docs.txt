@@ -1,6 +1,6 @@
 -e .
 -r requirements-docs-tests.txt
-mkdocs-material==9.4.7
+mkdocs-material==9.5.18
 mdx-include >=1.4.1,<2.0.0
 mkdocs-redirects>=1.2.1,<1.3.0
 typer >=0.12.0
