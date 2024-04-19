@@ -90,7 +90,7 @@ El primer valor es el valor por defecto, puedes pasar todos los parámetros adic
     Pero recuerda que cuando importas `Query`, `Path`, `Cookie`  y otros de `fastapi`, en realidad son funciones que devuelven clases especiales.
 
 !!! info
-    Para declarar cookies, necesitas usar `Cookie`, porque de lo contrario los parámetros serían interpretados como parámetros de consulta.
+    Para declarar cookies, necesitas usar `Cookie`, porque de lo contrario los parámetros serían interpretados como parámetros de query.
 
 ## Resumen
 
