@@ -397,7 +397,7 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
     These are very technical details of how **FastAPI** works underneath.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+    If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
 
 ### Path operation functions
 
@@ -409,11 +409,11 @@ Still, in both situations, chances are that **FastAPI** will [still be faster](i
 
 ### Dependencies
 
-The same applies for [dependencies](./tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies
 
-You can have multiple dependencies and [sub-dependencies](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 

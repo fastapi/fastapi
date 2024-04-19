@@ -159,4 +159,4 @@ Underneath, in the ASGI technical specification, this is part of the <a href="ht
 
 ## Sub Applications
 
-🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.

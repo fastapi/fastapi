@@ -160,4 +160,4 @@ Por baixo, na especificação técnica ASGI, essa é a parte do <a href="https:/
 
 ## Sub Aplicações
 
-🚨 Tenha em mente que esses eventos de lifespan (de inicialização e desligamento) irão somente ser executados para a aplicação principal, não para [Sub Aplicações - Montagem](./sub-applications.md){.internal-link target=_blank}.
+🚨 Tenha em mente que esses eventos de lifespan (de inicialização e desligamento) irão somente ser executados para a aplicação principal, não para [Sub Aplicações - Montagem](sub-applications.md){.internal-link target=_blank}.

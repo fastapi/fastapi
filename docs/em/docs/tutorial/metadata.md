@@ -66,7 +66,7 @@
 ```
 
 !!! info
-    ✍ 🌅 🔃 🔖 [➡ 🛠️ 📳](path-operation-configuration.md#tags){.internal-link target=_blank}.
+    ✍ 🌅 🔃 🔖 [➡ 🛠️ 📳](path-operation-configuration.md#_3){.internal-link target=_blank}.
 
 ### ✅ 🩺
 

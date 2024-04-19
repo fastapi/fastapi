@@ -405,15 +405,15 @@ async def read_burgers():
 
 🚥 👆 👟 ⚪️➡️ ➕1️⃣ 🔁 🛠️ 👈 🔨 🚫 👷 🌌 🔬 🔛 &amp; 👆 ⚙️ ⚖ 🙃 📊-🕴 *➡ 🛠️ 🔢* ⏮️ ✅ `def` 🤪 🎭 📈 (🔃 1️⃣0️⃣0️⃣ 💓), 🙏 🗒 👈 **FastAPI** ⭐ 🔜 🔄. 👫 💼, ⚫️ 👻 ⚙️ `async def` 🚥 👆 *➡ 🛠️ 🔢* ⚙️ 📟 👈 🎭 🚧 <abbr title="Input/Output: disk reading or writing, network communications.">👤/🅾</abbr>.
 
-, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](index.md#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
+, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](index.md#_15){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
 
 ### 🔗
 
-🎏 ✔ [🔗](./tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
+🎏 ✔ [🔗](tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
 
 ### 🎧-🔗
 
-👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
+👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
 
 ### 🎏 🚙 🔢
 
@@ -427,4 +427,4 @@ async def read_burgers():
 
 🔄, 👉 📶 📡 ℹ 👈 🔜 🎲 ⚠ 🚥 👆 👟 🔎 👫.
 
-⏪, 👆 🔜 👍 ⏮️ 📄 ⚪️➡️ 📄 🔛: <a href="#in-a-hurry">🏃 ❓</a>.
+⏪, 👆 🔜 👍 ⏮️ 📄 ⚪️➡️ 📄 🔛: <a href="#_2">🏃 ❓</a>.

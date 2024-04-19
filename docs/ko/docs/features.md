@@ -68,7 +68,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! 정보
+!!! info "정보"
     `**second_user_data`가 뜻하는 것:
 
     `second_user_data` 딕셔너리의 키와 값을 키-값 인자로서 바로 넘겨줍니다. 다음과 동일합니다: `User(id=4, name="Mary", joined="2018-11-30")`
