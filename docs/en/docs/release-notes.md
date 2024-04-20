@@ -11,6 +11,10 @@ hide:
 
 * ✏️ Fix typo in `security/http.py`. PR [#11455](https://github.com/tiangolo/fastapi/pull/11455) by [@omarmoo5](https://github.com/omarmoo5).
 
+### Translations
+
+* 🌐 Add Spanish translation for cookie-params `docs/es/docs/tutorial/cookie-params.md`. PR [#11410](https://github.com/tiangolo/fastapi/pull/11410) by [@fabianfalon](https://github.com/fabianfalon).
+
 ### Internal
 
 * ⬆️ Upgrade MkDocs Material and re-enable cards. PR [#11466](https://github.com/tiangolo/fastapi/pull/11466) by [@tiangolo](https://github.com/tiangolo).
