@@ -27,7 +27,7 @@
 ## 実行
 
 !!! info "情報"
-    まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+    まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
     例えば、`pip install python-multipart`。
 
@@ -125,7 +125,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
     相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
 
-    相対 URL を使うことは、[プロキシと接続](./.../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+    相対 URL を使うことは、[プロキシと接続](../../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
 
 このパラメーターはエンドポイント/ *path operation*を作成しません。しかし、URL`/token`はクライアントがトークンを取得するために使用するものであると宣言します。この情報は OpenAPI やインタラクティブな API ドキュメントシステムで使われます。
 

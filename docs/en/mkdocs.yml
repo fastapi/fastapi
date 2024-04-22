@@ -41,8 +41,13 @@ repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
   search: null
-  markdownextradata:
-    data: ../en/data
+  macros:
+    include_yaml:
+    - external_links: ../en/data/external_links.yml
+    - github_sponsors: ../en/data/github_sponsors.yml
+    - people: ../en/data/people.yml
+    - sponsors_badge: ../en/data/sponsors_badge.yml
+    - sponsors: ../en/data/sponsors.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
@@ -174,9 +179,6 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -184,6 +186,9 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
+    - how-to/sql-databases-peewee.md
+    - how-to/async-sql-encode-databases.md
+    - how-to/nosql-databases-couchbase.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -242,6 +247,7 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
   pymdownx.tabbed:
     alternate_style: true
+  pymdownx.tilde: null
   attr_list: null
   md_in_html: null
 extra:
@@ -266,6 +272,10 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az - azərbaycan dili
+  - link: /bn/
+    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
@@ -280,6 +290,8 @@ extra:
     name: hu - magyar
   - link: /id/
     name: id - Bahasa Indonesia
+  - link: /it/
+    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
@@ -301,7 +313,9 @@ extra:
   - link: /yo/
     name: yo - Yorùbá
   - link: /zh/
-    name: zh - 汉语
+    name: zh - 简体中文
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
   - link: /em/
     name: 😉
 extra_css:

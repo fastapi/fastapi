@@ -112,7 +112,7 @@ Python 3.7+
 FastAPI কিছু দানবেদের কাঁধে দাঁড়িয়ে আছে:
 
 - <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> ওয়েব অংশের জন্য.
-- <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> ডেটা অংশগুলির জন্য.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> ডেটা অংশগুলির জন্য.
 
 ## ইনস্টলেশন প্রক্রিয়া
 
@@ -439,23 +439,22 @@ item: Item
 
 Pydantic দ্বারা ব্যবহৃত:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - দ্রুত JSON এর জন্য <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - ইমেল যাচাইকরণের জন্য।
 
 স্টারলেট দ্বারা ব্যবহৃত:
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - আপনি যদি `TestClient` ব্যবহার করতে চান তাহলে আবশ্যক।
 - <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - আপনি যদি প্রদত্ত টেমপ্লেট রূপরেখা ব্যবহার করতে চান তাহলে প্রয়োজন।
-- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সহায়তা করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সহায়তা করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` সহায়তার জন্য প্রয়োজন।
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - স্টারলেটের SchemaGenerator সাপোর্ট এর জন্য প্রয়োজন (আপনার সম্ভাবত FastAPI প্রয়োজন নেই)।
 - <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` সহায়তার জন্য প্রয়োজন।
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - আপনি `UJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
 
 FastAPI / Starlette দ্বারা ব্যবহৃত:
 
 - <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - সার্ভারের জন্য যা আপনার অ্যাপ্লিকেশন লোড করে এবং পরিবেশন করে।
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - আপনি `ORJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - আপনি `UJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
 
 আপনি এই সব ইনস্টল করতে পারেন `pip install fastapi[all]` দিয়ে.
 
