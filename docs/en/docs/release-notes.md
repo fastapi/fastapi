@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/how-to/index.md` and `docs/zh/docs/how-to/general.md`. PR [#11443](https://github.com/tiangolo/fastapi/pull/11443) by [@billzhong](https://github.com/billzhong).
 * 🌐 Add Spanish translation for cookie-params `docs/es/docs/tutorial/cookie-params.md`. PR [#11410](https://github.com/tiangolo/fastapi/pull/11410) by [@fabianfalon](https://github.com/fabianfalon).
 
 ### Internal
