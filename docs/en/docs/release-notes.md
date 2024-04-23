@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `fastapi/security/api_key.py`. PR [#11481](https://github.com/tiangolo/fastapi/pull/11481) by [@ch33zer](https://github.com/ch33zer).
 * ✏️ Fix typo in `security/http.py`. PR [#11455](https://github.com/tiangolo/fastapi/pull/11455) by [@omarmoo5](https://github.com/omarmoo5).
 
 ### Translations
