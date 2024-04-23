@@ -18,7 +18,7 @@ Pour y parvenir, importez `JSONResponse` et renvoyez-y directement votre contenu
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-!!! Attention
+!!! warning "Attention"
     Lorsque vous renvoyez une `Response` directement, comme dans l'exemple ci-dessus, elle sera renvoyée directement.
 
     Elle ne sera pas sérialisée avec un modèle.

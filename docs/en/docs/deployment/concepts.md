@@ -25,7 +25,7 @@ But for now, let's check these important **conceptual ideas**. These concepts al
 
 ## Security - HTTPS
 
-In the [previous chapter about HTTPS](./https.md){.internal-link target=_blank} we learned about how HTTPS provides encryption for your API.
+In the [previous chapter about HTTPS](https.md){.internal-link target=_blank} we learned about how HTTPS provides encryption for your API.
 
 We also saw that HTTPS is normally provided by a component **external** to your application server, a **TLS Termination Proxy**.
 
@@ -187,7 +187,7 @@ When you run **multiple processes** of the same API program, they are commonly c
 
 ### Worker Processes and Ports
 
-Remember from the docs [About HTTPS](./https.md){.internal-link target=_blank} that only one process can be listening on one combination of port and IP address in a server?
+Remember from the docs [About HTTPS](https.md){.internal-link target=_blank} that only one process can be listening on one combination of port and IP address in a server?
 
 This is still true.
 
@@ -230,18 +230,18 @@ The main constraint to consider is that there has to be a **single** component h
 Here are some possible combinations and strategies:
 
 * **Gunicorn** managing **Uvicorn workers**
-    * Gunicorn would be the **process manager** listening on the **IP** and **port**, the replication would be by having **multiple Uvicorn worker processes**
+    * Gunicorn would be the **process manager** listening on the **IP** and **port**, the replication would be by having **multiple Uvicorn worker processes**.
 * **Uvicorn** managing **Uvicorn workers**
-    * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**
+    * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**.
 * **Kubernetes** and other distributed **container systems**
-    * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running
+    * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running.
 * **Cloud services** that handle this for you
     * The cloud service will probably **handle replication for you**. It would possibly let you define **a process to run**, or a **container image** to use, in any case, it would most probably be **a single Uvicorn process**, and the cloud service would be in charge of replicating it.
 
 !!! tip
     Don't worry if some of these items about **containers**, Docker, or Kubernetes don't make a lot of sense yet.
 
-    I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
+    I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
 
 ## Previous Steps Before Starting
 
@@ -273,7 +273,7 @@ Here are some possible ideas:
     * You would still need a way to start/restart *that* bash script, detect errors, etc.
 
 !!! tip
-    I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
+    I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
 
 ## Resource Utilization
 

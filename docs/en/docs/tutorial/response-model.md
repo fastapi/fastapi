@@ -338,7 +338,7 @@ Your response model could have default values, like:
 
 * `description: Union[str, None] = None` (or `str | None = None` in Python 3.10) has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
-* `tags: List[str] = []` as a default of an empty list: `[]`.
+* `tags: List[str] = []` has a default of an empty list: `[]`.
 
 but you might want to omit them from the result if they were not actually stored.
 
@@ -383,7 +383,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
     The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
 
 !!! info
-    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+    FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
 !!! info
     You can also use:
@@ -391,7 +391,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    as described in <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+    as described in <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
 
 #### Data with values for fields with defaults
 

@@ -338,7 +338,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 
 Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
 
-This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+This <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
@@ -546,7 +546,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
 
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
-    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
 
 And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
 
