@@ -14,4 +14,6 @@ async def read_items(
     results = {"item_id": item_id}
     if q:
         results.update({"q": q})
+    if size:
+        results.update({"size": size})
     return results
