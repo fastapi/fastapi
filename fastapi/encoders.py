@@ -230,10 +230,14 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
+
         if (
-            isinstance(serialized, dict) and "__root__" in serialized
-        ):  # TODO: remove when deprecating Pydantic v1
+            not PYDANTIC_V2
+            and isinstance(serialized, dict)
+            and "__root__" in serialized
+        ):
             serialized = serialized["__root__"]
+
         return jsonable_encoder(
             serialized,
             exclude_none=exclude_none,

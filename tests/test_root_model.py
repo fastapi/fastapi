@@ -13,8 +13,7 @@ app = FastAPI()
 if PYDANTIC_V2:
     from pydantic import ConfigDict, Field, RootModel, field_validator, model_serializer
 
-    class Basic(RootModel[int]):
-        pass
+    Basic = RootModel[int]
 
     class FieldWrap(RootModel[str]):
         model_config = ConfigDict(
@@ -385,11 +384,12 @@ def test_root_model_dictwrap_422():
 
 
 @pytest.mark.parametrize(
-    "model, model_schema",
+    "model, path_name, model_schema",
     [
-        (Basic, {"title": "Basic", "type": "integer"}),
+        (Basic, "basic", {"title": "RootModel[int]", "type": "integer"}),
         (
             FieldWrap,
+            "fieldwrap",
             {
                 "title": "FieldWrap",
                 "type": "string",
@@ -399,6 +399,7 @@ def test_root_model_dictwrap_422():
         ),
         (
             CustomParsed,
+            "customparsed",
             {
                 "title": "CustomParsed",
                 "type": "string",
@@ -407,31 +408,33 @@ def test_root_model_dictwrap_422():
         ),
     ],
 )
-def test_openapi_schema(model: Type, model_schema: Dict[str, Any]):
+def test_openapi_schema(model: Type, path_name: str, model_schema: Dict[str, Any]):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
 
     paths = response.json()["paths"]
-    ref = {"schema": {"$ref": f"#/components/schemas/{model.__name__}"}}
-    assert paths[f"/query/{model.__name__.lower()}"]["get"]["parameters"] == [
-        {"in": "query", "name": "q", "required": True, **ref}
+    ref_name = model.__name__.replace("[", "_").replace("]", "_")
+    schema_ref = {"schema": {"$ref": f"#/components/schemas/{ref_name}"}}
+
+    assert paths[f"/query/{path_name}"]["get"]["parameters"] == [
+        {"in": "query", "name": "q", "required": True, **schema_ref}
     ]
-    assert paths[f"/path/{model.__name__.lower()}/{{p}}"]["get"]["parameters"] == [
-        {"in": "path", "name": "p", "required": True, **ref}
+    assert paths[f"/path/{path_name}/{{p}}"]["get"]["parameters"] == [
+        {"in": "path", "name": "p", "required": True, **schema_ref}
     ]
-    assert paths[f"/body/{model.__name__.lower()}"]["post"]["requestBody"] == {
-        "content": {"application/json": ref},
+    assert paths[f"/body/{path_name}"]["post"]["requestBody"] == {
+        "content": {"application/json": schema_ref},
         "required": True,
     }
-    assert paths[f"/body_default/{model.__name__.lower()}"]["post"]["requestBody"] == {
-        "content": {"application/json": ref},
+    assert paths[f"/body_default/{path_name}"]["post"]["requestBody"] == {
+        "content": {"application/json": schema_ref},
         "required": True,
     }
-    assert paths[f"/echo/{model.__name__.lower()}"]["get"]["responses"]["200"] == {
-        "content": {"application/json": ref},
+    assert paths[f"/echo/{path_name}"]["get"]["responses"]["200"] == {
+        "content": {"application/json": schema_ref},
         "description": "Successful Response",
     }
-    assert response.json()["components"]["schemas"][model.__name__] == {
+    assert response.json()["components"]["schemas"][ref_name] == {
         "title": model.__name__,
         **model_schema,
     }
