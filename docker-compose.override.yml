@@ -36,6 +36,9 @@ services:
       # Dummy https-redirect middleware that doesn't really redirect, only to
       # allow running it locally
       - traefik.http.middlewares.https-redirect.contenttype.autodetect=false
+    networks:
+      - traefik-public
+      - default
 
   db:
     restart: "no"
