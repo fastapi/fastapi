@@ -463,10 +463,6 @@ def test_delete_user_super_user(
     result = db.exec(select(User).where(User.id == user_id)).first()
     assert result is None
 
-    user_query = select(User).where(User.id == user_id)
-    user_db = db.execute(user_query).first()
-    assert user_db is None
-
 
 def test_delete_user_not_found(
     client: TestClient, superuser_token_headers: dict[str, str]
