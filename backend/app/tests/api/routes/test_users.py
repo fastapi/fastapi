@@ -142,7 +142,7 @@ def test_create_user_by_normal_user(
         headers=normal_user_token_headers,
         json=data,
     )
-    assert r.status_code == 400
+    assert r.status_code == 403
 
 
 def test_retrieve_users(
@@ -402,28 +402,7 @@ def test_update_user_email_exists(
     assert r.json()["detail"] == "User with this email already exists"
 
 
-def test_delete_user_super_user(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
-) -> None:
-    username = random_email()
-    password = random_lower_string()
-    user_in = UserCreate(email=username, password=password)
-    user = crud.create_user(session=db, user_create=user_in)
-    user_id = user.id
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/{user_id}",
-        headers=superuser_token_headers,
-    )
-    assert r.status_code == 200
-    deleted_user = r.json()
-    assert deleted_user["message"] == "User deleted successfully"
-
-    user_query = select(User).where(User.id == user_id)
-    user_db = db.execute(user_query).first()
-    assert user_db is None
-
-
-def test_delete_user_current_user(client: TestClient, db: Session) -> None:
+def test_delete_user_me(client: TestClient, db: Session) -> None:
     username = random_email()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
@@ -440,12 +419,49 @@ def test_delete_user_current_user(client: TestClient, db: Session) -> None:
     headers = {"Authorization": f"Bearer {a_token}"}
 
     r = client.delete(
-        f"{settings.API_V1_STR}/users/{user_id}",
+        f"{settings.API_V1_STR}/users/me",
         headers=headers,
     )
     assert r.status_code == 200
     deleted_user = r.json()
     assert deleted_user["message"] == "User deleted successfully"
+    result = db.exec(select(User).where(User.id == user_id)).first()
+    assert result is None
+
+    user_query = select(User).where(User.id == user_id)
+    user_db = db.execute(user_query).first()
+    assert user_db is None
+
+
+def test_delete_user_me_as_superuser(
+    client: TestClient, superuser_token_headers: dict[str, str]
+) -> None:
+    r = client.delete(
+        f"{settings.API_V1_STR}/users/me",
+        headers=superuser_token_headers,
+    )
+    assert r.status_code == 403
+    response = r.json()
+    assert response["detail"] == "Super users are not allowed to delete themselves"
+
+
+def test_delete_user_super_user(
+    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+) -> None:
+    username = random_email()
+    password = random_lower_string()
+    user_in = UserCreate(email=username, password=password)
+    user = crud.create_user(session=db, user_create=user_in)
+    user_id = user.id
+    r = client.delete(
+        f"{settings.API_V1_STR}/users/{user_id}",
+        headers=superuser_token_headers,
+    )
+    assert r.status_code == 200
+    deleted_user = r.json()
+    assert deleted_user["message"] == "User deleted successfully"
+    result = db.exec(select(User).where(User.id == user_id)).first()
+    assert result is None
 
     user_query = select(User).where(User.id == user_id)
     user_db = db.execute(user_query).first()
