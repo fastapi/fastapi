@@ -22,11 +22,11 @@
     * 具有最佳效能，因為除了伺服器本身之外，它沒有太多額外的程式碼。
     * 你不會直接在 Uvicorn 中編寫應用程式。這意味著你的程式碼必須或多或少地包含 Starlette（或 **FastAPI**）提供的所有程式碼。如果你這樣做，你的最終應用程式將具有與使用框架相同的開銷並最大限度地減少應用程式程式碼和錯誤。
     * 如果你要比較 Uvicorn，請將其與 Daphne、Hypercorn、uWSGI 等應用程式伺服器進行比較。
-* **Starlette**:
+* **Starlette**：
     * 繼 Uvicorn 之後的次佳表現。事實上，Starlette 使用 Uvicorn 來運行。因此它將可能只透過執行更多程式碼而變得比 Uvicorn「慢」。
     * 但它為你提供了建立簡單網頁應用程式的工具，以及基於路徑的路由等。
     * 如果你要比較 Starlette，請將其與 Sanic、Flask、Django 等網頁框架（或微框架）進行比較。
-* **FastAPI**:
+* **FastAPI**：
     * 就像 Starlette 使用 Uvicorn 並不能比它更快一樣， **FastAPI** 使用 Starlette，所以它不能比它更快。
     * FastAPI 在 Starlette 基礎之上提供了更多功能。包含建構 API 時所需要的功能，例如資料驗證和序列化。FastAPI 可以幫助你自動產生 API 文件，（應用程式啟動時將會自動生成文件，所以不會增加應用程式運行時的開銷）。
     * 如果你沒有使用 FastAPI 而是直接使用 Starlette（或其他工具，如 Sanic、Flask、Responder 等），你將必須自行實現所有資料驗證和序列化。因此，你的最終應用程式仍然具有與使用 FastAPI 建置相同的開銷。在許多情況下，這種資料驗證和序列化是應用程式中編寫最大量的程式碼。
