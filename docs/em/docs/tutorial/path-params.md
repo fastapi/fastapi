@@ -93,7 +93,7 @@
 
 ## Pydantic
 
-🌐 💽 🔬 🎭 🔽 🚘 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, 👆 🤚 🌐 💰 ⚪️➡️ ⚫️. &amp; 👆 💭 👆 👍 ✋.
+🌐 💽 🔬 🎭 🔽 🚘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, 👆 🤚 🌐 💰 ⚪️➡️ ⚫️. &amp; 👆 💭 👆 👍 ✋.
 
 👆 💪 ⚙️ 🎏 🆎 📄 ⏮️ `str`, `float`, `bool` &amp; 📚 🎏 🏗 📊 🆎.
 

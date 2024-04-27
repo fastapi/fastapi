@@ -8,6 +8,9 @@ on:
     types:
       - opened
       - synchronize
+  schedule:
+    # cron every week on monday
+    - cron: "0 0 * * 1"
 
 jobs:
   lint:
@@ -25,11 +28,11 @@ jobs:
           # Issue ref: https://github.com/actions/setup-python/issues/436
           # cache: "pip"
           # cache-dependency-path: pyproject.toml
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v07
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v08
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
@@ -63,11 +66,11 @@ jobs:
           # Issue ref: https://github.com/actions/setup-python/issues/436
           # cache: "pip"
           # cache-dependency-path: pyproject.toml
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v07
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v08
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt

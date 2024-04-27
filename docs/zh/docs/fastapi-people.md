@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI 社区
 
 FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋友。
@@ -18,7 +23,7 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 </div>
 {% endif %}
 
-我是 **FastAPI** 的创建者和维护者. 你能在 [帮助 FastAPI - 获取帮助 - 与作者联系](help-fastapi.md#connect-with-the-author){.internal-link target=_blank} 阅读有关此内容的更多信息。
+我是 **FastAPI** 的创建者和维护者. 你能在 [帮助 FastAPI - 获取帮助 - 与作者联系](help-fastapi.md#_2){.internal-link target=_blank} 阅读有关此内容的更多信息。
 
 ...但是在这里我想向您展示社区。
 
@@ -28,39 +33,98 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 这些人：
 
-* [帮助他人解决 GitHub 的 issues](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}。
-* [创建 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
-* 审核 Pull Requests， 对于 [翻译](contributing.md#translations){.internal-link target=_blank} 尤为重要。
+* [帮助他人解决 GitHub 上的问题](help-fastapi.md#github_1){.internal-link target=_blank}。
+* [创建 Pull Requests](help-fastapi.md#pr){.internal-link target=_blank}。
+* 审核 Pull Requests， 对于 [翻译](contributing.md#_8){.internal-link target=_blank} 尤为重要。
 
 向他们致以掌声。 👏 🙇
 
-## 上个月最活跃的用户
+## FastAPI 专家
 
-上个月这些用户致力于 [帮助他人解决 GitHub 的 issues](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}。
+这些用户一直以来致力于 [帮助他人解决 GitHub 上的问题](help-fastapi.md#github_1){.internal-link target=_blank}。 🙇
+
+他们通过帮助许多人而被证明是 **FastAPI 专家**。 ✨
+
+!!! 小提示
+    你也可以成为认可的 FastAPI 专家！
+
+    只需要 [帮助他人解决 GitHub 上的问题](help-fastapi.md#github_1){.internal-link target=_blank}。 🤓
+
+你可以查看不同时期的 **FastAPI 专家**：
+
+* [上个月](#fastapi-experts-last-month) 🤓
+* [三个月](#fastapi-experts-3-months) 😎
+* [六个月](#fastapi-experts-6-months) 🧐
+* [一年](#fastapi-experts-1-year) 🧑‍🔬
+* [**全部时间**](#fastapi-experts-all-time) 🧙
+
+## FastAPI 专家 - 上个月
+
+这些是在过去一个月中 [在 GitHub 上帮助他人解答最多问题](help-fastapi.md#github_1){.internal-link target=_blank} 的用户。 🤓
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">回答问题数： {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
 {% endif %}
 
-## 专家组
+### FastAPI 专家 - 三个月
 
-以下是 **FastAPI 专家**。 🤓
-
-这些用户一直以来致力于 [帮助他人解决 GitHub 的 issues](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}。
-
-他们通过帮助许多人而被证明是专家。✨
+这些是在过去三个月中 [在 GitHub 上帮助他人解答最多问题](help-fastapi.md#github_1){.internal-link target=_blank} 的用户。 😎
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.three_months_experts[:10] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">回答问题数： {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI 专家 - 六个月
+
+这些是在过去六个月中 [在 GitHub 上帮助他人解答最多问题](help-fastapi.md#github_1){.internal-link target=_blank} 的用户。 🧐
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.six_months_experts[:10] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">回答问题数： {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI 专家 - 一年
+
+这些是在过去一年中 [在 GitHub 上帮助他人解答最多问题](help-fastapi.md#github_1){.internal-link target=_blank} 的用户。 🧑‍🔬
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.one_year_experts[:20] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">回答问题数： {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+## FastAPI 专家 - 全部时间
+
+以下是全部时间的 **FastAPI 专家**。 🤓🤯
+
+这些用户一直以来致力于 [帮助他人解决 GitHub 的 上的问题](help-fastapi.md#github_1){.internal-link target=_blank}。 🧙
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.experts[:50] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">回答问题数： {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
@@ -70,13 +134,13 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 以下是 **杰出的贡献者**。 👷
 
-这些用户 [创建了最多已被合并的 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
+这些用户 [创建了最多已被合并的 Pull Requests](help-fastapi.md#pr){.internal-link target=_blank}。
 
 他们贡献了源代码，文档，翻译等。 📦
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -84,25 +148,19 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 </div>
 {% endif %}
 
-还有很多其他贡献者（超过100个），你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
+还有很多别的贡献者（超过100个），你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
 
-## 杰出审核者
+## 杰出翻译审核者
 
-以下用户是「杰出的评审者」。 🕵️
+以下用户是 **杰出的评审者**。 🕵️
 
-### 翻译审核
-
-我只会说少数几种语言（而且还不是很流利 😅）。所以，具备[能力去批准文档翻译](contributing.md#translations){.internal-link target=_blank} 是这些评审者们。如果没有它们，就不会有多语言文档。
-
----
-
-**杰出的评审者** 🕵️ 评审了最多来自他人的 Pull Requests，他们保证了代码、文档尤其是 **翻译** 的质量。
+我只会说少数几种语言（而且还不是很流利 😅）。所以这些评审者们具备[能力去批准文档翻译](contributing.md#_8){.internal-link target=_blank}。如果没有他们，就不会有多语言文档。
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">审核数： {{ user.count }}</div></div>
 {% endfor %}
 
 </div>

@@ -346,6 +346,6 @@ $ uvicorn main:app --root-path /api/v1
 
 ## 挂载子应用
 
-如需挂载子应用（详见 [子应用 - 挂载](./sub-applications.md){.internal-link target=_blank}），也要通过 `root_path` 使用代理，这与正常应用一样，别无二致。
+如需挂载子应用（详见 [子应用 - 挂载](sub-applications.md){.internal-link target=_blank}），也要通过 `root_path` 使用代理，这与正常应用一样，别无二致。
 
 FastAPI 在内部使用 `root_path`，因此子应用也可以正常运行。✨

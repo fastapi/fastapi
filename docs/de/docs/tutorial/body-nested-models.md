@@ -192,7 +192,7 @@ Wiederum, nur mit dieser Deklaration erhalten Sie von **FastAPI**:
 
 Abgesehen von normalen einfachen Typen, wie `str`, `int`, `float`, usw. können Sie komplexere einfache Typen verwenden, die von `str` erben.
 
-Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantics Typübersicht</a> an. Sie werden im nächsten Kapitel ein paar Beispiele kennenlernen.
+Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantics Typübersicht</a> an. Sie werden im nächsten Kapitel ein paar Beispiele kennenlernen.
 
 Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Instanz von Pydantics `HttpUrl` sein soll, anstelle eines `str`:
 

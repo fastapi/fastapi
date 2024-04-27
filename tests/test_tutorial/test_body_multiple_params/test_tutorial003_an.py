@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 
 @pytest.fixture(name="client")
@@ -46,21 +45,18 @@ def test_post_body_no_data(client: TestClient):
                     "loc": ["body", "item"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "user"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "importance"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -99,21 +95,18 @@ def test_post_body_empty_list(client: TestClient):
                     "loc": ["body", "item"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "user"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "importance"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }

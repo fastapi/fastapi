@@ -1,5 +1,14 @@
 Articles:
   English:
+  - author: Kurtis Pykes - NVIDIA
+    link: https://developer.nvidia.com/blog/building-a-machine-learning-microservice-with-fastapi/
+    title: Building a Machine Learning Microservice with FastAPI
+  - author: Ravgeet Dhillon - Twilio
+    link: https://www.twilio.com/en-us/blog/booking-appointments-twilio-notion-fastapi
+    title: Booking Appointments with Twilio, Notion, and FastAPI
+  - author: Abhinav Tripathi - Microsoft Blogs
+    link: https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-python-and-fastapi/
+    title: Write a Python data layer with Azure Cosmos DB and FastAPI
   - author: Donny Peeters
     author_link: https://github.com/Donnype
     link: https://bitestreams.com/blog/fastapi-sqlalchemy/
@@ -340,6 +349,14 @@ Articles:
     title: 'Tortoise ORM / FastAPI 整合快速筆記'
 Podcasts:
   English:
+  - author: Real Python
+    author_link: https://realpython.com/
+    link: https://realpython.com/podcasts/rpp/72/
+    title: Starting With FastAPI and Examining Python's Import System - Episode 72
+  - author: Python Bytes FM
+    author_link: https://pythonbytes.fm/
+    link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
+    title: 'Do you dare to press "."? - Episode 247 - Dan #6: SQLModel - use the same models for SQL and FastAPI'
   - author: Podcast.`__init__`
     author_link: https://www.pythonpodcast.com/
     link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/

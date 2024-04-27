@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -30,7 +39,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 ویژگی‌های کلیدی این فریم‌ورک عبارتند از:
 
-* **<abbr title="Fast">سرعت</abbr>**: کارایی بسیار بالا و قابل مقایسه با  **NodeJS** و **Go** (با تشکر از Starlette و Pydantic). [یکی از سریع‌ترین فریم‌ورک‌های پایتونی موجود](#performance).
+* **<abbr title="Fast">سرعت</abbr>**: کارایی بسیار بالا و قابل مقایسه با  **NodeJS** و **Go** (با تشکر از Starlette و Pydantic). [یکی از سریع‌ترین فریم‌ورک‌های پایتونی موجود](#_10).
 
 * **<abbr title="Fast to code">کدنویسی سریع</abbr>**: افزایش ۲۰۰ تا ۳۰۰ درصدی سرعت توسعه قابلیت‌های جدید. *
 * **<abbr title="Fewer bugs">باگ کمتر</abbr>**: کاهش ۴۰ درصدی خطاهای انسانی (برنامه‌نویسی). *
@@ -111,7 +120,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 FastAPI مبتنی بر ابزارهای قدرتمند زیر است:
 
 * فریم‌ورک <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> برای بخش وب.
-* کتابخانه <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
+* کتابخانه <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
 
 ## نصب
 
@@ -443,16 +452,16 @@ item: Item
 * <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - در صورتی که می‌خواهید از `TestClient` استفاده کنید.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - در صورتی که می‌خواهید از `FileResponse` و `StaticFiles` استفاده کنید.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - در صورتی که بخواهید از پیکربندی پیش‌فرض برای قالب‌ها استفاده کنید.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - در صورتی که بخواهید با استفاده از `request.form()` از قابلیت <abbr title="تبدیل رشته متنی موجود در درخواست HTTP به انواع داده پایتون">"تجزیه (parse)"</abbr> فرم استفاده کنید.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - در صورتی که بخواهید با استفاده از `request.form()` از قابلیت <abbr title="تبدیل رشته متنی موجود در درخواست HTTP به انواع داده پایتون">"تجزیه (parse)"</abbr> فرم استفاده کنید.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - در صورتی که بخواید از `SessionMiddleware` پشتیبانی کنید.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - برای پشتیبانی `SchemaGenerator` در Starlet (به احتمال زیاد برای کار کردن با FastAPI به آن نیازی پیدا نمی‌کنید).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - در صورتی که از  `GraphQLApp` پشتیبانی می‌کنید.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 استفاده شده توسط FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - برای سرور اجرا کننده برنامه وب.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - در صورتی که بخواهید از `ORJSONResponse` استفاده کنید.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 می‌توان همه این موارد را با استفاده از دستور `pip install fastapi[all]`. به صورت یکجا نصب کرد.
 

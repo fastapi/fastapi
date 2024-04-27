@@ -179,7 +179,7 @@ Isso será definido no OpenAPI com `anyOf`.
 Para fazer isso, use a dica de tipo padrão do Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note
-    Ao definir um <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+    Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
 
 === "Python 3.8 and above"
 

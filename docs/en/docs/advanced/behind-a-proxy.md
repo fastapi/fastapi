@@ -345,6 +345,6 @@ and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 
 FastAPI will internally use the `root_path` smartly, so it will just work. ✨
