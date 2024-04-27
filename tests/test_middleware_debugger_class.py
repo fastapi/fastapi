@@ -8,8 +8,6 @@ from fastapi.middleware.debugger import (
 )
 from fastapi.testclient import TestClient
 
-MAGIC_VALUE_THAT_NEVER_RETURNS = 42
-
 
 def get_client_for_new_app(middlware_params=None):
     app = FastAPI()
@@ -18,7 +16,6 @@ def get_client_for_new_app(middlware_params=None):
     @app.get("/call-debugger-on-raise")
     async def raise_exception():
         raise ValueError("Test")
-        return MAGIC_VALUE_THAT_NEVER_RETURNS
 
     return TestClient(app)
 
@@ -39,8 +36,7 @@ def test_pdb(pdb_test_client):
     pdb_mock = MagicMock()
     with patch.dict("sys.modules", {"pdb": pdb_mock}):
         with pytest.raises(ValueError):
-            result = pdb_test_client.get("/call-debugger-on-raise")
-            assert result != MAGIC_VALUE_THAT_NEVER_RETURNS
+            _ = pdb_test_client.get("/call-debugger-on-raise")
 
     assert pdb_mock.pm.called
 
@@ -49,7 +45,6 @@ def test_webpdb(webpdb_test_client):
     webpdb_mock = MagicMock()
     with patch.dict("sys.modules", {"web_pdb": webpdb_mock}):
         with pytest.raises(ValueError):
-            result = webpdb_test_client.get("/call-debugger-on-raise")
-            assert result != MAGIC_VALUE_THAT_NEVER_RETURNS
+            _ = webpdb_test_client.get("/call-debugger-on-raise")
 
     assert webpdb_mock.catch_post_mortem.called
