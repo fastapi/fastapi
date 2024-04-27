@@ -39,7 +39,8 @@ def test_pdb(pdb_test_client):
     pdb_mock = MagicMock()
     with patch.dict("sys.modules", {"pdb": pdb_mock}):
         with pytest.raises(ValueError):
-            _ = pdb_test_client.get("/call-debugger-on-raise")
+            result = pdb_test_client.get("/call-debugger-on-raise")
+            assert result != MAGIC_VALUE_THAT_NEVER_RETURNS
 
     assert pdb_mock.pm.called
 
@@ -48,6 +49,7 @@ def test_webpdb(webpdb_test_client):
     webpdb_mock = MagicMock()
     with patch.dict("sys.modules", {"web_pdb": webpdb_mock}):
         with pytest.raises(ValueError):
-            _ = webpdb_test_client.get("/call-debugger-on-raise")
+            result = webpdb_test_client.get("/call-debugger-on-raise")
+            assert result != MAGIC_VALUE_THAT_NEVER_RETURNS
 
     assert webpdb_mock.catch_post_mortem.called
