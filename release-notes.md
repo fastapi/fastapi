@@ -51,6 +51,7 @@
 
 ### Upgrades
 
+* Bump idna from 3.6 to 3.7 in /backend. PR [#1168](https://github.com/tiangolo/full-stack-fastapi-template/pull/1168) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🆙 Update React Query to TanStack Query. PR [#1153](https://github.com/tiangolo/full-stack-fastapi-template/pull/1153) by [@patrick91](https://github.com/patrick91).
 * Bump vite from 5.0.12 to 5.0.13 in /frontend. PR [#1149](https://github.com/tiangolo/full-stack-fastapi-template/pull/1149) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * Bump follow-redirects from 1.15.5 to 1.15.6 in /frontend. PR [#734](https://github.com/tiangolo/full-stack-fastapi-template/pull/734) by [@dependabot[bot]](https://github.com/apps/dependabot).
