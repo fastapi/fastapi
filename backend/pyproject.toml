@@ -15,7 +15,7 @@ tenacity = "^8.2.3"
 pydantic = ">2.0"
 emails = "^0.6"
 
-gunicorn = "^21.2.0"
+gunicorn = "^22.0.0"
 jinja2 = "^3.1.2"
 alembic = "^1.12.1"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
