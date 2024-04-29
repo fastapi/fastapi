@@ -109,6 +109,8 @@ source-includes = [
     "docs_src/",
     "requirements*.txt",
     "scripts/",
+    # For a test
+    "docs/en/docs/img/favicon.png",
     ]
 
 
