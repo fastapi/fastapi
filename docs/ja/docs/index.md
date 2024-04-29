@@ -33,7 +33,7 @@ hide:
 
 ---
 
-FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.8 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
 
 主な特徴:
 
@@ -115,8 +115,6 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.8 以�
 **Typer**は FastAPI の弟分です。そして、**CLI 版 の FastAPI**を意味しています。
 
 ## 必要条件
-
-Python 3.8+
 
 FastAPI は巨人の肩の上に立っています。
 

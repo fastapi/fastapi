@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip Məsləhətləri: Type Hints">tip məsləhətlərinə</abbr> əsaslanan, müasir, sürətli (yüksək performanslı) framework-dür.
+FastAPI Python ilə API yaratmaq üçün standart Python <abbr title="Tip Məsləhətləri: Type Hints">tip məsləhətlərinə</abbr> əsaslanan, müasir, sürətli (yüksək performanslı) framework-dür.
 
 Əsas xüsusiyyətləri bunlardır:
 
@@ -114,8 +114,6 @@ FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip M
 **Typer** FastAPI-ın kiçik qardaşıdır. Və o, CLI-lərin **FastAPI**-ı olmaq üçün nəzərdə tutulub. ⌨️ 🚀
 
 ## Tələblər
-
-Python 3.8+
 
 FastAPI nəhənglərin çiyinlərində dayanır:
 
@@ -330,7 +328,7 @@ Bunu standart müasir Python tipləri ilə edirsiniz.
 
 Yeni sintaksis, müəyyən bir kitabxananın metodlarını və ya siniflərini və s. öyrənmək məcburiyyətində deyilsiniz.
 
-Sadəcə standart **Python 3.8+**.
+Sadəcə standart **Python**.
 
 Məsələn, `int` üçün:
 

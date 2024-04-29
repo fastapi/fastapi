@@ -36,7 +36,7 @@ hide:
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
 
 The key features are:
 
@@ -123,8 +123,6 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 **Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
 
 ## Requirements
-
-Python 3.8+
 
 FastAPI stands on the shoulders of giants:
 
@@ -340,7 +338,7 @@ You do that with standard modern Python types.
 
 You don't have to learn a new syntax, the methods or classes of a specific library, etc.
 
-Just standard **Python 3.8+**.
+Just standard **Python**.
 
 For example, for an `int`:
 

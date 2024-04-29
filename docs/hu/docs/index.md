@@ -26,7 +26,7 @@
 **Forrás kód**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python 3.8+-al, a Python szabványos típusjelöléseire építve.
+A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
 
 
 Kulcs funkciók:
@@ -114,8 +114,6 @@ Ha egy olyan CLI alkalmazást fejlesztesz amit a parancssorban kell használni w
 **Typer** a FastAPI kistestvére. A **CLI-k FastAPI-ja**. ⌨️ 🚀
 
 ## Követelmények
-
-Python 3.8+
 
 A FastAPI óriások vállán áll:
 
@@ -331,7 +329,7 @@ Ezt standard modern Python típusokkal csinálod.
 
 Nem kell új szintaxist, vagy specifikus könyvtár mert metódósait, stb. megtanulnod.
 
-Csak standard **Python 3.8+**.
+Csak standard **Python**.
 
 Például egy `int`-nek:
 
