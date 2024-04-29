@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.8+ 並採用標準 Python 型別提示。
+FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 並採用標準 Python 型別提示。
 
 主要特點包含：
 
@@ -114,8 +114,6 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 **Typer** 是 FastAPI 的小兄弟。他立志成為命令列的 **FastAPI**。 ⌨️ 🚀
 
 ## 安裝需求
-
-Python 3.8+
 
 FastAPI 是站在以下巨人的肩膀上：
 
@@ -331,7 +329,7 @@ def update_item(item_id: int, item: Item):
 
 你不需要學習新的語法、類別、方法或函式庫等等。
 
-只需要使用 **Python 3.8 以上的版本**。
+只需要使用 **Python 以上的版本**。
 
 舉個範例，比如宣告 int 的型別：
 
