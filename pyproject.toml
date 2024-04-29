@@ -53,22 +53,22 @@ Repository = "https://github.com/tiangolo/fastapi"
 
 [project.optional-dependencies]
 
-standard = [
-    # For the test client
-    "httpx >=0.23.0",
-    # For templates
-    "jinja2 >=2.11.2",
-    # For forms and file uploads
-    "python-multipart >=0.0.7",
-    # To validate email fields
-    "email_validator >=2.0.0",
-    # Uvicorn with uvloop
-    "uvicorn[standard] >=0.12.0",
-    # Settings management
-    "pydantic-settings >=2.0.0",
-    # Extra Pydantic data types
-    "pydantic-extra-types >=2.0.0",
-]
+# standard = [
+#     # For the test client
+#     "httpx >=0.23.0",
+#     # For templates
+#     "jinja2 >=2.11.2",
+#     # For forms and file uploads
+#     "python-multipart >=0.0.7",
+#     # To validate email fields
+#     "email_validator >=2.0.0",
+#     # Uvicorn with uvloop
+#     "uvicorn[standard] >=0.12.0",
+#     # Settings management
+#     "pydantic-settings >=2.0.0",
+#     # Extra Pydantic data types
+#     "pydantic-extra-types >=2.0.0",
+# ]
 
 all = [
     # # For the test client
