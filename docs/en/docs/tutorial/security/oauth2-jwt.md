@@ -260,7 +260,7 @@ If the token is invalid, return an HTTP error right away.
 
 Create a `timedelta` with the expiration time of the token.
 
-Create a real JWT access token and return it
+Create a real JWT access token and return it.
 
 === "Python 3.10+"
 

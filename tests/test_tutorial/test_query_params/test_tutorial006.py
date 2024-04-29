@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 
 @pytest.fixture(name="client")
@@ -34,21 +33,18 @@ def test_foo_no_needy(client: TestClient):
                     "loc": ["query", "needy"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "skip"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "a",
-                    "url": match_pydantic_error_url("int_parsing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "limit"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "b",
-                    "url": match_pydantic_error_url("int_parsing"),
                 },
             ]
         }

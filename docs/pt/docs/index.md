@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -24,7 +33,7 @@
 
 ---
 
-FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python 3.8 ou superior, baseado nos _type hints_ padrões do Python.
+FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python, baseado nos _type hints_ padrões do Python.
 
 Os recursos chave são:
 
@@ -99,8 +108,6 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 **Typer** é o irmão menor do FastAPI. E seu propósito é ser o **FastAPI das _CLIs_**. ⌨️ 🚀
 
 ## Requisitos
-
-Python 3.8+
 
 FastAPI está nos ombros de gigantes:
 
@@ -316,7 +323,7 @@ Você faz com tipos padrão do Python moderno.
 
 Você não terá que aprender uma nova sintaxe, métodos ou classes de uma biblioteca específica etc.
 
-Apenas **Python 3.8+** padrão.
+Apenas **Python** padrão.
 
 Por exemplo, para um `int`:
 
@@ -440,12 +447,12 @@ Usados por Starlette:
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Necessário para suporte a `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Necessário para suporte a `SchemaGenerator` da Starlette (você provavelmente não precisará disso com o FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Necessário para suporte a `GraphQLApp`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Necessário se você quer utilizar `UJSONResponse`.
 
 Usados por FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para o servidor que carrega e serve sua aplicação.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Necessário se você quer utilizar `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Necessário se você quer utilizar `UJSONResponse`.
 
 Você pode instalar todas essas dependências com `pip install fastapi[all]`.
 
