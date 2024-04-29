@@ -26,6 +26,7 @@ hide:
 
 ### Internal
 
+* 🔧 Migrate from Hatch to PDM for the internal build. PR [#11498](https://github.com/tiangolo/fastapi/pull/11498) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade MkDocs Material and re-enable cards. PR [#11466](https://github.com/tiangolo/fastapi/pull/11466) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pillow from 10.2.0 to 10.3.0. PR [#11403](https://github.com/tiangolo/fastapi/pull/11403) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Ungroup dependabot updates. PR [#11465](https://github.com/tiangolo/fastapi/pull/11465) by [@tiangolo](https://github.com/tiangolo).
