@@ -4,10 +4,6 @@ on:
   release:
     types:
       - created
-  # TODO: remove this
-  push:
-    branches:
-      - pdm
 
 jobs:
   publish:
