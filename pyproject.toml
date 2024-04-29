@@ -1,13 +1,13 @@
 [build-system]
-requires = ["hatchling >= 1.13.0"]
-build-backend = "hatchling.build"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [project]
 name = "fastapi"
+dynamic = ["version"]
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
 requires-python = ">=3.8"
-license = "MIT"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
@@ -45,7 +45,6 @@ dependencies = [
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
-dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/tiangolo/fastapi"
@@ -53,22 +52,67 @@ Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/tiangolo/fastapi"
 
 [project.optional-dependencies]
+
+# standard = [
+#     # For the test client
+#     "httpx >=0.23.0",
+#     # For templates
+#     "jinja2 >=2.11.2",
+#     # For forms and file uploads
+#     "python-multipart >=0.0.7",
+#     # For UJSONResponse
+#     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+#     # For ORJSONResponse
+#     "orjson >=3.2.1",
+#     # To validate email fields
+#     "email_validator >=2.0.0",
+#     # Uvicorn with uvloop
+#     "uvicorn[standard] >=0.12.0",
+#     # Settings management
+#     "pydantic-settings >=2.0.0",
+#     # Extra Pydantic data types
+#     "pydantic-extra-types >=2.0.0",
+# ]
+
 all = [
+    # # For the test client
     "httpx >=0.23.0",
+    # For templates
     "jinja2 >=2.11.2",
+    # For forms and file uploads
     "python-multipart >=0.0.7",
+    # For Starlette's SessionMiddleware, not commonly used with FastAPI
     "itsdangerous >=1.1.0",
+    # For Starlette's schema generation, would not be used with FastAPI
     "pyyaml >=5.3.1",
+    # For UJSONResponse
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    # For ORJSONResponse
     "orjson >=3.2.1",
+    # To validate email fields
     "email_validator >=2.0.0",
+    # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
+    # Settings management
     "pydantic-settings >=2.0.0",
+    # Extra Pydantic data types
     "pydantic-extra-types >=2.0.0",
 ]
 
-[tool.hatch.version]
-path = "fastapi/__init__.py"
+[tool.pdm]
+version = { source = "file", path = "fastapi/__init__.py" }
+distribution = true
+
+[tool.pdm.build]
+source-includes = [
+    "tests/",
+    "docs_src/",
+    "requirements*.txt",
+    "scripts/",
+    # For a test
+    "docs/en/docs/img/favicon.png",
+    ]
+
 
 [tool.mypy]
 strict = true
