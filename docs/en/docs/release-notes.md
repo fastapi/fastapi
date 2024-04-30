@@ -7,10 +7,6 @@ hide:
 
 ## Latest Changes
 
-### Upgrades
-
-* ⬆ Bump mkdocstrings[python] from 0.23.0 to 0.24.3. PR [#11469](https://github.com/tiangolo/fastapi/pull/11469) by [@dependabot[bot]](https://github.com/apps/dependabot).
-
 ### Docs
 
 * 📝 Update references to Python version, FastAPI supports all the current versions, no need to make the version explicit. PR [#11496](https://github.com/tiangolo/fastapi/pull/11496) by [@tiangolo](https://github.com/tiangolo).
