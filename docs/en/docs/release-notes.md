@@ -26,6 +26,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump mkdocstrings[python] from 0.23.0 to 0.24.3. PR [#11469](https://github.com/tiangolo/fastapi/pull/11469) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔨 Update internal scripts and remove unused ones. PR [#11499](https://github.com/tiangolo/fastapi/pull/11499) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Migrate from Hatch to PDM for the internal build. PR [#11498](https://github.com/tiangolo/fastapi/pull/11498) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade MkDocs Material and re-enable cards. PR [#11466](https://github.com/tiangolo/fastapi/pull/11466) by [@tiangolo](https://github.com/tiangolo).
