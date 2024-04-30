@@ -4,6 +4,10 @@ on:
   release:
     types:
       - created
+  # TODO: remove this
+  push:
+    branches:
+      - slim
 
 jobs:
   publish:
@@ -12,6 +16,7 @@ jobs:
       matrix:
         package:
           - fastapi
+          - fastapi-slim
     permissions:
       id-token: write
     steps:
