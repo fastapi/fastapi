@@ -5,6 +5,8 @@ hide:
 
 # Release Notes
 
+## 0.110.3
+
 ## Latest Changes
 
 ### Docs
