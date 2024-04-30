@@ -12,6 +12,7 @@ jobs:
       matrix:
         package:
           - fastapi
+          - fastapi-slim
     permissions:
       id-token: write
     steps:

@@ -53,26 +53,27 @@ Repository = "https://github.com/tiangolo/fastapi"
 
 [project.optional-dependencies]
 
-# standard = [
-#     # For the test client
-#     "httpx >=0.23.0",
-#     # For templates
-#     "jinja2 >=2.11.2",
-#     # For forms and file uploads
-#     "python-multipart >=0.0.7",
-#     # For UJSONResponse
-#     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
-#     # For ORJSONResponse
-#     "orjson >=3.2.1",
-#     # To validate email fields
-#     "email_validator >=2.0.0",
-#     # Uvicorn with uvloop
-#     "uvicorn[standard] >=0.12.0",
-#     # Settings management
-#     "pydantic-settings >=2.0.0",
-#     # Extra Pydantic data types
-#     "pydantic-extra-types >=2.0.0",
-# ]
+standard = [
+    # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=2.11.2",
+    # For forms and file uploads
+    "python-multipart >=0.0.7",
+    # For UJSONResponse
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    # For ORJSONResponse
+    "orjson >=3.2.1",
+    # To validate email fields
+    "email_validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # TODO: this should be part of some pydantic optional extra dependencies
+    # # Settings management
+    # "pydantic-settings >=2.0.0",
+    # # Extra Pydantic data types
+    # "pydantic-extra-types >=2.0.0",
+]
 
 all = [
     # # For the test client
@@ -113,6 +114,37 @@ source-includes = [
     "docs/en/docs/img/favicon.png",
     ]
 
+[tool.tiangolo._internal-slim-build.packages.fastapi-slim.project]
+name = "fastapi-slim"
+
+[tool.tiangolo._internal-slim-build.packages.fastapi]
+include-optional-dependencies = ["standard"]
+
+[tool.tiangolo._internal-slim-build.packages.fastapi.project.optional-dependencies]
+all = [
+    # # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=2.11.2",
+    # For forms and file uploads
+    "python-multipart >=0.0.7",
+    # For Starlette's SessionMiddleware, not commonly used with FastAPI
+    "itsdangerous >=1.1.0",
+    # For Starlette's schema generation, would not be used with FastAPI
+    "pyyaml >=5.3.1",
+    # For UJSONResponse
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    # For ORJSONResponse
+    "orjson >=3.2.1",
+    # To validate email fields
+    "email_validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # Settings management
+    "pydantic-settings >=2.0.0",
+    # Extra Pydantic data types
+    "pydantic-extra-types >=2.0.0",
+]
 
 [tool.mypy]
 strict = true
