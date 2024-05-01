@@ -32,10 +32,8 @@ def protect(endpoint: Callable[..., Any]):
 
 class CustomAPIRoute(APIRoute):
     def __init__(
-        self, path: str, endpoint: Callable[..., Any], dependencies=None, **kwargs
+        self, path: str, endpoint: Callable[..., Any], dependencies, **kwargs
     ) -> None:
-        if dependencies is None:
-            dependencies = []
         if isinstance(endpoint, EndpointWrapper) and endpoint.protected:
             dependencies.append(Depends(dummy_secruity_check))
         super().__init__(path, endpoint, dependencies=dependencies, **kwargs)
