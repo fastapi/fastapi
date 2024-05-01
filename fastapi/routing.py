@@ -211,8 +211,7 @@ def get_request_handler(
     is_coroutine = (
         asyncio.iscoroutinefunction(dependant.call)
         or callable(dependant.call)
-        and callable(dependant.call)
-        and inspect.iscoroutinefunction(dependant.call.__call__)
+        and inspect.iscoroutinefunction(dependant.call.__call__) # type: ignore[operator]
     )
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
