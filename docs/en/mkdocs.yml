@@ -133,7 +133,6 @@ nav:
     - tutorial/metadata.md
     - tutorial/static-files.md
     - tutorial/testing.md
-    - tutorial/fastapi-cli.md
     - tutorial/debugging.md
   - Advanced User Guide:
     - advanced/index.md
@@ -168,6 +167,7 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+  - fastapi-cli.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
