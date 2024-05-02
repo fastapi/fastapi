@@ -5,9 +5,9 @@ hide:
 
 # Release Notes
 
-## 0.110.3
-
 ## Latest Changes
+
+## 0.111.0
 
 ### Features
 
@@ -16,6 +16,8 @@ hide:
 ### Refactors
 
 * 🔧 Add configs and setup for `fastapi-slim` including optional extras `fastapi-slim[standard]`, and `fastapi` including by default the same `standard` extras. PR [#11503](https://github.com/tiangolo/fastapi/pull/11503) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.110.3
 
 ### Docs
 
