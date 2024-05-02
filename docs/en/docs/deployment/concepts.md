@@ -94,7 +94,7 @@ In most cases, when you create a web API, you want it to be **always running**, 
 
 ### In a Remote Server
 
-When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is to run Uvicorn (or similar) manually, the same way you do when developing locally.
+When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is to use `fastapi run`, Uvicorn (or similar) manually, the same way you do when developing locally.
 
 And it will work and will be useful **during development**.
 
