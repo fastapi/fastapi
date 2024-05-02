@@ -60,6 +60,8 @@ FastAPI CLI takes the path to your Python program and automatically detects the 
 
 For production you would use `fastapi run` instead. 🚀
 
+Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, a high-performance, production-ready, ASGI server. 😎
+
 ## `fastapi dev`
 
 When you run `fastapi dev`, it will run on development mode.
