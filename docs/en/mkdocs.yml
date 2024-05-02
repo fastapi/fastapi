@@ -133,6 +133,7 @@ nav:
     - tutorial/metadata.md
     - tutorial/static-files.md
     - tutorial/testing.md
+    - tutorial/fastapi-cli.md
     - tutorial/debugging.md
   - Advanced User Guide:
     - advanced/index.md
