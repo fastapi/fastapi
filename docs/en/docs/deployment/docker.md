@@ -21,10 +21,10 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./app /code/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 # If running behind a proxy like Nginx or Traefik add --proxy-headers
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
+# CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
 </details>
@@ -113,9 +113,8 @@ You would of course use the same ideas you read in [About FastAPI versions](vers
 For example, your `requirements.txt` could look like:
 
 ```
-fastapi>=0.68.0,<0.69.0
-pydantic>=1.8.0,<2.0.0
-uvicorn>=0.15.0,<0.16.0
+fastapi>=0.112.0,<0.113.0
+pydantic>=2.7.0,<3.0.0
 ```
 
 And you would normally install those package dependencies with `pip`, for example:
@@ -125,15 +124,13 @@ And you would normally install those package dependencies with `pip`, for exampl
 ```console
 $ pip install -r requirements.txt
 ---> 100%
-Successfully installed fastapi pydantic uvicorn
+Successfully installed fastapi pydantic
 ```
 
 </div>
 
 !!! info
     There are other formats and tools to define and install package dependencies.
-
-    I'll show you an example using Poetry later in a section below. 👇
 
 ### Create the **FastAPI** Code
 
@@ -180,7 +177,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 # (6)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 1. Start from the official Python base image.
@@ -214,13 +211,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     So, it's important to put this **near the end** of the `Dockerfile`, to optimize the container image build times.
 
-6. Set the **command** to run the `uvicorn` server.
+6. Set the **command** to use `fastapi run`, which uses Uvicorn underneath.
 
     `CMD` takes a list of strings, each of these strings is what you would type in the command line separated by spaces.
 
     This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
-
-    Because the program will be started at `/code` and inside of it is the directory `./app` with your code, **Uvicorn** will be able to see and **import** `app` from `app.main`.
 
 !!! tip
     Review what each line does by clicking each number bubble in the code. 👆
@@ -238,10 +233,10 @@ You should now have a directory structure like:
 
 #### Behind a TLS Termination Proxy
 
-If you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option `--proxy-headers`, this will tell Uvicorn to trust the headers sent by that proxy telling it that the application is running behind HTTPS, etc.
+If you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option `--proxy-headers`, this will tell Uvicorn (through the FastAPI CLI) to trust the headers sent by that proxy telling it that the application is running behind HTTPS, etc.
 
 ```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 ```
 
 #### Docker Cache
@@ -362,14 +357,14 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./main.py /code/
 
 # (2)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "main.py", "--port", "80"]
 ```
 
 1. Copy the `main.py` file to the `/code` directory directly (without any `./app` directory).
 
-2. Run Uvicorn and tell it to import the `app` object from `main` (instead of importing from `app.main`).
+2. Use `fastapi run` to serve your application in the single file `main.py`.
 
-Then adjust the Uvicorn command to use the new module `main` instead of `app.main` to import the FastAPI object `app`.
+When you pass the file to `fastapi run` it will detect automatically that it is a single file and not part of a package and will know how to import it and serve your FastAPI app. 😎
 
 ## Deployment Concepts
 
@@ -626,7 +621,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 # (11)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 1. This is the first stage, it is named `requirements-stage`.
@@ -655,7 +650,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 10. Copy the `app` directory to the `/code` directory.
 
-11. Run the `uvicorn` command, telling it to use the `app` object imported from `app.main`.
+11. Use the `fastapi run` command to run your app.
 
 !!! tip
     Click the bubble numbers to see what each line does.
@@ -677,7 +672,7 @@ Then in the next (and final) stage you would build the image more or less in the
 Again, if you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option `--proxy-headers` to the command:
 
 ```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 ```
 
 ## Recap

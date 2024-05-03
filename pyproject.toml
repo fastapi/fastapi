@@ -54,6 +54,7 @@ Repository = "https://github.com/tiangolo/fastapi"
 [project.optional-dependencies]
 
 standard = [
+    "fastapi-cli >=0.0.2",
     # For the test client
     "httpx >=0.23.0",
     # For templates
@@ -76,6 +77,7 @@ standard = [
 ]
 
 all = [
+    "fastapi-cli >=0.0.2",
     # # For the test client
     "httpx >=0.23.0",
     # For templates

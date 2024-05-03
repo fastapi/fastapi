@@ -1,18 +1,10 @@
-# Tutorial - User Guide
+# FastAPI CLI
 
-This tutorial shows you how to use **FastAPI** with most of its features, step by step.
+**FastAPI CLI** is a command line program `fastapi` that you can use to serve your FastAPI app, manage your FastAPI project, and more.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+When you install FastAPI (e.g. with `pip install fastapi`), it includes a package called `fastapi-cli`, this package provides the `fastapi` command in the terminal.
 
-It is also built to work as a future reference.
-
-So you can come back and see exactly what you need.
-
-## Run the code
-
-All the code blocks can be copied and used directly (they are actually tested Python files).
-
-To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev` with:
+To run your FastAPI app for development, you can use the `fastapi dev` command:
 
 <div class="termy">
 
@@ -58,42 +50,35 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 <font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">2265873</font>]
 <font color="#4E9A06">INFO</font>:     Waiting for application startup.
 <font color="#4E9A06">INFO</font>:     Application startup complete.
-</pre>
 ```
 
 </div>
 
-It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.
+That command line program called `fastapi` is **FastAPI CLI**.
 
-Using it in your editor is what really shows you the benefits of FastAPI, seeing how little code you have to write, all the type checks, autocompletion, etc.
+FastAPI CLI takes the path to your Python program and automatically detects the variable with the FastAPI (commonly named `app`) and how to import it, and then serves it.
 
----
+For production you would use `fastapi run` instead. 🚀
 
-## Install FastAPI
+Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, a high-performance, production-ready, ASGI server. 😎
 
-The first step is to install FastAPI:
+## `fastapi dev`
 
-<div class="termy">
+When you run `fastapi dev`, it will run on development mode.
 
-```console
-$ pip install fastapi
+By default, it will have **auto-reload** enabled, so it will automatically reload the server when you make changes to your code. This is resource intensive and could be less stable than without it, you should only use it for development.
 
----> 100%
-```
+By default it will listen on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
 
-</div>
+## `fastapi run`
 
-!!! note
-    When you install with `pip install fastapi` it comes with some default optional standard dependencies.
+When you run `fastapi run`, it will run on production mode by default.
 
-    If you don't want to have those optional dependencies, you can instead install `pip install fastapi-slim`.
+It will have **auto-reload disabled** by default.
 
-## Advanced User Guide
+It will listen on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
 
-There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+In most cases you would (and should) have a "termination proxy" handling HTTPS for you on top, this will depend on how you deploy your application, your provider might do this for you, or you might need to set it up yourself.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
-
-But you should first read the **Tutorial - User Guide** (what you are reading right now).
-
-It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+!!! tip
+    You can learn more about it in the [deployment documentation](../deployment/index.md){.internal-link target=_blank}.
