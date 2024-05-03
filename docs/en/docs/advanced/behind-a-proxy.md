@@ -22,7 +22,7 @@ Even though all your code is written assuming there's just `/app`.
 {!../../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
-And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to Uvicorn, keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
+And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
 Up to here, everything would work as normally.
 
@@ -63,7 +63,7 @@ The docs UI would also need the OpenAPI schema to declare that this API `server`
 }
 ```
 
-In this example, the "Proxy" could be something like **Traefik**. And the server would be something like **Uvicorn**, running your FastAPI application.
+In this example, the "Proxy" could be something like **Traefik**. And the server would be something like FastAPI CLI with **Uvicorn**, running your FastAPI application.
 
 ### Providing the `root_path`
 
@@ -72,7 +72,7 @@ To achieve this, you can use the command line option `--root-path` like:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -101,7 +101,7 @@ Then, if you start Uvicorn with:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -216,12 +216,12 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 </div>
 
-And now start your app with Uvicorn, using the `--root-path` option:
+And now start your app, using the `--root-path` option:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
