@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix link in `fastapi-cli.md`. PR [#11524](https://github.com/tiangolo/fastapi/pull/11524) by [@svlandeg](https://github.com/svlandeg).
+
 ### Internal
 
 * 👥 Update FastAPI People. PR [#11511](https://github.com/tiangolo/fastapi/pull/11511) by [@tiangolo](https://github.com/tiangolo).
