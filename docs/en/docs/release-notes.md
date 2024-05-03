@@ -12,6 +12,7 @@ hide:
 ### Features
 
 * ✨ Add FastAPI CLI, the new `fastapi` command. PR [#11522](https://github.com/tiangolo/fastapi/pull/11522) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [FastAPI CLI](https://fastapi.tiangolo.com/fastapi-cli/).
 
 ### Refactors
 
