@@ -128,7 +128,7 @@ def get_swagger_ui_html(
     <script src="{swagger_js_url}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
-    const ui = SwaggerUIBundle({{
+    const ui = SwaggerUIBundle(
         url: '{openapi_url}',
     """
 
