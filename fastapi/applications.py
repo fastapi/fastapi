@@ -4515,7 +4515,7 @@ class FastAPI(Starlette):
 
         ```python
         import time
-        from typing import Awaitable, Callabe
+        from typing import Awaitable, Callable
 
         from fastapi import FastAPI, Request, Response
 
