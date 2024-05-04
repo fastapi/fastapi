@@ -301,4 +301,4 @@ Backend API docs: `https://staging.fastapi-project.example.com/docs`
 
 Backend API base URL: `https://staging.fastapi-project.example.com/api/`
 
-Adminer: `https://staging.adminer.fastapi-project.example.com`
+Adminer: `https://adminer.staging.fastapi-project.example.com`
