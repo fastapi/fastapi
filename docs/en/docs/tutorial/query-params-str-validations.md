@@ -385,13 +385,25 @@ q: Union[str, None] = None
 
 But we are now declaring it with `Query`, for example like:
 
-=== "Annotated"
+=== "Python 3.10+ Annotated"
+
+    ```Python
+    q: Annotated[str | None, Query(min_length=3)] = None
+    ```
+    
+=== "Python 3.9+ Annotated"
 
     ```Python
     q: Annotated[Union[str, None], Query(min_length=3)] = None
     ```
 
-=== "non-Annotated"
+=== "Python 3.10+ non-Annotated"
+
+    ```Python
+    q: str | None = Query(default=None, min_length=3)
+    ```
+    
+=== "Python 3.9+ non-Annotated"
 
     ```Python
     q: Union[str, None] = Query(default=None, min_length=3)
