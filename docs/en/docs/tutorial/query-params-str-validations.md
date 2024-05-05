@@ -390,7 +390,7 @@ But we are now declaring it with `Query`, for example like:
     ```Python
     q: Annotated[str | None, Query(min_length=3)] = None
     ```
-    
+
 === "Python 3.9+ Annotated"
 
     ```Python
@@ -402,7 +402,7 @@ But we are now declaring it with `Query`, for example like:
     ```Python
     q: str | None = Query(default=None, min_length=3)
     ```
-    
+
 === "Python 3.9+ non-Annotated"
 
     ```Python
