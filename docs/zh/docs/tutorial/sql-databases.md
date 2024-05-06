@@ -6,7 +6,7 @@
     当前版本假设Pydantic v1和SQLAlchemy版本小于2。
 
     新的文档将包括Pydantic v2以及 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>（也是基于SQLAlchemy），一旦SQLModel更新为为使用Pydantic v2。
-    
+
 **FastAPI**不需要你使用SQL(关系型)数据库。
 
 但是您可以使用任何您想要的关系型数据库。
