@@ -138,7 +138,7 @@ def test_openapi_schema(client: TestClient):
                         "name": {"title": "Name", "type": "string"},
                         "description": IsDict(
                             {
-                                "title": "The description of the item",
+                                "title": "The title of the item",
                                 "anyOf": [
                                     {"maxLength": 300, "type": "string"},
                                     {"type": "null"},
@@ -148,7 +148,7 @@ def test_openapi_schema(client: TestClient):
                         | IsDict(
                             # TODO: remove when deprecating Pydantic v1
                             {
-                                "title": "The description of the item",
+                                "title": "The title of the item",
                                 "maxLength": 300,
                                 "type": "string",
                             }
