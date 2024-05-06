@@ -1,4 +1,9 @@
+from typing import TYPE_CHECKING, Sequence
+
 import pytest
+
+if TYPE_CHECKING:  # pragma: nocover
+    from fastapi._compat import ErrorDetails
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 
@@ -28,7 +33,8 @@ def test_filter_sub_model(client: TestClient) -> None:
 def test_validator_is_cloned(client: TestClient) -> None:
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.errors() == [
+    errors: Sequence[ErrorDetails] = err.value.errors()
+    assert errors == [
         {
             "loc": ("response", "name"),
             "msg": "name must end in A",

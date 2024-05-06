@@ -1,5 +1,7 @@
-from typing import Any, Dict, Optional, Sequence, Type, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Sequence, Type, Union
 
+if TYPE_CHECKING:  # pragma: nocover
+    from fastapi._compat import ErrorDetails
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
@@ -147,15 +149,15 @@ class FastAPIError(RuntimeError):
 
 
 class ValidationException(Exception):
-    def __init__(self, errors: Sequence[Any]) -> None:
+    def __init__(self, errors: Sequence["ErrorDetails"]) -> None:
         self._errors = errors
 
-    def errors(self) -> Sequence[Any]:
+    def errors(self) -> Sequence["ErrorDetails"]:
         return self._errors
 
 
 class RequestValidationError(ValidationException):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
+    def __init__(self, errors: Sequence["ErrorDetails"], *, body: Any = None) -> None:
         super().__init__(errors)
         self.body = body
 
@@ -165,7 +167,7 @@ class WebSocketRequestValidationError(ValidationException):
 
 
 class ResponseValidationError(ValidationException):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
+    def __init__(self, errors: Sequence["ErrorDetails"], *, body: Any = None) -> None:
         super().__init__(errors)
         self.body = body
 

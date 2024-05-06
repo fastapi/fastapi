@@ -154,7 +154,6 @@ async def serialize_response(
     is_coroutine: bool = True,
 ) -> Any:
     if field:
-        errors = []
         if not hasattr(field, "serialize"):
             # pydantic v1
             response_content = _prepare_response_content(
@@ -164,15 +163,11 @@ async def serialize_response(
                 exclude_none=exclude_none,
             )
         if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, list):
-            errors.extend(errors_)
-        elif errors_:
-            errors.append(errors_)
         if errors:
             raise ResponseValidationError(
                 errors=_normalize_errors(errors), body=response_content
@@ -287,7 +282,6 @@ def get_request_handler(
                     status_code=400, detail="There was an error parsing the body"
                 )
                 raise http_error from e
-            errors: List[Any] = []
             async with AsyncExitStack() as async_exit_stack:
                 solved_result = await solve_dependencies(
                     request=request,
@@ -341,9 +335,7 @@ def get_request_handler(
                             response.body = b""
                         response.headers.raw.extend(solved_result.response.headers.raw)
             if errors:
-                validation_error = RequestValidationError(
-                    _normalize_errors(errors), body=body
-                )
+                validation_error = RequestValidationError(errors, body=body)
                 raise validation_error
         if response is None:
             raise FastAPIError(
@@ -377,9 +369,7 @@ def get_websocket_app(
                 embed_body_fields=embed_body_fields,
             )
             if solved_result.errors:
-                raise WebSocketRequestValidationError(
-                    _normalize_errors(solved_result.errors)
-                )
+                raise WebSocketRequestValidationError(solved_result.errors)
             assert dependant.call is not None, "dependant.call must be a function"
             await dependant.call(**solved_result.values)
 

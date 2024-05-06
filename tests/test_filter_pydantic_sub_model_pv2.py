@@ -1,8 +1,11 @@
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING, Any, Dict, Optional, Sequence
 
 import pytest
-from dirty_equals import HasRepr, IsDict
+from dirty_equals import HasRepr
 from fastapi import Depends, FastAPI
+
+if TYPE_CHECKING:  # pragma: nocover
+    from fastapi._compat import ErrorDetails
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 
@@ -60,16 +63,15 @@ def test_filter_sub_model(client: TestClient) -> None:
 def test_validator_is_cloned(client: TestClient) -> None:
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.errors() == [
-        IsDict(
-            {
-                "type": "value_error",
-                "loc": ("response", "name"),
-                "msg": "Value error, name must end in A",
-                "input": "modelX",
-                "ctx": {"error": HasRepr("ValueError('name must end in A')")},
-            }
-        )
+    errors: Sequence[ErrorDetails] = err.value.errors()
+    assert errors == [
+        {
+            "type": "value_error",
+            "loc": ("response", "name"),
+            "msg": "Value error, name must end in A",
+            "input": "modelX",
+            "ctx": {"error": HasRepr("ValueError('name must end in A')")},
+        }
     ]
 
 
