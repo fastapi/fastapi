@@ -110,7 +110,7 @@ jobs:
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@v4
         with:
-          name: docs-site
+          name: docs-site-${{ matrix.lang }}
           path: ./site/**
 
   # https://github.com/marketplace/actions/alls-green#why

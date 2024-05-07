@@ -27,7 +27,8 @@ jobs:
           github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
-          name: docs-site
+          name: docs-site-.*
+          name_is_regexp: true
           path: ./site/
       - name: Deploy to Cloudflare Pages
         if: steps.download.outputs.found_artifact == 'true'
