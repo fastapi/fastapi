@@ -70,7 +70,7 @@ if PYDANTIC_V2:
         )
     except ImportError:  # pragma: no cover
         from pydantic_core.core_schema import (
-            general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
+            general_plain_validator_function as with_info_plain_validator_function,
         )
 
     RequiredParam = PydanticUndefined
@@ -296,14 +296,14 @@ else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
     from pydantic import (  # type: ignore[assignment]
-        BaseConfig as BaseConfig,  # noqa: F401
+        BaseConfig as BaseConfig,
     )
-    from pydantic import ValidationError as ValidationError  # noqa: F401
+    from pydantic import ValidationError as ValidationError
     from pydantic.class_validators import (  # type: ignore[no-redef]
-        Validator as Validator,  # noqa: F401
+        Validator as Validator,
     )
     from pydantic.error_wrappers import (  # type: ignore[no-redef]
-        ErrorWrapper as ErrorWrapper,  # noqa: F401
+        ErrorWrapper as ErrorWrapper,
     )
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
@@ -317,7 +317,7 @@ else:
     )
     from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        ModelField as ModelField,  # noqa: F401
+        ModelField as ModelField,
     )
 
     # Keeping old "Required" functionality from Pydantic V1, without
@@ -327,7 +327,7 @@ else:
         Undefined as Undefined,
     )
     from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
-        UndefinedType as UndefinedType,  # noqa: F401
+        UndefinedType as UndefinedType,
     )
     from pydantic.schema import (
         field_schema,
@@ -335,14 +335,14 @@ else:
         get_model_name_map,
         model_process_schema,
     )
-    from pydantic.schema import (  # type: ignore[no-redef]  # noqa: F401
+    from pydantic.schema import (  # type: ignore[no-redef]
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.typing import (  # type: ignore[no-redef]
-        evaluate_forwardref as evaluate_forwardref,  # noqa: F401
+        evaluate_forwardref as evaluate_forwardref,
     )
     from pydantic.utils import (  # type: ignore[no-redef]
-        lenient_issubclass as lenient_issubclass,  # noqa: F401
+        lenient_issubclass as lenient_issubclass,
     )
 
     GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
