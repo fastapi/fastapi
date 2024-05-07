@@ -41,6 +41,8 @@ jobs:
         run: |
           cd dist/fastapi*/
           pip install -r requirements-tests.txt
+        env:
+          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
       - name: Run source distribution tests
         run: |
           cd dist/fastapi*/
