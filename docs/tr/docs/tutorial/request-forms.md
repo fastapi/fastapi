@@ -57,7 +57,7 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
     {!> ../../../docs_src/request_forms/tutorial001.py!}
     ```
 
-Örneğin, OAuth2 spesifikasyonunun kullanılabileceği ("şifre akışı" olarak adlandırılan) yollardan birinde, form alanları olarak <abbr title="Kullanıcı Adı: Username">"username"</abbr> ve <abbr title="Kullanıcı Adı: Username">"password"</abbr> gönderilmesi gerekir.
+Örneğin, OAuth2 spesifikasyonunun kullanılabileceği ("şifre akışı" olarak adlandırılan) yollardan birinde, form alanları olarak <abbr title="Kullanıcı Adı: Username">"username"</abbr> ve <abbr title="Şifre: Password">"password"</abbr> gönderilmesi gerekir.
 
 Bu <abbr title="Spesifikasyon: Specification">spesifikasyon</abbr> form alanlarını adlandırırken isimlerinin birbir `username` ve `password` olmasını ve JSON verisi yerine form verisi olarak gönderilmesini gerektirir.
 
