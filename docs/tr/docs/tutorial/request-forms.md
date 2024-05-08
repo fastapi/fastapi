@@ -59,7 +59,7 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
 Örneğin, OAuth2 spesifikasyonunun kullanılabileceği ("şifre akışı" olarak adlandırılan) yollardan birinde, form alanları olarak <abbr title="Kullanıcı Adı: Username">"username"</abbr> ve <abbr title="Şifre: Password">"password"</abbr> gönderilmesi gerekir.
 
-Bu <abbr title="Spesifikasyon: Specification">spesifikasyon</abbr> form alanlarını adlandırırken isimlerinin birbir `username` ve `password` olmasını ve JSON verisi yerine form verisi olarak gönderilmesini gerektirir.
+Bu <abbr title="Spesifikasyon: Specification">spesifikasyon</abbr> form alanlarını adlandırırken isimlerinin birebir `username` ve `password` olmasını ve JSON verisi yerine form verisi olarak gönderilmesini gerektirir.
 
 `Form` sınıfıyla tanımlama yaparken `Body`, `Query`, `Path` ve `Cookie` sınıflarında kullandığınız aynı validasyon, örnekler, isimlendirme (örneğin `username` yerine `user-name` kullanımı) ve daha fazla konfigurasyonu kullanabilirsiniz.
 
