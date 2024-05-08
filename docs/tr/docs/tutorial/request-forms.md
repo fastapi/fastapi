@@ -71,7 +71,7 @@ Bu <abbr title="Spesifikasyon: Specification">spesifikasyon</abbr> form alanlar�
 
 ## "Form Alanları" Hakkında
 
-HTML formlarının (`<form></form>`) verileri sunucuya gönderirken JSON'dan farklı olan özel bir kodlama kullanır.
+HTML formlarının (`<form></form>`) verileri sunucuya gönderirken JSON'dan farklı özel bir kodlama kullanır.
 
 **FastAPI** bu verilerin JSON yerine doğru şekilde okunmasını sağlayacaktır.
 
