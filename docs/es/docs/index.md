@@ -217,11 +217,11 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Sobre el comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `fastapi dev` lee tu archivo `main.py` , detecta  la aplicacion **FastAPI** en él, y comienza un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+El comando `fastapi dev` lee tu archivo `main.py` , detecta  la aplicacion **FastAPI** en él, y lanza un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
 Por defecto,  `fastapi dev` empezara con auto-reload activado para desarrollo local.
 
-Puedes leer mas acerca de eso en <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
+Puedes leer más acerca de eso en <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
 
 </details>
 
@@ -294,7 +294,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
-El servidor `fastapi dev` se actualizara automaticamente
+El servidor `fastapi dev` se actualizará automáticamente
 
 ### Mejora a la documentación interactiva de APIs
 
@@ -424,7 +424,7 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 * Un sistema de **<abbr title="también conocido en inglés cómo: components, resources, providers, services, injectables">Dependency Injection</abbr>** poderoso y fácil de usar.
 * Seguridad y autenticación incluyendo soporte para **OAuth2** con **JWT tokens** y **HTTP Basic** auth.
 * Técnicas más avanzadas, pero igual de fáciles, para declarar **modelos de JSON profundamente anidados** (gracias a Pydantic).
-* Integracion de **GraphQL**  con <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otras librerias.
+* Integracion de **GraphQL**  con <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otras Librerías.
 * Muchas características extra (gracias a Starlette) como:
     * **WebSockets**
     * pruebas extremadamente fáciles con HTTPX y `pytest`
@@ -458,26 +458,26 @@ Usado por FastAPI / Starlette:
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requerido si quieres usar `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requerido si quieres usar `UJSONResponse`.
-* * `fastapi-cli` - para proveer el comando `fastapi`.
+* `fastapi-cli` - para proveer el comando `fastapi`.
 
-Cuando instalas `fastapi` este viene con estas librerias por defecto
+Cuando instalas `fastapi` este viene con estas Librerías por defecto.
 
 ## `fastapi-slim`
 
-Si no deseas las librerias que vienen por defecto, puede optar por instalar `fastapi-slim`.
+Si no deseas las Librerías que vienen por defecto, puede optar por instalar `fastapi-slim`.
 
-Cuando haces la instalacion con el comando:
+Cuando haces la Instalación con el comando:
 ```bash
 pip install fastapi
 ```
 
-...esto incluye el mismo codigo y dependencias que:
+...esto incluye el mismo código y dependencias que:
 
 ```bash
 pip install "fastapi-slim[standard]"
 ```
 
-Las dependencias por deefcto son las mencionadas arriba previamente
+Las dependencias por defecto son las mencionadas arriba previamente.
 
 ## Licencia
 
