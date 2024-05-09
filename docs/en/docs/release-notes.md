@@ -5,6 +5,8 @@ hide:
 
 # Release Notes
 
+* Implement `OAuth2ClientCredentials` class. PR []() by [@rhysrevans3](https://github.com/rhysrevans3).
+
 ## Latest Changes
 
 * 🌐 Add Turkish translation for `docs/tr/docs/tutorial/request-forms.md`. PR [#11553](https://github.com/tiangolo/fastapi/pull/11553) by [@hasansezertasan](https://github.com/hasansezertasan).
