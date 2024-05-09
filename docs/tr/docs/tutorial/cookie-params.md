@@ -1,10 +1,10 @@
-# Cookie Parameters
+# Çerez (Cookie) Parametreleri
 
-You can define Cookie parameters the same way you define `Query` and `Path` parameters.
+`Query` ve `Path` parametrelerini tanımladığınız şekilde Cookie parametreleri tanımlayabilirsiniz.
 
 ## Import `Cookie`
 
-First import `Cookie`:
+Öncelikle, `Cookie`'yi projenize dahil edin:
 
 === "Python 3.10+"
 
@@ -26,8 +26,8 @@ First import `Cookie`:
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -35,18 +35,18 @@ First import `Cookie`:
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
-## Declare `Cookie` parameters
+## `Cookie` Parametrelerini Tanımlayın
 
-Then declare the cookie parameters using the same structure as with `Path` and `Query`.
+Cookie parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın:
 
-The first value is the default value, you can pass all the extra validation or annotation parameters:
+İlk değer varsayılan değerdir; tüm ekstra doğrulama veya belirteç parametrelerini kullanabilirsiniz:
 
 === "Python 3.10+"
 
@@ -68,8 +68,8 @@ The first value is the default value, you can pass all the extra validation or a
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -77,21 +77,22 @@ The first value is the default value, you can pass all the extra validation or a
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
-!!! note "Technical Details"
+!!! note "Teknik Detaylar"
     `Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
+    `Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.
 
-    But remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.
+    Ancak `fastapi`'dan projenize dahil ettiğiniz `Query`, `Path`, `Cookie` ve diğerleri aslında özel sınıflar döndüren birer fonksiyondur.
 
-!!! info
-    To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
+!!! info "Bilgi"
+    Çerez tanımlamak için `Cookie` sınıfını kullanmanız gerekmektedir, aksi taktirde parametreler sorgu parametreleri olarak yorumlanır.
 
-## Recap
+## Özet
 
-Declare cookies with `Cookie`, using the same common pattern as `Query` and `Path`.
+Çerez tanımlamalarını `Cookie` sınıfını kullanarak `Query` ve `Path` tanımlar gibi tanımlayın.
