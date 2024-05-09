@@ -5,7 +5,7 @@ hide:
 
 # Release Notes
 
-* Implement `OAuth2ClientCredentials` class. PR []() by [@rhysrevans3](https://github.com/rhysrevans3).
+* Implement `OAuth2ClientCredentials` class. PR [#11560](https://github.com/tiangolo/fastapi/pull/11560) by [@rhysrevans3](https://github.com/rhysrevans3).
 
 ## Latest Changes
 
