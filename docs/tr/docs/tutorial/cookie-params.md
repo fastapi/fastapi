@@ -44,7 +44,7 @@
 
 ## `Cookie` Parametrelerini Tanımlayın
 
-Cookie parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın:
+Cookie parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın.
 
 İlk değer varsayılan değerdir; tüm ekstra doğrulama veya belirteç parametrelerini kullanabilirsiniz:
 
