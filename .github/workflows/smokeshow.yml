@@ -24,11 +24,11 @@ jobs:
 
       - run: pip install smokeshow
 
-      - uses: dawidd6/action-download-artifact@v3.1.4
+      - uses: actions/download-artifact@v4
         with:
-          github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
-          workflow: test.yml
-          commit: ${{ github.event.workflow_run.head_sha }}
+          name: coverage-html
+          github-token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - run: smokeshow upload coverage-html
         env:
