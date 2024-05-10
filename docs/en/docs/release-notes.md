@@ -21,6 +21,7 @@ hide:
 
 ### Internal
 
+* 👷 Update GitHub actions to download and upload artifacts to v4, for docs and coverage. PR [#11550](https://github.com/tiangolo/fastapi/pull/11550) by [@tamird](https://github.com/tamird).
 * 👷 Tweak CI for test-redistribute, add needed env vars for slim. PR [#11549](https://github.com/tiangolo/fastapi/pull/11549) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#11511](https://github.com/tiangolo/fastapi/pull/11511) by [@tiangolo](https://github.com/tiangolo).
 
