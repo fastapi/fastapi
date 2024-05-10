@@ -20,13 +20,14 @@ jobs:
 
       - run: pip install smokeshow
 
-      - uses: dawidd6/action-download-artifact@v3.1.4
+      - uses: actions/download-artifact@v4
         with:
-          workflow: test.yml
-          commit: ${{ github.event.workflow_run.head_sha }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          name: coverage-html
+          path: backend/htmlcov
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
 
-      - run: smokeshow upload coverage-html
+      - run: smokeshow upload backend/htmlcov
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 90
