@@ -20,7 +20,6 @@ jobs:
           rm -rf ./site
           mkdir ./site
       - uses: actions/download-artifact@v4
-        id: download
         with:
           path: ./site/
           pattern: docs-site-*
