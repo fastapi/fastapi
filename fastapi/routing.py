@@ -1204,7 +1204,7 @@ class APIRouter(routing.Router):
         app.include_router(internal_router)
         ```
         """
-        assert id(self) != id(router), "Router cannot be the same as parent"
+        assert self is not router, "Router cannot be the same as parent"
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith(
