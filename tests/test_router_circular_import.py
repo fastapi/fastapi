@@ -1,5 +1,6 @@
 import pytest
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
+
 
 def test_router_circular_import():
     app = FastAPI()
