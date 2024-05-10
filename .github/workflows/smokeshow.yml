@@ -27,10 +27,11 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: coverage-html
+          path: htmlcov
           github-token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
           run-id: ${{ github.event.workflow_run.id }}
 
-      - run: smokeshow upload coverage-html
+      - run: smokeshow upload htmlcov
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100
