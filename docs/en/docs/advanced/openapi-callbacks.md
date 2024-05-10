@@ -172,7 +172,7 @@ Now use the parameter `callbacks` in *your API's path operation decorator* to pa
 
 ### Check the docs
 
-Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
 
