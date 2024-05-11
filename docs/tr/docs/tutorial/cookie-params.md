@@ -1,6 +1,6 @@
 # Çerez (Cookie) Parametreleri
 
-`Query` ve `Path` parametrelerini tanımladığınız şekilde Cookie parametreleri tanımlayabilirsiniz.
+`Query` (Sorgu) ve `Path` (Yol) parametrelerini tanımladığınız şekilde çerez parametreleri tanımlayabilirsiniz.
 
 ## Import `Cookie`
 
@@ -44,7 +44,7 @@
 
 ## `Cookie` Parametrelerini Tanımlayın
 
-Cookie parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın.
+Çerez parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın.
 
 İlk değer varsayılan değerdir; tüm ekstra doğrulama veya belirteç parametrelerini kullanabilirsiniz:
 
@@ -85,7 +85,6 @@ Cookie parametrelerini `Path` veya `Query` tanımlaması yapar gibi tanımlayın
     ```
 
 !!! note "Teknik Detaylar"
-    `Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
     `Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.
 
     Ancak `fastapi`'dan projenize dahil ettiğiniz `Query`, `Path`, `Cookie` ve diğerleri aslında özel sınıflar döndüren birer fonksiyondur.
