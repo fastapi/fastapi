@@ -13,23 +13,50 @@ Run the live server:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:single">main.py</u>
+<font color="#3465A4">INFO    </font> Using path <font color="#3465A4">main.py</font>
+<font color="#3465A4">INFO    </font> Resolved absolute path <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
+<font color="#3465A4">INFO    </font> Searching for package file structure from directories with <font color="#3465A4">__init__.py</font> files
+<font color="#3465A4">INFO    </font> Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+ ╭─ <font color="#8AE234"><b>Python module file</b></font> ─╮
+ │                      │
+ │  🐍 main.py          │
+ │                      │
+ ╰──────────────────────╯
+
+<font color="#3465A4">INFO    </font> Importing module <font color="#4E9A06">main</font>
+<font color="#3465A4">INFO    </font> Found importable FastAPI app
+
+ ╭─ <font color="#8AE234"><b>Importable FastAPI app</b></font> ─╮
+ │                          │
+ │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
+ │                          │
+ ╰──────────────────────────╯
+
+<font color="#3465A4">INFO    </font> Using import string <font color="#8AE234"><b>main:app</b></font>
+
+ <span style="background-color:#C4A000"><font color="#2E3436">╭────────── FastAPI CLI - Development mode ───────────╮</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Serving at: http://127.0.0.1:8000                  │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  API docs: http://127.0.0.1:8000/docs               │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Running in development mode, for production use:   │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  </font></span><span style="background-color:#C4A000"><font color="#555753"><b>fastapi run</b></font></span><span style="background-color:#C4A000"><font color="#2E3436">                                        │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">╰─────────────────────────────────────────────────────╯</font></span>
+
+<font color="#4E9A06">INFO</font>:     Will watch for changes in these directories: [&apos;/home/user/code/awesomeapp&apos;]
+<font color="#4E9A06">INFO</font>:     Uvicorn running on <b>http://127.0.0.1:8000</b> (Press CTRL+C to quit)
+<font color="#4E9A06">INFO</font>:     Started reloader process [<font color="#34E2E2"><b>2265862</b></font>] using <font color="#34E2E2"><b>WatchFiles</b></font>
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">2265873</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
 ```
 
 </div>
-
-!!! note
-    The command `uvicorn main:app` refers to:
-
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--reload`: make the server restart after code changes. Only use for development.
 
 In the output, there's a line with something like:
 
@@ -150,36 +177,6 @@ You could also use it to generate code automatically, for clients that communica
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
 This will be the main point of interaction to create all your API.
-
-This `app` is the same one referred by `uvicorn` in the command:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-If you create your app like:
-
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
-```
-
-And put it in a file `main.py`, then you would call `uvicorn` like:
-
-<div class="termy">
-
-```console
-$ uvicorn main:my_awesome_api --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
 
 ### Step 3: create a *path operation*
 

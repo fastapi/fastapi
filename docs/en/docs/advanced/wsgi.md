@@ -22,7 +22,7 @@ Now, every request under the path `/v1/` will be handled by the Flask applicatio
 
 And the rest will be handled by **FastAPI**.
 
-If you run it with Uvicorn and go to <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> you will see the response from Flask:
+If you run it and go to <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> you will see the response from Flask:
 
 ```txt
 Hello, World from Flask!

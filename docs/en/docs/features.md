@@ -30,7 +30,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ### Just Modern Python
 
-It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
+It's all based on standard **Python type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
 If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
 
@@ -77,7 +77,7 @@ my_second_user: User = User(**second_user_data)
 
 All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
-In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
+In the Python developer surveys, it's clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that one of the most used features is "autocompletion"</a>.
 
 The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
 
