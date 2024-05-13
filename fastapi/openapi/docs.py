@@ -23,6 +23,16 @@ swagger_ui_default_parameters: Annotated[
 }
 
 
+class AssetUrls:
+    swagger_favicon = "https://fastapi.tiangolo.com/img/favicon.png"
+    swagger_js = (
+        "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js"
+    )
+    swagger_css = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css"
+    redoc_favicon = swagger_favicon
+    redoc_js = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"
+
+
 def get_swagger_ui_html(
     *,
     openapi_url: Annotated[
@@ -47,31 +57,31 @@ def get_swagger_ui_html(
     swagger_js_url: Annotated[
         str,
         Doc(
-            """
-            The URL to use to load the Swagger UI JavaScript.
+            f"""
+            The URL to use to load the Swagger UI JavaScript(leave blank to use '{AssetUrls.swagger_js}').
 
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
+    ] = "",
     swagger_css_url: Annotated[
         str,
         Doc(
-            """
-            The URL to use to load the Swagger UI CSS.
+            f"""
+            The URL to use to load the Swagger UI CSS(leave blank to use '{AssetUrls.swagger_css}').
 
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
+    ] = "",
     swagger_favicon_url: Annotated[
         str,
         Doc(
-            """
-            The URL of the favicon to use. It is normally shown in the browser tab.
+            f"""
+            The URL of the favicon to use. It is normally shown in the browser tab(leave blank to use '{AssetUrls.swagger_favicon}').
             """
         ),
-    ] = "https://fastapi.tiangolo.com/img/favicon.png",
+    ] = "",
     oauth2_redirect_url: Annotated[
         Optional[str],
         Doc(
@@ -118,14 +128,14 @@ def get_swagger_ui_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
+    <link type="text/css" rel="stylesheet" href="{swagger_css_url or AssetUrls.swagger_css}">
+    <link rel="shortcut icon" href="{swagger_favicon_url or AssetUrls.swagger_favicon}">
     <title>{title}</title>
     </head>
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="{swagger_js_url}"></script>
+    <script src="{swagger_js_url or AssetUrls.swagger_js}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
@@ -182,21 +192,21 @@ def get_redoc_html(
     redoc_js_url: Annotated[
         str,
         Doc(
-            """
-            The URL to use to load the ReDoc JavaScript.
+            f"""
+            The URL to use to load the ReDoc JavaScript(leave blank to use '{AssetUrls.redoc_js}').
 
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
+    ] = "",
     redoc_favicon_url: Annotated[
         str,
         Doc(
-            """
-            The URL of the favicon to use. It is normally shown in the browser tab.
+            f"""
+            The URL of the favicon to use. It is normally shown in the browser tab(leave blank to use '{AssetUrls.redoc_favicon}').
             """
         ),
-    ] = "https://fastapi.tiangolo.com/img/favicon.png",
+    ] = "",
     with_google_fonts: Annotated[
         bool,
         Doc(
@@ -230,7 +240,7 @@ def get_redoc_html(
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
     """
     html += f"""
-    <link rel="shortcut icon" href="{redoc_favicon_url}">
+    <link rel="shortcut icon" href="{redoc_favicon_url or AssetUrls.redoc_favicon}">
     <!--
     ReDoc doesn't change outer page styles
     -->
@@ -246,7 +256,7 @@ def get_redoc_html(
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
     <redoc spec-url="{openapi_url}"></redoc>
-    <script src="{redoc_js_url}"> </script>
+    <script src="{redoc_js_url or AssetUrls.redoc_js}"> </script>
     </body>
     </html>
     """
