@@ -36,7 +36,7 @@ hide:
 
 ---
 
-FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.8+ 并基于标准的 Python 类型提示。
+FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 并基于标准的 Python 类型提示。
 
 关键特性:
 
@@ -119,7 +119,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 ## 依赖
 
-Python 3.8 及更高版本
+Python 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
@@ -335,7 +335,7 @@ def update_item(item_id: int, item: Item):
 
 你不需要去学习新的语法、了解特定库的方法或类，等等。
 
-只需要使用标准的 **Python 3.8 及更高版本**。
+只需要使用标准的 **Python 及更高版本**。
 
 举个例子，比如声明 `int` 类型：
 

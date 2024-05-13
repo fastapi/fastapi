@@ -36,7 +36,7 @@ hide:
 
 ---
 
-FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python 3.8+ dựa trên tiêu chuẩn Python type hints.
+FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python dựa trên tiêu chuẩn Python type hints.
 
 Những tính năng như:
 
@@ -124,8 +124,6 @@ Nếu bạn đang xây dựng một <abbr title="Giao diện dòng lệnh">CLI</
 **Typer** là một người anh em của FastAPI. Và nó được dự định trở thành **giao diện dòng lệnh cho FastAPI**. ⌨️ 🚀
 
 ## Yêu cầu
-
-Python 3.8+
 
 FastAPI đứng trên vai những người khổng lồ:
 
@@ -341,7 +339,7 @@ Bạn định nghĩa bằng cách sử dụng các kiểu dữ liệu chuẩn c�
 
 Bạn không phải học một cú pháp mới, các phương thức và class của một thư viện cụ thể nào.
 
-Chỉ cần sử dụng các chuẩn của **Python 3.8+**.
+Chỉ cần sử dụng các chuẩn của **Python**.
 
 Ví dụ, với một tham số kiểu `int`:
 
