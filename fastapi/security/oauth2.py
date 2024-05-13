@@ -1,16 +1,17 @@
 from typing import Any, Dict, List, Optional, Union, cast
 
+from starlette.requests import Request
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+
+# TODO: import from typing when deprecating Python 3.9
+from typing_extensions import Annotated, Doc
+
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
 from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
-from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
-
-# TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc
 
 
 class OAuth2PasswordRequestForm:
@@ -611,14 +612,6 @@ class OAuth2ClientCredentials(OAuth2):
                 """
             ),
         ],
-        refreshUrl: Annotated[
-            Optional[str],
-            Doc(
-                """
-                The URL to refresh the token and obtain a new one.
-                """
-            ),
-        ] = None,
         scheme_name: Annotated[
             Optional[str],
             Doc(
@@ -676,7 +669,6 @@ class OAuth2ClientCredentials(OAuth2):
                 Any,
                 {
                     "tokenUrl": tokenUrl,
-                    "refreshUrl": refreshUrl,
                     "scopes": scopes,
                 },
             )
@@ -734,7 +726,9 @@ class SecurityScopes:
                 The list of all the scopes required by dependencies.
                 """
             ),
-        ] = scopes or []
+        ] = (
+            scopes or []
+        )
         self.scope_str: Annotated[
             str,
             Doc(
