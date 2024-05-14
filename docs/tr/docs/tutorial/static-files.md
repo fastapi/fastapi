@@ -24,7 +24,7 @@ This is different from using an `APIRouter` as a mounted application is complete
 
 You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
 
-## Details
+## Detaylar
 
 The first `"/static"` refers to the sub-path this "sub-application" will be "mounted" on. So, any path that starts with `"/static"` will be handled by it.
 
@@ -34,6 +34,6 @@ The `name="static"` gives it a name that can be used internally by **FastAPI**.
 
 All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
 
-## More info
+## Daha Fazla Bilgi
 
-For more details and options check <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Daha fazla bilgi ve seçenek için <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette'nin Statik Dosyalar hakkındaki dokümantasyonuna</a> bakın.
