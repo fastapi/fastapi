@@ -1,22 +1,22 @@
-# Static Files
+# Statik Dosyalar
 
-You can serve static files automatically from a directory using `StaticFiles`.
+Statik dosyaları otomatik olarak bir dizinden sunmak için `StaticFiles`'ı kullanabilirsiniz.
 
-## Use `StaticFiles`
+## `StaticFiles` Kullanımı
 
-* Import `StaticFiles`.
-* "Mount" a `StaticFiles()` instance in a specific path.
+* `StaticFiles` sınıfını projenize dahil edin.
+* Bir `StaticFiles()` örneğini belirli bir yola bağlayın.
 
 ```Python hl_lines="2  6"
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "Technical Details"
-    You could also use `from starlette.staticfiles import StaticFiles`.
+!!! note "Teknik Detaylar"
+    Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
 
-    **FastAPI** provides the same `starlette.staticfiles` as `fastapi.staticfiles` just as a convenience for you, the developer. But it actually comes directly from Starlette.
+    **FastAPI**, geliştirici olarak size bir kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sunar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
 
-### What is "Mounting"
+### Bağlama (Mounting) Nedir?
 
 "Mounting" means adding a complete "independent" application in a specific path, that then takes care of handling all the sub-paths.
 
