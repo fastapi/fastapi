@@ -91,7 +91,7 @@ class Param(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
