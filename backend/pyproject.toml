@@ -18,7 +18,6 @@ emails = "^0.6"
 gunicorn = "^22.0.0"
 jinja2 = "^3.1.4"
 alembic = "^1.12.1"
-python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 httpx = "^0.25.1"
 psycopg = {extras = ["binary"], version = "^3.1.13"}
 sqlmodel = "^0.0.16"
@@ -26,13 +25,13 @@ sqlmodel = "^0.0.16"
 bcrypt = "4.0.1"
 pydantic-settings = "^2.2.1"
 sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
+pyjwt = "^2.8.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
 mypy = "^1.8.0"
 ruff = "^0.2.2"
 pre-commit = "^3.6.2"
-types-python-jose = "^3.3.4.20240106"
 types-passlib = "^1.7.7.20240106"
 coverage = "^7.4.3"
 
