@@ -468,7 +468,25 @@ FastAPI / Starlette に使用されるもの:
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`を使用する場合は必須です。
 - `fastapi-cli` - `fastapi` コマンドの提供のため
 
-`fastapi` をインストールすると、これら標準的な依存関係が付属されます。
+`fastapi` をインストールすると、これら標準的な依存関係も付属します。
+
+## `fastapi-slim`
+
+標準的な依存関係をインストールしたくない場合は、代わりに `fastapi-slim` をインストールしてください。
+
+以下のコマンドでインストールした場合：
+
+```bash
+pip install fastapi
+```
+
+...以下のコマンドと同じコードと依存関係が含まれます：
+
+```bash
+pip install "fastapi-slim[standard]"
+```
+
+標準的な依存関係は、上述のとおりです。
 
 ## ライセンス
 
