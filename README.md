@@ -16,7 +16,7 @@
     - 🦇 Dark mode support.
 - 🐋 [Docker Compose](https://www.docker.com) for development and production.
 - 🔒 Secure password hashing by default.
-- 🔑 JWT token authentication.
+- 🔑 JWT (JSON Web Token) authentication.
 - 📫 Email based password recovery.
 - ✅ Tests with [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) as a reverse proxy / load balancer.
