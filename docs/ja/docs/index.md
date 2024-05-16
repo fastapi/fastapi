@@ -146,6 +146,8 @@ $ pip install fastapi
 - `main.py` を作成し、以下のコードを入力します:
 
 ```Python
+from typing import Union
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -157,7 +159,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -167,6 +169,8 @@ def read_item(item_id: int, q: str = None):
 `async` / `await`を使用するときは、 `async def`を使います:
 
 ```Python hl_lines="7 12"
+from typing import Union
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -178,7 +182,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
