@@ -168,7 +168,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 `async` / `await`を使用するときは、 `async def`を使います:
 
-```Python hl_lines="7 12"
+```Python hl_lines="9 14"
 from typing import Union
 
 from fastapi import FastAPI
