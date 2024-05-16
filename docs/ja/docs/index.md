@@ -106,6 +106,12 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降�
 
 ---
 
+"_本番環境に向けてPython APIを構築している人には、**FastAPI**を強くお勧めします。 **美しく設計され**、**簡単に使うことができ**、**拡張性も高い**ので、我々が行っているAPIファーストの開発戦略において**鍵となる役割**を担っており、Virtual TAC Engineerのような多くのサービスや自動化を牽引しています。_"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
+
+---
+
 ## **Typer**, the FastAPI of CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
