@@ -273,7 +273,9 @@ INFO:     Application startup complete.
 
 Pydantic によって、Python の標準的な型を使ってボディを宣言します。
 
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -283,7 +285,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -292,7 +294,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -301,7 +303,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-サーバーは自動でリロードされます。(上述の`uvicorn`コマンドで`--reload`オプションを追加しているからです。)
+`fastapi dev` で立ち上げたサーバは、自動的に更新されるはずです。
 
 ### 自動対話型の API ドキュメントのアップグレード
 
@@ -335,7 +337,7 @@ def update_item(item_id: int, item: Item):
 
 新しい構文や特定のライブラリのメソッドやクラスなどを覚える必要はありません。
 
-単なる標準的な**3.8 以降の Python**です。
+単なる標準的な**Python**です。
 
 例えば、`int`の場合:
 
@@ -431,17 +433,17 @@ item: Item
 - 非常に強力で使いやすい <abbr title="also known as components, resources, providers, services, injectables">**依存性注入**</abbr>システム。
 - **JWT トークン**を用いた **OAuth2** や **HTTP Basic 認証** のサポートを含む、セキュリティと認証。
 - **深くネストされた JSON モデル**を宣言するためのより高度な（しかし同様に簡単な）技術（Pydantic のおかげです）。
+- <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> やその他のライブラリを用いた **GraphQL** との統合。
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
-  - **GraphQL**
-  - `httpx` や `pytest`をもとにした極限に簡単なテスト
+  - HTTPX や `pytest`をもとにした極限に簡単なテスト
   - **CORS**
   - **クッキーセッション**
   - ...などなど。
 
 ## パフォーマンス
 
-独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Python フレームワークの中で最も高速なものの 1 つ</a>であり、Starlette と Uvicorn（FastAPI で内部的に使用されています）にのみ下回っていると示されています。
+独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Python フレームワークの中で最も高速なものの 1 つ</a>であり、Starlette と Uvicorn（FastAPI で内部的に使用されています）にのみ下回っていると示されています。(*)
 
 詳細は<a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ベンチマーク</a>セクションをご覧ください。
 
@@ -450,23 +452,23 @@ item: Item
 Pydantic によって使用されるもの:
 
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - 設定管理のため
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Pydantic によって使用される追加の型
 
 Starlette によって使用されるもの:
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient`を使用するために必要です。
 - <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用する場合は必要です。
 - <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>`request.form()`からの変換をサポートしたい場合は必要です。
-- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` サポートのためには必要です。
-- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette の `SchemaGenerator` サポートのために必要です。 (FastAPI では必要ないでしょう。)
-- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` サポートのためには必要です。
 
 FastAPI / Starlette に使用されるもの:
 
 - <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`を使用する場合は必須です。
+- `fastapi-cli` - `fastapi` コマンドの提供のため
 
-これらは全て `pip install fastapi[all]`でインストールできます。
+`fastapi` をインストールすると、これら標準的な依存関係が付属されます。
 
 ## ライセンス
 
