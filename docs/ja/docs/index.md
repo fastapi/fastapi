@@ -199,11 +199,24 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -211,13 +224,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary><code>uvicorn main:app --reload</code>コマンドについて</summary>
+<summary><code>fastapi dev main.py</code>コマンドについて</summary>
 
-`uvicorn main:app`コマンドは以下の項目を参照します:
+`fastapi dev` コマンドは、`main.py`ファイルを読み込み、その中の **FastAPI** アプリを検出し、<a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>を使用してサーバーを起動します。
 
-- `main`: `main.py`ファイル (Python "モジュール")
-- `app`: `main.py` の`app = FastAPI()`の行で生成されたオブジェクト
-- `--reload`: コードを変更したらサーバーを再起動します。このオプションは開発環境でのみ使用します
+デフォルトでは、`fastapi dev` はローカル開発用にオートリロードが有効化された状態で起動します。
+
+詳しくは、<a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI ドキュメント</a>を参照してください。
 
 </details>
 
