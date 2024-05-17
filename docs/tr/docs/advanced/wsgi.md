@@ -1,6 +1,6 @@
 # WSGI - Flask, Django ve Daha Fazlasını FastAPI ile Kullanma
 
-WSGI uygulamalarını [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank} ile gördüğünüz gibi bağlayabilirsiniz.
+WSGI uygulamalarını [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank} bölümlerinde gördüğünüz gibi bağlayabilirsiniz.
 
 Bunun için `WSGIMiddleware` ile Flask, Django vb. WSGI uygulamanızı sarmalayabilir ve FastAPI'ya bağlayabilirsiniz.
 
