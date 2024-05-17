@@ -6,7 +6,7 @@ Bunun için `WSGIMiddleware` ile Flask, Django vb. WSGI uygulamanızı sarmalaya
 
 ## `WSGIMiddleware` Kullanımı
 
-`WSGIMiddleware`'ı projenize dahil etmeniz gerekmektedir.
+`WSGIMiddleware`'ı projenize dahil edin.
 
 Ardından WSGI (örneğin Flask) uygulamanızı middleware ile sarmalayın.
 
