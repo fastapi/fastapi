@@ -8,7 +8,7 @@ Bunun için `WSGIMiddleware` ile Flask, Django vb. WSGI uygulamanızı sarmalaya
 
 `WSGIMiddleware`'ı projenize dahil etmeniz gerekmektedir.
 
-Sonra WSGI (örneğin Flask) uygulamanızı middleware ile sarmalayın.
+Ardından WSGI (örneğin Flask) uygulamanızı middleware ile sarmalayın.
 
 En son olarak da bir yol altında bağlama işlemini gerçekleştirin.
 
