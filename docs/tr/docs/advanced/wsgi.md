@@ -10,7 +10,7 @@ Bunun için `WSGIMiddleware` ile Flask, Django vb. WSGI uygulamanızı sarmalaya
 
 Ardından WSGI (örneğin Flask) uygulamanızı middleware ile sarmalayın.
 
-En son olarak da bir yol altında bağlama işlemini gerçekleştirin.
+Son olarak da bir yol altında bağlama işlemini gerçekleştirin.
 
 ```Python hl_lines="2-3  23"
 {!../../../docs_src/wsgi/tutorial001.py!}
