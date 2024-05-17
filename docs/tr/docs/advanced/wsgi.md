@@ -18,7 +18,7 @@ En son olarak da bir yol altında bağlama işlemini gerçekleştirin.
 
 ## Kontrol Edelim
 
-`/v1/` yolunun altındaki her istek Flask uygulaması tarafından işlenecektir.
+Artık `/v1/` yolunun altındaki her istek Flask uygulaması tarafından işlenecektir.
 
 Geri kalanı ise **FastAPI** tarafından işlenecektir.
 
