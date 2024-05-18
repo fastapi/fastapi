@@ -11,6 +11,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo: convert every 're-use' to 'reuse'.. PR [#11598](https://github.com/tiangolo/fastapi/pull/11598) by [@hasansezertasan](https://github.com/hasansezertasan).
 * ✏️ Fix typo in `fastapi/applications.py`. PR [#11593](https://github.com/tiangolo/fastapi/pull/11593) by [@petarmaric](https://github.com/petarmaric).
 * ✏️ Fix link in `fastapi-cli.md`. PR [#11524](https://github.com/tiangolo/fastapi/pull/11524) by [@svlandeg](https://github.com/svlandeg).
 
