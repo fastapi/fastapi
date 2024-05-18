@@ -32,8 +32,6 @@ Bu, bir `APIRouter` kullanmaktan farklıdır çünkü bağlanmış bir uygulama 
 
 `name="static"` ifadesi, alt uygulamanın **FastAPI** tarafından kullanılacak ismini belirtir.
 
-All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
-
 Bu parametrelerin hepsi "`static`"den farklı olabilir, bunları kendi uygulamanızın ihtiyaçlarına göre belirleyebilirsiniz.
 
 ## Daha Fazla Bilgi
