@@ -11,10 +11,14 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `fastapi/applications.py`. PR [#11593](https://github.com/tiangolo/fastapi/pull/11593) by [@petarmaric](https://github.com/petarmaric).
 * ✏️ Fix link in `fastapi-cli.md`. PR [#11524](https://github.com/tiangolo/fastapi/pull/11524) by [@svlandeg](https://github.com/svlandeg).
 
 ### Translations
 
+* 🌐 Polish translation for `docs/pl/docs/fastapi-people.md`. PR [#10196](https://github.com/tiangolo/fastapi/pull/10196) by [@isulim](https://github.com/isulim).
+* 🌐 Add Turkish translation for `docs/tr/docs/advanced/wsgi.md`. PR [#11575](https://github.com/tiangolo/fastapi/pull/11575) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add Turkish translation for `docs/tr/docs/tutorial/cookie-params.md`. PR [#11561](https://github.com/tiangolo/fastapi/pull/11561) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Russian translation for `docs/ru/docs/about/index.md`. PR [#10961](https://github.com/tiangolo/fastapi/pull/10961) by [@s111d](https://github.com/s111d).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/sql-databases.md`. PR [#11539](https://github.com/tiangolo/fastapi/pull/11539) by [@chaoless](https://github.com/chaoless).
 * 🌐 Add Chinese translation for `docs/zh/docs/how-to/configure-swagger-ui.md`. PR [#11501](https://github.com/tiangolo/fastapi/pull/11501) by [@Lucas-lyh](https://github.com/Lucas-lyh).
