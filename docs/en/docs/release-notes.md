@@ -16,6 +16,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Turkish translation for `docs/tr/docs/advanced/wsgi.md`. PR [#11575](https://github.com/tiangolo/fastapi/pull/11575) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Turkish translation for `docs/tr/docs/tutorial/cookie-params.md`. PR [#11561](https://github.com/tiangolo/fastapi/pull/11561) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Russian translation for `docs/ru/docs/about/index.md`. PR [#10961](https://github.com/tiangolo/fastapi/pull/10961) by [@s111d](https://github.com/s111d).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/sql-databases.md`. PR [#11539](https://github.com/tiangolo/fastapi/pull/11539) by [@chaoless](https://github.com/chaoless).
