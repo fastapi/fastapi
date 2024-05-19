@@ -18,6 +18,7 @@
 
 ### Refactors
 
+* ♻️ Refactor redirect labels to simplify removing the frontend. PR [#1208](https://github.com/tiangolo/full-stack-fastapi-template/pull/1208) by [@tiangolo](https://github.com/tiangolo).
 * 🔒️ Refactor migrate from python-jose to PyJWT. PR [#1203](https://github.com/tiangolo/full-stack-fastapi-template/pull/1203) by [@estebanx64](https://github.com/estebanx64).
 * 🔥 Remove duplicated code. PR [#1185](https://github.com/tiangolo/full-stack-fastapi-template/pull/1185) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Add delete_user_me endpoint and corresponding test cases. PR [#1179](https://github.com/tiangolo/full-stack-fastapi-template/pull/1179) by [@alejsdev](https://github.com/alejsdev).
