@@ -1,18 +1,18 @@
-# Deployment
+# Deployment (Yayınlama)
 
-Deploying a **FastAPI** application is relatively easy.
+**FastAPI** uygulamasını deploy etmek nispeten kolaydır.
 
-## What Does Deployment Mean
+## Deployment Nedir?
 
-To **deploy** an application means to perform the necessary steps to make it **available to the users**.
+Bir uygulamayı **deploy** etmek (yayınlamak), onu **kullanıcılara erişilebilir hale getirmek** için gerekli adımları gerçekleştirmek anlamına gelir.
 
 For a **web API**, it normally involves putting it in a **remote machine**, with a **server program** that provides good performance, stability, etc, so that your **users** can **access** the application efficiently and without interruptions or problems.
 
 This is in contrast to the **development** stages, where you are constantly changing the code, breaking it and fixing it, stopping and restarting the development server, etc.
 
-## Deployment Strategies
+## Deployment Stratejileri
 
-There are several ways to do it depending on your specific use case and the tools that you use.
+Kullanım amacınıza ve kullandığınız araçlara bağlı olarak yayınlama işlemi gerçekleştirmenin birkaç yolu vardır.
 
 You could **deploy a server** yourself using a combination of tools, you could use a **cloud service** that does part of the work for you, or other possible options.
 
