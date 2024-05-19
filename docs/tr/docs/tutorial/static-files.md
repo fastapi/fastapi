@@ -14,7 +14,7 @@
 !!! note "Teknik Detaylar"
     Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
 
-    **FastAPI**, geliştirici olarak size bir kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
 
 ### Bağlama (Mounting) Nedir?
 
