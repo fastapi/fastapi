@@ -406,7 +406,7 @@ In this exception, we include the scopes required (if any) as a string separated
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="105  108-116"
+    ```Python hl_lines="106  108-116"
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
