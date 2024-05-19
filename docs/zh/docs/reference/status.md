@@ -18,7 +18,7 @@ from fastapi import status
 
 在应用程序中使用名称自动完成功能快速访问 HTTP（和 WebSocket）状态代码非常方便，无需记忆整数状态代码。
 
-请参阅 [FastAPI docs about Response Status Code](https://fastapi.tiangolo.com/zh/tutorial/response-status-code/).
+请参阅 [FastAPI 文档 - 响应状态码](https://fastapi.tiangolo.com/zh/tutorial/response-status-code/).
 
 ## 示例
 

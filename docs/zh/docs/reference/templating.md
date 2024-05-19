@@ -2,7 +2,7 @@
 
 您可以使用 `Jinja2Templates` 类来呈现jinja2模板。
 
-请参阅 [FastAPI docs for Templates](https://fastapi.tiangolo.com/zh/advanced/templates/)。
+请参阅 [FastAPI 文档 - 模版](https://fastapi.tiangolo.com/zh/advanced/templates/)。
 
 您可以直接从 `fastapi.templating` 中导入该类：
 

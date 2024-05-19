@@ -2,7 +2,7 @@
 
 Starlette 可直接提供多个中间件。
 
-请参阅 [FastAPI docs for Middleware](https://fastapi.tiangolo.com/zh/advanced/middleware/).
+请参阅 [FastAPI 中间件文档](https://fastapi.tiangolo.com/zh/advanced/middleware/).
 
 ::: fastapi.middleware.cors.CORSMiddleware
 

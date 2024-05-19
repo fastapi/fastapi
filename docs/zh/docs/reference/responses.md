@@ -2,7 +2,7 @@
 
 您可以使用多个自定义响应类来创建实例，并直接从 *path operations* 中返回。
 
-请参阅 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/zh/advanced/custom-response/).
+请参阅 [FastAPI 文档 - 自定义响应](https://fastapi.tiangolo.com/zh/advanced/custom-response/).
 
 您可以直接从 `fastapi.responses` 导入:
 
