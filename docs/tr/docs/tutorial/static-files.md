@@ -18,7 +18,7 @@
 
 ### Bağlama (Mounting) Nedir?
 
-"Bağlamak", belirli bir yola tamamen "bağımsız" bir uygulama eklemek anlamına gelir ve ardından tüm alt yolları işler.
+"Bağlamak", belirli bir yola tamamen "bağımsız" bir uygulama eklemek anlamına gelir ve ardından tüm alt yollara gelen istekler bu uygulama tarafından işlenir.
 
 Bu, bir `APIRouter` kullanmaktan farklıdır çünkü bağlanmış bir uygulama tamamen bağımsızdır. Ana uygulamanızın OpenAPI ve dokümanlar, bağlanmış uygulamadan hiçbir şey içermez, vb.
 
@@ -26,7 +26,7 @@ Bu, bir `APIRouter` kullanmaktan farklıdır çünkü bağlanmış bir uygulama 
 
 ## Detaylar
 
-`"/static"` ifadesi, bu "alt uygulamanın" "bağlanacağı" alt yolu belirtir. Bu nedenle, `"/static"` ile başlayan her yol, bu uygulama tarafından ele alınır.
+`"/static"` ifadesi, bu "alt uygulamanın" "bağlanacağı" alt yolu belirtir. Bu nedenle, `"/static"` ile başlayan her yol, bu uygulama tarafından işlenir.
 
 `directory="static"` ifadesi, statik dosyalarınızı içeren dizinin adını belirtir.
 
