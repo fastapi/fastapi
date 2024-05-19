@@ -26,7 +26,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 Now you can create the *path operations* for the custom docs.
 
-You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+You can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -163,7 +163,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 And the same way as with a custom CDN, now you can create the *path operations* for the custom docs.
 
-Again, you can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Again, you can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.

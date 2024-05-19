@@ -70,7 +70,7 @@ And there are many other images for different things like databases, for example
 
 By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases, you can use the **official images**, and just configure them with environment variables.
 
-That way, in many cases you can learn about containers and Docker and re-use that knowledge with many different tools and components.
+That way, in many cases you can learn about containers and Docker and reuse that knowledge with many different tools and components.
 
 So, you would run **multiple containers** with different things, like a database, a Python application, a web server with a React frontend application, and connect them together via their internal network.
 
@@ -249,7 +249,7 @@ COPY ./requirements.txt /code/requirements.txt
 
 Docker and other tools **build** these container images **incrementally**, adding **one layer on top of the other**, starting from the top of the `Dockerfile` and adding any files created by each of the instructions of the `Dockerfile`.
 
-Docker and similar tools also use an **internal cache** when building the image, if a file hasn't changed since the last time building the container image, then it will **re-use the same layer** created the last time, instead of copying the file again and creating a new layer from scratch.
+Docker and similar tools also use an **internal cache** when building the image, if a file hasn't changed since the last time building the container image, then it will **reuse the same layer** created the last time, instead of copying the file again and creating a new layer from scratch.
 
 Just avoiding the copy of files doesn't necessarily improve things too much, but because it used the cache for that step, it can **use the cache for the next step**. For example, it could use the cache for the instruction that installs dependencies with:
 
