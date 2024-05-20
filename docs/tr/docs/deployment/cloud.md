@@ -1,16 +1,16 @@
-# Deploy FastAPI on Cloud Providers
+# FastAPI'ı Bulut Sağlayıcılar Üzerinde Yayınlama
 
-You can use virtually **any cloud provider** to deploy your FastAPI application.
+FastAPI uygulamanızı yayınlamak için hemen hemen **herhangi bir bulut sağlayıcıyı** kullanabilirsiniz.
 
-In most of the cases, the main cloud providers have guides to deploy FastAPI with them.
+Büyük bulut sağlayıcıların çoğu FastAPI uygulamanızı yayınlamak için kılavuzlara sahiptir.
 
-## Cloud Providers - Sponsors
+## Bulut Sağlayıcılar - Sponsorlar
 
-Some cloud providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
+Bazı bulut sağlayıcılar ✨ [**FastAPI destekçileridir**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, bu FastAPI ve **ekosisteminin** sürekli ve sağlıklı bir şekilde **gelişmesini** sağlar.
 
-And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
+Ayrıca, size **iyi servisler** sağlamakla kalmayıp, **iyi ve sağlıklı bir framework** olan FastAPI'a bağlılıklarını gösterir.
 
-You might want to try their services and follow their guides:
+Bu hizmetleri denemek ve kılavuzlarını incelemek isteyebilirsiniz:
 
 * <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
 * <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
