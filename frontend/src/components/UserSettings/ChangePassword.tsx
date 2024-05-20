@@ -53,14 +53,18 @@ const ChangePassword = () => {
 
   return (
     <>
-      <Container maxW="full" as="form" onSubmit={handleSubmit(onSubmit)}>
+      <Container maxW="full">
         <Heading size="sm" py={4}>
           Change Password
         </Heading>
-        <Box w={{ sm: "full", md: "50%" }}>
+        <Box
+          w={{ sm: "full", md: "50%" }}
+          as="form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <FormControl isRequired isInvalid={!!errors.current_password}>
             <FormLabel color={color} htmlFor="current_password">
-              Current password
+              Current Password
             </FormLabel>
             <Input
               id="current_password"

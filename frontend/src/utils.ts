@@ -35,8 +35,8 @@ export const confirmPasswordRules = (
   }
 
   if (isRequired) {
-    rules.required = "Password confirmation is required";
+    rules.required = "Password confirmation is required"
   }
 
-  return rules;
+  return rules
 }
