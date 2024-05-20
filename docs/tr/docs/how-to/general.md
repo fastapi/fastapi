@@ -8,7 +8,7 @@ Döndürmeniz gereken veriden fazlasını döndürmemenizi sağlamak için, [Tut
 
 ## Dokümantasyon Etiketleri - OpenAPI
 
-*Yol işlemleri*ni dokümantasyon arayüzünde gruplamak ve etiketlemek için, [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank} sayfasını okuyun.
+*Yol operasyonlarını* dokümantasyon arayüzünde gruplamak ve etiketlemek için, [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank} sayfasını okuyun.
 
 ## Dokümantasyon Özeti ve Açıklaması - OpenAPI
 
