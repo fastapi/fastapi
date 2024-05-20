@@ -40,15 +40,10 @@ $ pip install pyjwt
 
 </div>
 
-<a href="https://github.com/jpadilla/pyjwt" class="external-link" target="_blank">PyJWT</a> The default package includes types and common cryptography algorithms like `HS256`, `HS512`, `PS*`, `RS*`, among others
+!!! info
+    If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
-If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
-For more info please visit <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Cryptographic Dependencies (Optional)</a>.
-
-!!! note
-    This tutorial previously used <a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">python-jose</a>.
-
-    But it was deprecated to use PyJWT instead as python-jose seems to be abandoned and several security issues(CVE) has been reported using this outdated library.
+    You can read more about it in the <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>.
 
 ## Password hashing
 
