@@ -14,7 +14,7 @@ Ancak yine de döndürdüğünüz verileri bir `response_model` ile filtrelemek 
 
 Bu durumlar için bir `Response` parametresi kullanabilirsiniz.
 
-## Bir `Response` parametresi kullanın
+## Bir `Response` Parametresi Kullanın
 
 *yol operasyonu fonksiyonunuzda* `Response` türünde bir parametre belirleyebilirsiniz (çerezler ve headers için yapabileceğiniz gibi).
 
