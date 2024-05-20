@@ -1,8 +1,8 @@
-# FastAPI'ı Bulut Sağlayıcılar Üzerinde Yayınlama
+# FastAPI Uygulamasını Bulut Sağlayıcılar Üzerinde Yayınlama
 
-FastAPI uygulamanızı yayınlamak için hemen hemen **herhangi bir bulut sağlayıcıyı** kullanabilirsiniz.
+FastAPI uygulamasını yayınlamak için hemen hemen **herhangi bir bulut sağlayıcıyı** kullanabilirsiniz.
 
-Büyük bulut sağlayıcıların çoğu FastAPI uygulamanızı yayınlamak için kılavuzlara sahiptir.
+Büyük bulut sağlayıcıların çoğu FastAPI uygulamasını yayınlamak için kılavuzlara sahiptir.
 
 ## Bulut Sağlayıcılar - Sponsorlar
 
