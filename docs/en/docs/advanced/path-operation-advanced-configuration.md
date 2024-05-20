@@ -187,6 +187,6 @@ And then in our code, we parse that YAML content directly, and then we are again
     In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
 
 !!! tip
-    Here we re-use the same Pydantic model.
+    Here we reuse the same Pydantic model.
 
     But the same way, we could have validated it in some other way.

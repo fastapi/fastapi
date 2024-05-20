@@ -361,7 +361,7 @@ It will have a property `scopes` with a list containing all the scopes required 
 
 The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_str` attribute with a single string, containing those scopes separated by spaces (we are going to use it).
 
-We create an `HTTPException` that we can re-use (`raise`) later at several points.
+We create an `HTTPException` that we can reuse (`raise`) later at several points.
 
 In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
 
