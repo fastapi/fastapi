@@ -2,30 +2,32 @@
 
 ## Ek Özellikler
 
-[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} size **FastAPI**'ın tüm ana özelliklerini tanıtmaya yetecektir.
+[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} sayfası **FastAPI**'ın tüm ana özelliklerini tanıtmaya yetecektir.
 
-İlerleyen bölümlerde diğer seçenekler, konfigürasyonları ve ek özellikleri göreceğiz.
+İlerleyen bölümlerde diğer seçenekler, konfigürasyonlar ve ek özellikleri göreceğiz.
 
 !!! tip "İpucu"
-    Sonraki bölümler **çok "gelişmiş" değil**.
+    Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
 
-    Sizin ihtiyacınız olan bilgi bunların birinde olabilir.
+    Kullanım şeklinize bağlı olarak, çözümünüz bu bölümlerden birinde olabilir.
 
 ## Önce Öğreticiyi Okuyun
 
-You could still use most of the features in **FastAPI** with the knowledge from the main [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank}.
+[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} sayfasındaki bilgilerle **FastAPI**'nın çoğu özelliğini kullanabilirsiniz.
 
-And the next sections assume you already read it, and assume that you know those main ideas.
+Sonraki bölümler bu sayfayı okuduğunuzu ve bu ana fikirleri bildiğinizi varsayarak hazırlanmıştır.
 
 ## Diğer Kurslar
 
-Although the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} and this **Advanced User Guide** are written as a guided tutorial (like a book) and should be enough for you to **learn FastAPI**, you might want to complement it with additional courses.
+[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} sayfasının ve bu **Gelişmiş Kullanıcı Rehberi**'nin öğretici olmak amacıyla (bir kitap gibi) yazılmış olmasına ve **FastAPI'ı öğrenmek** için yeterli olmasına rağmen, ek kurslarla desteklemek isteyebilirsiniz.
 
-Or it might be the case that you just prefer to take other courses because they adapt better to your learning style.
+Belki de öğrenme tarzınıza daha iyi uyduğu için başka kursları tercih edebilirsiniz.
 
-Some course providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
+Bazı kurs sağlayıcıları ✨ [**FastAPI destekçileridir**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, bu FastAPI ve **ekosisteminin** sürekli ve sağlıklı bir şekilde **gelişmesini** sağlar.
 
-And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good learning experience** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
+Ayrıca, size **iyi bir öğrenme deneyimi** sağlamakla kalmayıp, **iyi ve sağlıklı bir framework** olan FastAPI'a bağlılıklarını gösterir.
+
+Ve bu onların FastAPI'a ve onun **topluluğuna** (yani size) olan gerçek bağlılıklarını gösterir; çünkü size yalnızca **iyi bir öğrenme deneyimi** sunmak değil, aynı zamanda FastAPI'ın **iyi ve sağlıklı bir çerçeveye**  olduğunuzdan emin olmak da istiyorlar. 🙇
 
 Onların kurslarını denemek isteyebilirsiniz:
 
