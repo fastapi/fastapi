@@ -328,4 +328,3 @@ There are many other objects and models that will be automatically converted to 
 * Write a **path operation decorator** using decorators like `@app.get("/")`.
 * Define a **path operation function**; for example, `def root(): ...`.
 * Run the development server using the command `fastapi dev`.
-
