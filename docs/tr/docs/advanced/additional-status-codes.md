@@ -1,18 +1,18 @@
-# Additional Status Codes
+# Ek Durum Kodları
 
-By default, **FastAPI** will return the responses using a `JSONResponse`, putting the content you return from your *path operation* inside of that `JSONResponse`.
+**FastAPI** varsayılan olarak, *yol operasyonu* ile döndürdüğünüz içeriği `JSONResponse`'ın içerisinde yerleştirerek yanıtları döndürecektir.
 
-It will use the default status code or the one you set in your *path operation*.
+Varsayılan durum kodunu veya *yol operasyonu* ile belirlediğiniz durum kodunu kullanacaktır.
 
-## Additional status codes
+## Ek Durum Kodları
 
-If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.
+Varsayılan durum kodunun dışında ek durum kodları döndürmek istiyorsanız, bunu doğrudan bir `Response` döndürerek yapabilirsiniz, örneğin bir `JSONResponse` ile ek durum kodunu doğrudan belirleyebilirsiniz.
 
-For example, let's say that you want to have a *path operation* that allows to update items, and returns HTTP status codes of 200 "OK" when successful.
+Örneğin, öğeleri güncellemeye izin veren ve başarılı olduğunda her şeyin yolunda olduğunu belirten "200" HTTP durum kodunu döndüren bir *yol operasyonu* oluşturmak istediğinizi varsayalım.
 
-But you also want it to accept new items. And when the items didn't exist before, it creates them, and returns an HTTP status code of 201 "Created".
+Aynı zamanda, yeni öğeler kabul etmek istiyorsunuz ve bu öğereler mevcut değilse öğeleri oluşturmak ve "Oluşturuldu" anlamına gelen 201 HTTP durum kodunu döndürmek istiyorsunuz.
 
-To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
+Bunun için `JSONResponse`'ı projenize dahil edin ve içeriğinizi doğrudan `JSONResponse` içerisinde istediğiniz `status_code` ile birlikte yanıt olarak döndürün:
 
 === "Python 3.10+"
 
@@ -34,8 +34,8 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="2  23"
     {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
@@ -43,27 +43,27 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "İpucu"
+        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
     ```Python hl_lines="4  25"
     {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
     ```
 
-!!! warning
-    When you return a `Response` directly, like in the example above, it will be returned directly.
+!!! warning "Uyarı"
+    Yukarıdaki örnekte olduğu gibi bir `Response` döndürdüğünüzde, doğrudan döndürülecektir.
 
-    It won't be serialized with a model, etc.
+    Bu yanıt herhangi bir modelle dönüştürülme işlemine tabi tutulmayacaktır.
 
-    Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
+    Yanıtın, istediğiniz veriye sahip olduğundan ve (eğer `JSONResponse` kullanıyorsanız) değerlerin geçerli JSON olduğundan emin olun.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+!!! note "Teknik Detaylar"
+    Projenize dahil etmek için `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
 
-## OpenAPI and API docs
+## OpenAPI ve API Dokümantasyonu
 
-If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know beforehand what you are going to return.
+Eğer ek durum kodları ve yanıtlarını doğrudan döndürürseniz, bunlar OpenAPI şemasına (API belgeleri) dahil edilmeyecektir, çünkü FastAPI'ın önceden ne döndüreceğinizi bilmesi için bir yol yoktur.
 
-But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+Ancak [Additional Responses](additional-responses.md){.internal-link target=_blank} sayfasında belirtildiği gibi "ek yanıtlar" kullanarak, bunu kodunuzda dokümante edebilirsiniz.
