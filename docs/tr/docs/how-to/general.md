@@ -12,7 +12,7 @@ Döndürmeniz gereken veriden fazlasını döndürmemenizi sağlamak için, [Tut
 
 ## Dokümantasyon Özeti ve Açıklaması - OpenAPI
 
-*Yol işlemleri*nize özet ve açıklama eklemek ve bunları dokümantasyon arayüzünde göstermek için, [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank} sayfasını okuyun.
+*Yol operasyonlarınıza* özet ve açıklama eklemek ve bunları dokümantasyon arayüzünde göstermek için, [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank} sayfasını okuyun.
 
 ## Dokümantasyon Yanıt Açıklaması - OpenAPI
 
