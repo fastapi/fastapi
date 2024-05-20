@@ -86,4 +86,4 @@ Bunlar sadece bir kolaylık, aynı numarayı tutarlar, ancak bu şekilde editör
 
 ## Varsayılanı Değiştirme
 
-[Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank} sayfasında, burada belirttiğiniz varsayılan durum kodundan farklı bir durum kodu döndürmenin nasıl yapılacağını göreceksiniz.
+[Gelişmiş Kullanıcı Rehberi](../advanced/response-change-status-code.md){.internal-link target=_blank} sayfasında, burada belirttiğiniz varsayılan durum kodundan farklı bir durum kodu döndürmenin nasıl yapılacağını göreceksiniz.
