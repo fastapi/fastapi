@@ -16,6 +16,6 @@ Kullanım durumunuza ve kullandığınız araçlara bağlı olarak bir kaç fark
 
 Bir dizi araç kombinasyonunu kullanarak kendiniz **bir sunucu yayınlayabilirsiniz**, yayınlama sürecinin bir kısmını sizin için gerçekleştiren bir **bulut hizmeti** veya diğer olası seçenekleri kullanabilirsiniz.
 
-**FastAPI** uygulamasını yayınlarken aklınızda bulundurmanız gereken ana kavramlardan bazılarını size göstereceğim (ancak çoğu diğer web uygulamalarına da kullanılabilir).
+**FastAPI** uygulamasını yayınlarken aklınızda bulundurmanız gereken ana kavramlardan bazılarını size göstereceğim (ancak bunların çoğu diğer web uygulamaları için de geçerlidir).
 
 Sonraki bölümlerde akılda tutulması gereken diğer ayrıntıları ve tekniklerinden bazılarını göreceksiniz. ✨
