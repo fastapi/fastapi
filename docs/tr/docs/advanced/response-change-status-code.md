@@ -1,33 +1,33 @@
-# Response - Change Status Code
+# Yanıt - Durum Kodunu Değiştirme
 
-You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
+Muhtemelen daha önce varsayılan bir [Yanıt Durum Kodu](../tutorial/response-status-code.md){.internal-link target=_blank} belirleyebileceğinizi okumuşsunuzdur.
 
-But in some cases you need to return a different status code than the default.
+Ancak bazı durumlarda varsayılan durum kodundan farklı bir durum kodu döndürmeniz gerekebilir.
 
-## Use case
+## Kullanım Senaryosu
 
-For example, imagine that you want to return an HTTP status code of "OK" `200` by default.
+Diyelim ki, varsayılan olarak her şeyin yolunda olduğunu belirten `200` HTTP durum kodunu döndürmek istiyorsunuz.
 
-But if the data didn't exist, you want to create it, and return an HTTP status code of "CREATED" `201`.
+Ancak veri mevcut değilse, oluşturmak ve "Oluşturuldu" anlamına gelen `201` HTTP durum kodunu döndürmek istiyorsunuz.
 
-But you still want to be able to filter and convert the data you return with a `response_model`.
+Ancak yine de döndürdüğünüz verileri bir `response_model` ile filtrelemek ve dönüştürmek istiyorsunuz.
 
-For those cases, you can use a `Response` parameter.
+Bu durumlar için bir `Response` parametresi kullanabilirsiniz.
 
-## Use a `Response` parameter
+## Bir `Response` parametresi kullanın
 
-You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies and headers).
+*yol operasyonu fonksiyonunuzda* `Response` türünde bir parametre belirleyebilirsiniz (çerezler ve headers için yapabileceğiniz gibi).
 
-And then you can set the `status_code` in that *temporal* response object.
+Ardından *geçici* yanıt nesnesinde `status_code` belirtebilirsiniz.
 
 ```Python hl_lines="1  9  12"
 {!../../../docs_src/response_change_status_code/tutorial001.py!}
 ```
 
-And then you can return any object you need, as you normally would (a `dict`, a database model, etc).
+Sonunda normalde döndürdüğünüz gibi herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli, vb).
 
-And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
+Eğer bir `response_model` belirlediyseniz, döndürdüğünüz nesneyi filtrelemek ve dönüştürmek için kullanılacaktır.
 
-**FastAPI** will use that *temporal* response to extract the status code (also cookies and headers), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
+**FastAPI** bu *geçici* yanıtı durum kodunu (ayrıca çerezleri ve headers'ı) çıkarmak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
 
-You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win.
+Bağımlılıklarda da `Response` parametresini belirtebilir ve durum kodunu onlarda belirleyebilirsiniz. Ancak son belirlenen durum kodu kullanılacaktır.
