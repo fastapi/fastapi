@@ -30,4 +30,4 @@ Eğer bir `response_model` belirlediyseniz, döndürdüğünüz nesneyi filtrele
 
 **FastAPI** bu *geçici* yanıtı durum kodunu (ayrıca çerezleri ve headers'ı) çıkarmak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
 
-Bağımlılıklarda da `Response` parametresini belirtebilir ve durum kodunu onlarda belirleyebilirsiniz. Ancak son belirlenen durum kodu kullanılacaktır.
+Bağımlılıklarda da `Response` parametresini belirtebilir ve durum kodunu belirleyebilirsiniz. Ancak son belirlenen durum kodu kullanılacaktır.
