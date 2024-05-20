@@ -107,7 +107,7 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
 
 And they can return values or not, the values won't be used.
 
-So, you can re-use a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
+So, you can reuse a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
 
 === "Python 3.9+"
 

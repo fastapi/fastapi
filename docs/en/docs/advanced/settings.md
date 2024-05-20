@@ -369,7 +369,7 @@ Here we define the config `env_file` inside of your Pydantic `Settings` class, a
 
 ### Creating the `Settings` only once with `lru_cache`
 
-Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then re-use the same settings object, instead of reading it for each request.
+Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then reuse the same settings object, instead of reading it for each request.
 
 But every time we do:
 
