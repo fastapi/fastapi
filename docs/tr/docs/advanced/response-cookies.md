@@ -1,49 +1,49 @@
-# Response Cookies
+# Yanıt Çerezleri
 
-## Use a `Response` parameter
+## Bir `Response` Parametresi Kullanın
 
-You can declare a parameter of type `Response` in your *path operation function*.
+*yol operasyonu fonksiyonunuzda* `Response` türünde bir parametre belirleyebilirsiniz.
 
-And then you can set cookies in that *temporal* response object.
+Ardından *geçici* yanıt nesnesinde çerezleri belirleyebilirsiniz.
 
 ```Python hl_lines="1  8-9"
 {!../../../docs_src/response_cookies/tutorial002.py!}
 ```
 
-And then you can return any object you need, as you normally would (a `dict`, a database model, etc).
+Sonunda normalde döndürdüğünüz gibi herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli, vb).
 
-And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
+Eğer bir `response_model` belirlediyseniz, döndürdüğünüz nesneyi filtrelemek ve dönüştürmek için kullanılacaktır.
 
-**FastAPI** will use that *temporal* response to extract the cookies (also headers and status code), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
+**FastAPI** bu *geçici* yanıtı çerezleri (ayrıca durum kodunu ve başlıkları) çıkarmak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
 
-You can also declare the `Response` parameter in dependencies, and set cookies (and headers) in them.
+Bağımlılıklarda da `Response` parametresini belirtebilir ve çezerlezi belirleyebilirsiniz.
 
-## Return a `Response` directly
+## Bir `Response`'u Doğrudan Döndürün
 
-You can also create cookies when returning a `Response` directly in your code.
+Doğrudan bir `Response` döndürürken çerezler oluşturabilirsiniz.
 
-To do that, you can create a response as described in [Return a Response Directly](response-directly.md){.internal-link target=_blank}.
+Bunun için [Return a Response Directly](response-directly.md){.internal-link target=_blank} sayfasında açıklandığı gibi bir yanıt oluşturabilirsiniz.
 
-Then set Cookies in it, and then return it:
+Ardından çerezleri belirleyin ve yanıtı döndürün:
 
 ```Python hl_lines="10-12"
 {!../../../docs_src/response_cookies/tutorial001.py!}
 ```
 
-!!! tip
-    Keep in mind that if you return a response directly instead of using the `Response` parameter, FastAPI will return it directly.
+!!! tip "İpucu"
+    `Response` parametresini kullanmak yerine yanıtı doğrudan döndürürseniz, FastAPI yanıtı doğrudan döndürecektir.
 
-    So, you will have to make sure your data is of the correct type. E.g. it is compatible with JSON, if you are returning a `JSONResponse`.
+    Yanıtı doğrudan döndürürken, verinizin doğru türde olduğundan emin olmalısınız. Örneğin, bir `JSONResponse` döndürüyorsanız, verinizin JSON ile uyumlu olduğundan emin olmalısınız.
 
-    And also that you are not sending any data that should have been filtered by a `response_model`.
+    Ayrıca, bir `response_model` tarafından filtrelenmesi gereken verileri göndermediğinizden emin olmalısınız.
 
-### More info
+## Daha Fazla Bilgi
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
+!!! note "Teknik Detaylar"
+    Projenize dahil etmek için `from starlette.responses import Response` veya `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
 
-    And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
+    `Response` sıklıkla başlıkları ve çerezleri belirlemek için kullanılabileceği için, **FastAPI** ayrıca `fastapi.Response`'ı da sağlar.
 
-To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
+Tüm mevcut parametreleri ve seçenekleri görmek için <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Starlette dokümantasyonunu</a> incelleyin.
