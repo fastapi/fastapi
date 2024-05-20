@@ -18,4 +18,4 @@ Bir dizi araç kombinasyonunu kullanarak kendiniz **bir sunucu yayınlayabilirsi
 
 **FastAPI** uygulamasını yayınlarken aklınızda bulundurmanız gereken ana kavramlardan bazılarını size göstereceğim (ancak bunların çoğu diğer web uygulamaları için de geçerlidir).
 
-Sonraki bölümlerde akılda tutulması gereken diğer ayrıntıları ve tekniklerinden bazılarını göreceksiniz. ✨
+Sonraki bölümlerde akılda tutulması gereken diğer ayrıntıları ve yayınlama tekniklerinden bazılarını göreceksiniz. ✨
