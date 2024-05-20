@@ -1,89 +1,89 @@
-# Response Status Code
+# Yanıt Durum Kodu
 
-The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the *path operations*:
+Yanıt modeli belirlediğiniz gibi HTTP durum kodunu belirleyebilirsiniz. Bu, *yol operasyonlarından* herhangi birinde `status_code` parametresi ile yapılır:
 
 * `@app.get()`
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
-* etc.
+* vb.
 
 ```Python hl_lines="6"
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note
-    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+!!! note "Not"
+    Burada `status_code`'un "dekoratör" metodunun (`get`, `post`, vb) bir parametresi olduğuna dikkat edin. `status_code` *yol operasyonu fonksiyonunuzun* aldığı parametrelerden farklıdır.
 
-The `status_code` parameter receives a number with the HTTP status code.
+`status_code` parametresi, HTTP durum kodu ile bir sayı alır.
 
-!!! info
-    `status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+!!! info "Bilgi"
+    `statuc_code` ayrıca Python'ın <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>'ü gibi bir `IntEnum` de alabilir.
 
-It will:
+Bu şekilde:
 
-* Return that status code in the response.
-* Document it as such in the OpenAPI schema (and so, in the user interfaces):
+* Yanıtta bu durum kodunu döndürür.
+* Durum kodu dokümantasyonda belirtilir ve kullanıcı arayüzünde gösterilir.
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-!!! note
-    Some response codes (see the next section) indicate that the response does not have a body.
+!!! note "Not"
+    Bazı yanıt durum kodları (bir sonraki bölüme bakın) yanıtın bir gövdesi olmadığını belirtir.
 
-    FastAPI knows this, and will produce OpenAPI docs that state there is no response body.
+    FastAPI bunu bilir ve OpenAPI dokümantasyonu oluştururken yanıt gövdesi olmadığını belirtir.
 
-## About HTTP status codes
+## HTTP Durum Kodları Hakkında
 
-!!! note
-    If you already know what HTTP status codes are, skip to the next section.
+!!! note "Not"
+    Eğer HTTP durum kodlarını zaten biliyorsanız, bir sonraki bölüme atlayın.
 
-In HTTP, you send a numeric status code of 3 digits as part of the response.
+HTTP ile, yanıtın bir parçası olarak 3 haneli bir sayısal durum kodu gönderilir.
 
-These status codes have a name associated to recognize them, but the important part is the number.
+Bu durum kodlarına tanınabilirlik sağlamak için bir isim atanmıştır, ancak önemli olan sayılardır.
 
-In short:
+Özetlemek gerekirse:
 
-* `100` and above are for "Information". You rarely use them directly.  Responses with these status codes cannot have a body.
-* **`200`** and above are for "Successful" responses. These are the ones you would use the most.
-    * `200` is the default status code, which means everything was "OK".
-    * Another example would be `201`, "Created". It is commonly used after creating a new record in the database.
-    * A special case is `204`, "No Content".  This response is used when there is no content to return to the client, and so the response must not have a body.
-* **`300`** and above are for "Redirection".  Responses with these status codes may or may not have a body, except for `304`, "Not Modified", which must not have one.
-* **`400`** and above are for "Client error" responses. These are the second type you would probably use the most.
-    * An example is `404`, for a "Not Found" response.
-    * For generic errors from the client, you can just use `400`.
-* `500` and above are for server errors. You almost never use them directly. When something goes wrong at some part in your application code, or server, it will automatically return one of these status codes.
+* `100` ve üstü "Bilgi" içindir. Bunları nadiren kullanırsınız. Bu durum kodlarına sahip yanıtların bir gövdesi olamaz.
+* **`200`** ve üstü "Başarılı" yanıtlar içindir. Bunları en çok kullanacağınız türdür.
+    * `200` her şeyin "yolunda" olduğu belirten varsayılan durum kodudur.
+    * `201` ise "Oluşturuldu" anlamına gelen bir diğer durum kodudur. Genellikle veritabanında yeni bir kayıt oluşturulduktan sonra kullanılır.
+    * `204` ise "İçerik Yok" anlamına gelir. Bu yanıt, istemciye döndürülecek içeriğin olmadığı durumlarda kullanılır ve bu nedenle yanıtın bir gövdesi olmamalıdır.
+* **`300`** ve üstü "Yönlendirme" içindir. Bu durum kodlarına sahip yanıtların bir gövdesi olabilir veya olmayabilir ancak `304`, "Değiştirilmedi" için durum farklıdır ve bir gövdesi olmamalıdır.
+* **`400`** ve üstü "İstemci hatası" yanıtları içindir. Bunlar muhtemelen en sık kullanacağınız ikinci türdür.
+    * `404` ilgili kaynağın "bulunamadı"ğını belirten bir örnektir.
+    * İstemciden gelen genel hatalar için sadece `400` kullanabilirsiniz.
+* `500` ve üstü "Sunucu hatası" içindir. Bunları neredeyse hiçbir zaman doğrudan kullanmazsınız. Uygulama kodunda veya sunucuda bir şeyler yolunda gitmediğinde, otomatik olarak bu durum kodlarından birini döndürecektir.
 
-!!! tip
-    To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+!!! tip "İpucu"
+    Her bir durum kodu ve hangi kodun ne anlama geldiği hakkında daha fazla bilgi edinmek için, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>'ün HTTP durum kodları hakkında dokümantasyonunu</a> inceleyebilirsiniz.
 
-## Shortcut to remember the names
+## İsimleri Hatırlamak İçin Kısayol
 
-Let's see the previous example again:
+Önceki örneğe bir daha bakalım:
 
 ```Python hl_lines="6"
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-`201` is the status code for "Created".
+`201` "oluşturuldu" anlamına gelen bir durum kodudur.
 
-But you don't have to memorize what each of these codes mean.
+Ancak bu kodların her birinin ne anlama geldiğini ezberlemeniz gerekmez.
 
-You can use the convenience variables from `fastapi.status`.
+`fastapi.status` ile gelen kolaylık değişkenlerini kullanabilirsiniz.
 
 ```Python hl_lines="1  6"
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 
-They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
+Bunlar sadece bir kolaylık, aynı numarayı tutarlar, ancak bu şekilde editörün otomatik tamamlama özelliğini kullanarak onları bulabilirsiniz:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-!!! note "Technical Details"
-    You could also use `from starlette import status`.
+!!! note "Teknik Detaylar"
+    Projenize dahil etmek için `from starlette import status` kullanabilirsiniz.
 
-    **FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
+    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.status`'ü `fastapi.status` olarak sağlar. Ancak `status` aslında doğrudan Starlette'den gelir.
 
-## Changing the default
+## Varsayılanı Değiştirme
 
-Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.
+[Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank} sayfasında, burada belirttiğiniz varsayılan durum kodunfan farklı bir durum kodu döndürmenin nasıl yapılacağını göreceksiniz.
