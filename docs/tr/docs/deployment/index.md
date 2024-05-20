@@ -6,7 +6,7 @@
 
 Bir uygulamayı **deploy** etmek (yayınlamak), uygulamayı **kullanıcılara erişilebilir hale getirmek** için gerekli adımları gerçekleştirmek anlamına gelir.
 
-Bir **Web API** için, bu süreç normalde uygulamayı **uzak bir makineye** yerleştirmeyi, iyi performans, kararlılık vb. özellikler sağlayan bir **sunucu programı** ile **kullanıcılarınızın** uygulamaya etkili ve kesintisiz bir şekilde **erişebilmesini** kapsar.
+Bir **Web API** için bu süreç normalde uygulamayı **uzak bir makineye** yerleştirmeyi, iyi performans, kararlılık vb. özellikler sağlayan bir **sunucu programı** ile **kullanıcılarınızın** uygulamaya etkili ve kesintisiz bir şekilde **erişebilmesini** kapsar.
 
 Bu, kodu sürekli olarak değiştirdiğiniz, hata alıp hata giderdiğiniz, geliştirme sunucusunu durdurup yeniden başlattığınız vb. **geliştirme** aşamalarının tam tersidir.
 
