@@ -18,7 +18,7 @@ Döndürmeniz gereken veriden fazlasını döndürmemenizi sağlamak için, [Tut
 
 Dokümantasyon arayüzünde gösterilen yanıt açıklamasını tanımlamak için, [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank} sayfasını okuyun.
 
-## *Yol İşlemi*ni Kullanımdan Kaldırma - OpenAPI
+## *Yol Operasyonunu* Kullanımdan Kaldırma - OpenAPI
 
 Bir *yol işlemi*ni kullanımdan kaldırmak ve bunu dokümantasyon arayüzünde göstermek için, [Tutorial - Path Operation Configurations - Deprecation](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank} sayfasını okuyun.
 
