@@ -1,16 +1,16 @@
-# Advanced Security
+# Gelişmiş Güvenlik
 
-## Additional Features
+## Ek Özellikler
 
 There are some extra features to handle security apart from the ones covered in the [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
 
-!!! tip
-    The next sections are **not necessarily "advanced"**.
+!!! tip "İpucu"
+    Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
 
-    And it's possible that for your use case, the solution is in one of them.
+    Kullanım şeklinize bağlı olarak, çözümünüz bu bölümlerden birinde olabilir.
 
-## Read the Tutorial first
+## Önce Öğreticiyi Okuyun
 
-The next sections assume you already read the main [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
+Sonraki bölümler [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank} sayfasını okuduğunuzu varsayarak hazırlanmıştır.
 
-They are all based on the same concepts, but allow some extra functionalities.
+Bu bölümler aynı kavramlara dayanır, ancak bazı ek işlevsellikler sağlar.
