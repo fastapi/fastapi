@@ -43,7 +43,7 @@ $ pip install jinja2
 !!! note "技术细节"
 
     您还可以使用 `from starlette.templating import Jinja2Templates`。
-    
+
     **FastAPI** 的 `fastapi.templating` 只是为开发者提供的快捷方式。实际上，绝大多数可用响应都直接继承自 Starlette。 `Request` 与 `StaticFiles` 也一样。
 
 ## 编写模板
