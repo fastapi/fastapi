@@ -102,7 +102,7 @@ Item ID: 42
 
 ## 模板与静态文件
 
-你还可以在模板内部将 `url_for()`用于静态文件，例如你挂载的 `name="static"`的`StaticFiles`。
+你还可以在模板内部将 `url_for()`用于静态文件，例如你挂载的 `name="static"`的 `StaticFiles`。
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
@@ -118,4 +118,4 @@ Item ID: 42
 
 ## 更多说明
 
-包括测试模板等更多详情，请参阅 <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette 官档 - 模板</a>。
+包括测试模板等更多详情，请参阅 <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette 官方文档 - 模板</a>。
