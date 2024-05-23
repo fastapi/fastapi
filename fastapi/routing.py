@@ -130,6 +130,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    context: dict[str, Any] | None = None,
 ) -> Any:
     if field:
         errors = []
@@ -165,6 +166,7 @@ async def serialize_response(
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
+                context=context,
             )
 
         return jsonable_encoder(
@@ -205,6 +207,7 @@ def get_request_handler(
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
+    response_model_context: Optional[Dict[str, Any]] = None,
     dependency_overrides_provider: Optional[Any] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -303,6 +306,7 @@ def get_request_handler(
                             exclude_defaults=response_model_exclude_defaults,
                             exclude_none=response_model_exclude_none,
                             is_coroutine=is_coroutine,
+                            context=response_model_context,
                         )
                         response = actual_response_class(content, **response_args)
                         if not is_body_allowed_for_status_code(response.status_code):
@@ -410,6 +414,7 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_context: Optional[Dict[str, Any]] = None,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -440,6 +445,7 @@ class APIRoute(routing.Route):
         self.response_model_exclude_unset = response_model_exclude_unset
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
+        self.response_model_context = response_model_context
         self.include_in_schema = include_in_schema
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -532,6 +538,7 @@ class APIRoute(routing.Route):
             response_model_exclude_unset=self.response_model_exclude_unset,
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
+            response_model_context=self.response_model_context,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
@@ -850,6 +857,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_context: Optional[Dict[str, Any]] = None,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -900,6 +908,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -931,6 +940,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_context: Optional[Dict[str, Any]] = None,
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -961,6 +971,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_context=response_model_context,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -1269,6 +1280,7 @@ class APIRouter(routing.Router):
                     response_model_exclude_unset=route.response_model_exclude_unset,
                     response_model_exclude_defaults=route.response_model_exclude_defaults,
                     response_model_exclude_none=route.response_model_exclude_none,
+                    response_model_context=route.response_model_context,
                     include_in_schema=route.include_in_schema
                     and self.include_in_schema
                     and include_in_schema,
@@ -1563,6 +1575,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -1678,6 +1693,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1940,6 +1956,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2060,6 +2079,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2322,6 +2342,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2442,6 +2465,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2704,6 +2728,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2819,6 +2846,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3081,6 +3109,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3196,6 +3227,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3458,6 +3490,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3578,6 +3613,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3840,6 +3876,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3960,6 +3999,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4222,6 +4262,9 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4342,6 +4385,7 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,

@@ -1075,6 +1075,7 @@ class FastAPI(Starlette):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_context: Optional[Dict[str, Any]] = None,
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -1105,6 +1106,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -1133,6 +1135,7 @@ class FastAPI(Starlette):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_context: Optional[Dict[str, Any]] = None,
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1162,6 +1165,7 @@ class FastAPI(Starlette):
                 response_model_exclude_unset=response_model_exclude_unset,
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_context=response_model_context,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -1711,6 +1715,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -1822,6 +1829,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2084,6 +2092,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2200,6 +2211,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2462,6 +2474,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2578,6 +2593,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -2840,6 +2856,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2951,6 +2970,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3213,6 +3233,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3324,6 +3347,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3586,6 +3610,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3697,6 +3724,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -3959,6 +3987,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4075,6 +4106,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -4337,6 +4369,9 @@ class FastAPI(Starlette):
                 """
             ),
         ] = False,
+        response_model_context: Annotated[
+            Optional[dict], Doc("Context to be used when encoding the response model.")
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4448,6 +4483,7 @@ class FastAPI(Starlette):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_context=response_model_context,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,

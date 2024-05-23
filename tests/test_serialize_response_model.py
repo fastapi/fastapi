@@ -12,6 +12,14 @@ class Item(BaseModel):
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
 
+    @model_serializer(mode="wrap")
+    def _serialize(self, handler, info: SerializationInfo | None = None):
+        data = handler(self)
+        if info.context and info.context.get("mode") == "FASTAPI":
+            if "price" in data:
+                data.pop("price")
+        return data
+
 
 @app.get("/items/valid", response_model=Item)
 def get_valid():
@@ -76,6 +84,20 @@ def get_validlist_exclude_unset():
     response_model_exclude_unset=True,
 )
 def get_validdict_exclude_unset():
+    return {
+        "k1": Item(aliased_name="foo"),
+        "k2": Item(aliased_name="bar", price=1.0),
+        "k3": Item(aliased_name="baz", price=2.0, owner_ids=[1, 2, 3]),
+    }
+
+
+@app.get(
+    "/items/validdict-with-context",
+    response_model=Dict[str, Item],
+    response_model_context={"mode": "FASTAPI"},
+)
+async def get_validdict_with_context():
+
     return {
         "k1": Item(aliased_name="foo"),
         "k2": Item(aliased_name="bar", price=1.0),
@@ -151,4 +173,14 @@ def test_validdict_exclude_unset():
         "k1": {"aliased_name": "foo"},
         "k2": {"aliased_name": "bar", "price": 1.0},
         "k3": {"aliased_name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
+    }
+
+
+def test_validdict_with_context():
+    response = client.get("/items/validdict-with-context")
+    response.raise_for_status()
+    assert response.json() == {
+        "k1": {"aliased_name": "foo", "owner_ids": None},
+        "k2": {"aliased_name": "bar", "owner_ids": None},
+        "k3": {"aliased_name": "baz", "owner_ids": [1, 2, 3]},
     }
