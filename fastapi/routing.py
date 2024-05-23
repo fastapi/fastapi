@@ -1576,7 +1576,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -1957,7 +1968,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -2343,7 +2365,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -2729,7 +2762,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -3110,7 +3154,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -3491,7 +3546,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -3877,7 +3943,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -4263,7 +4340,18 @@ class APIRouter(routing.Router):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[dict], Doc("Context to be used when encoding the response model.")
+            Optional[Dict[str, Any]], Doc(
+                """
+                Additional context to pass to Pydantic when creating the response.
+
+                This will be passed in as serialization context to the response model.
+
+                Note: This feature is a noop on pydantic < 2.7.2
+
+                Read more about serialization context in the
+                [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
+                """
+            )
         ] = None,
         include_in_schema: Annotated[
             bool,
