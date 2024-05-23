@@ -147,6 +147,10 @@ if PYDANTIC_V2:
         ) -> Any:
             # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
+            #
+            # context argument was introduced in pydantic 2.7.3
+            kwargs = {"context": context} if PYDANTIC_VERSION > "2.7.2" else {}
+
             return self._type_adapter.dump_python(
                 value,
                 mode=mode,
@@ -156,7 +160,7 @@ if PYDANTIC_V2:
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
-                context=context,
+                **kwargs,
             )
 
         def __hash__(self) -> int:

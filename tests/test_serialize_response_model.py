@@ -1,7 +1,9 @@
 from typing import Dict, List, Optional
 
+import pytest
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from fastapi._compat import PYDANTIC_VERSION
+from pydantic import BaseModel, Field, SerializationInfo, model_serializer
 from starlette.testclient import TestClient
 
 app = FastAPI()
@@ -176,6 +178,7 @@ def test_validdict_exclude_unset():
     }
 
 
+@pytest.mark.skipif(PYDANTIC_VERSION < "2.7.2", reason="requires Pydantic 2.7.3+")
 def test_validdict_with_context():
     response = client.get("/items/validdict-with-context")
     response.raise_for_status()
