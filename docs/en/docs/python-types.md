@@ -1,8 +1,8 @@
 # Type Hints
 
-**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber the names of functions associated with various variable types by letting your coding editor do the work for you. FastAPI takes advantage of Python's `typing` library to create reliable editor support and provide quick type checks within a compatible coding language.
+**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in a function's parameters. FastAPI takes advantage of Python's `typing` library to create reliable editor support and provide quick type checks within a compatible coding language.
 
-This document offers a quick overview of type hinting works for:
+This document offers a quick overview of type hinting for:
 * Variables
 * Classes
 * Pydantic models
