@@ -6,7 +6,6 @@ from fastapi._compat import PYDANTIC_V2, PYDANTIC_VERSION
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
 
-
 app = FastAPI()
 
 
@@ -202,7 +201,10 @@ if PYDANTIC_V2:
 
         assert response.json() == expected_response
 
-    @pytest.mark.skipif(PYDANTIC_VERSION >= "2.7.3", reason="Pydantic supports the feature from this point on")
+    @pytest.mark.skipif(
+        PYDANTIC_VERSION >= "2.7.3",
+        reason="Pydantic supports the feature from this point on",
+    )
     def test_validdict_with_context__pre_pydantic_support():
         response = client.get("/items/validdict-with-context")
         response.raise_for_status()
