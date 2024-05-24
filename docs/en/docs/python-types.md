@@ -1,123 +1,93 @@
-# Python Types Intro
+# Python Types Refresher
 
-Python has support for optional "type hints" (also called "type annotations").
+FastAPI relies heavily on Python's type hint feature to reduce time spent coding functions. This document offers a refresher on using types in common scenarios within Python.
 
-These **"type hints"** or annotations are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+## Variable types
+In Python, variables hold onto the values you set for them. For example:
 
-By declaring types for your variables, editors and tools can give you better support.
+```
+name = "john doe"
+```
+Where **name** is the name of the variable and **john doe** is the value for that variable (also called an **object**).
 
-This is just a **quick tutorial / refresher** about Python type hints. It covers only the minimum necessary to use them with **FastAPI**... which is actually very little.
+**Variable types** categorize objects. See the table below to understand the variable types used in this document:
 
-**FastAPI** is all based on these type hints, they give it many advantages and benefits.
+| Type Category       | Type name       | Meaning       |
+| ------------------- | --------------- | ------------- |
+| Text          | `str`       | String. Used for text |
+| Numeric       | `int`       | Integer. Used for whole numbers. |
+| Boolean       | `bool`      | Boolean. Used to indicate true or false states. |
+| Sequence      | `list`      | List. An ordered sequence of integers that can be changed or replaced. |
+|               | `tuple`     | Tuple. A sequence of permanent values that cannot be modified. |
+| Set           | `set`       | Set. An unordered sequence of unique, permanent values. |
+| Mapping       | `dict`      | Dictionary. An unordered sequence of unique values that can be changed or replaced. |
+| None          | `NoneType`  | None. An object without a value. |
 
-But even if you never use **FastAPI**, you would benefit from learning a bit about them.
 
-!!! note
-    If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+## Type hints
+**Type hints** (also called **type annotations**) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber functions associated with various variable types. 
 
-## Motivation
-
-Let's start with a simple example:
+To demonstrate how type hints work, here's an example function called **get_full_name**:
 
 ```Python
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-Calling this program outputs:
+This function does the following:
+* Takes a `first_name` and `last_name` as its input.
+* Converts the first letter of each input into an upper case letter using the built-in `title()` function for strings.
+* <abbr title="Puts two separate things together to become one. Contents appear one after the other)\.">Concatenates</abbr> them with a space in the middle.
+  
+The output is:
 
 ```
 John Doe
 ```
 
-The function does the following:
-
-* Takes a `first_name` and `last_name`.
-* Converts the first letter of each one to upper case with `title()`.
-* <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
-
-```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
-```
-
-### Edit it
-
-It's a very simple program.
-
-But now imagine that you were writing it from scratch.
-
-At some point you would have started the definition of the function, you had the parameters ready...
-
-But then you have to call "that method that converts the first letter to upper case".
-
-Was it `upper`? Was it `uppercase`? `first_uppercase`? `capitalize`?
-
-Then, you try with the old programmer's friend, editor autocompletion.
-
-You type the first parameter of the function, `first_name`, then a dot (`.`) and then hit `Ctrl+Space` to trigger the completion.
-
-But, sadly, you get nothing useful:
+However, if you're writing this code from scratch and are unable to remember the name of `title()`, you may want to search it using  `Ctrl + Space` within your coding editor. However, your editor will display what you've already written in your code and not the function you're looking for.
 
 <img src="/img/python-types/image01.png">
 
-### Add types
+To solve this problem, we can use type hints by modifying the function's parameters. 
 
-Let's modify a single line from the previous version.
-
-We will change exactly this fragment, the parameters of the function, from:
+The original parameters were:
 
 ```Python
     first_name, last_name
 ```
 
-to:
+But become the following with type hints:
 
 ```Python
     first_name: str, last_name: str
 ```
 
-That's it.
-
-Those are the "type hints":
+Then the function becomes:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-That is not the same as declaring default values like would be with:
+!!! Type hints vs default values
+    Type hints are different from setting a variable's value. 
 
-```Python
-    first_name="john", last_name="doe"
-```
-
-It's a different thing.
-
-We are using colons (`:`), not equals (`=`).
-
-And adding type hints normally doesn't change what happens from what would happen without them.
-
-But now, imagine you are again in the middle of creating that function, but with type hints.
-
-At the same point, you try to trigger the autocomplete with `Ctrl+Space` and you see:
-
-<img src="/img/python-types/image02.png">
-
-With that, you can scroll, seeing the options, until you find the one that "rings a bell":
+Now, if you're attempting to write a function in your coding editor, you can navigate through a list of functions associated with your variable's type.
 
 <img src="/img/python-types/image03.png">
 
-## More motivation
+## Error checks
 
-Check this function, it already has type hints:
+Type hints also help your coding editor to spot errors in type consistency faster. For example, take the following function:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
+Your coding editor would be able to recognize that there's a problem in your code.
 
 <img src="/img/python-types/image04.png">
 
-Now you know that you have to fix it, convert `age` to a string with `str(age)`:
+In this case, the solution is to  convert `age` to a string with `str(age)`.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
