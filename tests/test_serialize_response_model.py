@@ -1,11 +1,10 @@
 from typing import Dict, List, Optional
 
 import pytest
-from pydantic import BaseModel, Field
-from starlette.testclient import TestClient
-
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_VERSION
+from pydantic import BaseModel, Field
+from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -86,7 +85,6 @@ def get_validdict_exclude_unset():
     }
 
 
-
 client = TestClient(app)
 
 
@@ -161,6 +159,7 @@ def test_validdict_exclude_unset():
 @pytest.mark.skipif(PYDANTIC_VERSION < "2.7.2", reason="requires Pydantic 2.7.3+")
 def test_validdict_with_context():
     from pydantic import SerializationInfo, model_serializer
+
     class Item(BaseModel):
         name: str = Field(alias="aliased_name")
         price: Optional[float] = None
