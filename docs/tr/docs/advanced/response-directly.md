@@ -1,63 +1,63 @@
-# Return a Response Directly
+# Doğrudan Bir Yanıt Döndürme
 
-When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
+Bir **FastAPI** *yol operasyonu* oluşturduğunuzda bir `dict`, bir `list`, bir Pydantic modeli, bir veritabanı modeli vb. gibi herhangi bir veriyi döndürebilirsiniz.
 
-By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+**FastAPI** varsayılan olarak, döndürülen bu değeri [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} sayfasında açıklanan `jsonable_encoder`'ı kullanarak JSON'a otomatik olarak dönüştürür.
 
-Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a `JSONResponse` that would be used to send the response to the client.
+Arka planda, bu JSON uyumlu veriyi (örneğin bir `dict`) bir `JSONResponse` içine koyar ve bu, yanıtı istemciye göndermek için kullanılır.
 
-But you can return a `JSONResponse` directly from your *path operations*.
+Ancak *yol operasyonları*nda doğrudan bir `JSONResponse` döndürebilirsiniz.
 
-It might be useful, for example, to return custom headers or cookies.
+Bu kullanım kullanışlı olabilir, örneğin özel başlıklar veya çerezler döndürmek için.
 
-## Return a `Response`
+## Bir `Response` Döndürme
 
-In fact, you can return any `Response` or any sub-class of it.
+Aslında herhangi bir `Response`'ı veya onun herhangi bir alt sınıfını döndürebilirsiniz.
 
-!!! tip
-    `JSONResponse` itself is a sub-class of `Response`.
+!!! tip "İpucu"
+    `JSONResponse` sınıfı, `Response` sınıfının bir alt sınıfıdır.
 
-And when you return a `Response`, **FastAPI** will pass it directly.
+Bir `Response` döndürdüğünüzde, **FastAPI** bu yanıtı doğrudan döndürülecektir.
 
-It won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.
+Bu yanıt herhangi bir pydantic modeliyle dönüştürülme işlemine tabi tutulmayacaktır ve hiçbir içeriği herhangi bir türe dönüştürmeyecektir.
 
-This gives you a lot of flexibility. You can return any data type, override any data declaration or validation, etc.
+Bu sayede çok esnek bir şekilde çalışabilirsiniz. Herhangi bir veri türünü döndürebilir, herhangi bir veri tanımlamasını veya doğrulamasını geçersiz kılabilirsiniz, vb.
 
-## Using the `jsonable_encoder` in a `Response`
+## Bir `Response` İçinde `jsonable_encoder`'ı Kullanma
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
+**FastAPI** herhangi bir dönüşüm yapmadığı için, döndürdüğünüz `Response`'ın içeriğinin buna hazır olduğundan emin olmalısınız.
 
-For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
+Mesela, bir Pydantic modelini, içindeki tüm veri türlerini (örneğin `datetime`, `UUID`, vb.) JSON uyumlu türlere dönüştürerek bir `dict` içine koymadan bir `JSONResponse` içinde kullanamazsınız.
 
-For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
+Bu durumlar için, verinizi bir yanıta geçirmeden önce dönüştürmek için `jsonable_encoder`'ı kullanabilirsiniz:
 
 ```Python hl_lines="6-7  21-22"
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+!!! note "Teknik Detaylar"
+    Projenize dahil etmek için `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir.
 
-## Returning a custom `Response`
+## Özelleştirilmiş Bir `Response` Döndürme
 
-The example above shows all the parts you need, but it's not very useful yet, as you could have just returned the `item` directly, and **FastAPI** would put it in a `JSONResponse` for you, converting it to a `dict`, etc. All that by default.
+Yukarıdaki örnek, ihtiyacınız olan her şeyi açıklıyor ancak henüz çok kullanışlı değil, çünkü `item`'ı doğrudan döndürebilir ve **FastAPI** bunu sizin için bir `dict`'e dönüştürerek `JSONResponse` içine koyabilir, vb. Tüm bunlar varsayılan olarak yapılır.
 
-Now, let's see how you could use that to return a custom response.
+Şimdi, özelleştirilmiş bir yanıt döndürmek için `Response`'ı nasıl kullanabileceğinizi görelim.
 
-Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
+Diyelim ki bir <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> yanıtı döndürmek istiyorsunuz.
 
-You could put your XML content in a string, put it in a `Response`, and return it:
+Bu XML içeriğinizi bir `string` içine koyabilir ve bu `string`'i bir `Response` içine koyarak döndürebilirsiniz:
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
 ```
 
-## Notes
+## Notlar
 
-When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
+Doğrudan bir `Response` döndürdüğünüzde, veriniz otomatik olarak doğrulanmaz, dönüştürülmez (serileştirilmez) ve dokümantasyonu yapılmaz.
 
-But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Ancak, [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} sayfasında açıklandığı gibi dokümantasyonunu yapabilirsiniz
 
-You can see in later sections how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.
+İlerleyen bölümlerde, bu özel `Response`'ları kullanırken otomatik veri dönüşümü, dokümantasyon vb. özelliklere sahip olabileceğinizi görebilirsiniz.
