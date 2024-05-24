@@ -1,8 +1,8 @@
 # Type Hints
 
-**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber the names of functions associated with various variable types by letting your coding editor do the work for you. FastAPI takes advantage of Python's `typing` library to create reliable editor support and to provide quick type checks.
+**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber the names of functions associated with various variable types by letting your coding editor do the work for you. FastAPI takes advantage of Python's `typing` library to create reliable editor support and provide quick type checks within a compatible coding language.
 
-This document offers a quick overview of type hinting for:
+This document offers a quick overview of type hinting works for:
 * Variables
 * Classes
 * Pydantic models
@@ -208,7 +208,7 @@ An example from the official Pydantic docs:
 
 ## Type Hints with Metadata Annotations
 
-Python also has a feature that allows putting **additional metadata** in these type hints using `Annotated`.
+Python's `Annotated` library allows you to enter additional metadata in type hints. They are useful for providing FastAPI with more information about how you want your application to behave.
 
 === "Python 3.9+"
 
@@ -227,42 +227,3 @@ Python also has a feature that allows putting **additional metadata** in these t
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial013.py!}
     ```
-
-Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.
-
-But you can use this space in `Annotated` to provide **FastAPI** with additional metadata about how you want your application to behave.
-
-The important thing to remember is that **the first *type parameter*** you pass to `Annotated` is the **actual type**. The rest, is just metadata for other tools.
-
-For now, you just need to know that `Annotated` exists, and that it's standard Python. 😎
-
-Later you will see how **powerful** it can be.
-
-!!! tip
-    The fact that this is **standard Python** means that you will still get the **best possible developer experience** in your editor, with the tools you use to analyze and refactor your code, etc. ✨
-
-    And also that your code will be very compatible with many other Python tools and libraries. 🚀
-
-## Type hints in **FastAPI**
-
-**FastAPI** takes advantage of these type hints to do several things.
-
-With **FastAPI** you declare parameters with type hints and you get:
-
-* **Editor support**.
-* **Type checks**.
-
-...and **FastAPI** uses the same declarations to:
-
-* **Define requirements**: from request path parameters, query parameters, headers, bodies, dependencies, etc.
-* **Convert data**: from the request to the required type.
-* **Validate data**: coming from each request:
-    * Generating **automatic errors** returned to the client when the data is invalid.
-* **Document** the API using OpenAPI:
-    * which is then used by the automatic interactive documentation user interfaces.
-
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
-
-The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
-
-
