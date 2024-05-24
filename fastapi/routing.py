@@ -130,7 +130,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
-    context: Optional[Dict[str, Any]]= None,
+    context: Optional[Dict[str, Any]] = None,
 ) -> Any:
     if field:
         errors = []

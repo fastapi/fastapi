@@ -144,7 +144,7 @@ if PYDANTIC_V2:
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
             exclude_none: bool = False,
-            context: Optional[Dict[str, Any]]= None,
+            context: Optional[Dict[str, Any]] = None,
         ) -> Any:
             # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
