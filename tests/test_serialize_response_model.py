@@ -2,9 +2,10 @@ from typing import Dict, List, Optional
 
 import pytest
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_VERSION
+from fastapi._compat import PYDANTIC_V2, PYDANTIC_VERSION
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
+
 
 app = FastAPI()
 
@@ -156,21 +157,20 @@ def test_validdict_exclude_unset():
     }
 
 
-@pytest.mark.skipif(PYDANTIC_VERSION < "2.7.2", reason="requires Pydantic 2.7.3+")
-def test_validdict_with_context():
+if PYDANTIC_V2:
     from pydantic import SerializationInfo, model_serializer
 
     class Item(BaseModel):
         name: str = Field(alias="aliased_name")
-        price: Optional[float] = None
+        secret: Optional[str] = None
         owner_ids: Optional[List[int]] = None
 
         @model_serializer(mode="wrap")
         def _serialize(self, handler, info: SerializationInfo):
             data = handler(self)
             if info.context and info.context.get("mode") == "FASTAPI":
-                if "price" in data:
-                    data.pop("price")
+                if "secret" in data:
+                    data.pop("secret")
             return data
 
     app_new = FastAPI()
@@ -183,15 +183,34 @@ def test_validdict_with_context():
     async def get_validdict_with_context():
         return {
             "k1": Item(aliased_name="foo"),
-            "k2": Item(aliased_name="bar", price=1.0),
-            "k3": Item(aliased_name="baz", price=2.0, owner_ids=[1, 2, 3]),
+            "k2": Item(aliased_name="bar", secret="sEcReT"),
+            "k3": Item(aliased_name="baz", secret="sEcReT", owner_ids=[1, 2, 3]),
         }
 
     client = TestClient(app_new)
-    response = client.get("/items/validdict-with-context")
-    response.raise_for_status()
-    assert response.json() == {
-        "k1": {"aliased_name": "foo", "owner_ids": None},
-        "k2": {"aliased_name": "bar", "owner_ids": None},
-        "k3": {"aliased_name": "baz", "owner_ids": [1, 2, 3]},
-    }
+
+    @pytest.mark.skipif(PYDANTIC_VERSION < "2.7.3", reason="requires Pydantic v2.7.3+")
+    def test_validdict_with_context__pydantic_supported():
+        response = client.get("/items/validdict-with-context")
+        response.raise_for_status()
+
+        expected_response = {
+            "k1": {"aliased_name": "foo", "owner_ids": None},
+            "k2": {"aliased_name": "bar", "owner_ids": None},
+            "k3": {"aliased_name": "baz", "owner_ids": [1, 2, 3]},
+        }
+
+        assert response.json() == expected_response
+
+    @pytest.mark.skipif(PYDANTIC_VERSION >= "2.7.3", reason="Pydantic supports the feature from this point on")
+    def test_validdict_with_context__pre_pydantic_support():
+        response = client.get("/items/validdict-with-context")
+        response.raise_for_status()
+
+        expected_response = {
+            "k1": {"aliased_name": "foo", "owner_ids": None, "secret": None},
+            "k2": {"aliased_name": "bar", "owner_ids": None, "secret": "sEcReT"},
+            "k3": {"aliased_name": "baz", "owner_ids": [1, 2, 3], "secret": "sEcReT"},
+        }
+
+        assert response.json() == expected_response

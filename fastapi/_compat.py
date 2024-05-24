@@ -150,7 +150,7 @@ if PYDANTIC_V2:
             # self._type_adapter.validate_python(value)
             #
             # context argument was introduced in pydantic 2.7.3
-            kwargs = {"context": context} if PYDANTIC_VERSION > "2.7.2" else {}
+            kwargs = {"context": context} if PYDANTIC_VERSION >= "2.7.3" else {}
 
             return self._type_adapter.dump_python(
                 value,
