@@ -1,10 +1,11 @@
 from typing import Dict, List, Optional
 
 import pytest
+from pydantic import BaseModel, Field
+from starlette.testclient import TestClient
+
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_VERSION
-from pydantic import BaseModel, Field, model_serializer
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -13,14 +14,6 @@ class Item(BaseModel):
     name: str = Field(alias="aliased_name")
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
-
-    @model_serializer(mode="wrap")
-    def _serialize(self, handler, info):
-        data = handler(self)
-        if info.context and info.context.get("mode") == "FASTAPI":
-            if "price" in data:
-                data.pop("price")
-        return data
 
 
 @app.get("/items/valid", response_model=Item)
@@ -92,18 +85,6 @@ def get_validdict_exclude_unset():
         "k3": Item(aliased_name="baz", price=2.0, owner_ids=[1, 2, 3]),
     }
 
-
-@app.get(
-    "/items/validdict-with-context",
-    response_model=Dict[str, Item],
-    response_model_context={"mode": "FASTAPI"},
-)
-async def get_validdict_with_context():
-    return {
-        "k1": Item(aliased_name="foo"),
-        "k2": Item(aliased_name="bar", price=1.0),
-        "k3": Item(aliased_name="baz", price=2.0, owner_ids=[1, 2, 3]),
-    }
 
 
 client = TestClient(app)
@@ -179,6 +160,35 @@ def test_validdict_exclude_unset():
 
 @pytest.mark.skipif(PYDANTIC_VERSION < "2.7.2", reason="requires Pydantic 2.7.3+")
 def test_validdict_with_context():
+    from pydantic import SerializationInfo, model_serializer
+    class Item(BaseModel):
+        name: str = Field(alias="aliased_name")
+        price: Optional[float] = None
+        owner_ids: Optional[List[int]] = None
+
+        @model_serializer(mode="wrap")
+        def _serialize(self, handler, info: SerializationInfo):
+            data = handler(self)
+            if info.context and info.context.get("mode") == "FASTAPI":
+                if "price" in data:
+                    data.pop("price")
+            return data
+
+    app_new = FastAPI()
+
+    @app_new.get(
+        "/items/validdict-with-context",
+        response_model=Dict[str, Item],
+        response_model_context={"mode": "FASTAPI"},
+    )
+    async def get_validdict_with_context():
+        return {
+            "k1": Item(aliased_name="foo"),
+            "k2": Item(aliased_name="bar", price=1.0),
+            "k3": Item(aliased_name="baz", price=2.0, owner_ids=[1, 2, 3]),
+        }
+
+    client = TestClient(app_new)
     response = client.get("/items/validdict-with-context")
     response.raise_for_status()
     assert response.json() == {
