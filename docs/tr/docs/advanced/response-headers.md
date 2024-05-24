@@ -22,7 +22,7 @@ Bağımlılıklarda da `Response` parametresini belirtebilir ve başlıkları be
 
 Doğrudan bir `Response` döndürürken başlıklar oluşturabilirsiniz.
 
-Bunun için [Return a Response Directly](response-directly.md){.internal-link target=_blank} sayfasında açıklandığı gibi bir yanıt oluşturup başlkları ekleyin:
+Bunun için [Return a Response Directly](response-directly.md){.internal-link target=_blank} sayfasında açıklandığı gibi bir yanıt oluşturup başlıkları ekleyin:
 
 ```Python hl_lines="10-12"
 {!../../../docs_src/response_headers/tutorial001.py!}
