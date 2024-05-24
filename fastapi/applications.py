@@ -1716,7 +1716,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -1727,7 +1728,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -2104,7 +2105,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -2115,7 +2117,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -2497,7 +2499,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -2508,7 +2511,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -2890,7 +2893,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -2901,7 +2905,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -3278,7 +3282,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -3289,7 +3294,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -3666,7 +3671,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -3677,7 +3683,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -4054,7 +4060,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -4065,7 +4072,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,
@@ -4447,7 +4454,8 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-            Optional[Dict[str, Any]], Doc(
+            Optional[Dict[str, Any]],
+            Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
 
@@ -4458,7 +4466,7 @@ class FastAPI(Starlette):
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
                 """
-            )
+            ),
         ] = None,
         include_in_schema: Annotated[
             bool,

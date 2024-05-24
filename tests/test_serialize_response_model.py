@@ -99,7 +99,6 @@ def get_validdict_exclude_unset():
     response_model_context={"mode": "FASTAPI"},
 )
 async def get_validdict_with_context():
-
     return {
         "k1": Item(aliased_name="foo"),
         "k2": Item(aliased_name="bar", price=1.0),
