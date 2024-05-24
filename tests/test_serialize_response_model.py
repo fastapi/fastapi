@@ -3,7 +3,7 @@ from typing import Dict, List, Optional
 import pytest
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_VERSION
-from pydantic import BaseModel, Field, SerializationInfo, model_serializer
+from pydantic import BaseModel, Field, model_serializer
 from starlette.testclient import TestClient
 
 app = FastAPI()
@@ -15,7 +15,7 @@ class Item(BaseModel):
     owner_ids: Optional[List[int]] = None
 
     @model_serializer(mode="wrap")
-    def _serialize(self, handler, info: SerializationInfo | None = None):
+    def _serialize(self, handler, info):
         data = handler(self)
         if info.context and info.context.get("mode") == "FASTAPI":
             if "price" in data:
