@@ -159,7 +159,7 @@ def test_validdict_exclude_unset():
 if PYDANTIC_V2:
     from pydantic import SerializationInfo, model_serializer
 
-    class Item(BaseModel):
+    class MultiUseItem(BaseModel):
         name: str = Field(alias="aliased_name")
         secret: Optional[str] = None
         owner_ids: Optional[List[int]] = None
@@ -172,25 +172,25 @@ if PYDANTIC_V2:
                     data.pop("secret")
             return data
 
-    app_new = FastAPI()
+    app_v2 = FastAPI()
 
-    @app_new.get(
+    @app_v2.get(
         "/items/validdict-with-context",
-        response_model=Dict[str, Item],
+        response_model=Dict[str, MultiUseItem],
         response_model_context={"mode": "FASTAPI"},
     )
     async def get_validdict_with_context():
         return {
-            "k1": Item(aliased_name="foo"),
-            "k2": Item(aliased_name="bar", secret="sEcReT"),
-            "k3": Item(aliased_name="baz", secret="sEcReT", owner_ids=[1, 2, 3]),
+            "k1": MultiUseItem(aliased_name="foo"),
+            "k2": MultiUseItem(aliased_name="bar", secret="sEcReT"),
+            "k3": MultiUseItem(aliased_name="baz", secret="sEcReT", owner_ids=[1, 2, 3]),
         }
 
-    client = TestClient(app_new)
+    client_v2 = TestClient(app_v2)
 
     @pytest.mark.skipif(PYDANTIC_VERSION < "2.7.3", reason="requires Pydantic v2.7.3+")
     def test_validdict_with_context__pydantic_supported():
-        response = client.get("/items/validdict-with-context")
+        response = client_v2.get("/items/validdict-with-context")
         response.raise_for_status()
 
         expected_response = {
@@ -206,7 +206,7 @@ if PYDANTIC_V2:
         reason="Pydantic supports the feature from this point on",
     )
     def test_validdict_with_context__pre_pydantic_support():
-        response = client.get("/items/validdict-with-context")
+        response = client_v2.get("/items/validdict-with-context")
         response.raise_for_status()
 
         expected_response = {
