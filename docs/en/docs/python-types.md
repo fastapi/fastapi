@@ -1,62 +1,32 @@
-# Python Types Refresher
+# Type Hints
 
-FastAPI relies heavily on Python's type hint feature to reduce time spent coding functions. This document offers a refresher on using types in common scenarios within Python.
+**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber the names of functions associated with various variable types by letting your coding editor do the work for you. FastAPI takes advantage of Python's `typing` library to create reliable editor support and to provide quick type checks.
 
-## Variable types
-In Python, variables hold onto the values you set for them. For example:
+This document offers a quick overview of type hinting for:
+* Variables
+* Classes
+* Pydantic models
+* Metadata annotations
 
-```
-name = "john doe"
-```
-Where **name** is the name of the variable and **john doe** is the value for that variable (also called an **object**).
+## How they work
 
-**Variable types** categorize objects. See the table below to understand the variable types used in this document:
-
-| Type Category       | Type name       | Meaning       |
-| ------------------- | --------------- | ------------- |
-| Text          | `str`       | String. Used for text |
-| Numeric       | `int`       | Integer. Used for whole numbers. |
-| Boolean       | `bool`      | Boolean. Used to indicate true or false states. |
-| Sequence      | `list`      | List. An ordered sequence of integers that can be changed or replaced. |
-|               | `tuple`     | Tuple. A sequence of permanent values that cannot be modified. |
-| Set           | `set`       | Set. An unordered sequence of unique, permanent values. |
-| Mapping       | `dict`      | Dictionary. An unordered sequence of unique values that can be changed or replaced. |
-| None          | `NoneType`  | None. An object without a value. |
-
-
-## Type hints
-**Type hints** (also called **type annotations**) allow you to set the type of a variable by declaring them in function parameters. Type hints save you time trying to remmeber functions associated with various variable types. 
-
-To demonstrate how type hints work, here's an example function called **get_full_name**:
+Suppose you want to write the following function from scratch:
 
 ```Python
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
-
-This function does the following:
-* Takes a `first_name` and `last_name` as its input.
-* Converts the first letter of each input into an upper case letter using the built-in `title()` function for strings.
-* <abbr title="Puts two separate things together to become one. Contents appear one after the other)\.">Concatenates</abbr> them with a space in the middle.
   
-The output is:
-
-```
-John Doe
-```
-
-However, if you're writing this code from scratch and are unable to remember the name of `title()`, you may want to search it using  `Ctrl + Space` within your coding editor. However, your editor will display what you've already written in your code and not the function you're looking for.
+If you're unable to remember the name of `title()`, you may want to search it using `Ctrl + Space` in your coding editor. However, without type hints, finding the appropriate function becomes more complicated.
 
 <img src="/img/python-types/image01.png">
 
-To solve this problem, we can use type hints by modifying the function's parameters. 
-
-The original parameters were:
+Looking back to the original parameters:
 
 ```Python
     first_name, last_name
 ```
 
-But become the following with type hints:
+would become the following with type hints:
 
 ```Python
     first_name: str, last_name: str
@@ -75,8 +45,6 @@ Now, if you're attempting to write a function in your coding editor, you can nav
 
 <img src="/img/python-types/image03.png">
 
-## Error checks
-
 Type hints also help your coding editor to spot errors in type consistency faster. For example, take the following function:
 
 ```Python hl_lines="1"
@@ -93,157 +61,67 @@ In this case, the solution is to  convert `age` to a string with `str(age)`.
 {!../../../docs_src/python_types/tutorial004.py!}
 ```
 
+
 ## Declaring types
+Simple types are variables that hold only one type, such as `int` or `str`. Generic types are variable types that can hold multiple types, such as `list` or `dict`, within square brakets `[ ]`. Both are declared with simple brackets `( : )` next to the variable's name. To see detailed examples of type hinting, visit <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the type hinting cheat sheet from `mypy`</a>.
 
-You just saw the main place to declare type hints. As function parameters.
+Type hinting works for all variable types for all versions of Python. As Python advances, newer versions come with improved support for type hints. In many cases you won't need `import` to use the `typing` module when declaring type hints. Choosing a more up-to-date version of Python can allow you to take advantage of added simplicity.
 
-This is also the main place you would use them with **FastAPI**.
 
-### Simple types
 
-You can declare all the standard Python types, not only `str`.
-
-You can use, for example:
-
-* `int`
-* `float`
-* `bool`
-* `bytes`
-
-```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
-```
-
-### Generic types with type parameters
-
-There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
-
-These types that have internal types are called "**generic**" types. And it's possible to declare them, even with their internal types.
-
-To declare those types and the internal types, you can use the standard Python module `typing`. It exists specifically to support these type hints.
-
-#### Newer versions of Python
-
-The syntax using `typing` is **compatible** with all versions, from Python 3.6 to the latest ones, including Python 3.9, Python 3.10, etc.
-
-As Python advances, **newer versions** come with improved support for these type annotations and in many cases you won't even need to import and use the `typing` module to declare the type annotations.
-
-If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity.
-
-In all the docs there are examples compatible with each version of Python (when there's a difference).
-
-For example "**Python 3.6+**" means it's compatible with Python 3.6 or above (including 3.7, 3.8, 3.9, 3.10, etc). And "**Python 3.9+**" means it's compatible with Python 3.9 or above (including 3.10, etc).
-
-If you can use the **latest versions of Python**, use the examples for the latest version, those will have the **best and simplest syntax**, for example, "**Python 3.10+**".
-
-#### List
-
-For example, let's define a variable to be a `list` of `str`.
+## Lists, Tuples, Sets, and Dicts
+Sequences can hold multiple values. Below are examples on how to create functions using generic types such as `list`, `tuple`, `set`, and `dict`.
 
 === "Python 3.9+"
 
-    Declare the variable, with the same colon (`:`) syntax.
+    1. Within your function's parameter, declare your variable's type with a colon `( : )`.
+    2. Enter the type (list, tuple, set, or dict).
+    3. Enter the internal type (also called type parameter) that your list accepts within square brakets `[ ]`. 
 
-    As the type, put `list`.
-
-    As the list is a type that contains some internal types, you put them in square brackets:
-
+    List
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006_py39.py!}
     ```
-
-=== "Python 3.8+"
-
-    From `typing`, import `List` (with a capital `L`):
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
-
-    Declare the variable, with the same colon (`:`) syntax.
-
-    As the type, put the `List` that you imported from `typing`.
-
-    As the list is a type that contains some internal types, you put them in square brackets:
-
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
-
-!!! info
-    Those internal types in the square brackets are called "type parameters".
-
-    In this case, `str` is the type parameter passed to `List` (or `list` in Python 3.9 and above).
-
-That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
-
-!!! tip
-    If you use Python 3.9 or above, you don't have to import `List` from `typing`, you can use the same regular `list` type instead.
-
-By doing that, your editor can provide support even while processing items from the list:
-
-<img src="/img/python-types/image05.png">
-
-Without types, that's almost impossible to achieve.
-
-Notice that the variable `item` is one of the elements in the list `items`.
-
-And still, the editor knows it is a `str`, and provides support for that.
-
-#### Tuple and Set
-
-You would do the same to declare `tuple`s and `set`s:
-
-=== "Python 3.9+"
-
+    
+    Tuple or Set
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial007_py39.py!}
     ```
 
-=== "Python 3.8+"
-
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial007.py!}
-    ```
-
-This means:
-
-* The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
-* The variable `items_s` is a `set`, and each of its items is of type `bytes`.
-
-#### Dict
-
-To define a `dict`, you pass 2 type parameters, separated by commas.
-
-The first type parameter is for the keys of the `dict`.
-
-The second type parameter is for the values of the `dict`:
-
-=== "Python 3.9+"
-
+    Dict
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial008_py39.py!}
     ```
 
 === "Python 3.8+"
 
+    1. From `typing`, import `List`, `Tuple`, `Set`, or `Dict` (with capital first letters):
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/python_types/tutorial006.py!}
+    ```
+
+    2. Within your function's parameter, declare your variable's type with a colon `( : )`.
+    3. Enter the type (list, tuple, set, or dict).
+    4. Enter the internal type (also called type parameter) that your list accepts within square brakets `[ ]`. 
+
+    List
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/python_types/tutorial006.py!}
+    ```
+    Tuple or Set
+     ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial007.py!}
+    ```
+    Dict
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008.py!}
     ```
 
-This means:
 
-* The variable `prices` is a `dict`:
-    * The keys of this `dict` are of type `str` (let's say, the name of each item).
-    * The values of this `dict` are of type `float` (let's say, the price of each item).
+## Union
 
-#### Union
-
-You can declare that a variable can be any of **several types**, for example, an `int` or a `str`.
-
-In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
-
-In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
+A `union` allows a variable to hold multiple types such as `int` or `str`. Below are examples of setting a variable with multiple types.
 
 === "Python 3.10+"
 
@@ -257,23 +135,8 @@ In Python 3.10 there's also a **new syntax** where you can put the possible type
     {!> ../../../docs_src/python_types/tutorial008b.py!}
     ```
 
-In both cases this means that `item` could be an `int` or a `str`.
-
-#### Possibly `None`
-
-You can declare that a value could have a type, like `str`, but that it could also be `None`.
-
-In Python 3.6 and above (including Python 3.10) you can declare it by importing and using `Optional` from the `typing` module.
-
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009.py!}
-```
-
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
-
-`Optional[Something]` is actually a shortcut for `Union[Something, None]`, they are equivalent.
-
-This also means that in Python 3.10, you can use `Something | None`:
+## None
+Some variables can hold the value `None`. Below are examples of allowing a variable to take on a type of `None`.
 
 === "Python 3.10+"
 
@@ -293,126 +156,35 @@ This also means that in Python 3.10, you can use `Something | None`:
     {!> ../../../docs_src/python_types/tutorial009b.py!}
     ```
 
-#### Using `Union` or `Optional`
+!!! Best practices
+    Avoid using `Optional[SomeType]` and instead **use `Union[SomeType, None]`**. Though these both do the same thing, the latter is clearer for other developers to understand your code.
 
-If you are using a Python version below 3.10, here's a tip from my very **subjective** point of view:
 
-* 🚨 Avoid using `Optional[SomeType]`
-* Instead ✨ **use `Union[SomeType, None]`** ✨.
 
-Both are equivalent and underneath they are the same, but I would recommend `Union` instead of `Optional` because the word "**optional**" would seem to imply that the value is optional, and it actually means "it can be `None`", even if it's not optional and is still required.
+## Classes as types
 
-I think `Union[SomeType, None]` is more explicit about what it means.
+A class is a blueprint for creating objects. Like with variables, you can also declare a class as the type of a variable.
 
-It's just about the words and names. But those words can affect how you and your teammates think about the code.
-
-As an example, let's take this function:
-
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009c.py!}
-```
-
-The parameter `name` is defined as `Optional[str]`, but it is **not optional**, you cannot call the function without the parameter:
-
-```Python
-say_hi()  # Oh, no, this throws an error! 😱
-```
-
-The `name` parameter is **still required** (not *optional*) because it doesn't have a default value. Still, `name` accepts `None` as the value:
-
-```Python
-say_hi(name=None)  # This works, None is valid 🎉
-```
-
-The good news is, once you are on Python 3.10 you won't have to worry about that, as you will be able to simply use `|` to define unions of types:
-
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009c_py310.py!}
-```
-
-And then you won't have to worry about names like `Optional` and `Union`. 😎
-
-#### Generic types
-
-These types that take type parameters in square brackets are called **Generic types** or **Generics**, for example:
-
-=== "Python 3.10+"
-
-    You can use the same builtin types as generics (with square brackets and types inside):
-
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
-
-    And the same as with Python 3.8, from the `typing` module:
-
-    * `Union`
-    * `Optional` (the same as with Python 3.8)
-    * ...and others.
-
-    In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types, that's a lot better and simpler.
-
-=== "Python 3.9+"
-
-    You can use the same builtin types as generics (with square brackets and types inside):
-
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
-
-    And the same as with Python 3.8, from the `typing` module:
-
-    * `Union`
-    * `Optional`
-    * ...and others.
-
-=== "Python 3.8+"
-
-    * `List`
-    * `Tuple`
-    * `Set`
-    * `Dict`
-    * `Union`
-    * `Optional`
-    * ...and others.
-
-### Classes as types
-
-You can also declare a class as the type of a variable.
-
-Let's say you have a class `Person`, with a name:
+Let's say you have a class called `Person` with `one_person` being an instance:
 
 ```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-Then you can declare a variable to be of type `Person`:
+Then you declare the variable `one_person` to be of the type `Person`:
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-And then, again, you get all the editor support:
+Your editor will still recognize your `typing`:
 
 <img src="/img/python-types/image06.png">
 
-Notice that this means "`one_person` is an **instance** of the class `Person`".
-
-It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
-
-You declare the "shape" of the data as classes with attributes.
-
-And each attribute has a type.
-
-Then you create an instance of that class with some values and it will validate the values, convert them to the appropriate type (if that's the case) and give you an object with all the data.
-
-And you get all the editor support with that resulting object.
+FastAPI is largely based on <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, a Python library that performs data validation. Pydantic works by validating values of an instance to convert them into an object with the appropriate types for each value. To learn more about Pydantic, <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">visit Pydantic's documentation</a>.
 
 An example from the official Pydantic docs:
 
@@ -433,16 +205,6 @@ An example from the official Pydantic docs:
     ```Python
     {!> ../../../docs_src/python_types/tutorial011.py!}
     ```
-
-!!! info
-    To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
-
-**FastAPI** is all based on Pydantic.
-
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
-
-!!! tip
-    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 ## Type Hints with Metadata Annotations
 
@@ -503,5 +265,4 @@ This might all sound abstract. Don't worry. You'll see all this in action in the
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
-!!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+
