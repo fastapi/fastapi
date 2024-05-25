@@ -1,10 +1,15 @@
-# Concurrency and async / await
+# Asynchronous Code with Async and Await
 
-Details about the `async def` syntax for *path operation functions* and some background about asynchronous code, concurrency, and parallelism.
+Asynchronous code allows your program to perform a task in the background while running another task at the same time. Types of asynchronous code are concurrencies or parallelisms. FastAPI uses concurrency for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
 
-## In a hurry?
+This document offers an introduction to:
+* Asynchronous code
+* `async` and `await`
+* Coroutines
 
-<abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
+Details about the `async def` syntax for path operation functions and some background about asynchronous code, concurrency, and parallelism.
+
+## Summary
 
 If you are using third party libraries that tell you to call them with `await`, like:
 
@@ -51,95 +56,54 @@ Anyway, in any of the cases above, FastAPI will still work asynchronously and be
 
 But by following the steps above, it will be able to do some performance optimizations.
 
-## Technical Details
-
-Modern versions of Python have support for **"asynchronous code"** using something called **"coroutines"**, with **`async` and `await`** syntax.
-
-Let's see that phrase by parts in the sections below:
-
-* **Asynchronous Code**
-* **`async` and `await`**
-* **Coroutines**
-
 ## Asynchronous Code
 
-Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file" 📝.
+Asynchronous code refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until _something slow_ finishes doing its tasks _somewhere else_. During that time, the program can work on another task while it waits for _something slow_ to finish. Over time, the program can return to _something slow_ to see if it's finished its tasks.
 
-So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
-
-Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finished all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
-
-Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) and continues whatever it had to do with it.
-
-That "wait for something else" normally refers to <abbr title="Input and Output">I/O</abbr> operations that are relatively "slow" (compared to the speed of the processor and the RAM memory), like waiting for:
-
+Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
 * the data from the client to be sent through the network
-* the data sent by your program to be received by the client through the network
 * the contents of a file in the disk to be read by the system and given to your program
-* the contents your program gave to the system to be written to disk
 * a remote API operation
-* a database operation to finish
 * a database query to return the results
-* etc.
 
-As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, they call them "I/O bound" operations.
+It's called "asynchronous" because the program doesn't have to be synchronized with the slower task, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
 
-It's called "asynchronous" because the computer / program doesn't have to be "synchronized" with the slow task, waiting for the exact moment that the task finishes, while doing nothing, to be able to take the task result and continue the work.
+## Concurrency
 
-Instead of that, by being an "asynchronous" system, once finished, the task can wait in line a little bit (some microseconds) for the computer / program to finish whatever it went to do, and then come back to take the results and continue working with them.
+Asynchronous code is also sometimes called **concurrency**. To understand concurrency better, take a look at the following example:
 
-For "synchronous" (contrary to "asynchronous") they commonly also use the term "sequential", because the computer / program follows all the steps in sequence before switching to a different task, even if those steps involve waiting.
-
-### Concurrency and Burgers
-
-This idea of **asynchronous** code described above is also sometimes called **"concurrency"**. It is different from **"parallelism"**.
-
-**Concurrency** and **parallelism** both relate to "different things happening more or less at the same time".
-
-But the details between *concurrency* and *parallelism* are quite different.
-
-To see the difference, imagine the following story about burgers:
-
-### Concurrent Burgers
-
-You go with your crush to get fast food, you stand in line while the cashier takes the orders from the people in front of you. 😍
+Let's say your in a line with your crush to get burgers from a fast food joint. While you're both standing in line, the cashier takes orders from the people in front of you. 
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Then it's your turn, you place your order of 2 very fancy burgers for your crush and you. 🍔🍔
+Once it's your turn, you place an order for two burgers.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
-The cashier says something to the cook in the kitchen so they know they have to prepare your burgers (even though they are currently preparing the ones for the previous clients).
+The cashier takes your order to the chef and puts it in a queue of orders. This happens even while the chef is preparing other burgers.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
 
-You pay. 💸
-
-The cashier gives you the number of your turn.
+After you pay, the cashier gives you your order number.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-While you are waiting, you go with your crush and pick a table, you sit and talk with your crush for a long time (as your burgers are very fancy and take some time to prepare).
-
-As you are sitting at the table with your crush, while you wait for the burgers, you can spend that time admiring how awesome, cute and smart your crush is ✨😍✨.
+You both find a table. While waiting, you spend that time interacting with your crush, learning more about them.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
 
-While waiting and talking to your crush, from time to time, you check the number displayed on the counter to see if it's your turn already.
-
-Then at some point, it finally is your turn. You go to the counter, get your burgers and come back to the table.
+From time to time, you glance at the screen that displays your order number to see if your order is ready. Once it's your turn, you both head back to the counter.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
 
-You and your crush eat the burgers and have a nice time. ✨
+You and your crush are finally able to chow down on a delicious meal.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
+!!! Credit
     Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
----
+
 
 Imagine you are the computer / program 🤖 in that story.
 
