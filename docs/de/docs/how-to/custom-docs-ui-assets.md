@@ -96,8 +96,8 @@ Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und 
 
 **Swagger UI** verwendet folgende Dateien:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 Und **ReDoc** verwendet diese Datei:
 
