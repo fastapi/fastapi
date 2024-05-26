@@ -1,6 +1,6 @@
 # WebSockets'i Test Etmek
 
-WebSockets'leri test etmek için `TestClient`'ı kullanabilirsiniz.
+WebSockets testi yapmak için `TestClient`'ı kullanabilirsiniz.
 
 Bu işlem için, `TestClient`'ı bir `with` ifadesinde kullanarak WebSocket'e bağlanabilirsiniz:
 
