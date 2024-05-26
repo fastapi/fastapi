@@ -1,6 +1,6 @@
-# Asynchronous Code
+# Asynchronous Code with await and async
 
-Asynchronous code allows your program to perform a task in the background while running another task at the same time. Concurrencies and parallelisms are two types of asynchronous code. FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems.
+Asynchronous code (also called concurrency) allows your program to perform a task in the background while running another task at the same time. In Python, `await` and `async` are used to indicate when this process happens. FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems.
 
 This document offers an introduction to:
 * Asynchronous code
@@ -8,13 +8,23 @@ This document offers an introduction to:
 * `async` and `await`
 * Coroutines
 
-Details about the `async def` syntax for path operation functions and some background about asynchronous code, concurrency, and parallelism.
+## Asynchronous Code
+
+**Asynchronous code** refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until `something slow` to finish doing its task. During that time, the program can work on another task while it waits for `something slow` to finish. Over time, the program can return to `something slow` to see if it's finished its tasks.
+
+Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
+* the data from the client to be sent through the network
+* the contents of a file in the disk to be read by a system
+* a remote API operation
+* a database query to return the results
+
+It's called "asynchronous" because the program doesn't have to be synchronized with `something slow`, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
 
 ## Concurrency
 
 Asynchronous code is also sometimes called **concurrency**. To understand concurrency better, take a look at the following example:
 
-Let's say your in a line with your crush to get burgers from a fast food joint. While you're both standing in line, the cashier takes orders from the people in front of you. 
+Let's say your in a line with your crush to get burgers from a fast food joint called **Concurrent Burgers**. While you're both standing in line, the cashier takes orders from the people in front of you. 
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
@@ -53,9 +63,9 @@ Once you're both ready (or finish the current task), you go back to the cashier 
 
 ## Parallelism
 
-Parallelism is a similar concept to concurrency. To understand the difference, take a look at the example below:
+**Parallelism** is related to concurrency but with some key differences. To understand parallelism, take a look at the example below:
 
-The first date went well and now you're crush wants to try a new burger joint. You both approach one of several lines as you wait for the people ahead of you. Rather than simply placing the order, the people ahead wait for their burgers to be made on the spot.
+The first date went well and now you're crush wants to to try the burgers from a place called **Parallel Burgers**. You both approach one of several lines as you wait for the people ahead of you. Rather than simply placing the order, the people ahead wait for their burgers to be made on the spot.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
@@ -86,21 +96,22 @@ The main difference in this scenario than the previous one is that you had to wa
 
 ## Advantages of Concurrency vs Parallelism
 
-While the two are different, there is not one that's necessarily better than the other. However, for most case scenarios it makes more sense to have a concurrent system where there's a lot of waiting to make the most use of that time. For example, web applications might have incoming requests from users waiting to connect to the server. "Waiting" is measured in microseconds, but it adds up quickly. On the other hand, Parallelism is more useful for situations where it would take the same amount of time to finish a task with or without creating turns (as from the concurrency model).
+Neither concurrency or parallelism are better than the other--it depends on the situation.
 
-For example, if you had to clean a dirty mansion, it makes more sense to have multiple people cleaning it than waiting for one person to do the entire job.
+For most case scenarios it makes more sense to have a concurrent system where there's a lot of waiting to make the most use of that time. For example, web applications might have incoming requests from users waiting to connect to a server. "Waiting" is measured in microseconds, but it adds up quickly. 
 
-Asynchronous code is also best for web APIs. It's this kind of asynchronicity that makes APIs like **NodeJS** or **Go** (a compiled language similar to C) popular. And this is also the same level of performance you can achieve with FastAPI. When combining asynchronicity and parallelism, you get higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
+Asynchronous code is also best for web APIs. It's this kind of asynchronicity that makes APIs like **NodeJS** or **Go** (a compiled language similar to C) popular. And this is also the same level of performance you can achieve with FastAPI. 
 
-## Uses of Concurrency and Parallelism
+On the other hand, Parallelism is more useful for situations where it would take the same amount of time to finish a task with or without creating turns (as from the concurrency model). For example, if you had to clean a dirty mansion, it makes more sense to have multiple people cleaning at the same time (in parallel) rather than waiting for one person to do the entire job. Because most of the execution time is taken by the actual work (rather than waiting), and the work is done by a CPU, these are called **CBU bound**.
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
+Examples of CBU bound operations are tasks that require complex math processing, such as:
+* Computer vision (displaying an image requires processing millions of pixels with three values at the same time).
+* Machine Learning (normally requires lot's of matrix and vector multiplications).
+* Deep Learning (a subfield of Machine Learning).
 
-But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
+To see more information about parallelism in production, see the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
-That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
-
-To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
+When combining asynchronicity and parallelism, you get higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>. Because Python is the main language for Data Science, Machine Learning, and Deep Learning, Fast API already hits the ground running when tackling problems in these fields.
 
 ## `async` and `await`
 
