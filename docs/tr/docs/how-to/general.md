@@ -4,7 +4,7 @@ Bu sayfada genel ve sıkça sorulan sorular için dokümantasyonun diğer sayfal
 
 ## Veri Filtreleme - Güvenlik
 
-Döndürmeniz gereken veriden fazlasını döndürmemenizi sağlamak için, [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank} sayfasını okuyun.
+Döndürmeniz gereken veriden fazlasını döndürmediğinizden emin olmak için, [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank} sayfasını okuyun.
 
 ## Dokümantasyon Etiketleri - OpenAPI
 
