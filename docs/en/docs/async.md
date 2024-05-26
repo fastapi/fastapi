@@ -1,9 +1,10 @@
 # Asynchronous Code with Async and Await
 
-Asynchronous code allows your program to perform a task in the background while running another task at the same time. Types of asynchronous code are concurrencies or parallelisms. FastAPI uses concurrency for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
+Asynchronous code allows your program to perform a task in the background while running another task at the same time. Concurrencies and parallelisms are two types of asynchronous code. FastAPI uses concurrency for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
 
 This document offers an introduction to:
 * Asynchronous code
+* Concurrencies and parallelisms
 * `async` and `await`
 * Coroutines
 
@@ -58,7 +59,7 @@ But by following the steps above, it will be able to do some performance optimiz
 
 ## Asynchronous Code
 
-Asynchronous code refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until _something slow_ finishes doing its tasks _somewhere else_. During that time, the program can work on another task while it waits for _something slow_ to finish. Over time, the program can return to _something slow_ to see if it's finished its tasks.
+Asynchronous code refers to the process of how a program does two things at the same time. To do this, the code tells the program that it needs to wait until _something slow_ finishes doing its tasks _somewhere else_. During that time, the program can work on another task while it waits for _something slow_ to finish. Over time, the program can return to _something slow_ to see if it's finished its tasks.
 
 Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
 * the data from the client to be sent through the network
@@ -66,7 +67,7 @@ Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a
 * a remote API operation
 * a database query to return the results
 
-It's called "asynchronous" because the program doesn't have to be synchronized with the slower task, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
+It's called "asynchronous" because the program doesn't have to be synchronized with the slower task nor wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task is done before starting a new one.
 
 ## Concurrency
 
@@ -103,134 +104,53 @@ You and your crush are finally able to chow down on a delicious meal.
 !!! Credit
     Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
+Let's review that scenario again but now imagine you're a computer program. As you wait in line, you're "idle." But once it's your turn, you get started on the `get_burgers` task: you read the menu, decide your order, pay, and verify that the order and the charge are correct. However, the task can't be complete because the burgers need time to cook. You "pause" your interaction with the cashier and go look for a table.
 
+After finding a table, you switch your attention to another task `get_to_know_crush`. You ask questions, flirt, and make them laugh here and there. Once the cashier announces that the burgers are finished, you don't get up immediately. You know that no one will steal your order because you have the number of your turn and they theirs. Instead, you for your crush to finish telling their story (or finish processing the task `get_to_know_crush`). 
 
-Imagine you are the computer / program 🤖 in that story.
+Once you're both ready (or finish the current task), you go back to the cashier and "resume" your interaction. Finally, you get the burgers and thank the cashier, finishing the `get_burgers` task. Finally, it's time to eat the burgers and start a new task `eat_burgers`.
 
-While you are at the line, you are just idle 😴, waiting for your turn, not doing anything very "productive". But the line is fast because the cashier is only taking the orders (not preparing them), so that's fine.
+## Parallelism
 
-Then, when it's your turn, you do actual "productive" work, you process the menu, decide what you want, get your crush's choice, pay, check that you give the correct bill or card, check that you are charged correctly, check that the order has the correct items, etc.
+Parallelism is a similar concept to concurrency. To understand the difference, take a look at the example below:
 
-But then, even though you still don't have your burgers, your work with the cashier is "on pause" ⏸, because you have to wait 🕙 for your burgers to be ready.
-
-But as you go away from the counter and sit at the table with a number for your turn, you can switch 🔀 your attention to your crush, and "work" ⏯ 🤓 on that. Then you are again doing something very "productive" as is flirting with your crush 😍.
-
-Then the cashier 💁 says "I'm finished with doing the burgers" by putting your number on the counter's display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers because you have the number of your turn, and they have theirs.
-
-So you wait for your crush to finish the story (finish the current work ⏯ / task being processed 🤓), smile gently and say that you are going for the burgers ⏸.
-
-Then you go to the counter 🔀, to the initial task that is now finished ⏯, pick the burgers, say thanks and take them to the table. That finishes that step / task of interaction with the counter ⏹. That in turn, creates a new task, of "eating burgers" 🔀 ⏯, but the previous one of "getting burgers" is finished ⏹.
-
-### Parallel Burgers
-
-Now let's imagine these aren't "Concurrent Burgers", but "Parallel Burgers".
-
-You go with your crush to get parallel fast food.
-
-You stand in line while several (let's say 8) cashiers that at the same time are cooks take the orders from the people in front of you.
-
-Everyone before you is waiting for their burgers to be ready before leaving the counter because each of the 8 cashiers goes and prepares the burger right away before getting the next order.
+The first date went well and now you're crush wants to try a new burger joint. You both approach one of several lines as you wait for the people ahead of you. Rather than simply placing the order, the people ahead wait for their burgers to be made on the spot.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and you.
-
-You pay 💸.
+Once it's finally your turn, you place your order and pay the bill.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-02.png" class="illustration">
 
-The cashier goes to the kitchen.
-
-You wait, standing in front of the counter 🕙, so that no one else takes your burgers before you do, as there are no numbers for turns.
+The cashier dashes to the kitchen to prepare the order. Meanwhile, you both wait at your spot so no one else can take your order (since there are no order numbers to call).
 
 <img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
 
-As you and your crush are busy not letting anyone get in front of you and take your burgers whenever they arrive, you cannot pay attention to your crush. 😞
-
-This is "synchronous" work, you are "synchronized" with the cashier/cook 👨‍🍳. You have to wait 🕙 and be there at the exact moment that the cashier/cook 👨‍🍳 finishes the burgers and gives them to you, or otherwise, someone else might take them.
+While you're busy guarding your spot, you have no energy to pay attention to your crush.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-Then your cashier/cook 👨‍🍳 finally comes back with your burgers, after a long time waiting 🕙 there in front of the counter.
+The cashier finally returns with your order in hand.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
-You take your burgers and go to the table with your crush.
-
-You just eat them, and you are done. ⏹
+You cheerfully grab your order and find a table to eat.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
-
-There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
 !!! info
     Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
----
+The main difference in this scenario than the previous one is that you had to wait for the cashier to both take, make, and hand you your order. As a computer program, you would have been "synchronized" with the cashier, because you had to wait for the exact moment the task was done (otherwise someone else could have taken the burgers). But this also means that you both had to wait at the counter for a long time and didn't have any time to speak to your crush. As a result, it made your second date less interesting.
 
-In this scenario of the parallel burgers, you are a computer / program 🤖 with two processors (you and your crush), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
+## Advantages of Concurrency vs Parallelism
 
-The fast food store has 8 processors (cashiers/cooks). While the concurrent burgers store might have had only 2 (one cashier and one cook).
+While the two are different, there is not one that's necessarily better than the other. However, for most case scenarios it makes more sense to have a concurrent system where there's a lot of waiting to make the most use of that time. For example, web applications might have incoming requests from users waiting to connect to the server. "Waiting" is measured in microseconds, but it adds up quickly. On the other hand, Parallelism is more useful for situations where it would take the same amount of time to finish a task with or without creating turns (as from the concurrency model).
 
-But still, the final experience is not the best. 😞
+For example, if you had to clean a dirty mansion, it makes more sense to have multiple people cleaning it than waiting for one person to do the entire job.
 
----
+Asynchronous code is also best for web APIs. It's this kind of asynchronicity that makes APIs like **NodeJS** or **Go** (a compiled language similar to C) popular. And this is also the same level of performance you can achieve with FastAPI. When combining asynchronicity and parallelism, you get higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
-This would be the parallel equivalent story for burgers. 🍔
-
-For a more "real life" example of this, imagine a bank.
-
-Up to recently, most of the banks had multiple cashiers 👨‍💼👨‍💼👨‍💼👨‍💼 and a big line 🕙🕙🕙🕙🕙🕙🕙🕙.
-
-All of the cashiers doing all the work with one client after the other 👨‍💼⏯.
-
-And you have to wait 🕙 in the line for a long time or you lose your turn.
-
-You probably wouldn't want to take your crush 😍 with you to run errands at the bank 🏦.
-
-### Burger Conclusion
-
-In this scenario of "fast food burgers with your crush", as there is a lot of waiting 🕙, it makes a lot more sense to have a concurrent system ⏸🔀⏯.
-
-This is the case for most of the web applications.
-
-Many, many users, but your server is waiting 🕙 for their not-so-good connection to send their requests.
-
-And then waiting 🕙 again for the responses to come back.
-
-This "waiting" 🕙 is measured in microseconds, but still, summing it all, it's a lot of waiting in the end.
-
-That's why it makes a lot of sense to use asynchronous ⏸🔀⏯ code for web APIs.
-
-This kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
-
-And that's the same level of performance you get with **FastAPI**.
-
-And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
-
-### Is concurrency better than parallelism?
-
-Nope! That's not the moral of the story.
-
-Concurrency is different than parallelism. And it is better on **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
-
-So, to balance that out, imagine the following short story:
-
-> You have to clean a big, dirty house.
-
-*Yep, that's the whole story*.
-
----
-
-There's no waiting 🕙 anywhere, just a lot of work to be done, on multiple places of the house.
-
-You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything.
-
-It would take the same amount of time to finish with or without turns (concurrency) and you would have done the same amount of work.
-
-But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in **parallel**, with the extra help, and finish much sooner.
-
-In this scenario, each one of the cleaners (including you) would be a processor, doing their part of the job.
 
 And as most of the execution time is taken by actual work (instead of waiting), and the work in a computer is done by a <abbr title="Central Processing Unit">CPU</abbr>, they call these problems "CPU bound".
 
