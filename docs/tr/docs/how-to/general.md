@@ -16,7 +16,7 @@ Döndürmeniz gereken veriden fazlasını döndürmediğinizden emin olmak için
 
 ## Yanıt Açıklaması Dokümantasyonu - OpenAPI
 
-Dokümantasyon arayüzünde gösterilen yanıt açıklamasını tanımlamak için, [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank} sayfasını okuyun.
+Dokümantasyon arayüzünde yer alan yanıt açıklamasını tanımlamak için, [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank} sayfasını okuyun.
 
 ## *Yol Operasyonunu* Kullanımdan Kaldırma - OpenAPI
 
