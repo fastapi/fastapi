@@ -1,6 +1,6 @@
-# Asynchronous Code with Async and Await
+# Asynchronous Code
 
-Asynchronous code allows your program to perform a task in the background while running another task at the same time. Concurrencies and parallelisms are two types of asynchronous code. FastAPI uses concurrency for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
+Asynchronous code allows your program to perform a task in the background while running another task at the same time. Concurrencies and parallelisms are two types of asynchronous code. FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems.
 
 This document offers an introduction to:
 * Asynchronous code
@@ -9,65 +9,6 @@ This document offers an introduction to:
 * Coroutines
 
 Details about the `async def` syntax for path operation functions and some background about asynchronous code, concurrency, and parallelism.
-
-## Summary
-
-If you are using third party libraries that tell you to call them with `await`, like:
-
-```Python
-results = await some_library()
-```
-
-Then, declare your *path operation functions* with `async def` like:
-
-```Python hl_lines="2"
-@app.get('/')
-async def read_results():
-    results = await some_library()
-    return results
-```
-
-!!! note
-    You can only use `await` inside of functions created with `async def`.
-
----
-
-If you are using a third party library that communicates with something (a database, an API, the file system, etc.) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
-
-```Python hl_lines="2"
-@app.get('/')
-def results():
-    results = some_library()
-    return results
-```
-
----
-
-If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`.
-
----
-
-If you just don't know, use normal `def`.
-
----
-
-**Note**: You can mix `def` and `async def` in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
-
-Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.
-
-But by following the steps above, it will be able to do some performance optimizations.
-
-## Asynchronous Code
-
-Asynchronous code refers to the process of how a program does two things at the same time. To do this, the code tells the program that it needs to wait until _something slow_ finishes doing its tasks _somewhere else_. During that time, the program can work on another task while it waits for _something slow_ to finish. Over time, the program can return to _something slow_ to see if it's finished its tasks.
-
-Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
-* the data from the client to be sent through the network
-* the contents of a file in the disk to be read by the system and given to your program
-* a remote API operation
-* a database query to return the results
-
-It's called "asynchronous" because the program doesn't have to be synchronized with the slower task nor wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task is done before starting a new one.
 
 ## Concurrency
 
@@ -151,21 +92,7 @@ For example, if you had to clean a dirty mansion, it makes more sense to have mu
 
 Asynchronous code is also best for web APIs. It's this kind of asynchronicity that makes APIs like **NodeJS** or **Go** (a compiled language similar to C) popular. And this is also the same level of performance you can achieve with FastAPI. When combining asynchronicity and parallelism, you get higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
-
-And as most of the execution time is taken by actual work (instead of waiting), and the work in a computer is done by a <abbr title="Central Processing Unit">CPU</abbr>, they call these problems "CPU bound".
-
----
-
-Common examples of CPU bound operations are things that require complex math processing.
-
-For example:
-
-* **Audio** or **image processing**.
-* **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time.
-* **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
-* **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
-
-### Concurrency + Parallelism: Web + Machine Learning
+## Uses of Concurrency and Parallelism
 
 With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
@@ -177,17 +104,17 @@ To see how to achieve this parallelism in production see the section about [Depl
 
 ## `async` and `await`
 
-Modern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.
+Modern versions of Python have an intuitive way to define asynchronous code by making it look just like normal "sequential" code and do the "awaiting" for you at the right moments. 
 
-When there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like:
+When there is a process that requires waiting before giving the results:
 
 ```Python
 burgers = await get_burgers(2)
 ```
 
-The key here is the `await`. It tells Python that it has to wait ⏸ for `get_burgers(2)` to finish doing its thing 🕙 before storing the results in `burgers`. With that, Python will know that it can go and do something else 🔀 ⏯ in the meanwhile (like receiving another request).
+The key here is the `await`. It tells Python that it has to wait for `get_burgers(2)` to finish doing its thing before storing the results in `burgers`. With that, Python will know that it can go and do something else in the meanwhile (like receiving another request).
 
-For `await` to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with `async def`:
+However, for `await` to work, it has to be inside a function that supports this asynchronicity. To do that, declare it with `async def`:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
@@ -195,7 +122,7 @@ async def get_burgers(number: int):
     return burgers
 ```
 
-...instead of `def`:
+As opposed to using the usual `def`:
 
 ```Python hl_lines="2"
 # This is not asynchronous
@@ -204,18 +131,19 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-With `async def`, Python knows that, inside that function, it has to be aware of `await` expressions, and that it can "pause" ⏸ the execution of that function and go do something else 🔀 before coming back.
+!!! Caveat
+    One caveat with using functions with `async def` is that it can only be called inside of functions also defined with `async def`. It's like the chicken and the egg: How do you call the first `async` function? With FastAPI, it will know how to do the right thing. 
 
-When you want to call an `async def` function, you have to "await" it. So, this won't work:
+With `async def`, Python knows that inside that function it has to be aware of `await` expressions, and that it can "pause" the execution of that function and go do something else before coming back.
+
+When calling an `async def` function, you have to "await" it. So, this won't work:
 
 ```Python
 # This won't work, because get_burgers was defined with: async def
 burgers = get_burgers(2)
 ```
 
----
-
-So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`, like in:
+If you're using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -223,18 +151,6 @@ async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
 ```
-
-### More technical details
-
-You might have noticed that `await` can only be used inside of functions defined with `async def`.
-
-But at the same time, functions defined with `async def` have to be "awaited". So, functions with `async def` can only be called inside of functions defined with `async def` too.
-
-So, about the egg and the chicken, how do you call the first `async` function?
-
-If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your *path operation function*, and FastAPI will know how to do the right thing.
-
-But if you want to use `async` / `await` without FastAPI, you can do it as well.
 
 ### Write your own async code
 
@@ -312,3 +228,62 @@ If your utility function is a normal function with `def`, it will be called dire
 Again, these are very technical details that would probably be useful if you came searching for them.
 
 Otherwise, you should be good with the guidelines from the section above: <a href="#in-a-hurry">In a hurry?</a>.
+
+## Summary
+
+If you are using third party libraries that tell you to call them with `await`, like:
+
+```Python
+results = await some_library()
+```
+
+Then, declare your *path operation functions* with `async def` like:
+
+```Python hl_lines="2"
+@app.get('/')
+async def read_results():
+    results = await some_library()
+    return results
+```
+
+!!! note
+    You can only use `await` inside of functions created with `async def`.
+
+---
+
+If you are using a third party library that communicates with something (a database, an API, the file system, etc.) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
+
+```Python hl_lines="2"
+@app.get('/')
+def results():
+    results = some_library()
+    return results
+```
+
+---
+
+If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`.
+
+---
+
+If you just don't know, use normal `def`.
+
+---
+
+**Note**: You can mix `def` and `async def` in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
+
+Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.
+
+But by following the steps above, it will be able to do some performance optimizations.
+
+## Asynchronous Code
+
+Asynchronous code refers to the process of how a program does two things at the same time. To do this, the code tells the program that it needs to wait until _something slow_ finishes doing its tasks _somewhere else_. During that time, the program can work on another task while it waits for _something slow_ to finish. Over time, the program can return to _something slow_ to see if it's finished its tasks.
+
+Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
+* the data from the client to be sent through the network
+* the contents of a file in the disk to be read by the system and given to your program
+* a remote API operation
+* a database query to return the results
+
+It's called "asynchronous" because the program doesn't have to be synchronized with the slower task nor wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task is done before starting a new one.
