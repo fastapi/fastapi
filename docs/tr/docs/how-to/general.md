@@ -1,6 +1,6 @@
 # Genel - Nasıl Yapılır - Tarifler
 
-Bu sayfada genel veya sıkça sorulan sorular için dokümantasyonun diğer yerlerine yönlendirmeler bulunmaktadır.
+Bu sayfada genel ve sıkça sorulan sorular için dokümantasyonun diğer sayfalarına yönlendirmeler bulunmaktadır.
 
 ## Veriyi Filtreleme - Güvenlik
 
