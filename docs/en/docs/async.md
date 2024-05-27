@@ -1,6 +1,6 @@
 # Asynchronous Code with await and async
 
-**Asynchronous code** (also called **concurrency**) allows your program to perform a task in the background while running another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax.
+**Asynchronous code** (also called **concurrency**) allows your program to perform a task in the background while waiting to complete a separate task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax. A related process called **parallelism** runs multiple tasks at the same time. 
 
 FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
 
@@ -16,10 +16,10 @@ This document offers an introduction to:
 **Asynchronous code** refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until `something slow` to finish doing its task. During that time, the program can work on another task while it waits for `something slow`. Over time, the program can return to `something slow` to see if it's finished its tasks.
 
 Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
-* the data from the client to be sent through the network
-* the contents of a file in the disk to be read by a system
-* a remote API operation
-* a database query to return the results
+* The data from the client to be sent through the network
+* The contents of a file in the disk to be read by a system
+* A remote API operation
+* A database query to return the results
 
 It's called "asynchronous" because the program doesn't have to be synchronized with `something slow`, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
 
@@ -108,13 +108,18 @@ But this also means that you both had to wait at the counter for a long time and
 
 If instead, the cashiers were cleaners tasked to clean a dirty mansion, concurrency would make it so one person has to wait to clean one room after the other. However, with parallelism, multiple people can clean the rooms at the same time and reduce the time spent.
 
+Examples of parallelism used in code are in **CPU bound** problems. Because the CPU takes most of the time completing the task is used in completing the task (rather than waiting), that's what makes it CPU bound. Common examples of CPU bound operations are things that require complex math processing:
+* Computer vision: an image is composed of millions of pixels, with each pixel having three values to represent color. Computer vision is a process that requires computing something on those pixels all at the same time.
+* Machine Learning: requires lots of matrix and vector multiplications. Imagine a huge spreadsheet with numbers, then multipling them all together at the same time.
+* Deep Learning: a sub-field of Machine Learning. Rather than only one spreadsheet, imagine many more and multiplying the values in those spreadsheets at the same time. 
+
 ---
 
 ### Advantages of Concurrency vs Parallelism
 
-Neither concurrency or parallelism are better than the other--it depends on the situation.
+Concurrency and parallelism are both useful depending on the situation. See the table below to understand the main advantages of each.
 
-![concurrency_parallelism_difference_chart](https://github.com/physicsmagician/fastapi/assets/59658246/9a093324-ac5e-40f8-8715-2494877bd2ab)
+![concurrency_parallelism_difference_chart](https://github.com/physicsmagician/fastapi/assets/59658246/1f7c99e9-ed61-4773-ab0d-7ec5ad9a136b)
 
 To see more information about parallelism in production, see the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
