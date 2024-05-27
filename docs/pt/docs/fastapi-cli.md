@@ -55,7 +55,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 </div>
 
 Aquele commando por linha de programa chamado `fastapi` é o **FastAPI CLI**.
- 
+
 FastAPI CLI pega o caminho para seu programa Python, detecta automaticamente a variável que contém o FastAPI (comumente nomeada `app`), como importá-la e então servi-la.
 
 Para produção você usaria `fastapi run` no lugar. 🚀
