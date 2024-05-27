@@ -902,7 +902,7 @@ class FastAPI(Starlette):
                 A state object for the application. This is the same object for the
                 entire application, it doesn't change from request to request.
 
-                You normally woudln't use this in FastAPI, for most of the cases you
+                You normally wouldn't use this in FastAPI, for most of the cases you
                 would instead use FastAPI dependencies.
 
                 This is simply inherited from Starlette.
