@@ -477,7 +477,7 @@ pip install fastapi
 pip install "fastapi-slim[standard]"
 ```
 
-Las dependencias por defecto son las mencionadas arriba previamente.
+Las dependencias extra `standard` son las mencionadas anteriormente.
 
 ## Licencia
 
