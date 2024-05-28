@@ -123,7 +123,7 @@ Concurrency and parallelism are both useful depending on the situation. See the 
 
 To see more information about parallelism in production, see the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
-When combining asynchronicity and parallelism, you get higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>. Because Python is the main language for Data Science, Machine Learning, and Deep Learning, FastAPI already hits the ground running when tackling problems in these fields.
+When combining asynchronicity and parallelism, you achieve higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>. Because Python is the main language for Data Science, Machine Learning, and Deep Learning, FastAPI already hits the ground running when tackling problems in these fields.
 
 ## `async` and `await`
 
@@ -145,7 +145,7 @@ async def get_burgers(number: int):
     return burgers
 ```
 
-As opposed to using the usual `def`:
+As opposed to using `def`:
 
 ```Python hl_lines="2"
 # This is not asynchronous
@@ -179,9 +179,9 @@ async def read_burgers():
 
 ### Other forms of asynchronous code
 
-This style of using `async` and `await` is relatively new in the language. But it makes working with asynchronous code a lot easier. This same syntax (or almost identical) was also included recently in modern versions of JavaScript (in Browser and NodeJS).
+While this method of using `async` and `await` is new in Python, it makes working with asynchronous code simplier. Similar syntax is also in modern versions of JavaScript, in Browser, and NodeJS. 
 
-But before that, handling asynchronous code was quite more complex and difficult. In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about. In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+Bfore that, handling asynchronous code was more complicated. In previous version of Python, you would have to use threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. And in previous versions of NodeJS, Browser JavaScript, you would have to use callbacks (which very easily lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>).
 
 ---
 
@@ -193,16 +193,15 @@ A **Coroutine** is simply the thing returned by an `async def` function. Python 
 
 !!! Warning
     Ahead are high-level details of how FastAPI works underneath. 
-    
     This section is for those with some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`.
 
 ### Path operation functions
 
-When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
+When you declare a **path operation function** with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited instead of being called directly (as it would block the server).
 
-If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
+If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only **path operation functions** with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in FastAPI the effect would be quite opposite. In these cases, it's better to use `async def` unless your **path operation functions** use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
+Still, in both situations, chances are that FastAPI will [still be faster](index.md#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
 
 ---
 
@@ -220,8 +219,6 @@ You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/
 
 ### Other utility functions
 
-Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it.
-
-This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
+Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it. This is in contrast to the functions that FastAPI calls for you: **path operation functions** and dependencies.
 
 If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
