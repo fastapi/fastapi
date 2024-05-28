@@ -234,6 +234,19 @@ You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-
 
 </details>
 
+<details markdown="1">
+<summary>A note about <code> Uvicorn </code>...</summary>
+
+As of this writing, the current Uvicorn version will cause a series of errors to output to the console
+whenever you save your app with 'dev' mode watching for file changes. Included here are quick instructions
+to help you work around this error being logged to the console, by rolling back the Uvicorn version to a
+prior release.
+
+1. Uninstall Uvicorn by running the command: <code> pip uninstall uvicorn </code>
+2. Install Uvicorn version <code> 0.27.1 </code> by running the command: <code> pip install -Iv uvicorn ==0.27.1 </code>
+
+After rolling back to this version of Uvicorn, your save should not cause the extra error text to appear in the console.
+
 ### Check it
 
 Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
