@@ -67,9 +67,9 @@ Simple types are variables that hold only one type, such as `int` or `str`. Gene
 
 Type hinting works for all variable types for all versions of Python. As Python advances, newer versions come with improved support for type hints. In many cases you won't need `import` to use the `typing` module when declaring type hints. Choosing a more up-to-date version of Python can allow you to take advantage of added simplicity.
 
+---
 
-
-## Lists, Tuples, Sets, and Dicts
+### Lists, Tuples, Sets, and Dicts
 Sequences can hold multiple values. Below are examples on how to create functions using generic types such as `list`, `tuple`, `set`, and `dict`.
 
 === "Python 3.9+"
@@ -119,7 +119,9 @@ Sequences can hold multiple values. Below are examples on how to create function
     ```
 
 
-## Union
+---
+
+### Union
 
 A `union` allows a variable to hold multiple types such as `int` or `str`. Below are examples of setting a variable with multiple types.
 
@@ -135,7 +137,9 @@ A `union` allows a variable to hold multiple types such as `int` or `str`. Below
     {!> ../../../docs_src/python_types/tutorial008b.py!}
     ```
 
-## None
+---
+
+### None
 Some variables can hold the value `None`. Below are examples of allowing a variable to take on a type of `None`.
 
 === "Python 3.10+"
@@ -160,8 +164,9 @@ Some variables can hold the value `None`. Below are examples of allowing a varia
     Avoid using `Optional[SomeType]` and instead **use `Union[SomeType, None]`**. Though these both do the same thing, the latter is clearer for other developers to understand your code.
 
 
+---
 
-## Classes as types
+### Classes as types
 
 A class is a blueprint for creating objects. Like with variables, you can also declare a class as the type of a variable.
 
