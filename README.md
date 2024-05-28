@@ -133,8 +133,6 @@ FastAPI stands on the shoulders of giants:
 
 ```console
 $ pip install fastapi
-
----> 100%
 ```
 
 </div>
@@ -200,7 +198,9 @@ Run the server with:
 
 ```console
 $ fastapi dev main.py
+```
 
+```console
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
  │  Serving at: http://127.0.0.1:8000                  │
@@ -231,6 +231,21 @@ The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
 You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
+
+</details>
+
+<details markdown="1">
+<summary>A note about <code> Uvicorn </code>...</summary>
+
+As of this writing, the current Uvicorn version will cause a series of errors to output to the console
+whenever you save your app with 'dev' mode watching for file changes. Included here are quick instructions
+to help you work around this error being logged to the console, by rolling back the Uvicorn version to a
+prior release.
+
+1. Uninstall Uvicorn by running the command: <code> pip uninstall uvicorn </code>
+2. Install Uvicorn version <code> 0.27.1 </code> by running the command: <code> pip install -Iv uvicorn==0.27.1 </code>
+
+After rolling back to this version of Uvicorn, your save should not cause the extra error text to appear in the console.
 
 </details>
 
