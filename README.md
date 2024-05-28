@@ -243,7 +243,7 @@ to help you work around this error being logged to the console, by rolling back 
 prior release.
 
 1. Uninstall Uvicorn by running the command: <code> pip uninstall uvicorn </code>
-2. Install Uvicorn version <code> 0.27.1 </code> by running the command: <code> pip install -Iv uvicorn ==0.27.1 </code>
+2. Install Uvicorn version <code> 0.27.1 </code> by running the command: <code> pip install -Iv uvicorn==0.27.1 </code>
 
 After rolling back to this version of Uvicorn, your save should not cause the extra error text to appear in the console.
 
