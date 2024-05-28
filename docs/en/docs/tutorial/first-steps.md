@@ -1,5 +1,13 @@
-# First Steps
+# Getting Started
 
+This document provides an overview on setting up your workspace with FastAPI and understanding all of its features. 
+
+## Installation
+To install FastAPI, follow the steps below.
+
+1. Open Git Bash. If you haven't downloaded it, visit the Git Bash website to find a download link.
+2. Enter `
+## 
 The simplest FastAPI file could look like this:
 
 ```Python
