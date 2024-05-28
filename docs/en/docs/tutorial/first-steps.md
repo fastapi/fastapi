@@ -1,14 +1,103 @@
-# First Steps
+# Getting Started
 
-The simplest FastAPI file could look like this:
+FastAPI is fast web-framework for building APIs. To get started, install FastAPI, set up your main file, run the development server, and view your API's documentation.
 
-```Python
+## Installing FastAPI
+
+1. Open **Git Bash**. If you don't have it, download <a href="https://git-scm.com/downloads" class="external-link" target="_blank">the latest version of Git Bash.</a>
+2. Enter `gh repo clone [your forked repository]`.
+3. Open your coding edtor.
+4. Create a new **Python workspace**.
+
+## Setting up your main file
+A main file (usually named `main.py`) tells your program how to work when launching it for the first time. A main FastAPI file should always contain:
+* An `import` command
+* A `fastapi` instance
+* A path operation decorator
+* A path operation function
+* An output
+
+To add these components to your file, follow the steps below:
+
+---
+
+### Step 1: Import `FastAPI`
+`FastAPI` is a Python class that provides all the functionality for your API. 
+
+```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Copy that to a file `main.py`.
+!!! note "Technical Details"
+    `FastAPI` is a class that inherits directly from `Starlette`, meaning that you can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
 
-Run the live server:
+---
+
+### Step 2: Create `fastapi` instance
+Define the main point of interaction of your API using the FastAPI class.
+
+```Python hl_lines="3"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+Here the `app` variable is an "instance" of the class `FastAPI`.
+
+---
+
+### Step 3: Define path operation decorator
+A **path operation** (also known as an **endpoint** or **route**) tells your API to perform various actions. A **path operation decorator** tells FastAPI that the function below it is in charge of handling requests that go to the path `/` using an HTTP method.
+
+```Python hl_lines="6"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+!!! info "Vocabulary"
+    That `@something` syntax in Python is called a **decorator**. You put it on top of a function like a decorative hat. A **decorator** takes the function below and does something with it.
+
+FastAPI comes with a variety of **HTTP methods**, or **operations**, including:
+
+| HTTP Method | Purpose | Path Operator Decorator |
+| --- | --- | --- | 
+| `POST` | Creates data. | `@app.post()` |
+| `GET` | Reads data. | `@app.get()` |
+| `PUT` | Updates data. | `@app.put()` |
+| `DELETE` | Deletes data. | `@app.delete()` |
+
+To see a full list of HTTP methods, see...
+
+---
+
+### Step 4: Define path operation function
+
+A path operation function is simply the function below a path operation decorator.
+
+```Python hl_lines="7"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+The function below will be called by FastAPI whenever it receives a request to the URL "`/`" using a `GET` operation. The above function is an `async` function but normal functions defined with `def` work too.
+
+```Python hl_lines="7"
+{!../../../docs_src/first_steps/tutorial003.py!}
+```
+
+!!! info "Learn"
+    To learn more about asynchronicity, visit the [Asynchronous code with `async` and `await` page(../async.md){.internal-link target=_blank}.
+
+---
+
+### Step 5: Return output
+
+You can return arrays like `dict` or `list`, singular values like `str` or `int`, or even Pydantic models. 
+
+```Python hl_lines="8"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+Other objects and models are automatically converted to JSON (including ORMs). Try using your favourite one—it's most likely already supported by FastAPI.
+
+## Running the development server
+In Git Bash, run the live server using the command `fastapi dev`.
 
 <div class="termy">
 
@@ -58,71 +147,42 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-In the output, there's a line with something like:
+The output is a line with a URL of where your app is being served within your local machine.
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
-
-### Check it
-
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
-
-You will see the JSON response as:
+To view the JSON response, open the URL <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 ```JSON
 {"message": "Hello World"}
 ```
 
-### Interactive API docs
+## Interactive API docs
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
-
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Every good API needs documentation. To view your API's documentation, head to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>. This automatic interactive documentation is provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
-
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
-
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Alternatively, you can also view documentation provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> by heading to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+---
 
-**FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
+### OpenAPI and schemas
 
-#### "Schema"
+API **schemas** are important when creating reference documentation. Schemas are abstract definitions or descriptions of something. FastAPI automatically generates schemas with all your API using the <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> standard for defining APIs.
 
-A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
+There are two main types of schemas FastAPI recognizes:
+* **Data schema** - The shape of some data, like JSON content. In this case, it also refers to the JSON attributes and the data types they have.
+* **OpenAPI and JSON schema** - OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
 
-#### API "schema"
+!!! info "Technical Details"
+    The OpenAPI schema is what powers the two interactive documentation systems included. And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with FastAPI. You could also use it to generate code automatically for clients that communicate with your API (such as frontend, mobile or IoT applications).
 
-In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
-
-This schema definition includes your API paths, the possible parameters they take, etc.
-
-#### Data "schema"
-
-The term "schema" might also refer to the shape of some data, like a JSON content.
-
-In that case, it would mean the JSON attributes, and data types they have, etc.
-
-#### OpenAPI and JSON Schema
-
-OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
-
-#### Check the `openapi.json`
-
-If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
-
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
-
-It will show a JSON starting with something like:
+If you're curious about how the raw OpenAPI schema looks like, head to <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>. 
 
 ```JSON
 {
@@ -145,186 +205,3 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What is OpenAPI for
-
-The OpenAPI schema is what powers the two interactive documentation systems included.
-
-And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
-
-You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
-
-## Recap, step by step
-
-### Step 1: import `FastAPI`
-
-```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-`FastAPI` is a Python class that provides all the functionality for your API.
-
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
-
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
-
-### Step 2: create a `FastAPI` "instance"
-
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-Here the `app` variable will be an "instance" of the class `FastAPI`.
-
-This will be the main point of interaction to create all your API.
-
-### Step 3: create a *path operation*
-
-#### Path
-
-"Path" here refers to the last part of the URL starting from the first `/`.
-
-So, in a URL like:
-
-```
-https://example.com/items/foo
-```
-
-...the path would be:
-
-```
-/items/foo
-```
-
-!!! info
-    A "path" is also commonly called an "endpoint" or a "route".
-
-While building an API, the "path" is the main way to separate "concerns" and "resources".
-
-#### Operation
-
-"Operation" here refers to one of the HTTP "methods".
-
-One of:
-
-* `POST`
-* `GET`
-* `PUT`
-* `DELETE`
-
-...and the more exotic ones:
-
-* `OPTIONS`
-* `HEAD`
-* `PATCH`
-* `TRACE`
-
-In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
-
----
-
-When building APIs, you normally use these specific HTTP methods to perform a specific action.
-
-Normally you use:
-
-* `POST`: to create data.
-* `GET`: to read data.
-* `PUT`: to update data.
-* `DELETE`: to delete data.
-
-So, in OpenAPI, each of the HTTP methods is called an "operation".
-
-We are going to call them "**operations**" too.
-
-#### Define a *path operation decorator*
-
-```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
-
-* the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
-
-!!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
-
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
-
-    A "decorator" takes the function below and does something with it.
-
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
-
-    It is the "**path operation decorator**".
-
-You can also use the other operations:
-
-* `@app.post()`
-* `@app.put()`
-* `@app.delete()`
-
-And the more exotic ones:
-
-* `@app.options()`
-* `@app.head()`
-* `@app.patch()`
-* `@app.trace()`
-
-!!! tip
-    You are free to use each operation (HTTP method) as you wish.
-
-    **FastAPI** doesn't enforce any specific meaning.
-
-    The information here is presented as a guideline, not a requirement.
-
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
-
-### Step 4: define the **path operation function**
-
-This is our "**path operation function**":
-
-* **path**: is `/`.
-* **operation**: is `get`.
-* **function**: is the function below the "decorator" (below `@app.get("/")`).
-
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-This is a Python function.
-
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
-
-In this case, it is an `async` function.
-
----
-
-You could also define it as a normal function instead of `async def`:
-
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
-```
-
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
-
-### Step 5: return the content
-
-```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-You can return a `dict`, `list`, singular values as `str`, `int`, etc.
-
-You can also return Pydantic models (you'll see more about that later).
-
-There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
-
-## Recap
-
-* Import `FastAPI`.
-* Create an `app` instance.
-* Write a **path operation decorator** using decorators like `@app.get("/")`.
-* Define a **path operation function**; for example, `def root(): ...`.
-* Run the development server using the command `fastapi dev`.
