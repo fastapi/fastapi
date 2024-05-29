@@ -136,7 +136,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 這些用戶[建立了最多已被**合併**的 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
 
-他們貢獻了程式碼、文件和翻譯等。 📦
+他們貢獻了原始碼、文件和翻譯等。 📦
 
 {% if people %}
 <div class="user-list user-list-center">
