@@ -20,7 +20,7 @@ class CSRFMiddleware:
         required_urls: Optional[List[Pattern]] = None,
         exempt_urls: Optional[List[Pattern]] = None,
         sensitive_cookies: Optional[Set[str]] = None,
-        safe_methods: Set[str] = {"GET", "HEAD", "OPTIONS", "TRACE"},
+        safe_methods: Optional[Set[str]] = None,
         cookie_name: str = "csrftoken",
         cookie_path: str = "/",
         cookie_domain: Optional[str] = None,
@@ -35,7 +35,8 @@ class CSRFMiddleware:
         self.required_urls = required_urls
         self.exempt_urls = exempt_urls
         self.sensitive_cookies = sensitive_cookies
-        self.safe_methods = safe_methods
+        if safe_methods is None:
+            safe_methods = {"GET", "HEAD", "OPTIONS", "TRACE"}
         self.cookie_name = cookie_name
         self.cookie_path = cookie_path
         self.cookie_domain = cookie_domain
