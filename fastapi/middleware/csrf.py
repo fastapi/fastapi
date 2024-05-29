@@ -4,12 +4,14 @@ import secrets
 import typing
 from re import Pattern
 from typing import Dict, List, Optional, Set, cast
+
 from itsdangerous import BadSignature
 from itsdangerous.url_safe import URLSafeSerializer
 from starlette.datastructures import URL, MutableHeaders
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse, Response
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
+
 
 class CSRFMiddleware:
     def __init__(
@@ -46,13 +48,13 @@ class CSRFMiddleware:
         self.header_name = header_name
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
-        if scope["type"] not in ("http", "websocket"):  # pragma: no cover            
+        if scope["type"] not in ("http", "websocket"):  # pragma: no cover
             await self.app(scope, receive, send)
             return
 
         request = Request(scope, receive)
-        body = await self._get_request_body(request)        
-        csrf_cookie = request.cookies.get(self.cookie_name)        
+        body = await self._get_request_body(request)
+        csrf_cookie = request.cookies.get(self.cookie_name)
 
         if self._url_is_required(request.url) or (
             request.method not in self.safe_methods
@@ -60,7 +62,7 @@ class CSRFMiddleware:
             and self._has_sensitive_cookies(request.cookies)
         ):
             submitted_csrf_token = await self._get_submitted_csrf_token(request)
-                     
+
             if (
                 not csrf_cookie
                 or not submitted_csrf_token
@@ -69,10 +71,10 @@ class CSRFMiddleware:
                 response = self._get_error_response(request)
                 await response(scope, receive, send)
                 return
-        
+
         request._receive = self._receive_with_body(request._receive, body)
         send = functools.partial(self.send, send=send, scope=scope)
-        await self.app(scope, request.receive, send)              
+        await self.app(scope, request.receive, send)
 
     async def send(self, message: Message, send: Send, scope: Scope) -> None:
         request = Request(scope)
@@ -92,9 +94,9 @@ class CSRFMiddleware:
             if self.cookie_domain is not None:
                 cookie[cookie_name]["domain"] = self.cookie_domain  # pragma: no cover
             headers.append("set-cookie", cookie.output(header="").strip())
-        
+
         await send(message)
-        
+
     def _has_sensitive_cookies(self, cookies: Dict[str, str]) -> bool:
         if not self.sensitive_cookies:
             return True
@@ -118,7 +120,7 @@ class CSRFMiddleware:
             if exempt_url.match(url.path):
                 return True
         return False
-    
+
     async def _get_request_body(self, request: Request):
         if request.method in ("POST", "PUT", "PATCH", "DELETE"):
             return await request.body()
@@ -127,14 +129,14 @@ class CSRFMiddleware:
     async def _get_submitted_csrf_token(self, request: Request) -> Optional[str]:
         csrf_token_header = request.headers.get(self.header_name)
         if csrf_token_header:
-            return csrf_token_header        
-        
-        csrftoken_form = await self._get_csrf_token_form(request)
-        return csrftoken_form        
+            return csrf_token_header
 
-    async def _get_csrf_token_form(self, request: Request) -> str: 
-        form = await request.form()        
-        csrf_token = form.get(self.cookie_name, "")        
+        csrftoken_form = await self._get_csrf_token_form(request)
+        return csrftoken_form
+
+    async def _get_csrf_token_form(self, request: Request) -> str:
+        form = await request.form()
+        csrf_token = form.get(self.cookie_name, "")
         return csrf_token
 
     def _generate_csrf_token(self) -> str:
@@ -143,7 +145,7 @@ class CSRFMiddleware:
     def _csrf_tokens_match(self, token1: str, token2: str) -> bool:
         try:
             decoded1: str = self.serializer.loads(token1)
-            decoded2: str = self.serializer.loads(token2)            
+            decoded2: str = self.serializer.loads(token2)
             return secrets.compare_digest(decoded1, decoded2)
         except BadSignature:
             return False
@@ -152,20 +154,27 @@ class CSRFMiddleware:
         return PlainTextResponse(
             content="CSRF token verification failed", status_code=403
         )
-    
+
     def _receive_with_body(self, receive, body):
         async def inner():
             return {"type": "http.request", "body": body, "more_body": False}
+
         return inner
 
-def csrf_token_processor(csrf_cookie_name: str, csrf_header_name: str) -> typing.Callable[[Request], typing.Dict[str, typing.Any]]:
+
+def csrf_token_processor(
+    csrf_cookie_name: str, csrf_header_name: str
+) -> typing.Callable[[Request], typing.Dict[str, typing.Any]]:
     def processor(request: Request) -> typing.Dict[str, typing.Any]:
         csrf_token = request.cookies.get(csrf_cookie_name)
-        csrf_input = f'<input type="hidden" name="{csrf_cookie_name}" value="{csrf_token}">'
+        csrf_input = (
+            f'<input type="hidden" name="{csrf_cookie_name}" value="{csrf_token}">'
+        )
         csrf_header = {csrf_header_name: csrf_token}
         return {
-            'csrf_token': csrf_token,
-            'csrf_input': csrf_input,
-            'csrf_header': csrf_header 
+            "csrf_token": csrf_token,
+            "csrf_input": csrf_input,
+            "csrf_header": csrf_header,
         }
+
     return processor
