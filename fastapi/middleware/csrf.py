@@ -4,7 +4,6 @@ import secrets
 import typing
 from re import Pattern
 from typing import Dict, List, Optional, Set, cast
-
 from itsdangerous import BadSignature
 from itsdangerous.url_safe import URLSafeSerializer
 from starlette.datastructures import URL, MutableHeaders
@@ -83,7 +82,6 @@ class CSRFMiddleware:
         if csrf_cookie is None:
             message.setdefault("headers", [])
             headers = MutableHeaders(scope=message)
-
             cookie: http.cookies.BaseCookie = http.cookies.SimpleCookie()
             cookie_name = self.cookie_name
             cookie[cookie_name] = self._generate_csrf_token()
@@ -130,7 +128,6 @@ class CSRFMiddleware:
         csrf_token_header = request.headers.get(self.header_name)
         if csrf_token_header:
             return csrf_token_header
-
         csrftoken_form = await self._get_csrf_token_form(request)
         return csrftoken_form
 
@@ -158,7 +155,6 @@ class CSRFMiddleware:
     def _receive_with_body(self, receive, body):
         async def inner():
             return {"type": "http.request", "body": body, "more_body": False}
-
         return inner
 
 
@@ -176,5 +172,4 @@ def csrf_token_processor(
             "csrf_input": csrf_input,
             "csrf_header": csrf_header,
         }
-
     return processor
