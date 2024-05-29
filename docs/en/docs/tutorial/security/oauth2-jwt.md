@@ -26,28 +26,24 @@ After a week, the token will be expired and the user will not be authorized and 
 
 If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
-## Install `python-jose`
+## Install `PyJWT`
 
-We need to install `python-jose` to generate and verify the JWT tokens in Python:
+We need to install `PyJWT` to generate and verify the JWT tokens in Python:
 
 <div class="termy">
 
 ```console
-$ pip install "python-jose[cryptography]"
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> requires a cryptographic backend as an extra.
+!!! info
+    If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
-Here we are using the recommended one: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
-
-!!! tip
-    This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
-
-    But it was updated to use Python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
+    You can read more about it in the <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>.
 
 ## Password hashing
 
@@ -111,19 +107,19 @@ And another one to authenticate and return a user.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
     {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="7  49  56-57  60-61  70-76"
+    ```Python hl_lines="8  50  57-58  61-62  71-77"
     {!> ../../../docs_src/security/tutorial004_an.py!}
     ```
 
@@ -132,7 +128,7 @@ And another one to authenticate and return a user.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="6  47  54-55  58-59  68-74"
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -141,7 +137,7 @@ And another one to authenticate and return a user.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
@@ -178,19 +174,19 @@ Create a utility function to generate a new access token.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
     {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="6  13-15  29-31 79-87"
+    ```Python hl_lines="4 7  14-16  30-32 80-88"
     {!> ../../../docs_src/security/tutorial004_an.py!}
     ```
 
@@ -199,7 +195,7 @@ Create a utility function to generate a new access token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="5  11-13  27-29  77-85"
+    ```Python hl_lines="3 6  12-14  28-30  78-86"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -208,7 +204,7 @@ Create a utility function to generate a new access token.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
@@ -222,19 +218,19 @@ If the token is invalid, return an HTTP error right away.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="90-107"
     {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="90-107"
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="90-107"
+    ```Python hl_lines="91-108"
     {!> ../../../docs_src/security/tutorial004_an.py!}
     ```
 
@@ -243,7 +239,7 @@ If the token is invalid, return an HTTP error right away.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="88-105"
+    ```Python hl_lines="89-106"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -252,7 +248,7 @@ If the token is invalid, return an HTTP error right away.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="89-106"
+    ```Python hl_lines="90-107"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
@@ -264,19 +260,19 @@ Create a real JWT access token and return it.
 
 === "Python 3.10+"
 
-    ```Python hl_lines="117-132"
+    ```Python hl_lines="118-133"
     {!> ../../../docs_src/security/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="117-132"
+    ```Python hl_lines="118-133"
     {!> ../../../docs_src/security/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.8+"
 
-    ```Python hl_lines="118-133"
+    ```Python hl_lines="119-134"
     {!> ../../../docs_src/security/tutorial004_an.py!}
     ```
 
@@ -285,7 +281,7 @@ Create a real JWT access token and return it.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="114-129"
+    ```Python hl_lines="115-130"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
@@ -294,7 +290,7 @@ Create a real JWT access token and return it.
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="115-130"
+    ```Python hl_lines="116-131"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
@@ -384,7 +380,7 @@ Many packages that simplify it a lot have to make many compromises with the data
 
 It gives you all the flexibility to choose the ones that fit your project the best.
 
-And you can use directly many well maintained and widely used packages like `passlib` and `python-jose`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
+And you can use directly many well maintained and widely used packages like `passlib` and `PyJWT`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
 
 But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness, or security.
 

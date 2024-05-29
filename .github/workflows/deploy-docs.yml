@@ -19,18 +19,16 @@ jobs:
         run: |
           rm -rf ./site
           mkdir ./site
-      - name: Download Artifact Docs
-        id: download
-        uses: dawidd6/action-download-artifact@v3.1.4
+      - uses: actions/download-artifact@v4
         with:
-          if_no_artifact_found: ignore
-          github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
-          workflow: build-docs.yml
-          run_id: ${{ github.event.workflow_run.id }}
-          name: docs-site
           path: ./site/
+          pattern: docs-site-*
+          merge-multiple: true
+          github-token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
+          run-id: ${{ github.event.workflow_run.id }}
       - name: Deploy to Cloudflare Pages
-        if: steps.download.outputs.found_artifact == 'true'
+        # hashFiles returns an empty string if there are no files
+        if: hashFiles('./site/*')
         id: deploy
         uses: cloudflare/pages-action@v1
         with:

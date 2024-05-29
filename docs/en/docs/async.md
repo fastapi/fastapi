@@ -222,7 +222,7 @@ All of the cashiers doing all the work with one client after the other 👨‍�
 
 And you have to wait 🕙 in the line for a long time or you lose your turn.
 
-You probably wouldn't want to take your crush 😍 with you to do errands at the bank 🏦.
+You probably wouldn't want to take your crush 😍 with you to run errands at the bank 🏦.
 
 ### Burger Conclusion
 
