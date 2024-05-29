@@ -33,7 +33,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 這些人包括：
 
-* [在 GitHub 上幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。
+* [在 GitHub 中幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。
 * [建立 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
 * 審查 Pull Requests，[尤其是翻譯方面的貢獻](contributing.md#translations){.internal-link target=_blank}。
 
@@ -41,14 +41,14 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ## FastAPI 專家
 
-這些用戶在 [GitHub 上幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🙇
+這些是在 [GitHub 中幫助其他人解決問題最多的用戶](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🙇
 
 他們透過幫助其他人，證明了自己是 **FastAPI 專家**。 ✨
 
 !!! 提示
     你也可以成為官方的 FastAPI 專家！
 
-    只需要在 [GitHub 上幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🤓
+    只需要在 [GitHub 中幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🤓
 
 你可以查看這些期間的 **FastAPI 專家**：
 
@@ -60,7 +60,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ### FastAPI 專家 - 上個月
 
-上個月在 [GitHub 上幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🤓
+上個月在 [GitHub 中幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🤓
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -74,7 +74,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ### FastAPI 專家 - 過去 3 個月
 
-過去三個月在 [GitHub 上幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 😎
+過去三個月在 [GitHub 中幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 😎
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -88,7 +88,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ### FastAPI 專家 - 過去 6 個月
 
-過去六個月在 [GitHub 上幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧐
+過去六個月在 [GitHub 中幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧐
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -102,7 +102,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ### FastAPI 專家 - 過去一年
 
-過去一年在 [GitHub 上幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧑‍🔬
+過去一年在 [GitHub 中幫助他人解決最多問題的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧑‍🔬
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -118,7 +118,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 以下是全部時間的 **FastAPI 專家**。 🤓🤯
 
-過去在 [GitHub 上幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧙
+過去在 [GitHub 中幫助他人解決問題最多的](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}用戶。 🧙
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -154,7 +154,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 以下是 **主要翻譯審核者**。 🕵️
 
-我只會講幾種語言（而且不是很流利 😅）。所以審核者[**擁有批准翻譯**](contributing.md#translations){.internal-link target=_blank}文件的權限。沒有他們，就不會有多語言版本的文件。
+我只會講幾種語言（而且不是很流利 😅），所以審核者[**擁有批准翻譯**](contributing.md#translations){.internal-link target=_blank}文件的權限。沒有他們，就不會有多語言版本的文件。
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -225,12 +225,12 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 ## 關於數據 - 技術細節
 
-這個頁面的主要目的是突顯社群幫助他人的努力。
+這個頁面的主要目的是突顯社群幫助他人所做的努力
 
 特別是那些通常不太顯眼但往往更加艱辛的工作，例如幫助他人解答問題和審查包含翻譯的 Pull Requests。
 
-這些數據每月計算一次，你可以在查看<a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">原始碼</a>。
+這些數據每月計算一次，你可以在這查看<a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">原始碼</a>。
 
 此外，我也特別表揚贊助者的貢獻。
 
-我也保留更新演算法、章節、閾值等的權利（以防萬一 🤷）。
+我也保留更新演算法、章節、門檻值等的權利（以防萬一 🤷）。
