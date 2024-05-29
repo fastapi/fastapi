@@ -4,6 +4,7 @@ import secrets
 import typing
 from re import Pattern
 from typing import Dict, List, Optional, Set, cast
+
 from itsdangerous import BadSignature
 from itsdangerous.url_safe import URLSafeSerializer
 from starlette.datastructures import URL, MutableHeaders
@@ -155,6 +156,7 @@ class CSRFMiddleware:
     def _receive_with_body(self, receive, body):
         async def inner():
             return {"type": "http.request", "body": body, "more_body": False}
+
         return inner
 
 
@@ -172,4 +174,5 @@ def csrf_token_processor(
             "csrf_input": csrf_input,
             "csrf_header": csrf_header,
         }
+
     return processor
