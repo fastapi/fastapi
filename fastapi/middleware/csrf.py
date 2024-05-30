@@ -2,7 +2,8 @@ import functools
 import http.cookies
 import secrets
 from re import Pattern
-from typing import Dict, List, Optional, Set, Any, cast, Callable, Coroutine
+from typing import Any, Callable, Coroutine, Dict, List, Optional, Set, cast
+
 from itsdangerous import BadSignature
 from itsdangerous.url_safe import URLSafeSerializer
 from starlette.datastructures import URL, MutableHeaders
@@ -136,7 +137,7 @@ class CSRFMiddleware:
         return cast(str, csrf_token)
 
     def _generate_csrf_token(self) -> str:
-        token = self.serializer.dumps(secrets.token_urlsafe(128)) 
+        token = self.serializer.dumps(secrets.token_urlsafe(128))
         return cast(str, token)
 
     def _csrf_tokens_match(self, token1: str, token2: str) -> bool:
@@ -152,9 +153,12 @@ class CSRFMiddleware:
             content="CSRF token verification failed", status_code=403
         )
 
-    def _receive_with_body(self, receive: Any, body: bytes) -> Callable[[], Coroutine[Any, Any, Dict[str, Any]]]:
-        async def inner() -> dict :
+    def _receive_with_body(
+        self, receive: Any, body: bytes
+    ) -> Callable[[], Coroutine[Any, Any, Dict[str, Any]]]:
+        async def inner() -> dict:
             return {"type": "http.request", "body": body, "more_body": False}
+
         return inner
 
 
@@ -170,4 +174,5 @@ def csrf_token_processor(csrf_cookie_name: str, csrf_header_name: str):
             "csrf_input": csrf_input,
             "csrf_header": csrf_header,
         }
+
     return processor
