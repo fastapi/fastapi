@@ -1,10 +1,8 @@
 import functools
 import http.cookies
 import secrets
-import typing
 from re import Pattern
-from typing import Dict, List, Optional, Set, cast
-
+from typing import Dict, List, Optional, Set, cast, Coroutine, Callable, Any
 from itsdangerous import BadSignature
 from itsdangerous.url_safe import URLSafeSerializer
 from starlette.datastructures import URL, MutableHeaders
@@ -38,7 +36,7 @@ class CSRFMiddleware:
         self.exempt_urls = exempt_urls
         self.sensitive_cookies = sensitive_cookies
         if safe_methods is None:
-            safe_methods = {"GET", "HEAD", "OPTIONS", "TRACE"}
+            self.safe_methods = {"GET", "HEAD", "OPTIONS", "TRACE"}
         self.cookie_name = cookie_name
         self.cookie_path = cookie_path
         self.cookie_domain = cookie_domain
@@ -153,17 +151,16 @@ class CSRFMiddleware:
             content="CSRF token verification failed", status_code=403
         )
 
-    def _receive_with_body(self, receive, body):
-        async def inner():
+    def _receive_with_body(self, receive, body) -> Coroutine[Any, Any, dict]:
+        async def inner() -> dict :
             return {"type": "http.request", "body": body, "more_body": False}
-
         return inner
 
 
 def csrf_token_processor(
     csrf_cookie_name: str, csrf_header_name: str
-) -> typing.Callable[[Request], typing.Dict[str, typing.Any]]:
-    def processor(request: Request) -> typing.Dict[str, typing.Any]:
+) -> Callable[[Request], Dict[str, Any]]:
+    def processor(request: Request) -> Dict[str, Any]:
         csrf_token = request.cookies.get(csrf_cookie_name)
         csrf_input = (
             f'<input type="hidden" name="{csrf_cookie_name}" value="{csrf_token}">'
@@ -174,5 +171,4 @@ def csrf_token_processor(
             "csrf_input": csrf_input,
             "csrf_header": csrf_header,
         }
-
     return processor
