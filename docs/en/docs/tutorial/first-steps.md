@@ -7,7 +7,104 @@ To install FastAPI, follow the steps below.
 
 1. Open Git Bash. If you haven't downloaded it, visit the Git Bash website to find a download link.
 2. Enter `
-## 
+
+## Setting up
+To see how to set up the basic commands that FastAPI uses, follow the steps below in Python:
+
+---
+
+### Step 1 - Import `FastAPI`
+`FastAPI` is a Python class that provides all the functionality for your API. 
+
+```Python hl_lines="1"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+!!! note "Technical Details"
+    `FastAPI` is a class that inherits directly from `Starlette`, meaning that you can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+
+---
+
+### Step 2 - Create a **`FastAPI` instance**
+Define the main point of interaction to create your API. 
+
+```Python hl_lines="3"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+Here the `app` variable is an "instance" of the class `FastAPI`.
+
+---
+
+### Step 3 - Create a **Path Operation Decorator**
+A **path operation** (also known as an **endpoint** or **route**) tells your API to perform various actions. FastAPI already comes with a variety of **HTTP methods** (also known as **operations**) including (but not limited to):
+
+| Method name | Purpose | Path Operator Decorator |
+| --- | --- | --- | 
+| `POST` | Creates data. | `@app.post()` |
+| `GET` | Reads data. | `@app.get()` |
+| `PUT` | Updates data. | `@app.put()` |
+| `DELETE` | Deletes data. | `@app.delete()` |
+
+!!! tip
+    You are free to use each operation (HTTP method) as you wish. **FastAPI** doesn't enforce any specific meaning. The information here is presented as a guideline, not a requirement. For example, when using GraphQL you normally perform all the actions using only `POST` operations. To see a list of more methods, visit...
+
+```Python hl_lines="6"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
+
+* the path `/`
+* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+
+!!! info "`@decorator` Info"
+    That `@something` syntax in Python is called a **decorator**. You put it on top of a function like a decorative hat. A **decorator** takes the function below and does something with it. In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`. It is the "**path operation decorator**".
+
+---
+
+### Step 4 - Define the **Path Operation Function**
+
+This is our "**path operation function**":
+
+* **path**: is `/`.
+* **operation**: is `get`.
+* **function**: is the function below the "decorator" (below `@app.get("/")`).
+
+```Python hl_lines="7"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+This is a Python function.
+
+It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
+
+In this case, it is an `async` function.
+
+---
+
+You could also define it as a normal function instead of `async def`:
+
+```Python hl_lines="7"
+{!../../../docs_src/first_steps/tutorial003.py!}
+```
+
+!!! note
+    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+
+### Step 5: return the content
+
+```Python hl_lines="8"
+{!../../../docs_src/first_steps/tutorial001.py!}
+```
+
+You can return a `dict`, `list`, singular values as `str`, `int`, etc.
+
+You can also return Pydantic models (you'll see more about that later).
+
+There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
+
+## Example
 The simplest FastAPI file could look like this:
 
 ```Python
@@ -163,171 +260,7 @@ You could also use it to generate code automatically, for clients that communica
 
 ## Recap, step by step
 
-### Step 1: import `FastAPI`
 
-```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-`FastAPI` is a Python class that provides all the functionality for your API.
-
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
-
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
-
-### Step 2: create a `FastAPI` "instance"
-
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-Here the `app` variable will be an "instance" of the class `FastAPI`.
-
-This will be the main point of interaction to create all your API.
-
-### Step 3: create a *path operation*
-
-#### Path
-
-"Path" here refers to the last part of the URL starting from the first `/`.
-
-So, in a URL like:
-
-```
-https://example.com/items/foo
-```
-
-...the path would be:
-
-```
-/items/foo
-```
-
-!!! info
-    A "path" is also commonly called an "endpoint" or a "route".
-
-While building an API, the "path" is the main way to separate "concerns" and "resources".
-
-#### Operation
-
-"Operation" here refers to one of the HTTP "methods".
-
-One of:
-
-* `POST`
-* `GET`
-* `PUT`
-* `DELETE`
-
-...and the more exotic ones:
-
-* `OPTIONS`
-* `HEAD`
-* `PATCH`
-* `TRACE`
-
-In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
-
----
-
-When building APIs, you normally use these specific HTTP methods to perform a specific action.
-
-Normally you use:
-
-* `POST`: to create data.
-* `GET`: to read data.
-* `PUT`: to update data.
-* `DELETE`: to delete data.
-
-So, in OpenAPI, each of the HTTP methods is called an "operation".
-
-We are going to call them "**operations**" too.
-
-#### Define a *path operation decorator*
-
-```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
-
-* the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
-
-!!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
-
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
-
-    A "decorator" takes the function below and does something with it.
-
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
-
-    It is the "**path operation decorator**".
-
-You can also use the other operations:
-
-* `@app.post()`
-* `@app.put()`
-* `@app.delete()`
-
-And the more exotic ones:
-
-* `@app.options()`
-* `@app.head()`
-* `@app.patch()`
-* `@app.trace()`
-
-!!! tip
-    You are free to use each operation (HTTP method) as you wish.
-
-    **FastAPI** doesn't enforce any specific meaning.
-
-    The information here is presented as a guideline, not a requirement.
-
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
-
-### Step 4: define the **path operation function**
-
-This is our "**path operation function**":
-
-* **path**: is `/`.
-* **operation**: is `get`.
-* **function**: is the function below the "decorator" (below `@app.get("/")`).
-
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-This is a Python function.
-
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
-
-In this case, it is an `async` function.
-
----
-
-You could also define it as a normal function instead of `async def`:
-
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
-```
-
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
-
-### Step 5: return the content
-
-```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
-
-You can return a `dict`, `list`, singular values as `str`, `int`, etc.
-
-You can also return Pydantic models (you'll see more about that later).
-
-There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
 
 ## Recap
 
