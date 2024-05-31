@@ -147,7 +147,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-The output would be a line that shows the URL where your app is being served within your local machine.
+The output is a line with a URL of where your app is being served within your local machine.
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
