@@ -15,6 +15,7 @@ hide:
 
 ### Docs
 
+* 📝 Tweak intro docs about `Annotated` and `Query()` params. PR [#11664](https://github.com/tiangolo/fastapi/pull/11664) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update JWT auth documentation to use PyJWT instead of pyhon-jose. PR [#11589](https://github.com/tiangolo/fastapi/pull/11589) by [@estebanx64](https://github.com/estebanx64).
 * 📝 Update docs. PR [#11603](https://github.com/tiangolo/fastapi/pull/11603) by [@alejsdev](https://github.com/alejsdev).
 * ✏️ Fix typo: convert every 're-use' to 'reuse'.. PR [#11598](https://github.com/tiangolo/fastapi/pull/11598) by [@hasansezertasan](https://github.com/hasansezertasan).
