@@ -5,7 +5,7 @@ FastAPI's set up aspires to be as simple and intuitive as possible to help you g
 ## Installation
 To install FastAPI, follow the steps below.
 
-1. Open Git Bash. If you haven't downloaded it, visit the Git Bash website to find a download link.
+1. Open Git Bash. If you haven't downloaded it yet, visit <a href="https://git-scm.com/downloads" class="external-link" target="_blank">the Git Bash website to find a download link.</a>
 2. Enter `gh repo clone tiangolo/fastapi`.
 
 ## Setting up a file
@@ -184,12 +184,12 @@ Alternatively, you can also head to <a href="http://127.0.0.1:8000/redoc" class=
 
 ## OpenAPI and schemas
 
-**FastAPI** generates **schemas** with all your API using the **OpenAPI** standard for defining APIs. The OpenAPI schema is what powers the two interactive documentation systems included. And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**. You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
+**FastAPI** generates **schemas** with all your API using the <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> standard for defining APIs. The OpenAPI schema is what powers the two interactive documentation systems included. And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**. You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
 
 To understand the different types of schemas, see the table below:
 | Schema type | Definition |
 | --- | --- |
-| Schema | An abstract definition or description of something (not coded). In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API. |
+| Schema | An abstract definition or description of something (not coded). In this case, OpenAPI is a specification that dictates how to define a schema of your API. |
 | Data schema | The shape of some data, like JSON content. In this case, it also refers to the JSON attributes and the data types they have. |
 | OpenAPI and JSON schema | OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas. |
 
