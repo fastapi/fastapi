@@ -94,7 +94,7 @@ You can return arrays like `dict` or `list`, singular values like `str` or `int`
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Other objects and models are automatically converted to JSON (including ORMs). Try using your favourite one. It's most likely already supported by FastAPI.
+Other objects and models are automatically converted to JSON (including ORMs). Try using your favourite one--it's most likely already supported by FastAPI.
 
 ## Running the development server
 In Git Bash, run the live server using the command `fastapi dev`.
