@@ -169,7 +169,9 @@ Alternatively, you can also view documentation provided by <a href="https://gith
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## OpenAPI and schemas
+---
+
+### OpenAPI and schemas
 
 API **schemas** are important when creating reference documentation. Schemas are abstract definitions or descriptions of something. FastAPI automatically generates schemas with all your API using the <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> standard for defining APIs.
 
