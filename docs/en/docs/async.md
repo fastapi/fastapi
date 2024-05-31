@@ -1,27 +1,18 @@
-# Asynchronous Code with await and async
+# Asynchronous Code with `await` and `async`
 
-**Asynchronous code** (also called **concurrency**) allows your program to perform a task in the background while waiting to complete a separate task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax. A related process called **parallelism** runs multiple tasks at the same time. 
-
-FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. 
-
-This document offers an introduction to:
-* Asynchronous code
-* Concurrencies and parallelisms
-* `async` and `await`
-* Coroutines
-* Technical details of concurrency in FastAPI
+**Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax.
 
 ## Asynchronous Code
 
-**Asynchronous code** refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until `something slow` to finish doing its task. During that time, the program can work on another task while it waits for `something slow`. Over time, the program can return to `something slow` to see if it's finished its tasks.
+**Asynchronous code** refers to the process of how a program does two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until `something slow` to finish doing its task. Meanwhile, the program can work on another task while it waits for `something slow` and can return to `something slow` to see if it's finished its tasks.
+
+It's called "asynchronous" because the program doesn't have to be synchronized with `something slow`, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
 
 Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a program's time to complete. Some examples of slow tasks include:
 * The data from the client to be sent through the network
 * The contents of a file in the disk to be read by a system
 * A remote API operation
 * A database query to return the results
-
-It's called "asynchronous" because the program doesn't have to be synchronized with `something slow`, or wait for it to be complete before it can do something else. This is opposed to "synchronous" or "sequential" code that follow instructions line-by-line, waiting until a task before starting a new one.
 
 ---
 
@@ -191,9 +182,7 @@ A **Coroutine** is simply the thing returned by an `async def` function. Python 
 
 ## Technical details of concurrency in FastAPI
 
-!!! Warning
-    Ahead are high-level details of how FastAPI works underneath. 
-    This section is for those with some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`.
+FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. If you're curious, you can see more high-level details in this section.
 
 ### Path operation functions
 
