@@ -1,6 +1,6 @@
 # Asynchronous Code with `await` and `async`
 
-**Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax.
+When building an API, you might want your two programs to communicate different things simultaneously. **Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax. 
 
 ## Asynchronous Code
 
@@ -56,6 +56,11 @@ Let's review that scenario again but now imagine you're a computer program. As y
 After finding a table, you switch your attention to another task called `get_to_know_crush`. You ask questions, flirt, and say a joke. Once the cashier announces that the burgers are finished, you don't get up immediately. You know that no one will steal your order because you have the number of your turn and they theirs. Instead, you for your crush to finish telling their story (or finish processing the task `get_to_know_crush`). 
 
 Once you're both ready (or finish the current task), you go back to the cashier and "resume" your interaction. Finally, you get the burgers and thank the cashier, finishing the `get_burgers` task. Finally, it's time to eat the burgers and start a new task `eat_burgers`.
+
+Examples of concurrency in code include:
+* Messaging
+* Banking
+* Social media
 
 ---
 
