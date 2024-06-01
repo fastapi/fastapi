@@ -1,17 +1,14 @@
 import { Box, Container, Text } from "@chakra-ui/react"
-import { useQueryClient } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
 
-import type { UserPublic } from "../../client"
+import useAuth from "../../hooks/useAuth"
 
 export const Route = createFileRoute("/_layout/")({
   component: Dashboard,
 })
 
 function Dashboard() {
-  const queryClient = useQueryClient()
-
-  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
+  const { user: currentUser } = useAuth()
 
   return (
     <>
