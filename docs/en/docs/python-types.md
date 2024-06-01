@@ -1,14 +1,8 @@
 # Type Hints
 
-**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in a function's parameters. FastAPI takes advantage of Python's `typing` library to create reliable editor support and provide quick type checks within a compatible coding language.
+**Type hints** (also called type annotations) allow you to set the type of a variable by declaring them in a function's parameters to save time when calling it later. FastAPI takes advantage of Python's `typing` library to create reliable editor support and provide quick type checks within a compatible coding language.
 
-This document offers a quick overview of type hinting for:
-* Variables
-* Classes
-* Pydantic models
-* Metadata annotations
-
-## How they work
+## How type hinting works
 
 Suppose you want to write the following function from scratch:
 
@@ -38,10 +32,10 @@ Then the function becomes:
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-!!! Type hints vs default values
+!!! info
     Type hints are different from setting a variable's value. 
 
-Now, if you're attempting to write a function in your coding editor, you can navigate through a list of functions associated with your variable's type.
+If you're attempting to write a function in your coding editor, you can navigate through a list of functions associated with your variable's type.
 
 <img src="/img/python-types/image03.png">
 
@@ -55,7 +49,7 @@ Your coding editor would be able to recognize that there's a problem in your cod
 
 <img src="/img/python-types/image04.png">
 
-In this case, the solution is to  convert `age` to a string with `str(age)`.
+In this case, the solution is to convert `age` to a string with `str(age)`.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
@@ -69,8 +63,8 @@ Type hinting works for all variable types for all versions of Python. As Python 
 
 ---
 
-### Lists, Tuples, Sets, and Dicts
-Sequences can hold multiple values. Below are examples on how to create functions using generic types such as `list`, `tuple`, `set`, and `dict`.
+### Generic variables (lists, tuples, sets, dicts)
+Sequences can hold multiple values. Below are examples on how to create functions using generic types such as `list`, `tuple`, `set`, and `dict`:
 
 === "Python 3.9+"
 
@@ -123,7 +117,7 @@ Sequences can hold multiple values. Below are examples on how to create function
 
 ### Union
 
-A `union` allows a variable to hold multiple types such as `int` or `str`. Below are examples of setting a variable with multiple types.
+A `union` allows a variable to hold multiple types such as `int` or `str`. Below are examples of setting a variable with multiple types:
 
 === "Python 3.10+"
 
@@ -140,7 +134,7 @@ A `union` allows a variable to hold multiple types such as `int` or `str`. Below
 ---
 
 ### None
-Some variables can hold the value `None`. Below are examples of allowing a variable to take on a type of `None`.
+Some variables can hold the value `None`. Below are examples of allowing a variable to take on a type of `None`:
 
 === "Python 3.10+"
 
@@ -160,13 +154,10 @@ Some variables can hold the value `None`. Below are examples of allowing a varia
     {!> ../../../docs_src/python_types/tutorial009b.py!}
     ```
 
-!!! Best practices
+!!! best practices
     Avoid using `Optional[SomeType]` and instead **use `Union[SomeType, None]`**. Though these both do the same thing, the latter is clearer for other developers to understand your code.
 
-
----
-
-### Classes as types
+## Classes as types
 
 A class is a blueprint for creating objects. Like with variables, you can also declare a class as the type of a variable.
 
