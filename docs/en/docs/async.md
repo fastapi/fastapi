@@ -2,7 +2,7 @@
 
 When building an API, you might want your two programs to communicate different things simultaneously. **Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax. 
 
-## Asynchronous Code
+## Understanding asynchronous code
 
 **Asynchronous code** are instructions for a program to do two things at the same time. To do this, the asynchronous code tells the program that it needs to wait until `something slow` to finish doing its task. Meanwhile, the program can work on another task while it waits for `something slow` and can return to `something slow` to see if it's finished its tasks.
 
@@ -109,7 +109,7 @@ To see more information about parallelism in production, see the [Deployment](de
 
 ---
 
-### Advantages of Concurrency vs Parallelism
+### Concurrency versus parallelism
 
 Concurrency and parallelism are both useful depending on the situation. See the table below to understand the main advantages of each.
 
@@ -117,7 +117,7 @@ Concurrency and parallelism are both useful depending on the situation. See the 
 
 When combining asynchronicity and parallelism, you achieve higher performance than most of the tested NodeJS frameworks and on par with Go <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>. Because Python is the main language for Data Science, Machine Learning, and Deep Learning, FastAPI already hits the ground running when tackling problems in these fields.
 
-## `async` and `await`
+## Using `async` and `await`
 
 Modern versions of Python have an intuitive way to define asynchronous code by making it look just like normal **sequential code** and do the "awaiting" for you at the right moments. 
 
@@ -169,17 +169,19 @@ async def read_burgers():
 
 ---
 
-### Other forms of asynchronous code
+### Coroutines
+
+A **Coroutine** is simply the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an `await` inside of it.
+
+---
+
+### Other asynchronous code
 
 While this method of using `async` and `await` is new in Python, it makes working with asynchronous code simplier. Similar syntax is also in modern versions of JavaScript, in Browser, and NodeJS. 
 
 Before that, handling asynchronous code was more complicated. In previous version of Python, you would have to use threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. And in previous versions of NodeJS, Browser JavaScript, you would have to use callbacks (which very easily lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>).
 
 ---
-
-### Coroutines
-
-A **Coroutine** is simply the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an `await` inside of it.
 
 ## Technical details of concurrency in FastAPI
 
@@ -209,6 +211,4 @@ You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/
 
 ### Other utility functions
 
-Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it. This is in contrast to the functions that FastAPI calls for you: **path operation functions** and dependencies.
-
-If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
+Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it. This is in contrast to the functions that FastAPI calls for you: **path operation functions** and dependencies. If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
