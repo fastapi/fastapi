@@ -602,46 +602,46 @@ class OAuth2ClientCredentials(OAuth2):
     """
 
     def __init__(
-            self,
-            tokenUrl: Annotated[
-                str,
-                Doc(
-                    """
+        self,
+        tokenUrl: Annotated[
+            str,
+            Doc(
+                """
                     The URL to obtain the OAuth2 token.
                     """
-                ),
-            ],
-            scheme_name: Annotated[
-                Optional[str],
-                Doc(
-                    """
+            ),
+        ],
+        scheme_name: Annotated[
+            Optional[str],
+            Doc(
+                """
                     Security scheme name.
                     It will be included in the generated OpenAPI (e.g. visible at `/docs`).
                     """
-                ),
-            ] = None,
-            scopes: Annotated[
-                Optional[Dict[str, str]],
-                Doc(
-                    """
+            ),
+        ] = None,
+        scopes: Annotated[
+            Optional[Dict[str, str]],
+            Doc(
+                """
                     The OAuth2 scopes that would be required by the *"path" operations* that
                     use this dependency.
                     """
-                ),
-            ] = None,
-            description: Annotated[
-                Optional[str],
-                Doc(
-                    """
+            ),
+        ] = None,
+        description: Annotated[
+            Optional[str],
+            Doc(
+                """
                     Security scheme description.
                     It will be included in the generated OpenAPI (e.g. visible at `/docs`).
                     """
-                ),
-            ] = None,
-            auto_error: Annotated[
-                bool,
-                Doc(
-                    """
+            ),
+        ] = None,
+        auto_error: Annotated[
+            bool,
+            Doc(
+                """
                     By default, if no HTTP Auhtorization header is provided, required for
                     OAuth2 authentication, it will automatically cancel the request and
                     send the client an error.
@@ -653,8 +653,8 @@ class OAuth2ClientCredentials(OAuth2):
                     provided in one of multiple optional ways (for example, with OAuth2
                     or in a cookie).
                     """
-                ),
-            ] = True,
+            ),
+        ] = True,
     ):
         if not scopes:
             scopes = {}
