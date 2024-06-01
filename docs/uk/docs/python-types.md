@@ -168,7 +168,7 @@ John Doe
 
     З модуля `typing`, імпортуємо `List` (з великої літери `L`):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
@@ -385,7 +385,7 @@ John Doe
 
 ## Pydantic моделі
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> це бібліотека Python для валідації даних.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> це бібліотека Python для валідації даних.
 
 Ви оголошуєте «форму» даних як класи з атрибутами.
 
@@ -416,7 +416,7 @@ John Doe
     ```
 
 !!! info
-    Щоб дізнатись більше про <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, перегляньте його документацію</a>.
+    Щоб дізнатись більше про <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, перегляньте його документацію</a>.
 
 **FastAPI** повністю базується на Pydantic.
 

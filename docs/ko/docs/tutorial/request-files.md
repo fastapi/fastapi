@@ -3,7 +3,7 @@
 `File`을 사용하여 클라이언트가 업로드할 파일들을 정의할 수 있습니다.
 
 !!! info "정보"
-    업로드된 파일을 전달받기 위해 먼저 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
+    업로드된 파일을 전달받기 위해 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
 
     예시) `pip install python-multipart`.
 
@@ -108,7 +108,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
     인코딩과 폼 필드에 대해 더 알고싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><code>POST</code>에 관한<abbr title="Mozilla Developer Network">MDN</abbr>웹 문서</a> 를 참고하기 바랍니다,.
 
-!!! warning "주의"
+!!! warning "경고"
     다수의 `File` 과 `Form` 매개변수를 한 *경로 작동*에 선언하는 것이 가능하지만, 요청의 본문이 `application/json` 가 아닌 `multipart/form-data` 로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
 
     이는 **FastAPI**의 한계가 아니라, HTTP 프로토콜에 의한 것입니다.

@@ -157,4 +157,4 @@ async with lifespan(app):
 
 ## 🎧 🈸
 
-👶 ✔️ 🤯 👈 👫 🔆 🎉 (🕴 &amp; 🤫) 🔜 🕴 🛠️ 👑 🈸, 🚫 [🎧 🈸 - 🗻](./sub-applications.md){.internal-link target=_blank}.
+👶 ✔️ 🤯 👈 👫 🔆 🎉 (🕴 &amp; 🤫) 🔜 🕴 🛠️ 👑 🈸, 🚫 [🎧 🈸 - 🗻](sub-applications.md){.internal-link target=_blank}.
