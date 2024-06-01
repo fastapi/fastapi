@@ -25,7 +25,7 @@ Belki de öğrenme tarzınıza daha iyi uyduğu için başka kursları tercih ed
 
 Bazı kurs sağlayıcıları ✨ [**FastAPI destekçileridir**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, bu FastAPI ve **ekosisteminin** sürekli ve sağlıklı bir şekilde **gelişmesini** sağlar.
 
-Bu, onların FastAPI'a ve **topluluğuna** (yani size) olan gerçek bağlılıklarını gösterir; çünkü size yalnızca **iyi bir öğrenme deneyimi** sunmakla kalmayıp, aynı zamanda FastAPI'ın **iyi ve sağlıklı bir çerçeveye**  olduğunuzdan emin olmak da istiyorlar. 🙇
+Bu, onların FastAPI'a ve **topluluğuna** (yani size) olan gerçek bağlılıklarını gösterir; çünkü size yalnızca **iyi bir öğrenme deneyimi** sunmakla kalmayıp, aynı zamanda **iyi ve sağlıklı bir çerçeve** olan FastAPI'a sahip olduğunuzdan emin olmak istiyorlar. 🙇
 
 Onların kurslarını denemek isteyebilirsiniz:
 
