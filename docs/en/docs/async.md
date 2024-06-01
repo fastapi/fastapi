@@ -181,8 +181,6 @@ While this method of using `async` and `await` is new in Python, it makes workin
 
 Before that, handling asynchronous code was more complicated. In previous version of Python, you would have to use threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. And in previous versions of NodeJS, Browser JavaScript, you would have to use callbacks (which very easily lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>).
 
----
-
 ## Technical details of concurrency in FastAPI
 
 FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. If you're curious, you can see more high-level details in this section.
