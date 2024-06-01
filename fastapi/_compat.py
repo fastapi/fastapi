@@ -10,12 +10,12 @@ from typing import (
     FrozenSet,
     List,
     Mapping,
+    Optional,
     Sequence,
     Set,
     Tuple,
     Type,
     Union,
-    Optional,
 )
 
 from fastapi.exceptions import RequestErrorModel

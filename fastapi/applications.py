@@ -2485,7 +2485,7 @@ class FastAPI(Starlette):
             ),
         ] = False,
         response_model_context: Annotated[
-           Optional[Dict[str, Any]],
+            Optional[Dict[str, Any]],
             Doc(
                 """
                 Additional context to pass to Pydantic when creating the response.
