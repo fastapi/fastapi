@@ -185,6 +185,8 @@ Before that, handling asynchronous code was more complicated. In previous versio
 
 FastAPI uses concurrency (rooted in the <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO Python asynchronous library</a>) for web development and offers the potential to use the benefits of parallelism and multiprocessing for CPU bound workloads like those in Machine Learning systems. If you're curious, you can see more high-level details in this section.
 
+---
+
 ### Path operation functions
 
 When you declare a **path operation function** with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited instead of being called directly (as it would block the server).
