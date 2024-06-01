@@ -15,6 +15,7 @@ hide:
 
 ### Docs
 
+* 📝 Tweak intro docs about `Annotated` and `Query()` params. PR [#11664](https://github.com/tiangolo/fastapi/pull/11664) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update JWT auth documentation to use PyJWT instead of pyhon-jose. PR [#11589](https://github.com/tiangolo/fastapi/pull/11589) by [@estebanx64](https://github.com/estebanx64).
 * 📝 Update docs. PR [#11603](https://github.com/tiangolo/fastapi/pull/11603) by [@alejsdev](https://github.com/alejsdev).
 * ✏️ Fix typo: convert every 're-use' to 'reuse'.. PR [#11598](https://github.com/tiangolo/fastapi/pull/11598) by [@hasansezertasan](https://github.com/hasansezertasan).
@@ -23,6 +24,11 @@ hide:
 
 ### Translations
 
+* 🌐 Add Turkish translation for `docs/tr/docs/deployment/cloud.md`. PR [#11610](https://github.com/tiangolo/fastapi/pull/11610) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add Turkish translation for `docs/tr/docs/advanced/security/index.md`. PR [#11609](https://github.com/tiangolo/fastapi/pull/11609) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add Turkish translation for `docs/tr/docs/advanced/testing-websockets.md`. PR [#11608](https://github.com/tiangolo/fastapi/pull/11608) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Add Turkish translation for `docs/tr/docs/how-to/general.md`. PR [#11607](https://github.com/tiangolo/fastapi/pull/11607) by [@hasansezertasan](https://github.com/hasansezertasan).
+* 🌐 Update Chinese translation for `docs/zh/docs/advanced/templates.md`. PR [#11620](https://github.com/tiangolo/fastapi/pull/11620) by [@chaoless](https://github.com/chaoless).
 * 🌐 Add Turkish translation for `docs/tr/docs/deployment/index.md`. PR [#11605](https://github.com/tiangolo/fastapi/pull/11605) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Turkish translation for `docs/tr/docs/tutorial/static-files.md`. PR [#11599](https://github.com/tiangolo/fastapi/pull/11599) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Polish translation for `docs/pl/docs/fastapi-people.md`. PR [#10196](https://github.com/tiangolo/fastapi/pull/10196) by [@isulim](https://github.com/isulim).
@@ -35,6 +41,7 @@ hide:
 
 ### Internal
 
+* 🔧 Add sponsor Kong. PR [#11662](https://github.com/tiangolo/fastapi/pull/11662) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update Smokeshow, fix sync download artifact and smokeshow configs. PR [#11563](https://github.com/tiangolo/fastapi/pull/11563) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update Smokeshow download artifact GitHub Action. PR [#11562](https://github.com/tiangolo/fastapi/pull/11562) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update GitHub actions to download and upload artifacts to v4, for docs and coverage. PR [#11550](https://github.com/tiangolo/fastapi/pull/11550) by [@tamird](https://github.com/tamird).
