@@ -15,6 +15,7 @@ from typing import (
     Tuple,
     Type,
     Union,
+    Optional,
 )
 
 from fastapi.exceptions import RequestErrorModel
@@ -143,7 +144,9 @@ if PYDANTIC_V2:
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
             exclude_none: bool = False,
+            context: Optional[Dict[str, Any]] = None,
         ) -> Any:
+            kwargs = {"context": context} if PYDANTIC_VERSION >= "2.7.3" else {}
             # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
             return self._type_adapter.dump_python(
@@ -155,6 +158,7 @@ if PYDANTIC_V2:
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
+                **kwargs,
             )
 
         def __hash__(self) -> int:
