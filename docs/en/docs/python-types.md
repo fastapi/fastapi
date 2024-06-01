@@ -476,7 +476,7 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 ## Type Hints with Metadata Annotations
 
-Python also has a feature that allows putting **additional metadata** in these type hints using `Annotated`.
+Python also has a feature that allows putting **additional <abbr title="Data about the data, in this case, information about the type, e.g. a description.">metadata</abbr>** in these type hints using `Annotated`.
 
 === "Python 3.9+"
 
