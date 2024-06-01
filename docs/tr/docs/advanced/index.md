@@ -27,7 +27,7 @@ Bazı kurs sağlayıcıları ✨ [**FastAPI destekçileridir**](../help-fastapi.
 
 Ayrıca, size **iyi bir öğrenme deneyimi** sağlamakla kalmayıp, **iyi ve sağlıklı bir framework** olan FastAPI'a bağlılıklarını gösterir.
 
-Ve bu onların FastAPI'a ve onun **topluluğuna** (yani size) olan gerçek bağlılıklarını gösterir; çünkü size yalnızca **iyi bir öğrenme deneyimi** sunmak değil, aynı zamanda FastAPI'ın **iyi ve sağlıklı bir çerçeveye**  olduğunuzdan emin olmak da istiyorlar. 🙇
+Bu, onların FastAPI'a ve **topluluğuna** (yani size) olan gerçek bağlılıklarını gösterir; çünkü size yalnızca **iyi bir öğrenme deneyimi** sunmakla kalmayıp, aynı zamanda FastAPI'ın **iyi ve sağlıklı bir çerçeveye**  olduğunuzdan emin olmak da istiyorlar. 🙇
 
 Onların kurslarını denemek isteyebilirsiniz:
 
