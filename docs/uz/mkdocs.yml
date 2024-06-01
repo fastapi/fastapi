@@ -1,6 +1,6 @@
 site_name: FastAPI
-site_description: FastAPI yuqori darajali, o'rganishga oson, tez ishlab chiqish imkonini beruvchi framework
-site_url: https://fastapi.tiangolo.com/ru/
+site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/uz/
 theme:
   name: material
   custom_dir: overrides
@@ -11,14 +11,14 @@ theme:
     accent: amber
     toggle:
       icon: material/lightbulb
-      name: Oq fonga almashtirish
+      name: Switch to light mode
   - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb-outline
-      name: Qora fonga almashtirish
+      name: Switch to dark mode
   features:
   - search.suggest
   - search.highlight
@@ -109,47 +109,47 @@ extra:
     link: https://tiangolo.com
   alternate:
   - link: /
-    name: en - Ingliz
+    name: en - English
   - link: /az/
     name: az
   - link: /de/
     name: de
   - link: /es/
-    name: es - Ispan
+    name: es - español
   - link: /fa/
     name: fa
   - link: /fr/
-    name: fr - Fransuz
+    name: fr - français
   - link: /he/
     name: he
   - link: /id/
     name: id
   - link: /it/
-    name: it - Italian
+    name: it - italiano
   - link: /ja/
-    name: ja - Yapon
+    name: ja - 日本語
   - link: /ko/
-    name: ko - Koreys
+    name: ko - 한국어
   - link: /nl/
     name: nl
   - link: /pl/
     name: pl
   - link: /pt/
-    name: pt - Portugiz
+    name: pt - português
   - link: /ru/
-    name: ru - Rus
+    name: ru - русский язык
   - link: /sq/
-    name: sq - Albaniya
+    name: sq - shqip
   - link: /sv/
-    name: sv - Shved
+    name: sv - svenska
   - link: /tr/
-    name: tr - Turkiya
+    name: tr - Türkçe
   - link: /uk/
-    name: uk - Ukrayna
+    name: uk - українська мова
   - link: /uz/
     name: uz - O'zbek
   - link: /zh/
-    name: zh - Xitoy
+    name: zh - 汉语
 extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
