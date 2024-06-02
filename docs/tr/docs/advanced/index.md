@@ -19,7 +19,7 @@ Sonraki bölümler bu sayfayı okuduğunuzu ve bu ana fikirleri bildiğinizi var
 
 ## Diğer Kurslar
 
-[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} sayfasının ve bu **Gelişmiş Kullanıcı Rehberi**'nin öğretici olmak amacıyla (bir kitap gibi) yazılmış olmasına ve **FastAPI'ı öğrenmek** için yeterli olmasına rağmen, ek kurslarla desteklemek isteyebilirsiniz.
+[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} sayfası ve bu **Gelişmiş Kullanıcı Rehberi**, öğretici bir kılavuz (bir kitap gibi) şeklinde yazılmıştır ve **FastAPI'ı öğrenmek** için yeterli olsa da, ek kurslarla desteklemek isteyebilirsiniz.
 
 Belki de öğrenme tarzınıza daha iyi uyduğu için başka kursları tercih edebilirsiniz.
 
