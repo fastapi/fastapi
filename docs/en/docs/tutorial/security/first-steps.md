@@ -51,6 +51,8 @@ Copy the example in a file `main.py`:
 
     `pip install python-multipart`
 
+    This is because **OAuth2** uses "form data" for sending the `username` and `password`.
+
 Run the example with:
 
 <div class="termy">
