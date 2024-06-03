@@ -45,7 +45,7 @@ Copy the example in a file `main.py`:
 ## Run it
 
 !!! info
-    The `python-multipart` package is automatically installed with **FastAPI** when you run the `pip install fastapi` command.
+    The <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> package is automatically installed with **FastAPI** when you run the `pip install fastapi` command.
 
     However, if you use the `pip install fastapi-slim` command, the `python-multipart` package is not included by default. To install it manually, use the following command:
 
