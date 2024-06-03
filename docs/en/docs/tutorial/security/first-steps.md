@@ -45,18 +45,18 @@ Copy the example in a file `main.py`:
 ## Run it
 
 !!! info
-    First install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+    The <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> package is automatically installed with **FastAPI** when you run the `pip install fastapi` command.
 
-    E.g. `pip install python-multipart`.
+    However, if you use the `pip install fastapi-slim` command, the `python-multipart` package is not included by default. To install it manually, use the following command:
 
-    This is because **OAuth2** uses "form data" for sending the `username` and `password`.
+    `pip install python-multipart`
 
 Run the example with:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
