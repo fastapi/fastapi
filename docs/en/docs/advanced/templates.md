@@ -114,6 +114,15 @@ In this example, it would link to a CSS file at `static/styles.css` with:
 
 And because you are using `StaticFiles`, that CSS file would be served automatically by your **FastAPI** application at the URL `/static/styles.css`.
 
+## Generating raw HTML from templates
+
+If you need to render HTML from a template, you can do so.
+
+```python
+context = {"id": 1}
+html = templates.get_template("item.html").render(context)
+```
+
 ## More details
 
 For more details, including how to test templates, check <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.
