@@ -1,6 +1,6 @@
 # Asynchronous Code with `await` and `async`
 
-When building an API, you might want your two programs to communicate different things simultaneously. **Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax. 
+When building an API, you might want your two programs to communicate different things simultaneously. **Asynchronous code**, or **concurrency**, allows your program to perform a task in the background while waiting to finish another task at the same time. Modern versions of Python have support for **asynchronous code** using **coroutines** with **`async` and `await`** syntax.
 
 ## Understanding asynchronous code
 
@@ -20,7 +20,7 @@ Many standard <abbr title="Input and Output">I/O</abbr> operations can take up a
 
 Asynchronous code is also sometimes called **concurrency**. To understand concurrency better, take a look at the following example:
 
-Let's say your in a line with your crush to get burgers from a fast food joint called **Concurrent Burgers**. While you're both standing in line, the cashier takes orders from the people in front of you. 
+Let's say your in a line with your crush to get burgers from a fast food joint called **Concurrent Burgers**. While you're both standing in line, the cashier takes orders from the people in front of you.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
@@ -53,7 +53,7 @@ You and your crush are finally able to chow down on a delicious meal.
 
 Let's review that scenario again but now imagine you're a computer program. As you wait in line, you're "idle." But once it's your turn, you get started on the `get_burgers` task: you read the menu, decide your order, pay, and verify that the order and the charge are correct. However, the task can't be complete because the burgers need time to cook. You "pause" your interaction with the cashier and go look for a table.
 
-After finding a table, you switch your attention to another task called `get_to_know_crush`. You ask questions, flirt, and say a joke. Once the cashier announces that the burgers are finished, you don't get up immediately. You know that no one will steal your order because you have the number of your turn and they theirs. Instead, you for your crush to finish telling their story (or finish processing the task `get_to_know_crush`). 
+After finding a table, you switch your attention to another task called `get_to_know_crush`. You ask questions, flirt, and say a joke. Once the cashier announces that the burgers are finished, you don't get up immediately. You know that no one will steal your order because you have the number of your turn and they theirs. Instead, you for your crush to finish telling their story (or finish processing the task `get_to_know_crush`).
 
 Once you're both ready (or finish the current task), you go back to the cashier and "resume" your interaction. Finally, you get the burgers and thank the cashier, finishing the `get_burgers` task. Finally, it's time to eat the burgers and start a new task `eat_burgers`.
 
@@ -95,7 +95,7 @@ You cheerfully grab your order and find a table to eat.
 !!! info "Credit"
     Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
-The main difference between the two scenarios is that you had to wait for the cashier to take, make, and deliver your order. If you were a computer program, you would have been **synchronized** with the cashier, because you had to wait for the exact moment the task was done (otherwise someone else would have taken the burgers). But this also means that you both had to wait at the counter for a long time and didn't have any time to speak to your crush. As a result, it made your second date less interesting. 
+The main difference between the two scenarios is that you had to wait for the cashier to take, make, and deliver your order. If you were a computer program, you would have been **synchronized** with the cashier, because you had to wait for the exact moment the task was done (otherwise someone else would have taken the burgers). But this also means that you both had to wait at the counter for a long time and didn't have any time to speak to your crush. As a result, it made your second date less interesting.
 
 !!! info "A different example"
     While concurrency worked better in this situation, this example only demonstrates how parallelism works. If instead, the cashiers were cleaners tasked to clean a dirty mansion, a **concurrent system** would make it so one person has to wait to clean one room after the other. However, with a **parallel system**, multiple people can clean the rooms at the same time and reduce the time spent.
@@ -122,7 +122,7 @@ When combining asynchronicity and parallelism, you achieve higher performance th
 
 ## Using `async` and `await`
 
-Modern versions of Python have an intuitive way to define asynchronous code by making it look just like normal **sequential code** and do the "awaiting" for you at the right moments. 
+Modern versions of Python have an intuitive way to define asynchronous code by making it look just like normal **sequential code** and do the "awaiting" for you at the right moments.
 
 When there is a process that requires waiting before giving the results:
 
@@ -180,7 +180,7 @@ A **Coroutine** is simply the thing returned by an `async def` function. Python 
 
 ### Other asynchronous code
 
-While this method of using `async` and `await` is new in Python, it makes working with asynchronous code simplier. Similar syntax is also in modern versions of JavaScript, in Browser, and NodeJS. 
+While this method of using `async` and `await` is new in Python, it makes working with asynchronous code simplier. Similar syntax is also in modern versions of JavaScript, in Browser, and NodeJS.
 
 Before that, handling asynchronous code was more complicated. In previous version of Python, you would have to use threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. And in previous versions of NodeJS, Browser JavaScript, you would have to use callbacks (which very easily lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>).
 
