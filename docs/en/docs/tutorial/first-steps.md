@@ -22,7 +22,7 @@ To add these components to your file, follow the steps below:
 ---
 
 ### Step 1: Import `FastAPI`
-`FastAPI` is a Python class that provides all the functionality for your API. 
+`FastAPI` is a Python class that provides all the functionality for your API.
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -57,7 +57,7 @@ A **path operation** (also known as an **endpoint** or **route**) tells your API
 FastAPI comes with a variety of **HTTP methods**, or **operations**, including:
 
 | HTTP Method | Purpose | Path Operator Decorator |
-| --- | --- | --- | 
+| --- | --- | --- |
 | `POST` | Creates data. | `@app.post()` |
 | `GET` | Reads data. | `@app.get()` |
 | `PUT` | Updates data. | `@app.put()` |
@@ -88,7 +88,7 @@ The function below will be called by FastAPI whenever it receives a request to t
 
 ### Step 5: Return output
 
-You can return arrays like `dict` or `list`, singular values like `str` or `int`, or even Pydantic models. 
+You can return arrays like `dict` or `list`, singular values like `str` or `int`, or even Pydantic models.
 
 ```Python hl_lines="8"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -182,7 +182,7 @@ There are two main types of schemas FastAPI recognizes:
 !!! info "Technical Details"
     The OpenAPI schema is what powers the two interactive documentation systems included. And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with FastAPI. You could also use it to generate code automatically for clients that communicate with your API (such as frontend, mobile or IoT applications).
 
-If you're curious about how the raw OpenAPI schema looks like, head to <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>. 
+If you're curious about how the raw OpenAPI schema looks like, head to <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
 ```JSON
 {
@@ -204,4 +204,3 @@ If you're curious about how the raw OpenAPI schema looks like, head to <a href="
 
 ...
 ```
-
