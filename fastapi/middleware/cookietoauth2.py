@@ -1,11 +1,8 @@
 from fastapi import Request
-from starlette.middleware.base import BaseHTTPMiddleware
-from app.core.config import settings
-from fastapi import Request
 from starlette.datastructures import MutableHeaders
 from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.types import ASGIApp
 from starlette.responses import Response
+from starlette.types import ASGIApp
 
 
 class CookieToAuth2Middleware(BaseHTTPMiddleware):
