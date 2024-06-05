@@ -18,6 +18,7 @@
 
 ### Refactors
 
+* ♻️ Update client services. PR [#1223](https://github.com/tiangolo/full-stack-fastapi-template/pull/1223) by [@alejsdev](https://github.com/alejsdev).
 * ⚒️ Add minor frontend tweaks. PR [#1210](https://github.com/tiangolo/full-stack-fastapi-template/pull/1210) by [@alejsdev](https://github.com/alejsdev).
 * 🚚 Move assets to public folder. PR [#1206](https://github.com/tiangolo/full-stack-fastapi-template/pull/1206) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Refactor redirect labels to simplify removing the frontend. PR [#1208](https://github.com/tiangolo/full-stack-fastapi-template/pull/1208) by [@tiangolo](https://github.com/tiangolo).
