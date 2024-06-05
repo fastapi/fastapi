@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -27,11 +36,11 @@
 
 ---
 
-FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́bù fún kikọ àwọn API pẹ̀lú Python 3.8+ èyí tí ó da lori àwọn ìtọ́kasí àmì irúfẹ́ Python.
+FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́bù fún kikọ àwọn API pẹ̀lú Python èyí tí ó da lori àwọn ìtọ́kasí àmì irúfẹ́ Python.
 
 Àwọn ẹya pàtàkì ni:
 
-* **Ó yára**: Iṣẹ tí ó ga púpọ̀, tí ó wa ni ibamu pẹ̀lú **NodeJS** àti **Go** (ọpẹ si Starlette àti Pydantic). [Ọkan nínú àwọn ìlànà Python ti o yára jùlọ ti o wa](#performance).
+* **Ó yára**: Iṣẹ tí ó ga púpọ̀, tí ó wa ni ibamu pẹ̀lú **NodeJS** àti **Go** (ọpẹ si Starlette àti Pydantic). [Ọkan nínú àwọn ìlànà Python ti o yára jùlọ ti o wa](#isesi).
 * **Ó yára láti kóòdù**: O mu iyara pọ si láti kọ àwọn ẹya tuntun kóòdù nipasẹ "Igba ìdá ọgọ́rùn-ún" (i.e. 200%) si "ọ̀ọ́dúrún ìdá ọgọ́rùn-ún" (i.e. 300%).
 * **Àìtọ́ kékeré**: O n din aṣiṣe ku bi ọgbon ìdá ọgọ́rùn-ún (i.e. 40%) ti eda eniyan (oṣiṣẹ kóòdù) fa. *
 * **Ọgbọ́n àti ìmọ̀**: Atilẹyin olootu nla. <abbr title="a tun le pe ni olùrànlọ́wọ́ alaifiọwọkan alaifọwọyi, olùpari iṣẹ-ṣiṣe, Oloye">Ìparí</abbr> nibi gbogbo. Àkókò díẹ̀ nipa wíwá ibi tí ìṣòro kóòdù wà.
@@ -114,8 +123,6 @@ Ti o ba n kọ ohun èlò <abbr title="Command Line Interface">CLI</abbr> láti 
 **Typer** jẹ́ àbúrò ìyá FastAPI kékeré. Àti pé wọ́n kọ́ láti jẹ́ **FastAPI ti CLIs**. ⌨️ 🚀
 
 ## Èròjà
-
-Python 3.8+
 
 FastAPI dúró lórí àwọn èjìká tí àwọn òmíràn:
 
@@ -331,7 +338,7 @@ O ṣe ìyẹn pẹ̀lú irúfẹ́ àmì ìtọ́kasí ìgbàlódé Python.
 
 O ò nílò láti kọ́ síńtáàsì tuntun, ìlànà tàbí ọ̀wọ́ kíláàsì kan pàtó, abbl (i.e. àti bẹbẹ lọ).
 
-Ìtọ́kasí **Python 3.8+**
+Ìtọ́kasí **Python**
 
 Fún àpẹẹrẹ, fún `int`:
 
@@ -456,12 +463,12 @@ Láti ní òye síi nípa rẹ̀, wo abala àwọn <a href="https://fastapi.tian
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Nílò tí ó bá fẹ́ láti ṣe àtìlẹ́yìn fún <abbr title="tí ó se ìyípadà ọ̀rọ̀-ìyọ̀/òkun-ọ̀rọ̀ tí ó wà láti ìbéèrè HTTP sí inú àkójọf'áyẹ̀wò Python">"àyẹ̀wò"</abbr> fọọmu, pẹ̀lú `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Nílò fún àtìlẹ́yìn `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Nílò fún àtìlẹ́yìn Starlette's `SchemaGenerator` (ó ṣe ṣe kí ó má nílò rẹ̀ fún FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Nílò tí ó bá fẹ́ láti lọ `UJSONResponse`.
 
 Èyí tí FastAPI / Starlette ń lò:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Fún olupin tí yóò sẹ́ àmúyẹ àti tí yóò ṣe ìpèsè fún iṣẹ́ rẹ tàbí ohun èlò rẹ.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Nílò tí ó bá fẹ́ láti lọ `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Nílò tí ó bá fẹ́ láti lọ `UJSONResponse`.
 
 Ó lè fi gbogbo àwọn wọ̀nyí sórí ẹrọ pẹ̀lú `pip install "fastapi[all]"`.
 

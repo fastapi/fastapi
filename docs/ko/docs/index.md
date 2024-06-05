@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -24,11 +33,11 @@
 
 ---
 
-FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python3.8+의 API를 빌드하기 위한 웹 프레임워크입니다.
+FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python의 API를 빌드하기 위한 웹 프레임워크입니다.
 
 주요 특징으로:
 
-* **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나](#performance).
+* **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나](#_11).
 
 * **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도 증가. *
 * **적은 버그**: 사람(개발자)에 의한 에러 약 40% 감소. *
@@ -106,8 +115,6 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 **Typer**는 FastAPI의 동생입니다. 그리고 **FastAPI의 CLI**가 되기 위해 생겼습니다. ⌨️ 🚀
 
 ## 요구사항
-
-Python 3.8+
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
@@ -323,7 +330,7 @@ def update_item(item_id: int, item: Item):
 
 새로운 문법, 특정 라이브러리의 메소드나 클래스 등을 배울 필요가 없습니다.
 
-그저 표준 **Python 3.8+** 입니다.
+그저 표준 **Python** 입니다.
 
 예를 들어, `int`에 대해선:
 
@@ -447,12 +454,12 @@ Starlette이 사용하는:
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette의 `SchemaGenerator` 지원을 위해 필요 (FastAPI와 쓸때는 필요 없을 것입니다).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` 지원을 위해 필요.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 
 FastAPI / Starlette이 사용하는:
 
 * <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 
 `pip install fastapi[all]`를 통해 이 모두를 설치 할 수 있습니다.
 

@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -31,7 +40,7 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 תכונות המפתח הן:
 
--   **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם NodeJS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#performance).
+-   **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם NodeJS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#_14).
 
 -   **מהירה לתכנות**: הגבירו את מהירות פיתוח התכונות החדשות בכ - %200 עד %300. \*
 -   **פחות שגיאות**: מנעו כ - %40 משגיאות אנוש (מפתחים). \*
@@ -449,12 +458,12 @@ item: Item
 -   <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - דרוש אם ברצונכם לתמוך ב <abbr title="המרת המחרוזת שמגיעה מבקשת HTTP למידע פייתון">"פרסור"</abbr> טפסים, באצמעות <code dir="ltr">request.form()</code>.
 -   <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - דרוש אם ברצונכם להשתמש ב - `SessionMiddleware`.
 -   <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - דרוש אם ברצונכם להשתמש ב - `SchemaGenerator` של Starlette (כנראה שאתם לא צריכים את זה עם FastAPI).
--   <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - דרוש אם ברצונכם להשתמש ב - `UJSONResponse`.
 
 בשימוש FastAPI / Starlette:
 
 -   <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - לשרת שטוען ומגיש את האפליקציה שלכם.
 -   <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - דרוש אם ברצונכם להשתמש ב - `ORJSONResponse`.
+-   <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - דרוש אם ברצונכם להשתמש ב - `UJSONResponse`.
 
 תוכלו להתקין את כל אלו באמצעות <code dir="ltr">pip install "fastapi[all]"</code>.
 

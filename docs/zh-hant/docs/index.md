@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.8+ 並採用標準 Python 型別提示。
+FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 並採用標準 Python 型別提示。
 
 主要特點包含：
 
@@ -114,8 +114,6 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python 3.
 **Typer** 是 FastAPI 的小兄弟。他立志成為命令列的 **FastAPI**。 ⌨️ 🚀
 
 ## 安裝需求
-
-Python 3.8+
 
 FastAPI 是站在以下巨人的肩膀上：
 
@@ -331,7 +329,7 @@ def update_item(item_id: int, item: Item):
 
 你不需要學習新的語法、類別、方法或函式庫等等。
 
-只需要使用 **Python 3.8 以上的版本**。
+只需要使用 **Python 以上的版本**。
 
 舉個範例，比如宣告 int 的型別：
 
@@ -456,12 +454,12 @@ item: Item
 - <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 需要使用 `request.form()` 對表單進行<abbr title="轉換來自表單的 HTTP 請求到 Python 資料型別"> "解析" </abbr>時安裝。
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要使用 `SessionMiddleware` 支援時安裝。
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 用於支援 Starlette 的 `SchemaGenerator` (如果你使用 FastAPI，可能不需要它)。
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 時必須安裝。
 
 用於 FastAPI / Starlette：
 
 - <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用於加載和運行應用程式的服務器。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse`時必須安裝。
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 時必須安裝。
 
 你可以使用 `pip install "fastapi[all]"` 來安裝這些所有依賴套件。
 
