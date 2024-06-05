@@ -219,6 +219,19 @@ requestBody,
 	}
 
 	/**
+	 * Delete User Me
+	 * Delete own user.
+	 * @returns Message Successful Response
+	 * @throws ApiError
+	 */
+	public static deleteUserMe(): CancelablePromise<Message> {
+				return __request(OpenAPI, {
+			method: 'DELETE',
+			url: '/api/v1/users/me',
+		});
+	}
+
+	/**
 	 * Update User Me
 	 * Update own user.
 	 * @returns UserPublic Successful Response
