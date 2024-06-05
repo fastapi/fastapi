@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
+=======
+from app.core.config import settings
+from fastapi import Request
+>>>>>>> 981752c25d9f8dccd8739623d1f884bfcd0f3479
 from starlette.datastructures import MutableHeaders
-from starlette.requests import Request
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 from starlette.responses import Response
+
 
 class CookieToAuth2Middleware(BaseHTTPMiddleware):
     def __init__(self, app: ASGIApp, cookie_name: str) -> None:
@@ -16,7 +22,7 @@ class CookieToAuth2Middleware(BaseHTTPMiddleware):
         if token:
             new_headers = MutableHeaders(request._headers)
             new_headers["Authorization"] = f"Bearer {token}"
-            request._headers=new_headers
-            request.scope.update(headers=request.headers.raw)            
+            request._headers = new_headers
+            request.scope.update(headers=request.headers.raw)
         response = await call_next(request)
         return response
