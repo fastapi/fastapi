@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-=======
 from app.core.config import settings
 from fastapi import Request
->>>>>>> 981752c25d9f8dccd8739623d1f884bfcd0f3479
 from starlette.datastructures import MutableHeaders
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
