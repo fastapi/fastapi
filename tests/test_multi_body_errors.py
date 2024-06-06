@@ -83,7 +83,11 @@ def test_put_incorrect_body_multiple():
                 },
                 {
                     "type": "decimal_parsing",
-                    "loc": ["body", 0, "age"],
+                    "loc": [
+                        "body",
+                        0,
+                        "age",
+                    ],
                     "msg": "Input should be a valid decimal",
                     "input": "five",
                 },
@@ -95,7 +99,11 @@ def test_put_incorrect_body_multiple():
                 },
                 {
                     "type": "decimal_parsing",
-                    "loc": ["body", 1, "age"],
+                    "loc": [
+                        "body",
+                        1,
+                        "age",
+                    ],
                     "msg": "Input should be a valid decimal",
                     "input": "six",
                 },
