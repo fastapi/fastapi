@@ -1,5 +1,8 @@
 Articles:
   English:
+  - author: Stephen Siegert - Neon
+    link: https://neon.tech/blog/deploy-a-serverless-fastapi-app-with-neon-postgres-and-aws-app-runner-at-any-scale
+    title: Deploy a Serverless FastAPI App with Neon Postgres and AWS App Runner at any scale
   - author: Kurtis Pykes - NVIDIA
     link: https://developer.nvidia.com/blog/building-a-machine-learning-microservice-with-fastapi/
     title: Building a Machine Learning Microservice with FastAPI
