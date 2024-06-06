@@ -81,7 +81,6 @@ if PYDANTIC_V2:
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
 
-
     class GenerateJsonSchema(_GenerateJsonSchema):
         def __init__(
             self, by_alias: bool = True, ref_template: str = DEFAULT_REF_TEMPLATE
@@ -96,14 +95,25 @@ if PYDANTIC_V2:
                 return super().generate_inner(schema["schema"])
             return super().nullable_schema(schema)
 
+        def default_schema(
+            self, schema: core_schema.WithDefaultSchema
+        ) -> JsonSchemaValue:
+            json_schema = super().default_schema(schema)
+            if (
+                self.skip_null_schema
+                and json_schema.get("default", PydanticUndefined) is None
+            ):
+                json_schema.pop("default")
+            return json_schema
+
         def generate_definitions(
             self,
             inputs: Sequence[
-                tuple[JsonSchemaKeyT, JsonSchemaMode, core_schema.CoreSchema]
+                Tuple[JsonSchemaKeyT, JsonSchemaMode, core_schema.CoreSchema]
             ],
-        ) -> tuple[
-            dict[tuple[JsonSchemaKeyT, JsonSchemaMode], JsonSchemaValue],
-            dict[DefsRef, JsonSchemaValue],
+        ) -> Tuple[
+            Dict[Tuple[JsonSchemaKeyT, JsonSchemaMode], JsonSchemaValue],
+            Dict[DefsRef, JsonSchemaValue],
         ]:
             # Avoid circular import - Maybe there's a better way to check if it's a Param
             from fastapi.params import Param
@@ -116,7 +126,7 @@ if PYDANTIC_V2:
                 )
 
             for key, mode, schema in inputs:
-                self.mode = mode
+                self._mode = mode
                 self.skip_null_schema = isinstance(key, ModelField) and isinstance(
                     key.field_info, Param
                 )
@@ -124,9 +134,12 @@ if PYDANTIC_V2:
 
             definitions_remapping = self._build_definitions_remapping()
 
-            json_schemas_map: dict[tuple[JsonSchemaKeyT, JsonSchemaMode], DefsRef] = {}
+            json_schemas_map: Dict[Tuple[JsonSchemaKeyT, JsonSchemaMode], DefsRef] = {}
             for key, mode, schema in inputs:
-                self.mode = mode
+                self._mode = mode
+                self.skip_null_schema = isinstance(key, ModelField) and isinstance(
+                    key.field_info, Param
+                )
                 json_schema = self.generate_inner(schema)
                 json_schemas_map[(key, mode)] = definitions_remapping.remap_json_schema(
                     json_schema
