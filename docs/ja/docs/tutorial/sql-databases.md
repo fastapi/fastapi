@@ -1,37 +1,37 @@
 # SQL (Relational) Databases
 
 !!! info"情報"
-    これらの情報は間もなく更新されます。 🎉
+これらの情報は間もなく更新されます。 🎉
 
     現在のバージョンは Pydantic v1、SQLAlchemy のバージョンは 2.0 未満を想定しています。
 
-    新しいドキュメントには Pydantic v2 が含まれ、<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (これも SQLAlchemy をベースにしています) が Pydantic v2 を使用するように更新され次第、SQLModel も使用される予定です。 
+    新しいドキュメントには Pydantic v2 が含まれ、<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (これも SQLAlchemy をベースにしています) が Pydantic v2 を使用するように更新され次第、SQLModel も使用される予定です。
 
-**FastAPI** はあなたにSQL(relational)を使用することを要求しません。
+**FastAPI** はあなたに SQL(relational)を使用することを要求しません。
 
 But you can use any relational database that you want.
-しかし、あなたが望むどのSQL(relational)も利用することができます。
+しかし、あなたが望むどの SQL(relational)も利用することができます。
 
 ここに <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>を利用した例があります。
 
-あなたは簡単に以下にあるようなSQLAlchemyによってサポートされたどのデータベースも利用することが可能可能です。
+あなたは簡単に以下にあるような SQLAlchemy によってサポートされたどのデータベースも利用することが可能可能です。
 
-* PostgreSQL
-* MySQL
-* SQLite
-* Oracle
-* Microsoft SQL Server, etc.
+- PostgreSQL
+- MySQL
+- SQLite
+- Oracle
+- Microsoft SQL Server, etc.
 
 In this example, we'll use **SQLite**, because it uses a single file and Python has integrated support. So, you can copy this example and run it as is.
 この例では、**SQLite** を使用します。**SQLite**は単一のファイルを使用し、Python に統合サポートが組み込まれているためです。 そのため、この例をコピーしてそのまま実行できます。
 
 後ほど、本番環境のアプリケーションでは、**PostgreSQL**のようなデータベースサーバーを使用したくなるかもしれません。
 
-!!! tip "豆知識" 
-    **FastAPI**と**PostgreSQL**を使用した公式プロジェクトジェネレーターがあります。すべて Docker ベースで、フロントエンドやその他のツールも含まれています。 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+!!! tip "豆知識"
+**FastAPI**と**PostgreSQL**を使用した公式プロジェクトジェネレーターがあります。すべて Docker ベースで、フロントエンドやその他のツールも含まれています。 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
 !!! note "備考"
-    ほとんどのコードは、フレームワークに依存しない標準的な `SQLAlchemy` のコードであることに注意してください。 
+ほとんどのコードは、フレームワークに依存しない標準的な `SQLAlchemy` のコードであることに注意してください。
 
     **FastAPI**特有のコードは常に最小限です
 
@@ -41,17 +41,17 @@ In this example, we'll use **SQLite**, because it uses a single file and Python 
 
 一般的なパターンは、「ORM」: つまり「オブジェクト関係マッピング」ライブラリを使用することです。
 
-ORM には、コード内の *オブジェクト* とデータベースのテーブル（*リレーション*）間で変換（「*マッピング*」）を行うためのツールがあります。 
+ORM には、コード内の _オブジェクト_ とデータベースのテーブル（_リレーション_）間で変換（「_マッピング_」）を行うためのツールがあります。
 
 ORM を使用すると、通常は SQL データベース内のテーブルを表すクラスを作成します。クラスの各属性は列を表し、名前と型を持ちます。
 
-例えば、`Pet` というクラスは、`pets` という SQL テーブルを表すことができます。 
+例えば、`Pet` というクラスは、`pets` という SQL テーブルを表すことができます。
 
-そして、そのクラスの *インスタンス* オブジェクトはそれぞれ、データベース内の行を表します。 
+そして、そのクラスの _インスタンス_ オブジェクトはそれぞれ、データベース内の行を表します。
 
-例えば、`orion_cat` というオブジェクト (`Pet` のインスタンス) は、`type` という列に対応する `orion_cat.type` という属性を持つことができます。そして、その属性の値は、例えば `"cat"` となります。 
+例えば、`orion_cat` というオブジェクト (`Pet` のインスタンス) は、`type` という列に対応する `orion_cat.type` という属性を持つことができます。そして、その属性の値は、例えば `"cat"` となります。
 
-これらの ORM には、テーブルやエンティティ間の接続や関係を作成するためのツールも用意されています。 
+これらの ORM には、テーブルやエンティティ間の接続や関係を作成するためのツールも用意されています。
 
 このように、orion_cat.owner という属性を持つこともできます。そして、owner には、owners テーブルから取得された、このペットの飼い主のデータが含まれます。
 
@@ -59,20 +59,20 @@ ORM を使用すると、通常は SQL データベース内のテーブルを�
 
 例えば "Arquilian" という値を持つことができます。
 
-そして、ORM は、ペットオブジェクトからアクセスしようとしたときに、対応するテーブル *owners* から情報を取得するためのすべての処理を行います。 
+そして、ORM は、ペットオブジェクトからアクセスしようとしたときに、対応するテーブル _owners_ から情報を取得するためのすべての処理を行います。
 
 一般的な ORM には、例えば Django-ORM (Django フレームワークの一部)、SQLAlchemy ORM (SQLAlchemy の一部、フレームワークに依存しない)、Peewee (フレームワークに依存しない) などがあります。
 
-ここでは **SQLAlchemy ORM** の使用方法を見ていきます。 
+ここでは **SQLAlchemy ORM** の使用方法を見ていきます。
 
 同様の方法で、他の ORM を使用することもできます
 
-!!! tip "豆知識" 
-   Peewee を使用した同様の記事が、このドキュメントにあります。
+!!! tip "豆知識"
+Peewee を使用した同様の記事が、このドキュメントにあります。
 
 ## ファイル構造
 
-これらの例では、`my_super_project` という名前のディレクトリがあり、その中に `sql_app` という名前のサブディレクトリがあるとします。その構造は次のとおりです。 
+これらの例では、`my_super_project` という名前のディレクトリがあり、その中に `sql_app` という名前のサブディレクトリがあるとします。その構造は次のとおりです。
 
 ```
 .
@@ -119,13 +119,13 @@ $ pip install sqlalchemy
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
-この例では、SQLite データベースに「接続」しています（SQLite データベースを含むファイルを開いています）。 
+この例では、SQLite データベースに「接続」しています（SQLite データベースを含むファイルを開いています）。
 
-ファイルは、`sql_app.db` というファイル内の、同じディレクトリにあります。 
+ファイルは、`sql_app.db` というファイル内の、同じディレクトリにあります。
 
-そのため、最後の部分は `./sql_app.db` となっています。 
+そのため、最後の部分は `./sql_app.db` となっています。
 
-**PostgreSQL** データベースを使用している場合は、次の行のコメントを外すだけです。 
+**PostgreSQL** データベースを使用している場合は、次の行のコメントを外すだけです。
 
 ```Python
 SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
@@ -133,22 +133,21 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 ...そして、データベースのデータと認証情報で適宜変更してください（MySQL、MariaDB、その他のデータベースでも同様です）
 
-!!! tip "豆知識" 
+!!! tip "豆知識"
 
     これは、別のデータベースを使用したい場合に変更する必要がある主要な行です。
 
-### SQLAlchemy `engine` を作成する 
+### SQLAlchemy `engine` を作成する
 
 最初のステップは、SQLAlchemy の「エンジン」を作成することです。
 
-この `engine` は、後で他の場所で使用します。 
+この `engine` は、後で他の場所で使用します。
 
 ```Python hl_lines="8-10"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 #### 備考
-
 
 議論:
 
@@ -160,27 +159,26 @@ connect_args={"check_same_thread": False}
 
 !!! info "技術的な詳細"
 
-    デフォルトでは、SQLite は 1 つのスレッドのみが自身と通信できるようにします。これは、各スレッドが独立したリクエストを処理すると想定しているためです。 
+    デフォルトでは、SQLite は 1 つのスレッドのみが自身と通信できるようにします。これは、各スレッドが独立したリクエストを処理すると想定しているためです。
 
-    これは、異なるもの（異なるリクエスト）に対して同じ接続を誤って共有することを防ぐためです。 
+    これは、異なるもの（異なるリクエスト）に対して同じ接続を誤って共有することを防ぐためです。
 
     しかし、FastAPI では、通常の関数 (`def`) を使用すると、複数のスレッドが同じリクエストに対してデータベースと対話する可能性があるため、
-    `connect_args={"check_same_thread": False}` を使用して SQLite にそれを許可するように指示する必要があります。 
+    `connect_args={"check_same_thread": False}` を使用して SQLite にそれを許可するように指示する必要があります。
 
-    また、各リクエストが依存関係の中で独自のデータベース接続セッションを取得するようにするため、このデフォルトのメカニズムは必要ありません。 
+    また、各リクエストが依存関係の中で独自のデータベース接続セッションを取得するようにするため、このデフォルトのメカニズムは必要ありません。
 
 ### `SessionLocal` クラスを作成する
 
-`SessionLocal` クラスの各インスタンスは、データベースセッションになります。クラス自体は、まだデータベースセッションではありません。 
+`SessionLocal` クラスの各インスタンスは、データベースセッションになります。クラス自体は、まだデータベースセッションではありません。
 
-しかし、`SessionLocal` クラスのインスタンスを作成すると、このインスタンスが実際のデータベースセッションになります。 
+しかし、`SessionLocal` クラスのインスタンスを作成すると、このインスタンスが実際のデータベースセッションになります。
 
-SQLAlchemy からインポートした `Session` と区別するために、`SessionLocal` という名前を付けています。 
+SQLAlchemy からインポートした `Session` と区別するために、`SessionLocal` という名前を付けています。
 
-`Session` (SQLAlchemy からインポートしたもの) は後で使用します。 
+`Session` (SQLAlchemy からインポートしたもの) は後で使用します。
 
-`SessionLocal` クラスを作成するには、`sessionmaker` 関数を使用します。 
-
+`SessionLocal` クラスを作成するには、`sessionmaker` 関数を使用します。
 
 ```Python hl_lines="11"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -188,10 +186,9 @@ SQLAlchemy からインポートした `Session` と区別するために、`Ses
 
 ### `Base` クラスを作成する
 
-次に、クラスを返す `declarative_base()` 関数を使用します。 
+次に、クラスを返す `declarative_base()` 関数を使用します。
 
-後で、このクラスを継承して、データベースモデルまたはクラス（ORM モデル）を作成します。 
-
+後で、このクラスを継承して、データベースモデルまたはクラス（ORM モデル）を作成します。
 
 ```Python hl_lines="13"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -201,19 +198,18 @@ SQLAlchemy からインポートした `Session` と区別するために、`Ses
 
 このファイルを見てみましょう！ `sql_app/models.py`
 
-### `Base` クラスから SQLAlchemy モデルを作成する 
+### `Base` クラスから SQLAlchemy モデルを作成する
 
 先ほど作成した `Base` クラスを使用して、SQLAlchemy モデルを作成します。
 
-!!! tip "豆知識" 
-    SQLAlchemy は、「**モデル**」という用語を使用して、データベースと対話するこれらのクラスやインスタンスを参照します。 
+!!! tip "豆知識"
+SQLAlchemy は、「**モデル**」という用語を使用して、データベースと対話するこれらのクラスやインスタンスを参照します。
 
-    しかし、Pydantic も「**モデル**」という用語を使用して、データの検証、変換、およびドキュメントのクラスとインスタンスという、別のものを指します。 
-    
+    しかし、Pydantic も「**モデル**」という用語を使用して、データの検証、変換、およびドキュメントのクラスとインスタンスという、別のものを指します。
 
-`database` (上記の `database.py` ファイル) から `Base` をインポートします。 
+`database` (上記の `database.py` ファイル) から `Base` をインポートします。
 
-それを継承するクラスを作成します。 
+それを継承するクラスを作成します。
 
 これらのクラスが SQLAlchemy モデルです。
 
@@ -221,19 +217,17 @@ SQLAlchemy からインポートした `Session` と区別するために、`Ses
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
-`__tablename__` 属性は、これらの各モデルに対してデータベース内で使用するテーブル名を SQLAlchemy に伝えます。 
-
+`__tablename__` 属性は、これらの各モデルに対してデータベース内で使用するテーブル名を SQLAlchemy に伝えます。
 
 ### モデルの属性/列を作成する
 
-次に、すべてのモデル (クラス) 属性を作成します。 
+次に、すべてのモデル (クラス) 属性を作成します。
 
-これらの属性はそれぞれ、対応するデータベーステーブル内の列を表します。 
+これらの属性はそれぞれ、対応するデータベーステーブル内の列を表します。
 
-デフォルト値として、SQLAlchemy の `Column` を使用します。 
+デフォルト値として、SQLAlchemy の `Column` を使用します。
 
-そして、データベース内の型を定義する SQLAlchemy クラスの「型」(`Integer`、`String`、`Boolean` など) を引数として渡します。 
-
+そして、データベース内の型を定義する SQLAlchemy クラスの「型」(`Integer`、`String`、`Boolean` など) を引数として渡します。
 
 ```Python hl_lines="1  10-13  21-24"
 {!../../../docs_src/sql_databases/sql_app/models.py!}
@@ -241,45 +235,42 @@ SQLAlchemy からインポートした `Session` と区別するために、`Ses
 
 ### 関係(relationship)の作成
 
-次に、リレーションシップを作成します。 
+次に、リレーションシップを作成します。
 
-これには、SQLAlchemy ORM によって提供される `relationship` を使用します。 
+これには、SQLAlchemy ORM によって提供される `relationship` を使用します。
 
-これは、多かれ少なかれ、「マジック」属性となり、このテーブルに関連する他のテーブルの値を含みます。 
-
+これは、多かれ少なかれ、「マジック」属性となり、このテーブルに関連する他のテーブルの値を含みます。
 
 ```Python hl_lines="2  15  26"
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
-`my_user.items` のように `User` 内の `items` 属性にアクセスすると、`users` テーブル内のこのレコードを指す外部キーを持つ `Item` SQLAlchemy モデル (`items` テーブルからの) のリストが格納されます。 
+`my_user.items` のように `User` 内の `items` 属性にアクセスすると、`users` テーブル内のこのレコードを指す外部キーを持つ `Item` SQLAlchemy モデル (`items` テーブルからの) のリストが格納されます。
 
-`my_user.items` にアクセスすると、SQLAlchemy は実際に `items` テーブル内のデータベースからアイテムを取得し、ここに格納します。 
+`my_user.items` にアクセスすると、SQLAlchemy は実際に `items` テーブル内のデータベースからアイテムを取得し、ここに格納します。
 
-また、`Item` 内の `owner` 属性にアクセスすると、`users` テーブルからの `User` SQLAlchemy モデルが含まれます。`users` テーブルからどのレコードを取得するかを知るために、外部キーを持つ `owner_id` 属性/列を使用します。 
-
+また、`Item` 内の `owner` 属性にアクセスすると、`users` テーブルからの `User` SQLAlchemy モデルが含まれます。`users` テーブルからどのレコードを取得するかを知るために、外部キーを持つ `owner_id` 属性/列を使用します。
 
 ## Create the Pydantic models
 
 次にファイルを確認しましょう `sql_app/schemas.py`.
 
-!!! tip "豆知識" 
-    SQLAlchemy の *モデル* と Pydantic の *モデル* の混 confusion を避けるために、SQLAlchemy モデルを格納するファイル `models.py` と、Pydantic モデルを格納するファイル `schemas.py` を作成します。 
+!!! tip "豆知識"
+SQLAlchemy の _モデル_ と Pydantic の _モデル_ の混 confusion を避けるために、SQLAlchemy モデルを格納するファイル `models.py` と、Pydantic モデルを格納するファイル `schemas.py` を作成します。
 
-    これらの Pydantic モデルは、多かれ少なかれ「スキーマ」（有効なデータの形状）を定義します。 
+    これらの Pydantic モデルは、多かれ少なかれ「スキーマ」（有効なデータの形状）を定義します。
 
-    これにより、両方を使い分けるときに混乱を避けることができます。 
+    これにより、両方を使い分けるときに混乱を避けることができます。
 
-### 初期の Pydantic *モデル* / スキーマを作成する 
+### 初期の Pydantic _モデル_ / スキーマを作成する
 
-データの作成や読み取り時に共通の属性を持つように、`ItemBase` と `UserBase` の Pydantic *モデル* (あるいは「スキーマ」と呼ぶことにしましょう) を作成します。 
+データの作成や読み取り時に共通の属性を持つように、`ItemBase` と `UserBase` の Pydantic _モデル_ (あるいは「スキーマ」と呼ぶことにしましょう) を作成します。
 
-そして、それらを継承する `ItemCreate` と `UserCreate` を作成します（これにより、同じ属性を持ちます）。さらに、作成に必要な追加のデータ（属性）を追加します。 
+そして、それらを継承する `ItemCreate` と `UserCreate` を作成します（これにより、同じ属性を持ちます）。さらに、作成に必要な追加のデータ（属性）を追加します。
 
-したがって、ユーザーを作成するときは、`password` も持ちます。 
+したがって、ユーザーを作成するときは、`password` も持ちます。
 
-ただし、セキュリティ上の理由から、`password` は他の Pydantic *モデル* には含まれません。例えば、API からユーザーを読み取るときに、`password` は送信されません。 
-
+ただし、セキュリティ上の理由から、`password` は他の Pydantic _モデル_ には含まれません。例えば、API からユーザーを読み取るときに、`password` は送信されません。
 
 === "Python 3.10+"
 
@@ -301,28 +292,29 @@ SQLAlchemy からインポートした `Session` と区別するために、`Ses
 
 #### SQLAlchemy スタイルと Pydantic スタイル
 
-SQLAlchemy *モデル* は、`=` を使用して属性を定義し、`Column` にパラメータとして型を渡すことに注意してください
+SQLAlchemy _モデル_ は、`=` を使用して属性を定義し、`Column` にパラメータとして型を渡すことに注意してください
 
 ```Python
 name = Column(String)
 ```
 
-一方、Pydantic *モデル* は、新しい型注釈構文/型ヒントを使用して、`:` で型を宣言します。 
+一方、Pydantic _モデル_ は、新しい型注釈構文/型ヒントを使用して、`:` で型を宣言します。
 
 ```Python
 name: str
 ```
+
 これらを覚えておいてください。そうすれば、= と : を使用するときに混乱することがなくなります。
 
 ###　読み取り/返却用の Pydantic モデル / スキーマを作成する
 
-次に、データを読み取るとき、つまり API からデータを返すときに使用される Pydantic *モデル* (スキーマ) を作成します。 
+次に、データを読み取るとき、つまり API からデータを返すときに使用される Pydantic _モデル_ (スキーマ) を作成します。
 
-例えば、アイテムを作成する前は、それに割り当てられる ID はわかりませんが、アイテムを読み取るとき (API から返すとき) は、すでにその ID がわかっています。 
+例えば、アイテムを作成する前は、それに割り当てられる ID はわかりませんが、アイテムを読み取るとき (API から返すとき) は、すでにその ID がわかっています。
 
-同様に、ユーザーを読み取るときに、`items` にはこのユーザーに属するアイテムが含まれることを宣言できます。 
+同様に、ユーザーを読み取るときに、`items` にはこのユーザーに属するアイテムが含まれることを宣言できます。
 
-これらのアイテムの ID だけでなく、アイテムを読み取るための Pydantic *モデル* (`Item`) で定義したすべてのデータも含まれます。 
+これらのアイテムの ID だけでなく、アイテムを読み取るための Pydantic _モデル_ (`Item`) で定義したすべてのデータも含まれます。
 
 === "Python 3.10+"
 
@@ -342,17 +334,16 @@ name: str
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
-!!! tip "豆知識" 
-    ユーザーを読み取るとき (API から返すとき) に使用される Pydantic *モデル* である `User` には、`password` が含まれていないことに注意してください。 
+!!! tip "豆知識"
+ユーザーを読み取るとき (API から返すとき) に使用される Pydantic _モデル_ である `User` には、`password` が含まれていないことに注意してください。
 
-### Pydantic の `orm_mode` を使用する 
+### Pydantic の `orm_mode` を使用する
 
-次に、読み取り用の Pydantic *モデル* である `Item` と `User` に、内部の `Config` クラスを追加します。 
+次に、読み取り用の Pydantic _モデル_ である `Item` と `User` に、内部の `Config` クラスを追加します。
 
-この <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> クラスは、Pydantic に設定を提供するために使用されます。 
+この <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> クラスは、Pydantic に設定を提供するために使用されます。
 
-`Config` クラスで、属性 `orm_mode = True` を設定します。 
-
+`Config` クラスで、属性 `orm_mode = True` を設定します。
 
 === "Python 3.10+"
 
@@ -373,15 +364,15 @@ name: str
     ```
 
 !!! tip "豆知識"
-    `orm_mode = True` のように、`=` を使用して値を代入していることに注意してください。 
+`orm_mode = True` のように、`=` を使用して値を代入していることに注意してください。
 
-    これは、前の型宣言のように `:` を使用していません。 
+    これは、前の型宣言のように `:` を使用していません。
 
-    これは、型を宣言するのではなく、設定値を設定しています。 
+    これは、型を宣言するのではなく、設定値を設定しています。
 
-    Pydantic の `orm_mode` は、`dict` ではなくても、ORM モデル (または属性を持つ任意のオブジェクト) であっても、Pydantic *モデル* にデータを読み取るように指示します。 
+    Pydantic の `orm_mode` は、`dict` ではなくても、ORM モデル (または属性を持つ任意のオブジェクト) であっても、Pydantic *モデル* にデータを読み取るように指示します。
 
-    このようにして、次のように、`dict` から `id` 値を取得しようとするだけでなく、 
+    このようにして、次のように、`dict` から `id` 値を取得しようとするだけでなく、
 
 ```Python
 id = data["id"]
@@ -392,118 +383,114 @@ id = data["id"]
 ```Python
 id = data.id
 ```
-このようにして、Pydantic *モデル* は ORM と互換性を持つようになり、*パス操作* の `response_model` 引数で宣言するだけで済みます。 
 
-データベースモデルを返すことができ、そこからデータを読み取ることができます。 
+このようにして、Pydantic _モデル_ は ORM と互換性を持つようになり、_パス操作_ の `response_model` 引数で宣言するだけで済みます。
+
+データベースモデルを返すことができ、そこからデータを読み取ることができます。
 
 #### ORM モードに関する技術的な詳細
 
-SQLAlchemy をはじめとする多くの ORM は、デフォルトで「遅延読み込み」になっています。 
+SQLAlchemy をはじめとする多くの ORM は、デフォルトで「遅延読み込み」になっています。
 
-これは、例えば、関係を持つデータを含む属性にアクセスしようとしない限り、データベースからそのデータを取得しないことを意味します。 
+これは、例えば、関係を持つデータを含む属性にアクセスしようとしない限り、データベースからそのデータを取得しないことを意味します。
 
-例えば、`items` 属性にアクセスするとします。 
+例えば、`items` 属性にアクセスするとします。
 
 ```Python
 current_user.items
 ```
 
-すると、SQLAlchemy は `items` テーブルにアクセスして、このユーザーのアイテムを取得します。しかし、それまでは取得しません。 
+すると、SQLAlchemy は `items` テーブルにアクセスして、このユーザーのアイテムを取得します。しかし、それまでは取得しません。
 
-`orm_mode` を使用しないと、*パス操作* から SQLAlchemy モデルを返しても、関係を持つデータは含まれません。 
+`orm_mode` を使用しないと、_パス操作_ から SQLAlchemy モデルを返しても、関係を持つデータは含まれません。
 
-Pydantic モデルでそれらの関係を宣言していても、含まれません。 
+Pydantic モデルでそれらの関係を宣言していても、含まれません。
 
-しかし、ORM モードを使用すると、Pydantic 自体が (`dict` を想定するのではなく) 属性から必要なデータにアクセスしようとするため、返したい特定のデータを宣言することができ、ORM からであっても、そのデータを取得することができます。 
+しかし、ORM モードを使用すると、Pydantic 自体が (`dict` を想定するのではなく) 属性から必要なデータにアクセスしようとするため、返したい特定のデータを宣言することができ、ORM からであっても、そのデータを取得することができます。
 
 ## CRUD ユーティリティ
 
-では、`sql_app/crud.py` ファイルを見てみましょう。 
+では、`sql_app/crud.py` ファイルを見てみましょう。
 
-このファイルには、データベース内のデータを操作するための再利用可能な関数を記述します。 
+このファイルには、データベース内のデータを操作するための再利用可能な関数を記述します。
 
-**CRUD** は、**C**reate (作成)、**R**ead (読み取り)、**U**pdate (更新)、**D**elete (削除) の頭文字をとったものです。 
+**CRUD** は、**C**reate (作成)、**R**ead (読み取り)、**U**pdate (更新)、**D**elete (削除) の頭文字をとったものです。
 
-...ただし、この例では、作成と読み取りのみを行っています。 
-
+...ただし、この例では、作成と読み取りのみを行っています。
 
 ### データの読み込み
 
-`sqlalchemy.orm` から `Session` をインポートします。これにより、`db` パラメータの型を宣言し、関数内でより適切な型チェックと補完を行うことができるようになります。 
+`sqlalchemy.orm` から `Session` をインポートします。これにより、`db` パラメータの型を宣言し、関数内でより適切な型チェックと補完を行うことができるようになります。
 
-`models` (SQLAlchemy モデル) と `schemas` (Pydantic *モデル* / スキーマ) をインポートします。 
+`models` (SQLAlchemy モデル) と `schemas` (Pydantic _モデル_ / スキーマ) をインポートします。
 
-以下の機能を提供するユーティリティ関数を作成します。 
+以下の機能を提供するユーティリティ関数を作成します。
 
-* ID とメールアドレスで 1 人のユーザーを読み取る。 
-* 複数のユーザーを読み取る。 
-* 複数のアイテムを読み取る。 
+- ID とメールアドレスで 1 人のユーザーを読み取る。
+- 複数のユーザーを読み取る。
+- 複数のアイテムを読み取る。
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 !!! tip "豆知識"
-    *パス操作関数* から独立して、データベースとの対話 (ユーザーやアイテムの取得) のみを担当する関数を作成することで、複数の場所でより簡単に再利用できるようになり、また、<abbr title="コードで記述された自動化されたテストであり、別のコードが正しく動作するかどうかを確認します。">単体テスト</abbr> を追加しやすくなります。 
+_パス操作関数_ から独立して、データベースとの対話 (ユーザーやアイテムの取得) のみを担当する関数を作成することで、複数の場所でより簡単に再利用できるようになり、また、<abbr title="コードで記述された自動化されたテストであり、別のコードが正しく動作するかどうかを確認します。">単体テスト</abbr> を追加しやすくなります。
 
+### データの作成
 
+ユーティリティ関数を書いてデータを作成する手順は以下の通りです。
 
-### Create data
-
-Now create utility functions to create data.
-
-The steps are:
-
-* Create a SQLAlchemy model *instance* with your data.
-* `add` that instance object to your database session.
-* `commit` the changes to the database (so that they are saved).
-* `refresh` your instance (so that it contains any new data from the database, like the generated ID).
+- データを使用して SQLAlchemy モデルの*インスタンス*を作成します。
+- インスタンスオブジェクトをデータベースセッションに`追加`します。
+- データベースへの変更を`コミット`します（これにより、変更が保存されます）。
+- インスタンスを`更新`します（これにより、インスタンスにデータベースからの新しいデータ（生成された ID など）が含まれます）。
 
 ```Python hl_lines="18-24  31-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! info
-    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+!!! info "情報"
+Pydantic v1 では、このメソッドは`.dict()`と呼ばれていました。Pydantic v2 では非推奨になりました（ただし、引き続きサポートされています）が、`.model_dump()`に名前が変更されました。
 
-    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+これらの例では、Pydantic v1 との互換性のために`.dict()`を使用していますが、Pydantic v2 を使用できる場合は、代わりに`.model_dump()`を使用する必要があります。
 
-!!! tip
-    The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
+!!! tip "豆知識"
+`User`の SQLAlchemy モデルには、パスワードの安全なハッシュバージョンを含む`hashed_password`が含まれています。
 
-    But as what the API client provides is the original password, you need to extract it and generate the hashed password in your application.
+しかし、API クライアントが提供するのは元のパスワードなので、アプリケーションでそれを抽出してハッシュパスワードを生成する必要があります。
 
-    And then pass the `hashed_password` argument with the value to save.
+次に、値を含む`hashed_password`引数を渡して保存します。
 
-!!! warning
-    This example is not secure, the password is not hashed.
+!!! warning "注意"
+この例は安全ではありません。パスワードはハッシュ化されていません。
 
-    In a real life application you would need to hash the password and never save them in plaintext.
+実際のアプリケーションでは、パスワードをハッシュ化し、プレーンテキストで保存しないようにする必要があります。
 
-    For more details, go back to the Security section in the tutorial.
+詳細については、チュートリアルのセキュリティセクションに戻ってください。
 
-    Here we are focusing only on the tools and mechanics of databases.
+ここでは、データベースのツールとメカニズムのみに焦点を当てています。
 
-!!! tip
-    Instead of passing each of the keyword arguments to `Item` and reading each one of them from the Pydantic *model*, we are generating a `dict` with the Pydantic *model*'s data with:
+!!! tip "豆知識"
+Item にキーワード引数を 1 つずつ渡して、各引数を Pydantic *モデル*から読み取るのではなく、Pydantic *モデル*のデータを dict に生成して、以下のようにしています。
 
     `item.dict()`
 
-    and then we are passing the `dict`'s key-value pairs as the keyword arguments to the SQLAlchemy `Item`, with:
+    そして以下のように、dictのキーと値のペアを、SQLAlchemyのItemにキーワード引数として渡しています。
 
     `Item(**item.dict())`
 
-    And then we pass the extra keyword argument `owner_id` that is not provided by the Pydantic *model*, with:
+    そして、Pydantic *モデル*によって提供されない追加のキーワード引数`owner_id`を渡します。以下のようにです:
 
     `Item(**item.dict(), owner_id=user_id)`
 
-## Main **FastAPI** app
+## メインの **FastAPI** アプリ
 
-And now in the file `sql_app/main.py` let's integrate and use all the other parts we created before.
+そして、`sql_app/main.py`ファイルで、これまでに作成した他のすべての部分を統合して使用してみましょう。
 
-### Create the database tables
+### データベーステーブルの作成
 
-In a very simplistic way create the database tables:
+非常に単純な方法で、データベーステーブルを作成します。
 
 === "Python 3.9+"
 
@@ -517,27 +504,27 @@ In a very simplistic way create the database tables:
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
-#### Alembic Note
+#### Alembic メモ
 
-Normally you would probably initialize your database (create tables, etc) with <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>.
+通常、データベースを初期化する場合（テーブルの作成など）、<a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>を使用します。
 
-And you would also use Alembic for "migrations" (that's its main job).
+また、Alembic は「マイグレーション」にも使用します（これは Alembic の主な仕事です）。
 
-A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
+「マイグレーション」とは、SQLAlchemy モデルの構造を変更したり、新しい属性を追加したりなどした場合に、データベースにそれらの変更を複製したり、新しい列や新しいテーブルを追加したりするために必要な手順のセットです。
 
-You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
+FastAPI プロジェクトで Alembic の例を見つけるには、[プロジェクト生成 - テンプレート](../project-generation.md){.internal-link target=\_blank}のテンプレートを使用します。具体的には、<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic" class="external-link" target="_blank">ソースコードの`alembic`ディレクトリ</a>をご覧ください。
 
-### Create a dependency
+### 依存関係を作成します
 
-Now use the `SessionLocal` class we created in the `sql_app/database.py` file to create a dependency.
+これで、`sql_app/database.py`ファイルで作成した`SessionLocal`クラスを使用して、依存関係を作成します。
 
-We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
+各リクエストに対して独立したデータベースセッション/接続(`SessionLocal`)が必要であり、そのセッションをリクエスト全体で使用し、リクエストが完了したらクローズする必要があります。
 
-And then a new session will be created for the next request.
+そして、次のリクエストのために新しいセッションが作成されます。
 
-For that, we will create a new dependency with `yield`, as explained before in the section about [Dependencies with `yield`](dependencies/dependencies-with-yield.md){.internal-link target=_blank}.
+そのため、[依存関係`yield`](dependencies/dependencies-with-yield.md){.internal-link target=\_blank}に関するセクションで説明したように、`yield`を使用した新しい依存関係を作成します。
 
-Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
+私たちの依存関係は、単一のリクエストで使用され、リクエストが終了したらクローズされる新しい SQLAlchemy の`SessionLocal`を作成します。
 
 === "Python 3.9+"
 
@@ -551,18 +538,18 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
-!!! info
-    We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+!!! info "情報"
+`SessionLocal()`の作成とリクエストの処理を`try`ブロックに入れます。
 
-    And then we close it in the `finally` block.
+そして、`finally`ブロックでクローズします。
 
-    This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
+これにより、リクエスト後にデータベースセッションが常にクローズされるようにします。リクエストの処理中に例外が発生した場合でもです。
 
-    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    しかし、終了コード（`yield`の後）から別の例外を発生させることはできません。 [依存関係`yield`と`HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}で詳しく説明されています。
 
-And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
+そして、*パスオペレーション関数*で依存関係を使用する場合は、SQLAlchemy から直接インポートした`Session`型で宣言します。
 
-This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
+これにより、*パスオペレーション関数*内でより良いエディターサポートが得られます。なぜなら、エディターは`db`パラメーターが`Session`型であることを認識しているからです。
 
 === "Python 3.9+"
 
@@ -576,14 +563,14 @@ This will then give us better editor support inside the *path operation function
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
-!!! info "Technical Details"
-    The parameter `db` is actually of type `SessionLocal`, but this class (created with `sessionmaker()`) is a "proxy" of a SQLAlchemy `Session`, so, the editor doesn't really know what methods are provided.
+!!! info "技術的な詳細"
+パラメーター`db`は実際には`SessionLocal`型ですが、このクラス（`sessionmaker()`で作成された）は SQLAlchemy の`Session`の「プロキシ」なので、エディターは実際にはどのメソッドが提供されているかを知りません。
 
-    But by declaring the type as `Session`, the editor now can know the available methods (`.add()`, `.query()`, `.commit()`, etc) and can provide better support (like completion). The type declaration doesn't affect the actual object.
+しかし、`Session`として型を宣言することにより、エディターは使用可能なメソッド（`.add()`、`.query()`、`.commit()`など）を認識し、より良いサポート（補完など）を提供できます。型の宣言は、実際のオブジェクトには影響しません。
 
-### Create your **FastAPI** *path operations*
+### **FastAPI**の*パスオペレーション*を作成します
 
-Now, finally, here's the standard **FastAPI** *path operations* code.
+最後に、標準的な**FastAPI**の*パスオペレーション*コードを以下に示します。
 
 === "Python 3.9+"
 
@@ -597,41 +584,41 @@ Now, finally, here's the standard **FastAPI** *path operations* code.
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
-We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
+依存関係で`yield`を使用して、各リクエストの前にデータベースセッションを作成し、後でクローズしています。
 
-And then we can create the required dependency in the *path operation function*, to get that session directly.
+そして、そのセッションを直接取得するために、*パスオペレーション関数*で必要な依存関係を作成できます。
 
-With that, we can just call `crud.get_user` directly from inside of the *path operation function* and use that session.
+これにより、*パスオペレーション関数*内から直接`crud.get_user`を呼び出して、そのセッションを使用できます。
 
-!!! tip
-    Notice that the values you return are SQLAlchemy models, or lists of SQLAlchemy models.
+!!! tip "豆知識"
+返される値は、SQLAlchemy モデルまたは SQLAlchemy モデルのリストであることに注意してください。
 
-    But as all the *path operations* have a `response_model` with Pydantic *models* / schemas using `orm_mode`, the data declared in your Pydantic models will be extracted from them and returned to the client, with all the normal filtering and validation.
+しかし、すべての*パスオペレーション*は、`orm_mode`を使用する Pydantic _モデル_ / スキーマで`response_model`を持ち、Pydantic モデルに宣言されたデータがそれらから抽出されてクライアントに返されます。通常のフィルタリングと検証がすべて行われます
 
-!!! tip
-    Also notice that there are `response_models` that have standard Python types like `List[schemas.Item]`.
+!!! tip "豆知識"
+また、`List[schemas.Item]`のような標準的な Python 型を持つ`response_models`があることに注意してください。
 
-    But as the content/parameter of that `List` is a Pydantic *model* with `orm_mode`, the data will be retrieved and returned to the client as normally, without problems.
+しかし、その`List`の内容/パラメーターは、`orm_mode`を持つ Pydantic *モデル*なので、データは通常どおり取得されてクライアントに返され、問題はありません。
 
-### About `def` vs `async def`
+### `def` vs `async def`について
 
-Here we are using SQLAlchemy code inside of the *path operation function* and in the dependency, and, in turn, it will go and communicate with an external database.
+ここでは、*パスオペレーション関数*と依存関係の中で SQLAlchemy コードを使用しており、それが外部データベースとの通信を行うことになります。
 
-That could potentially require some "waiting".
+これにより、潜在的に「待機」が必要になる可能性があります。
 
-But as SQLAlchemy doesn't have compatibility for using `await` directly, as would be with something like:
+しかし、SQLAlchemy は、次のようなもので使用される`await`を直接使用するための互換性はありません。
 
 ```Python
 user = await db.query(User).first()
 ```
 
-...and instead we are using:
+...そして、代わりに以下のものを使用しています。
 
 ```Python
 user = db.query(User).first()
 ```
 
-Then we should declare the *path operation functions* and the dependency without `async def`, just with a normal `def`, as:
+Then we should declare the _path operation functions_ and the dependency without `async def`, just with a normal `def`, as:
 
 ```Python hl_lines="2"
 @app.get("/users/{user_id}", response_model=schemas.User)
@@ -640,43 +627,43 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     ...
 ```
 
-!!! info
-    If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
+!!! info "情報"
+リレーショナルデータベースに非同期的に接続する必要がある場合は、[非同期 SQL（リレーショナル）データベース](../how-to/async-sql-encode-databases.md){.internal-link target=\_blank}を参照してください。
 
-!!! note "Very Technical Details"
-    If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
+!!! note "非常に技術的な詳細"
+興味があり、深い技術知識をお持ちの場合は、この`async def` vs `def`がどのように処理されるかについて、[非同期](../async.md#very-technical-details){.internal-link target=\_blank}ドキュメントの非常に技術的な詳細を確認できます。
 
-## Migrations
+## マイグレーション
 
-Because we are using SQLAlchemy directly and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a> directly.
+SQLAlchemy を直接使用しており、**FastAPI**との連携のためにプラグインは必要ないため、<a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a>を使用してデータベースの<abbr title="モデルに定義した新しい列をすべてデータベースに自動的に更新します。">マイグレーション</abbr>を直接統合できます。
 
-And as the code related to SQLAlchemy and the SQLAlchemy models lives in separate independent files, you would even be able to perform the migrations with Alembic without having to install FastAPI, Pydantic, or anything else.
+また、SQLAlchemy と SQLAlchemy モデルに関連するコードは、独立した別々のファイルに存在するため、FastAPI、Pydantic、またはその他のものをインストールすることなく、Alembic でマイグレーションを実行することもできます。
 
-The same way, you would be able to use the same SQLAlchemy models and utilities in other parts of your code that are not related to **FastAPI**.
+同じように、**FastAPI**に関係しないコードの他の部分で、同じ SQLAlchemy モデルとユーティリティを使用できます。
 
-For example, in a background task worker with <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
+たとえば、<a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>、<a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>、または<a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>を使用したバックグラウンドタスクワーカーの場合です
 
-## Review all the files
+## すべてのファイルの振り返り
 
- Remember you should have a directory named `my_super_project` that contains a sub-directory called `sql_app`.
+`my_super_project`という名前のディレクトリがあり、その中に`sql_app`という名前のサブディレクトリがあることを覚えておいてください。
 
-`sql_app` should have the following files:
+`sql_app` は以下のファイルを持っているべきです。
 
-* `sql_app/__init__.py`: is an empty file.
+- `sql_app/__init__.py`:　空のファイル.
 
-* `sql_app/database.py`:
+- `sql_app/database.py`:
 
 ```Python
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
-* `sql_app/models.py`:
+- `sql_app/models.py`:
 
 ```Python
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
-* `sql_app/schemas.py`:
+- `sql_app/schemas.py`:
 
 === "Python 3.10+"
 
@@ -696,13 +683,13 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
     {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
-* `sql_app/crud.py`:
+- `sql_app/crud.py`:
 
 ```Python
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-* `sql_app/main.py`:
+- `sql_app/main.py`:
 
 === "Python 3.9+"
 
@@ -716,16 +703,15 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
     {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
-## Check it
+## 確認してください
 
-You can copy this code and use it as is.
+このコードをコピーしてそのまま使用できます。
 
-!!! info
+!!! info "情報"
 
-    In fact, the code shown here is part of the tests. As most of the code in these docs.
+実際、ここで示されているコードはテストの一部です。このドキュメントのほとんどのコードと同じです。
 
-Then you can run it with Uvicorn:
-
+次に、Uvicorn で実行できます。
 
 <div class="termy">
 
@@ -737,31 +723,31 @@ $ uvicorn sql_app.main:app --reload
 
 </div>
 
-And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+そしてブラウザでこのリンクを開いてください。 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-And you will be able to interact with your **FastAPI** application, reading data from a real database:
+そして、実際のデータベースからデータを読み込みながら、**FastAPI**アプリケーションとやり取りできるようになります。
 
 <img src="/img/tutorial/sql-databases/image01.png">
 
 ## Interact with the database directly
 
-If you want to explore the SQLite database (file) directly, independently of FastAPI, to debug its contents, add tables, columns, records, modify data, etc. you can use <a href="https://sqlitebrowser.org/" class="external-link" target="_blank">DB Browser for SQLite</a>.
+FastAPI とは別に、SQLite データベース（ファイル）を直接操作して、その内容をデバッグしたり、テーブル、列、レコードを追加したり、データを変更したりする場合は、<a href="https://sqlitebrowser.org/" class="external-link" target="_blank">DB Browser for SQLite</a>を使用できます。
 
-It will look like this:
+以下のような表示になります。
 
 <img src="/img/tutorial/sql-databases/image02.png">
 
-You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" class="external-link" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>.
+<a href="https://inloop.github.io/sqlite-viewer/" class="external-link" target="_blank">SQLite Viewer</a>や<a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>のようなオンラインの SQLite ブラウザを使用することもできます。
 
-## Alternative DB session with middleware
+## ミドルウェアを使用した代替 DB セッション
 
-If you can't use dependencies with `yield` -- for example, if you are not using **Python 3.7** and can't install the "backports" mentioned above for **Python 3.6** -- you can set up the session in a "middleware" in a similar way.
+`yield`を使用した依存関係を使用できない場合（たとえば、**Python 3.7**を使用しておらず、**Python 3.6**のバックポートをインストールできない場合）、同様の方法で「ミドルウェア」でセッションを設定できます。
 
-A "middleware" is basically a function that is always executed for each request, with some code executed before, and some code executed after the endpoint function.
+「ミドルウェア」は基本的に、各リクエストに対して常に実行される関数であり、エンドポイント関数の実行前と実行後にいくつかのコードが実行されます。
 
 ### Create a middleware
 
-The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
+追加するミドルウェア（単なる関数）は、各リクエストに対して新しい SQLAlchemy の`SessionLocal`を作成し、リクエストに追加して、リクエストが完了したらクローズします。
 
 === "Python 3.9+"
 
@@ -775,36 +761,36 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
     {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
     ```
 
-!!! info
-    We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+!!! info "情報"
+`SessionLocal()`の作成とリクエストの処理を`try`ブロックに入れます。
 
-    And then we close it in the `finally` block.
+そして、`finally`ブロックでクローズします。
 
-    This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
+これにより、リクエスト後にデータベースセッションが常にクローズされるようにします。リクエストの処理中に例外が発生した場合でもです。
 
-### About `request.state`
+### `request.state`について
 
-`request.state` is a property of each `Request` object. It is there to store arbitrary objects attached to the request itself, like the database session in this case. You can read more about it in <a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">Starlette's docs about `Request` state</a>.
+`request.state`は各`Request`オブジェクトのプロパティです。ここでは、この場合のデータベースセッションのように、リクエスト自体に添付された任意のオブジェクトを格納するために使用されます。 <a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">Starlette の`Request`状態に関するドキュメント</a>で詳細を確認できます。
 
-For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
+この場合、これはリクエスト全体で単一のデータベースセッションが使用され、後で（ミドルウェアで）クローズされることを保証するのに役立ちます。
 
-### Dependencies with `yield` or middleware
+### `yield`を使用した依存関係またはミドルウェア
 
-Adding a **middleware** here is similar to what a dependency with `yield` does, with some differences:
+ここで**ミドルウェア**を追加することは、`yield`を使用した依存関係が実行することと似ていますが、以下に示すようないくつかの違いがあります。
 
-* It requires more code and is a bit more complex.
-* The middleware has to be an `async` function.
-    * If there is code in it that has to "wait" for the network, it could "block" your application there and degrade performance a bit.
-    * Although it's probably not very problematic here with the way `SQLAlchemy` works.
-    * But if you added more code to the middleware that had a lot of <abbr title="input and output">I/O</abbr> waiting, it could then be problematic.
-* A middleware is run for *every* request.
-    * So, a connection will be created for every request.
-    * Even when the *path operation* that handles that request didn't need the DB.
+- より多くのコードが必要で、少し複雑です。
+- ミドルウェアは`async`関数である必要があります。
+  - ネットワークを「待つ」必要があるコードが含まれている場合、そこでアプリケーションが「ブロック」され、パフォーマンスが少し低下する可能性があります。
+  - `SQLAlchemy`の動作方法では、おそらくそれほど問題ではありません。
+  - しかし、ミドルウェアに多くの<abbr title="入出力">I/O</abbr>待機を含むコードを追加した場合、問題になる可能性があります。
+- ミドルウェアは*すべての*リクエストに対して実行されます。
+  - つまり、すべてのリクエストに対して接続が作成されます。
+  - そのリクエストを処理する*パスオペレーション*が DB を必要としなかった場合でもです。
 
-!!! tip
-    It's probably better to use dependencies with `yield` when they are enough for the use case.
+!!! tip 　"豆知識"
+ユースケースで十分な場合は、`yield`を使用した依存関係を使用する方がおそらく良いでしょう。
 
-!!! info
-    Dependencies with `yield` were added recently to **FastAPI**.
+!!! info "情報"
+`yield`を使用した依存関係は、最近**FastAPI**に追加されました。
 
-    A previous version of this tutorial only had the examples with a middleware and there are probably several applications using the middleware for database session management.
+このチュートリアルの以前のバージョンでは、ミドルウェアを使用した例のみが示されており、ミドルウェアを使用してデータベースセッションを管理しているアプリケーションがいくつか存在する可能性があります。
