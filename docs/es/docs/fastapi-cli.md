@@ -64,7 +64,7 @@ Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.org" class="exter
 
 ## `fastapi dev`
 
-Cuando ejecutas `fastapi dev`, el proyecto se ejecuta en modo de desarrollo. 
+Cuando ejecutas `fastapi dev`, el proyecto se ejecuta en modo de desarrollo.
 
 De forma predeterminada, está habilitada la **recarga automática**, por lo que recargará automáticamente el servidor cuando realices cambios en tu código. Esto consume muchos recursos y podría ser menos estable que sin ella; solo debes usarlo para desarrollo.
 
