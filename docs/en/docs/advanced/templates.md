@@ -23,7 +23,7 @@ $ pip install jinja2
 ## Using `Jinja2Templates`
 
 * Import `Jinja2Templates`.
-* Create a `templates` object that you can re-use later.
+* Create a `templates` object that you can reuse later.
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 

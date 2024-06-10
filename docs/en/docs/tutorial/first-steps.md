@@ -325,6 +325,6 @@ There are many other objects and models that will be automatically converted to 
 
 * Import `FastAPI`.
 * Create an `app` instance.
-* Write a **path operation decorator** (like `@app.get("/")`).
-* Write a **path operation function** (like `def root(): ...` above).
-* Run the development server (like `uvicorn main:app --reload`).
+* Write a **path operation decorator** using decorators like `@app.get("/")`.
+* Define a **path operation function**; for example, `def root(): ...`.
+* Run the development server using the command `fastapi dev`.

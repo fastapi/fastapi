@@ -1,12 +1,19 @@
 # SQL (关系型) 数据库
 
+!!! info
+    这些文档即将被更新。🎉
+
+    当前版本假设Pydantic v1和SQLAlchemy版本小于2。
+
+    新的文档将包括Pydantic v2以及 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>（也是基于SQLAlchemy），一旦SQLModel更新为为使用Pydantic v2。
+
 **FastAPI**不需要你使用SQL(关系型)数据库。
 
 但是您可以使用任何您想要的关系型数据库。
 
 在这里，让我们看一个使用着[SQLAlchemy](https://www.sqlalchemy.org/)的示例。
 
-您可以很容易地将SQLAlchemy支持任何数据库，像：
+您可以很容易地将其调整为任何SQLAlchemy支持的数据库，如：
 
 * PostgreSQL
 * MySQL
@@ -74,13 +81,13 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
     └── schemas.py
 ```
 
-该文件`__init__.py`只是一个空文件，但它告诉 Python 其中`sql_app`的所有模块（Python 文件）都是一个包。
+该文件`__init__.py`只是一个空文件，但它告诉 Python `sql_app` 是一个包。
 
 现在让我们看看每个文件/模块的作用。
 
 ## 安装 SQLAlchemy
 
-先下载`SQLAlchemy`所需要的依赖：
+首先你需要安装`SQLAlchemy`:
 
 <div class="termy">
 
@@ -152,17 +159,17 @@ connect_args={"check_same_thread": False}
 
     这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
 
-    但是在 FastAPI 中，普遍使用def函数，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
+    但是在 FastAPI 中，使用普通函数（def）时，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
 
     此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
 
 ### 创建一个`SessionLocal`类
 
-每个实例`SessionLocal`都会是一个数据库会话。当然该类本身还不是数据库会话。
+每个`SessionLocal`类的实例都会是一个数据库会话。当然该类本身还不是数据库会话。
 
 但是一旦我们创建了一个`SessionLocal`类的实例，这个实例将是实际的数据库会话。
 
-我们命名它是`SessionLocal`为了将它与我们从 SQLAlchemy 导入的`Session`区别开来。
+我们将它命名为`SessionLocal`是为了将它与我们从 SQLAlchemy 导入的`Session`区别开来。
 
 稍后我们将使用`Session`（从 SQLAlchemy 导入的那个）。
 
@@ -176,7 +183,7 @@ connect_args={"check_same_thread": False}
 
 现在我们将使用`declarative_base()`返回一个类。
 
-稍后我们将用这个类继承，来创建每个数据库模型或类（ORM 模型）：
+稍后我们将继承这个类，来创建每个数据库模型或类（ORM 模型）：
 
 ```Python hl_lines="13"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -209,7 +216,7 @@ connect_args={"check_same_thread": False}
 
 ### 创建模型属性/列
 
-现在创建所有模型（类）属性。
+现在创建所有模型（类）的属性。
 
 这些属性中的每一个都代表其相应数据库表中的一列。
 
@@ -252,13 +259,13 @@ connect_args={"check_same_thread": False}
 
 ### 创建初始 Pydantic*模型*/模式
 
-创建一个`ItemBase`和`UserBase`Pydantic*模型*（或者我们说“schema”）以及在创建或读取数据时具有共同的属性。
+创建一个`ItemBase`和`UserBase`Pydantic*模型*（或者我们说“schema”），他们拥有创建或读取数据时具有的共同属性。
 
-`ItemCreate`为 创建一个`UserCreate`继承自它们的所有属性（因此它们将具有相同的属性），以及创建所需的任何其他数据（属性）。
+然后创建一个继承自他们的`ItemCreate`和`UserCreate`，并添加创建时所需的其他数据（或属性）。
 
 因此在创建时也应当有一个`password`属性。
 
-但是为了安全起见，`password`不会出现在其他同类 Pydantic*模型*中，例如用户请求时不应该从 API 返回响应中包含它。
+但是为了安全起见，`password`不会出现在其他同类 Pydantic*模型*中，例如通过API读取一个用户数据时，它不应当包含在内。
 
 === "Python 3.10+"
 
@@ -368,7 +375,7 @@ Pydantic`orm_mode`将告诉 Pydantic*模型*读取数据，即它不是一个`di
 id = data["id"]
 ```
 
-尝试从属性中获取它，如：
+它还会尝试从属性中获取它，如：
 
 ```Python
 id = data.id
@@ -404,7 +411,7 @@ current_user.items
 
 在这个文件中，我们将编写可重用的函数用来与数据库中的数据进行交互。
 
-**CRUD**分别为：**增加**、**查询**、**更改**和**删除**，即增删改查。
+**CRUD**分别为：增加（**C**reate）、查询（**R**ead）、更改（**U**pdate）、删除（**D**elete），即增删改查。
 
 ...虽然在这个例子中我们只是新增和查询。
 
@@ -414,7 +421,7 @@ current_user.items
 
 导入之前的`models`（SQLAlchemy 模型）和`schemas`（Pydantic*模型*/模式）。
 
-创建一些实用函数来完成：
+创建一些工具函数来完成：
 
 * 通过 ID 和电子邮件查询单个用户。
 * 查询多个用户。
@@ -429,14 +436,14 @@ current_user.items
 
 ### 创建数据
 
-现在创建实用程序函数来创建数据。
+现在创建工具函数来创建数据。
 
 它的步骤是：
 
 * 使用您的数据创建一个 SQLAlchemy 模型*实例。*
-* 使用`add`来将该实例对象添加到您的数据库。
-* 使用`commit`来对数据库的事务提交（以便保存它们）。
-* 使用`refresh`来刷新您的数据库实例（以便它包含来自数据库的任何新数据，例如生成的 ID）。
+* 使用`add`来将该实例对象添加到数据库会话。
+* 使用`commit`来将更改提交到数据库（以便保存它们）。
+* 使用`refresh`来刷新您的实例对象（以便它包含来自数据库的任何新数据，例如生成的 ID）。
 
 ```Python hl_lines="18-24  31-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
@@ -505,11 +512,11 @@ current_user.items
 
 现在使用我们在`sql_app/database.py`文件中创建的`SessionLocal`来创建依赖项。
 
-我们需要每个请求有一个独立的数据库会话/连接（`SessionLocal`），在所有请求中使用相同的会话，然后在请求完成后关闭它。
+我们需要每个请求有一个独立的数据库会话/连接（`SessionLocal`），在整个请求中使用相同的会话，然后在请求完成后关闭它。
 
 然后将为下一个请求创建一个新会话。
 
-为此，我们将创建一个新的依赖项`yield`，正如前面关于[Dependencies with`yield`](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/)的部分中所解释的那样。
+为此，我们将创建一个包含`yield`的依赖项，正如前面关于[Dependencies with`yield`](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/)的部分中所解释的那样。
 
 我们的依赖项将创建一个新的 SQLAlchemy `SessionLocal`，它将在单个请求中使用，然后在请求完成后关闭它。
 
@@ -729,13 +736,13 @@ $ uvicorn sql_app.main:app --reload
 
 ## 中间件替代数据库会话
 
-如果你不能使用依赖项`yield`——例如，如果你没有使用**Python 3.7**并且不能安装上面提到的**Python 3.6**的“backports” ——你可以在类似的“中间件”中设置会话方法。
+如果你不能使用带有`yield`的依赖项——例如，如果你没有使用**Python 3.7**并且不能安装上面提到的**Python 3.6**的“backports” ——你可以使用类似的方法在“中间件”中设置会话。
 
-“中间件”基本功能是一个为每个请求执行的函数在请求之前进行执行相应的代码，以及在请求执行之后执行相应的代码。
+“中间件”基本上是一个对每个请求都执行的函数，其中一些代码在端点函数之前执行，另一些代码在端点函数之后执行。
 
 ### 创建中间件
 
-我们将添加中间件（只是一个函数）将为每个请求创建一个新的 SQLAlchemy`SessionLocal`，将其添加到请求中，然后在请求完成后关闭它。
+我们要添加的中间件（只是一个函数）将为每个请求创建一个新的 SQLAlchemy`SessionLocal`，将其添加到请求中，然后在请求完成后关闭它。
 
 === "Python 3.9+"
 
@@ -760,7 +767,7 @@ $ uvicorn sql_app.main:app --reload
 
 `request.state`是每个`Request`对象的属性。它用于存储附加到请求本身的任意对象，例如本例中的数据库会话。您可以在[Starlette 的关于`Request`state](https://www.starlette.io/requests/#other-state)的文档中了解更多信息。
 
-对于这种情况下，它帮助我们确保在所有请求中使用单个数据库会话，然后关闭（在中间件中）。
+对于这种情况下，它帮助我们确保在整个请求中使用单个数据库会话，然后关闭（在中间件中）。
 
 ### 使用`yield`依赖项与使用中间件的区别
 
@@ -776,9 +783,9 @@ $ uvicorn sql_app.main:app --reload
     * 即使处理该请求的*路径操作*不需要数据库。
 
 !!! tip
-    `tyield`当依赖项 足以满足用例时，使用`tyield`依赖项方法会更好。
+    最好使用带有yield的依赖项，如果这足够满足用例需求
 
 !!! info
-    `yield`的依赖项是最近刚加入**FastAPI**中的。
+    带有`yield`的依赖项是最近刚加入**FastAPI**中的。
 
     所以本教程的先前版本只有带有中间件的示例，并且可能有多个应用程序使用中间件进行数据库会话管理。
