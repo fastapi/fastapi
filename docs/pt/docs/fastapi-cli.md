@@ -79,7 +79,7 @@ Este modo terá **recarregamento automático desativado** por padrão.
 
 Isso irá escutar no endereço de IP `0.0.0.0`, o que significa todos os endereços IP disponíveis, dessa forma o programa estará acessível publicamente para qualquer um que consiga se comunicar com a máquina. Isso é como você normalmente roda em produção em um contêiner, por exemplo.
 
-Em muitos casos você pode ter (e deveria ter) um "proxy de saída" tratando HTTPS no topo, isso dependerá em como você fará o deploy da sua aplicação, seu provedor pode fazer isso pra você ou talvez seja necessário fazer você mesmo.
+Em muitos casos você pode ter (e deveria ter) um "proxy de saída" tratando HTTPS no topo, isso dependerá de como você fará o deploy da sua aplicação, seu provedor pode fazer isso pra você ou talvez seja necessário fazer você mesmo.
 
 !!! tip
     Você pode aprender mais sobre em [documentação de deployment](deployment/index.md){.internal-link target=_blank}.
