@@ -4,7 +4,7 @@
 
 Quando você instala o FastAPI (ex.: com `pip install fastapi`), isso inclui um pacote chamado `fastapi-cli`. Esse pacote disponibiliza o comando `fastapi` no terminal.
 
-Para rodar sua app FastAPI em desenvolvimento, você pode usar o comando `fastapi dev`:
+Para rodar seu app FastAPI em desenvolvimento, você pode usar o comando `fastapi dev`:
 
 <div class="termy">
 
