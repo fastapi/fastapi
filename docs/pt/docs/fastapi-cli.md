@@ -67,7 +67,7 @@ Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.org" class="exter
 
 Quando você roda `fastapi dev`, isso vai executar em modo de desenvolvimento.
 
-Por padrão, teremos **recarregamento automático** ativo, então o programa irá recarregar o servidor automaticamente quando você fizer mudanças no seu código. Isso usa muitos recursos e pode ser menos estável que sem isso, você deve usar esse modo somente em desenvolvimento.
+Por padrão, teremos o **recarregamento automático** ativo, então o programa irá recarregar o servidor automaticamente toda vez que você fizer mudanças no seu código. Isso usa muitos recursos e pode ser menos estável. Você deve apenas usá-lo em modo de desenvolvimento.
 
 O servidor de desenvolvimento escutará no endereço de IP `127.0.0.1` por padrão, este é o IP que sua máquina usa para se comunicar com ela mesma (`localhost`).
 
