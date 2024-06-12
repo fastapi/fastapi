@@ -15,6 +15,7 @@ hide:
 
 ### Docs
 
+* ✏️ Update `docs/en/docs/fastapi-cli.md`. PR [#11715](https://github.com/tiangolo/fastapi/pull/11715) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update External Links . PR [#11500](https://github.com/tiangolo/fastapi/pull/11500) by [@devon2018](https://github.com/devon2018).
 * 📝 Add External Link: Tutorial de FastAPI, ¿el mejor framework de Python?. PR [#11618](https://github.com/tiangolo/fastapi/pull/11618) by [@EduardoZepeda](https://github.com/EduardoZepeda).
 * 📝 Fix typo in `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11698](https://github.com/tiangolo/fastapi/pull/11698) by [@mwb-u](https://github.com/mwb-u).
