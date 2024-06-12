@@ -350,6 +350,11 @@ Articles:
     author_link: http://editor.leonh.space/
     link: https://editor.leonh.space/2022/tortoise/
     title: 'Tortoise ORM / FastAPI 整合快速筆記'
+  Spanish:
+  - author: Eduardo Zepeda
+    author_link: https://coffeebytes.dev/en/authors/eduardo-zepeda/
+    link: https://coffeebytes.dev/es/python-fastapi-el-mejor-framework-de-python/
+    title: 'Tutorial de FastAPI, ¿el mejor framework de Python?'
 Podcasts:
   English:
   - author: Real Python
