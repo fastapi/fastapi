@@ -1,6 +1,6 @@
 # FastAPI CLI
 
-**FastAPI CLI** is a command line program `fastapi` that you can use to serve your FastAPI app, manage your FastAPI project, and more.
+**FastAPI CLI** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
 
 When you install FastAPI (e.g. with `pip install fastapi`), it includes a package called `fastapi-cli`, this package provides the `fastapi` command in the terminal.
 
