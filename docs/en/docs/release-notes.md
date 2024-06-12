@@ -15,6 +15,7 @@ hide:
 
 ### Docs
 
+* 📝 Add External Link: Tutorial de FastAPI, ¿el mejor framework de Python?. PR [#11618](https://github.com/tiangolo/fastapi/pull/11618) by [@EduardoZepeda](https://github.com/EduardoZepeda).
 * 📝 Fix typo in `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11698](https://github.com/tiangolo/fastapi/pull/11698) by [@mwb-u](https://github.com/mwb-u).
 * 📝 Add External Link: Deploy a Serverless FastAPI App with Neon Postgres and AWS App Runner at any scale. PR [#11633](https://github.com/tiangolo/fastapi/pull/11633) by [@ananis25](https://github.com/ananis25).
 * 📝 Update `security/first-steps.md`. PR [#11674](https://github.com/tiangolo/fastapi/pull/11674) by [@alejsdev](https://github.com/alejsdev).
