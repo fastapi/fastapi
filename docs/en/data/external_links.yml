@@ -260,6 +260,10 @@ Articles:
     author_link: https://medium.com/@krishnardt365
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
+  - author: Devon Ray
+    author_link: https://devonray.com
+    link: https://devonray.com/blog/deploying-a-fastapi-project-using-aws-lambda-aurora-cdk
+    title: Deployment using Docker, Lambda, Aurora, CDK & GH Actions
   German:
   - author: Marcel Sander (actidoo)
     author_link: https://www.actidoo.com
