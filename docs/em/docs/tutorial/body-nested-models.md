@@ -192,7 +192,7 @@ my_list: List[str]
 
 ↖️ ⚪️➡️ 😐 ⭐ 🆎 💖 `str`, `int`, `float`, ♒️. 👆 💪 ⚙️ 🌅 🏗 ⭐ 🆎 👈 😖 ⚪️➡️ `str`.
 
-👀 🌐 🎛 👆 ✔️, 🛒 🩺 <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic 😍 🆎</a>. 👆 🔜 👀 🖼 ⏭ 📃.
+👀 🌐 🎛 👆 ✔️, 🛒 🩺 <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic 😍 🆎</a>. 👆 🔜 👀 🖼 ⏭ 📃.
 
 🖼, `Image` 🏷 👥 ✔️ `url` 🏑, 👥 💪 📣 ⚫️ ↩️ `str`, Pydantic `HttpUrl`:
 

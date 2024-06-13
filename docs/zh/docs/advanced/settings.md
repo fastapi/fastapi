@@ -127,7 +127,7 @@ Hello World from Python
 
 ## Pydantic 的 `Settings`
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的设置，即<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
 
 ### 创建 `Settings` 对象
 
@@ -223,13 +223,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="6  12-13"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -239,7 +239,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
     ```
 
 !!! tip
-    我们稍后会讨论 `@lru_cache()`。
+    我们稍后会讨论 `@lru_cache`。
 
     目前，您可以将 `get_settings()` 视为普通函数。
 
@@ -251,13 +251,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  19-21"
     {!> ../../../docs_src/settings/app02_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -289,7 +289,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
     但是，dotenv 文件实际上不一定要具有确切的文件名。
 
-Pydantic 支持使用外部库从这些类型的文件中读取。您可以在<a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic 设置: Dotenv (.env) 支持</a>中阅读更多相关信息。
+Pydantic 支持使用外部库从这些类型的文件中读取。您可以在<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic 设置: Dotenv (.env) 支持</a>中阅读更多相关信息。
 
 !!! tip
     要使其工作，您需要执行 `pip install python-dotenv`。
@@ -314,7 +314,7 @@ APP_NAME="ChimichangApp"
 在这里，我们在 Pydantic 的 `Settings` 类中创建了一个名为 `Config` 的类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
 
 !!! tip
-    `Config` 类仅用于 Pydantic 配置。您可以在<a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
+    `Config` 类仅用于 Pydantic 配置。您可以在<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
 
 ### 使用 `lru_cache` 仅创建一次 `Settings`
 
@@ -337,7 +337,7 @@ def get_settings():
 
 我们将为每个请求创建该对象，并且将在每个请求中读取 `.env` 文件。 ⚠️
 
-但是，由于我们在顶部使用了 `@lru_cache()` 装饰器，因此只有在第一次调用它时，才会创建 `Settings` 对象一次。 ✔️
+但是，由于我们在顶部使用了 `@lru_cache` 装饰器，因此只有在第一次调用它时，才会创建 `Settings` 对象一次。 ✔️
 
 === "Python 3.9+"
 
@@ -345,13 +345,13 @@ def get_settings():
     {!> ../../../docs_src/settings/app03_an_py39/main.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  11"
     {!> ../../../docs_src/settings/app03_an/main.py!}
     ```
 
-=== "Python 3.6+ 非注解版本"
+=== "Python 3.8+ 非注解版本"
 
     !!! tip
         如果可能，请尽量使用 `Annotated` 版本。
@@ -364,13 +364,13 @@ def get_settings():
 
 #### `lru_cache` 技术细节
 
-`@lru_cache()` 修改了它所装饰的函数，以返回第一次返回的相同值，而不是再次计算它，每次都执行函数的代码。
+`@lru_cache` 修改了它所装饰的函数，以返回第一次返回的相同值，而不是再次计算它，每次都执行函数的代码。
 
 因此，下面的函数将对每个参数组合执行一次。然后，每个参数组合返回的值将在使用完全相同的参数组合调用函数时再次使用。
 
 例如，如果您有一个函数：
 ```Python
-@lru_cache()
+@lru_cache
 def say_hi(name: str, salutation: str = "Ms."):
     return f"Hello {salutation} {name}"
 ```
@@ -422,7 +422,7 @@ participant execute as Execute function
 
 这样，它的行为几乎就像是一个全局变量。但是由于它使用了依赖项函数，因此我们可以轻松地进行测试时的覆盖。
 
-`@lru_cache()` 是 `functools` 的一部分，它是 Python 标准库的一部分，您可以在<a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文档中了解有关 `@lru_cache()` 的更多信息</a>。
+`@lru_cache` 是 `functools` 的一部分，它是 Python 标准库的一部分，您可以在<a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文档中了解有关 `@lru_cache` 的更多信息</a>。
 
 ## 小结
 
@@ -430,4 +430,4 @@ participant execute as Execute function
 
 * 通过使用依赖项，您可以简化测试。
 * 您可以使用 `.env` 文件。
-* 使用 `@lru_cache()` 可以避免为每个请求重复读取 dotenv 文件，同时允许您在测试时进行覆盖。
+* 使用 `@lru_cache` 可以避免为每个请求重复读取 dotenv 文件，同时允许您在测试时进行覆盖。

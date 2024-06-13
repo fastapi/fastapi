@@ -121,7 +121,7 @@ Novamente, apenas fazendo essa declaração, com o **FastAPI**, você ganha:
 
 Além dos tipos singulares normais como `str`, `int`, `float`, etc. Você também pode usar tipos singulares mais complexos que herdam de `str`.
 
-Para ver todas as opções possíveis, cheque a documentação para os<a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">tipos exoticos do Pydantic</a>. Você verá alguns exemplos no próximo capitulo.
+Para ver todas as opções possíveis, cheque a documentação para os<a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">tipos exoticos do Pydantic</a>. Você verá alguns exemplos no próximo capitulo.
 
 Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declara-lo como um `HttpUrl` do Pydantic invés de como uma `str`:
 
@@ -165,7 +165,7 @@ Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
 }
 ```
 
-!!! Informação
+!!! info "informação"
     Note como o campo `images` agora tem uma lista de objetos de image.
 
 ## Modelos profundamente aninhados
@@ -176,7 +176,7 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-!!! Informação
+!!! info "informação"
     Note como `Offer` tem uma lista de `Item`s, que por sua vez possui opcionalmente uma lista `Image`s
 
 ## Corpos de listas puras
@@ -226,7 +226,7 @@ Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com va
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-!!! Dica
+!!! tip "Dica"
     Leve em condideração que o JSON só suporta `str` como chaves.
 
     Mas o Pydantic tem conversão automática de dados.

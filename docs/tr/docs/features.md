@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Özelikler
 
 ## FastAPI özellikleri
@@ -27,7 +32,7 @@ OpenAPI standartlarına dayalı olan bir framework olarak, geliştiricilerin bir
 
 ### Sadece modern Python
 
-Tamamiyle standartlar **Python 3.6**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
+Tamamiyle standartlar **Python 3.8**'nın type hintlerine dayanıyor (Pydantic'in sayesinde). Yeni bir syntax öğrenmene gerek yok. Sadece modern Python.
 
 
 Eğer Python type hintlerini bilmiyorsan veya bir hatırlatmaya ihtiyacın var ise(FastAPI kullanmasan bile) şu iki dakikalık küçük bilgilendirici içeriğe bir göz at: [Python Types](python-types.md){.internal-link target=_blank}.
@@ -182,7 +187,7 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 
 ## Pydantic özellikleri
 
-**FastAPI** ile <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
+**FastAPI** ile <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Pydantic kodu da çalışacaktır.
 
 Bunlara Pydantic üzerine kurulu <abbr title="Object-Relational Mapper">ORM</abbr> databaseler ve , <abbr title="Object-Document Mapper">ODM</abbr> kütüphaneler de dahil olmak üzere.
 
@@ -197,8 +202,6 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
     * Eğer Python typelarını nasıl kullanacağını biliyorsan Pydantic kullanmayı da biliyorsundur.
 * Kullandığın geliştirme araçları ile iyi çalışır **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE</abbr>/<abbr title="Code errorlarınızı inceleyen program">linter</abbr>/brain**:
     * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin
-* **Hızlı**:
-    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
 * **En kompleks** yapıları bile doğrula:
     * Hiyerarşik Pydantic modellerinin kullanımı ile beraber, Python `typing`’s `List` and `Dict`, vs gibi şeyleri doğrula.
     * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor

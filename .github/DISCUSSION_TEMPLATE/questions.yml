@@ -124,6 +124,20 @@ body:
     validations:
       required: true
   - type: input
+    id: pydantic-version
+    attributes:
+      label: Pydantic Version
+      description: |
+        What Pydantic version are you using?
+
+        You can find the Pydantic version with:
+
+        ```bash
+        python -c "import pydantic; print(pydantic.version.VERSION)"
+        ```
+    validations:
+      required: true
+  - type: input
     id: python-version
     attributes:
       label: Python Version

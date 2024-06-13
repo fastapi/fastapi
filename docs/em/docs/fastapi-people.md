@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI 👫👫
 
 FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
@@ -18,7 +23,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 </div>
 {% endif %}
 
-👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮️ 📕](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮️ 📕](help-fastapi.md#_3){.internal-link target=_blank}.
 
 ...✋️ 📥 👤 💚 🎦 👆 👪.
 
@@ -28,19 +33,19 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 👫 👫👫 👈:
 
-* [ℹ 🎏 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
-* [✍ 🚲 📨](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* 📄 🚲 📨, [✴️ ⚠ ✍](contributing.md#translations){.internal-link target=_blank}.
+* [ℹ 🎏 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank}.
+* [✍ 🚲 📨](help-fastapi.md#_15){.internal-link target=_blank}.
+* 📄 🚲 📨, [✴️ ⚠ ✍](contributing.md#_9){.internal-link target=_blank}.
 
 👏 👫. 👶 👶
 
 ## 🌅 🦁 👩‍💻 🏁 🗓️
 
-👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} ⏮️ 🏁 🗓️. 👶
+👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank} ⏮️ 🏁 🗓️. 👶
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">❔ 📨: {{ user.count }}</div></div>
 {% endfor %}
@@ -52,13 +57,13 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 📥 **FastAPI 🕴**. 👶
 
-👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} 🔘 *🌐 🕰*.
+👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#i){.internal-link target=_blank} 🔘 *🌐 🕰*.
 
 👫 ✔️ 🎦 🕴 🤝 📚 🎏. 👶
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">❔ 📨: {{ user.count }}</div></div>
 {% endfor %}
@@ -70,13 +75,13 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 📥 **🔝 👨‍🔬**. 👶
 
-👉 👩‍💻 ✔️ [✍ 🏆 🚲 📨](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} 👈 ✔️ *🔗*.
+👉 👩‍💻 ✔️ [✍ 🏆 🚲 📨](help-fastapi.md#_15){.internal-link target=_blank} 👈 ✔️ *🔗*.
 
 👫 ✔️ 📉 ℹ 📟, 🧾, ✍, ♒️. 👶
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">🚲 📨: {{ user.count }}</div></div>
 {% endfor %}
@@ -92,7 +97,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 ### 📄 ✍
 
-👤 🕴 💬 👩‍❤‍👨 🇪🇸 (&amp; 🚫 📶 👍 👶). , 👨‍🔬 🕐 👈 ✔️ [**🏋️ ✔ ✍**](contributing.md#translations){.internal-link target=_blank} 🧾. 🍵 👫, 📤 🚫🔜 🧾 📚 🎏 🇪🇸.
+👤 🕴 💬 👩‍❤‍👨 🇪🇸 (&amp; 🚫 📶 👍 👶). , 👨‍🔬 🕐 👈 ✔️ [**🏋️ ✔ ✍**](contributing.md#_9){.internal-link target=_blank} 🧾. 🍵 👫, 📤 🚫🔜 🧾 📚 🎏 🇪🇸.
 
 ---
 
@@ -100,7 +105,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">📄: {{ user.count }}</div></div>
 {% endfor %}

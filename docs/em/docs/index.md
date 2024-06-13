@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -27,11 +36,11 @@
 
 ---
 
-FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️⃣ ➕ ⚓️ 🔛 🐩 🐍 🆎 🔑.
+FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️⃣ ➕ ⚓️ 🔛 🐩 🐍 🆎 🔑.
 
 🔑 ⚒:
 
-* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#performance).
+* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#_15).
 * **⏩ 📟**: 📈 🚅 🛠️ ⚒ 🔃 2️⃣0️⃣0️⃣ 💯 3️⃣0️⃣0️⃣ 💯. *
 * **👩‍❤‍👨 🐛**: 📉 🔃 4️⃣0️⃣ 💯 🗿 (👩‍💻) 📉 ❌. *
 * **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠️</abbr> 🌐. 🌘 🕰 🛠️.
@@ -120,7 +129,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️
 FastAPI 🧍 🔛 ⌚ 🐘:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🕸 🍕.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
 
 ## 👷‍♂
 
@@ -445,22 +454,21 @@ item: Item
 
 ⚙️ Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ⏩ 🎻 <abbr title="converting the string that comes from an HTTP request into Python data">"🎻"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 📧 🔬.
 
 ⚙️ 💃:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - ✔ 🚥 👆 💚 ⚙️ `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - ✔ 🚥 👆 💚 ⚙️ 🔢 📄 📳.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - ✔ `SessionMiddleware` 🐕‍🦺.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ✔ 💃 `SchemaGenerator` 🐕‍🦺 (👆 🎲 🚫 💪 ⚫️ ⏮️ FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 ⚙️ FastAPI / 💃:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 👆 💪 ❎ 🌐 👫 ⏮️ `pip install "fastapi[all]"`.
 
