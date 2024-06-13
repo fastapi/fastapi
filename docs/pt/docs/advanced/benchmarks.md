@@ -10,7 +10,7 @@ Quando você verifica os benchmarks, é comum ver diversas ferramentas de difere
 
 Especificamente, para ver o Uvicorn, Starlette e FastAPI comparados entre si (entre diversas outras ferramentas).
 
-Quanto mais simples o problema resolvido pela ferramenta, melhor será a performance. E a maioria das análises não realiza testes das funcionalidades adicionais que são oferecidas pela ferramenta.
+Quanto mais simples o problema resolvido pela ferramenta, melhor será a performance. E a maioria das análises não testa funcionalidades adicionais que são oferecidas pela ferramenta.
 
 A hierarquia é:
 
