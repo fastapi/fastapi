@@ -47,7 +47,7 @@ Versiones anteriores de Starlette incluyen la clase `GraphQLApp` para integrarlo
 Esto fue deprecado de Starlette, pero si aún tienes código que lo usa, puedes fácilmente **migrar** a <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, la cual cubre el mismo caso de uso y tiene una **interfaz casi idéntica.**
 
 !!! tip
-    Si necesitas GraphQL, te recomendaría revisar <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, que es basada en anotaciones de tipo en vez de clases y tipos personalizados. 
+    Si necesitas GraphQL, te recomendaría revisar <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, que es basada en anotaciones de tipo en vez de clases y tipos personalizados.
 
 ## Aprende más
 
