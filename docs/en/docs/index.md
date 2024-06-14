@@ -134,7 +134,7 @@ FastAPI stands on the shoulders of giants:
 <div class="termy">
 
 ```console
-$ pip install fastapi
+pip install fastapi
 ```
 
 </div>
@@ -199,7 +199,7 @@ Run the server with:
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+fastapi dev main.py
 ```
 
 ```console
