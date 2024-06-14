@@ -1,10 +1,10 @@
 # FastAPI CLI
 
-**FastAPI CLI** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
+**FastAPI CLI** é uma interface por linha de comando do `fastapi` que você pode usar para rodar sua app FastAPI, gerenciar seu projeto FastAPI e mais.
 
-When you install FastAPI (e.g. with `pip install fastapi`), it includes a package called `fastapi-cli`, this package provides the `fastapi` command in the terminal.
+Quando você instala o FastAPI (ex.: com `pip install fastapi`), isso inclui um pacote chamado `fastapi-cli`. Esse pacote disponibiliza o comando `fastapi` no terminal.
 
-To run your FastAPI app for development, you can use the `fastapi dev` command:
+Para rodar seu app FastAPI em desenvolvimento, você pode usar o comando `fastapi dev`:
 
 <div class="termy">
 
@@ -54,31 +54,31 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-That command line program called `fastapi` is **FastAPI CLI**.
+Aquele commando por linha de programa chamado `fastapi` é o **FastAPI CLI**.
 
-FastAPI CLI takes the path to your Python program and automatically detects the variable with the FastAPI (commonly named `app`) and how to import it, and then serves it.
+O FastAPI CLI recebe o caminho do seu programa Python, detecta automaticamente a variável com o FastAPI (comumente nomeada `app`) e como importá-la, e então a serve.
 
-For production you would use `fastapi run` instead. 🚀
+Para produção você usaria `fastapi run` no lugar. 🚀
 
-Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, a high-performance, production-ready, ASGI server. 😎
+Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI de alta performance e pronto para produção. 😎
 
 ## `fastapi dev`
 
-When you run `fastapi dev`, it will run on development mode.
+Quando você roda `fastapi dev`, isso vai executar em modo de desenvolvimento.
 
-By default, it will have **auto-reload** enabled, so it will automatically reload the server when you make changes to your code. This is resource intensive and could be less stable than without it, you should only use it for development.
+Por padrão, teremos o **recarregamento automático** ativo, então o programa irá recarregar o servidor automaticamente toda vez que você fizer mudanças no seu código. Isso usa muitos recursos e pode ser menos estável. Você deve apenas usá-lo em modo de desenvolvimento.
 
-By default it will listen on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
+O servidor de desenvolvimento escutará no endereço de IP `127.0.0.1` por padrão, este é o IP que sua máquina usa para se comunicar com ela mesma (`localhost`).
 
 ## `fastapi run`
 
-When you run `fastapi run`, it will run on production mode by default.
+Quando você rodar `fastapi run`, isso executará em modo de produção por padrão.
 
-It will have **auto-reload disabled** by default.
+Este modo terá **recarregamento automático desativado** por padrão.
 
-It will listen on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
+Isso irá escutar no endereço de IP `0.0.0.0`, o que significa todos os endereços IP disponíveis, dessa forma o programa estará acessível publicamente para qualquer um que consiga se comunicar com a máquina. Isso é como você normalmente roda em produção em um contêiner, por exemplo.
 
-In most cases you would (and should) have a "termination proxy" handling HTTPS for you on top, this will depend on how you deploy your application, your provider might do this for you, or you might need to set it up yourself.
+Em muitos casos você pode ter (e deveria ter) um "proxy de saída" tratando HTTPS no topo, isso dependerá de como você fará o deploy da sua aplicação, seu provedor pode fazer isso pra você ou talvez seja necessário fazer você mesmo.
 
 !!! tip
-    You can learn more about it in the [deployment documentation](deployment/index.md){.internal-link target=_blank}.
+    Você pode aprender mais sobre em [documentação de deployment](deployment/index.md){.internal-link target=_blank}.

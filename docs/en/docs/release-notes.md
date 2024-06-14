@@ -15,6 +15,10 @@ hide:
 
 ### Docs
 
+* ✏️ Update `docs/en/docs/fastapi-cli.md`. PR [#11715](https://github.com/tiangolo/fastapi/pull/11715) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Update External Links . PR [#11500](https://github.com/tiangolo/fastapi/pull/11500) by [@devon2018](https://github.com/devon2018).
+* 📝 Add External Link: Tutorial de FastAPI, ¿el mejor framework de Python?. PR [#11618](https://github.com/tiangolo/fastapi/pull/11618) by [@EduardoZepeda](https://github.com/EduardoZepeda).
+* 📝 Fix typo in `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11698](https://github.com/tiangolo/fastapi/pull/11698) by [@mwb-u](https://github.com/mwb-u).
 * 📝 Add External Link: Deploy a Serverless FastAPI App with Neon Postgres and AWS App Runner at any scale. PR [#11633](https://github.com/tiangolo/fastapi/pull/11633) by [@ananis25](https://github.com/ananis25).
 * 📝 Update `security/first-steps.md`. PR [#11674](https://github.com/tiangolo/fastapi/pull/11674) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update `security/first-steps.md`. PR [#11673](https://github.com/tiangolo/fastapi/pull/11673) by [@alejsdev](https://github.com/alejsdev).
@@ -28,6 +32,9 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/extra-data-types.md`. PR [#11711](https://github.com/tiangolo/fastapi/pull/11711) by [@nayeonkinn](https://github.com/nayeonkinn).
+* 🌐 Fix Korean translation for `docs/ko/docs/tutorial/body-nested-models.md`. PR [#11710](https://github.com/tiangolo/fastapi/pull/11710) by [@nayeonkinn](https://github.com/nayeonkinn).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/fastapi-cli.md`. PR [#11641](https://github.com/tiangolo/fastapi/pull/11641) by [@ayr-ton](https://github.com/ayr-ton).
 * 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/fastapi-people.md`. PR [#11639](https://github.com/tiangolo/fastapi/pull/11639) by [@hsuanchi](https://github.com/hsuanchi).
 * 🌐 Add Turkish translation for `docs/tr/docs/advanced/index.md`. PR [#11606](https://github.com/tiangolo/fastapi/pull/11606) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Turkish translation for `docs/tr/docs/deployment/cloud.md`. PR [#11610](https://github.com/tiangolo/fastapi/pull/11610) by [@hasansezertasan](https://github.com/hasansezertasan).
