@@ -1,10 +1,10 @@
 # FastAPI CLI
 
-**FastAPI CLI** es la línea de comandos para `fastapi` la cual puedes usar para servir tu aplicación FastAPI, administrarla y más.
+**FastAPI CLI** es un programa de línea de comandos que puedes usar para servir tu aplicación FastAPI, administrarla y más.
 
 Cuando instalas FastAPI (e.g. `pip install fastapi`), esto incluye un paquete llamado `fastapi-cli`. Este paquete provee el comando `fastapi` en la terminal.
 
-Para correr tu aplicación de FastAPI para desarrollo, puedes usar el comando `fastapi dev`:
+Para ejecutar tu aplicación de FastAPI para desarrollo, puedes usar el comando `fastapi dev`:
 
 <div class="termy">
 
@@ -54,9 +54,9 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-Esta línea de comando llamada `fastapi` es **FastAPI CLI**.
+El programa de línea de comandos llamado `fastapi` es **FastAPI CLI**.
 
-FastAPI CLI toma la ruta del Python de tu ambiente y automáticamente detecta la variable de FastAPI (comúnmente nombrada `app`) y la importa para finalmente servir la aplicación.
+FastAPI CLI toma la ruta de tu programa Python (por ejemplo, `main.py`) y detecta automáticamente la variable de FastAPI (comúnmente llamada `app`),  y la importa para finalmente servir la aplicación.
 
 Para producción usarías `fastapi run` en su lugar. 🚀
 
@@ -66,9 +66,9 @@ Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.org" class="exter
 
 Cuando ejecutas `fastapi dev`, el proyecto se ejecuta en modo de desarrollo.
 
-De forma predeterminada, está habilitada la **recarga automática**, por lo que recargará automáticamente el servidor cuando realices cambios en tu código. Esto consume muchos recursos y podría ser menos estable que sin ella; solo debes usarlo para desarrollo.
+Por defecto, está habilitada la **recarga automática**, por lo que recargará automáticamente el servidor cuando realices cambios en tu código. Esto consume muchos recursos y podría ser menos estable que sin ella; solo debes usarlo para desarrollo.
 
-De forma predeterminada, escuchará en la dirección IP `127.0.0.1`, que es la IP para que tu máquina se comunique consigo misma (localhost).
+Por defecto, escuchará en la dirección IP `127.0.0.1`, que es la IP para que tu máquina se comunique consigo misma (localhost).
 
 ## `fastapi run`
 
@@ -78,7 +78,7 @@ La **recarga automática** está deshabilitada por defecto.
 
 Cuando ejecutas en modo de producción, la aplicación escuchará en la dirección IP `0.0.0.0`, lo que significa todas las direcciones IP disponibles, de esta manera será accesible públicamente para cualquiera que pueda comunicarse con la máquina. Así es como normalmente lo ejecutarías en producción, por ejemplo, en un contenedor.
 
-En la mayoría de los casos, tendrías (y deberías) tener un "proxy de terminación" que maneje HTTPS por ti, esto dependerá de cómo implementes tu aplicación; tu proveedor podría hacerlo por ti o podrías necesitar configurarlo tú mismo.
+En la mayoría de los casos, tendrías (y deberías tener) un "proxy de terminación" que maneje HTTPS por ti, esto dependerá de cómo implementes tu aplicación; tu proveedor podría hacerlo por ti o podrías necesitar configurarlo tú mismo.
 
 !!! tip
     Puedes aprender más en la [documentación de despliegue](deployment/index.md){.internal-link target=_blank}.
