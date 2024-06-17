@@ -29,6 +29,9 @@ gold:
   - url: https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=fast-api
     title: Kong Konnect - API management platform
     img: https://fastapi.tiangolo.com/img/sponsors/kong.png
+  - url: https://zuplo.link/fastapi-gh
+    title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
+    img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
 silver:
   - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
