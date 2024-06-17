@@ -20,7 +20,7 @@ gold:
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=banner%20january%2024
+  - url: https://docs.withcoherence.com/configuration/frameworks/?utm_medium=advertising&utm_source=fastapi&utm_campaign=docs#fastapi-example
     title: Coherence
     img: https://fastapi.tiangolo.com/img/sponsors/coherence.png
   - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
