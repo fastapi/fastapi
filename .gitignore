@@ -28,3 +28,6 @@ archive.zip
 
 # macOS
 .DS_Store
+
+# Ruff Cache
+.ruff_cache/
