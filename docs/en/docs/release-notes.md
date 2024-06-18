@@ -56,6 +56,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors, add Zuplo. PR [#11729](https://github.com/tiangolo/fastapi/pull/11729) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update Sponsor link: Coherence. PR [#11730](https://github.com/tiangolo/fastapi/pull/11730) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#11669](https://github.com/tiangolo/fastapi/pull/11669) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add sponsor Kong. PR [#11662](https://github.com/tiangolo/fastapi/pull/11662) by [@tiangolo](https://github.com/tiangolo).
