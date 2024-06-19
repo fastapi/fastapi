@@ -70,7 +70,7 @@ E depois você pode executar esse arquivo:
 <div class="termy">
 
 ```console
-// Aqui ainda não definimos a env var 
+// Aqui ainda não definimos a env var
 $ python main.py
 
 // Por isso obtemos o valor padrão
@@ -83,7 +83,7 @@ $ export MY_NAME="Wade Wilson"
 // E executarmos o programa novamente
 $ python main.py
 
-// Agora ele pode ler a variável de ambiente    
+// Agora ele pode ler a variável de ambiente
 
 Hello Wade Wilson from Python
 ```
