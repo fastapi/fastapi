@@ -1,6 +1,6 @@
 # Retornos Adicionais no OpenAPI
 
-!!! warning
+!!! warning "Aviso"
     Este é um tema bem avançado.
 
     Se você está começando com o **FastAPI**, provavelmente você não precisa disso.
@@ -27,10 +27,10 @@ Por exemplo, para declarar um outro retorno com o status code `404` e um modelo 
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! note
+!!! note "Nota"
     Lembre-se que você deve retornar o `JSONResponse` diretamente.
 
-!!! info
+!!! info "Informação"
     A chave `model` não é parte do OpenAPI.
 
     O **FastAPI** pegará o modelo do Pydantic, gerará o `JSON Schema`, e adicionará no local correto.
@@ -172,10 +172,10 @@ Por exemplo, você pode adicionar um media type adicional de `image/png`, declar
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! note
+!!! note "Nota"
     Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
 
-!!! info
+!!! info "Informação"
     A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que o retorno possui o mesmo media type contido na classe principal de retorno (padrão `application/json`).
 
     Porém se você especificou uma classe de retorno com o valor `None` como media type, o FastAPI utilizará `application/json` para qualquer retorno adicional que possui um modelo associado.
