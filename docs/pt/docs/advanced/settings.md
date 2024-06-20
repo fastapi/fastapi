@@ -305,7 +305,7 @@ E então podemos declarar essas configurações como uma dependência na funçã
 
 ### Configurações e testes
 
-Dessa forma utilizar um objeto settings diferente durante os testes torna-se fácil ao criar uma sobrescrita de dependência em `get_settings`:
+Então seria muito fácil fornecer uma configuração diferente durante a execução dos testes sobrescrevendo a dependência de `get_settings`:
 
 ```Python hl_lines="9-10  13  21"
 {!../../../docs_src/settings/app02/test_main.py!}
@@ -417,7 +417,7 @@ Dessa forma, todas as chamadas da função `get_settings()` nas dependências da
 
 `@lru_cache` modifica a função decorada para retornar o mesmo valor que foi retornado na primeira vez, em vez de calculá-lo novamente, executando o código da função toda vez.
 
-Assim, a função abaixo do decorador é executada uma única vez para cada combinação dos argumentos passados. E os valores retornados para cada combinação de argumentos são reutilizados de novo e de novo para cada chamada da função com a mesma combinação de argumentos.
+Assim, a função abaixo do decorador é executada uma única vez para cada combinação dos argumentos passados. E os valores retornados para cada combinação de argumentos são sempre reutilizados para cada nova chamada da função com a mesma combinação de argumentos.
 
 Por exemplo, se você definir uma função:
 
