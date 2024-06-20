@@ -142,7 +142,7 @@ $ pip install fastapi
 
 </div>
 
-Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 

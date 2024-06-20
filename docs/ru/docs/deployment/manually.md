@@ -5,7 +5,7 @@
 Существует три наиболее распространённые альтернативы:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: высокопроизводительный ASGI сервер.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: ASGI сервер, помимо прочего поддерживающий HTTP/2 и Trio.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ASGI сервер, помимо прочего поддерживающий HTTP/2 и Trio.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: ASGI сервер, созданный для Django Channels.
 
 ## Сервер как машина и сервер как программа
@@ -46,7 +46,7 @@
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ASGI сервер, поддерживающий протокол HTTP/2.
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ASGI сервер, поддерживающий протокол HTTP/2.
 
     <div class="termy">
 
