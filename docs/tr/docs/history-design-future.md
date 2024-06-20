@@ -54,7 +54,7 @@ Hepsi, tüm geliştiriciler için en iyi geliştirme deneyimini sağlayacak şek
 
 ## Gereksinimler
 
-Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a>'i kullanmaya karar verdim.
+Çeşitli alternatifleri test ettikten sonra, avantajlarından dolayı <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>'i kullanmaya karar verdim.
 
 Sonra, JSON Schema ile tamamen uyumlu olmasını sağlamak, kısıtlama bildirimlerini tanımlamanın farklı yollarını desteklemek ve birkaç editördeki testlere dayanarak editör desteğini (tip kontrolleri, otomatik tamamlama) geliştirmek için katkıda bulundum.
 

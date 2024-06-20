@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -27,11 +36,11 @@
 
 ---
 
-FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python 3.8+ dựa trên tiêu chuẩn Python type hints.
+FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python dựa trên tiêu chuẩn Python type hints.
 
 Những tính năng như:
 
-* **Nhanh**: Hiệu năng rất cao khi so sánh với **NodeJS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#performance).
+* **Nhanh**: Hiệu năng rất cao khi so sánh với **NodeJS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#hieu-nang).
 * **Code nhanh**: Tăng tốc độ phát triển tính năng từ 200% tới 300%. *
 * **Ít lỗi hơn**: Giảm khoảng 40% những lỗi phát sinh bởi con người (nhà phát triển). *
 * **Trực giác tốt hơn**: Được các trình soạn thảo hỗ tuyệt vời. <abbr title="như auto-complete, autocompletion, IntelliSense">Completion</abbr> mọi nơi. Ít thời gian gỡ lỗi.
@@ -116,12 +125,10 @@ Nếu bạn đang xây dựng một <abbr title="Giao diện dòng lệnh">CLI</
 
 ## Yêu cầu
 
-Python 3.8+
-
 FastAPI đứng trên vai những người khổng lồ:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> cho phần web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> cho phần data.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> cho phần data.
 
 ## Cài đặt
 
@@ -332,7 +339,7 @@ Bạn định nghĩa bằng cách sử dụng các kiểu dữ liệu chuẩn c�
 
 Bạn không phải học một cú pháp mới, các phương thức và class của một thư viện cụ thể nào.
 
-Chỉ cần sử dụng các chuẩn của **Python 3.8+**.
+Chỉ cần sử dụng các chuẩn của **Python**.
 
 Ví dụ, với một tham số kiểu `int`:
 
@@ -448,22 +455,21 @@ Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** ch�
 
 Sử dụng bởi Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - <abbr title="chuyển dổi string từ HTTP request sang dữ liệu Python">"Parse"</abbr> JSON nhanh hơn.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - cho email validation.
 
 Sử dụng Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Bắt buộc nếu bạn muốn sử dụng `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Bắt buộc nếu bạn muốn sử dụng cấu hình template engine mặc định.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Bắt buộc nếu bạn muốn hỗ trợ <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, form với `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Bắt buộc nếu bạn muốn hỗ trợ <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, form với `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Bắt buộc để hỗ trợ `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Bắt buộc để hỗ trợ `SchemaGenerator` cho Starlette (bạn có thể không cần nó trong FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 
 Sử dụng bởi FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Bắt buộc nếu bạn muốn sử dụng `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 
 Bạn có thể cài đặt tất cả những dependency trên với `pip install "fastapi[all]"`.
 

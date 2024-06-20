@@ -53,7 +53,7 @@
 
 ## 需求项
 
-经过测试多种备选方案，我最终决定使用  <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a>，并充分利用它的优势。
+经过测试多种备选方案，我最终决定使用  <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>，并充分利用它的优势。
 
 我甚至为它做了不少贡献，让它完美兼容了 JSON Schema，支持多种方式定义约束声明，并基于多个编辑器，改进了它对编辑器支持（类型检查、自动补全）。
 

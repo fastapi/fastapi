@@ -1,3 +1,12 @@
+---
+hide:
+  - navigation
+---
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -27,7 +36,7 @@
 
 ---
 
-FastAPI — это современный, быстрый (высокопроизводительный) веб-фреймворк для создания API используя Python 3.8+, в основе которого лежит стандартная аннотация типов Python.
+FastAPI — это современный, быстрый (высокопроизводительный) веб-фреймворк для создания API используя Python, в основе которого лежит стандартная аннотация типов Python.
 
 Ключевые особенности:
 
@@ -109,12 +118,10 @@ FastAPI — это современный, быстрый (высокопрои�
 
 ## Зависимости
 
-Python 3.8+
-
 FastAPI стоит на плечах гигантов:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для части связанной с вебом.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> для части связанной с данными.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для части связанной с данными.
 
 ## Установка
 
@@ -325,7 +332,7 @@ def update_item(item_id: int, item: Item):
 
 Вам не нужно изучать новый синтаксис, методы или классы конкретной библиотеки и т. д.
 
-Только стандартный **Python 3.8+**.
+Только стандартный **Python**.
 
 Например, для `int`:
 
@@ -445,15 +452,15 @@ item: Item
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - Обязательно, если вы хотите использовать `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Обязательно, если вы хотите использовать конфигурацию шаблона по умолчанию.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Обязательно, если вы хотите поддерживать форму <abbr title="преобразование строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr> с помощью `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Обязательно, если вы хотите поддерживать форму <abbr title="преобразование строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr> с помощью `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Обязательно, для поддержки `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Обязательно, для поддержки `SchemaGenerator` Starlette (возможно, вам это не нужно с FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Обязательно, если вы хотите использовать `UJSONResponse`.
 
 Используется FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - сервер, который загружает и обслуживает ваше приложение.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Обязательно, если вы хотите использовать `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Обязательно, если вы хотите использовать `UJSONResponse`.
 
 Вы можете установить все это с помощью `pip install "fastapi[all]"`.
 

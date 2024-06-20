@@ -26,7 +26,7 @@
 **Forrás kód**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python 3.8+-al, a Python szabványos típusjelöléseire építve.
+A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
 
 
 Kulcs funkciók:
@@ -115,12 +115,10 @@ Ha egy olyan CLI alkalmazást fejlesztesz amit a parancssorban kell használni w
 
 ## Követelmények
 
-Python 3.8+
-
 A FastAPI óriások vállán áll:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> a webes részekhez.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
 
 ## Telepítés
 
@@ -331,7 +329,7 @@ Ezt standard modern Python típusokkal csinálod.
 
 Nem kell új szintaxist, vagy specifikus könyvtár mert metódósait, stb. megtanulnod.
 
-Csak standard **Python 3.8+**.
+Csak standard **Python**.
 
 Például egy `int`-nek:
 
@@ -453,15 +451,15 @@ Starlette által használt:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Követelmény ha a `TestClient`-et akarod használni.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Követelmény ha az alap template konfigurációt akarod használni.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Követelmény ha <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>-ot akarsz támogatni, `request.form()`-al.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Követelmény ha <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>-ot akarsz támogatni, `request.form()`-al.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Követelmény `SessionMiddleware` támogatáshoz.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Követelmény a Starlette `SchemaGenerator`-ának támogatásához (valószínűleg erre nincs szükség FastAPI használása esetén).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Követelmény ha `UJSONResponse`-t akarsz használni.
 
 FastAPI / Starlette által használt
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Szerverekhez amíg betöltik és szolgáltatják az applikációdat.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Követelmény ha `ORJSONResponse`-t akarsz használni.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Követelmény ha `UJSONResponse`-t akarsz használni.
 
 Ezeket mind telepítheted a `pip install "fastapi[all]"` paranccsal.
 

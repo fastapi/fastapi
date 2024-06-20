@@ -13,12 +13,12 @@
 
 애플리케이션을 배포할 때 **다중 코어**를 활용하고 더 많은 요청을 처리할 수 있도록 **프로세스 복제본**이 필요합니다.
 
-전 과정이었던 [배포 개념들](./concepts.md){.internal-link target=_blank}에서 본 것처럼 여러가지 방법이 존재합니다.
+전 과정이었던 [배포 개념들](concepts.md){.internal-link target=_blank}에서 본 것처럼 여러가지 방법이 존재합니다.
 
 지금부터 <a href="https://gunicorn.org/" class="external-link" target="_blank">**구니콘**</a>을 **유비콘 워커 프로세스**와 함께 사용하는 방법을 알려드리겠습니다.
 
-!!! 정보
-    만약 도커와 쿠버네티스 같은 컨테이너를 사용하고 있다면 다음 챕터 [FastAPI와 컨테이너 - 도커](./docker.md){.internal-link target=_blank}에서 더 많은 정보를 얻을 수 있습니다.
+!!! info "정보"
+    만약 도커와 쿠버네티스 같은 컨테이너를 사용하고 있다면 다음 챕터 [FastAPI와 컨테이너 - 도커](docker.md){.internal-link target=_blank}에서 더 많은 정보를 얻을 수 있습니다.
 
     특히, 쿠버네티스에서 실행할 때는 구니콘을 사용하지 않고 대신 컨테이너당 하나의 유비콘 프로세스를 실행하는 것이 좋습니다. 이 장의 뒷부분에서 설명하겠습니다.
 
@@ -165,7 +165,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## 컨테이너와 도커
 
-다음 장인 [FastAPI와 컨테이너 - 도커](./docker.md){.internal-link target=_blank}에서 다른 **배포 개념들**을 다루는 전략들을 알려드리겠습니다.
+다음 장인 [FastAPI와 컨테이너 - 도커](docker.md){.internal-link target=_blank}에서 다른 **배포 개념들**을 다루는 전략들을 알려드리겠습니다.
 
 또한 간단한 케이스에서 사용할 수 있는, **구니콘과 유비콘 워커**가 포함돼 있는 **공식 도커 이미지**와 함께 몇 가지 기본 구성을 보여드리겠습니다.
 
