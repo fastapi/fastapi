@@ -132,18 +132,6 @@ $ pip install fastapi
 
 </div>
 
-También vas a necesitar un servidor ASGI para producción cómo <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> o <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
-
-<div class="termy">
-
-```console
-$ pip install "uvicorn[standard]"
-
----> 100%
-```
-
-</div>
-
 ## Ejemplo
 
 ### Créalo
@@ -202,11 +190,24 @@ Corre el servidor con:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -214,15 +215,16 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>Sobre el comando <code>uvicorn main:app --reload</code>...</summary>
+<summary>Sobre el comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `uvicorn main:app` se refiere a:
+El comando `fastapi dev` lee tu archivo `main.py` , detecta  la aplicacion **FastAPI** en él, y lanza un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
-* `main`: el archivo `main.py` (el"modulo" de Python).
-* `app`: el objeto creado dentro de `main.py` con la línea `app = FastAPI()`.
-* `--reload`: hace que el servidor se reinicie después de cambios en el código. Esta opción solo debe ser usada en desarrollo.
+Por defecto,  `fastapi dev` empezara con auto-reload activado para desarrollo local.
+
+Puedes leer más acerca de eso en <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
 
 </details>
+
 
 ### Revísalo
 
@@ -263,10 +265,11 @@ Ahora modifica el archivo `main.py` para recibir un <abbr title="cuerpo del mens
 
 Declara el body usando las declaraciones de tipo estándares de Python gracias a Pydantic.
 
-```Python hl_lines="2  7-10  23-25"
+```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Union
 
 app = FastAPI()
 
@@ -291,8 +294,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
-
-El servidor debería recargar automáticamente (porque añadiste `--reload` al comando `uvicorn` que está más arriba).
+El servidor `fastapi dev` se actualizará automáticamente
 
 ### Mejora a la documentación interactiva de APIs
 
@@ -422,9 +424,9 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 * Un sistema de **<abbr title="también conocido en inglés cómo: components, resources, providers, services, injectables">Dependency Injection</abbr>** poderoso y fácil de usar.
 * Seguridad y autenticación incluyendo soporte para **OAuth2** con **JWT tokens** y **HTTP Basic** auth.
 * Técnicas más avanzadas, pero igual de fáciles, para declarar **modelos de JSON profundamente anidados** (gracias a Pydantic).
+* Integracion de **GraphQL**  con <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otras Librerías.
 * Muchas características extra (gracias a Starlette) como:
     * **WebSockets**
-    * **GraphQL**
     * pruebas extremadamente fáciles con HTTPX y `pytest`
     * **CORS**
     * **Cookie Sessions**
@@ -436,28 +438,46 @@ Benchmarks independientes de TechEmpower muestran que aplicaciones de **FastAPI*
 
 Para entender más al respecto revisa la sección <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Dependencias Opcionales
+## Dependencias
 
 Usadas por Pydantic:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validación de emails.
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - para manejo de configuraciones.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - para tipos adicionales usados con Pydantic.
 
 Usados por Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si quieres usar el `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si quieres usar la configuración por defecto de templates.
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si quieres dar soporte a  <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de formularios, con `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requerido para dar soporte a `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Requerido para dar soporte al `SchemaGenerator` de Starlette (probablemente no lo necesites con FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Requerido para dar soporte a `GraphQLApp`.
+
 
 Usado por FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requerido si quieres usar `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requerido si quieres usar `UJSONResponse`.
+* `fastapi-cli` - para proveer el comando `fastapi`.
 
-Puedes instalarlos con `pip install fastapi[all]`.
+Cuando instalas `fastapi` este viene con estas Librerías por defecto.
+
+## `fastapi-slim`
+
+Si no deseas las Librerías que vienen por defecto, puede optar por instalar `fastapi-slim`.
+
+Cuando haces la Instalación con el comando:
+```bash
+pip install fastapi
+```
+
+...esto incluye el mismo código y dependencias que:
+
+```bash
+pip install "fastapi-slim[standard]"
+```
+
+Las dependencias extra `standard` son las mencionadas anteriormente.
 
 ## Licencia
 
