@@ -30,7 +30,7 @@ Ele é utilizado por muitas companhias incluindo Mozilla, Red Hat e Eventbrite.
 
 Ele foi um dos primeiros exemplos de **documentação automática de API**, e essa foi especificamente uma das primeiras idéias que inspirou "a busca por" **FastAPI**.
 
-!!! note "Nota"
+!!! note "Detalhes técnicos"
     Django REST Framework foi criado por Tom Christie. O mesmo criador de Starlette e Uvicorn, nos quais **FastAPI** é baseado.
 
 !!! check "**FastAPI** inspirado para"
