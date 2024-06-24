@@ -12,7 +12,7 @@ Por exemplo, vamos dizer que você deseja ter uma *operação de caminho* que pe
 
 Mas você também deseja aceitar novos itens. E quando os itens não existiam, ele os cria, e retorna o código de status HTTP 201 "Created.
 
-Para conseguir isso, faça a importação de `JSONResponse`, e retorne o seu conteúdo diretamente, definindo o `status_code` que você deseja:
+Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretamente, definindo o `status_code` que você deseja:
 
 === "Python 3.10+"
 
