@@ -85,7 +85,7 @@ Neste caso, a dependência espera por:
 
 E então retorna um `dict` contendo esses valores.
 
-!!! info "Info"
+!!! info "Informação"
     FastAPI passou a suportar a notação `Annotated` (e começou a recomendá-la) na versão 0.95.0.
 
     Se você utiliza uma versão anterior, ocorrerão erros ao tentar utilizar `Annotated`.
