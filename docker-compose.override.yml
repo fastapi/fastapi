@@ -1,7 +1,7 @@
 services:
 
   proxy:
-    image: traefik:v2.3
+    image: traefik:3.0
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
