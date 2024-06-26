@@ -26,7 +26,7 @@ gold:
   - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
     title: Simplify Full Stack Development with FastAPI & MongoDB
     img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
-  - url: https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=fast-api
+  - url: https://konghq.com/products/kong-konnect?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=fast-api
     title: Kong Konnect - API management platform
     img: https://fastapi.tiangolo.com/img/sponsors/kong.png
   - url: https://zuplo.link/fastapi-gh
