@@ -4,7 +4,7 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["node_modules", "src/client/", "src/routeTree.gen.ts"]
+    "ignore": ["node_modules", "src/routeTree.gen.ts"]
   },
   "linter": {
     "enabled": true,
