@@ -4,19 +4,19 @@
 
 Todas as dependências que vimos até agora são funções ou classes fixas.
 
-Mas pode ocorrer casos onde você deseja capaz de definir parâmetros na dependência, sem  ter a necessidade de declarar diversas funções ou classes.
+Mas podem ocorrer casos onde você deseja ser capaz de definir parâmetros na dependência, sem ter a necessidade de declarar diversas funções ou classes.
 
-Let's imagine that we want to have a dependency that checks if the query parameter `q` contains some fixed content.
+Vamos imaginar que queremos ter uma dependência que verifica se o parâmetro de consulta `q` possui um valor fixo.
 
-But we want to be able to parameterize that fixed content.
+Porém nós queremos poder parametrizar o conteúdo fixo.
 
-## A "callable" instance
+## Uma instância "chamável"
 
-In Python there's a way to make an instance of a class a "callable".
+Em Python existe uma maneira de fazer com que uma instância de uma classe seja um "chamável".
 
-Not the class itself (which is already a callable), but an instance of that class.
+Não propriamente a classe (que já é um chamável), mas a instância desta classe.
 
-To do that, we declare a method `__call__`:
+Para fazer isso, nós declaramos o método `__call__`:
 
 === "Python 3.9+"
 
@@ -32,18 +32,18 @@ To do that, we declare a method `__call__`:
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Dica"
+        Prefira utilizar a versão `Annotated` se possível.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
     ```
 
-In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
+Neste caso, o `__call__` é o que o **FastAPI** utilizará para verificar parâmetros adicionais e sub dependências, e isso é o que será chamado para passar o valor ao parâmetro na sua *função de operação de rota* posteriormente.
 
-## Parameterize the instance
+## Parametrizar a instância
 
-And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
+E agora, nós podemos utilizar o `__init__` para declarar os parâmetros da instância que podemos utilizar para "parametrizar" a dependência:
 
 === "Python 3.9+"
 
@@ -59,18 +59,18 @@ And now, we can use `__init__` to declare the parameters of the instance that we
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Dica"
+        Prefira utilizar a versão `Annotated` se possível.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
     ```
 
-In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
+Neste caso, o **FastAPI** nunca tocará ou se importará com o `__init__`, nós vamos utilizar diretamente em nosso código.
 
-## Create an instance
+## Crie uma instância
 
-We could create an instance of this class with:
+Nós poderíamos criar uma instância desta classe com:
 
 === "Python 3.9+"
 
@@ -86,26 +86,26 @@ We could create an instance of this class with:
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Dica"
+        Prefira utilizar a versão `Annotated` se possível.
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
     ```
 
-And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
+E deste modo nós podemos "parametrizar" a nossa dependência, que agora possui `"bar"` dentro dele, como o atributo `checker.fixed_content`.
 
-## Use the instance as a dependency
+## Utilize a instância como dependência
 
-Then, we could use this `checker` in a `Depends(checker)`, instead of `Depends(FixedContentQueryChecker)`, because the dependency is the instance, `checker`, not the class itself.
+Então, nós podemos utilizar este `checker` em um `Depends(checker)`, no lugar de `Depends(FixedContentQueryChecker)`, porque a dependência é a instância, `checker`, e não a própria classe.
 
-And when solving the dependency, **FastAPI** will call this `checker` like:
+E quando a dependência for resolvida, o **FastAPI** chamará este `checker` como:
 
 ```Python
 checker(q="somequery")
 ```
 
-...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
+...e passar o que quer que isso retorne como valor da dependência em nossa *função de operação de rota* como o parâmetro `fixed_content_included`:
 
 === "Python 3.9+"
 
@@ -121,18 +121,18 @@ checker(q="somequery")
 
 === "Python 3.8+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "Dica"
+        Prefira utilizar a versão `Annotated` se possível.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
     ```
 
-!!! tip
-    All this might seem contrived. And it might not be very clear how is it useful yet.
+!!! tip "Dica"
+    Tudo isso parece não ser natural. E pode não estar muito claro ou aparentar ser útil ainda.
 
-    These examples are intentionally simple, but show how it all works.
+    Estes exemplos são intencionalmente simples, porém mostram como tudo funciona.
 
-    In the chapters about security, there are utility functions that are implemented in this same way.
+    Nos capítulos sobre segurança, existem funções utilitárias que são implementadas desta maneira.
 
-    If you understood all this, you already know how those utility tools for security work underneath.
+    Se você entendeu tudo isso, você já sabe como essas funções utilitárias para segurança funcionam por debaixo dos panos.
