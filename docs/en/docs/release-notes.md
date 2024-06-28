@@ -32,6 +32,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#11768](https://github.com/tiangolo/fastapi/pull/11768) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐  Add Portuguese translation for `docs/pt/docs/advanced/additional-status-codes.md`. PR [#11753](https://github.com/tiangolo/fastapi/pull/11753) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/index.md`. PR [#11757](https://github.com/tiangolo/fastapi/pull/11757) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/settings.md`. PR [#11739](https://github.com/tiangolo/fastapi/pull/11739) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
