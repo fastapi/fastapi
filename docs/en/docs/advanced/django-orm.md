@@ -67,7 +67,8 @@ If you go to `http://localhost:8000/questions` we should see the list of questio
 Unfortunately, we'll get an error:
 
 ```text
-django.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+django.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured.
+You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
 ```
 
 This error happens because Django settings are not configured before importing the Django models.
@@ -88,7 +89,7 @@ django.setup()
 
 This will configure Django settings before importing the Django models.
 
-## Step 7: Run the FastAPI application
+## Step 7: Run the FastAPI application (again)
 
 Now you can run the FastAPI application:
 
@@ -97,3 +98,28 @@ fastapi dev main.py
 ```
 
 And now if we go to `http://localhost:8000/questions` we should see a list of questions! 🎉
+
+## Using the ORM in async routes
+
+Django's support for async is currently limited, if you need to do run any query in an async route (or function),
+you need to either use the async equivalent of the query or use `sync_to_async` from `asgiref.sync` to run the query:
+
+```python
+from asgiref.sync import sync_to_async
+
+@app.get("/questions")
+async def get_questions():
+    def _fetch_questions():
+        return list(Question.objects.all())
+
+    questions = await sync_to_async(_fetch_questions)()
+
+    return [{"question": question.question_text} for question in questions]
+
+
+@app.get("/questions/{question_id}")
+async def get_question(question_id: int):
+    question = await Question.objects.filter(id=question_id).afirst()
+
+    return {"question": question.question_text}
+```
