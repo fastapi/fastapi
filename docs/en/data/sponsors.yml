@@ -32,6 +32,9 @@ gold:
   - url: https://zuplo.link/fastapi-gh
     title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
+  - url: https://fine.dev?ref=fastapibadge
+    title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
+    img: https://fastapi.tiangolo.com/img/sponsors/fine.png
 silver:
   - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
