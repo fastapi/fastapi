@@ -8,44 +8,44 @@ Isso normalmente é chamado de **webhook**.
 
 ## Etapas dos Webhooks
 
-The process normally is that **you define** in your code what is the message that you will send, the **body of the request**.
+Normalmente, o processo é que **você define** em seu código qual é a mensagem que você irá mandar, o **corpo da sua requisição**.
 
-You also define in some way at which **moments** your app will send those requests or events.
+Você também define de alguma maneira em quais **momentos** a sua aplicação mandará essas requisições ou eventos.
 
-And **your users** define in some way (for example in a web dashboard somewhere) the **URL** where your app should send those requests.
+E os **seus usuários** definem de alguma forma (em algum painel por exemplo) a **URL** que a sua aplicação deve enviar essas requisições.
 
-All the **logic** about how to register the URLs for webhooks and the code to actually send those requests is up to you. You write it however you want to in **your own code**.
+Toda a **lógica** sobre como cadastrar as URLs para os webhooks e o código para enviar de fato as requisições cabe a você definir. Você escreve da maneira que você desejar no **seu próprio código**.
 
-## Documenting webhooks with **FastAPI** and OpenAPI
+## Documentando webhooks com o FastAPI e OpenAPI
 
-With **FastAPI**, using OpenAPI, you can define the names of these webhooks, the types of HTTP operations that your app can send (e.g. `POST`, `PUT`, etc.) and the request **bodies** that your app would send.
+Com o **FastAPI**, utilizando o OpenAPI, você pode definir os nomes destes webhooks, os tipos das operações HTTP que a sua aplicação pode enviar (e.g. `POST`, `PUT`, etc.) e os **corpos** da requisição que a sua aplicação enviaria.
 
-This can make it a lot easier for your users to **implement their APIs** to receive your **webhook** requests, they might even be able to autogenerate some of their own API code.
+Isto pode facilitar bastante para os seus usuários **implementarem as APIs deles** para receber as requisições dos seus **webhooks**, eles podem inclusive ser capazes de gerar parte do código da API deles.
 
-!!! info
-    Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0` and above.
+!!! info "Informação"
+    Webhooks estão disponíveis a partir do OpenAPI 3.1.0, e possui suporte do FastAPI a partir da versão `0.99.0`.
 
-## An app with webhooks
+## Uma aplicação com webhooks
 
-When you create a **FastAPI** application, there is a `webhooks` attribute that you can use to define *webhooks*, the same way you would define *path operations*, for example with `@app.webhooks.post()`.
+Quando você cria uma aplicação com o **FastAPI**, existe um atributo chamado `webhooks`, que você utilizar para defini-los da mesma maneira que você definiria as suas **operações de rotas**, utilizando por exemplo `@app.webhooks.post()`.
 
 ```Python hl_lines="9-13  36-53"
 {!../../../docs_src/openapi_webhooks/tutorial001.py!}
 ```
 
-The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.
+Os webhooks que você define aparecerão no esquema do **OpenAPI** e na **página de documentação** gerada automaticamente.
 
-!!! info
-    The `app.webhooks` object is actually just an `APIRouter`, the same type you would use when structuring your app with multiple files.
+!!! info "Informação"
+    O objeto `app.webhooks` é na verdade apenas um `APIRouter`, o mesmo tipo que você utilizaria ao estruturar a sua aplicação com diversos arquivos.
 
-Notice that with webhooks you are actually not declaring a *path* (like `/items/`), the text you pass there is just an **identifier** of the webhook (the name of the event), for example in `@app.webhooks.post("new-subscription")`, the webhook name is `new-subscription`.
+Note que utilizando webhooks você não está de fato declarando uma **rota** (como `/items/`), o texto que informa é apenas um **identificador** do webhook (o nome do evento), por exemplo em `@app.webhooks.post("new-subscription")`, o nome do webhook é `new-subscription`.
 
-This is because it is expected that **your users** would define the actual **URL path** where they want to receive the webhook request in some other way (e.g. a web dashboard).
+Isto porque espera-se que os **seus usuários** definam o verdadeiro **caminho da URL** onde eles desejam receber a requisição do webhook de algum outra maneira. (e.g. um painel).
 
-### Check the docs
+### Confira a documentação
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Agora você pode iniciar a sua aplicação e ir até <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see your docs have the normal *path operations* and now also some **webhooks**:
+Você verá que a sua documentação possui as *operações de rota* normals e agora também possui alguns **webhooks**:
 
 <img src="/img/tutorial/openapi-webhooks/image01.png">
