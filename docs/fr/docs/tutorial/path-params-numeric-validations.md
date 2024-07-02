@@ -1,10 +1,10 @@
-# Path Parameters and Numeric Validations
+# Paramètres de chemin et validations numériques
 
-In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
+De la même façon que vous pouvez déclarer plus de validations et de métadonnées pour les paramètres de requête avec `Query`, vous pouvez déclarer le même type de validations et de métadonnées pour les paramètres de chemin avec `Path`.
 
-## Import Path
+## Importer Path
 
-First, import `Path` from `fastapi`, and import `Annotated`:
+Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 === "Python 3.10+"
 
@@ -27,7 +27,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -36,24 +36,24 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 !!! info
-    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+    FastAPI a ajouté le support pour `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
-    If you have an older version, you would get errors when trying to use `Annotated`.
+    Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d'utiliser `Annotated`.
 
-    Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+    Assurez-vous de [Mettre à jour la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} à la version 0.95.1 à minima avant d'utiliser `Annotated`.
 
-## Declare metadata
+## Déclarer des métadonnées
 
-You can declare all the same parameters as for `Query`.
+Vous pouvez déclarer tous les mêmes paramètres que pour `Query`.
 
-For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
+Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètre de chemin `item_id`, vous pouvez taper :
 
 === "Python 3.10+"
 
@@ -76,7 +76,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -85,44 +85,44 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 !!! note
-    A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+    Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela n'affecterait rien, il serait toujours requis.
 
-## Order the parameters as you need
+## Ordonnez les paramètres comme vous le souhaitez
 
 !!! tip
-    This is probably not as important or necessary if you use `Annotated`.
+    Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
 
-Let's say that you want to declare the query parameter `q` as a required `str`.
+Disons que vous voulez déclarer le paramètre de requête `q` comme un `str` requis.
 
-And you don't need to declare anything else for that parameter, so you don't really need to use `Query`.
+Et vous n'avez pas besoin de déclarer autre chose pour ce paramètre, donc vous n'avez pas vraiment besoin d'utiliser `Query`.
 
-But you still need to use `Path` for the `item_id` path parameter. And you don't want to use `Annotated` for some reason.
+Mais vous avez toujours besoin d'utiliser `Path` pour le paramètre de chemin `item_id`. Et vous ne voulez pas utiliser `Annotated` pour une raison quelconque.
 
-Python will complain if you put a value with a "default" before a value that doesn't have a "default".
+Python se plaindra si vous mettez une valeur avec une "défaut" avant une valeur qui n'a pas de "défaut".
 
-But you can re-order them, and have the value without a default (the query parameter `q`) first.
+Mais vous pouvez les réorganiser, et avoir la valeur sans défaut (le paramètre de requête `q`) en premier.
 
-It doesn't matter for **FastAPI**. It will detect the parameters by their names, types and default declarations (`Query`, `Path`, etc), it doesn't care about the order.
+Cela n'a pas d'importance pour **FastAPI**. Il détectera les paramètres par leurs noms, types et déclarations par défaut (`Query`, `Path`, etc), il ne se soucie pas de l'ordre.
 
-So, you can declare your function as:
+Ainsi, vous pouvez déclarer votre fonction comme suit :
 
 === "Python 3.8 non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
     ```
 
-But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
+Mais gardez à l'esprit que si vous utilisez `Annotated`, vous n'aurez pas ce problème, cela n'aura pas d'importance car vous n'utilisez pas les valeurs par défaut des paramètres de fonction pour `Query()` ou `Path()`.
 
 === "Python 3.9+"
 
@@ -136,33 +136,33 @@ But keep in mind that if you use `Annotated`, you won't have this problem, it wo
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
     ```
 
-## Order the parameters as you need, tricks
+## Ordonnez les paramètres comme vous le souhaitez (astuces)
 
 !!! tip
-    This is probably not as important or necessary if you use `Annotated`.
+    Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
 
-Here's a **small trick** that can be handy, but you won't need it often.
+Voici une **petite astuce** qui peut être pratique, mais vous n'en aurez pas souvent besoin.
 
-If you want to:
+Si vous voulez :
 
-* declare the `q` query parameter without a `Query` nor any default value
-* declare the path parameter `item_id` using `Path`
-* have them in a different order
-* not use `Annotated`
+* déclarer le paramètre de requête `q` sans `Query` ni valeur par défaut
+* déclarer le paramètre de chemin `item_id` en utilisant `Path`
+* les avoir dans un ordre différent
+* ne pas utiliser `Annotated`
 
-...Python has a little special syntax for that.
+...Python a une petite syntaxe spéciale pour cela.
 
-Pass `*`, as the first parameter of the function.
+Passez `*`, comme premier paramètre de la fonction.
 
-Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
+Python ne fera rien avec ce `*`, mais il saura que tous les paramètres suivants doivent être appelés comme arguments "mots-clés" (paires clé-valeur), également connus sous le nom de <abbr title="De : K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Même s'ils n'ont pas de valeur par défaut.
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
-### Better with `Annotated`
+# Avec `Annotated`
 
-Keep in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
+Gardez à l'esprit que si vous utilisez `Annotated`, comme vous n'utilisez pas les valeurs par défaut des paramètres de fonction, vous n'aurez pas ce problème, et vous n'aurez probablement pas besoin d'utiliser `*`.
 
 === "Python 3.9+"
 
@@ -176,11 +176,11 @@ Keep in mind that if you use `Annotated`, as you are not using function paramete
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
     ```
 
-## Number validations: greater than or equal
+## Validations numériques : supérieur ou égal
 
-With `Query` and `Path` (and others you'll see later) you can declare number constraints.
+Avec `Query` et `Path` (et d'autres que vous verrez plus tard) vous pouvez déclarer des contraintes numériques.
 
-Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
+Ici, avec `ge=1`, `item_id` devra être un nombre entier "`g`reater than or `e`qual" à `1`.
 
 === "Python 3.9+"
 
@@ -203,12 +203,40 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
     ```
 
-## Number validations: greater than and less than or equal
+## Validations numériques : supérieur ou égal et inférieur ou égal
 
-The same applies for:
+La même chose s'applique pour :
 
-* `gt`: `g`reater `t`han
-* `le`: `l`ess than or `e`qual
+* `gt` : `g`reater `t`han
+* `le` : `l`ess than or `e`qual
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Préférez utiliser la version `Annotated` si possible.
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+    ```
+
+## Validations numériques : supérieur et inférieur ou égal
+
+La même chose s'applique pour :
+
+* `gt` : `g`reater `t`han
+* `le` : `l`ess than or `e`qual
 
 === "Python 3.9+"
 
@@ -225,21 +253,21 @@ The same applies for:
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
     ```
 
-## Number validations: floats, greater than and less than
+## Validations numériques : flottants, supérieur et inférieur
 
-Number validations also work for `float` values.
+Les validations numériques fonctionnent également pour les valeurs `float`.
 
-Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
+C'est ici qu'il devient important de pouvoir déclarer <abbr title="greater than"><code>gt</code></abbr> et pas seulement <abbr title="greater than or equal"><code>ge</code></abbr>. Avec cela, vous pouvez exiger, par exemple, qu'une valeur doit être supérieure à `0`, même si elle est inférieure à `1`.
 
-So, `0.5` would be a valid value. But `0.0` or `0` would not.
+Ainsi, `0.5` serait une valeur valide. Mais `0.0` ou `0` ne le serait pas.
 
-And the same for <abbr title="less than"><code>lt</code></abbr>.
+Et la même chose pour <abbr title="less than"><code>lt</code></abbr>.
 
 === "Python 3.9+"
 
@@ -256,35 +284,35 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
     ```
 
-## Recap
+## Pour résumer
 
-With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
+Avec `Query`, `Path` (et d'autres que vous verrez plus tard) vous pouvez déclarer des métadonnées et des validations de chaînes de la même manière qu'avec les [Paramètres de requête et validations de chaînes](query-params-str-validations.md){.internal-link target=_blank}.
 
-And you can also declare numeric validations:
+Et vous pouvez également déclarer des validations numériques :
 
-* `gt`: `g`reater `t`han
-* `ge`: `g`reater than or `e`qual
-* `lt`: `l`ess `t`han
-* `le`: `l`ess than or `e`qual
+* `gt` : `g`reater `t`han
+* `ge` : `g`reater than or `e`qual
+* `lt` : `l`ess `t`han
+* `le` : `l`ess than or `e`qual
 
 !!! info
-    `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
+    `Query`, `Path`, et d'autres classes que vous verrez plus tard sont des sous-classes d'une classe commune `Param`.
 
-    All of them share the same parameters for additional validation and metadata you have seen.
+    Tous partagent les mêmes paramètres pour des validations supplémentaires et des métadonnées que vous avez vu précédemment.
 
-!!! note "Technical Details"
-    When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
+!!! note "Détails techniques"
+    Lorsque vous importez `Query`, `Path` et d'autres de `fastapi`, ce sont en fait des fonctions.
 
-    That when called, return instances of classes of the same name.
+    Ces dernières, lorsqu'elles sont appelées, renvoient des instances de classes du même nom.
 
-    So, you import `Query`, which is a function. And when you call it, it returns an instance of a class also named `Query`.
+    Ainsi, vous importez `Query`, qui est une fonction. Et lorsque vous l'appelez, elle renvoie une instance d'une classe également nommée `Query`.
 
-    These functions are there (instead of just using the classes directly) so that your editor doesn't mark errors about their types.
+    Ces fonctions sont là (au lieu d'utiliser simplement les classes directement) pour que votre éditeur ne marque pas d'erreurs sur leurs types.
 
-    That way you can use your normal editor and coding tools without having to add custom configurations to disregard those errors.
+    De cette façon, vous pouvez utiliser votre éditeur et vos outils de codage habituels sans avoir à ajouter des configurations personnalisées pour ignorer ces erreurs.
