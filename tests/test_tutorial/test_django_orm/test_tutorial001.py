@@ -48,3 +48,21 @@ def test_question_empty():
 
     assert response.status_code == 200, response.text
     assert response.json() == []
+
+
+def test_get_questions_async():
+    Question.objects.create(question_text="everlong", pub_date=timezone.now())
+
+    response = client.get("/questions-async")
+
+    assert response.status_code == 200, response.text
+    assert response.json() == [{"question": "everlong"}]
+
+
+def test_get_single_question():
+    question = Question.objects.create(question_text="my hero", pub_date=timezone.now())
+
+    response = client.get(f"/questions/{question.id}")
+
+    assert response.status_code == 200, response.text
+    assert response.json() == {"question": "my hero"}
