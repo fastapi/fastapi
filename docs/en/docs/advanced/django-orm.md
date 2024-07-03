@@ -22,41 +22,29 @@ pip install fastapi
 
 ## Step 2: Set up a basic FastAPI application
 
-Create a `main.py` file:
+Let's create a basic FastAPI application in a new file called `main.py`:
 
-```python
-from fastapi import FastAPI
+=== "Python 3.8+"
 
-app = FastAPI()
-```
+    ```Python
+    {!> ../../../docs_src/django_orm/tutorial001.py[ln:5,13]!}
+    ```
 
 In the next steps we'll import the `Question` model from Django, and create a FastAPI endpoint to list all questions.
 
-## Step 3: Import Django models
+## Step 3: Import and use Django models
 
-In your `main.py` file, let's import the `Question` model:
+In your `main.py` file, let's import the `Question` model and create a FastAPI endpoint to list all questions:
 
-```python
-from polls.models import Question
-```
+=== "Python 3.8+"
 
-Make sure to replace `polls` with the name of your Django app.
+    ```Python
+    {!> ../../../docs_src/django_orm/tutorial001.py[ln:10,16-20]!}
+    ```
 
-## Step 4: Create a FastAPI endpoint
+## Step 4: Run the FastAPI application
 
-Now let's create a FastAPI endpoint to list all questions:
-
-```python
-@app.get("/questions")
-def get_questions():
-    questions = Question.objects.all()
-
-    return [{"question": question.question_text} for question in questions]
-```
-
-## Step 5: Run the FastAPI application
-
-No we can run the FastAPI application:
+Now, let's run the FastAPI application:
 
 ```bash
 fastapi dev main.py
@@ -64,62 +52,40 @@ fastapi dev main.py
 
 If you go to `http://localhost:8000/questions` we should see the list of questions, right? 🤔
 
-Unfortunately, we'll get an error:
+Unfortunately, we'll get this error:
 
 ```text
 django.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured.
 You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
 ```
 
-This error happens because Django settings are not configured before importing the Django models.
+This error happens because Django needs to be configured before importing the models.
 
-## Step 6: Configure Django settings
+## Step 5: Configure Django settings
 
 To fix this error, we need to configure Django settings before importing the Django models.
 
 In the `main.py` add the following code **before** importing the Django models:
 
-```python
-import os
-import django
+=== "Python 3.8+"
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-django.setup()
-```
+    ```Python
+    {!> ../../../docs_src/django_orm/tutorial001.py[ln:1,7-10]!}
+    ```
 
-This will configure Django settings before importing the Django models.
+Now, if you run the FastAPI application again, you should see the list of questions at `http://localhost:8000/questions`! 🎉
 
-## Step 7: Run the FastAPI application (again)
+## Conclusion
 
-Now you can run the FastAPI application:
-
-```bash
-fastapi dev main.py
-```
-
-And now if we go to `http://localhost:8000/questions` we should see a list of questions! 🎉
+In this guide, we learned how to use Django's ORM with FastAPI. This can be extremely useful when migrating from Django to FastAPI, as you can reuse your existing Django models and queries.
 
 ## Using the ORM in async routes
 
 Django's support for async is currently limited, if you need to do run any query in an async route (or function),
 you need to either use the async equivalent of the query or use `sync_to_async` from `asgiref.sync` to run the query:
 
-```python
-from asgiref.sync import sync_to_async
+=== "Python 3.8+"
 
-@app.get("/questions")
-async def get_questions():
-    def _fetch_questions():
-        return list(Question.objects.all())
-
-    questions = await sync_to_async(_fetch_questions)()
-
-    return [{"question": question.question_text} for question in questions]
-
-
-@app.get("/questions/{question_id}")
-async def get_question(question_id: int):
-    question = await Question.objects.filter(id=question_id).afirst()
-
-    return {"question": question.question_text}
-```
+    ```Python
+    {!> ../../../docs_src/django_orm/tutorial001.py[ln:23-37]!}
+    ```
