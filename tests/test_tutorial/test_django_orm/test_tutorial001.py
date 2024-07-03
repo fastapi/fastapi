@@ -1,3 +1,6 @@
+import pathlib
+import sys
+
 import pytest
 from django.core.management.color import no_style
 from django.core.management.sql import sql_flush
@@ -5,7 +8,12 @@ from django.db import connection
 from django.utils import timezone
 from fastapi.testclient import TestClient
 
-from docs_src.django_orm.tutorial001 import Question, app
+HERE = pathlib.Path(__file__).parent
+
+sys.path.append(str(HERE.parents[2] / "docs_src" / "django_orm"))
+
+from docs_src.django_orm.tutorial001 import Question, app  # noqa: I001 E402
+
 
 client = TestClient(app)
 
