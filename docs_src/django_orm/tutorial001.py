@@ -7,7 +7,7 @@ from fastapi import FastAPI
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 django.setup()
 
-from polls.models import Question  # noqa: I001
+from polls.models import Question  # noqa: I001 E402
 
 
 app = FastAPI()
