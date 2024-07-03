@@ -1,6 +1,7 @@
 INSTALLED_APPS = ["polls"]
 
 ROOT_URLCONF = "mysite.urls"
+USE_TZ = False
 
 DATABASES = {
     "default": {
