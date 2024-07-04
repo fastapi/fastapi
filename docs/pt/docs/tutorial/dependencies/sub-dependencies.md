@@ -95,7 +95,7 @@ Vamos focar nos parâmetros declarados:
 * Mesmo que essa função seja uma dependência ("injetável") por si mesma, ela também declara uma outra dependência (ela "depende" de outra coisa).
     * Ela depende do `query_extractor`, e atribui o valor retornado pela função ao parâmetro `q`.
 * Ela também declara um cookie opcional `last_query`, do tipo `str`.
-    * Se o usuário não passou nenhuma consulta `q`, a última consulta é utilizada, que foi salvada em um cookie anteriormente.
+    * Se o usuário não passou nenhuma consulta `q`, a última consulta é utilizada, que foi salva em um cookie anteriormente.
 
 ## Utilizando a dependência
 
