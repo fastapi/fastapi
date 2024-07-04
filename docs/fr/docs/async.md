@@ -103,23 +103,40 @@ Pour expliquer la différence, voici une histoire de burgers :
 
 Vous amenez votre crush 😍 dans votre fast food 🍔 favori, et faites la queue pendant que le serveur 💁 prend les commandes des personnes devant vous.
 
+<img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
+
 Puis vient votre tour, vous commandez alors 2 magnifiques burgers 🍔 pour votre crush 😍 et vous.
 
-Vous payez 💸.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
 Le serveur 💁 dit quelque chose à son collègue dans la cuisine 👨‍🍳 pour qu'il sache qu'il doit préparer vos burgers 🍔 (bien qu'il soit déjà en train de préparer ceux des clients précédents).
 
+<img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
+
+Vous payez 💸.
+
 Le serveur 💁 vous donne le numéro assigné à votre commande.
+
+<img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
 Pendant que vous attendez, vous allez choisir une table avec votre crush 😍, vous discutez avec votre crush 😍 pendant un long moment (les burgers étant "magnifiques" ils sont très longs à préparer ✨🍔✨).
 
 Pendant que vous êtes assis à table, en attendant que les burgers 🍔 soient prêts, vous pouvez passer ce temps à admirer à quel point votre crush 😍 est géniale, mignonne et intelligente ✨😍✨.
 
+<img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
+
 Pendant que vous discutez avec votre crush 😍, de temps en temps vous jetez un coup d'oeil au nombre affiché au-dessus du comptoir pour savoir si c'est à votre tour d'être servis.
 
 Jusqu'au moment où c'est (enfin) votre tour. Vous allez au comptoir, récupérez vos burgers 🍔 et revenez à votre table.
 
+<img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
+
 Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
+
+<img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
+
+!!! info
+    Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
@@ -149,25 +166,40 @@ Vous attendez pendant que plusieurs (disons 8) serveurs qui sont aussi des cuisi
 
 Chaque personne devant vous attend 🕙 que son burger 🍔 soit prêt avant de quitter le comptoir car chacun des 8 serveurs va lui-même préparer le burger directement avant de prendre la commande suivante.
 
+<img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
+
 Puis c'est enfin votre tour, vous commandez 2 magnifiques burgers 🍔 pour vous et votre crush 😍.
 
 Vous payez 💸.
+
+<img src="/img/async/parallel-burgers/parallel-burgers-02.png" class="illustration">
 
 Le serveur va dans la cuisine 👨‍🍳.
 
 Vous attendez devant le comptoir afin que personne ne prenne vos burgers 🍔 avant vous, vu qu'il n'y a pas de numéro de commande.
 
+<img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
+
 Vous et votre crush 😍 étant occupés à vérifier que personne ne passe devant vous prendre vos burgers au moment où ils arriveront 🕙, vous ne pouvez pas vous préoccuper de votre crush 😞.
 
 C'est du travail "synchrone", vous être "synchronisés" avec le serveur/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le serveur/cuisinier 👨‍🍳 finira les burgers 🍔 et vous les donnera, sinon quelqu'un risque de vous les prendre.
 
+<img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
+
 Puis le serveur/cuisinier 👨‍🍳 revient enfin avec vos burgers 🍔, après un long moment d'attente 🕙 devant le comptoir.
+
+<img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
 Vous prenez vos burgers 🍔 et allez à une table avec votre crush 😍
 
 Vous les mangez, et vous avez terminé 🍔 ⏹.
 
+<img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
+
 Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre 🕙 devant le comptoir 😞.
+
+!!! info
+    Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
