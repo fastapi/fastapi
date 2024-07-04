@@ -1,12 +1,12 @@
-# Body - Multiple Parameters
+# Body - Paramètres multiples
 
-Now that we have seen how to use `Path` and `Query`, let's see more advanced uses of request body declarations.
+Maintenant que nous avons vu comment manipuler `Path` et `Query`, voyons comment faire pour le corps d'une requête, communément désigné par le terme anglais `body`.
 
-## Mix `Path`, `Query` and body parameters
+## Mélanger les paramètres `Path`, `Query` et body
 
-First, of course, you can mix `Path`, `Query` and request body parameter declarations freely and **FastAPI** will know what to do.
+Tout d'abord, sachez que vous pouvez mélanger les déclarations des paramètres `Path`, `Query` et body, **FastAPI** saura quoi faire.
 
-And you can also declare body parameters as optional, by setting the default to `None`:
+Vous pouvez également déclarer des paramètres body comme étant optionnels, en leur assignant une valeur par défaut à `None` :
 
 === "Python 3.10+"
 
@@ -29,7 +29,7 @@ And you can also declare body parameters as optional, by setting the default to 
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -38,18 +38,18 @@ And you can also declare body parameters as optional, by setting the default to 
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
 !!! note
-    Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
+    Notez que, dans ce cas, le paramètre `item` provenant du `Body` est optionnel (sa valeur par défaut est `None`).
 
-## Multiple body parameters
+## Paramètres multiples du body
 
-In the previous example, the *path operations* would expect a JSON body with the attributes of an `Item`, like:
+Dans l'exemple précédent, les opérations de routage attendaient un body JSON avec les attributs d'un `Item`, par exemple :
 
 ```JSON
 {
@@ -58,9 +58,8 @@ In the previous example, the *path operations* would expect a JSON body with the
     "price": 42.0,
     "tax": 3.2
 }
-```
 
-But you can also declare multiple body parameters, e.g. `item` and `user`:
+Mais vous pouvez également déclarer plusieurs paramètres provenant de body, par exemple `item` et `user` simultanément :
 
 === "Python 3.10+"
 
@@ -74,9 +73,9 @@ But you can also declare multiple body parameters, e.g. `item` and `user`:
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
     ```
 
-In this case, **FastAPI** will notice that there are more than one body parameters in the function (two parameters that are Pydantic models).
+Dans ce cas, **FastAPI** détectera qu'il y a plus d'un paramètre dans le body (chacun correspondant à un modèle Pydantic).
 
-So, it will then use the parameter names as keys (field names) in the body, and expect a body like:
+Il utilisera alors les noms des paramètres comme clés, et s'attendra à recevoir quelque chose de semblable à :
 
 ```JSON
 {
@@ -94,23 +93,21 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 ```
 
 !!! note
-    Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
+    Notez que malgré le fait que nous aillons déclaré le paramètre `item` de la même façon  que la fois précédente, il est désormais associé dans le body à la clé `item`.
 
+**FastAPI** effectue la conversion de la requête de façon transparente, de sorte que les objets `item` et `user` se trouvent correctement définis.
 
-**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
+Il effectue également la validation des données (même imbriquées les unes dans les autres), et permet de les documenter correctement (schéma OpenAPI et documentation auto-générée).
 
-It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
+## Valeurs scalaires dans le body
 
-## Singular values in body
+De la même façon qu'il existe `Query` et `Path` pour définir des données supplémentaires pour les paramètres `Query` et `Path`, **FastAPI** fournit un équivalent `Body`.
 
-The same way there is a `Query` and `Path` to define extra data for query and path parameters, **FastAPI** provides an equivalent `Body`.
+Par exemple, en étendant le modèle précédent, vous pouvez vouloir ajouter un paramètre `importance` dans le même body, en plus des paramètres `item` et `user`.
 
-For example, extending the previous model, you could decide that you want to have another key `importance` in the same body, besides the `item` and `user`.
+Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.github.com/fr/graphql/reference/scalars), **FastAPI** supposera qu'il s'agit d'un paramètre de query.
 
-If you declare it as is, because it is a singular value, **FastAPI** will assume that it is a query parameter.
-
-But you can instruct **FastAPI** to treat it as another body key using `Body`:
-
+Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant l'annotation de déclaration de type, comme dans l'exemple qui suit :
 === "Python 3.10+"
 
     ```Python hl_lines="23"
@@ -132,7 +129,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -141,13 +138,13 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
-In this case, **FastAPI** will expect a body like:
+Dans ce cas, **FastAPI** s'attendra à un body semblable à :
 
 ```JSON
 {
@@ -165,25 +162,25 @@ In this case, **FastAPI** will expect a body like:
 }
 ```
 
-Again, it will convert the data types, validate, document, etc.
+Encore une fois, cela convertira les types de données, les validera, permettra de générer la documentation, etc...
 
-## Multiple body params and query
+## Paramètres multiples `Body` et `Query`
 
-Of course, you can also declare additional query parameters whenever you need, additional to any body parameters.
+Bien entendu, vous pouvez déclarer autant de paramètres que vous le souhaitez, en plus des paramètres `Body` déjà déclarés.
 
-As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
+Par défaut, les valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) sont interprétés comme des paramètres query, donc inutile d'ajouter explicitement `Query`. Vous pouvez juste écrire :
 
 ```Python
 q: Union[str, None] = None
 ```
 
-Or in Python 3.10 and above:
+Ou bien, en Python 3.10 et au-delà :
 
 ```Python
 q: str | None = None
 ```
 
-For example:
+Par exemple :
 
 === "Python 3.10+"
 
@@ -206,7 +203,7 @@ For example:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="25"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -215,28 +212,28 @@ For example:
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
 !!! info
-    `Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+    `Body` possède les mêmes paramètres de validation additionnels et de gestion des métadonnées que `Query` et `Path`, ainsi que d'autres que nous verrons plus tard.
 
-## Embed a single body parameter
+## Inclure un paramètre imbriqué dans le body
 
-Let's say you only have a single `item` body parameter from a Pydantic model `Item`.
+Disons que vous avez seulement un paramètre `item` dans le body, équivalent à un modèle Pydantic `Item`.
 
-By default, **FastAPI** will then expect its body directly.
+Par défaut, **FastAPI** attendra sa déclaration directement dans le body.
 
-But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
+Cependant, si vous souhaitez qu'il interprête correctement un JSON avec une clé `item` associée au contenu du modèle, comme cela serait le cas si vous déclariez des paramètres body additionnels, vous pouvez utiliser le paramètre spécial `embed` de `Body` :
 
 ```Python
 item: Item = Body(embed=True)
 ```
 
-as in:
+Voici un exemple complet :
 
 === "Python 3.10+"
 
@@ -259,7 +256,7 @@ as in:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -268,13 +265,13 @@ as in:
 === "Python 3.8+ non-Annotated"
 
     !!! tip
-        Prefer to use the `Annotated` version if possible.
+        Préférez utiliser la version `Annotated` si possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-In this case **FastAPI** will expect a body like:
+Dans ce cas **FastAPI** attendra un `Body` semblable à :
 
 ```JSON hl_lines="2"
 {
@@ -287,7 +284,7 @@ In this case **FastAPI** will expect a body like:
 }
 ```
 
-instead of:
+au lieu de :
 
 ```JSON
 {
@@ -298,12 +295,12 @@ instead of:
 }
 ```
 
-## Recap
+## Pour résumer
 
-You can add multiple body parameters to your *path operation function*, even though a request can only have a single body.
+Vous pouvez ajouter plusieurs paramètres body dans votre fonction de routage, même si une requête ne peut avoir qu'un seul body.
 
-But **FastAPI** will handle it, give you the correct data in your function, and validate and document the correct schema in the *path operation*.
+Cependant, **FastAPI** se chargera de faire opérer sa magie, afin de toujours fournir à votre fonction des données correctes, les validera et documentera le schéma associé.
 
-You can also declare singular values to be received as part of the body.
+Vous pouvez également déclarer des valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) à recevoir dans le body.
 
-And you can instruct **FastAPI** to embed the body in a key even when there is only a single parameter declared.
+Et vous pouvez indiquer à **FastAPI** d'inclure le body dans une autre variable, même lorsqu'un seul paramètre est déclaré.
