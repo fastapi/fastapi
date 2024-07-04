@@ -58,6 +58,7 @@ Dans l'exemple précédent, les opérations de routage attendaient un body JSON 
     "price": 42.0,
     "tax": 3.2
 }
+```
 
 Mais vous pouvez également déclarer plusieurs paramètres provenant de body, par exemple `item` et `user` simultanément :
 
