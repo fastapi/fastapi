@@ -26,29 +26,25 @@ JWT 字符串没有加密，任何人都能用它恢复原始信息。
 
 如需深入了解 JWT 令牌，了解它的工作方式，请参阅 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
 
-## 安装 `python-jose`
+## 安装 `PyJWT`
 
-安装 `python-jose`，在 Python 中生成和校验 JWT 令牌：
+安装 `PyJWT`，在 Python 中生成和校验 JWT 令牌：
 
 <div class="termy">
 
 ```console
-$ pip install python-jose[cryptography]
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> 需要安装配套的加密后端。
+!!! info "说明"
 
-本教程推荐的后端是：<a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>。
+    如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
 
-!!! tip "提示"
-
-    本教程以前使用 <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>。
-
-    但后来换成了 Python-jose，因为 Python-jose 支持 PyJWT 的所有功能，还支持与其它工具集成时可能会用到的一些其它功能。
+    您可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 获得更多信息。
 
 ## 密码哈希
 
@@ -62,7 +58,7 @@ $ pip install python-jose[cryptography]
 
 原因很简单，假如数据库被盗，窃贼无法获取用户的明文密码，得到的只是哈希值。
 
-这样一来，窃贼就无法在其它应用中使用窃取的密码，要知道，很多用户在所有系统中都使用相同的密码，风险超大）。
+这样一来，窃贼就无法在其它应用中使用窃取的密码（要知道，很多用户在所有系统中都使用相同的密码，风险超大）。
 
 ## 安装 `passlib`
 
@@ -112,9 +108,41 @@ $ pip install passlib[bcrypt]
 
 第三个函数用于身份验证，并返回用户。
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="8  50  57-58  61-62  71-77"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="8  49  56-57  60-61  70-76"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
 
 !!! note "笔记"
 
@@ -160,9 +188,41 @@ $ openssl rand -hex 32
 
 如果令牌无效，则直接返回 HTTP 错误。
 
-```Python hl_lines="89-106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="4 7  14-16  30-32 80-88"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="3 6  12-14  28-30  78-86"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="4 7  13-15  29-31  79-87"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
 
 ## 更新 `/token` *路径操作*
 
@@ -170,9 +230,41 @@ $ openssl rand -hex 32
 
 创建并返回真正的 JWT 访问令牌。
 
-```Python hl_lines="115-130"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.10+"
+
+    ```Python hl_lines="118-133"
+    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="118-133"
+    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="119-134"
+    {!> ../../../docs_src/security/tutorial004_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="115-130"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="116-131"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
 
 ### JWT `sub` 的技术细节
 
@@ -261,7 +353,7 @@ OAuth2 支持**`scopes`**（作用域）。
 
 开发者可以灵活选择最适合项目的安全机制。
 
-还可以直接使用 `passlib` 和 `python-jose` 等维护良好、使用广泛的包，这是因为 **FastAPI** 不需要任何复杂机制，就能集成外部的包。
+还可以直接使用 `passlib` 和 `PyJWT` 等维护良好、使用广泛的包，这是因为 **FastAPI** 不需要任何复杂机制，就能集成外部的包。
 
 而且，**FastAPI** 还提供了一些工具，在不影响灵活、稳定和安全的前提下，尽可能地简化安全机制。
 
