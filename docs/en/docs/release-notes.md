@@ -32,6 +32,16 @@ hide:
 
 ### Translations
 
+* 🌐 Update Chinese translation for `docs/tutorial/security/oauth2-jwt.md`. PR [#11781](https://github.com/tiangolo/fastapi/pull/11781) by [@logan2d5](https://github.com/logan2d5).
+* 📝 Fix image missing in French translation for `docs/fr/docs/async.md` . PR [#11787](https://github.com/tiangolo/fastapi/pull/11787) by [@pe-brian](https://github.com/pe-brian).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/advanced-dependencies.md`. PR [#11775](https://github.com/tiangolo/fastapi/pull/11775) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#11768](https://github.com/tiangolo/fastapi/pull/11768) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐  Add Portuguese translation for `docs/pt/docs/advanced/additional-status-codes.md`. PR [#11753](https://github.com/tiangolo/fastapi/pull/11753) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/index.md`. PR [#11757](https://github.com/tiangolo/fastapi/pull/11757) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/settings.md`. PR [#11739](https://github.com/tiangolo/fastapi/pull/11739) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add French translation for `docs/fr/docs/learn/index.md`. PR [#11712](https://github.com/tiangolo/fastapi/pull/11712) by [@benjaminvandammeholberton](https://github.com/benjaminvandammeholberton).
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/index.md`. PR [#11731](https://github.com/tiangolo/fastapi/pull/11731) by [@vhsenna](https://github.com/vhsenna).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/additional-responses.md`. PR [#11736](https://github.com/tiangolo/fastapi/pull/11736) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/benchmarks.md`. PR [#11713](https://github.com/tiangolo/fastapi/pull/11713) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Fix Korean translation for `docs/ko/docs/tutorial/response-status-code.md`. PR [#11718](https://github.com/tiangolo/fastapi/pull/11718) by [@nayeonkinn](https://github.com/nayeonkinn).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/extra-data-types.md`. PR [#11711](https://github.com/tiangolo/fastapi/pull/11711) by [@nayeonkinn](https://github.com/nayeonkinn).
@@ -56,6 +66,12 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add Fine. PR [#11784](https://github.com/tiangolo/fastapi/pull/11784) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Tweak sponsors: Kong URL. PR [#11765](https://github.com/tiangolo/fastapi/pull/11765) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Tweak sponsors: Kong URL. PR [#11764](https://github.com/tiangolo/fastapi/pull/11764) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, add Stainless. PR [#11763](https://github.com/tiangolo/fastapi/pull/11763) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, add Zuplo. PR [#11729](https://github.com/tiangolo/fastapi/pull/11729) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Sponsor link: Coherence. PR [#11730](https://github.com/tiangolo/fastapi/pull/11730) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#11669](https://github.com/tiangolo/fastapi/pull/11669) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add sponsor Kong. PR [#11662](https://github.com/tiangolo/fastapi/pull/11662) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update Smokeshow, fix sync download artifact and smokeshow configs. PR [#11563](https://github.com/tiangolo/fastapi/pull/11563) by [@tiangolo](https://github.com/tiangolo).
