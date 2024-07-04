@@ -1,6 +1,6 @@
 # Body - Paramètres multiples
 
-Maintenant que nous avons vu comment manipuler `Path` et `Query`, voyons comment faire pour le corps d'une requête, communément désigné par le terme anglais `body`.
+Maintenant que nous avons vu comment manipuler `Path` et `Query`, voyons comment faire pour le corps d'une requête, communément désigné par le terme anglais "body".
 
 ## Mélanger les paramètres `Path`, `Query` et body
 
@@ -102,13 +102,13 @@ Il effectue également la validation des données (même imbriquées les unes da
 
 ## Valeurs scalaires dans le body
 
-De la même façon qu'il existe `Query` et `Path` pour définir des données supplémentaires pour les paramètres `Query` et `Path`, **FastAPI** fournit un équivalent `Body`.
+De la même façon qu'il existe `Query` et `Path` pour définir des données supplémentaires pour les paramètres query et path, **FastAPI** fournit un équivalent `Body`.
 
 Par exemple, en étendant le modèle précédent, vous pouvez vouloir ajouter un paramètre `importance` dans le même body, en plus des paramètres `item` et `user`.
 
-Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.github.com/fr/graphql/reference/scalars), **FastAPI** supposera qu'il s'agit d'un paramètre de query.
+Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.github.com/fr/graphql/reference/scalars), **FastAPI** supposera qu'il s'agit d'un paramètre de requête (`Query`).
 
-Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant l'annotation de déclaration de type, comme dans l'exemple qui suit :
+Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant `Body` :
 === "Python 3.10+"
 
     ```Python hl_lines="23"
@@ -165,17 +165,17 @@ Dans ce cas, **FastAPI** s'attendra à un body semblable à :
 
 Encore une fois, cela convertira les types de données, les validera, permettra de générer la documentation, etc...
 
-## Paramètres multiples `Body` et `Query`
+## Paramètres multiples body et query
 
-Bien entendu, vous pouvez déclarer autant de paramètres que vous le souhaitez, en plus des paramètres `Body` déjà déclarés.
+Bien entendu, vous pouvez déclarer autant de paramètres que vous le souhaitez, en plus des paramètres body déjà déclarés.
 
-Par défaut, les valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) sont interprétés comme des paramètres query, donc inutile d'ajouter explicitement `Query`. Vous pouvez juste écrire :
+Par défaut, les valeurs [scalaires](https://docs.github.com/fr/graphql/reference/scalars) sont interprétées comme des paramètres query, donc inutile d'ajouter explicitement `Query`. Vous pouvez juste écrire :
 
 ```Python
 q: Union[str, None] = None
 ```
 
-Ou bien, en Python 3.10 et au-delà :
+Ou bien, en Python 3.10 et supérieur :
 
 ```Python
 q: str | None = None
@@ -224,7 +224,7 @@ Par exemple :
 
 ## Inclure un paramètre imbriqué dans le body
 
-Disons que vous avez seulement un paramètre `item` dans le body, équivalent à un modèle Pydantic `Item`.
+Disons que vous avez seulement un paramètre `item` dans le body, correspondant à un modèle Pydantic `Item`.
 
 Par défaut, **FastAPI** attendra sa déclaration directement dans le body.
 
@@ -272,7 +272,7 @@ Voici un exemple complet :
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-Dans ce cas **FastAPI** attendra un `Body` semblable à :
+Dans ce cas **FastAPI** attendra un body semblable à :
 
 ```JSON hl_lines="2"
 {
