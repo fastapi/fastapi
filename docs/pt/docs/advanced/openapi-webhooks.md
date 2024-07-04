@@ -46,6 +46,6 @@ Isto porque espera-se que os **seus usuários** definam o verdadeiro **caminho d
 
 Agora você pode iniciar a sua aplicação e ir até <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Você verá que a sua documentação possui as *operações de rota* normals e agora também possui alguns **webhooks**:
+Você verá que a sua documentação possui as *operações de rota* normais e agora também possui alguns **webhooks**:
 
 <img src="/img/tutorial/openapi-webhooks/image01.png">
