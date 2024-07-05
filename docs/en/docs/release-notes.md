@@ -32,6 +32,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/fastapi-cli.md`. PR [#11786](https://github.com/tiangolo/fastapi/pull/11786) by [@logan2d5](https://github.com/logan2d5).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/openapi-webhooks.md`. PR [#11791](https://github.com/tiangolo/fastapi/pull/11791) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Update Chinese translation for `docs/tutorial/security/oauth2-jwt.md`. PR [#11781](https://github.com/tiangolo/fastapi/pull/11781) by [@logan2d5](https://github.com/logan2d5).
 * 📝 Fix image missing in French translation for `docs/fr/docs/async.md` . PR [#11787](https://github.com/tiangolo/fastapi/pull/11787) by [@pe-brian](https://github.com/pe-brian).
