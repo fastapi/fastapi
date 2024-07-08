@@ -1,6 +1,4 @@
-from django.contrib.auth import (
-    aget_user,
-)
+from django.contrib.auth import aget_user
 from fastapi import FastAPI
 from fastapi.django import DjangoMiddleware, DjangoRequestDep
 from fastapi.testclient import TestClient
