@@ -76,7 +76,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 {"message": "Hello World"}
 ```
 
-### Інтерактивна API документація 
+### Інтерактивна API документація
 
 Перейдемо сюди <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -84,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Альтернативна API документація 
+### Альтернативна API документація
 
 Тепер перейдемо сюди <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -250,7 +250,7 @@ https://example.com/items/foo
     Ви розташовуєте його над функцією. Як гарний декоративний капелюх (мабуть, звідти походить термін).
 
     "Декоратор" приймає функцію нижче і виконує з нею якусь дію.
-    
+
     У нашому випадку, цей декоратор повідомляє **FastAPI**, що функція нижче відповідає **шляху** `/` і **операції** `get`.
 
     Це і є "декоратор операції шляху (path operation decorator)".
