@@ -227,9 +227,9 @@ When building APIs, you normally use these specific HTTP methods to perform a sp
 
 Normally you use:
 
-* `POST`: to create data.
+* `POST`: to create, append, or update data in a data record.
 * `GET`: to read data.
-* `PUT`: to update data.
+* `PUT`: to create or replace a data record.
 * `DELETE`: to delete data.
 
 So, in OpenAPI, each of the HTTP methods is called an "operation".
