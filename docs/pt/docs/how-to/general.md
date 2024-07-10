@@ -36,5 +36,5 @@ Para customizar a URL do OpenAPI (ou remove-la), leia a seção [Tutorial - Meta
 
 ## URLs de documentação do OpenAPI
 
-Para atualizar as URLs usadas 
+Para atualizar as URLs usadas
 Para atualizar as URLs usadas ​​para as interfaces de usuário da documentação geradas automaticamente, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
