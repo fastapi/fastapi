@@ -1,6 +1,6 @@
 # Dependências Globais
 
-para alguns tipos de aplicação específicos você pode querer adicionar dependências para toda a aplicação.
+Para alguns tipos de aplicação específicos você pode querer adicionar dependências para toda a aplicação.
 
 De forma semelhante a [adicionar dependências (`dependencies`) em *decoradores de operação de rota*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, você pode adicioná-las à aplicação `FastAPI`.
 
