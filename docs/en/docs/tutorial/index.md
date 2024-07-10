@@ -1,18 +1,18 @@
-# Tutorial - User Guide
+# Rehber - Kullanıcı Kılavuzu
 
-This tutorial shows you how to use **FastAPI** with most of its features, step by step.
+Bu rehber, **FastAPI** birçok özelliğini adım adım nasıl kullanacağınızı gösteriyor.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+Her bölüm kademeli olarak bir öncekinin üzerine inşa edilir, ancak ayrı konulara göre yapılandırılmıştır, böylece belirli API ihtiyaçlarınızı çözmek için doğrudan belirli bir bölüme gidebilirsiniz.
 
-It is also built to work as a future reference.
+Ayrıca gelecekte referans olarak kullanılmak üzere tasarlanmıştır.
 
-So you can come back and see exactly what you need.
+Böylece geri gelebilir ve tam olarak neye ihtiyacınız olduğunu görebilirsiniz.
 
-## Run the code
+## Kodu çalıştır
 
-All the code blocks can be copied and used directly (they are actually tested Python files).
+Tüm kod blokları kopyalanabilir ve doğrudan kullanılabilir (bunlar aslında test edilmiş Python dosyalarıdır).
 
-To run any of the examples, copy the code to a file `main.py`, and start `fastapi dev` with:
+Örneklerden herhangi birini çalıştırmak için kodu `main.py` dosyasına kopyalayın ve `fastapi dev` ile başlatın:
 
 <div class="termy">
 
@@ -63,15 +63,15 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.
+Kodu yazmanız veya kopyalamanız, düzenlemeniz ve yerel olarak çalıştırmanız **ŞİDDETLE** tavsiye edilir.
 
-Using it in your editor is what really shows you the benefits of FastAPI, seeing how little code you have to write, all the type checks, autocompletion, etc.
+Editörünüzde kullanmak, FastAPI'ın faydalarını size gerçekten gösteren şeydir, ne kadar az kod yazmanız gerektiğini, tüm tip kontrollerini, otomatik tamamlamayı vb. görürsünüz.
 
 ---
 
-## Install FastAPI
+## FastAPI'ı Yükleme
 
-The first step is to install FastAPI:
+FastAPI'ı yüklemenin ilk adımı:
 
 <div class="termy">
 
@@ -83,17 +83,17 @@ $ pip install fastapi
 
 </div>
 
-!!! note
-    When you install with `pip install fastapi` it comes with some default optional standard dependencies.
+!!! Not
+`pip install fastapi` ile kurulum yaptığınızda, bazı varsayılan isteğe bağlı standart bağımlılıklarla birlikte gelir.
 
-    If you don't want to have those optional dependencies, you can instead install `pip install fastapi-slim`.
+    Bu isteğe bağlı bağımlılıklara sahip olmak istemiyorsanız, bunun yerine `pip install fastapi-slim` ile yükleyebilirsiniz.
 
-## Advanced User Guide
+## Gelişmiş Kullanıcı Kılavuzu
 
-There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+Ayrıca, bu **Rehber - Kullanıcı Kılavuzu'ndan** sonra okuyabileceğiniz bir **Gelişmiş Kullanıcı Kılavuzu** da bulunmaktadır.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+**Gelişmiş Kullanıcı Kılavuzu**, bunun üzerine inşa edilmiştir, aynı kavramları kullanır ve size bazı ekstra özellikler öğretir.
 
-But you should first read the **Tutorial - User Guide** (what you are reading right now).
+Ancak önce **Rehber - Kullanıcı Kılavuzu'nu** (şu anda okumakta olduğunuz) okumalısınız.
 
-It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+Bu doküman sadece **Rehber - Kullanıcı Kılavuzu** ile eksiksiz bir uygulama oluşturabileceğiniz ve daha sonra uygulamanızı **Gelişmiş Kullanıcı Kılavuzu'ndaki** bazı ek fikirleri kullanarak ve ihtiyaçlarınıza bağlı olarak farklı şekillerde genişletebileceğiniz şekilde tasarlanmıştır.
