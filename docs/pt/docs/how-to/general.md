@@ -7,19 +7,19 @@ Aqui estão vários links para outros locais na documentação, para perguntas g
 Para assegurar que você não vai retornar mais dados do que deveria, leia a seção [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank}.
 
 ## Tags de Documentação - OpenAPI
-Para adicionar tags aos seus *paths*, e agrupa-los no UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
+Para adicionar tags as suas *rotas*, e agrupa-los no UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
 
 ## Resumo e Descrição da documentação - OpenAPI
 
-Para adicionar um resumo e uma descrição aos seus *paths*, e exibi-los na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank}.
+Para adicionar um resumo e uma descrição as suas *rotas*, e exibi-los na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank}.
 
 ## Documentação das Descrições de Resposta - OpenAPI
 
 Para definir a descrição de uma resposta, exibida na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank}.
 
-## Documentação para Depreciar um *Path Operation* - OpenAPI
+## Documentação para Depreciar uma *Operação de Rota* - OpenAPI
 
-Para depreciar um *path operation*, e exibi-lo na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Deprecation](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
+Para depreciar uma *operação de rota*, e exibi-la na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Deprecation](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
 
 ## Converter qualquer dado para JSON
 
@@ -28,7 +28,7 @@ Para converter qualquer dado para um formato compatível com JSON, leia a seçã
 
 ## OpenAPI Metadata - Docs
 
-Para adicionar metadados ao seu OpenAPI schema, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md){.internal-link target=_blank}.
+Para adicionar metadados ao seu esquema OpenAPI, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md){.internal-link target=_blank}.
 
 ## OpenAPI com URL customizada
 
@@ -36,5 +36,4 @@ Para customizar a URL do OpenAPI (ou remove-la), leia a seção [Tutorial - Meta
 
 ## URLs de documentação do OpenAPI
 
-Para atualizar as URLs usadas
-Para atualizar as URLs usadas ​​para as interfaces de usuário da documentação geradas automaticamente, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
+Para alterar as URLs usadas ​​para as interfaces de usuário da documentação gerada automaticamente, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
