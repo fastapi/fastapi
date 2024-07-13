@@ -6,6 +6,7 @@ from fastapi.security.base import SecurityBase
 
 class SecurityRequirement:
     """Initialize an instance of SecurityRequirement class."""
+
     def __init__(
         self, security_scheme: SecurityBase, scopes: Optional[Sequence[str]] = None
     ):
@@ -15,6 +16,7 @@ class SecurityRequirement:
 
 class Dependant:
     """Initialize an instance of Dependant class."""
+
     def __init__(
         self,
         *,
