@@ -56,7 +56,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 The command line program called `fastapi` is **FastAPI CLI**.
 
-FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatically detects the variable with the FastAPI (commonly named `app`), determines the correct import process, and then serves it.
+FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatically detects the `FastAPI` instance (commonly named `app`), determines the correct import process, and then serves it.
 
 For production you would use `fastapi run` instead. 🚀
 
