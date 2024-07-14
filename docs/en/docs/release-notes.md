@@ -7,19 +7,15 @@ hide:
 
 ## Latest Changes
 
-* 🌐 Add Turkish translation for `docs/tr/docs/tutorial/request-forms.md`. PR [#11553](https://github.com/tiangolo/fastapi/pull/11553) by [@hasansezertasan](https://github.com/hasansezertasan).
-
 ### Upgrades
 
-* 📝 Restored Swagger-UI links to use the latest version possible.. PR [#11459](https://github.com/tiangolo/fastapi/pull/11459) by [@UltimateLobster](https://github.com/UltimateLobster).
+* 📝 Restored Swagger-UI links to use the latest version possible. PR [#11459](https://github.com/tiangolo/fastapi/pull/11459) by [@UltimateLobster](https://github.com/UltimateLobster).
 
 ### Docs
 
-* 🌐 Fix link in German translation. PR [#11836](https://github.com/tiangolo/fastapi/pull/11836) by [@anitahammer](https://github.com/anitahammer).
 * 📝  Update docs with Ariadne reference from Starlette to FastAPI. PR [#11797](https://github.com/tiangolo/fastapi/pull/11797) by [@DamianCzajkowski](https://github.com/DamianCzajkowski).
 * 📝 Update fastapi instrumentation external link. PR [#11317](https://github.com/tiangolo/fastapi/pull/11317) by [@softwarebloat](https://github.com/softwarebloat).
 * ✏️ Fix links to alembic example repo in docs. PR [#11628](https://github.com/tiangolo/fastapi/pull/11628) by [@augiwan](https://github.com/augiwan).
-* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/sub-dependencies.md`. PR [#11792](https://github.com/tiangolo/fastapi/pull/11792) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * ✏️ Update `docs/en/docs/fastapi-cli.md`. PR [#11715](https://github.com/tiangolo/fastapi/pull/11715) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update External Links . PR [#11500](https://github.com/tiangolo/fastapi/pull/11500) by [@devon2018](https://github.com/devon2018).
 * 📝 Add External Link: Tutorial de FastAPI, ¿el mejor framework de Python?. PR [#11618](https://github.com/tiangolo/fastapi/pull/11618) by [@EduardoZepeda](https://github.com/EduardoZepeda).
@@ -37,6 +33,9 @@ hide:
 
 ### Translations
 
+* 🌐 Fix link in German translation. PR [#11836](https://github.com/tiangolo/fastapi/pull/11836) by [@anitahammer](https://github.com/anitahammer).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/sub-dependencies.md`. PR [#11792](https://github.com/tiangolo/fastapi/pull/11792) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add Turkish translation for `docs/tr/docs/tutorial/request-forms.md`. PR [#11553](https://github.com/tiangolo/fastapi/pull/11553) by [@hasansezertasan](https://github.com/hasansezertasan).
 * 🌐 Add Portuguese translation for `docs/pt/docs/reference/exceptions.md`. PR [#11834](https://github.com/tiangolo/fastapi/pull/11834) by [@lucasbalieiro](https://github.com/lucasbalieiro).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/global-dependencies.md`. PR [#11826](https://github.com/tiangolo/fastapi/pull/11826) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/how-to/general.md`. PR [#11825](https://github.com/tiangolo/fastapi/pull/11825) by [@lucasbalieiro](https://github.com/lucasbalieiro).
