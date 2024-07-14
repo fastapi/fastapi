@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.111.1
+
 ### Upgrades
 
 * ➖ Remove `orjson` and `ujson` from default dependencies. PR [#11842](https://github.com/tiangolo/fastapi/pull/11842) by [@tiangolo](https://github.com/tiangolo).
