@@ -33,6 +33,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/reference/exceptions.md`. PR [#11834](https://github.com/tiangolo/fastapi/pull/11834) by [@lucasbalieiro](https://github.com/lucasbalieiro).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/global-dependencies.md`. PR [#11826](https://github.com/tiangolo/fastapi/pull/11826) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/how-to/general.md`. PR [#11825](https://github.com/tiangolo/fastapi/pull/11825) by [@lucasbalieiro](https://github.com/lucasbalieiro).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/async-tests.md`. PR [#11808](https://github.com/tiangolo/fastapi/pull/11808) by [@ceb10n](https://github.com/ceb10n).
