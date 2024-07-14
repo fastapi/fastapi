@@ -2,7 +2,7 @@
 
 Como **FastAPI** está basado en el estándar **ASGI**, es muy fácil integrar cualquier library **GraphQL** que sea compatible con ASGI.
 
-Puedes combinar *operaciones regulares de ruta* de la library de FastAPI con GraphQL en la misma aplicación.
+Puedes combinar *operaciones de path* regulares de la library de FastAPI con GraphQL en la misma aplicación.
 
 !!! tip
     **GraphQL** resuelve algunos casos de uso específicos.
@@ -13,12 +13,12 @@ Puedes combinar *operaciones regulares de ruta* de la library de FastAPI con Gra
 
 ## Librerías GraphQL
 
-Aquí hay algunas de las libreries de **GraphQL** que tienen soporte con **ASGI** las cuales podrías usar con **FastAPI**:
+Aquí hay algunas de las libraries de **GraphQL** que tienen soporte con **ASGI** las cuales podrías usar con **FastAPI**:
 
 * <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> 🍓
     * Con <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">documentación para FastAPI</a>
 * <a href="https://ariadnegraphql.org/" class="external-link" target="_blank">Ariadne</a>
-    * Con <a href="https://ariadnegraphql.org/docs/starlette-integration" class="external-link" target="_blank">documentación para Starlette</a> (Aplica para FastAPI)
+    * Con <a href="https://ariadnegraphql.org/docs/fastapi-integration" class="external-link" target="_blank">documentación para FastAPI</a>
 * <a href="https://tartiflette.io/" class="external-link" target="_blank">Tartiflette</a>
     * Con <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a> para proveer integración con ASGI
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
@@ -40,11 +40,11 @@ Puedes aprender más sobre Strawberry en la <a href="https://strawberry.rocks/" 
 
 Y también en la documentación sobre <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry con FastAPI</a>.
 
-## Clase deprecada `GraphQLApp` en Starlette
+## Clase obsoleta `GraphQLApp` en Starlette
 
 Versiones anteriores de Starlette incluyen la clase `GraphQLApp` para integrarlo con <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
 
-Esto fue deprecado de Starlette, pero si aún tienes código que lo usa, puedes fácilmente **migrar** a <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, la cual cubre el mismo caso de uso y tiene una **interfaz casi idéntica.**
+Esto fue marcado como obsoleto en Starlette, pero si aún tienes código que lo usa, puedes fácilmente **migrar** a <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, la cual cubre el mismo caso de uso y tiene una **interfaz casi idéntica.**
 
 !!! tip
     Si necesitas GraphQL, te recomendaría revisar <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, que es basada en anotaciones de tipo en vez de clases y tipos personalizados.
