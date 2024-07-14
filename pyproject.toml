@@ -61,10 +61,6 @@ standard = [
     "jinja2 >=2.11.2",
     # For forms and file uploads
     "python-multipart >=0.0.7",
-    # For UJSONResponse
-    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
-    # For ORJSONResponse
-    "orjson >=3.2.1",
     # To validate email fields
     "email_validator >=2.0.0",
     # Uvicorn with uvloop
