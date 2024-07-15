@@ -226,9 +226,9 @@ A sequência de execução é mais ou menos como esse diagrama. O tempo passa do
 sequenceDiagram
 
 participant client as Cliente
-participant handler as Manipulador de exceções 
+participant handler as Manipulador de exceções
 participant dep as Dep com yield
-participant operation as Operação de Rota 
+participant operation as Operação de Rota
 participant tasks as Tarefas de Background
 
     Note over client,operation: pode lançar exceções, incluindo HTTPException
@@ -244,7 +244,7 @@ participant tasks as Tarefas de Background
         opt handle
             dep -->> dep: Pode capturar exceções, lançar uma nova HTTPException, lançar outras exceções
         end
-        handler -->> client: resposta de erro HTTP 
+        handler -->> client: resposta de erro HTTP
     end
 
     operation ->> client: Retornar resposta ao cliente
