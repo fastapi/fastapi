@@ -18,7 +18,7 @@ Hier sind einige der **GraphQL**-Bibliotheken, welche **ASGI** unterstützen. Di
 * <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> 🍓
     * Mit <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Dokumentation für FastAPI</a>
 * <a href="https://ariadnegraphql.org/" class="external-link" target="_blank">Ariadne</a>
-    * Mit <a href="https://ariadnegraphql.org/docs/starlette-integration" class="external-link" target="_blank">Dokumentation für Starlette</a> (welche auch für FastAPI gilt)
+    * Mit <a href="https://ariadnegraphql.org/docs/fastapi-integration" class="external-link" target="_blank">Dokumentation für FastAPI</a>
 * <a href="https://tartiflette.io/" class="external-link" target="_blank">Tartiflette</a>
     * Mit <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a>, für ASGI-Integration
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
