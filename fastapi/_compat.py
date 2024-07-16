@@ -47,7 +47,6 @@ sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
-    from pydantic.errors import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
     from pydantic import TypeAdapter
     from pydantic import ValidationError as ValidationError
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
@@ -55,6 +54,9 @@ if PYDANTIC_V2:
     )
     from pydantic._internal._typing_extra import eval_type_lenient
     from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
+    from pydantic.errors import (
+        PydanticUndefinedAnnotation as PydanticUndefinedAnnotation,
+    )
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
