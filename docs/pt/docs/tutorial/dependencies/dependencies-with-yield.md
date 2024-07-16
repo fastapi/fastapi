@@ -19,7 +19,7 @@ Para fazer isso, utilize `yield` em vez de `return`, e escreva os passos extras 
 
 ## Uma dependência de banco de dados com `yield`
 
-por exemplo, você poderia utilizar isso para criar uma sessão do banco de dados, e fechá-la após terminar sua operação.
+Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dados, e fechá-la após terminar sua operação.
 
 Apenas o código anterior a declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta.
 
@@ -288,7 +288,7 @@ Isso foi implementado dessa forma principalmente para permitir que os mesmos obj
 
 Ainda assim, como isso exigiria esperar que a resposta navegasse pela rede enquanto mantia ativo um recurso desnecessário na dependência com yield (por exemplo, uma conexão com banco de dados), isso mudou na versão 0.106.0 do FastAPI.
 
-!!! tip "dica"
+!!! tip "Dica"
 
     Adicionalmente, uma tarefa de background é, normalmente, um conjunto de lógicas independentes que devem ser manipuladas separadamente, com seus próprios recursos (e.g. sua própria conexão com banco de dados).
 
@@ -325,7 +325,7 @@ Quando você cria uma dependência com `yield`, o **FastAPI** irá criar um gere
 
     Se você está apenas iniciando com o **FastAPI** você pode querer pular isso por enquanto.
 
-em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> criar uma classe com dois métodos: `__enter__()` e `__exit__()`</a>.
+Em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> criar uma classe com dois métodos: `__enter__()` e `__exit__()`</a>.
 
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar `with` ou `async with` dentro da função da dependência:
 
@@ -336,7 +336,7 @@ Você também pode usá-los dentro de dependências com `yield` do **FastAPI** a
 !!! tip "Dica"
     Outra forma de criar um gerenciador de contexto é utilizando:
 
-    *<a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ou
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ou
 
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
