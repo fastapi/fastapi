@@ -47,6 +47,7 @@ sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
+    from pydantic.errors import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
     from pydantic import TypeAdapter
     from pydantic import ValidationError as ValidationError
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
@@ -356,6 +357,9 @@ else:
         ref_template: str
 
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
+        pass
+
+    class PydanticUndefinedAnnotation(Exception):  # type: ignore[no-redef]
         pass
 
     def with_info_plain_validator_function(  # type: ignore[misc]
