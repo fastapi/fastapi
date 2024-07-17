@@ -37,19 +37,19 @@ Using that combination, Gunicorn would act as a **process manager**, listening o
 
 And then the Gunicorn-compatible **Uvicorn worker** class would be in charge of converting the data sent by Gunicorn to the ASGI standard for FastAPI to use it.
 
-## Install Gunicorn and Uvicorn
+## Install Gunicorn and Uvicorn Worker
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]" gunicorn
+$ pip install "uvicorn[standard]" gunicorn uvicorn-worker
 
 ---> 100%
 ```
 
 </div>
 
-That will install both Uvicorn with the `standard` extra packages (to get high performance) and Gunicorn.
+That will install Uvicorn with the `standard` extra packages (to get high performance), Gunicorn, and the Uvicorn Worker package [(`uvicorn.workers` module has been deprecated on Uvicorn Version 0.30.0)](https://github.com/encode/uvicorn/pull/2302).
 
 ## Run Gunicorn with Uvicorn Workers
 
@@ -58,11 +58,11 @@ Then you can run Gunicorn with:
 <div class="termy">
 
 ```console
-$ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80
+$ gunicorn main:app --workers 4 --worker-class uvicorn_worker.UvicornWorker --bind 0.0.0.0:80
 
 [19499] [INFO] Starting gunicorn 20.1.0
 [19499] [INFO] Listening at: http://0.0.0.0:80 (19499)
-[19499] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[19499] [INFO] Using worker: uvicorn_worker.UvicornWorker
 [19511] [INFO] Booting worker with pid: 19511
 [19513] [INFO] Booting worker with pid: 19513
 [19514] [INFO] Booting worker with pid: 19514
@@ -100,7 +100,7 @@ Let's see what each of those options mean:
     * Here we pass the class that Gunicorn can import and use with:
 
         ```Python
-        import uvicorn.workers.UvicornWorker
+        import uvicorn_worker.UvicornWorker
         ```
 
 * `--bind`: This tells Gunicorn the IP and the port to listen to, using a colon (`:`) to separate the IP and the port.
@@ -112,7 +112,7 @@ You can see that:
 
 * The Gunicorn **process manager** starts with PID `19499` (in your case it will be a different number).
 * Then it starts `Listening at: http://0.0.0.0:80`.
-* Then it detects that it has to use the worker class at `uvicorn.workers.UvicornWorker`.
+* Then it detects that it has to use the worker class at `uvicorn_worker.UvicornWorker`.
 * And then it starts **4 workers**, each with its own PID: `19511`, `19513`, `19514`, and `19515`.
 
 Gunicorn would also take care of managing **dead processes** and **restarting** new ones if needed to keep the number of workers. So that helps in part with the **restart** concept from the list above.
