@@ -62,7 +62,7 @@ Você verá a documentação automática da API para a sub-aplicação, incluind
 
 Se você tentar interagir com qualquer uma das duas interfaces de usuário, elas funcionarão corretamente, porque o navegador será capaz de se comunicar com cada aplicação ou sub-aplicação específica.
 
-### `root_path` Detalhes Técnicos: `root_path`
+### Detalhes Técnicos: `root_path`
 
 Quando você monta uma sub-aplicação como descrito acima, o FastAPI se encarrega de comunicar o caminho de montagem para a sub-aplicação usando um mecanismo da especificação ASGI chamado `root_path`.
 
