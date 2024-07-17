@@ -156,7 +156,7 @@ Em um caso como esse (sem um prefixo de caminho removido), o proxy escutaria em 
 
 Você pode facilmente executar o experimento localmente com um prefixo de caminho removido usando <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Baixar o Traefik</a>,  é um único binário, você pode extrair o arquivo compactado e executá-lo diretamente do terminal.
+<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Faça o download do Traefik.</a>, Ele é um único binário e você pode extrair o arquivo compactado e executá-lo diretamente do terminal.
 
 Então, crie um arquivo `traefik.toml` com:
 
