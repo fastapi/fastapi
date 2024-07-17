@@ -43,7 +43,7 @@ browser --> proxy
 proxy --> server
 ```
 
-!!! dica
+!!! tip "Dica"
     O IP `0.0.0.0` é comumente usado para significar que o programa escuta em todos os IPs disponíveis naquela máquina/servidor.
 
 A interface de documentação também precisaria do OpenAPI schema para declarar que API `server` está localizado em `/api/v1` (atrás do proxy). Por exemplo:
@@ -81,7 +81,7 @@ $ fastapi run main.py --root-path /api/v1
 
 Se você usar Hypercorn, ele também tem a opção `--root-path`.
 
-!!! nota "Detalhes Técnicos"
+!!! note "Detalhes Técnicos"
     A especificação ASGI define um `root_path` para esse caso de uso.
 
     E a opção de linha de comando `--root-path` fornece esse `root_path`.
@@ -172,7 +172,7 @@ Então, crie um arquivo `traefik.toml` com:
 
 Isso diz ao Traefik para escutar na porta 9999 e usar outro arquivo `routes.toml`.
 
-!!! dica
+!!! tip "Dica"
     Estamos usando a porta 9999 em vez da porta padrão HTTP 80 para que você não precise executá-lo com privilégios de administrador (`sudo`).
 
 Agora crie esse outro arquivo `routes.toml`:
@@ -239,7 +239,7 @@ Agora, se você for ao URL com a porta para o Uvicorn: <a href="http://127.0.0.1
 }
 ```
 
-!!! dica
+!!! tip "Dica"
     Perceba que, mesmo acessando em `http://127.0.0.1:8000/app`, ele mostra o `root_path` de `/api/v1`, retirado da opção `--root-path`.
 
 E agora abra o URL com a porta para o Traefik, incluindo o prefixo de caminho: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
@@ -283,7 +283,7 @@ Isso porque o FastAPI usa esse `root_path` para criar o `server` padrão no Open
 
 ## Servidores adicionais
 
-!!! aviso
+!!! warning "Aviso"
     Este é um caso de uso mais avançado. Sinta-se à vontade para pular.
 
 Por padrão, o **FastAPI** criará um `server` no OpenAPI schema com o URL para o `root_path`.
@@ -323,14 +323,14 @@ Gerará um OpenAPI schema como:
 }
 ```
 
-!!! dica
+!!! tip "Dica"
     Perceba o servidor gerado automaticamente com um valor `url` de `/api/v1`, retirado do `root_path`.
 
 Na interface de documentação em <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> parecerá:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-!!! dica
+!!! tip "Dica"
     A interface de documentação interagirá com o servidor que você selecionar.
 
 ### Desabilitar servidor automático de `root_path`
