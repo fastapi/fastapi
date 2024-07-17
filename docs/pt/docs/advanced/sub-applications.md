@@ -1,8 +1,8 @@
-# Sub Applications - Montagens
+# Sub Aplicações - Montagens
 
 Se você precisar ter duas aplicações FastAPI independentes, cada uma com seu próprio OpenAPI e suas próprias interfaces de documentação, você pode ter um aplicativo principal e "montar" uma (ou mais) sub-aplicações.
 
-## Mountando uma aplicação **FastAPI**
+## Montando uma aplicação **FastAPI**
 
 "Montar" significa adicionar uma aplicação completamente "independente" em um caminho específico, que então se encarrega de lidar com tudo sob esse caminho, com as operações de caminho declaradas nessa sub-aplicação.
 

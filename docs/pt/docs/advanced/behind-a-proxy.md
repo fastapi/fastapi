@@ -345,6 +345,6 @@ e então ele não será incluído no OpenAPI schema.
 
 ## Montando uma sub-aplicação
 
-Se você precisar montar uma sub-aplicação (como descrito em [Sub Applications - Montagens](sub-applications.md){.internal-link target=_blank}) enquanto também usa um proxy com `root_path`, você pode fazer isso normalmente, como esperaria.
+Se você precisar montar uma sub-aplicação (como descrito em [Sub Aplicações - Montagens](sub-applications.md){.internal-link target=_blank}) enquanto também usa um proxy com `root_path`, você pode fazer isso normalmente, como esperaria.
 
 O FastAPI usará internamente o `root_path` de forma inteligente, então tudo funcionará. ✨
