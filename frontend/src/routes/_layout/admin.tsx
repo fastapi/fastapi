@@ -20,6 +20,7 @@ import { Suspense } from "react"
 import { type UserPublic, UsersService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
+import AddUser from "../../components/Admin/AddUser"
 
 export const Route = createFileRoute("/_layout/admin")({
   component: Admin,
@@ -93,7 +94,7 @@ function Admin() {
       <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
         User Management
       </Heading>
-      <Navbar type={"User"} />
+      <Navbar type={"User"} addModalAs={AddUser}/>
       <TableContainer>
         <Table fontSize="md" size={{ base: "sm", md: "md" }}>
           <Thead>

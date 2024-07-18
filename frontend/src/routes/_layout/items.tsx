@@ -20,6 +20,7 @@ import { useEffect } from "react"
 import { ItemsService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
+import AddItem from "../../components/Items/AddItem"
 
 const itemsSearchSchema = z.object({
   page: z.number().catch(1),
@@ -135,7 +136,7 @@ function Items() {
         Items Management
       </Heading>
 
-      <Navbar type={"Item"} />
+      <Navbar type={"Item"} addModalAs={AddItem}/>
       <ItemsTable />
     </Container>
   )
