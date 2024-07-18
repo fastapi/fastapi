@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#11848](https://github.com/tiangolo/fastapi/pull/11848) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/reference/apirouter.md`. PR [#11843](https://github.com/tiangolo/fastapi/pull/11843) by [@lucasbalieiro](https://github.com/lucasbalieiro).
 
 ### Internal
