@@ -21,6 +21,7 @@
 
 ### Refactors
 
+* ♻️ Abstraction of specific AddModal component out of the Navbar. PR [#1246](https://github.com/tiangolo/full-stack-fastapi-template/pull/1246) by [@ajbloureiro](https://github.com/ajbloureiro).
 * ♻️ Update `login.tsx` to prevent error if username or password are empty. PR [#1257](https://github.com/tiangolo/full-stack-fastapi-template/pull/1257) by [@jmondaud](https://github.com/jmondaud).
 * ♻️ Refactor recover password. PR [#1242](https://github.com/tiangolo/full-stack-fastapi-template/pull/1242) by [@alejsdev](https://github.com/alejsdev).
 * 🎨 Format and lint . PR [#1243](https://github.com/tiangolo/full-stack-fastapi-template/pull/1243) by [@alejsdev](https://github.com/alejsdev).
