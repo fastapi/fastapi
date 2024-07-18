@@ -88,6 +88,7 @@ function Login() {
           <Input
             id="username"
             {...register("username", {
+              required: "Username is required",
               pattern: emailPattern,
             })}
             placeholder="Email"
@@ -101,7 +102,9 @@ function Login() {
         <FormControl id="password" isInvalid={!!error}>
           <InputGroup>
             <Input
-              {...register("password")}
+              {...register("password", {
+              required: "Password is required",
+              })}
               type={show ? "text" : "password"}
               placeholder="Password"
               required
@@ -113,6 +116,7 @@ function Login() {
               }}
             >
               <Icon
+                as={show ? ViewOffIcon : ViewIcon}
                 onClick={setShow.toggle}
                 aria-label={show ? "Hide password" : "Show password"}
               >
