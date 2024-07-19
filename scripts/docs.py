@@ -343,6 +343,7 @@ def langs_json():
             langs.append(lang_path.name)
     print(json.dumps(langs))
 
+
 def get_last_commit_date(repo_path, file_path):
     """
     Function to get the last commit date of a specific file in a repository
@@ -355,6 +356,7 @@ def get_last_commit_date(repo_path, file_path):
     except Exception as e:
         print(f"Error accessing the repository or file: {e}")
     return None
+
 
 def compare_commits(en_repo_path, lang_repo_path, en_file, lang_file):
     """
@@ -370,17 +372,21 @@ def compare_commits(en_repo_path, lang_repo_path, en_file, lang_file):
         return en_file, lang_file, en_date, "Does not exist"
     return None
 
+
 def display_loading_indicator():
-    spinner = ['|', '/', '-', '\\']
+    spinner = ["|", "/", "-", "\\"]
     while True:
         for symbol in spinner:
-            sys.stdout.write(f'\rProcessing... {symbol}')
+            sys.stdout.write(f"\rProcessing... {symbol}")
             sys.stdout.flush()
             time.sleep(0.1)
 
+
 @app.command()
 def check_outdated(
-    language_code: str = typer.Argument(..., callback=lang_callback, autocompletion=complete_existing_lang)
+    language_code: str = typer.Argument(
+        ..., callback=lang_callback, autocompletion=complete_existing_lang
+    ),
 ):
     """
     This command checks if there are any outdated translations,
@@ -390,8 +396,8 @@ def check_outdated(
 
         /root/of/fastapi$: python ./scripts/docs.py check_outdated <language_code>
     """
-    en_repo_path = './docs/en'
-    lang_repo_path = f'./docs/{language_code}'
+    en_repo_path = "./docs/en"
+    lang_repo_path = f"./docs/{language_code}"
 
     outdated_files = []
 
@@ -404,27 +410,41 @@ def check_outdated(
         # Walk through the translated documentation directory
         for root, _, files in os.walk(lang_repo_path):
             for file in files:
-                if file.endswith('.md'):
-                    lang_file_relative_path = os.path.relpath(os.path.join(root, file), lang_repo_path)
+                if file.endswith(".md"):
+                    lang_file_relative_path = os.path.relpath(
+                        os.path.join(root, file), lang_repo_path
+                    )
                     en_file_path = os.path.join(en_repo_path, lang_file_relative_path)
-                    lang_file_path = os.path.join('docs', language_code, lang_file_relative_path)
+                    lang_file_path = os.path.join(
+                        "docs", language_code, lang_file_relative_path
+                    )
 
-                    result = compare_commits(en_repo_path, lang_repo_path, en_file_path, lang_file_path)
+                    result = compare_commits(
+                        en_repo_path, lang_repo_path, en_file_path, lang_file_path
+                    )
                     if result:
                         outdated_files.append(result)
     finally:
         # Stop the loading indicator
-        sys.stdout.write('\rDone!                \n')
+        sys.stdout.write("\rDone!                \n")
         sys.stdout.flush()
 
     # Print the result in a table format
     if outdated_files:
         print("Outdated files:")
-        table = [["English File", "Translated File", "English Last Commit", "Translation Last Commit"]]
+        table = [
+            [
+                "English File",
+                "Translated File",
+                "English Last Commit",
+                "Translation Last Commit",
+            ]
+        ]
         table.extend(outdated_files)
         print(tabulate(table, headers="firstrow", tablefmt="grid"))
     else:
         print("All files are up-to-date.")
+
 
 if __name__ == "__main__":
     app()
