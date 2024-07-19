@@ -5,8 +5,8 @@ import re
 import shutil
 import subprocess
 import sys
-import time
 import threading
+import time
 from functools import lru_cache
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from importlib import metadata
