@@ -1,4 +1,5 @@
 import math
+from typing import Union
 
 from fastapi import Body, FastAPI, Query
 from fastapi.testclient import TestClient
@@ -9,9 +10,9 @@ app = FastAPI()
 
 @app.post("/")
 async def get(
-    x: Annotated[float | None, Query(gt=0, description="x")] = 1,
-    y: Annotated[float | None, Query(allow_inf_nan=False, description="y")] = 0,
-    z: Annotated[float | None, Body(allow_inf_nan=False, description="z")] = 0,
+    x: Annotated[Union[float, None], Query(gt=0, description="x")] = 1,
+    y: Annotated[Union[float, None], Query(allow_inf_nan=False, description="y")] = 0,
+    z: Annotated[Union[float, None], Body(allow_inf_nan=False, description="z")] = 0,
 ) -> str:
     assert x > 0
     assert not math.isnan(y) and not math.isinf(y)
