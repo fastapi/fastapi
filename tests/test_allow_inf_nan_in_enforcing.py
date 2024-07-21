@@ -1,4 +1,3 @@
-import math
 from typing import Union
 
 from fastapi import Body, FastAPI, Query
@@ -14,10 +13,6 @@ async def get(
     y: Annotated[Union[float, None], Query(allow_inf_nan=False, description="y")] = 0,
     z: Annotated[Union[float, None], Body(allow_inf_nan=False, description="z")] = 0,
 ) -> str:
-    assert x > 0
-    assert not math.isnan(y) and not math.isinf(y)
-    assert not math.isnan(z) and not math.isinf(z)
-
     return "OK"
 
 
@@ -26,15 +21,22 @@ client = TestClient(app)
 
 def test_allow_inf_nan_not_ignored_when_enforcing_params():
     response = client.post("/?x=-1")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
 
     response = client.post("/?y=inf")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
+
+    response = client.post("/?y=5")
+    assert response.status_code == 200, response.text
 
 
 def test_allow_inf_nan_not_ignored_when_enforcing_body():
-    response = client.post("/", json={"z": "nan"})
-    assert response.status_code == 422
+    response = client.post("/", json="nan")
+    assert response.status_code == 422, response.text
+    print(response.text)
 
-    response = client.post("/", json={"z": "inf"})
-    assert response.status_code == 422
+    response = client.post("/", json="inf")
+    assert response.status_code == 422, response.text
+
+    response = client.post("/", json="4")
+    assert response.status_code == 200, response.text
