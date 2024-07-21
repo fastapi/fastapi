@@ -164,10 +164,13 @@ $ pip install fastapi
 </div>
 
 ## Example
+## მაგალითი
 
 ### Create it
+### შევქმნათ
 
 * Create a file `main.py` with:
+* შექმენით `main.py` ფაილი შემდეგი შიგთავსით:
 
 ```Python
 from typing import Union
@@ -189,8 +192,10 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 <details markdown="1">
 <summary>Or use <code>async def</code>...</summary>
+<summary>ან გამოიყენეთ <code>async def</code>...</summary>
 
 If your code uses `async` / `await`, use `async def`:
+თუკი თქვენი კოდი იყენებს `async` / `await`-ს, გამოიყენეთ `async def`:
 
 ```Python hl_lines="9  14"
 from typing import Union
@@ -211,14 +216,18 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 ```
 
 **Note**:
+**შენიშვნა**:
 
 If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+თუკი ჯერ არ ერკვევით აღნიშნულ საკითხში, <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async`-ისა და `await`-ის შესახებ</a> დოკუმენტაციაში თვალი გადაავლეთ განყოფილებას _„გეჩქარებათ?“_.
 
 </details>
 
 ### Run it
+### გავუშვათ
 
 Run the server with:
+გაუშვით სერვერი შემდეგი ბრძანებით:
 
 <div class="termy">
 
