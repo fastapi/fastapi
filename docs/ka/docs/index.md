@@ -63,6 +63,7 @@ The key features are:
 <small>* ზემოთ მოცემული შეფასებები ეფუძნება შიდა დეველოპმენტის გუნდის ტესტებს, რომლებიც მუშაობენ წარმოებაში მყოფ (რეალურ) აპლიკაციებზე.</small>
 
 ## Sponsors
+## სპონსორები
 
 <!-- sponsors -->
 
@@ -78,6 +79,7 @@ The key features are:
 <!-- /sponsors -->
 
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">სხვა სპონსორები</a>
 
 ## Opinions
 
