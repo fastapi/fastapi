@@ -1,7 +1,3 @@
-
-{!../../../docs/missing-translation.md!}
-
-
 ---
 hide:
   - navigation
@@ -15,7 +11,7 @@ hide:
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI ფრეიმვორქი, მაღალი წარმადობა, ასათვისებლად მარტივი, ეფექტური, წარმოებაში ჩაშვებისათვის გამზადებული</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -34,26 +30,37 @@ hide:
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**დოკუმენტაცია**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**პროგრამული კოდი**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
+FastAPI არის თანამედროვე, სწრაფი (მაღალი წარმადობის მქონე), Python-ზე დაფუძნებული ვებფრეიმვორქი, რომელიც იყენებს Python-ის სტანდარტულ ტიპთა ინდიკატორებს და საშუალებას გვაძლევს შევქმნათ API-ები.
 
 The key features are:
+ძირითადი მახასიათებლები გახლავთ:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+* **სისწრაფე**: აქვს ძალიან მაღალი წარმადობა, როგორც **NodeJS**-სა და **Go**-ს (მადლობა Starlette-სა და Pydantic-ს). [ერთ-ერთი უსწრაფესი ფრეიმვორქია Python-ის არსებულ ფრეიმვორქებს შორის](#performance).
 * **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
+* **ეფექტურობა**: დეველოპმენტის პროცესს აჩქარებს დაახლოებით 200-300 პროცენტით. *
 * **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
+* **ნაკლები პროგრამული ხარვეზი**: ადამიანის (დეველოპერის) მიერ გამოწვეული ხარვეზების ალბათობას ამცირებს დაახლოებით 40 პროცენტით. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
+* **ინტუიციურობა**: შესანიშნავი თავსებადობა ტექსტურ რედაქტორებთან. <abbr title="also known as auto-complete, autocompletion, IntelliSense">კოდის ავტოდასრულების</abbr> ფუნქციონალი ხელმისაწვდომია ყველგან. ნაკლებ დროს დახარჯავთ ხარვეზების აღმოფხვრაში.
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
+* **სიმარტივე**: ტექნოლოგია შემუშავებულია იმგვარად, რომ მარტივად გამოსაყენებელი და ასათვისებელი იყოს. დოკუმენტაციის კითხვაში ნაკლებ დროს დახარჯავთ.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
+* **კომპაქტური**: კოდის დუბლიკაციის საჭიროება მინიმუმამდეა დაყვანილი. თითოეული პარამეტრის განსაზღვრით აქტიურდება მრავალი ფუნქციონალი. პროგრამული ხარვეზების წარმოქმნის ალბათობა მინიმუმამდეა დაყვანილი.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
+* **მდგრადობა**: მიიღებთ წარმოებაში ჩაშვებისათვის გამზადებულ კოდს. ამას გარდა, მიიღებთ ავტომატურად გენერირებულ ინტერაქციულ დოკუმენტაციას.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **სტანდარტებზე დაფუძნებულობა**: დაფუძნებულია (და სრულად თავსებადია) API-ებისთვის განსაზღვრულ ღია სტანდარტებზე: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (ადრე ცნობილი იყო, როგორც Swagger) და <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* ზემოთ მოცემული შეფასებები ეფუძნება შიდა დეველოპმენტის გუნდის ტესტებს, რომლებიც მუშაობენ წარმოებაში მყოფ (რეალურ) აპლიკაციებზე.</small>
 
 ## Sponsors
 
