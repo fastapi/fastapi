@@ -82,13 +82,24 @@ The key features are:
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">სხვა სპონსორები</a>
 
 ## Opinions
+## მოსაზრებები
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
+"_[...] ბოლო დროს, **FastAPI**-ს ძალიან ხშირად ვიყენებ. [...] სინამდვილეში, მის გამოყენებას ვგეგმავ ჩემი გუნდის ყველა **ML სერვისისათვის Microsoft-ში**. ზოგიერთი მათგანი ინტეგრირებულია Windows-ის ძირითად და **Office**-ის ზოგიერთ პროდუქტებში._"
 
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+
+---
 "_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
