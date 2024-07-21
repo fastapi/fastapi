@@ -129,12 +129,15 @@ The key features are:
 ---
 
 ## **Typer**, the FastAPI of CLIs
+## **Typer**: ბრძანებათა სტრიქონების FastAPI
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+თუკი მუშაობთ <abbr title="ბრძანებათა სტრიქონი">CLI</abbr> აპლიკაციაზე, რომელიც გამოყენებულ იქნება ტერმინალში, - ნაცვლად ვებ API-ისა, გადახედეთ <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**-ს</a>.
 
 **Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** არის FastAPI-ის პატარა ძამიკო. და ჩაფიქრებულია, რომ იგი იყოს **CLI-ების FastAPI**. ⌨️ 🚀
 
 ## Requirements
 
