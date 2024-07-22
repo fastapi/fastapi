@@ -94,6 +94,7 @@
 
 ### Internal
 
+* ⬆️ Bump setuptools from 69.1.1 to 70.0.0 in /backend. PR [#1255](https://github.com/tiangolo/full-stack-fastapi-template/pull/1255) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆️ Bump certifi from 2024.2.2 to 2024.7.4 in /backend. PR [#1250](https://github.com/tiangolo/full-stack-fastapi-template/pull/1250) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆️ Bump urllib3 from 2.2.1 to 2.2.2 in /backend. PR [#1235](https://github.com/tiangolo/full-stack-fastapi-template/pull/1235) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Ignore `src/routeTree.gen.ts` in biome. PR [#1175](https://github.com/tiangolo/full-stack-fastapi-template/pull/1175) by [@patrick91](https://github.com/patrick91).
