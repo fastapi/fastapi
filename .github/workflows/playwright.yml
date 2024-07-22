@@ -1,0 +1,66 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    types:
+    - opened
+    - synchronize
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: 'false'
+
+jobs:
+
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+      with:
+        limit-access-to-actor: true
+    - name: Install dependencies
+      run: npm ci
+      working-directory: frontend
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+      working-directory: frontend
+    - run: docker compose build
+    - run: docker compose down -v --remove-orphans
+    - run: docker compose up -d
+    - name: Run Playwright tests
+      run: npx playwright test
+      working-directory: frontend
+    - run: docker compose down -v --remove-orphans
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: frontend/playwright-report/
+        retention-days: 30
+
+  # https://github.com/marketplace/actions/alls-green#why
+  e2e-alls-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
