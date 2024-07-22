@@ -97,6 +97,7 @@ const UserInformation = () => {
                 {...register("full_name", { maxLength: 30 })}
                 type="text"
                 size="md"
+                w="auto"
               />
             ) : (
               <Text
@@ -121,6 +122,7 @@ const UserInformation = () => {
                 })}
                 type="email"
                 size="md"
+                w="auto"
               />
             ) : (
               <Text size="md" py={2}>

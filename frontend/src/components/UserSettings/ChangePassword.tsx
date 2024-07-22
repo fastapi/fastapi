@@ -71,6 +71,7 @@ const ChangePassword = () => {
               {...register("current_password")}
               placeholder="Password"
               type="password"
+              w="auto"
             />
             {errors.current_password && (
               <FormErrorMessage>
@@ -85,6 +86,7 @@ const ChangePassword = () => {
               {...register("new_password", passwordRules())}
               placeholder="Password"
               type="password"
+              w="auto"
             />
             {errors.new_password && (
               <FormErrorMessage>{errors.new_password.message}</FormErrorMessage>
@@ -97,6 +99,7 @@ const ChangePassword = () => {
               {...register("confirm_password", confirmPasswordRules(getValues))}
               placeholder="Password"
               type="password"
+              w="auto"
             />
             {errors.confirm_password && (
               <FormErrorMessage>
