@@ -1,4 +1,3 @@
-import { z } from "zod"
 import {
   Button,
   Container,
@@ -15,8 +14,9 @@ import {
 } from "@chakra-ui/react"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
-
 import { useEffect } from "react"
+import { z } from "zod"
+
 import { ItemsService } from "../../client"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
@@ -136,7 +136,7 @@ function Items() {
         Items Management
       </Heading>
 
-      <Navbar type={"Item"} addModalAs={AddItem}/>
+      <Navbar type={"Item"} addModalAs={AddItem} />
       <ItemsTable />
     </Container>
   )

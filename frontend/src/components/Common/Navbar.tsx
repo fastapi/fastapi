@@ -1,4 +1,4 @@
-import { ComponentType, ElementType } from 'react';
+import type { ComponentType, ElementType } from "react"
 
 import { Button, Flex, Icon, useDisclosure } from "@chakra-ui/react"
 import { FaPlus } from "react-icons/fa"

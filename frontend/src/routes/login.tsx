@@ -103,7 +103,7 @@ function Login() {
           <InputGroup>
             <Input
               {...register("password", {
-              required: "Password is required",
+                required: "Password is required",
               })}
               type={show ? "text" : "password"}
               placeholder="Password"
