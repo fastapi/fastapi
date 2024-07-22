@@ -21,6 +21,7 @@
 
 ### Refactors
 
+* ♻️ Replace deprecated utcnow() with now(timezone.utc) in utils module. PR [#1247](https://github.com/tiangolo/full-stack-fastapi-template/pull/1247) by [@jalvarezz13](https://github.com/jalvarezz13).
 * 🎨 Format frontend. PR [#1262](https://github.com/tiangolo/full-stack-fastapi-template/pull/1262) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Abstraction of specific AddModal component out of the Navbar. PR [#1246](https://github.com/tiangolo/full-stack-fastapi-template/pull/1246) by [@ajbloureiro](https://github.com/ajbloureiro).
 * ♻️ Update `login.tsx` to prevent error if username or password are empty. PR [#1257](https://github.com/tiangolo/full-stack-fastapi-template/pull/1257) by [@jmondaud](https://github.com/jmondaud).
