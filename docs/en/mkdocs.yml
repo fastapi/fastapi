@@ -167,6 +167,7 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+  - fastapi-cli.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md

@@ -99,7 +99,7 @@ Now let's jump to the fun stuff. 🎉
 
 ## Add `Query` to `Annotated` in the `q` parameter
 
-Now that we have this `Annotated` where we can put more metadata, add `Query` to it, and set the parameter `max_length` to 50:
+Now that we have this `Annotated` where we can put more information (in this case some additional validation), add `Query` inside of `Annotated`, and set the parameter `max_length` to `50`:
 
 === "Python 3.10+"
 
@@ -115,7 +115,11 @@ Now that we have this `Annotated` where we can put more metadata, add `Query` to
 
 Notice that the default value is still `None`, so the parameter is still optional.
 
-But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to extract this value from the query parameters (this would have been the default anyway 🤷) and that we want to have **additional validation** for this value (that's why we do this, to get the additional validation). 😎
+But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to have **additional validation** for this value, we want it to have maximum 50 characters. 😎
+
+!!! tip
+
+    Here we are using `Query()` because this is a **query parameter**. Later we will see others like `Path()`, `Body()`, `Header()`, and `Cookie()`, that also accept the same arguments as `Query()`.
 
 FastAPI will now:
 

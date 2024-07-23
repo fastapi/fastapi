@@ -33,7 +33,7 @@ hide:
 
 ---
 
-FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.8 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
 
 主な特徴:
 
@@ -116,8 +116,6 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.8 以�
 
 ## 必要条件
 
-Python 3.8+
-
 FastAPI は巨人の肩の上に立っています。
 
 - Web の部分は<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
@@ -135,7 +133,7 @@ $ pip install fastapi
 
 </div>
 
-本番環境では、<a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
+本番環境では、<a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
 
 <div class="termy">
 

@@ -32,7 +32,7 @@ hide:
 **Código Fuente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.8+ basado en las anotaciones de tipos estándar de Python.
+FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
 
 Sus características principales son:
 
@@ -115,8 +115,6 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.8+
-
 FastAPI está sobre los hombros de gigantes:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para las partes web.
@@ -134,7 +132,7 @@ $ pip install fastapi
 
 </div>
 
-También vas a necesitar un servidor ASGI para producción cómo <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> o <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+También vas a necesitar un servidor ASGI para producción cómo <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> o <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -328,7 +326,7 @@ Lo haces con tipos modernos estándar de Python.
 
 No tienes que aprender una sintaxis nueva, los métodos o clases de una library específica, etc.
 
-Solo **Python 3.8+** estándar.
+Solo **Python** estándar.
 
 Por ejemplo, para un `int`:
 

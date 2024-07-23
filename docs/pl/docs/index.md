@@ -33,7 +33,7 @@ hide:
 
 ---
 
-FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona 3.8+ bazujący na standardowym typowaniu Pythona.
+FastAPI to nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona bazujący na standardowym typowaniu Pythona.
 
 Kluczowe cechy:
 
@@ -115,8 +115,6 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.8+
-
 FastAPI oparty jest na:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> dla części webowej.
@@ -134,7 +132,7 @@ $ pip install fastapi
 
 </div>
 
-Na serwerze produkcyjnym będziesz także potrzebował serwera ASGI, np. <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> lub <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Na serwerze produkcyjnym będziesz także potrzebował serwera ASGI, np. <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> lub <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -330,7 +328,7 @@ Robisz to tak samo jak ze standardowymi typami w Pythonie.
 
 Nie musisz sie uczyć żadnej nowej składni, metod lub klas ze specyficznych bibliotek itp.
 
-Po prostu standardowy **Python 3.8+**.
+Po prostu standardowy **Python**.
 
 Na przykład, dla danych typu `int`:
 

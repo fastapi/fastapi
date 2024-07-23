@@ -33,7 +33,7 @@ hide:
 
 ---
 
-FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python3.8+의 API를 빌드하기 위한 웹 프레임워크입니다.
+FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python의 API를 빌드하기 위한 웹 프레임워크입니다.
 
 주요 특징으로:
 
@@ -116,8 +116,6 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 요구사항
 
-Python 3.8+
-
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
 * 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
@@ -135,7 +133,7 @@ $ pip install fastapi
 
 </div>
 
-프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
+프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
 
 <div class="termy">
 
@@ -332,7 +330,7 @@ def update_item(item_id: int, item: Item):
 
 새로운 문법, 특정 라이브러리의 메소드나 클래스 등을 배울 필요가 없습니다.
 
-그저 표준 **Python 3.8+** 입니다.
+그저 표준 **Python** 입니다.
 
 예를 들어, `int`에 대해선:
 

@@ -14,15 +14,32 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 ## 简单的 HTTP 基础授权
 
-* 导入 `HTTPBsic` 与 `HTTPBasicCredentials`
-* 使用 `HTTPBsic` 创建**安全概图**
+* 导入 `HTTPBasic` 与 `HTTPBasicCredentials`
+* 使用 `HTTPBasic` 创建**安全概图**
 * 在*路径操作*的依赖项中使用 `security`
 * 返回类型为 `HTTPBasicCredentials` 的对象：
     * 包含发送的 `username` 与 `password`
 
-```Python hl_lines="2  6  10"
-{!../../../docs_src/security/tutorial006.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="4  8  12"
+    {!> ../../../docs_src/security/tutorial006_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="2  7  11"
+    {!> ../../../docs_src/security/tutorial006_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="2  6  10"
+    {!> ../../../docs_src/security/tutorial006.py!}
+    ```
 
 第一次打开 URL（或在 API 文档中点击 **Execute** 按钮）时，浏览器要求输入用户名与密码：
 
@@ -34,13 +51,35 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 使用依赖项检查用户名与密码是否正确。
 
-为此要使用 Python 标准模块 <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> 检查用户名与密码：
+为此要使用 Python 标准模块 <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> 检查用户名与密码。
 
-```Python hl_lines="1  11-13"
-{!../../../docs_src/security/tutorial007.py!}
-```
+`secrets.compare_digest()` 需要仅包含 ASCII 字符（英语字符）的 `bytes` 或 `str`，这意味着它不适用于像`á`一样的字符，如 `Sebastián`。
 
-这段代码确保 `credentials.username` 是 `"stanleyjobson"`，且 `credentials.password` 是`"swordfish"`。与以下代码类似：
+为了解决这个问题，我们首先将 `username` 和 `password` 转换为使用 UTF-8 编码的 `bytes` 。
+
+然后我们可以使用 `secrets.compare_digest()` 来确保 `credentials.username` 是 `"stanleyjobson"`，且 `credentials.password` 是`"swordfish"`。
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="1  12-24"
+    {!> ../../../docs_src/security/tutorial007_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="1  12-24"
+    {!> ../../../docs_src/security/tutorial007_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="1  11-21"
+    {!> ../../../docs_src/security/tutorial007.py!}
+    ```
+这类似于：
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
@@ -102,6 +141,23 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 检测到凭证不正确后，返回 `HTTPException` 及状态码 401（与无凭证时返回的内容一样），并添加请求头 `WWW-Authenticate`，让浏览器再次显示登录提示：
 
-```Python hl_lines="15-19"
-{!../../../docs_src/security/tutorial007.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="26-30"
+    {!> ../../../docs_src/security/tutorial007_an_py39.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="26-30"
+    {!> ../../../docs_src/security/tutorial007_an.py!}
+    ```
+
+=== "Python 3.8+ non-Annotated"
+
+    !!! tip
+        尽可能选择使用 `Annotated` 的版本。
+
+    ```Python hl_lines="23-27"
+    {!> ../../../docs_src/security/tutorial007.py!}
+    ```
