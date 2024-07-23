@@ -11,9 +11,6 @@ gold:
   - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
     title: Automate FastAPI documentation generation with Bump.sh
     img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
-  - url: https://reflex.dev
-    title: Reflex
-    img: https://fastapi.tiangolo.com/img/sponsors/reflex.png
   - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
     title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
     img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
