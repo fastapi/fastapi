@@ -31,6 +31,9 @@ But if you are certain that the content that you are returning is **serializable
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
+!!! warning
+    If you use `ORJSONResponse` and declared a Pydantic model for the response, the API documentation will still be correct, but neither validation not data filtering will be applied to response content.
+
 !!! info
     The parameter `response_class` will also be used to define the "media type" of the response.
 
