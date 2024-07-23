@@ -37,6 +37,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "dotenv": "^16.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.13"
   }
