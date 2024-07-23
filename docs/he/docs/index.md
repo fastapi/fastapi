@@ -138,7 +138,7 @@ $ pip install fastapi
 
 </div>
 
-תצטרכו גם שרת ASGI כגון <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> או <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+תצטרכו גם שרת ASGI כגון <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> או <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div dir="ltr" class="termy">
 

@@ -1,10 +1,10 @@
 # FastAPI CLI
 
-**FastAPI CLI** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.
+**FastAPI CLI** 是一个命令行程序，你可以用它来部署和运行你的 FastAPI 应用程序，管理你的 FastAPI 项目，等等。
 
-When you install FastAPI (e.g. with `pip install fastapi`), it includes a package called `fastapi-cli`, this package provides the `fastapi` command in the terminal.
+当你安装 FastAPI 时（例如使用 `pip install FastAPI` 命令），会包含一个名为 `fastapi-cli` 的软件包，该软件包在终端中提供 `fastapi` 命令。
 
-To run your FastAPI app for development, you can use the `fastapi dev` command:
+要在开发环境中运行你的 FastAPI 应用，你可以使用 `fastapi dev` 命令：
 
 <div class="termy">
 
@@ -54,27 +54,31 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-The command line program called `fastapi` is **FastAPI CLI**.
+该命令行程序 `fastapi` 就是 **FastAPI CLI**。
 
-FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatically detects the `FastAPI` instance (commonly named `app`), determines the correct import process, and then serves it.
+FastAPI CLI 接收你的 Python 程序路径，自动检测包含 FastAPI 的变量（通常命名为 `app`）及其导入方式，然后启动服务。
 
-For production you would use `fastapi run` instead. 🚀
+在生产环境中，你应该使用 `fastapi run` 命令。🚀
 
-Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, a high-performance, production-ready, ASGI server. 😎
+在内部，**FastAPI CLI** 使用了 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>，这是一个高性能、适用于生产环境的 ASGI 服务器。😎
 
 ## `fastapi dev`
 
-Running `fastapi dev` initiates development mode.
+当你运行 `fastapi dev` 时，它将以开发模式运行。
 
-By default, **auto-reload** is enabled, automatically reloading the server when you make changes to your code. This is resource-intensive and could be less stable than when it's disabled. You should only use it for development. It also listens on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
+默认情况下，它会启用**自动重载**，因此当你更改代码时，它会自动重新加载服务器。该功能是资源密集型的，且相较不启用时更不稳定，因此你应该仅在开发环境下使用它。
+
+默认情况下，它将监听 IP 地址 `127.0.0.1`，这是你的机器与自身通信的 IP 地址（`localhost`）。
 
 ## `fastapi run`
 
-Executing `fastapi run` starts FastAPI in production mode by default.
+当你运行 `fastapi run` 时，它默认以生产环境模式运行。
 
-By default, **auto-reload** is disabled. It also listens on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
+默认情况下，**自动重载是禁用的**。
 
-In most cases you would (and should) have a "termination proxy" handling HTTPS for you on top, this will depend on how you deploy your application, your provider might do this for you, or you might need to set it up yourself.
+它将监听 IP 地址 `0.0.0.0`，即所有可用的 IP 地址，这样任何能够与该机器通信的人都可以公开访问它。这通常是你在生产环境中运行它的方式，例如在容器中运行。
 
-!!! tip
-    You can learn more about it in the [deployment documentation](deployment/index.md){.internal-link target=_blank}.
+在大多数情况下，你会（且应该）有一个“终止代理”在上层为你处理 HTTPS，这取决于你如何部署应用程序，你的服务提供商可能会为你处理此事，或者你可能需要自己设置。
+
+!!! tip "提示"
+    你可以在 [deployment documentation](deployment/index.md){.internal-link target=_blank} 获得更多信息。

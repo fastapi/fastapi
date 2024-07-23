@@ -135,7 +135,7 @@ $ pip install fastapi
 
 </div>
 
-Вам также понадобится сервер ASGI для производства, такой как <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> или <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Вам также понадобится сервер ASGI для производства, такой как <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> или <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 

@@ -142,7 +142,7 @@ $ pip install fastapi
 
 </div>
 
-Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -460,7 +460,7 @@ Wird von Starlette verwendet:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - erforderlich, wenn Sie die Standardkonfiguration für Templates verwenden möchten.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - erforderlich für `SessionMiddleware` Unterstützung.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - erforderlich für Starlette's `SchemaGenerator` Unterstützung (Sie brauchen das wahrscheinlich nicht mit FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - erforderlich, wenn Sie `UJSONResponse` verwenden möchten.

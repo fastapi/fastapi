@@ -36,16 +36,13 @@ gold:
     title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
     img: https://fastapi.tiangolo.com/img/sponsors/fine.png
 silver:
-  - url: https://training.talkpython.fm/fastapi-courses
-    title: FastAPI video courses on demand from people you trust
-    img: https://fastapi.tiangolo.com/img/sponsors/talkpython-v2.jpg
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks
     img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
-  - url: https://speakeasyapi.dev?utm_source=fastapi+repo&utm_medium=github+sponsorship
+  - url: https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship
     title: SDKs for your API | Speakeasy
     img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
   - url: https://www.svix.com/

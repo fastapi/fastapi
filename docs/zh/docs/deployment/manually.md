@@ -5,7 +5,7 @@
 有 3 个主要可选方案：
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>：高性能 ASGI 服务器。
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>：与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>：与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>：为 Django Channels 构建的 ASGI 服务器。
 
 ## 服务器主机和服务器程序
@@ -44,7 +44,7 @@
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
 
     <div class="termy">
 

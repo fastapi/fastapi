@@ -65,7 +65,7 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 There are several alternatives, including:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: a high performance ASGI server.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: the ASGI server built for Django Channels.
 
 ## Server Machine and Server Program
@@ -107,7 +107,7 @@ But you can also install an ASGI server manually:
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
     <div class="termy">
 
