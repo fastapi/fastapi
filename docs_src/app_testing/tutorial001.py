@@ -14,5 +14,7 @@ client = TestClient(app)
 
 def test_read_main():
     response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"msg": "Hello World"}
+    if response.status_code != 200:
+        raise AssertionError
+    if response.json() != {"msg": "Hello World"}:
+        raise AssertionError
