@@ -121,10 +121,10 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    if not callable(
-        depends.dependency
-    ):
-        raise AssertionError("A parameter-less dependency must have a callable dependency")
+    if not callable(depends.dependency):
+        raise AssertionError(
+            "A parameter-less dependency must have a callable dependency"
+        )
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -461,9 +461,7 @@ def analyze_param(
 
 def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     if is_path_param:
-        if not is_scalar_field(
-            field=param_field
-        ):
+        if not is_scalar_field(field=param_field):
             raise AssertionError("Path params must be of one of the supported types")
         return False
     elif is_scalar_field(field=param_field):
@@ -489,10 +487,10 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        if (
-            field_info_in != params.ParamTypes.cookie
-        ):
-            raise AssertionError(f"non-body parameters must be in path, query, header or cookie: {field.name}")
+        if field_info_in != params.ParamTypes.cookie:
+            raise AssertionError(
+                f"non-body parameters must be in path, query, header or cookie: {field.name}"
+            )
         dependant.cookie_params.append(field)
 
 
