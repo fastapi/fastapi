@@ -20,5 +20,7 @@ async def read_items(item_id: str):
 def test_read_items():
     with TestClient(app) as client:
         response = client.get("/items/foo")
-        assert response.status_code == 200
-        assert response.json() == {"name": "Fighters"}
+        if response.status_code != 200:
+            raise AssertionError
+        if response.json() != {"name": "Fighters"}:
+            raise AssertionError
