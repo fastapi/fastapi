@@ -5,7 +5,7 @@ La principale chose dont vous avez besoin pour exécuter une application **FastA
 Il existe 3 principales alternatives :
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a> : un serveur
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a> : un serveur
   ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI
   conçu pour Django Channels.
@@ -46,7 +46,7 @@ Vous pouvez installer un serveur compatible ASGI avec :
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, un serveur ASGI également compatible avec HTTP/2.
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, un serveur ASGI également compatible avec HTTP/2.
 
     <div class="termy">
 

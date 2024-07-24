@@ -7,12 +7,35 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update Speakeasy URL. PR [#11871](https://github.com/tiangolo/fastapi/pull/11871) by [@ndimares](https://github.com/ndimares).
+
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/response-change-status-code.md`. PR [#11863](https://github.com/tiangolo/fastapi/pull/11863) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/reference/background.md`. PR [#11849](https://github.com/tiangolo/fastapi/pull/11849) by [@lucasbalieiro](https://github.com/lucasbalieiro).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#11848](https://github.com/tiangolo/fastapi/pull/11848) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add Portuguese translation for `docs/pt/docs/reference/apirouter.md`. PR [#11843](https://github.com/tiangolo/fastapi/pull/11843) by [@lucasbalieiro](https://github.com/lucasbalieiro).
+
+### Internal
+
+* 🔧 Update sponsors, remove Reflex. PR [#11875](https://github.com/tiangolo/fastapi/pull/11875) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove TalkPython. PR [#11861](https://github.com/tiangolo/fastapi/pull/11861) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update docs Termynal scripts to not include line nums for local dev. PR [#11854](https://github.com/tiangolo/fastapi/pull/11854) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.111.1
+
 ### Upgrades
 
+* ➖ Remove `orjson` and `ujson` from default dependencies. PR [#11842](https://github.com/tiangolo/fastapi/pull/11842) by [@tiangolo](https://github.com/tiangolo).
+    * These dependencies are still installed when you install with `pip install "fastapi[all]"`. But they not included in `pip install fastapi`.
 * 📝 Restored Swagger-UI links to use the latest version possible. PR [#11459](https://github.com/tiangolo/fastapi/pull/11459) by [@UltimateLobster](https://github.com/UltimateLobster).
 
 ### Docs
 
+* ✏️ Rewording in `docs/en/docs/fastapi-cli.md`. PR [#11716](https://github.com/tiangolo/fastapi/pull/11716) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Update Hypercorn links in all the docs. PR [#11744](https://github.com/tiangolo/fastapi/pull/11744) by [@kittydoor](https://github.com/kittydoor).
 * 📝  Update docs with Ariadne reference from Starlette to FastAPI. PR [#11797](https://github.com/tiangolo/fastapi/pull/11797) by [@DamianCzajkowski](https://github.com/DamianCzajkowski).
 * 📝 Update fastapi instrumentation external link. PR [#11317](https://github.com/tiangolo/fastapi/pull/11317) by [@softwarebloat](https://github.com/softwarebloat).
 * ✏️ Fix links to alembic example repo in docs. PR [#11628](https://github.com/tiangolo/fastapi/pull/11628) by [@augiwan](https://github.com/augiwan).
@@ -33,6 +56,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Spanish translation for `docs/es/docs/how-to/graphql.md`. PR [#11697](https://github.com/tiangolo/fastapi/pull/11697) by [@camigomezdev](https://github.com/camigomezdev).
 * 🌐 Add Portuguese translation for `docs/pt/docs/reference/index.md`. PR [#11840](https://github.com/tiangolo/fastapi/pull/11840) by [@lucasbalieiro](https://github.com/lucasbalieiro).
 * 🌐 Fix link in German translation. PR [#11836](https://github.com/tiangolo/fastapi/pull/11836) by [@anitahammer](https://github.com/anitahammer).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/dependencies/sub-dependencies.md`. PR [#11792](https://github.com/tiangolo/fastapi/pull/11792) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
@@ -79,6 +103,7 @@ hide:
 
 ### Internal
 
+* ♻️ Simplify internal docs script. PR [#11777](https://github.com/tiangolo/fastapi/pull/11777) by [@gitworkflows](https://github.com/gitworkflows).
 * 🔧 Update sponsors: add Fine. PR [#11784](https://github.com/tiangolo/fastapi/pull/11784) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Tweak sponsors: Kong URL. PR [#11765](https://github.com/tiangolo/fastapi/pull/11765) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Tweak sponsors: Kong URL. PR [#11764](https://github.com/tiangolo/fastapi/pull/11764) by [@tiangolo](https://github.com/tiangolo).

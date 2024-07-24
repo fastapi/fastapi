@@ -20,7 +20,7 @@ Some of them also ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-autho
 
 And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
 
-For example, you might want to try <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> and <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>.
+For example, you might want to try <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> and <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>.
 
 There are also several other companies offering similar services that you can search and find online. 🤓
 
