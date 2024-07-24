@@ -259,12 +259,15 @@ if PYDANTIC_V2:
         return new_field_info
 
     def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-        origin_type = (
-            get_origin(field.field_info.annotation) or field.field_info.annotation
-        )
-        if not issubclass(origin_type, sequence_types):
-            raise AssertionError
-        return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
+    origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
+    
+    if origin_type is None or not isinstance(origin_type, type):
+        raise TypeError(f"Expected a class type but got {origin_type!r}")
+    
+    if not issubclass(origin_type, sequence_types):
+        raise AssertionError
+    
+    return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
