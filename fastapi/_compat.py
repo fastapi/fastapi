@@ -118,10 +118,12 @@ if PYDANTIC_V2:
         def validate(
             self,
             value: Any,
-            values: Dict[str, Any] = {},  # noqa: B006
+            values: Dict[str, Any] = None,  # noqa: B006
             *,
             loc: Tuple[Union[int, str], ...] = (),
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+            if values is None:
+                values = {}
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
