@@ -28,16 +28,20 @@ class AsyncCallableGenDependency:
 
 
 class MethodsDependency:
-    def synchronous(self, value: str) -> str:
+    @staticmethod
+    def synchronous(value: str) -> str:
         return value
 
-    async def asynchronous(self, value: str) -> str:
+    @staticmethod
+    async def asynchronous(value: str) -> str:
         return value
 
-    def synchronous_gen(self, value: str) -> Generator[str, None, None]:
+    @staticmethod
+    def synchronous_gen(value: str) -> Generator[str, None, None]:
         yield value
 
-    async def asynchronous_gen(self, value: str) -> AsyncGenerator[str, None]:
+    @staticmethod
+    async def asynchronous_gen(value: str) -> AsyncGenerator[str, None]:
         yield value
 
 
