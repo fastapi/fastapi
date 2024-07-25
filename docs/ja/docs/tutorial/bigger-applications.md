@@ -1,4 +1,4 @@
-# より大きなアプリケーションの構造 <!-- # Bigger Applications - Multiple Files -->
+# より大きなアプリケーションの構造  <!-- # Bigger Applications - Multiple Files -->
 
 <!-- If you are building an application or a web API, it's rarely the case that you can put everything on a single file. -->
 アプリケーションやWeb APIを構築するとき、コードを1つのファイルにまとめることはまずありません。
