@@ -361,18 +361,24 @@ The `fastapi dev` server should reload automatically.
 ცვლილებების შენახვის შემდეგ, `fastapi dev` ბრძანებით გაშვებული სერვერი, წესით და რიგით, ავტომატურად გადაიტვირთება.
 
 ### Interactive API docs upgrade
+### გავაუმჯობესოთ ინტერაქციული API-დოკუმენტაცია
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+თქვენს ბრაუზერში გახსენით შემდეგი ბმული: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+
 
 * The interactive API documentation will be automatically updated, including the new body:
+* ინტერაქციული API-დოკუმენტაცია, ახლად დამატებული პროტოტიპის ჩათვლით, განახლდება ავტომატურად:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+* დააკლიკეთ "Try it out" ღილაკს. ეს საშუალებას მოგცემთ, განსაზღვროთ პარამეტრები და API-სთან უშუალო ინტერაქციით დაკავდეთ:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+* შემდგომ ამისა, დააკლიკეთ "Execute" ღილაკს, რითაც თქვენ მიერ გახსნილი ინტერფეისი დაუკავშირდება API-ს, გაგზავნის თქვენ მიერ განსაზღვრულ პარამეტრებს, მიიღებს მოთხოვნის შედეგებს და გამოიტანს ეკრანზე:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
