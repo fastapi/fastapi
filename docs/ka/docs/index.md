@@ -319,10 +319,13 @@ You will see the alternative automatic documentation (provided by <a href="https
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ## Example upgrade
+## გაუმჯობესების მაგალითი
 
 Now modify the file `main.py` to receive a body from a `PUT` request.
+მოდით, შევცვალოთ `main.py` ფაილის შიგთავსი იმგვარად, რომ `PUT` ტიპის მოთხოვნით მივიღოთ და დავამუშავოთ მონაცემები.
 
 Declare the body using standard Python types, thanks to Pydantic.
+მოვახდინოთ მოთხოვნის შიგთავსის პროტოტიპის დეკლარაცია Python-ის სტანდარტული ტიპების გამოყენებით. ამ შესაძლებლობას Pydantic-ს უნდა ვუმადლოდეთ.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -355,6 +358,7 @@ def update_item(item_id: int, item: Item):
 ```
 
 The `fastapi dev` server should reload automatically.
+ცვლილებების შენახვის შემდეგ, `fastapi dev` ბრძანებით გაშვებული სერვერი, წესით და რიგით, ავტომატურად გადაიტვირთება.
 
 ### Interactive API docs upgrade
 
