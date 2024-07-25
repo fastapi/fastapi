@@ -308,10 +308,13 @@ You will see the automatic interactive API documentation (provided by <a href="h
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Alternative API docs
+### ალტერნატიული API-დოკუმენტაცია
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+თქვენს ბრაუზერში გახსენით შემდეგი ბმული: <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+დაინახავთ ალტერნატიულ ავტომატურად გენერირებულ დოკუმენტაციას (რომელიც უზრუნველყოფილია <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>-ის მიერ):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
