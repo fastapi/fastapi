@@ -272,21 +272,29 @@ You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-
 </details>
 
 ### Check it
+### შევამოწმოთ
 
 Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+თქვენს ბრაუზერში გახსენით შემდეგი ბმული: <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
 You will see the JSON response as:
+დაინახავთ შემდეგნაირ JSON ტიპის მონაცემს:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
 You already created an API that:
+ამგვარად, თქვენ უკვე შექმენით API, რომელიც:
 
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
+* იღებს HTTP მოთხოვნებს შემდეგ _მისამართებზე_: `/` და `/items/{item_id}`.
 * Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
+* ორივე მისამართი ამუშავებს `GET` <em>ოპერაციას</em> (ასევე ცნობილს, როგორც HTTP _მეთოდი_).
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
+* `/items/{item_id}` მისამართს გააჩნია _მარშრუტის პარამეტრი_ `item_id`, რომელიც უნდა იყოს მთელი რიცხვის (`int`) ტიპის.
 * The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+* `/items/{item_id}` მისამართს გააჩნია არასავალდებულო სტრიქონის (`str`) ტიპის _საძიებო (query) პარამეტრი_ `q`.
 
 ### Interactive API docs
 
