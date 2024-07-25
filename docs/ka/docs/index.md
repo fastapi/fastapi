@@ -297,10 +297,13 @@ You already created an API that:
 * `/items/{item_id}` მისამართს გააჩნია არასავალდებულო სტრიქონის (`str`) ტიპის _საძიებო (query) პარამეტრი_ `q`.
 
 ### Interactive API docs
+### ინტერაქციული API-დოკუმენტაცია
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+ახლა კი, თქვენს ბრაუზერში გახსენით შემდეგი ბმული: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+დაინახავთ ავტომატურად გენერირებულ ინტერაქციულ API-დოკუმენტაციას (რომელიც უზრუნველყოფილია <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>-ის მიერ):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
