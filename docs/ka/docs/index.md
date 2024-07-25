@@ -290,9 +290,9 @@ You already created an API that:
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
 * იღებს HTTP მოთხოვნებს შემდეგ _მისამართებზე_: `/` და `/items/{item_id}`.
 * Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-* ორივე მისამართი ამუშავებს `GET` <em>ოპერაციას</em> (ასევე ცნობილს, როგორც HTTP _მეთოდი_).
+* ორივე _მისამართი_ ამუშავებს `GET` <em>ოპერაციას</em> (ასევე ცნობილს, როგორც HTTP _მეთოდი_).
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* `/items/{item_id}` მისამართს გააჩნია _მარშრუტის პარამეტრი_ `item_id`, რომელიც უნდა იყოს მთელი რიცხვის (`int`) ტიპის.
+* `/items/{item_id}` _მისამართს_ გააჩნია _მარშრუტის პარამეტრი_ `item_id`, რომელიც უნდა იყოს მთელი რიცხვის (`int`) ტიპის.
 * The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 * `/items/{item_id}` მისამართს გააჩნია არასავალდებულო სტრიქონის (`str`) ტიპის _საძიებო (query) პარამეტრი_ `q`.
 
@@ -394,35 +394,49 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Recap
+### შეჯამება
 
 In summary, you declare **once** the types of parameters, body, etc. as function parameters.
+მაშასადამე, პარამეტრების, შიგთავსის პროტოტიპებისა და სხვა ტიპების დეკლარირებას ახორციელებთ **ერთჯერადად**. როგორც ეს ხდება ფუნქციისათვის პარამეტრების განსაზღვრისას.
 
 You do that with standard modern Python types.
+ამას აკეთებთ Python-ის თანამედროვე, სტანდარტული ტიპების გამოყენებით.
 
 You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+არ გჭირდებათ რომელიმე ცალკეული ბიბლიოთეკისთვის დამახასიათებელი თავისებური სინტაქსის, მეთოდების ან კლასების შესწავლა.
 
 Just standard **Python**.
+იყენებთ მხოლოდ და მხოლოდ სტანდარტულ **Python**-ს. 
 
 For example, for an `int`:
+მაგალითად, `int`-ის შემთხვევაში:
 
 ```Python
 item_id: int
 ```
 
 or for a more complex `Item` model:
+ან შედარებით რთული `Item` მოდელისთვის:
 
 ```Python
 item: Item
 ```
 
 ...and with that single declaration you get:
+...და ამ ერთი დეკლარაციით თქვენ მიიღებთ:
 
 * Editor support, including:
     * Completion.
     * Type checks.
+* რედაქტორის მხარდაჭერას. მათ შორის:
+    * კოდის ავტოდასრულებას.
+    * ტიპთა ვალიდურობის შემოწმებას.
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
+* მონაცემთა ვალიდაციას:
+    * ავტომატურად გენერირებულ და მარტივად გასაგებ ცდომილების შეტყობინებებს, როდესაც მონაცემები ვალიდური არ არის.
+    * ვალიდაციას თუნდაც უკიდურესად კომპლექსური JSON მონაცემებისათვის.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
     * JSON.
     * Path parameters.
@@ -431,79 +445,132 @@ item: Item
     * Headers.
     * Forms.
     * Files.
+* შემავალ მონაცემთა <abbr title="ასევე ცნობილია, როგორც: სერიალიზება, პარსირება, კლასიფიცირება">გარდაქმნას: ქსელიდან შემომავალი მონაცემების გადათარგმნას Python-ისთვის გასაგებ მონაცემებად და ტიპებად. შესაძლებელია შემდეგი სახის მონაცემების წაკითხვა და გარდაქმნა:
+    * JSON.
+    * მარშრუტის (Path) პარამეტრები.
+    * საძიებო (Query) პარამეტრები.
+    * Cookie-ები.
+    * თავსართები (Headers).
+    * ფორმები.
+    * ფაილები.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
     * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
     * `datetime` objects.
     * `UUID` objects.
     * Database models.
     * ...and many more.
+* გამომავალ მონაცემთა <abbr title="ასევე ცნობილია, როგორც: სერიალიზება, პარსირება, კლასიფიცირება">გარდაქმნას: Python-ის მონაცემებისა და ტიპების გადათარგმნას ქსელურ მონაცემებად (JSON-ად). შესაძლებელია შემდეგი სახის მონაცემების გარდაქმნა:
+    * Python-ის ტიპები (`str`, `int`, `float`, `bool`, `list` და სხვ.).
+    * `datetime` ობიექტები.
+    * `UUID` ობიექტები.
+    * მონაცემთა ბაზის მოდელები.
+    * ...და მრავალი სხვა.
 * Automatic interactive API documentation, including 2 alternative user interfaces:
+    * Swagger UI.
+    * ReDoc.
+* ავტომატურად გენერირებულ ინტერაქციულ API-დოკუმენტაციას, რომელიც მოიცავს 2 ალტერნატიულ ინტერფეისს. ესენია:
     * Swagger UI.
     * ReDoc.
 
 ---
 
 Coming back to the previous code example, **FastAPI** will:
+მოდით, მივუბრუნდეთ წინა მაგალითს და გავაანალიზოთ, რას და როგორ გააკეთებს **FastAPI**:
 
 * Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
+* `GET` და `PUT` ოპერაციებისათვის შეამოწმებს, არის თუ არა მისამართში განსაზღვრული `item_id` პარამეტრი.
 * Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
     * If it is not, the client will see a useful, clear error.
+* `GET` და `PUT` ოპერაციებისათვის გადაამოწმებს, არის თუ არა `item_id` პარამეტრი `int` ტიპის.
+    * თუ ეს ასე არ იქნება, კლიენტი იხილავს გამოსადეგ, მარტივად გასაგებ ცდომილების შეტყობინებას.
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
     * As the `q` parameter is declared with `= None`, it is optional.
     * Without the `None` it would be required (as is the body in the case with `PUT`).
+* `GET` ოპერაციებისათვის შეამოწმებს, არის თუ არა წარმოდგენილი არასავალდებულო საძიებო (query) პარამეტრი სახელად `q` (მაგ.: `http://127.0.0.1:8000/items/foo?q=somequery`).
+    * ვინაიდან `q` პარამეტრი განსაზღვრულია `= None` ბოლოსართით, იგი არასავალდებულოა.
+    * `None`-ის არარსებობის შემთხვევაში, იგი იქნებოდა სავალდებულო (როგორც მოთხოვნის შიგთავსი `PUT` ოპერაციის შემთხვევაში).
 * For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`.
     * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
     * All this would also work for deeply nested JSON objects.
+* `/items/{item_id}` მისამართზე `PUT` ოპერაციისას, წაიკითხავს მოთხოვნის შიგთავსს როგორც JSON მონაცემს. ამასთან:
+    * შეამოწმებს, არის თუ არა განსაზღვრული `str` ტიპის სავალდებულო `name` ატრიბუტი.
+    * შეამოწმებს, არის თუ არა განსაზღვრული `float` ტიპის სავალდებულო `price` ატრიბუტი.
+    * შეამოწმებს, მოთხოვნის შიგთავსში არის თუ არა წარმოდგენილი `bool` ტიპის არასავალდებულო `is_offer` ატრიბუტი.
+    * ყველაფერი ეს იმუშავებს ნებისმიერი სახის (მაგ.: მრავალშრიანი) JSON მონაცემისათვის. 
 * Convert from and to JSON automatically.
+* ავტომატურად გარდაქმნის JSON-ს სხვა სახის მონაცემად და პირიქით.
 * Document everything with OpenAPI, that can be used by:
     * Interactive documentation systems.
     * Automatic client code generation systems, for many languages.
+* OpenAPI-ით მოახდენს ყველაფრის დოკუმენტირებას, რაც გამოსადეგი იქნება:
+    * ინტერაქციული დოკუმენტაციის სისტემებისათვის.
+    * კლიენტის კოდის ავტომატიზირებული გენერირების სისტემებისათვის სხვადასხვა ენაში. 
 * Provide 2 interactive documentation web interfaces directly.
+* უშუალოდ უზრუნველყოფს 2 ალტერნატიულ ინტერაქციულ დოკუმენტაციის ვებინტერფეისს.
 
 ---
 
 We just scratched the surface, but you already get the idea of how it all works.
+ჯერჯერობით ჩვენ რაც განვიხილეთ, მხოლოდ და მხოლოდ ზედაპირია აისბერგისა, მაგრამ, ასე თუ ისე, ალბათ გაიაზრეთ ზოგადი პრინციპი, თუ როგორ მუშაობს ეს ყველაფერი.
 
 Try changing the line with:
+სცადეთ შემდეგ ხაზში ცვლილების შეტანა:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
 ...from:
+...ძველი:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
 ...to:
+...ახალი:
 
 ```Python
         ... "item_price": item.price ...
 ```
 
 ...and see how your editor will auto-complete the attributes and know their types:
+...და დააკვირდით, როგორ მოახდენს თქვენი ტექსტური რედაქტორი ატრიბუტების ავტოდასრულებას და მათი ტიპების იდენტიფიცირებას:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+მეტად სრულყოფილი მაგალითის სანახავად, სადაც განხილული იქნება უფრო მეტი საკითხი, იხილეთ <a href="https://fastapi.tiangolo.com/tutorial/">სახელმძღვანელო - მომხმარებლის გზამკვლევი</a>.
 
 **Spoiler alert**: the tutorial - user guide includes:
+**გაფრთხილება სპოილერის შესახებ**: მომხმარებლის გზამკვლევი მოიცავს შემდეგ საკითხებს:
 
 * Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
+* **პარამეტრების** დეკლარირება სხვა წყაროებიდან, როგორებიცაა: **თავსართები (headers)**, **cookie-ები**, **ფორმის ველები** და **ფაილები**.
 * How to set **validation constraints** as `maximum_length` or `regex`.
+* **შემმოწმებლებისათვის (ვალიდატორებისათვის) შეზღუდვების** დაწესება, როგორებიცაა: `maximum_length` ან `regex`.
 * A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
+* ძალიან მძლავრი და მარტივად გამოსაყენებელი **<abbr title="ასევე ცნობილი, როგორც კომპონენტები, რესურსები, პროვაიდერები, სერვისები, injectable-ები">პაკეტების ინექციის</abbr>** სისტემა.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
+* უსაფრთხოება და ავთენტიკაცია, მათ შორის **OAuth2**-ის მხარდაჭერა **JWT ტოკენებით** და **HTTP Basic** ავთენტიკაცია.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+* მეტად სიღრმისეული (მაგრამ ისეთივე მარტივი) მეთოდოლოგიები **კომპლექსური (მრავალშრიანი) JSON მოდელების** დეკლარირებისათვის (მადლობა Pydantic-ს).
 * **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
+* **GraphQL**-ის ინტეგრირება <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a>-სთან და სხვა ბიბლიოთეკებთან.
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
     * extremely easy tests based on HTTPX and `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...and more.
+* არაერთი სხვა თავისებურება (მადლობა Starlette-ს), როგორებიცაა:
+    * **ვებსოკეტები**
+    * HTTPX-ზე და `pytest`-ზე დაფუძნებული უმარტივესი ტესტები
+    * **CORS**
+    * **Cookie სესიები**
+    * ...და მრავალი სხვა.
 
 ## Performance
 
