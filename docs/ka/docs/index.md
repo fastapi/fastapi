@@ -383,10 +383,13 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### Alternative API docs upgrade
+### გავაუმჯობესოთ ალტერნატიული API-დოკუმენტაცია
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+ახლა კი, თქვენს ბრაუზერში გახსენით შემდეგი ბმული: <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * The alternative documentation will also reflect the new query parameter and body:
+* ახლად დამატებული საძიებო პარამეტრი და შიგთავსის პროტოტიპი ალტერნატიულ დოკუმენტაციაშიც აისახება:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
