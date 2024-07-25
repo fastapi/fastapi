@@ -258,12 +258,16 @@ INFO:     Application startup complete.
 
 <details markdown="1">
 <summary>About the command <code>fastapi dev main.py</code>...</summary>
+<summary><code>fastapi dev main.py</code> ბრძანების შესახებ...</summary>
 
 The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+`fastapi dev` ბრძანება კითხულობს თქვენს `main.py` ფაილს, მასში **FastAPI** აპლიკაციას აიდენტიფიცირებს და <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>-ის გამოყენებით უშვებს სერვერს.
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
+ნაგულისხმევად, ლოკალური დეველოპმენტისთვის, `fastapi dev` ბრძანებით გაშვებული სერვერისათვის აქტივირებული იქნება ავტომატური გადატვირთვის ფუნქცია.
 
 You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
+ამ საკითხზე დეტალური ინფორმაცია შეგიძლიათ წაიკითხოთ <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI-ის დოკუმენტაციაში</a>.
 
 </details>
 
