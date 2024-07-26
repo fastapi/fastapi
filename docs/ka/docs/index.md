@@ -582,48 +582,68 @@ To understand more about it, see the section <a href="https://fastapi.tiangolo.c
 ამ ყველაფრის უკეთ გასააზრებლად იხილეთ შემდეგი განყოფილება: <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">წარმადობის ტესტები (Benchmarks)</a>.
 
 ## Dependencies
+## პაკეტები
 
 Used by Pydantic:
+Pydantic-ის მიერ გამოიყენება:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - მეილის ვალიდაციისათვის.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - პარამეტრების სამართავად.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Pydantic-თან ერთად გამოყენებადი დამატებითი ტიპებისათვის.
 
 Used by Starlette:
+Starlette-ის მიერ გამოიყენება:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - სავალდებულოა, თუკი გსურთ, რომ გამოიყენოთ `TestClient`-ი .
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - სავალდებულოა, თუკი გსურთ, რომ გამოიყენოთ შაბლონის ნაგულისხმევი კონფიგურაცია.
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - სავალდებულოა, თუკი გსურთ, რომ გქონდეთ ფორმების <abbr title="HTTP მოთხოვნიდან შემომავალი მონაცემების კონვერტირება Python-ისთვის გასაგებ მონაცემებად">„პარსინგის“</abbr> შესაძლებლობა `request.form()`-ის გამოყენებით.
 
 Used by FastAPI / Starlette:
+FastAPI / Starlette-ის მიერ გამოიყენება:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - სერვერისთვის, რომელიც ემსახურება თქვენი აპლიკაციის ჩატვირთვას და მუშაობას.
 * `fastapi-cli` - to provide the `fastapi` command.
+* `fastapi-cli` - უზრუნველყოფს `fastapi` ბრძანების ხელმისაწვდომობას.
 
 When you install `fastapi` it comes these standard dependencies.
+`fastapi`-ის ინსტალირებისას, მასთან ერთად ინსტალირდება ზემოთ ჩამოთვლილი სტანდარტული პაკეტებიც.
 
 Additional optional dependencies:
+დამატებითი არასავალდებულო პაკეტები:
 
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - სავალდებულოა, თუკი გსურთ, რომ გამოიყენოთ `ORJSONResponse`-ი.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - სავალდებულოა, თუკი გსურთ, რომ გამოიყენოთ `UJSONResponse`-ი.
 
 ## `fastapi-slim`
 
 If you don't want the extra standard optional dependencies, install `fastapi-slim` instead.
+თუ არ გჭირდებათ დამატებითი არასავალდებულო სტანდარტული პაკეტები, `fastapi`-ის ნაცვლად დააინსტალირეთ `fastapi-slim`-ი.
 
 When you install with:
+როდესაც ინსტალაციას ახორციელებთ შემდეგი ბრძანებით:
 
 ```bash
 pip install fastapi
 ```
 
 ...it includes the same code and dependencies as:
+...ინსტალირდება იგივე კოდი და პაკეტები, რაც დაინსტალირდებოდა შემდეგი ბრძანების გამოყენების შემთხვევაში:
 
 ```bash
 pip install "fastapi-slim[standard]"
 ```
 
 The standard extra dependencies are the ones mentioned above.
+არასავალდებულო სტანდარტული პაკეტები გახლავთ ზემოთ ნახსენები პაკეტები.
 
 ## License
 
