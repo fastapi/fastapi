@@ -40,7 +40,7 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 FastAPI არის თანამედროვე, სწრაფი (მაღალი წარმადობის მქონე), Python-ზე დაფუძნებული ვებფრეიმვორქი, რომელიც იყენებს Python-ის სტანდარტულ ტიპთა ინდიკატორებს და საშუალებას გვაძლევს შევქმნათ API-ები.
 
 The key features are:
-ძირითადი მახასიათებლები გახლავთ:
+მისი ძირითადი მახასიათებლები გახლავთ:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
 * **სისწრაფე**: აქვს ძალიან მაღალი წარმადობა, როგორც **NodeJS**-სა და **Go**-ს (მადლობა Starlette-სა და Pydantic-ს). [ერთ-ერთი უსწრაფესი ფრეიმვორქია Python-ის არსებულ ფრეიმვორქებს შორის](#performance).
@@ -53,14 +53,14 @@ The key features are:
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **სიმარტივე**: ტექნოლოგია შემუშავებულია იმგვარად, რომ მარტივად გამოსაყენებელი და ასათვისებელი იყოს. დოკუმენტაციის კითხვაში ნაკლებ დროს დახარჯავთ.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **კომპაქტური**: კოდის დუბლიკაციის საჭიროება მინიმუმამდეა დაყვანილი. თითოეული პარამეტრის განსაზღვრით აქტიურდება მრავალი ფუნქციონალი. პროგრამული ხარვეზების წარმოქმნის ალბათობა მინიმუმამდეა დაყვანილი.
+* **კომპაქტურობა**: კოდის დუბლიკაციის საჭიროება მინიმუმამდეა დაყვანილი. თითოეული პარამეტრის განსაზღვრით აქტიურდება მრავალი ფუნქციონალი. პროგრამული ხარვეზების წარმოქმნის ალბათობა მინიმუმამდეა დაყვანილი.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **მდგრადობა**: მიიღებთ წარმოებაში ჩაშვებისათვის გამზადებულ კოდს. ამას გარდა, მიიღებთ ავტომატურად გენერირებულ ინტერაქციულ დოკუმენტაციას.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 * **სტანდარტებზე დაფუძნებულობა**: დაფუძნებულია (და სრულად თავსებადია) API-ებისთვის განსაზღვრულ ღია სტანდარტებზე: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (ადრე ცნობილი იყო, როგორც Swagger) და <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
-<small>* ზემოთ მოცემული შეფასებები ეფუძნება შიდა დეველოპმენტის გუნდის ტესტებს, რომლებიც მუშაობენ წარმოებაში მყოფ (რეალურ) აპლიკაციებზე.</small>
+<small>* ზემოთ მოცემული შეფასებები ეფუძნება წარმოებაში ჩაშვებულ (რეალურ) აპლიკაციებზე მომუშავე შიდა დეველოპმენტის გუნდის ტესტებს.</small>
 
 ## Sponsors
 ## სპონსორები
@@ -89,8 +89,18 @@ The key features are:
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
+"_[...] ბოლო დროს, ძალიან ხშირად ვიყენებ **FastAPI**-ს. [...] სიმართლე გითხრათ, მის გამოყენებას ვაპირებ ყველა იმ **ML სერვისისათვის Microsoft-ში**, რაზეც კი ჩემი გუნდი მუშაობს. ამ სერვისებიდან ზოგიერთი ინტეგრირებულია **Windows**-ის ბირთვში, ზოგი კი — **Office**-ის პროდუქტებში._"
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+
+---
 
 "_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+
+---
+"_ჩვენ გამოვიყენეთ **FastAPI** ბიბლიოთეკა **REST** სერვერის შესაქმნელად, რომლის დანიშნულებაც გახლავთ **პროგნოზების** გაკეთება. [Ludwig-ისთვის]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -101,14 +111,29 @@ The key features are:
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
 ---
+"_**Netflix**-ის სახელით, მოხარული ვარ, გაცნობოთ ჩვენი კრიტიკული ინფრასტრუქტურის, **Dispatch**-ის წყაროს ღია რელიზის შესახებ! [რომელიც შექმნილია **FastAPI**-ს გამოყენებით]_"
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
+
+---
 
 "_I’m over the moon excited about **FastAPI**. It’s so fun!_"
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
+"_**FastAPI**-ით ცამდე აღფრთოვანებული ვარ. მისი გამოყენება ძალიან სახალისოა!_"
+
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+
+---
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
+
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+
+---
+"_გულწრფელად გეუბნებით, თქვენი ნამუშევარი ძალიან სანდოდ და დახვეწილად გამოიყურება. სწორედ ეს არის ის, რაც მინდოდა **Hug**-ი ყოფილიყო - მართლაც შთამაგონებელია იმის დანახვა, რომ ვიღაცამ შეძლო ამის შექმნა._"
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
@@ -121,8 +146,20 @@ The key features are:
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
+"_თუ შესწავლის მიზნით ეძებთ **თანამედროვე ფრეიმვორქს**, რომლითაც შეძლებთ REST API-ების შექმნას, თვალი გადაავლეთ **FastAPI**-ს [...] იგი არის სწრაფი, ასათვისებლად და გამოსაყენებლად მარტივი [...]_"
+
+"_ჩვენი **API**-ები გადავაწყეთ **FastAPI**-ზე [...] ვფიქრობ, აღნიშნული ფრეიმვორქი გულგრილს არავის დატოვებს [...]_"
+
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+
+---
 
 "_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
+
+---
+"_თუკი ვინმე აპირებს Python-ზე დაფუძნებული, წარმოებაში ჩასაშვებად ვარგისი API-ი შექმნას, შემიძლია **FastAPI**-ის გამოყენება ვურჩიო. იგი არის **დახვეწილი**, **გამოსაყენებლად მარტივი** და **ძალზე მასშტაბირებადი** ტექნოლოგია, იგი გახდა API-ების შემუშავების ჩვენეული სტრატეგიის **ქვაკუთხედი** და სწორედ მისი გამოყენებითაა შემუშავებული ჩვენი არაერთი ავტომატიზაციის სისტემა და სერვისები, როგირიცაა მაგალითად ჩვენი ვირტუალური TAC ინჟინერი._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
