@@ -646,5 +646,7 @@ The standard extra dependencies are the ones mentioned above.
 არასავალდებულო სტანდარტული პაკეტები გახლავთ ზემოთ ნახსენები პაკეტები.
 
 ## License
+## ლიცენზია
 
 This project is licensed under the terms of the MIT license.
+წინამდებარე პროექტზე ვრცელდება MIT ლიცენზიით გათვალისწინებული წესები და პირობები.
