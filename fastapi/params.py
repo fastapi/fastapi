@@ -1,6 +1,7 @@
 import warnings
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+import anyio
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
@@ -760,15 +761,20 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self, dependency: Optional[Callable[..., Any]] = None, *,
+        use_cache: bool = True,
+        limiter: anyio.CapacityLimiter | None = None,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
+        self.limiter = limiter
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        return f"{self.__class__.__name__}({attr}{cache})"
+        limiter = f", limiter=CapacityLimiter({self.limiter.total_tokens})" \
+            if self.limiter else ""
+        return f"{self.__class__.__name__}({attr}{cache}{limiter})"
 
 
 class Security(Depends):
@@ -778,6 +784,7 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
+        limiter: anyio.CapacityLimiter | None = None,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(dependency=dependency, use_cache=use_cache, limiter=limiter)
         self.scopes = scopes or []
