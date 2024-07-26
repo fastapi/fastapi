@@ -763,7 +763,7 @@ class Depends:
     def __init__(
         self, dependency: Optional[Callable[..., Any]] = None, *,
         use_cache: bool = True,
-        limiter: anyio.CapacityLimiter | None = None,
+        limiter: Optional[anyio.CapacityLimiter] = None,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
@@ -784,7 +784,7 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
-        limiter: anyio.CapacityLimiter | None = None,
+        limiter: Optional[anyio.CapacityLimiter] = None,
     ):
         super().__init__(dependency=dependency, use_cache=use_cache, limiter=limiter)
         self.scopes = scopes or []

@@ -11,7 +11,6 @@ else:  # pragma: no cover
 import anyio
 from anyio import CapacityLimiter
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
-from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
     run_until_first_complete as run_until_first_complete,
 )

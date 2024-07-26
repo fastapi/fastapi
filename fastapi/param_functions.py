@@ -2246,7 +2246,7 @@ def Depends(  # noqa: N802
         ),
     ] = True,
     limiter: Annotated[
-        anyio.CapacityLimiter,
+        Optional[anyio.CapacityLimiter],
         Doc(
             """
             By default, synchronous dependencies will be run in a threadpool
@@ -2337,7 +2337,7 @@ def Security(  # noqa: N802
         ),
     ] = True,
     limiter: Annotated[
-        anyio.CapacityLimiter,
+        Optional[anyio.CapacityLimiter],
         Doc(
             """
             By default, synchronous dependencies will be run in a threadpool
