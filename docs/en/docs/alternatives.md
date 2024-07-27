@@ -1,6 +1,6 @@
 # Alternatives, Inspiration and Comparisons
 
-What inspired **FastAPI**, how it compares to other alternatives and what it learned from them.
+What inspired **FastAPI**, how it compares to alternatives and what it learned from them.
 
 ## Intro
 
@@ -117,9 +117,7 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
     * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
     * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
-    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of additional alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
-
-    For example, you could try <a href="https://www.buildwithfern.com/?utm_source=tiangolo&utm_medium=website&utm_campaign=docs-alternatives" class="external-link" target="_blank">Fern</a> which is also a FastAPI sponsor. 😎🎉
+    These two were chosen for being fairly popular and stable, but doing a quick search, you could find dozens of alternative user interfaces for OpenAPI (that you can use with **FastAPI**).
 
 ### Flask REST frameworks
 
@@ -187,13 +185,13 @@ It's a Flask plug-in, that ties together Webargs, Marshmallow and APISpec.
 
 It uses the information from Webargs and Marshmallow to automatically generate OpenAPI schemas, using APISpec.
 
-It's a great tool, very under-rated. It should be way more popular than many Flask plug-ins out there. It might be due to its documentation being too concise and abstract.
+It's a great tool, very underrated. It should be way more popular than many Flask plug-ins out there. It might be due to its documentation being too concise and abstract.
 
 This solved having to write YAML (another syntax) inside of Python docstrings.
 
 This combination of Flask, Flask-apispec with Marshmallow and Webargs was my favorite backend stack until building **FastAPI**.
 
-Using it led to the creation of several Flask full-stack generators. These are the main stack I (and several external teams) have been using up to now:
+Using it led to the creation of several Flask full-stack generators. These are the main stacks I (and several external teams) have been using up to now:
 
 * <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
@@ -213,7 +211,7 @@ This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework ins
 
 It achieves something somewhat similar to what can be done with Flask-apispec.
 
-It has an integrated dependency injection system, inspired by Angular two. It requires pre-registering the "injectables" (like all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
+It has an integrated dependency injection system, inspired by Angular 2. It requires pre-registering the "injectables" (like all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
 
 As the parameters are described with TypeScript types (similar to Python type hints), editor support is quite good.
 
@@ -265,7 +263,7 @@ I discovered Molten in the first stages of building **FastAPI**. And it has quit
 
 It doesn't use a data validation, serialization and documentation third-party library like Pydantic, it has its own. So, these data type definitions would not be reusable as easily.
 
-It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high-performance provided by tools like Uvicorn, Starlette and Sanic.
+It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high performance provided by tools like Uvicorn, Starlette and Sanic.
 
 The dependency injection system requires pre-registration of the dependencies and the dependencies are solved based on the declared types. So, it's not possible to declare more than one "component" that provides a certain type.
 
@@ -293,7 +291,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 !!! info
     Hug was created by Timothy Crosley, the same creator of <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, a great tool to automatically sort imports in Python files.
 
-!!! check "Ideas inspired in **FastAPI**"
+!!! check "Ideas inspiring **FastAPI**"
     Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
     Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
@@ -344,7 +342,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
 
 ## Used by **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 
@@ -359,7 +357,7 @@ It is comparable to Marshmallow. Although it's faster than Marshmallow in benchm
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
+Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web applications">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
 
 It is very simple and intuitive. It's designed to be easily extensible, and have modular components.
 

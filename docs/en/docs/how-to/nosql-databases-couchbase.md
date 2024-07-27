@@ -1,4 +1,4 @@
-# NoSQL (Distributed / Big Data) Databases with Couchbase
+# ~~NoSQL (Distributed / Big Data) Databases with Couchbase~~ (deprecated)
 
 !!! info
     These docs are about to be updated. 🎉
@@ -6,6 +6,9 @@
     The current version assumes Pydantic v1.
 
     The new docs will hopefully use Pydantic v2 and will use <a href="https://art049.github.io/odmantic/" class="external-link" target="_blank">ODMantic</a> with MongoDB.
+
+!!! warning "Deprecated"
+    This tutorial is deprecated and will be removed in a future version.
 
 **FastAPI** can also be integrated with any <abbr title="Distributed database (Big Data), also 'Not Only SQL'">NoSQL</abbr>.
 
@@ -105,7 +108,7 @@ Now create a function that will:
 * Get the document with that ID.
 * Put the contents of the document in a `UserInDB` model.
 
-By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your *path operation function*, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
+By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your *path operation function*, you can more easily reuse it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
 ```Python hl_lines="36-42"
 {!../../../docs_src/nosql_databases/tutorial001.py!}

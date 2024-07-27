@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI People
 
 FastAPIには、様々なバックグラウンドの人々を歓迎する素晴らしいコミュニティがあります。
@@ -19,7 +24,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% endif %}
 
-私は **FastAPI** の作成者および Maintainer です。詳しくは [FastAPIを応援 - ヘルプの入手 - 開発者とつながる](help-fastapi.md#開発者とつながる){.internal-link target=_blank} に記載しています。
+私は **FastAPI** の作成者および Maintainer です。詳しくは [FastAPIを応援 - ヘルプの入手 - 開発者とつながる](help-fastapi.md#_1){.internal-link target=_blank} に記載しています。
 
 ...ところで、ここではコミュニティを紹介したいと思います。
 
@@ -29,19 +34,19 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 紹介するのは次のような人々です:
 
-* [GitHub issuesで他の人を助ける](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}。
+* [GitHub issuesで他の人を助ける](help-fastapi.md#github-issues){.internal-link target=_blank}。
 * [プルリクエストをする](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
-* プルリクエストのレビューをする ([特に翻訳に重要](contributing.md#translations){.internal-link target=_blank})。
+* プルリクエストのレビューをする ([特に翻訳に重要](contributing.md#_8){.internal-link target=_blank})。
 
 彼らに大きな拍手を。👏 🙇
 
 ## 先月最もアクティブだったユーザー
 
-彼らは、先月の[GitHub issuesで最も多くの人を助けた](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}ユーザーです。☕
+彼らは、先月の[GitHub issuesで最も多くの人を助けた](help-fastapi.md#github-issues){.internal-link target=_blank}ユーザーです。☕
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -53,13 +58,13 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 **FastAPI experts** を紹介します。🤓
 
-彼らは、*これまでに* [GitHub issuesで最も多くの人を助けた](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}ユーザーです。
+彼らは、*これまでに* [GitHub issuesで最も多くの人を助けた](help-fastapi.md#github-issues){.internal-link target=_blank}ユーザーです。
 
 多くの人を助けることでexpertsであると示されています。✨
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -77,7 +82,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -93,7 +98,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 ### 翻訳のレビュー
 
-私は少しの言語しか話せません (もしくはあまり上手ではありません😅)。したがって、reviewers は、ドキュメントの[**翻訳を承認する権限**](contributing.md#translations){.internal-link target=_blank}を持っています。それらがなければ、いくつかの言語のドキュメントはなかったでしょう。
+私は少しの言語しか話せません (もしくはあまり上手ではありません😅)。したがって、reviewers は、ドキュメントの[**翻訳を承認する権限**](contributing.md#_8){.internal-link target=_blank}を持っています。それらがなければ、いくつかの言語のドキュメントはなかったでしょう。
 
 ---
 
@@ -101,7 +106,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}

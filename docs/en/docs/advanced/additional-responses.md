@@ -28,7 +28,7 @@ For example, to declare another response with a status code `404` and a Pydantic
 ```
 
 !!! note
-    Have in mind that you have to return the `JSONResponse` directly.
+    Keep in mind that you have to return the `JSONResponse` directly.
 
 !!! info
     The `model` key is not part of OpenAPI.
@@ -224,7 +224,7 @@ Here, `new_dict` will contain all the key-value pairs from `old_dict` plus the n
 }
 ```
 
-You can use that technique to re-use some predefined responses in your *path operations* and combine them with additional custom ones.
+You can use that technique to reuse some predefined responses in your *path operations* and combine them with additional custom ones.
 
 For example:
 

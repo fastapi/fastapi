@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Tính năng
 
 ## Tính năng của FastAPI
@@ -26,7 +31,7 @@ Tài liệu tương tác API và web giao diện người dùng. Là một frame
 
 ### Chỉ cần phiên bản Python hiện đại
 
-Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.6** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
+Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.8** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
 
 Nếu bạn cần 2 phút để làm mới lại cách sử dụng các kiểu dữ liệu mới của Python (thậm chí nếu bạn không sử dụng FastAPI), xem hướng dẫn ngắn: [Kiểu dữ liệu Python](python-types.md){.internal-link target=_blank}.
 
@@ -172,7 +177,7 @@ Với **FastAPI**, bạn có được tất cả những tính năng của **Sta
 
 ## Tính năng của Pydantic
 
-**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
+**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
 
 Bao gồm các thư viện bên ngoài cũng dựa trên Pydantic, như <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s cho cơ sở dữ liệu.
 

@@ -46,16 +46,18 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "path",
-                "item_id"
-            ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
-        }
-    ]
+  "detail": [
+    {
+      "type": "int_parsing",
+      "loc": [
+        "path",
+        "item_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "foo",
+      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+    }
+  ]
 }
 ```
 
@@ -93,7 +95,7 @@ The same way, there are many compatible tools. Including code generation tools f
 
 ## Pydantic
 
-All the data validation is performed under the hood by <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
+All the data validation is performed under the hood by <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
 
 You can use the same type declarations with `str`, `float`, `bool` and many other complex data types.
 

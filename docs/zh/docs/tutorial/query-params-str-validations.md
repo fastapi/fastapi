@@ -10,7 +10,7 @@
     {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
@@ -152,7 +152,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
 !!! tip
-    Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没有设默认值的情况下使用 `Optional` 或 `Union[Something, None]` 时，它具有特殊行为，你可以在 Pydantic 文档中阅读有关<a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">必需可选字段</a>的更多信息。
+    Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没有设默认值的情况下使用 `Optional` 或 `Union[Something, None]` 时，它具有特殊行为，你可以在 Pydantic 文档中阅读有关<a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">必需可选字段</a>的更多信息。
 
 ### 使用Pydantic中的`Required`代替省略号(`...`)
 

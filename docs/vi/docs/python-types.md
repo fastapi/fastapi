@@ -182,11 +182,11 @@ Ví dụ, hãy định nghĩa một biến là `list` các `str`.
     {!> ../../../docs_src/python_types/tutorial006_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     Từ `typing`, import `List` (với chữ cái `L` viết hoa):
 
-    ``` Python hl_lines="1"
+    ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial006.py!}
     ```
 
@@ -230,7 +230,7 @@ Bạn sẽ làm điều tương tự để khai báo các `tuple` và  các `set
     {!> ../../../docs_src/python_types/tutorial007_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial007.py!}
@@ -255,7 +255,7 @@ Tham số kiểu dữ liệu thứ hai dành cho giá trị của `dict`.
     {!> ../../../docs_src/python_types/tutorial008_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008.py!}
@@ -284,7 +284,7 @@ Trong Python 3.10 cũng có một **cú pháp mới** mà bạn có thể đặt
     {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial008b.py!}
@@ -314,13 +314,13 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
     {!> ../../../docs_src/python_types/tutorial009_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009.py!}
     ```
 
-=== "Python 3.6+ alternative"
+=== "Python 3.8+ alternative"
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009b.py!}
@@ -404,7 +404,7 @@ Những kiểu dữ liệu này lấy tham số kiểu dữ liệu trong dấu n
     * `Optional`
     * ...and others.
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     * `List`
     * `Tuple`
@@ -440,7 +440,7 @@ Nó không có nghĩa "`one_person`" là một **lớp** gọi là `Person`.
 
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> là một thư viện Python để validate dữ liệu hiệu năng cao.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> là một thư viện Python để validate dữ liệu hiệu năng cao.
 
 Bạn có thể khai báo "hình dạng" của dữa liệu như là các lớp với các thuộc tính.
 
@@ -464,21 +464,21 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
     {!> ../../../docs_src/python_types/tutorial011_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/python_types/tutorial011.py!}
     ```
 
 !!! info
-    Để học nhiều hơn về <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+    Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
 
 **FastAPI** được dựa hoàn toàn trên Pydantic.
 
 Bạn sẽ thấy nhiều ví dụ thực tế hơn trong [Hướng dẫn sử dụng](tutorial/index.md){.internal-link target=_blank}.
 
 !!! tip
-    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 
 ## Type Hints với Metadata Annotations
@@ -493,7 +493,7 @@ Python cũng có một tính năng cho phép đặt **metadata bổ sung** trong
     {!> ../../../docs_src/python_types/tutorial013_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     Ở phiên bản dưới Python 3.9, bạn import `Annotated` từ `typing_extensions`.
 

@@ -27,7 +27,7 @@
 ## 🏃 ⚫️
 
 !!! info
-    🥇 ❎ <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     🤶 Ⓜ. `pip install python-multipart`.
 

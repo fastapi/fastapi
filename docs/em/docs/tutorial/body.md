@@ -6,7 +6,7 @@
 
 👆 🛠️ 🌖 🕧 ✔️ 📨 **📨** 💪. ✋️ 👩‍💻 🚫 🎯 💪 📨 **📨** 💪 🌐 🕰.
 
-📣 **📨** 💪, 👆 ⚙️ <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 🏷 ⏮️ 🌐 👫 🏋️ &amp; 💰.
+📣 **📨** 💪, 👆 ⚙️ <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 🏷 ⏮️ 🌐 👫 🏋️ &amp; 💰.
 
 !!! info
     📨 💽, 👆 🔜 ⚙️ 1️⃣: `POST` (🌅 ⚠), `PUT`, `DELETE` ⚖️ `PATCH`.
@@ -210,4 +210,4 @@
 
 ## 🍵 Pydantic
 
-🚥 👆 🚫 💚 ⚙️ Pydantic 🏷, 👆 💪 ⚙️ **💪** 🔢. 👀 🩺 [💪 - 💗 🔢: ⭐ 💲 💪](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+🚥 👆 🚫 💚 ⚙️ Pydantic 🏷, 👆 💪 ⚙️ **💪** 🔢. 👀 🩺 [💪 - 💗 🔢: ⭐ 💲 💪](body-multiple-params.md#_2){.internal-link target=_blank}.

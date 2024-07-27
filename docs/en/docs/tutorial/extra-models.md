@@ -23,11 +23,16 @@ Here's a general idea of how the models could look like with their password fiel
     {!> ../../../docs_src/extra_models/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
     {!> ../../../docs_src/extra_models/tutorial001.py!}
     ```
+
+!!! info
+    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
 
 ### About `**user_in.dict()`
 
@@ -78,7 +83,7 @@ So, continuing with the `user_dict` from above, writing:
 UserInDB(**user_dict)
 ```
 
-Would result in something equivalent to:
+would result in something equivalent to:
 
 ```Python
 UserInDB(
@@ -115,7 +120,7 @@ would be equivalent to:
 UserInDB(**user_in.dict())
 ```
 
-...because `user_in.dict()` is a `dict`, and then we make Python "unwrap" it by passing it to `UserInDB` prepended with `**`.
+...because `user_in.dict()` is a `dict`, and then we make Python "unwrap" it by passing it to `UserInDB` prefixed with `**`.
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
@@ -164,7 +169,7 @@ That way, we can declare just the differences between the models (with plaintext
     {!> ../../../docs_src/extra_models/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="9  15-16  19-20  23-24"
     {!> ../../../docs_src/extra_models/tutorial002.py!}
@@ -179,7 +184,7 @@ It will be defined in OpenAPI with `anyOf`.
 To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note
-    When defining a <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+    When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
 
 === "Python 3.10+"
 
@@ -187,7 +192,7 @@ To do that, use the standard Python type hint <a href="https://docs.python.org/3
     {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  14-15  18-20  33"
     {!> ../../../docs_src/extra_models/tutorial003.py!}
@@ -219,7 +224,7 @@ For that, use the standard Python `typing.List` (or just `list` in Python 3.9 an
     {!> ../../../docs_src/extra_models/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  20"
     {!> ../../../docs_src/extra_models/tutorial004.py!}
@@ -239,7 +244,7 @@ In this case, you can use `typing.Dict` (or just `dict` in Python 3.9 and above)
     {!> ../../../docs_src/extra_models/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="1  8"
     {!> ../../../docs_src/extra_models/tutorial005.py!}

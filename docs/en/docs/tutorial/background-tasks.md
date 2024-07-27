@@ -55,7 +55,7 @@ Inside of your *path operation function*, pass your task function to the *backgr
 
 Using `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.
 
-**FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
+**FastAPI** knows what to do in each case and how to reuse the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
 === "Python 3.10+"
 
@@ -69,7 +69,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
     {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="14  16  23  26"
     {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
@@ -84,7 +84,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

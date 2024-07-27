@@ -25,7 +25,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="3  17"
     {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
@@ -54,7 +54,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="17  22  27"
     {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
@@ -92,7 +92,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="20-21"
     {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
@@ -116,7 +116,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-27"
     {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
@@ -142,7 +142,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}

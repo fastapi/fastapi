@@ -340,7 +340,7 @@ Agora APIStar é um conjunto de ferramentas para validar especificações OpenAP
 
 ## Usados por **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic é uma biblioteca para definir validação de dados, serialização e documentação (usando JSON Schema) baseado nos Python _type hints_.
 

@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # 機能
 
 ## FastAPIの機能
@@ -24,7 +29,7 @@
 
 ### 現代的なPython
 
-FastAPIの機能はすべて、標準のPython 3.6型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
+FastAPIの機能はすべて、標準のPython 3.8型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
 
 （FastAPIを使用しない場合でも）Pythonの型の使用方法について簡単な復習が必要な場合は、短いチュートリアル（[Python Types](python-types.md){.internal-link target=_blank}）を参照してください。
 
@@ -177,7 +182,7 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 
 ## Pydanticの特徴
 
-**FastAPI**は<a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
+**FastAPI**は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
 
 データベースのために<abbr title = "Object-Relational Mapper">ORM</abbr>sや、<abbr title = "Object-Document Mapper">ODM</abbr>sなどの、Pydanticに基づく外部ライブラリを備えています。
 
@@ -192,8 +197,6 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
     * Pythonの型を知っている場合は、既にPydanticの使用方法を知っているに等しいです。
 * ユーザーの **<abbr title = "コードエディターに似た統合開発環境">IDE</abbr>/<abbr title = "コードエラーをチェックするプログラム">リンター</abbr>/思考 とうまく連携します**：
     * Pydanticのデータ構造は、ユーザーが定義するクラスの単なるインスタンスであるため、オートコンプリート、リンティング、mypy、およびユーザーの直感はすべて、検証済みのデータで適切に機能するはずです。
-* **高速**：
-    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">ベンチマーク</a>では、Pydanticは他のすべてのテスト済みライブラリよりも高速です。
 * **複雑な構造**を検証：
     * 階層的なPydanticモデルや、Pythonの「`typing`」の「`list`」と「`dict`」などの利用。
     * バリデーターにより、複雑なデータスキーマを明確かつ簡単に定義、チェックし、JSONスキーマとして文書化できます。

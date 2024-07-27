@@ -26,13 +26,13 @@ Copy the example in a file `main.py`:
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -45,9 +45,11 @@ Copy the example in a file `main.py`:
 ## Run it
 
 !!! info
-    First install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    The <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> package is automatically installed with **FastAPI** when you run the `pip install fastapi` command.
 
-    E.g. `pip install python-multipart`.
+    However, if you use the `pip install fastapi-slim` command, the `python-multipart` package is not included by default. To install it manually, use the following command:
+
+    `pip install python-multipart`
 
     This is because **OAuth2** uses "form data" for sending the `username` and `password`.
 
@@ -56,7 +58,7 @@ Run the example with:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -140,13 +142,13 @@ When we create an instance of the `OAuth2PasswordBearer` class we pass in the `t
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python  hl_lines="7"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -191,13 +193,13 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python  hl_lines="11"
     {!> ../../../docs_src/security/tutorial001_an.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

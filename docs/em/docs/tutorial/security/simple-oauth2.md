@@ -163,7 +163,7 @@ UserInDB(
 ```
 
 !!! info
-    🌅 🏁 🔑 `**👩‍💻_ #️⃣ ` ✅ 🔙 [🧾 **➕ 🏷**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
+    🌅 🏁 🔑 `**👩‍💻_ #️⃣ ` ✅ 🔙 [🧾 **➕ 🏷**](../extra-models.md#user_indict){.internal-link target=_blank}.
 
 ## 📨 🤝
 
