@@ -1,4 +1,4 @@
-# レスポンスヘッダ<!-- # Response Headers -->
+# レスポンス - ヘッダ<!-- # Response Headers -->
 
 <!-- ## Use a `Response` parameter -->
 ## `Response`パラメータの利用
