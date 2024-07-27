@@ -69,5 +69,3 @@
 
 <!-- To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>. -->
 使用可能なすべてのパラメータとオプションを確認するには、<a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>を参照してください。
-
-
