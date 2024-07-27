@@ -1,4 +1,4 @@
-# レスポンスステータスコードの変更 <!-- # Response - Change Status Code -->
+# レスポンス - ステータスコードの変更 <!-- # Response - Change Status Code -->
 
 <!-- You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}. -->
 デフォルトの[Response Status Code](./tutorial/response-status-code.md){.internal-link target=_blank}の設定方法は以前に読みましたね。
