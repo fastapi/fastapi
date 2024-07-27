@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Fonctionnalités
 
 ## Fonctionnalités de FastAPI
