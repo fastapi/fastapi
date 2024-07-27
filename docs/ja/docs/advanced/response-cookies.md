@@ -1,4 +1,4 @@
-# クッキーのレスポンス <!-- # Response Cookies -->
+# レスポンス - クッキー <!-- # Response Cookies -->
 
 <!-- ## Use a `Response` parameter -->
 ## `Response`パラメータの利用
