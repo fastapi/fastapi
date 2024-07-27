@@ -81,8 +81,9 @@ plugins:
           show_symbol_type_heading: true
           show_symbol_type_toc: true
 nav:
-- FastAPI: index.md
-- features.md
+- FastAPI:
+  - index.md
+  - features.md
 - Learn:
   - learn/index.md
   - python-types.md
@@ -218,6 +219,8 @@ nav:
 - fastapi-people.md
 - Resources:
   - resources/index.md
+  - help-fastapi.md
+  - contributing.md
   - project-generation.md
   - external-links.md
   - newsletter.md
@@ -226,10 +229,7 @@ nav:
   - alternatives.md
   - history-design-future.md
   - benchmarks.md
-- Help:
-  - help/index.md
-  - help-fastapi.md
-  - contributing.md
+
 - release-notes.md
 markdown_extensions:
   toc:
