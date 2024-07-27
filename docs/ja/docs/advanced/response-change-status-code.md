@@ -45,5 +45,3 @@
 
 <!-- You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win. -->
 `Response`パラメータを依存関係で宣言し、その中にステータスコードを設定することもできます。ただし、最後に設定されたものが優先されることに注意が必要です。
-
-
