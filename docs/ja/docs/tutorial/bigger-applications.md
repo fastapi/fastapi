@@ -211,7 +211,7 @@ APIRouterを使用して*path operation*を宣言します。
 * 作成した`X-Token`に依存するすべてのdependencies
 
 <!-- So, instead of adding all that to each *path operation*, we can add it to the `APIRouter`. -->
-各*path operation*のすべてに追加する代わりに、`APIRouter`に追加することができます。
+各*path operation*すべてにこれらを追加する代わりに、`APIRouter`に追加することができます。
 
 ```Python hl_lines="5-10  16  21" title="app/routers/items.py"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
