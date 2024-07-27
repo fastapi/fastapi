@@ -57,5 +57,3 @@
 
 <!-- But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>. -->
 しかし、ブラウザにてクライアントに表示させたいカスタムヘッダがある場合、カスタムヘッダをCORS設定に追加する必要があり(詳細については、[CORS (Cross-Origin Resource Sharing)](./tutorial/cors.md){.internal-link target=_blank}を参照してください)、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>に記載されている`expose_headers`パラメータを使用してください。
-
-
