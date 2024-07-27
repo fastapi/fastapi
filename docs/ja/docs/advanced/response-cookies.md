@@ -60,10 +60,8 @@
     <!-- You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`. -->
     `from starlette.responses import Response`や`from starlette.responses import JSONResponse`を使用することもできます。
 
-
     <!-- **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. -->
-    **FastAPI**は、開発者が便利に利用できるように、に`FastAPI.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスはほとんどはStarletteが直接処理しています。
-
+    **FastAPI**は、開発者が便利に利用できるように、`FastAPI.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスはほとんどはStarletteが直接処理しています。
 
     <!-- And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`. -->
     また、`Response`はヘッダーやクッキーの設定に頻繁に使用されるため、**FastAPI**では`FastAPI.Response`でも提供されています。
