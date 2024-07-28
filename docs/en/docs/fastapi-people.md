@@ -44,7 +44,9 @@ A round of applause to them. 👏 🙇
 
 ## Team
 
-This is the current list of team members, they have different levels of involvement and permissions, they can perform [repo management tasks](./management-tasks.md){.internal-link target=_blank}.
+This is the current list of team members. 😎
+
+They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md){.internal-link target=_blank} and together we  [manage the FastAPI repository](./management.md){.internal-link target=_blank}.
 
 <div class="user-list user-list-center">
 {% for user in members["members"] %}
@@ -53,6 +55,8 @@ This is the current list of team members, they have different levels of involvem
 {% endfor %}
 
 </div>
+
+Although the team members have the permissions to perform privileged tasks, all the [help from others maintaining FastAPI](./help-fastapi.md#help-maintain-fastapi){.internal-link target=_blank} is very much appreciated! 🙇‍♂️
 
 ## FastAPI Experts
 

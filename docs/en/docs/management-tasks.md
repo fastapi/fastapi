@@ -1,4 +1,4 @@
-# Repo Management Tasks
+# Repository Management Tasks
 
 These are the tasks that can be performed to manage the FastAPI repository by [team members](./fastapi-people.md#team){.internal-link target=_blank}.
 
@@ -7,7 +7,7 @@ These are the tasks that can be performed to manage the FastAPI repository by [t
 
 ...so, you are a [team member of FastAPI](./fastapi-people.md#team){.internal-link target=_blank}? Wow, you are so cool! 😎
 
-You can help with everything on [Help FastAPI - Get Help](./help-fastapi.md){.internal-link target=_blank}, but additionally, there are some tasks that only you (as part of the team) can perform.
+You can help with everything on [Help FastAPI - Get Help](./help-fastapi.md){.internal-link target=_blank} the same ways as external contributors. But additionally, there are some tasks that only you (as part of the team) can perform.
 
 Here are the general instructions for the tasks you can perform.
 
@@ -208,7 +208,7 @@ A PR should have a specific use case that it is solving.
 * If the PR is for a feature, it should have docs.
     * Unless it's a feature we want to discourage, like support for a corner case that we don't want users to use.
 * The docs should include a source example file, not write Python directly in Markdown.
-* If the source example(s) file can have different syntax for Python 3.8, 3.9, 3.10, there should be different versions of the file in tabs.
+* If the source example(s) file can have different syntax for Python 3.8, 3.9, 3.10, there should be different versions of the file, and they should be shown in tabs in the docs.
 * There should be tests testing the source example.
 * Before the PR is applied, the new tests should fail.
 * After applying the PR, the new tests should pass.
