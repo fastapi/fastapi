@@ -269,14 +269,14 @@ Voici les étapes à suivre pour aider à la traduction.
 
 #### Conseils et lignes directrices
 
-* Vérifiez les <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">pull requests existantes</a> pour votre langue et ajouter des reviews demandant des changements ou les approuvant.
+* Vérifiez les <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">pull requests existantes</a> pour votre langue et ajouter des reviews demandant des changements ou les approuvant.
 
 !!! tip
     Vous pouvez <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">ajouter des commentaires avec des suggestions de changement</a> aux pull requests existantes.
 
     Consultez les documents concernant <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">l'ajout d'un review de pull request</a> pour l'approuver ou demander des modifications.
 
-* Vérifiez dans <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> pour voir s'il y a une personne qui coordonne les traductions pour votre langue.
+* Vérifiez dans <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">issues</a> pour voir s'il y a une personne qui coordonne les traductions pour votre langue.
 
 * Ajoutez une seule pull request par page traduite. Il sera ainsi beaucoup plus facile pour les autres de l'examiner.
 

@@ -91,7 +91,7 @@ Onlar mənbə kodu, sənədləmə, tərcümələr və s. barədə əmək göstə
 </div>
 {% endif %}
 
-Bundan başqa bir neçə (yüzdən çox) əməkdaş var ki, onları <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Əməkdaşlar səhifəsində</a> görə bilərsiniz. 👷
+Bundan başqa bir neçə (yüzdən çox) əməkdaş var ki, onları <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Əməkdaşlar səhifəsində</a> görə bilərsiniz. 👷
 
 ## Ən çox rəy verənlər
 
@@ -178,7 +178,7 @@ Bu səhifənin əsas məqsədi, icmanın başqalarına kömək etmək üçün g�
 
 Xüsusilə də normalda daha az görünən və bir çox hallarda daha çətin olan, başqalarının suallarına kömək etmək və tərcümələrlə bağlı Pull Request-lərə rəy vermək kimi səy göstərmək.
 
-Bu səhifənin məlumatları hər ay hesablanır və siz <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">buradan mənbə kodunu</a> oxuya bilərsiniz.
+Bu səhifənin məlumatları hər ay hesablanır və siz <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">buradan mənbə kodunu</a> oxuya bilərsiniz.
 
 Burada sponsorların əməyini də vurğulamaq istəyirəm.
 
