@@ -10,6 +10,7 @@ on:
   pull_request:
     types:
       - synchronize
+      - opened
     branches:
       - cloudflare
 
