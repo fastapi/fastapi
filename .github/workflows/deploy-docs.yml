@@ -5,6 +5,8 @@ on:
       - Build Docs
     types:
       - completed
+permissions:
+  deployments: write
 
 jobs:
   deploy-docs:

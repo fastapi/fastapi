@@ -15,6 +15,9 @@ on:
         required: false
         default: 'false'
 
+permissions:
+  discussions: write
+
 jobs:
   notify-translations:
     runs-on: ubuntu-latest
