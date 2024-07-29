@@ -24,7 +24,7 @@ jobs:
           path: ./site/
           pattern: docs-site-*
           merge-multiple: true
-          github-token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: Deploy to Cloudflare Pages
         # hashFiles returns an empty string if there are no files
@@ -42,5 +42,5 @@ jobs:
         if: steps.deploy.outputs.url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
         with:
-          token: ${{ secrets.FASTAPI_PREVIEW_DOCS_COMMENT_DEPLOY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           deploy_url: "${{ steps.deploy.outputs.url }}"
