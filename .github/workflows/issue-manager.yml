@@ -25,7 +25,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: tiangolo/issue-manager@0.5.0
         with:
-          token: ${{ secrets.FASTAPI_ISSUE_MANAGER }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           config: >
             {
               "answered": {
