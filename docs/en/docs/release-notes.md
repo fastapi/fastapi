@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add docs about FastAPI team and project management. PR [#11908](https://github.com/tiangolo/fastapi/pull/11908) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Re-structure docs main menu. PR [#11904](https://github.com/tiangolo/fastapi/pull/11904) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update Speakeasy URL. PR [#11871](https://github.com/tiangolo/fastapi/pull/11871) by [@ndimares](https://github.com/ndimares).
 
@@ -22,6 +23,7 @@ hide:
 
 ### Internal
 
+* 👷 Update GitHub Action to notify translations with label `approved-1`. PR [#11907](https://github.com/tiangolo/fastapi/pull/11907) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, remove Reflex. PR [#11875](https://github.com/tiangolo/fastapi/pull/11875) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove TalkPython. PR [#11861](https://github.com/tiangolo/fastapi/pull/11861) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update docs Termynal scripts to not include line nums for local dev. PR [#11854](https://github.com/tiangolo/fastapi/pull/11854) by [@tiangolo](https://github.com/tiangolo).

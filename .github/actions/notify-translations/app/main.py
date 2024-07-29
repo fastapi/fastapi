@@ -11,7 +11,7 @@ from pydantic import BaseModel, BaseSettings, SecretStr
 
 awaiting_label = "awaiting-review"
 lang_all_label = "lang-all"
-approved_label = "approved-2"
+approved_label = "approved-1"
 translations_path = Path(__file__).parent / "translations.yml"
 
 github_graphql_url = "https://api.github.com/graphql"
