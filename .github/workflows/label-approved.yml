@@ -16,7 +16,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - uses: docker://tiangolo/label-approved:0.0.4
       with:
-        token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         config: >
           {
             "approved-1":
