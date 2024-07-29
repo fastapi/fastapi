@@ -41,7 +41,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # TODO: fix this
           # run-id: ${{ github.event.workflow_run.id }}
-          run-id: 10149838887
+          run-id: 10149789536
       - name: Deploy to Cloudflare Pages
         # hashFiles returns an empty string if there are no files
         if: hashFiles('./site/*')
