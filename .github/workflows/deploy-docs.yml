@@ -11,6 +11,7 @@ on:
     types:
       - synchronize
       - opened
+  push:
     branches:
       - cloudflare
 
