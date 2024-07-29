@@ -5,11 +5,11 @@
     <em>FastAPI উচ্চক্ষমতা সম্পন্ন, সহজে শেখার এবং দ্রুত কোড করে প্রোডাকশনের জন্য ফ্রামওয়ার্ক।</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -20,7 +20,7 @@
 
 **নির্দেশিকা নথি**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**সোর্স কোড**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**সোর্স কোড**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -61,7 +61,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "_আমি আজকাল **FastAPI** ব্যবহার করছি। [...] আমরা ভাবছি মাইক্রোসফ্টে **ML সার্ভিস** এ সকল দলের জন্য এটি ব্যবহার করব। যার মধ্যে কিছু পণ্য **Windows** এ সংযোযন হয় এবং কিছু **Office** এর সাথে সংযোযন হচ্ছে।_"
 
-<div style="text-align: right; margin-right: 10%;">কবির খান - <strong>মাইক্রোসফ্টে</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">কবির খান - <strong>মাইক্রোসফ্টে</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

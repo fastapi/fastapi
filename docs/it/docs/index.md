@@ -9,11 +9,11 @@
     <em>FastAPI framework, alte prestazioni, facile da imparare, rapido da implementare, pronto per il rilascio in produzione</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://travis-ci.com/fastapi/fastapi" target="_blank">
+    <img src="https://travis-ci.com/fastapi/fastapi.svg?branch=master" alt="Build Status">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi" alt="Coverage">
+<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
@@ -24,7 +24,7 @@
 
 **Documentazione**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Codice Sorgente**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Codice Sorgente**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -64,7 +64,7 @@ Le sue caratteristiche principali sono:
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

@@ -26,13 +26,13 @@
 
 ## ✴ **FastAPI** 📂
 
-👆 💪 "✴" FastAPI 📂 (🖊 ✴ 🔼 🔝 ▶️️): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👶 👶
+👆 💪 "✴" FastAPI 📂 (🖊 ✴ 🔼 🔝 ▶️️): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👶 👶
 
 ❎ ✴, 🎏 👩‍💻 🔜 💪 🔎 ⚫️ 🌅 💪 &amp; 👀 👈 ⚫️ ✔️ ⏪ ⚠ 🎏.
 
 ## ⌚ 📂 🗃 🚀
 
-👆 💪 "⌚" FastAPI 📂 (🖊 "⌚" 🔼 🔝 ▶️️): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👶
+👆 💪 "⌚" FastAPI 📂 (🖊 "⌚" 🔼 🔝 ▶️️): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👶
 
 📤 👆 💪 🖊 "🚀 🕴".
 
@@ -59,7 +59,7 @@
 
 ## 👱📔 🔃 **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">👱📔 🔃 **FastAPI**</a> &amp; ➡️ 👤 &amp; 🎏 💭 ⚫️❔ 👆 💖 ⚫️. 👶
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">👱📔 🔃 **FastAPI**</a> &amp; ➡️ 👤 &amp; 🎏 💭 ⚫️❔ 👆 💖 ⚫️. 👶
 
 👤 💌 👂 🔃 ❔ **FastAPI** 💆‍♂ ⚙️, ⚫️❔ 👆 ✔️ 💖 ⚫️, ❔ 🏗/🏢 👆 ⚙️ ⚫️, ♒️.
 
@@ -73,8 +73,8 @@
 
 👆 💪 🔄 &amp; ℹ 🎏 ⏮️ 👫 ❔:
 
-* <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">📂 💬</a>
-* <a href="https://github.com/tiangolo/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">📂 ❔</a>
+* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">📂 💬</a>
+* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">📂 ❔</a>
 
 📚 💼 👆 5️⃣📆 ⏪ 💭 ❔ 📚 ❔. 👶
 
@@ -125,7 +125,7 @@
 
 ## ⌚ 📂 🗃
 
-👆 💪 "⌚" FastAPI 📂 (🖊 "⌚" 🔼 🔝 ▶️️): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👶
+👆 💪 "⌚" FastAPI 📂 (🖊 "⌚" 🔼 🔝 ▶️️): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👶
 
 🚥 👆 🖊 "👀" ↩️ "🚀 🕴" 👆 🔜 📨 📨 🕐❔ 👱 ✍ 🆕 ❔ ⚖️ ❔. 👆 💪 ✔ 👈 👆 🕴 💚 🚨 🔃 🆕 ❔, ⚖️ 💬, ⚖️ 🎸, ♒️.
 
@@ -133,7 +133,7 @@
 
 ## 💭 ❔
 
-👆 💪 <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">✍ 🆕 ❔</a> 📂 🗃, 🖼:
+👆 💪 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">✍ 🆕 ❔</a> 📂 🗃, 🖼:
 
 * 💭 **❔** ⚖️ 💭 🔃 **⚠**.
 * 🤔 🆕 **⚒**.
@@ -196,7 +196,7 @@
 👆 💪 [📉](contributing.md){.internal-link target=_blank} ℹ 📟 ⏮️ 🚲 📨, 🖼:
 
 * 🔧 🤭 👆 🔎 🔛 🧾.
-* 💰 📄, 📹, ⚖️ 📻 👆 ✍ ⚖️ 🔎 🔃 FastAPI <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">✍ 👉 📁</a>.
+* 💰 📄, 📹, ⚖️ 📻 👆 ✍ ⚖️ 🔎 🔃 FastAPI <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">✍ 👉 📁</a>.
     * ⚒ 💭 👆 🚮 👆 🔗 ▶️ 🔗 📄.
 * ℹ [💬 🧾](contributing.md#_9){.internal-link target=_blank} 👆 🇪🇸.
     * 👆 💪 ℹ 📄 ✍ ✍ 🎏.
@@ -227,7 +227,7 @@
 🛑 👶 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">😧 💬 💽</a> 👶 &amp; 🤙 👅 ⏮️ 🎏 FastAPI 👪.
 
 !!! tip
-    ❔, 💭 👫 <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">📂 💬</a>, 📤 🌅 👍 🤞 👆 🔜 📨 ℹ [FastAPI 🕴](fastapi-people.md#_2){.internal-link target=_blank}.
+    ❔, 💭 👫 <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">📂 💬</a>, 📤 🌅 👍 🤞 👆 🔜 📨 ℹ [FastAPI 🕴](fastapi-people.md#_2){.internal-link target=_blank}.
 
     ⚙️ 💬 🕴 🎏 🏢 💬.
 
