@@ -265,7 +265,7 @@ John Doe
 
 ## Pydantic 모델
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>은 데이터 검증(Validation)을 위한 파이썬 라이브러리입니다.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>은 데이터 검증(Validation)을 위한 파이썬 라이브러리입니다.
 
 당신은 속성들을 포함한 클래스 형태로 "모양(shape)"을 선언할 수 있습니다.
 
@@ -282,7 +282,7 @@ Pydantic 공식 문서 예시:
 ```
 
 !!! info "정보"
-    Pydantic<에 대해 더 배우고 싶다면 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
+    Pydantic<에 대해 더 배우고 싶다면 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
 
 
 **FastAPI**는 모두 Pydantic을 기반으로 되어 있습니다.

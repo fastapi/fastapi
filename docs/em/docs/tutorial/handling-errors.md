@@ -163,7 +163,7 @@ path -> item_id
 !!! warning
     👫 📡 ℹ 👈 👆 💪 🚶 🚥 ⚫️ 🚫 ⚠ 👆 🔜.
 
-`RequestValidationError` 🎧-🎓 Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` 🎧-🎓 Pydantic <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** ⚙️ ⚫️ 👈, 🚥 👆 ⚙️ Pydantic 🏷 `response_model`, &amp; 👆 💽 ✔️ ❌, 👆 🔜 👀 ❌ 👆 🕹.
 
