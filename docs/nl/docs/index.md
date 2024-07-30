@@ -105,13 +105,13 @@ De belangrijkste kenmerken:
 
 ---
 
-"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+"_Wie een Python API wil bouwen voor productie, kan ik ten stelligste **FastAPI** aanraden. Het is **prachtig ontworpen**, **eenvoudig te gebruiken** en **gemakkelijk schaalbaar**, het is een **cruciale component** geworden in onze strategie om API's centraal te zetten, en het vereenvoudigt automatisering en diensten zoals onze Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+## **Typer**, de FastAPI van CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
@@ -227,9 +227,9 @@ INFO:     Application startup complete.
 
 Het commando `fastapi dev` leest het `main.py` bestand, detecteert de **FastAPI** app, and start een server met <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
-By default, `fastapi dev` will start with auto-reload enabled for local development.
+Standaard zal dit commando `fastapi dev` starten met "auto-reload" geactiveerd voor ontwikkeling op het lokale systeem.
 
-You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
+Je kan hier meer over lezen in de <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI documentatie</a>.
 
 </details>
 
@@ -356,8 +356,8 @@ item: Item
     * Code aanvulling.
     * Type checks.
 * Validatie van data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
+    * Automatische en duidelijke foutboodschappen wanneer de data ongeldig is.
+    * Validatie zelfs voor diep geneste JSON objecten.
 * <abbr title="ook bekend als: serialisatie, parsing, marshalling">Conversie</abbr> van invoergegevens: afkomstig van het netwerk naar Python-data en -types. Zoals:
     * JSON.
     * Pad parameters.
@@ -456,39 +456,39 @@ Used by Pydantic:
 
 Gebruikt door Pydantic:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Vereist indien u de `TestClient` wil gebruiken.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Vereist als u de standaard templateconfiguratie wilt gebruiken.
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist als je het <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
 
 Gebruikt door FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - voor de server die uw applicatie laadt en bedient.
-* `fastapi-cli` - to provide the `fastapi` command.
+* `fastapi-cli` - om het `fastapi` commando te voorzien.
 
-When you install `fastapi` it comes with these standard dependencies.
+Wanneer je `fastapi` installeert, worden deze afhankelijkheden automatisch geïnstalleerd.
 
-Additional optional dependencies:
+Bijkomende optionele afhankelijkheden:
 
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Vereist indien u `ORJSONResponse` wil gebruiken.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Vereist indien u `UJSONResponse` wil gebruiken.
 
 ## `fastapi-slim`
 
-If you don't want the extra standard optional dependencies, install `fastapi-slim` instead.
+Indien je geen bijkomende optionele afhankelijkheden wil installeren, installeer dan `fastapi-slim`.
 
-When you install with:
+Wanneer je installeert met het commando
 
 ```bash
 pip install fastapi
 ```
 
-...it includes the same code and dependencies as:
+...zal dit dezelfde code en afhankelijkheden installeren dan via het commando
 
 ```bash
 pip install "fastapi-slim[standard]"
 ```
 
-The standard extra dependencies are the ones mentioned above.
+De standaard bijkomende afhankelijkheden worden hierboven opgelijst. 
 
 ## License
 
