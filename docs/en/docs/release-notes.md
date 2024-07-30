@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Tweak management docs. PR [#11918](https://github.com/fastapi/fastapi/pull/11918) by [@tiangolo](https://github.com/tiangolo).
 * 🚚 Rename GitHub links from tiangolo/fastapi to fastapi/fastapi. PR [#11913](https://github.com/fastapi/fastapi/pull/11913) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add docs about FastAPI team and project management. PR [#11908](https://github.com/tiangolo/fastapi/pull/11908) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Re-structure docs main menu. PR [#11904](https://github.com/tiangolo/fastapi/pull/11904) by [@tiangolo](https://github.com/tiangolo).
