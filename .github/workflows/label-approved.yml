@@ -7,7 +7,7 @@ on:
 
 jobs:
   label-approved:
-    if: github.repository_owner == 'tiangolo'
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
     - name: Dump GitHub context
@@ -16,7 +16,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - uses: docker://tiangolo/label-approved:0.0.4
       with:
-        token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         config: >
           {
             "approved-1":

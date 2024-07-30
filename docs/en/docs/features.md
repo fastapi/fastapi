@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Features
 
 ## FastAPI features

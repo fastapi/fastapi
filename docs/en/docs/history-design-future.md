@@ -1,6 +1,6 @@
 # History, Design and Future
 
-Some time ago, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">a **FastAPI** user asked</a>:
+Some time ago, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">a **FastAPI** user asked</a>:
 
 > What’s the history of this project? It seems to have come from nowhere to awesome in a few weeks [...]
 
