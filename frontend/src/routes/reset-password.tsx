@@ -60,7 +60,7 @@ function ResetPassword() {
   const mutation = useMutation({
     mutationFn: resetPassword,
     onSuccess: () => {
-      showToast("Success!", "Password updated.", "success")
+      showToast("Success!", "Password updated successfully.", "success")
       reset()
       navigate({ to: "/login" })
     },

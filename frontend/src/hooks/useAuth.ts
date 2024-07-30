@@ -34,7 +34,11 @@ const useAuth = () => {
 
     onSuccess: () => {
       navigate({ to: "/login" })
-      showToast("Success!", "User created successfully.", "success")
+      showToast(
+        "Account created.",
+        "Your account has been created successfully.",
+        "success",
+      )
     },
     onError: (err: ApiError) => {
       let errDetail = (err.body as any)?.detail
