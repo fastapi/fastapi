@@ -4,6 +4,7 @@
 
 ### Features
 
+* ✨ Add Reset Password e2e tests. PR [#1270](https://github.com/tiangolo/full-stack-fastapi-template/pull/1270) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Sign Up e2e tests . PR [#1268](https://github.com/tiangolo/full-stack-fastapi-template/pull/1268) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Sign Up and make `OPEN_USER_REGISTRATION=True` by default. PR [#1265](https://github.com/tiangolo/full-stack-fastapi-template/pull/1265) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Login e2e tests. PR [#1264](https://github.com/tiangolo/full-stack-fastapi-template/pull/1264) by [@alejsdev](https://github.com/alejsdev).
