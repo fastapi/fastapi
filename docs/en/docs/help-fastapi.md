@@ -26,13 +26,13 @@ You can subscribe to the (infrequent) [**FastAPI and friends** newsletter](newsl
 
 ## Star **FastAPI** in GitHub
 
-You can "star" FastAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+You can "star" FastAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
 
 By adding a star, other users will be able to find it more easily and see that it has been already useful for others.
 
 ## Watch the GitHub repository for releases
 
-You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 There you can select "Releases only".
 
@@ -59,7 +59,7 @@ You can:
 
 ## Tweet about **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
 
 I love to hear about how **FastAPI** is being used, what you have liked in it, in which project/company are you using it, etc.
 
@@ -73,8 +73,8 @@ I love to hear about how **FastAPI** is being used, what you have liked in it, i
 
 You can try and help others with their questions in:
 
-* <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
-* <a href="https://github.com/tiangolo/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
+* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
 
 In many cases you might already know the answer for those questions. 🤓
 
@@ -125,7 +125,7 @@ If they reply, there's a high chance you would have solved their problem, congra
 
 ## Watch the GitHub repository
 
-You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 If you select "Watching" instead of "Releases only" you will receive notifications when someone creates a new issue or question. You can also specify that you only want to be notified about new issues, or discussions, or PRs, etc.
 
@@ -133,7 +133,7 @@ Then you can try and help them solve those questions.
 
 ## Ask Questions
 
-You can <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">create a new question</a> in the GitHub repository, for example to:
+You can <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">create a new question</a> in the GitHub repository, for example to:
 
 * Ask a **question** or ask about a **problem**.
 * Suggest a new **feature**.
@@ -196,7 +196,7 @@ And if there's any other style or consistency need, I'll ask directly for that, 
 You can [contribute](contributing.md){.internal-link target=_blank} to the source code with Pull Requests, for example:
 
 * To fix a typo you found on the documentation.
-* To share an article, video, or podcast you created or found about FastAPI by <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editing this file</a>.
+* To share an article, video, or podcast you created or found about FastAPI by <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editing this file</a>.
     * Make sure you add your link to the start of the corresponding section.
 * To help [translate the documentation](contributing.md#translations){.internal-link target=_blank} to your language.
     * You can also help to review the translations created by others.
@@ -227,7 +227,7 @@ If you can help me with that, **you are helping me maintain FastAPI** and making
 Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 and hang out with others in the FastAPI community.
 
 !!! tip
-    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
+    For questions, ask them in <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
 
     Use the chat only for other general conversations.
 

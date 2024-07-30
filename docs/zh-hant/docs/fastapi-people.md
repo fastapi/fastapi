@@ -148,7 +148,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 </div>
 {% endif %}
 
-還有許多其他的貢獻者（超過一百位），你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 貢獻者頁面</a>查看。 👷
+還有許多其他的貢獻者（超過一百位），你可以在 <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 貢獻者頁面</a>查看。 👷
 
 ## 主要翻譯審核者
 
@@ -229,7 +229,7 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 特別是那些通常不太顯眼但往往更加艱辛的工作，例如幫助他人解答問題和審查包含翻譯的 Pull Requests。
 
-這些數據每月計算一次，你可以在這查看<a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">原始碼</a>。
+這些數據每月計算一次，你可以在這查看<a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">原始碼</a>。
 
 此外，我也特別表揚贊助者的貢獻。
 

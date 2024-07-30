@@ -90,7 +90,7 @@ Eles contribuíram com o código-fonte, documentação, traduções, etc. 📦
 </div>
 {% endif %}
 
-Existem muitos outros contribuidores (mais de uma centena), você pode ver todos eles em <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">Página de Contribuidores do FastAPI no GitHub</a>. 👷
+Existem muitos outros contribuidores (mais de uma centena), você pode ver todos eles em <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">Página de Contribuidores do FastAPI no GitHub</a>. 👷
 
 ## Top Revisores
 
@@ -176,7 +176,7 @@ A principal intenção desta página é destacar o esforço da comunidade para a
 
 Especialmente incluindo esforços que normalmente são menos visíveis, e em muitos casos mais árduo, como ajudar os outros com issues e revisando Pull Requests com traduções.
 
-Os dados são calculados todo mês, você pode ler o <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">código fonte aqui</a>.
+Os dados são calculados todo mês, você pode ler o <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">código fonte aqui</a>.
 
 Aqui também estou destacando contribuições de patrocinadores.
 

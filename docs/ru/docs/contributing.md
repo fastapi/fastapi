@@ -237,14 +237,14 @@ $ uvicorn tutorial001:app --reload
 
 #### Подсказки и инструкции
 
-* Проверьте <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">существующие пул-реквесты</a> для Вашего языка. Добавьте отзывы с просьбой внести изменения, если они необходимы, или одобрите их.
+* Проверьте <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">существующие пул-реквесты</a> для Вашего языка. Добавьте отзывы с просьбой внести изменения, если они необходимы, или одобрите их.
 
 !!! tip "Подсказка"
     Вы можете <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">добавлять комментарии с предложениями по изменению</a> в существующие пул-реквесты.
 
     Ознакомьтесь с документацией о <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">добавлении отзыва к пул-реквесту</a>, чтобы утвердить его или запросить изменения.
 
-* Проверьте <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">проблемы и вопросы</a>, чтобы узнать, есть ли кто-то, координирующий переводы для Вашего языка.
+* Проверьте <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">проблемы и вопросы</a>, чтобы узнать, есть ли кто-то, координирующий переводы для Вашего языка.
 
 * Добавляйте один пул-реквест для каждой отдельной переведённой страницы. Это значительно облегчит другим его просмотр.
 
