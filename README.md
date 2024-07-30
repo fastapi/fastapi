@@ -468,7 +468,7 @@ Used by FastAPI / Starlette:
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 * `fastapi-cli` - to provide the `fastapi` command.
 
-When you install `fastapi` it comes these standard dependencies.
+When you install `fastapi` it comes with these standard dependencies.
 
 Additional optional dependencies:
 
