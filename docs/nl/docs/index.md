@@ -38,10 +38,10 @@ FastAPI is een modern, snel (hoog presterend), web framework voor het bouwen van
 De belangrijkste kenmerken:
 
 * **Snel**: Zeer hoge prestaties, vergelijkbaar met **NodeJS** en **Go** (met dank aan Starlette en Pydantic). [Een van de snelste beschikbare Python frameworks](#prestaties).
-* **Snel te programmeren**: Verhoogd de snelheid om functionaliteit te ontwikkelen met ongeveer 200% tot 300%. *
-* **Minder bugs**: Verminderd ongeveer 40% van de door mensen (ontwikkelaars) veroorzaakte fouten. *
-* **Intuïtief**: Buitegewoon goede ondersteuning voor editors. <abbr title="ook bekend als automatisch aanvullen, automatisch aanvullen, IntelliSense">Overal automische code aanvulling</abbr>. Minder tijd kwijt aan debuggen.
-* **Eenvoudig**: Ontworpen om gemakkelijk te gebruiken en te leren. Minder tijd nodig om docs te lezen.
+* **Snel te programmeren**: Verhoog de snelheid om functionaliteit te ontwikkelen met ongeveer 200% tot 300%. *
+* **Minder bugs**: Verminder ongeveer 40% van de door mensen (ontwikkelaars) veroorzaakte fouten. *
+* **Intuïtief**: Buitengewoon goede ondersteuning voor editors. <abbr title="ook bekend als automatisch aanvullen, automatisch aanvullen, IntelliSense">Overal automische code aanvulling</abbr>. Minder tijd kwijt aan debuggen.
+* **Eenvoudig**: Ontworpen om gemakkelijk te gebruiken en te leren. Minder tijd nodig om documentatie te lezen.
 * **Kort**: Minimaliseer codeduplicatie. Meerdere functionaliteit voor elke parameterdeclaratie. Minder bugs.
 * **Robust**: Code gereed voor productie. Met automatische interactieve documentatie.
 * **Standards-based**: Gebaseerd op (en volledig verenigbaar met) open standaarden voor API's: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (voorheen bekend als Swagger) en <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
@@ -399,7 +399,7 @@ Terugkomend op het vorige code voorbeeld, **FastAPI** zal:
 
 ---
 
-We zijn nog maar aan de oppervlakte, maar je hebt al een idee hoe het werkt.
+Dit was nog maar een snel overzicht, maar je zou nu toch al een idee moeten hebben over hoe het allemaal werkt.
 
 Probeer de lijn te veranderen met:
 
