@@ -381,7 +381,7 @@ item: Item
 Terugkomend op het vorige code voorbeeld, **FastAPI** zal:
 
 * Valideren dat er een `item_id` bestaat in het pad voor `GET` en `PUT` verzoeken.
-* Valideren dat `item_id` van het type `int` is voor `GET` en `PUT` verzoeken.
+* Valideren dat de `item_id` van het type `int` is voor `GET` en `PUT` verzoeken.
     * Wanneer dat niet het geval is, krijgt de cliënt een nuttige, duidelijke foutmelding.
 * Controleren of er een optionele query parameter is met de naam `q` (zoals in `http://127.0.0.1:8000/items/foo?q=somequery`) voor `GET` verzoeken.
     * Doordat de `q` parameter wordt gedeclareerd met `= None`, is deze optioneel.
@@ -442,7 +442,7 @@ Voor een vollediger voorbeeld met meer mogelijkheden, zie de <a href="https://fa
 
 ## Prestaties
 
-nafhankelijke TechEmpower benchmarks tonen **FastAPI** applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
+Onafhankelijke TechEmpower benchmarks tonen **FastAPI** applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
 
 Zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a> om hier meer over te lezen.
 
@@ -458,7 +458,7 @@ Gebruikt door Pydantic:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Vereist als u de standaard templateconfiguratie wilt gebruiken.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist als je het <abbr title="chet omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist als je het <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
 
 Gebruikt door FastAPI / Starlette:
 
