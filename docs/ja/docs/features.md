@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # 機能
 
 ## FastAPIの機能

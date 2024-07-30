@@ -47,9 +47,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/tiangolo/fastapi"
+Homepage = "https://github.com/fastapi/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
-Repository = "https://github.com/tiangolo/fastapi"
+Repository = "https://github.com/fastapi/fastapi"
 
 [project.optional-dependencies]
 

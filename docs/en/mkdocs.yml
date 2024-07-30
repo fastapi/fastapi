@@ -36,8 +36,8 @@ theme:
   logo: img/icon-white.svg
   favicon: img/favicon.png
   language: en
-repo_name: tiangolo/fastapi
-repo_url: https://github.com/tiangolo/fastapi
+repo_name: fastapi/fastapi
+repo_url: https://github.com/fastapi/fastapi
 edit_uri: ''
 plugins:
   search: null
@@ -46,6 +46,7 @@ plugins:
     - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
+    - members: ../en/data/members.yml
     - sponsors_badge: ../en/data/sponsors_badge.yml
     - sponsors: ../en/data/sponsors.yml
   redirects:
@@ -81,8 +82,9 @@ plugins:
           show_symbol_type_heading: true
           show_symbol_type_toc: true
 nav:
-- FastAPI: index.md
-- features.md
+- FastAPI:
+  - index.md
+  - features.md
 - Learn:
   - learn/index.md
   - python-types.md
@@ -218,18 +220,18 @@ nav:
 - fastapi-people.md
 - Resources:
   - resources/index.md
+  - help-fastapi.md
+  - contributing.md
   - project-generation.md
   - external-links.md
   - newsletter.md
+  - management-tasks.md
 - About:
   - about/index.md
   - alternatives.md
   - history-design-future.md
   - benchmarks.md
-- Help:
-  - help/index.md
-  - help-fastapi.md
-  - contributing.md
+  - management.md
 - release-notes.md
 markdown_extensions:
   toc:
@@ -257,7 +259,7 @@ extra:
     property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/fastapi
+    link: https://github.com/fastapi/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
