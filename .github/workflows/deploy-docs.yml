@@ -56,6 +56,10 @@ jobs:
         # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
+        env:
+          INPUT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_DEPLOY_URL: ${{ steps.deploy.outputs.url }}
+          INPUT_COMMIT_SHA: ${{ github.sha }}
       - name: Comment Deploy
         if: steps.deploy.outputs.url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
