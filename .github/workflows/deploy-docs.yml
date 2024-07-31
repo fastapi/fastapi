@@ -5,9 +5,6 @@ on:
       - Build Docs
     types:
       - completed
-  push:
-    branches:
-      - debug-docs
 
 permissions:
   deployments: write
@@ -33,9 +30,7 @@ jobs:
           pattern: docs-site-*
           merge-multiple: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # TODO: fix this
-          # run-id: ${{ github.event.workflow_run.id }}
-          run-id: "10172990000"
+          run-id: ${{ github.event.workflow_run.id }}
       - name: Deploy to Cloudflare Pages
         # hashFiles returns an empty string if there are no files
         if: hashFiles('./site/*')
@@ -47,21 +42,7 @@ jobs:
           projectName: fastapitiangolo
           directory: './site'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # TODO: fix this
-          # branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
-          branch: debug
-      # Allow debugging with tmate
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        # TODO: fix this
-        # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
-        with:
-          limit-access-to-actor: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEPLOY_URL: ${{ steps.deploy.outputs.url }}
-          COMMIT_SHA: ${{ github.sha }}
-
+          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -80,6 +61,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEPLOY_URL: ${{ steps.deploy.outputs.url }}
-          # TODO: fix this
-          # COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
-          COMMIT_SHA: ${{ github.sha }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
