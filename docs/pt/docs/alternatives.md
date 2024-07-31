@@ -1,6 +1,6 @@
 # Alternativas, Inspiração e Comparações
 
-O que inspirou o **FastAPI**, como ele se compara a outras alternativas e o que FastAPI aprendeu delas.
+O que inspirou o **FastAPI**, como ele se compara às alternativas e o que FastAPI aprendeu delas.
 
 ## Introdução
 
