@@ -49,6 +49,13 @@ jobs:
           # TODO: fix this
           # branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
           branch: debug
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        # TODO: fix this
+        # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
       - name: Comment Deploy
         if: steps.deploy.outputs.url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
