@@ -12,6 +12,7 @@ on:
 permissions:
   deployments: write
   issues: write
+  pull-requests: write
 
 jobs:
   deploy-docs:
