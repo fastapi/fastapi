@@ -58,15 +58,28 @@ jobs:
         with:
           limit-access-to-actor: true
         env:
-          INPUT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_DEPLOY_URL: ${{ steps.deploy.outputs.url }}
-          INPUT_COMMIT_SHA: ${{ github.sha }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.url }}
+          COMMIT_SHA: ${{ github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+      - name: Install GitHub Actions dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pip install -r requirements-github-actions.txt
       - name: Comment Deploy
         if: steps.deploy.outputs.url != ''
-        uses: ./.github/actions/comment-docs-preview-in-pr
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_url: "${{ steps.deploy.outputs.url }}"
+        run: python ./scripts/comment_docs_deploy_url_in_pr.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.url }}
           # TODO: fix this
-          # commit_sha: ${{ github.event.workflow_run.head_sha }}
-          commit_sha: ${{ github.sha }}
+          # COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          COMMIT_SHA: ${{ github.sha }}
