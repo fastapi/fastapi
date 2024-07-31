@@ -94,7 +94,7 @@ Il utilisera alors les noms des paramètres comme clés, et s'attendra à recevo
 ```
 
 !!! note
-    Notez que malgré le fait que nous aillons déclaré le paramètre `item` de la même façon  que la fois précédente, il est désormais associé dans le body à la clé `item`.
+    "Notez que, bien que nous ayons déclaré le paramètre `item` de la même manière que précédemment, il est maintenant associé à la clé `item` dans le corps de la requête."`.
 
 **FastAPI** effectue la conversion de la requête de façon transparente, de sorte que les objets `item` et `user` se trouvent correctement définis.
 
