@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing)
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS ou "Cross-Origin Resource Sharing"</a> refere-se às situações em que um frontend radando em um navegador possui um código JavaScript que se comunica com um backend, e o backend está em uma "origem" diferente do frontend.
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS ou "Cross-Origin Resource Sharing"</a> refere-se às situações em que um frontend rodando em um navegador possui um código JavaScript que se comunica com um backend, e o backend está em uma "origem" diferente do frontend.
 
 ## Origem
 
@@ -22,7 +22,7 @@ Portanto, o navegador irá enviar uma requisição HTTP `OPTIONS` ao backend, e 
 
 Para conseguir isso, o backend deve ter uma lista de "origens permitidas".
 
-Neste caso, ele terá que incluir `http://localhost:8080` paro frontend funcionar corretamente.
+Neste caso, ele terá que incluir `http://localhost:8080` para o frontend funcionar corretamente.
 
 ## Curingas
 
@@ -34,15 +34,15 @@ Então, para que tudo funcione corretamente, é melhor especificar explicitament
 
 ## Usar `CORSMiddleware`
 
-Você pode configurá-lo em sua palicação **FastAPI** usando o `CORSMiddleware`.
+Você pode configurá-lo em sua aplicação **FastAPI** usando o `CORSMiddleware`.
 
 * Importe `CORSMiddleware`.
 * Crie uma lista de origens permitidas (como strings).
 * Adicione-a como um "middleware" à sua aplicação **FastAPI**.
 
-Você também pode especificar se seu backend permite:
+Você também pode especificar se o seu backend permite:
 
-* Credenciais (Cabeçlhos de autorização, Cookies, etc).
+* Credenciais (Cabeçalhos de autorização, Cookies, etc).
 * Métodos HTTP específicos (`POST`, `PUT`) ou todos eles com o curinga `"*"`.
 * Cabeçalhos HTTP específicos ou todos eles com o curinga `"*"`.
 
@@ -52,7 +52,7 @@ Você também pode especificar se seu backend permite:
 
 Os parâmetros padrão usados ​​pela implementação `CORSMiddleware` são restritivos por padrão, então você precisará habilitar explicitamente as origens, métodos ou cabeçalhos específicos para que os navegadores tenham permissão para usá-los em um contexto de domínios diferentes.
 
-Os seguintes argumentos são apoiados:
+Os seguintes argumentos são suportados:
 
 * `allow_origins` - Uma lista de origens que devem ter permissão para fazer requisições de origem cruzada. Por exemplo, `['https://example.org', 'https://www.example.org']`. Você pode usar `['*']` para permitir qualquer origem.
 * `allow_origin_regex` - Uma string regex para corresponder às origens que devem ter permissão para fazer requisições de origem cruzada. Por exemplo, `'https://.*\.example\.org'`.
