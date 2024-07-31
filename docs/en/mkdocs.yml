@@ -36,8 +36,8 @@ theme:
   logo: img/icon-white.svg
   favicon: img/favicon.png
   language: en
-repo_name: tiangolo/fastapi
-repo_url: https://github.com/tiangolo/fastapi
+repo_name: fastapi/fastapi
+repo_url: https://github.com/fastapi/fastapi
 edit_uri: ''
 plugins:
   search: null
@@ -259,7 +259,7 @@ extra:
     property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/fastapi
+    link: https://github.com/fastapi/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter

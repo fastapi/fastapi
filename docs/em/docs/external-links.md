@@ -7,7 +7,7 @@
 📥 ❌ 📇 👫.
 
 !!! tip
-    🚥 👆 ✔️ 📄, 🏗, 🧰, ⚖️ 🕳 🔗 **FastAPI** 👈 🚫 📇 📥, ✍ <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">🚲 📨 ❎ ⚫️</a>.
+    🚥 👆 ✔️ 📄, 🏗, 🧰, ⚖️ 🕳 🔗 **FastAPI** 👈 🚫 📇 📥, ✍ <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">🚲 📨 ❎ ⚫️</a>.
 
 ## 📄
 

@@ -7,7 +7,7 @@ Hay muchas publicaciones, artículos, herramientas y proyectos relacionados con 
 Aquí hay una lista incompleta de algunos de ellos.
 
 !!! tip "Consejo"
-    Si tienes un artículo, proyecto, herramienta o cualquier cosa relacionada con **FastAPI** que aún no aparece aquí, crea un <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request agregándolo</a>.
+    Si tienes un artículo, proyecto, herramienta o cualquier cosa relacionada con **FastAPI** que aún no aparece aquí, crea un <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request agregándolo</a>.
 
 {% for section_name, section_content in external_links.items() %}
 

@@ -11,11 +11,11 @@
     <em>FastAPI 🛠️, ↕ 🎭, ⏩ 💡, ⏩ 📟, 🔜 🏭</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -29,7 +29,7 @@
 
 **🧾**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**ℹ 📟**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**ℹ 📟**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -69,7 +69,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 "_[...] 👤 ⚙️ **FastAPI** 📚 👫 📆. [...] 👤 🤙 📆 ⚙️ ⚫️ 🌐 👇 🏉 **⚗ 🐕‍🦺 🤸‍♂**. 👫 💆‍♂ 🛠️ 🔘 🐚 **🖥** 🏬 &amp; **📠** 🏬._"
 
-<div style="text-align: right; margin-right: 10%;">🧿 🇵🇰 - <strong>🤸‍♂</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">🧿 🇵🇰 - <strong>🤸‍♂</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
