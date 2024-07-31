@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
-    logging.info(f"Using config: {settings.json()}")
+    logging.info(f"Using config: {settings.model_dump_json()}")
     g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     use_pr = next(
