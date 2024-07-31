@@ -148,7 +148,7 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 </div>
 {% endif %}
 
-还有很多别的贡献者（超过100个），你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
+还有很多别的贡献者（超过100个），你可以在 <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
 
 ## 杰出翻译审核者
 
@@ -229,7 +229,7 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 尤其是那些不引人注目且涉及更困难的任务，例如帮助他人解决问题或者评审翻译 Pull Requests。
 
-该数据每月计算一次，您可以阅读 <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">源代码</a>。
+该数据每月计算一次，您可以阅读 <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">源代码</a>。
 
 这里也强调了赞助商的贡献。
 

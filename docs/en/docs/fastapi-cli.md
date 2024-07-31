@@ -54,9 +54,9 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-That command line program called `fastapi` is **FastAPI CLI**.
+The command line program called `fastapi` is **FastAPI CLI**.
 
-FastAPI CLI takes the path to your Python program and automatically detects the variable with the FastAPI (commonly named `app`) and how to import it, and then serves it.
+FastAPI CLI takes the path to your Python program (e.g. `main.py`) and automatically detects the `FastAPI` instance (commonly named `app`), determines the correct import process, and then serves it.
 
 For production you would use `fastapi run` instead. 🚀
 
@@ -64,19 +64,15 @@ Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="extern
 
 ## `fastapi dev`
 
-When you run `fastapi dev`, it will run on development mode.
+Running `fastapi dev` initiates development mode.
 
-By default, it will have **auto-reload** enabled, so it will automatically reload the server when you make changes to your code. This is resource intensive and could be less stable than without it, you should only use it for development.
-
-By default it will listen on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
+By default, **auto-reload** is enabled, automatically reloading the server when you make changes to your code. This is resource-intensive and could be less stable than when it's disabled. You should only use it for development. It also listens on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
 
 ## `fastapi run`
 
-When you run `fastapi run`, it will run on production mode by default.
+Executing `fastapi run` starts FastAPI in production mode by default.
 
-It will have **auto-reload disabled** by default.
-
-It will listen on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
+By default, **auto-reload** is disabled. It also listens on the IP address `0.0.0.0`, which means all the available IP addresses, this way it will be publicly accessible to anyone that can communicate with the machine. This is how you would normally run it in production, for example, in a container.
 
 In most cases you would (and should) have a "termination proxy" handling HTTPS for you on top, this will depend on how you deploy your application, your provider might do this for you, or you might need to set it up yourself.
 

@@ -25,7 +25,7 @@
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, HTTP/2にも対応しているASGIサーバ。
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, HTTP/2にも対応しているASGIサーバ。
 
     <div class="termy">
 

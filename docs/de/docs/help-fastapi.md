@@ -25,13 +25,13 @@ Sie können den (unregelmäßig erscheinenden) [**FastAPI and Friends**-Newslett
 
 ## **FastAPI** auf GitHub einen Stern geben
 
-Sie können FastAPI auf GitHub „starren“ (durch Klicken auf den Stern-Button oben rechts): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+Sie können FastAPI auf GitHub „starren“ (durch Klicken auf den Stern-Button oben rechts): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
 
 Durch das Hinzufügen eines Sterns können andere Benutzer es leichter finden und sehen, dass es für andere bereits nützlich war.
 
 ## Das GitHub-Repository auf Releases beobachten
 
-Sie können FastAPI in GitHub beobachten (Klicken Sie oben rechts auf den Button „watch“): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Sie können FastAPI in GitHub beobachten (Klicken Sie oben rechts auf den Button „watch“): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 Dort können Sie „Releases only“ auswählen.
 
@@ -58,7 +58,7 @@ Insbesondere:
 
 ## Über **FastAPI** tweeten
 
-<a href="https://twitter.com/compose/tweet?text=Ich liebe @fastapi, weil ... https://github.com/tiangolo/fastapi" class="external-link" target= "_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
+<a href="https://twitter.com/compose/tweet?text=Ich liebe @fastapi, weil ... https://github.com/fastapi/fastapi" class="external-link" target= "_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
 
 Ich höre gerne, wie **FastAPI** verwendet wird, was Ihnen daran gefallen hat, in welchem Projekt/Unternehmen Sie es verwenden, usw.
 
@@ -72,8 +72,8 @@ Ich höre gerne, wie **FastAPI** verwendet wird, was Ihnen daran gefallen hat, i
 
 Sie können versuchen, anderen bei ihren Fragen zu helfen:
 
-* <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub-Diskussionen</a>
-* <a href="https://github.com/tiangolo/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub-Issues</a>
+* <a href="https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub-Diskussionen</a>
+* <a href="https://github.com/fastapi/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub-Issues</a>
 
 In vielen Fällen kennen Sie möglicherweise bereits die Antwort auf diese Fragen. 🤓
 
@@ -124,7 +124,7 @@ Wenn die Person antwortet, besteht eine hohe Chance, dass Sie ihr Problem gelös
 
 ## Das GitHub-Repository beobachten
 
-Sie können FastAPI auf GitHub „beobachten“ (Klicken Sie oben rechts auf die Schaltfläche „watch“): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank" >https://github.com/tiangolo/fastapi</a>. 👀
+Sie können FastAPI auf GitHub „beobachten“ (Klicken Sie oben rechts auf die Schaltfläche „watch“): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank" >https://github.com/fastapi/fastapi</a>. 👀
 
 Wenn Sie dann „Watching“ statt „Releases only“ auswählen, erhalten Sie Benachrichtigungen, wenn jemand ein neues Issue eröffnet oder eine neue Frage stellt. Sie können auch spezifizieren, dass Sie nur über neue Issues, Diskussionen, PRs, usw. benachrichtigt werden möchten.
 
@@ -132,7 +132,7 @@ Dann können Sie versuchen, bei der Lösung solcher Fragen zu helfen.
 
 ## Fragen stellen
 
-Sie können im GitHub-Repository <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">eine neue Frage erstellen</a>, zum Beispiel:
+Sie können im GitHub-Repository <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">eine neue Frage erstellen</a>, zum Beispiel:
 
 * Stellen Sie eine **Frage** oder bitten Sie um Hilfe mit einem **Problem**.
 * Schlagen Sie eine neue **Funktionalität** vor.
@@ -195,7 +195,7 @@ Und wenn es irgendeinen anderen Stil- oder Konsistenz-Bedarf gibt, bitte ich dir
 Sie können zum Quellcode mit Pull Requests [beitragen](contributing.md){.internal-link target=_blank}, zum Beispiel:
 
 * Um einen Tippfehler zu beheben, den Sie in der Dokumentation gefunden haben.
-* Um einen Artikel, ein Video oder einen Podcast über FastAPI zu teilen, den Sie erstellt oder gefunden haben, indem Sie <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">diese Datei bearbeiten</a>.
+* Um einen Artikel, ein Video oder einen Podcast über FastAPI zu teilen, den Sie erstellt oder gefunden haben, indem Sie <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">diese Datei bearbeiten</a>.
     * Stellen Sie sicher, dass Sie Ihren Link am Anfang des entsprechenden Abschnitts einfügen.
 * Um zu helfen, [die Dokumentation in Ihre Sprache zu übersetzen](contributing.md#ubersetzungen){.internal-link target=_blank}.
     * Sie können auch dabei helfen, die von anderen erstellten Übersetzungen zu überprüfen (Review).
@@ -226,7 +226,7 @@ Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI am Laufen zu erhalt
 Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord-Chatserver</a> 👥 bei und treffen Sie sich mit anderen Mitgliedern der FastAPI-Community.
 
 !!! tip "Tipp"
-    Wenn Sie Fragen haben, stellen Sie sie bei <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Diskussionen</a>, es besteht eine viel bessere Chance, dass Sie hier Hilfe von den [FastAPI-Experten](fastapi-people.md#experten){.internal-link target=_blank} erhalten.
+    Wenn Sie Fragen haben, stellen Sie sie bei <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Diskussionen</a>, es besteht eine viel bessere Chance, dass Sie hier Hilfe von den [FastAPI-Experten](fastapi-people.md#experten){.internal-link target=_blank} erhalten.
 
     Nutzen Sie den Chat nur für andere allgemeine Gespräche.
 
