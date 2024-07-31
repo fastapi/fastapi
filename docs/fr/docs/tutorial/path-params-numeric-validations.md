@@ -92,7 +92,7 @@ Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètr
     ```
 
 !!! note
-    Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela n'affecterait rien, il serait toujours requis.
+    Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela ne changerait rien, il serait toujours requis.
 
 ## Ordonnez les paramètres comme vous le souhaitez
 
