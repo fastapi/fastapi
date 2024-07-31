@@ -7,7 +7,7 @@ on:
       - completed
   push:
     branches:
-      - deploy-docs
+      - debug-docs
 
 permissions:
   deployments: write
@@ -34,7 +34,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # TODO: fix this
           # run-id: ${{ github.event.workflow_run.id }}
-          run-id: "10156949755"
+          run-id: "10172990000"
       - name: Deploy to Cloudflare Pages
         # hashFiles returns an empty string if there are no files
         if: hashFiles('./site/*')
