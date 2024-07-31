@@ -53,7 +53,7 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 Vous pouvez déclarer les mêmes paramètres que pour `Query`.
 
-Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètre de chemin `item_id`, vous pouvez taper :
+Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètre de chemin `item_id`, vous pouvez écrire :
 
 === "Python 3.10+"
 
