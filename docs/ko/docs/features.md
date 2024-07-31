@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # 기능
 
 ## FastAPI의 기능

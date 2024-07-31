@@ -35,7 +35,7 @@ function setupTermynal() {
 
     function createTermynals() {
         document
-            .querySelectorAll(`.${termynalActivateClass} .highlight`)
+            .querySelectorAll(`.${termynalActivateClass} .highlight code`)
             .forEach(node => {
                 const text = node.textContent;
                 const lines = text.split("\n");
@@ -163,7 +163,7 @@ async function main() {
         div.innerHTML = '<ul></ul>'
         const ul = document.querySelector('.github-topic-projects ul')
         data.forEach(v => {
-            if (v.full_name === 'tiangolo/fastapi') {
+            if (v.full_name === 'fastapi/fastapi') {
                 return
             }
             const li = document.createElement('li')

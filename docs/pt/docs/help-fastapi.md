@@ -26,13 +26,13 @@ Você pode se inscrever (pouco frequente) [**FastAPI e amigos** newsletter](news
 
 ## Favorite o **FastAPI** no GitHub
 
-Você pode "favoritar" o FastAPI no GitHub (clicando na estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+Você pode "favoritar" o FastAPI no GitHub (clicando na estrela no canto superior direito): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
 
 Favoritando, outros usuários poderão encontrar mais facilmente e verão que já foi útil para muita gente.
 
 ## Acompanhe novos updates no repositorio do GitHub
 
-Você pode "acompanhar" (watch) o FastAPI no GitHub (clicando no botão com um "olho" no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Você pode "acompanhar" (watch) o FastAPI no GitHub (clicando no botão com um "olho" no canto superior direito): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 Podendo selecionar apenas "Novos Updates".
 
@@ -59,7 +59,7 @@ Você pode:
 
 ## Tweete sobre **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweete sobre o **FastAPI**</a> e compartilhe comigo e com os outros o porque de gostar do FastAPI. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweete sobre o **FastAPI**</a> e compartilhe comigo e com os outros o porque de gostar do FastAPI. 🎉
 
 Adoro ouvir sobre como o **FastAPI** é usado, o que você gosta nele, em qual projeto/empresa está sendo usado, etc.
 
@@ -70,13 +70,13 @@ Adoro ouvir sobre como o **FastAPI** é usado, o que você gosta nele, em qual p
 
 ## Responda perguntas no GitHub
 
-Você pode acompanhar as <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">perguntas existentes</a> e tentar ajudar outros,            . 🤓
+Você pode acompanhar as <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">perguntas existentes</a> e tentar ajudar outros,            . 🤓
 
 Ajudando a responder as questões de varias pessoas, você pode se tornar um [Expert em FastAPI](fastapi-people.md#especialistas){.internal-link target=_blank} oficial. 🎉
 
 ## Acompanhe o repositório do GitHub
 
-Você pode "acompanhar" (watch) o FastAPI no GitHub (clicando no "olho" no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Você pode "acompanhar" (watch) o FastAPI no GitHub (clicando no "olho" no canto superior direito): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 Se você selecionar "Acompanhando" (Watching) em vez de "Apenas Lançamentos" (Releases only) você receberá notificações quando alguém tiver uma nova pergunta.
 
@@ -84,7 +84,7 @@ Assim podendo tentar ajudar a resolver essas questões.
 
 ## Faça perguntas
 
-É possível <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">criar uma nova pergunta</a> no repositório do GitHub, por exemplo:
+É possível <a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">criar uma nova pergunta</a> no repositório do GitHub, por exemplo:
 
 * Faça uma **pergunta** ou pergunte sobre um **problema**.
 * Sugira novos **recursos**.
@@ -96,7 +96,7 @@ Assim podendo tentar ajudar a resolver essas questões.
 É possível [contribuir](contributing.md){.internal-link target=_blank} no código fonte fazendo Pull Requests, por exemplo:
 
 * Para corrigir um erro de digitação que você encontrou na documentação.
-* Para compartilhar um artigo, video, ou podcast criados por você sobre o FastAPI <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editando este arquivo</a>.
+* Para compartilhar um artigo, video, ou podcast criados por você sobre o FastAPI <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editando este arquivo</a>.
     * Não se esqueça de adicionar o link no começo da seção correspondente.
 * Para ajudar [traduzir a documentação](contributing.md#traducoes){.internal-link target=_blank} para sua lingua.
     * Também é possivel revisar as traduções já existentes.
@@ -110,7 +110,7 @@ Entre no 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" targ
 do FastAPI.
 
 !!! tip "Dica"
-    Para perguntas, pergunte nas <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#especialistas){.internal-link target=_blank}.
+    Para perguntas, pergunte nas <a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#especialistas){.internal-link target=_blank}.
 
     Use o chat apenas para outro tipo de assunto.
 

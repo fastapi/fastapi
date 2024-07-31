@@ -84,7 +84,7 @@ Współtworzyli kod źródłowy, dokumentację, tłumaczenia itp. 📦
 </div>
 {% endif %}
 
-Jest wielu więcej kontrybutorów (ponad setka), możesz zobaczyć ich wszystkich na stronie <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">Kontrybutorzy FastAPI na GitHub</a>. 👷
+Jest wielu więcej kontrybutorów (ponad setka), możesz zobaczyć ich wszystkich na stronie <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">Kontrybutorzy FastAPI na GitHub</a>. 👷
 
 ## Najlepsi Oceniajacy
 
@@ -171,7 +171,7 @@ Głównym celem tej strony jest podkreślenie wysiłku społeczności w pomagani
 
 Szczególnie włączając wysiłki, które są zwykle mniej widoczne, a w wielu przypadkach bardziej żmudne, tak jak pomaganie innym z pytaniami i ocenianie Pull Requestów z tłumaczeniami.
 
-Dane są obliczane każdego miesiąca, możesz przeczytać <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">kod źródłowy tutaj</a>.
+Dane są obliczane każdego miesiąca, możesz przeczytać <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">kod źródłowy tutaj</a>.
 
 Tutaj również podkreślam wkład od sponsorów.
 

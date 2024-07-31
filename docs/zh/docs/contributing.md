@@ -254,22 +254,22 @@ $ uvicorn tutorial001:app --reload
 
 #### 建议和指南
 
-* 在当前 <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">已有的 pull requests</a> 中查找你使用的语言，添加要求修改或同意合并的评审意见。
+* 在当前 <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">已有的 pull requests</a> 中查找你使用的语言，添加要求修改或同意合并的评审意见。
 
 !!! tip
     你可以为已有的 pull requests <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">添加包含修改建议的评论</a>。
 
     详情可查看关于 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">添加 pull request 评审意见</a> 以同意合并或要求修改的文档。
 
-* 检查在 <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> 是否有关于你所用语言的协作翻译。 如果有，你可以订阅它，当有一条新的 PR 请求需要评审时，系统会自动将其添加到讨论中，你也会收到对应的推送。
+* 检查在 <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> 是否有关于你所用语言的协作翻译。 如果有，你可以订阅它，当有一条新的 PR 请求需要评审时，系统会自动将其添加到讨论中，你也会收到对应的推送。
 
 * 每翻译一个页面新增一个 pull request。这将使其他人更容易对其进行评审。
 
 对于我（译注：作者使用西班牙语和英语）不懂的语言，我将在等待其他人评审翻译之后将其合并。
 
 * 你还可以查看是否有你所用语言的翻译，并对其进行评审，这将帮助我了解翻译是否正确以及能否将其合并。
-    * 可以在 <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussions</a> 中查看。
-    * 也可以在现有 PR 中通过你使用的语言标签来筛选对应的 PR，举个例子，对于西班牙语，标签是 <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3A%22awaiting+review%22" class="external-link" target="_blank">`lang-es`</a>。
+    * 可以在 <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussions</a> 中查看。
+    * 也可以在现有 PR 中通过你使用的语言标签来筛选对应的 PR，举个例子，对于西班牙语，标签是 <a href="https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3A%22awaiting+review%22" class="external-link" target="_blank">`lang-es`</a>。
 
 * 请使用相同的 Python 示例，且只需翻译文档中的文本，不用修改其它东西。
 
