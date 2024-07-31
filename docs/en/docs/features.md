@@ -1,5 +1,7 @@
 # Features
 
+🤷‍♂️
+
 ## FastAPI features
 
 **FastAPI** gives you the following:

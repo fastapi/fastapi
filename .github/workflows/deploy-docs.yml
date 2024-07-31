@@ -5,6 +5,10 @@ on:
       - Build Docs
     types:
       - completed
+  push:
+    branches:
+      - deploy-docs
+
 permissions:
   deployments: write
   issues: write
@@ -28,7 +32,9 @@ jobs:
           pattern: docs-site-*
           merge-multiple: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          # TODO: fix this
+          # run-id: ${{ github.event.workflow_run.id }}
+          run-id: "10156949755"
       - name: Deploy to Cloudflare Pages
         # hashFiles returns an empty string if there are no files
         if: hashFiles('./site/*')
@@ -40,7 +46,9 @@ jobs:
           projectName: fastapitiangolo
           directory: './site'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+          # TODO: fix this
+          # branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+          branch: debug
       - name: Comment Deploy
         if: steps.deploy.outputs.url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
