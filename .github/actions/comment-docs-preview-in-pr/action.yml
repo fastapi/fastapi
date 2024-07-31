@@ -8,6 +8,9 @@ inputs:
   deploy_url:
     description: The deployment URL to comment in the PR
     required: true
+  commit_sha:
+    description: The commit SHA to comment in the PR
+    required: true
 runs:
   using: docker
   image: Dockerfile
