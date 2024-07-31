@@ -55,4 +55,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           deploy_url: "${{ steps.deploy.outputs.url }}"
-          commit_sha: ${{ github.event.workflow_run.head_sha }}
+          # TODO: fix this
+          # commit_sha: ${{ github.event.workflow_run.head_sha }}
+          commit_sha: ${{ github.sha }}
