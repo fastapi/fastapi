@@ -6,7 +6,7 @@ Here's a short description of how the FastAPI repository is managed and maintain
 
 I, <a href="https://github.com/tiangolo" target="_blank">@tiangolo</a>, am the creator and owner of the FastAPI repository. 🤓
 
-I normally give the final review to each PR before merging them. I make the final decisions on the the project, I'm the <a href="https://en.wikipedia.org/wiki/Benevolent_dictator_for_life" class="external-link" target="_blank"><abbr title="Benevolent Dictator For Life">BDFL</abbr></a>. 😅
+I normally give the final review to each PR before merging them. I make the final decisions on the project, I'm the <a href="https://en.wikipedia.org/wiki/Benevolent_dictator_for_life" class="external-link" target="_blank"><abbr title="Benevolent Dictator For Life">BDFL</abbr></a>. 😅
 
 ## Team
 
