@@ -14,7 +14,7 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 import { type ApiError, LoginService } from "../client"
 import { isLoggedIn } from "../hooks/useAuth"
 import useCustomToast from "../hooks/useCustomToast"
-import { emailPattern } from "../utils"
+import { emailPattern, handleError } from "../utils"
 
 interface FormData {
   email: string
@@ -57,8 +57,7 @@ function RecoverPassword() {
       reset()
     },
     onError: (err: ApiError) => {
-      const errDetail = (err.body as any)?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      handleError(err, showToast)
     },
   })
 

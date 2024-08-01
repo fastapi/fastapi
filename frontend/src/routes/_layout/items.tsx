@@ -3,7 +3,7 @@ import {
   Container,
   Flex,
   Heading,
-  Skeleton,
+  SkeletonText,
   Table,
   TableContainer,
   Tbody,
@@ -64,7 +64,7 @@ function ItemsTable() {
     if (hasNextPage) {
       queryClient.prefetchQuery(getItemsQueryOptions({ page: page + 1 }))
     }
-  }, [page, queryClient])
+  }, [page, queryClient, hasNextPage])
 
   return (
     <>
@@ -80,25 +80,27 @@ function ItemsTable() {
           </Thead>
           {isPending ? (
             <Tbody>
-              {new Array(5).fill(null).map((_, index) => (
-                <Tr key={index}>
-                  {new Array(4).fill(null).map((_, index) => (
-                    <Td key={index}>
-                      <Flex>
-                        <Skeleton height="20px" width="20px" />
-                      </Flex>
-                    </Td>
-                  ))}
-                </Tr>
-              ))}
+              <Tr>
+                {new Array(4).fill(null).map((_, index) => (
+                  <Td key={index}>
+                    <SkeletonText noOfLines={1} paddingBlock="16px" />
+                  </Td>
+                ))}
+              </Tr>
             </Tbody>
           ) : (
             <Tbody>
               {items?.data.map((item) => (
                 <Tr key={item.id} opacity={isPlaceholderData ? 0.5 : 1}>
                   <Td>{item.id}</Td>
-                  <Td>{item.title}</Td>
-                  <Td color={!item.description ? "ui.dim" : "inherit"}>
+                  <Td isTruncated maxWidth="150px">
+                    {item.title}
+                  </Td>
+                  <Td
+                    color={!item.description ? "ui.dim" : "inherit"}
+                    isTruncated
+                    maxWidth="150px"
+                  >
                     {item.description || "N/A"}
                   </Td>
                   <Td>

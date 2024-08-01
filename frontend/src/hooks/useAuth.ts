@@ -47,7 +47,7 @@ const useAuth = () => {
         errDetail = err.message
       }
 
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Something went wrong.", errDetail, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] })

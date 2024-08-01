@@ -14,7 +14,7 @@ import { type SubmitHandler, useForm } from "react-hook-form"
 
 import { type ApiError, type UpdatePassword, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
-import { confirmPasswordRules, passwordRules } from "../../utils"
+import { confirmPasswordRules, handleError, passwordRules } from "../../utils"
 
 interface UpdatePasswordForm extends UpdatePassword {
   confirm_password: string
@@ -42,8 +42,7 @@ const ChangePassword = () => {
       reset()
     },
     onError: (err: ApiError) => {
-      const errDetail = (err.body as any)?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      handleError(err, showToast)
     },
   })
 
