@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
+  pull-requests: write
 
 jobs:
   label-approved:
