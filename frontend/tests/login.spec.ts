@@ -1,5 +1,6 @@
 import { type Page, expect, test } from "@playwright/test"
 import { firstSuperuser, firstSuperuserPassword } from "./config.ts"
+import { randomPassword } from "./utils/random.ts"
 
 test.use({ storageState: { cookies: [], origins: [] } })
 
@@ -67,9 +68,10 @@ test("Log in with invalid email", async ({ page }) => {
 })
 
 test("Log in with invalid password", async ({ page }) => {
+  const password = randomPassword()
+
   await page.goto("/login")
-  // TODO: Add a random password utility
-  await fillForm(page, firstSuperuser, "changethat")
+  await fillForm(page, firstSuperuser, password)
   await page.getByRole("button", { name: "Log In" }).click()
 
   await expect(page.getByText("Incorrect email or password")).toBeVisible()

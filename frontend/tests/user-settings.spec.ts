@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
-import { randomEmail } from "./utils/random"
-import { logInUser, logOutUser, signUpNewUser } from "./utils/user"
 import { firstSuperuser, firstSuperuserPassword } from "./config.ts"
+import { randomEmail, randomPassword } from "./utils/random"
+import { logInUser, logOutUser, signUpNewUser } from "./utils/user"
 
 const tabs = ["My profile", "Password", "Appearance"]
 
@@ -29,7 +29,7 @@ test.describe("Edit user full name and email successfully", () => {
     const fullName = "Test User"
     const email = randomEmail()
     const updatedName = "Test User 2"
-    const password = "password"
+    const password = randomPassword()
 
     // Sign up a new user
     await signUpNewUser(page, fullName, email, password)
@@ -53,7 +53,7 @@ test.describe("Edit user full name and email successfully", () => {
     const fullName = "Test User"
     const email = randomEmail()
     const updatedEmail = randomEmail()
-    const password = "password"
+    const password = randomPassword()
 
     // Sign up a new user
     await signUpNewUser(page, fullName, email, password)
@@ -79,7 +79,7 @@ test.describe("Edit user with invalid data", () => {
   test("Edit user email with an invalid email", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
+    const password = randomPassword()
     const invalidEmail = ""
 
     // Sign up a new user
@@ -99,7 +99,7 @@ test.describe("Edit user with invalid data", () => {
   test("Cancel edit action restores original name", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
+    const password = randomPassword()
     const updatedName = "Test User"
 
     // Sign up a new user
@@ -121,7 +121,7 @@ test.describe("Edit user with invalid data", () => {
   test("Cancel edit action restores original email", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
+    const password = randomPassword()
     const updatedEmail = randomEmail()
 
     // Sign up a new user
@@ -149,8 +149,8 @@ test.describe("Change password successfully", () => {
   test("Update password successfully", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
-    const NewPassword = "newPassword"
+    const password = randomPassword()
+    const NewPassword = randomPassword()
 
     // Sign up a new user
     await signUpNewUser(page, fullName, email, password)
@@ -179,7 +179,7 @@ test.describe("Change password with invalid data", () => {
   test("Update password with weak passwords", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
+    const password = randomPassword()
     const weakPassword = "weak"
 
     // Sign up a new user
@@ -203,9 +203,9 @@ test.describe("Change password with invalid data", () => {
   }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
-    const newPassword = "newPassword"
-    const confirmPassword = "confirmPassword"
+    const password = randomPassword()
+    const newPassword = randomPassword()
+    const confirmPassword = randomPassword()
 
     // Sign up a new user
     await signUpNewUser(page, fullName, email, password)
@@ -225,7 +225,7 @@ test.describe("Change password with invalid data", () => {
   test("Current password and new password are the same", async ({ page }) => {
     const fullName = "Test User"
     const email = randomEmail()
-    const password = "password"
+    const password = randomPassword()
 
     // Sign up a new user
     await signUpNewUser(page, fullName, email, password)

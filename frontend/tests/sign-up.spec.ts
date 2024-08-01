@@ -1,6 +1,6 @@
 import { type Page, expect, test } from "@playwright/test"
 
-import { randomEmail } from "./utils/random"
+import { randomEmail, randomPassword } from "./utils/random"
 
 test.use({ storageState: { cookies: [], origins: [] } })
 
@@ -56,7 +56,7 @@ test("Log In link is visible", async ({ page }) => {
 test("Sign up with valid name, email, and password", async ({ page }) => {
   const full_name = "Test User"
   const email = randomEmail()
-  const password = "changethis"
+  const password = randomPassword()
 
   await page.goto("/signup")
   await fillForm(page, full_name, email, password, password)
@@ -79,20 +79,20 @@ test("Sign up with invalid email", async ({ page }) => {
 })
 
 test("Sign up with existing email", async ({ page }) => {
-  const full_name = "Test User"
+  const fullName = "Test User"
   const email = randomEmail()
-  const password = "changethis"
+  const password = randomPassword()
 
   // Sign up with an email
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   // Sign up again with the same email
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await page
@@ -101,13 +101,13 @@ test("Sign up with existing email", async ({ page }) => {
 })
 
 test("Sign up with weak password", async ({ page }) => {
-  const full_name = "Test User"
+  const fullName = "Test User"
   const email = randomEmail()
   const password = "weak"
 
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await expect(
@@ -116,53 +116,53 @@ test("Sign up with weak password", async ({ page }) => {
 })
 
 test("Sign up with mismatched passwords", async ({ page }) => {
-  const full_name = "Test User"
+  const fullName = "Test User"
   const email = randomEmail()
-  const password = "changethis"
-  const password2 = "changethat"
+  const password = randomPassword()
+  const password2 = randomPassword()
 
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password2)
+  await fillForm(page, fullName, email, password, password2)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await expect(page.getByText("Passwords do not match")).toBeVisible()
 })
 
 test("Sign up with missing full name", async ({ page }) => {
-  const full_name = ""
+  const fullName = ""
   const email = randomEmail()
-  const password = "changethis"
+  const password = randomPassword()
 
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await expect(page.getByText("Full Name is required")).toBeVisible()
 })
 
 test("Sign up with missing email", async ({ page }) => {
-  const full_name = "Test User"
+  const fullName = "Test User"
   const email = ""
-  const password = "changethis"
+  const password = randomPassword()
 
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await expect(page.getByText("Email is required")).toBeVisible()
 })
 
 test("Sign up with missing password", async ({ page }) => {
-  const full_name = ""
+  const fullName = ""
   const email = randomEmail()
   const password = ""
 
   await page.goto("/signup")
 
-  await fillForm(page, full_name, email, password, password)
+  await fillForm(page, fullName, email, password, password)
   await page.getByRole("button", { name: "Sign Up" }).click()
 
   await expect(page.getByText("Password is required")).toBeVisible()
