@@ -92,7 +92,7 @@ $ pip install fastapi
 
 There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+The **Advanced User Guide** builds on this one, uses the same concepts, and teaches you some extra features.
 
 But you should first read the **Tutorial - User Guide** (what you are reading right now).
 
