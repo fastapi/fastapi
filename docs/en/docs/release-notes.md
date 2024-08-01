@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Portuguese translation for `docs/pt/docs/alternatives.md`. PR [#11931](https://github.com/fastapi/fastapi/pull/11931) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/dependencies/sub-dependencies.md`. PR [#10515](https://github.com/tiangolo/fastapi/pull/10515) by [@AlertRED](https://github.com/AlertRED).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/response-change-status-code.md`. PR [#11863](https://github.com/tiangolo/fastapi/pull/11863) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/reference/background.md`. PR [#11849](https://github.com/tiangolo/fastapi/pull/11849) by [@lucasbalieiro](https://github.com/lucasbalieiro).
