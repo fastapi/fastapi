@@ -98,6 +98,9 @@ all = [
     "pydantic-extra-types >=2.0.0",
 ]
 
+[project.scripts]
+fastapi = "fastapi.cli:main"
+
 [tool.pdm]
 version = { source = "file", path = "fastapi/__init__.py" }
 distribution = true
