@@ -103,7 +103,7 @@ But you can also install an ASGI server manually:
 
         That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
-        When you install FastAPI with something like `pip install fastapi` you already get `uvicorn[standard]` as well.
+        When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
 
 === "Hypercorn"
 

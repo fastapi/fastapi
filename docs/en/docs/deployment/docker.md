@@ -113,7 +113,7 @@ You would of course use the same ideas you read in [About FastAPI versions](vers
 For example, your `requirements.txt` could look like:
 
 ```
-fastapi>=0.112.0,<0.113.0
+fastapi[standard]>=0.113.0,<0.114.0
 pydantic>=2.7.0,<3.0.0
 ```
 
