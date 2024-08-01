@@ -11,6 +11,9 @@ on:
     types:
       - labeled
 
+permissions:
+  issues: write
+
 jobs:
   issue-manager:
     runs-on: ubuntu-latest
