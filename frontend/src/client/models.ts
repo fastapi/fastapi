@@ -19,8 +19,8 @@ export type ItemCreate = {
 export type ItemPublic = {
   title: string
   description?: string | null
-  id: number
-  owner_id: number
+  id: string
+  owner_id: string
 }
 
 export type ItemUpdate = {
@@ -65,7 +65,7 @@ export type UserPublic = {
   is_active?: boolean
   is_superuser?: boolean
   full_name?: string | null
-  id: number
+  id: string
 }
 
 export type UserRegister = {

@@ -4,20 +4,20 @@ import { request as __request } from "./core/request"
 
 import type {
   Body_login_login_access_token,
+  ItemCreate,
+  ItemPublic,
+  ItemUpdate,
+  ItemsPublic,
   Message,
   NewPassword,
   Token,
-  UserPublic,
   UpdatePassword,
   UserCreate,
+  UserPublic,
   UserRegister,
-  UsersPublic,
   UserUpdate,
   UserUpdateMe,
-  ItemCreate,
-  ItemPublic,
-  ItemsPublic,
-  ItemUpdate,
+  UsersPublic,
 } from "./models"
 
 export type TDataLoginAccessToken = {
@@ -50,7 +50,7 @@ export class LoginService {
       formData: formData,
       mediaType: "application/x-www-form-urlencoded",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -85,7 +85,7 @@ export class LoginService {
         email,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -106,7 +106,7 @@ export class LoginService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -128,7 +128,7 @@ export class LoginService {
         email,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -151,14 +151,14 @@ export type TDataRegisterUser = {
   requestBody: UserRegister
 }
 export type TDataReadUserById = {
-  userId: number
+  userId: string
 }
 export type TDataUpdateUser = {
   requestBody: UserUpdate
-  userId: number
+  userId: string
 }
 export type TDataDeleteUser = {
-  userId: number
+  userId: string
 }
 
 export class UsersService {
@@ -180,7 +180,7 @@ export class UsersService {
         limit,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -201,7 +201,7 @@ export class UsersService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -248,7 +248,7 @@ export class UsersService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -269,7 +269,7 @@ export class UsersService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -290,7 +290,7 @@ export class UsersService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -312,7 +312,7 @@ export class UsersService {
         user_id: userId,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -336,7 +336,7 @@ export class UsersService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -356,7 +356,7 @@ export class UsersService {
         user_id: userId,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -382,7 +382,7 @@ export class UtilsService {
         email_to: emailTo,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -396,14 +396,14 @@ export type TDataCreateItem = {
   requestBody: ItemCreate
 }
 export type TDataReadItem = {
-  id: number
+  id: string
 }
 export type TDataUpdateItem = {
-  id: number
+  id: string
   requestBody: ItemUpdate
 }
 export type TDataDeleteItem = {
-  id: number
+  id: string
 }
 
 export class ItemsService {
@@ -425,7 +425,7 @@ export class ItemsService {
         limit,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -446,7 +446,7 @@ export class ItemsService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -466,7 +466,7 @@ export class ItemsService {
         id,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -490,7 +490,7 @@ export class ItemsService {
       body: requestBody,
       mediaType: "application/json",
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }
@@ -510,7 +510,7 @@ export class ItemsService {
         id,
       },
       errors: {
-        422: `Validation Error`,
+        422: "Validation Error",
       },
     })
   }

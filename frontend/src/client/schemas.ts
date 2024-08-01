@@ -65,12 +65,15 @@ export const $ItemCreate = {
     title: {
       type: "string",
       isRequired: true,
+      maxLength: 255,
+      minLength: 1,
     },
     description: {
       type: "any-of",
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -85,12 +88,15 @@ export const $ItemPublic = {
     title: {
       type: "string",
       isRequired: true,
+      maxLength: 255,
+      minLength: 1,
     },
     description: {
       type: "any-of",
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -98,12 +104,14 @@ export const $ItemPublic = {
       ],
     },
     id: {
-      type: "number",
+      type: "string",
       isRequired: true,
+      format: "uuid",
     },
     owner_id: {
-      type: "number",
+      type: "string",
       isRequired: true,
+      format: "uuid",
     },
   },
 } as const
@@ -115,6 +123,8 @@ export const $ItemUpdate = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
+          minLength: 1,
         },
         {
           type: "null",
@@ -126,6 +136,7 @@ export const $ItemUpdate = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -169,6 +180,8 @@ export const $NewPassword = {
     new_password: {
       type: "string",
       isRequired: true,
+      maxLength: 40,
+      minLength: 8,
     },
   },
 } as const
@@ -191,10 +204,14 @@ export const $UpdatePassword = {
     current_password: {
       type: "string",
       isRequired: true,
+      maxLength: 40,
+      minLength: 8,
     },
     new_password: {
       type: "string",
       isRequired: true,
+      maxLength: 40,
+      minLength: 8,
     },
   },
 } as const
@@ -204,6 +221,8 @@ export const $UserCreate = {
     email: {
       type: "string",
       isRequired: true,
+      format: "email",
+      maxLength: 255,
     },
     is_active: {
       type: "boolean",
@@ -218,6 +237,7 @@ export const $UserCreate = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -227,6 +247,8 @@ export const $UserCreate = {
     password: {
       type: "string",
       isRequired: true,
+      maxLength: 40,
+      minLength: 8,
     },
   },
 } as const
@@ -236,6 +258,8 @@ export const $UserPublic = {
     email: {
       type: "string",
       isRequired: true,
+      format: "email",
+      maxLength: 255,
     },
     is_active: {
       type: "boolean",
@@ -250,6 +274,7 @@ export const $UserPublic = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -257,8 +282,9 @@ export const $UserPublic = {
       ],
     },
     id: {
-      type: "number",
+      type: "string",
       isRequired: true,
+      format: "uuid",
     },
   },
 } as const
@@ -268,16 +294,21 @@ export const $UserRegister = {
     email: {
       type: "string",
       isRequired: true,
+      format: "email",
+      maxLength: 255,
     },
     password: {
       type: "string",
       isRequired: true,
+      maxLength: 40,
+      minLength: 8,
     },
     full_name: {
       type: "any-of",
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -294,6 +325,8 @@ export const $UserUpdate = {
       contains: [
         {
           type: "string",
+          format: "email",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -313,6 +346,7 @@ export const $UserUpdate = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -324,6 +358,8 @@ export const $UserUpdate = {
       contains: [
         {
           type: "string",
+          maxLength: 40,
+          minLength: 8,
         },
         {
           type: "null",
@@ -340,6 +376,7 @@ export const $UserUpdateMe = {
       contains: [
         {
           type: "string",
+          maxLength: 255,
         },
         {
           type: "null",
@@ -351,6 +388,8 @@ export const $UserUpdateMe = {
       contains: [
         {
           type: "string",
+          format: "email",
+          maxLength: 255,
         },
         {
           type: "null",
