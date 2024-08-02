@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.112.0
+
 ### Breaking Changes
 
 * ♻️ Add support for `pip install "fastapi[standard]"` with standard dependencies and `python -m fastapi`. PR [#11935](https://github.com/fastapi/fastapi/pull/11935) by [@tiangolo](https://github.com/tiangolo).
