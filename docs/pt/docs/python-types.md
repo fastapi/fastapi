@@ -266,7 +266,7 @@ E então, novamente, você recebe todo o suporte do editor:
 
 ## Modelos Pydantic
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank"> Pydantic </a> é uma biblioteca Python para executar a validação de dados.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank"> Pydantic </a> é uma biblioteca Python para executar a validação de dados.
 
 Você declara a "forma" dos dados como classes com atributos.
 
@@ -283,7 +283,7 @@ Retirado dos documentos oficiais dos Pydantic:
 ```
 
 !!! info "Informação"
-    Para saber mais sobre o <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
+    Para saber mais sobre o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
 
 **FastAPI** é todo baseado em Pydantic.
 

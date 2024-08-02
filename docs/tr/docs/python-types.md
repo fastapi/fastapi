@@ -12,7 +12,7 @@ Bu  pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme
 
 **FastAPI** kullanmayacak olsanız bile tür belirteçleri hakkında bilgi edinmenizde fayda var.
 
-!!! not
+!!! note "Not"
     Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
 
 ## Motivasyon
@@ -172,7 +172,7 @@ Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli para
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! ipucu
+!!! tip "Ipucu"
     Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
 
     Bu durumda `str`, `List`e iletilen tür parametresidir.
@@ -265,7 +265,7 @@ Ve yine bütün editör desteğini alırsınız:
 
 ## Pydantic modelleri
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> veri doğrulaması yapmak için bir Python kütüphanesidir.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> veri doğrulaması yapmak için bir Python kütüphanesidir.
 
 Verilerin "biçimini" niteliklere sahip sınıflar olarak düzenlersiniz.
 
@@ -282,7 +282,7 @@ Resmi Pydantic dokümanlarından alınmıştır:
 ```
 
 !!! info
-    Daha fazla şey öğrenmek için <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
+    Daha fazla şey öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
 
 **FastAPI** tamamen Pydantic'e dayanmaktadır.
 

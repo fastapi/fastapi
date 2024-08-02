@@ -13,12 +13,12 @@
 
 部署应用程序时，您可能希望进行一些**进程复制**，以利用**多核**并能够处理更多请求。
 
-正如您在上一章有关[部署概念](./concepts.md){.internal-link target=_blank}中看到的，您可以使用多种策略。
+正如您在上一章有关[部署概念](concepts.md){.internal-link target=_blank}中看到的，您可以使用多种策略。
 
 在这里我将向您展示如何将 <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> 与 **Uvicorn worker 进程** 一起使用。
 
 !!! info
-    如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](./docker.md){.internal-link target=_blank}。
+    如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
 
     特别是，当在 **Kubernetes** 上运行时，您可能**不想**使用 Gunicorn，而是运行 **每个容器一个 Uvicorn 进程**，但我将在本章后面告诉您这一点。
 
@@ -169,7 +169,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ## 容器和 Docker
 
-在关于 [容器中的 FastAPI - Docker](./docker.md){.internal-link target=_blank} 的下一章中，我将介绍一些可用于处理其他 **部署概念** 的策略。
+在关于 [容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank} 的下一章中，我将介绍一些可用于处理其他 **部署概念** 的策略。
 
 我还将向您展示 **官方 Docker 镜像**，其中包括 **Gunicorn 和 Uvicorn worker** 以及一些对简单情况有用的默认配置。
 

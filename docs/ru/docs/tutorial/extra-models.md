@@ -179,7 +179,7 @@ UserInDB(
 Для этого используйте стандартные аннотации типов в Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note "Примечание"
-    При объявлении <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, сначала указывайте наиболее детальные типы, затем менее детальные. В примере ниже более детальный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
+    При объявлении <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, сначала указывайте наиболее детальные типы, затем менее детальные. В примере ниже более детальный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
 
 === "Python 3.10+"
 

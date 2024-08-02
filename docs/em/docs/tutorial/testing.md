@@ -50,7 +50,7 @@
 
 ### **FastAPI** 📱 📁
 
-➡️ 💬 👆 ✔️ 📁 📊 🔬 [🦏 🈸](./bigger-applications.md){.internal-link target=_blank}:
+➡️ 💬 👆 ✔️ 📁 📊 🔬 [🦏 🈸](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .

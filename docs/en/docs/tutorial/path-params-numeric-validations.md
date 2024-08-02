@@ -92,11 +92,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
     ```
 
 !!! note
-    A path parameter is always required as it has to be part of the path.
-
-    So, you should declare it with `...` to mark it as required.
-
-    Nevertheless, even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+    A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
 
 ## Order the parameters as you need
 

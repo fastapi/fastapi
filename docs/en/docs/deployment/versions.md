@@ -12,23 +12,23 @@ You can create production applications with **FastAPI** right now (and you have 
 
 The first thing you should do is to "pin" the version of **FastAPI** you are using to the specific latest version that you know works correctly for your application.
 
-For example, let's say you are using version `0.45.0` in your app.
+For example, let's say you are using version `0.112.0` in your app.
 
 If you use a `requirements.txt` file you could specify the version with:
 
 ```txt
-fastapi==0.45.0
+fastapi[standard]==0.112.0
 ```
 
-that would mean that you would use exactly the version `0.45.0`.
+that would mean that you would use exactly the version `0.112.0`.
 
 Or you could also pin it with:
 
 ```txt
-fastapi>=0.45.0,<0.46.0
+fastapi[standard]>=0.112.0,<0.113.0
 ```
 
-that would mean that you would use the versions `0.45.0` or above, but less than `0.46.0`, for example, a version `0.45.2` would still be accepted.
+that would mean that you would use the versions `0.112.0` or above, but less than `0.113.0`, for example, a version `0.112.2` would still be accepted.
 
 If you use any other tool to manage your installations, like Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
 
@@ -78,10 +78,10 @@ So, you can just let **FastAPI** use the correct Starlette version.
 
 Pydantic includes the tests for **FastAPI** with its own tests, so new versions of Pydantic (above `1.0.0`) are always compatible with FastAPI.
 
-You can pin Pydantic to any version above `1.0.0` that works for you and below `2.0.0`.
+You can pin Pydantic to any version above `1.0.0` that works for you.
 
 For example:
 
 ```txt
-pydantic>=1.2.0,<2.0.0
+pydantic>=2.7.0,<3.0.0
 ```
