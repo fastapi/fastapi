@@ -39,7 +39,7 @@ But if you are certain that the content that you are returning is **serializable
     And it will be documented as such in OpenAPI.
 
 !!! tip
-    The `ORJSONResponse` is currently only available in FastAPI, not in Starlette.
+    The `ORJSONResponse` is only available in FastAPI, not in Starlette.
 
 ## HTML Response
 
@@ -149,9 +149,15 @@ This is the default response used in **FastAPI**, as you read above.
 
 A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
 
+!!! info
+    This requires installing `orjson` for example with `pip install orjson`.
+
 ### `UJSONResponse`
 
 An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+
+!!! info
+    This requires installing `ujson` for example with `pip install ujson`.
 
 !!! warning
     `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.

@@ -1,6 +1,6 @@
 # Alternativas, Inspiração e Comparações
 
-O que inspirou **FastAPI**, como ele se compara a outras alternativas e o que FastAPI aprendeu delas.
+O que inspirou o **FastAPI**, como ele se compara às alternativas e o que FastAPI aprendeu delas.
 
 ## Introdução
 
@@ -185,7 +185,7 @@ Ele utiliza a informação do Webargs e Marshmallow para gerar automaticamente _
 
 Isso resolveu o problema de ter que escrever YAML (outra sintaxe) dentro das _docstrings_ Python.
 
-Essa combinação de Flask, Flask-apispec com Marshmallow e Webargs foi meu _backend stack_ favorito até construir **FastAPI**.
+Essa combinação de Flask, Flask-apispec com Marshmallow e Webargs foi meu _backend stack_ favorito até construir o **FastAPI**.
 
 Usando essa combinação levou a criação de vários geradores Flask _full-stack_. Há muitas _stacks_ que eu (e vários times externos) estou utilizando até agora:
 
@@ -207,7 +207,7 @@ NestJS, que não é nem Python, é um framework NodeJS JavaScript (TypeScript) i
 
 Ele alcança de uma forma similar ao que pode ser feito com o Flask-apispec.
 
-Ele tem um sistema de injeção de dependência integrado, inspirado pelo Angular dois. É necessário fazer o pré-registro dos "injetáveis" (como todos os sistemas de injeção de dependência que conheço), então, adicionando verbosidade e repetição de código.
+Ele tem um sistema de injeção de dependência integrado, inspirado pelo Angular 2. É necessário fazer o pré-registro dos "injetáveis" (como todos os sistemas de injeção de dependência que conheço), então, adicionando verbosidade e repetição de código.
 
 Como os parâmetros são descritos com tipos TypeScript (similar aos _type hints_ do Python), o suporte ao editor é muito bom.
 
@@ -247,7 +247,7 @@ Então, validação de dados, serialização e documentação tem que ser feitos
 !!! check "**FastAPI** inspirado para"
     Achar jeitos de conseguir melhor performance.
 
-    Juntamente com Hug (como Hug é baseado no Falcon) inspirou **FastAPI** para declarar um parâmetro de `resposta`nas funções.
+    Juntamente com Hug (como Hug é baseado no Falcon) inspirou **FastAPI** para declarar um parâmetro de `resposta` nas funções.
 
     Embora no FastAPI seja opcional, é utilizado principalmente para configurar cabeçalhos, cookies e códigos de status alternativos.
 
@@ -366,7 +366,7 @@ Ele tem:
 * Suporte a GraphQL.
 * Tarefas de processamento interno por trás dos panos.
 * Eventos de inicialização e encerramento.
-* Cliente de testes construído com requests.
+* Cliente de testes construído com HTTPX.
 * Respostas CORS, GZip, Arquivos Estáticos, Streaming.
 * Suporte para Sessão e Cookie.
 * 100% coberto por testes.
