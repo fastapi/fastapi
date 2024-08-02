@@ -2,11 +2,24 @@
 
 ## Latest Changes
 
+## 0.7.0
+
+Lots of new things! 🎁
+
+* E2E tests with Playwright.
+* Mailcatcher configuration, to develop and test email handling.
+* Pagination.
+* UUIDs for database keys.
+* New user sign up.
+* Support for deploying to multiple environments (staging, prod).
+* Many refactors and improvements.
+* Several dependency upgrades.
+
 ### Features
 
-* ✨ Add User Settings e2e tests . PR [#1271](https://github.com/tiangolo/full-stack-fastapi-template/pull/1271) by [@alejsdev](https://github.com/alejsdev).
+* ✨ Add User Settings e2e tests. PR [#1271](https://github.com/tiangolo/full-stack-fastapi-template/pull/1271) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Reset Password e2e tests. PR [#1270](https://github.com/tiangolo/full-stack-fastapi-template/pull/1270) by [@alejsdev](https://github.com/alejsdev).
-* ✨ Add Sign Up e2e tests . PR [#1268](https://github.com/tiangolo/full-stack-fastapi-template/pull/1268) by [@alejsdev](https://github.com/alejsdev).
+* ✨ Add Sign Up e2e tests. PR [#1268](https://github.com/tiangolo/full-stack-fastapi-template/pull/1268) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Sign Up and make `OPEN_USER_REGISTRATION=True` by default. PR [#1265](https://github.com/tiangolo/full-stack-fastapi-template/pull/1265) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add Login e2e tests. PR [#1264](https://github.com/tiangolo/full-stack-fastapi-template/pull/1264) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add initial setup for frontend / end-to-end tests with Playwright. PR [#1261](https://github.com/tiangolo/full-stack-fastapi-template/pull/1261) by [@alejsdev](https://github.com/alejsdev).
