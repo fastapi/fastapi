@@ -4,7 +4,7 @@ Vielleicht möchten Sie sich zuerst die grundlegenden Möglichkeiten anschauen, 
 
 ## Entwicklung
 
-Wenn Sie das <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">fastapi Repository</a> bereits geklont haben und tief in den Code eintauchen möchten, hier einen Leitfaden zum Einrichten Ihrer Umgebung.
+Wenn Sie das <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi Repository</a> bereits geklont haben und tief in den Code eintauchen möchten, hier einen Leitfaden zum Einrichten Ihrer Umgebung.
 
 ### Virtuelle Umgebung mit `venv`
 
@@ -257,7 +257,7 @@ Hier sind die Schritte, die Ihnen bei Übersetzungen helfen.
 
 #### Tipps und Richtlinien
 
-* Schauen Sie nach <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">aktuellen Pull Requests</a> für Ihre Sprache. Sie können die Pull Requests nach dem Label für Ihre Sprache filtern. Für Spanisch lautet das Label beispielsweise <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
+* Schauen Sie nach <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">aktuellen Pull Requests</a> für Ihre Sprache. Sie können die Pull Requests nach dem Label für Ihre Sprache filtern. Für Spanisch lautet das Label beispielsweise <a href="https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
 
 * Sehen Sie diese Pull Requests durch (Review), schlagen Sie Änderungen vor, oder segnen Sie sie ab (Approval). Bei den Sprachen, die ich nicht spreche, warte ich, bis mehrere andere die Übersetzung durchgesehen haben, bevor ich den Pull Request merge.
 
@@ -266,7 +266,7 @@ Hier sind die Schritte, die Ihnen bei Übersetzungen helfen.
 
     Schauen Sie sich die Dokumentation an, <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">wie man ein Review zu einem Pull Request hinzufügt</a>, welches den PR absegnet oder Änderungen vorschlägt.
 
-* Überprüfen Sie, ob es eine <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub-Diskussion</a> gibt, die Übersetzungen für Ihre Sprache koordiniert. Sie können sie abonnieren, und wenn ein neuer Pull Request zum Review vorliegt, wird der Diskussion automatisch ein Kommentar hinzugefügt.
+* Überprüfen Sie, ob es eine <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub-Diskussion</a> gibt, die Übersetzungen für Ihre Sprache koordiniert. Sie können sie abonnieren, und wenn ein neuer Pull Request zum Review vorliegt, wird der Diskussion automatisch ein Kommentar hinzugefügt.
 
 * Wenn Sie Seiten übersetzen, fügen Sie einen einzelnen Pull Request pro übersetzter Seite hinzu. Dadurch wird es für andere viel einfacher, ihn zu durchzusehen.
 

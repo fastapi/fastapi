@@ -76,7 +76,7 @@ The first step is to install FastAPI:
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
@@ -84,9 +84,9 @@ $ pip install fastapi
 </div>
 
 !!! note
-    When you install with `pip install fastapi` it comes with some default optional standard dependencies.
+    When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
 
-    If you don't want to have those optional dependencies, you can instead install `pip install fastapi-slim`.
+    If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
 
 ## Advanced User Guide
 
