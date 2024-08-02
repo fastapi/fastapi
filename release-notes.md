@@ -95,6 +95,7 @@
 
 ### Docs
 
+* 📝 Update links from tiangolo repo to fastapi org repo. PR [#1285](https://github.com/fastapi/full-stack-fastapi-template/pull/1285) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add End-to-End Testing with Playwright to frontend `README.md`. PR [#1279](https://github.com/tiangolo/full-stack-fastapi-template/pull/1279) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update release-notes.md. PR [#1220](https://github.com/tiangolo/full-stack-fastapi-template/pull/1220) by [@alejsdev](https://github.com/alejsdev).
 * ✏️ Update `README.md`. PR [#1205](https://github.com/tiangolo/full-stack-fastapi-template/pull/1205) by [@Craz1k0ek](https://github.com/Craz1k0ek).
