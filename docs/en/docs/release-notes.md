@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add French translation for `docs/fr/docs/tutorial/path-params-numeric-validations.md`. PR [#11788](https://github.com/fastapi/fastapi/pull/11788) by [@pe-brian](https://github.com/pe-brian).
+
 ## 0.112.0
 
 ### Breaking Changes
