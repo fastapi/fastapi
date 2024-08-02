@@ -5,8 +5,8 @@ except ImportError:  # pragma: no cover
     cli_main = None  # type: ignore
 
 
-def main():
-    if not cli_main:
+def main() -> None:
+    if not cli_main:  # type: ignore[truthy-function]
         message = 'To use the fastapi command, please install "fastapi[standard]":\n\n\tpip install "fastapi[standard]"\n'
         print(message)
         raise RuntimeError(message)  # noqa: B904
