@@ -199,7 +199,7 @@ Next, you would run the server passing the configurations as environment variabl
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -232,7 +232,7 @@ And then use it in a file `main.py`:
 ```
 
 !!! tip
-    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+    You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 ## Settings in a dependency
 
@@ -369,7 +369,7 @@ Here we define the config `env_file` inside of your Pydantic `Settings` class, a
 
 ### Creating the `Settings` only once with `lru_cache`
 
-Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then re-use the same settings object, instead of reading it for each request.
+Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then reuse the same settings object, instead of reading it for each request.
 
 But every time we do:
 

@@ -10,7 +10,7 @@ Es gibt viele Tools zum Generieren von Clients aus **OpenAPI**.
 
 Ein gängiges Tool ist <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>.
 
-Wenn Sie ein **Frontend** erstellen, ist <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a> eine sehr interessante Alternative.
+Wenn Sie ein **Frontend** erstellen, ist <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a> eine sehr interessante Alternative.
 
 ## Client- und SDK-Generatoren – Sponsor
 
@@ -20,7 +20,7 @@ Einige von diesen ✨ [**sponsern FastAPI**](../help-fastapi.md#den-autor-sponse
 
 Und es zeigt deren wahres Engagement für FastAPI und seine **Community** (Sie), da diese Ihnen nicht nur einen **guten Service** bieten möchten, sondern auch sicherstellen möchten, dass Sie über ein **gutes und gesundes Framework** verfügen, FastAPI. 🙇
 
-Beispielsweise könnten Sie <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> ausprobieren.
+Beispielsweise könnten Sie <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> ausprobieren.
 
 Es gibt auch mehrere andere Unternehmen, welche ähnliche Dienste anbieten und die Sie online suchen und finden können. 🤓
 
@@ -58,14 +58,14 @@ Und dieselben Informationen aus den Modellen, die in OpenAPI enthalten sind, kö
 
 Nachdem wir nun die Anwendung mit den Modellen haben, können wir den Client-Code für das Frontend generieren.
 
-#### `openapi-typescript-codegen` installieren
+#### `openapi-ts` installieren
 
-Sie können `openapi-typescript-codegen` in Ihrem Frontend-Code installieren mit:
+Sie können `openapi-ts` in Ihrem Frontend-Code installieren mit:
 
 <div class="termy">
 
 ```console
-$ npm install openapi-typescript-codegen --save-dev
+$ npm install @hey-api/openapi-ts --save-dev
 
 ---> 100%
 ```
@@ -74,7 +74,7 @@ $ npm install openapi-typescript-codegen --save-dev
 
 #### Client-Code generieren
 
-Um den Client-Code zu generieren, können Sie das Kommandozeilentool `openapi` verwenden, das soeben installiert wurde.
+Um den Client-Code zu generieren, können Sie das Kommandozeilentool `openapi-ts` verwenden, das soeben installiert wurde.
 
 Da es im lokalen Projekt installiert ist, könnten Sie diesen Befehl wahrscheinlich nicht direkt aufrufen, sondern würden ihn in Ihre Datei `package.json` einfügen.
 
@@ -87,12 +87,12 @@ Diese könnte so aussehen:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
+    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }
@@ -106,7 +106,7 @@ Nachdem Sie das NPM-Skript `generate-client` dort stehen haben, können Sie es a
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes
+> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
 ```
 
 </div>
@@ -254,12 +254,12 @@ Da das Endergebnis nun in einer Datei `openapi.json` vorliegt, würden Sie die `
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
+    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }

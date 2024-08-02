@@ -345,7 +345,7 @@ Você apenas precisa instalar um servidor ASGI compatível como:
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
 
     <div class="termy">
 

@@ -58,7 +58,7 @@ $ pip install "fastapi[all]"
     👉 ⚫️❔ 👆 🔜 🎲 🕐 👆 💚 🛠️ 👆 🈸 🏭:
 
     ```
-    pip install fastapi
+    pip install "fastapi[standard]"
     ```
 
     ❎ `uvicorn` 👷 💽:

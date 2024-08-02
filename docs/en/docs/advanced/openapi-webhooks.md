@@ -44,7 +44,7 @@ This is because it is expected that **your users** would define the actual **URL
 
 ### Check the docs
 
-Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see your docs have the normal *path operations* and now also some **webhooks**:
 

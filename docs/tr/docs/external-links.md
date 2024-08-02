@@ -7,7 +7,7 @@
 Bunlardan bazılarının tamamlanmamış bir listesi aşağıda bulunmaktadır.
 
 !!! tip "İpucu"
-    Eğer **FastAPI** ile alakalı henüz burada listelenmemiş bir makale, proje, araç veya başka bir şeyiniz varsa, bunu eklediğiniz bir <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a> oluşturabilirsiniz.
+    Eğer **FastAPI** ile alakalı henüz burada listelenmemiş bir makale, proje, araç veya başka bir şeyiniz varsa, bunu eklediğiniz bir <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a> oluşturabilirsiniz.
 
 {% for section_name, section_content in external_links.items() %}
 

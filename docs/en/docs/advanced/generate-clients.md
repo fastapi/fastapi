@@ -10,7 +10,7 @@ There are many tools to generate clients from **OpenAPI**.
 
 A common tool is <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>.
 
-If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a>.
+If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>.
 
 ## Client and SDK Generators - Sponsor
 
@@ -20,7 +20,11 @@ Some of them also ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-autho
 
 And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
 
-For example, you might want to try <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>.
+For example, you might want to try:
+
+* <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+* <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
+* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi/?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
 There are also several other companies offering similar services that you can search and find online. 🤓
 
@@ -58,14 +62,14 @@ And that same information from the models that is included in OpenAPI is what ca
 
 Now that we have the app with the models, we can generate the client code for the frontend.
 
-#### Install `openapi-typescript-codegen`
+#### Install `openapi-ts`
 
-You can install `openapi-typescript-codegen` in your frontend code with:
+You can install `openapi-ts` in your frontend code with:
 
 <div class="termy">
 
 ```console
-$ npm install openapi-typescript-codegen --save-dev
+$ npm install @hey-api/openapi-ts --save-dev
 
 ---> 100%
 ```
@@ -74,7 +78,7 @@ $ npm install openapi-typescript-codegen --save-dev
 
 #### Generate Client Code
 
-To generate the client code you can use the command line application `openapi` that would now be installed.
+To generate the client code you can use the command line application `openapi-ts` that would now be installed.
 
 Because it is installed in the local project, you probably wouldn't be able to call that command directly, but you would put it on your `package.json` file.
 
@@ -87,12 +91,12 @@ It could look like this:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
+    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }
@@ -106,7 +110,7 @@ After having that NPM `generate-client` script there, you can run it with:
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios --useOptions --useUnionTypes
+> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
 ```
 
 </div>
@@ -237,7 +241,7 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 === "Node.js"
 
-    ```Python
+    ```Javascript
     {!> ../../../docs_src/generate_clients/tutorial004.js!}
     ```
 
@@ -254,12 +258,12 @@ Now as the end result is in a file `openapi.json`, you would modify the `package
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios --useOptions --useUnionTypes"
+    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }
@@ -271,7 +275,7 @@ After generating the new client, you would now have **clean method names**, with
 
 ## Benefits
 
-When using the automatically generated clients you would **autocompletion** for:
+When using the automatically generated clients you would get **autocompletion** for:
 
 * Methods.
 * Request payloads in the body, query parameters, etc.

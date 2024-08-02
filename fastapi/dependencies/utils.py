@@ -1,6 +1,6 @@
 import inspect
 from contextlib import AsyncExitStack, contextmanager
-from copy import deepcopy
+from copy import copy, deepcopy
 from typing import (
     Any,
     Callable,
@@ -384,6 +384,8 @@ def analyze_param(
             field_info.annotation = type_annotation
 
     if depends is not None and depends.dependency is None:
+        # Copy `depends` before mutating it
+        depends = copy(depends)
         depends.dependency = type_annotation
 
     if lenient_issubclass(
