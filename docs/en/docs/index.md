@@ -138,6 +138,8 @@ $ pip install "fastapi[standard]"
 
 </div>
 
+**Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
+
 ## Example
 
 ### Create it

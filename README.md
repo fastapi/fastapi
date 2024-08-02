@@ -142,6 +142,8 @@ $ pip install "fastapi[standard]"
 
 </div>
 
+**Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
+
 ## Example
 
 ### Create it
@@ -454,7 +456,7 @@ To understand more about it, see the section <a href="https://fastapi.tiangolo.c
 
 FastAPI depends on Pydantic and Starlette.
 
-## `standard` Dependencies
+### `standard` Dependencies
 
 When you install with `pip install "fastapi[standard]"` it comes with the following optional standard dependencies:
 
@@ -470,14 +472,14 @@ Used by Starlette:
 
 Used by FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli` - to provide the `fastapi` command.
 
 ### Without `standard` Dependencies
 
-If you don't want to include the optional standard dependencies, you can install with `pip install fastapi`.
+If you don't want to include the optional standard dependencies, you can install with `pip install fastapi` instead of `pip install "fastapi[standard]"`.
 
-## Additional Optional Dependencies
+### Additional Optional Dependencies
 
 There are some additional dependencies you might want to install.
 
