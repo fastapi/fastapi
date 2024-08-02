@@ -54,7 +54,7 @@ Repository = "https://github.com/fastapi/fastapi"
 [project.optional-dependencies]
 
 standard = [
-    "fastapi-cli[standard] >=0.0.3",
+    "fastapi-cli[standard] >=0.0.5",
     # For the test client
     "httpx >=0.23.0",
     # For templates
@@ -73,7 +73,7 @@ standard = [
 ]
 
 all = [
-    "fastapi-cli[standard] >=0.0.3",
+    "fastapi-cli[standard] >=0.0.5",
     # # For the test client
     "httpx >=0.23.0",
     # For templates
