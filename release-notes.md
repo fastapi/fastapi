@@ -27,6 +27,7 @@
 
 ### Refactors
 
+* 🚨 Fix Docker build warning. PR [#1283](https://github.com/tiangolo/full-stack-fastapi-template/pull/1283) by [@erip](https://github.com/erip).
 * ♻️ Regenerate client to use UUID instead of id integers and update frontend. PR [#1281](https://github.com/tiangolo/full-stack-fastapi-template/pull/1281) by [@rehanabdul](https://github.com/rehanabdul).
 * ♻️ Tweaks in frontend. PR [#1273](https://github.com/tiangolo/full-stack-fastapi-template/pull/1273) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Add random password util and refactor tests. PR [#1277](https://github.com/tiangolo/full-stack-fastapi-template/pull/1277) by [@alejsdev](https://github.com/alejsdev).
