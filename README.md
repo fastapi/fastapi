@@ -135,12 +135,14 @@ FastAPI stands on the shoulders of giants:
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
+
+**Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
 
 ## Example
 
@@ -452,11 +454,15 @@ To understand more about it, see the section <a href="https://fastapi.tiangolo.c
 
 ## Dependencies
 
+FastAPI depends on Pydantic and Starlette.
+
+### `standard` Dependencies
+
+When you install FastAPI with `pip install "fastapi[standard]"` it comes the `standard` group of optional dependencies:
+
 Used by Pydantic:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
-* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
 
 Used by Starlette:
 
@@ -466,33 +472,26 @@ Used by Starlette:
 
 Used by FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli` - to provide the `fastapi` command.
 
-When you install `fastapi` it comes these standard dependencies.
+### Without `standard` Dependencies
 
-Additional optional dependencies:
+If you don't want to include the `standard` optional dependencies, you can install with `pip install fastapi` instead of `pip install "fastapi[standard]"`.
+
+### Additional Optional Dependencies
+
+There are some additional dependencies you might want to install.
+
+Additional optional Pydantic dependencies:
+
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+
+Additional optional FastAPI dependencies:
 
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
-
-## `fastapi-slim`
-
-If you don't want the extra standard optional dependencies, install `fastapi-slim` instead.
-
-When you install with:
-
-```bash
-pip install fastapi
-```
-
-...it includes the same code and dependencies as:
-
-```bash
-pip install "fastapi-slim[standard]"
-```
-
-The standard extra dependencies are the ones mentioned above.
 
 ## License
 

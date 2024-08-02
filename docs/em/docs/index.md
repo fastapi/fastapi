@@ -133,7 +133,7 @@ FastAPI 🧍 🔛 ⌚ 🐘:
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
