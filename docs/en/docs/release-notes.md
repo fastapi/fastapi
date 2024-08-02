@@ -11,6 +11,38 @@ hide:
 
 * ♻️ Add support for `pip install "fastapi[standard]"` with standard dependencies and `python -m fastapi`. PR [#11935](https://github.com/fastapi/fastapi/pull/11935) by [@tiangolo](https://github.com/tiangolo).
 
+#### Summary
+
+Install with:
+
+```bash
+pip install "fastapi[standard]"
+```
+
+#### Other Changes
+
+* This adds support for calling the CLI as:
+
+```bash
+python -m python
+```
+
+* And it upgrades `fastapi-cli[standard] >=0.0.5`.
+
+#### Technical Details
+
+Before this, `fastapi` would include the standard dependencies, with Uvicorn and the `fastapi-cli`, etc.
+
+And `fastapi-slim` would not include those standard dependencies.
+
+Now `fastapi` doesn't include those standard dependencies unless you install with `pip install "fastapi[standard]"`.
+
+Before, you would install `pip install fastapi`, now you should include the `standard` optional dependencies (unless you want to exclude one of those): `pip install "fastapi[standard]"`.
+
+This change is because having the standard optional dependencies installed by default was being inconvenient to several users, and having to install instead `fastapi-slim` was not being a feasible solution.
+
+Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here: [#11525](https://github.com/fastapi/fastapi/discussions/11525)
+
 ### Docs
 
 * ✏️ Fix typos in docs. PR [#11926](https://github.com/fastapi/fastapi/pull/11926) by [@jianghuyiyuan](https://github.com/jianghuyiyuan).
