@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39
@@ -12,29 +13,62 @@ def get_client():
     return client
 
 
-file_required = {
-    "detail": [
-        {
-            "loc": ["body", "file"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-
 @needs_py39
 def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 422, response.text
-    assert response.json() == file_required
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "file"],
+                    "msg": "Field required",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "file"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @needs_py39
 def test_post_body_json(client: TestClient):
     response = client.post("/files/", json={"file": "Foo"})
     assert response.status_code == 422, response.text
-    assert response.json() == file_required
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "file"],
+                    "msg": "Field required",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "file"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @needs_py39
@@ -76,7 +110,7 @@ def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/files/": {

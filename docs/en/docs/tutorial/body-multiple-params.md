@@ -20,7 +20,7 @@ And you can also declare body parameters as optional, by setting the default to 
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
@@ -35,7 +35,7 @@ And you can also declare body parameters as optional, by setting the default to 
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -68,7 +68,7 @@ But you can also declare multiple body parameters, e.g. `item` and `user`:
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
@@ -97,7 +97,7 @@ So, it will then use the parameter names as keys (field names) in the body, and 
     Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
 
 
-**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives it's specific content and the same for `user`.
+**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
 
 It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
 
@@ -123,7 +123,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
@@ -138,7 +138,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -197,7 +197,7 @@ For example:
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="28"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
@@ -212,7 +212,7 @@ For example:
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.
@@ -250,7 +250,7 @@ as in:
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6+"
+=== "Python 3.8+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
@@ -265,7 +265,7 @@ as in:
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.8+ non-Annotated"
 
     !!! tip
         Prefer to use the `Annotated` version if possible.

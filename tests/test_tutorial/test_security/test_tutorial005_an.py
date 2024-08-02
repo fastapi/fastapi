@@ -1,3 +1,4 @@
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
 from docs_src.security.tutorial005_an import (
@@ -127,7 +128,7 @@ def test_token_no_scope():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_inexistent_user():
+def test_token_nonexistent_user():
     response = client.get(
         "/users/me",
         headers={
@@ -179,7 +180,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/token": {
@@ -266,13 +267,44 @@ def test_openapi_schema():
             "schemas": {
                 "User": {
                     "title": "User",
-                    "required": ["username"],
+                    "required": IsOneOf(
+                        ["username", "email", "full_name", "disabled"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["username"],
+                    ),
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},
-                        "email": {"title": "Email", "type": "string"},
-                        "full_name": {"title": "Full Name", "type": "string"},
-                        "disabled": {"title": "Disabled", "type": "boolean"},
+                        "email": IsDict(
+                            {
+                                "title": "Email",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Email", "type": "string"}
+                        ),
+                        "full_name": IsDict(
+                            {
+                                "title": "Full Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Full Name", "type": "string"}
+                        ),
+                        "disabled": IsDict(
+                            {
+                                "title": "Disabled",
+                                "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Disabled", "type": "boolean"}
+                        ),
                     },
                 },
                 "Token": {
@@ -289,16 +321,46 @@ def test_openapi_schema():
                     "required": ["username", "password"],
                     "type": "object",
                     "properties": {
-                        "grant_type": {
-                            "title": "Grant Type",
-                            "pattern": "password",
-                            "type": "string",
-                        },
+                        "grant_type": IsDict(
+                            {
+                                "title": "Grant Type",
+                                "anyOf": [
+                                    {"pattern": "password", "type": "string"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Grant Type",
+                                "pattern": "password",
+                                "type": "string",
+                            }
+                        ),
                         "username": {"title": "Username", "type": "string"},
                         "password": {"title": "Password", "type": "string"},
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": {"title": "Client Id", "type": "string"},
-                        "client_secret": {"title": "Client Secret", "type": "string"},
+                        "client_id": IsDict(
+                            {
+                                "title": "Client Id",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Id", "type": "string"}
+                        ),
+                        "client_secret": IsDict(
+                            {
+                                "title": "Client Secret",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Secret", "type": "string"}
+                        ),
                     },
                 },
                 "ValidationError": {

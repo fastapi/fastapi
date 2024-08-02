@@ -1,5 +1,6 @@
 from typing import List
 
+from dirty_equals import IsDict
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -47,15 +48,29 @@ async def no_duplicates_sub(
 def test_no_duplicates_invalid():
     response = client.post("/no-duplicates", json={"item": {"data": "myitem"}})
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "item2"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "item2"],
+                    "msg": "Field required",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "item2"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 def test_no_duplicates():
@@ -86,7 +101,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/with-duplicates": {

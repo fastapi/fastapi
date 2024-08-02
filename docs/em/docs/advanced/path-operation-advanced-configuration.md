@@ -59,7 +59,7 @@
 
 👆 💪 📣 🌖 📨 ⏮️ 👫 🏷, 👔 📟, ♒️.
 
-📤 🎂 📃 📥 🧾 🔃 ⚫️, 👆 💪 ✍ ⚫️ [🌖 📨 🗄](./additional-responses.md){.internal-link target=_blank}.
+📤 🎂 📃 📥 🧾 🔃 ⚫️, 👆 💪 ✍ ⚫️ [🌖 📨 🗄](additional-responses.md){.internal-link target=_blank}.
 
 ## 🗄 ➕
 
@@ -77,7 +77,7 @@
 !!! tip
     👉 🔅 🎚 ↔ ☝.
 
-    🚥 👆 🕴 💪 📣 🌖 📨, 🌅 🏪 🌌 ⚫️ ⏮️ [🌖 📨 🗄](./additional-responses.md){.internal-link target=_blank}.
+    🚥 👆 🕴 💪 📣 🌖 📨, 🌅 🏪 🌌 ⚫️ ⏮️ [🌖 📨 🗄](additional-responses.md){.internal-link target=_blank}.
 
 👆 💪 ↔ 🗄 🔗 *➡ 🛠️* ⚙️ 🔢 `openapi_extra`.
 

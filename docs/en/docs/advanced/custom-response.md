@@ -23,7 +23,7 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
 
 For large responses, returning a `Response` directly is much faster than returning a dictionary.
 
-This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+This is because by default, FastAPI will inspect every item inside and make sure it is serializable as JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
 
 But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
 
@@ -39,7 +39,7 @@ But if you are certain that the content that you are returning is **serializable
     And it will be documented as such in OpenAPI.
 
 !!! tip
-    The `ORJSONResponse` is currently only available in FastAPI, not in Starlette.
+    The `ORJSONResponse` is only available in FastAPI, not in Starlette.
 
 ## HTML Response
 
@@ -73,7 +73,7 @@ The same example from above, returning an `HTMLResponse`, could look like:
     A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
 
 !!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
+    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
 
 ### Document in OpenAPI and override `Response`
 
@@ -101,7 +101,7 @@ But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** wi
 
 Here are some of the available responses.
 
-Have in mind that you can use `Response` to return anything else, or even create a custom sub-class.
+Keep in mind that you can use `Response` to return anything else, or even create a custom sub-class.
 
 !!! note "Technical Details"
     You could also use `from starlette.responses import HTMLResponse`.
@@ -149,9 +149,15 @@ This is the default response used in **FastAPI**, as you read above.
 
 A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
 
+!!! info
+    This requires installing `orjson` for example with `pip install orjson`.
+
 ### `UJSONResponse`
 
 An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+
+!!! info
+    This requires installing `ujson` for example with `pip install ujson`.
 
 !!! warning
     `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
