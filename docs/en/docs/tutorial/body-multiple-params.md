@@ -97,7 +97,7 @@ So, it will then use the parameter names as keys (field names) in the body, and 
     Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
 
 
-**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives it's specific content and the same for `user`.
+**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
 
 It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
 

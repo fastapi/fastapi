@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Cechy
 
 ## Cechy FastAPI

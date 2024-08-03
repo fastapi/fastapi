@@ -5,11 +5,11 @@
     <em>FastAPI keretrendszer, nagy teljesítmény, könnyen tanulható, gyorsan kódolható, productionre kész</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -23,10 +23,10 @@
 
 **Dokumentáció**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Forrás kód**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Forrás kód**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
-A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python 3.8+-al, a Python szabványos típusjelöléseire építve.
+A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
 
 
 Kulcs funkciók:
@@ -63,7 +63,7 @@ Kulcs funkciók:
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -114,8 +114,6 @@ Ha egy olyan CLI alkalmazást fejlesztesz amit a parancssorban kell használni w
 **Typer** a FastAPI kistestvére. A **CLI-k FastAPI-ja**. ⌨️ 🚀
 
 ## Követelmények
-
-Python 3.8+
 
 A FastAPI óriások vállán áll:
 
@@ -331,7 +329,7 @@ Ezt standard modern Python típusokkal csinálod.
 
 Nem kell új szintaxist, vagy specifikus könyvtár mert metódósait, stb. megtanulnod.
 
-Csak standard **Python 3.8+**.
+Csak standard **Python**.
 
 Például egy `int`-nek:
 

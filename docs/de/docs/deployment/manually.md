@@ -5,7 +5,7 @@ Das Wichtigste, was Sie zum Ausführen einer **FastAPI**-Anwendung auf einer ent
 Es gibt 3 Hauptalternativen:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ein hochperformanter ASGI-Server.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der unter anderem mit HTTP/2 und Trio kompatibel ist.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der unter anderem mit HTTP/2 und Trio kompatibel ist.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: Der für Django Channels entwickelte ASGI-Server.
 
 ## Servermaschine und Serverprogramm
@@ -43,7 +43,7 @@ Sie können einen ASGI-kompatiblen Server installieren mit:
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ein ASGI-Server, der auch mit HTTP/2 kompatibel ist.
+    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ein ASGI-Server, der auch mit HTTP/2 kompatibel ist.
 
     <div class="termy">
 
