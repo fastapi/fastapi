@@ -203,7 +203,7 @@ And multiple processes normally **don't share any memory**. This means that each
 
 For example, if your code loads a Machine Learning model with **1 GB in size**, when you run one process with your API, it will consume at least 1 GB of RAM. And if you start **4 processes** (4 workers), each will consume 1 GB of RAM. So in total, your API will consume **4 GB of RAM**.
 
-And if your remote server or virtual machine only has 3 GB of RAM, trying to load more than 4 GB of RAM will cause problems. 🚨
+And if your remote server or virtual machine only has 4 GB of RAM, trying to load more than 4 GB of RAM will cause problems. 🚨
 
 ### Multiple Processes - An Example
 
