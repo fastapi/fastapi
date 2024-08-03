@@ -3,7 +3,7 @@
 JSONの代わりにフィールドを受け取る場合は、`Form`を使用します。
 
 !!! info "情報"
-    フォームを使うためには、まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+    フォームを使うためには、まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
     たとえば、`pip install python-multipart`のように。
 

@@ -338,7 +338,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 
 Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
 
-This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+This <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
@@ -513,7 +513,7 @@ And you would also use Alembic for "migrations" (that's its main job).
 
 A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
 
-You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
+You can find an example of Alembic in a FastAPI project in the [Full Stack FastAPI Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-template/tree/master/backend/app/alembic" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
 
 ### Create a dependency
 
@@ -546,7 +546,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
 
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
-    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
 
 And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
 

@@ -26,7 +26,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 Now you can create the *path operations* for the custom docs.
 
-You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+You can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -96,8 +96,8 @@ You can probably right-click each link and select an option similar to `Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 And **ReDoc** uses the file:
 
@@ -163,7 +163,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 And the same way as with a custom CDN, now you can create the *path operations* for the custom docs.
 
-Again, you can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Again, you can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.

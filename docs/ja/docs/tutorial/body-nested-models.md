@@ -118,7 +118,7 @@ Pydanticモデルの各属性には型があります。
 
 `str`や`int`、`float`のような通常の単数型の他にも、`str`を継承したより複雑な単数型を使うこともできます。
 
-すべてのオプションをみるには、<a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydanticのエキゾチック な型</a>のドキュメントを確認してください。次の章でいくつかの例をみることができます。
+すべてのオプションをみるには、<a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydanticのエキゾチック な型</a>のドキュメントを確認してください。次の章でいくつかの例をみることができます。
 
 例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`を指定することができます:
 

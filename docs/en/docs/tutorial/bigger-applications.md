@@ -136,7 +136,7 @@ We will now use a simple dependency to read a custom `X-Token` header:
 !!! tip
     We are using an invented header to simplify this example.
 
-    But in real cases you will get better results using the integrated [Security utilities](./security/index.md){.internal-link target=_blank}.
+    But in real cases you will get better results using the integrated [Security utilities](security/index.md){.internal-link target=_blank}.
 
 ## Another module with `APIRouter`
 
@@ -329,7 +329,7 @@ The section:
 from .routers import items, users
 ```
 
-Means:
+means:
 
 * Starting in the same package that this module (the file `app/main.py`) lives in (the directory `app/`)...
 * look for the subpackage `routers` (the directory at `app/routers/`)...
@@ -373,7 +373,7 @@ from .routers.items import router
 from .routers.users import router
 ```
 
-The `router` from `users` would overwrite the one from `items` and we wouldn't be able to use them at the same time.
+the `router` from `users` would overwrite the one from `items` and we wouldn't be able to use them at the same time.
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 

@@ -7,7 +7,7 @@
 それらの不完全なリストを以下に示します。
 
 !!! tip "豆知識"
-    ここにまだ載っていない**FastAPI**に関連する記事、プロジェクト、ツールなどがある場合は、 <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">プルリクエストして下さい</a>。
+    ここにまだ載っていない**FastAPI**に関連する記事、プロジェクト、ツールなどがある場合は、 <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">プルリクエストして下さい</a>。
 
 {% for section_name, section_content in external_links.items() %}
 

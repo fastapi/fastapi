@@ -93,7 +93,7 @@ De la misma manera hay muchas herramientas compatibles. Incluyendo herramientas 
 
 ## Pydantic
 
-Toda la validación de datos es realizada tras bastidores por <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, así que obtienes todos sus beneficios. Así sabes que estás en buenas manos.
+Toda la validación de datos es realizada tras bastidores por <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, así que obtienes todos sus beneficios. Así sabes que estás en buenas manos.
 
 Puedes usar las mismas declaraciones de tipos con `str`, `float`, `bool` y otros tipos de datos más complejos.
 

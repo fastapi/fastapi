@@ -3,7 +3,7 @@
 Используя класс `File`, мы можем позволить клиентам загружать файлы.
 
 !!! info "Дополнительная информация"
-    Чтобы получать загруженные файлы, сначала установите <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Чтобы получать загруженные файлы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
     Например: `pip install python-multipart`.
 

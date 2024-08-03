@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! nota
+!!! note "Nota"
     O comando `uvicorn main:app` se refere a:
 
     * `main`: o arquivo `main.py` (o "módulo" Python).
@@ -136,7 +136,7 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
-!!! nota "Detalhes técnicos"
+!!! note "Detalhes técnicos"
     `FastAPI` é uma classe que herda diretamente de `Starlette`.
 
     Você pode usar todas as funcionalidades do <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> com `FastAPI` também.
@@ -309,7 +309,7 @@ Você também pode defini-la como uma função normal em vez de `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! nota
+!!! note "Nota"
     Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
 
 ### Passo 5: retorne o conteúdo
