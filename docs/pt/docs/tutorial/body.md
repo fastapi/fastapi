@@ -6,7 +6,7 @@ O corpo da **requisição** é a informação enviada pelo cliente para sua API.
 
 Sua API quase sempre irá enviar um corpo na **resposta**. Mas os clientes não necessariamente precisam enviar um corpo em toda **requisição**.
 
-Para declarar um corpo da **requisição**, você utiliza os modelos do <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> com todos os seus poderes e benefícios.
+Para declarar um corpo da **requisição**, você utiliza os modelos do <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> com todos os seus poderes e benefícios.
 
 !!! info "Informação"
     Para enviar dados, você deve usar utilizar um dos métodos: `POST` (Mais comum), `PUT`, `DELETE` ou `PATCH`.
@@ -162,4 +162,4 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 
 ## Sem o Pydantic
 
-Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Se você não quer utilizar os modelos Pydantic, você também pode utilizar o parâmetro **Body**. Veja a documentação para [Body - Parâmetros múltiplos: Valores singulares no body](body-multiple-params.md#valores-singulares-no-corpo){.internal-link target=_blank}.

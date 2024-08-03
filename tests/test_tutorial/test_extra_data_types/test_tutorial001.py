@@ -67,6 +67,7 @@ def test_openapi_schema():
                         }
                     ],
                     "requestBody": {
+                        "required": True,
                         "content": {
                             "application/json": {
                                 "schema": IsDict(
@@ -86,7 +87,7 @@ def test_openapi_schema():
                                     }
                                 )
                             }
-                        }
+                        },
                     },
                 }
             }
@@ -97,40 +98,16 @@ def test_openapi_schema():
                     "title": "Body_read_items_items__item_id__put",
                     "type": "object",
                     "properties": {
-                        "start_datetime": IsDict(
-                            {
-                                "title": "Start Datetime",
-                                "anyOf": [
-                                    {"type": "string", "format": "date-time"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Start Datetime",
-                                "type": "string",
-                                "format": "date-time",
-                            }
-                        ),
-                        "end_datetime": IsDict(
-                            {
-                                "title": "End Datetime",
-                                "anyOf": [
-                                    {"type": "string", "format": "date-time"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "End Datetime",
-                                "type": "string",
-                                "format": "date-time",
-                            }
-                        ),
+                        "start_datetime": {
+                            "title": "Start Datetime",
+                            "type": "string",
+                            "format": "date-time",
+                        },
+                        "end_datetime": {
+                            "title": "End Datetime",
+                            "type": "string",
+                            "format": "date-time",
+                        },
                         "repeat_at": IsDict(
                             {
                                 "title": "Repeat At",
@@ -151,10 +128,8 @@ def test_openapi_schema():
                         "process_after": IsDict(
                             {
                                 "title": "Process After",
-                                "anyOf": [
-                                    {"type": "string", "format": "duration"},
-                                    {"type": "null"},
-                                ],
+                                "type": "string",
+                                "format": "duration",
                             }
                         )
                         | IsDict(
@@ -166,6 +141,7 @@ def test_openapi_schema():
                             }
                         ),
                     },
+                    "required": ["start_datetime", "end_datetime", "process_after"],
                 },
                 "ValidationError": {
                     "title": "ValidationError",

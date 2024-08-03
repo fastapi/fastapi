@@ -73,11 +73,6 @@ http://127.0.0.1:8000/items/?skip=20
 !!! check "確認"
     パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
 
-!!! note "備考"
-    FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
-
-    `Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
-
 ## クエリパラメータの型変換
 
 `bool` 型も宣言できます。これは以下の様に変換されます:
@@ -196,4 +191,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 !!! tip "豆知識"
 
-    [パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
+    [パスパラメータ](path-params.md#_8){.internal-link target=_blank}と同様に `Enum` を使用できます。

@@ -93,7 +93,7 @@
 
 ## Pydantic
 
-Вся проверка данных выполняется под капотом с помощью <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>. Поэтому вы можете быть уверены в качестве обработки данных.
+Вся проверка данных выполняется под капотом с помощью <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>. Поэтому вы можете быть уверены в качестве обработки данных.
 
 Вы можете использовать в аннотациях как простые типы данных, вроде `str`, `float`, `bool`, так и более сложные типы.
 
