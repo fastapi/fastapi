@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * 🐍 `datetime.timedelta`.
     * 📨 &amp; 📨 🔜 🎨 `float` 🌐 🥈.
-    * Pydantic ✔ 🎦 ⚫️ "💾 8️⃣6️⃣0️⃣1️⃣ 🕰 ➕ 🔢", <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#json_encoders" class="external-link" target="_blank">👀 🩺 🌅 ℹ</a>.
+    * Pydantic ✔ 🎦 ⚫️ "💾 8️⃣6️⃣0️⃣1️⃣ 🕰 ➕ 🔢", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#json_encoders" class="external-link" target="_blank">👀 🩺 🌅 ℹ</a>.
 * `frozenset`:
     * 📨 &amp; 📨, 😥 🎏 `set`:
         * 📨, 📇 🔜 ✍, ❎ ❎ &amp; 🏭 ⚫️ `set`.
@@ -49,7 +49,7 @@
 * `Decimal`:
     * 🐩 🐍 `Decimal`.
     * 📨 &amp; 📨, 🍵 🎏 `float`.
-* 👆 💪 ✅ 🌐 ☑ Pydantic 📊 🆎 📥: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic 📊 🆎</a>.
+* 👆 💪 ✅ 🌐 ☑ Pydantic 📊 🆎 📥: <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic 📊 🆎</a>.
 
 ## 🖼
 

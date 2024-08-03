@@ -12,13 +12,13 @@ Il existe également plusieurs façons d'obtenir de l'aide.
 
 ## Star **FastAPI** sur GitHub
 
-Vous pouvez "star" FastAPI dans GitHub (en cliquant sur le bouton étoile en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+Vous pouvez "star" FastAPI dans GitHub (en cliquant sur le bouton étoile en haut à droite) : <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
 
 En ajoutant une étoile, les autres utilisateurs pourront la trouver plus facilement et constater qu'elle a déjà été utile à d'autres.
 
 ## Watch le dépôt GitHub pour les releases
 
-Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 Vous pouvez y sélectionner "Releases only".
 
@@ -44,7 +44,7 @@ Vous pouvez :
 
 ## Tweeter sur **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweetez à propos de **FastAPI**</a> et faites-moi savoir, ainsi qu'aux autres, pourquoi vous aimez ça. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/fastapi/fastapi cc @tiangolo" class="external-link" target="_blank">Tweetez à propos de **FastAPI**</a> et faites-moi savoir, ainsi qu'aux autres, pourquoi vous aimez ça. 🎉
 
 J'aime entendre parler de l'utilisation du **FastAPI**, de ce que vous avez aimé dedans, dans quel projet/entreprise l'utilisez-vous, etc.
 
@@ -56,11 +56,11 @@ J'aime entendre parler de l'utilisation du **FastAPI**, de ce que vous avez aim�
 
 ## Aider les autres à résoudre les problèmes dans GitHub
 
-Vous pouvez voir <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">les problèmes existants</a> et essayer d'aider les autres, la plupart du temps il s'agit de questions dont vous connaissez peut-être déjà la réponse. 🤓
+Vous pouvez voir <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">les problèmes existants</a> et essayer d'aider les autres, la plupart du temps il s'agit de questions dont vous connaissez peut-être déjà la réponse. 🤓
 
 ## Watch le dépôt GitHub
 
-Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 Si vous sélectionnez "Watching" au lieu de "Releases only", vous recevrez des notifications lorsque quelqu'un crée une nouvelle Issue.
 
@@ -68,7 +68,7 @@ Vous pouvez alors essayer de les aider à résoudre ces problèmes.
 
 ## Créer une Issue
 
-Vous pouvez <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">créer une Issue</a> dans le dépôt GitHub, par exemple pour :
+Vous pouvez <a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">créer une Issue</a> dans le dépôt GitHub, par exemple pour :
 
 * Poser une question ou s'informer sur un problème.
 * Suggérer une nouvelle fonctionnalité.
@@ -77,7 +77,7 @@ Vous pouvez <a href="https://github.com/tiangolo/fastapi/issues/new/choose" clas
 
 ## Créer une Pull Request
 
-Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">créer une Pull Request</a>, par exemple :
+Vous pouvez <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">créer une Pull Request</a>, par exemple :
 
 * Pour corriger une faute de frappe que vous avez trouvée sur la documentation.
 * Proposer de nouvelles sections de documentation.

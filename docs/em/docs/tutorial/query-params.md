@@ -222,4 +222,4 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `limit`, 📦 `int`.
 
 !!! tip
-    👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#predefined-values){.internal-link target=_blank}.
+    👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#_7){.internal-link target=_blank}.

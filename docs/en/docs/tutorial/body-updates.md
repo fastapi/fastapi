@@ -48,7 +48,7 @@ You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 
-!!! Note
+!!! note
     `PATCH` is less commonly used and known than `PUT`.
 
     And many teams use only `PUT`, even for partial updates.
