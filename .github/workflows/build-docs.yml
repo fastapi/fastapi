@@ -22,13 +22,14 @@ jobs:
     - uses: dorny/paths-filter@v3
       id: filter
       with:
+        # TODO: fix this
         filters: |
           docs:
             - README.md
             - docs/**
             - docs_src/**
             - requirements-docs.txt
-            - pyproject.toml
+            # - pyproject.toml
             - mkdocs.yml
             - mkdocs.insiders.yml
             - .github/workflows/build-docs.yml
