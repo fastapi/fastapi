@@ -22,7 +22,7 @@
 
 ### 使用 `app.dependency_overrides` 属性
 
-对于这些用例，**FastAPI** 应用支持 `app.dependcy_overrides` 属性，该属性就是**字典**。
+对于这些用例，**FastAPI** 应用支持 `app.dependency_overrides` 属性，该属性就是**字典**。
 
 要在测试时覆盖原有依赖项，这个字典的键应当是原依赖项（函数），值是覆盖依赖项（另一个函数）。
 
