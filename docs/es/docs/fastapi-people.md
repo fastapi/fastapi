@@ -157,7 +157,7 @@ Estos son los usuarios que más han estado [ayudando a otros con preguntas en Gi
 
 Aquí están los **Principales Colaboradores**. 👷
 
-Estos usuarios han [creado la mayoría de las Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} que han sido *fusionadas*.
+Estos usuarios han [creado la mayoría de las Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} que han sido *merged*.
 
 Ellos han contribuido con código fuente, documentación, traducciones, etc. 📦
 
