@@ -152,7 +152,7 @@ filterwarnings = [
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
     # TODO: remove after upgrading HTTPX to a version newer than 0.23.0
     # Including PR: https://github.com/encode/httpx/pull/2309
-    "ignore:'cgi' is deprecated:DeprecationWarning",
+    # "ignore:'cgi' is deprecated:DeprecationWarning",
     # For passlib
     "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
