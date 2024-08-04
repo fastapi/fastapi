@@ -23,13 +23,13 @@ jobs:
       id: filter
       with:
         # TODO: fix this
+        # - pyproject.toml
         filters: |
           docs:
             - README.md
             - docs/**
             - docs_src/**
             - requirements-docs.txt
-            # - pyproject.toml
             - mkdocs.yml
             - mkdocs.insiders.yml
             - .github/workflows/build-docs.yml
