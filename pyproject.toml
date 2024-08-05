@@ -154,7 +154,7 @@ filterwarnings = [
     # Including PR: https://github.com/encode/httpx/pull/2309
     # "ignore:'cgi' is deprecated:DeprecationWarning",
     # For passlib
-    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
+    # "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO remove pytest-cov
@@ -167,7 +167,7 @@ filterwarnings = [
     # related issues:
     #   - https://github.com/mpdavis/python-jose/issues/332
     #   - https://github.com/mpdavis/python-jose/issues/334
-    'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
+    # 'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
     # Trio 24.1.0 raises a warning from attrs
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
