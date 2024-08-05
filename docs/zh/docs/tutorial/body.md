@@ -20,17 +20,21 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 
 从 `pydantic` 中导入 `BaseModel`：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 ## 创建数据模型
 
@@ -38,17 +42,21 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 
 使用 Python 标准类型声明所有属性：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="5-9"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="5-9"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="7-11"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="7-11"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 与声明查询参数一样，包含默认值的模型属性是可选的，否则就是必选的。默认值为 `None` 的模型属性也是可选的。
 
@@ -76,17 +84,21 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 
 使用与声明路径和查询参数相同的方式声明请求体，把请求体添加至*路径操作*：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 ……此处，请求体参数的类型为 `Item` 模型。
 
@@ -151,17 +163,21 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 
 在*路径操作*函数内部直接访问模型对象的属性：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/body/tutorial002_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/body/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/body/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/body/tutorial002.py!}
+```
+
+////
 
 ## 请求体 + 路径参数
 
@@ -169,17 +185,21 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 
 **FastAPI** 能识别与**路径参数**匹配的函数参数，还能识别从**请求体**中获取的类型为 Pydantic 模型的函数参数。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/body/tutorial003_py310.py!}
-    ```
+```Python hl_lines="15-16"
+{!> ../../../docs_src/body/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/body/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="17-18"
+{!> ../../../docs_src/body/tutorial003.py!}
+```
+
+////
 
 ## 请求体 + 路径参数 + 查询参数
 
@@ -187,17 +207,21 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 
 **FastAPI** 能够正确识别这三种参数，并从正确的位置获取数据。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial004_py310.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial004_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial004.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial004.py!}
+```
+
+////
 
 函数参数按如下规则进行识别：
 

@@ -20,26 +20,32 @@
 
 把下面的示例代码复制到 `main.py`：
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 ## 运行
 

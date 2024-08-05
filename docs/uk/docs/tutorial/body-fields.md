@@ -6,41 +6,51 @@
 
 Спочатку вам потрібно імпортувати це:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо.
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо.
+!!! tip
+    Варто користуватись `Annotated` версією, якщо це можливо.
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Варто користуватись `Annotated` версією, якщо це можливо.
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 !!! warning
     Зверніть увагу, що `Field` імпортується прямо з `pydantic`, а не з `fastapi`, як всі інші (`Query`, `Path`, `Body` тощо).
@@ -49,41 +59,51 @@
 
 Ви можете використовувати `Field` з атрибутами моделі:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12-15"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо..
+```Python hl_lines="12-15"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо..
+!!! tip
+    Варто користуватись `Annotated` версією, якщо це можливо..
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="9-12"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Варто користуватись `Annotated` версією, якщо це можливо..
+
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 `Field` працює так само, як `Query`, `Path` і `Body`, у нього такі самі параметри тощо.
 

@@ -329,61 +329,69 @@ Você pode fazer o _deploy_ do **FastAPI** diretamente sem o Docker também.
 
 Você apenas precisa instalar um servidor ASGI compatível como:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI peso leve, construído sobre uvloop e httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI peso leve, construído sobre uvloop e httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
+//// tab | Hypercorn
 
-    <div class="termy">
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
 
-    ```console
-    $ pip install hypercorn
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install hypercorn
 
-    </div>
+---> 100%
+```
 
-    ...ou qualquer outro servidor ASGI.
+</div>
+
+...ou qualquer outro servidor ASGI.
+
+////
 
 E rode sua applicação do mesmo modo que você tem feito nos tutoriais, mas sem a opção `--reload`, por exemplo:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
+
+</div>
+
+////
 
 Você deve querer configurar mais algumas ferramentas para ter certeza que ele seja reinicializado automaticamante se ele parar.
 

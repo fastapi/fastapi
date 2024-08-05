@@ -6,41 +6,51 @@ So wie Sie mit `Query` für Query-Parameter zusätzliche Validierungen und Metad
 
 Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="1  3"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="1  3"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3-4"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="3-4"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
+
+////
 
 !!! info
     FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
@@ -55,41 +65,51 @@ Sie können die gleichen Parameter deklarieren wie für `Query`.
 
 Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` zu deklarieren, schreiben Sie:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="11"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
+
+////
 
 !!! note "Hinweis"
     Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
@@ -117,28 +137,34 @@ Für **FastAPI** ist es nicht wichtig. Es erkennt die Parameter anhand ihres Nam
 
 Sie können Ihre Funktion also so deklarieren:
 
-=== "Python 3.8 nicht annotiert"
+//// tab | Python 3.8 nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+```
+
+////
 
 Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden, da Sie nicht die Funktions-Parameter-Defaultwerte für `Query()` oder `Path()` verwenden.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
+```
+
+////
 
 ## Sortieren Sie die Parameter wie Sie möchten: Tricks
 
@@ -168,43 +194,53 @@ Python macht nichts mit diesem `*`, aber es wird wissen, dass alle folgenden Par
 
 Bedenken Sie, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem nicht haben, weil Sie keine Defaultwerte für Ihre Funktionsparameter haben. Sie müssen daher wahrscheinlich auch nicht `*` verwenden.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
+```
+
+////
 
 ## Validierung von Zahlen: Größer oder gleich
 
 Mit `Query` und `Path` (und anderen, die Sie später kennenlernen), können Sie Zahlenbeschränkungen deklarieren.
 
 Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die größer oder gleich `1` ist (`g`reater than or `e`qual).
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="9"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="8"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+```
+
+////
 
 ## Validierung von Zahlen: Größer und kleiner oder gleich
 
@@ -213,26 +249,32 @@ Das Gleiche trifft zu auf:
 * `gt`: `g`reater `t`han – größer als
 * `le`: `l`ess than or `e`qual – kleiner oder gleich
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="9"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+```
+
+////
 
 ## Validierung von Zahlen: Floats, größer und kleiner
 
@@ -244,26 +286,32 @@ Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than – größe
 
 Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr>.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="13"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="12"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="11"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+```
+
+////
 
 ## Zusammenfassung
 

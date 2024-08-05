@@ -110,41 +110,51 @@
 
 Обе *операции пути* требуют наличия в запросе заголовка `X-Token`.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        По возможности используйте версию с `Annotated`.
+```Python
+{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.8+  без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        По возможности используйте версию с `Annotated`.
+!!! tip "Подсказка"
+    По возможности используйте версию с `Annotated`.
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+  без Annotated
+
+!!! tip "Подсказка"
+    По возможности используйте версию с `Annotated`.
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Расширенный файл тестов
 

@@ -16,17 +16,21 @@
 
 让我们从一个简单的 FastAPI 应用开始：
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="7-9  12-13  16-17  21"
-    {!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
-    ```
+```Python hl_lines="7-9  12-13  16-17  21"
+{!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9-11  14-15  18  19  23"
-    {!> ../../../docs_src/generate_clients/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9-11  14-15  18  19  23"
+{!> ../../../docs_src/generate_clients/tutorial001.py!}
+```
+
+////
 
 请注意，*路径操作* 定义了他们所用于请求数据和回应数据的模型，所使用的模型是`Item` 和 `ResponseMessage`。
 
@@ -128,17 +132,21 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 例如，您可以有一个用 `items` 的部分和另一个用于 `users` 的部分，它们可以用标签来分隔：
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="21  26  34"
-    {!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
-    ```
+```Python hl_lines="21  26  34"
+{!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="23  28  36"
-    {!> ../../../docs_src/generate_clients/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="23  28  36"
+{!> ../../../docs_src/generate_clients/tutorial002.py!}
+```
+
+////
 
 ### 生成带有标签的 TypeScript 客户端
 
@@ -185,17 +193,21 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 
 然后，你可以将这个自定义函数作为 `generate_unique_id_function` 参数传递给 **FastAPI**:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6-7  10"
-    {!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
-    ```
+```Python hl_lines="6-7  10"
+{!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8-9  12"
-    {!> ../../../docs_src/generate_clients/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="8-9  12"
+{!> ../../../docs_src/generate_clients/tutorial003.py!}
+```
+
+////
 
 ### 使用自定义操作ID生成TypeScript客户端
 

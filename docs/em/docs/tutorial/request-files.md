@@ -118,17 +118,21 @@ contents = myfile.file.read()
 
 👆 💪 ⚒ 📁 📦 ⚙️ 🐩 🆎 ✍ &amp; ⚒ 🔢 💲 `None`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
+```Python hl_lines="9  17"
+{!> ../../../docs_src/request_files/tutorial001_02.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="7  14"
-    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="7  14"
+{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+```
+
+////
 
 ## `UploadFile` ⏮️ 🌖 🗃
 
@@ -146,17 +150,21 @@ contents = myfile.file.read()
 
 ⚙️ 👈, 📣 📇 `bytes` ⚖️ `UploadFile`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
+```Python hl_lines="10  15"
+{!> ../../../docs_src/request_files/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="8  13"
+{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+```
+
+////
 
 👆 🔜 📨, 📣, `list` `bytes` ⚖️ `UploadFile`Ⓜ.
 
@@ -169,17 +177,21 @@ contents = myfile.file.read()
 
 &amp; 🎏 🌌 ⏭, 👆 💪 ⚙️ `File()` ⚒ 🌖 🔢, `UploadFile`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/request_files/tutorial003.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="16"
+{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+```
+
+////
 
 ## 🌃
 

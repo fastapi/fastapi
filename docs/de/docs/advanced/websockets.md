@@ -112,41 +112,51 @@ In WebSocket-Endpunkten können Sie Folgendes aus `fastapi` importieren und verw
 
 Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfadoperationen*:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="68-69  82"
+{!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="68-69  82"
+{!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="69-70  83"
-    {!> ../../../docs_src/websockets/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="69-70  83"
+{!> ../../../docs_src/websockets/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="66-67  79"
-    {!> ../../../docs_src/websockets/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="68-69  81"
-    {!> ../../../docs_src/websockets/tutorial002.py!}
-    ```
+```Python hl_lines="66-67  79"
+{!> ../../../docs_src/websockets/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="68-69  81"
+{!> ../../../docs_src/websockets/tutorial002.py!}
+```
+
+////
 
 !!! info
     Da es sich um einen WebSocket handelt, macht es keinen Sinn, eine `HTTPException` auszulösen, stattdessen lösen wir eine `WebSocketException` aus.
@@ -185,17 +195,21 @@ Damit können Sie den WebSocket verbinden und dann Nachrichten senden und empfan
 
 Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_text()` eine `WebSocketDisconnect`-Exception aus, die Sie dann wie in folgendem Beispiel abfangen und behandeln können.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="79-81"
-    {!> ../../../docs_src/websockets/tutorial003_py39.py!}
-    ```
+```Python hl_lines="79-81"
+{!> ../../../docs_src/websockets/tutorial003_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="81-83"
-    {!> ../../../docs_src/websockets/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="81-83"
+{!> ../../../docs_src/websockets/tutorial003.py!}
+```
+
+////
 
 Zum Ausprobieren:
 

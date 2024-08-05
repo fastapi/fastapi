@@ -25,68 +25,76 @@ Lorsqu'on se réfère à la machine distante, il est courant de l'appeler **serv
 
 Vous pouvez installer un serveur compatible ASGI avec :
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un serveur ASGI rapide comme l'éclair, basé sur uvloop et httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un serveur ASGI rapide comme l'éclair, basé sur uvloop et httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-    !!! tip "Astuce"
-        En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
+!!! tip "Astuce"
+    En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
 
-        Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
+    Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
 
-=== "Hypercorn"
+////
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, un serveur ASGI également compatible avec HTTP/2.
+//// tab | Hypercorn
 
-    <div class="termy">
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, un serveur ASGI également compatible avec HTTP/2.
 
-    ```console
-    $ pip install hypercorn
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install hypercorn
 
-    </div>
+---> 100%
+```
 
-    ...ou tout autre serveur ASGI.
+</div>
+
+...ou tout autre serveur ASGI.
+
+////
 
 ## Exécutez le programme serveur
 
 Vous pouvez ensuite exécuter votre application de la même manière que vous l'avez fait dans les tutoriels, mais sans l'option `--reload`, par exemple :
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
+
+</div>
+
+////
 
 !!! warning
      N'oubliez pas de supprimer l'option `--reload` si vous l'utilisiez.

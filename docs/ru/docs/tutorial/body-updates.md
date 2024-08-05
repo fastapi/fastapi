@@ -6,23 +6,29 @@
 
 Вы можете использовать функцию `jsonable_encoder` для преобразования входных данных в JSON, так как нередки случаи, когда работать можно только с простыми типами данных (например, для хранения в NoSQL-базе данных).
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="28-33"
-    {!> ../../../docs_src/body_updates/tutorial001_py310.py!}
-    ```
+```Python hl_lines="28-33"
+{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="30-35"
-    {!> ../../../docs_src/body_updates/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="30-35"
+{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="30-35"
-    {!> ../../../docs_src/body_updates/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.6+
+
+```Python hl_lines="30-35"
+{!> ../../../docs_src/body_updates/tutorial001.py!}
+```
+
+////
 
 `PUT` используется для получения данных, которые должны полностью заменить существующие данные.
 
@@ -65,23 +71,29 @@
 
 В результате будет сгенерирован словарь, содержащий только те данные, которые были заданы при создании модели `item`, без учета значений по умолчанию. Затем вы можете использовать это для создания словаря только с теми данными, которые были установлены (отправлены в запросе), опуская значения по умолчанию:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="32"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="32"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="34"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="34"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="34"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.6+
+
+```Python hl_lines="34"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
+
+////
 
 ### Использование параметра `update` в Pydantic
 
@@ -89,23 +101,29 @@
 
 Например, `stored_item_model.copy(update=update_data)`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="33"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="33"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="35"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="35"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="35"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.6+
+
+```Python hl_lines="35"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
+
+////
 
 ### Кратко о частичном обновлении
 
@@ -122,23 +140,29 @@
 * Сохранить данные в своей БД.
 * Вернуть обновленную модель.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="28-35"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="28-35"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="30-37"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="30-37"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="30-37"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.6+
+
+```Python hl_lines="30-37"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
+
+////
 
 !!! tip "Подсказка"
     Эту же технику можно использовать и для операции HTTP `PUT`.

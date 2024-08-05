@@ -11,51 +11,63 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 
 Importieren Sie `Form` von `fastapi`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 ## `Form`-Parameter definieren
 
 Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` machen würden:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="8"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 Zum Beispiel stellt eine der Möglichkeiten, die OAuth2 Spezifikation zu verwenden (genannt <abbr title='„Passwort-Fluss“'>„password flow“</abbr>), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
 

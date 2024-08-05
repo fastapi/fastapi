@@ -68,26 +68,32 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 例如，`dependency_c` 可以依赖于 `dependency_b`，而 `dependency_b` 则依赖于 `dependency_a`。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="6  14  22"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="5  13  21"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用“ Annotated”版本。
+////
 
-    ```Python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    如果可能，请尽量使用“ Annotated”版本。
+
+```Python hl_lines="4  12  20"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 所有这些依赖都可以使用`yield`。
 
@@ -95,26 +101,32 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 而`dependency_b` 反过来则需要`dependency_a`（此处称为 `dep_a`）的值在其退出代码中可用。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="18-19  26-27"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="17-18  25-26"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用“ Annotated”版本。
+////
 
-    ```Python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    如果可能，请尽量使用“ Annotated”版本。
+
+```Python hl_lines="16-17  24-25"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 同样，你可以有混合了`yield`和`return`的依赖。
 

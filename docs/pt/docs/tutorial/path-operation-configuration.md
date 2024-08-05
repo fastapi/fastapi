@@ -13,23 +13,29 @@ Você pode passar diretamente o código `int`, como `404`.
 
 Mas se você não se lembrar o que cada código numérico significa, pode usar as constantes de atalho em `status`:
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
-    ```
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9 and above
 
-=== "Python 3.10 and above"
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="1  15"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
-    ```
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="1  15"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+```
+
+////
 
 Esse código de status será usado na resposta e será adicionado ao esquema OpenAPI.
 
@@ -42,23 +48,29 @@ Esse código de status será usado na resposta e será adicionado ao esquema Ope
 
 Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tags` com uma `list` de `str` (comumente apenas um `str`):
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
-    ```
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9 and above
 
-=== "Python 3.10 and above"
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="15  20  25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
-    ```
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="15  20  25"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+```
+
+////
 
 Eles serão adicionados ao esquema OpenAPI e usados pelas interfaces de documentação automática:
 
@@ -80,23 +92,29 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
 Você pode adicionar um `summary` e uma `description`:
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
-    ```
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
-    ```
+//// tab | Python 3.9 and above
 
-=== "Python 3.10 and above"
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
-    ```
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="18-19"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+```
+
+////
 
 ## Descrição do docstring
 
@@ -104,23 +122,29 @@ Como as descrições tendem a ser longas e cobrir várias linhas, você pode dec
 
 Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
-    ```
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9 and above
 
-=== "Python 3.10 and above"
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="17-25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
-    ```
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="17-25"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+```
+
+////
 
 Ela será usada nas documentações interativas:
 
@@ -131,23 +155,29 @@ Ela será usada nas documentações interativas:
 
 Você pode especificar a descrição da resposta com o parâmetro `response_description`:
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
-    ```
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
-    ```
+//// tab | Python 3.9 and above
 
-=== "Python 3.10 and above"
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
-    ```
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="19"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+```
+
+////
 
 !!! info "Informação"
     Note que `response_description` se refere especificamente à resposta, a `description` se refere à *operação de rota* em geral.

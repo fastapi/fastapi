@@ -24,63 +24,73 @@ That will create a directory `./env/` with the Python binaries, and then you wil
 
 Activate the new environment with:
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 To check it worked, use:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 

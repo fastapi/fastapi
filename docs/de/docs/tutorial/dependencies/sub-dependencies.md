@@ -10,41 +10,51 @@ Diese können so **tief** verschachtelt sein, wie nötig.
 
 Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="9-10"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 nicht annotiert"
+//// tab | Python 3.10 nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Diese deklariert einen optionalen Abfrageparameter `q` vom Typ `str` und gibt ihn dann einfach zurück.
 
@@ -54,41 +64,51 @@ Das ist recht einfach (nicht sehr nützlich), hilft uns aber dabei, uns auf die 
 
 Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erstellen, die gleichzeitig eine eigene Abhängigkeit deklariert (also auch ein „Dependant“ ist):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="14"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 nicht annotiert"
+//// tab | Python 3.10 nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Betrachten wir die deklarierten Parameter:
 
@@ -101,41 +121,51 @@ Betrachten wir die deklarierten Parameter:
 
 Diese Abhängigkeit verwenden wir nun wie folgt:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="24"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 nicht annotiert"
+//// tab | Python 3.10 nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="22"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 !!! info
     Beachten Sie, dass wir in der *Pfadoperation-Funktion* nur eine einzige Abhängigkeit deklarieren, den `query_or_cookie_extractor`.
@@ -161,22 +191,26 @@ Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, de
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in derselben Anfrage aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
-        return {"fresh_value": fresh_value}
-    ```
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+    return {"fresh_value": fresh_value}
+```
 
-=== "Python 3.8+ nicht annotiert"
+////
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+//// tab | Python 3.8+ nicht annotiert
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
-        return {"fresh_value": fresh_value}
-    ```
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
+    return {"fresh_value": fresh_value}
+```
+
+////
 
 ## Zusammenfassung
 

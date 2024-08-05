@@ -31,41 +31,51 @@
 
 *경로 작동 함수*가 가질 수 있는 모든 매개변수를 갖는 단순한 함수입니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="9-12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 이게 다입니다.
 
@@ -94,81 +104,101 @@
 
 ### `Depends` 불러오기
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 ### "의존자"에 의존성 명시하기
 
 *경로 작동 함수*의 매개변수로 `Body`, `Query` 등을 사용하는 방식과 같이 새로운 매개변수로 `Depends`를 사용합니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="13  18"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="16  21"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 비록 `Body`, `Query` 등을 사용하는 것과 같은 방식으로 여러분의 함수의 매개변수에 있는 `Depends`를 사용하지만, `Depends`는 약간 다르게 작동합니다.
 
@@ -219,23 +249,29 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 하지만 `Annotated`를 사용하고 있기에, `Annotated` 값을 변수에 저장하고 여러 장소에서 사용할 수 있습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="12  16  21"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14  18  23"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="15  19  24"
+{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+```
+
+////
 
 !!! tip "팁"
     이는 그저 표준 파이썬이고 "type alias"라고 부르며 사실 **FastAPI**에 국한되는 것은 아닙니다.

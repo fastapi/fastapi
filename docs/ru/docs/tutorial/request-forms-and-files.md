@@ -9,51 +9,63 @@
 
 ## Импортируйте `File` и `Form`
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+```
+
+////
 
 ## Определите параметры `File` и `Form`
 
 Создайте параметры файла и формы таким же образом, как для `Body` или `Query`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10-12"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="10-12"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="9-11"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="8"
+{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+```
+
+////
 
 Файлы и поля формы будут загружены в виде данных формы, и вы получите файлы и поля формы.
 

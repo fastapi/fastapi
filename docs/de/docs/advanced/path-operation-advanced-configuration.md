@@ -150,17 +150,21 @@ Und Sie könnten dies auch tun, wenn der Datentyp in der Anfrage nicht JSON ist.
 
 In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Funktionalität von FastAPI zum Extrahieren des JSON-Schemas aus Pydantic-Modellen noch die automatische Validierung für JSON. Tatsächlich deklarieren wir den Request-Content-Type als YAML und nicht als JSON:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
+
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
+
+////
 
 !!! info
     In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
@@ -171,17 +175,21 @@ Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das 
 
 Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann wieder dasselbe Pydantic-Modell, um den YAML-Inhalt zu validieren:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
+
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
+
+////
 
 !!! info
     In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.

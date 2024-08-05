@@ -15,37 +15,41 @@
 
 您可以在 shell 中创建和使用环境变量，而无需使用 Python：
 
-=== "Linux、macOS、Windows Bash"
+//// tab | Linux、macOS、Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // 您可以创建一个名为 MY_NAME 的环境变量
-    $ export MY_NAME="Wade Wilson"
+```console
+// 您可以创建一个名为 MY_NAME 的环境变量
+$ export MY_NAME="Wade Wilson"
 
-    // 然后您可以与其他程序一起使用它，例如
-    $ echo "Hello $MY_NAME"
+// 然后您可以与其他程序一起使用它，例如
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    // 创建一个名为 MY_NAME 的环境变量
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // 与其他程序一起使用它，例如
-    $ echo "Hello $Env:MY_NAME"
+```console
+// 创建一个名为 MY_NAME 的环境变量
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// 与其他程序一起使用它，例如
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### 在 Python 中读取环境变量
 
@@ -217,26 +221,32 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 现在我们创建一个依赖项，返回一个新的 `config.Settings()`。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="5  11-12"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
+
+!!! tip
+    如果可能，请尽量使用 `Annotated` 版本。
+
+```Python hl_lines="5  11-12"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 !!! tip
     我们稍后会讨论 `@lru_cache`。
@@ -245,26 +255,32 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 然后，我们可以将其作为依赖项从“路径操作函数”中引入，并在需要时使用它。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="16  18-20"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
+
+!!! tip
+    如果可能，请尽量使用 `Annotated` 版本。
+
+```Python hl_lines="16  18-20"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 ### 设置和测试
 
@@ -339,26 +355,32 @@ def get_settings():
 
 但是，由于我们在顶部使用了 `@lru_cache` 装饰器，因此只有在第一次调用它时，才会创建 `Settings` 对象一次。 ✔️
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
-    ```
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="1  10"
-    {!> ../../../docs_src/settings/app03/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
+
+!!! tip
+    如果可能，请尽量使用 `Annotated` 版本。
+
+```Python hl_lines="1  10"
+{!> ../../../docs_src/settings/app03/main.py!}
+```
+
+////
 
 然后，在下一次请求的依赖项中对 `get_settings()` 进行任何后续调用时，它不会执行 `get_settings()` 的内部代码并创建新的 `Settings` 对象，而是返回在第一次调用时返回的相同对象，一次又一次。
 

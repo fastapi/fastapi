@@ -63,18 +63,21 @@ http://127.0.0.1:8000/items/?skip=20
 
 同理，把默认值设为 `None` 即可声明**可选的**查询参数：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
 
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params/tutorial002.py!}
+```
+
+////
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
@@ -93,18 +96,21 @@ http://127.0.0.1:8000/items/?skip=20
 参数还可以声明为 `bool` 类型，FastAPI 会自动转换参数类型：
 
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial003_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
 
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params/tutorial003.py!}
+```
+
+////
 
 本例中，访问：
 
@@ -147,18 +153,21 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 FastAPI 通过参数名进行检测：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="6 8"
-    {!> ../../../docs_src/query_params/tutorial004_py310.py!}
-    ```
+```Python hl_lines="6 8"
+{!> ../../../docs_src/query_params/tutorial004_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8 10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
+//// tab | Python 3.8+
 
+```Python hl_lines="8 10"
+{!> ../../../docs_src/query_params/tutorial004.py!}
+```
+
+////
 
 ## 必选查询参数
 
@@ -214,17 +223,21 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 当然，把一些参数定义为必选，为另一些参数设置默认值，再把其它参数定义为可选，这些操作都是可以的：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params/tutorial006_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params/tutorial006.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params/tutorial006.py!}
+```
+
+////
 
 本例中有 3 个查询参数：
 

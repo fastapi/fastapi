@@ -13,51 +13,63 @@
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_files/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_files/tutorial001.py!}
+```
+
+////
 
 ## Определите параметры `File`
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/request_files/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/request_files/tutorial001.py!}
+```
+
+////
 
 !!! info "Дополнительная информация"
     `File` - это класс, который наследуется непосредственно от `Form`.
@@ -79,26 +91,32 @@
 
 Определите параметр файла с типом `UploadFile`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="14"
+{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="13"
+{!> ../../../docs_src/request_files/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="12"
+{!> ../../../docs_src/request_files/tutorial001.py!}
+```
+
+////
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -169,66 +187,82 @@ contents = myfile.file.read()
 
 Вы можете сделать загрузку файла необязательной, используя стандартные аннотации типов и установив значение по умолчанию `None`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="9  17"
+{!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="9  17"
+{!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="10  18"
-    {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.6+
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="10  18"
+{!> ../../../docs_src/request_files/tutorial001_02_an.py!}
+```
 
-    ```Python hl_lines="7  15"
-    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-    ```
+////
 
-=== "Python 3.6+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
+```Python hl_lines="7  15"
+{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+```
+
+////
+
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="9  17"
+{!> ../../../docs_src/request_files/tutorial001_02.py!}
+```
+
+////
 
 ## `UploadFile` с дополнительными метаданными
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9  15"
-    {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
-    ```
+```Python hl_lines="9  15"
+{!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="8  14"
-    {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="8  14"
+{!> ../../../docs_src/request_files/tutorial001_03_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="7  13"
-    {!> ../../../docs_src/request_files/tutorial001_03.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="7  13"
+{!> ../../../docs_src/request_files/tutorial001_03.py!}
+```
+
+////
 
 ## Загрузка нескольких файлов
 
@@ -238,35 +272,43 @@ contents = myfile.file.read()
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
-    ```
+```Python hl_lines="10  15"
+{!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/request_files/tutorial002_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.9+ без Annotated"
+```Python hl_lines="11  16"
+{!> ../../../docs_src/request_files/tutorial002_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+ без Annotated
 
-=== "Python 3.6+ без Annotated"
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="8  13"
+{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="10  15"
+{!> ../../../docs_src/request_files/tutorial002.py!}
+```
+
+////
 
 Вы получите, как и было объявлено, список `list` из `bytes` или `UploadFile`.
 
@@ -279,35 +321,43 @@ contents = myfile.file.read()
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="11  18-20"
-    {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
-    ```
+```Python hl_lines="11  18-20"
+{!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="12  19-21"
-    {!> ../../../docs_src/request_files/tutorial003_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.9+ без Annotated"
+```Python hl_lines="12  19-21"
+{!> ../../../docs_src/request_files/tutorial003_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="9  16"
-    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
-    ```
+//// tab | Python 3.9+ без Annotated
 
-=== "Python 3.6+ без Annotated"
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="9  16"
+{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="11  18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
+////
+
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="11  18"
+{!> ../../../docs_src/request_files/tutorial003.py!}
+```
+
+////
 
 ## Резюме
 

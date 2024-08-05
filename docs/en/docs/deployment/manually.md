@@ -84,70 +84,78 @@ When you install FastAPI, it comes with a production server, Uvicorn, and you ca
 
 But you can also install an ASGI server manually:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-    !!! tip
-        By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
+!!! tip
+    By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
 
-        That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+    That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
-        When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
+    When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
 
-=== "Hypercorn"
+////
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+//// tab | Hypercorn
 
-    <div class="termy">
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
-    ```console
-    $ pip install hypercorn
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install hypercorn
 
-    </div>
+---> 100%
+```
 
-    ...or any other ASGI server.
+</div>
+
+...or any other ASGI server.
+
+////
 
 ## Run the Server Program
 
 If you installed an ASGI server manually, you would normally need to pass an import string in a special format for it to import your FastAPI application:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
+
+</div>
+
+////
 
 !!! note
     The command `uvicorn main:app` refers to:

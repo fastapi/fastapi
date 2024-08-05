@@ -106,41 +106,51 @@ $ uvicorn main:app --reload
 
 它们的工作方式与其他 FastAPI 端点/ *路径操作* 相同：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="68-69  82"
+{!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="68-69  82"
+{!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="69-70  83"
-    {!> ../../../docs_src/websockets/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ 非带注解版本"
+//// tab | Python 3.8+
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+```Python hl_lines="69-70  83"
+{!> ../../../docs_src/websockets/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="66-67  79"
-    {!> ../../../docs_src/websockets/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ 非带注解版本"
+//// tab | Python 3.10+ 非带注解版本
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+!!! tip
+    如果可能，请尽量使用 `Annotated` 版本。
 
-    ```Python hl_lines="68-69  81"
-    {!> ../../../docs_src/websockets/tutorial002.py!}
-    ```
+```Python hl_lines="66-67  79"
+{!> ../../../docs_src/websockets/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ 非带注解版本
+
+!!! tip
+    如果可能，请尽量使用 `Annotated` 版本。
+
+```Python hl_lines="68-69  81"
+{!> ../../../docs_src/websockets/tutorial002.py!}
+```
+
+////
 
 !!! info
     由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
@@ -175,17 +185,21 @@ $ uvicorn main:app --reload
 
 当 WebSocket 连接关闭时，`await websocket.receive_text()` 将引发 `WebSocketDisconnect` 异常，您可以捕获并处理该异常，就像本示例中的示例一样。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="79-81"
-    {!> ../../../docs_src/websockets/tutorial003_py39.py!}
-    ```
+```Python hl_lines="79-81"
+{!> ../../../docs_src/websockets/tutorial003_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="81-83"
-    {!> ../../../docs_src/websockets/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="81-83"
+{!> ../../../docs_src/websockets/tutorial003.py!}
+```
+
+////
 
 尝试以下操作：
 

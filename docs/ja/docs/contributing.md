@@ -24,63 +24,73 @@ $ python -m venv env
 
 新しい環境を有効化するには:
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    もしwindows用のBash (例えば、<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+もしwindows用のBash (例えば、<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 動作の確認には、下記を実行します:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 `env/bin/pip`に`pip`バイナリが表示される場合は、正常に機能しています。🎉
 

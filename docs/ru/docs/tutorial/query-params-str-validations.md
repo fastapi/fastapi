@@ -4,17 +4,21 @@
 
 Давайте рассмотрим следующий пример:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
+```
+
+////
 
 Query-параметр `q` имеет тип `Union[str, None]` (или `str | None` в Python 3.10). Это означает, что входной параметр будет типа `str`, но может быть и `None`. Ещё параметр имеет значение по умолчанию `None`, из-за чего FastAPI определит параметр как необязательный.
 
@@ -34,23 +38,27 @@ Query-параметр `q` имеет тип `Union[str, None]` (или `str | N
 * `Query` из пакета `fastapi`:
 * `Annotated` из пакета `typing` (или из `typing_extensions` для Python ниже 3.9)
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    В Python 3.9 или выше, `Annotated` является частью стандартной библиотеки, таким образом вы можете импортировать его из `typing`.
+В Python 3.9 или выше, `Annotated` является частью стандартной библиотеки, таким образом вы можете импортировать его из `typing`.
 
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="1  3"
+{!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    В версиях Python ниже Python 3.9 `Annotation` импортируется из `typing_extensions`.
+//// tab | Python 3.8+
 
-    Эта библиотека будет установлена вместе с FastAPI.
+В версиях Python ниже Python 3.9 `Annotation` импортируется из `typing_extensions`.
 
-    ```Python hl_lines="3-4"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
-    ```
+Эта библиотека будет установлена вместе с FastAPI.
+
+```Python hl_lines="3-4"
+{!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
+```
+
+////
 
 ## `Annotated` как тип для query-параметра `q`
 
@@ -60,31 +68,39 @@ Query-параметр `q` имеет тип `Union[str, None]` (или `str | N
 
 У нас была аннотация следующего типа:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    q: str | None = None
-    ```
+```Python
+q: str | None = None
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    q: Union[str, None] = None
-    ```
+//// tab | Python 3.8+
+
+```Python
+q: Union[str, None] = None
+```
+
+////
 
 Вот что мы получим, если обернём это в `Annotated`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    q: Annotated[str | None] = None
-    ```
+```Python
+q: Annotated[str | None] = None
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    q: Annotated[Union[str, None]] = None
-    ```
+//// tab | Python 3.8+
+
+```Python
+q: Annotated[Union[str, None]] = None
+```
+
+////
 
 Обе эти версии означают одно и тоже. `q` - это параметр, который может быть `str` или `None`, и по умолчанию он будет принимать `None`.
 
@@ -94,17 +110,21 @@ Query-параметр `q` имеет тип `Union[str, None]` (или `str | N
 
 Теперь, когда у нас есть `Annotated`, где мы можем добавить больше метаданных, добавим `Query` со значением параметра `max_length` равным 50:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
+```
+
+////
 
 Обратите внимание, что значение по умолчанию всё ещё `None`, так что параметр остаётся необязательным.
 
@@ -125,17 +145,21 @@ Query-параметр `q` имеет тип `Union[str, None]` (или `str | N
 
 Вот как вы могли бы использовать `Query()` в качестве значения по умолчанию параметра вашей функции, установив для параметра `max_length` значение 50:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
+```
+
+////
 
 В таком случае (без использования `Annotated`), мы заменили значение по умолчанию с `None` на `Query()` в функции. Теперь нам нужно установить значение по умолчанию для query-параметра `Query(default=None)`, что необходимо для тех же целей, как когда ранее просто указывалось значение по умолчанию (по крайней мере, для FastAPI).
 
@@ -232,81 +256,101 @@ q: str = Query(default="rick")
 
 Вы также можете добавить параметр `min_length`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
+```
+
+////
 
 ## Регулярные выражения
 
 Вы можете определить <abbr title="Регулярное выражение, regex или regexp - это последовательность символов, определяющая шаблон для строк.">регулярное выражение</abbr>, которому должен соответствовать параметр:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="12"
+{!> ../../../docs_src/query_params_str_validations/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
+```
+
+////
 
 Данное регулярное выражение проверяет, что полученное значение параметра:
 
@@ -324,26 +368,32 @@ q: str = Query(default="rick")
 
 Например, вы хотите для параметра запроса `q` указать, что он должен состоять минимум из 3 символов (`min_length=3`) и иметь значение по умолчанию `"fixedquery"`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial005_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial005_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial005_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial005_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
+```
+
+////
 
 !!! note "Технические детали"
     Наличие значения по умолчанию делает параметр необязательным.
@@ -364,70 +414,86 @@ q: Union[str, None] = None
 
 Но у нас query-параметр определён как `Query`. Например:
 
-=== "Annotated"
+//// tab | Annotated
 
-    ```Python
-    q: Annotated[Union[str, None], Query(min_length=3)] = None
-    ```
+```Python
+q: Annotated[Union[str, None], Query(min_length=3)] = None
+```
 
-=== "без Annotated"
+////
 
-    ```Python
-    q: Union[str, None] = Query(default=None, min_length=3)
-    ```
+//// tab | без Annotated
+
+```Python
+q: Union[str, None] = Query(default=None, min_length=3)
+```
+
+////
 
 В таком случае, чтобы сделать query-параметр `Query` обязательным, вы можете просто не указывать значение по умолчанию:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial006_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
 
-    !!! tip "Подсказка"
-        Обратите внимание, что даже когда `Query()` используется как значение по умолчанию для параметра функции, мы не передаём `default=None` в `Query()`.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-        Лучше будет использовать версию с `Annotated`. 😉
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
+```
+
+!!! tip "Подсказка"
+    Обратите внимание, что даже когда `Query()` используется как значение по умолчанию для параметра функции, мы не передаём `default=None` в `Query()`.
+
+    Лучше будет использовать версию с `Annotated`. 😉
+
+////
 
 ### Обязательный параметр с Ellipsis (`...`)
 
 Альтернативный способ указать обязательность параметра запроса - это указать параметр `default` через многоточие `...`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006b_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006b_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006b_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial006b_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006b.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial006b.py!}
+```
+
+////
 
 !!! info "Дополнительная информация"
     Если вы ранее не сталкивались с `...`: это специальное значение, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">часть языка Python и называется "Ellipsis"</a>.
@@ -442,41 +508,51 @@ q: Union[str, None] = None
 
 Чтобы этого добиться, вам нужно определить `None` как валидный тип для параметра запроса, но также указать `default=...`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial006c_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
+```
+
+////
 
 !!! tip "Подсказка"
     Pydantic, мощь которого используется в FastAPI для валидации и сериализации, имеет специальное поведение для `Optional` или `Union[Something, None]` без значения по умолчанию. Вы можете узнать об этом больше в документации Pydantic, раздел <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Обязательные Опциональные поля</a>.
@@ -485,26 +561,32 @@ q: Union[str, None] = None
 
 Если вас смущает `...`, вы можете использовать `Required` из Pydantic:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d_an_py39.py!}
-    ```
+```Python hl_lines="4  10"
+{!> ../../../docs_src/query_params_str_validations/tutorial006d_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="2  9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="2  9"
+{!> ../../../docs_src/query_params_str_validations/tutorial006d_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="2  8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006d.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="2  8"
+{!> ../../../docs_src/query_params_str_validations/tutorial006d.py!}
+```
+
+////
 
 !!! tip "Подсказка"
     Запомните, когда вам необходимо объявить query-параметр обязательным, вы можете просто не указывать параметр `default`. Таким образом, вам редко придётся использовать `...` или `Required`.
@@ -515,50 +597,62 @@ q: Union[str, None] = None
 
 Например, query-параметр `q` может быть указан в URL несколько раз. И если вы ожидаете такой формат запроса, то можете указать это следующим образом:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial011_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial011_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial011_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
-    ```
+////
 
-=== "Python 3.9+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
+```
 
-=== "Python 3.8+ без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+//// tab | Python 3.9+ без Annotated
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
-    ```
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
+```
+
+////
 
 Затем, получив такой URL:
 
@@ -590,35 +684,43 @@ http://localhost:8000/items/?q=foo&q=bar
 
 Вы также можете указать тип `list` со списком значений по умолчанию на случай, если вам их не предоставят:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial012_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.9+ без Annotated"
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial012_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
-    ```
+//// tab | Python 3.9+ без Annotated
 
-=== "Python 3.8+ без Annotated"
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
+```
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
-    ```
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
+```
+
+////
 
 Если вы перейдёте по ссылке:
 
@@ -641,26 +743,32 @@ http://localhost:8000/items/
 
 Вы также можете использовать `list` напрямую вместо `List[str]` (или `list[str]` в Python 3.9+):
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial013_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial013_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial013_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial013_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
+```
+
+////
 
 !!! note "Технические детали"
     Запомните, что в таком случае, FastAPI не будет проверять содержимое списка.
@@ -680,79 +788,99 @@ http://localhost:8000/items/
 
 Вы можете указать название query-параметра, используя параметр `title`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial007_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial007_an_py39.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial007_an.py!}
+```
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
+```
+
+////
 
 Добавить описание, используя параметр `description`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008_an_py310.py!}
-    ```
+```Python hl_lines="14"
+{!> ../../../docs_src/query_params_str_validations/tutorial008_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14"
+{!> ../../../docs_src/query_params_str_validations/tutorial008_an_py39.py!}
+```
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="15"
+{!> ../../../docs_src/query_params_str_validations/tutorial008_an.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
-    ```
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="13"
+{!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
+```
+
+////
 
 ## Псевдонимы параметров
 
@@ -772,41 +900,51 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Тогда вы можете объявить `псевдоним`, и этот псевдоним будет использоваться для поиска значения параметра запроса:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial009_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial009_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial009_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
+```
+
+////
 
 ## Устаревшие параметры
 
@@ -816,41 +954,51 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Тогда для `Query` укажите параметр `deprecated=True`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010_an_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/query_params_str_validations/tutorial010_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19"
+{!> ../../../docs_src/query_params_str_validations/tutorial010_an_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="20"
+{!> ../../../docs_src/query_params_str_validations/tutorial010_an.py!}
+```
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="18"
+{!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
+```
+
+////
 
 В документации это будет отображено следующим образом:
 
@@ -860,41 +1008,51 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Чтобы исключить query-параметр из генерируемой OpenAPI схемы (а также из системы автоматической генерации документации), укажите в `Query` параметр `include_in_schema=False`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial014_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial014_an_py39.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014_an.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python hl_lines="11"
+{!> ../../../docs_src/query_params_str_validations/tutorial014_an.py!}
+```
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать версию с `Annotated` если возможно.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
+```
+
+////
 
 ## Резюме
 

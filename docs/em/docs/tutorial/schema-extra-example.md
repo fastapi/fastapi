@@ -8,17 +8,21 @@
 
 👆 💪 📣 `example` Pydantic 🏷 ⚙️ `Config` &amp; `schema_extra`, 🔬 <a href="https://docs.pydantic.dev/latest/concepts/json_schema/#customizing-json-schema" class="external-link" target="_blank">Pydantic 🩺: 🔗 🛃</a>:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="15-23"
-    {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
-    ```
+```Python hl_lines="15-23"
+{!> ../../../docs_src/schema_extra_example/tutorial001.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="13-21"
-    {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="13-21"
+{!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
+```
+
+////
 
 👈 ➕ ℹ 🔜 🚮-🔢 **🎻 🔗** 👈 🏷, &amp; ⚫️ 🔜 ⚙️ 🛠️ 🩺.
 
@@ -33,17 +37,21 @@
 
 👆 💪 ⚙️ 👉 🚮 `example` 🔠 🏑:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="4  10-13"
-    {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
-    ```
+```Python hl_lines="4  10-13"
+{!> ../../../docs_src/schema_extra_example/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="2  8-11"
-    {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="2  8-11"
+{!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
+```
+
+////
 
 !!! warning
     🚧 🤯 👈 📚 ➕ ❌ 🚶‍♀️ 🏆 🚫 🚮 🙆 🔬, 🕴 ➕ ℹ, 🧾 🎯.
@@ -66,17 +74,21 @@
 
 📥 👥 🚶‍♀️ `example` 📊 ⌛ `Body()`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="20-25"
-    {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
-    ```
+```Python hl_lines="20-25"
+{!> ../../../docs_src/schema_extra_example/tutorial003.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="18-23"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="18-23"
+{!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
+```
+
+////
 
 ### 🖼 🩺 🎚
 
@@ -97,17 +109,21 @@
 * `value`: 👉 ☑ 🖼 🎦, ✅ `dict`.
 * `externalValue`: 🎛 `value`, 📛 ☝ 🖼. 👐 👉 5️⃣📆 🚫 🐕‍🦺 📚 🧰 `value`.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="21-47"
-    {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
-    ```
+```Python hl_lines="21-47"
+{!> ../../../docs_src/schema_extra_example/tutorial004.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="19-45"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="19-45"
+{!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
+```
+
+////
 
 ### 🖼 🩺 🎚
 

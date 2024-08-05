@@ -13,23 +13,29 @@ Sie können direkt den `int`-Code übergeben, etwa `404`.
 
 Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie die Abkürzungs-Konstanten in `status` verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  15"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
-    ```
+```Python hl_lines="1  15"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+```
+
+////
 
 Dieser Statuscode wird in der Response verwendet und zum OpenAPI-Schema hinzugefügt.
 
@@ -42,23 +48,29 @@ Dieser Statuscode wird in der Response verwendet und zum OpenAPI-Schema hinzugef
 
 Sie können Ihrer *Pfadoperation* Tags hinzufügen, mittels des Parameters `tags`, dem eine `list`e von `str`s übergeben wird (in der Regel nur ein `str`):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="15  20  25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
-    ```
+```Python hl_lines="15  20  25"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+```
+
+////
 
 Diese werden zum OpenAPI-Schema hinzugefügt und von den automatischen Dokumentations-Benutzeroberflächen verwendet:
 
@@ -80,23 +92,29 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 
 Sie können eine Zusammenfassung (`summary`) und eine Beschreibung (`description`) hinzufügen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
-    ```
+```Python hl_lines="18-19"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+```
+
+////
 
 ## Beschreibung mittels Docstring
 
@@ -104,23 +122,29 @@ Da Beschreibungen oft mehrere Zeilen lang sind, können Sie die Beschreibung der
 
 Sie können im Docstring <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> schreiben, es wird korrekt interpretiert und angezeigt (die Einrückung des Docstring beachtend).
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="17-25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
-    ```
+```Python hl_lines="17-25"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+```
+
+////
 
 In der interaktiven Dokumentation sieht das dann so aus:
 
@@ -130,23 +154,29 @@ In der interaktiven Dokumentation sieht das dann so aus:
 
 Die Response können Sie mit dem Parameter `response_description` beschreiben:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+```
+
+////
 
 !!! info
     beachten Sie, dass sich `response_description` speziell auf die Response bezieht, während `description` sich generell auf die *Pfadoperation* bezieht.

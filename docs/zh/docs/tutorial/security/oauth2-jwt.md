@@ -108,41 +108,51 @@ $ pip install passlib[bcrypt]
 
 第三个函数用于身份验证，并返回用户。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="8  50  57-58  61-62  71-77"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="8  50  57-58  61-62  71-77"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 !!! note "笔记"
 
@@ -188,41 +198,51 @@ $ openssl rand -hex 32
 
 如果令牌无效，则直接返回 HTTP 错误。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="4 7  14-16  30-32 80-88"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="4 7  14-16  30-32 80-88"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="3 6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="3 6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## 更新 `/token` *路径操作*
 
@@ -230,41 +250,51 @@ $ openssl rand -hex 32
 
 创建并返回真正的 JWT 访问令牌。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="119-134"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="119-134"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="115-130"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="116-131"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="115-130"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="116-131"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ### JWT `sub` 的技术细节
 

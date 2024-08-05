@@ -24,63 +24,73 @@ $ python -m venv env
 
 🔓 🆕 🌐 ⏮️:
 
-=== "💾, 🇸🇻"
+//// tab | 💾, 🇸🇻
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "🚪 🎉"
+</div>
 
-    ⚖️ 🚥 👆 ⚙️ 🎉 🖥 (✅ <a href="https://gitforwindows.org/" class="external-link" target="_blank">🐛 🎉</a>):
+////
 
-    <div class="termy">
+//// tab | 🚪 🎉
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+⚖️ 🚥 👆 ⚙️ 🎉 🖥 (✅ <a href="https://gitforwindows.org/" class="external-link" target="_blank">🐛 🎉</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 ✅ ⚫️ 👷, ⚙️:
 
-=== "💾, 🇸🇻, 🚪 🎉"
+//// tab | 💾, 🇸🇻, 🚪 🎉
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 🚥 ⚫️ 🎦 `pip` 💱 `env/bin/pip` ⤴️ ⚫️ 👷. 👶
 

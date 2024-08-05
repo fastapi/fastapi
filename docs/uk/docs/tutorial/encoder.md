@@ -20,17 +20,21 @@
 
 Вона приймає об'єкт, такий як Pydantic model, і повертає його версію, сумісну з JSON:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4  21"
-    {!> ../../../docs_src/encoder/tutorial001_py310.py!}
-    ```
+```Python hl_lines="4  21"
+{!> ../../../docs_src/encoder/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="5  22"
-    {!> ../../../docs_src/encoder/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="5  22"
+{!> ../../../docs_src/encoder/tutorial001.py!}
+```
+
+////
 
 У цьому прикладі вона конвертує Pydantic model у `dict`, а `datetime` у `str`.
 

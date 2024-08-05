@@ -112,26 +112,32 @@ Also fügen wir sie in ihr eigenes `dependencies`-Modul (`app/dependencies.py`) 
 
 Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefinierten `X-Token`-Header zu lesen:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3  6-8" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
-    ```
+```Python hl_lines="3  6-8" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  5-7" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="1  5-7" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="1  4-6" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="1  4-6" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+```
+
+////
 
 !!! tip "Tipp"
     Um dieses Beispiel zu vereinfachen, verwenden wir einen erfundenen Header.

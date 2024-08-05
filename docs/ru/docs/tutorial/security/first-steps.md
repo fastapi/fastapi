@@ -20,27 +20,32 @@
 
 Скопируйте пример в файл `main.py`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
 
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 ## Запуск
 
@@ -132,26 +137,32 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 
 При создании экземпляра класса `OAuth2PasswordBearer` мы передаем в него параметр `tokenUrl`. Этот параметр содержит URL, который клиент (фронтенд, работающий в браузере пользователя) будет использовать для отправки `имени пользователя` и `пароля` с целью получения токена.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="7"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python  hl_lines="7"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="6"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 !!! tip "Подсказка"
     Здесь `tokenUrl="token"` ссылается на относительный URL `token`, который мы еще не создали. Поскольку это относительный URL, он эквивалентен `./token`.
@@ -183,26 +194,32 @@ oauth2_scheme(some, parameters)
 
 Теперь вы можете передать ваш `oauth2_scheme` в зависимость с помощью `Depends`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="11"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python  hl_lines="11"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 Эта зависимость будет предоставлять `строку`, которая присваивается параметру `token` в *функции операции пути*.
 

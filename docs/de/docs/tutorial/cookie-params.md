@@ -6,41 +6,51 @@ So wie `Query`- und `Path`-Parameter können Sie auch <abbr title='Cookie – �
 
 Importieren Sie zuerst `Cookie`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 ## `Cookie`-Parameter deklarieren
 
@@ -48,41 +58,51 @@ Dann deklarieren Sie Ihre Cookie-Parameter, auf die gleiche Weise, wie Sie auch 
 
 Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs- und Beschreibungsparameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="10"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 !!! note "Technische Details"
     `Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.

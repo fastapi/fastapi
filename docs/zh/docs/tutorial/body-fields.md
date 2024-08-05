@@ -6,41 +6,51 @@
 
 首先，从 Pydantic 中导入 `Field`：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 !!! warning "警告"
 
@@ -50,41 +60,51 @@
 
 然后，使用 `Field` 定义模型的属性：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12-15"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="12-15"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="9-12"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 `Field` 的工作方式和 `Query`、`Path`、`Body` 相同，参数也相同。
 

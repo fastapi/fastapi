@@ -15,37 +15,41 @@ An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-
 
 You can create and use environment variables in the shell, without needing Python:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // You could create an env var MY_NAME with
-    $ export MY_NAME="Wade Wilson"
+```console
+// You could create an env var MY_NAME with
+$ export MY_NAME="Wade Wilson"
 
-    // Then you could use it with other programs, like
-    $ echo "Hello $MY_NAME"
+// Then you could use it with other programs, like
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    // Create an env var MY_NAME
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // Use it with other programs, like
-    $ echo "Hello $Env:MY_NAME"
+```console
+// Create an env var MY_NAME
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// Use it with other programs, like
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### Read env vars in Python
 
@@ -162,20 +166,24 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="2  5-8  11"
-    {!> ../../../docs_src/settings/tutorial001.py!}
-    ```
+```Python hl_lines="2  5-8  11"
+{!> ../../../docs_src/settings/tutorial001.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    !!! info
-        In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
+//// tab | Pydantic v1
 
-    ```Python hl_lines="2  5-8  11"
-    {!> ../../../docs_src/settings/tutorial001_pv1.py!}
-    ```
+!!! info
+    In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
+
+```Python hl_lines="2  5-8  11"
+{!> ../../../docs_src/settings/tutorial001_pv1.py!}
+```
+
+////
 
 !!! tip
     If you want something quick to copy and paste, don't use this example, use the last one below.
@@ -254,26 +262,32 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="5  11-12"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="5  11-12"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 !!! tip
     We'll discuss the `@lru_cache` in a bit.
@@ -282,26 +296,32 @@ Now we create a dependency that returns a new `config.Settings()`.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="16  18-20"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="16  18-20"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 ### Settings and testing
 
@@ -344,23 +364,27 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/settings/app03_an/config.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/settings/app03_an/config.py!}
+```
 
-    !!! tip
-        The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+!!! tip
+    The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/settings/app03_an/config_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-    !!! tip
-        The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+```Python hl_lines="9-10"
+{!> ../../../docs_src/settings/app03_an/config_pv1.py!}
+```
+
+!!! tip
+    The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+////
 
 !!! info
     In Pydantic version 1 the configuration was done in an internal class `Config`, in Pydantic version 2 it's done in an attribute `model_config`. This attribute takes a `dict`, and to get autocompletion and inline errors you can import and use `SettingsConfigDict` to define that `dict`.
@@ -390,26 +414,32 @@ we would create that object for each request, and we would be reading the `.env`
 
 But as we are using the `@lru_cache` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
-    ```
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an/main.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="1  10"
-    {!> ../../../docs_src/settings/app03/main.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="1  10"
+{!> ../../../docs_src/settings/app03/main.py!}
+```
+
+////
 
 Then for any subsequent calls of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 

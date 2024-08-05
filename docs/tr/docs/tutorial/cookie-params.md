@@ -6,41 +6,51 @@
 
 Öncelikle, `Cookie`'yi projenize dahil edin:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+!!! tip "İpucu"
+    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "İpucu"
+    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 ## `Cookie` Parametrelerini Tanımlayın
 
@@ -48,41 +58,51 @@
 
 İlk değer varsayılan değerdir; tüm ekstra doğrulama veya belirteç parametrelerini kullanabilirsiniz:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+```Python hl_lines="10"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+!!! tip "İpucu"
+    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "İpucu"
+    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 !!! note "Teknik Detaylar"
     `Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.

@@ -29,42 +29,52 @@
 Давайте для начала сфокусируемся на зависимостях.
 
 Это просто функция, которая может принимать все те же параметры, что и *функции обработки пути*:
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+```Python hl_lines="9-12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Подсказка"
+!!! tip "Подсказка"
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Подсказка"
+
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 **И всё.**
 
@@ -94,81 +104,101 @@
 
 ### Import `Depends`
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Подсказка"
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+!!! tip "Подсказка"
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Подсказка"
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 ### Объявите зависимость в "зависимом"
 
 Точно так же, как вы использовали `Body`, `Query` и т.д. с вашей *функцией обработки пути* для параметров, используйте `Depends` с новым параметром:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="13  18"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+```Python hl_lines="16  21"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Подсказка"
-        Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+!!! tip "Подсказка"
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Подсказка"
+    Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
+
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 `Depends` работает немного иначе. Вы передаёте в `Depends` одиночный параметр, который будет похож на функцию.
 
@@ -215,23 +245,29 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Но потому что мы используем `Annotated`,  мы можем хранить `Annotated` значение в переменной и использовать его в нескольких местах:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="12  16  21"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14  18  23"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="15  19  24"
+{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+```
+
+////
 
 !!! tip "Подсказка"
     Это стандартный синтаксис python и называется "type alias", это не особенность **FastAPI**.

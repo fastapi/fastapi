@@ -49,17 +49,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동*에서 `Depends`의 의존성으로 사용합니다.
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="4  76"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="4  76"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="2  74"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="2  74"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 `OAuth2PasswordRequestForm`은 다음을 사용하여 폼 본문을 선언하는 클래스 의존성입니다:
 
@@ -98,17 +102,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 오류의 경우 `HTTPException` 예외를 사용합니다:
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="3  77-79"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="3  77-79"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="1  75-77"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="1  75-77"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 ### 패스워드 확인하기
 
@@ -134,17 +142,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 따라서 해커는 다른 시스템에서 동일한 암호를 사용하려고 시도할 수 없습니다(많은 사용자가 모든 곳에서 동일한 암호를 사용하므로 이는 위험할 수 있습니다).
 
-=== "P파이썬 3.7 이상"
+//// tab | P파이썬 3.7 이상
 
-    ```Python hl_lines="80-83"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="80-83"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="78-81"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="78-81"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 #### `**user_dict`에 대해
 
@@ -180,17 +192,21 @@ UserInDB(
 
     하지만 지금은 필요한 세부 정보에 집중하겠습니다.
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="85"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="85"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="83"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="83"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 !!! 팁
     사양에 따라 이 예제와 동일하게 `access_token` 및 `token_type`이 포함된 JSON을 반환해야 합니다.
@@ -213,17 +229,21 @@ UserInDB(
 
 따라서 엔드포인트에서는 사용자가 존재하고 올바르게 인증되었으며 활성 상태인 경우에만 사용자를 얻습니다:
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="58-66  69-72  90"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="58-66  69-72  90"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="55-64  67-70  88"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="55-64  67-70  88"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 !!! 정보
     여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.

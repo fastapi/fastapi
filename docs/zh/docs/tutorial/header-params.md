@@ -6,41 +6,51 @@
 
 首先，导入 `Header`：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001.py!}
+```
+
+////
 
 ## 声明 `Header` 参数
 
@@ -48,41 +58,51 @@
 
 第一个值是默认值，还可以传递所有验证参数或注释参数：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001.py!}
+```
+
+////
 
 !!! note "技术细节"
 
@@ -110,41 +130,51 @@
 
 如需禁用下划线自动转换为连字符，可以把 `Header` 的 `convert_underscores` 参数设置为 `False`：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11"
+{!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/header_params/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="12"
+{!> ../../../docs_src/header_params/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/header_params/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/header_params/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial002.py!}
+```
+
+////
 
 !!! warning "警告"
 
@@ -161,50 +191,62 @@
 
 例如，声明 `X-Token` 多次出现的请求头，可以写成这样：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.9+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_py39.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/header_params/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+//// tab | Python 3.9+ non-Annotated
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003.py!}
-    ```
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    尽可能选择使用 `Annotated` 的版本。
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003.py!}
+```
+
+////
 
 与*路径操作*通信时，以下面的方式发送两个 HTTP 请求头：
 

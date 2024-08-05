@@ -110,17 +110,21 @@
 
 👯‍♂️ *➡ 🛠️* 🚚 `X-Token` 🎚.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
 
 ### ↔ 🔬 📁
 

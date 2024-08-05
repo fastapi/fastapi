@@ -9,51 +9,63 @@ Sie können gleichzeitig Dateien und Formulardaten mit `File` und `Form` definie
 
 ## `File` und `Form` importieren
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+```
+
+////
 
 ## `File` und `Form`-Parameter definieren
 
 Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Query` machen würden:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10-12"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="10-12"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="9-11"
+{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="8"
+{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+```
+
+////
 
 Die Datei- und Formularfelder werden als Formulardaten hochgeladen, und Sie erhalten diese Dateien und Formularfelder.
 

@@ -14,41 +14,51 @@ Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Elemente 
 
 Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt direkt zurück, indem Sie den gewünschten `status_code` setzen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4  26"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="4  26"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2  23"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
-    ```
+```Python hl_lines="2  23"
+{!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001.py!}
+```
+
+////
 
 !!! warning "Achtung"
     Wenn Sie eine `Response` direkt zurückgeben, wie im obigen Beispiel, wird sie direkt zurückgegeben.

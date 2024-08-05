@@ -6,41 +6,51 @@ So wie Sie zusätzliche Validation und Metadaten in Parametern der **Pfadoperati
 
 Importieren Sie es zuerst:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 !!! warning "Achtung"
     Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
@@ -49,41 +59,51 @@ Importieren Sie es zuerst:
 
 Dann können Sie `Field` mit Modellattributen deklarieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12-15"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="12-15"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="9-12"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 `Field` funktioniert genauso wie `Query`, `Path` und `Body`, es hat die gleichen Parameter, usw.
 

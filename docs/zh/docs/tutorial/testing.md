@@ -110,41 +110,51 @@
 
 所有*路径操作* 都需要一个`X-Token` 头。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "提示"
-        Prefer to use the `Annotated` version if possible.
+```Python
+{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "提示"
-        Prefer to use the `Annotated` version if possible.
+!!! tip "提示"
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "提示"
+    Prefer to use the `Annotated` version if possible.
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### 扩展后的测试文件
 

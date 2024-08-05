@@ -170,35 +170,39 @@ Nếu bạn có thể sử dụng **phiên bản cuối cùng của Python**, s�
 
 Ví dụ, hãy định nghĩa một biến là `list` các `str`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    Khai báo biến với cùng dấu hai chấm (`:`).
+Khai báo biến với cùng dấu hai chấm (`:`).
 
-    Tương tự kiểu dữ liệu `list`.
+Tương tự kiểu dữ liệu `list`.
 
-    Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệu có sẵn, bạn đặt chúng trong các dấu ngoặc vuông:
+Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệu có sẵn, bạn đặt chúng trong các dấu ngoặc vuông:
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial006_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    Từ `typing`, import `List` (với chữ cái `L` viết hoa):
+//// tab | Python 3.8+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
+Từ `typing`, import `List` (với chữ cái `L` viết hoa):
 
-    Khai báo biến với cùng dấu hai chấm (`:`).
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial006.py!}
+```
 
-    Tương tự như kiểu dữ liệu, `List` bạn import từ `typing`.
+Khai báo biến với cùng dấu hai chấm (`:`).
 
-    Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có sẵn, bạn đặt chúng bên trong dấu ngoặc vuông:
+Tương tự như kiểu dữ liệu, `List` bạn import từ `typing`.
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
+Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có sẵn, bạn đặt chúng bên trong dấu ngoặc vuông:
+
+```Python hl_lines="4"
+{!> ../../../docs_src/python_types/tutorial006.py!}
+```
+
+////
 
 !!! info
     Các kiểu dữ liệu có sẵn bên trong dấu ngoặc vuông được gọi là "tham số kiểu dữ liệu".
@@ -224,17 +228,21 @@ Và do vậy, trình soạn thảo biết nó là một `str`, và cung cấp s�
 
 Bạn sẽ làm điều tương tự để khai báo các `tuple` và  các `set`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial007_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial007_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial007.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial007.py!}
+```
+
+////
 
 Điều này có nghĩa là:
 
@@ -249,17 +257,21 @@ Tham số kiểu dữ liệu đầu tiên dành cho khóa của `dict`.
 
 Tham số kiểu dữ liệu thứ hai dành cho giá trị của `dict`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial008_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial008_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial008.py!}
+```
+
+////
 
 Điều này có nghĩa là:
 
@@ -278,17 +290,21 @@ In Python 3.10 there's also a **new syntax** where you can put the possible type
 Trong Python 3.10 cũng có một **cú pháp mới** mà bạn có thể đặt những kiểu giá trị khả thi phân cách bởi một dấu <abbr title='cũng được gọi là "toán tử nhị phân"'>sổ dọc (`|`)</abbr>.
 
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial008b_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008b.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial008b.py!}
+```
+
+////
 
 Trong cả hai trường hợp có nghĩa là `item` có thể là một `int` hoặc `str`.
 
@@ -308,23 +324,29 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
 
 Điều này cũng có nghĩa là trong Python 3.10, bạn có thể sử dụng `Something | None`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial009_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial009_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial009.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ alternative"
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial009.py!}
+```
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial009b.py!}
-    ```
+////
+
+//// tab | Python 3.8+ alternative
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial009b.py!}
+```
+
+////
 
 #### Sử dụng `Union` hay `Optional`
 
@@ -372,47 +394,53 @@ Và sau đó, bạn sẽ không phải lo rằng những cái tên như `Optiona
 
 Những kiểu dữ liệu này lấy tham số kiểu dữ liệu trong dấu ngoặc vuông được gọi là **Kiểu dữ liệu tổng quát**, cho ví dụ:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    Bạn có thể sử dụng các kiểu dữ liệu có sẵn như là kiểu dữ liệu tổng quát (với ngoặc vuông và kiểu dữ liệu bên trong):
+Bạn có thể sử dụng các kiểu dữ liệu có sẵn như là kiểu dữ liệu tổng quát (với ngoặc vuông và kiểu dữ liệu bên trong):
 
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-    Và tương tự với Python 3.6, từ mô đun `typing`:
+Và tương tự với Python 3.6, từ mô đun `typing`:
 
-    * `Union`
-    * `Optional` (tương tự như Python 3.6)
-    * ...và các kiểu dữ liệu khác.
+* `Union`
+* `Optional` (tương tự như Python 3.6)
+* ...và các kiểu dữ liệu khác.
 
-    Trong Python 3.10, thay vì sử dụng `Union` và `Optional`, bạn có thể sử dụng <abbr title='cũng gọi là "toán tử nhị phân", nhưng ý nghĩa không liên quan ở đây'>sổ dọc ('|')</abbr> để khai báo hợp của các kiểu dữ liệu, điều đó tốt hơn và đơn giản hơn nhiều.
+Trong Python 3.10, thay vì sử dụng `Union` và `Optional`, bạn có thể sử dụng <abbr title='cũng gọi là "toán tử nhị phân", nhưng ý nghĩa không liên quan ở đây'>sổ dọc ('|')</abbr> để khai báo hợp của các kiểu dữ liệu, điều đó tốt hơn và đơn giản hơn nhiều.
 
-=== "Python 3.9+"
+////
 
-    Bạn có thể sử dụng các kiểu dữ liệu có sẵn tương tự như (với ngoặc vuông và kiểu dữ liệu bên trong):
+//// tab | Python 3.9+
 
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
+Bạn có thể sử dụng các kiểu dữ liệu có sẵn tương tự như (với ngoặc vuông và kiểu dữ liệu bên trong):
 
-    Và tương tự với Python 3.6, từ mô đun `typing`:
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-    * `Union`
-    * `Optional`
-    * ...and others.
+Và tương tự với Python 3.6, từ mô đun `typing`:
 
-=== "Python 3.8+"
+* `Union`
+* `Optional`
+* ...and others.
 
-    * `List`
-    * `Tuple`
-    * `Set`
-    * `Dict`
-    * `Union`
-    * `Optional`
-    * ...và các kiểu khác.
+////
+
+//// tab | Python 3.8+
+
+* `List`
+* `Tuple`
+* `Set`
+* `Dict`
+* `Union`
+* `Optional`
+* ...và các kiểu khác.
+
+////
 
 ### Lớp như kiểu dữ liệu
 
@@ -452,23 +480,29 @@ Và bạn nhận được tất cả sự hỗ trợ của trình soạn thảo 
 
 Một ví dụ từ tài liệu chính thức của Pydantic:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/python_types/tutorial011_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/python_types/tutorial011_py39.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../../docs_src/python_types/tutorial011.py!}
+```
+
+////
 
 !!! info
     Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
@@ -485,23 +519,27 @@ Bạn sẽ thấy nhiều ví dụ thực tế hơn trong [Hướng dẫn sử d
 
 Python cũng có một tính năng cho phép đặt **metadata bổ sung** trong những gợi ý kiểu dữ liệu này bằng cách sử dụng `Annotated`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đó bạn có thể import nó từ `typing`.
+Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đó bạn có thể import nó từ `typing`.
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial013_py39.py!}
-    ```
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial013_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    Ở phiên bản dưới Python 3.9, bạn import `Annotated` từ `typing_extensions`.
+//// tab | Python 3.8+
 
-    Nó đã được cài đặt sẵng cùng với **FastAPI**.
+Ở phiên bản dưới Python 3.9, bạn import `Annotated` từ `typing_extensions`.
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial013.py!}
-    ```
+Nó đã được cài đặt sẵng cùng với **FastAPI**.
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial013.py!}
+```
+
+////
 
 Python bản thân nó không làm bất kì điều gì với `Annotated`. Với các trình soạn thảo và các công cụ khác, kiểu dữ liệu vẫn là `str`.
 

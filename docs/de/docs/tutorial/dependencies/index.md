@@ -30,41 +30,51 @@ Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection
 Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="9-12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Das war's schon.
 
@@ -93,81 +103,101 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
 ### `Depends` importieren
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 ### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr>
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="13  18"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="16  21"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Obwohl Sie `Depends` in den Parametern Ihrer Funktion genauso verwenden wie `Body`, `Query`, usw., funktioniert `Depends` etwas anders.
 
@@ -218,23 +248,29 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in einer Variablen speichern und an mehreren Stellen verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="12  16  21"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14  18  23"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="15  19  24"
+{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+```
+
+////
 
 !!! tip "Tipp"
     Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.

@@ -8,43 +8,55 @@
 
 생성된 JSON 스키마에 추가될 Pydantic 모델을 위한 `examples`을 선언할 수 있습니다.
 
-=== "Python 3.10+ Pydantic v2"
+//// tab | Python 3.10+ Pydantic v2
 
-    ```Python hl_lines="13-24"
-    {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
-    ```
+```Python hl_lines="13-24"
+{!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
+```
 
-=== "Python 3.10+ Pydantic v1"
+////
 
-    ```Python hl_lines="13-23"
-    {!> ../../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
-    ```
+//// tab | Python 3.10+ Pydantic v1
 
-=== "Python 3.8+ Pydantic v2"
+```Python hl_lines="13-23"
+{!> ../../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
+```
 
-    ```Python hl_lines="15-26"
-    {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
-    ```
+////
 
-=== "Python 3.8+ Pydantic v1"
+//// tab | Python 3.8+ Pydantic v2
 
-    ```Python hl_lines="15-25"
-    {!> ../../../docs_src/schema_extra_example/tutorial001_pv1.py!}
-    ```
+```Python hl_lines="15-26"
+{!> ../../../docs_src/schema_extra_example/tutorial001.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Pydantic v1
+
+```Python hl_lines="15-25"
+{!> ../../../docs_src/schema_extra_example/tutorial001_pv1.py!}
+```
+
+////
 
 추가 정보는 있는 그대로 해당 모델의 **JSON 스키마** 결과에 추가되고, API 문서에서 사용합니다.
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    Pydantic 버전 2에서 <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic 공식 문서: Model Config</a>에 나와 있는 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 것입니다.
+Pydantic 버전 2에서 <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic 공식 문서: Model Config</a>에 나와 있는 것처럼 `dict`를 받는 `model_config` 어트리뷰트를 사용할 것입니다.
 
-    `"json_schema_extra"`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
+`"json_schema_extra"`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
 
-=== "Pydantic v1"
+////
 
-    Pydantic v1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 공식 문서: Schema customization</a>에서 설명하는 것처럼, 내부 클래스인 `Config`와 `schema_extra`를 사용할 것입니다.
+//// tab | Pydantic v1
 
-    `schema_extra`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
+Pydantic v1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 공식 문서: Schema customization</a>에서 설명하는 것처럼, 내부 클래스인 `Config`와 `schema_extra`를 사용할 것입니다.
+
+`schema_extra`를 생성된 JSON 스키마에서 보여주고 싶은 별도의 데이터와 `examples`를 포함하는 `dict`으로 설정할 수 있습니다.
+
+////
 
 !!! tip "팁"
     JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가하기 위해 같은 기술을 사용할 수 있습니다.
@@ -62,17 +74,21 @@
 
 Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 선언할 수 있습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="2  8-11"
-    {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
-    ```
+```Python hl_lines="2  8-11"
+{!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="4  10-13"
-    {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="4  10-13"
+{!> ../../../docs_src/schema_extra_example/tutorial002.py!}
+```
+
+////
 
 ## JSON Schema에서의 `examples` - OpenAPI
 
@@ -92,41 +108,51 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 여기, `Body()`에 예상되는 예제 데이터 하나를 포함한 `examples`를 넘겼습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="22-29"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="22-29"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="22-29"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="22-29"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="23-30"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="23-30"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="18-25"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="20-27"
-    {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
-    ```
+```Python hl_lines="18-25"
+{!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="20-27"
+{!> ../../../docs_src/schema_extra_example/tutorial003.py!}
+```
+
+////
 
 ### 문서 UI 예시
 
@@ -138,41 +164,51 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 물론 여러 `examples`를 넘길 수 있습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23-38"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="23-38"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23-38"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="23-38"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="24-39"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="24-39"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="19-34"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="21-36"
-    {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
-    ```
+```Python hl_lines="19-34"
+{!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="21-36"
+{!> ../../../docs_src/schema_extra_example/tutorial004.py!}
+```
+
+////
 
 이와 같이 하면 이 예제는 그 본문 데이터를 위한 내부 **JSON 스키마**의 일부가 될 것입니다.
 
@@ -213,41 +249,51 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 이를 다음과 같이 사용할 수 있습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23-49"
-    {!> ../../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="23-49"
+{!> ../../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23-49"
-    {!> ../../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="23-49"
+{!> ../../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="24-50"
-    {!> ../../../docs_src/schema_extra_example/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="24-50"
+{!> ../../../docs_src/schema_extra_example/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="19-45"
-    {!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="21-47"
-    {!> ../../../docs_src/schema_extra_example/tutorial005.py!}
-    ```
+```Python hl_lines="19-45"
+{!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="21-47"
+{!> ../../../docs_src/schema_extra_example/tutorial005.py!}
+```
+
+////
 
 ### 문서 UI에서의 OpenAPI 예시
 

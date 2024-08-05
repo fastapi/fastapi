@@ -6,41 +6,51 @@
 
 먼저 이를 임포트해야 합니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 !!! warning "경고"
     `Field`는 다른 것들처럼 (`Query`, `Path`, `Body` 등) `fastapi`에서가 아닌 `pydantic`에서 바로 임포트 되는 점에 주의하세요.
@@ -49,41 +59,51 @@
 
 그 다음 모델 어트리뷰트와 함께 `Field`를 사용할 수 있습니다:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12-15"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ Annotated가 없는 경우"
+//// tab | Python 3.8+
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+```Python hl_lines="12-15"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ Annotated가 없는 경우"
+//// tab | Python 3.10+ Annotated가 없는 경우
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+```Python hl_lines="9-12"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Annotated가 없는 경우
+
+!!! tip "팁"
+    가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 `Field`는 `Query`, `Path`와 `Body`와 같은 방식으로 동작하며, 모두 같은 매개변수들 등을 가집니다.
 

@@ -24,63 +24,73 @@ Cela va créer un répertoire `./env/` avec les binaires Python et vous pourrez 
 
 Activez le nouvel environnement avec :
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 Pour vérifier que cela a fonctionné, utilisez :
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 Si celui-ci montre le binaire `pip` à `env/bin/pip`, alors ça a fonctionné. 🎉
 
@@ -111,31 +121,35 @@ Réactivez maintenant l'environnement pour vous assurer que vous utilisez le "fl
 
 Et maintenant, utilisez `flit` pour installer les dépendances de développement :
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ flit install --deps develop --symlink
+```console
+$ flit install --deps develop --symlink
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-=== "Windows"
+////
 
-    Si vous êtes sous Windows, utilisez `--pth-file` au lieu de `--symlink` :
+//// tab | Windows
 
-    <div class="termy">
+Si vous êtes sous Windows, utilisez `--pth-file` au lieu de `--symlink` :
 
-    ```console
-    $ flit install --deps develop --pth-file
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ flit install --deps develop --pth-file
 
-    </div>
+---> 100%
+```
+
+</div>
+
+////
 
 Il installera toutes les dépendances et votre FastAPI local dans votre environnement local.
 

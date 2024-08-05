@@ -112,26 +112,32 @@ So we put them in their own `dependencies` module (`app/dependencies.py`).
 
 We will now use a simple dependency to read a custom `X-Token` header:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3  6-8" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
-    ```
+```Python hl_lines="3  6-8" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  5-7" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="1  5-7" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="1  4-6" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="1  4-6" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+```
+
+////
 
 !!! tip
     We are using an invented header to simplify this example.

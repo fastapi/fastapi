@@ -11,51 +11,63 @@
 
 Импортируйте `Form` из `fastapi`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать 'Annotated' версию, если это возможно.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать 'Annotated' версию, если это возможно.
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 ## Определение параметров `Form`
 
 Создайте параметры формы так же, как это делается для `Body` или `Query`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать 'Annotated' версию, если это возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+!!! tip "Подсказка"
+    Рекомендуется использовать 'Annotated' версию, если это возможно.
+
+```Python hl_lines="7"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 Например, в одном из способов использования спецификации OAuth2 (называемом "потоком пароля") требуется отправить `username` и `password` в виде полей формы.
 

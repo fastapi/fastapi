@@ -105,41 +105,51 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="8  50  57-58  61-62  71-77"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="8  50  57-58  61-62  71-77"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 !!! note
     If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
@@ -172,41 +182,51 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="4 7  14-16  30-32 80-88"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="4 7  14-16  30-32 80-88"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="3 6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="3 6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## Update the dependencies
 
@@ -216,41 +236,51 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="90-107"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="90-107"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="90-107"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="90-107"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="91-108"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="91-108"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="89-106"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="90-107"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="89-106"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="90-107"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## Update the `/token` *path operation*
 
@@ -258,41 +288,51 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="119-134"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="119-134"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="115-130"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+!!! tip
+    Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="116-131"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+```Python hl_lines="115-130"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip
+    Prefer to use the `Annotated` version if possible.
+
+```Python hl_lines="116-131"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ### Technical details about the JWT "subject" `sub`
 

@@ -4,23 +4,29 @@ Sie können den Typ der <abbr title="Response – Antwort: Daten, die zum anfrag
 
 Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten von Funktions-**Parametern** machen; verwenden Sie Pydantic-Modelle, Listen, Dicts und skalare Werte wie Nummern, Booleans, usw.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
-    ```
+```Python hl_lines="16  21"
+{!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="18  23"
-    {!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="18  23"
+{!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
+```
 
-    ```Python hl_lines="18  23"
-    {!> ../../../docs_src/response_model/tutorial001_01.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="18  23"
+{!> ../../../docs_src/response_model/tutorial001_01.py!}
+```
+
+////
 
 FastAPI wird diesen Rückgabetyp verwenden, um:
 
@@ -53,23 +59,29 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 * `@app.delete()`
 * usw.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
-    ```
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001.py!}
+```
+
+////
 
 !!! note "Hinweis"
     Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
@@ -95,17 +107,21 @@ Sie können auch `response_model=None` verwenden, um das Erstellen eines Respons
 
 Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passwort:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7  9"
-    {!> ../../../docs_src/response_model/tutorial002_py310.py!}
-    ```
+```Python hl_lines="7  9"
+{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9  11"
-    {!> ../../../docs_src/response_model/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9  11"
+{!> ../../../docs_src/response_model/tutorial002.py!}
+```
+
+////
 
 !!! info
     Um `EmailStr` zu verwenden, installieren Sie zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
@@ -115,17 +131,21 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 
 Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu deklarieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/response_model/tutorial002_py310.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/response_model/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../../docs_src/response_model/tutorial002.py!}
+```
+
+////
 
 Immer wenn jetzt ein Browser einen Benutzer mit Passwort erzeugt, gibt die API dasselbe Passwort in der Response zurück.
 
@@ -140,45 +160,57 @@ Aber wenn wir dasselbe Modell für eine andere *Pfadoperation* verwenden, könnt
 
 Wir können stattdessen ein Eingabemodell mit dem Klartext-Passwort, und ein Ausgabemodell ohne das Passwort erstellen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9  11  16"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="9  11  16"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9  11  16"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9  11  16"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zurückgibt, der das Passwort enthält:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 ... haben wir deklariert, dass `response_model` das Modell `UserOut` ist, welches das Passwort nicht enthält:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="22"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="22"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 Darum wird **FastAPI** sich darum kümmern, dass alle Daten, die nicht im Ausgabemodell deklariert sind, herausgefiltert werden (mittels Pydantic).
 
@@ -202,17 +234,21 @@ Aber in den meisten Fällen, wenn wir so etwas machen, wollen wir nur, dass das 
 
 Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil aus den Typannotationen in der Funktion zu ziehen, was vom Editor und von Tools besser unterstützt wird, während wir gleichzeitig FastAPIs **Datenfilterung** behalten.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7-10  13-14  18"
-    {!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
-    ```
+```Python hl_lines="7-10  13-14  18"
+{!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9-13  15-16  20"
-    {!> ../../../docs_src/response_model/tutorial003_01.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9-13  15-16  20"
+{!> ../../../docs_src/response_model/tutorial003_01.py!}
+```
+
+////
 
 Damit erhalten wir Tool-Unterstützung, vom Editor und mypy, da dieser Code hinsichtlich der Typen korrekt ist, aber wir erhalten auch die Datenfilterung von FastAPI.
 
@@ -278,17 +314,21 @@ Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pyd
 
 Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/response_model/tutorial003_04.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="10"
+{!> ../../../docs_src/response_model/tutorial003_04.py!}
+```
+
+////
 
 ... das scheitert, da die Typannotation kein Pydantic-Typ ist, und auch keine einzelne `Response`-Klasse, oder -Unterklasse, es ist eine Union (eines von beiden) von `Response` und `dict`.
 
@@ -300,17 +340,21 @@ Aber Sie möchten dennoch den Rückgabetyp in der Funktion annotieren, um Unters
 
 In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem Sie `response_model=None` setzen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/response_model/tutorial003_05.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/response_model/tutorial003_05.py!}
+```
+
+////
 
 Das bewirkt, dass FastAPI die Generierung des Responsemodells unterlässt, und damit können Sie jede gewünschte Rückgabetyp-Annotation haben, ohne dass es Ihre FastAPI-Anwendung beeinflusst. 🤓
 
@@ -318,23 +362,29 @@ Das bewirkt, dass FastAPI die Generierung des Responsemodells unterlässt, und d
 
 Ihr Responsemodell könnte Defaultwerte haben, wie:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9  11-12"
-    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
-    ```
+```Python hl_lines="9  11-12"
+{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11  13-14"
-    {!> ../../../docs_src/response_model/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11  13-14"
+{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="11  13-14"
-    {!> ../../../docs_src/response_model/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="11  13-14"
+{!> ../../../docs_src/response_model/tutorial004.py!}
+```
+
+////
 
 * `description: Union[str, None] = None` (oder `str | None = None` in Python 3.10) hat einen Defaultwert `None`.
 * `tax: float = 10.5` hat einen Defaultwert `10.5`.
@@ -348,23 +398,29 @@ Wenn Sie zum Beispiel Modelle mit vielen optionalen Attributen in einer NoSQL-Da
 
 Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unset=True` setzen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
-    ```
+```Python hl_lines="22"
+{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial004.py!}
+```
+
+////
 
 Die Defaultwerte werden dann nicht in der Response enthalten sein, sondern nur die tatsächlich gesetzten Werte.
 
@@ -446,17 +502,21 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
 
     Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="29  35"
-    {!> ../../../docs_src/response_model/tutorial005_py310.py!}
-    ```
+```Python hl_lines="29  35"
+{!> ../../../docs_src/response_model/tutorial005_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="31  37"
-    {!> ../../../docs_src/response_model/tutorial005.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="31  37"
+{!> ../../../docs_src/response_model/tutorial005.py!}
+```
+
+////
 
 !!! tip "Tipp"
     Die Syntax `{"name", "description"}` erzeugt ein `set` mit diesen zwei Werten.
@@ -467,17 +527,21 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
 
 Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ein `tuple` übergeben, wird FastAPI die dennoch in ein `set` konvertieren, und es wird korrekt funktionieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="29  35"
-    {!> ../../../docs_src/response_model/tutorial006_py310.py!}
-    ```
+```Python hl_lines="29  35"
+{!> ../../../docs_src/response_model/tutorial006_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="31  37"
-    {!> ../../../docs_src/response_model/tutorial006.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="31  37"
+{!> ../../../docs_src/response_model/tutorial006.py!}
+```
+
+////
 
 ## Zusammenfassung
 

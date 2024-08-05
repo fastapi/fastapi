@@ -110,41 +110,51 @@ Sie verfügt über eine `POST`-Operation, die mehrere Fehler zurückgeben könnt
 
 Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python
+{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Erweiterte Testdatei
 

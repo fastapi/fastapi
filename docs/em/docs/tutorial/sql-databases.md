@@ -262,23 +262,29 @@ connect_args={"check_same_thread": False}
 
 ✋️ 💂‍♂, `password` 🏆 🚫 🎏 Pydantic *🏷*, 🖼, ⚫️ 🏆 🚫 📨 ⚪️➡️ 🛠️ 🕐❔ 👂 👩‍💻.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+```Python hl_lines="3  6-8  11-12  23-24  27-28"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="3  6-8  11-12  23-24  27-28"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="1  4-6  9-10  21-22  25-26"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
+
+////
 
 #### 🇸🇲 👗 &amp; Pydantic 👗
 
@@ -306,23 +312,29 @@ name: str
 
 🚫 🕴 🆔 📚 🏬, ✋️ 🌐 💽 👈 👥 🔬 Pydantic *🏷* 👂 🏬: `Item`.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+```Python hl_lines="15-17  31-34"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="15-17  31-34"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="13-15  29-32"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="13-15  29-32"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
+
+////
 
 !!! tip
     👀 👈 `User`, Pydantic *🏷* 👈 🔜 ⚙️ 🕐❔ 👂 👩‍💻 (🛬 ⚫️ ⚪️➡️ 🛠️) 🚫 🔌 `password`.
@@ -335,23 +347,29 @@ name: str
 
 `Config` 🎓, ⚒ 🔢 `orm_mode = True`.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+```Python hl_lines="15  19-20  31  36-37"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="15  19-20  31  36-37"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="13  17-18  29  34-35"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="13  17-18  29  34-35"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
+
+////
 
 !!! tip
     👀 ⚫️ ⚖ 💲 ⏮️ `=`, 💖:
@@ -481,17 +499,21 @@ current_user.items
 
 📶 🙃 🌌 ✍ 💽 🏓:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="7"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
+
+////
 
 #### ⚗ 🗒
 
@@ -515,17 +537,21 @@ current_user.items
 
 👆 🔗 🔜 ✍ 🆕 🇸🇲 `SessionLocal` 👈 🔜 ⚙️ 👁 📨, &amp; ⤴️ 🔐 ⚫️ 🕐 📨 🏁.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="15-20"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+```Python hl_lines="15-20"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="13-18"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="13-18"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
+
+////
 
 !!! info
     👥 🚮 🏗 `SessionLocal()` &amp; 🚚 📨 `try` 🍫.
@@ -540,17 +566,21 @@ current_user.items
 
 👉 🔜 ⤴️ 🤝 👥 👍 👨‍🎨 🐕‍🦺 🔘 *➡ 🛠️ 🔢*, ↩️ 👨‍🎨 🔜 💭 👈 `db` 🔢 🆎 `Session`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="24  32  38  47  53"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+```Python hl_lines="24  32  38  47  53"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="22  30  36  45  51"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="22  30  36  45  51"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
+
+////
 
 !!! info "📡 ℹ"
     🔢 `db` 🤙 🆎 `SessionLocal`, ✋️ 👉 🎓 (✍ ⏮️ `sessionmaker()`) "🗳" 🇸🇲 `Session`,, 👨‍🎨 🚫 🤙 💭 ⚫️❔ 👩‍🔬 🚚.
@@ -561,17 +591,21 @@ current_user.items
 
 🔜, 😒, 📥 🐩 **FastAPI** *➡ 🛠️* 📟.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
+
+////
 
 👥 🏗 💽 🎉 ⏭ 🔠 📨 🔗 ⏮️ `yield`, &amp; ⤴️ 📪 ⚫️ ⏮️.
 
@@ -654,23 +688,29 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/schemas.py`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+```Python
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
+
+////
 
 * `sql_app/crud.py`:
 
@@ -680,17 +720,21 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/main.py`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
+
+////
 
 ## ✅ ⚫️
 
@@ -739,17 +783,21 @@ $ uvicorn sql_app.main:app --reload
 
 🛠️ 👥 🔜 🚮 (🔢) 🔜 ✍ 🆕 🇸🇲 `SessionLocal` 🔠 📨, 🚮 ⚫️ 📨 &amp; ⤴️ 🔐 ⚫️ 🕐 📨 🏁.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="14-22"
-    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-    ```
+```Python hl_lines="14-22"
+{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="12-20"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="12-20"
+{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+```
+
+////
 
 !!! info
     👥 🚮 🏗 `SessionLocal()` &amp; 🚚 📨 `try` 🍫.

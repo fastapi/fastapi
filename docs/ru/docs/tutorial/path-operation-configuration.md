@@ -13,23 +13,29 @@
 
 Но если вы не помните, для чего нужен каждый числовой код, вы можете использовать сокращенные константы в параметре `status`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  15"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
-    ```
+```Python hl_lines="1  15"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+```
+
+////
 
 Этот код состояния будет использован в ответе и будет добавлен в схему OpenAPI.
 
@@ -42,23 +48,29 @@
 
 Вы можете добавлять теги к вашим *операциям пути*, добавив параметр `tags` с `list` заполненным `str`-значениями (обычно в нём только одна строка):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="15  20  25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
-    ```
+```Python hl_lines="15  20  25"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+```
+
+////
 
 Они будут добавлены в схему OpenAPI и будут использованы в автоматической документации интерфейса:
 
@@ -80,23 +92,29 @@
 
 Вы можете добавить параметры `summary` и `description`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
-    ```
+```Python hl_lines="18-19"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+```
+
+////
 
 ## Описание из строк документации
 
@@ -104,23 +122,29 @@
 
 Вы можете использовать <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> в строке документации, и он будет интерпретирован и отображён корректно (с учетом отступа в строке документации).
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="17-25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
-    ```
+```Python hl_lines="17-25"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+```
+
+////
 
 Он будет использован в интерактивной документации:
 
@@ -130,23 +154,29 @@
 
 Вы можете указать описание ответа с помощью параметра `response_description`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+```
+
+////
 
 !!! info "Дополнительная информация"
     Помните, что `response_description` относится конкретно к ответу, а `description` относится к *операции пути* в целом.

@@ -31,41 +31,51 @@ Primeiro vamos focar na dependência.
 
 Ela é apenas uma função que pode receber os mesmos parâmetros de uma *função de operação de rota*:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="9-12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 E pronto.
 
@@ -94,81 +104,101 @@ E então retorna um `dict` contendo esses valores.
 
 ### Importando `Depends`
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 ### Declarando a dependência, no "dependente"
 
 Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *função de operação de rota*, utilize `Depends` com um novo parâmetro:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="13  18"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="16  21"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Ainda que `Depends` seja utilizado nos parâmetros da função da mesma forma que `Body`, `Query`, etc, `Depends` funciona de uma forma um pouco diferente.
 
@@ -219,23 +249,29 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` em uma variável e utilizá-la em múltiplos locais:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="12  16  21"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14  18  23"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="15  19  24"
+{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+```
+
+////
 
 !!! tip "Dica"
     Isso é apenas Python padrão, essa funcionalidade é chamada de "type alias", e na verdade não é específica ao **FastAPI**.

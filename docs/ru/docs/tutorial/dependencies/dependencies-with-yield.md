@@ -66,26 +66,32 @@ FastAPI поддерживает зависимости, которые выпо
 
 Например, `dependency_c` может иметь зависимость от `dependency_b`, а `dependency_b` от `dependency_a`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="6  14  22"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="5  13  21"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="4  12  20"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 И все они могут использовать `yield`.
 
@@ -93,26 +99,32 @@ FastAPI поддерживает зависимости, которые выпо
 
 И, в свою очередь, `dependency_b` нуждается в том, чтобы значение из `dependency_a` (здесь `dep_a`) было доступно для ее завершающего кода.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="18-19  26-27"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.6+
 
-=== "Python 3.6+ без Annotated"
+```Python hl_lines="17-18  25-26"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+////
 
-    ```Python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.6+ без Annotated
+
+!!! tip "Подсказка"
+    Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+```Python hl_lines="16-17  24-25"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 Точно так же можно иметь часть зависимостей с `yield`, часть с `return`, и какие-то из них могут зависеть друг от друга.
 

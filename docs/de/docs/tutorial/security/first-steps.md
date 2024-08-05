@@ -20,26 +20,32 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 ## Ausführen
 
@@ -133,26 +139,32 @@ In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem 
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="7"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python  hl_lines="7"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="6"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 !!! tip "Tipp"
     Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
@@ -184,26 +196,32 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="11"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python  hl_lines="11"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+!!! tip "Tipp"
+    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+```Python hl_lines="10"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 

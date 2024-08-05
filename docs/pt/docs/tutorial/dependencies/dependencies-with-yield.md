@@ -66,26 +66,32 @@ O **FastAPI** garantirá que o "código de saída" em cada dependência com `yie
 
 Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` depender de `dependency_a`:
 
-=== "python 3.9+"
+//// tab | python 3.9+
 
-    ```python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```python hl_lines="6  14  22"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "python 3.8+"
+////
 
-    ```python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | python 3.8+
 
-=== "python 3.8+ non-annotated"
+```python hl_lines="5  13  21"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+////
 
-    ```python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | python 3.8+ non-annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```python hl_lines="4  12  20"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 E todas elas podem utilizar `yield`.
 
@@ -93,26 +99,32 @@ Neste caso, `dependency_c` precisa que o valor de `dependency_b` (nomeada de `de
 
 E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeada de `dep_a`) continue disponível para executar seu código de saída.
 
-=== "python 3.9+"
+//// tab | python 3.9+
 
-    ```python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```python hl_lines="18-19  26-27"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "python 3.8+"
+////
 
-    ```python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | python 3.8+
 
-=== "python 3.8+ non-annotated"
+```python hl_lines="17-18  25-26"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+////
 
-    ```python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | python 3.8+ non-annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```python hl_lines="16-17  24-25"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 Da mesma forma, você pode ter algumas dependências com `yield` e outras com `return` e ter uma relação de dependência entre algumas dos dois tipos.
 
@@ -139,26 +151,32 @@ Da mesma forma, você pode lançar uma `httpexception` ou algo parecido no códi
 
     Mas ela existe para ser utilizada caso você precise. 🤓
 
-=== "python 3.9+"
+//// tab | python 3.9+
 
-    ```python hl_lines="18-22  31"
-    {!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
-    ```
+```python hl_lines="18-22  31"
+{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+```
 
-=== "python 3.8+"
+////
 
-    ```python hl_lines="17-21  30"
-    {!> ../../../docs_src/dependencies/tutorial008b_an.py!}
-    ```
+//// tab | python 3.8+
 
-=== "python 3.8+ non-annotated"
+```python hl_lines="17-21  30"
+{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+```
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+////
 
-    ```python hl_lines="16-20  29"
-    {!> ../../../docs_src/dependencies/tutorial008b.py!}
-    ```
+//// tab | python 3.8+ non-annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```python hl_lines="16-20  29"
+{!> ../../../docs_src/dependencies/tutorial008b.py!}
+```
+
+////
 
 Uma alternativa que você pode utilizar para capturar exceções (e possivelmente lançar outra HTTPException) é criar um [Manipulador de Exceções Customizado](../handling-errors.md#instalando-manipuladores-de-excecoes-customizados){.internal-link target=_blank}.
 
@@ -166,26 +184,32 @@ Uma alternativa que você pode utilizar para capturar exceções (e possivelment
 
 Se você capturar uma exceção com `except` em uma dependência que utilize `yield` e ela não for levantada novamente (ou uma nova exceção for levantada), o FastAPI não será capaz de identifcar que houve uma exceção, da mesma forma que aconteceria com Python puro:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
-    ```
+```Python hl_lines="15-16"
+{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="14-15"
-    {!> ../../../docs_src/dependencies/tutorial008c_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-annotated"
+```Python hl_lines="14-15"
+{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+```
 
-    !!! tip "dica"
-        utilize a versão com `Annotated` se possível.
+////
 
-    ```Python hl_lines="13-14"
-    {!> ../../../docs_src/dependencies/tutorial008c.py!}
-    ```
+//// tab | Python 3.8+ non-annotated
+
+!!! tip "dica"
+    utilize a versão com `Annotated` se possível.
+
+```Python hl_lines="13-14"
+{!> ../../../docs_src/dependencies/tutorial008c.py!}
+```
+
+////
 
 Neste caso, o cliente irá ver uma resposta *HTTP 500 Internal Server Error* como deveria acontecer, já que não estamos levantando nenhuma `HTTPException` ou coisa parecida, mas o servidor **não terá nenhum log** ou qualquer outra indicação de qual foi o erro. 😱
 
@@ -195,26 +219,32 @@ Se você capturar uma exceção em uma dependência com `yield`, a menos que voc
 
 Você pode relançar a mesma exceção utilizando `raise`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
-    ```
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial008d_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "python 3.8+ non-annotated"
+```Python hl_lines="16"
+{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+```
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+////
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/dependencies/tutorial008d.py!}
-    ```
+//// tab | python 3.8+ non-annotated
+
+!!! tip "Dica"
+    Utilize a versão com `Annotated` se possível.
+
+```Python hl_lines="15"
+{!> ../../../docs_src/dependencies/tutorial008d.py!}
+```
+
+////
 
 Agora o cliente irá receber a mesma resposta *HTTP 500 Internal Server Error*, mas o servidor terá nosso `InternalError` personalizado nos logs. 😎
 

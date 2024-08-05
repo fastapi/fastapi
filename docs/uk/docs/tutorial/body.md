@@ -19,17 +19,21 @@
 
 Спочатку вам потрібно імпортувати `BaseModel` з `pydantic`:
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="2"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
+
+////
 
 ## Створіть свою модель даних
 
@@ -37,17 +41,21 @@
 
 Використовуйте стандартні типи Python для всіх атрибутів:
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="7-11"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+```Python hl_lines="7-11"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="5-9"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="5-9"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
+
+////
 
 Так само, як і при оголошенні параметрів запиту, коли атрибут моделі має значення за замовчуванням, він не є обов’язковим. В іншому випадку це потрібно. Використовуйте `None`, щоб зробити його необов'язковим.
 
@@ -75,17 +83,21 @@
 
 Щоб додати модель даних до вашої *операції шляху*, оголосіть її так само, як ви оголосили параметри шляху та запиту:
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
+
+////
 
 ...і вкажіть її тип як модель, яку ви створили, `Item`.
 
@@ -149,17 +161,21 @@
 
 Усередині функції ви можете отримати прямий доступ до всіх атрибутів об’єкта моделі:
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/body/tutorial002.py!}
-    ```
+```Python hl_lines="21"
+{!> ../../../docs_src/body/tutorial002.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/body/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="19"
+{!> ../../../docs_src/body/tutorial002_py310.py!}
+```
+
+////
 
 ## Тіло запиту + параметри шляху
 
@@ -167,17 +183,21 @@
 
 **FastAPI** розпізнає, що параметри функції, які відповідають параметрам шляху, мають бути **взяті з шляху**, а параметри функції, які оголошуються як моделі Pydantic, **взяті з тіла запиту**.
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/body/tutorial003.py!}
-    ```
+```Python hl_lines="17-18"
+{!> ../../../docs_src/body/tutorial003.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/body/tutorial003_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="15-16"
+{!> ../../../docs_src/body/tutorial003_py310.py!}
+```
+
+////
 
 ## Тіло запиту + шлях + параметри запиту
 
@@ -185,17 +205,21 @@
 
 **FastAPI** розпізнає кожен з них і візьме дані з потрібного місця.
 
-=== "Python 3.8 і вище"
+//// tab | Python 3.8 і вище
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial004.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial004.py!}
+```
 
-=== "Python 3.10 і вище"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial004_py310.py!}
-    ```
+//// tab | Python 3.10 і вище
+
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial004_py310.py!}
+```
+
+////
 
 Параметри функції будуть розпізнаватися наступним чином:
 

@@ -15,37 +15,41 @@
 
 👆 💪 ✍ &amp; ⚙️ 🌐 🔢 🐚, 🍵 💆‍♂ 🐍:
 
-=== "💾, 🇸🇻, 🚪 🎉"
+//// tab | 💾, 🇸🇻, 🚪 🎉
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // You could create an env var MY_NAME with
-    $ export MY_NAME="Wade Wilson"
+```console
+// You could create an env var MY_NAME with
+$ export MY_NAME="Wade Wilson"
 
-    // Then you could use it with other programs, like
-    $ echo "Hello $MY_NAME"
+// Then you could use it with other programs, like
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    // Create an env var MY_NAME
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // Use it with other programs, like
-    $ echo "Hello $Env:MY_NAME"
+```console
+// Create an env var MY_NAME
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// Use it with other programs, like
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### ✍ 🇨🇻 {🐍
 
