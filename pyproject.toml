@@ -50,6 +50,7 @@ dependencies = [
 Homepage = "https://github.com/fastapi/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 Changelog = "https://fastapi.tiangolo.com/release-notes/"
+Issues = "https://github.com/fastapi/fastapi/issues"
 Repository = "https://github.com/fastapi/fastapi"
 
 [project.optional-dependencies]
