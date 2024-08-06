@@ -391,7 +391,6 @@ extra_css:
 extra_javascript:
 - js/termynal.js
 - js/custom.js
-- https://app.mailjet.com/pas-nc-embedded-v1.js
 
 hooks:
 - ../../scripts/mkdocs_hooks.py
