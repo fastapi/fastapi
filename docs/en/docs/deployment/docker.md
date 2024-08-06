@@ -231,7 +231,7 @@ Review what each line does by clicking each number bubble in the code. 👆
 
 /// caution
 
-The [CMD](https://docs.docker.com/reference/dockerfile/#cmd) command has can written using [shell or exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form):
+The [CMD](https://docs.docker.com/reference/dockerfile/#cmd) command can be written using [shell or exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form):
 
 * CMD ["fastapi", "run", "app/main.py", "--port", "80"] (exec form)
 * CMD fastapi run app/main.py --port 80 (shell form)
