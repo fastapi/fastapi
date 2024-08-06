@@ -4,9 +4,11 @@
 
 使用 Linux 容器有几个优点，包括**安全性**、**可复制性**、**简单性**等。
 
-!!! tip
-    赶时间并且已经知道这些东西了？ 跳转到下面的 [`Dockerfile` 👇](#fastapi-docker_1)。
+/// tip
 
+赶时间并且已经知道这些东西了？ 跳转到下面的 [`Dockerfile` 👇](#fastapi-docker_1)。
+
+///
 
 <details>
 <summary>Dockerfile Preview 👀</summary>
@@ -137,10 +139,13 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-!!! info
-     还有其他文件格式和工具来定义和安装依赖项。
+/// info
 
-     我将在下面的部分中向你展示一个使用 Poetry 的示例。 👇
+还有其他文件格式和工具来定义和安装依赖项。
+
+ 我将在下面的部分中向你展示一个使用 Poetry 的示例。 👇
+
+///
 
 ### 创建 **FastAPI** 代码
 
@@ -232,8 +237,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
      因为程序将从`/code`启动，并且其中包含你的代码的目录`./app`，所以**Uvicorn**将能够从`app.main`中查看并**import**`app`。
 
-!!! tip
-     通过单击代码中的每个数字气泡来查看每行的作用。 👆
+/// tip
+
+通过单击代码中的每个数字气泡来查看每行的作用。 👆
+
+///
 
 你现在应该具有如下目录结构：
 ```
@@ -306,10 +314,13 @@ $ docker build -t myimage .
 </div>
 
 
-!!! tip
-    注意最后的 `.`，它相当于`./`，它告诉 Docker 用于构建容器镜像的目录。
+/// tip
 
-    在本例中，它是相同的当前目录（`.`）。
+注意最后的 `.`，它相当于`./`，它告诉 Docker 用于构建容器镜像的目录。
+
+在本例中，它是相同的当前目录（`.`）。
+
+///
 
 ### 启动 Docker 容器
 
@@ -409,8 +420,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 它可以是另一个容器，例如使用 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>，处理 **HTTPS** 和 **自动**获取**证书**。
 
-!!! tip
-    Traefik可以与 Docker、Kubernetes 等集成，因此使用它为容器设置和配置 HTTPS 非常容易。
+/// tip
+
+Traefik可以与 Docker、Kubernetes 等集成，因此使用它为容器设置和配置 HTTPS 非常容易。
+
+///
 
 或者，HTTPS 可以由云服务商作为其服务之一进行处理（同时仍在容器中运行应用程序）。
 
@@ -439,8 +453,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 由于该组件将接受请求的**负载**并（希望）以**平衡**的方式在worker之间分配该请求，因此它通常也称为**负载均衡器**。
 
-!!! tip
-    用于 HTTPS **TLS 终止代理** 的相同组件也可能是 **负载均衡器**。
+/// tip
+
+用于 HTTPS **TLS 终止代理** 的相同组件也可能是 **负载均衡器**。
+
+///
 
 当使用容器时，你用来启动和管理容器的同一系统已经具有内部工具来传输来自该**负载均衡器**（也可以是**TLS 终止代理**) 的**网络通信**（例如HTTP请求）到你的应用程序容器。
 
@@ -526,8 +543,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 如果你有 **多个容器**，可能每个容器都运行一个 **单个进程**（例如，在 **Kubernetes** 集群中），那么你可能希望有一个 **单独的容器** 执行以下操作： 在单个容器中运行单个进程执行**先前步骤**，即运行复制的worker容器之前。
 
-!!! info
-    如果你使用 Kubernetes，这可能是 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>。
+/// info
+
+如果你使用 Kubernetes，这可能是 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>。
+
+///
 
 如果在你的用例中，运行前面的步骤**并行多次**没有问题（例如，如果你没有运行数据库迁移，而只是检查数据库是否已准备好），那么你也可以将它们放在开始主进程之前在每个容器中。
 
@@ -546,8 +566,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 
-!!! warning
-    你很有可能不需要此基础镜像或任何其他类似的镜像，最好从头开始构建镜像，如[上面所述：为 FastAPI 构建 Docker 镜像](#build-a-docker-image-for-fastapi)。
+/// warning
+
+你很有可能不需要此基础镜像或任何其他类似的镜像，最好从头开始构建镜像，如[上面所述：为 FastAPI 构建 Docker 镜像](#build-a-docker-image-for-fastapi)。
+
+///
 
 该镜像包含一个**自动调整**机制，用于根据可用的 CPU 核心设置**worker进程数**。
 
@@ -555,8 +578,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 它还支持通过一个脚本运行<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**开始前的先前步骤** </a>。
 
-!!! tip
-    要查看所有配置和选项，请转到 Docker 镜像页面： <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank" >tiangolo/uvicorn-gunicorn-fastapi</a>。
+/// tip
+
+要查看所有配置和选项，请转到 Docker 镜像页面： <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank" >tiangolo/uvicorn-gunicorn-fastapi</a>。
+
+///
 
 ### 官方 Docker 镜像上的进程数
 
@@ -686,8 +712,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 11. 运行`uvicorn`命令，告诉它使用从`app.main`导入的`app`对象。
 
-!!! tip
-    单击气泡数字可查看每行的作用。
+/// tip
+
+单击气泡数字可查看每行的作用。
+
+///
 
 **Docker stage** 是 `Dockerfile` 的一部分，用作 **临时容器镜像**，仅用于生成一些稍后使用的文件。
 

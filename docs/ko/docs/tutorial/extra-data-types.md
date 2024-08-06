@@ -55,76 +55,108 @@
 
 위의 몇몇 자료형을 매개변수로 사용하는 *경로 작동* 예시입니다.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="1  3  13-17"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="1  3  13-17"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1  2  11-15"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="1  2  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="1  2  11-15"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="1  2  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////
 
 함수 안의 매개변수가 그들만의 데이터 자료형을 가지고 있으며, 예를 들어, 다음과 같이 날짜를 조작할 수 있음을 참고하십시오:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="19-20"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="19-20"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="17-18"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////

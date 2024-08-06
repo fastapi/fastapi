@@ -4,8 +4,11 @@ Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein 
 
 Die Verwendung von Linux-Containern bietet mehrere Vorteile, darunter **Sicherheit**, **Replizierbarkeit**, **Einfachheit** und andere.
 
-!!! tip "Tipp"
-    Sie haben es eilig und kennen sich bereits aus? Springen Sie zum [`Dockerfile` unten 👇](#ein-docker-image-fur-fastapi-erstellen).
+/// tip | "Tipp"
+
+Sie haben es eilig und kennen sich bereits aus? Springen Sie zum [`Dockerfile` unten 👇](#ein-docker-image-fur-fastapi-erstellen).
+
+///
 
 <Details>
 <summary>Dockerfile-Vorschau 👀</summary>
@@ -130,10 +133,13 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-!!! info
-    Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
+/// info
 
-    Ich zeige Ihnen später in einem Abschnitt unten ein Beispiel unter Verwendung von Poetry. 👇
+Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
+
+Ich zeige Ihnen später in einem Abschnitt unten ein Beispiel unter Verwendung von Poetry. 👇
+
+///
 
 ### Den **FastAPI**-Code erstellen
 
@@ -222,8 +228,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     Da das Programm unter `/code` gestartet wird und sich darin das Verzeichnis `./app` mit Ihrem Code befindet, kann **Uvicorn** `app` sehen und aus `app.main` **importieren**.
 
-!!! tip "Tipp"
-    Lernen Sie, was jede Zeile bewirkt, indem Sie auf die Zahlenblasen im Code klicken. 👆
+/// tip | "Tipp"
+
+Lernen Sie, was jede Zeile bewirkt, indem Sie auf die Zahlenblasen im Code klicken. 👆
+
+///
 
 Sie sollten jetzt eine Verzeichnisstruktur wie diese haben:
 
@@ -293,10 +302,13 @@ $ docker build -t myimage .
 
 </div>
 
-!!! tip "Tipp"
-    Beachten Sie das `.` am Ende, es entspricht `./` und teilt Docker mit, welches Verzeichnis zum Erstellen des Containerimages verwendet werden soll.
+/// tip | "Tipp"
 
-    In diesem Fall handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
+Beachten Sie das `.` am Ende, es entspricht `./` und teilt Docker mit, welches Verzeichnis zum Erstellen des Containerimages verwendet werden soll.
+
+In diesem Fall handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
+
+///
 
 ### Den Docker-Container starten
 
@@ -394,8 +406,11 @@ Wenn wir uns nur auf das **Containerimage** für eine FastAPI-Anwendung (und sp�
 
 Es könnte sich um einen anderen Container handeln, zum Beispiel mit <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, welcher **HTTPS** und **automatischen** Erwerb von **Zertifikaten** handhabt.
 
-!!! tip "Tipp"
-    Traefik verfügt über Integrationen mit Docker, Kubernetes und anderen, sodass Sie damit ganz einfach HTTPS für Ihre Container einrichten und konfigurieren können.
+/// tip | "Tipp"
+
+Traefik verfügt über Integrationen mit Docker, Kubernetes und anderen, sodass Sie damit ganz einfach HTTPS für Ihre Container einrichten und konfigurieren können.
+
+///
 
 Alternativ könnte HTTPS von einem Cloud-Anbieter als einer seiner Dienste gehandhabt werden (während die Anwendung weiterhin in einem Container ausgeführt wird).
 
@@ -423,8 +438,11 @@ Bei der Verwendung von Containern ist normalerweise eine Komponente vorhanden, *
 
 Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) **ausgewogen** auf die Worker verteilen würde, wird sie üblicherweise auch **Load Balancer** – Lastverteiler – genannt.
 
-!!! tip "Tipp"
-    Die gleiche **TLS-Terminierungsproxy**-Komponente, die für HTTPS verwendet wird, wäre wahrscheinlich auch ein **Load Balancer**.
+/// tip | "Tipp"
+
+Die gleiche **TLS-Terminierungsproxy**-Komponente, die für HTTPS verwendet wird, wäre wahrscheinlich auch ein **Load Balancer**.
+
+///
 
 Und wenn Sie mit Containern arbeiten, verfügt das gleiche System, mit dem Sie diese starten und verwalten, bereits über interne Tools, um die **Netzwerkkommunikation** (z. B. HTTP-Requests) von diesem **Load Balancer** (das könnte auch ein **TLS-Terminierungsproxy** sein) zu den Containern mit Ihrer Anwendung weiterzuleiten.
 
@@ -503,8 +521,11 @@ Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächl
 
 Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
-!!! info
-    Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init-Container</a>.
+/// info
+
+Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init-Container</a>.
+
+///
 
 Wenn es in Ihrem Anwendungsfall kein Problem darstellt, diese vorherigen Schritte **mehrmals parallel** auszuführen (z. B. wenn Sie keine Datenbankmigrationen ausführen, sondern nur prüfen, ob die Datenbank bereits bereit ist), können Sie sie auch einfach in jedem Container direkt vor dem Start des Hauptprozesses einfügen.
 
@@ -520,8 +541,11 @@ Dieses Image wäre vor allem in den oben beschriebenen Situationen nützlich: [C
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-!!! warning "Achtung"
-    Es besteht eine hohe Wahrscheinlichkeit, dass Sie dieses oder ein ähnliches Basisimage **nicht** benötigen und es besser wäre, wenn Sie das Image von Grund auf neu erstellen würden, wie [oben beschrieben in: Ein Docker-Image für FastAPI erstellen](#ein-docker-image-fur-fastapi-erstellen).
+/// warning | "Achtung"
+
+Es besteht eine hohe Wahrscheinlichkeit, dass Sie dieses oder ein ähnliches Basisimage **nicht** benötigen und es besser wäre, wenn Sie das Image von Grund auf neu erstellen würden, wie [oben beschrieben in: Ein Docker-Image für FastAPI erstellen](#ein-docker-image-fur-fastapi-erstellen).
+
+///
 
 Dieses Image verfügt über einen **Auto-Tuning**-Mechanismus, um die **Anzahl der Arbeitsprozesse** basierend auf den verfügbaren CPU-Kernen festzulegen.
 
@@ -529,8 +553,11 @@ Es verfügt über **vernünftige Standardeinstellungen**, aber Sie können trotz
 
 Es unterstützt auch die Ausführung von <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**Vorab-Schritten vor dem Start** </a> mit einem Skript.
 
-!!! tip "Tipp"
-    Um alle Konfigurationen und Optionen anzuzeigen, gehen Sie zur Docker-Image-Seite: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+/// tip | "Tipp"
+
+Um alle Konfigurationen und Optionen anzuzeigen, gehen Sie zur Docker-Image-Seite: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+
+///
 
 ### Anzahl der Prozesse auf dem offiziellen Docker-Image
 
@@ -657,8 +684,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 11. Führe den Befehl `uvicorn` aus und weise ihn an, das aus `app.main` importierte `app`-Objekt zu verwenden.
 
-!!! tip "Tipp"
-    Klicken Sie auf die Zahlenblasen, um zu sehen, was jede Zeile bewirkt.
+/// tip | "Tipp"
+
+Klicken Sie auf die Zahlenblasen, um zu sehen, was jede Zeile bewirkt.
+
+///
 
 Eine **Docker-Phase** ist ein Teil eines `Dockerfile`s, welcher als **temporäres Containerimage** fungiert und nur zum Generieren einiger Dateien für die spätere Verwendung verwendet wird.
 

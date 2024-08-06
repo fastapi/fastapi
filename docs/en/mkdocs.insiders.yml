@@ -5,3 +5,8 @@ plugins:
     cards_layout_options:
       logo: ../en/docs/img/icon-white.svg
   typeset:
+markdown_extensions:
+  material.extensions.preview:
+    targets:
+      include:
+        - ./*

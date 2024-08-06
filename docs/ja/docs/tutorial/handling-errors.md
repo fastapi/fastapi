@@ -63,12 +63,15 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 }
 ```
 
-!!! tip "豆知識"
-    `HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
+/// tip | "豆知識"
 
-    `dist`や`list`などを渡すことができます。
+`HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
 
-    これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
+`dist`や`list`などを渡すことができます。
+
+これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
+
+///
 
 ## カスタムヘッダーの追加
 
@@ -106,10 +109,13 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "技術詳細"
-    また、`from starlette.requests import Request`と`from starlette.responses import JSONResponse`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。これは`Request`と同じです。
+また、`from starlette.requests import Request`と`from starlette.responses import JSONResponse`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。これは`Request`と同じです。
+
+///
 
 ## デフォルトの例外ハンドラのオーバーライド
 
@@ -160,8 +166,11 @@ path -> item_id
 
 #### `RequestValidationError`と`ValidationError`
 
-!!! warning "注意"
-    これらは今のあなたにとって重要でない場合は省略しても良い技術的な詳細です。
+/// warning | "注意"
+
+これらは今のあなたにとって重要でない場合は省略しても良い技術的な詳細です。
+
+///
 
 `RequestValidationError`はPydanticの<a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>のサブクラスです。
 
@@ -183,10 +192,13 @@ path -> item_id
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "技術詳細"
-    また、`from starlette.responses import PlainTextResponse`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+また、`from starlette.responses import PlainTextResponse`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+
+///
 
 ### `RequestValidationError`のボディの使用
 

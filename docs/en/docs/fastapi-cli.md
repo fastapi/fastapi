@@ -76,5 +76,8 @@ By default, **auto-reload** is disabled. It also listens on the IP address `0.0.
 
 In most cases you would (and should) have a "termination proxy" handling HTTPS for you on top, this will depend on how you deploy your application, your provider might do this for you, or you might need to set it up yourself.
 
-!!! tip
-    You can learn more about it in the [deployment documentation](deployment/index.md){.internal-link target=_blank}.
+/// tip
+
+You can learn more about it in the [deployment documentation](deployment/index.md){.internal-link target=_blank}.
+
+///

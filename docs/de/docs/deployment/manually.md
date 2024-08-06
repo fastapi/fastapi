@@ -22,75 +22,89 @@ Wenn man sich auf die entfernte Maschine bezieht, wird sie üblicherweise als **
 
 Sie können einen ASGI-kompatiblen Server installieren mit:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, ein blitzschneller ASGI-Server, basierend auf uvloop und httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, ein blitzschneller ASGI-Server, basierend auf uvloop und httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-    !!! tip "Tipp"
-        Durch das Hinzufügen von `standard` installiert und verwendet Uvicorn einige empfohlene zusätzliche Abhängigkeiten.
+/// tip | "Tipp"
 
-        Inklusive `uvloop`, einen hochperformanten Drop-in-Ersatz für `asyncio`, welcher für einen großen Leistungsschub bei der Nebenläufigkeit sorgt.
+Durch das Hinzufügen von `standard` installiert und verwendet Uvicorn einige empfohlene zusätzliche Abhängigkeiten.
 
-=== "Hypercorn"
+Inklusive `uvloop`, einen hochperformanten Drop-in-Ersatz für `asyncio`, welcher für einen großen Leistungsschub bei der Nebenläufigkeit sorgt.
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ein ASGI-Server, der auch mit HTTP/2 kompatibel ist.
+///
 
-    <div class="termy">
+////
 
-    ```console
-    $ pip install hypercorn
+//// tab | Hypercorn
 
-    ---> 100%
-    ```
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ein ASGI-Server, der auch mit HTTP/2 kompatibel ist.
 
-    </div>
+<div class="termy">
 
-    ... oder jeden anderen ASGI-Server.
+```console
+$ pip install hypercorn
+
+---> 100%
+```
+
+</div>
+
+... oder jeden anderen ASGI-Server.
+
+////
 
 ## Das Serverprogramm ausführen
 
 Anschließend können Sie Ihre Anwendung auf die gleiche Weise ausführen, wie Sie es in den Tutorials getan haben, jedoch ohne die Option `--reload`, z. B.:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
 
-!!! warning "Achtung"
-    Denken Sie daran, die Option `--reload` zu entfernen, wenn Sie diese verwendet haben.
+</div>
 
-    Die Option `--reload` verbraucht viel mehr Ressourcen, ist instabiler, usw.
+////
 
-    Sie hilft sehr während der **Entwicklung**, aber Sie sollten sie **nicht** in der **Produktion** verwenden.
+/// warning | "Achtung"
+
+Denken Sie daran, die Option `--reload` zu entfernen, wenn Sie diese verwendet haben.
+
+Die Option `--reload` verbraucht viel mehr Ressourcen, ist instabiler, usw.
+
+Sie hilft sehr während der **Entwicklung**, aber Sie sollten sie **nicht** in der **Produktion** verwenden.
+
+///
 
 ## Hypercorn mit Trio
 

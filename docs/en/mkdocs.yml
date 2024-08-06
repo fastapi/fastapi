@@ -6,6 +6,10 @@ theme:
   name: material
   custom_dir: ../en/overrides
   palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/lightbulb-auto
+      name: Switch to light mode
   - media: '(prefers-color-scheme: light)'
     scheme: default
     primary: teal
@@ -19,18 +23,30 @@ theme:
     accent: amber
     toggle:
       icon: material/lightbulb-outline
-      name: Switch to light mode
+      name: Switch to system preference
   features:
-  - search.suggest
-  - search.highlight
-  - content.tabs.link
-  - navigation.indexes
-  - content.tooltips
-  - navigation.path
   - content.code.annotate
   - content.code.copy
-  - content.code.select
+  # - content.code.select
+  - content.footnote.tooltips
+  - content.tabs.link
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.instant
+  - navigation.instant.prefetch
+  - navigation.instant.preview
+  - navigation.instant.progress
+  - navigation.path
   - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -38,9 +54,11 @@ theme:
   language: en
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
-edit_uri: ''
 plugins:
-  search: null
+  # Material for MkDocs
+  search:
+  social:
+  # Other plugins
   macros:
     include_yaml:
     - external_links: ../en/data/external_links.yml
@@ -81,6 +99,7 @@ plugins:
           signature_crossrefs: true
           show_symbol_type_heading: true
           show_symbol_type_toc: true
+
 nav:
 - FastAPI:
   - index.md
@@ -233,30 +252,72 @@ nav:
   - benchmarks.md
   - management.md
 - release-notes.md
+
 markdown_extensions:
+  # Python Markdown
+  abbr:
+  attr_list:
+  footnotes:
+  md_in_html:
+  tables:
   toc:
     permalink: true
-  markdown.extensions.codehilite:
-    guess_lang: false
-  mdx_include:
-    base_path: docs
-  admonition: null
-  codehilite: null
-  extra: null
+
+  # Python Markdown Extensions
+  pymdownx.betterem:
+    smart_enable: all
+  pymdownx.caret:
+  pymdownx.highlight:
+    line_spans: __span
+  pymdownx.inlinehilite:
+  pymdownx.keys:
+  pymdownx.mark:
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_code_format ''
-  pymdownx.tabbed:
-    alternate_style: true
-  pymdownx.tilde: null
-  attr_list: null
-  md_in_html: null
+      format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.tilde:
+
+  # pymdownx blocks
+  pymdownx.blocks.admonition:
+    types:
+    - note
+    - attention
+    - caution
+    - danger
+    - error
+    - tip
+    - hint
+    - warning
+    # Custom types
+    - info
+    - check
+  pymdownx.blocks.details:
+  pymdownx.blocks.tab:
+    alternate_style: True
+
+  # Other extensions
+  mdx_include:
+    base_path: docs
+
 extra:
   analytics:
     provider: google
     property: G-YNEVN69SC3
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback!
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/fastapi/fastapi
@@ -272,6 +333,7 @@ extra:
     link: https://medium.com/@tiangolo
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
+
   alternate:
   - link: /
     name: en - English
@@ -321,11 +383,14 @@ extra:
     name: zh-hant - 繁體中文
   - link: /em/
     name: 😉
+
 extra_css:
 - css/termynal.css
 - css/custom.css
+
 extra_javascript:
 - js/termynal.js
 - js/custom.js
+
 hooks:
 - ../../scripts/mkdocs_hooks.py

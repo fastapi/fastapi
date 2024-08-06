@@ -62,10 +62,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` signifie:
+/// info
 
-    Utilise les clés et valeurs du dictionnaire `second_user_data` directement comme des arguments clé-valeur. C'est équivalent à: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` signifie:
+
+Utilise les clés et valeurs du dictionnaire `second_user_data` directement comme des arguments clé-valeur. C'est équivalent à: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Support d'éditeurs
 

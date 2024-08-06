@@ -24,63 +24,73 @@ That will create a directory `./env/` with the Python binaries, and then you wil
 
 Activate the new environment with:
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 To check it worked, use:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
@@ -96,10 +106,13 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-!!! tip
-    Every time you install a new package with `pip` under that environment, activate the environment again.
+/// tip
 
-    This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
+Every time you install a new package with `pip` under that environment, activate the environment again.
+
+This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
+
+///
 
 ### Install requirements using pip
 
@@ -125,10 +138,13 @@ And if you update that local FastAPI source code when you run that Python file a
 
 That way, you don't have to "install" your local version to be able to test every change.
 
-!!! note "Technical Details"
-    This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
+/// note | "Technical Details"
 
-    That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
+
+That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+
+///
 
 ### Format the code
 
@@ -170,20 +186,23 @@ It will serve the documentation on `http://127.0.0.1:8008`.
 
 That way, you can edit the documentation/source files and see the changes live.
 
-!!! tip
-    Alternatively, you can perform the same steps that scripts does manually.
+/// tip
 
-    Go into the language directory, for the main docs in English it's at `docs/en/`:
+Alternatively, you can perform the same steps that scripts does manually.
 
-    ```console
-    $ cd docs/en/
-    ```
+Go into the language directory, for the main docs in English it's at `docs/en/`:
 
-    Then run `mkdocs` in that directory:
+```console
+$ cd docs/en/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+Then run `mkdocs` in that directory:
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 #### Typer CLI (optional)
 
@@ -210,8 +229,11 @@ The documentation uses <a href="https://www.mkdocs.org/" class="external-link" t
 
 And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
 
-!!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+/// tip
+
+You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+
+///
 
 All the documentation is in Markdown format in the directory `./docs/en/`.
 
@@ -261,10 +283,13 @@ Here are the steps to help with translations.
 
 * Review those pull requests, requesting changes or approving them. For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
-!!! tip
-    You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+/// tip
 
-    Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+
+Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+
+///
 
 * Check if there's a <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
@@ -278,8 +303,11 @@ Let's say you want to translate a page for a language that already has translati
 
 In the case of Spanish, the 2-letter code is `es`. So, the directory for Spanish translations is located at `docs/es/`.
 
-!!! tip
-    The main ("official") language is English, located at `docs/en/`.
+/// tip
+
+The main ("official") language is English, located at `docs/en/`.
+
+///
 
 Now run the live server for the docs in Spanish:
 
@@ -296,20 +324,23 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-!!! tip
-    Alternatively, you can perform the same steps that scripts does manually.
+/// tip
 
-    Go into the language directory, for the Spanish translations it's at `docs/es/`:
+Alternatively, you can perform the same steps that scripts does manually.
 
-    ```console
-    $ cd docs/es/
-    ```
+Go into the language directory, for the Spanish translations it's at `docs/es/`:
 
-    Then run `mkdocs` in that directory:
+```console
+$ cd docs/es/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+Then run `mkdocs` in that directory:
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
@@ -329,8 +360,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
-    Notice that the only change in the path and file name is the language code, from `en` to `es`.
+/// tip
+
+Notice that the only change in the path and file name is the language code, from `en` to `es`.
+
+///
 
 If you go to your browser you will see that now the docs show your new section (the info box at the top is gone). 🎉
 
@@ -365,8 +399,11 @@ That command created a file `docs/ht/mkdocs.yml` with a simple config that inher
 INHERIT: ../en/mkdocs.yml
 ```
 
-!!! tip
-    You could also simply create that file with those contents manually.
+/// tip
+
+You could also simply create that file with those contents manually.
+
+///
 
 That command also created a dummy file `docs/ht/index.md` for the main page, you can start by translating that one.
 

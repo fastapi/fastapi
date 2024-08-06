@@ -11,10 +11,13 @@
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "Teknik Detaylar"
-    Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
+/// note | "Teknik Detaylar"
 
-    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
+
+**FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+
+///
 
 ### Bağlama (Mounting) Nedir?
 

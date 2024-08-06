@@ -78,7 +78,10 @@ Qualquer solicitação com um cabeçalho `Origin`. Neste caso, o middleware pass
 
 Para mais informações <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, acesse <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
 
-!!! note "Detalhes técnicos"
-    Você também pode usar `from starlette.middleware.cors import CORSMiddleware`.
+/// note | "Detalhes técnicos"
 
-    **FastAPI** fornece vários middlewares em `fastapi.middleware` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria dos middlewares disponíveis vêm diretamente da Starlette.
+Você também pode usar `from starlette.middleware.cors import CORSMiddleware`.
+
+**FastAPI** fornece vários middlewares em `fastapi.middleware` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria dos middlewares disponíveis vêm diretamente da Starlette.
+
+///

@@ -24,63 +24,73 @@ $ python -m venv env
 
 🔓 🆕 🌐 ⏮️:
 
-=== "💾, 🇸🇻"
+//// tab | 💾, 🇸🇻
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "🚪 🎉"
+</div>
 
-    ⚖️ 🚥 👆 ⚙️ 🎉 🖥 (✅ <a href="https://gitforwindows.org/" class="external-link" target="_blank">🐛 🎉</a>):
+////
 
-    <div class="termy">
+//// tab | 🚪 🎉
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+⚖️ 🚥 👆 ⚙️ 🎉 🖥 (✅ <a href="https://gitforwindows.org/" class="external-link" target="_blank">🐛 🎉</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 ✅ ⚫️ 👷, ⚙️:
 
-=== "💾, 🇸🇻, 🚪 🎉"
+//// tab | 💾, 🇸🇻, 🚪 🎉
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 🚥 ⚫️ 🎦 `pip` 💱 `env/bin/pip` ⤴️ ⚫️ 👷. 👶
 
@@ -96,10 +106,13 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-!!! tip
-    🔠 🕰 👆 ❎ 🆕 📦 ⏮️ `pip` 🔽 👈 🌐, 🔓 🌐 🔄.
+/// tip
 
-    👉 ⚒ 💭 👈 🚥 👆 ⚙️ 📶 📋 ❎ 👈 📦, 👆 ⚙️ 1️⃣ ⚪️➡️ 👆 🇧🇿 🌐 &amp; 🚫 🙆 🎏 👈 💪 ❎ 🌐.
+🔠 🕰 👆 ❎ 🆕 📦 ⏮️ `pip` 🔽 👈 🌐, 🔓 🌐 🔄.
+
+👉 ⚒ 💭 👈 🚥 👆 ⚙️ 📶 📋 ❎ 👈 📦, 👆 ⚙️ 1️⃣ ⚪️➡️ 👆 🇧🇿 🌐 &amp; 🚫 🙆 🎏 👈 💪 ❎ 🌐.
+
+///
 
 ### 🐖
 
@@ -149,8 +162,11 @@ $ bash scripts/format.sh
 
 &amp; 📤 ➕ 🧰/✍ 🥉 🍵 ✍ `./scripts/docs.py`.
 
-!!! tip
-    👆 🚫 💪 👀 📟 `./scripts/docs.py`, 👆 ⚙️ ⚫️ 📋 ⏸.
+/// tip
+
+👆 🚫 💪 👀 📟 `./scripts/docs.py`, 👆 ⚙️ ⚫️ 📋 ⏸.
+
+///
 
 🌐 🧾 ✍ 📁 📁 `./docs/en/`.
 
@@ -235,10 +251,13 @@ Uvicorn 🔢 🔜 ⚙️ ⛴ `8000`, 🧾 🔛 ⛴ `8008` 🏆 🚫 ⚔.
 
 * ✅ ⏳ <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">♻ 🚲 📨</a> 👆 🇪🇸 &amp; 🚮 📄 ✔ 🔀 ⚖️ ✔ 👫.
 
-!!! tip
-    👆 💪 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">🚮 🏤 ⏮️ 🔀 🔑</a> ♻ 🚲 📨.
+/// tip
 
-    ✅ 🩺 🔃 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">❎ 🚲 📨 📄</a> ✔ ⚫️ ⚖️ 📨 🔀.
+👆 💪 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">🚮 🏤 ⏮️ 🔀 🔑</a> ♻ 🚲 📨.
+
+✅ 🩺 🔃 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">❎ 🚲 📨 📄</a> ✔ ⚫️ ⚖️ 📨 🔀.
+
+///
 
 * ✅ <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">❔</a> 👀 🚥 📤 1️⃣ 🛠️ ✍ 👆 🇪🇸.
 
@@ -260,8 +279,11 @@ Uvicorn 🔢 🔜 ⚙️ ⛴ `8000`, 🧾 🔛 ⛴ `8008` 🏆 🚫 ⚔.
 
 💼 🇪🇸, 2️⃣-🔤 📟 `es`. , 📁 🇪🇸 ✍ 🔎 `docs/es/`.
 
-!!! tip
-    👑 ("🛂") 🇪🇸 🇪🇸, 🔎 `docs/en/`.
+/// tip
+
+👑 ("🛂") 🇪🇸 🇪🇸, 🔎 `docs/en/`.
+
+///
 
 🔜 🏃 🖖 💽 🩺 🇪🇸:
 
@@ -298,8 +320,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
-    👀 👈 🕴 🔀 ➡ &amp; 📁 📛 🇪🇸 📟, ⚪️➡️ `en` `es`.
+/// tip
+
+👀 👈 🕴 🔀 ➡ &amp; 📁 📛 🇪🇸 📟, ⚪️➡️ `en` `es`.
+
+///
 
 * 🔜 📂 ⬜ 📁 📁 🇪🇸:
 
@@ -370,10 +395,13 @@ Updating en
 
 🔜 👆 💪 ✅ 👆 📟 👨‍🎨 ⏳ ✍ 📁 `docs/ht/`.
 
-!!! tip
-    ✍ 🥇 🚲 📨 ⏮️ 👉, ⚒ 🆙 📳 🆕 🇪🇸, ⏭ ❎ ✍.
+/// tip
 
-    👈 🌌 🎏 💪 ℹ ⏮️ 🎏 📃 ⏪ 👆 👷 🔛 🥇 🕐. 👶
+✍ 🥇 🚲 📨 ⏮️ 👉, ⚒ 🆙 📳 🆕 🇪🇸, ⏭ ❎ ✍.
+
+👈 🌌 🎏 💪 ℹ ⏮️ 🎏 📃 ⏪ 👆 👷 🔛 🥇 🕐. 👶
+
+///
 
 ▶️ ✍ 👑 📃, `docs/ht/index.md`.
 

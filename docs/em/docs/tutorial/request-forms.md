@@ -2,10 +2,13 @@
 
 🕐❔ 👆 💪 📨 📨 🏑 ↩️ 🎻, 👆 💪 ⚙️ `Form`.
 
-!!! info
-    ⚙️ 📨, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    🤶 Ⓜ. `pip install python-multipart`.
+⚙️ 📨, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+
+🤶 Ⓜ. `pip install python-multipart`.
+
+///
 
 ## 🗄 `Form`
 
@@ -29,11 +32,17 @@
 
 ⏮️ `Form` 👆 💪 📣 🎏 📳 ⏮️ `Body` (&amp; `Query`, `Path`, `Cookie`), 🔌 🔬, 🖼, 📛 (✅ `user-name` ↩️ `username`), ♒️.
 
-!!! info
-    `Form` 🎓 👈 😖 🔗 ⚪️➡️ `Body`.
+/// info
 
-!!! tip
-    📣 📨 💪, 👆 💪 ⚙️ `Form` 🎯, ↩️ 🍵 ⚫️ 🔢 🔜 🔬 🔢 🔢 ⚖️ 💪 (🎻) 🔢.
+`Form` 🎓 👈 😖 🔗 ⚪️➡️ `Body`.
+
+///
+
+/// tip
+
+📣 📨 💪, 👆 💪 ⚙️ `Form` 🎯, ↩️ 🍵 ⚫️ 🔢 🔜 🔬 🔢 🔢 ⚖️ 💪 (🎻) 🔢.
+
+///
 
 ## 🔃 "📨 🏑"
 
@@ -41,17 +50,23 @@
 
 **FastAPI** 🔜 ⚒ 💭 ✍ 👈 📊 ⚪️➡️ ▶️️ 🥉 ↩️ 🎻.
 
-!!! note "📡 ℹ"
-    📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded`.
+/// note | "📡 ℹ"
 
-    ✋️ 🕐❔ 📨 🔌 📁, ⚫️ 🗜 `multipart/form-data`. 👆 🔜 ✍ 🔃 🚚 📁 ⏭ 📃.
+📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded`.
 
-    🚥 👆 💚 ✍ 🌖 🔃 👉 🔢 &amp; 📨 🏑, 👳 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🕸 🩺 <code>POST</code></a>.
+✋️ 🕐❔ 📨 🔌 📁, ⚫️ 🗜 `multipart/form-data`. 👆 🔜 ✍ 🔃 🚚 📁 ⏭ 📃.
 
-!!! warning
-    👆 💪 📣 💗 `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `application/x-www-form-urlencoded` ↩️ `application/json`.
+🚥 👆 💚 ✍ 🌖 🔃 👉 🔢 &amp; 📨 🏑, 👳 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🕸 🩺 <code>POST</code></a>.
 
-    👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+///
+
+/// warning
+
+👆 💪 📣 💗 `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `application/x-www-form-urlencoded` ↩️ `application/json`.
+
+👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+
+///
 
 ## 🌃
 
