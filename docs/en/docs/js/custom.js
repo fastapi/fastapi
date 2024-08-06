@@ -157,6 +157,12 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
+function setupMailJet() {
+    // Extracted from: https://app.mailjet.com/pas-nc-embedded-v1.js
+    // This is run after it's loaded to resize the iframe
+    document.querySelectorAll('[data-w-type="embedded"]').forEach((i => { window.iFrameResize({ checkOrigin: !1 }, i) }))
+}
+
 async function main() {
     if (div) {
         data = await getData()
@@ -175,6 +181,7 @@ async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
     showRandomAnnouncement('announce-right', 10000)
+    setupMailJet()
 }
 document$.subscribe(() => {
     main()
