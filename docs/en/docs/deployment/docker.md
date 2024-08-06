@@ -237,6 +237,7 @@ The [CMD](https://docs.docker.com/reference/dockerfile/#cmd) command can be writ
 * `CMD fastapi run app/main.py --port 80` (shell form)
 
 Make sure to always use the `exec form` to ensure that FastAPI shutdowns correctly and [lifespan](../advanced/events.md){.internal-link target=_blank} are triggered.
+This is specifically a problem when using `docker compose`.
 
 See [here](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop) for technical details.
 
