@@ -98,12 +98,15 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-!!! tip
-    By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
+/// tip
 
-    That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
 
-    When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
+That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+
+When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
+
+///
 
 ////
 
@@ -157,24 +160,30 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 ////
 
-!!! note
-    The command `uvicorn main:app` refers to:
+/// note
 
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+The command `uvicorn main:app` refers to:
 
-    It is equivalent to:
+* `main`: the file `main.py` (the Python "module").
+* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
 
-    ```Python
-    from main import app
-    ```
+It is equivalent to:
 
-!!! warning
-    Uvicorn and others support a `--reload` option that is useful during development.
+```Python
+from main import app
+```
 
-    The `--reload` option consumes much more resources, is more unstable, etc.
+///
 
-    It helps a lot during **development**, but you **shouldn't** use it in **production**.
+/// warning
+
+Uvicorn and others support a `--reload` option that is useful during development.
+
+The `--reload` option consumes much more resources, is more unstable, etc.
+
+It helps a lot during **development**, but you **shouldn't** use it in **production**.
+
+///
 
 ## Hypercorn with Trio
 

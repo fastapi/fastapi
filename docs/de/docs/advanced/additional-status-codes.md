@@ -40,8 +40,11 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="2  23"
 {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
@@ -51,8 +54,11 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="4  25"
 {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
@@ -60,17 +66,23 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 
 ////
 
-!!! warning "Achtung"
-    Wenn Sie eine `Response` direkt zurückgeben, wie im obigen Beispiel, wird sie direkt zurückgegeben.
+/// warning | "Achtung"
 
-    Sie wird nicht mit einem Modell usw. serialisiert.
+Wenn Sie eine `Response` direkt zurückgeben, wie im obigen Beispiel, wird sie direkt zurückgegeben.
 
-    Stellen Sie sicher, dass sie die gewünschten Daten enthält und dass die Werte gültiges JSON sind (wenn Sie `JSONResponse` verwenden).
+Sie wird nicht mit einem Modell usw. serialisiert.
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import JSONResponse` verwenden.
+Stellen Sie sicher, dass sie die gewünschten Daten enthält und dass die Werte gültiges JSON sind (wenn Sie `JSONResponse` verwenden).
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `status`.
+///
+
+/// note | "Technische Details"
+
+Sie können auch `from starlette.responses import JSONResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `status`.
+
+///
 
 ## OpenAPI- und API-Dokumentation
 

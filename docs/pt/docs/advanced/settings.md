@@ -8,8 +8,11 @@ Por isso é comum prover essas configurações como variáveis de ambiente que s
 
 ## Variáveis de Ambiente
 
-!!! dica
-    Se você já sabe o que são variáveis de ambiente e como utilizá-las, sinta-se livre para avançar para o próximo tópico.
+/// dica
+
+Se você já sabe o que são variáveis de ambiente e como utilizá-las, sinta-se livre para avançar para o próximo tópico.
+
+///
 
 Uma <a href="https://pt.wikipedia.org/wiki/Variável_de_ambiente" class="external-link" target="_blank">variável de ambiente</a> (abreviada em inglês para "env var") é uma variável definida fora do código Python, no sistema operacional, e pode ser lida pelo seu código Python (ou por outros programas).
 
@@ -64,10 +67,13 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-!!! dica
-    O segundo parâmetro em <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> é o valor padrão para o retorno.
+/// dica
 
-    Se nenhum valor for informado, `None` é utilizado por padrão, aqui definimos `"World"` como o valor padrão a ser utilizado.
+O segundo parâmetro em <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> é o valor padrão para o retorno.
+
+Se nenhum valor for informado, `None` é utilizado por padrão, aqui definimos `"World"` como o valor padrão a ser utilizado.
+
+///
 
 E depois você pode executar esse arquivo:
 
@@ -118,8 +124,11 @@ Hello World from Python
 
 </div>
 
-!!! dica
-    Você pode ler mais sobre isso em: <a href="https://12factor.net/pt_br/config" class="external-link" target="_blank">The Twelve-Factor App: Configurações</a>.
+/// dica
+
+Você pode ler mais sobre isso em: <a href="https://12factor.net/pt_br/config" class="external-link" target="_blank">The Twelve-Factor App: Configurações</a>.
+
+///
 
 ### Tipagem e Validação
 
@@ -155,8 +164,11 @@ $ pip install "fastapi[all]"
 
 </div>
 
-!!! info
-    Na v1 do Pydantic ele estava incluído no pacote principal. Agora ele está distribuido como um pacote independente para que você possa optar por instalar ou não caso você não precise dessa funcionalidade.
+/// info
+
+Na v1 do Pydantic ele estava incluído no pacote principal. Agora ele está distribuido como um pacote independente para que você possa optar por instalar ou não caso você não precise dessa funcionalidade.
+
+///
 
 ### Criando o objeto `Settings`
 
@@ -176,8 +188,11 @@ Você pode utilizar todas as ferramentas e funcionalidades de validação que s�
 
 //// tab | Pydantic v1
 
-!!! Info
-    Na versão 1 do Pydantic você importaria `BaseSettings` diretamente do módulo `pydantic` em vez do módulo `pydantic_settings`.
+/// info
+
+Na versão 1 do Pydantic você importaria `BaseSettings` diretamente do módulo `pydantic` em vez do módulo `pydantic_settings`.
+
+///
 
 ```Python hl_lines="2  5-8  11"
 {!> ../../../docs_src/settings/tutorial001_pv1.py!}
@@ -185,8 +200,11 @@ Você pode utilizar todas as ferramentas e funcionalidades de validação que s�
 
 ////
 
-!!! dica
-    Se você quiser algo pronto para copiar e colar na sua aplicação, não use esse exemplo, mas sim o exemplo abaixo.
+/// dica
+
+Se você quiser algo pronto para copiar e colar na sua aplicação, não use esse exemplo, mas sim o exemplo abaixo.
+
+///
 
 Portanto, quando você cria uma instância da classe `Settings` (nesse caso, o objeto `settings`), o Pydantic lê as variáveis de ambiente sem diferenciar maiúsculas e minúsculas, por isso, uma variável maiúscula `APP_NAME` será usada para o atributo `app_name`.
 
@@ -214,8 +232,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 </div>
 
-!!! dica
-    Para definir múltiplas variáveis de ambiente para um único comando basta separá-las utilizando espaços, e incluir todas elas antes do comando.
+/// dica
+
+Para definir múltiplas variáveis de ambiente para um único comando basta separá-las utilizando espaços, e incluir todas elas antes do comando.
+
+///
 
 Assim, o atributo `admin_email` seria definido como `"deadpool@example.com"`.
 
@@ -239,8 +260,11 @@ E utilizar essa configuração em `main.py`:
 {!../../../docs_src/settings/app01/main.py!}
 ```
 
-!!! dica
-    Você também precisa incluir um arquivo `__init__.py` como visto em [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=\_blank}.
+/// dica
+
+Você também precisa incluir um arquivo `__init__.py` como visto em [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=\_blank}.
+
+///
 
 ## Configurações em uma dependência
 
@@ -280,8 +304,11 @@ Agora criamos a dependência que retorna um novo objeto `config.Settings()`.
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! dica
-    Utilize a versão com `Annotated` se possível.
+/// dica
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="5  11-12"
 {!> ../../../docs_src/settings/app02/main.py!}
@@ -289,10 +316,13 @@ Agora criamos a dependência que retorna um novo objeto `config.Settings()`.
 
 ////
 
-!!! dica
-    Vamos discutir sobre `@lru_cache` logo mais.
+/// dica
 
-    Por enquanto, você pode considerar `get_settings()` como uma função normal.
+Vamos discutir sobre `@lru_cache` logo mais.
+
+Por enquanto, você pode considerar `get_settings()` como uma função normal.
+
+///
 
 E então podemos declarar essas configurações como uma dependência na função de operação da rota e utilizar onde for necessário.
 
@@ -314,8 +344,11 @@ E então podemos declarar essas configurações como uma dependência na funçã
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! dica
-    Utilize a versão com `Annotated` se possível.
+/// dica
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="16  18-20"
 {!> ../../../docs_src/settings/app02/main.py!}
@@ -341,15 +374,21 @@ Se você tiver muitas configurações que variem bastante, talvez em ambientes d
 
 Essa prática é tão comum que possui um nome, essas variáveis de ambiente normalmente são colocadas em um arquivo `.env`, e esse arquivo é chamado de "dotenv".
 
-!!! dica
-    Um arquivo iniciando com um ponto final (`.`) é um arquivo oculto em sistemas baseados em Unix, como Linux e MacOS.
+/// dica
 
-    Mas um arquivo dotenv não precisa ter esse nome exato.
+Um arquivo iniciando com um ponto final (`.`) é um arquivo oculto em sistemas baseados em Unix, como Linux e MacOS.
+
+Mas um arquivo dotenv não precisa ter esse nome exato.
+
+///
 
 Pydantic suporta a leitura desses tipos de arquivos utilizando uma biblioteca externa. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
-!!! dica
-    Para que isso funcione você precisa executar `pip install python-dotenv`.
+/// dica
+
+Para que isso funcione você precisa executar `pip install python-dotenv`.
+
+///
 
 ### O arquivo `.env`
 
@@ -370,8 +409,11 @@ E então adicionar o seguinte código em `config.py`:
 {!> ../../../docs_src/settings/app03_an/config.py!}
 ```
 
-!!! dica
-    O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+/// dica
+
+O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+///
 
 ////
 
@@ -381,13 +423,19 @@ E então adicionar o seguinte código em `config.py`:
 {!> ../../../docs_src/settings/app03_an/config_pv1.py!}
 ```
 
-!!! dica
-    A classe `Config` é usada apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+/// dica
+
+A classe `Config` é usada apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+///
 
 ////
 
-!!! info
-    Na versão 1 do Pydantic a configuração é realizada por uma classe interna `Config`, na versão 2 do Pydantic isso é feito com o atributo `model_config`. Esse atributo recebe um `dict`, para utilizar o autocomplete e checagem de erros do seu editor de texto você pode importar e utilizar `SettingsConfigDict` para definir esse `dict`.
+/// info
+
+Na versão 1 do Pydantic a configuração é realizada por uma classe interna `Config`, na versão 2 do Pydantic isso é feito com o atributo `model_config`. Esse atributo recebe um `dict`, para utilizar o autocomplete e checagem de erros do seu editor de texto você pode importar e utilizar `SettingsConfigDict` para definir esse `dict`.
+
+///
 
 Aqui definimos a configuração `env_file` dentro da classe `Settings` do Pydantic, e definimos o valor como o nome do arquivo dotenv que queremos utilizar.
 
@@ -432,8 +480,11 @@ Mas como estamos utilizando o decorador `@lru_cache` acima, o objeto `Settings` 
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! dica
-    Utilize a versão com `Annotated` se possível.
+/// dica
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="1  10"
 {!> ../../../docs_src/settings/app03/main.py!}

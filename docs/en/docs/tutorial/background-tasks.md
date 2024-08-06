@@ -83,8 +83,11 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="11  13  20  23"
 {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
@@ -94,8 +97,11 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="13  15  22  25"
 {!> ../../../docs_src/background_tasks/tutorial002.py!}

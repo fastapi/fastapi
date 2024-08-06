@@ -12,8 +12,11 @@
 
 ✋️ 🚥 👆 🙅 ⚙️ **FastAPI**, 👆 🔜 💰 ⚪️➡️ 🏫 🍖 🔃 👫.
 
-!!! note
-    🚥 👆 🐍 🕴, &amp; 👆 ⏪ 💭 🌐 🔃 🆎 🔑, 🚶 ⏭ 📃.
+/// note
+
+🚥 👆 🐍 🕴, &amp; 👆 ⏪ 💭 🌐 🔃 🆎 🔑, 🚶 ⏭ 📃.
+
+///
 
 ## 🎯
 
@@ -198,15 +201,21 @@ John Doe
 
 ////
 
-!!! info
-    👈 🔗 🆎 ⬜ 🗜 🤙 "🆎 🔢".
+/// info
 
-    👉 💼, `str` 🆎 🔢 🚶‍♀️ `List` (⚖️ `list` 🐍 3️⃣.9️⃣ &amp; 🔛).
+👈 🔗 🆎 ⬜ 🗜 🤙 "🆎 🔢".
+
+👉 💼, `str` 🆎 🔢 🚶‍♀️ `List` (⚖️ `list` 🐍 3️⃣.9️⃣ &amp; 🔛).
+
+///
 
 👈 ⛓: "🔢 `items` `list`, &amp; 🔠 🏬 👉 📇 `str`".
 
-!!! tip
-    🚥 👆 ⚙️ 🐍 3️⃣.9️⃣ ⚖️ 🔛, 👆 🚫 ✔️ 🗄 `List` ⚪️➡️ `typing`, 👆 💪 ⚙️ 🎏 🥔 `list` 🆎 ↩️.
+/// tip
+
+🚥 👆 ⚙️ 🐍 3️⃣.9️⃣ ⚖️ 🔛, 👆 🚫 ✔️ 🗄 `List` ⚪️➡️ `typing`, 👆 💪 ⚙️ 🎏 🥔 `list` 🆎 ↩️.
+
+///
 
 🔨 👈, 👆 👨‍🎨 💪 🚚 🐕‍🦺 ⏪ 🏭 🏬 ⚪️➡️ 📇:
 
@@ -488,15 +497,21 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 ////
 
-!!! info
-    💡 🌖 🔃 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, ✅ 🚮 🩺</a>.
+/// info
+
+💡 🌖 🔃 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, ✅ 🚮 🩺</a>.
+
+///
 
 **FastAPI** 🌐 ⚓️ 🔛 Pydantic.
 
 👆 🔜 👀 📚 🌅 🌐 👉 💡 [🔰 - 👩‍💻 🦮](tutorial/index.md){.internal-link target=_blank}.
 
-!!! tip
-    Pydantic ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+/// tip
+
+Pydantic ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+
+///
 
 ## 🆎 🔑 **FastAPI**
 
@@ -520,5 +535,8 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 ⚠ 👜 👈 ⚙️ 🐩 🐍 🆎, 👁 🥉 (↩️ ❎ 🌖 🎓, 👨‍🎨, ♒️), **FastAPI** 🔜 📚 👷 👆.
 
-!!! info
-    🚥 👆 ⏪ 🚶 🔘 🌐 🔰 &amp; 👟 🔙 👀 🌅 🔃 🆎, 👍 ℹ <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> "🎮 🎼" ⚪️➡️ `mypy`</a>.
+/// info
+
+🚥 👆 ⏪ 🚶 🔘 🌐 🔰 &amp; 👟 🔙 👀 🌅 🔃 🆎, 👍 ℹ <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> "🎮 🎼" ⚪️➡️ `mypy`</a>.
+
+///

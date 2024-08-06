@@ -96,10 +96,13 @@ Se ele exibir o binário `pip` em `env/bin/pip` então funcionou. 🎉
 
 
 
-!!! tip
-    Toda vez que você instalar um novo pacote com `pip` nesse ambiente, ative o ambiente novamente.
+/// tip
 
-    Isso garante que se você usar um programa instalado por aquele pacote, você utilizará aquele de seu ambiente local e não outro que possa estar instalado globalmente.
+Toda vez que você instalar um novo pacote com `pip` nesse ambiente, ative o ambiente novamente.
+
+Isso garante que se você usar um programa instalado por aquele pacote, você utilizará aquele de seu ambiente local e não outro que possa estar instalado globalmente.
+
+///
 
 ### pip
 
@@ -163,8 +166,11 @@ A documentação usa <a href="https://www.mkdocs.org/" class="external-link" tar
 
 E existem ferramentas/_scripts_ extras para controlar as traduções em `./scripts/docs.py`.
 
-!!! tip
-    Você não precisa ver o código em `./scripts/docs.py`, você apenas o utiliza na linha de comando.
+/// tip
+
+Você não precisa ver o código em `./scripts/docs.py`, você apenas o utiliza na linha de comando.
+
+///
 
 Toda a documentação está no formato Markdown no diretório `./docs/pt/`.
 
@@ -249,10 +255,13 @@ Aqui estão os passos para ajudar com as traduções.
 
 * Verifique sempre os <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">_pull requests_ existentes</a> para a sua linguagem e faça revisões das alterações e aprove elas.
 
-!!! tip
-    Você pode <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">adicionar comentários com sugestões de alterações</a> para _pull requests_ existentes.
+/// tip
 
-    Verifique as documentações sobre <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adicionar revisão ao _pull request_</a> para aprovação ou solicitação de alterações.
+Você pode <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">adicionar comentários com sugestões de alterações</a> para _pull requests_ existentes.
+
+Verifique as documentações sobre <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adicionar revisão ao _pull request_</a> para aprovação ou solicitação de alterações.
+
+///
 
 * Verifique em <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">_issues_</a> para ver se existe alguém coordenando traduções para a sua linguagem.
 
@@ -274,8 +283,11 @@ Vamos dizer que você queira traduzir uma página para uma linguagem que já ten
 
 No caso do Espanhol, o código de duas letras é `es`. Então, o diretório para traduções em Espanhol está localizada em `docs/es/`.
 
-!!! tip
-    A principal ("oficial") linguagem é o  Inglês, localizado em `docs/en/`.
+/// tip
+
+A principal ("oficial") linguagem é o  Inglês, localizado em `docs/en/`.
+
+///
 
 Agora rode o _servidor ao vivo_ para as documentações em Espanhol:
 
@@ -312,8 +324,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
-    Observe que a única mudança na rota é o código da linguagem, de `en` para `es`.
+/// tip
+
+Observe que a única mudança na rota é o código da linguagem, de `en` para `es`.
+
+///
 
 * Agora abra o arquivo de configuração MkDocs para Inglês em:
 
@@ -384,10 +399,13 @@ Updating en
 
 Agora você pode verificar em seu editor de código o mais novo diretório criado `docs/ht/`.
 
-!!! tip
-    Crie um primeiro _pull request_ com apenas isso, para iniciar a configuração da nova linguagem, antes de adicionar traduções.
+/// tip
 
-    Desse modo outros poderão ajudar com outras páginas enquanto você trabalha na primeira. 🚀
+Crie um primeiro _pull request_ com apenas isso, para iniciar a configuração da nova linguagem, antes de adicionar traduções.
+
+Desse modo outros poderão ajudar com outras páginas enquanto você trabalha na primeira. 🚀
+
+///
 
 Inicie traduzindo a página principal, `docs/ht/index.md`.
 

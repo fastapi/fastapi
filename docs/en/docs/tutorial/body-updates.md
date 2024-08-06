@@ -54,14 +54,17 @@ You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 
-!!! note
-    `PATCH` is less commonly used and known than `PUT`.
+/// note
 
-    And many teams use only `PUT`, even for partial updates.
+`PATCH` is less commonly used and known than `PUT`.
 
-    You are **free** to use them however you want, **FastAPI** doesn't impose any restrictions.
+And many teams use only `PUT`, even for partial updates.
 
-    But this guide shows you, more or less, how they are intended to be used.
+You are **free** to use them however you want, **FastAPI** doesn't impose any restrictions.
+
+But this guide shows you, more or less, how they are intended to be used.
+
+///
 
 ### Using Pydantic's `exclude_unset` parameter
 
@@ -69,10 +72,13 @@ If you want to receive partial updates, it's very useful to use the parameter `e
 
 Like `item.model_dump(exclude_unset=True)`.
 
-!!! info
-    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+/// info
 
-    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
+///
 
 That would generate a `dict` with only the data that was set when creating the `item` model, excluding default values.
 
@@ -106,10 +112,13 @@ Then you can use this to generate a `dict` with only the data that was set (sent
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
 
-!!! info
-    In Pydantic v1 the method was called `.copy()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_copy()`.
+/// info
 
-    The examples here use `.copy()` for compatibility with Pydantic v1, but you should use `.model_copy()` instead if you can use Pydantic v2.
+In Pydantic v1 the method was called `.copy()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_copy()`.
+
+The examples here use `.copy()` for compatibility with Pydantic v1, but you should use `.model_copy()` instead if you can use Pydantic v2.
+
+///
 
 Like `stored_item_model.model_copy(update=update_data)`:
 
@@ -176,14 +185,20 @@ In summary, to apply partial updates you would:
 
 ////
 
-!!! tip
-    You can actually use this same technique with an HTTP `PUT` operation.
+/// tip
 
-    But the example here uses `PATCH` because it was created for these use cases.
+You can actually use this same technique with an HTTP `PUT` operation.
 
-!!! note
-    Notice that the input model is still validated.
+But the example here uses `PATCH` because it was created for these use cases.
 
-    So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
+///
 
-    To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md){.internal-link target=_blank}.
+/// note
+
+Notice that the input model is still validated.
+
+So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
+
+To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md){.internal-link target=_blank}.
+
+///

@@ -32,8 +32,11 @@ First import `Cookie`:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ First import `Cookie`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -84,8 +90,11 @@ The first value is the default value, you can pass all the extra validation or a
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@ The first value is the default value, you can pass all the extra validation or a
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -104,13 +116,19 @@ The first value is the default value, you can pass all the extra validation or a
 
 ////
 
-!!! note "Technical Details"
-    `Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
+/// note | "Technical Details"
 
-    But remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.
+`Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
 
-!!! info
-    To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
+But remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.
+
+///
+
+/// info
+
+To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
+
+///
 
 ## Recap
 

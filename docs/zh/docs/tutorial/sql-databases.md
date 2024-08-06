@@ -1,11 +1,14 @@
 # SQL (关系型) 数据库
 
-!!! info
-    这些文档即将被更新。🎉
+/// info
 
-    当前版本假设Pydantic v1和SQLAlchemy版本小于2。
+这些文档即将被更新。🎉
 
-    新的文档将包括Pydantic v2以及 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>（也是基于SQLAlchemy），一旦SQLModel更新为为使用Pydantic v2。
+当前版本假设Pydantic v1和SQLAlchemy版本小于2。
+
+新的文档将包括Pydantic v2以及 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>（也是基于SQLAlchemy），一旦SQLModel更新为为使用Pydantic v2。
+
+///
 
 **FastAPI**不需要你使用SQL(关系型)数据库。
 
@@ -25,11 +28,17 @@
 
 稍后，对于您的产品级别的应用程序，您可能会要使用像**PostgreSQL**这样的数据库服务器。
 
-!!! tip
-    这儿有一个**FastAPI**和**PostgreSQL**的官方项目生成器，全部基于**Docker**，包括前端和更多工具：<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+/// tip
 
-!!! note
-    请注意，大部分代码是`SQLAlchemy`的标准代码，您可以用于任何框架。FastAPI特定的代码和往常一样少。
+这儿有一个**FastAPI**和**PostgreSQL**的官方项目生成器，全部基于**Docker**，包括前端和更多工具：<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+
+///
+
+/// note
+
+请注意，大部分代码是`SQLAlchemy`的标准代码，您可以用于任何框架。FastAPI特定的代码和往常一样少。
+
+///
 
 ## ORMs（对象关系映射）
 
@@ -63,8 +72,11 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 
 以类似的方式，您也可以使用任何其他 ORM。
 
-!!! tip
-    在文档中也有一篇使用 Peewee 的等效的文章。
+/// tip
+
+在文档中也有一篇使用 Peewee 的等效的文章。
+
+///
 
 ## 文件结构
 
@@ -129,9 +141,11 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 ...并根据您的数据库数据和相关凭据（也适用于 MySQL、MariaDB 或任何其他）对其进行调整。
 
-!!! tip
+/// tip
 
-    如果您想使用不同的数据库，这是就是您必须修改的地方。
+如果您想使用不同的数据库，这是就是您必须修改的地方。
+
+///
 
 ### 创建 SQLAlchemy 引擎
 
@@ -153,15 +167,17 @@ connect_args={"check_same_thread": False}
 
 ...仅用于`SQLite`，在其他数据库不需要它。
 
-!!! info "技术细节"
+/// info | "技术细节"
 
-    默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
+默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
 
-    这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
+这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
 
-    但是在 FastAPI 中，使用普通函数（def）时，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
+但是在 FastAPI 中，使用普通函数（def）时，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
 
-    此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
+此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
+
+///
 
 ### 创建一个`SessionLocal`类
 
@@ -197,10 +213,13 @@ connect_args={"check_same_thread": False}
 
 我们将使用我们之前创建的`Base`类来创建 SQLAlchemy 模型。
 
-!!! tip
-    SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的这些类和实例。
+/// tip
 
-    而 Pydantic 也使用“模型”这个术语 来指代不同的东西，即数据验证、转换以及文档类和实例。
+SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的这些类和实例。
+
+而 Pydantic 也使用“模型”这个术语 来指代不同的东西，即数据验证、转换以及文档类和实例。
+
+///
 
 从`database`（来自上面的`database.py`文件）导入`Base`。
 
@@ -250,12 +269,15 @@ connect_args={"check_same_thread": False}
 
 现在让我们查看一下文件`sql_app/schemas.py`。
 
-!!! tip
-    为了避免 SQLAlchemy*模型*和 Pydantic*模型*之间的混淆，我们将有`models.py`（SQLAlchemy 模型的文件）和`schemas.py`（ Pydantic 模型的文件）。
+/// tip
 
-    这些 Pydantic 模型或多或少地定义了一个“schema”（一个有效的数据形状）。
+为了避免 SQLAlchemy*模型*和 Pydantic*模型*之间的混淆，我们将有`models.py`（SQLAlchemy 模型的文件）和`schemas.py`（ Pydantic 模型的文件）。
 
-    因此，这将帮助我们在使用两者时避免混淆。
+这些 Pydantic 模型或多或少地定义了一个“schema”（一个有效的数据形状）。
+
+因此，这将帮助我们在使用两者时避免混淆。
+
+///
 
 ### 创建初始 Pydantic*模型*/模式
 
@@ -341,8 +363,11 @@ name: str
 
 ////
 
-!!! tip
-    请注意，读取用户（从 API 返回）时将使用不包括`password`的`User` Pydantic*模型*。
+/// tip
+
+请注意，读取用户（从 API 返回）时将使用不包括`password`的`User` Pydantic*模型*。
+
+///
 
 ### 使用 Pydantic 的`orm_mode`
 
@@ -376,14 +401,17 @@ name: str
 
 ////
 
-!!! tip
-    请注意，它使用`=`分配一个值，例如：
+/// tip
 
-    `orm_mode = True`
+请注意，它使用`=`分配一个值，例如：
 
-    它不使用之前的`:`来类型声明。
+`orm_mode = True`
 
-    这是设置配置值，而不是声明类型。
+它不使用之前的`:`来类型声明。
+
+这是设置配置值，而不是声明类型。
+
+///
 
 Pydantic`orm_mode`将告诉 Pydantic*模型*读取数据，即它不是一个`dict`，而是一个 ORM 模型（或任何其他具有属性的任意对象）。
 
@@ -449,8 +477,11 @@ current_user.items
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip
-    通过创建仅专用于与数据库交互（获取用户或项目）的函数，独立于*路径操作函数*，您可以更轻松地在多个部分中重用它们，并为它们添加单元测试。
+/// tip
+
+通过创建仅专用于与数据库交互（获取用户或项目）的函数，独立于*路径操作函数*，您可以更轻松地在多个部分中重用它们，并为它们添加单元测试。
+
+///
 
 ### 创建数据
 
@@ -467,34 +498,43 @@ current_user.items
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip
-    SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含散列的安全密码。
+/// tip
 
-    但由于 API 客户端提供的是原始密码，因此您需要将其提取并在应用程序中生成散列密码。
+SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含散列的安全密码。
 
-    然后将hashed_password参数与要保存的值一起传递。
+但由于 API 客户端提供的是原始密码，因此您需要将其提取并在应用程序中生成散列密码。
 
-!!! warning
-    此示例不安全，密码未经过哈希处理。
+然后将hashed_password参数与要保存的值一起传递。
 
-    在现实生活中的应用程序中，您需要对密码进行哈希处理，并且永远不要以明文形式保存它们。
+///
 
-    有关更多详细信息，请返回教程中的安全部分。
+/// warning
 
-    在这里，我们只关注数据库的工具和机制。
+此示例不安全，密码未经过哈希处理。
 
-!!! tip
-    这里不是将每个关键字参数传递给Item并从Pydantic模型中读取每个参数，而是先生成一个字典，其中包含Pydantic模型的数据：
+在现实生活中的应用程序中，您需要对密码进行哈希处理，并且永远不要以明文形式保存它们。
 
-    `item.dict()`
+有关更多详细信息，请返回教程中的安全部分。
 
-    然后我们将dict的键值对 作为关键字参数传递给 SQLAlchemy `Item`：
+在这里，我们只关注数据库的工具和机制。
 
-    `Item(**item.dict())`
+///
 
-    然后我们传递 Pydantic模型未提供的额外关键字参数`owner_id`：
+/// tip
 
-    `Item(**item.dict(), owner_id=user_id)`
+这里不是将每个关键字参数传递给Item并从Pydantic模型中读取每个参数，而是先生成一个字典，其中包含Pydantic模型的数据：
+
+`item.dict()`
+
+然后我们将dict的键值对 作为关键字参数传递给 SQLAlchemy `Item`：
+
+`Item(**item.dict())`
+
+然后我们传递 Pydantic模型未提供的额外关键字参数`owner_id`：
+
+`Item(**item.dict(), owner_id=user_id)`
+
+///
 
 ## 主**FastAPI**应用程序
 
@@ -558,14 +598,17 @@ current_user.items
 
 ////
 
-!!! info
-    我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+/// info
 
-    然后我们在finally块中关闭它。
+我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
 
-    通过这种方式，我们确保数据库会话在请求后始终关闭。即使在处理请求时出现异常。
+然后我们在finally块中关闭它。
 
-    但是您不能从退出代码中引发另一个异常（在yield之后）。可以查阅 [Dependencies with yield and HTTPException](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception)
+通过这种方式，我们确保数据库会话在请求后始终关闭。即使在处理请求时出现异常。
+
+但是您不能从退出代码中引发另一个异常（在yield之后）。可以查阅 [Dependencies with yield and HTTPException](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception)
+
+///
 
 *然后，当在路径操作函数*中使用依赖项时，我们使用`Session`，直接从 SQLAlchemy 导入的类型声明它。
 
@@ -587,10 +630,13 @@ current_user.items
 
 ////
 
-!!! info "技术细节"
-    参数`db`实际上是 type `SessionLocal`，但是这个类（用 创建`sessionmaker()`）是 SQLAlchemy 的“代理” `Session`，所以，编辑器并不真正知道提供了哪些方法。
+/// info | "技术细节"
 
-    但是通过将类型声明为Session，编辑器现在可以知道可用的方法（.add()、.query()、.commit()等）并且可以提供更好的支持（比如完成）。类型声明不影响实际对象。
+参数`db`实际上是 type `SessionLocal`，但是这个类（用 创建`sessionmaker()`）是 SQLAlchemy 的“代理” `Session`，所以，编辑器并不真正知道提供了哪些方法。
+
+但是通过将类型声明为Session，编辑器现在可以知道可用的方法（.add()、.query()、.commit()等）并且可以提供更好的支持（比如完成）。类型声明不影响实际对象。
+
+///
 
 ### 创建您的**FastAPI** *路径操作*
 
@@ -618,15 +664,21 @@ current_user.items
 
 这样，我们就可以直接从*路径操作函数*内部调用`crud.get_user`并使用该会话，来进行对数据库操作。
 
-!!! tip
-    请注意，您返回的值是 SQLAlchemy 模型或 SQLAlchemy 模型列表。
+/// tip
 
-    但是由于所有路径操作的response_model都使用 Pydantic模型/使用orm_mode模式，因此您的 Pydantic 模型中声明的数据将从它们中提取并返回给客户端，并进行所有正常的过滤和验证。
+请注意，您返回的值是 SQLAlchemy 模型或 SQLAlchemy 模型列表。
 
-!!! tip
-    另请注意，`response_models`应当是标准 Python 类型，例如`List[schemas.Item]`.
+但是由于所有路径操作的response_model都使用 Pydantic模型/使用orm_mode模式，因此您的 Pydantic 模型中声明的数据将从它们中提取并返回给客户端，并进行所有正常的过滤和验证。
 
-    但是由于它的内容/参数List是一个 使用orm_mode模式的Pydantic模型，所以数据将被正常检索并返回给客户端，所以没有问题。
+///
+
+/// tip
+
+另请注意，`response_models`应当是标准 Python 类型，例如`List[schemas.Item]`.
+
+但是由于它的内容/参数List是一个 使用orm_mode模式的Pydantic模型，所以数据将被正常检索并返回给客户端，所以没有问题。
+
+///
 
 ### 关于 `def` 对比 `async def`
 
@@ -655,11 +707,17 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     ...
 ```
 
-!!! info
-    如果您需要异步连接到关系数据库，请参阅[Async SQL (Relational) Databases](https://fastapi.tiangolo.com/zh/advanced/async-sql-databases/)
+/// info
 
-!!! note "Very Technical Details"
-    如果您很好奇并且拥有深厚的技术知识，您可以在[Async](https://fastapi.tiangolo.com/zh/async/#very-technical-details)文档中查看有关如何处理 `async def`于`def`差别的技术细节。
+如果您需要异步连接到关系数据库，请参阅[Async SQL (Relational) Databases](https://fastapi.tiangolo.com/zh/advanced/async-sql-databases/)
+
+///
+
+/// note | "Very Technical Details"
+
+如果您很好奇并且拥有深厚的技术知识，您可以在[Async](https://fastapi.tiangolo.com/zh/async/#very-technical-details)文档中查看有关如何处理 `async def`于`def`差别的技术细节。
+
+///
 
 ## 迁移
 
@@ -745,9 +803,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 您可以复制这些代码并按原样使用它。
 
-!!! info
+/// info
 
-    事实上，这里的代码只是大多数测试代码的一部分。
+事实上，这里的代码只是大多数测试代码的一部分。
+
+///
 
 你可以用 Uvicorn 运行它：
 
@@ -804,12 +864,15 @@ $ uvicorn sql_app.main:app --reload
 
 ////
 
-!!! info
-    我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+/// info
 
-    然后我们在finally块中关闭它。
+我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
 
-    通过这种方式，我们确保数据库会话在请求后始终关闭，即使在处理请求时出现异常也会关闭。
+然后我们在finally块中关闭它。
+
+通过这种方式，我们确保数据库会话在请求后始终关闭，即使在处理请求时出现异常也会关闭。
+
+///
 
 ### 关于`request.state`
 
@@ -830,10 +893,16 @@ $ uvicorn sql_app.main:app --reload
     * 将为每个请求创建一个连接。
     * 即使处理该请求的*路径操作*不需要数据库。
 
-!!! tip
-    最好使用带有yield的依赖项，如果这足够满足用例需求
+/// tip
 
-!!! info
-    带有`yield`的依赖项是最近刚加入**FastAPI**中的。
+最好使用带有yield的依赖项，如果这足够满足用例需求
 
-    所以本教程的先前版本只有带有中间件的示例，并且可能有多个应用程序使用中间件进行数据库会话管理。
+///
+
+/// info
+
+带有`yield`的依赖项是最近刚加入**FastAPI**中的。
+
+所以本教程的先前版本只有带有中间件的示例，并且可能有多个应用程序使用中间件进行数据库会话管理。
+
+///

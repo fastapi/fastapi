@@ -32,8 +32,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip "İpucu"
-    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+/// tip | "İpucu"
+
+Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "İpucu"
-    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+/// tip | "İpucu"
+
+Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -84,8 +90,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip "İpucu"
-    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+/// tip | "İpucu"
+
+Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "İpucu"
-    Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+/// tip | "İpucu"
+
+Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -104,13 +116,19 @@
 
 ////
 
-!!! note "Teknik Detaylar"
-    `Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.
+/// note | "Teknik Detaylar"
 
-    Ancak `fastapi`'dan projenize dahil ettiğiniz `Query`, `Path`, `Cookie` ve diğerleri aslında özel sınıflar döndüren birer fonksiyondur.
+`Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.
 
-!!! info "Bilgi"
-    Çerez tanımlamak için `Cookie` sınıfını kullanmanız gerekmektedir, aksi taktirde parametreler sorgu parametreleri olarak yorumlanır.
+Ancak `fastapi`'dan projenize dahil ettiğiniz `Query`, `Path`, `Cookie` ve diğerleri aslında özel sınıflar döndüren birer fonksiyondur.
+
+///
+
+/// info | "Bilgi"
+
+Çerez tanımlamak için `Cookie` sınıfını kullanmanız gerekmektedir, aksi taktirde parametreler sorgu parametreleri olarak yorumlanır.
+
+///
 
 ## Özet
 

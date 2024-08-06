@@ -12,8 +12,11 @@ This is just a **quick tutorial / refresher** about Python type hints. It covers
 
 But even if you never use **FastAPI**, you would benefit from learning a bit about them.
 
-!!! note
-    If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+/// note
+
+If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+
+///
 
 ## Motivation
 
@@ -204,15 +207,21 @@ As the list is a type that contains some internal types, you put them in square 
 
 ////
 
-!!! info
-    Those internal types in the square brackets are called "type parameters".
+/// info
 
-    In this case, `str` is the type parameter passed to `List` (or `list` in Python 3.9 and above).
+Those internal types in the square brackets are called "type parameters".
+
+In this case, `str` is the type parameter passed to `List` (or `list` in Python 3.9 and above).
+
+///
 
 That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
 
-!!! tip
-    If you use Python 3.9 or above, you don't have to import `List` from `typing`, you can use the same regular `list` type instead.
+/// tip
+
+If you use Python 3.9 or above, you don't have to import `List` from `typing`, you can use the same regular `list` type instead.
+
+///
 
 By doing that, your editor can provide support even while processing items from the list:
 
@@ -498,15 +507,21 @@ An example from the official Pydantic docs:
 
 ////
 
-!!! info
-    To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+/// info
+
+To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+
+///
 
 **FastAPI** is all based on Pydantic.
 
 You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-!!! tip
-    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+/// tip
+
+Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+
+///
 
 ## Type Hints with Metadata Annotations
 
@@ -544,10 +559,13 @@ For now, you just need to know that `Annotated` exists, and that it's standard P
 
 Later you will see how **powerful** it can be.
 
-!!! tip
-    The fact that this is **standard Python** means that you will still get the **best possible developer experience** in your editor, with the tools you use to analyze and refactor your code, etc. ✨
+/// tip
 
-    And also that your code will be very compatible with many other Python tools and libraries. 🚀
+The fact that this is **standard Python** means that you will still get the **best possible developer experience** in your editor, with the tools you use to analyze and refactor your code, etc. ✨
+
+And also that your code will be very compatible with many other Python tools and libraries. 🚀
+
+///
 
 ## Type hints in **FastAPI**
 
@@ -571,5 +589,8 @@ This might all sound abstract. Don't worry. You'll see all this in action in the
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
-!!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+/// info
+
+If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+
+///

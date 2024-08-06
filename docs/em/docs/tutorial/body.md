@@ -8,12 +8,15 @@
 
 📣 **📨** 💪, 👆 ⚙️ <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 🏷 ⏮️ 🌐 👫 🏋️ &amp; 💰.
 
-!!! info
-    📨 💽, 👆 🔜 ⚙️ 1️⃣: `POST` (🌅 ⚠), `PUT`, `DELETE` ⚖️ `PATCH`.
+/// info
 
-    📨 💪 ⏮️ `GET` 📨 ✔️ ⚠ 🎭 🔧, 👐, ⚫️ 🐕‍🦺 FastAPI, 🕴 📶 🏗/😕 ⚙️ 💼.
+📨 💽, 👆 🔜 ⚙️ 1️⃣: `POST` (🌅 ⚠), `PUT`, `DELETE` ⚖️ `PATCH`.
 
-    ⚫️ 🚫, 🎓 🩺 ⏮️ 🦁 🎚 🏆 🚫 🎦 🧾 💪 🕐❔ ⚙️ `GET`, &amp; 🗳 🖕 💪 🚫 🐕‍🦺 ⚫️.
+📨 💪 ⏮️ `GET` 📨 ✔️ ⚠ 🎭 🔧, 👐, ⚫️ 🐕‍🦺 FastAPI, 🕴 📶 🏗/😕 ⚙️ 💼.
+
+⚫️ 🚫, 🎓 🩺 ⏮️ 🦁 🎚 🏆 🚫 🎦 🧾 💪 🕐❔ ⚙️ `GET`, &amp; 🗳 🖕 💪 🚫 🐕‍🦺 ⚫️.
+
+///
 
 ## 🗄 Pydantic `BaseModel`
 
@@ -146,16 +149,19 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip
-    🚥 👆 ⚙️ <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">🗒</a> 👆 👨‍🎨, 👆 💪 ⚙️ <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic 🗒 📁</a>.
+/// tip
 
-    ⚫️ 📉 👨‍🎨 🐕‍🦺 Pydantic 🏷, ⏮️:
+🚥 👆 ⚙️ <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">🗒</a> 👆 👨‍🎨, 👆 💪 ⚙️ <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic 🗒 📁</a>.
 
-    * 🚘-🛠️
-    * 🆎 ✅
-    * 🛠️
-    * 🔎
-    * 🔬
+⚫️ 📉 👨‍🎨 🐕‍🦺 Pydantic 🏷, ⏮️:
+
+* 🚘-🛠️
+* 🆎 ✅
+* 🛠️
+* 🔎
+* 🔬
+
+///
 
 ## ⚙️ 🏷
 
@@ -227,10 +233,13 @@
 * 🚥 🔢 **⭐ 🆎** (💖 `int`, `float`, `str`, `bool`, ♒️) ⚫️ 🔜 🔬 **🔢** 🔢.
 * 🚥 🔢 📣 🆎 **Pydantic 🏷**, ⚫️ 🔜 🔬 📨 **💪**.
 
-!!! note
-    FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
+/// note
 
-     `Union` `Union[str, None]` 🚫 ⚙️ FastAPI, ✋️ 🔜 ✔ 👆 👨‍🎨 🤝 👆 👍 🐕‍🦺 &amp; 🔍 ❌.
+FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
+
+ `Union` `Union[str, None]` 🚫 ⚙️ FastAPI, ✋️ 🔜 ✔ 👆 👨‍🎨 🤝 👆 👍 🐕‍🦺 &amp; 🔍 ❌.
+
+///
 
 ## 🍵 Pydantic
 

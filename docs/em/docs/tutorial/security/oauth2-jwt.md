@@ -44,10 +44,13 @@ $ pip install "python-jose[cryptography]"
 
 📥 👥 ⚙️ 👍 1️⃣: <a href="https://cryptography.io/" class="external-link" target="_blank">)/⚛</a>.
 
-!!! tip
-    👉 🔰 ⏪ ⚙️ <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+/// tip
 
-    ✋️ ⚫️ ℹ ⚙️ 🐍-🇩🇬 ↩️ ⚫️ 🚚 🌐 ⚒ ⚪️➡️ PyJWT ➕ ➕ 👈 👆 💪 💪 ⏪ 🕐❔ 🏗 🛠️ ⏮️ 🎏 🧰.
+👉 🔰 ⏪ ⚙️ <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+
+✋️ ⚫️ ℹ ⚙️ 🐍-🇩🇬 ↩️ ⚫️ 🚚 🌐 ⚒ ⚪️➡️ PyJWT ➕ ➕ 👈 👆 💪 💪 ⏪ 🕐❔ 🏗 🛠️ ⏮️ 🎏 🧰.
+
+///
 
 ## 🔐 🔁
 
@@ -83,12 +86,15 @@ $ pip install "passlib[bcrypt]"
 
 </div>
 
-!!! tip
-    ⏮️ `passlib`, 👆 💪 🔗 ⚫️ 💪 ✍ 🔐 ✍ **✳**, **🏺** 💂‍♂ 🔌-⚖️ 📚 🎏.
+/// tip
 
-    , 👆 🔜 💪, 🖼, 💰 🎏 📊 ⚪️➡️ ✳ 🈸 💽 ⏮️ FastAPI 🈸. ⚖️ 📉 ↔ ✳ 🈸 ⚙️ 🎏 💽.
+⏮️ `passlib`, 👆 💪 🔗 ⚫️ 💪 ✍ 🔐 ✍ **✳**, **🏺** 💂‍♂ 🔌-⚖️ 📚 🎏.
 
-     &amp; 👆 👩‍💻 🔜 💪 💳 ⚪️➡️ 👆 ✳ 📱 ⚖️ ⚪️➡️ 👆 **FastAPI** 📱, 🎏 🕰.
+, 👆 🔜 💪, 🖼, 💰 🎏 📊 ⚪️➡️ ✳ 🈸 💽 ⏮️ FastAPI 🈸. ⚖️ 📉 ↔ ✳ 🈸 ⚙️ 🎏 💽.
+
+ &amp; 👆 👩‍💻 🔜 💪 💳 ⚪️➡️ 👆 ✳ 📱 ⚖️ ⚪️➡️ 👆 **FastAPI** 📱, 🎏 🕰.
+
+///
 
 ##  #️⃣ &amp; ✔ 🔐
 
@@ -96,12 +102,15 @@ $ pip install "passlib[bcrypt]"
 
 ✍ 🇸🇲 "🔑". 👉 ⚫️❔ 🔜 ⚙️ #️⃣ &amp; ✔ 🔐.
 
-!!! tip
-    🇸🇲 🔑 ✔️ 🛠️ ⚙️ 🎏 🔁 📊, 🔌 😢 🗝 🕐 🕴 ✔ ✔ 👫, ♒️.
+/// tip
 
-    🖼, 👆 💪 ⚙️ ⚫️ ✍ &amp; ✔ 🔐 🏗 ➕1️⃣ ⚙️ (💖 ✳) ✋️ #️⃣ 🙆 🆕 🔐 ⏮️ 🎏 📊 💖 🐡.
+🇸🇲 🔑 ✔️ 🛠️ ⚙️ 🎏 🔁 📊, 🔌 😢 🗝 🕐 🕴 ✔ ✔ 👫, ♒️.
 
-     &amp; 🔗 ⏮️ 🌐 👫 🎏 🕰.
+🖼, 👆 💪 ⚙️ ⚫️ ✍ &amp; ✔ 🔐 🏗 ➕1️⃣ ⚙️ (💖 ✳) ✋️ #️⃣ 🙆 🆕 🔐 ⏮️ 🎏 📊 💖 🐡.
+
+ &amp; 🔗 ⏮️ 🌐 👫 🎏 🕰.
+
+///
 
 ✍ 🚙 🔢 #️⃣ 🔐 👟 ⚪️➡️ 👩‍💻.
 
@@ -125,8 +134,11 @@ $ pip install "passlib[bcrypt]"
 
 ////
 
-!!! note
-    🚥 👆 ✅ 🆕 (❌) 💽 `fake_users_db`, 👆 🔜 👀 ❔ #️⃣ 🔐 👀 💖 🔜: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+/// note
+
+🚥 👆 ✅ 🆕 (❌) 💽 `fake_users_db`, 👆 🔜 👀 ❔ #️⃣ 🔐 👀 💖 🔜: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+
+///
 
 ## 🍵 🥙 🤝
 
@@ -255,8 +267,11 @@ $ openssl rand -hex 32
 🆔: `johndoe`
 🔐: `secret`
 
-!!! check
-    👀 👈 🕳 📟 🔢 🔐 "`secret`", 👥 🕴 ✔️ #️⃣ ⏬.
+/// check
+
+👀 👈 🕳 📟 🔢 🔐 "`secret`", 👥 🕴 ✔️ #️⃣ ⏬.
+
+///
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -277,8 +292,11 @@ $ openssl rand -hex 32
 
 <img src="/img/tutorial/security/image10.png">
 
-!!! note
-    👀 🎚 `Authorization`, ⏮️ 💲 👈 ▶️ ⏮️ `Bearer `.
+/// note
+
+👀 🎚 `Authorization`, ⏮️ 💲 👈 ▶️ ⏮️ `Bearer `.
+
+///
 
 ## 🏧 ⚙️ ⏮️ `scopes`
 

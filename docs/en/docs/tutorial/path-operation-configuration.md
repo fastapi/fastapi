@@ -2,8 +2,11 @@
 
 There are several parameters that you can pass to your *path operation decorator* to configure it.
 
-!!! warning
-    Notice that these parameters are passed directly to the *path operation decorator*, not to your *path operation function*.
+/// warning
+
+Notice that these parameters are passed directly to the *path operation decorator*, not to your *path operation function*.
+
+///
 
 ## Response Status Code
 
@@ -39,10 +42,13 @@ But if you don't remember what each number code is for, you can use the shortcut
 
 That status code will be used in the response and will be added to the OpenAPI schema.
 
-!!! note "Technical Details"
-    You could also use `from starlette import status`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
+You could also use `from starlette import status`.
+
+**FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
+
+///
 
 ## Tags
 
@@ -178,13 +184,19 @@ You can specify the response description with the parameter `response_descriptio
 
 ////
 
-!!! info
-    Notice that `response_description` refers specifically to the response, the `description` refers to the *path operation* in general.
+/// info
 
-!!! check
-    OpenAPI specifies that each *path operation* requires a response description.
+Notice that `response_description` refers specifically to the response, the `description` refers to the *path operation* in general.
 
-    So, if you don't provide one, **FastAPI** will automatically generate one of "Successful response".
+///
+
+/// check
+
+OpenAPI specifies that each *path operation* requires a response description.
+
+So, if you don't provide one, **FastAPI** will automatically generate one of "Successful response".
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

@@ -24,8 +24,11 @@ In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/dependencies/tutorial012.py!}

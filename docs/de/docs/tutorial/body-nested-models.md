@@ -304,8 +304,11 @@ Das wird einen JSON-Body erwarten (konvertieren, validieren, dokumentieren), wie
 }
 ```
 
-!!! info
-    Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten hat.
+/// info
+
+Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten hat.
+
+///
 
 ## Tief verschachtelte Modelle
 
@@ -335,8 +338,11 @@ Sie können beliebig tief verschachtelte Modelle definieren:
 
 ////
 
-!!! info
-    Beachten Sie, wie `Offer` eine Liste von `Item`s hat, von denen jedes seinerseits eine optionale Liste von `Image`s hat.
+/// info
+
+Beachten Sie, wie `Offer` eine Liste von `Item`s hat, von denen jedes seinerseits eine optionale Liste von `Image`s hat.
+
+///
 
 ## Bodys aus reinen Listen
 
@@ -414,14 +420,17 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
 
 ////
 
-!!! tip "Tipp"
-    Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
+/// tip | "Tipp"
 
-    Aber Pydantic hat automatische Datenkonvertierung.
+Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
 
-    Das bedeutet, dass Ihre API-Clients nur Strings senden können, aber solange diese Strings nur Zahlen enthalten, wird Pydantic sie konvertieren und validieren.
+Aber Pydantic hat automatische Datenkonvertierung.
 
-    Und das `dict` welches Sie als `weights` erhalten, wird `int`-Schlüssel und `float`-Werte haben.
+Das bedeutet, dass Ihre API-Clients nur Strings senden können, aber solange diese Strings nur Zahlen enthalten, wird Pydantic sie konvertieren und validieren.
+
+Und das `dict` welches Sie als `weights` erhalten, wird `int`-Schlüssel und `float`-Werte haben.
+
+///
 
 ## Zusammenfassung
 

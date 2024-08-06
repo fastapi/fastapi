@@ -8,10 +8,13 @@ Insbesondere Benutzermodelle, denn:
 * Das **herausgehende Modell** sollte kein Passwort haben.
 * Das **Datenbankmodell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender „Fingerabdruck“ eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
 
-!!! danger "Gefahr"
-    Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den „sicheren Hash“, den Sie verifizieren können.
+/// danger | "Gefahr"
 
-    Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein „Passwort-Hash“ ist.
+Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den „sicheren Hash“, den Sie verifizieren können.
+
+Falls Ihnen das nichts sagt, in den [Sicherheits-Kapiteln](security/simple-oauth2.md#passwort-hashing){.internal-link target=_blank} werden Sie lernen, was ein „Passwort-Hash“ ist.
+
+///
 
 ## Mehrere Modelle
 
@@ -33,10 +36,13 @@ Hier der generelle Weg, wie die Modelle mit ihren Passwort-Feldern aussehen kön
 
 ////
 
-!!! info
-    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+/// info
 
-    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+
+Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
+///
 
 ### Über `**user_in.dict()`
 
@@ -148,8 +154,11 @@ UserInDB(
 )
 ```
 
-!!! warning "Achtung"
-    Die Hilfsfunktionen `fake_password_hasher` und `fake_save_user` demonstrieren nur den möglichen Fluss der Daten und bieten natürlich keine echte Sicherheit.
+/// warning | "Achtung"
+
+Die Hilfsfunktionen `fake_password_hasher` und `fake_save_user` demonstrieren nur den möglichen Fluss der Daten und bieten natürlich keine echte Sicherheit.
+
+///
 
 ## Verdopplung vermeiden
 
@@ -191,8 +200,11 @@ Das wird in OpenAPI mit `anyOf` angezeigt.
 
 Um das zu tun, verwenden Sie Pythons Standard-Typhinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-!!! note "Hinweis"
-    Listen Sie, wenn Sie eine <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, denjenigen Typ zuerst, der am spezifischsten ist, gefolgt von den weniger spezifischen Typen. Im Beispiel oben, in `Union[PlaneItem, CarItem]` also den spezifischeren `PlaneItem` vor dem weniger spezifischen `CarItem`.
+/// note | "Hinweis"
+
+Listen Sie, wenn Sie eine <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, denjenigen Typ zuerst, der am spezifischsten ist, gefolgt von den weniger spezifischen Typen. Im Beispiel oben, in `Union[PlaneItem, CarItem]` also den spezifischeren `PlaneItem` vor dem weniger spezifischen `CarItem`.
+
+///
 
 //// tab | Python 3.10+
 

@@ -36,8 +36,11 @@ You could create a first dependency ("dependable") like:
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="6-7"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -47,8 +50,11 @@ You could create a first dependency ("dependable") like:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8-9"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -90,8 +96,11 @@ Then you can create another dependency function (a "dependable") that at the sam
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -101,8 +110,11 @@ Then you can create another dependency function (a "dependable") that at the sam
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="13"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -147,8 +159,11 @@ Then we can use the dependency with:
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="19"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -158,8 +173,11 @@ Then we can use the dependency with:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -167,10 +185,13 @@ Then we can use the dependency with:
 
 ////
 
-!!! info
-    Notice that we are only declaring one dependency in the *path operation function*, the `query_or_cookie_extractor`.
+/// info
 
-    But **FastAPI** will know that it has to solve `query_extractor` first, to pass the results of that to `query_or_cookie_extractor` while calling it.
+Notice that we are only declaring one dependency in the *path operation function*, the `query_or_cookie_extractor`.
+
+But **FastAPI** will know that it has to solve `query_extractor` first, to pass the results of that to `query_or_cookie_extractor` while calling it.
+
+///
 
 ```mermaid
 graph TB
@@ -202,8 +223,11 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
@@ -220,9 +244,12 @@ Just functions that look the same as the *path operation functions*.
 
 But still, it is very powerful, and allows you to declare arbitrarily deeply nested dependency "graphs" (trees).
 
-!!! tip
-    All this might not seem as useful with these simple examples.
+/// tip
 
-    But you will see how useful it is in the chapters about **security**.
+All this might not seem as useful with these simple examples.
 
-    And you will also see the amounts of code it will save you.
+But you will see how useful it is in the chapters about **security**.
+
+And you will also see the amounts of code it will save you.
+
+///

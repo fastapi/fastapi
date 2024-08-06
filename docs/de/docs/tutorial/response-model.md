@@ -83,17 +83,23 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 
 ////
 
-!!! note "Hinweis"
-    Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
+/// note | "Hinweis"
+
+Beachten Sie, dass `response_model` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter.
+
+///
 
 `response_model` nimmt denselben Typ entgegen, den Sie auch für ein Pydantic-Modellfeld deklarieren würden, also etwa ein Pydantic-Modell, aber es kann auch z. B. eine `list`e von Pydantic-Modellen sein, wie etwa `List[Item]`.
 
 FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, validieren, usw. und auch, um **die Ausgabedaten** entsprechend der Typdeklaration **zu konvertieren und filtern**.
 
-!!! tip "Tipp"
-    Wenn Sie in Ihrem Editor strikte Typchecks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
+/// tip | "Tipp"
 
-    So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
+Wenn Sie in Ihrem Editor strikte Typchecks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
+
+So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
+
+///
 
 ### `response_model`-Priorität
 
@@ -123,11 +129,14 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 
 ////
 
-!!! info
-    Um `EmailStr` zu verwenden, installieren Sie zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+/// info
 
-    Z. B. `pip install email-validator`
-    oder `pip install pydantic[email]`.
+Um `EmailStr` zu verwenden, installieren Sie zuerst <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+
+Z. B. `pip install email-validator`
+oder `pip install pydantic[email]`.
+
+///
 
 Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu deklarieren:
 
@@ -153,8 +162,11 @@ Hier ist das möglicherweise kein Problem, da es derselbe Benutzer ist, der das 
 
 Aber wenn wir dasselbe Modell für eine andere *Pfadoperation* verwenden, könnten wir das Passwort dieses Benutzers zu jedem Client schicken.
 
-!!! danger "Gefahr"
-    Speichern Sie niemals das Klartext-Passwort eines Benutzers, oder versenden Sie es in einer Response wie dieser, wenn Sie sich nicht der resultierenden Gefahren bewusst sind und nicht wissen, was Sie tun.
+/// danger | "Gefahr"
+
+Speichern Sie niemals das Klartext-Passwort eines Benutzers, oder versenden Sie es in einer Response wie dieser, wenn Sie sich nicht der resultierenden Gefahren bewusst sind und nicht wissen, was Sie tun.
+
+///
 
 ## Ausgabemodell hinzufügen
 
@@ -433,21 +445,30 @@ Wenn Sie also den Artikel mit der ID `foo` bei der *Pfadoperation* anfragen, wir
 }
 ```
 
-!!! info
-    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+/// info
 
-    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
 
-!!! info
-    FastAPI verwendet `.dict()` von Pydantic Modellen, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">mit dessen `exclude_unset`-Parameter</a>, um das zu erreichen.
+Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
 
-!!! info
-    Sie können auch:
+///
 
-    * `response_model_exclude_defaults=True`
-    * `response_model_exclude_none=True`
+/// info
 
-    verwenden, wie in der <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic Dokumentation</a> für `exclude_defaults` und `exclude_none` beschrieben.
+FastAPI verwendet `.dict()` von Pydantic Modellen, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">mit dessen `exclude_unset`-Parameter</a>, um das zu erreichen.
+
+///
+
+/// info
+
+Sie können auch:
+
+* `response_model_exclude_defaults=True`
+* `response_model_exclude_none=True`
+
+verwenden, wie in der <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic Dokumentation</a> für `exclude_defaults` und `exclude_none` beschrieben.
+
+///
 
 #### Daten mit Werten für Felder mit Defaultwerten
 
@@ -482,10 +503,13 @@ dann ist FastAPI klug genug (tatsächlich ist Pydantic klug genug) zu erkennen, 
 
 Diese Felder werden also in der JSON-Response enthalten sein.
 
-!!! tip "Tipp"
-    Beachten Sie, dass Defaultwerte alles Mögliche sein können, nicht nur `None`.
+/// tip | "Tipp"
 
-    Sie können eine Liste (`[]`), ein `float` `10.5`, usw. sein.
+Beachten Sie, dass Defaultwerte alles Mögliche sein können, nicht nur `None`.
+
+Sie können eine Liste (`[]`), ein `float` `10.5`, usw. sein.
+
+///
 
 ### `response_model_include` und `response_model_exclude`
 
@@ -495,12 +519,15 @@ Diese nehmen ein `set` von `str`s entgegen, welches Namen von Attributen sind, d
 
 Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Modell haben und ein paar Daten von der Ausgabe ausschließen wollen.
 
-!!! tip "Tipp"
-    Es wird dennoch empfohlen, dass Sie die Ideen von oben verwenden, also mehrere Klassen statt dieser Parameter.
+/// tip | "Tipp"
 
-    Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
+Es wird dennoch empfohlen, dass Sie die Ideen von oben verwenden, also mehrere Klassen statt dieser Parameter.
 
-    Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
+Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
+
+Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
+
+///
 
 //// tab | Python 3.10+
 
@@ -518,10 +545,13 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
 
 ////
 
-!!! tip "Tipp"
-    Die Syntax `{"name", "description"}` erzeugt ein `set` mit diesen zwei Werten.
+/// tip | "Tipp"
 
-    Äquivalent zu `set(["name", "description"])`.
+Die Syntax `{"name", "description"}` erzeugt ein `set` mit diesen zwei Werten.
+
+Äquivalent zu `set(["name", "description"])`.
+
+///
 
 #### `list`en statt `set`s verwenden
 

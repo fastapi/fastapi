@@ -32,8 +32,11 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -52,12 +58,15 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 ////
 
-!!! info
-    FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
+/// info
 
-    Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
-    Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+
+Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+
+///
 
 ## Metadaten deklarieren
 
@@ -91,8 +100,11 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -102,8 +114,11 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -111,17 +126,23 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 ////
 
-!!! note "Hinweis"
-    Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
+/// note | "Hinweis"
 
-    Sie sollten ihn daher mit `...` deklarieren, um ihn als erforderlich auszuzeichnen.
+Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
 
-    Doch selbst wenn Sie ihn mit `None` deklarieren, oder einen Defaultwert setzen, bewirkt das nichts, er bleibt immer erforderlich.
+Sie sollten ihn daher mit `...` deklarieren, um ihn als erforderlich auszuzeichnen.
+
+Doch selbst wenn Sie ihn mit `None` deklarieren, oder einen Defaultwert setzen, bewirkt das nichts, er bleibt immer erforderlich.
+
+///
 
 ## Sortieren Sie die Parameter, wie Sie möchten
 
-!!! tip "Tipp"
-    Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
+/// tip | "Tipp"
+
+Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
+
+///
 
 Nehmen wir an, Sie möchten den Query-Parameter `q` als erforderlichen `str` deklarieren.
 
@@ -139,8 +160,11 @@ Sie können Ihre Funktion also so deklarieren:
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
@@ -168,8 +192,11 @@ Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` ver
 
 ## Sortieren Sie die Parameter wie Sie möchten: Tricks
 
-!!! tip "Tipp"
-    Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
+/// tip | "Tipp"
+
+Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
+
+///
 
 Hier ein **kleiner Trick**, der nützlich sein kann, aber Sie werden ihn nicht oft brauchen.
 
@@ -233,8 +260,11 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -267,8 +297,11 @@ Das Gleiche trifft zu auf:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -304,8 +337,11 @@ Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></a
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
@@ -324,18 +360,24 @@ Und Sie können auch Validierungen für Zahlen deklarieren:
 * `lt`: `l`ess `t`han – kleiner als
 * `le`: `l`ess than or `e`qual – kleiner oder gleich
 
-!!! info
-    `Query`, `Path`, und andere Klassen, die Sie später kennenlernen, sind Unterklassen einer allgemeinen `Param`-Klasse.
+/// info
 
-    Sie alle teilen die gleichen Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
+`Query`, `Path`, und andere Klassen, die Sie später kennenlernen, sind Unterklassen einer allgemeinen `Param`-Klasse.
 
-!!! note "Technische Details"
-    `Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
+Sie alle teilen die gleichen Parameter für zusätzliche Validierung und Metadaten, die Sie gesehen haben.
 
-    Die, wenn sie aufgerufen werden, Instanzen der Klassen mit demselben Namen zurückgeben.
+///
 
-    Sie importieren also `Query`, welches eine Funktion ist. Aber wenn Sie es aufrufen, gibt es eine Instanz der Klasse zurück, die auch `Query` genannt wird.
+/// note | "Technische Details"
 
-    Diese Funktionen existieren (statt die Klassen direkt zu verwenden), damit Ihr Editor keine Fehlermeldungen über ihre Typen ausgibt.
+`Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
 
-    Auf diese Weise können Sie Ihren Editor und Ihre Programmier-Tools verwenden, ohne besondere Einstellungen vornehmen zu müssen, um diese Fehlermeldungen stummzuschalten.
+Die, wenn sie aufgerufen werden, Instanzen der Klassen mit demselben Namen zurückgeben.
+
+Sie importieren also `Query`, welches eine Funktion ist. Aber wenn Sie es aufrufen, gibt es eine Instanz der Klasse zurück, die auch `Query` genannt wird.
+
+Diese Funktionen existieren (statt die Klassen direkt zu verwenden), damit Ihr Editor keine Fehlermeldungen über ihre Typen ausgibt.
+
+Auf diese Weise können Sie Ihren Editor und Ihre Programmier-Tools verwenden, ohne besondere Einstellungen vornehmen zu müssen, um diese Fehlermeldungen stummzuschalten.
+
+///

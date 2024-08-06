@@ -22,10 +22,13 @@ Nehmen wir als Beispiel die folgende Anwendung:
 
 Der Query-Parameter `q` hat den Typ `Union[str, None]` (oder `str | None` in Python 3.10), was bedeutet, er ist entweder ein `str` oder `None`. Der Defaultwert ist `None`, also weiß FastAPI, der Parameter ist nicht erforderlich.
 
-!!! note "Hinweis"
-    FastAPI weiß nur dank des definierten Defaultwertes `=None`, dass der Wert von `q` nicht erforderlich ist
+/// note | "Hinweis"
 
-    `Union[str, None]` hingegen erlaubt ihren Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+FastAPI weiß nur dank des definierten Defaultwertes `=None`, dass der Wert von `q` nicht erforderlich ist
+
+`Union[str, None]` hingegen erlaubt ihren Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+
+///
 
 ## Zusätzliche Validierung
 
@@ -60,12 +63,15 @@ Es wird bereits mit FastAPI installiert sein.
 
 ////
 
-!!! info
-    FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
+/// info
 
-    Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
-    Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+
+Bitte [aktualisieren Sie FastAPI](../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+
+///
 
 ## `Annotated` im Typ des `q`-Parameters verwenden
 
@@ -147,8 +153,11 @@ FastAPI wird nun:
 
 Frühere Versionen von FastAPI (vor <abbr title="vor 2023-03">0.95.0</abbr>) benötigten `Query` als Defaultwert des Parameters, statt es innerhalb von `Annotated` unterzubringen. Die Chance ist groß, dass Sie Quellcode sehen, der das immer noch so macht, darum erkläre ich es Ihnen.
 
-!!! tip "Tipp"
-    Verwenden Sie für neuen Code, und wann immer möglich, `Annotated`, wie oben erklärt. Es gibt mehrere Vorteile (unten erläutert) und keine Nachteile. 🍰
+/// tip | "Tipp"
+
+Verwenden Sie für neuen Code, und wann immer möglich, `Annotated`, wie oben erklärt. Es gibt mehrere Vorteile (unten erläutert) und keine Nachteile. 🍰
+
+///
 
 So würden Sie `Query()` als Defaultwert Ihres Funktionsparameters verwenden, den Parameter `max_length` auf 50 gesetzt:
 
@@ -196,22 +205,25 @@ q: str | None = None
 
 Nur, dass die `Query`-Versionen den Parameter explizit als Query-Parameter deklarieren.
 
-!!! info
-    Bedenken Sie, dass:
+/// info
 
-    ```Python
-    = None
-    ```
+Bedenken Sie, dass:
 
-    oder:
+```Python
+= None
+```
 
-    ```Python
-    = Query(default=None)
-    ```
+oder:
 
-    der wichtigste Teil ist, um einen Parameter optional zu machen, da dieses `None` der Defaultwert ist, und das ist es, was diesen Parameter **nicht erforderlich** macht.
+```Python
+= Query(default=None)
+```
 
-    Der Teil mit `Union[str, None]` erlaubt es Ihrem Editor, Sie besser zu unterstützen, aber er sagt FastAPI nicht, dass dieser Parameter optional ist.
+der wichtigste Teil ist, um einen Parameter optional zu machen, da dieses `None` der Defaultwert ist, und das ist es, was diesen Parameter **nicht erforderlich** macht.
+
+Der Teil mit `Union[str, None]` erlaubt es Ihrem Editor, Sie besser zu unterstützen, aber er sagt FastAPI nicht, dass dieser Parameter optional ist.
+
+///
 
 Jetzt können wir `Query` weitere Parameter übergeben. Fangen wir mit dem `max_length` Parameter an, der auf Strings angewendet wird:
 
@@ -289,8 +301,11 @@ Sie können auch einen Parameter `min_length` hinzufügen:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
@@ -300,8 +315,11 @@ Sie können auch einen Parameter `min_length` hinzufügen:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
@@ -339,8 +357,11 @@ Sie können einen <abbr title="Ein regulärer Ausdruck, auch regex oder regexp g
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
@@ -350,8 +371,11 @@ Sie können einen <abbr title="Ein regulärer Ausdruck, auch regex oder regexp g
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
@@ -409,8 +433,11 @@ Beispielsweise könnten Sie den `q` Query-Parameter so deklarieren, dass er eine
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
@@ -418,8 +445,11 @@ Beispielsweise könnten Sie den `q` Query-Parameter so deklarieren, dass er eine
 
 ////
 
-!!! note "Hinweis"
-    Ein Parameter ist optional (nicht erforderlich), wenn er irgendeinen Defaultwert, auch `None`, hat.
+/// note | "Hinweis"
+
+Ein Parameter ist optional (nicht erforderlich), wenn er irgendeinen Defaultwert, auch `None`, hat.
+
+///
 
 ## Erforderliche Parameter
 
@@ -473,17 +503,23 @@ Wenn Sie einen Parameter erforderlich machen wollen, während Sie `Query` verwen
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass, obwohl in diesem Fall `Query()` der Funktionsparameter-Defaultwert ist, wir nicht `default=None` zu `Query()` hinzufügen.
+/// tip | "Tipp"
 
-    Verwenden Sie bitte trotzdem die `Annotated`-Version. 😉
+Beachten Sie, dass, obwohl in diesem Fall `Query()` der Funktionsparameter-Defaultwert ist, wir nicht `default=None` zu `Query()` hinzufügen.
+
+Verwenden Sie bitte trotzdem die `Annotated`-Version. 😉
+
+///
 
 ////
 
@@ -509,8 +545,11 @@ Es gibt eine Alternative, die explizit deklariert, dass ein Wert erforderlich is
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial006b.py!}
@@ -518,10 +557,13 @@ Es gibt eine Alternative, die explizit deklariert, dass ein Wert erforderlich is
 
 ////
 
-!!! info
-    Falls Sie das `...` bisher noch nicht gesehen haben: Es ist ein spezieller einzelner Wert, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Teil von Python und wird „Ellipsis“ genannt</a> (Deutsch: Ellipse).
+/// info
 
-    Es wird von Pydantic und FastAPI verwendet, um explizit zu deklarieren, dass ein Wert erforderlich ist.
+Falls Sie das `...` bisher noch nicht gesehen haben: Es ist ein spezieller einzelner Wert, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Teil von Python und wird „Ellipsis“ genannt</a> (Deutsch: Ellipse).
+
+Es wird von Pydantic und FastAPI verwendet, um explizit zu deklarieren, dass ein Wert erforderlich ist.
+
+///
 
 Dies wird **FastAPI** wissen lassen, dass dieser Parameter erforderlich ist.
 
@@ -557,8 +599,11 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
@@ -568,8 +613,11 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
@@ -577,11 +625,17 @@ Um das zu machen, deklarieren Sie, dass `None` ein gültiger Typ ist, aber verwe
 
 ////
 
-!!! tip "Tipp"
-    Pydantic, welches die gesamte Datenvalidierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
+/// tip | "Tipp"
 
-!!! tip "Tipp"
-    Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
+Pydantic, welches die gesamte Datenvalidierung und Serialisierung in FastAPI antreibt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden, Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
+
+///
+
+/// tip | "Tipp"
+
+Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
+
+///
 
 ## Query-Parameter-Liste / Mehrere Werte
 
@@ -615,8 +669,11 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
@@ -626,8 +683,11 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 //// tab | Python 3.9+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
@@ -637,8 +697,11 @@ Um zum Beispiel einen Query-Parameter `q` zu deklarieren, der mehrere Male in de
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
@@ -665,8 +728,11 @@ Die Response für diese URL wäre also:
 }
 ```
 
-!!! tip "Tipp"
-    Um einen Query-Parameter vom Typ `list` zu deklarieren, wie im Beispiel oben, müssen Sie explizit `Query` verwenden, sonst würde der Parameter als Requestbody interpretiert werden.
+/// tip | "Tipp"
+
+Um einen Query-Parameter vom Typ `list` zu deklarieren, wie im Beispiel oben, müssen Sie explizit `Query` verwenden, sonst würde der Parameter als Requestbody interpretiert werden.
+
+///
 
 Die interaktive API-Dokumentation wird entsprechend aktualisiert und erlaubt jetzt mehrere Werte.
 
@@ -694,8 +760,11 @@ Und Sie können auch eine Default-`list`e von Werten definieren, wenn keine übe
 
 //// tab | Python 3.9+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
@@ -705,8 +774,11 @@ Und Sie können auch eine Default-`list`e von Werten definieren, wenn keine übe
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
@@ -753,8 +825,11 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]` (oder `list[s
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
@@ -762,10 +837,13 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]` (oder `list[s
 
 ////
 
-!!! note "Hinweis"
-    Beachten Sie, dass FastAPI in diesem Fall den Inhalt der Liste nicht überprüft.
+/// note | "Hinweis"
 
-    Zum Beispiel würde `List[int]` überprüfen (und dokumentieren) dass die Liste Ganzzahlen enthält. `list` alleine macht das nicht.
+Beachten Sie, dass FastAPI in diesem Fall den Inhalt der Liste nicht überprüft.
+
+Zum Beispiel würde `List[int]` überprüfen (und dokumentieren) dass die Liste Ganzzahlen enthält. `list` alleine macht das nicht.
+
+///
 
 ## Deklarieren von mehr Metadaten
 
@@ -773,10 +851,13 @@ Sie können mehr Informationen zum Parameter hinzufügen.
 
 Diese Informationen werden zur generierten OpenAPI hinzugefügt, und von den Dokumentations-Oberflächen und von externen Tools verwendet.
 
-!!! note "Hinweis"
-    Beachten Sie, dass verschiedene Tools OpenAPI möglicherweise unterschiedlich gut unterstützen.
+/// note | "Hinweis"
 
-    Einige könnten noch nicht alle zusätzlichen Informationen anzeigen, die Sie deklariert haben, obwohl in den meisten Fällen geplant ist, das fehlende Feature zu implementieren.
+Beachten Sie, dass verschiedene Tools OpenAPI möglicherweise unterschiedlich gut unterstützen.
+
+Einige könnten noch nicht alle zusätzlichen Informationen anzeigen, die Sie deklariert haben, obwohl in den meisten Fällen geplant ist, das fehlende Feature zu implementieren.
+
+///
 
 Sie können einen Titel hinzufügen – `title`:
 
@@ -806,8 +887,11 @@ Sie können einen Titel hinzufügen – `title`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
@@ -817,8 +901,11 @@ Sie können einen Titel hinzufügen – `title`:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
@@ -854,8 +941,11 @@ Und eine Beschreibung – `description`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
@@ -865,8 +955,11 @@ Und eine Beschreibung – `description`:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="13"
 {!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
@@ -918,8 +1011,11 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
@@ -929,8 +1025,11 @@ Dann können Sie einen `alias` deklarieren, und dieser Alias wird verwendet, um 
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
@@ -972,8 +1071,11 @@ In diesem Fall fügen Sie den Parameter `deprecated=True` zu `Query` hinzu.
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="16"
 {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
@@ -983,8 +1085,11 @@ In diesem Fall fügen Sie den Parameter `deprecated=True` zu `Query` hinzu.
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="18"
 {!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
@@ -1026,8 +1131,11 @@ Um einen Query-Parameter vom generierten OpenAPI-Schema auszuschließen (und dah
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
@@ -1037,8 +1145,11 @@ Um einen Query-Parameter vom generierten OpenAPI-Schema auszuschließen (und dah
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}

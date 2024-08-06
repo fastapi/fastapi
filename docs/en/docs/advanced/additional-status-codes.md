@@ -40,8 +40,11 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="2  23"
 {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
@@ -51,8 +54,11 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="4  25"
 {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
@@ -60,17 +66,23 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 ////
 
-!!! warning
-    When you return a `Response` directly, like in the example above, it will be returned directly.
+/// warning
 
-    It won't be serialized with a model, etc.
+When you return a `Response` directly, like in the example above, it will be returned directly.
 
-    Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
+It won't be serialized with a model, etc.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+///
+
+/// note | "Technical Details"
+
+You could also use `from starlette.responses import JSONResponse`.
+
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+
+///
 
 ## OpenAPI and API docs
 

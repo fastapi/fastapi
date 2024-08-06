@@ -81,8 +81,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1  2  11-15"
 {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
@@ -92,8 +95,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1  2  12-16"
 {!> ../../../docs_src/extra_data_types/tutorial001.py!}
@@ -129,8 +135,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="17-18"
 {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
@@ -140,8 +149,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="18-19"
 {!> ../../../docs_src/extra_data_types/tutorial001.py!}

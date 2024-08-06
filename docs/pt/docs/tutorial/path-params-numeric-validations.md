@@ -44,12 +44,15 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 
 ////
 
-!!! note "Nota"
-    Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
+/// note | "Nota"
 
-    Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
+Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
 
-    Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
+Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
+
+Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
+
+///
 
 ## Ordene os parâmetros de acordo com sua necessidade
 
@@ -129,18 +132,24 @@ E você também pode declarar validações numéricas:
 * `lt`: menor que (`l`ess `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-!!! info "Informação"
-    `Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
+/// info | "Informação"
 
-    Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
+`Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
 
-!!! note "Detalhes Técnicos"
-    Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
+Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
 
-    Que quando chamadas, retornam instâncias de classes de mesmo nome.
+///
 
-    Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+/// note | "Detalhes Técnicos"
 
-    Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
+Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
 
-    Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
+Que quando chamadas, retornam instâncias de classes de mesmo nome.
+
+Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+
+Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
+
+Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
+
+///

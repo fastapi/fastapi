@@ -12,8 +12,11 @@ Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typh
 
 Aber selbst wenn Sie **FastAPI** nie verwenden, wird es für Sie nützlich sein, ein wenig darüber zu lernen.
 
-!!! note "Hinweis"
-    Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
+/// note | "Hinweis"
+
+Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
+
+///
 
 ## Motivation
 
@@ -204,15 +207,21 @@ Da die Liste ein Typ ist, welcher innere Typen enthält, werden diese von eckige
 
 ////
 
-!!! tip "Tipp"
-    Die inneren Typen in den eckigen Klammern werden als „Typ-Parameter“ bezeichnet.
+/// tip | "Tipp"
 
-    In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder `list` in Python 3.9 und darüber).
+Die inneren Typen in den eckigen Klammern werden als „Typ-Parameter“ bezeichnet.
+
+In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder `list` in Python 3.9 und darüber).
+
+///
 
 Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist ein String – `str`.
 
-!!! tip "Tipp"
-    Wenn Sie Python 3.9 oder höher verwenden, müssen Sie `List` nicht von `typing` importieren, Sie können stattdessen den regulären `list`-Typ verwenden.
+/// tip | "Tipp"
+
+Wenn Sie Python 3.9 oder höher verwenden, müssen Sie `List` nicht von `typing` importieren, Sie können stattdessen den regulären `list`-Typ verwenden.
+
+///
 
 Auf diese Weise kann Ihr Editor Sie auch bei der Bearbeitung von Einträgen aus der Liste unterstützen:
 
@@ -498,15 +507,21 @@ Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 
 ////
 
-!!! info
-    Um mehr über <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an</a>.
+/// info
+
+Um mehr über <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an</a>.
+
+///
 
 **FastAPI** basiert vollständig auf Pydantic.
 
 Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
 
-!!! tip "Tipp"
-    Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
+/// tip | "Tipp"
+
+Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
+
+///
 
 ## Typhinweise mit Metadaten-Annotationen
 
@@ -544,10 +559,13 @@ Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standa
 
 Später werden Sie sehen, wie **mächtig** es sein kann.
 
-!!! tip "Tipp"
-    Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
+/// tip | "Tipp"
 
-    Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python-Tools und -Bibliotheken sein wird. 🚀
+Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
+
+Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python-Tools und -Bibliotheken sein wird. 🚀
+
+///
 
 ## Typhinweise in **FastAPI**
 
@@ -571,5 +589,8 @@ Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das
 
 Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard-Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 
-!!! info
-    Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der „Cheat Sheet“ von `mypy`</a>.
+/// info
+
+Wenn Sie bereits das ganze Tutorial durchgearbeitet haben und mehr über Typen erfahren wollen, dann ist eine gute Ressource <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">der „Cheat Sheet“ von `mypy`</a>.
+
+///

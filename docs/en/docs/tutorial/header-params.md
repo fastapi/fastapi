@@ -32,8 +32,11 @@ First import `Header`:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ First import `Header`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -84,8 +90,11 @@ The first value is the default value, you can pass all the extra validation or a
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@ The first value is the default value, you can pass all the extra validation or a
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -104,13 +116,19 @@ The first value is the default value, you can pass all the extra validation or a
 
 ////
 
-!!! note "Technical Details"
-    `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+/// note | "Technical Details"
 
-    But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+`Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
 
-!!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+
+///
+
+/// info
+
+To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+
+///
 
 ## Automatic conversion
 
@@ -154,8 +172,11 @@ If for some reason you need to disable automatic conversion of underscores to hy
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/header_params/tutorial002_py310.py!}
@@ -165,8 +186,11 @@ If for some reason you need to disable automatic conversion of underscores to hy
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/header_params/tutorial002.py!}
@@ -174,8 +198,11 @@ If for some reason you need to disable automatic conversion of underscores to hy
 
 ////
 
-!!! warning
-    Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+/// warning
+
+Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+
+///
 
 ## Duplicate headers
 
@@ -213,8 +240,11 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial003_py310.py!}
@@ -224,8 +254,11 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
 
 //// tab | Python 3.9+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003_py39.py!}
@@ -235,8 +268,11 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003.py!}

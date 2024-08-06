@@ -34,8 +34,11 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="17-19"
 {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -45,8 +48,11 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="19-21"
 {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -54,8 +60,11 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 
 ////
 
-!!! note "Hinweis"
-    Beachten Sie, dass in diesem Fall das `item`, welches vom Body genommen wird, optional ist. Da es `None` als Defaultwert hat.
+/// note | "Hinweis"
+
+Beachten Sie, dass in diesem Fall das `item`, welches vom Body genommen wird, optional ist. Da es `None` als Defaultwert hat.
+
+///
 
 ## Mehrere Body-Parameter
 
@@ -107,8 +116,11 @@ Es wird deshalb die Parameternamen als Schlüssel (Feldnamen) im Body verwenden,
 }
 ```
 
-!!! note "Hinweis"
-    Beachten Sie, dass, obwohl `item` wie zuvor deklariert wurde, es nun unter einem Schlüssel `item` im Body erwartet wird.
+/// note | "Hinweis"
+
+Beachten Sie, dass, obwohl `item` wie zuvor deklariert wurde, es nun unter einem Schlüssel `item` im Body erwartet wird.
+
+///
 
 **FastAPI** wird die automatische Konvertierung des Requests übernehmen, sodass der Parameter `item` seinen spezifischen Inhalt bekommt, genau so wie der Parameter `user`.
 
@@ -150,8 +162,11 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -161,8 +176,11 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -234,8 +252,11 @@ Zum Beispiel:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="25"
 {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -245,8 +266,11 @@ Zum Beispiel:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="27"
 {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -254,8 +278,11 @@ Zum Beispiel:
 
 ////
 
-!!! info
-    `Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query` und `Path` und andere, die Sie später kennenlernen.
+/// info
+
+`Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query` und `Path` und andere, die Sie später kennenlernen.
+
+///
 
 ## Einen einzelnen Body-Parameter einbetten
 
@@ -297,8 +324,11 @@ so wie in:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -308,8 +338,11 @@ so wie in:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="17"
 {!> ../../../docs_src/body_multiple_params/tutorial005.py!}

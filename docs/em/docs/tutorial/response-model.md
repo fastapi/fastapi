@@ -83,17 +83,23 @@ FastAPI 🔜 ⚙️ 👉 📨 🆎:
 
 ////
 
-!!! note
-    👀 👈 `response_model` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠️ 🔢*, 💖 🌐 🔢 &amp; 💪.
+/// note
+
+👀 👈 `response_model` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠️ 🔢*, 💖 🌐 🔢 &amp; 💪.
+
+///
 
 `response_model` 📨 🎏 🆎 👆 🔜 📣 Pydantic 🏷 🏑,, ⚫️ 💪 Pydantic 🏷, ✋️ ⚫️ 💪, ✅ `list` Pydantic 🏷, 💖 `List[Item]`.
 
 FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **🗜 &amp; ⛽ 🔢 📊** 🚮 🆎 📄.
 
-!!! tip
-    🚥 👆 ✔️ ⚠ 🆎 ✅ 👆 👨‍🎨, ✍, ♒️, 👆 💪 📣 🔢 📨 🆎 `Any`.
+/// tip
 
-    👈 🌌 👆 💬 👨‍🎨 👈 👆 😫 🛬 🕳. ✋️ FastAPI 🔜 💽 🧾, 🔬, 🖥, ♒️. ⏮️ `response_model`.
+🚥 👆 ✔️ ⚠ 🆎 ✅ 👆 👨‍🎨, ✍, ♒️, 👆 💪 📣 🔢 📨 🆎 `Any`.
+
+👈 🌌 👆 💬 👨‍🎨 👈 👆 😫 🛬 🕳. ✋️ FastAPI 🔜 💽 🧾, 🔬, 🖥, ♒️. ⏮️ `response_model`.
+
+///
 
 ### `response_model` 📫
 
@@ -123,11 +129,14 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 ////
 
-!!! info
-    ⚙️ `EmailStr`, 🥇 ❎ <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+/// info
 
-    🤶 Ⓜ. `pip install email-validator`
-    ⚖️ `pip install pydantic[email]`.
+⚙️ `EmailStr`, 🥇 ❎ <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+
+🤶 Ⓜ. `pip install email-validator`
+⚖️ `pip install pydantic[email]`.
+
+///
 
 &amp; 👥 ⚙️ 👉 🏷 📣 👆 🔢 &amp; 🎏 🏷 📣 👆 🔢:
 
@@ -153,8 +162,11 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 ✋️ 🚥 👥 ⚙️ 🎏 🏷 ➕1️⃣ *➡ 🛠️*, 👥 💪 📨 👆 👩‍💻 🔐 🔠 👩‍💻.
 
-!!! danger
-    🙅 🏪 ✅ 🔐 👩‍💻 ⚖️ 📨 ⚫️ 📨 💖 👉, 🚥 👆 💭 🌐 ⚠ &amp; 👆 💭 ⚫️❔ 👆 🔨.
+/// danger
+
+🙅 🏪 ✅ 🔐 👩‍💻 ⚖️ 📨 ⚫️ 📨 💖 👉, 🚥 👆 💭 🌐 ⚠ &amp; 👆 💭 ⚫️❔ 👆 🔨.
+
+///
 
 ## 🚮 🔢 🏷
 
@@ -433,16 +445,22 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 }
 ```
 
-!!! info
-    FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
+/// info
 
-!!! info
-    👆 💪 ⚙️:
+FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
 
-    * `response_model_exclude_defaults=True`
-    * `response_model_exclude_none=True`
+///
 
-    🔬 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 🩺</a> `exclude_defaults` &amp; `exclude_none`.
+/// info
+
+👆 💪 ⚙️:
+
+* `response_model_exclude_defaults=True`
+* `response_model_exclude_none=True`
+
+🔬 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 🩺</a> `exclude_defaults` &amp; `exclude_none`.
+
+///
 
 #### 📊 ⏮️ 💲 🏑 ⏮️ 🔢
 
@@ -477,10 +495,13 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 , 👫 🔜 🔌 🎻 📨.
 
-!!! tip
-    👀 👈 🔢 💲 💪 🕳, 🚫 🕴 `None`.
+/// tip
 
-    👫 💪 📇 (`[]`), `float` `10.5`, ♒️.
+👀 👈 🔢 💲 💪 🕳, 🚫 🕴 `None`.
+
+👫 💪 📇 (`[]`), `float` `10.5`, ♒️.
+
+///
 
 ### `response_model_include` &amp; `response_model_exclude`
 
@@ -490,12 +511,15 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 👉 💪 ⚙️ ⏩ ⌨ 🚥 👆 ✔️ 🕴 1️⃣ Pydantic 🏷 &amp; 💚 ❎ 💽 ⚪️➡️ 🔢.
 
-!!! tip
-    ✋️ ⚫️ 👍 ⚙️ 💭 🔛, ⚙️ 💗 🎓, ↩️ 👫 🔢.
+/// tip
 
-    👉 ↩️ 🎻 🔗 🏗 👆 📱 🗄 (&amp; 🩺) 🔜 1️⃣ 🏁 🏷, 🚥 👆 ⚙️ `response_model_include` ⚖️ `response_model_exclude` 🚫 🔢.
+✋️ ⚫️ 👍 ⚙️ 💭 🔛, ⚙️ 💗 🎓, ↩️ 👫 🔢.
 
-    👉 ✔ `response_model_by_alias` 👈 👷 ➡.
+👉 ↩️ 🎻 🔗 🏗 👆 📱 🗄 (&amp; 🩺) 🔜 1️⃣ 🏁 🏷, 🚥 👆 ⚙️ `response_model_include` ⚖️ `response_model_exclude` 🚫 🔢.
+
+👉 ✔ `response_model_by_alias` 👈 👷 ➡.
+
+///
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
@@ -513,10 +537,13 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 ////
 
-!!! tip
-    ❕ `{"name", "description"}` ✍ `set` ⏮️ 📚 2️⃣ 💲.
+/// tip
 
-    ⚫️ 🌓 `set(["name", "description"])`.
+❕ `{"name", "description"}` ✍ `set` ⏮️ 📚 2️⃣ 💲.
+
+⚫️ 🌓 `set(["name", "description"])`.
+
+///
 
 #### ⚙️ `list`Ⓜ ↩️ `set`Ⓜ
 

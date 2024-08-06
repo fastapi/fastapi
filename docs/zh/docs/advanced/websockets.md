@@ -46,10 +46,13 @@ $ pip install websockets
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
-!!! note "技术细节"
-    您也可以使用 `from starlette.websockets import WebSocket`。
+/// note | "技术细节"
 
-    **FastAPI** 直接提供了相同的 `WebSocket`，只是为了方便开发人员。但它直接来自 Starlette。
+您也可以使用 `from starlette.websockets import WebSocket`。
+
+**FastAPI** 直接提供了相同的 `WebSocket`，只是为了方便开发人员。但它直接来自 Starlette。
+
+///
 
 ## 等待消息并发送消息
 
@@ -132,8 +135,11 @@ $ uvicorn main:app --reload
 
 //// tab | Python 3.10+ 非带注解版本
 
-!!! tip
-    如果可能，请尽量使用 `Annotated` 版本。
+/// tip
+
+如果可能，请尽量使用 `Annotated` 版本。
+
+///
 
 ```Python hl_lines="66-67  79"
 {!> ../../../docs_src/websockets/tutorial002_py310.py!}
@@ -143,8 +149,11 @@ $ uvicorn main:app --reload
 
 //// tab | Python 3.8+ 非带注解版本
 
-!!! tip
-    如果可能，请尽量使用 `Annotated` 版本。
+/// tip
+
+如果可能，请尽量使用 `Annotated` 版本。
+
+///
 
 ```Python hl_lines="68-69  81"
 {!> ../../../docs_src/websockets/tutorial002.py!}
@@ -152,10 +161,13 @@ $ uvicorn main:app --reload
 
 ////
 
-!!! info
-    由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
+/// info
 
-    您可以使用<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">规范中定义的有效代码</a>。
+由于这是一个 WebSocket，抛出 `HTTPException` 并不是很合理，而是抛出 `WebSocketException`。
+
+您可以使用<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">规范中定义的有效代码</a>。
+
+///
 
 ### 尝试带有依赖项的 WebSockets
 
@@ -174,8 +186,11 @@ $ uvicorn main:app --reload
 * "Item ID"，用于路径。
 * "Token"，作为查询参数。
 
-!!! tip
-    注意，查询参数 `token` 将由依赖项处理。
+/// tip
+
+注意，查询参数 `token` 将由依赖项处理。
+
+///
 
 通过这样，您可以连接 WebSocket，然后发送和接收消息：
 
@@ -213,12 +228,15 @@ $ uvicorn main:app --reload
 Client #1596980209979 left the chat
 ```
 
-!!! tip
-    上面的应用程序是一个最小和简单的示例，用于演示如何处理和向多个 WebSocket 连接广播消息。
+/// tip
 
-    但请记住，由于所有内容都在内存中以单个列表的形式处理，因此它只能在进程运行时工作，并且只能使用单个进程。
+上面的应用程序是一个最小和简单的示例，用于演示如何处理和向多个 WebSocket 连接广播消息。
 
-    如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
+但请记住，由于所有内容都在内存中以单个列表的形式处理，因此它只能在进程运行时工作，并且只能使用单个进程。
+
+如果您需要与 FastAPI 集成更简单但更强大的功能，支持 Redis、PostgreSQL 或其他功能，请查看 [encode/broadcaster](https://github.com/encode/broadcaster)。
+
+///
 
 ## 更多信息
 

@@ -38,8 +38,11 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="2  6  10"
 {!> ../../../docs_src/security/tutorial006.py!}
@@ -83,8 +86,11 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1  11-21"
 {!> ../../../docs_src/security/tutorial007.py!}
@@ -172,8 +178,11 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="23-27"
 {!> ../../../docs_src/security/tutorial007.py!}

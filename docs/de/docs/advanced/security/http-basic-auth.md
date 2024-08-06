@@ -38,8 +38,11 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="2  6  10"
 {!> ../../../docs_src/security/tutorial006.py!}
@@ -83,8 +86,11 @@ Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass 
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1  11-21"
 {!> ../../../docs_src/security/tutorial007.py!}
@@ -172,8 +178,11 @@ Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="23-27"
 {!> ../../../docs_src/security/tutorial007.py!}

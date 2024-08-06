@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    你只能在被 `async def` 创建的函数内使用 `await`
+/// note
+
+你只能在被 `async def` 创建的函数内使用 `await`
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 没有太多的交谈或调情，因为大部分时间 🕙 都在柜台前等待😞。
 
-!!! info
-    漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -392,12 +401,15 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 ## 非常技术性的细节
 
-!!! warning
-    你可以跳过这里。
+/// warning
 
-    这些都是 FastAPI 如何在内部工作的技术细节。
+你可以跳过这里。
 
-    如果您有相当多的技术知识（协程、线程、阻塞等），并且对 FastAPI 如何处理 `async def` 与常规 `def` 感到好奇，请继续。
+这些都是 FastAPI 如何在内部工作的技术细节。
+
+如果您有相当多的技术知识（协程、线程、阻塞等），并且对 FastAPI 如何处理 `async def` 与常规 `def` 感到好奇，请继续。
+
+///
 
 ### 路径操作函数
 

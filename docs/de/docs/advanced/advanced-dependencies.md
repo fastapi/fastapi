@@ -36,8 +36,11 @@ Dazu deklarieren wir eine Methode `__call__`:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -69,8 +72,11 @@ Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu dekl
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -102,8 +108,11 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="16"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -143,8 +152,11 @@ checker(q="somequery")
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -152,11 +164,14 @@ checker(q="somequery")
 
 ////
 
-!!! tip "Tipp"
-    Das alles mag gekünstelt wirken. Und es ist möglicherweise noch nicht ganz klar, welchen Nutzen das hat.
+/// tip | "Tipp"
 
-    Diese Beispiele sind bewusst einfach gehalten, zeigen aber, wie alles funktioniert.
+Das alles mag gekünstelt wirken. Und es ist möglicherweise noch nicht ganz klar, welchen Nutzen das hat.
 
-    In den Kapiteln zum Thema Sicherheit gibt es Hilfsfunktionen, die auf die gleiche Weise implementiert werden.
+Diese Beispiele sind bewusst einfach gehalten, zeigen aber, wie alles funktioniert.
 
-    Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherheits-Hilfswerkzeuge unter der Haube funktionieren.
+In den Kapiteln zum Thema Sicherheit gibt es Hilfsfunktionen, die auf die gleiche Weise implementiert werden.
+
+Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherheits-Hilfswerkzeuge unter der Haube funktionieren.
+
+///

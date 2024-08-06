@@ -2,8 +2,11 @@
 
 These are the tasks that can be performed to manage the FastAPI repository by [team members](./fastapi-people.md#team){.internal-link target=_blank}.
 
-!!! tip
-    This section is useful only to a handful of people, team members with permissions to manage the repository. You can probably skip it. 😉
+/// tip
+
+This section is useful only to a handful of people, team members with permissions to manage the repository. You can probably skip it. 😉
+
+///
 
 ...so, you are a [team member of FastAPI](./fastapi-people.md#team){.internal-link target=_blank}? Wow, you are so cool! 😎
 
@@ -80,8 +83,11 @@ Make sure you use a supported label from the <a href="https://github.com/tiangol
 * `internal`: Internal
     * Use this for changes that only affect how the repo is managed. For example upgrades to internal dependencies, changes in GitHub Actions or scripts, etc.
 
-!!! tip
-    Some tools like Dependabot, will add some labels, like `dependencies`, but have in mind that this label is not used by the `latest-changes` GitHub Action, so it won't be used in the release notes. Please make sure one of the labels above is added.
+/// tip
+
+Some tools like Dependabot, will add some labels, like `dependencies`, but have in mind that this label is not used by the `latest-changes` GitHub Action, so it won't be used in the release notes. Please make sure one of the labels above is added.
+
+///
 
 ## Add Labels to Translation PRs
 
@@ -116,45 +122,70 @@ For the other languages, confirm that:
 * The "admonition" sections, like `tip`, `info`, etc. are not changed or translated. For example:
 
 ```
-!!! tip
-    This is a tip.
+/// tip
+
+This is a tip.
+
+///
+
 ```
 
 looks like this:
 
-!!! tip
-    This is a tip.
+/// tip
+
+This is a tip.
+
+///
 
 ...it could be translated as:
 
 ```
-!!! tip
-    Esto es un consejo.
+/// tip
+
+Esto es un consejo.
+
+///
+
 ```
 
 ...but needs to keep the exact `tip` keyword. If it was translated to `consejo`, like:
 
 ```
-!!! consejo
-    Esto es un consejo.
+/// consejo
+
+Esto es un consejo.
+
+///
+
 ```
 
 it would change the style to the default one, it would look like:
 
-!!! consejo
-    Esto es un consejo.
+/// consejo
+
+Esto es un consejo.
+
+///
 
 Those don't have to be translated, but if they are, they need to be written as:
 
 ```
-!!! tip "consejo"
-    Esto es un consejo.
+/// tip | "consejo"
+
+Esto es un consejo.
+
+///
+
 ```
 
 Which looks like:
 
-!!! tip "consejo"
-    Esto es un consejo.
+/// tip | "consejo"
+
+Esto es un consejo.
+
+///
 
 ## First Translation PR
 

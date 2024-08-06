@@ -32,8 +32,11 @@ It should be a `list` of `Depends()`:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="17"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -43,17 +46,23 @@ It should be a `list` of `Depends()`:
 
 These dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) won't be passed to your *path operation function*.
 
-!!! tip
-    Some editors check for unused function parameters, and show them as errors.
+/// tip
 
-    Using these `dependencies` in the *path operation decorator* you can make sure they are executed while avoiding editor/tooling errors.
+Some editors check for unused function parameters, and show them as errors.
 
-    It might also help avoid confusion for new developers that see an unused parameter in your code and could think it's unnecessary.
+Using these `dependencies` in the *path operation decorator* you can make sure they are executed while avoiding editor/tooling errors.
 
-!!! info
-    In this example we use invented custom headers `X-Key` and `X-Token`.
+It might also help avoid confusion for new developers that see an unused parameter in your code and could think it's unnecessary.
 
-    But in real cases, when implementing security, you would get more benefits from using the integrated [Security utilities (the next chapter)](../security/index.md){.internal-link target=_blank}.
+///
+
+/// info
+
+In this example we use invented custom headers `X-Key` and `X-Token`.
+
+But in real cases, when implementing security, you would get more benefits from using the integrated [Security utilities (the next chapter)](../security/index.md){.internal-link target=_blank}.
+
+///
 
 ## Dependencies errors and return values
 
@@ -81,8 +90,11 @@ They can declare request requirements (like headers) or other sub-dependencies:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="6  11"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -112,8 +124,11 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8  13"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -145,8 +160,11 @@ So, you can reuse a normal dependency (that returns a value) you already use som
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9  14"
 {!> ../../../docs_src/dependencies/tutorial006.py!}

@@ -32,8 +32,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -85,8 +91,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -96,8 +105,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -105,15 +117,19 @@
 
 ////
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    `Cookie` 、`Path` 、`Query` 是**兄弟类**，都继承自共用的 `Param` 类。
+`Cookie` 、`Path` 、`Query` 是**兄弟类**，都继承自共用的 `Param` 类。
 
-    注意，从 `fastapi` 导入的 `Query`、`Path`、`Cookie` 等对象，实际上是返回特殊类的函数。
+注意，从 `fastapi` 导入的 `Query`、`Path`、`Cookie` 等对象，实际上是返回特殊类的函数。
 
-!!! info "说明"
+///
 
-    必须使用 `Cookie` 声明 cookie 参数，否则该参数会被解释为查询参数。
+/// info | "说明"
+
+必须使用 `Cookie` 声明 cookie 参数，否则该参数会被解释为查询参数。
+
+///
 
 ## 小结
 

@@ -42,5 +42,8 @@ The result of calling it is something that can be encoded with the Python standa
 
 It doesn't return a large `str` containing the data in JSON format (as a string). It returns a Python standard data structure (e.g. a `dict`) with values and sub-values that are all compatible with JSON.
 
-!!! note
-    `jsonable_encoder` is actually used by **FastAPI** internally to convert data. But it is useful in many other scenarios.
+/// note
+
+`jsonable_encoder` is actually used by **FastAPI** internally to convert data. But it is useful in many other scenarios.
+
+///

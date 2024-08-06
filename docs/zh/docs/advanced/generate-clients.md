@@ -115,8 +115,11 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-!!! tip
-    请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
+/// tip
+
+请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
+
+///
 
 如果发送的数据字段不符，你也会看到编辑器的错误提示:
 

@@ -40,8 +40,11 @@ Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretament
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip "Dica"
-    Faça uso da versão `Annotated` quando possível.
+/// tip | "Dica"
+
+Faça uso da versão `Annotated` quando possível.
+
+///
 
 ```Python hl_lines="2  23"
 {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
@@ -51,8 +54,11 @@ Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretament
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Faça uso da versão `Annotated` quando possível.
+/// tip | "Dica"
+
+Faça uso da versão `Annotated` quando possível.
+
+///
 
 ```Python hl_lines="4  25"
 {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
@@ -60,17 +66,23 @@ Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretament
 
 ////
 
-!!! warning "Aviso"
-    Quando você retorna um `Response` diretamente, como no exemplo acima, ele será retornado diretamente.
+/// warning | "Aviso"
 
-    Ele não será serializado com um modelo, etc.
+Quando você retorna um `Response` diretamente, como no exemplo acima, ele será retornado diretamente.
 
-    Garanta que ele tenha toda informação que você deseja, e que os valores sejam um JSON válido (caso você esteja usando `JSONResponse`).
+Ele não será serializado com um modelo, etc.
 
-!!! note "Detalhes técnicos"
-    Você também pode utilizar `from starlette.responses import JSONResponse`.
+Garanta que ele tenha toda informação que você deseja, e que os valores sejam um JSON válido (caso você esteja usando `JSONResponse`).
 
-    O **FastAPI** disponibiliza o `starlette.responses` como `fastapi.responses` apenas por conveniência para você, o programador. Porém a maioria dos retornos disponíveis vem diretamente do Starlette. O mesmo com `status`.
+///
+
+/// note | "Detalhes técnicos"
+
+Você também pode utilizar `from starlette.responses import JSONResponse`.
+
+O **FastAPI** disponibiliza o `starlette.responses` como `fastapi.responses` apenas por conveniência para você, o programador. Porém a maioria dos retornos disponíveis vem diretamente do Starlette. O mesmo com `status`.
+
+///
 
 ## OpenAPI e documentação da API
 

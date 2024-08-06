@@ -39,10 +39,13 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-!!! tip "Astuce"
-    En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
+/// tip | "Astuce"
 
-    Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
+En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
+
+Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
+
+///
 
 ////
 
@@ -96,12 +99,15 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 ////
 
-!!! warning
-     N'oubliez pas de supprimer l'option `--reload` si vous l'utilisiez.
+/// warning
 
-     L'option `--reload` consomme beaucoup plus de ressources, est plus instable, etc.
+N'oubliez pas de supprimer l'option `--reload` si vous l'utilisiez.
 
-     Cela aide beaucoup pendant le **développement**, mais vous **ne devriez pas** l'utiliser en **production**.
+ L'option `--reload` consomme beaucoup plus de ressources, est plus instable, etc.
+
+ Cela aide beaucoup pendant le **développement**, mais vous **ne devriez pas** l'utiliser en **production**.
+
+///
 
 ## Hypercorn avec Trio
 

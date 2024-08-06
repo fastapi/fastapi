@@ -57,8 +57,11 @@ It is just a function that can take all the same parameters that a *path operati
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="6-7"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -68,8 +71,11 @@ It is just a function that can take all the same parameters that a *path operati
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8-11"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -95,12 +101,15 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
-!!! info
-    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+/// info
 
-    If you have an older version, you would get errors when trying to use `Annotated`.
+FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
-    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+If you have an older version, you would get errors when trying to use `Annotated`.
+
+Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
+///
 
 ### Import `Depends`
 
@@ -130,8 +139,11 @@ And then it just returns a `dict` containing those values.
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -141,8 +153,11 @@ And then it just returns a `dict` containing those values.
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -180,8 +195,11 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="11  16"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -191,8 +209,11 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="15  20"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -210,8 +231,11 @@ You **don't call it** directly (don't add the parenthesis at the end), you just 
 
 And that function takes parameters in the same way that *path operation functions* do.
 
-!!! tip
-    You'll see what other "things", apart from functions, can be used as dependencies in the next chapter.
+/// tip
+
+You'll see what other "things", apart from functions, can be used as dependencies in the next chapter.
+
+///
 
 Whenever a new request arrives, **FastAPI** will take care of:
 
@@ -232,10 +256,13 @@ common_parameters --> read_users
 
 This way you write shared code once and **FastAPI** takes care of calling it for your *path operations*.
 
-!!! check
-    Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
+/// check
 
-    You just pass it to `Depends` and **FastAPI** knows how to do the rest.
+Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
+
+You just pass it to `Depends` and **FastAPI** knows how to do the rest.
+
+///
 
 ## Share `Annotated` dependencies
 
@@ -273,10 +300,13 @@ But because we are using `Annotated`, we can store that `Annotated` value in a v
 
 ////
 
-!!! tip
-    This is just standard Python, it's called a "type alias", it's actually not specific to **FastAPI**.
+/// tip
 
-    But because **FastAPI** is based on the Python standards, including `Annotated`, you can use this trick in your code. 😎
+This is just standard Python, it's called a "type alias", it's actually not specific to **FastAPI**.
+
+But because **FastAPI** is based on the Python standards, including `Annotated`, you can use this trick in your code. 😎
+
+///
 
 The dependencies will keep working as expected, and the **best part** is that the **type information will be preserved**, which means that your editor will be able to keep providing you with **autocompletion**, **inline errors**, etc. The same for other tools like `mypy`.
 
@@ -292,8 +322,11 @@ And you can declare dependencies with `async def` inside of normal `def` *path o
 
 It doesn't matter. **FastAPI** will know what to do.
 
-!!! note
-    If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
+/// note
+
+If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
+
+///
 
 ## Integrated with OpenAPI
 

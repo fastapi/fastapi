@@ -37,10 +37,13 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-!!! tip
-    通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
+/// tip
 
-    其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
+通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
+
+其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
+
+///
 
 ////
 
@@ -94,12 +97,15 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 ////
 
-!!! warning
-     如果您正在使用`--reload`选项，请记住删除它。
+/// warning
 
-     `--reload` 选项消耗更多资源，并且更不稳定。
+如果您正在使用`--reload`选项，请记住删除它。
 
-     它在**开发**期间有很大帮助，但您**不应该**在**生产环境**中使用它。
+ `--reload` 选项消耗更多资源，并且更不稳定。
+
+ 它在**开发**期间有很大帮助，但您**不应该**在**生产环境**中使用它。
+
+///
 
 ## Hypercorn with Trio
 

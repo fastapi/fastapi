@@ -2,8 +2,11 @@
 
 Es gibt mehrere Konfigurations-Parameter, die Sie Ihrem *Pfadoperation-Dekorator* übergeben können.
 
-!!! warning "Achtung"
-    Beachten Sie, dass diese Parameter direkt dem *Pfadoperation-Dekorator* übergeben werden, nicht der *Pfadoperation-Funktion*.
+/// warning | "Achtung"
+
+Beachten Sie, dass diese Parameter direkt dem *Pfadoperation-Dekorator* übergeben werden, nicht der *Pfadoperation-Funktion*.
+
+///
 
 ## Response-Statuscode
 
@@ -39,10 +42,13 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
 
 Dieser Statuscode wird in der Response verwendet und zum OpenAPI-Schema hinzugefügt.
 
-!!! note "Technische Details"
-    Sie können auch `from starlette import status` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für Sie, den Entwickler. Sie kommen aber direkt von Starlette.
+Sie können auch `from starlette import status` verwenden.
+
+**FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für Sie, den Entwickler. Sie kommen aber direkt von Starlette.
+
+///
 
 ## Tags
 
@@ -178,13 +184,19 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 
 ////
 
-!!! info
-    beachten Sie, dass sich `response_description` speziell auf die Response bezieht, während `description` sich generell auf die *Pfadoperation* bezieht.
+/// info
 
-!!! check
-    OpenAPI verlangt, dass jede *Pfadoperation* über eine Beschreibung der Response verfügt.
+beachten Sie, dass sich `response_description` speziell auf die Response bezieht, während `description` sich generell auf die *Pfadoperation* bezieht.
 
-    Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolgreiche Response“ erstellen.
+///
+
+/// check
+
+OpenAPI verlangt, dass jede *Pfadoperation* über eine Beschreibung der Response verfügt.
+
+Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolgreiche Response“ erstellen.
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

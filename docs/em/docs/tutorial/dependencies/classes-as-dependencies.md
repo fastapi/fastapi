@@ -269,7 +269,10 @@ commons: CommonQueryParams = Depends()
 
 ...&amp; **FastAPI** 🔜 💭 ⚫️❔.
 
-!!! tip
-    🚥 👈 😑 🌅 😨 🌘 👍, 🤷‍♂ ⚫️, 👆 🚫 *💪* ⚫️.
+/// tip
 
-    ⚫️ ⌨. ↩️ **FastAPI** 💅 🔃 🤝 👆 📉 📟 🔁.
+🚥 👈 😑 🌅 😨 🌘 👍, 🤷‍♂ ⚫️, 👆 🚫 *💪* ⚫️.
+
+⚫️ ⌨. ↩️ **FastAPI** 💅 🔃 🤝 👆 📉 📟 🔁.
+
+///

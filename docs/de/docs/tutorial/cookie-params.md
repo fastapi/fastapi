@@ -32,8 +32,11 @@ Importieren Sie zuerst `Cookie`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ Importieren Sie zuerst `Cookie`:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -84,8 +90,11 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -104,13 +116,19 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs
 
 ////
 
-!!! note "Technische Details"
-    `Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
+/// note | "Technische Details"
 
-    Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
+`Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
-!!! info
-    Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
+Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
+
+///
+
+/// info
+
+Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
+
+///
 
 ## Zusammenfassung
 

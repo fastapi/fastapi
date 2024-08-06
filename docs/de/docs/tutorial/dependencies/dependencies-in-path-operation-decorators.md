@@ -32,8 +32,11 @@ Es sollte eine `list`e von `Depends()` sein:
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="17"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -43,17 +46,23 @@ Es sollte eine `list`e von `Depends()` sein:
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
-!!! tip "Tipp"
-    Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
+/// tip | "Tipp"
 
-    Wenn Sie `dependencies` im *Pfadoperation-Dekorator* verwenden, stellen Sie sicher, dass sie ausgeführt werden, während gleichzeitig Ihr Editor/Ihre Tools keine Fehlermeldungen ausgeben.
+Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
 
-    Damit wird auch vermieden, neue Entwickler möglicherweise zu verwirren, die einen nicht verwendeten Parameter in Ihrem Code sehen und ihn für unnötig halten könnten.
+Wenn Sie `dependencies` im *Pfadoperation-Dekorator* verwenden, stellen Sie sicher, dass sie ausgeführt werden, während gleichzeitig Ihr Editor/Ihre Tools keine Fehlermeldungen ausgeben.
 
-!!! info
-    In diesem Beispiel verwenden wir zwei erfundene benutzerdefinierte Header `X-Key` und `X-Token`.
+Damit wird auch vermieden, neue Entwickler möglicherweise zu verwirren, die einen nicht verwendeten Parameter in Ihrem Code sehen und ihn für unnötig halten könnten.
 
-    Aber in realen Fällen würden Sie bei der Implementierung von Sicherheit mehr Vorteile durch die Verwendung der integrierten [Sicherheits-Werkzeuge (siehe nächstes Kapitel)](../security/index.md){.internal-link target=_blank} erzielen.
+///
+
+/// info
+
+In diesem Beispiel verwenden wir zwei erfundene benutzerdefinierte Header `X-Key` und `X-Token`.
+
+Aber in realen Fällen würden Sie bei der Implementierung von Sicherheit mehr Vorteile durch die Verwendung der integrierten [Sicherheits-Werkzeuge (siehe nächstes Kapitel)](../security/index.md){.internal-link target=_blank} erzielen.
+
+///
 
 ## Abhängigkeitsfehler und -Rückgabewerte
 
@@ -81,8 +90,11 @@ Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhä
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="6  11"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -112,8 +124,11 @@ Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeit
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8  13"
 {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -145,8 +160,11 @@ Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Si
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9  14"
 {!> ../../../docs_src/dependencies/tutorial006.py!}

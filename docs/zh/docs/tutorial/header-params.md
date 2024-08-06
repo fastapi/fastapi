@@ -32,8 +32,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -84,8 +90,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -104,15 +116,19 @@
 
 ////
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    `Header` 是 `Path`、`Query`、`Cookie` 的**兄弟类**，都继承自共用的 `Param` 类。
+`Header` 是 `Path`、`Query`、`Cookie` 的**兄弟类**，都继承自共用的 `Param` 类。
 
-    注意，从 `fastapi` 导入的 `Query`、`Path`、`Header` 等对象，实际上是返回特殊类的函数。
+注意，从 `fastapi` 导入的 `Query`、`Path`、`Header` 等对象，实际上是返回特殊类的函数。
 
-!!! info "说明"
+///
 
-    必须使用 `Header` 声明 header 参数，否则该参数会被解释为查询参数。
+/// info | "说明"
+
+必须使用 `Header` 声明 header 参数，否则该参数会被解释为查询参数。
+
+///
 
 ## 自动转换
 
@@ -156,8 +172,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/header_params/tutorial002_py310.py!}
@@ -167,8 +186,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/header_params/tutorial002.py!}
@@ -176,10 +198,11 @@
 
 ////
 
-!!! warning "警告"
+/// warning | "警告"
 
-    注意，使用 `convert_underscores = False` 要慎重，有些 HTTP 代理和服务器不支持使用带有下划线的请求头。
+注意，使用 `convert_underscores = False` 要慎重，有些 HTTP 代理和服务器不支持使用带有下划线的请求头。
 
+///
 
 ## 重复的请求头
 
@@ -217,8 +240,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial003_py310.py!}
@@ -228,8 +254,11 @@
 
 //// tab | Python 3.9+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003_py39.py!}
@@ -239,8 +268,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003.py!}

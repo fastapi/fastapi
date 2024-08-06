@@ -38,8 +38,11 @@ Then, when you type that username and password, the browser sends them in the he
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="2  6  10"
 {!> ../../../docs_src/security/tutorial006.py!}
@@ -83,8 +86,11 @@ Then we can use `secrets.compare_digest()` to ensure that `credentials.username`
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1  11-21"
 {!> ../../../docs_src/security/tutorial007.py!}
@@ -172,8 +178,11 @@ After detecting that the credentials are incorrect, return an `HTTPException` wi
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="23-27"
 {!> ../../../docs_src/security/tutorial007.py!}

@@ -83,8 +83,11 @@ Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einb
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11  13  20  23"
 {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
@@ -94,8 +97,11 @@ Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einb
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="13  15  22  25"
 {!> ../../../docs_src/background_tasks/tutorial002.py!}

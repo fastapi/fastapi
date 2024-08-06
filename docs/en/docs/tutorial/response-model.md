@@ -83,17 +83,23 @@ You can use the `response_model` parameter in any of the *path operations*:
 
 ////
 
-!!! note
-    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+/// note
+
+Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+
+///
 
 `response_model` receives the same type you would declare for a Pydantic model field, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
 FastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration.
 
-!!! tip
-    If you have strict type checks in your editor, mypy, etc, you can declare the function return type as `Any`.
+/// tip
 
-    That way you tell the editor that you are intentionally returning anything. But FastAPI will still do the data documentation, validation, filtering, etc. with the `response_model`.
+If you have strict type checks in your editor, mypy, etc, you can declare the function return type as `Any`.
+
+That way you tell the editor that you are intentionally returning anything. But FastAPI will still do the data documentation, validation, filtering, etc. with the `response_model`.
+
+///
 
 ### `response_model` Priority
 
@@ -123,11 +129,14 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 ////
 
-!!! info
-    To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+/// info
 
-    E.g. `pip install email-validator`
-    or `pip install pydantic[email]`.
+To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+
+E.g. `pip install email-validator`
+or `pip install pydantic[email]`.
+
+///
 
 And we are using this model to declare our input and the same model to declare our output:
 
@@ -153,8 +162,11 @@ In this case, it might not be a problem, because it's the same user sending the 
 
 But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
 
-!!! danger
-    Never store the plain password of a user or send it in a response like this, unless you know all the caveats and you know what you are doing.
+/// danger
+
+Never store the plain password of a user or send it in a response like this, unless you know all the caveats and you know what you are doing.
+
+///
 
 ## Add an output model
 
@@ -433,21 +445,30 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 }
 ```
 
-!!! info
-    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+/// info
 
-    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
 
-!!! info
-    FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
 
-!!! info
-    You can also use:
+///
 
-    * `response_model_exclude_defaults=True`
-    * `response_model_exclude_none=True`
+/// info
 
-    as described in <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+
+///
+
+/// info
+
+You can also use:
+
+* `response_model_exclude_defaults=True`
+* `response_model_exclude_none=True`
+
+as described in <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+
+///
 
 #### Data with values for fields with defaults
 
@@ -482,10 +503,13 @@ FastAPI is smart enough (actually, Pydantic is smart enough) to realize that, ev
 
 So, they will be included in the JSON response.
 
-!!! tip
-    Notice that the default values can be anything, not only `None`.
+/// tip
 
-    They can be a list (`[]`), a `float` of `10.5`, etc.
+Notice that the default values can be anything, not only `None`.
+
+They can be a list (`[]`), a `float` of `10.5`, etc.
+
+///
 
 ### `response_model_include` and `response_model_exclude`
 
@@ -495,12 +519,15 @@ They take a `set` of `str` with the name of the attributes to include (omitting 
 
 This can be used as a quick shortcut if you have only one Pydantic model and want to remove some data from the output.
 
-!!! tip
-    But it is still recommended to use the ideas above, using multiple classes, instead of these parameters.
+/// tip
 
-    This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
+But it is still recommended to use the ideas above, using multiple classes, instead of these parameters.
 
-    This also applies to `response_model_by_alias` that works similarly.
+This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
+
+This also applies to `response_model_by_alias` that works similarly.
+
+///
 
 //// tab | Python 3.10+
 
@@ -518,10 +545,13 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
 ////
 
-!!! tip
-    The syntax `{"name", "description"}` creates a `set` with those two values.
+/// tip
 
-    It is equivalent to `set(["name", "description"])`.
+The syntax `{"name", "description"}` creates a `set` with those two values.
+
+It is equivalent to `set(["name", "description"])`.
+
+///
 
 #### Using `list`s instead of `set`s
 

@@ -81,8 +81,11 @@ Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem S
 
 In diesem Fall wird der Funktionsparameter `q` optional, und standardmäßig `None` sein.
 
-!!! check
-    Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
+/// check
+
+Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
+
+///
 
 ## Query-Parameter Typkonvertierung
 
@@ -238,5 +241,8 @@ In diesem Fall gibt es drei Query-Parameter:
 * `skip`, ein `int` mit einem Defaultwert `0`.
 * `limit`, ein optionales `int`.
 
-!!! tip "Tipp"
-    Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
+/// tip | "Tipp"
+
+Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
+
+///

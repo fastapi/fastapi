@@ -8,12 +8,15 @@
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
-!!! info "정보"
-    데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
+/// info | "정보"
 
-    `GET` 요청에 본문을 담아 보내는 것은 명세서에 정의되지 않은 행동입니다. 그럼에도 불구하고, 이 방식은 아주 복잡한/극한의 사용 상황에서만 FastAPI에 의해 지원됩니다.
+데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
 
-    `GET` 요청에 본문을 담는 것은 권장되지 않기에, Swagger UI같은 대화형 문서에서는 `GET` 사용시 담기는 본문에 대한 문서를 표시하지 않으며, 중간에 있는 프록시는 이를 지원하지 않을 수도 있습니다.
+`GET` 요청에 본문을 담아 보내는 것은 명세서에 정의되지 않은 행동입니다. 그럼에도 불구하고, 이 방식은 아주 복잡한/극한의 사용 상황에서만 FastAPI에 의해 지원됩니다.
+
+`GET` 요청에 본문을 담는 것은 권장되지 않기에, Swagger UI같은 대화형 문서에서는 `GET` 사용시 담기는 본문에 대한 문서를 표시하지 않으며, 중간에 있는 프록시는 이를 지원하지 않을 수도 있습니다.
+
+///
 
 ## Pydantic의 `BaseModel` 임포트
 
@@ -146,16 +149,19 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "팁"
-    만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
+/// tip | "팁"
 
-    다음 사항을 포함해 Pydantic 모델에 대한 편집기 지원을 향상시킵니다:
+만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
 
-    * 자동 완성
-    * 타입 확인
-    * 리팩토링
-    * 검색
-    * 점검
+다음 사항을 포함해 Pydantic 모델에 대한 편집기 지원을 향상시킵니다:
+
+* 자동 완성
+* 타입 확인
+* 리팩토링
+* 검색
+* 점검
+
+///
 
 ## 모델 사용하기
 
@@ -227,10 +233,13 @@
 * 만약 매개변수가 (`int`, `float`, `str`, `bool` 등과 같은) **유일한 타입**으로 되어있으면, **쿼리** 매개변수로 해석될 것입니다.
 * 만약 매개변수가 **Pydantic 모델** 타입으로 선언되어 있으면, 요청 **본문**으로 해석될 것입니다.
 
-!!! note "참고"
-    FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
+/// note | "참고"
 
-    `Union[str, None]`에 있는 `Union`은 FastAPI에 의해 사용된 것이 아니지만, 편집기로 하여금 더 나은 지원과 에러 탐지를 지원할 것입니다.
+FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
+
+`Union[str, None]`에 있는 `Union`은 FastAPI에 의해 사용된 것이 아니지만, 편집기로 하여금 더 나은 지원과 에러 탐지를 지원할 것입니다.
+
+///
 
 ## Pydantic없이
 

@@ -8,10 +8,13 @@ Isso é especialmente o caso para modelos de usuários, porque:
 * O **modelo de saída** não deve ter uma senha.
 * O **modelo de banco de dados** provavelmente precisaria ter uma senha criptografada.
 
-!!! danger
-    Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
+/// danger
 
-    Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
+
+Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+
+///
 
 ## Múltiplos modelos
 
@@ -143,8 +146,11 @@ UserInDB(
 )
 ```
 
-!!! warning
-    As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real.
+/// warning
+
+As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real.
+
+///
 
 ## Reduzir duplicação
 
@@ -186,8 +192,11 @@ Isso será definido no OpenAPI com `anyOf`.
 
 Para fazer isso, use a dica de tipo padrão do Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-!!! note
-    Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+/// note
+
+Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+
+///
 
 //// tab | Python 3.8 and above
 

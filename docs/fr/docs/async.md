@@ -20,8 +20,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    Vous pouvez uniquement utiliser `await` dans les fonctions créées avec `async def`.
+/// note
+
+Vous pouvez uniquement utiliser `await` dans les fonctions créées avec `async def`.
+
+///
 
 ---
 
@@ -135,8 +138,11 @@ Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -198,8 +204,11 @@ Vous les mangez, et vous avez terminé 🍔 ⏹.
 
 Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre 🕙 devant le comptoir 😞.
 
-!!! info
-    Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -384,12 +393,15 @@ Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) e
 
 ## Détails très techniques
 
-!!! warning "Attention !"
-    Vous pouvez probablement ignorer cela.
+/// warning | "Attention !"
 
-    Ce sont des détails très poussés sur comment **FastAPI** fonctionne en arrière-plan.
+Vous pouvez probablement ignorer cela.
 
-    Si vous avez de bonnes connaissances techniques (coroutines, threads, code bloquant, etc.) et êtes curieux de comment **FastAPI** gère `async def` versus le `def` classique, cette partie est faite pour vous.
+Ce sont des détails très poussés sur comment **FastAPI** fonctionne en arrière-plan.
+
+Si vous avez de bonnes connaissances techniques (coroutines, threads, code bloquant, etc.) et êtes curieux de comment **FastAPI** gère `async def` versus le `def` classique, cette partie est faite pour vous.
+
+///
 
 ### Fonctions de chemin
 

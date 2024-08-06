@@ -81,8 +81,11 @@ http://127.0.0.1:8000/items/?skip=20
 
 👉 💼, 🔢 🔢 `q` 🔜 📦, &amp; 🔜 `None` 🔢.
 
-!!! check
-    👀 👈 **FastAPI** 🙃 🥃 👀 👈 ➡ 🔢 `item_id` ➡ 🔢 &amp; `q` 🚫,, ⚫️ 🔢 🔢.
+/// check
+
+👀 👈 **FastAPI** 🙃 🥃 👀 👈 ➡ 🔢 `item_id` ➡ 🔢 &amp; `q` 🚫,, ⚫️ 🔢 🔢.
+
+///
 
 ## 🔢 🔢 🆎 🛠️
 
@@ -237,5 +240,8 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`, `int` ⏮️ 🔢 💲 `0`.
 * `limit`, 📦 `int`.
 
-!!! tip
-    👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#_7){.internal-link target=_blank}.
+/// tip
+
+👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#_7){.internal-link target=_blank}.
+
+///

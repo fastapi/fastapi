@@ -81,8 +81,11 @@ Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der o
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1  2  11-15"
 {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
@@ -92,8 +95,11 @@ Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der o
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1  2  12-16"
 {!> ../../../docs_src/extra_data_types/tutorial001.py!}
@@ -129,8 +135,11 @@ Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Daten
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="17-18"
 {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
@@ -140,8 +149,11 @@ Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Daten
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="18-19"
 {!> ../../../docs_src/extra_data_types/tutorial001.py!}

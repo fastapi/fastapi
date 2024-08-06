@@ -131,8 +131,11 @@ You will also get autocompletion for the payload to send:
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-!!! tip
-    Notice the autocompletion for `name` and `price`, that was defined in the FastAPI application, in the `Item` model.
+/// tip
+
+Notice the autocompletion for `name` and `price`, that was defined in the FastAPI application, in the `Item` model.
+
+///
 
 You will have inline errors for the data that you send:
 

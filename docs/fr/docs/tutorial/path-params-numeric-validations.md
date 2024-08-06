@@ -32,8 +32,11 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -52,12 +58,15 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 ////
 
-!!! info
-    FastAPI a ajouté le support pour `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
+/// info
 
-    Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d'utiliser `Annotated`.
+FastAPI a ajouté le support pour `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
-    Assurez-vous de [Mettre à jour la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} à la version 0.95.1 à minima avant d'utiliser `Annotated`.
+Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d'utiliser `Annotated`.
+
+Assurez-vous de [Mettre à jour la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} à la version 0.95.1 à minima avant d'utiliser `Annotated`.
+
+///
 
 ## Déclarer des métadonnées
 
@@ -91,8 +100,11 @@ Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètr
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -102,8 +114,11 @@ Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètr
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -111,13 +126,19 @@ Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètr
 
 ////
 
-!!! note
-    Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela ne changerait rien, il serait toujours requis.
+/// note
+
+Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela ne changerait rien, il serait toujours requis.
+
+///
 
 ## Ordonnez les paramètres comme vous le souhaitez
 
-!!! tip
-    Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
+/// tip
+
+Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
+
+///
 
 Disons que vous voulez déclarer le paramètre de requête `q` comme un `str` requis.
 
@@ -135,8 +156,11 @@ Ainsi, vous pouvez déclarer votre fonction comme suit :
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
@@ -164,8 +188,11 @@ Mais gardez à l'esprit que si vous utilisez `Annotated`, vous n'aurez pas ce pr
 
 ## Ordonnez les paramètres comme vous le souhaitez (astuces)
 
-!!! tip
-    Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
+/// tip
+
+Ce n'est probablement pas aussi important ou nécessaire si vous utilisez `Annotated`.
+
+///
 
 Voici une **petite astuce** qui peut être pratique, mais vous n'en aurez pas souvent besoin.
 
@@ -230,8 +257,11 @@ Ici, avec `ge=1`, `item_id` devra être un nombre entier "`g`reater than or `e`q
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -264,8 +294,11 @@ La même chose s'applique pour :
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -298,8 +331,11 @@ La même chose s'applique pour :
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -335,8 +371,11 @@ Et la même chose pour <abbr title="less than"><code>lt</code></abbr>.
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Préférez utiliser la version `Annotated` si possible.
+/// tip
+
+Préférez utiliser la version `Annotated` si possible.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
@@ -355,18 +394,24 @@ Et vous pouvez également déclarer des validations numériques :
 * `lt` : `l`ess `t`han
 * `le` : `l`ess than or `e`qual
 
-!!! info
-    `Query`, `Path`, et d'autres classes que vous verrez plus tard sont des sous-classes d'une classe commune `Param`.
+/// info
 
-    Tous partagent les mêmes paramètres pour des validations supplémentaires et des métadonnées que vous avez vu précédemment.
+`Query`, `Path`, et d'autres classes que vous verrez plus tard sont des sous-classes d'une classe commune `Param`.
 
-!!! note "Détails techniques"
-    Lorsque vous importez `Query`, `Path` et d'autres de `fastapi`, ce sont en fait des fonctions.
+Tous partagent les mêmes paramètres pour des validations supplémentaires et des métadonnées que vous avez vu précédemment.
 
-    Ces dernières, lorsqu'elles sont appelées, renvoient des instances de classes du même nom.
+///
 
-    Ainsi, vous importez `Query`, qui est une fonction. Et lorsque vous l'appelez, elle renvoie une instance d'une classe également nommée `Query`.
+/// note | "Détails techniques"
 
-    Ces fonctions sont là (au lieu d'utiliser simplement les classes directement) pour que votre éditeur ne marque pas d'erreurs sur leurs types.
+Lorsque vous importez `Query`, `Path` et d'autres de `fastapi`, ce sont en fait des fonctions.
 
-    De cette façon, vous pouvez utiliser votre éditeur et vos outils de codage habituels sans avoir à ajouter des configurations personnalisées pour ignorer ces erreurs.
+Ces dernières, lorsqu'elles sont appelées, renvoient des instances de classes du même nom.
+
+Ainsi, vous importez `Query`, qui est une fonction. Et lorsque vous l'appelez, elle renvoie une instance d'une classe également nommée `Query`.
+
+Ces fonctions sont là (au lieu d'utiliser simplement les classes directement) pour que votre éditeur ne marque pas d'erreurs sur leurs types.
+
+De cette façon, vous pouvez utiliser votre éditeur et vos outils de codage habituels sans avoir à ajouter des configurations personnalisées pour ignorer ces erreurs.
+
+///

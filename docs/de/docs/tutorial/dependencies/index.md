@@ -56,8 +56,11 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="6-7"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -67,8 +70,11 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8-11"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -94,12 +100,15 @@ In diesem Fall erwartet diese Abhängigkeit:
 
 Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
-!!! info
-    FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
+/// info
 
-    Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
-    Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+
+Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+
+///
 
 ### `Depends` importieren
 
@@ -129,8 +138,11 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -140,8 +152,11 @@ Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -179,8 +194,11 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11  16"
 {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -190,8 +208,11 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="15  20"
 {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -209,8 +230,11 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
-!!! tip "Tipp"
-    Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
+/// tip | "Tipp"
+
+Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
+
+///
 
 Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
 
@@ -231,10 +255,13 @@ common_parameters --> read_users
 
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
-!!! check
-    Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
+/// check
 
-    Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
+Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
+
+Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
+
+///
 
 ## `Annotated`-Abhängigkeiten wiederverwenden
 
@@ -272,10 +299,13 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
 
 ////
 
-!!! tip "Tipp"
-    Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+/// tip | "Tipp"
 
-    Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
+Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+
+Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
+
+///
 
 Die Abhängigkeiten funktionieren weiterhin wie erwartet, und das **Beste daran** ist, dass die **Typinformationen erhalten bleiben**, was bedeutet, dass Ihr Editor Ihnen weiterhin **automatische Vervollständigung**, **Inline-Fehler**, usw. bieten kann. Das Gleiche gilt für andere Tools wie `mypy`.
 
@@ -291,8 +321,11 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
-!!! note "Hinweis"
-    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+/// note | "Hinweis"
+
+Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+
+///
 
 ## Integriert in OpenAPI
 

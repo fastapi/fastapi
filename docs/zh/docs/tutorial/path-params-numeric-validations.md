@@ -32,8 +32,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -43,8 +46,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -84,8 +90,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -95,8 +104,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -104,12 +116,15 @@
 
 ////
 
-!!! note
-    路径参数总是必需的，因为它必须是路径的一部分。
+/// note
 
-    所以，你应该在声明时使用 `...` 将其标记为必需参数。
+路径参数总是必需的，因为它必须是路径的一部分。
 
-    然而，即使你使用 `None` 声明路径参数或设置一个其他默认值也不会有任何影响，它依然会是必需参数。
+所以，你应该在声明时使用 `...` 将其标记为必需参数。
+
+然而，即使你使用 `None` 声明路径参数或设置一个其他默认值也不会有任何影响，它依然会是必需参数。
+
+///
 
 ## 按需对参数排序
 
@@ -129,8 +144,11 @@
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
@@ -196,18 +214,24 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 * `lt`：小于（`l`ess `t`han）
 * `le`：小于等于（`l`ess than or `e`qual）
 
-!!! info
-    `Query`、`Path` 以及你后面会看到的其他类继承自一个共同的 `Param` 类（不需要直接使用它）。
+/// info
 
-    而且它们都共享相同的所有你已看到并用于添加额外校验和元数据的参数。
+`Query`、`Path` 以及你后面会看到的其他类继承自一个共同的 `Param` 类（不需要直接使用它）。
 
-!!! note "技术细节"
-    当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
+而且它们都共享相同的所有你已看到并用于添加额外校验和元数据的参数。
 
-    当被调用时，它们返回同名类的实例。
+///
 
-    如此，你导入 `Query` 这个函数。当你调用它时，它将返回一个同样命名为 `Query` 的类的实例。
+/// note | "技术细节"
 
-    因为使用了这些函数（而不是直接使用类），所以你的编辑器不会标记有关其类型的错误。
+当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
 
-    这样，你可以使用常规的编辑器和编码工具，而不必添加自定义配置来忽略这些错误。
+当被调用时，它们返回同名类的实例。
+
+如此，你导入 `Query` 这个函数。当你调用它时，它将返回一个同样命名为 `Query` 的类的实例。
+
+因为使用了这些函数（而不是直接使用类），所以你的编辑器不会标记有关其类型的错误。
+
+这样，你可以使用常规的编辑器和编码工具，而不必添加自定义配置来忽略这些错误。
+
+///

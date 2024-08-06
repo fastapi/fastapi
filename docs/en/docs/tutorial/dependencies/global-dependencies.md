@@ -24,8 +24,11 @@ In that case, they will be applied to all the *path operations* in the applicati
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/dependencies/tutorial012.py!}

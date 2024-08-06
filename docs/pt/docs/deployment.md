@@ -50,8 +50,11 @@ Seguindo as convenções do Versionamento Semântico, qualquer versão abaixo de
 
 FastAPI também segue a convenção que qualquer versão de _"PATCH"_ seja para ajustes de _bugs_ e mudanças que não quebrem a aplicação.
 
-!!! tip
-    O _"PATCH"_ é o último número, por exemplo, em `0.2.3`, a versão do _PATCH_ é `3`.
+/// tip
+
+O _"PATCH"_ é o último número, por exemplo, em `0.2.3`, a versão do _PATCH_ é `3`.
+
+///
 
 Então, você poderia ser capaz de fixar para uma versão como:
 
@@ -61,8 +64,11 @@ fastapi>=0.45.0,<0.46.0
 
 Mudanças que quebram e novos recursos são adicionados em versões _"MINOR"_.
 
-!!! tip
-    O _"MINOR"_ é o número do meio, por exemplo, em `0.2.3`, a versão _MINOR_ é `2`.
+/// tip
+
+O _"MINOR"_ é o número do meio, por exemplo, em `0.2.3`, a versão _MINOR_ é `2`.
+
+///
 
 ### Atualizando as versões FastAPI
 
@@ -113,8 +119,11 @@ Essa imagem tem um mecanismo incluído de "auto-ajuste", para que você possa ap
 
 Mas você pode ainda mudar e atualizar todas as configurações com variáveis de ambiente ou arquivos de configuração.
 
-!!! tip
-    Para ver todas as configurações e opções, vá para a página da imagem do Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+/// tip
+
+Para ver todas as configurações e opções, vá para a página da imagem do Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+
+///
 
 ### Crie um `Dockerfile`
 
@@ -248,8 +257,11 @@ Você verá a documentação automática alternativa (fornecida por <a href="htt
 
 Mas ele é um pouquinho mais complexo do que isso.
 
-!!! tip
-    Se você está com pressa ou não se importa, continue na próxima seção com instruções passo a passo para configurar tudo.
+/// tip
+
+Se você está com pressa ou não se importa, continue na próxima seção com instruções passo a passo para configurar tudo.
+
+///
 
 Para aprender o básico de HTTPS, pela perspectiva de um consumidor, verifique <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 

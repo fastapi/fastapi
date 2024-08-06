@@ -2,8 +2,11 @@
 
 Existem vários parâmetros que você pode passar para o seu *decorador de operação de rota* para configurá-lo.
 
-!!! warning "Aviso"
-    Observe que esses parâmetros são passados diretamente para o *decorador de operação de rota*, não para a sua *função de operação de rota*.
+/// warning | "Aviso"
+
+Observe que esses parâmetros são passados diretamente para o *decorador de operação de rota*, não para a sua *função de operação de rota*.
+
+///
 
 ## Código de Status da Resposta
 
@@ -39,10 +42,13 @@ Mas se você não se lembrar o que cada código numérico significa, pode usar a
 
 Esse código de status será usado na resposta e será adicionado ao esquema OpenAPI.
 
-!!! note "Detalhes Técnicos"
-    Você também poderia usar `from starlette import status`.
+/// note | "Detalhes Técnicos"
 
-    **FastAPI** fornece o mesmo `starlette.status` como `fastapi.status` apenas como uma conveniência para você, o desenvolvedor. Mas vem diretamente do Starlette.
+Você também poderia usar `from starlette import status`.
+
+**FastAPI** fornece o mesmo `starlette.status` como `fastapi.status` apenas como uma conveniência para você, o desenvolvedor. Mas vem diretamente do Starlette.
+
+///
 
 ## Tags
 
@@ -179,13 +185,19 @@ Você pode especificar a descrição da resposta com o parâmetro `response_desc
 
 ////
 
-!!! info "Informação"
-    Note que `response_description` se refere especificamente à resposta, a `description` se refere à *operação de rota* em geral.
+/// info | "Informação"
 
-!!! check
-    OpenAPI especifica que cada *operação de rota* requer uma descrição de resposta.
+Note que `response_description` se refere especificamente à resposta, a `description` se refere à *operação de rota* em geral.
 
-    Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma de "Resposta bem-sucedida".
+///
+
+/// check
+
+OpenAPI especifica que cada *operação de rota* requer uma descrição de resposta.
+
+Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma de "Resposta bem-sucedida".
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

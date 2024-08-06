@@ -36,8 +36,11 @@ Você pode criar uma primeira dependência (injetável) dessa forma:
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="6-7"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -47,8 +50,11 @@ Você pode criar uma primeira dependência (injetável) dessa forma:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="8-9"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -90,8 +96,11 @@ Então, você pode criar uma outra função para uma dependência (um "injetáve
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -101,8 +110,11 @@ Então, você pode criar uma outra função para uma dependência (um "injetáve
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="13"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -147,8 +159,11 @@ Então podemos utilizar a dependência com:
 
 //// tab | Python 3.10 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="19"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -158,8 +173,11 @@ Então podemos utilizar a dependência com:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -167,10 +185,13 @@ Então podemos utilizar a dependência com:
 
 ////
 
-!!! info "Informação"
-    Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
+/// info | "Informação"
 
-    Mas o **FastAPI** saberá que precisa solucionar `query_extractor` primeiro, para passar o resultado para `query_or_cookie_extractor` enquanto chama a função.
+Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
+
+Mas o **FastAPI** saberá que precisa solucionar `query_extractor` primeiro, para passar o resultado para `query_or_cookie_extractor` enquanto chama a função.
+
+///
 
 ```mermaid
 graph TB
@@ -202,8 +223,11 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
@@ -220,9 +244,12 @@ Consiste apenas de funções que parecem idênticas a *funções de operação d
 
 Mas ainda assim, é bastante poderoso, e permite que você declare grafos (árvores) de dependências com uma profundidade arbitrária.
 
-!!! tip "Dica"
-    Tudo isso pode não parecer muito útil com esses exemplos.
+/// tip | "Dica"
 
-    Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
+Tudo isso pode não parecer muito útil com esses exemplos.
 
-    E você também verá a quantidade de código que você não precisara escrever.
+Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
+
+E você também verá a quantidade de código que você não precisara escrever.
+
+///

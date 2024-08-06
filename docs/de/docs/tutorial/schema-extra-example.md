@@ -58,17 +58,23 @@ Sie können `schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Date
 
 ////
 
-!!! tip "Tipp"
-    Mit derselben Technik können Sie das JSON-Schema erweitern und Ihre eigenen benutzerdefinierten Zusatzinformationen hinzufügen.
+/// tip | "Tipp"
 
-    Sie könnten das beispielsweise verwenden, um Metadaten für eine Frontend-Benutzeroberfläche usw. hinzuzufügen.
+Mit derselben Technik können Sie das JSON-Schema erweitern und Ihre eigenen benutzerdefinierten Zusatzinformationen hinzufügen.
 
-!!! info
-    OpenAPI 3.1.0 (verwendet seit FastAPI 0.99.0) hat Unterstützung für `examples` hinzugefügt, was Teil des **JSON Schema** Standards ist.
+Sie könnten das beispielsweise verwenden, um Metadaten für eine Frontend-Benutzeroberfläche usw. hinzuzufügen.
 
-    Zuvor unterstützte es nur das Schlüsselwort `example` mit einem einzigen Beispiel. Dieses wird weiterhin von OpenAPI 3.1.0 unterstützt, ist jedoch <abbr title="deprecated – obsolet, veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> und nicht Teil des JSON Schema Standards. Wir empfehlen Ihnen daher, von `example` nach `examples` zu migrieren. 🤓
+///
 
-    Mehr erfahren Sie am Ende dieser Seite.
+/// info
+
+OpenAPI 3.1.0 (verwendet seit FastAPI 0.99.0) hat Unterstützung für `examples` hinzugefügt, was Teil des **JSON Schema** Standards ist.
+
+Zuvor unterstützte es nur das Schlüsselwort `example` mit einem einzigen Beispiel. Dieses wird weiterhin von OpenAPI 3.1.0 unterstützt, ist jedoch <abbr title="deprecated – obsolet, veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> und nicht Teil des JSON Schema Standards. Wir empfehlen Ihnen daher, von `example` nach `examples` zu migrieren. 🤓
+
+Mehr erfahren Sie am Ende dieser Seite.
+
+///
 
 ## Zusätzliche Argumente für `Field`
 
@@ -134,8 +140,11 @@ Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="18-25"
 {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
@@ -145,8 +154,11 @@ Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="20-27"
 {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
@@ -190,8 +202,11 @@ Sie können natürlich auch mehrere `examples` übergeben:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="19-34"
 {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
@@ -201,8 +216,11 @@ Sie können natürlich auch mehrere `examples` übergeben:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="21-36"
 {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
@@ -275,8 +293,11 @@ Sie können es so verwenden:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="19-45"
 {!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
@@ -286,8 +307,11 @@ Sie können es so verwenden:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="21-47"
 {!> ../../../docs_src/schema_extra_example/tutorial005.py!}
@@ -303,17 +327,23 @@ Wenn `openapi_examples` zu `Body()` hinzugefügt wird, würde `/docs` so aussehe
 
 ## Technische Details
 
-!!! tip "Tipp"
-    Wenn Sie bereits **FastAPI** Version **0.99.0 oder höher** verwenden, können Sie diese Details wahrscheinlich **überspringen**.
+/// tip | "Tipp"
 
-    Sie sind für ältere Versionen relevanter, bevor OpenAPI 3.1.0 verfügbar war.
+Wenn Sie bereits **FastAPI** Version **0.99.0 oder höher** verwenden, können Sie diese Details wahrscheinlich **überspringen**.
 
-    Sie können dies als eine kurze **Geschichtsstunde** zu OpenAPI und JSON Schema betrachten. 🤓
+Sie sind für ältere Versionen relevanter, bevor OpenAPI 3.1.0 verfügbar war.
 
-!!! warning "Achtung"
-    Dies sind sehr technische Details zu den Standards **JSON Schema** und **OpenAPI**.
+Sie können dies als eine kurze **Geschichtsstunde** zu OpenAPI und JSON Schema betrachten. 🤓
 
-    Wenn die oben genannten Ideen bereits für Sie funktionieren, reicht das möglicherweise aus und Sie benötigen diese Details wahrscheinlich nicht, überspringen Sie sie gerne.
+///
+
+/// warning | "Achtung"
+
+Dies sind sehr technische Details zu den Standards **JSON Schema** und **OpenAPI**.
+
+Wenn die oben genannten Ideen bereits für Sie funktionieren, reicht das möglicherweise aus und Sie benötigen diese Details wahrscheinlich nicht, überspringen Sie sie gerne.
+
+///
 
 Vor OpenAPI 3.1.0 verwendete OpenAPI eine ältere und modifizierte Version von **JSON Schema**.
 
@@ -331,8 +361,11 @@ OpenAPI fügte auch die Felder `example` und `examples` zu anderen Teilen der Sp
     * `File()`
     * `Form()`
 
-!!! info
-    Dieser alte, OpenAPI-spezifische `examples`-Parameter heißt seit FastAPI `0.103.0` jetzt `openapi_examples`.
+/// info
+
+Dieser alte, OpenAPI-spezifische `examples`-Parameter heißt seit FastAPI `0.103.0` jetzt `openapi_examples`.
+
+///
 
 ### JSON Schemas Feld `examples`
 
@@ -344,10 +377,13 @@ Und jetzt hat dieses neue `examples`-Feld Vorrang vor dem alten (und benutzerdef
 
 Dieses neue `examples`-Feld in JSON Schema ist **nur eine `list`e** von Beispielen, kein Dict mit zusätzlichen Metadaten wie an den anderen Stellen in OpenAPI (oben beschrieben).
 
-!!! info
-    Selbst, nachdem OpenAPI 3.1.0 veröffentlicht wurde, mit dieser neuen, einfacheren Integration mit JSON Schema, unterstützte Swagger UI, das Tool, das die automatische Dokumentation bereitstellt, eine Zeit lang OpenAPI 3.1.0 nicht (das tut es seit Version 5.0.0 🎉).
+/// info
 
-    Aus diesem Grund verwendeten Versionen von FastAPI vor 0.99.0 immer noch Versionen von OpenAPI vor 3.1.0.
+Selbst, nachdem OpenAPI 3.1.0 veröffentlicht wurde, mit dieser neuen, einfacheren Integration mit JSON Schema, unterstützte Swagger UI, das Tool, das die automatische Dokumentation bereitstellt, eine Zeit lang OpenAPI 3.1.0 nicht (das tut es seit Version 5.0.0 🎉).
+
+Aus diesem Grund verwendeten Versionen von FastAPI vor 0.99.0 immer noch Versionen von OpenAPI vor 3.1.0.
+
+///
 
 ### Pydantic- und FastAPI-`examples`
 

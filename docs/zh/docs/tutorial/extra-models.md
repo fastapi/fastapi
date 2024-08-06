@@ -8,11 +8,13 @@
 * **输出模型**不应含密码
 * **数据库模型**需要加密的密码
 
-!!! danger "危险"
+/// danger | "危险"
 
-    千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
+千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
 
-    如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是**密码哈希**。
+如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是**密码哈希**。
+
+///
 
 ## 多个模型
 
@@ -144,9 +146,11 @@ UserInDB(
 )
 ```
 
-!!! warning "警告"
+/// warning | "警告"
 
-    辅助的附加函数只是为了演示可能的数据流，但它们显然不能提供任何真正的安全机制。
+辅助的附加函数只是为了演示可能的数据流，但它们显然不能提供任何真正的安全机制。
+
+///
 
 ## 减少重复
 
@@ -190,9 +194,11 @@ FastAPI 可以做得更好。
 
 为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
 
-!!! note "笔记"
+/// note | "笔记"
 
-    定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把详细的类型写在前面，然后是不太详细的类型。下例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
+定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把详细的类型写在前面，然后是不太详细的类型。下例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
+
+///
 
 //// tab | Python 3.10+
 

@@ -8,12 +8,15 @@ Ihre API sendet fast immer einen **Response**body. Aber Clients senden nicht unb
 
 Um einen **Request**body zu deklarieren, verwenden Sie <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>-Modelle mit allen deren Fähigkeiten und Vorzügen.
 
-!!! info
-    Um Daten zu versenden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
+/// info
 
-    Senden Sie einen Body mit einem `GET`-Request, dann führt das laut Spezifikation zu undefiniertem Verhalten. Trotzdem wird es von FastAPI unterstützt, für sehr komplexe/extreme Anwendungsfälle.
+Um Daten zu versenden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
 
-    Da aber davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutzeroberfläche die Dokumentation für den Body auch nicht an, wenn `GET` verwendet wird. Dazwischengeschaltete Proxys unterstützen es möglicherweise auch nicht.
+Senden Sie einen Body mit einem `GET`-Request, dann führt das laut Spezifikation zu undefiniertem Verhalten. Trotzdem wird es von FastAPI unterstützt, für sehr komplexe/extreme Anwendungsfälle.
+
+Da aber davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutzeroberfläche die Dokumentation für den Body auch nicht an, wenn `GET` verwendet wird. Dazwischengeschaltete Proxys unterstützen es möglicherweise auch nicht.
+
+///
 
 ## Importieren Sie Pydantics `BaseModel`
 
@@ -146,16 +149,19 @@ Aber Sie bekommen die gleiche Editor-Unterstützung in <a href="https://www.jetb
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "Tipp"
-    Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
+/// tip | "Tipp"
 
-    Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
+Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
 
-    * Code-Vervollständigung
-    * Typüberprüfungen
-    * Refaktorisierung
-    * Suchen
-    * Inspektionen
+Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
+
+* Code-Vervollständigung
+* Typüberprüfungen
+* Refaktorisierung
+* Suchen
+* Inspektionen
+
+///
 
 ## Das Modell verwenden
 
@@ -227,10 +233,13 @@ Die Funktionsparameter werden wie folgt erkannt:
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
 * Wenn der Parameter vom Typ eines **Pydantic-Modells** ist, wird er als Request**body** interpretiert.
 
-!!! note "Hinweis"
-    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
+/// note | "Hinweis"
 
-    Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
+
+Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+
+///
 
 ## Ohne Pydantic
 

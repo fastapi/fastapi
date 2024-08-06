@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "Nota"
-    El comando `uvicorn main:app` se refiere a:
+/// note | "Nota"
 
-    * `main`: el archivo `main.py` (el "módulo" de Python).
-    * `app`: el objeto creado dentro de `main.py` con la línea `app = FastAPI()`.
-    * `--reload`: hace que el servidor se reinicie cada vez que cambia el código. Úsalo únicamente para desarrollo.
+El comando `uvicorn main:app` se refiere a:
+
+* `main`: el archivo `main.py` (el "módulo" de Python).
+* `app`: el objeto creado dentro de `main.py` con la línea `app = FastAPI()`.
+* `--reload`: hace que el servidor se reinicie cada vez que cambia el código. Úsalo únicamente para desarrollo.
+
+///
 
 En el output, hay una línea que dice más o menos:
 
@@ -136,10 +139,13 @@ También podrías usarlo para generar código automáticamente, para los cliente
 
 `FastAPI` es una clase de Python que provee toda la funcionalidad para tu API.
 
-!!! note "Detalles Técnicos"
-    `FastAPI` es una clase que hereda directamente de `Starlette`.
+/// note | "Detalles Técnicos"
 
-    También puedes usar toda la funcionalidad de <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+`FastAPI` es una clase que hereda directamente de `Starlette`.
+
+También puedes usar toda la funcionalidad de <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+
+///
 
 ### Paso 2: crea un "instance" de `FastAPI`
 
@@ -199,8 +205,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info "Información"
-    Un "path" también se conoce habitualmente como "endpoint", "route" o "ruta".
+/// info | "Información"
+
+Un "path" también se conoce habitualmente como "endpoint", "route" o "ruta".
+
+///
 
 Cuando construyes una API, el "path" es la manera principal de separar los <abbr title="en inglés: separation of concerns">"intereses"</abbr> y los "recursos".
 
@@ -250,16 +259,19 @@ El `@app.get("/")` le dice a **FastAPI** que la función que tiene justo debajo 
 * el path `/`
 * usando una <abbr title="an HTTP GET method">operación <code>get</code></abbr>
 
-!!! info "Información sobre `@decorator`"
-    Esa sintaxis `@algo` se llama un "decorador" en Python.
+/// info | "Información sobre `@decorator`"
 
-    Lo pones encima de una función. Es como un lindo sombrero decorado (creo que de ahí salió el concepto).
+Esa sintaxis `@algo` se llama un "decorador" en Python.
 
-    Un "decorador" toma la función que tiene debajo y hace algo con ella.
+Lo pones encima de una función. Es como un lindo sombrero decorado (creo que de ahí salió el concepto).
 
-    En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operación** `get`.
+Un "decorador" toma la función que tiene debajo y hace algo con ella.
 
-    Es el "**decorador de operaciones de path**".
+En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operación** `get`.
+
+Es el "**decorador de operaciones de path**".
+
+///
 
 También puedes usar las otras operaciones:
 
@@ -274,14 +286,17 @@ y las más exóticas:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip "Consejo"
-    Tienes la libertad de usar cada operación (método de HTTP) como quieras.
+/// tip | "Consejo"
 
-    **FastAPI** no impone ningún significado específico.
+Tienes la libertad de usar cada operación (método de HTTP) como quieras.
 
-    La información que está presentada aquí es una guía, no un requerimiento.
+**FastAPI** no impone ningún significado específico.
 
-    Por ejemplo, cuando usas GraphQL normalmente realizas todas las acciones usando únicamente operaciones `POST`.
+La información que está presentada aquí es una guía, no un requerimiento.
+
+Por ejemplo, cuando usas GraphQL normalmente realizas todas las acciones usando únicamente operaciones `POST`.
+
+///
 
 ### Paso 4: define la **función de la operación de path**
 
@@ -309,8 +324,11 @@ También podrías definirla como una función estándar en lugar de `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "Nota"
-    Si no sabes la diferencia, revisa el [Async: *"¿Tienes prisa?"*](../async.md#tienes-prisa){.internal-link target=_blank}.
+/// note | "Nota"
+
+Si no sabes la diferencia, revisa el [Async: *"¿Tienes prisa?"*](../async.md#tienes-prisa){.internal-link target=_blank}.
+
+///
 
 ### Paso 5: devuelve el contenido
 

@@ -13,8 +13,11 @@ Seulement le minimum nécessaire pour les utiliser avec **FastAPI** sera couvert
 
 Mais même si vous n'utilisez pas ou n'utiliserez jamais **FastAPI**, vous pourriez bénéficier d'apprendre quelques choses sur ces dernières.
 
-!!! note
-    Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annotations de type, passez au chapitre suivant.
+/// note
+
+Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annotations de type, passez au chapitre suivant.
+
+///
 
 ## Motivations
 
@@ -174,10 +177,13 @@ Les listes étant un type contenant des types internes, mettez ces derniers entr
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip "Astuce"
-    Ces types internes entre crochets sont appelés des "paramètres de type".
+/// tip | "Astuce"
 
-    Ici, `str` est un paramètre de type passé à `List`.
+Ces types internes entre crochets sont appelés des "paramètres de type".
+
+Ici, `str` est un paramètre de type passé à `List`.
+
+///
 
 Ce qui signifie : "la variable `items` est une `list`, et chacun de ses éléments a pour type `str`.
 
@@ -281,8 +287,11 @@ Extrait de la documentation officielle de **Pydantic** :
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info
-    Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+/// info
+
+Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+
+///
 
 **FastAPI** est basé entièrement sur **Pydantic**.
 
@@ -310,5 +319,8 @@ Tout cela peut paraître bien abstrait, mais ne vous inquiétez pas, vous verrez
 
 Ce qu'il faut retenir c'est qu'en utilisant les types standard de Python, à un seul endroit (plutôt que d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
-!!! info
-    Si vous avez déjà lu le tutoriel et êtes revenus ici pour voir plus sur les types, une bonne ressource est la <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" de `mypy`</a>.
+/// info
+
+Si vous avez déjà lu le tutoriel et êtes revenus ici pour voir plus sur les types, une bonne ressource est la <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" de `mypy`</a>.
+
+///

@@ -8,12 +8,15 @@ Your API almost always has to send a **response** body. But clients don't necess
 
 To declare a **request** body, you use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
-!!! info
-    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+/// info
 
-    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 
-    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+
+As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+
+///
 
 ## Import Pydantic's `BaseModel`
 
@@ -146,16 +149,19 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip
-    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+/// tip
 
-    It improves editor support for Pydantic models, with:
+If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
-    * auto-completion
-    * type checks
-    * refactoring
-    * searching
-    * inspections
+It improves editor support for Pydantic models, with:
+
+* auto-completion
+* type checks
+* refactoring
+* searching
+* inspections
+
+///
 
 ## Use the model
 
@@ -227,10 +233,13 @@ The function parameters will be recognized as follows:
 * If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
 
-!!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+/// note
 
-    The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+FastAPI will know that the value of `q` is not required because of the default value `= None`.
+
+The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+
+///
 
 ## Without Pydantic
 

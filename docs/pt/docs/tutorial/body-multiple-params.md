@@ -24,8 +24,11 @@ E você também pode declarar parâmetros de corpo como opcionais, definindo o v
 
 ////
 
-!!! note "Nota"
-    Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
+/// note | "Nota"
+
+Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
+
+///
 
 ## Múltiplos parâmetros de corpo
 
@@ -77,9 +80,11 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
 }
 ```
 
-!!! note "Nota"
-    Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
+/// note | "Nota"
 
+Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
+
+///
 
 O **FastAPI** fará a conversão automática a partir da requisição, assim esse parâmetro `item` receberá seu respectivo conteúdo e o mesmo ocorrerá com `user`.
 
@@ -165,8 +170,11 @@ Por exemplo:
 
 ////
 
-!!! info "Informação"
-    `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
+/// info | "Informação"
+
+`Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
+
+///
 
 ## Declare um único parâmetro de corpo indicando sua chave
 

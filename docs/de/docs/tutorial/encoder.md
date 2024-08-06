@@ -42,5 +42,8 @@ Das Resultat dieses Aufrufs ist etwas, das mit Pythons Standard-<a href="https:/
 
 Es wird also kein großer `str` zurückgegeben, der die Daten im JSON-Format (als String) enthält. Es wird eine Python-Standarddatenstruktur (z. B. ein `dict`) zurückgegeben, mit Werten und Unterwerten, die alle mit JSON kompatibel sind.
 
-!!! note "Hinweis"
-    `jsonable_encoder` wird tatsächlich von **FastAPI** intern verwendet, um Daten zu konvertieren. Aber es ist in vielen anderen Szenarien hilfreich.
+/// note | "Hinweis"
+
+`jsonable_encoder` wird tatsächlich von **FastAPI** intern verwendet, um Daten zu konvertieren. Aber es ist in vielen anderen Szenarien hilfreich.
+
+///

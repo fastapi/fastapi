@@ -34,8 +34,11 @@ And you can also declare body parameters as optional, by setting the default to 
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="17-19"
 {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -45,8 +48,11 @@ And you can also declare body parameters as optional, by setting the default to 
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="19-21"
 {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -54,8 +60,11 @@ And you can also declare body parameters as optional, by setting the default to 
 
 ////
 
-!!! note
-    Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
+/// note
+
+Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
+
+///
 
 ## Multiple body parameters
 
@@ -107,9 +116,11 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 }
 ```
 
-!!! note
-    Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
+/// note
 
+Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
+
+///
 
 **FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
 
@@ -151,8 +162,11 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -162,8 +176,11 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -235,8 +252,11 @@ For example:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="25"
 {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -246,8 +266,11 @@ For example:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="27"
 {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -255,8 +278,11 @@ For example:
 
 ////
 
-!!! info
-    `Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+/// info
+
+`Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+
+///
 
 ## Embed a single body parameter
 
@@ -298,8 +324,11 @@ as in:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -309,8 +338,11 @@ as in:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="17"
 {!> ../../../docs_src/body_multiple_params/tutorial005.py!}

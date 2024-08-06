@@ -304,8 +304,11 @@ This will expect (convert, validate, document, etc.) a JSON body like:
 }
 ```
 
-!!! info
-    Notice how the `images` key now has a list of image objects.
+/// info
+
+Notice how the `images` key now has a list of image objects.
+
+///
 
 ## Deeply nested models
 
@@ -335,8 +338,11 @@ You can define arbitrarily deeply nested models:
 
 ////
 
-!!! info
-    Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
+/// info
+
+Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
+
+///
 
 ## Bodies of pure lists
 
@@ -414,14 +420,17 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
 
 ////
 
-!!! tip
-    Keep in mind that JSON only supports `str` as keys.
+/// tip
 
-    But Pydantic has automatic data conversion.
+Keep in mind that JSON only supports `str` as keys.
 
-    This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
+But Pydantic has automatic data conversion.
 
-    And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
+This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
+
+And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
+
+///
 
 ## Recap
 

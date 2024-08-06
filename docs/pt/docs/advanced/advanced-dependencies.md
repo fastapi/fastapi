@@ -36,8 +36,11 @@ Para fazer isso, nós declaramos o método `__call__`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Prefira utilizar a versão `Annotated` se possível.
+/// tip | "Dica"
+
+Prefira utilizar a versão `Annotated` se possível.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -69,8 +72,11 @@ E agora, nós podemos utilizar o `__init__` para declarar os parâmetros da inst
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Prefira utilizar a versão `Annotated` se possível.
+/// tip | "Dica"
+
+Prefira utilizar a versão `Annotated` se possível.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -102,8 +108,11 @@ Nós poderíamos criar uma instância desta classe com:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Prefira utilizar a versão `Annotated` se possível.
+/// tip | "Dica"
+
+Prefira utilizar a versão `Annotated` se possível.
+
+///
 
 ```Python hl_lines="16"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -143,8 +152,11 @@ checker(q="somequery")
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip "Dica"
-    Prefira utilizar a versão `Annotated` se possível.
+/// tip | "Dica"
+
+Prefira utilizar a versão `Annotated` se possível.
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -152,11 +164,14 @@ checker(q="somequery")
 
 ////
 
-!!! tip "Dica"
-    Tudo isso parece não ser natural. E pode não estar muito claro ou aparentar ser útil ainda.
+/// tip | "Dica"
 
-    Estes exemplos são intencionalmente simples, porém mostram como tudo funciona.
+Tudo isso parece não ser natural. E pode não estar muito claro ou aparentar ser útil ainda.
 
-    Nos capítulos sobre segurança, existem funções utilitárias que são implementadas desta maneira.
+Estes exemplos são intencionalmente simples, porém mostram como tudo funciona.
 
-    Se você entendeu tudo isso, você já sabe como essas funções utilitárias para segurança funcionam por debaixo dos panos.
+Nos capítulos sobre segurança, existem funções utilitárias que são implementadas desta maneira.
+
+Se você entendeu tudo isso, você já sabe como essas funções utilitárias para segurança funcionam por debaixo dos panos.
+
+///

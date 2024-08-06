@@ -12,8 +12,11 @@ Bằng việc khai báo kiểu dữ liệu cho các biến của bạn, các tr�
 
 Nhưng thậm chí nếu bạn không bao giờ sử dụng **FastAPI**, bạn sẽ được lợi từ việc học một ít về chúng.
 
-!!! note
-    Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ về gợi ý kiểu dữ liệu, bỏ qua và đi tới chương tiếp theo.
+/// note
+
+Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ về gợi ý kiểu dữ liệu, bỏ qua và đi tới chương tiếp theo.
+
+///
 
 ## Động lực
 
@@ -204,15 +207,21 @@ Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có 
 
 ////
 
-!!! info
-    Các kiểu dữ liệu có sẵn bên trong dấu ngoặc vuông được gọi là "tham số kiểu dữ liệu".
+/// info
 
-    Trong trường hợp này, `str` là tham số kiểu dữ liệu được truyền tới `List` (hoặc `list` trong Python 3.9 trở lên).
+Các kiểu dữ liệu có sẵn bên trong dấu ngoặc vuông được gọi là "tham số kiểu dữ liệu".
+
+Trong trường hợp này, `str` là tham số kiểu dữ liệu được truyền tới `List` (hoặc `list` trong Python 3.9 trở lên).
+
+///
 
 Có nghĩa là: "biến `items` là một `list`, và mỗi phần tử trong danh sách này là một `str`".
 
-!!! tip
-    Nếu bạn sử dụng Python 3.9 hoặc lớn hơn, bạn không phải import `List` từ `typing`, bạn có thể sử dụng `list` để thay thế.
+/// tip
+
+Nếu bạn sử dụng Python 3.9 hoặc lớn hơn, bạn không phải import `List` từ `typing`, bạn có thể sử dụng `list` để thay thế.
+
+///
 
 Bằng cách này, trình soạn thảo của bạn có thể hỗ trợ trong khi xử lí các phần tử trong danh sách:
 
@@ -504,16 +513,21 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
 
 ////
 
-!!! info
-    Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+/// info
+
+Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+
+///
 
 **FastAPI** được dựa hoàn toàn trên Pydantic.
 
 Bạn sẽ thấy nhiều ví dụ thực tế hơn trong [Hướng dẫn sử dụng](tutorial/index.md){.internal-link target=_blank}.
 
-!!! tip
-    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+/// tip
 
+Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+
+///
 
 ## Type Hints với Metadata Annotations
 
@@ -552,10 +566,13 @@ Bây giờ, bạn chỉ cần biết rằng `Annotated` tồn tại, và nó là
 
 Sau đó, bạn sẽ thấy sự **mạnh mẽ** mà nó có thể làm.
 
-!!! tip
-    Thực tế, cái này là **tiêu chuẩn của Python**, nghĩa là bạn vẫn sẽ có được **trải nghiệm phát triển tốt nhất có thể** với trình soạn thảo của bạn, với các công cụ bạn sử dụng để phân tích và tái cấu trúc code của bạn, etc. ✨
+/// tip
 
-    Và code của bạn sẽ tương thích với nhiều công cụ và thư viện khác của Python. 🚀
+Thực tế, cái này là **tiêu chuẩn của Python**, nghĩa là bạn vẫn sẽ có được **trải nghiệm phát triển tốt nhất có thể** với trình soạn thảo của bạn, với các công cụ bạn sử dụng để phân tích và tái cấu trúc code của bạn, etc. ✨
+
+Và code của bạn sẽ tương thích với nhiều công cụ và thư viện khác của Python. 🚀
+
+///
 
 ## Các gợi ý kiểu dữ liệu trong **FastAPI**
 
@@ -579,5 +596,8 @@ Với **FastAPI**, bạn khai báo các tham số với gợi ý kiểu và bạ
 
 Điều quan trọng là bằng việc sử dụng các kiểu dữ liệu chuẩn của Python (thay vì thêm các lớp, decorators,...), **FastAPI** sẽ thực hiện nhiều công việc cho bạn.
 
-!!! info
-    Nếu bạn đã đi qua toàn bộ các hướng dẫn và quay trở lại để tìm hiểu nhiều hơn về các kiểu dữ liệu, một tài nguyên tốt như <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" từ `mypy`</a>.
+/// info
+
+Nếu bạn đã đi qua toàn bộ các hướng dẫn và quay trở lại để tìm hiểu nhiều hơn về các kiểu dữ liệu, một tài nguyên tốt như <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" từ `mypy`</a>.
+
+///

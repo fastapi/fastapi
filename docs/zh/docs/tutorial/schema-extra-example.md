@@ -48,8 +48,11 @@
 
 ////
 
-!!! warning
-    请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
+/// warning
+
+请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
+
+///
 
 ## `Body` 额外参数
 
@@ -83,8 +86,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="18-23"
 {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
@@ -94,8 +100,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="20-25"
 {!> ../../../docs_src/schema_extra_example/tutorial003.py!}

@@ -36,8 +36,11 @@ Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
 //// tab | Python 3.10 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="6-7"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -47,8 +50,11 @@ Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8-9"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -90,8 +96,11 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erst
 
 //// tab | Python 3.10 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -101,8 +110,11 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erst
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="13"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -147,8 +159,11 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 //// tab | Python 3.10 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="19"
 {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -158,8 +173,11 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 //// tab | Python 3.8 nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -167,10 +185,13 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 ////
 
-!!! info
-    Beachten Sie, dass wir in der *Pfadoperation-Funktion* nur eine einzige Abhängigkeit deklarieren, den `query_or_cookie_extractor`.
+/// info
 
-    Aber **FastAPI** wird wissen, dass es zuerst `query_extractor` auflösen muss, um dessen Resultat `query_or_cookie_extractor` zu übergeben, wenn dieses aufgerufen wird.
+Beachten Sie, dass wir in der *Pfadoperation-Funktion* nur eine einzige Abhängigkeit deklarieren, den `query_or_cookie_extractor`.
+
+Aber **FastAPI** wird wissen, dass es zuerst `query_extractor` auflösen muss, um dessen Resultat `query_or_cookie_extractor` zu übergeben, wenn dieses aufgerufen wird.
+
+///
 
 ```mermaid
 graph TB
@@ -202,8 +223,11 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
@@ -220,9 +244,12 @@ Einfach Funktionen, die genauso aussehen wie *Pfadoperation-Funktionen*.
 
 Dennoch ist es sehr mächtig und ermöglicht Ihnen die Deklaration beliebig tief verschachtelter Abhängigkeits-„Graphen“ (Bäume).
 
-!!! tip "Tipp"
-    All dies scheint angesichts dieser einfachen Beispiele möglicherweise nicht so nützlich zu sein.
+/// tip | "Tipp"
 
-    Aber Sie werden in den Kapiteln über **Sicherheit** sehen, wie nützlich das ist.
+All dies scheint angesichts dieser einfachen Beispiele möglicherweise nicht so nützlich zu sein.
 
-    Und Sie werden auch sehen, wie viel Code Sie dadurch einsparen.
+Aber Sie werden in den Kapiteln über **Sicherheit** sehen, wie nützlich das ist.
+
+Und Sie werden auch sehen, wie viel Code Sie dadurch einsparen.
+
+///

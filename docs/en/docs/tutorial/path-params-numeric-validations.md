@@ -32,8 +32,11 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -52,12 +58,15 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 
 ////
 
-!!! info
-    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+/// info
 
-    If you have an older version, you would get errors when trying to use `Annotated`.
+FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
-    Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+If you have an older version, you would get errors when trying to use `Annotated`.
+
+Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
+///
 
 ## Declare metadata
 
@@ -91,8 +100,11 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -102,8 +114,11 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -111,13 +126,19 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 
 ////
 
-!!! note
-    A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+/// note
+
+A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+
+///
 
 ## Order the parameters as you need
 
-!!! tip
-    This is probably not as important or necessary if you use `Annotated`.
+/// tip
+
+This is probably not as important or necessary if you use `Annotated`.
+
+///
 
 Let's say that you want to declare the query parameter `q` as a required `str`.
 
@@ -135,8 +156,11 @@ So, you can declare your function as:
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
@@ -164,8 +188,11 @@ But keep in mind that if you use `Annotated`, you won't have this problem, it wo
 
 ## Order the parameters as you need, tricks
 
-!!! tip
-    This is probably not as important or necessary if you use `Annotated`.
+/// tip
+
+This is probably not as important or necessary if you use `Annotated`.
+
+///
 
 Here's a **small trick** that can be handy, but you won't need it often.
 
@@ -230,8 +257,11 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -264,8 +294,11 @@ The same applies for:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -301,8 +334,11 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="11"
 {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
@@ -321,18 +357,24 @@ And you can also declare numeric validations:
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
 
-!!! info
-    `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
+/// info
 
-    All of them share the same parameters for additional validation and metadata you have seen.
+`Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 
-!!! note "Technical Details"
-    When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
+All of them share the same parameters for additional validation and metadata you have seen.
 
-    That when called, return instances of classes of the same name.
+///
 
-    So, you import `Query`, which is a function. And when you call it, it returns an instance of a class also named `Query`.
+/// note | "Technical Details"
 
-    These functions are there (instead of just using the classes directly) so that your editor doesn't mark errors about their types.
+When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
 
-    That way you can use your normal editor and coding tools without having to add custom configurations to disregard those errors.
+That when called, return instances of classes of the same name.
+
+So, you import `Query`, which is a function. And when you call it, it returns an instance of a class also named `Query`.
+
+These functions are there (instead of just using the classes directly) so that your editor doesn't mark errors about their types.
+
+That way you can use your normal editor and coding tools without having to add custom configurations to disregard those errors.
+
+///

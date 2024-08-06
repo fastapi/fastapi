@@ -34,8 +34,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="17-19"
 {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -45,8 +48,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="19-21"
 {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -54,8 +60,11 @@
 
 ////
 
-!!! note
-    请注意，在这种情况下，将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。
+/// note
+
+请注意，在这种情况下，将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。
+
+///
 
 ## 多个请求体参数
 
@@ -107,9 +116,11 @@
 }
 ```
 
-!!! note
-    请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
+/// note
 
+请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
+
+///
 
 **FastAPI** 将自动对请求中的数据进行转换，因此 `item` 参数将接收指定的内容，`user` 参数也是如此。
 
@@ -152,8 +163,11 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -163,8 +177,11 @@
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="22"
 {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -231,8 +248,11 @@ q: str = None
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="25"
 {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -242,8 +262,11 @@ q: str = None
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="27"
 {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -251,9 +274,11 @@ q: str = None
 
 ////
 
-!!! info
-    `Body` 同样具有与 `Query`、`Path` 以及其他后面将看到的类完全相同的额外校验和元数据参数。
+/// info
 
+`Body` 同样具有与 `Query`、`Path` 以及其他后面将看到的类完全相同的额外校验和元数据参数。
+
+///
 
 ## 嵌入单个请求体参数
 
@@ -295,8 +320,11 @@ item: Item = Body(embed=True)
 
 //// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -306,8 +334,11 @@ item: Item = Body(embed=True)
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    尽可能选择使用 `Annotated` 的版本。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
 
 ```Python hl_lines="17"
 {!> ../../../docs_src/body_multiple_params/tutorial005.py!}

@@ -4,5 +4,8 @@ Hier ist die Referenz oder Code-API, die Klassen, Funktionen, Parameter, Attribu
 
 Wenn Sie **FastAPI** lernen möchten, ist es viel besser, das [FastAPI-Tutorial](https://fastapi.tiangolo.com/tutorial/) zu lesen.
 
-!!! note "Hinweis Deutsche Übersetzung"
-    Die nachfolgende API wird aus der Quelltext-Dokumentation erstellt, daher sind nur die Einleitungen auf Deutsch.
+/// note | "Hinweis Deutsche Übersetzung"
+
+Die nachfolgende API wird aus der Quelltext-Dokumentation erstellt, daher sind nur die Einleitungen auf Deutsch.
+
+///

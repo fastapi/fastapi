@@ -32,8 +32,11 @@ Importieren Sie zuerst `Header`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="1"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -43,8 +46,11 @@ Importieren Sie zuerst `Header`:
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="3"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -84,8 +90,11 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -95,8 +104,11 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial001.py!}
@@ -104,13 +116,19 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs
 
 ////
 
-!!! note "Technische Details"
-    `Header` ist eine Schwesterklasse von `Path`, `Query` und `Cookie`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
+/// note | "Technische Details"
 
-    Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `Header` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
+`Header` ist eine Schwesterklasse von `Path`, `Query` und `Cookie`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
-!!! info
-    Um Header zu deklarieren, müssen Sie `Header` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
+Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `Header` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
+
+///
+
+/// info
+
+Um Header zu deklarieren, müssen Sie `Header` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
+
+///
 
 ## Automatische Konvertierung
 
@@ -154,8 +172,11 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="8"
 {!> ../../../docs_src/header_params/tutorial002_py310.py!}
@@ -165,8 +186,11 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/header_params/tutorial002.py!}
@@ -174,8 +198,11 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 ////
 
-!!! warning "Achtung"
-    Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass manche HTTP-Proxys und Server die Verwendung von Headern mit Unterstrichen nicht erlauben.
+/// warning | "Achtung"
+
+Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass manche HTTP-Proxys und Server die Verwendung von Headern mit Unterstrichen nicht erlauben.
+
+///
 
 ## Doppelte Header
 
@@ -213,8 +240,11 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 //// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/header_params/tutorial003_py310.py!}
@@ -224,8 +254,11 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 //// tab | Python 3.9+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003_py39.py!}
@@ -235,8 +268,11 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 //// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
 
 ```Python hl_lines="9"
 {!> ../../../docs_src/header_params/tutorial003.py!}

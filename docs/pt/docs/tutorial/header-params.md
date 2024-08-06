@@ -44,13 +44,19 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 
 ////
 
-!!! note "Detalhes Técnicos"
-    `Header` é uma classe "irmã" de `Path`, `Query` e `Cookie`. Ela também herda da mesma classe em comum `Param`.
+/// note | "Detalhes Técnicos"
 
-    Mas lembre-se que quando você importa `Query`, `Path`, `Header`, e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
+`Header` é uma classe "irmã" de `Path`, `Query` e `Cookie`. Ela também herda da mesma classe em comum `Param`.
 
-!!! info
-    Para declarar headers, você precisa usar `Header`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+Mas lembre-se que quando você importa `Query`, `Path`, `Header`, e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
+
+///
+
+/// info
+
+Para declarar headers, você precisa usar `Header`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+
+///
 
 ## Conversão automática
 
@@ -84,8 +90,11 @@ Se por algum motivo você precisar desabilitar a conversão automática de subli
 
 ////
 
-!!! warning "Aviso"
-    Antes de definir `convert_underscores` como `False`, lembre-se de que alguns proxies e servidores HTTP não permitem o uso de cabeçalhos com sublinhados.
+/// warning | "Aviso"
+
+Antes de definir `convert_underscores` como `False`, lembre-se de que alguns proxies e servidores HTTP não permitem o uso de cabeçalhos com sublinhados.
+
+///
 
 ## Cabeçalhos duplicados
 

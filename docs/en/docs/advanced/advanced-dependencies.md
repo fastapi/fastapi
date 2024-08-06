@@ -36,8 +36,11 @@ To do that, we declare a method `__call__`:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="10"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -69,8 +72,11 @@ And now, we can use `__init__` to declare the parameters of the instance that we
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="7"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -102,8 +108,11 @@ We could create an instance of this class with:
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="16"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -143,8 +152,11 @@ checker(q="somequery")
 
 //// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    Prefer to use the `Annotated` version if possible.
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
 
 ```Python hl_lines="20"
 {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -152,11 +164,14 @@ checker(q="somequery")
 
 ////
 
-!!! tip
-    All this might seem contrived. And it might not be very clear how is it useful yet.
+/// tip
 
-    These examples are intentionally simple, but show how it all works.
+All this might seem contrived. And it might not be very clear how is it useful yet.
 
-    In the chapters about security, there are utility functions that are implemented in this same way.
+These examples are intentionally simple, but show how it all works.
 
-    If you understood all this, you already know how those utility tools for security work underneath.
+In the chapters about security, there are utility functions that are implemented in this same way.
+
+If you understood all this, you already know how those utility tools for security work underneath.
+
+///

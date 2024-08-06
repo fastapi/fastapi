@@ -22,10 +22,13 @@
 
 🔢 🔢 `q` 🆎 `Union[str, None]` (⚖️ `str | None` 🐍 3️⃣.1️⃣0️⃣), 👈 ⛓ 👈 ⚫️ 🆎 `str` ✋️ 💪 `None`, &amp; 👐, 🔢 💲 `None`, FastAPI 🔜 💭 ⚫️ 🚫 ✔.
 
-!!! note
-    FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
+/// note
 
-     `Union` `Union[str, None]` 🔜 ✔ 👆 👨‍🎨 🤝 👆 👍 🐕‍🦺 &amp; 🔍 ❌.
+FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
+
+ `Union` `Union[str, None]` 🔜 ✔ 👆 👨‍🎨 🤝 👆 👍 🐕‍🦺 &amp; 🔍 ❌.
+
+///
 
 ## 🌖 🔬
 
@@ -99,22 +102,25 @@ q: str | None = None
 
 ✋️ ⚫️ 📣 ⚫️ 🎯 💆‍♂ 🔢 🔢.
 
-!!! info
-    ✔️ 🤯 👈 🌅 ⚠ 🍕 ⚒ 🔢 📦 🍕:
+/// info
 
-    ```Python
-    = None
-    ```
+✔️ 🤯 👈 🌅 ⚠ 🍕 ⚒ 🔢 📦 🍕:
 
-    ⚖️:
+```Python
+= None
+```
 
-    ```Python
-    = Query(default=None)
-    ```
+⚖️:
 
-    ⚫️ 🔜 ⚙️ 👈 `None` 🔢 💲, &amp; 👈 🌌 ⚒ 🔢 **🚫 ✔**.
+```Python
+= Query(default=None)
+```
 
-     `Union[str, None]` 🍕 ✔ 👆 👨‍🎨 🚚 👻 🐕‍🦺, ✋️ ⚫️ 🚫 ⚫️❔ 💬 FastAPI 👈 👉 🔢 🚫 ✔.
+⚫️ 🔜 ⚙️ 👈 `None` 🔢 💲, &amp; 👈 🌌 ⚒ 🔢 **🚫 ✔**.
+
+ `Union[str, None]` 🍕 ✔ 👆 👨‍🎨 🚚 👻 🐕‍🦺, ✋️ ⚫️ 🚫 ⚫️❔ 💬 FastAPI 👈 👉 🔢 🚫 ✔.
+
+///
 
 ⤴️, 👥 💪 🚶‍♀️ 🌅 🔢 `Query`. 👉 💼, `max_length` 🔢 👈 ✔ 🎻:
 
@@ -184,8 +190,11 @@ q: Union[str, None] = Query(default=None, max_length=50)
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! note
-    ✔️ 🔢 💲 ⚒ 🔢 📦.
+/// note
+
+✔️ 🔢 💲 ⚒ 🔢 📦.
+
+///
 
 ## ⚒ ⚫️ ✔
 
@@ -221,10 +230,13 @@ q: Union[str, None] = Query(default=None, min_length=3)
 {!../../../docs_src/query_params_str_validations/tutorial006b.py!}
 ```
 
-!!! info
-    🚥 👆 🚫 👀 👈 `...` ⏭: ⚫️ 🎁 👁 💲, ⚫️ <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">🍕 🐍 &amp; 🤙 "❕"</a>.
+/// info
 
-    ⚫️ ⚙️ Pydantic &amp; FastAPI 🎯 📣 👈 💲 ✔.
+🚥 👆 🚫 👀 👈 `...` ⏭: ⚫️ 🎁 👁 💲, ⚫️ <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">🍕 🐍 &amp; 🤙 "❕"</a>.
+
+⚫️ ⚙️ Pydantic &amp; FastAPI 🎯 📣 👈 💲 ✔.
+
+///
 
 👉 🔜 ➡️ **FastAPI** 💭 👈 👉 🔢 ✔.
 
@@ -250,8 +262,11 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 ////
 
-!!! tip
-    Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+/// tip
+
+Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
+
+///
 
 ### ⚙️ Pydantic `Required` ↩️ ❕ (`...`)
 
@@ -261,8 +276,11 @@ q: Union[str, None] = Query(default=None, min_length=3)
 {!../../../docs_src/query_params_str_validations/tutorial006d.py!}
 ```
 
-!!! tip
-    💭 👈 🌅 💼, 🕐❔ 🕳 🚚, 👆 💪 🎯 🚫 `default` 🔢, 👆 🛎 🚫 ✔️ ⚙️ `...` 🚫 `Required`.
+/// tip
+
+💭 👈 🌅 💼, 🕐❔ 🕳 🚚, 👆 💪 🎯 🚫 `default` 🔢, 👆 🛎 🚫 ✔️ ⚙️ `...` 🚫 `Required`.
+
+///
 
 ## 🔢 🔢 📇 / 💗 💲
 
@@ -313,8 +331,11 @@ http://localhost:8000/items/?q=foo&q=bar
 }
 ```
 
-!!! tip
-    📣 🔢 🔢 ⏮️ 🆎 `list`, 💖 🖼 🔛, 👆 💪 🎯 ⚙️ `Query`, ⏪ ⚫️ 🔜 🔬 📨 💪.
+/// tip
+
+📣 🔢 🔢 ⏮️ 🆎 `list`, 💖 🖼 🔛, 👆 💪 🎯 ⚙️ `Query`, ⏪ ⚫️ 🔜 🔬 📨 💪.
+
+///
 
 🎓 🛠️ 🩺 🔜 ℹ ➡️, ✔ 💗 💲:
 
@@ -365,10 +386,13 @@ http://localhost:8000/items/
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! note
-    ✔️ 🤯 👈 👉 💼, FastAPI 🏆 🚫 ✅ 🎚 📇.
+/// note
 
-    🖼, `List[int]` 🔜 ✅ (&amp; 📄) 👈 🎚 📇 🔢. ✋️ `list` 😞 🚫🔜.
+✔️ 🤯 👈 👉 💼, FastAPI 🏆 🚫 ✅ 🎚 📇.
+
+🖼, `List[int]` 🔜 ✅ (&amp; 📄) 👈 🎚 📇 🔢. ✋️ `list` 😞 🚫🔜.
+
+///
 
 ## 📣 🌅 🗃
 
@@ -376,10 +400,13 @@ http://localhost:8000/items/
 
 👈 ℹ 🔜 🔌 🏗 🗄 &amp; ⚙️ 🧾 👩‍💻 🔢 &amp; 🔢 🧰.
 
-!!! note
-    ✔️ 🤯 👈 🎏 🧰 5️⃣📆 ✔️ 🎏 🎚 🗄 🐕‍🦺.
+/// note
 
-    👫 💪 🚫 🎦 🌐 ➕ ℹ 📣, 👐 🌅 💼, ❌ ⚒ ⏪ 📄 🛠️.
+✔️ 🤯 👈 🎏 🧰 5️⃣📆 ✔️ 🎏 🎚 🗄 🐕‍🦺.
+
+👫 💪 🚫 🎦 🌐 ➕ ℹ 📣, 👐 🌅 💼, ❌ ⚒ ⏪ 📄 🛠️.
+
+///
 
 👆 💪 🚮 `title`:
 

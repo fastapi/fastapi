@@ -24,8 +24,11 @@
 
 //// tab | Python 3.8 non-Annotated
 
-!!! tip "Подсказка"
-    Рекомендуется использовать 'Annotated' версию, если это возможно.
+/// tip | "Подсказка"
+
+Рекомендуется использовать 'Annotated' версию, если это возможно.
+
+///
 
 ```Python hl_lines="15"
 {!> ../../../docs_src/dependencies/tutorial012.py!}

@@ -115,8 +115,11 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-!!! tip
-    👀 ✍ `name` &amp; `price`, 👈 🔬 FastAPI 🈸, `Item` 🏷.
+/// tip
+
+👀 ✍ `name` &amp; `price`, 👈 🔬 FastAPI 🈸, `Item` 🏷.
+
+///
 
 👆 🔜 ✔️ ⏸ ❌ 📊 👈 👆 📨:
 
