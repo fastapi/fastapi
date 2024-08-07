@@ -1,5 +1,7 @@
 # First Steps
 
+Let's build a FastAPI app! 🚀
+
 The simplest FastAPI file could look like this:
 
 ```Python
