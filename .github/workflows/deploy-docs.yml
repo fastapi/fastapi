@@ -57,8 +57,9 @@ jobs:
         run: pip install -r requirements-github-actions.txt
       - name: Comment Deploy
         if: steps.deploy.outputs.url != ''
-        run: python ./scripts/comment_docs_deploy_url_in_pr.py
+        run: python ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEPLOY_URL: ${{ steps.deploy.outputs.url }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.run_id }}
