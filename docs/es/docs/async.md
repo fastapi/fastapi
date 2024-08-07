@@ -6,7 +6,7 @@ Detalles sobre la sintaxis `async def` para *path operation functions* y un poco
 
 <abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
 
-Si estás utilizando herramientas de terceros que te dicen que las llames con `await`, del tipo:
+Si estás utilizando libraries de terceros que te dicen que las llames con `await`, del tipo:
 
 ```Python
 results = await some_library()
