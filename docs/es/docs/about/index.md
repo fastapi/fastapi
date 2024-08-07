@@ -1,3 +1,3 @@
 # Acerca de
 
-Acerca de FastAPI, su diseño, inspiración y más. 🤓
+Aprende acerca de FastAPI, su diseño, inspiración y más. 🤓
