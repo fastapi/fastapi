@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add French translation for `docs/fr/docs/tutorial/body-multiple-params.md`. PR [#11796](https://github.com/fastapi/fastapi/pull/11796) by [@pe-brian](https://github.com/pe-brian).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/query-params.md`. PR [#11557](https://github.com/fastapi/fastapi/pull/11557) by [@caomingpei](https://github.com/caomingpei).
 * 🌐 Update typo in Chinese translation for `docs/zh/docs/advanced/testing-dependencies.md`. PR [#11944](https://github.com/fastapi/fastapi/pull/11944) by [@bestony](https://github.com/bestony).
@@ -18,6 +19,8 @@ hide:
 
 ### Internal
 
+* 🔒️ Update permissions for deploy-docs action. PR [#11964](https://github.com/fastapi/fastapi/pull/11964) by [@tiangolo](https://github.com/tiangolo).
+* 👷🏻 Add deploy docs status and preview links to PRs. PR [#11961](https://github.com/fastapi/fastapi/pull/11961) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update docs setup with latest configs and plugins. PR [#11953](https://github.com/fastapi/fastapi/pull/11953) by [@tiangolo](https://github.com/tiangolo).
 * 🔇 Ignore warning from attrs in Trio. PR [#11949](https://github.com/fastapi/fastapi/pull/11949) by [@tiangolo](https://github.com/tiangolo).
 
