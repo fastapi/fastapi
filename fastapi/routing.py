@@ -126,9 +126,9 @@ def _merge_lifespan_context(
 ) -> Lifespan[Any]:
     @asynccontextmanager
     async def merged_lifespan(app: AppType) -> AsyncIterator[Mapping[str, Any]]:
-        async with original_context(app) as maybe_self_context:
-            async with nested_context(app) as maybe_nested_context:
-                yield {**(maybe_self_context or {}), **(maybe_nested_context or {})}
+        async with original_context(app) as maybe_original_state:
+            async with nested_context(app) as maybe_nested_state:
+                yield {**(maybe_original_state or {}), **(maybe_nested_state or {})}
 
     return merged_lifespan
 
