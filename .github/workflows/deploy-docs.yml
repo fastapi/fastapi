@@ -10,6 +10,7 @@ permissions:
   deployments: write
   issues: write
   pull-requests: write
+  statuses: write
 
 jobs:
   deploy-docs:
