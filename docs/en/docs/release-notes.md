@@ -19,6 +19,7 @@ hide:
 
 ### Internal
 
+* 🔒️ Update permissions for deploy-docs action. PR [#11964](https://github.com/fastapi/fastapi/pull/11964) by [@tiangolo](https://github.com/tiangolo).
 * 👷🏻 Add deploy docs status and preview links to PRs. PR [#11961](https://github.com/fastapi/fastapi/pull/11961) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update docs setup with latest configs and plugins. PR [#11953](https://github.com/fastapi/fastapi/pull/11953) by [@tiangolo](https://github.com/tiangolo).
 * 🔇 Ignore warning from attrs in Trio. PR [#11949](https://github.com/fastapi/fastapi/pull/11949) by [@tiangolo](https://github.com/tiangolo).
