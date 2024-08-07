@@ -49,6 +49,7 @@ def main():
     files = list(use_pr.get_files())
     docs_files = [f for f in files if f.filename.startswith("docs/")]
 
+    deploy_url = settings.deploy_url.rstrip("/")
     lang_links: dict[str, list[str]] = {}
     for f in docs_files:
         match = re.match(r"docs/([^/]+)/docs/(.*)", f.filename)
@@ -60,9 +61,9 @@ def main():
         else:
             path = path.replace(".md", "/")
         if lang == "en":
-            link = f"{settings.deploy_url}{path}"
+            link = f"{deploy_url}/{path}"
         else:
-            link = f"{settings.deploy_url}{lang}/{path}"
+            link = f"{deploy_url}/{lang}/{path}"
         lang_links.setdefault(lang, []).append(link)
 
     links: list[str] = []
@@ -79,9 +80,7 @@ def main():
         current_lang_links.sort()
         links.extend(current_lang_links)
 
-    message = (
-        f"📝 Docs preview for commit {settings.commit_sha} at: {settings.deploy_url}"
-    )
+    message = f"📝 Docs preview for commit {settings.commit_sha} at: {deploy_url}"
 
     if links:
         message += "\n\n### Modified Pages\n\n"
