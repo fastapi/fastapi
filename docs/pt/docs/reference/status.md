@@ -18,7 +18,7 @@ Por exemplo:
 
 É conveniente acessar rapidamente os códigos de status HTTP (e WebSocket) em sua aplicação, usando o recurso de autocompletar para o nome sem precisar lembrar dos códigos de status inteiros de memória.
 
-Leia mais sobre isso na [documentação do FastAPI sobre Códigos de Status de Resposta](https://fastapi.tiangolo.com/tutorial/response-status-code/).
+Leia mais sobre isso em [FastAPI documentação sobre Códigos de Status de Resposta](https://fastapi.tiangolo.com/tutorial/response-status-code/).
 
 ## Exemplo
 

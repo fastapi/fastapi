@@ -1,10 +1,10 @@
-# Custom Response Classes - File, HTML, Redirect, Streaming, etc.
+# Classes de Resposta Personalizadas - File, HTML, Redirect, Streaming, etc.
 
-There are several custom response classes you can use to create an instance and return them directly from your *path operations*.
+Existem várias classes de resposta personalizadas que você pode usar para criar uma instância e retornar diretamente de suas *operações de rota*.
 
-Read more about it in the [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+Leia mais sobre isso em [FastAPI documentação para Resposta Personalizada - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
 
-You can import them directly from `fastapi.responses`:
+Você pode importá-la diretamente de `fastapi.responses`:
 
 ```python
 from fastapi.responses import (
@@ -22,7 +22,7 @@ from fastapi.responses import (
 
 ## FastAPI Responses
 
-There are a couple of custom FastAPI response classes, you can use them to optimize JSON performance.
+Existem algumas classes de resposta FastAPI personalizadas que você pode usar para otimizar o desempenho do JSON.
 
 ::: fastapi.responses.UJSONResponse
     options:

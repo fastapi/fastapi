@@ -1,4 +1,4 @@
-# `UploadFile` classe
+# Classe `UploadFile`
 
 Você pode definir parâmetros na função de operação de rota do tipo `UploadFile` para receber arquivos da requisição.
 

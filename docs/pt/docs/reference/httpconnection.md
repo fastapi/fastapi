@@ -1,8 +1,8 @@
-# `HTTPConnection` class
+# Classe `HTTPConnection`
 
-When you want to define dependencies that should be compatible with both HTTP and WebSockets, you can define a parameter that takes an `HTTPConnection` instead of a `Request` or a `WebSocket`.
+Quando você deseja definir dependências que devem ser compatíveis tanto com HTTP quanto com WebSockets, você pode definir um parâmetro que recebe uma `HTTPConnection` em vez de uma `Request` ou um `WebSocket`.
 
-You can import it from `fastapi.requests`:
+Você pode importá-la diretamente de `fastapi.requests`:
 
 ```python
 from fastapi.requests import HTTPConnection

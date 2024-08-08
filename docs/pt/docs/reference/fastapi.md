@@ -1,8 +1,8 @@
-# `FastAPI` class
+# Classe `FastAPI`
 
-Here's the reference information for the `FastAPI` class, with all its parameters, attributes and methods.
+Aqui estão as informações de referência para a classe `FastAPI`, com todos os seus parâmetros, atributos e métodos.
 
-You can import the `FastAPI` class directly from `fastapi`:
+Você pode importar a classe `FastAPI` diretamente do módulo `fastapi`:
 
 ```python
 from fastapi import FastAPI

@@ -1,10 +1,10 @@
-# Request Parameters
+# Parâmetros de Requisição
 
-Here's the reference information for the request parameters.
+Informações de Referência para Parâmetros de Requisição
 
-These are the special functions that you can put in *path operation function* parameters or dependency functions with `Annotated` to get data from the request.
+Estas são funções especiais que você pode colocar em parâmetros de *função de operação de rota* ou funções de dependência com `Annotated` para obter dados da requisição.
 
-It includes:
+Inclui:
 
 * `Query()`
 * `Path()`
@@ -14,7 +14,7 @@ It includes:
 * `Form()`
 * `File()`
 
-You can import them all directly from `fastapi`:
+Você pode importá-la diretamente de `fastapi`:
 
 ```python
 from fastapi import Body, Cookie, File, Form, Header, Path, Query

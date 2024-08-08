@@ -1,10 +1,10 @@
-# Static Files - `StaticFiles`
+# Arquivos Estáticos - `StaticFiles`
 
-You can use the `StaticFiles` class to serve static files, like JavaScript, CSS, images, etc.
+Você pode usar a classe `StaticFiles para servir arquivos estáticos, como JavaScript, CSS, imagens, etc.
 
-Read more about it in the [FastAPI docs for Static Files](https://fastapi.tiangolo.com/tutorial/static-files/).
+Leia mais sobre isso em [FastAPI documentação para Arquivos Estáticos](https://fastapi.tiangolo.com/tutorial/static-files/).
 
-You can import it directly from `fastapi.staticfiles`:
+Você pode importá-la diretamente de `fastapi.staticfiles`:
 
 ```python
 from fastapi.staticfiles import StaticFiles

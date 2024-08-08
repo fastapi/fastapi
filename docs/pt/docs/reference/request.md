@@ -1,14 +1,14 @@
-# `Request` class
+# Classe `Request`
 
-You can declare a parameter in a *path operation function* or dependency to be of type `Request` and then you can access the raw request object directly, without any validation, etc.
+Você pode declarar um parâmetro em uma *função de operação de rota* ou dependência como sendo do tipo `Request` e então você pode acessar diretamente o objeto de requisição bruto, sem nenhuma validação, etc.
 
-You can import it directly from `fastapi`:
+Você pode importá-la diretamente de `fastapi`:
 
 ```python
 from fastapi import Request
 ```
 
-!!! tip
-    When you want to define dependencies that should be compatible with both HTTP and WebSockets, you can define a parameter that takes an `HTTPConnection` instead of a `Request` or a `WebSocket`.
+!!! tip | "Dica"
+    Quando você quiser definir dependências que devem ser compatíveis com ambos HTTP e WebSockets, você pode definir um parâmetro que recebe um `HTTPConnection` em vez de um `Request` ou um `WebSocket`.
 
 ::: fastapi.Request

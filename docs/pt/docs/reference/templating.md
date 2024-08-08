@@ -2,7 +2,7 @@
 
 Você pode usar a classe `Jinja2Templates` para renderizar templates Jinja.
 
-Leia mais sobre isso na [documentação do FastAPI sobre Templates](https://fastapi.tiangolo.com/advanced/templates/).
+Leia mais sobre isso em [FastAPI documentação sobre Templates](https://fastapi.tiangolo.com/advanced/templates/).
 
 Você pode importá-la diretamente de `fastapi.templating`:
 

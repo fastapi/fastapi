@@ -1,10 +1,10 @@
-# `Response` class
+# Classe `Response`
 
-You can declare a parameter in a *path operation function* or dependency to be of type `Response` and then you can set data for the response like headers or cookies.
+Você pode declarar um parâmetro em uma *função de operação de rota* ou dependência como sendo do tipo `Response` e então você pode definir dados para a resposta como cabeçalhos ou cookies.
 
-You can also use it directly to create an instance of it and return it from your *path operations*.
+Você também pode usá-lo diretamente para criar uma instância dele e retorná-lo de suas *operações de rota*.
 
-You can import it directly from `fastapi`:
+Você pode importá-la diretamente de `fastapi`:
 
 ```python
 from fastapi import Response
