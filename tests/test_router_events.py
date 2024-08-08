@@ -113,19 +113,19 @@ def test_app_lifespan_state(state: State) -> None:
 
 def test_router_nested_lifespan_state(state: State) -> None:
     @asynccontextmanager
-    async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    async def lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
         state.app_startup = True
         yield {"app": True}
         state.app_shutdown = True
 
     @asynccontextmanager
-    async def router_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
         state.router_startup = True
         yield {"router": True}
         state.router_shutdown = True
 
     @asynccontextmanager
-    async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
         state.sub_router_startup = True
         yield {"sub_router": True}
         state.sub_router_shutdown = True
@@ -169,3 +169,44 @@ def test_router_nested_lifespan_state(state: State) -> None:
     assert state.app_shutdown is True
     assert state.router_shutdown is True
     assert state.sub_router_shutdown is True
+
+
+def test_router_nested_lifespan_state_overriding_by_parent() -> None:
+    @asynccontextmanager
+    async def lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+        yield {"overrided": True}
+
+    @asynccontextmanager
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+        yield {
+            "original": True,
+            "overrided": False,  # should be overrided by parent state
+        }
+
+
+    router = APIRouter(lifespan=router_lifespan)
+    app = FastAPI(lifespan=lifespan)
+    app.include_router(router)
+
+    with TestClient(app) as client:
+        assert client.app_state == {
+            "original": True,
+            "overrided": True,
+        }
+
+
+def test_merged_no_return_lifespancs_return_none() -> None:
+    @asynccontextmanager
+    async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+        yield
+
+    @asynccontextmanager
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+        yield
+
+    router = APIRouter(lifespan=router_lifespan)
+    app = FastAPI(lifespan=lifespan)
+    app.include_router(router)
+
+    with TestClient(app) as client:
+        assert not client.app_state
