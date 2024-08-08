@@ -81,7 +81,7 @@ Mas ele ainda faz parte da mesma **FastAPI** aplicação/web API (faz parte do m
 
 Você pode criar as *operações de rotas* para esse módulo usando o `APIRouter`.
 
-### Import `APIRouter`
+### Importar `APIRouter`
 
 você o importa e cria uma "instância" da mesma maneira que faria com a classe `FastAPI`:
 
@@ -234,7 +234,7 @@ Os parâmetros `prefix`, `tags`, `responses` e `dependencies` são (como em muit
 
 ///
 
-### Import the dependencies
+### Importar as dependências
 
 Este código reside no módulo `app.routers.items`, o arquivo `app/routers/items.py`.
 
@@ -246,7 +246,7 @@ Então usamos uma importação relativa com `..` para as dependências:
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-#### How relative imports work
+#### Como funcionam as importações relativas
 
 /// tip | "Dica"
 
