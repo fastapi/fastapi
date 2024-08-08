@@ -19,6 +19,7 @@ hide:
 
 ### Internal
 
+* 👷 Add alls-green for test-redistribute. PR [#11974](https://github.com/fastapi/fastapi/pull/11974) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update docs-previews to handle no docs changes. PR [#11975](https://github.com/fastapi/fastapi/pull/11975) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Refactor script `deploy_docs_status.py` to account for deploy URLs with or without trailing slash. PR [#11965](https://github.com/fastapi/fastapi/pull/11965) by [@tiangolo](https://github.com/tiangolo).
 * 🔒️ Update permissions for deploy-docs action. PR [#11964](https://github.com/fastapi/fastapi/pull/11964) by [@tiangolo](https://github.com/tiangolo).
