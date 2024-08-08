@@ -183,7 +183,6 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
             "overrided": False,  # should be overrided by parent state
         }
 
-
     router = APIRouter(lifespan=router_lifespan)
     app = FastAPI(lifespan=lifespan)
     app.include_router(router)
