@@ -74,8 +74,11 @@ Ainsi, la ligne :
 
 ne sera pas exécutée.
 
-!!! info
+/// info
+
 Pour plus d'informations, consultez <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">la documentation officielle de Python</a>.
+
+///
 
 ## Exécutez votre code avec votre <abbr title="En anglais: debugger">débogueur</abbr>
 

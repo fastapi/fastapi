@@ -24,8 +24,11 @@ Puedes declarar el tipo de un parámetro de path en la función usando las anota
 
 En este caso, `item_id` es declarado como un `int`.
 
-!!! check "Revisa"
-    Esto te dará soporte en el editor dentro de tu función, con chequeo de errores, auto-completado, etc.
+/// check | "Revisa"
+
+Esto te dará soporte en el editor dentro de tu función, con chequeo de errores, auto-completado, etc.
+
+///
 
 ## <abbr title="también conocido en inglés como: serialization, parsing, marshalling">Conversión</abbr> de datos
 
@@ -35,10 +38,13 @@ Si corres este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/it
 {"item_id":3}
 ```
 
-!!! check "Revisa"
-    Observa que el valor que recibió (y devolvió) tu función es `3`, como un Python `int`, y no un string `"3"`.
+/// check | "Revisa"
 
-    Entonces, con esa declaración de tipos **FastAPI** te da <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> automático del request.
+Observa que el valor que recibió (y devolvió) tu función es `3`, como un Python `int`, y no un string `"3"`.
+
+Entonces, con esa declaración de tipos **FastAPI** te da <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> automático del request.
+
+///
 
 ## Validación de datos
 
@@ -63,12 +69,15 @@ debido a que el parámetro de path `item_id` tenía el valor `"foo"`, que no es 
 
 El mismo error aparecería si pasaras un `float` en vez de un `int` como en: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check "Revisa"
-    Así, con la misma declaración de tipo de Python, **FastAPI** te da validación de datos.
+/// check | "Revisa"
 
-    Observa que el error también muestra claramente el punto exacto en el que no pasó la validación.
+Así, con la misma declaración de tipo de Python, **FastAPI** te da validación de datos.
 
-    Esto es increíblemente útil cuando estás desarrollando y debugging código que interactúa con tu API.
+Observa que el error también muestra claramente el punto exacto en el que no pasó la validación.
+
+Esto es increíblemente útil cuando estás desarrollando y debugging código que interactúa con tu API.
+
+///
 
 ## Documentación
 
@@ -76,10 +85,13 @@ Cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="externa
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check "Revisa"
-    Nuevamente, con la misma declaración de tipo de Python, **FastAPI** te da documentación automática e interactiva (integrándose con Swagger UI)
+/// check | "Revisa"
 
-    Observa que el parámetro de path está declarado como un integer.
+Nuevamente, con la misma declaración de tipo de Python, **FastAPI** te da documentación automática e interactiva (integrándose con Swagger UI)
+
+Observa que el parámetro de path está declarado como un integer.
+
+///
 
 ## Beneficios basados en estándares, documentación alternativa
 
@@ -131,11 +143,17 @@ Luego crea atributos de clase con valores fijos, que serán los valores disponib
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info "Información"
-    Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (o enums) están disponibles en Python</a> desde la versión 3.4.
+/// info | "Información"
 
-!!! tip "Consejo"
-    Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Técnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
+Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (o enums) están disponibles en Python</a> desde la versión 3.4.
+
+///
+
+/// tip | "Consejo"
+
+Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Técnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
+
+///
 
 ### Declara un *parámetro de path*
 
@@ -171,8 +189,11 @@ Puedes obtener el valor exacto (un `str` en este caso) usando `model_name.value`
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip "Consejo"
-    También podrías obtener el valor `"lenet"` con `ModelName.lenet.value`.
+/// tip | "Consejo"
+
+También podrías obtener el valor `"lenet"` con `ModelName.lenet.value`.
+
+///
 
 #### Devuelve *enumeration members*
 
@@ -225,10 +246,13 @@ Entonces lo puedes usar con:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip "Consejo"
-    Podrías necesitar que el parámetro contenga `/home/johndoe/myfile.txt` con un slash inicial (`/`).
+/// tip | "Consejo"
 
-    En este caso la URL sería `/files//home/johndoe/myfile.txt` con un slash doble (`//`) entre `files` y `home`.
+Podrías necesitar que el parámetro contenga `/home/johndoe/myfile.txt` con un slash inicial (`/`).
+
+En este caso la URL sería `/files//home/johndoe/myfile.txt` con un slash doble (`//`) entre `files` y `home`.
+
+///
 
 ## Repaso
 

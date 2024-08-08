@@ -17,10 +17,13 @@ As you saw in the previous chapter about [Deployment Concepts](concepts.md){.int
 
 Here I'll show you how to use <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> with **Uvicorn worker processes**.
 
-!!! info
-    If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+/// info
 
-    In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
+If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+
+In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
+
+///
 
 ## Gunicorn with Uvicorn Workers
 

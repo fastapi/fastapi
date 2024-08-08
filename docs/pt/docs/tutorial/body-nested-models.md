@@ -165,8 +165,11 @@ Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
 }
 ```
 
-!!! info "informação"
-    Note como o campo `images` agora tem uma lista de objetos de image.
+/// info | "informação"
+
+Note como o campo `images` agora tem uma lista de objetos de image.
+
+///
 
 ## Modelos profundamente aninhados
 
@@ -176,8 +179,11 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-!!! info "informação"
-    Note como `Offer` tem uma lista de `Item`s, que por sua vez possui opcionalmente uma lista `Image`s
+/// info | "informação"
+
+Note como `Offer` tem uma lista de `Item`s, que por sua vez possui opcionalmente uma lista `Image`s
+
+///
 
 ## Corpos de listas puras
 
@@ -226,14 +232,17 @@ Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com va
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-!!! tip "Dica"
-    Leve em condideração que o JSON só suporta `str` como chaves.
+/// tip | "Dica"
 
-    Mas o Pydantic tem conversão automática de dados.
+Leve em condideração que o JSON só suporta `str` como chaves.
 
-    Isso significa que, embora os clientes da API só possam enviar strings como chaves, desde que essas strings contenham inteiros puros, o Pydantic irá convertê-los e validá-los.
+Mas o Pydantic tem conversão automática de dados.
 
-    E o `dict` que você recebe como `weights` terá, na verdade, chaves `int` e valores` float`.
+Isso significa que, embora os clientes da API só possam enviar strings como chaves, desde que essas strings contenham inteiros puros, o Pydantic irá convertê-los e validá-los.
+
+E o `dict` que você recebe como `weights` terá, na verdade, chaves `int` e valores` float`.
+
+///
 
 ## Recapitulação
 

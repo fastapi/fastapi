@@ -12,8 +12,11 @@ The contents that you return from your *path operation function* will be put ins
 
 And if that `Response` has a JSON media type (`application/json`), like is the case with the `JSONResponse` and `UJSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*.
 
-!!! note
-    If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
+/// note
+
+If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
+
+///
 
 ## Use `ORJSONResponse`
 
@@ -31,15 +34,21 @@ But if you are certain that the content that you are returning is **serializable
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-!!! info
-    The parameter `response_class` will also be used to define the "media type" of the response.
+/// info
 
-    In this case, the HTTP header `Content-Type` will be set to `application/json`.
+The parameter `response_class` will also be used to define the "media type" of the response.
 
-    And it will be documented as such in OpenAPI.
+In this case, the HTTP header `Content-Type` will be set to `application/json`.
 
-!!! tip
-    The `ORJSONResponse` is only available in FastAPI, not in Starlette.
+And it will be documented as such in OpenAPI.
+
+///
+
+/// tip
+
+The `ORJSONResponse` is only available in FastAPI, not in Starlette.
+
+///
 
 ## HTML Response
 
@@ -52,12 +61,15 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 {!../../../docs_src/custom_response/tutorial002.py!}
 ```
 
-!!! info
-    The parameter `response_class` will also be used to define the "media type" of the response.
+/// info
 
-    In this case, the HTTP header `Content-Type` will be set to `text/html`.
+The parameter `response_class` will also be used to define the "media type" of the response.
 
-    And it will be documented as such in OpenAPI.
+In this case, the HTTP header `Content-Type` will be set to `text/html`.
+
+And it will be documented as such in OpenAPI.
+
+///
 
 ### Return a `Response`
 
@@ -69,11 +81,17 @@ The same example from above, returning an `HTMLResponse`, could look like:
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
 
-!!! warning
-    A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
+/// warning
 
-!!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
+A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
+
+///
+
+/// info
+
+Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object you returned.
+
+///
 
 ### Document in OpenAPI and override `Response`
 
@@ -103,10 +121,13 @@ Here are some of the available responses.
 
 Keep in mind that you can use `Response` to return anything else, or even create a custom sub-class.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import HTMLResponse`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+You could also use `from starlette.responses import HTMLResponse`.
+
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+///
 
 ### `Response`
 
@@ -149,25 +170,37 @@ This is the default response used in **FastAPI**, as you read above.
 
 A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
 
-!!! info
-    This requires installing `orjson` for example with `pip install orjson`.
+/// info
+
+This requires installing `orjson` for example with `pip install orjson`.
+
+///
 
 ### `UJSONResponse`
 
 An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
-!!! info
-    This requires installing `ujson` for example with `pip install ujson`.
+/// info
 
-!!! warning
-    `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
+This requires installing `ujson` for example with `pip install ujson`.
+
+///
+
+/// warning
+
+`ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
+
+///
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
 ```
 
-!!! tip
-    It's possible that `ORJSONResponse` might be a faster alternative.
+/// tip
+
+It's possible that `ORJSONResponse` might be a faster alternative.
+
+///
 
 ### `RedirectResponse`
 
@@ -228,8 +261,11 @@ This includes many libraries to interact with cloud storage, video processing, a
 
     By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
 
-!!! tip
-    Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+/// tip
+
+Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+
+///
 
 ### `FileResponse`
 
@@ -298,8 +334,11 @@ In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 
-!!! tip
-    You can still override `response_class` in *path operations* as before.
+/// tip
+
+You can still override `response_class` in *path operations* as before.
+
+///
 
 ## Additional documentation
 
