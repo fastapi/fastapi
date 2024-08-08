@@ -63,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` یعنی:
+/// info
 
-    کلید ها و مقادیر دیکشنری `second_user_data` را مستقیما به عنوان ارگومان های key-value بفرست، که معادل است با : `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` یعنی:
+
+کلید ها و مقادیر دیکشنری `second_user_data` را مستقیما به عنوان ارگومان های key-value بفرست، که معادل است با : `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### پشتیبانی ویرایشگر
 
