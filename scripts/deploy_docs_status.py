@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     deploy_url: str | None = None
     commit_sha: str
     run_id: int
+    is_done: bool = False
 
 
 def main():
@@ -30,10 +31,19 @@ def main():
     commits = list(use_pr.get_commits())
     current_commit = [c for c in commits if c.sha == settings.commit_sha][0]
     run_url = f"https://github.com/{settings.github_repository}/actions/runs/{settings.run_id}"
+    if settings.is_done and not settings.deploy_url:
+        current_commit.create_status(
+            state="success",
+            description="No Docs Changes",
+            context="deploy-docs",
+            target_url=run_url,
+        )
+        logging.info("No docs changes found")
+        return
     if not settings.deploy_url:
         current_commit.create_status(
             state="pending",
-            description="Deploy Docs",
+            description="Deploying Docs",
             context="deploy-docs",
             target_url=run_url,
         )
@@ -41,7 +51,7 @@ def main():
         return
     current_commit.create_status(
         state="success",
-        description="Deploy Docs",
+        description="Docs Deployed",
         context="deploy-docs",
         target_url=run_url,
     )
