@@ -6,8 +6,11 @@ Bei der Definition von WebSockets deklarieren Sie normalerweise einen Parameter 
 from fastapi import WebSocket
 ```
 
-!!! tip "Tipp"
-    Wenn Sie Abhängigkeiten definieren möchten, die sowohl mit HTTP als auch mit WebSockets kompatibel sein sollen, können Sie einen Parameter definieren, der eine `HTTPConnection` anstelle eines `Request` oder eines `WebSocket` akzeptiert.
+/// tip | "Tipp"
+
+Wenn Sie Abhängigkeiten definieren möchten, die sowohl mit HTTP als auch mit WebSockets kompatibel sein sollen, können Sie einen Parameter definieren, der eine `HTTPConnection` anstelle eines `Request` oder eines `WebSocket` akzeptiert.
+
+///
 
 ::: fastapi.WebSocket
     options:

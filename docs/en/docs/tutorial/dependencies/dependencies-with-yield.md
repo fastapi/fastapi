@@ -4,18 +4,24 @@ FastAPI supports dependencies that do some <abbr title='sometimes also called "e
 
 To do this, use `yield` instead of `return`, and write the extra steps (code) after.
 
-!!! tip
-    Make sure to use `yield` one single time.
+/// tip
 
-!!! note "Technical Details"
-    Any function that is valid to use with:
+Make sure to use `yield` one single time.
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+///
 
-    would be valid to use as a **FastAPI** dependency.
+/// note | "Technical Details"
 
-    In fact, FastAPI uses those two decorators internally.
+Any function that is valid to use with:
+
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+
+would be valid to use as a **FastAPI** dependency.
+
+In fact, FastAPI uses those two decorators internally.
+
+///
 
 ## A database dependency with `yield`
 
@@ -39,10 +45,13 @@ The code following the `yield` statement is executed after the response has been
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-!!! tip
-    You can use `async` or regular functions.
+/// tip
 
-    **FastAPI** will do the right thing with each, the same as with normal dependencies.
+You can use `async` or regular functions.
+
+**FastAPI** will do the right thing with each, the same as with normal dependencies.
+
+///
 
 ## A dependency with `yield` and `try`
 
@@ -66,26 +75,35 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="6  14  22"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="5  13  21"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="4  12  20"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 And all of them can use `yield`.
 
@@ -93,26 +111,35 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="18-19  26-27"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="17-18  25-26"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="16-17  24-25"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 The same way, you could have some dependencies with `yield` and some other dependencies with `return`, and have some of those depend on some of the others.
 
@@ -122,10 +149,13 @@ You can have any combinations of dependencies that you want.
 
 **FastAPI** will make sure everything is run in the correct order.
 
-!!! note "Technical Details"
-    This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
+/// note | "Technical Details"
 
-    **FastAPI** uses them internally to achieve this.
+This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
+
+**FastAPI** uses them internally to achieve this.
+
+///
 
 ## Dependencies with `yield` and `HTTPException`
 
@@ -133,32 +163,43 @@ You saw that you can use dependencies with `yield` and have `try` blocks that ca
 
 The same way, you could raise an `HTTPException` or similar in the exit code, after the `yield`.
 
-!!! tip
+/// tip
 
-    This is a somewhat advanced technique, and in most of the cases you won't really need it, as you can raise exceptions (including `HTTPException`) from inside of the rest of your application code, for example, in the *path operation function*.
+This is a somewhat advanced technique, and in most of the cases you won't really need it, as you can raise exceptions (including `HTTPException`) from inside of the rest of your application code, for example, in the *path operation function*.
 
-    But it's there for you if you need it. 🤓
+But it's there for you if you need it. 🤓
 
-=== "Python 3.9+"
+///
 
-    ```Python hl_lines="18-22  31"
-    {!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="18-22  31"
+{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+```
 
-    ```Python hl_lines="17-21  30"
-    {!> ../../../docs_src/dependencies/tutorial008b_an.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="17-21  30"
+{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+```
 
-    ```Python hl_lines="16-20  29"
-    {!> ../../../docs_src/dependencies/tutorial008b.py!}
-    ```
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="16-20  29"
+{!> ../../../docs_src/dependencies/tutorial008b.py!}
+```
+
+////
 
 An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is to create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
@@ -166,26 +207,35 @@ An alternative you could use to catch exceptions (and possibly also raise anothe
 
 If you catch an exception using `except` in a dependency with `yield` and you don't raise it again (or raise a new exception), FastAPI won't be able to notice there was an exception, the same way that would happen with regular Python:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
-    ```
+```Python hl_lines="15-16"
+{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="14-15"
-    {!> ../../../docs_src/dependencies/tutorial008c_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="14-15"
+{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="13-14"
-    {!> ../../../docs_src/dependencies/tutorial008c.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="13-14"
+{!> ../../../docs_src/dependencies/tutorial008c.py!}
+```
+
+////
 
 In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
 
@@ -195,27 +245,35 @@ If you catch an exception in a dependency with `yield`, unless you are raising a
 
 You can re-raise the same exception using `raise`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
-    ```
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial008d_an.py!}
-    ```
+//// tab | Python 3.8+
 
+```Python hl_lines="16"
+{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/dependencies/tutorial008d.py!}
-    ```
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="15"
+{!> ../../../docs_src/dependencies/tutorial008d.py!}
+```
+
+////
 
 Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
 
@@ -258,22 +316,31 @@ participant tasks as Background tasks
     end
 ```
 
-!!! info
-    Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
+/// info
 
-    After one of those responses is sent, no other response can be sent.
+Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
 
-!!! tip
-    This diagram shows `HTTPException`, but you could also raise any other exception that you catch in a dependency with `yield` or with a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+After one of those responses is sent, no other response can be sent.
 
-    If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`. In most cases you will want to re-raise that same exception or a new one from the dependency with `yield` to make sure it's properly handled.
+///
+
+/// tip
+
+This diagram shows `HTTPException`, but you could also raise any other exception that you catch in a dependency with `yield` or with a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+
+If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`. In most cases you will want to re-raise that same exception or a new one from the dependency with `yield` to make sure it's properly handled.
+
+///
 
 ## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks
 
-!!! warning
-    You most probably don't need these technical details, you can skip this section and continue below.
+/// warning
 
-    These details are useful mainly if you were using a version of FastAPI prior to 0.106.0 and used resources from dependencies with `yield` in background tasks.
+You most probably don't need these technical details, you can skip this section and continue below.
+
+These details are useful mainly if you were using a version of FastAPI prior to 0.106.0 and used resources from dependencies with `yield` in background tasks.
+
+///
 
 ### Dependencies with `yield` and `except`, Technical Details
 
@@ -289,11 +356,13 @@ This was designed this way mainly to allow using the same objects "yielded" by d
 
 Nevertheless, as this would mean waiting for the response to travel through the network while unnecessarily holding a resource in a dependency with yield (for example a database connection), this was changed in FastAPI 0.106.0.
 
-!!! tip
+/// tip
 
-    Additionally, a background task is normally an independent set of logic that should be handled separately, with its own resources (e.g. its own database connection).
+Additionally, a background task is normally an independent set of logic that should be handled separately, with its own resources (e.g. its own database connection).
 
-    So, this way you will probably have cleaner code.
+So, this way you will probably have cleaner code.
+
+///
 
 If you used to rely on this behavior, now you should create the resources for background tasks inside the background task itself, and use internally only data that doesn't depend on the resources of dependencies with `yield`.
 
@@ -321,10 +390,13 @@ When you create a dependency with `yield`, **FastAPI** will internally create a 
 
 ### Using context managers in dependencies with `yield`
 
-!!! warning
-    This is, more or less, an "advanced" idea.
+/// warning
 
-    If you are just starting with **FastAPI** you might want to skip it for now.
+This is, more or less, an "advanced" idea.
+
+If you are just starting with **FastAPI** you might want to skip it for now.
+
+///
 
 In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
@@ -335,16 +407,19 @@ You can also use them inside of **FastAPI** dependencies with `yield` by using
 {!../../../docs_src/dependencies/tutorial010.py!}
 ```
 
-!!! tip
-    Another way to create a context manager is with:
+/// tip
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+Another way to create a context manager is with:
 
-    using them to decorate a function with a single `yield`.
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
-    That's what **FastAPI** uses internally for dependencies with `yield`.
+using them to decorate a function with a single `yield`.
 
-    But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
+That's what **FastAPI** uses internally for dependencies with `yield`.
 
-    FastAPI will do it for you internally.
+But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
+
+FastAPI will do it for you internally.
+
+///
