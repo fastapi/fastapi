@@ -1182,4 +1182,4 @@ Validations specific for strings:
 
 In these examples you saw how to declare validations for `str` values.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+See the next chapters to learn how to declare validations for other types, like numbers.
