@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    You can only use `await` inside of functions created with `async def`.
+/// note
+
+You can only use `await` inside of functions created with `async def`.
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ You just eat them, and you are done. ⏹
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -392,12 +401,15 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 ## Very Technical Details
 
-!!! warning
-    You can probably skip this.
+/// warning
 
-    These are very technical details of how **FastAPI** works underneath.
+You can probably skip this.
 
-    If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+These are very technical details of how **FastAPI** works underneath.
+
+If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+
+///
 
 ### Path operation functions
 

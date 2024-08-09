@@ -6,9 +6,12 @@ FastAPIアプリケーションをデプロイする場合、一般的なアプ�
 
 Linuxコンテナの使用には、**セキュリティ**、**反復可能性（レプリカビリティ）**、**シンプリシティ**など、いくつかの利点があります。
 
-!!! tip
-    TODO: なぜか遷移できない
-    お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#build-a-docker-image-for-fastapi)へジャンプしてください。
+/// tip
+
+TODO: なぜか遷移できない
+お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#build-a-docker-image-for-fastapi)へジャンプしてください。
+
+///
 
 <details>
 <summary>Dockerfile プレビュー 👀</summary>
@@ -139,10 +142,13 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-!!! info
-    パッケージの依存関係を定義しインストールするためのフォーマットやツールは他にもあります。
+/// info
 
-    Poetryを使った例は、後述するセクションでご紹介します。👇
+パッケージの依存関係を定義しインストールするためのフォーマットやツールは他にもあります。
+
+Poetryを使った例は、後述するセクションでご紹介します。👇
+
+///
 
 ### **FastAPI**コードを作成する
 
@@ -230,8 +236,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     そのためプログラムは `/code` で開始しその中にあなたのコードがある `./app` ディレクトリがあるので、**Uvicorn** は `app.main` から `app` を参照し、**インポート** することができます。
 
-!!! tip
-    コード内の"+"の吹き出しをクリックして、各行が何をするのかをレビューしてください。👆
+/// tip
+
+コード内の"+"の吹き出しをクリックして、各行が何をするのかをレビューしてください。👆
+
+///
 
 これで、次のようなディレクトリ構造になるはずです：
 
@@ -305,10 +314,13 @@ $ docker build -t myimage .
 
 </div>
 
-!!! tip
-   末尾の `.` に注目してほしいです。これは `./` と同じ意味です。 これはDockerにコンテナイメージのビルドに使用するディレクトリを指示します。
+/// tip
 
-    この場合、同じカレント・ディレクトリ(`.`)です。
+末尾の `.` に注目してほしいです。これは `./` と同じ意味です。 これはDockerにコンテナイメージのビルドに使用するディレクトリを指示します。
+
+この場合、同じカレント・ディレクトリ(`.`)です。
+
+///
 
 ### Dockerコンテナの起動する
 
@@ -405,8 +417,11 @@ FastAPI アプリケーションの **コンテナ・イメージ**（および�
 
 例えば<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>のように、**HTTPS**と**証明書**の**自動**取得を扱う別のコンテナである可能性もあります。
 
-!!! tip
-    TraefikはDockerやKubernetesなどと統合されているので、コンテナ用のHTTPSの設定や構成はとても簡単です。
+/// tip
+
+TraefikはDockerやKubernetesなどと統合されているので、コンテナ用のHTTPSの設定や構成はとても簡単です。
+
+///
 
 あるいは、（コンテナ内でアプリケーションを実行しながら）クラウド・プロバイダーがサービスの1つとしてHTTPSを処理することもできます。
 
@@ -434,8 +449,11 @@ Kubernetesのような分散コンテナ管理システムの1つは通常、入
 
 このコンポーネントはリクエストの **負荷** を受け、 (うまくいけば) その負荷を**バランスよく** ワーカーに分配するので、一般に **ロードバランサ** とも呼ばれます。
 
-!!! tip
-　　HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネントは、おそらく**ロードバランサー**にもなるでしょう。
+/// tip
+
+HTTPSに使われるものと同じ**TLS Termination Proxy**コンポーネントは、おそらく**ロードバランサー**にもなるでしょう。
+
+///
 
 そしてコンテナで作業する場合、コンテナの起動と管理に使用する同じシステムには、**ロードバランサー**（**TLS Termination Proxy**の可能性もある）から**ネットワーク通信**（HTTPリクエストなど）をアプリのあるコンテナ（複数可）に送信するための内部ツールが既にあるはずです。
 
@@ -520,8 +538,11 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 複数の**コンテナ**があり、おそらくそれぞれが**単一のプロセス**を実行している場合（**Kubernetes**クラスタなど）、レプリケートされたワーカーコンテナを実行する**前に**、単一のコンテナで**事前のステップ**の作業を行う**別のコンテナ**を持ちたいと思うでしょう。
 
-!!! info
-    もしKubernetesを使用している場合, これはおそらく<a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init コンテナ</a>でしょう。
+/// info
+
+もしKubernetesを使用している場合, これはおそらく<a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init コンテナ</a>でしょう。
+
+///
 
 ユースケースが事前のステップを**並列で複数回**実行するのに問題がない場合（例：データベースの準備チェック）、メインプロセスを開始する前に、それらのステップを各コンテナに入れることが可能です。
 
@@ -537,8 +558,11 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-!!! warning
-    このベースイメージや類似のイメージは**必要ない**可能性が高いので、[上記の: FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi)のようにゼロからイメージをビルドする方が良いでしょう。
+/// warning
+
+このベースイメージや類似のイメージは**必要ない**可能性が高いので、[上記の: FastAPI用のDockerイメージをビルドする（Build a Docker Image for FastAPI）](#build-a-docker-image-for-fastapi)のようにゼロからイメージをビルドする方が良いでしょう。
+
+///
 
 このイメージには、利用可能なCPUコアに基づいて**ワーカー・プロセスの数**を設定する**オートチューニング**メカニズムが含まれています。
 
@@ -546,8 +570,11 @@ Docker Composeで**シングルサーバ**（クラスタではない）にデ�
 
 また、スクリプトで<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**開始前の事前ステップ**</a>を実行することもサポートしている。
 
-!!! tip
-    すべての設定とオプションを見るには、Dockerイメージのページをご覧ください: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
+/// tip
+
+すべての設定とオプションを見るには、Dockerイメージのページをご覧ください: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
+
+///
 
 ### 公式Dockerイメージのプロセス数
 
@@ -672,8 +699,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 9. 生成された `requirements.txt` ファイルにあるパッケージの依存関係をインストールします
 10. app` ディレクトリを `/code` ディレクトリにコピーします
 11. uvicorn` コマンドを実行して、`app.main` からインポートした `app` オブジェクトを使用するように指示します
-!!! tip
-    "+"の吹き出しをクリックすると、それぞれの行が何をするのかを見ることができます
+/// tip
+
+"+"の吹き出しをクリックすると、それぞれの行が何をするのかを見ることができます
+
+///
 
 **Dockerステージ**は`Dockerfile`の一部で、**一時的なコンテナイメージ**として動作します。
 

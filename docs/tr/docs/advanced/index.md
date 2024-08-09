@@ -6,10 +6,13 @@
 
 İlerleyen bölümlerde diğer seçenekler, konfigürasyonlar ve ek özellikleri göreceğiz.
 
-!!! tip "İpucu"
-    Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
+/// tip | "İpucu"
 
-    Kullanım şeklinize bağlı olarak, çözümünüz bu bölümlerden birinde olabilir.
+Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
+
+Kullanım şeklinize bağlı olarak, çözümünüz bu bölümlerden birinde olabilir.
+
+///
 
 ## Önce Öğreticiyi Okuyun
 
