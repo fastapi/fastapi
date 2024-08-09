@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    You can only use `await` inside of functions created with `async def`.
+/// note
+
+You can only use `await` inside of functions created with `async def`.
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ You just eat them, and you are done. ⏹
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -222,7 +231,7 @@ All of the cashiers doing all the work with one client after the other 👨‍�
 
 And you have to wait 🕙 in the line for a long time or you lose your turn.
 
-You probably wouldn't want to take your crush 😍 with you to do errands at the bank 🏦.
+You probably wouldn't want to take your crush 😍 with you to run errands at the bank 🏦.
 
 ### Burger Conclusion
 
@@ -392,12 +401,15 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 ## Very Technical Details
 
-!!! warning
-    You can probably skip this.
+/// warning
 
-    These are very technical details of how **FastAPI** works underneath.
+You can probably skip this.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+These are very technical details of how **FastAPI** works underneath.
+
+If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+
+///
 
 ### Path operation functions
 
@@ -409,11 +421,11 @@ Still, in both situations, chances are that **FastAPI** will [still be faster](i
 
 ### Dependencies
 
-The same applies for [dependencies](./tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies
 
-You can have multiple dependencies and [sub-dependencies](./tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 

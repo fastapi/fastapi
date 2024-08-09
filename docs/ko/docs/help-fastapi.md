@@ -12,7 +12,7 @@
 
   ## 뉴스레터 구독
 
-  [**FastAPI와 친구** 뉴스레터](https://github.com/tiangolo/fastapi/blob/master/newsletter)를 구독하여 최신 정보를 유지할 수 있습니다{.internal-link target=_blank}:
+  [**FastAPI와 친구** 뉴스레터](https://github.com/fastapi/fastapi/blob/master/newsletter)를 구독하여 최신 정보를 유지할 수 있습니다{.internal-link target=_blank}:
 
   - FastAPI 와 그 친구들에 대한 뉴스 🚀
   - 가이드 📝
@@ -26,13 +26,13 @@
 
   ## Star **FastAPI** in GitHub
 
-  GitHub에서 FastAPI에 "star"를 붙일 수 있습니다(오른쪽 상단의 star 버튼을 클릭): https://github.com/tiangolo/fastapi. ⭐️
+  GitHub에서 FastAPI에 "star"를 붙일 수 있습니다(오른쪽 상단의 star 버튼을 클릭): https://github.com/fastapi/fastapi. ⭐️
 
   스타를 늘림으로써, 다른 사용자들이 좀 더 쉽게 찾을 수 있고, 많은 사람들에게 유용한 것임을 나타낼 수 있습니다.
 
   ## GitHub 저장소에서  릴리즈 확인
 
-  GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버튼을 클릭): https://github.com/tiangolo/fastapi. 👀
+  GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버튼을 클릭): https://github.com/fastapi/fastapi. 👀
 
   여기서 "Releases only"을 선택할 수 있습니다.
 
@@ -62,7 +62,7 @@
 
   ## **FastAPI**에 대한 트윗
 
-  [**FastAPI**에 대해 트윗](https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi) 하고 FastAPI가 마음에 드는 이유를 알려주세요. 🎉
+  [**FastAPI**에 대해 트윗](https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi) 하고 FastAPI가 마음에 드는 이유를 알려주세요. 🎉
 
   **FastAPI**가 어떻게 사용되고 있는지, 어떤 점이 마음에 들었는지, 어떤 프로젝트/회사에서 사용하고 있는지 등에 대해 듣고 싶습니다.
 
@@ -73,13 +73,13 @@
 
   ## GitHub의 이슈로 다른사람 돕기
 
-  [존재하는 이슈](https://github.com/tiangolo/fastapi/issues)를 확인하고 그것을 시도하고 도와줄 수 있습니다. 대부분의 경우 이미 답을 알고 있는 질문입니다. 🤓
+  [존재하는 이슈](https://github.com/fastapi/fastapi/issues)를 확인하고 그것을 시도하고 도와줄 수 있습니다. 대부분의 경우 이미 답을 알고 있는 질문입니다. 🤓
 
-  많은 사람들의 문제를 도와준다면, 공식적인 [FastAPI 전문가](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 가 될 수 있습니다{.internal-link target=_blank}. 🎉
+  많은 사람들의 문제를 도와준다면, 공식적인 [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 가 될 수 있습니다{.internal-link target=_blank}. 🎉
 
   ## GitHub 저장소 보기
 
-  GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버튼을 클릭): https://github.com/tiangolo/fastapi. 👀
+  GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버튼을 클릭): https://github.com/fastapi/fastapi. 👀
 
   "Releases only" 대신 "Watching"을 선택하면 다른 사용자가 새로운 issue를 생성할 때 알림이 수신됩니다.
 
@@ -87,7 +87,7 @@
 
   ## 이슈 생성하기
 
-  GitHub 저장소에 [새로운 이슈 생성](https://github.com/tiangolo/fastapi/issues/new/choose) 을 할 수 있습니다, 예를들면 다음과 같습니다:
+  GitHub 저장소에 [새로운 이슈 생성](https://github.com/fastapi/fastapi/issues/new/choose) 을 할 수 있습니다, 예를들면 다음과 같습니다:
 
   - **질문**을 하거나 **문제**에 대해 질문합니다.
   - 새로운 **기능**을 제안 합니다.
@@ -96,15 +96,15 @@
 
   ## Pull Request를 만드십시오
 
-  Pull Requests를 이용하여 소스코드에 [컨트리뷰트](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/contributing.md){.internal-link target=_blank} 할 수 있습니다. 예를 들면 다음과 같습니다:
+  Pull Requests를 이용하여 소스코드에 [컨트리뷰트](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/contributing.md){.internal-link target=_blank} 할 수 있습니다. 예를 들면 다음과 같습니다:
 
   - 문서에서 찾은 오타를 수정할 때.
 
-  - FastAPI를 [편집하여](https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml) 작성했거나 찾은 문서, 비디오 또는 팟캐스트를 공유할 때.
+  - FastAPI를 [편집하여](https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml) 작성했거나 찾은 문서, 비디오 또는 팟캐스트를 공유할 때.
 
     - 해당 섹션의 시작 부분에 링크를 추가했는지 확인하십시오.
 
-  - 당신의 언어로 [문서 번역하는데](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/contributing.md#translations){.internal-link target=_blank} 기여할 때.
+  - 당신의 언어로 [문서 번역하는데](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/contributing.md#translations){.internal-link target=_blank} 기여할 때.
 
     - 또한 다른 사용자가 만든 번역을 검토하는데 도움을 줄 수도 있습니다.
 
@@ -118,13 +118,13 @@
 
   👥 [디스코드 채팅 서버](https://discord.gg/VQjSZaeJmf) 👥 에 가입하고 FastAPI 커뮤니티에서 다른 사람들과 어울리세요.
 
-  !!! tip 질문이 있는 경우, [GitHub 이슈 ](https://github.com/tiangolo/fastapi/issues/new/choose) 에서 질문하십시오, [FastAPI 전문가](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 의 도움을 받을 가능성이 높습니다{.internal-link target=_blank} .
+  !!! tip 질문이 있는 경우, [GitHub 이슈 ](https://github.com/fastapi/fastapi/issues/new/choose) 에서 질문하십시오, [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 의 도움을 받을 가능성이 높습니다{.internal-link target=_blank} .
 
   ```
   다른 일반적인 대화에서만 채팅을 사용하십시오.
   ```
 
-  기존 [지터 채팅](https://gitter.im/tiangolo/fastapi) 이 있지만 채널과 고급기능이 없어서 대화를 하기가 조금 어렵기 때문에 지금은 디스코드가 권장되는 시스템입니다.
+  기존 [지터 채팅](https://gitter.im/fastapi/fastapi) 이 있지만 채널과 고급기능이 없어서 대화를 하기가 조금 어렵기 때문에 지금은 디스코드가 권장되는 시스템입니다.
 
   ### 질문을 위해 채팅을 사용하지 마십시오
 
@@ -132,7 +132,7 @@
 
   GitHub 이슈에서의 템플릿은 올바른 질문을 작성하도록 안내하여 더 쉽게 좋은 답변을 얻거나 질문하기 전에 스스로 문제를 해결할 수도 있습니다. 그리고 GitHub에서는 시간이 조금 걸리더라도 항상 모든 것에 답할 수 있습니다. 채팅 시스템에서는 개인적으로 그렇게 할 수 없습니다. 😅
 
-  채팅 시스템에서의 대화 또한 GitHub에서 처럼 쉽게 검색할 수 없기 때문에 대화 중에 질문과 답변이 손실될 수 있습니다. 그리고 GitHub 이슈에 있는 것만 [FastAPI 전문가](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts)가 되는 것으로 간주되므로{.internal-link target=_blank} , GitHub 이슈에서 더 많은 관심을 받을 것입니다.
+  채팅 시스템에서의 대화 또한 GitHub에서 처럼 쉽게 검색할 수 없기 때문에 대화 중에 질문과 답변이 손실될 수 있습니다. 그리고 GitHub 이슈에 있는 것만 [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts)가 되는 것으로 간주되므로{.internal-link target=_blank} , GitHub 이슈에서 더 많은 관심을 받을 것입니다.
 
   반면, 채팅 시스템에는 수천 명의 사용자가 있기 때문에, 거의 항상 대화 상대를 찾을 가능성이 높습니다. 😄
 
