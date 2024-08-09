@@ -1,11 +1,10 @@
 from typing import Dict, List, Optional
 
 import pytest
-from pydantic import BaseModel, Field
-from starlette.testclient import TestClient
-
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_V2, PYDANTIC_VERSION
+from pydantic import BaseModel, Field
+from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -184,7 +183,9 @@ if PYDANTIC_V2:
         return {
             "k1": MultiUseItem(aliased_name="foo"),
             "k2": MultiUseItem(aliased_name="bar", secret="sEcReT"),
-            "k3": MultiUseItem(aliased_name="baz", secret="sEcReT", owner_ids=[1, 2, 3]),
+            "k3": MultiUseItem(
+                aliased_name="baz", secret="sEcReT", owner_ids=[1, 2, 3]
+            ),
         }
 
     client_v2 = TestClient(app_v2)

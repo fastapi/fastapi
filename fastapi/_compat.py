@@ -18,13 +18,12 @@ from typing import (
     Union,
 )
 
+from fastapi.exceptions import RequestErrorModel
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as P_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-from fastapi.exceptions import RequestErrorModel
-from fastapi.types import IncEx, ModelNameMap, UnionType
 
 # Reassign variable to make it reexported for mypy
 PYDANTIC_VERSION = P_VERSION
@@ -288,6 +287,7 @@ if PYDANTIC_V2:
         return BodyModel
 
 else:
+    from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
     from pydantic import (  # type: ignore[assignment]; noqa: F401
         BaseConfig as BaseConfig,
@@ -322,14 +322,14 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef, attr-defined]; noqa: F401
         UndefinedType as UndefinedType,
     )
-    from pydantic.schema import field_schema
-    from pydantic.schema import (  # type: ignore[no-redef]  # noqa: F401
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
     from pydantic.schema import (
+        field_schema,
         get_flat_models_from_fields,
         get_model_name_map,
         model_process_schema,
+    )
+    from pydantic.schema import (  # type: ignore[no-redef]  # noqa: F401
+        get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.typing import (  # type: ignore[no-redef]; noqa: F401
         evaluate_forwardref as evaluate_forwardref,
@@ -337,8 +337,6 @@ else:
     from pydantic.utils import (  # type: ignore[no-redef]; noqa: F401
         lenient_issubclass as lenient_issubclass,
     )
-
-    from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
 
     GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
     JsonSchemaValue = Dict[str, Any]  # type: ignore[misc]
