@@ -50,8 +50,8 @@ if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter
     from pydantic import ValidationError as ValidationError
-    from pydantic._internal._schema_generation_shared import (
-        GetJsonSchemaHandler as GetJsonSchemaHandler,  # type: ignore[attr-defined]
+    from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
+        GetJsonSchemaHandler as GetJsonSchemaHandler,
     )
     from pydantic._internal._typing_extra import eval_type_lenient
     from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
@@ -150,19 +150,29 @@ if PYDANTIC_V2:
             # self._type_adapter.validate_python(value)
             #
             # context argument was introduced in pydantic 2.8
-            kwargs = {"context": context} if PYDANTIC_VERSION >= "2.8" else {}
-
-            return self._type_adapter.dump_python(
-                value,
-                mode=mode,
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-                **kwargs,
-            )
+            if PYDANTIC_VERSION >= "2.8":
+                return self._type_adapter.dump_python(
+                    value,
+                    mode=mode,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                    context=context,
+                )
+            else:
+                return self._type_adapter.dump_python(
+                    value,
+                    mode=mode,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
 
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from
@@ -289,15 +299,15 @@ if PYDANTIC_V2:
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
-    from pydantic import (  # type: ignore[assignment]; noqa: F401
-        BaseConfig as BaseConfig,
+    from pydantic import (  # type: ignore[assignment]
+        BaseConfig as BaseConfig,  # noqa: F401
     )
     from pydantic import ValidationError as ValidationError  # noqa: F401
-    from pydantic.class_validators import (  # type: ignore[no-redef]; noqa: F401
-        Validator as Validator,
+    from pydantic.class_validators import (  # type: ignore[no-redef]
+        Validator as Validator,  # noqa: F401
     )
-    from pydantic.error_wrappers import (  # type: ignore[no-redef]; noqa: F401
-        ErrorWrapper as ErrorWrapper,
+    from pydantic.error_wrappers import (  # type: ignore[no-redef]
+        ErrorWrapper as ErrorWrapper,  # noqa: F401
     )
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
@@ -310,17 +320,17 @@ else:
         SHAPE_TUPLE_ELLIPSIS,
     )
     from pydantic.fields import FieldInfo as FieldInfo
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]; noqa: F401
-        ModelField as ModelField,
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
+        ModelField as ModelField,  # noqa: F401
     )
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]; noqa: F401
-        Required as Required,
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
+        Required as Required,  # noqa: F401
     )
-    from pydantic.fields import (
-        Undefined as Undefined,  # type: ignore[no-redef,attr-defined]
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
+        Undefined as Undefined,
     )
-    from pydantic.fields import (  # type: ignore[no-redef, attr-defined]; noqa: F401
-        UndefinedType as UndefinedType,
+    from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
+        UndefinedType as UndefinedType,  # noqa: F401
     )
     from pydantic.schema import (
         field_schema,
@@ -331,11 +341,11 @@ else:
     from pydantic.schema import (  # type: ignore[no-redef]  # noqa: F401
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
-    from pydantic.typing import (  # type: ignore[no-redef]; noqa: F401
-        evaluate_forwardref as evaluate_forwardref,
+    from pydantic.typing import (  # type: ignore[no-redef]
+        evaluate_forwardref as evaluate_forwardref,  # noqa: F401
     )
-    from pydantic.utils import (  # type: ignore[no-redef]; noqa: F401
-        lenient_issubclass as lenient_issubclass,
+    from pydantic.utils import (  # type: ignore[no-redef]
+        lenient_issubclass as lenient_issubclass,  # noqa: F401
     )
 
     GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
