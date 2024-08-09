@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update docs about discussions questions. PR [#11985](https://github.com/fastapi/fastapi/pull/11985) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
