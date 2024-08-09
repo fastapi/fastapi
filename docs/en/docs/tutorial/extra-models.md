@@ -208,7 +208,7 @@ When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1  14-15  18-20  33"
+```Python hl_lines="1  14-15  18-20  35"
 {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
 ```
 
