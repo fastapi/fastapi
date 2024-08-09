@@ -1,6 +1,6 @@
 # ✅ 🇨🇻 - 🏺, ✳, 🎏
 
-👆 💪 🗻 🇨🇻 🈸 👆 👀 ⏮️ [🎧 🈸 - 🗻](./sub-applications.md){.internal-link target=_blank}, [⛅ 🗳](./behind-a-proxy.md){.internal-link target=_blank}.
+👆 💪 🗻 🇨🇻 🈸 👆 👀 ⏮️ [🎧 🈸 - 🗻](sub-applications.md){.internal-link target=_blank}, [⛅ 🗳](behind-a-proxy.md){.internal-link target=_blank}.
 
 👈, 👆 💪 ⚙️ `WSGIMiddleware` &amp; ⚙️ ⚫️ 🎁 👆 🇨🇻 🈸, 🖼, 🏺, ✳, ♒️.
 

@@ -1,0 +1,3 @@
+git+https://${TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git@9.5.30-insiders-4.53.11
+git+https://${TOKEN}@github.com/pawamoy-insiders/griffe-typing-deprecated.git
+git+https://${TOKEN}@github.com/pawamoy-insiders/mkdocstrings-python.git

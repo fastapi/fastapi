@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Люди FastAPI
 
 FastAPI має дивовижну спільноту, яка вітає людей різного походження.
@@ -28,7 +33,7 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 Це люди, які:
 
-* [Допомагають іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [Допомагають іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Створюють пул реквести](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * Переглядають пул реквести, [особливо важливо для перекладів](contributing.md#translations){.internal-link target=_blank}.
 
@@ -36,11 +41,11 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 ## Найбільш активні користувачі минулого місяця
 
-Це користувачі, які [найбільше допомагали іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} протягом минулого місяця. ☕
+Це користувачі, які [найбільше допомагали іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} протягом минулого місяця. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -52,13 +57,13 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 Ось **експерти FastAPI**. 🤓
 
-Це користувачі, які [найбільше допомагали іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} протягом *всього часу*.
+Це користувачі, які [найбільше допомагали іншим із проблемами (запитаннями) у GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} протягом *всього часу*.
 
 Вони зарекомендували себе як експерти, допомагаючи багатьом іншим. ✨
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
 {% endfor %}
@@ -76,7 +81,7 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -84,7 +89,7 @@ FastAPI має дивовижну спільноту, яка вітає люде
 </div>
 {% endif %}
 
-Є багато інших контрибюторів (більше сотні), їх усіх можна побачити на сторінці <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors</a>. 👷
+Є багато інших контрибюторів (більше сотні), їх усіх можна побачити на сторінці <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors</a>. 👷
 
 ## Найкращі рецензенти
 
@@ -100,7 +105,7 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}
@@ -171,7 +176,7 @@ FastAPI має дивовижну спільноту, яка вітає люде
 
 Особливо враховуючи зусилля, які зазвичай менш помітні, а в багатьох випадках більш важкі, як-от допомога іншим із проблемами та перегляд пул реквестів перекладів.
 
-Дані розраховуються щомісяця, ви можете ознайомитися з <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">вихідним кодом тут</a>.
+Дані розраховуються щомісяця, ви можете ознайомитися з <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">вихідним кодом тут</a>.
 
 Тут я також підкреслюю внески спонсорів.
 
