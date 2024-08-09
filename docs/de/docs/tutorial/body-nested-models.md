@@ -6,17 +6,21 @@ Mit **FastAPI** können Sie (dank Pydantic) beliebig tief verschachtelte Modelle
 
 Sie können ein Attribut als Kindtyp definieren, zum Beispiel eine Python-`list`e.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial001.py!}
+```
+
+////
 
 Das bewirkt, dass `tags` eine Liste ist, wenngleich es nichts über den Typ der Elemente der Liste aussagt.
 
@@ -61,23 +65,29 @@ Verwenden Sie dieselbe Standardsyntax für Modellattribute mit inneren Typen.
 
 In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine „Liste von Strings“ ist:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial002.py!}
+```
+
+////
 
 ## Set-Typen
 
@@ -87,23 +97,29 @@ Python hat einen Datentyp speziell für Mengen eindeutiger Dinge: das <abbr titl
 
 Deklarieren wir also `tags` als Set von Strings.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="1  14"
-    {!> ../../../docs_src/body_nested_models/tutorial003.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="1  14"
+{!> ../../../docs_src/body_nested_models/tutorial003.py!}
+```
+
+////
 
 Jetzt, selbst wenn Sie einen Request mit duplizierten Daten erhalten, werden diese zu einem Set eindeutiger Dinge konvertiert.
 
@@ -125,45 +141,57 @@ Alles das beliebig tief verschachtelt.
 
 Wir können zum Beispiel ein `Image`-Modell definieren.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7-9"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
+```Python hl_lines="7-9"
+{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9-11"
+{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="9-11"
+{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+```
+
+////
 
 ### Das Kindmodell als Typ verwenden
 
 Und dann können wir es als Typ eines Attributes verwenden.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+```
+
+////
 
 Das würde bedeuten, dass **FastAPI** einen Body erwartet wie:
 
@@ -196,23 +224,29 @@ Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich <a href="https:
 
 Da wir zum Beispiel im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Instanz von Pydantics `HttpUrl` sein soll, anstelle eines `str`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="2  8"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
-    ```
+```Python hl_lines="2  8"
+{!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4  10"
+{!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="4  10"
+{!> ../../../docs_src/body_nested_models/tutorial005.py!}
+```
+
+////
 
 Es wird getestet, ob der String eine gültige URL ist, und als solche wird er in JSON Schema / OpenAPI dokumentiert.
 
@@ -220,23 +254,29 @@ Es wird getestet, ob der String eine gültige URL ist, und als solche wird er in
 
 Sie können Pydantic-Modelle auch als Typen innerhalb von `list`, `set`, usw. verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial006.py!}
+```
+
+////
 
 Das wird einen JSON-Body erwarten (konvertieren, validieren, dokumentieren), wie:
 
@@ -264,33 +304,45 @@ Das wird einen JSON-Body erwarten (konvertieren, validieren, dokumentieren), wie
 }
 ```
 
-!!! info
-    Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten hat.
+/// info
+
+Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten hat.
+
+///
 
 ## Tief verschachtelte Modelle
 
 Sie können beliebig tief verschachtelte Modelle definieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7  12  18  21  25"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
-    ```
+```Python hl_lines="7  12  18  21  25"
+{!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9  14  20  23  27"
+{!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
+```
 
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007.py!}
-    ```
+////
 
-!!! info
-    Beachten Sie, wie `Offer` eine Liste von `Item`s hat, von denen jedes seinerseits eine optionale Liste von `Image`s hat.
+//// tab | Python 3.8+
+
+```Python hl_lines="9  14  20  23  27"
+{!> ../../../docs_src/body_nested_models/tutorial007.py!}
+```
+
+////
+
+/// info
+
+Beachten Sie, wie `Offer` eine Liste von `Item`s hat, von denen jedes seinerseits eine optionale Liste von `Image`s hat.
+
+///
 
 ## Bodys aus reinen Listen
 
@@ -308,17 +360,21 @@ images: list[Image]
 
 so wie in:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
-    ```
+```Python hl_lines="13"
+{!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/body_nested_models/tutorial008.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="15"
+{!> ../../../docs_src/body_nested_models/tutorial008.py!}
+```
+
+////
 
 ## Editor-Unterstützung überall
 
@@ -348,26 +404,33 @@ Das schauen wir uns mal an.
 
 Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüssel und `float`-Werte hat.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/body_nested_models/tutorial009.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! tip "Tipp"
-    Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
+```Python hl_lines="9"
+{!> ../../../docs_src/body_nested_models/tutorial009.py!}
+```
 
-    Aber Pydantic hat automatische Datenkonvertierung.
+////
 
-    Das bedeutet, dass Ihre API-Clients nur Strings senden können, aber solange diese Strings nur Zahlen enthalten, wird Pydantic sie konvertieren und validieren.
+/// tip | "Tipp"
 
-    Und das `dict` welches Sie als `weights` erhalten, wird `int`-Schlüssel und `float`-Werte haben.
+Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
+
+Aber Pydantic hat automatische Datenkonvertierung.
+
+Das bedeutet, dass Ihre API-Clients nur Strings senden können, aber solange diese Strings nur Zahlen enthalten, wird Pydantic sie konvertieren und validieren.
+
+Und das `dict` welches Sie als `weights` erhalten, wird `int`-Schlüssel und `float`-Werte haben.
+
+///
 
 ## Zusammenfassung
 

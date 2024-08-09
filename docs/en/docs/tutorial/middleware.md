@@ -11,10 +11,13 @@ A "middleware" is a function that works with every **request** before it is proc
 * It can do something to that **response** or run any needed code.
 * Then it returns the **response**.
 
-!!! note "Technical Details"
-    If you have dependencies with `yield`, the exit code will run *after* the middleware.
+/// note | "Technical Details"
 
-    If there were any background tasks (documented later), they will run *after* all the middleware.
+If you have dependencies with `yield`, the exit code will run *after* the middleware.
+
+If there were any background tasks (documented later), they will run *after* all the middleware.
+
+///
 
 ## Create a middleware
 
@@ -32,15 +35,21 @@ The middleware function receives:
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! tip
-    Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
+/// tip
 
-    But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
 
-!!! note "Technical Details"
-    You could also use `from starlette.requests import Request`.
+But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
 
-    **FastAPI** provides it as a convenience for you, the developer. But it comes directly from Starlette.
+///
+
+/// note | "Technical Details"
+
+You could also use `from starlette.requests import Request`.
+
+**FastAPI** provides it as a convenience for you, the developer. But it comes directly from Starlette.
+
+///
 
 ### Before and after the `response`
 

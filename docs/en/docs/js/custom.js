@@ -35,7 +35,7 @@ function setupTermynal() {
 
     function createTermynals() {
         document
-            .querySelectorAll(`.${termynalActivateClass} .highlight`)
+            .querySelectorAll(`.${termynalActivateClass} .highlight code`)
             .forEach(node => {
                 const text = node.textContent;
                 const lines = text.split("\n");
@@ -147,7 +147,7 @@ async function showRandomAnnouncement(groupId, timeInterval) {
         children = shuffle(children)
         let index = 0
         const announceRandom = () => {
-            children.forEach((el, i) => {el.style.display = "none"});
+            children.forEach((el, i) => { el.style.display = "none" });
             children[index].style.display = "block"
             index = (index + 1) % children.length
         }
@@ -163,7 +163,7 @@ async function main() {
         div.innerHTML = '<ul></ul>'
         const ul = document.querySelector('.github-topic-projects ul')
         data.forEach(v => {
-            if (v.full_name === 'tiangolo/fastapi') {
+            if (v.full_name === 'fastapi/fastapi') {
                 return
             }
             const li = document.createElement('li')
@@ -176,5 +176,6 @@ async function main() {
     showRandomAnnouncement('announce-left', 5000)
     showRandomAnnouncement('announce-right', 10000)
 }
-
-main()
+document$.subscribe(() => {
+    main()
+})

@@ -22,20 +22,29 @@
 {!../../../docs_src/app_testing/tutorial001.py!}
 ```
 
-!!! tip "豆知識"
-    テスト関数は `async def` ではなく、通常の `def` であることに注意してください。
+/// tip | "豆知識"
 
-    また、クライアントへの呼び出しも通常の呼び出しであり、`await` を使用しません。
+テスト関数は `async def` ではなく、通常の `def` であることに注意してください。
 
-    これにより、煩雑にならずに、`pytest` を直接使用できます。
+また、クライアントへの呼び出しも通常の呼び出しであり、`await` を使用しません。
 
-!!! note "技術詳細"
-    `from starlette.testclient import TestClient` も使用できます。
+これにより、煩雑にならずに、`pytest` を直接使用できます。
 
-    **FastAPI** は開発者の利便性のために `fastapi.testclient` と同じ `starlette.testclient` を提供します。しかし、実際にはStarletteから直接渡されています。
+///
 
-!!! tip "豆知識"
-    FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
+/// note | "技術詳細"
+
+`from starlette.testclient import TestClient` も使用できます。
+
+**FastAPI** は開発者の利便性のために `fastapi.testclient` と同じ `starlette.testclient` を提供します。しかし、実際にはStarletteから直接渡されています。
+
+///
+
+/// tip | "豆知識"
+
+FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
+
+///
 
 ## テストの分離
 
@@ -74,17 +83,21 @@
 
 これらの *path operation* には `X-Token` ヘッダーが必要です。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+//// tab | Python 3.6+
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### 拡張版テストファイル
 
@@ -108,10 +121,13 @@
 
 (`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
 
-!!! info "情報"
-    `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
+/// info | "情報"
 
-    テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` が利用できます。
+`TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
+
+テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` が利用できます。
+
+///
 
 ## 実行
 
