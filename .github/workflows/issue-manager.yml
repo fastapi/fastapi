@@ -14,6 +14,9 @@ on:
       - labeled
   workflow_dispatch:
 
+permissions:
+  issues: write
+
 jobs:
   issue-manager:
     if: github.repository_owner == 'fastapi'

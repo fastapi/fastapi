@@ -50,10 +50,13 @@ $ pip install websockets
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.websockets import WebSocket`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `WebSocket` 🔗 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.websockets import WebSocket`.
+
+**FastAPI** 🚚 🎏 `WebSocket` 🔗 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ## ⌛ 📧 &amp; 📨 📧
 
@@ -116,10 +119,13 @@ $ uvicorn main:app --reload
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
-!!! info
-    👉 *️⃣ ⚫️ 🚫 🤙 ⚒ 🔑 🤚 `HTTPException`, ↩️ 👥 🤚 `WebSocketException`.
+/// info
 
-    👆 💪 ⚙️ 📪 📟 ⚪️➡️ <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">☑ 📟 🔬 🔧</a>.
+👉 *️⃣ ⚫️ 🚫 🤙 ⚒ 🔑 🤚 `HTTPException`, ↩️ 👥 🤚 `WebSocketException`.
+
+👆 💪 ⚙️ 📪 📟 ⚪️➡️ <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">☑ 📟 🔬 🔧</a>.
+
+///
 
 ### 🔄 *️⃣ ⏮️ 🔗
 
@@ -142,8 +148,11 @@ $ uvicorn main:app --reload
 *  "🏬 🆔", ⚙️ ➡.
 *  "🤝" ⚙️ 🔢 🔢.
 
-!!! tip
-    👀 👈 🔢 `token` 🔜 🍵 🔗.
+/// tip
+
+👀 👈 🔢 `token` 🔜 🍵 🔗.
+
+///
 
 ⏮️ 👈 👆 💪 🔗 *️⃣ &amp; ⤴️ 📨 &amp; 📨 📧:
 
@@ -169,12 +178,15 @@ $ uvicorn main:app --reload
 Client #1596980209979 left the chat
 ```
 
-!!! tip
-    📱 🔛 ⭐ &amp; 🙅 🖼 🎦 ❔ 🍵 &amp; 📻 📧 📚 *️⃣ 🔗.
+/// tip
 
-    ✋️ ✔️ 🤯 👈, 🌐 🍵 💾, 👁 📇, ⚫️ 🔜 🕴 👷 ⏪ 🛠️ 🏃, &amp; 🔜 🕴 👷 ⏮️ 👁 🛠️.
+📱 🔛 ⭐ &amp; 🙅 🖼 🎦 ❔ 🍵 &amp; 📻 📧 📚 *️⃣ 🔗.
 
-    🚥 👆 💪 🕳 ⏩ 🛠️ ⏮️ FastAPI ✋️ 👈 🌖 🏋️, 🐕‍🦺 ✳, ✳ ⚖️ 🎏, ✅ <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">🗜/📻</a>.
+✋️ ✔️ 🤯 👈, 🌐 🍵 💾, 👁 📇, ⚫️ 🔜 🕴 👷 ⏪ 🛠️ 🏃, &amp; 🔜 🕴 👷 ⏮️ 👁 🛠️.
+
+🚥 👆 💪 🕳 ⏩ 🛠️ ⏮️ FastAPI ✋️ 👈 🌖 🏋️, 🐕‍🦺 ✳, ✳ ⚖️ 🎏, ✅ <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">🗜/📻</a>.
+
+///
 
 ## 🌅 ℹ
 

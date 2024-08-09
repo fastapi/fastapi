@@ -18,26 +18,35 @@ Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser
 
 Dazu deklarieren wir eine Methode `__call__`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/dependencies/tutorial011.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="10"
+{!> ../../../docs_src/dependencies/tutorial011.py!}
+```
+
+////
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
@@ -45,26 +54,35 @@ In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zus
 
 Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum `Parametrisieren` der Abhängigkeit verwenden können:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="8"
+{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/dependencies/tutorial011.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="7"
+{!> ../../../docs_src/dependencies/tutorial011.py!}
+```
+
+////
 
 In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmern, wir werden es direkt in unserem Code verwenden.
 
@@ -72,26 +90,35 @@ In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmer
 
 Wir könnten eine Instanz dieser Klasse erstellen mit:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial011.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="16"
+{!> ../../../docs_src/dependencies/tutorial011.py!}
+```
+
+////
 
 Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
@@ -107,32 +134,44 @@ checker(q="somequery")
 
 ... und übergibt, was immer das als Wert dieser Abhängigkeit in unserer *Pfadoperation-Funktion* zurückgibt, als den Parameter `fixed_content_included`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
-    ```
+```Python hl_lines="22"
+{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="21"
+{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial011.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Das alles mag gekünstelt wirken. Und es ist möglicherweise noch nicht ganz klar, welchen Nutzen das hat.
+/// tip | "Tipp"
 
-    Diese Beispiele sind bewusst einfach gehalten, zeigen aber, wie alles funktioniert.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    In den Kapiteln zum Thema Sicherheit gibt es Hilfsfunktionen, die auf die gleiche Weise implementiert werden.
+///
 
-    Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherheits-Hilfswerkzeuge unter der Haube funktionieren.
+```Python hl_lines="20"
+{!> ../../../docs_src/dependencies/tutorial011.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Das alles mag gekünstelt wirken. Und es ist möglicherweise noch nicht ganz klar, welchen Nutzen das hat.
+
+Diese Beispiele sind bewusst einfach gehalten, zeigen aber, wie alles funktioniert.
+
+In den Kapiteln zum Thema Sicherheit gibt es Hilfsfunktionen, die auf die gleiche Weise implementiert werden.
+
+Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherheits-Hilfswerkzeuge unter der Haube funktionieren.
+
+///

@@ -2,10 +2,13 @@
 
 👆 💪 🔬 📁 &amp; 📨 🏑 🎏 🕰 ⚙️ `File` &amp; `Form`.
 
-!!! info
-    📨 📂 📁 &amp; /⚖️ 📨 📊, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    🤶 Ⓜ. `pip install python-multipart`.
+📨 📂 📁 &amp; /⚖️ 📨 📊, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+
+🤶 Ⓜ. `pip install python-multipart`.
+
+///
 
 ## 🗄 `File` &amp; `Form`
 
@@ -25,10 +28,13 @@
 
 &amp; 👆 💪 📣 📁 `bytes` &amp; `UploadFile`.
 
-!!! warning
-    👆 💪 📣 💗 `File` &amp; `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `multipart/form-data` ↩️ `application/json`.
+/// warning
 
-    👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+👆 💪 📣 💗 `File` &amp; `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `multipart/form-data` ↩️ `application/json`.
+
+👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+
+///
 
 ## 🌃
 

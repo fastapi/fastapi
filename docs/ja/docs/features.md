@@ -62,10 +62,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info "情報"
-    `**second_user_data` は以下を意味します：
+/// info | "情報"
 
-    `second_user_data`辞書のキーと値を直接、キーと値の引数として渡します。これは、`User(id=4, name="Mary", joined="2018-11-30")`と同等です。
+`**second_user_data` は以下を意味します：
+
+`second_user_data`辞書のキーと値を直接、キーと値の引数として渡します。これは、`User(id=4, name="Mary", joined="2018-11-30")`と同等です。
+
+///
 
 ### エディタのサポート
 
