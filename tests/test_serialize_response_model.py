@@ -1,10 +1,11 @@
 from typing import Dict, List, Optional
 
 import pytest
-from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2, PYDANTIC_VERSION
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
+
+from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2, PYDANTIC_VERSION
 
 app = FastAPI()
 
@@ -188,7 +189,7 @@ if PYDANTIC_V2:
 
     client_v2 = TestClient(app_v2)
 
-    @pytest.mark.skipif(PYDANTIC_VERSION < "2.7.3", reason="requires Pydantic v2.7.3+")
+    @pytest.mark.skipif(PYDANTIC_VERSION < "2.8", reason="requires Pydantic v2.8+")
     def test_validdict_with_context__pydantic_supported():
         response = client_v2.get("/items/validdict-with-context")
         response.raise_for_status()
@@ -202,7 +203,7 @@ if PYDANTIC_V2:
         assert response.json() == expected_response
 
     @pytest.mark.skipif(
-        PYDANTIC_VERSION >= "2.7.3",
+        PYDANTIC_VERSION >= "2.8",
         reason="Pydantic supports the feature from this point on",
     )
     def test_validdict_with_context__pre_pydantic_support():

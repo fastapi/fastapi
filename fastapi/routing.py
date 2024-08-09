@@ -19,6 +19,24 @@ from typing import (
     Union,
 )
 
+from pydantic import BaseModel
+from starlette import routing
+from starlette.concurrency import run_in_threadpool
+from starlette.exceptions import HTTPException
+from starlette.requests import Request
+from starlette.responses import JSONResponse, Response
+from starlette.routing import BaseRoute, Match
+from starlette.routing import Mount as Mount  # noqa
+from starlette.routing import (
+    compile_path,
+    get_name,
+    request_response,
+    websocket_session,
+)
+from starlette.types import ASGIApp, Lifespan, Scope
+from starlette.websockets import WebSocket
+from typing_extensions import Annotated, Doc, deprecated
+
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -52,24 +70,6 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
-from starlette import routing
-from starlette.concurrency import run_in_threadpool
-from starlette.exceptions import HTTPException
-from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
-from starlette.routing import (
-    BaseRoute,
-    Match,
-    compile_path,
-    get_name,
-    request_response,
-    websocket_session,
-)
-from starlette.routing import Mount as Mount  # noqa
-from starlette.types import ASGIApp, Lifespan, Scope
-from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
@@ -1583,7 +1583,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -1976,7 +1976,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -2374,7 +2374,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -2772,7 +2772,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -3165,7 +3165,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -3558,7 +3558,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -3956,7 +3956,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
@@ -4354,7 +4354,7 @@ class APIRouter(routing.Router):
 
                 This will be passed in as serialization context to the response model.
 
-                Note: This feature is a noop on pydantic < 2.7.2
+                Note: This feature is a noop on pydantic < 2.8
 
                 Read more about serialization context in the
                 [Pydantic documentation](https://docs.pydantic.dev/latest/concepts/serialization/#serialization-context)
