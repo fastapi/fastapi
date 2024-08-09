@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # La communauté FastAPI
 
 FastAPI a une communauté extraordinaire qui accueille des personnes de tous horizons.
@@ -18,7 +23,7 @@ C'est moi :
 </div>
 {% endif %}
 
-Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus à ce sujet dans [Aide FastAPI - Obtenir de l'aide - Se rapprocher de l'auteur](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus à ce sujet dans [Aide FastAPI - Obtenir de l'aide - Se rapprocher de l'auteur](help-fastapi.md#se-rapprocher-de-lauteur){.internal-link target=_blank}.
 
 ...Mais ici, je veux vous montrer la communauté.
 
@@ -28,19 +33,19 @@ Je suis le créateur et le responsable de **FastAPI**. Vous pouvez en lire plus 
 
 Ce sont ces personnes qui :
 
-* [Aident les autres à résoudre des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Créent des Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Review les Pull Requests, [particulièrement important pour les traductions](contributing.md#translations){.internal-link target=_blank}.
+* [Aident les autres à résoudre des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank}.
+* [Créent des Pull Requests](help-fastapi.md#creer-une-pull-request){.internal-link target=_blank}.
+* Review les Pull Requests, [particulièrement important pour les traductions](contributing.md#traductions){.internal-link target=_blank}.
 
 Une salve d'applaudissements pour eux. 👏 🙇
 
 ## Utilisateurs les plus actifs le mois dernier
 
-Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} au cours du dernier mois. ☕
+Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank} au cours du dernier mois. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions répondues: {{ user.count }}</div></div>
 {% endfor %}
@@ -52,13 +57,13 @@ Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (
 
 Voici les **Experts FastAPI**. 🤓
 
-Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} depuis *toujours*.
+Ce sont les utilisateurs qui ont [aidé le plus les autres avec des problèmes (questions) dans GitHub](help-fastapi.md#aider-les-autres-a-resoudre-les-problemes-dans-github){.internal-link target=_blank} depuis *toujours*.
 
 Ils ont prouvé qu'ils étaient des experts en aidant beaucoup d'autres personnes. ✨
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions répondues: {{ user.count }}</div></div>
 {% endfor %}
@@ -70,13 +75,13 @@ Ils ont prouvé qu'ils étaient des experts en aidant beaucoup d'autres personne
 
 Ces utilisateurs sont les **Principaux contributeurs**. 👷
 
-Ces utilisateurs ont [créé le plus grand nombre de demandes Pull Request](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} qui ont été *merged*.
+Ces utilisateurs ont [créé le plus grand nombre de demandes Pull Request](help-fastapi.md#creer-une-pull-request){.internal-link target=_blank} qui ont été *merged*.
 
 Ils ont contribué au code source, à la documentation, aux traductions, etc. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -84,7 +89,7 @@ Ils ont contribué au code source, à la documentation, aux traductions, etc. �
 </div>
 {% endif %}
 
-Il existe de nombreux autres contributeurs (plus d'une centaine), vous pouvez les voir tous dans la <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">Page des contributeurs de FastAPI GitHub</a>. 👷
+Il existe de nombreux autres contributeurs (plus d'une centaine), vous pouvez les voir tous dans la <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">Page des contributeurs de FastAPI GitHub</a>. 👷
 
 ## Principaux Reviewers
 
@@ -92,7 +97,7 @@ Ces utilisateurs sont les **Principaux Reviewers**. 🕵️
 
 ### Reviewers des traductions
 
-Je ne parle que quelques langues (et pas très bien 😅). Ainsi, les reviewers sont ceux qui ont le [**pouvoir d'approuver les traductions**](contributing.md#translations){.internal-link target=_blank} de la documentation. Sans eux, il n'y aurait pas de documentation dans plusieurs autres langues.
+Je ne parle que quelques langues (et pas très bien 😅). Ainsi, les reviewers sont ceux qui ont le [**pouvoir d'approuver les traductions**](contributing.md#traductions){.internal-link target=_blank} de la documentation. Sans eux, il n'y aurait pas de documentation dans plusieurs autres langues.
 
 ---
 
@@ -100,7 +105,7 @@ Les **Principaux Reviewers** 🕵️ ont examiné le plus grand nombre de demand
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}
@@ -170,6 +175,6 @@ L'intention de cette page est de souligner l'effort de la communauté pour aider
 
 Notamment en incluant des efforts qui sont normalement moins visibles, et, dans de nombreux cas, plus difficile, comme aider d'autres personnes à résoudre des problèmes et examiner les Pull Requests de traduction.
 
-Les données sont calculées chaque mois, vous pouvez lire le <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">code source ici</a>.
+Les données sont calculées chaque mois, vous pouvez lire le <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">code source ici</a>.
 
 Je me réserve également le droit de mettre à jour l'algorithme, les sections, les seuils, etc. (juste au cas où 🤷).
