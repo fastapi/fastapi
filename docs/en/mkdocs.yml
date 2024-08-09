@@ -35,7 +35,7 @@ theme:
   - navigation.indexes
   - navigation.instant
   - navigation.instant.prefetch
-  - navigation.instant.preview
+  # - navigation.instant.preview
   - navigation.instant.progress
   - navigation.path
   - navigation.tabs
