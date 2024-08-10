@@ -1,6 +1,6 @@
 # Using Dataclasses
 
-FastAPI is built on top of **Pydantic**, and allows the use of Pydantic models to declare requests and responses. 
+FastAPI is built on top of **Pydantic**, and allows the use of Pydantic models to declare requests and responses.
 Additionally, FastAPI supports <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> in a similar manner:
 
 
