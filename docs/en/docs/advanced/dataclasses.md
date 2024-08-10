@@ -1,8 +1,8 @@
 # Using Dataclasses
 
-FastAPI is built on top of **Pydantic**, and I have been showing you how to use Pydantic models to declare requests and responses.
+FastAPI is built on top of **Pydantic**, and it allows the use of Pydantic models to declare requests and responses. 
+Additionally, FastAPI supports <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> in a similar manner:
 
-But FastAPI also supports using <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> the same way:
 
 ```Python hl_lines="1  7-12  19-20"
 {!../../../docs_src/dataclasses/tutorial001.py!}
