@@ -35,7 +35,7 @@ Aquí están las personas que:
 
 * [Ayudan a otros con preguntas en GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Crean Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Revisan Pull Rquests, [especialmente importante para traducciones](contributing.md#translations){.internal-link target=_blank}.
+* Revisan Pull Requests, [especialmente importante para traducciones](contributing.md#translations){.internal-link target=_blank}.
 * Ayudan a [mantener el repositorio](management-tasks.md){.internal-link target=_blank} (miembros del equipo).
 
 Todas estas tareas ayudan a mantener el repositorio.
@@ -183,7 +183,7 @@ Solo hablo algunos idiomas (y no muy bien 😅). Por lo tanto, los revisores son
 <div class="user-list user-list-center">
 {% for user in people.top_translations_reviewers[:50] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reseñas: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Revisiones: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
@@ -191,7 +191,7 @@ Solo hablo algunos idiomas (y no muy bien 😅). Por lo tanto, los revisores son
 
 ## Patrocinadores
 
-EStos son los **Patrocinadores**. 😎
+Estos son los **Patrocinadores**. 😎
 
 Ellos están apoyando mi trabajo con **FastAPI** (y otros), principalmente a través de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
