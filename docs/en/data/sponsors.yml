@@ -32,6 +32,9 @@ gold:
   - url: https://fine.dev?ref=fastapibadge
     title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
     img: https://fastapi.tiangolo.com/img/sponsors/fine.png
+  - url: https://liblab.com?utm_source=fastapi
+    title: liblab - Generate SDKs from FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
 silver:
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks

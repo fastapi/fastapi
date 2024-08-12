@@ -14,40 +14,55 @@
 
 Это должен быть `list` состоящий из `Depends()`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 без Annotated"
+```Python hl_lines="18"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! Подсказка
-        Рекомендуется использовать версию с Annotated, если возможно.
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 без Annotated
+
+/// подсказка
+
+Рекомендуется использовать версию с Annotated, если возможно.
+
+///
+
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 Зависимости из dependencies выполнятся так же, как и обычные зависимости. Но их значения (если они были) не будут переданы в *функцию операции пути*.
 
-!!! Подсказка
-    Некоторые редакторы кода определяют неиспользуемые параметры функций и подсвечивают их как ошибку.
+/// подсказка
 
-    Использование `dependencies` в *декораторе операции пути* гарантирует выполнение зависимостей, избегая при этом предупреждений редактора кода и других инструментов.
+Некоторые редакторы кода определяют неиспользуемые параметры функций и подсвечивают их как ошибку.
 
-    Это также должно помочь предотвратить путаницу у начинающих разработчиков, которые видят неиспользуемые параметры в коде и могут подумать что в них нет необходимости.
+Использование `dependencies` в *декораторе операции пути* гарантирует выполнение зависимостей, избегая при этом предупреждений редактора кода и других инструментов.
 
-!!! Дополнительная информация
-    В этом примере мы используем выдуманные пользовательские заголовки `X-Key` и `X-Token`.
+Это также должно помочь предотвратить путаницу у начинающих разработчиков, которые видят неиспользуемые параметры в коде и могут подумать что в них нет необходимости.
 
-    Но в реальных проектах, при внедрении системы безопасности, вы получите больше пользы используя интегрированные [средства защиты (следующая глава)](../security/index.md){.internal-link target=_blank}.
+///
+
+/// дополнительная | информация
+
+В этом примере мы используем выдуманные пользовательские заголовки `X-Key` и `X-Token`.
+
+Но в реальных проектах, при внедрении системы безопасности, вы получите больше пользы используя интегрированные [средства защиты (следующая глава)](../security/index.md){.internal-link target=_blank}.
+
+///
 
 ## Исключения в dependencies и возвращаемые значения
 
@@ -57,51 +72,69 @@
 
 Они могут объявлять требования к запросу (например заголовки) или другие подзависимости:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="8  13"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="7  12"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 без Annotated"
+```Python hl_lines="7  12"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! Подсказка
-        Рекомендуется использовать версию с Annotated, если возможно.
+////
 
-    ```Python hl_lines="6  11"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 без Annotated
+
+/// подсказка
+
+Рекомендуется использовать версию с Annotated, если возможно.
+
+///
+
+```Python hl_lines="6  11"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ### Вызов исключений
 
 Зависимости из dependencies могут вызывать исключения с помощью `raise`, как и обычные зависимости:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="10  15"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9  14"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 без Annotated"
+```Python hl_lines="9  14"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! Подсказка
-        Рекомендуется использовать версию с Annotated, если возможно.
+////
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 без Annotated
+
+/// подсказка
+
+Рекомендуется использовать версию с Annotated, если возможно.
+
+///
+
+```Python hl_lines="8  13"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ### Возвращаемые значения
 
@@ -109,26 +142,35 @@
 
 Таким образом, вы можете переиспользовать обычную зависимость (возвращающую значение), которую вы уже используете где-то в другом месте, и хотя значение не будет использоваться, зависимость будет выполнена:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 без Annotated"
+```Python hl_lines="10  15"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! Подсказка
-        Рекомендуется использовать версию с Annotated, если возможно.
+////
 
-    ```Python hl_lines="9  14"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 без Annotated
+
+/// подсказка
+
+Рекомендуется использовать версию с Annotated, если возможно.
+
+///
+
+```Python hl_lines="9  14"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ## Dependencies для группы *операций путей*
 

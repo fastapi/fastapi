@@ -151,10 +151,13 @@ Und dennoch möchten Sie wahrscheinlich nicht, dass die Anwendung tot bleibt, we
 
 Aber in den Fällen mit wirklich schwerwiegenden Fehlern, die den laufenden **Prozess** zum Absturz bringen, benötigen Sie eine externe Komponente, die den Prozess **neu startet**, zumindest ein paar Mal ...
 
-!!! tip "Tipp"
-    ... Obwohl es wahrscheinlich keinen Sinn macht, sie immer wieder neu zu starten, wenn die gesamte Anwendung einfach **sofort abstürzt**. Aber in diesen Fällen werden Sie es wahrscheinlich während der Entwicklung oder zumindest direkt nach dem Deployment bemerken.
+/// tip | "Tipp"
 
-    Konzentrieren wir uns also auf die Hauptfälle, in denen die Anwendung in bestimmten Fällen **in der Zukunft** völlig abstürzen könnte und es dann dennoch sinnvoll ist, sie neu zu starten.
+... Obwohl es wahrscheinlich keinen Sinn macht, sie immer wieder neu zu starten, wenn die gesamte Anwendung einfach **sofort abstürzt**. Aber in diesen Fällen werden Sie es wahrscheinlich während der Entwicklung oder zumindest direkt nach dem Deployment bemerken.
+
+Konzentrieren wir uns also auf die Hauptfälle, in denen die Anwendung in bestimmten Fällen **in der Zukunft** völlig abstürzen könnte und es dann dennoch sinnvoll ist, sie neu zu starten.
+
+///
 
 Sie möchten wahrscheinlich, dass eine **externe Komponente** für den Neustart Ihrer Anwendung verantwortlich ist, da zu diesem Zeitpunkt dieselbe Anwendung mit Uvicorn und Python bereits abgestürzt ist und es daher nichts im selben Code derselben Anwendung gibt, was etwas dagegen tun kann.
 
@@ -238,10 +241,13 @@ Hier sind einige mögliche Kombinationen und Strategien:
 * **Cloud-Dienste**, welche das für Sie erledigen
     * Der Cloud-Dienst wird wahrscheinlich **die Replikation für Sie übernehmen**. Er würde Sie möglicherweise **einen auszuführenden Prozess** oder ein **zu verwendendes Container-Image** definieren lassen, in jedem Fall wäre es höchstwahrscheinlich **ein einzelner Uvicorn-Prozess**, und der Cloud-Dienst wäre auch verantwortlich für die Replikation.
 
-!!! tip "Tipp"
-    Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
+/// tip | "Tipp"
 
-    Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
+
+Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docker, Kubernetes, usw. erzählen: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Schritte vor dem Start
 
@@ -257,10 +263,13 @@ Und Sie müssen sicherstellen, dass es sich um einen einzelnen Prozess handelt, 
 
 Natürlich gibt es Fälle, in denen es kein Problem darstellt, die Vorab-Schritte mehrmals auszuführen. In diesem Fall ist die Handhabung viel einfacher.
 
-!!! tip "Tipp"
-    Bedenken Sie außerdem, dass Sie, abhängig von Ihrer Einrichtung, in manchen Fällen **gar keine Vorab-Schritte** benötigen, bevor Sie die Anwendung starten.
+/// tip | "Tipp"
 
-    In diesem Fall müssen Sie sich darüber keine Sorgen machen. 🤷
+Bedenken Sie außerdem, dass Sie, abhängig von Ihrer Einrichtung, in manchen Fällen **gar keine Vorab-Schritte** benötigen, bevor Sie die Anwendung starten.
+
+In diesem Fall müssen Sie sich darüber keine Sorgen machen. 🤷
+
+///
 
 ### Beispiele für Strategien für Vorab-Schritte
 
@@ -272,8 +281,11 @@ Hier sind einige mögliche Ideen:
 * Ein Bash-Skript, das die Vorab-Schritte ausführt und dann Ihre Anwendung startet
     * Sie benötigen immer noch eine Möglichkeit, *dieses* Bash-Skript zu starten/neu zu starten, Fehler zu erkennen, usw.
 
-!!! tip "Tipp"
-    Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+/// tip | "Tipp"
+
+Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Ressourcennutzung
 
