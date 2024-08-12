@@ -1,6 +1,6 @@
 # Testando Dependências com Sobreposição (Overrides)
 
-## Sobreponto dependências durante os testes
+## Sobrepondo dependências durante os testes
 
 Existem alguns cenários onde você deseje sobrepor uma dependência durante os testes.
 
