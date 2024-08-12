@@ -4,8 +4,11 @@ When deploying FastAPI applications a common approach is to build a **Linux cont
 
 Using Linux containers has several advantages including **security**, **replicability**, **simplicity**, and others.
 
-!!! tip
-    In a hurry and already know this stuff? Jump to the [`Dockerfile` below 👇](#build-a-docker-image-for-fastapi).
+/// tip
+
+In a hurry and already know this stuff? Jump to the [`Dockerfile` below 👇](#build-a-docker-image-for-fastapi).
+
+///
 
 <details>
 <summary>Dockerfile Preview 👀</summary>
@@ -129,8 +132,11 @@ Successfully installed fastapi pydantic
 
 </div>
 
-!!! info
-    There are other formats and tools to define and install package dependencies.
+/// info
+
+There are other formats and tools to define and install package dependencies.
+
+///
 
 ### Create the **FastAPI** Code
 
@@ -217,8 +223,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
     This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
 
-!!! tip
-    Review what each line does by clicking each number bubble in the code. 👆
+/// tip
+
+Review what each line does by clicking each number bubble in the code. 👆
+
+///
 
 You should now have a directory structure like:
 
@@ -288,10 +297,13 @@ $ docker build -t myimage .
 
 </div>
 
-!!! tip
-    Notice the `.` at the end, it's equivalent to `./`, it tells Docker the directory to use to build the container image.
+/// tip
 
-    In this case, it's the same current directory (`.`).
+Notice the `.` at the end, it's equivalent to `./`, it tells Docker the directory to use to build the container image.
+
+In this case, it's the same current directory (`.`).
+
+///
 
 ### Start the Docker Container
 
@@ -389,8 +401,11 @@ If we focus just on the **container image** for a FastAPI application (and later
 
 It could be another container, for example with <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, handling **HTTPS** and **automatic** acquisition of **certificates**.
 
-!!! tip
-    Traefik has integrations with Docker, Kubernetes, and others, so it's very easy to set up and configure HTTPS for your containers with it.
+/// tip
+
+Traefik has integrations with Docker, Kubernetes, and others, so it's very easy to set up and configure HTTPS for your containers with it.
+
+///
 
 Alternatively, HTTPS could be handled by a cloud provider as one of their services (while still running the application in a container).
 
@@ -418,8 +433,11 @@ When using containers, you would normally have some component **listening on the
 
 As this component would take the **load** of requests and distribute that among the workers in a (hopefully) **balanced** way, it is also commonly called a **Load Balancer**.
 
-!!! tip
-    The same **TLS Termination Proxy** component used for HTTPS would probably also be a **Load Balancer**.
+/// tip
+
+The same **TLS Termination Proxy** component used for HTTPS would probably also be a **Load Balancer**.
+
+///
 
 And when working with containers, the same system you use to start and manage them would already have internal tools to transmit the **network communication** (e.g. HTTP requests) from that **load balancer** (that could also be a **TLS Termination Proxy**) to the container(s) with your app.
 
@@ -498,8 +516,11 @@ If you are using containers (e.g. Docker, Kubernetes), then there are two main a
 
 If you have **multiple containers**, probably each one running a **single process** (for example, in a **Kubernetes** cluster), then you would probably want to have a **separate container** doing the work of the **previous steps** in a single container, running a single process, **before** running the replicated worker containers.
 
-!!! info
-    If you are using Kubernetes, this would probably be an <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+/// info
+
+If you are using Kubernetes, this would probably be an <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+
+///
 
 If in your use case there's no problem in running those previous steps **multiple times in parallel** (for example if you are not running database migrations, but just checking if the database is ready yet), then you could also just put them in each container right before starting the main process.
 
@@ -515,8 +536,11 @@ This image would be useful mainly in the situations described above in: [Contain
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-!!! warning
-    There's a high chance that you **don't** need this base image or any other similar one, and would be better off by building the image from scratch as [described above in: Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).
+/// warning
+
+There's a high chance that you **don't** need this base image or any other similar one, and would be better off by building the image from scratch as [described above in: Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).
+
+///
 
 This image has an **auto-tuning** mechanism included to set the **number of worker processes** based on the CPU cores available.
 
@@ -524,8 +548,11 @@ It has **sensible defaults**, but you can still change and update all the config
 
 It also supports running <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**previous steps before starting**</a> with a script.
 
-!!! tip
-    To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+/// tip
+
+To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+
+///
 
 ### Number of Processes on the Official Docker Image
 
@@ -652,8 +679,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 11. Use the `fastapi run` command to run your app.
 
-!!! tip
-    Click the bubble numbers to see what each line does.
+/// tip
+
+Click the bubble numbers to see what each line does.
+
+///
 
 A **Docker stage** is a part of a `Dockerfile` that works as a **temporary container image** that is only used to generate some files to be used later.
 

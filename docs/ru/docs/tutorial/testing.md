@@ -8,10 +8,13 @@
 
 ## Использование класса `TestClient`
 
-!!! info "Информация"
-    Для использования класса `TestClient` необходимо установить библиотеку <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+/// info | "Информация"
 
-    Например, так: `pip install httpx`.
+Для использования класса `TestClient` необходимо установить библиотеку <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+
+Например, так: `pip install httpx`.
+
+///
 
 Импортируйте `TestClient`.
 
@@ -27,20 +30,29 @@
 {!../../../docs_src/app_testing/tutorial001.py!}
 ```
 
-!!! tip "Подсказка"
-    Обратите внимание, что тестирующая функция является обычной `def`, а не асинхронной `async def`.
+/// tip | "Подсказка"
 
-    И вызов клиента также осуществляется без `await`.
+Обратите внимание, что тестирующая функция является обычной `def`, а не асинхронной `async def`.
 
-    Это позволяет вам использовать `pytest` без лишних усложнений.
+И вызов клиента также осуществляется без `await`.
 
-!!! note "Технические детали"
-    Также можно написать `from starlette.testclient import TestClient`.
+Это позволяет вам использовать `pytest` без лишних усложнений.
 
-    **FastAPI** предоставляет тот же самый `starlette.testclient` как `fastapi.testclient`. Это всего лишь небольшое удобство для Вас, как разработчика.
+///
 
-!!! tip "Подсказка"
-    Если для тестирования Вам, помимо запросов к приложению FastAPI, необходимо вызывать асинхронные функции (например, для подключения к базе данных с помощью асинхронного драйвера), то ознакомьтесь со страницей [Асинхронное тестирование](../advanced/async-tests.md){.internal-link target=_blank} в расширенном руководстве.
+/// note | "Технические детали"
+
+Также можно написать `from starlette.testclient import TestClient`.
+
+**FastAPI** предоставляет тот же самый `starlette.testclient` как `fastapi.testclient`. Это всего лишь небольшое удобство для Вас, как разработчика.
+
+///
+
+/// tip | "Подсказка"
+
+Если для тестирования Вам, помимо запросов к приложению FastAPI, необходимо вызывать асинхронные функции (например, для подключения к базе данных с помощью асинхронного драйвера), то ознакомьтесь со страницей [Асинхронное тестирование](../advanced/async-tests.md){.internal-link target=_blank} в расширенном руководстве.
+
+///
 
 ## Разделение тестов и приложения
 
@@ -110,41 +122,57 @@
 
 Обе *операции пути* требуют наличия в запросе заголовка `X-Token`.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        По возможности используйте версию с `Annotated`.
+```Python
+{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.8+  без Annotated"
+//// tab | Python 3.10+ без Annotated
 
-    !!! tip "Подсказка"
-        По возможности используйте версию с `Annotated`.
+/// tip | "Подсказка"
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+По возможности используйте версию с `Annotated`.
+
+///
+
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+  без Annotated
+
+/// tip | "Подсказка"
+
+По возможности используйте версию с `Annotated`.
+
+///
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Расширенный файл тестов
 
@@ -168,10 +196,13 @@
 
 Для получения дополнительной информации о передаче данных на бэкенд с помощью `httpx` или `TestClient` ознакомьтесь с <a href="https://www.python-httpx.org" class="external-link" target="_blank">документацией HTTPX</a>.
 
-!!! info "Информация"
-    Обратите внимание, что `TestClient` принимает данные, которые можно конвертировать в JSON, но не модели Pydantic.
+/// info | "Информация"
 
-    Если в Ваших тестах есть модели Pydantic и Вы хотите отправить их в тестируемое приложение, то можете использовать функцию `jsonable_encoder`, описанную на странице [Кодировщик совместимый с JSON](encoder.md){.internal-link target=_blank}.
+Обратите внимание, что `TestClient` принимает данные, которые можно конвертировать в JSON, но не модели Pydantic.
+
+Если в Ваших тестах есть модели Pydantic и Вы хотите отправить их в тестируемое приложение, то можете использовать функцию `jsonable_encoder`, описанную на странице [Кодировщик совместимый с JSON](encoder.md){.internal-link target=_blank}.
+
+///
 
 ## Запуск тестов
 

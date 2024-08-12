@@ -10,10 +10,13 @@ Commençons avec cette application pour exemple :
 
 Le paramètre de requête `q` a pour type `Union[str, None]` (ou `str | None` en Python 3.10), signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et bien sûr, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
 
-!!! note
-    **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
+/// note
 
-    Le `Union` dans `Union[str, None]` permettra à votre éditeur de vous offrir un meilleur support et de détecter les erreurs.
+**FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
+
+Le `Union` dans `Union[str, None]` permettra à votre éditeur de vous offrir un meilleur support et de détecter les erreurs.
+
+///
 
 ## Validation additionnelle
 
@@ -51,22 +54,25 @@ q: Union[str, None] = None
 
 Mais déclare explicitement `q` comme étant un paramètre de requête.
 
-!!! info
-    Gardez à l'esprit que la partie la plus importante pour rendre un paramètre optionnel est :
+/// info
 
-    ```Python
-    = None
-    ```
+Gardez à l'esprit que la partie la plus importante pour rendre un paramètre optionnel est :
 
-    ou :
+```Python
+= None
+```
 
-    ```Python
-    = Query(None)
-    ```
+ou :
 
-    et utilisera ce `None` pour détecter que ce paramètre de requête **n'est pas requis**.
+```Python
+= Query(None)
+```
 
-    Le `Union[str, None]` est uniquement là pour permettre à votre éditeur un meilleur support.
+et utilisera ce `None` pour détecter que ce paramètre de requête **n'est pas requis**.
+
+Le `Union[str, None]` est uniquement là pour permettre à votre éditeur un meilleur support.
+
+///
 
 Ensuite, nous pouvons passer d'autres paramètres à `Query`. Dans cet exemple, le paramètre `max_length` qui s'applique aux chaînes de caractères :
 
@@ -112,8 +118,11 @@ Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! note "Rappel"
-    Avoir une valeur par défaut rend le paramètre optionnel.
+/// note | "Rappel"
+
+Avoir une valeur par défaut rend le paramètre optionnel.
+
+///
 
 ## Rendre ce paramètre requis
 
@@ -141,8 +150,11 @@ Donc pour déclarer une valeur comme requise tout en utilisant `Query`, il faut 
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! info
-    Si vous n'avez jamais vu ce `...` auparavant : c'est une des constantes natives de Python <a href="https://docs.python.org/fr/3/library/constants.html#Ellipsis" class="external-link" target="_blank">appelée "Ellipsis"</a>.
+/// info
+
+Si vous n'avez jamais vu ce `...` auparavant : c'est une des constantes natives de Python <a href="https://docs.python.org/fr/3/library/constants.html#Ellipsis" class="external-link" target="_blank">appelée "Ellipsis"</a>.
+
+///
 
 Cela indiquera à **FastAPI** que la présence de ce paramètre est obligatoire.
 
@@ -175,8 +187,11 @@ Donc la réponse de cette URL serait :
 }
 ```
 
-!!! tip "Astuce"
-    Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela sera interprété comme faisant partie du corps de la requête.
+/// tip | "Astuce"
+
+Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela sera interprété comme faisant partie du corps de la requête.
+
+///
 
 La documentation sera donc mise à jour automatiquement pour autoriser plusieurs valeurs :
 
@@ -217,10 +232,13 @@ Il est aussi possible d'utiliser directement `list` plutôt que `List[str]` :
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! note
-    Dans ce cas-là, **FastAPI** ne vérifiera pas le contenu de la liste.
+/// note
 
-    Par exemple, `List[int]` vérifiera (et documentera) que la liste est bien entièrement composée d'entiers. Alors qu'un simple `list` ne ferait pas cette vérification.
+Dans ce cas-là, **FastAPI** ne vérifiera pas le contenu de la liste.
+
+Par exemple, `List[int]` vérifiera (et documentera) que la liste est bien entièrement composée d'entiers. Alors qu'un simple `list` ne ferait pas cette vérification.
+
+///
 
 ## Déclarer des métadonnées supplémentaires
 
@@ -228,10 +246,13 @@ On peut aussi ajouter plus d'informations sur le paramètre.
 
 Ces informations seront incluses dans le schéma `OpenAPI` généré et utilisées par la documentation interactive ou les outils externes utilisés.
 
-!!! note
-    Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
+/// note
 
-    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclarées pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées.
+Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
+
+Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclarées pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées.
+
+///
 
 Vous pouvez ajouter un `title` :
 
