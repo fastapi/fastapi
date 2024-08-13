@@ -1,11 +1,7 @@
 name: Add to Project
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+  pull_request_target:
   issues:
     types:
       - opened
