@@ -205,8 +205,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     Die Option `--no-cache-dir` weist `pip` an, die heruntergeladenen Pakete nicht lokal zu speichern, da dies nur benötigt wird, sollte `pip` erneut ausgeführt werden, um dieselben Pakete zu installieren, aber das ist beim Arbeiten mit Containern nicht der Fall.
 
-    !!! note "Hinweis"
-        Das `--no-cache-dir` bezieht sich nur auf `pip`, es hat nichts mit Docker oder Containern zu tun.
+    /// note | Hinweis
+
+    Das `--no-cache-dir` bezieht sich nur auf `pip`, es hat nichts mit Docker oder Containern zu tun.
+
+    ///
 
     Die Option `--upgrade` weist `pip` an, die Packages zu aktualisieren, wenn sie bereits installiert sind.
 
