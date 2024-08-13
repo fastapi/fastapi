@@ -6,73 +6,27 @@ There are many posts, articles, tools, and projects, related to **FastAPI**.
 
 Here's an incomplete list of some of them.
 
-!!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+/// tip
 
-## Articles
+If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
 
-### English
+///
 
-{% if external_links %}
-{% for article in external_links.articles.english %}
+{% for section_name, section_content in external_links.items() %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+## {{ section_name }}
+
+{% for lang_name, lang_content in section_content.items() %}
+
+### {{ lang_name }}
+
+{% for item in lang_content %}
+
+* <a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.
+
 {% endfor %}
-{% endif %}
-
-### Japanese
-
-{% if external_links %}
-{% for article in external_links.articles.japanese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
-{% endif %}
-
-### Vietnamese
-
-{% if external_links %}
-{% for article in external_links.articles.vietnamese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
-{% endif %}
-
-### Russian
-
-{% if external_links %}
-{% for article in external_links.articles.russian %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### German
-
-{% if external_links %}
-{% for article in external_links.articles.german %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Podcasts
-
-{% if external_links %}
-{% for article in external_links.podcasts.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Talks
-
-{% if external_links %}
-{% for article in external_links.talks.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
 
 ## Projects
 

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
-from flask import Flask, escape, request
+from flask import Flask, request
+from markupsafe import escape
 
 flask_app = Flask(__name__)
 

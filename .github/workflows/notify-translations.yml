@@ -1,0 +1,38 @@
+name: Notify Translations
+
+on:
+  pull_request_target:
+    types:
+      - labeled
+      - closed
+  workflow_dispatch:
+    inputs:
+      number:
+        description: PR number
+        required: true
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: 'false'
+
+permissions:
+  discussions: write
+
+jobs:
+  notify-translations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
+      - uses: ./.github/actions/notify-translations
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

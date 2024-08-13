@@ -1,4 +1,3 @@
-
 # クエリパラメータ
 
 パスパラメータではない関数パラメータを宣言すると、それらは自動的に "クエリ" パラメータとして解釈されます。
@@ -18,7 +17,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 ...クエリパラメータは:
 
 * `skip`: 値は `0`
-* `limit`: 値は `10` 
+* `limit`: 値は `10`
 
 これらはURLの一部なので、「自然に」文字列になります。
 
@@ -64,25 +63,23 @@ http://127.0.0.1:8000/items/?skip=20
 
 同様に、デフォルト値を `None` とすることで、オプショナルなクエリパラメータを宣言できます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial002.py!}
 ```
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
 
-!!! check "確認"
-    パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
+/// check | "確認"
 
-!!! note "備考"
-    FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
-    
-    `Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
+パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
+
+///
 
 ## クエリパラメータの型変換
 
 `bool` 型も宣言できます。これは以下の様に変換されます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial003.py!}
 ```
 
@@ -116,7 +113,7 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-もしくは、他の大文字小文字のバリエーション (アッパーケース、最初の文字だけアッパーケース、など)で、関数は `short` パラメータを `True` な `bool` 値として扱います。それ以外は `False` になります。  
+もしくは、他の大文字小文字のバリエーション (アッパーケース、最初の文字だけアッパーケース、など)で、関数は `short` パラメータを `True` な `bool` 値として扱います。それ以外は `False` になります。
 
 ## 複数のパスパラメータとクエリパラメータ
 
@@ -126,7 +123,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 名前で判別されます:
 
-```Python hl_lines="6  8"
+```Python hl_lines="8  10"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
@@ -184,7 +181,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 そして当然、あるパラメータを必須に、別のパラメータにデフォルト値を設定し、また別のパラメータをオプショナルにできます:
 
-```Python hl_lines="7"
+```Python hl_lines="10"
 {!../../../docs_src/query_params/tutorial006.py!}
 ```
 
@@ -194,6 +191,8 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`、デフォルト値を `0` とする `int` 。
 * `limit`、オプショナルな `int` 。
 
-!!! tip "豆知識"
+/// tip | "豆知識"
 
-    [パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
+[パスパラメータ](path-params.md#_8){.internal-link target=_blank}と同様に `Enum` を使用できます。
+
+///

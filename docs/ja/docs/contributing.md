@@ -24,118 +24,98 @@ $ python -m venv env
 
 新しい環境を有効化するには:
 
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ source ./env/bin/activate
-    ```
-
-    </div>
-
-=== "Windows PowerShell"
-
-    <div class="termy">
-
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
-
-    </div>
-
-=== "Windows Bash"
-
-    もしwindows用のBash (例えば、<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
-
-    <div class="termy">
-
-    ```console
-    $ source ./env/Scripts/activate
-    ```
-
-    </div>
-
-動作の確認には、下記を実行します:
-
-=== "Linux, macOS, Windows Bash"
-
-    <div class="termy">
-
-    ```console
-    $ which pip
-
-    some/directory/fastapi/env/bin/pip
-    ```
-
-    </div>
-
-=== "Windows PowerShell"
-
-    <div class="termy">
-
-    ```console
-    $ Get-Command pip
-
-    some/directory/fastapi/env/bin/pip
-    ```
-
-    </div>
-
-`env/bin/pip`に`pip`バイナリが表示される場合は、正常に機能しています。🎉
-
-
-!!! tip "豆知識"
-    この環境で`pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
-
-    これにより、そのパッケージによってインストールされたターミナルのプログラム (`flit`など) を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
-
-### Flit
-
-**FastAPI**は<a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> を使って、ビルド、パッケージ化、公開します。
-
-上記のように環境を有効化した後、`flit`をインストールします:
+//// tab | Linux, macOS
 
 <div class="termy">
 
 ```console
-$ pip install flit
+$ source ./env/bin/activate
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ .\env\Scripts\Activate.ps1
+```
+
+</div>
+
+////
+
+//// tab | Windows Bash
+
+もしwindows用のBash (例えば、<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
+
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
+
+動作の確認には、下記を実行します:
+
+//// tab | Linux, macOS, Windows Bash
+
+<div class="termy">
+
+```console
+$ which pip
+
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ Get-Command pip
+
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
+
+`env/bin/pip`に`pip`バイナリが表示される場合は、正常に機能しています。🎉
+
+
+/// tip | "豆知識"
+
+この環境で`pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
+
+これにより、そのパッケージによってインストールされたターミナルのプログラム を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
+
+///
+
+### pip
+
+上記のように環境を有効化した後:
+
+<div class="termy">
+
+```console
+$ pip install -r requirements.txt
 
 ---> 100%
 ```
 
 </div>
-
-
-次に、環境を再び有効化して、インストールしたばかりの`flit` (グローバルではない) を使用していることを確認します。
-
-そして、`flit`を使用して開発のための依存関係をインストールします:
-
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --symlink
-
-    ---> 100%
-    ```
-
-    </div>
-
-=== "Windows"
-
-    Windowsユーザーは、`--symlink`のかわりに`--pth-file`を使用します:
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --pth-file
-
-    ---> 100%
-    ```
-
-    </div>
 
 これで、すべての依存関係とFastAPIを、ローカル環境にインストールします。
 
@@ -143,7 +123,7 @@ $ pip install flit
 
 FastAPIをインポートして使用するPythonファイルを作成し、ローカル環境で実行すると、ローカルのFastAPIソースコードが使用されます。
 
-そして、`--symlink` (Windowsでは` --pth-file`) でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりの新しいバージョンのFastAPIが使用されます。
+そして、`-e` でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりの新しいバージョンのFastAPIが使用されます。
 
 これにより、ローカルバージョンを「インストール」しなくても、すべての変更をテストできます。
 
@@ -161,7 +141,7 @@ $ bash scripts/format.sh
 
 また、すべてのインポートを自動でソートします。
 
-正しく並べ替えるには、上記セクションのコマンドで `--symlink` (Windowsの場合は` --pth-file`) を使い、FastAPIをローカル環境にインストールしている必要があります。
+正しく並べ替えるには、上記セクションのコマンドで `-e` を使い、FastAPIをローカル環境にインストールしている必要があります。
 
 ### インポートの整形
 
@@ -185,8 +165,11 @@ $ bash scripts/format-imports.sh
 
 そして、翻訳を処理するためのツール/スクリプトが、`./scripts/docs.py`に用意されています。
 
-!!! tip "豆知識"
-    `./scripts/docs.py`のコードを見る必要はなく、コマンドラインからただ使うだけです。
+/// tip | "豆知識"
+
+`./scripts/docs.py`のコードを見る必要はなく、コマンドラインからただ使うだけです。
+
+///
 
 すべてのドキュメントが、Markdown形式で`./docs/en/`ディレクトリにあります。
 
@@ -269,14 +252,17 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 #### 豆知識とガイドライン
 
-* あなたの言語の<a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">今あるプルリクエスト</a>を確認し、変更や承認をするレビューを追加します。
+* あなたの言語の<a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">今あるプルリクエスト</a>を確認し、変更や承認をするレビューを追加します。
 
-!!! tip "豆知識"
-    すでにあるプルリクエストに<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">修正提案つきのコメントを追加</a>できます。
+/// tip | "豆知識"
 
-    修正提案の承認のために<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">プルリクエストのレビューの追加</a>のドキュメントを確認してください。
+すでにあるプルリクエストに<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">修正提案つきのコメントを追加</a>できます。
 
-* <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a>をチェックして、あなたの言語に対応する翻訳があるかどうかを確認してください。
+修正提案の承認のために<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">プルリクエストのレビューの追加</a>のドキュメントを確認してください。
+
+///
+
+* <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">issues</a>をチェックして、あなたの言語に対応する翻訳があるかどうかを確認してください。
 
 * 翻訳したページごとに1つのプルリクエストを追加します。これにより、他のユーザーがレビューしやすくなります。
 
@@ -296,8 +282,11 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 スペイン語の場合、2文字のコードは`es`です。したがって、スペイン語のディレクトリは`docs/es/`です。
 
-!!! tip "豆知識"
-    メイン (「公式」) 言語は英語で、`docs/en/`にあります。
+/// tip | "豆知識"
+
+メイン (「公式」) 言語は英語で、`docs/en/`にあります。
+
+///
 
 次に、ドキュメントのライブサーバーをスペイン語で実行します:
 
@@ -334,8 +323,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip "豆知識"
-    パスとファイル名の変更は、`en`から`es`への言語コードだけであることに注意してください。
+/// tip | "豆知識"
+
+パスとファイル名の変更は、`en`から`es`への言語コードだけであることに注意してください。
+
+///
 
 * ここで、英語のMkDocs構成ファイルを開きます:
 
@@ -406,10 +398,13 @@ Updating en
 
 これで、新しく作成された`docs/ht/`ディレクトリをコードエディターから確認できます。
 
-!!! tip "豆知識"
-    翻訳を追加する前に、これだけで最初のプルリクエストを作成し、新しい言語の設定をセットアップします。
+/// tip | "豆知識"
 
-    そうすることで、最初のページで作業している間、誰かの他のページの作業を助けることができます。 🚀
+翻訳を追加する前に、これだけで最初のプルリクエストを作成し、新しい言語の設定をセットアップします。
+
+そうすることで、最初のページで作業している間、誰かの他のページの作業を助けることができます。 🚀
+
+///
 
 まず、メインページの`docs/ht/index.md`を翻訳します。
 

@@ -1,147 +1,206 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.body_multiple_params.tutorial001 import app
 
-client = TestClient(app)
+@pytest.fixture(name="client")
+def get_client():
+    from docs_src.body_multiple_params.tutorial001 import app
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/items/{item_id}": {
-            "put": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Update Item",
-                "operationId": "update_item_items__item_id__put",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {
-                            "title": "The ID of the item to get",
-                            "maximum": 1000.0,
-                            "minimum": 0.0,
-                            "type": "integer",
-                        },
-                        "name": "item_id",
-                        "in": "path",
-                    },
-                    {
-                        "required": False,
-                        "schema": {"title": "Q", "type": "string"},
-                        "name": "q",
-                        "in": "query",
-                    },
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
-                        }
-                    }
-                },
-            }
+    client = TestClient(app)
+    return client
+
+
+def test_post_body_q_bar_content(client: TestClient):
+    response = client.put("/items/5?q=bar", json={"name": "Foo", "price": 50.5})
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": 5,
+        "item": {
+            "name": "Foo",
+            "price": 50.5,
+            "description": None,
+            "tax": None,
+        },
+        "q": "bar",
+    }
+
+
+def test_post_no_body_q_bar(client: TestClient):
+    response = client.put("/items/5?q=bar", json=None)
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 5, "q": "bar"}
+
+
+def test_post_no_body(client: TestClient):
+    response = client.put("/items/5", json=None)
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 5}
+
+
+def test_post_id_foo(client: TestClient):
+    response = client.put("/items/foo", json=None)
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["path", "item_id"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "foo",
+                }
+            ]
         }
-    },
-    "components": {
-        "schemas": {
-            "Item": {
-                "title": "Item",
-                "required": ["name", "price"],
-                "type": "object",
-                "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number"},
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"type": "string"},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["path", "item_id"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                }
+            ]
         }
-    },
-}
+    )
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
-
-item_id_not_int = {
-    "detail": [
-        {
-            "loc": ["path", "item_id"],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        }
-    ]
-}
-
-
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/5?q=bar",
-            {"name": "Foo", "price": 50.5},
-            200,
-            {
-                "item_id": 5,
-                "item": {
-                    "name": "Foo",
-                    "price": 50.5,
-                    "description": None,
-                    "tax": None,
+    assert response.json() == {
+        "openapi": "3.1.0",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/items/{item_id}": {
+                "put": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                    "summary": "Update Item",
+                    "operationId": "update_item_items__item_id__put",
+                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": {
+                                "title": "The ID of the item to get",
+                                "maximum": 1000.0,
+                                "minimum": 0.0,
+                                "type": "integer",
+                            },
+                            "name": "item_id",
+                            "in": "path",
+                        },
+                        {
+                            "required": False,
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Q",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Q", "type": "string"}
+                            ),
+                            "name": "q",
+                            "in": "query",
+                        },
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [
+                                            {"$ref": "#/components/schemas/Item"},
+                                            {"type": "null"},
+                                        ],
+                                        "title": "Item",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {"$ref": "#/components/schemas/Item"}
+                                )
+                            }
+                        }
+                    },
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "Item": {
+                    "title": "Item",
+                    "required": ["name", "price"],
+                    "type": "object",
+                    "properties": {
+                        "name": {"title": "Name", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "price": {"title": "Price", "type": "number"},
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
+                    },
                 },
-                "q": "bar",
-            },
-        ),
-        ("/items/5?q=bar", None, 200, {"item_id": 5, "q": "bar"}),
-        ("/items/5", None, 200, {"item_id": 5}),
-        ("/items/foo", None, 422, item_id_not_int),
-    ],
-)
-def test_post_body(path, body, expected_status, expected_response):
-    response = client.put(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+            }
+        },
+    }

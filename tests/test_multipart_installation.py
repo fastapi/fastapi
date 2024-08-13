@@ -12,7 +12,7 @@ def test_incorrect_multipart_installed_form(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...)):
+        async def root(username: str = Form()):
             return username  # pragma: nocover
 
 
@@ -22,7 +22,7 @@ def test_incorrect_multipart_installed_file_upload(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(f: UploadFile = File(...)):
+        async def root(f: UploadFile = File()):
             return f  # pragma: nocover
 
 
@@ -32,7 +32,7 @@ def test_incorrect_multipart_installed_file_bytes(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(f: bytes = File(...)):
+        async def root(f: bytes = File()):
             return f  # pragma: nocover
 
 
@@ -42,7 +42,7 @@ def test_incorrect_multipart_installed_multi_form(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...), password: str = Form(...)):
+        async def root(username: str = Form(), password: str = Form()):
             return username  # pragma: nocover
 
 
@@ -52,7 +52,7 @@ def test_incorrect_multipart_installed_form_file(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...), f: UploadFile = File(...)):
+        async def root(username: str = Form(), f: UploadFile = File()):
             return username  # pragma: nocover
 
 
@@ -62,7 +62,7 @@ def test_no_multipart_installed(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...)):
+        async def root(username: str = Form()):
             return username  # pragma: nocover
 
 
@@ -72,7 +72,7 @@ def test_no_multipart_installed_file(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(f: UploadFile = File(...)):
+        async def root(f: UploadFile = File()):
             return f  # pragma: nocover
 
 
@@ -82,7 +82,7 @@ def test_no_multipart_installed_file_bytes(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(f: bytes = File(...)):
+        async def root(f: bytes = File()):
             return f  # pragma: nocover
 
 
@@ -92,7 +92,7 @@ def test_no_multipart_installed_multi_form(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...), password: str = Form(...)):
+        async def root(username: str = Form(), password: str = Form()):
             return username  # pragma: nocover
 
 
@@ -102,5 +102,5 @@ def test_no_multipart_installed_form_file(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...), f: UploadFile = File(...)):
+        async def root(username: str = Form(), f: UploadFile = File()):
             return username  # pragma: nocover

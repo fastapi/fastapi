@@ -50,8 +50,11 @@ Seguindo as convenções do Versionamento Semântico, qualquer versão abaixo de
 
 FastAPI também segue a convenção que qualquer versão de _"PATCH"_ seja para ajustes de _bugs_ e mudanças que não quebrem a aplicação.
 
-!!! tip
-    O _"PATCH"_ é o último número, por exemplo, em `0.2.3`, a versão do _PATCH_ é `3`.
+/// tip
+
+O _"PATCH"_ é o último número, por exemplo, em `0.2.3`, a versão do _PATCH_ é `3`.
+
+///
 
 Então, você poderia ser capaz de fixar para uma versão como:
 
@@ -61,8 +64,11 @@ fastapi>=0.45.0,<0.46.0
 
 Mudanças que quebram e novos recursos são adicionados em versões _"MINOR"_.
 
-!!! tip
-    O _"MINOR"_ é o número do meio, por exemplo, em `0.2.3`, a versão _MINOR_ é `2`.
+/// tip
+
+O _"MINOR"_ é o número do meio, por exemplo, em `0.2.3`, a versão _MINOR_ é `2`.
+
+///
 
 ### Atualizando as versões FastAPI
 
@@ -113,8 +119,11 @@ Essa imagem tem um mecanismo incluído de "auto-ajuste", para que você possa ap
 
 Mas você pode ainda mudar e atualizar todas as configurações com variáveis de ambiente ou arquivos de configuração.
 
-!!! tip
-    Para ver todas as configurações e opções, vá para a página da imagem do Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+/// tip
+
+Para ver todas as configurações e opções, vá para a página da imagem do Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+
+///
 
 ### Crie um `Dockerfile`
 
@@ -248,8 +257,11 @@ Você verá a documentação automática alternativa (fornecida por <a href="htt
 
 Mas ele é um pouquinho mais complexo do que isso.
 
-!!! tip
-    Se você está com pressa ou não se importa, continue na próxima seção com instruções passo a passo para configurar tudo.
+/// tip
+
+Se você está com pressa ou não se importa, continue na próxima seção com instruções passo a passo para configurar tudo.
+
+///
 
 Para aprender o básico de HTTPS, pela perspectiva de um consumidor, verifique <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
@@ -329,61 +341,69 @@ Você pode fazer o _deploy_ do **FastAPI** diretamente sem o Docker também.
 
 Você apenas precisa instalar um servidor ASGI compatível como:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI peso leve, construído sobre uvloop e httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI peso leve, construído sobre uvloop e httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install uvicorn[standard]
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
+//// tab | Hypercorn
 
-    <div class="termy">
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, um servidor ASGI também compatível com HTTP/2.
 
-    ```console
-    $ pip install hypercorn
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install hypercorn
 
-    </div>
+---> 100%
+```
 
-    ...ou qualquer outro servidor ASGI.
+</div>
+
+...ou qualquer outro servidor ASGI.
+
+////
 
 E rode sua applicação do mesmo modo que você tem feito nos tutoriais, mas sem a opção `--reload`, por exemplo:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
+
+</div>
+
+////
 
 Você deve querer configurar mais algumas ferramentas para ter certeza que ele seja reinicializado automaticamante se ele parar.
 

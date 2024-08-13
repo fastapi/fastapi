@@ -1,4 +1,4 @@
-# Tutorial - Guia de Usuário - Introdução
+# Tutorial - Guia de Usuário
 
 Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
 
@@ -43,7 +43,7 @@ Para o tutorial, você deve querer instalá-lo com todas as dependências e recu
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```
@@ -52,22 +52,25 @@ $ pip install fastapi[all]
 
 ...isso também inclui o `uvicorn`, que você pode usar como o servidor que rodará seu código.
 
-!!! nota
-    Você também pode instalar parte por parte.
+/// note | "Nota"
 
-    Isso é provavelmente o que você faria quando você quisesse lançar sua aplicação em produção:
+Você também pode instalar parte por parte.
 
-    ```
-    pip install fastapi
-    ```
+Isso é provavelmente o que você faria quando você quisesse lançar sua aplicação em produção:
 
-    Também instale o `uvicorn` para funcionar como servidor:
+```
+pip install fastapi
+```
 
-    ```
-    pip install uvicorn[standard]
-    ```
+Também instale o `uvicorn` para funcionar como servidor:
 
-    E o mesmo para cada dependência opcional que você quiser usar.
+```
+pip install "uvicorn[standard]"
+```
+
+E o mesmo para cada dependência opcional que você quiser usar.
+
+///
 
 ## Guia Avançado de Usuário
 
