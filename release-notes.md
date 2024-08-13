@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Remove duplicate information in the ItemCreate model. PR [#1287](https://github.com/fastapi/full-stack-fastapi-template/pull/1287) by [@jjaakko](https://github.com/jjaakko).
+
 ### Internal
 
 * 👷 Add GitHub Action labeler. PR [#1298](https://github.com/fastapi/full-stack-fastapi-template/pull/1298) by [@tiangolo](https://github.com/tiangolo).
