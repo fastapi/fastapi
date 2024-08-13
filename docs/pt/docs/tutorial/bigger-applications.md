@@ -4,7 +4,7 @@ Se você está construindo uma aplicação ou uma API web, é raro que você pos
 
 **FastAPI** oferece uma ferramenta conveniente para estruturar sua aplicação, mantendo toda a flexibilidade.
 
-/// info
+/// info | "Informação"
 
 Se você vem do Flask, isso seria o equivalente aos Blueprints do Flask.
 
@@ -77,7 +77,7 @@ Vamos supor que o arquivo dedicado a lidar apenas com usuários seja o submódul
 
 Você quer manter as *operações de rota* relacionadas aos seus usuários separadas do restante do código, para mantê-lo organizado.
 
-Mas ele ainda faz parte da mesma **FastAPI** aplicação/web API (faz parte do mesmo "pacote Python").
+Mas ele ainda faz parte da mesma aplicação/web API **FastAPI** (faz parte do mesmo "pacote Python").
 
 Você pode criar as *operações de rotas* para esse módulo usando o `APIRouter`.
 
@@ -381,7 +381,7 @@ Também poderíamos importá-los como:
 from app.routers import items, users
 ```
 
-/// info
+/// info | "Informação"
 
 A primeira versão é uma "importação relativa":
 
@@ -428,7 +428,7 @@ Agora, vamos incluir os `roteadores` dos submódulos `usuários` e `itens`:
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-/// info
+/// info | "Informação"
 
 `users.router` contém o `APIRouter` dentro do arquivo `app/routers/users.py`.
 
