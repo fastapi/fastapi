@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update docs about discussions questions. PR [#11985](https://github.com/fastapi/fastapi/pull/11985) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
@@ -19,6 +23,14 @@ hide:
 
 ### Internal
 
+* 👷 Add GitHub Action add-to-project. PR [#11999](https://github.com/fastapi/fastapi/pull/11999) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update admonitions in docs missing. PR [#11998](https://github.com/fastapi/fastapi/pull/11998) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update docs.py script to enable dirty reload conditionally. PR [#11986](https://github.com/fastapi/fastapi/pull/11986) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update MkDocs instant previews. PR [#11982](https://github.com/fastapi/fastapi/pull/11982) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix deploy docs previews script to handle mkdocs.yml files. PR [#11984](https://github.com/fastapi/fastapi/pull/11984) by [@tiangolo](https://github.com/tiangolo).
+* 💡 Add comment about custom Termynal line-height. PR [#11976](https://github.com/fastapi/fastapi/pull/11976) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add alls-green for test-redistribute. PR [#11974](https://github.com/fastapi/fastapi/pull/11974) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update docs-previews to handle no docs changes. PR [#11975](https://github.com/fastapi/fastapi/pull/11975) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Refactor script `deploy_docs_status.py` to account for deploy URLs with or without trailing slash. PR [#11965](https://github.com/fastapi/fastapi/pull/11965) by [@tiangolo](https://github.com/tiangolo).
 * 🔒️ Update permissions for deploy-docs action. PR [#11964](https://github.com/fastapi/fastapi/pull/11964) by [@tiangolo](https://github.com/tiangolo).
 * 👷🏻 Add deploy docs status and preview links to PRs. PR [#11961](https://github.com/fastapi/fastapi/pull/11961) by [@tiangolo](https://github.com/tiangolo).
@@ -44,7 +56,7 @@ pip install "fastapi[standard]"
 * This adds support for calling the CLI as:
 
 ```bash
-python -m python
+python -m fastapi
 ```
 
 * And it upgrades `fastapi-cli[standard] >=0.0.5`.
