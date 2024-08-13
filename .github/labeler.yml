@@ -1,22 +1,22 @@
 docs:
   - changed-files:
     - any-glob-to-any-file:
-      - docs/en/docs/*
-      - docs_src/*
+      - docs/en/docs/**/*
+      - docs_src/**/*
 
 lang-all:
   - all:
     - changed-files:
       - any-glob-to-any-file:
-        - docs/*/docs/*
+        - docs/*/docs/**/*
       - all-globs-to-all-files:
-        - '!docs/en/docs/*'
+        - '!docs/en/docs/**/*'
 
 internal:
   - changed-files:
     - any-glob-to-any-file:
-      - .github/*
-      - scripts/*
+      - .github/**/*
+      - scripts/**/*
       - .gitignore
       - .pre-commit-config.yaml
       - pdm_build.py
