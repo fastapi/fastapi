@@ -8,7 +8,7 @@ from typing_extensions import Annotated
 
 
 def get_borrowed_tokens():
-    return {lname: l.borrowed_tokens for lname, l in sorted(limiters.items())}
+    return {lname: lobj.borrowed_tokens for lname, lobj in sorted(limiters.items())}
 
 
 def limited_dep():
