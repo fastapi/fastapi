@@ -44,7 +44,7 @@ pip install "fastapi[standard]"
 * This adds support for calling the CLI as:
 
 ```bash
-python -m python
+python -m fastapi
 ```
 
 * And it upgrades `fastapi-cli[standard] >=0.0.5`.
