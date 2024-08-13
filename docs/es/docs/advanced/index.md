@@ -2,7 +2,7 @@
 
 ## Características Adicionales
 
-El [Tutorial - Guía de Usuario](../tutorial/index.md){.internal-link target=_blank} principal debe ser suficiente para darte un paseo por todas las características principales de **FastAPI**
+El [Tutorial - Guía de Usuario](../tutorial/index.md){.internal-link target=_blank} principal debe ser suficiente para darte un paseo por todas las características principales de **FastAPI** 🚀
 
 En las secciones siguientes verás otras opciones, configuraciones, y características adicionales.
 
