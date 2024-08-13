@@ -1,0 +1,12 @@
+docs:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.md'
+
+internal:
+  - changed-files:
+    - any-glob-to-any-file:
+      - .github/**/*
+      - scripts/**/*
+      - .gitignore
+      - .pre-commit-config.yaml
