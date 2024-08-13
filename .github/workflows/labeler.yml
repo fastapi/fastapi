@@ -1,6 +1,8 @@
 name: Pull Request Labeler
 on:
   pull_request_target:
+  # TODO: remove this
+  pull_request:
 
 jobs:
   labeler:
