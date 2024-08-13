@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update labeler GitHub Action. PR [#12001](https://github.com/fastapi/fastapi/pull/12001) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add GitHub Action labeler. PR [#12000](https://github.com/fastapi/fastapi/pull/12000) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add GitHub Action add-to-project. PR [#11999](https://github.com/fastapi/fastapi/pull/11999) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update admonitions in docs missing. PR [#11998](https://github.com/fastapi/fastapi/pull/11998) by [@tiangolo](https://github.com/tiangolo).
