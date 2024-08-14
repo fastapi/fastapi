@@ -50,10 +50,13 @@ $ pip install websockets
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
-!!! note "技術詳細"
-    `from starlette.websockets import WebSocket` を使用しても構いません.
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性のために、同じ `WebSocket` を提供します。しかし、こちらはStarletteから直接提供されるものです。
+`from starlette.websockets import WebSocket` を使用しても構いません.
+
+**FastAPI** は開発者の利便性のために、同じ `WebSocket` を提供します。しかし、こちらはStarletteから直接提供されるものです。
+
+///
 
 ## メッセージの送受信
 
@@ -116,12 +119,15 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
-!!! info "情報"
-    WebSocket で `HTTPException` を発生させることはあまり意味がありません。したがって、WebSocketの接続を直接閉じる方がよいでしょう。
+/// info | "情報"
 
-    クロージングコードは、<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">仕様で定義された有効なコード</a>の中から使用することができます。
+WebSocket で `HTTPException` を発生させることはあまり意味がありません。したがって、WebSocketの接続を直接閉じる方がよいでしょう。
 
-    将来的には、どこからでも `raise` できる `WebSocketException` が用意され、専用の例外ハンドラを追加できるようになる予定です。これは、Starlette の <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> に依存するものです。
+クロージングコードは、<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">仕様で定義された有効なコード</a>の中から使用することができます。
+
+将来的には、どこからでも `raise` できる `WebSocketException` が用意され、専用の例外ハンドラを追加できるようになる予定です。これは、Starlette の <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> に依存するものです。
+
+///
 
 ### 依存関係を用いてWebSocketsを試してみる
 
@@ -144,8 +150,11 @@ $ uvicorn main:app --reload
 * パスで使用される「Item ID」
 * クエリパラメータとして使用される「Token」
 
-!!! tip "豆知識"
-    クエリ `token` は依存パッケージによって処理されることに注意してください。
+/// tip | "豆知識"
+
+クエリ `token` は依存パッケージによって処理されることに注意してください。
+
+///
 
 これにより、WebSocketに接続してメッセージを送受信できます。
 
@@ -171,12 +180,15 @@ WebSocket接続が閉じられると、 `await websocket.receive_text()` は例�
 Client #1596980209979 left the chat
 ```
 
-!!! tip "豆知識"
-    上記のアプリは、複数の WebSocket 接続に対してメッセージを処理し、ブロードキャストする方法を示すための最小限のシンプルな例です。
+/// tip | "豆知識"
 
-    しかし、すべての接続がメモリ内の単一のリストで処理されるため、プロセスの実行中にのみ機能し、単一のプロセスでのみ機能することに注意してください。
+上記のアプリは、複数の WebSocket 接続に対してメッセージを処理し、ブロードキャストする方法を示すための最小限のシンプルな例です。
 
-    もしFastAPIと簡単に統合できて、RedisやPostgreSQLなどでサポートされている、より堅牢なものが必要なら、<a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a> を確認してください。
+しかし、すべての接続がメモリ内の単一のリストで処理されるため、プロセスの実行中にのみ機能し、単一のプロセスでのみ機能することに注意してください。
+
+もしFastAPIと簡単に統合できて、RedisやPostgreSQLなどでサポートされている、より堅牢なものが必要なら、<a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a> を確認してください。
+
+///
 
 ## その他のドキュメント
 

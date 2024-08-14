@@ -6,41 +6,57 @@ You can define Header parameters the same way you define `Query`, `Path` and `Co
 
 First import `Header`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="1"
+{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="3"
+{!> ../../../docs_src/header_params/tutorial001.py!}
+```
+
+////
 
 ## Declare `Header` parameters
 
@@ -48,49 +64,71 @@ Then declare the header parameters using the same structure as with `Path`, `Que
 
 The first value is the default value, you can pass all the extra validation or annotation parameters:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
 
-!!! note "Technical Details"
-    `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+///
 
-    But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+```Python hl_lines="7"
+{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+```
 
-!!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial001.py!}
+```
+
+////
+
+/// note | "Technical Details"
+
+`Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+
+But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+
+///
+
+/// info
+
+To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+
+///
 
 ## Automatic conversion
 
@@ -108,44 +146,63 @@ So, you can use `user_agent` as you normally would in Python code, instead of ne
 
 If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11"
+{!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/header_params/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="12"
+{!> ../../../docs_src/header_params/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/header_params/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
 
-!!! warning
-    Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+///
+
+```Python hl_lines="8"
+{!> ../../../docs_src/header_params/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial002.py!}
+```
+
+////
+
+/// warning
+
+Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+
+///
 
 ## Duplicate headers
 
@@ -157,50 +214,71 @@ You will receive all the values from the duplicate header as a Python `list`.
 
 For example, to declare a header of `X-Token` that can appear more than once, you can write:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="10"
+{!> ../../../docs_src/header_params/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.9+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_py39.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
 
-=== "Python 3.8+ non-Annotated"
+///
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="7"
+{!> ../../../docs_src/header_params/tutorial003_py310.py!}
+```
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003.py!}
-    ```
+////
+
+//// tab | Python 3.9+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="9"
+{!> ../../../docs_src/header_params/tutorial003.py!}
+```
+
+////
 
 If you communicate with that *path operation* sending two HTTP headers like:
 

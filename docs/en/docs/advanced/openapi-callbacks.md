@@ -35,8 +35,11 @@ This part is pretty normal, most of the code is probably already familiar to you
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip
-    The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">URL</a> type.
+/// tip
+
+The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">URL</a> type.
+
+///
 
 The only new thing is the `callbacks=invoices_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
 
@@ -61,10 +64,13 @@ That documentation will show up in the Swagger UI at `/docs` in your API, and it
 
 This example doesn't implement the callback itself (that could be just a line of code), only the documentation part.
 
-!!! tip
-    The actual callback is just an HTTP request.
+/// tip
 
-    When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+The actual callback is just an HTTP request.
+
+When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+
+///
 
 ## Write the callback documentation code
 
@@ -74,10 +80,13 @@ But, you already know how to easily create automatic documentation for an API wi
 
 So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
 
-!!! tip
-    When writing the code to document a callback, it might be useful to imagine that you are that *external developer*. And that you are currently implementing the *external API*, not *your API*.
+/// tip
 
-    Temporarily adopting this point of view (of the *external developer*) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that *external API*.
+When writing the code to document a callback, it might be useful to imagine that you are that *external developer*. And that you are currently implementing the *external API*, not *your API*.
+
+Temporarily adopting this point of view (of the *external developer*) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that *external API*.
+
+///
 
 ### Create a callback `APIRouter`
 
@@ -154,8 +163,11 @@ and it would expect a response from that *external API* with a JSON body like:
 }
 ```
 
-!!! tip
-    Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+/// tip
+
+Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+
+///
 
 ### Add the callback router
 
@@ -167,8 +179,11 @@ Now use the parameter `callbacks` in *your API's path operation decorator* to pa
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip
-    Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+/// tip
+
+Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+
+///
 
 ### Check the docs
 

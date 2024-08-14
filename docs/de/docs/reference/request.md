@@ -8,7 +8,10 @@ Sie können es direkt von `fastapi` importieren:
 from fastapi import Request
 ```
 
-!!! tip "Tipp"
-    Wenn Sie Abhängigkeiten definieren möchten, die sowohl mit HTTP als auch mit WebSockets kompatibel sein sollen, können Sie einen Parameter definieren, der eine `HTTPConnection` anstelle eines `Request` oder eines `WebSocket` akzeptiert.
+/// tip | "Tipp"
+
+Wenn Sie Abhängigkeiten definieren möchten, die sowohl mit HTTP als auch mit WebSockets kompatibel sein sollen, können Sie einen Parameter definieren, der eine `HTTPConnection` anstelle eines `Request` oder eines `WebSocket` akzeptiert.
+
+///
 
 ::: fastapi.Request
