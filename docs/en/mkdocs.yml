@@ -57,7 +57,8 @@ repo_url: https://github.com/fastapi/fastapi
 plugins:
   # Material for MkDocs
   search:
-  social:
+  # Configured in mkdocs.insiders.yml
+  # social:
   # Other plugins
   macros:
     include_yaml:
