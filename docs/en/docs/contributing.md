@@ -458,9 +458,9 @@ Serving at: http://127.0.0.1:8008
 
 * Do not change anything enclosed in "``" (inline code).
 
-* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
+* In lines starting with `///` translate only the ` "... Text ..."` part. Leave the rest unchanged.
 
-* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
+* You can translate info boxes like `/// warning` with for example `/// warning | Achtung`. But do not change the word immediately after the `///`, it determines the color of the info box.
 
 * Do not change the paths in links to images, code files, Markdown documents.
 
