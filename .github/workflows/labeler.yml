@@ -1,6 +1,8 @@
 name: Pull Request Labeler and Checker
 on:
-  pull_request_target:
+  # TODO: fix this
+  # pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
