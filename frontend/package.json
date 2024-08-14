@@ -18,7 +18,7 @@
     "@tanstack/react-query": "^5.28.14",
     "@tanstack/react-query-devtools": "^5.28.14",
     "@tanstack/react-router": "1.19.1",
-    "axios": "1.6.2",
+    "axios": "1.7.4",
     "form-data": "4.0.0",
     "framer-motion": "10.16.16",
     "react": "^18.2.0",
