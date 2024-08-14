@@ -1,6 +1,6 @@
 # Concurrencia y async / await
 
-Detalles sobre la sintaxis `async def` para *path operation functions* y un poco de información sobre código asíncrono, concurrencia y paralelismo. 🚀
+Detalles sobre la sintaxis `async def` para *path operation functions* y un poco de información sobre código asíncrono, concurrencia y paralelismo.
 
 ## ¿Tienes prisa?
 
