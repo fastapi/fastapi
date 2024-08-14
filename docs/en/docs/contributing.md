@@ -370,6 +370,19 @@ If you go to your browser you will see that now the docs show your new section (
 
 Now you can translate it all and see how it looks as you save the file.
 
+/// warning
+
+Don't translate:
+
+* The `release-notes.md`
+* Files under `reference/`
+
+The release notes are updated very frequently and don't have a lot of information that would be useful translated.
+
+The [Reference](reference/index.md){.internal-link target=_blank} has very small text snippets in English, but the main content is included from the source files, with their internal documentation in English. So, it doesn't make much sense to translate only small introductory sections, while the main content can't be translated.
+
+///
+
 #### New Language
 
 Let's say that you want to add translations for a language that is not yet translated, not even some pages.
