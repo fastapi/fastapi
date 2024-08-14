@@ -4,8 +4,11 @@ If you are building an application or a web API, it's rarely the case that you c
 
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
-!!! info
-    If you come from Flask, this would be the equivalent of Flask's Blueprints.
+/// info
+
+If you come from Flask, this would be the equivalent of Flask's Blueprints.
+
+///
 
 ## An example file structure
 
@@ -26,16 +29,19 @@ Let's say you have a file structure like this:
 │       └── admin.py
 ```
 
-!!! tip
-    There are several `__init__.py` files: one in each directory or subdirectory.
+/// tip
 
-    This is what allows importing code from one file into another.
+There are several `__init__.py` files: one in each directory or subdirectory.
 
-    For example, in `app/main.py` you could have a line like:
+This is what allows importing code from one file into another.
 
-    ```
-    from app.routers import items
-    ```
+For example, in `app/main.py` you could have a line like:
+
+```
+from app.routers import items
+```
+
+///
 
 * The `app` directory contains everything. And it has an empty file `app/__init__.py`, so it is a "Python package" (a collection of "Python modules"): `app`.
 * It contains an `app/main.py` file. As it is inside a Python package (a directory with a file `__init__.py`), it is a "module" of that package: `app.main`.
@@ -99,8 +105,11 @@ All the same options are supported.
 
 All the same `parameters`, `responses`, `dependencies`, `tags`, etc.
 
-!!! tip
-    In this example, the variable is called `router`, but you can name it however you want.
+/// tip
+
+In this example, the variable is called `router`, but you can name it however you want.
+
+///
 
 We are going to include this `APIRouter` in the main `FastAPI` app, but first, let's check the dependencies and another `APIRouter`.
 
@@ -112,31 +121,43 @@ So we put them in their own `dependencies` module (`app/dependencies.py`).
 
 We will now use a simple dependency to read a custom `X-Token` header:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3  6-8" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
-    ```
+```Python hl_lines="3  6-8" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  5-7" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="1  5-7" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="1  4-6" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
 
-!!! tip
-    We are using an invented header to simplify this example.
+/// tip
 
-    But in real cases you will get better results using the integrated [Security utilities](security/index.md){.internal-link target=_blank}.
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="1  4-6" title="app/dependencies.py"
+{!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+```
+
+////
+
+/// tip
+
+We are using an invented header to simplify this example.
+
+But in real cases you will get better results using the integrated [Security utilities](security/index.md){.internal-link target=_blank}.
+
+///
 
 ## Another module with `APIRouter`
 
@@ -180,8 +201,11 @@ We can also add a list of `tags` and extra `responses` that will be applied to a
 
 And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them.
 
-!!! tip
-    Note that, much like [dependencies in *path operation decorators*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, no value will be passed to your *path operation function*.
+/// tip
+
+Note that, much like [dependencies in *path operation decorators*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, no value will be passed to your *path operation function*.
+
+///
 
 The end result is that the item paths are now:
 
@@ -198,11 +222,17 @@ The end result is that the item paths are now:
     * The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, and then the normal parameter dependencies.
     * You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
-!!! tip
-    Having `dependencies` in the `APIRouter` can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
+/// tip
 
-!!! check
-    The `prefix`, `tags`, `responses`, and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+Having `dependencies` in the `APIRouter` can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
+
+///
+
+/// check
+
+The `prefix`, `tags`, `responses`, and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+
+///
 
 ### Import the dependencies
 
@@ -218,8 +248,11 @@ So we use a relative import with `..` for the dependencies:
 
 #### How relative imports work
 
-!!! tip
-    If you know perfectly how imports work, continue to the next section below.
+/// tip
+
+If you know perfectly how imports work, continue to the next section below.
+
+///
 
 A single dot `.`, like in:
 
@@ -286,10 +319,13 @@ But we can still add _more_ `tags` that will be applied to a specific *path oper
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-!!! tip
-    This last path operation will have the combination of tags: `["items", "custom"]`.
+/// tip
 
-    And it will also have both responses in the documentation, one for `404` and one for `403`.
+This last path operation will have the combination of tags: `["items", "custom"]`.
+
+And it will also have both responses in the documentation, one for `404` and one for `403`.
+
+///
 
 ## The main `FastAPI`
 
@@ -345,20 +381,23 @@ We could also import them like:
 from app.routers import items, users
 ```
 
-!!! info
-    The first version is a "relative import":
+/// info
 
-    ```Python
-    from .routers import items, users
-    ```
+The first version is a "relative import":
 
-    The second version is an "absolute import":
+```Python
+from .routers import items, users
+```
 
-    ```Python
-    from app.routers import items, users
-    ```
+The second version is an "absolute import":
 
-    To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.
+```Python
+from app.routers import items, users
+```
+
+To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.
+
+///
 
 ### Avoid name collisions
 
@@ -389,26 +428,35 @@ Now, let's include the `router`s from the submodules `users` and `items`:
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-!!! info
-    `users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
+/// info
 
-    And `items.router` contains the `APIRouter` inside of the file `app/routers/items.py`.
+`users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
+
+And `items.router` contains the `APIRouter` inside of the file `app/routers/items.py`.
+
+///
 
 With `app.include_router()` we can add each `APIRouter` to the main `FastAPI` application.
 
 It will include all the routes from that router as part of it.
 
-!!! note "Technical Details"
-    It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
+/// note | "Technical Details"
 
-    So, behind the scenes, it will actually work as if everything was the same single app.
+It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
 
-!!! check
-    You don't have to worry about performance when including routers.
+So, behind the scenes, it will actually work as if everything was the same single app.
 
-    This will take microseconds and will only happen at startup.
+///
 
-    So it won't affect performance. ⚡
+/// check
+
+You don't have to worry about performance when including routers.
+
+This will take microseconds and will only happen at startup.
+
+So it won't affect performance. ⚡
+
+///
 
 ### Include an `APIRouter` with a custom `prefix`, `tags`, `responses`, and `dependencies`
 
@@ -455,16 +503,19 @@ Here we do it... just to show that we can 🤷:
 
 and it will work correctly, together with all the other *path operations* added with `app.include_router()`.
 
-!!! info "Very Technical Details"
-    **Note**: this is a very technical detail that you probably can **just skip**.
+/// info | "Very Technical Details"
 
-    ---
+**Note**: this is a very technical detail that you probably can **just skip**.
 
-    The `APIRouter`s are not "mounted", they are not isolated from the rest of the application.
+---
 
-    This is because we want to include their *path operations* in the OpenAPI schema and the user interfaces.
+The `APIRouter`s are not "mounted", they are not isolated from the rest of the application.
 
-    As we cannot just isolate them and "mount" them independently of the rest, the *path operations* are "cloned" (re-created), not included directly.
+This is because we want to include their *path operations* in the OpenAPI schema and the user interfaces.
+
+As we cannot just isolate them and "mount" them independently of the rest, the *path operations* are "cloned" (re-created), not included directly.
+
+///
 
 ## Check the automatic API docs
 

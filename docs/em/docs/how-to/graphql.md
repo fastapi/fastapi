@@ -4,12 +4,15 @@
 
 👆 💪 🌀 😐 FastAPI *➡ 🛠️* ⏮️ 🕹 🔛 🎏 🈸.
 
-!!! tip
-    **🕹** ❎ 📶 🎯 ⚙️ 💼.
+/// tip
 
-    ⚫️ ✔️ **📈** &amp; **⚠** 🕐❔ 🔬 ⚠ **🕸 🔗**.
+**🕹** ❎ 📶 🎯 ⚙️ 💼.
 
-    ⚒ 💭 👆 🔬 🚥 **💰** 👆 ⚙️ 💼 ⚖ **👐**. 👶
+⚫️ ✔️ **📈** &amp; **⚠** 🕐❔ 🔬 ⚠ **🕸 🔗**.
+
+⚒ 💭 👆 🔬 🚥 **💰** 👆 ⚙️ 💼 ⚖ **👐**. 👶
+
+///
 
 ## 🕹 🗃
 
@@ -46,8 +49,11 @@
 
 ⚫️ 😢 ⚪️➡️ 💃, ✋️ 🚥 👆 ✔️ 📟 👈 ⚙️ ⚫️, 👆 💪 💪 **↔** <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">💃-Graphene3️⃣</a>, 👈 📔 🎏 ⚙️ 💼 &amp; ✔️ **🌖 🌓 🔢**.
 
-!!! tip
-    🚥 👆 💪 🕹, 👤 🔜 👍 👆 ✅ 👅 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓</a>, ⚫️ ⚓️ 🔛 🆎 ✍ ↩️ 🛃 🎓 &amp; 🆎.
+/// tip
+
+🚥 👆 💪 🕹, 👤 🔜 👍 👆 ✅ 👅 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓</a>, ⚫️ ⚓️ 🔛 🆎 ✍ ↩️ 🛃 🎓 &amp; 🆎.
+
+///
 
 ## 💡 🌅
 

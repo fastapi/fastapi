@@ -163,10 +163,13 @@ You could also use it to generate code automatically, for clients that communica
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
+/// note | "Technical Details"
 
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+`FastAPI` is a class that inherits directly from `Starlette`.
+
+You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+
+///
 
 ### Step 2: create a `FastAPI` "instance"
 
@@ -196,8 +199,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    A "path" is also commonly called an "endpoint" or a "route".
+/// info
+
+A "path" is also commonly called an "endpoint" or a "route".
+
+///
 
 While building an API, the "path" is the main way to separate "concerns" and "resources".
 
@@ -247,16 +253,19 @@ The `@app.get("/")` tells **FastAPI** that the function right below is in charge
 * the path `/`
 * using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
 
-!!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
+/// info | "`@decorator` Info"
 
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
+That `@something` syntax in Python is called a "decorator".
 
-    A "decorator" takes the function below and does something with it.
+You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
 
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+A "decorator" takes the function below and does something with it.
 
-    It is the "**path operation decorator**".
+In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+
+It is the "**path operation decorator**".
+
+///
 
 You can also use the other operations:
 
@@ -271,14 +280,17 @@ And the more exotic ones:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    You are free to use each operation (HTTP method) as you wish.
+/// tip
 
-    **FastAPI** doesn't enforce any specific meaning.
+You are free to use each operation (HTTP method) as you wish.
 
-    The information here is presented as a guideline, not a requirement.
+**FastAPI** doesn't enforce any specific meaning.
 
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+The information here is presented as a guideline, not a requirement.
+
+For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+
+///
 
 ### Step 4: define the **path operation function**
 
@@ -306,8 +318,11 @@ You could also define it as a normal function instead of `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+/// note
+
+If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+
+///
 
 ### Step 5: return the content
 

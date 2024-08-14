@@ -11,9 +11,6 @@ from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-import mkdocs.commands.build
-import mkdocs.commands.serve
-import mkdocs.config
 import mkdocs.utils
 import typer
 import yaml
@@ -165,6 +162,13 @@ def generate_readme_content() -> str:
     pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
     new_content = pre_content + message + post_content
+    # Remove content between <!-- only-mkdocs --> and <!-- /only-mkdocs -->
+    new_content = re.sub(
+        r"<!-- only-mkdocs -->.*?<!-- /only-mkdocs -->",
+        "",
+        new_content,
+        flags=re.DOTALL,
+    )
     return new_content
 
 
@@ -247,6 +251,7 @@ def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
     ),
+    dirty: bool = False,
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
@@ -258,12 +263,16 @@ def live(
     en.
     """
     # Enable line numbers during local development to make it easier to highlight
-    os.environ["LINENUMS"] = "true"
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang
-    os.chdir(lang_path)
-    mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
+    # Enable line numbers during local development to make it easier to highlight
+    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
+    if dirty:
+        args.append("--dirty")
+    subprocess.run(
+        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+    )
 
 
 def get_updated_config_content() -> Dict[str, Any]:

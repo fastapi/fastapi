@@ -6,8 +6,11 @@
 
 Вот неполный список некоторых из них.
 
-!!! tip
-    Если у вас есть статья, проект, инструмент или что-либо, связанное с **FastAPI**, что еще не перечислено здесь, создайте <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a>.
+/// tip
+
+Если у вас есть статья, проект, инструмент или что-либо, связанное с **FastAPI**, что еще не перечислено здесь, создайте <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a>.
+
+///
 
 {% for section_name, section_content in external_links.items() %}
 
