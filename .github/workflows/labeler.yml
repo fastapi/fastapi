@@ -19,6 +19,10 @@ jobs:
     - uses: actions/labeler@v5
   # Run this after labeler applied labels
   check-labels:
+    needs:
+      - labeler
+    permissions:
+      pull-requests: read
     name: Check labels
     runs-on: ubuntu-latest
     steps:
