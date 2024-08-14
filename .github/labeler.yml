@@ -1,30 +1,26 @@
 docs:
   - all:
     - changed-files:
-      - all-globs-to-all-files:
-        - '!fastapi/**'
-        - '!pyproject.toml'
       - any-glob-to-any-file:
         - docs/en/docs/**
         - docs_src/**
+      - all-globs-to-all-files:
+        - '!fastapi/**'
+        - '!pyproject.toml'
 
 lang-all:
   - all:
     - changed-files:
+      - any-glob-to-any-file:
+        - docs/*/docs/**
       - all-globs-to-all-files:
         - '!docs/en/docs/**'
         - '!fastapi/**'
         - '!pyproject.toml'
-      - any-glob-to-any-file:
-        - docs/*/docs/**
 
 internal:
   - all:
     - changed-files:
-      - all-globs-to-all-files:
-        - '!docs/*/docs/**'
-        - '!fastapi/**'
-        - '!pyproject.toml'
       - any-glob-to-any-file:
         - .github/**
         - scripts/**
@@ -32,3 +28,7 @@ internal:
         - .pre-commit-config.yaml
         - pdm_build.py
         - requirements*.txt
+      - all-globs-to-all-files:
+        - '!docs/*/docs/**'
+        - '!fastapi/**'
+        - '!pyproject.toml'
