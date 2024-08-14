@@ -374,12 +374,15 @@ Now you can translate it all and see how it looks as you save the file.
 
 Don't translate:
 
-* The `release-notes.md`
 * Files under `reference/`
+* `release-notes.md`
+* `fastapi-people.md`
+* `external-links.md`
+* `newsletter.md`
+* `management-tasks.md`
+* `management.md`
 
-The release notes are updated very frequently and don't have a lot of information that would be useful translated.
-
-The [Reference](reference/index.md){.internal-link target=_blank} has very small text snippets in English, but the main content is included from the source files, with their internal documentation in English. So, it doesn't make much sense to translate only small introductory sections, while the main content can't be translated.
+Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
 ///
 
