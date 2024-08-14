@@ -34,7 +34,7 @@ Importe `File` e `UploadFile` do `fastapi`:
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -68,7 +68,7 @@ Cria os parâmetros do arquivo da mesma forma que você faria para `Body` ou `Fo
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -80,7 +80,7 @@ Utilize a versão com `Annotated` se possível.
 
 ////
 
-/// info | "Informação"
+/// info | Informação
 
 `File` é uma classe que herda diretamente de `Form`.
 
@@ -88,7 +88,7 @@ Mas lembre-se que quando você importa `Query`,`Path`, `File`, entre outros, do 
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Para declarar o corpo de arquivos, você precisa utilizar `File`, do contrário os parâmetros seriam interpretados como parâmetros de consulta ou corpo (JSON) da requisição.
 
@@ -124,7 +124,7 @@ Defina um parâmetro de arquivo com o tipo `UploadFile`
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -177,13 +177,13 @@ Se você estiver dentro de uma *função de operação de rota* definida normalm
 contents = myfile.file.read()
 ```
 
-/// note | "Detalhes técnicos do `async`"
+/// note | Detalhes técnicos do `async`
 
 Quando você utiliza métodos assíncronos, o **FastAPI** executa os métodos do arquivo em uma threadpool e espera por eles.
 
 ///
 
-/// note | "Detalhes técnicos do Starlette"
+/// note | Detalhes técnicos do Starlette
 
 O `UploadFile` do **FastAPI** herda diretamente do `UploadFile` do **Starlette**, mas adiciona algumas funcionalidades necessárias para ser compatível com o **Pydantic**
 
@@ -195,7 +195,7 @@ A forma como formulários HTML(`<form></form>`) enviam dados para o servidor nor
 
 O **FastAPI** garante que os dados serão lidos da forma correta, em vez do JSON.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Dados vindos de formulários geralmente tem a codificação com o "media type" `application/x-www-form-urlencoded` quando estes não incluem arquivos.
 
@@ -205,7 +205,7 @@ Se você quer ler mais sobre essas codificações e campos de formulário, veja 
 
 ///
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Você pode declarar múltiplos parâmetros `File` e `Form` em uma *operação de rota*, mas você não pode declarar campos `Body`que seriam recebidos como JSON junto desses parâmetros, por que a codificação do corpo da requisição será `multipart/form-data` em vez de `application/json`.
 
@@ -243,7 +243,7 @@ Você pode definir um arquivo como opcional utilizando as anotações de tipo pa
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica
+/// tip | Dica
 
 Utilize a versão com `Annotated`, se possível
 
@@ -257,7 +257,7 @@ Utilize a versão com `Annotated`, se possível
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated`, se possível
 
@@ -291,7 +291,7 @@ Você também pode utilizar `File()` com `UploadFile`, por exemplo, para definir
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -329,7 +329,7 @@ Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -343,7 +343,7 @@ Utilize a versão com `Annotated` se possível
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -357,7 +357,7 @@ Utilize a versão com `Annotated` se possível
 
 Você irá receber, como delcarado uma lista (`list`) de `bytes` ou `UploadFile`s,
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Você também poderia utilizar `from starlette.responses import HTMLResponse`.
 
@@ -387,7 +387,7 @@ E da mesma forma que antes, você pode utilizar `File()` para definir parâmetro
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -401,7 +401,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
