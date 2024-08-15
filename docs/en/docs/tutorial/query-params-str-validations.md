@@ -457,7 +457,7 @@ Having a default value of any type, including `None`, makes the parameter option
 
 ///
 
-## Required params
+## Required parameters
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -1107,7 +1107,7 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude parameter from OpenAPI
+## Exclude parameters from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 

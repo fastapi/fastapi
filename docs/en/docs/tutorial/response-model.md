@@ -236,9 +236,9 @@ That's why in this example we have to declare it in the `response_model` paramet
 
 ## Return Type and Data Filtering
 
-Let's continue from the previous example. We wanted to **annotate the function with one type** but return something that includes **less data**.
+Let's continue from the previous example. We wanted to **annotate the function with one type**, but we wanted to be able to return from the function something that actually includes **more data**.
 
-We want FastAPI to keep **filtering** the data using the response model.
+We want FastAPI to keep **filtering** the data using the response model. So that even though the function returns more data, the response will only include the fields declared in the response model.
 
 In the previous example, because the classes were different, we had to use the `response_model` parameter. But that also means that we don't get the support from the editor and tools checking the function return type.
 
