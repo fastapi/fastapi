@@ -22,7 +22,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-autofix-${{ env.pythonLocation }}-${{ hashFiles('requirements-autofix.txt') }}-v01
+          key: ${{ runner.os }}-python-autofix-${{ env.pythonLocation }}-${{ hashFiles('requirements-autofix.txt', 'requirements-tests.txt') }}-v01
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-autofix.txt
@@ -35,15 +35,23 @@ jobs:
           path: ~/.cache/pre-commit
           key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yml') }}-v01
       - run: pre-commit run --files ${{ steps.changed-files.outputs.all_changed_files }}
-      # Allow debugging with tmate
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
+      - name: Commit changes
+        if: failure()
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "github-actions"
+          git add --update
+          git commit -m "🎨 Autofix from pre-commit hooks"
+          git push
+      # # Allow debugging with tmate
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   with:
+      #     limit-access-to-actor: true
 
-      # - name: Deploy Docs Status Pending
-      #   run: python ./scripts/deploy_docs_status.py
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
-      #     RUN_ID: ${{ github.run_id }}
+      # # - name: Deploy Docs Status Pending
+      # #   run: python ./scripts/deploy_docs_status.py
+      # #   env:
+      # #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # #     COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+      # #     RUN_ID: ${{ github.run_id }}
