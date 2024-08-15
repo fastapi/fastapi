@@ -15,6 +15,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-dependencies.md`. PR [#11995](https://github.com/fastapi/fastapi/pull/11995) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add French translation for `docs/fr/docs/tutorial/body-multiple-params.md`. PR [#11796](https://github.com/fastapi/fastapi/pull/11796) by [@pe-brian](https://github.com/pe-brian).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/query-params.md`. PR [#11557](https://github.com/fastapi/fastapi/pull/11557) by [@caomingpei](https://github.com/caomingpei).
