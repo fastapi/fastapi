@@ -22,11 +22,11 @@ repos:
     -   id: ruff-format
 -   repo: local
     hooks:
-    -   id: echo
-        name: echo
-        entry: echo
+    -   id: ruff
+        name: ruff
+        entry: ruff check --fix
         language: system
-        types: [markdown]
+        types: [python]
 ci:
     autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
     autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate
