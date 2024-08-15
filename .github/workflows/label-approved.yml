@@ -3,11 +3,28 @@ name: Label Approved
 on:
   schedule:
     - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
 
 jobs:
   label-approved:
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
-    - uses: docker://tiangolo/label-approved:0.0.2
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - uses: docker://tiangolo/label-approved:0.0.4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
+          {
+            "approved-1":
+              {
+                "number": 1,
+                "await_label": "awaiting-review"
+              }
+          }
