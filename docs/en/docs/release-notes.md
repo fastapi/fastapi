@@ -32,6 +32,7 @@ hide:
 
 ### Internal
 
+* 🔧 Add changelog URL to `pyproject.toml`, shows in PyPI. PR [#11152](https://github.com/fastapi/fastapi/pull/11152) by [@Pierre-VF](https://github.com/Pierre-VF).
 * 👷 Do not sync labels as it overrides manually added labels. PR [#12024](https://github.com/fastapi/fastapi/pull/12024) by [@tiangolo](https://github.com/tiangolo).
 * 👷🏻 Update Labeler GitHub Actions. PR [#12019](https://github.com/fastapi/fastapi/pull/12019) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update configs for MkDocs for languages and social cards. PR [#12016](https://github.com/fastapi/fastapi/pull/12016) by [@tiangolo](https://github.com/tiangolo).
