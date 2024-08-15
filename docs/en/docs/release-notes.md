@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add missing `compresslevel` parameter on docs for `GZipMiddleware`. PR [#11350](https://github.com/fastapi/fastapi/pull/11350) by [@junah201](https://github.com/junah201).
 * 📝 Fix inconsistent response code when item already exists in docs for testing. PR [#11818](https://github.com/fastapi/fastapi/pull/11818) by [@lokomilo](https://github.com/lokomilo).
 * 📝 Update `docs/en/docs/tutorial/body.md` with Python 3.10 union type example. PR [#11415](https://github.com/fastapi/fastapi/pull/11415) by [@rangzen](https://github.com/rangzen).
 
