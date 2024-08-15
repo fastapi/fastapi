@@ -10,10 +10,13 @@ Vamos utilizar essa aplicação como exemplo:
 
 O parâmetro de consulta `q` é do tipo `Union[str, None]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
-!!! note "Observação"
-    O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
+/// note | "Observação"
 
-    O `Union` em `Union[str, None]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
+O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
+
+O `Union` em `Union[str, None]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
+
+///
 
 ## Validação adicional
 
@@ -51,22 +54,25 @@ q: Union[str, None] = None
 
 Mas o declara explicitamente como um parâmetro de consulta.
 
-!!! info "Informação"
-    Tenha em mente que o FastAPI se preocupa com a parte:
+/// info | "Informação"
 
-    ```Python
-    = None
-    ```
+Tenha em mente que o FastAPI se preocupa com a parte:
 
-    Ou com:
+```Python
+= None
+```
 
-    ```Python
-    = Query(default=None)
-    ```
+Ou com:
 
-    E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
+```Python
+= Query(default=None)
+```
 
-    O `Union` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
+E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
+
+O `Union` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
+
+///
 
 Então, podemos passar mais parâmetros para `Query`. Neste caso, o parâmetro `max_length` que se aplica a textos:
 
@@ -112,8 +118,11 @@ Vamos dizer que você queira que o parâmetro de consulta `q` tenha um `min_leng
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! note "Observação"
-    O parâmetro torna-se opcional quando possui um valor padrão.
+/// note | "Observação"
+
+O parâmetro torna-se opcional quando possui um valor padrão.
+
+///
 
 ## Torne-o obrigatório
 
@@ -141,8 +150,11 @@ Então, quando você precisa declarar um parâmetro obrigatório utilizando o `Q
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! info "Informação"
-    Se você nunca viu os `...` antes: é um valor único especial, faz <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte do Python e é chamado "Ellipsis"</a>.
+/// info | "Informação"
+
+Se você nunca viu os `...` antes: é um valor único especial, faz <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte do Python e é chamado "Ellipsis"</a>.
+
+///
 
 Dessa forma o **FastAPI** saberá que o parâmetro é obrigatório.
 
@@ -175,8 +187,11 @@ Assim, a resposta para essa URL seria:
 }
 ```
 
-!!! tip "Dica"
-    Para declarar um parâmetro de consulta com o tipo `list`, como no exemplo acima, você precisa usar explicitamente o `Query`, caso contrário será interpretado como um corpo da requisição.
+/// tip | "Dica"
+
+Para declarar um parâmetro de consulta com o tipo `list`, como no exemplo acima, você precisa usar explicitamente o `Query`, caso contrário será interpretado como um corpo da requisição.
+
+///
 
 A documentação interativa da API irá atualizar de acordo, permitindo múltiplos valores:
 
@@ -215,10 +230,13 @@ Você também pode utilizar o tipo `list` diretamente em vez de `List[str]`:
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! note "Observação"
-    Tenha em mente que neste caso, o FastAPI não irá validar os conteúdos da lista.
+/// note | "Observação"
 
-    Por exemplo, um `List[int]` iria validar (e documentar) que os contéudos da lista são números inteiros. Mas apenas `list` não.
+Tenha em mente que neste caso, o FastAPI não irá validar os conteúdos da lista.
+
+Por exemplo, um `List[int]` iria validar (e documentar) que os contéudos da lista são números inteiros. Mas apenas `list` não.
+
+///
 
 ## Declarando mais metadados
 
@@ -226,10 +244,13 @@ Você pode adicionar mais informações sobre o parâmetro.
 
 Essa informações serão inclusas no esquema do OpenAPI e utilizado pela documentação interativa e ferramentas externas.
 
-!!! note "Observação"
-    Tenha em mente que cada ferramenta oferece diferentes níveis de suporte ao OpenAPI.
+/// note | "Observação"
 
-    Algumas delas não exibem todas as informações extras que declaramos, ainda que na maioria dos casos, esses recursos estão planejados para desenvolvimento.
+Tenha em mente que cada ferramenta oferece diferentes níveis de suporte ao OpenAPI.
+
+Algumas delas não exibem todas as informações extras que declaramos, ainda que na maioria dos casos, esses recursos estão planejados para desenvolvimento.
+
+///
 
 Você pode adicionar um `title`:
 

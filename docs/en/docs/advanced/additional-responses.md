@@ -1,9 +1,12 @@
 # Additional Responses in OpenAPI
 
-!!! warning
-    This is a rather advanced topic.
+/// warning
 
-    If you are starting with **FastAPI**, you might not need this.
+This is a rather advanced topic.
+
+If you are starting with **FastAPI**, you might not need this.
+
+///
 
 You can declare additional responses, with additional status codes, media types, descriptions, etc.
 
@@ -27,20 +30,26 @@ For example, to declare another response with a status code `404` and a Pydantic
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! note
-    Keep in mind that you have to return the `JSONResponse` directly.
+/// note
 
-!!! info
-    The `model` key is not part of OpenAPI.
+Keep in mind that you have to return the `JSONResponse` directly.
 
-    **FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
+///
 
-    The correct place is:
+/// info
 
-    * In the key `content`, that has as value another JSON object (`dict`) that contains:
-        * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
-            * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.
-                * **FastAPI** adds a reference here to the global JSON Schemas in another place in your OpenAPI instead of including it directly. This way, other applications and clients can use those JSON Schemas directly, provide better code generation tools, etc.
+The `model` key is not part of OpenAPI.
+
+**FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
+
+The correct place is:
+
+* In the key `content`, that has as value another JSON object (`dict`) that contains:
+    * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
+        * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.
+            * **FastAPI** adds a reference here to the global JSON Schemas in another place in your OpenAPI instead of including it directly. This way, other applications and clients can use those JSON Schemas directly, provide better code generation tools, etc.
+
+///
 
 The generated responses in the OpenAPI for this *path operation* will be:
 
@@ -172,13 +181,19 @@ For example, you can add an additional media type of `image/png`, declaring that
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! note
-    Notice that you have to return the image using a `FileResponse` directly.
+/// note
 
-!!! info
-    Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
+Notice that you have to return the image using a `FileResponse` directly.
 
-    But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
+///
+
+/// info
+
+Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
+
+But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
+
+///
 
 ## Combining information
 

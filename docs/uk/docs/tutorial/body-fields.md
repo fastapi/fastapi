@@ -6,98 +6,139 @@
 
 Спочатку вам потрібно імпортувати це:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо.
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо.
+/// tip
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+Варто користуватись `Annotated` версією, якщо це можливо.
 
-!!! warning
-    Зверніть увагу, що `Field` імпортується прямо з `pydantic`, а не з `fastapi`, як всі інші (`Query`, `Path`, `Body` тощо).
+///
+
+```Python hl_lines="2"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Варто користуватись `Annotated` версією, якщо це можливо.
+
+///
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
+
+/// warning
+
+Зверніть увагу, що `Field` імпортується прямо з `pydantic`, а не з `fastapi`, як всі інші (`Query`, `Path`, `Body` тощо).
+
+///
 
 ## Оголошення атрибутів моделі
 
 Ви можете використовувати `Field` з атрибутами моделі:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12-15"
-    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо..
+```Python hl_lines="12-15"
+{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Варто користуватись `Annotated` версією, якщо це можливо..
+/// tip
 
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
+Варто користуватись `Annotated` версією, якщо це можливо..
+
+///
+
+```Python hl_lines="9-12"
+{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Варто користуватись `Annotated` версією, якщо це можливо..
+
+///
+
+```Python hl_lines="11-14"
+{!> ../../../docs_src/body_fields/tutorial001.py!}
+```
+
+////
 
 `Field` працює так само, як `Query`, `Path` і `Body`, у нього такі самі параметри тощо.
 
-!!! note "Технічні деталі"
-    Насправді, `Query`, `Path` та інші, що ви побачите далі, створюють об'єкти підкласів загального класу `Param`, котрий сам є підкласом класу `FieldInfo` з Pydantic.
+/// note | "Технічні деталі"
 
-    І `Field` від Pydantic також повертає екземпляр `FieldInfo`.
+Насправді, `Query`, `Path` та інші, що ви побачите далі, створюють об'єкти підкласів загального класу `Param`, котрий сам є підкласом класу `FieldInfo` з Pydantic.
 
-    `Body` також безпосередньо повертає об'єкти підкласу `FieldInfo`. І є інші підкласи, які ви побачите пізніше, що є підкласами класу Body.
+І `Field` від Pydantic також повертає екземпляр `FieldInfo`.
 
-    Пам'ятайте, що коли ви імпортуєте 'Query', 'Path' та інше з 'fastapi', вони фактично є функціями, які повертають спеціальні класи.
+`Body` також безпосередньо повертає об'єкти підкласу `FieldInfo`. І є інші підкласи, які ви побачите пізніше, що є підкласами класу Body.
 
-!!! tip
-     Зверніть увагу, що кожен атрибут моделі із типом, значенням за замовчуванням та `Field` має ту саму структуру, що й параметр *функції обробки шляху*, з `Field` замість `Path`, `Query` і `Body`.
+Пам'ятайте, що коли ви імпортуєте 'Query', 'Path' та інше з 'fastapi', вони фактично є функціями, які повертають спеціальні класи.
+
+///
+
+/// tip
+
+Зверніть увагу, що кожен атрибут моделі із типом, значенням за замовчуванням та `Field` має ту саму структуру, що й параметр *функції обробки шляху*, з `Field` замість `Path`, `Query` і `Body`.
+
+///
 
 ## Додавання додаткової інформації
 
@@ -105,9 +146,12 @@
 
 Ви дізнаєтеся більше про додавання додаткової інформації пізніше у документації, коли вивчатимете визначення прикладів.
 
-!!! warning
-    Додаткові ключі, передані в `Field`, також будуть присутні у згенерованій схемі OpenAPI для вашого додатка.
-    Оскільки ці ключі не обов'язково можуть бути частиною специфікації OpenAPI, деякі інструменти OpenAPI, наприклад, [OpenAPI валідатор](https://validator.swagger.io/), можуть не працювати з вашою згенерованою схемою.
+/// warning
+
+Додаткові ключі, передані в `Field`, також будуть присутні у згенерованій схемі OpenAPI для вашого додатка.
+Оскільки ці ключі не обов'язково можуть бути частиною специфікації OpenAPI, деякі інструменти OpenAPI, наприклад, [OpenAPI валідатор](https://validator.swagger.io/), можуть не працювати з вашою згенерованою схемою.
+
+///
 
 ## Підсумок
 

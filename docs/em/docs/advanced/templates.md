@@ -31,16 +31,25 @@ $ pip install jinja2
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
-!!! note
-    👀 👈 👆 ✔️ 🚶‍♀️ `request` 🍕 🔑-💲 👫 🔑 Jinja2️⃣. , 👆 ✔️ 📣 ⚫️ 👆 *➡ 🛠️*.
+/// note
 
-!!! tip
-    📣 `response_class=HTMLResponse` 🩺 🎚 🔜 💪 💭 👈 📨 🔜 🕸.
+👀 👈 👆 ✔️ 🚶‍♀️ `request` 🍕 🔑-💲 👫 🔑 Jinja2️⃣. , 👆 ✔️ 📣 ⚫️ 👆 *➡ 🛠️*.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.templating import Jinja2Templates`.
+///
 
-    **FastAPI** 🚚 🎏 `starlette.templating` `fastapi.templating` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request` &amp; `StaticFiles`.
+/// tip
+
+📣 `response_class=HTMLResponse` 🩺 🎚 🔜 💪 💭 👈 📨 🔜 🕸.
+
+///
+
+/// note | "📡 ℹ"
+
+👆 💪 ⚙️ `from starlette.templating import Jinja2Templates`.
+
+**FastAPI** 🚚 🎏 `starlette.templating` `fastapi.templating` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request` &amp; `StaticFiles`.
+
+///
 
 ## ✍ 📄
 

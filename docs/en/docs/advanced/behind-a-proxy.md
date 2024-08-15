@@ -43,8 +43,11 @@ browser --> proxy
 proxy --> server
 ```
 
-!!! tip
-    The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
+/// tip
+
+The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
+
+///
 
 The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
 
@@ -81,10 +84,13 @@ $ fastapi run main.py --root-path /api/v1
 
 If you use Hypercorn, it also has the option `--root-path`.
 
-!!! note "Technical Details"
-    The ASGI specification defines a `root_path` for this use case.
+/// note | "Technical Details"
 
-    And the `--root-path` command line option provides that `root_path`.
+The ASGI specification defines a `root_path` for this use case.
+
+And the `--root-path` command line option provides that `root_path`.
+
+///
 
 ### Checking the current `root_path`
 
@@ -172,8 +178,11 @@ Then create a file `traefik.toml` with:
 
 This tells Traefik to listen on port 9999 and to use another file `routes.toml`.
 
-!!! tip
-    We are using port 9999 instead of the standard HTTP port 80 so that you don't have to run it with admin (`sudo`) privileges.
+/// tip
+
+We are using port 9999 instead of the standard HTTP port 80 so that you don't have to run it with admin (`sudo`) privileges.
+
+///
 
 Now create that other file `routes.toml`:
 
@@ -239,8 +248,11 @@ Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8
 }
 ```
 
-!!! tip
-    Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
+/// tip
+
+Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
+
+///
 
 And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
@@ -283,8 +295,11 @@ This is because FastAPI uses this `root_path` to create the default `server` in 
 
 ## Additional servers
 
-!!! warning
-    This is a more advanced use case. Feel free to skip it.
+/// warning
+
+This is a more advanced use case. Feel free to skip it.
+
+///
 
 By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
 
@@ -323,15 +338,21 @@ Will generate an OpenAPI schema like:
 }
 ```
 
-!!! tip
-    Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
+/// tip
+
+Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
+
+///
 
 In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-!!! tip
-    The docs UI will interact with the server that you select.
+/// tip
+
+The docs UI will interact with the server that you select.
+
+///
 
 ### Disable automatic server from `root_path`
 
