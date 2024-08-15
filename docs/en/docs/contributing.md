@@ -370,6 +370,20 @@ If you go to your browser you will see that now the docs show your new section (
 
 Now you can translate it all and see how it looks as you save the file.
 
+#### Don't Translate these Pages
+
+🚨 Don't translate:
+
+* Files under `reference/`
+* `release-notes.md`
+* `fastapi-people.md`
+* `external-links.md`
+* `newsletter.md`
+* `management-tasks.md`
+* `management.md`
+
+Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
+
 #### New Language
 
 Let's say that you want to add translations for a language that is not yet translated, not even some pages.
@@ -458,9 +472,9 @@ Serving at: http://127.0.0.1:8008
 
 * Do not change anything enclosed in "``" (inline code).
 
-* In lines starting with `===` or `!!!`, translate only the ` "... Text ..."` part. Leave the rest unchanged.
+* In lines starting with `///` translate only the ` "... Text ..."` part. Leave the rest unchanged.
 
-* You can translate info boxes like `!!! warning` with for example `!!! warning "Achtung"`. But do not change the word immediately after the `!!!`, it determines the color of the info box.
+* You can translate info boxes like `/// warning` with for example `/// warning | Achtung`. But do not change the word immediately after the `///`, it determines the color of the info box.
 
 * Do not change the paths in links to images, code files, Markdown documents.
 
