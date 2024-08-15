@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update docs section about "Don't Translate these Pages". PR [#12022](https://github.com/fastapi/fastapi/pull/12022) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add documentation for non-translated pages and scripts to verify them. PR [#12020](https://github.com/fastapi/fastapi/pull/12020) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs about discussions questions. PR [#11985](https://github.com/fastapi/fastapi/pull/11985) by [@tiangolo](https://github.com/tiangolo).
 
