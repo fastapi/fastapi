@@ -15,6 +15,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/bigger-applications.md`. PR [#11971](https://github.com/fastapi/fastapi/pull/11971) by [@marcelomarkus](https://github.com/marcelomarkus).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-websockets.md`. PR [#11994](https://github.com/fastapi/fastapi/pull/11994) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-dependencies.md`. PR [#11995](https://github.com/fastapi/fastapi/pull/11995) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
