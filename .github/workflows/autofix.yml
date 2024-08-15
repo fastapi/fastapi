@@ -23,7 +23,7 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-python-autofix-${{ env.pythonLocation }}-${{ hashFiles('requirements-autofix.txt') }}-v01
-      - name: Install GitHub Actions dependencies
+      - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-autofix.txt
       - name: Get changed files
@@ -34,7 +34,7 @@ jobs:
         with:
           path: ~/.cache/pre-commit
           key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yml') }}-v01
-      - run: pre-commit run ${{ steps.changed-files.outputs.all_changed_files }}
+      - run: pre-commit run --files ${{ steps.changed-files.outputs.all_changed_files }}
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
