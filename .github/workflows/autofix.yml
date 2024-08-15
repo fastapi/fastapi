@@ -1,0 +1,46 @@
+name: Autofix
+
+on:
+  # TODO: fix this
+  # pull_request_target:
+  pull_request:
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+      - name: Install GitHub Actions dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          pip install -r requirements-github-actions.txt
+          pip install pre-commit
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+      - run: pre-commit run ${{ steps.changed-files.outputs.all_changed_files }}
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+
+      # - name: Deploy Docs Status Pending
+      #   run: python ./scripts/deploy_docs_status.py
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+      #     RUN_ID: ${{ github.run_id }}
