@@ -52,11 +52,13 @@
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    为减少代码重复，最好把这段代码写成函数，在 `database.py` 与 `tests/test_sql_app.py`中使用。
+为减少代码重复，最好把这段代码写成函数，在 `database.py` 与 `tests/test_sql_app.py`中使用。
 
-    为了把注意力集中在测试代码上，本例只是复制了这段代码。
+为了把注意力集中在测试代码上，本例只是复制了这段代码。
+
+///
 
 ## 创建数据库
 
@@ -82,9 +84,11 @@ Base.metadata.create_all(bind=engine)
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    `overrider_get_db()` 与 `get_db` 的代码几乎完全一样，只是 `overrider_get_db` 中使用测试数据库的 `TestingSessionLocal`。
+`overrider_get_db()` 与 `get_db` 的代码几乎完全一样，只是 `overrider_get_db` 中使用测试数据库的 `TestingSessionLocal`。
+
+///
 
 ## 测试应用
 

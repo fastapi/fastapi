@@ -43,10 +43,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
-!!! note "Technical Details"
-    For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+/// note | "Technical Details"
 
-    **FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+
+**FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+
+///
 
 ## `HTTPSRedirectMiddleware`
 

@@ -45,10 +45,13 @@ FastAPI 有一個非常棒的社群，歡迎來自不同背景的朋友參與。
 
 他們透過幫助其他人，證明了自己是 **FastAPI 專家**。 ✨
 
-!!! 提示
-    你也可以成為官方的 FastAPI 專家！
+/// 提示
 
-    只需要在 [GitHub 中幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🤓
+你也可以成為官方的 FastAPI 專家！
+
+只需要在 [GitHub 中幫助他人解答問題](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}。 🤓
+
+///
 
 你可以查看這些期間的 **FastAPI 專家**：
 
