@@ -13,4 +13,3 @@ def main() -> None:
     cli_main()
 
 
-import sys
