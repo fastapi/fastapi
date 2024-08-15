@@ -1,7 +1,7 @@
 docs:
   - all:
     - changed-files:
-      - all-globs-to-all-files:
+      - any-glob-to-any-file:
         - '**/*.md'
 
 internal:
@@ -13,6 +13,6 @@ internal:
         - .gitignore
         - .pre-commit-config.yaml
       - all-globs-to-all-files:
-        - '**/*.md'
-        - 'frontend/**'
-        - 'backend/**'
+        - '!./**/*.md'
+        - '!frontend/**'
+        - '!backend/**'
