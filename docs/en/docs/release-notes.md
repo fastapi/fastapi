@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.112.1
+
 ### Upgrades
 
 * ⬆️ Allow Starlette 0.38.x, update the pin to `>=0.37.2,<0.39.0`. PR [#11876](https://github.com/fastapi/fastapi/pull/11876) by [@musicinmybrain](https://github.com/musicinmybrain).
