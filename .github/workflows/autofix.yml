@@ -22,12 +22,10 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+          key: ${{ runner.os }}-python-autofix-${{ env.pythonLocation }}-${{ hashFiles('requirements-autofix.txt') }}-v01
       - name: Install GitHub Actions dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          pip install -r requirements-github-actions.txt
-          pip install pre-commit
+        run: pip install -r requirements-autofix.txt
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
