@@ -236,9 +236,9 @@ That's why in this example we have to declare it in the `response_model` paramet
 
 ## Return Type and Data Filtering
 
-Let's continue from the previous example. We wanted to **annotate the function with one type** but return something that includes **more data**.
+Let's continue from the previous example. We wanted to **annotate the function with one type**, but we wanted to be able to return from the function something that actually includes **more data**.
 
-We want FastAPI to keep **filtering** the data using the response model.
+We want FastAPI to keep **filtering** the data using the response model. So that even though the function returns more data, the response will only include the fields declared in the response model.
 
 In the previous example, because the classes were different, we had to use the `response_model` parameter. But that also means that we don't get the support from the editor and tools checking the function return type.
 
@@ -306,7 +306,7 @@ The most common case would be [returning a Response directly as explained later 
 {!> ../../../docs_src/response_model/tutorial003_02.py!}
 ```
 
-This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass) of `Response`.
+This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.
 
 And tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.
 
@@ -455,7 +455,7 @@ The examples here use `.dict()` for compatibility with Pydantic v1, but you shou
 
 /// info
 
-FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
 ///
 
@@ -466,7 +466,7 @@ You can also use:
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-as described in <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+as described in <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
 
 ///
 

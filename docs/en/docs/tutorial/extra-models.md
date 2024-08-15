@@ -156,7 +156,7 @@ UserInDB(
 
 /// warning
 
-The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
+The supporting additional functions `fake_password_hasher` and `fake_save_user` are just to demo a possible flow of the data, but they of course are not providing any real security.
 
 ///
 
@@ -194,7 +194,7 @@ That way, we can declare just the differences between the models (with plaintext
 
 ## `Union` or `anyOf`
 
-You can declare a response to be the `Union` of two types, that means, that the response would be any of the two.
+You can declare a response to be the `Union` of two or more types, that means, that the response would be any of them.
 
 It will be defined in OpenAPI with `anyOf`.
 
@@ -234,7 +234,7 @@ If it was in a type annotation we could have used the vertical bar, as:
 some_variable: PlaneItem | CarItem
 ```
 
-But if we put that in `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
 
 ## List of models
 

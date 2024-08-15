@@ -725,7 +725,7 @@ Here's how the hierarchy of dependencies and scopes looks like:
                         * This `security_scopes` parameter has a property `scopes` with a `list` containing all these scopes declared above, so:
                             * `security_scopes.scopes` will contain `["me", "items"]` for the *path operation* `read_own_items`.
                             * `security_scopes.scopes` will contain `["me"]` for the *path operation* `read_users_me`, because it is declared in the dependency `get_current_active_user`.
-                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scope` either.
+                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scopes` either.
 
 /// tip
 
