@@ -32,6 +32,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0. PR [#11727](https://github.com/fastapi/fastapi/pull/11727) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Add changelog URL to `pyproject.toml`, shows in PyPI. PR [#11152](https://github.com/fastapi/fastapi/pull/11152) by [@Pierre-VF](https://github.com/Pierre-VF).
 * 👷 Do not sync labels as it overrides manually added labels. PR [#12024](https://github.com/fastapi/fastapi/pull/12024) by [@tiangolo](https://github.com/tiangolo).
 * 👷🏻 Update Labeler GitHub Actions. PR [#12019](https://github.com/fastapi/fastapi/pull/12019) by [@tiangolo](https://github.com/tiangolo).
