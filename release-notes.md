@@ -10,6 +10,7 @@
 
 ### Internal
 
+* 👷 Update configs for labeler. PR [#1308](https://github.com/fastapi/full-stack-fastapi-template/pull/1308) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update GitHub Action labeler to add only one label. PR [#1304](https://github.com/fastapi/full-stack-fastapi-template/pull/1304) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Bump axios from 1.6.2 to 1.7.4 in /frontend. PR [#1301](https://github.com/fastapi/full-stack-fastapi-template/pull/1301) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Update GitHub Action labeler dependencies. PR [#1302](https://github.com/fastapi/full-stack-fastapi-template/pull/1302) by [@tiangolo](https://github.com/tiangolo).
