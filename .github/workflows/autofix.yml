@@ -8,6 +8,9 @@ on:
 jobs:
   autofix:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
     steps:
       - name: Dump GitHub context
         env:
