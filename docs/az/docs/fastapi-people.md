@@ -47,7 +47,7 @@ Bu istifadəçilər keçən ay [GitHub-da başqalarının suallarına](help-fast
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Cavablandırılmış suallar: {{ user.count }}</div></div>
 {% endfor %}
@@ -65,7 +65,7 @@ Onlar bir çox insanlara kömək edərək mütəxəssis olduqlarını sübut edi
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.experts[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Cavablandırılmış suallar: {{ user.count }}</div></div>
 {% endfor %}
@@ -83,7 +83,7 @@ Onlar mənbə kodu, sənədləmə, tərcümələr və s. barədə əmək göstə
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Request-lər: {{ user.count }}</div></div>
 {% endfor %}
@@ -91,7 +91,7 @@ Onlar mənbə kodu, sənədləmə, tərcümələr və s. barədə əmək göstə
 </div>
 {% endif %}
 
-Bundan başqa bir neçə (yüzdən çox) əməkdaş var ki, onları <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Əməkdaşlar səhifəsində</a> görə bilərsiniz. 👷
+Bundan başqa bir neçə (yüzdən çox) əməkdaş var ki, onları <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Əməkdaşlar səhifəsində</a> görə bilərsiniz. 👷
 
 ## Ən çox rəy verənlər
 
@@ -107,7 +107,7 @@ Başqalarının Pull Request-lərinə **Ən çox rəy verənlər** 🕵️ kodun
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Rəylər: {{ user.count }}</div></div>
 {% endfor %}
@@ -119,7 +119,7 @@ Başqalarının Pull Request-lərinə **Ən çox rəy verənlər** 🕵️ kodun
 
 Bunlar **Sponsorlar**dır. 😎
 
-Onlar mənim **FastAPI** (və digər) işlərimi əsasən <a href="hhttps://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsorlar</a> vasitəsilə dəstəkləyirlər.
+Onlar mənim **FastAPI** (və digər) işlərimi əsasən <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsorlar</a> vasitəsilə dəstəkləyirlər.
 
 {% if sponsors %}
 
@@ -178,7 +178,7 @@ Bu səhifənin əsas məqsədi, icmanın başqalarına kömək etmək üçün g�
 
 Xüsusilə də normalda daha az görünən və bir çox hallarda daha çətin olan, başqalarının suallarına kömək etmək və tərcümələrlə bağlı Pull Request-lərə rəy vermək kimi səy göstərmək.
 
-Bu səhifənin məlumatları hər ay hesablanır və siz <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">buradan mənbə kodunu</a> oxuya bilərsiniz.
+Bu səhifənin məlumatları hər ay hesablanır və siz <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">buradan mənbə kodunu</a> oxuya bilərsiniz.
 
 Burada sponsorların əməyini də vurğulamaq istəyirəm.
 
