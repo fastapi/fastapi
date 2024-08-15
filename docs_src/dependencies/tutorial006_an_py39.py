@@ -10,6 +10,7 @@ async def verify_token(x_token: Annotated[str, Header()]):
         raise HTTPException(status_code=400, detail="X-Token header invalid")
     return x_token
 
+
 async def verify_key(x_key: Annotated[str, Header()]):
     if x_key != "fake-super-secret-key":
         raise HTTPException(status_code=400, detail="X-Key header invalid")
