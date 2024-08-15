@@ -40,12 +40,15 @@ Und genau so für ReDoc ...
 {!../../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
+/// tip | "Tipp"
 
-    Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
-    Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+
+Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+
+///
 
 ### Eine *Pfadoperation* erstellen, um es zu testen
 
@@ -96,8 +99,8 @@ Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und 
 
 **Swagger UI** verwendet folgende Dateien:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 Und **ReDoc** verwendet diese Datei:
 
@@ -177,12 +180,15 @@ Und genau so für ReDoc ...
 {!../../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-!!! tip "Tipp"
-    Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
+/// tip | "Tipp"
 
-    Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
-    Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+
+Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+
+///
 
 ### Eine *Pfadoperation* erstellen, um statische Dateien zu testen
 
