@@ -237,7 +237,9 @@ The function parameters will be recognized as follows:
 
 FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+The `str | None` (Python 3.10+) or `Union` in `Union[str, None]` (Python 3.8+) is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
+
+But adding the type annotations will allow your editor to give you better support and detect errors.
 
 ///
 
