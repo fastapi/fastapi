@@ -398,7 +398,7 @@ Now update the dependency `get_current_user`.
 
 This is the one used by the dependencies above.
 
-Here's were we are using the same OAuth2 scheme we created before, declaring it as a dependency: `oauth2_scheme`.
+Here's where we are using the same OAuth2 scheme we created before, declaring it as a dependency: `oauth2_scheme`.
 
 Because this dependency function doesn't have any scope requirements itself, we can use `Depends` with `oauth2_scheme`, we don't have to use `Security` when we don't need to specify security scopes.
 
