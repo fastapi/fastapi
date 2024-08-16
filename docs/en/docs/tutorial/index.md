@@ -83,10 +83,13 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-!!! note
-    When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
+/// note
 
-    If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
+When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
+
+If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
+
+///
 
 ## Advanced User Guide
 
