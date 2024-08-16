@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 🔥 Remove Sentry link from Advanced Middleware docs. PR [#12031](https://github.com/fastapi/fastapi/pull/12031) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Clarify management tasks for translations, multiples files in one PR. PR [#12030](https://github.com/fastapi/fastapi/pull/12030) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Edit the link to the OpenAPI "Responses Object" and "Response Object" sections in the "Additional Responses in OpenAPI" section. PR [#11996](https://github.com/fastapi/fastapi/pull/11996) by [@VaitoSoi](https://github.com/VaitoSoi).
 * 🔨 Specify `email-validator` dependency with dash. PR [#11515](https://github.com/fastapi/fastapi/pull/11515) by [@jirikuncar](https://github.com/jirikuncar).
