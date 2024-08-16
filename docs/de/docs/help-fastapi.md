@@ -169,12 +169,15 @@ Und wenn es irgendeinen anderen Stil- oder Konsistenz-Bedarf gibt, bitte ich dir
 
 * Schreiben Sie dann einen **Kommentar** und berichten, dass Sie das getan haben. So weiß ich, dass Sie ihn wirklich überprüft haben.
 
-!!! info
-    Leider kann ich PRs, nur weil sie von Mehreren gutgeheißen wurden, nicht einfach vertrauen.
+/// info
 
-    Es ist mehrmals passiert, dass es PRs mit drei, fünf oder mehr Zustimmungen gibt, wahrscheinlich weil die Beschreibung ansprechend ist, aber wenn ich die PRs überprüfe, sind sie tatsächlich fehlerhaft, haben einen Bug, oder lösen das Problem nicht, welches sie behaupten, zu lösen. 😅
+Leider kann ich PRs, nur weil sie von Mehreren gutgeheißen wurden, nicht einfach vertrauen.
 
-    Daher ist es wirklich wichtig, dass Sie den Code tatsächlich lesen und ausführen und mir in den Kommentaren mitteilen, dass Sie dies getan haben. 🤓
+Es ist mehrmals passiert, dass es PRs mit drei, fünf oder mehr Zustimmungen gibt, wahrscheinlich weil die Beschreibung ansprechend ist, aber wenn ich die PRs überprüfe, sind sie tatsächlich fehlerhaft, haben einen Bug, oder lösen das Problem nicht, welches sie behaupten, zu lösen. 😅
+
+Daher ist es wirklich wichtig, dass Sie den Code tatsächlich lesen und ausführen und mir in den Kommentaren mitteilen, dass Sie dies getan haben. 🤓
+
+///
 
 * Wenn der PR irgendwie vereinfacht werden kann, fragen Sie ruhig danach, aber seien Sie nicht zu wählerisch, es gibt viele subjektive Standpunkte (und ich habe auch meinen eigenen 🙈), also ist es besser, wenn man sich auf die wesentlichen Dinge konzentriert.
 
@@ -225,10 +228,13 @@ Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI am Laufen zu erhalt
 
 Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord-Chatserver</a> 👥 bei und treffen Sie sich mit anderen Mitgliedern der FastAPI-Community.
 
-!!! tip "Tipp"
-    Wenn Sie Fragen haben, stellen Sie sie bei <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Diskussionen</a>, es besteht eine viel bessere Chance, dass Sie hier Hilfe von den [FastAPI-Experten](fastapi-people.md#experten){.internal-link target=_blank} erhalten.
+/// tip | "Tipp"
 
-    Nutzen Sie den Chat nur für andere allgemeine Gespräche.
+Wenn Sie Fragen haben, stellen Sie sie bei <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Diskussionen</a>, es besteht eine viel bessere Chance, dass Sie hier Hilfe von den [FastAPI-Experten](fastapi-people.md#experten){.internal-link target=_blank} erhalten.
+
+Nutzen Sie den Chat nur für andere allgemeine Gespräche.
+
+///
 
 ### Den Chat nicht für Fragen verwenden
 

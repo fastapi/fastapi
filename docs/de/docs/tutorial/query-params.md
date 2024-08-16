@@ -63,38 +63,49 @@ gehen, werden die Parameter-Werte Ihrer Funktion sein:
 
 Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem Sie deren Defaultwert auf `None` setzen:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params/tutorial002.py!}
+```
+
+////
 
 In diesem Fall wird der Funktionsparameter `q` optional, und standardmäßig `None` sein.
 
-!!! check
-    Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
+/// check
+
+Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass `item_id` ein Pfad-Parameter ist und `q` keiner, daher muss letzteres ein Query-Parameter sein.
+
+///
 
 ## Query-Parameter Typkonvertierung
 
 Sie können auch `bool`-Typen deklarieren und sie werden konvertiert:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial003_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/query_params/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/query_params/tutorial003.py!}
+```
+
+////
 
 Wenn Sie nun zu:
 
@@ -136,17 +147,21 @@ Und Sie müssen sie auch nicht in einer spezifischen Reihenfolge deklarieren.
 
 Parameter werden anhand ihres Namens erkannt:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="6  8"
-    {!> ../../../docs_src/query_params/tutorial004_py310.py!}
-    ```
+```Python hl_lines="6  8"
+{!> ../../../docs_src/query_params/tutorial004_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8  10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="8  10"
+{!> ../../../docs_src/query_params/tutorial004.py!}
+```
+
+////
 
 ## Erforderliche Query-Parameter
 
@@ -204,17 +219,21 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Und natürlich können Sie einige Parameter als erforderlich, einige mit Defaultwert, und einige als vollständig optional definieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/query_params/tutorial006_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params/tutorial006.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="10"
+{!> ../../../docs_src/query_params/tutorial006.py!}
+```
+
+////
 
 In diesem Fall gibt es drei Query-Parameter:
 
@@ -222,5 +241,8 @@ In diesem Fall gibt es drei Query-Parameter:
 * `skip`, ein `int` mit einem Defaultwert `0`.
 * `limit`, ein optionales `int`.
 
-!!! tip "Tipp"
-    Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
+/// tip | "Tipp"
+
+Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
+
+///

@@ -14,8 +14,11 @@ Esto puede ser útil, por ejemplo, para devolver cookies o headers personalizado
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de la misma.
 
-!!! tip "Consejo"
-    `JSONResponse` en sí misma es una subclase de `Response`.
+/// tip | "Consejo"
+
+`JSONResponse` en sí misma es una subclase de `Response`.
+
+///
 
 Y cuando devuelves una `Response`, **FastAPI** la pasará directamente.
 
@@ -35,10 +38,13 @@ Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos ante
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Detalles Técnicos"
-    También puedes usar `from starlette.responses import JSONResponse`.
+/// note | "Detalles Técnicos"
 
-    **FastAPI** provee `starlette.responses` como `fastapi.responses`, simplemente como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+También puedes usar `from starlette.responses import JSONResponse`.
+
+**FastAPI** provee `starlette.responses` como `fastapi.responses`, simplemente como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+
+///
 
 ## Devolviendo una `Response` personalizada
 

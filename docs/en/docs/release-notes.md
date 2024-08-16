@@ -7,11 +7,70 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🌐 Add Spanish translation for `docs/es/docs/project-generation.md`. PR [#11947](https://github.com/fastapi/fastapi/pull/11947) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Fix minor typo. PR [#12026](https://github.com/fastapi/fastapi/pull/12026) by [@MicaelJarniac](https://github.com/MicaelJarniac).
+* 📝 Several docs improvements, tweaks, and clarifications. PR [#11390](https://github.com/fastapi/fastapi/pull/11390) by [@nilslindemann](https://github.com/nilslindemann).
+* 📝 Add missing `compresslevel` parameter on docs for `GZipMiddleware`. PR [#11350](https://github.com/fastapi/fastapi/pull/11350) by [@junah201](https://github.com/junah201).
+* 📝 Fix inconsistent response code when item already exists in docs for testing. PR [#11818](https://github.com/fastapi/fastapi/pull/11818) by [@lokomilo](https://github.com/lokomilo).
+* 📝 Update `docs/en/docs/tutorial/body.md` with Python 3.10 union type example. PR [#11415](https://github.com/fastapi/fastapi/pull/11415) by [@rangzen](https://github.com/rangzen).
+
+### Internal
+
+* ⚙️ Record and show test coverage contexts (what test covers which line). PR [#11518](https://github.com/fastapi/fastapi/pull/11518) by [@slafs](https://github.com/slafs).
+
+## 0.112.1
+
+### Upgrades
+
+* ⬆️ Allow Starlette 0.38.x, update the pin to `>=0.37.2,<0.39.0`. PR [#11876](https://github.com/fastapi/fastapi/pull/11876) by [@musicinmybrain](https://github.com/musicinmybrain).
+
+### Docs
+
+* 📝 Update docs section about "Don't Translate these Pages". PR [#12022](https://github.com/fastapi/fastapi/pull/12022) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add documentation for non-translated pages and scripts to verify them. PR [#12020](https://github.com/fastapi/fastapi/pull/12020) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs about discussions questions. PR [#11985](https://github.com/fastapi/fastapi/pull/11985) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/bigger-applications.md`. PR [#11971](https://github.com/fastapi/fastapi/pull/11971) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-websockets.md`. PR [#11994](https://github.com/fastapi/fastapi/pull/11994) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-dependencies.md`. PR [#11995](https://github.com/fastapi/fastapi/pull/11995) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/using-request-directly.md`. PR [#11956](https://github.com/fastapi/fastapi/pull/11956) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add French translation for `docs/fr/docs/tutorial/body-multiple-params.md`. PR [#11796](https://github.com/fastapi/fastapi/pull/11796) by [@pe-brian](https://github.com/pe-brian).
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/query-params.md`. PR [#11557](https://github.com/fastapi/fastapi/pull/11557) by [@caomingpei](https://github.com/caomingpei).
+* 🌐 Update typo in Chinese translation for `docs/zh/docs/advanced/testing-dependencies.md`. PR [#11944](https://github.com/fastapi/fastapi/pull/11944) by [@bestony](https://github.com/bestony).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/sub-applications.md` and `docs/pt/docs/advanced/behind-a-proxy.md`. PR [#11856](https://github.com/fastapi/fastapi/pull/11856) by [@marcelomarkus](https://github.com/marcelomarkus).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/cors.md` and `docs/pt/docs/tutorial/middleware.md`. PR [#11916](https://github.com/fastapi/fastapi/pull/11916) by [@wesinalves](https://github.com/wesinalves).
 * 🌐 Add French translation for `docs/fr/docs/tutorial/path-params-numeric-validations.md`. PR [#11788](https://github.com/fastapi/fastapi/pull/11788) by [@pe-brian](https://github.com/pe-brian).
+
+### Internal
+
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0. PR [#11727](https://github.com/fastapi/fastapi/pull/11727) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Add changelog URL to `pyproject.toml`, shows in PyPI. PR [#11152](https://github.com/fastapi/fastapi/pull/11152) by [@Pierre-VF](https://github.com/Pierre-VF).
+* 👷 Do not sync labels as it overrides manually added labels. PR [#12024](https://github.com/fastapi/fastapi/pull/12024) by [@tiangolo](https://github.com/tiangolo).
+* 👷🏻 Update Labeler GitHub Actions. PR [#12019](https://github.com/fastapi/fastapi/pull/12019) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update configs for MkDocs for languages and social cards. PR [#12016](https://github.com/fastapi/fastapi/pull/12016) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update permissions and config for labeler GitHub Action. PR [#12008](https://github.com/fastapi/fastapi/pull/12008) by [@tiangolo](https://github.com/tiangolo).
+* 👷🏻 Add GitHub Action label-checker. PR [#12005](https://github.com/fastapi/fastapi/pull/12005) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add label checker GitHub Action. PR [#12004](https://github.com/fastapi/fastapi/pull/12004) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update GitHub Action add-to-project. PR [#12002](https://github.com/fastapi/fastapi/pull/12002) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update labeler GitHub Action. PR [#12001](https://github.com/fastapi/fastapi/pull/12001) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add GitHub Action labeler. PR [#12000](https://github.com/fastapi/fastapi/pull/12000) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add GitHub Action add-to-project. PR [#11999](https://github.com/fastapi/fastapi/pull/11999) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update admonitions in docs missing. PR [#11998](https://github.com/fastapi/fastapi/pull/11998) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update docs.py script to enable dirty reload conditionally. PR [#11986](https://github.com/fastapi/fastapi/pull/11986) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update MkDocs instant previews. PR [#11982](https://github.com/fastapi/fastapi/pull/11982) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix deploy docs previews script to handle mkdocs.yml files. PR [#11984](https://github.com/fastapi/fastapi/pull/11984) by [@tiangolo](https://github.com/tiangolo).
+* 💡 Add comment about custom Termynal line-height. PR [#11976](https://github.com/fastapi/fastapi/pull/11976) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add alls-green for test-redistribute. PR [#11974](https://github.com/fastapi/fastapi/pull/11974) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Update docs-previews to handle no docs changes. PR [#11975](https://github.com/fastapi/fastapi/pull/11975) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Refactor script `deploy_docs_status.py` to account for deploy URLs with or without trailing slash. PR [#11965](https://github.com/fastapi/fastapi/pull/11965) by [@tiangolo](https://github.com/tiangolo).
+* 🔒️ Update permissions for deploy-docs action. PR [#11964](https://github.com/fastapi/fastapi/pull/11964) by [@tiangolo](https://github.com/tiangolo).
+* 👷🏻 Add deploy docs status and preview links to PRs. PR [#11961](https://github.com/fastapi/fastapi/pull/11961) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update docs setup with latest configs and plugins. PR [#11953](https://github.com/fastapi/fastapi/pull/11953) by [@tiangolo](https://github.com/tiangolo).
+* 🔇 Ignore warning from attrs in Trio. PR [#11949](https://github.com/fastapi/fastapi/pull/11949) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.112.0
 
@@ -32,7 +91,7 @@ pip install "fastapi[standard]"
 * This adds support for calling the CLI as:
 
 ```bash
-python -m python
+python -m fastapi
 ```
 
 * And it upgrades `fastapi-cli[standard] >=0.0.5`.
