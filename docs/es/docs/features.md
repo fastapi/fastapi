@@ -63,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` significa:
+/// info
 
-    Pasa las <abbr title="en español key se refiere a la guía de un diccionario">keys</abbr> y los valores del dict `second_user_data` directamente como argumentos de key-value, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` significa:
+
+Pasa las <abbr title="en español key se refiere a la guía de un diccionario">keys</abbr> y los valores del dict `second_user_data` directamente como argumentos de key-value, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Soporte del editor
 

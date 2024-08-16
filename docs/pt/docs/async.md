@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    Você só pode usar `await` dentro de funções criadas com `async def`.
+/// note
+
+Você só pode usar `await` dentro de funções criadas com `async def`.
+
+///
 
 ---
 
@@ -356,12 +359,15 @@ Tudo isso é o que deixa o FastAPI poderoso (através do Starlette) e que o faz 
 
 ## Detalhes muito técnicos
 
-!!! warning
-    Você pode provavelmente pular isso.
+/// warning
 
-    Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
+Você pode provavelmente pular isso.
 
-    Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
+
+Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+
+///
 
 ### Funções de operação de rota
 

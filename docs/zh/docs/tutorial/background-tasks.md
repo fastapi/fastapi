@@ -57,41 +57,57 @@
 
 **FastAPI** 知道在每种情况下该做什么以及如何复用同一对象，因此所有后台任务被合并在一起并且随后在后台运行：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="14  16  23  26"
-    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ 没Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="14  16  23  26"
+{!> ../../../docs_src/background_tasks/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ 没Annotated"
+//// tab | Python 3.10+ 没Annotated
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+/// tip
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="11  13  20  23"
+{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ 没Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002.py!}
+```
+
+////
 
 该示例中，信息会在响应发出 *之后* 被写到 `log.txt` 文件。
 

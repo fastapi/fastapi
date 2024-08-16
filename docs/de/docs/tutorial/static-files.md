@@ -11,10 +11,13 @@ Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisc
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "Technische Details"
-    Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** stellt dasselbe `starlette.staticfiles` auch via `fastapi.staticfiles` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
+
+**FastAPI** stellt dasselbe `starlette.staticfiles` auch via `fastapi.staticfiles` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+
+///
 
 ### Was ist „Mounten“?
 

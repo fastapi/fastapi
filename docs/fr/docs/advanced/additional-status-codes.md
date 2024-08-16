@@ -18,17 +18,23 @@ Pour y parvenir, importez `JSONResponse` et renvoyez-y directement votre contenu
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-!!! warning "Attention"
-    Lorsque vous renvoyez une `Response` directement, comme dans l'exemple ci-dessus, elle sera renvoyée directement.
+/// warning | "Attention"
 
-    Elle ne sera pas sérialisée avec un modèle.
+Lorsque vous renvoyez une `Response` directement, comme dans l'exemple ci-dessus, elle sera renvoyée directement.
 
-    Assurez-vous qu'il contient les données souhaitées et que les valeurs soient dans un format JSON valides (si vous utilisez une `JSONResponse`).
+Elle ne sera pas sérialisée avec un modèle.
 
-!!! note "Détails techniques"
-    Vous pouvez également utiliser `from starlette.responses import JSONResponse`.
+Assurez-vous qu'il contient les données souhaitées et que les valeurs soient dans un format JSON valides (si vous utilisez une `JSONResponse`).
 
-    Pour plus de commodités, **FastAPI** fournit les objets `starlette.responses` sous forme d'un alias accessible par `fastapi.responses`. Mais la plupart des réponses disponibles proviennent directement de Starlette. Il en est de même avec l'objet `statut`.
+///
+
+/// note | "Détails techniques"
+
+Vous pouvez également utiliser `from starlette.responses import JSONResponse`.
+
+Pour plus de commodités, **FastAPI** fournit les objets `starlette.responses` sous forme d'un alias accessible par `fastapi.responses`. Mais la plupart des réponses disponibles proviennent directement de Starlette. Il en est de même avec l'objet `statut`.
+
+///
 
 ## Documents OpenAPI et API
 
