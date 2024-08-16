@@ -156,7 +156,7 @@ filterwarnings = [
     # Including PR: https://github.com/encode/httpx/pull/2309
     # "ignore:'cgi' is deprecated:DeprecationWarning",
     # For passlib
-    # "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
+    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO remove pytest-cov
