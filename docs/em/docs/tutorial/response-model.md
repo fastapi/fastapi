@@ -131,7 +131,7 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 /// info
 
-⚙️ `EmailStr`, 🥇 ❎ <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+⚙️ `EmailStr`, 🥇 ❎ <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
 
 🤶 Ⓜ. `pip install email-validator`
 ⚖️ `pip install pydantic[email]`.
