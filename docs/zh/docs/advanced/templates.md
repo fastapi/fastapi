@@ -31,20 +31,26 @@ $ pip install jinja2
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
-!!! note "笔记"
+/// note | "笔记"
 
-    在FastAPI 0.108.0，Starlette 0.29.0之前，`name`是第一个参数。
-    并且，在此之前，`request`对象是作为context的一部分以键值对的形式传递的。
+在FastAPI 0.108.0，Starlette 0.29.0之前，`name`是第一个参数。
+并且，在此之前，`request`对象是作为context的一部分以键值对的形式传递的。
 
-!!! tip "提示"
+///
 
-    通过声明 `response_class=HTMLResponse`，API 文档就能识别响应的对象是 HTML。
+/// tip | "提示"
 
-!!! note "技术细节"
+通过声明 `response_class=HTMLResponse`，API 文档就能识别响应的对象是 HTML。
 
-    您还可以使用 `from starlette.templating import Jinja2Templates`。
+///
 
-    **FastAPI** 的 `fastapi.templating` 只是为开发者提供的快捷方式。实际上，绝大多数可用响应都直接继承自 Starlette。 `Request` 与 `StaticFiles` 也一样。
+/// note | "技术细节"
+
+您还可以使用 `from starlette.templating import Jinja2Templates`。
+
+**FastAPI** 的 `fastapi.templating` 只是为开发者提供的快捷方式。实际上，绝大多数可用响应都直接继承自 Starlette。 `Request` 与 `StaticFiles` 也一样。
+
+///
 
 ## 编写模板
 
