@@ -41,7 +41,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.37.2,<0.38.0",
+    "starlette>=0.37.2,<0.39.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
@@ -50,6 +50,8 @@ dependencies = [
 Homepage = "https://github.com/fastapi/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/fastapi/fastapi"
+Issues = "https://github.com/fastapi/fastapi/issues"
+Changelog = "https://fastapi.tiangolo.com/release-notes/"
 
 [project.optional-dependencies]
 
@@ -182,6 +184,7 @@ source = [
     "fastapi"
 ]
 context = '${CONTEXT}'
+dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
