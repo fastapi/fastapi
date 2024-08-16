@@ -370,9 +370,9 @@ If you go to your browser you will see that now the docs show your new section (
 
 Now you can translate it all and see how it looks as you save the file.
 
-/// warning
+#### Don't Translate these Pages
 
-Don't translate:
+🚨 Don't translate:
 
 * Files under `reference/`
 * `release-notes.md`
@@ -383,8 +383,6 @@ Don't translate:
 * `management.md`
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
-
-///
 
 #### New Language
 
