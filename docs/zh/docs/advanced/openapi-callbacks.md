@@ -35,9 +35,11 @@ API 的用户 （外部开发者）要在您的 API 内使用 POST 请求创建�
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    `callback_url` 查询参数使用 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> 类型。
+`callback_url` 查询参数使用 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> 类型。
+
+///
 
 此处唯一比较新的内容是*路径操作装饰器*中的 `callbacks=invoices_callback_router.routes` 参数，下文介绍。
 
@@ -62,11 +64,13 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 本例没有实现回调本身（只是一行代码），只有文档部分。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    实际的回调只是 HTTP 请求。
+实际的回调只是 HTTP 请求。
 
-    实现回调时，要使用 <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> 或 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>。
+实现回调时，要使用 <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> 或 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>。
+
+///
 
 ## 编写回调文档代码
 
@@ -76,11 +80,13 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 我们要使用与存档*外部 API* 相同的知识……通过创建外部 API 要实现的*路径操作*（您的 API 要调用的）。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    编写存档回调的代码时，假设您是*外部开发者*可能会用的上。并且您当前正在实现的是*外部 API*，不是*您自己的 API*。
+编写存档回调的代码时，假设您是*外部开发者*可能会用的上。并且您当前正在实现的是*外部 API*，不是*您自己的 API*。
 
-    临时改变（为外部开发者的）视角能让您更清楚该如何放置*外部 API* 响应和请求体的参数与 Pydantic 模型等。
+临时改变（为外部开发者的）视角能让您更清楚该如何放置*外部 API* 响应和请求体的参数与 Pydantic 模型等。
+
+///
 
 ### 创建回调的 `APIRouter`
 
@@ -157,9 +163,11 @@ JSON 请求体包含如下内容：
 }
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    注意，回调 URL包含 `callback_url` （`https://www.external.org/events`）中的查询参数，还有 JSON 请求体内部的发票 ID（`2expen51ve`）。
+注意，回调 URL包含 `callback_url` （`https://www.external.org/events`）中的查询参数，还有 JSON 请求体内部的发票 ID（`2expen51ve`）。
+
+///
 
 ### 添加回调路由
 
@@ -171,9 +179,11 @@ JSON 请求体包含如下内容：
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    注意，不能把路由本身（`invoices_callback_router`）传递给 `callback=`，要传递 `invoices_callback_router.routes` 中的 `.routes` 属性。
+注意，不能把路由本身（`invoices_callback_router`）传递给 `callback=`，要传递 `invoices_callback_router.routes` 中的 `.routes` 属性。
+
+///
 
 ### 查看文档
 

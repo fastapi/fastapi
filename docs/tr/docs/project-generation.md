@@ -14,7 +14,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
 * Docker Swarm Mode ile deployment.
 * **Docker Compose** entegrasyonu ve lokal geliştirme için optimizasyon.
 * Uvicorn ve Gunicorn ile **Production ready** Python web server'ı.
-* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
+* Python <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
     * **Hızlı**: **NodeJS** ve **Go** ile eşit, çok yüksek performans (Starlette ve Pydantic'e teşekkürler).
     * **Sezgisel**: Editor desteğı. <abbr title="auto-complete, IntelliSense gibi isimlerle de bilinir">Otomatik tamamlama</abbr>. Daha az debugging.
     * **Kolay**: Kolay öğrenip kolay kullanmak için tasarlandı. Daha az döküman okuma daha çok iş.

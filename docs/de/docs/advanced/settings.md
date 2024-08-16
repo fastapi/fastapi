@@ -8,44 +8,51 @@ Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestell
 
 ## Umgebungsvariablen
 
-!!! tip "Tipp"
-    Wenn Sie bereits wissen, was „Umgebungsvariablen“ sind und wie man sie verwendet, können Sie gerne mit dem nächsten Abschnitt weiter unten fortfahren.
+/// tip | "Tipp"
+
+Wenn Sie bereits wissen, was „Umgebungsvariablen“ sind und wie man sie verwendet, können Sie gerne mit dem nächsten Abschnitt weiter unten fortfahren.
+
+///
 
 Eine <a href="https://de.wikipedia.org/wiki/Umgebungsvariable" class="external-link" target="_blank">Umgebungsvariable</a> (auch bekannt als „env var“) ist eine Variable, die sich außerhalb des Python-Codes im Betriebssystem befindet und von Ihrem Python-Code (oder auch von anderen Programmen) gelesen werden kann.
 
 Sie können Umgebungsvariablen in der Shell erstellen und verwenden, ohne Python zu benötigen:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // Sie könnten eine Umgebungsvariable MY_NAME erstellen mittels
-    $ export MY_NAME="Wade Wilson"
+```console
+// Sie könnten eine Umgebungsvariable MY_NAME erstellen mittels
+$ export MY_NAME="Wade Wilson"
 
-    // Dann könnten Sie diese mit anderen Programmen verwenden, etwa
-    $ echo "Hello $MY_NAME"
+// Dann könnten Sie diese mit anderen Programmen verwenden, etwa
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    // Erstelle eine Umgebungsvariable MY_NAME
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // Verwende sie mit anderen Programmen, etwa
-    $ echo "Hello $Env:MY_NAME"
+```console
+// Erstelle eine Umgebungsvariable MY_NAME
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// Verwende sie mit anderen Programmen, etwa
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### Umgebungsvariablen mit Python auslesen
 
@@ -60,10 +67,13 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-!!! tip "Tipp"
-    Das zweite Argument für <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> ist der zurückzugebende Defaultwert.
+/// tip | "Tipp"
 
-    Wenn nicht angegeben, ist er standardmäßig `None`. Hier übergeben wir `"World"` als Defaultwert.
+Das zweite Argument für <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> ist der zurückzugebende Defaultwert.
+
+Wenn nicht angegeben, ist er standardmäßig `None`. Hier übergeben wir `"World"` als Defaultwert.
+
+///
 
 Dann könnten Sie dieses Python-Programm aufrufen:
 
@@ -114,8 +124,11 @@ Hello World from Python
 
 </div>
 
-!!! tip "Tipp"
-    Weitere Informationen dazu finden Sie unter <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+/// tip | "Tipp"
+
+Weitere Informationen dazu finden Sie unter <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+
+///
 
 ### Typen und Validierung
 
@@ -151,8 +164,11 @@ $ pip install "fastapi[all]"
 
 </div>
 
-!!! info
-    In Pydantic v1 war das im Hauptpackage enthalten. Jetzt wird es als unabhängiges Package verteilt, sodass Sie wählen können, ob Sie es installieren möchten oder nicht, falls Sie die Funktionalität nicht benötigen.
+/// info
+
+In Pydantic v1 war das im Hauptpackage enthalten. Jetzt wird es als unabhängiges Package verteilt, sodass Sie wählen können, ob Sie es installieren möchten oder nicht, falls Sie die Funktionalität nicht benötigen.
+
+///
 
 ### Das `Settings`-Objekt erstellen
 
@@ -162,23 +178,33 @@ Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute
 
 Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="2  5-8  11"
-    {!> ../../../docs_src/settings/tutorial001.py!}
-    ```
+```Python hl_lines="2  5-8  11"
+{!> ../../../docs_src/settings/tutorial001.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    !!! info
-        In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydantic_settings` importieren.
+//// tab | Pydantic v1
 
-    ```Python hl_lines="2  5-8  11"
-    {!> ../../../docs_src/settings/tutorial001_pv1.py!}
-    ```
+/// info
 
-!!! tip "Tipp"
-    Für ein schnelles Copy-and-paste verwenden Sie nicht dieses Beispiel, sondern das letzte unten.
+In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydantic_settings` importieren.
+
+///
+
+```Python hl_lines="2  5-8  11"
+{!> ../../../docs_src/settings/tutorial001_pv1.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Für ein schnelles Copy-and-paste verwenden Sie nicht dieses Beispiel, sondern das letzte unten.
+
+///
 
 Wenn Sie dann eine Instanz dieser `Settings`-Klasse erstellen (in diesem Fall als `settings`-Objekt), liest Pydantic die Umgebungsvariablen ohne Berücksichtigung der Groß- und Kleinschreibung. Eine Variable `APP_NAME` in Großbuchstaben wird also als Attribut `app_name` gelesen.
 
@@ -206,8 +232,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 </div>
 
-!!! tip "Tipp"
-    Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen Sie diese einfach durch ein Leerzeichen und fügen Sie alle vor dem Befehl ein.
+/// tip | "Tipp"
+
+Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen Sie diese einfach durch ein Leerzeichen und fügen Sie alle vor dem Befehl ein.
+
+///
 
 Und dann würde die Einstellung `admin_email` auf `"deadpool@example.com"` gesetzt.
 
@@ -231,8 +260,11 @@ Und dann verwenden Sie diese in einer Datei `main.py`:
 {!../../../docs_src/settings/app01/main.py!}
 ```
 
-!!! tip "Tipp"
-    Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen.
+/// tip | "Tipp"
+
+Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen.
+
+///
 
 ## Einstellungen in einer Abhängigkeit
 
@@ -254,54 +286,75 @@ Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erste
 
 Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurückgibt.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="5  11-12"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Wir werden das `@lru_cache` in Kürze besprechen.
+/// tip | "Tipp"
 
-    Im Moment nehmen Sie an, dass `get_settings()` eine normale Funktion ist.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="5  11-12"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Wir werden das `@lru_cache` in Kürze besprechen.
+
+Im Moment nehmen Sie an, dass `get_settings()` eine normale Funktion ist.
+
+///
 
 Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einfordern und es überall dort verwenden, wo wir es brauchen.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="16  18-20"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="16  18-20"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 ### Einstellungen und Tests
 
@@ -321,15 +374,21 @@ Wenn Sie viele Einstellungen haben, die sich möglicherweise oft ändern, vielle
 
 Diese Praxis ist so weit verbreitet, dass sie einen Namen hat. Diese Umgebungsvariablen werden üblicherweise in einer Datei `.env` abgelegt und die Datei wird „dotenv“ genannt.
 
-!!! tip "Tipp"
-    Eine Datei, die mit einem Punkt (`.`) beginnt, ist eine versteckte Datei in Unix-ähnlichen Systemen wie Linux und macOS.
+/// tip | "Tipp"
 
-    Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
+Eine Datei, die mit einem Punkt (`.`) beginnt, ist eine versteckte Datei in Unix-ähnlichen Systemen wie Linux und macOS.
+
+Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
+
+///
 
 Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
-!!! tip "Tipp"
-    Damit das funktioniert, müssen Sie `pip install python-dotenv` ausführen.
+/// tip | "Tipp"
+
+Damit das funktioniert, müssen Sie `pip install python-dotenv` ausführen.
+
+///
 
 ### Die `.env`-Datei
 
@@ -344,26 +403,39 @@ APP_NAME="ChimichangApp"
 
 Und dann aktualisieren Sie Ihre `config.py` mit:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/settings/app03_an/config.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/settings/app03_an/config.py!}
+```
 
-    !!! tip "Tipp"
-        Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Configuration</a>.
+/// tip | "Tipp"
 
-=== "Pydantic v1"
+Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Configuration</a>.
 
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/settings/app03_an/config_pv1.py!}
-    ```
+///
 
-    !!! tip "Tipp"
-        Die Klasse `Config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+////
 
-!!! info
-    In Pydantic Version 1 erfolgte die Konfiguration in einer internen Klasse `Config`, in Pydantic Version 2 erfolgt sie in einem Attribut `model_config`. Dieses Attribut akzeptiert ein `dict`. Um automatische Codevervollständigung und Inline-Fehlerberichte zu erhalten, können Sie `SettingsConfigDict` importieren und verwenden, um dieses `dict` zu definieren.
+//// tab | Pydantic v1
+
+```Python hl_lines="9-10"
+{!> ../../../docs_src/settings/app03_an/config_pv1.py!}
+```
+
+/// tip | "Tipp"
+
+Die Klasse `Config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+
+///
+
+////
+
+/// info
+
+In Pydantic Version 1 erfolgte die Konfiguration in einer internen Klasse `Config`, in Pydantic Version 2 erfolgt sie in einem Attribut `model_config`. Dieses Attribut akzeptiert ein `dict`. Um automatische Codevervollständigung und Inline-Fehlerberichte zu erhalten, können Sie `SettingsConfigDict` importieren und verwenden, um dieses `dict` zu definieren.
+
+///
 
 Hier definieren wir die Konfiguration `env_file` innerhalb Ihrer Pydantic-`Settings`-Klasse und setzen den Wert auf den Dateinamen mit der dotenv-Datei, die wir verwenden möchten.
 
@@ -390,26 +462,35 @@ würden wir dieses Objekt für jeden Request erstellen und die `.env`-Datei für
 
 Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Objekt nur einmal erstellt, nämlich beim ersten Aufruf. ✔️
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
-    ```
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an/main.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="1  10"
-    {!> ../../../docs_src/settings/app03/main.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1  10"
+{!> ../../../docs_src/settings/app03/main.py!}
+```
+
+////
 
 Dann wird bei allen nachfolgenden Aufrufen von `get_settings()`, in den Abhängigkeiten für darauffolgende Requests, dasselbe Objekt zurückgegeben, das beim ersten Aufruf zurückgegeben wurde, anstatt den Code von `get_settings()` erneut auszuführen und ein neues `Settings`-Objekt zu erstellen.
 

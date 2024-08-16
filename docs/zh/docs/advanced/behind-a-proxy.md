@@ -37,9 +37,11 @@ browser --> proxy
 proxy --> server
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    IP `0.0.0.0` 常用于指程序监听本机或服务器上的所有有效 IP。
+IP `0.0.0.0` 常用于指程序监听本机或服务器上的所有有效 IP。
+
+///
 
 API 文档还需要 OpenAPI 概图声明 API `server` 位于 `/api/v1`（使用代理时的 URL）。例如：
 
@@ -76,11 +78,13 @@ $ uvicorn main:app --root-path /api/v1
 
 Hypercorn 也支持 `--root-path `选项。
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    ASGI 规范定义的 `root_path` 就是为了这种用例。
+ASGI 规范定义的 `root_path` 就是为了这种用例。
 
-    并且 `--root-path` 命令行选项支持 `root_path`。
+并且 `--root-path` 命令行选项支持 `root_path`。
+
+///
 
 ### 查看当前的 `root_path`
 
@@ -168,9 +172,11 @@ Uvicorn 预期代理在 `http://127.0.0.1:8000/app` 访问 Uvicorn，而在顶�
 
 这个文件把 Traefik 监听端口设置为 `9999`，并设置要使用另一个文件 `routes.toml`。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    使用端口 9999 代替标准的 HTTP 端口 80，这样就不必使用管理员权限运行（`sudo`）。
+使用端口 9999 代替标准的 HTTP 端口 80，这样就不必使用管理员权限运行（`sudo`）。
+
+///
 
 接下来，创建 `routes.toml`：
 
@@ -236,9 +242,11 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    注意，就算访问 `http://127.0.0.1:8000/app`，也显示从选项 `--root-path` 中提取的 `/api/v1`，这是 `root_path` 的值。
+注意，就算访问 `http://127.0.0.1:8000/app`，也显示从选项 `--root-path` 中提取的 `/api/v1`，这是 `root_path` 的值。
+
+///
 
 打开含 Traefik 端口的 URL，包含路径前缀：<a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app。</a>
 
@@ -281,9 +289,11 @@ $ uvicorn main:app --root-path /api/v1
 
 ## 附加的服务器
 
-!!! warning "警告"
+/// warning | "警告"
 
-    此用例较难，可以跳过。
+此用例较难，可以跳过。
+
+///
 
 默认情况下，**FastAPI** 使用 `root_path` 的链接在 OpenAPI 概图中创建 `server`。
 
@@ -322,17 +332,21 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    注意，自动生成服务器时，`url` 的值 `/api/v1` 提取自 `roog_path`。
+注意，自动生成服务器时，`url` 的值 `/api/v1` 提取自 `roog_path`。
+
+///
 
 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs 的 API 文档所示如下：</a>
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-!!! tip "提示"
+/// tip | "提示"
 
-    API 文档与所选的服务器进行交互。
+API 文档与所选的服务器进行交互。
+
+///
 
 ### 从 `root_path` 禁用自动服务器
 

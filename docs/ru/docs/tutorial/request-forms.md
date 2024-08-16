@@ -2,60 +2,81 @@
 
 Когда вам нужно получить поля формы вместо JSON, вы можете использовать `Form`.
 
-!!! info "Дополнительная информация"
-    Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+/// info | "Дополнительная информация"
 
-    Например, выполните команду `pip install python-multipart`.
+Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+
+Например, выполните команду `pip install python-multipart`.
+
+///
 
 ## Импорт `Form`
 
 Импортируйте `Form` из `fastapi`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать 'Annotated' версию, если это возможно.
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+/// tip | "Подсказка"
+
+Рекомендуется использовать 'Annotated' версию, если это возможно.
+
+///
+
+```Python hl_lines="1"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 ## Определение параметров `Form`
 
 Создайте параметры формы так же, как это делается для `Body` или `Query`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ без Annotated"
+```Python hl_lines="8"
+{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+```
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать 'Annotated' версию, если это возможно.
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_forms/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ без Annotated
+
+/// tip | "Подсказка"
+
+Рекомендуется использовать 'Annotated' версию, если это возможно.
+
+///
+
+```Python hl_lines="7"
+{!> ../../../docs_src/request_forms/tutorial001.py!}
+```
+
+////
 
 Например, в одном из способов использования спецификации OAuth2 (называемом "потоком пароля") требуется отправить `username` и `password` в виде полей формы.
 
@@ -63,11 +84,17 @@
 
 Вы можете настроить `Form` точно так же, как настраиваете и  `Body` ( `Query`, `Path`, `Cookie`), включая валидации, примеры, псевдонимы (например, `user-name` вместо `username`) и т.д.
 
-!!! info "Дополнительная информация"
-    `Form` - это класс, который наследуется непосредственно от `Body`.
+/// info | "Дополнительная информация"
 
-!!! tip "Подсказка"
-   Вам необходимо явно указывать параметр `Form` при объявлении каждого поля, иначе поля будут интерпретироваться как параметры запроса или параметры тела (JSON).
+`Form` - это класс, который наследуется непосредственно от `Body`.
+
+///
+
+/// tip | "Подсказка"
+
+Вам необходимо явно указывать параметр `Form` при объявлении каждого поля, иначе поля будут интерпретироваться как параметры запроса или параметры тела (JSON).
+
+///
 
 ## О "полях формы"
 
@@ -75,17 +102,23 @@
 
 **FastAPI** гарантирует правильное чтение этих данных из соответствующего места, а не из JSON.
 
-!!! note "Технические детали"
-    Данные из форм обычно кодируются с использованием "типа медиа" `application/x-www-form-urlencoded`.
+/// note | "Технические детали"
 
-    Но когда форма содержит файлы, она кодируется как `multipart/form-data`. Вы узнаете о работе с файлами в следующей главе.
+Данные из форм обычно кодируются с использованием "типа медиа" `application/x-www-form-urlencoded`.
 
-    Если вы хотите узнать больше про кодировки и поля формы, ознакомьтесь с <a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank">документацией <abbr title="Mozilla Developer Network">MDN</abbr> для `POST` на веб-сайте</a>.
+Но когда форма содержит файлы, она кодируется как `multipart/form-data`. Вы узнаете о работе с файлами в следующей главе.
 
-!!! warning "Предупреждение"
-    Вы можете объявлять несколько параметров `Form` в *операции пути*, но вы не можете одновременно с этим объявлять поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с использованием `application/x-www-form-urlencoded`, а не `application/json`.
+Если вы хотите узнать больше про кодировки и поля формы, ознакомьтесь с <a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank">документацией <abbr title="Mozilla Developer Network">MDN</abbr> для `POST` на веб-сайте</a>.
 
-    Это не ограничение **FastAPI**, это часть протокола HTTP.
+///
+
+/// warning | "Предупреждение"
+
+Вы можете объявлять несколько параметров `Form` в *операции пути*, но вы не можете одновременно с этим объявлять поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с использованием `application/x-www-form-urlencoded`, а не `application/json`.
+
+Это не ограничение **FastAPI**, это часть протокола HTTP.
+
+///
 
 ## Резюме
 
