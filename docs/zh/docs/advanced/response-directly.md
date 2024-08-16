@@ -14,8 +14,11 @@
 
 事实上，你可以返回任意 `Response` 或者任意 `Response` 的子类。
 
-!!! tip "小贴士"
-    `JSONResponse` 本身是一个 `Response` 的子类。
+/// tip | "小贴士"
+
+`JSONResponse` 本身是一个 `Response` 的子类。
+
+///
 
 当你返回一个 `Response` 时，**FastAPI** 会直接传递它。
 
@@ -36,10 +39,13 @@
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "技术细节"
-    你也可以使用 `from starlette.responses import JSONResponse`。
+/// note | "技术细节"
 
-    出于方便，**FastAPI** 会提供与 `starlette.responses` 相同的 `fastapi.responses` 给开发者。但是大多数可用的响应都直接来自 Starlette。
+你也可以使用 `from starlette.responses import JSONResponse`。
+
+出于方便，**FastAPI** 会提供与 `starlette.responses` 相同的 `fastapi.responses` 给开发者。但是大多数可用的响应都直接来自 Starlette。
+
+///
 
 ## 返回自定义 `Response`
 

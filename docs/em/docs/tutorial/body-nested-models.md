@@ -6,17 +6,21 @@
 
 👆 💪 🔬 🔢 🏾. 🖼, 🐍 `list`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial001.py!}
-    ```
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial001.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
+```
+
+////
 
 👉 🔜 ⚒ `tags` 📇, 👐 ⚫️ 🚫 📣 🆎 🔣 📇.
 
@@ -61,23 +65,29 @@ my_list: List[str]
 
 , 👆 🖼, 👥 💪 ⚒ `tags` 🎯 "📇 🎻":
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002.py!}
-    ```
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
+```
+
+////
 
 ## ⚒ 🆎
 
@@ -87,23 +97,29 @@ my_list: List[str]
 
 ⤴️ 👥 💪 📣 `tags` ⚒ 🎻:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="1  14"
-    {!> ../../../docs_src/body_nested_models/tutorial003.py!}
-    ```
+```Python hl_lines="1  14"
+{!> ../../../docs_src/body_nested_models/tutorial003.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="14"
+{!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="12"
+{!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
+```
+
+////
 
 ⏮️ 👉, 🚥 👆 📨 📨 ⏮️ ❎ 📊, ⚫️ 🔜 🗜 ⚒ 😍 🏬.
 
@@ -125,45 +141,57 @@ my_list: List[str]
 
 🖼, 👥 💪 🔬 `Image` 🏷:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
+```Python hl_lines="9-11"
+{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="9-11"
+{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="7-9"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="7-9"
+{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+```
+
+////
 
 ### ⚙️ 📊 🆎
 
 &amp; ⤴️ 👥 💪 ⚙️ ⚫️ 🆎 🔢:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+```
+
+////
 
 👉 🔜 ⛓ 👈 **FastAPI** 🔜 ⌛ 💪 🎏:
 
@@ -196,23 +224,29 @@ my_list: List[str]
 
 🖼, `Image` 🏷 👥 ✔️ `url` 🏑, 👥 💪 📣 ⚫️ ↩️ `str`, Pydantic `HttpUrl`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005.py!}
-    ```
+```Python hl_lines="4  10"
+{!> ../../../docs_src/body_nested_models/tutorial005.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="4  10"
+{!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="2  8"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="2  8"
+{!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
+```
+
+////
 
 🎻 🔜 ✅ ☑ 📛, &amp; 📄 🎻 🔗 / 🗄 ✅.
 
@@ -220,23 +254,29 @@ my_list: List[str]
 
 👆 💪 ⚙️ Pydantic 🏷 🏾 `list`, `set`, ♒️:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006.py!}
-    ```
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial006.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="20"
+{!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
+```
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
+```
+
+////
 
 👉 🔜 ⌛ (🗜, ✔, 📄, ♒️) 🎻 💪 💖:
 
@@ -264,33 +304,45 @@ my_list: List[str]
 }
 ```
 
-!!! info
-    👀 ❔ `images` 🔑 🔜 ✔️ 📇 🖼 🎚.
+/// info
+
+👀 ❔ `images` 🔑 🔜 ✔️ 📇 🖼 🎚.
+
+///
 
 ## 🙇 🐦 🏷
 
 👆 💪 🔬 🎲 🙇 🐦 🏷:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007.py!}
-    ```
+```Python hl_lines="9  14  20  23  27"
+{!> ../../../docs_src/body_nested_models/tutorial007.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="9  14  20  23  27"
+{!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
+```
 
-    ```Python hl_lines="7  12  18  21  25"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
-    ```
+////
 
-!!! info
-    👀 ❔ `Offer` ✔️ 📇 `Item`Ⓜ, ❔ 🔄 ✔️ 📦 📇 `Image`Ⓜ
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="7  12  18  21  25"
+{!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
+```
+
+////
+
+/// info
+
+👀 ❔ `Offer` ✔️ 📇 `Item`Ⓜ, ❔ 🔄 ✔️ 📦 📇 `Image`Ⓜ
+
+///
 
 ## 💪 😁 📇
 
@@ -308,17 +360,21 @@ images: list[Image]
 
 :
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/body_nested_models/tutorial008.py!}
-    ```
+```Python hl_lines="15"
+{!> ../../../docs_src/body_nested_models/tutorial008.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="13"
+{!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
+```
+
+////
 
 ## 👨‍🎨 🐕‍🦺 🌐
 
@@ -348,26 +404,33 @@ images: list[Image]
 
 👉 💼, 👆 🔜 🚫 🙆 `dict` 📏 ⚫️ ✔️ `int` 🔑 ⏮️ `float` 💲:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/body_nested_models/tutorial009.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/body_nested_models/tutorial009.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-!!! tip
-    ✔️ 🤯 👈 🎻 🕴 🐕‍🦺 `str` 🔑.
+```Python hl_lines="7"
+{!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
+```
 
-    ✋️ Pydantic ✔️ 🏧 💽 🛠️.
+////
 
-    👉 ⛓ 👈, ✋️ 👆 🛠️ 👩‍💻 💪 🕴 📨 🎻 🔑, 📏 👈 🎻 🔌 😁 🔢, Pydantic 🔜 🗜 👫 &amp; ✔ 👫.
+/// tip
 
-     &amp; `dict` 👆 📨 `weights` 🔜 🤙 ✔️ `int` 🔑 &amp; `float` 💲.
+✔️ 🤯 👈 🎻 🕴 🐕‍🦺 `str` 🔑.
+
+✋️ Pydantic ✔️ 🏧 💽 🛠️.
+
+👉 ⛓ 👈, ✋️ 👆 🛠️ 👩‍💻 💪 🕴 📨 🎻 🔑, 📏 👈 🎻 🔌 😁 🔢, Pydantic 🔜 🗜 👫 &amp; ✔ 👫.
+
+ &amp; `dict` 👆 📨 `weights` 🔜 🤙 ✔️ `int` 🔑 &amp; `float` 💲.
+
+///
 
 ## 🌃
 
