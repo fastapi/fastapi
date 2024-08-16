@@ -64,7 +64,7 @@ standard = [
     # For forms and file uploads
     "python-multipart >=0.0.7",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # TODO: this should be part of some pydantic optional extra dependencies
@@ -91,7 +91,7 @@ all = [
     # For ORJSONResponse
     "orjson >=3.2.1",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # Settings management

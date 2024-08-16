@@ -458,7 +458,7 @@ When you install FastAPI with `pip install "fastapi[standard]"` it comes the `st
 
 Used by Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
 
 Used by Starlette:
 

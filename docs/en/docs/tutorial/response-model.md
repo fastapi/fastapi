@@ -131,7 +131,7 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 /// info
 
-To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
 
 E.g. `pip install email-validator`
 or `pip install pydantic[email]`.
