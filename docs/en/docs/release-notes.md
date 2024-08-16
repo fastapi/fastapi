@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 🔨 Specify `email-validator` dependency with dash. PR [#11515](https://github.com/fastapi/fastapi/pull/11515) by [@jirikuncar](https://github.com/jirikuncar).
 * 🌐 Add Spanish translation for `docs/es/docs/project-generation.md`. PR [#11947](https://github.com/fastapi/fastapi/pull/11947) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Fix minor typo. PR [#12026](https://github.com/fastapi/fastapi/pull/12026) by [@MicaelJarniac](https://github.com/MicaelJarniac).
 * 📝 Several docs improvements, tweaks, and clarifications. PR [#11390](https://github.com/fastapi/fastapi/pull/11390) by [@nilslindemann](https://github.com/nilslindemann).
