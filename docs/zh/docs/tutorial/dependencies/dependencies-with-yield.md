@@ -39,7 +39,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-"yield"语句后面的代码会在发送响应后执行：：
+"yield"语句后面的代码会在创建响应后,发送响应前执行：
 
 ```Python hl_lines="5-6"
 {!../../../docs_src/dependencies/tutorial007.py!}
