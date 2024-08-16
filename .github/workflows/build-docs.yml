@@ -22,8 +22,6 @@ jobs:
     - uses: dorny/paths-filter@v3
       id: filter
       with:
-        # TODO: fix this
-        # - pyproject.toml
         filters: |
           docs:
             - README.md
@@ -31,6 +29,7 @@ jobs:
             - docs_src/**
             - requirements-docs.txt
             - requirements-docs-insiders.txt
+            - pyproject.toml
             - mkdocs.yml
             - mkdocs.insiders.yml
             - mkdocs.maybe-insiders.yml
