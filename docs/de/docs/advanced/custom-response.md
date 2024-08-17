@@ -12,8 +12,11 @@ Der Inhalt, den Sie von Ihrer *Pfadoperation-Funktion* zurückgeben, wird in die
 
 Und wenn diese `Response` einen JSON-Medientyp (`application/json`) hat, wie es bei `JSONResponse` und `UJSONResponse` der Fall ist, werden die von Ihnen zurückgegebenen Daten automatisch mit jedem Pydantic `response_model` konvertiert (und gefiltert), das Sie im *Pfadoperation-Dekorator* deklariert haben.
 
-!!! note "Hinweis"
-    Wenn Sie eine Response-Klasse ohne Medientyp verwenden, erwartet FastAPI, dass Ihre Response keinen Inhalt hat, und dokumentiert daher das Format der Response nicht in deren generierter OpenAPI-Dokumentation.
+/// note | "Hinweis"
+
+Wenn Sie eine Response-Klasse ohne Medientyp verwenden, erwartet FastAPI, dass Ihre Response keinen Inhalt hat, und dokumentiert daher das Format der Response nicht in deren generierter OpenAPI-Dokumentation.
+
+///
 
 ## `ORJSONResponse` verwenden
 
@@ -31,15 +34,21 @@ Wenn Sie jedoch sicher sind, dass der von Ihnen zurückgegebene Inhalt **mit JSO
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-!!! info
-    Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
+/// info
 
-    In diesem Fall wird der HTTP-Header `Content-Type` auf `application/json` gesetzt.
+Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
 
-    Und er wird als solcher in OpenAPI dokumentiert.
+In diesem Fall wird der HTTP-Header `Content-Type` auf `application/json` gesetzt.
 
-!!! tip "Tipp"
-    Die `ORJSONResponse` ist derzeit nur in FastAPI verfügbar, nicht in Starlette.
+Und er wird als solcher in OpenAPI dokumentiert.
+
+///
+
+/// tip | "Tipp"
+
+Die `ORJSONResponse` ist derzeit nur in FastAPI verfügbar, nicht in Starlette.
+
+///
 
 ## HTML-Response
 
@@ -52,12 +61,15 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 {!../../../docs_src/custom_response/tutorial002.py!}
 ```
 
-!!! info
-    Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
+/// info
 
-    In diesem Fall wird der HTTP-Header `Content-Type` auf `text/html` gesetzt.
+Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
 
-    Und er wird als solcher in OpenAPI dokumentiert.
+In diesem Fall wird der HTTP-Header `Content-Type` auf `text/html` gesetzt.
+
+Und er wird als solcher in OpenAPI dokumentiert.
+
+///
 
 ### Eine `Response` zurückgeben
 
@@ -69,11 +81,17 @@ Das gleiche Beispiel von oben, das eine `HTMLResponse` zurückgibt, könnte so a
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
 
-!!! warning "Achtung"
-    Eine `Response`, die direkt von Ihrer *Pfadoperation-Funktion* zurückgegeben wird, wird in OpenAPI nicht dokumentiert (zum Beispiel wird der `Content-Type` nicht dokumentiert) und ist in der automatischen interaktiven Dokumentation nicht sichtbar.
+/// warning | "Achtung"
 
-!!! info
-    Natürlich stammen der eigentliche `Content-Type`-Header, der Statuscode, usw., aus dem `Response`-Objekt, das Sie zurückgegeben haben.
+Eine `Response`, die direkt von Ihrer *Pfadoperation-Funktion* zurückgegeben wird, wird in OpenAPI nicht dokumentiert (zum Beispiel wird der `Content-Type` nicht dokumentiert) und ist in der automatischen interaktiven Dokumentation nicht sichtbar.
+
+///
+
+/// info
+
+Natürlich stammen der eigentliche `Content-Type`-Header, der Statuscode, usw., aus dem `Response`-Objekt, das Sie zurückgegeben haben.
+
+///
 
 ### In OpenAPI dokumentieren und `Response` überschreiben
 
@@ -103,10 +121,13 @@ Hier sind einige der verfügbaren Responses.
 
 Bedenken Sie, dass Sie `Response` verwenden können, um alles andere zurückzugeben, oder sogar eine benutzerdefinierte Unterklasse zu erstellen.
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+///
 
 ### `Response`
 
@@ -153,15 +174,21 @@ Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjs
 
 Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
-!!! warning "Achtung"
-    `ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
+/// warning | "Achtung"
+
+`ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
+
+///
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Möglicherweise ist `ORJSONResponse` eine schnellere Alternative.
+/// tip | "Tipp"
+
+Möglicherweise ist `ORJSONResponse` eine schnellere Alternative.
+
+///
 
 ### `RedirectResponse`
 
@@ -222,8 +249,11 @@ Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbei
 
     Auf diese Weise können wir das Ganze in einen `with`-Block einfügen und so sicherstellen, dass das dateiartige Objekt nach Abschluss geschlossen wird.
 
-!!! tip "Tipp"
-    Beachten Sie, dass wir, da wir Standard-`open()` verwenden, welches `async` und `await` nicht unterstützt, hier die Pfadoperation mit normalen `def` deklarieren.
+/// tip | "Tipp"
+
+Beachten Sie, dass wir, da wir Standard-`open()` verwenden, welches `async` und `await` nicht unterstützt, hier die Pfadoperation mit normalen `def` deklarieren.
+
+///
 
 ### `FileResponse`
 
@@ -292,8 +322,11 @@ Im folgenden Beispiel verwendet **FastAPI** standardmäßig `ORJSONResponse` in 
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 
-!!! tip "Tipp"
-    Sie können dennoch weiterhin `response_class` in *Pfadoperationen* überschreiben, wie bisher.
+/// tip | "Tipp"
+
+Sie können dennoch weiterhin `response_class` in *Pfadoperationen* überschreiben, wie bisher.
+
+///
 
 ## Zusätzliche Dokumentation
 

@@ -3,7 +3,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 _Unset: Any = Undefined
 
@@ -240,7 +240,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -565,7 +565,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -880,7 +880,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1185,7 +1185,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1512,7 +1512,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1827,7 +1827,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2141,7 +2141,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
