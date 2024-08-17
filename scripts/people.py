@@ -290,7 +290,7 @@ class SponsorsResponse(BaseModel):
 
 
 class Settings(BaseSettings):
-    input_token: SecretStr
+    token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
 
