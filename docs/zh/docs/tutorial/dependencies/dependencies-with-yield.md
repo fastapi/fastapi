@@ -1,6 +1,6 @@
 # 使用yield的依赖项
 
-FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出”("exit")，"清理”("cleanup")，"拆卸”("teardown")，"关闭”("close")，"上下文管理器”("context managers")。 ...'>额外步骤</abbr>的依赖项.
+FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("exit")，"清理"("cleanup")，"拆卸"("teardown")，"关闭"("close")，"上下文管理器"("context managers")。 ...'>额外步骤</abbr>的依赖项.
 
 为此，你需要使用 `yield` 而不是 `return`，然后再编写这些额外的步骤（代码）。
 
@@ -70,7 +70,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出”("
 
 你可以声明任意数量和层级的树状依赖，而且它们中的任何一个或所有的都可以使用 `yield`。
 
-**FastAPI** 会确保每个带有 `yield` 的依赖中的"退出代码”按正确顺序运行。
+**FastAPI** 会确保每个带有 `yield` 的依赖中的"退出代码"按正确顺序运行。
 
 例如，`dependency_c` 可以依赖于 `dependency_b`，而 `dependency_b` 则依赖于 `dependency_a`。
 
@@ -367,9 +367,9 @@ participant tasks as Background tasks
 
 ## 上下文管理器
 
-### 什么是"上下文管理器”
+### 什么是"上下文管理器"
 
-"上下文管理器”是你可以在 `with` 语句中使用的任何Python对象。
+"上下文管理器"是你可以在 `with` 语句中使用的任何Python对象。
 
 例如，<a href="https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">你可以使用`with`读取文件</a>：
 
@@ -379,7 +379,7 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-在底层，`open("./somefile.txt")`创建了一个被称为"上下文管理器”的对象。
+在底层，`open("./somefile.txt")`创建了一个被称为"上下文管理器"的对象。
 
 当 `with` 代码块结束时，它会确保关闭文件，即使发生了异常也是如此。
 
@@ -389,7 +389,7 @@ with open("./somefile.txt") as f:
 
 /// warning | 注意
 
-这是一个更为"高级”的想法。
+这是一个更为"高级"的想法。
 
 如果你刚开始使用 **FastAPI** ，你可以暂时可以跳过它。
 
