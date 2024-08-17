@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* 🔨 Standardize shebang across shell scripts. PR [#11942](https://github.com/fastapi/fastapi/pull/11942) by [@gitworkflows](https://github.com/gitworkflows).
 * ⬆ Update sqlalchemy requirement from <1.4.43,>=1.3.18 to >=1.3.18,<2.0.33. PR [#11979](https://github.com/fastapi/fastapi/pull/11979) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔊 Remove old ignore warnings. PR [#11950](https://github.com/fastapi/fastapi/pull/11950) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade griffe-typingdoc for the docs. PR [#12029](https://github.com/fastapi/fastapi/pull/12029) by [@tiangolo](https://github.com/tiangolo).
