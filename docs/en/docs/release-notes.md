@@ -7,8 +7,17 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* 🎨 Fix typing annotation for semi-internal `FastAPI.add_api_route()`. PR [#10240](https://github.com/fastapi/fastapi/pull/10240) by [@ordinary-jamie](https://github.com/ordinary-jamie).
+* ⬆️ Upgrade version of Ruff and reformat. PR [#12032](https://github.com/fastapi/fastapi/pull/12032) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
+* ✏️ Fix import typo in reference example for `Security`. PR [#11168](https://github.com/fastapi/fastapi/pull/11168) by [@0shah0](https://github.com/0shah0).
+* 📝 Highlight correct line in tutorial `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11978](https://github.com/fastapi/fastapi/pull/11978) by [@svlandeg](https://github.com/svlandeg).
+* 🔥 Remove Sentry link from Advanced Middleware docs. PR [#12031](https://github.com/fastapi/fastapi/pull/12031) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Clarify management tasks for translations, multiples files in one PR. PR [#12030](https://github.com/fastapi/fastapi/pull/12030) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Edit the link to the OpenAPI "Responses Object" and "Response Object" sections in the "Additional Responses in OpenAPI" section. PR [#11996](https://github.com/fastapi/fastapi/pull/11996) by [@VaitoSoi](https://github.com/VaitoSoi).
 * 🔨 Specify `email-validator` dependency with dash. PR [#11515](https://github.com/fastapi/fastapi/pull/11515) by [@jirikuncar](https://github.com/jirikuncar).
 * 🌐 Add Spanish translation for `docs/es/docs/project-generation.md`. PR [#11947](https://github.com/fastapi/fastapi/pull/11947) by [@alejsdev](https://github.com/alejsdev).
@@ -18,8 +27,14 @@ hide:
 * 📝 Fix inconsistent response code when item already exists in docs for testing. PR [#11818](https://github.com/fastapi/fastapi/pull/11818) by [@lokomilo](https://github.com/lokomilo).
 * 📝 Update `docs/en/docs/tutorial/body.md` with Python 3.10 union type example. PR [#11415](https://github.com/fastapi/fastapi/pull/11415) by [@rangzen](https://github.com/rangzen).
 
+### Translations
+
+* 🌐 Update Urdu translation for `docs/ur/docs/benchmarks.md`. PR [#10046](https://github.com/fastapi/fastapi/pull/10046) by [@AhsanSheraz](https://github.com/AhsanSheraz).
+
 ### Internal
 
+* 🔨 Standardize shebang across shell scripts. PR [#11942](https://github.com/fastapi/fastapi/pull/11942) by [@gitworkflows](https://github.com/gitworkflows).
+* ⬆ Update sqlalchemy requirement from <1.4.43,>=1.3.18 to >=1.3.18,<2.0.33. PR [#11979](https://github.com/fastapi/fastapi/pull/11979) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔊 Remove old ignore warnings. PR [#11950](https://github.com/fastapi/fastapi/pull/11950) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade griffe-typingdoc for the docs. PR [#12029](https://github.com/fastapi/fastapi/pull/12029) by [@tiangolo](https://github.com/tiangolo).
 * 🙈 Add .coverage* to `.gitignore`. PR [#11940](https://github.com/fastapi/fastapi/pull/11940) by [@gitworkflows](https://github.com/gitworkflows).
