@@ -89,7 +89,7 @@ Kaynak koduna, dökümantasyona, çevirilere ve bir sürü şeye katkıda bulund
 </div>
 {% endif %}
 
-Bunlar dışında katkıda bulunan, yüzden fazla, bir sürü insan var. Hepsini <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Katkıda Bulunanlar</a> sayfasında görebilirsin. 👷
+Bunlar dışında katkıda bulunan, yüzden fazla, bir sürü insan var. Hepsini <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Katkıda Bulunanlar</a> sayfasında görebilirsin. 👷
 
 ## En Fazla Değerlendirme Yapanlar
 
@@ -176,7 +176,7 @@ Bu sayfanın temel amacı, topluluğun başkalarına yardım etme çabasını vu
 
 Özellikle normalde daha az görünür olan ve çoğu durumda daha zahmetli olan, diğerlerine sorularında yardımcı olmak, çevirileri ve Pull Request'leri gözden geçirmek gibi çabalar dahil.
 
-Veriler ayda bir hesaplanır, <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">kaynak kodu buradan</a> okuyabilirsin.
+Veriler ayda bir hesaplanır, <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">kaynak kodu buradan</a> okuyabilirsin.
 
 Burada sponsorların katkılarını da vurguluyorum.
 

@@ -8,10 +8,13 @@
 
 ## ⚙️ `TestClient`
 
-!!! info
-    ⚙️ `TestClient`, 🥇 ❎ <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+/// info
 
-    🤶 Ⓜ. `pip install httpx`.
+⚙️ `TestClient`, 🥇 ❎ <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+
+🤶 Ⓜ. `pip install httpx`.
+
+///
 
 🗄 `TestClient`.
 
@@ -27,20 +30,29 @@
 {!../../../docs_src/app_testing/tutorial001.py!}
 ```
 
-!!! tip
-    👀 👈 🔬 🔢 😐 `def`, 🚫 `async def`.
+/// tip
 
-     &amp; 🤙 👩‍💻 😐 🤙, 🚫 ⚙️ `await`.
+👀 👈 🔬 🔢 😐 `def`, 🚫 `async def`.
 
-    👉 ✔ 👆 ⚙️ `pytest` 🔗 🍵 🤢.
+ &amp; 🤙 👩‍💻 😐 🤙, 🚫 ⚙️ `await`.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.testclient import TestClient`.
+👉 ✔ 👆 ⚙️ `pytest` 🔗 🍵 🤢.
 
-    **FastAPI** 🚚 🎏 `starlette.testclient` `fastapi.testclient` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+///
 
-!!! tip
-    🚥 👆 💚 🤙 `async` 🔢 👆 💯 ↖️ ⚪️➡️ 📨 📨 👆 FastAPI 🈸 (✅ 🔁 💽 🔢), ✔️ 👀 [🔁 💯](../advanced/async-tests.md){.internal-link target=_blank} 🏧 🔰.
+/// note | "📡 ℹ"
+
+👆 💪 ⚙️ `from starlette.testclient import TestClient`.
+
+**FastAPI** 🚚 🎏 `starlette.testclient` `fastapi.testclient` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///
+
+/// tip
+
+🚥 👆 💚 🤙 `async` 🔢 👆 💯 ↖️ ⚪️➡️ 📨 📨 👆 FastAPI 🈸 (✅ 🔁 💽 🔢), ✔️ 👀 [🔁 💯](../advanced/async-tests.md){.internal-link target=_blank} 🏧 🔰.
+
+///
 
 ## 🎏 💯
 
@@ -110,17 +122,21 @@
 
 👯‍♂️ *➡ 🛠️* 🚚 `X-Token` 🎚.
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
 
 ### ↔ 🔬 📁
 
@@ -144,10 +160,13 @@
 
 🌖 ℹ 🔃 ❔ 🚶‍♀️ 💽 👩‍💻 (⚙️ `httpx` ⚖️ `TestClient`) ✅ <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲 🧾</a>.
 
-!!! info
-    🗒 👈 `TestClient` 📨 💽 👈 💪 🗜 🎻, 🚫 Pydantic 🏷.
+/// info
 
-    🚥 👆 ✔️ Pydantic 🏷 👆 💯 &amp; 👆 💚 📨 🚮 💽 🈸 ⏮️ 🔬, 👆 💪 ⚙️ `jsonable_encoder` 🔬 [🎻 🔗 🔢](encoder.md){.internal-link target=_blank}.
+🗒 👈 `TestClient` 📨 💽 👈 💪 🗜 🎻, 🚫 Pydantic 🏷.
+
+🚥 👆 ✔️ Pydantic 🏷 👆 💯 &amp; 👆 💚 📨 🚮 💽 🈸 ⏮️ 🔬, 👆 💪 ⚙️ `jsonable_encoder` 🔬 [🎻 🔗 🔢](encoder.md){.internal-link target=_blank}.
+
+///
 
 ## 🏃 ⚫️
 

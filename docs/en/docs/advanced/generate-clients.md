@@ -20,7 +20,11 @@ Some of them also ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-autho
 
 And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
 
-For example, you might want to try <a href="https://speakeasyapi.dev/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> and <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>.
+For example, you might want to try:
+
+* <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+* <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
+* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi/?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
 There are also several other companies offering similar services that you can search and find online. 🤓
 
@@ -28,17 +32,21 @@ There are also several other companies offering similar services that you can se
 
 Let's start with a simple FastAPI application:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="7-9  12-13  16-17  21"
-    {!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
-    ```
+```Python hl_lines="7-9  12-13  16-17  21"
+{!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9-11  14-15  18  19  23"
-    {!> ../../../docs_src/generate_clients/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9-11  14-15  18  19  23"
+{!> ../../../docs_src/generate_clients/tutorial001.py!}
+```
+
+////
 
 Notice that the *path operations* define the models they use for request payload and response payload, using the models `Item` and `ResponseMessage`.
 
@@ -123,8 +131,11 @@ You will also get autocompletion for the payload to send:
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-!!! tip
-    Notice the autocompletion for `name` and `price`, that was defined in the FastAPI application, in the `Item` model.
+/// tip
+
+Notice the autocompletion for `name` and `price`, that was defined in the FastAPI application, in the `Item` model.
+
+///
 
 You will have inline errors for the data that you send:
 
@@ -140,17 +151,21 @@ In many cases your FastAPI app will be bigger, and you will probably use tags to
 
 For example, you could have a section for **items** and another section for **users**, and they could be separated by tags:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="21  26  34"
-    {!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
-    ```
+```Python hl_lines="21  26  34"
+{!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="23  28  36"
-    {!> ../../../docs_src/generate_clients/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="23  28  36"
+{!> ../../../docs_src/generate_clients/tutorial002.py!}
+```
+
+////
 
 ### Generate a TypeScript Client with Tags
 
@@ -197,17 +212,21 @@ For example, here it is using the first tag (you will probably have only one tag
 
 You can then pass that custom function to **FastAPI** as the `generate_unique_id_function` parameter:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6-7  10"
-    {!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
-    ```
+```Python hl_lines="6-7  10"
+{!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="8-9  12"
-    {!> ../../../docs_src/generate_clients/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="8-9  12"
+{!> ../../../docs_src/generate_clients/tutorial003.py!}
+```
+
+////
 
 ### Generate a TypeScript Client with Custom Operation IDs
 
@@ -229,17 +248,21 @@ But for the generated client we could **modify** the OpenAPI operation IDs right
 
 We could download the OpenAPI JSON to a file `openapi.json` and then we could **remove that prefixed tag** with a script like this:
 
-=== "Python"
+//// tab | Python
 
-    ```Python
-    {!> ../../../docs_src/generate_clients/tutorial004.py!}
-    ```
+```Python
+{!> ../../../docs_src/generate_clients/tutorial004.py!}
+```
 
-=== "Node.js"
+////
 
-    ```Javascript
-    {!> ../../../docs_src/generate_clients/tutorial004.js!}
-    ```
+//// tab | Node.js
+
+```Javascript
+{!> ../../../docs_src/generate_clients/tutorial004.js!}
+```
+
+////
 
 With that, the operation IDs would be renamed from things like `items-get_items` to just `get_items`, that way the client generator can generate simpler method names.
 

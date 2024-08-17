@@ -24,8 +24,11 @@ You can declare the type of a path parameter in the function, using standard Pyt
 
 In this case, `item_id` is declared to be an `int`.
 
-!!! check
-    This will give you editor support inside of your function, with error checks, completion, etc.
+/// check
+
+This will give you editor support inside of your function, with error checks, completion, etc.
+
+///
 
 ## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
 
@@ -35,10 +38,13 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
 {"item_id":3}
 ```
 
-!!! check
-    Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
+/// check
 
-    So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
+
+So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+
+///
 
 ## Data validation
 
@@ -65,12 +71,15 @@ because the path parameter `item_id` had a value of `"foo"`, which is not an `in
 
 The same error would appear if you provided a `float` instead of an `int`, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
-    So, with the same Python type declaration, **FastAPI** gives you data validation.
+/// check
 
-    Notice that the error also clearly states exactly the point where the validation didn't pass.
+So, with the same Python type declaration, **FastAPI** gives you data validation.
 
-    This is incredibly helpful while developing and debugging code that interacts with your API.
+Notice that the error also clearly states exactly the point where the validation didn't pass.
+
+This is incredibly helpful while developing and debugging code that interacts with your API.
+
+///
 
 ## Documentation
 
@@ -78,10 +87,13 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
-    Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
+/// check
 
-    Notice that the path parameter is declared to be an integer.
+Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
+
+Notice that the path parameter is declared to be an integer.
+
+///
 
 ## Standards-based benefits, alternative documentation
 
@@ -141,11 +153,17 @@ Then create class attributes with fixed values, which will be the available vali
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+/// info
 
-!!! tip
-    If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+
+///
+
+/// tip
+
+If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+
+///
 
 ### Declare a *path parameter*
 
@@ -181,8 +199,11 @@ You can get the actual value (a `str` in this case) using `model_name.value`, or
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip
-    You could also access the value `"lenet"` with `ModelName.lenet.value`.
+/// tip
+
+You could also access the value `"lenet"` with `ModelName.lenet.value`.
+
+///
 
 #### Return *enumeration members*
 
@@ -235,10 +256,13 @@ So, you can use it with:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip
-    You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+/// tip
 
-    In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
+You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+
+In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
+
+///
 
 ## Recap
 

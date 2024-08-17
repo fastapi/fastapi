@@ -8,26 +8,35 @@
 * `@app.delete()`
 * 等等。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
-    ```
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001.py!}
-    ```
+////
 
-!!! note
-    注意，`response_model`是「装饰器」方法（`get`，`post` 等）的一个参数。不像之前的所有参数和请求体，它不属于*路径操作函数*。
+//// tab | Python 3.8+
+
+```Python hl_lines="17  22  24-27"
+{!> ../../../docs_src/response_model/tutorial001.py!}
+```
+
+////
+
+/// note
+
+注意，`response_model`是「装饰器」方法（`get`，`post` 等）的一个参数。不像之前的所有参数和请求体，它不属于*路径操作函数*。
+
+///
 
 它接收的类型与你将为 Pydantic 模型属性所声明的类型相同，因此它可以是一个 Pydantic 模型，但也可以是一个由 Pydantic 模型组成的 `list`，例如 `List[Item]`。
 
@@ -42,8 +51,11 @@ FastAPI 将使用此 `response_model` 来：
 
 * 会将输出数据限制在该模型定义内。下面我们会看到这一点有多重要。
 
-!!! note "技术细节"
-    响应模型在参数中被声明，而不是作为函数返回类型的注解，这是因为路径函数可能不会真正返回该响应模型，而是返回一个 `dict`、数据库对象或其他模型，然后再使用 `response_model` 来执行字段约束和序列化。
+/// note | "技术细节"
+
+响应模型在参数中被声明，而不是作为函数返回类型的注解，这是因为路径函数可能不会真正返回该响应模型，而是返回一个 `dict`、数据库对象或其他模型，然后再使用 `response_model` 来执行字段约束和序列化。
+
+///
 
 ## 返回与输入相同的数据
 
@@ -65,52 +77,67 @@ FastAPI 将使用此 `response_model` 来：
 
 但是，如果我们在其他的*路径操作*中使用相同的模型，则可能会将用户的密码发送给每个客户端。
 
-!!! danger
-    永远不要存储用户的明文密码，也不要在响应中发送密码。
+/// danger
+
+永远不要存储用户的明文密码，也不要在响应中发送密码。
+
+///
 
 ## 添加输出模型
 
 相反，我们可以创建一个有明文密码的输入模型和一个没有明文密码的输出模型：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9  11  16"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="9  11  16"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9  11  16"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9  11  16"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 这样，即便我们的*路径操作函数*将会返回包含密码的相同输入用户：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="24"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 ...我们已经将 `response_model` 声明为了不包含密码的 `UserOut` 模型：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
-    ```
+```Python hl_lines="22"
+{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="22"
+{!> ../../../docs_src/response_model/tutorial003.py!}
+```
+
+////
 
 因此，**FastAPI** 将会负责过滤掉未在输出模型中声明的所有数据（使用 Pydantic）。
 
@@ -159,16 +186,22 @@ FastAPI 将使用此 `response_model` 来：
 }
 ```
 
-!!! info
-    FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
+/// info
 
-!!! info
-    你还可以使用：
+FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">该方法的 `exclude_unset` 参数</a> 来实现此功能。
 
-    * `response_model_exclude_defaults=True`
-    * `response_model_exclude_none=True`
+///
 
-    参考 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
+/// info
+
+你还可以使用：
+
+* `response_model_exclude_defaults=True`
+* `response_model_exclude_none=True`
+
+参考 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
+
+///
 
 #### 默认值字段有实际值的数据
 
@@ -203,10 +236,13 @@ FastAPI 将使用此 `response_model` 来：
 
 因此，它们将包含在 JSON 响应中。
 
-!!! tip
-    请注意默认值可以是任何值，而不仅是`None`。
+/// tip
 
-    它们可以是一个列表（`[]`），一个值为 `10.5`的 `float`，等等。
+请注意默认值可以是任何值，而不仅是`None`。
+
+它们可以是一个列表（`[]`），一个值为 `10.5`的 `float`，等等。
+
+///
 
 ### `response_model_include` 和 `response_model_exclude`
 
@@ -216,21 +252,27 @@ FastAPI 将使用此 `response_model` 来：
 
 如果你只有一个 Pydantic 模型，并且想要从输出中移除一些数据，则可以使用这种快捷方法。
 
-!!! tip
-    但是依然建议你使用上面提到的主意，使用多个类而不是这些参数。
+/// tip
 
-    这是因为即使使用 `response_model_include` 或 `response_model_exclude` 来省略某些属性，在应用程序的 OpenAPI 定义（和文档）中生成的 JSON Schema 仍将是完整的模型。
+但是依然建议你使用上面提到的主意，使用多个类而不是这些参数。
 
-    这也适用于作用类似的 `response_model_by_alias`。
+这是因为即使使用 `response_model_include` 或 `response_model_exclude` 来省略某些属性，在应用程序的 OpenAPI 定义（和文档）中生成的 JSON Schema 仍将是完整的模型。
+
+这也适用于作用类似的 `response_model_by_alias`。
+
+///
 
 ```Python hl_lines="31  37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
 
-!!! tip
-    `{"name", "description"}` 语法创建一个具有这两个值的 `set`。
+/// tip
 
-    等同于 `set(["name", "description"])`。
+`{"name", "description"}` 语法创建一个具有这两个值的 `set`。
+
+等同于 `set(["name", "description"])`。
+
+///
 
 #### 使用 `list` 而不是 `set`
 
