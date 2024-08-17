@@ -549,7 +549,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.input_token.get_secret_value())
+    g = Github(settings.token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     discussion_nodes = get_discussion_nodes(settings=settings)
     experts_results = get_discussions_experts(discussion_nodes=discussion_nodes)
