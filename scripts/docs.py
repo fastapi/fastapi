@@ -29,6 +29,7 @@ missing_translation_snippet = """
 non_translated_sections = [
     "reference/",
     "release-notes.md",
+    "fastapi-people.md",
     "external-links.md",
     "newsletter.md",
     "management-tasks.md",
