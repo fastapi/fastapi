@@ -302,7 +302,7 @@ def get_graphql_response(
     after: Union[str, None] = None,
     category_id: Union[str, None] = None,
 ) -> Dict[str, Any]:
-    headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
+    headers = {"Authorization": f"token {settings.token.get_secret_value()}"}
     # category_id is only used by one query, but GraphQL allows unused variables, so
     # keep it here for simplicity
     variables = {"after": after, "category_id": category_id}
