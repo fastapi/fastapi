@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ⬆️ Upgrade version of Ruff and reformat. PR [#12032](https://github.com/fastapi/fastapi/pull/12032) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Highlight correct line in tutorial `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11978](https://github.com/fastapi/fastapi/pull/11978) by [@svlandeg](https://github.com/svlandeg).
