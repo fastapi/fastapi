@@ -69,14 +69,19 @@ De la même façon, vous pouvez définir des paramètres de requête comme optio
 
 Ici, le paramètre `q` sera optionnel, et aura `None` comme valeur par défaut.
 
-!!! check "Remarque"
-    On peut voir que **FastAPI** est capable de détecter que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` n'en est pas un, c'est donc un paramètre de requête.
+/// check | "Remarque"
 
-!!! note
-    **FastAPI** saura que `q` est optionnel grâce au `=None`.
+On peut voir que **FastAPI** est capable de détecter que le paramètre de chemin `item_id` est un paramètre de chemin et que `q` n'en est pas un, c'est donc un paramètre de requête.
 
-    Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI** n'en utilisera que la partie `str`), mais il servira tout de même à votre éditeur de texte pour détecter des erreurs dans votre code.
+///
 
+/// note
+
+**FastAPI** saura que `q` est optionnel grâce au `=None`.
+
+Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI** n'en utilisera que la partie `str`), mais il servira tout de même à votre éditeur de texte pour détecter des erreurs dans votre code.
+
+///
 
 ## Conversion des types des paramètres de requête
 
@@ -194,5 +199,8 @@ Ici, on a donc 3 paramètres de requête :
 * `skip`, un `int` avec comme valeur par défaut `0`.
 * `limit`, un `int` optionnel.
 
-!!! tip "Astuce"
-    Vous pouvez utiliser les `Enum`s de la même façon qu'avec les [Paramètres de chemin](path-params.md#valeurs-predefinies){.internal-link target=_blank}.
+/// tip | "Astuce"
+
+Vous pouvez utiliser les `Enum`s de la même façon qu'avec les [Paramètres de chemin](path-params.md#valeurs-predefinies){.internal-link target=_blank}.
+
+///
