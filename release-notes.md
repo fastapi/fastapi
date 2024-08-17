@@ -8,6 +8,10 @@
 
 * ♻️ Remove duplicate information in the ItemCreate model. PR [#1287](https://github.com/fastapi/full-stack-fastapi-template/pull/1287) by [@jjaakko](https://github.com/jjaakko).
 
+### Docs
+
+* 📝 Add Email Templates to `backend/README.md`. PR [#1311](https://github.com/fastapi/full-stack-fastapi-template/pull/1311) by [@alejsdev](https://github.com/alejsdev).
+
 ### Internal
 
 * 👷 Update configs for labeler. PR [#1308](https://github.com/fastapi/full-stack-fastapi-template/pull/1308) by [@tiangolo](https://github.com/tiangolo).
