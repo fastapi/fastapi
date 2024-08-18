@@ -102,9 +102,8 @@ plugins:
           show_symbol_type_toc: true
 
 nav:
-- FastAPI:
-  - index.md
-  - features.md
+- FastAPI: index.md
+- features.md
 - Learn:
   - learn/index.md
   - python-types.md
