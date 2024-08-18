@@ -165,6 +165,7 @@ filterwarnings = [
 
 [tool.coverage.run]
 parallel = true
+data_file = "coverage/.coverage"
 source = [
     "docs_src",
     "tests",
@@ -176,6 +177,13 @@ omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
 ]
+
+[tool.coverage.report]
+show_missing = true
+sort = "-Cover"
+
+[tool.coverage.html]
+show_contexts = true
 
 [tool.ruff.lint]
 select = [
