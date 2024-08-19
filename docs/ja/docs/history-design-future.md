@@ -1,6 +1,6 @@
 # 歴史、設計、そしてこれから
 
-少し前に、<a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">**FastAPI**
+少し前に、<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">**FastAPI**
 のユーザーに以下の様に尋ねられました</a>:
 
 > このプロジェクトの歴史は？何もないところから、数週間ですごいものができているようです。 [...]
@@ -55,7 +55,7 @@
 
 ## 要件
 
-いくつかの代替手法を試したあと、私は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a>の強みを利用することを決めました。
+いくつかの代替手法を試したあと、私は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a>の強みを利用することを決めました。
 
 そして、JSON Schemaに完全に準拠するようにしたり、制約宣言を定義するさまざまな方法をサポートしたり、いくつかのエディターでのテストに基づいてエディターのサポート (型チェック、自動補完) を改善するために貢献しました。
 
