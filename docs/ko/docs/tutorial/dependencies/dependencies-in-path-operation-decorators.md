@@ -14,40 +14,55 @@
 
 `Depends()`로 된 `list`이어야합니다:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 Annotated가 없는 경우"
+```Python hl_lines="18"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 Annotated가 없는 경우
+
+/// tip | "팁"
+
+가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+///
+
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 이러한 의존성들은 기존 의존성들과 같은 방식으로 실행/해결됩니다. 그러나 값은 (무엇이든 반환한다면) *경로 작동 함수*에 제공되지 않습니다.
 
-!!! tip "팁"
-    일부 편집기에서는 사용되지 않는 함수 매개변수를 검사하고 오류로 표시합니다.
+/// tip | "팁"
 
-    *경로 작동 데코레이터*에서 `dependencies`를 사용하면 편집기/도구 오류를 피하며 실행되도록 할 수 있습니다.
+일부 편집기에서는 사용되지 않는 함수 매개변수를 검사하고 오류로 표시합니다.
 
-    또한 코드에서 사용되지 않는 매개변수를 보고 불필요하다고 생각할 수 있는 새로운 개발자의 혼란을 방지하는데 도움이 될 수 있습니다.
+*경로 작동 데코레이터*에서 `dependencies`를 사용하면 편집기/도구 오류를 피하며 실행되도록 할 수 있습니다.
 
-!!! info "정보"
-    이 예시에서 `X-Key`와 `X-Token`이라는 커스텀 헤더를 만들어 사용했습니다.
+또한 코드에서 사용되지 않는 매개변수를 보고 불필요하다고 생각할 수 있는 새로운 개발자의 혼란을 방지하는데 도움이 될 수 있습니다.
 
-    그러나 실제로 보안을 구현할 때는 통합된 [보안 유틸리티 (다음 챕터)](../security/index.md){.internal-link target=_blank}를 사용하는 것이 더 많은 이점을 얻을 수 있습니다.
+///
+
+/// info | "정보"
+
+이 예시에서 `X-Key`와 `X-Token`이라는 커스텀 헤더를 만들어 사용했습니다.
+
+그러나 실제로 보안을 구현할 때는 통합된 [보안 유틸리티 (다음 챕터)](../security/index.md){.internal-link target=_blank}를 사용하는 것이 더 많은 이점을 얻을 수 있습니다.
+
+///
 
 ## 의존성 오류와 값 반환하기
 
@@ -57,51 +72,69 @@
 
 (헤더같은) 요청 요구사항이나 하위-의존성을 선언할 수 있습니다:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="8  13"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="7  12"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 Annotated가 없는 경우"
+```Python hl_lines="7  12"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+////
 
-    ```Python hl_lines="6  11"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 Annotated가 없는 경우
+
+/// tip | "팁"
+
+가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+///
+
+```Python hl_lines="6  11"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ### 오류 발생시키기
 
 다음 의존성은 기존 의존성과 동일하게 예외를 `raise`를 일으킬 수 있습니다:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="10  15"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9  14"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 Annotated가 없는 경우"
+```Python hl_lines="9  14"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+////
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 Annotated가 없는 경우
+
+/// tip | "팁"
+
+가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+///
+
+```Python hl_lines="8  13"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ### 값 반환하기
 
@@ -109,26 +142,35 @@
 
 그래서 이미 다른 곳에서 사용된 (값을 반환하는) 일반적인 의존성을 재사용할 수 있고, 비록 값은 사용되지 않지만 의존성은 실행될 것입니다:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-    ```
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 Annotated가 없는 경우"
+```Python hl_lines="10  15"
+{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+```
 
-    !!! tip "팁"
-        가능하다면 `Annotated`가 달린 버전을 권장합니다.
+////
 
-    ```Python hl_lines="9  14"
-    {!> ../../../docs_src/dependencies/tutorial006.py!}
-    ```
+//// tab | Python 3.8 Annotated가 없는 경우
+
+/// tip | "팁"
+
+가능하다면 `Annotated`가 달린 버전을 권장합니다.
+
+///
+
+```Python hl_lines="9  14"
+{!> ../../../docs_src/dependencies/tutorial006.py!}
+```
+
+////
 
 ## *경로 작동* 모음에 대한 의존성
 

@@ -32,14 +32,17 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-!!! info
-    In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
+/// info
 
-    Es spielt keine Rolle, ob er andere Zeichen wie `:` enthält oder ob es eine URL ist.
+In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
-    Diese Details sind implementierungsspezifisch.
+Es spielt keine Rolle, ob er andere Zeichen wie `:` enthält oder ob es eine URL ist.
 
-    Für OAuth2 sind es einfach nur Strings.
+Diese Details sind implementierungsspezifisch.
+
+Für OAuth2 sind es einfach nur Strings.
+
+///
 
 ## Code, um `username` und `password` entgegenzunehmen.
 
@@ -49,41 +52,57 @@ Lassen Sie uns nun die von **FastAPI** bereitgestellten Werkzeuge verwenden, um 
 
 Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als Abhängigkeit mit `Depends` in der *Pfadoperation* für `/token`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4  78"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="4  78"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4  78"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4  78"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="4  79"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="4  79"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="2  74"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="4  76"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="2  74"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="4  76"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 `OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formularbody deklariert mit:
 
@@ -92,29 +111,38 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
 * Einem optionalen `scope`-Feld als langem String, bestehend aus durch Leerzeichen getrennten Strings.
 * Einem optionalen `grant_type` („Art der Anmeldung“).
 
-!!! tip "Tipp"
-    Die OAuth2-Spezifikation *erfordert* tatsächlich ein Feld `grant_type` mit dem festen Wert `password`, aber `OAuth2PasswordRequestForm` erzwingt dies nicht.
+/// tip | "Tipp"
 
-    Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` anstelle von `OAuth2PasswordRequestForm`.
+Die OAuth2-Spezifikation *erfordert* tatsächlich ein Feld `grant_type` mit dem festen Wert `password`, aber `OAuth2PasswordRequestForm` erzwingt dies nicht.
+
+Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` anstelle von `OAuth2PasswordRequestForm`.
+
+///
 
 * Eine optionale `client_id` (benötigen wir für unser Beispiel nicht).
 * Ein optionales `client_secret` (benötigen wir für unser Beispiel nicht).
 
-!!! info
-    `OAuth2PasswordRequestForm` ist keine spezielle Klasse für **FastAPI**, so wie `OAuth2PasswordBearer`.
+/// info
 
-    `OAuth2PasswordBearer` lässt **FastAPI** wissen, dass es sich um ein Sicherheitsschema handelt. Daher wird es auf diese Weise zu OpenAPI hinzugefügt.
+`OAuth2PasswordRequestForm` ist keine spezielle Klasse für **FastAPI**, so wie `OAuth2PasswordBearer`.
 
-    Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten `Form`ular-Parameter direkt deklarieren können.
+`OAuth2PasswordBearer` lässt **FastAPI** wissen, dass es sich um ein Sicherheitsschema handelt. Daher wird es auf diese Weise zu OpenAPI hinzugefügt.
 
-    Da es sich jedoch um einen häufigen Anwendungsfall handelt, wird er zur Vereinfachung direkt von **FastAPI** bereitgestellt.
+Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten `Form`ular-Parameter direkt deklarieren können.
+
+Da es sich jedoch um einen häufigen Anwendungsfall handelt, wird er zur Vereinfachung direkt von **FastAPI** bereitgestellt.
+
+///
 
 ### Die Formulardaten verwenden
 
-!!! tip "Tipp"
-    Die Instanz der Klassenabhängigkeit `OAuth2PasswordRequestForm` verfügt, statt eines Attributs `scope` mit dem durch Leerzeichen getrennten langen String, über das Attribut `scopes` mit einer tatsächlichen Liste von Strings, einem für jeden gesendeten Scope.
+/// tip | "Tipp"
 
-    In diesem Beispiel verwenden wir keine `scopes`, aber die Funktionalität ist vorhanden, wenn Sie sie benötigen.
+Die Instanz der Klassenabhängigkeit `OAuth2PasswordRequestForm` verfügt, statt eines Attributs `scope` mit dem durch Leerzeichen getrennten langen String, über das Attribut `scopes` mit einer tatsächlichen Liste von Strings, einem für jeden gesendeten Scope.
+
+In diesem Beispiel verwenden wir keine `scopes`, aber die Funktionalität ist vorhanden, wenn Sie sie benötigen.
+
+///
 
 Rufen Sie nun die Benutzerdaten aus der (gefakten) Datenbank ab, für diesen `username` aus dem Formularfeld.
 
@@ -122,41 +150,57 @@ Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung „Incorrect u
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3  79-81"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="3  79-81"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3  79-81"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3  79-81"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="3  80-82"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="3  80-82"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="1  75-77"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="3  77-79"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1  75-77"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="3  77-79"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 ### Das Passwort überprüfen
 
@@ -182,41 +226,57 @@ Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter 
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="82-85"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="82-85"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="82-85"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="82-85"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="83-86"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="83-86"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="78-81"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="80-83"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="78-81"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="80-83"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 #### Über `**user_dict`
 
@@ -234,8 +294,11 @@ UserInDB(
 )
 ```
 
-!!! info
-    Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#uber-user_indict){.internal-link target=_blank}.
+/// info
+
+Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#uber-user_indict){.internal-link target=_blank}.
+
+///
 
 ## Den Token zurückgeben
 
@@ -247,55 +310,77 @@ Und es sollte einen `access_token` haben, mit einem String, der unseren Zugriffs
 
 In diesem einfachen Beispiel gehen wir einfach völlig unsicher vor und geben denselben `username` wie der Token zurück.
 
-!!! tip "Tipp"
-    Im nächsten Kapitel sehen Sie eine wirklich sichere Implementierung mit Passwort-Hashing und <abbr title="JSON Web Tokens">JWT</abbr>-Tokens.
+/// tip | "Tipp"
 
-    Aber konzentrieren wir uns zunächst auf die spezifischen Details, die wir benötigen.
+Im nächsten Kapitel sehen Sie eine wirklich sichere Implementierung mit Passwort-Hashing und <abbr title="JSON Web Tokens">JWT</abbr>-Tokens.
 
-=== "Python 3.10+"
+Aber konzentrieren wir uns zunächst auf die spezifischen Details, die wir benötigen.
 
-    ```Python hl_lines="87"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+///
 
-=== "Python 3.9+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="87"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+```Python hl_lines="87"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="88"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.10+ nicht annotiert"
+```Python hl_lines="87"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="83"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="88"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="85"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+//// tab | Python 3.10+ nicht annotiert
 
-!!! tip "Tipp"
-    Gemäß der Spezifikation sollten Sie ein JSON mit einem `access_token` und einem `token_type` zurückgeben, genau wie in diesem Beispiel.
+/// tip | "Tipp"
 
-    Das müssen Sie selbst in Ihrem Code tun und sicherstellen, dass Sie diese JSON-Schlüssel verwenden.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    Es ist fast das Einzige, woran Sie denken müssen, es selbst richtigzumachen und die Spezifikationen einzuhalten.
+///
 
-    Den Rest erledigt **FastAPI** für Sie.
+```Python hl_lines="83"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="85"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Gemäß der Spezifikation sollten Sie ein JSON mit einem `access_token` und einem `token_type` zurückgeben, genau wie in diesem Beispiel.
+
+Das müssen Sie selbst in Ihrem Code tun und sicherstellen, dass Sie diese JSON-Schlüssel verwenden.
+
+Es ist fast das Einzige, woran Sie denken müssen, es selbst richtigzumachen und die Spezifikationen einzuhalten.
+
+Den Rest erledigt **FastAPI** für Sie.
+
+///
 
 ## Die Abhängigkeiten aktualisieren
 
@@ -309,56 +394,75 @@ Beide Abhängigkeiten geben nur dann einen HTTP-Error zurück, wenn der Benutzer
 
 In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer existiert, korrekt authentifiziert wurde und aktiv ist:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="58-66  69-74  94"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="58-66  69-74  94"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="58-66  69-74  94"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="58-66  69-74  94"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="59-67  70-75  95"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="59-67  70-75  95"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="56-64  67-70  88"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="58-66  69-72  90"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-!!! info
-    Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
+///
 
-    Jeder HTTP-(Fehler-)Statuscode 401 „UNAUTHORIZED“ soll auch einen `WWW-Authenticate`-Header zurückgeben.
+```Python hl_lines="56-64  67-70  88"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
 
-    Im Fall von Bearer-Tokens (in unserem Fall) sollte der Wert dieses Headers `Bearer` lauten.
+////
 
-    Sie können diesen zusätzlichen Header tatsächlich weglassen und es würde trotzdem funktionieren.
+//// tab | Python 3.8+ nicht annotiert
 
-    Aber er wird hier bereitgestellt, um den Spezifikationen zu entsprechen.
+/// tip | "Tipp"
 
-    Außerdem gibt es möglicherweise Tools, die ihn erwarten und verwenden (jetzt oder in der Zukunft) und das könnte für Sie oder Ihre Benutzer jetzt oder in der Zukunft nützlich sein.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    Das ist der Vorteil von Standards ...
+///
+
+```Python hl_lines="58-66  69-72  90"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
+
+/// info
+
+Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
+
+Jeder HTTP-(Fehler-)Statuscode 401 „UNAUTHORIZED“ soll auch einen `WWW-Authenticate`-Header zurückgeben.
+
+Im Fall von Bearer-Tokens (in unserem Fall) sollte der Wert dieses Headers `Bearer` lauten.
+
+Sie können diesen zusätzlichen Header tatsächlich weglassen und es würde trotzdem funktionieren.
+
+Aber er wird hier bereitgestellt, um den Spezifikationen zu entsprechen.
+
+Außerdem gibt es möglicherweise Tools, die ihn erwarten und verwenden (jetzt oder in der Zukunft) und das könnte für Sie oder Ihre Benutzer jetzt oder in der Zukunft nützlich sein.
+
+Das ist der Vorteil von Standards ...
+
+///
 
 ## Es in Aktion sehen
 

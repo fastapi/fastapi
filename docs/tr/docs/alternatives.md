@@ -30,11 +30,17 @@ Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka p
 
 **Otomatik API dökümantasyonu**nun ilk örneklerinden biri olduğu için, **FastAPI** arayışına ilham veren ilk fikirlerden biri oldu.
 
-!!! note "Not"
-    Django REST Framework'ü, aynı zamanda **FastAPI**'ın dayandığı Starlette ve Uvicorn'un da yaratıcısı olan Tom Christie tarafından geliştirildi.
+/// note | "Not"
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    Kullanıcılar için otomatik API dökümantasyonu sunan bir web arayüzüne sahip olmalı.
+Django REST Framework'ü, aynı zamanda **FastAPI**'ın dayandığı Starlette ve Uvicorn'un da yaratıcısı olan Tom Christie tarafından geliştirildi.
+
+///
+
+/// check | "**FastAPI**'a nasıl ilham verdi?"
+
+Kullanıcılar için otomatik API dökümantasyonu sunan bir web arayüzüne sahip olmalı.
+
+///
 
 ### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
@@ -50,10 +56,13 @@ Uygulama parçalarının böyle ayrılıyor oluşu ve istenilen özelliklerle ge
 
 Flask'ın basitliği göz önünde bulundurulduğu zaman, API geliştirmek için iyi bir seçim gibi görünüyordu. Sıradaki şey ise Flask için bir "Django REST Framework"!
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    Gereken araçları ve parçaları birleştirip eşleştirmeyi kolaylaştıracak bir mikro framework olmalı.
+/// check | "**FastAPI**'a nasıl ilham verdi?"
 
-    Basit ve kullanması kolay bir <abbr title="Yönlendirme: Routing">yönlendirme sistemine</abbr> sahip olmalı.
+Gereken araçları ve parçaları birleştirip eşleştirmeyi kolaylaştıracak bir mikro framework olmalı.
+
+Basit ve kullanması kolay bir <abbr title="Yönlendirme: Routing">yönlendirme sistemine</abbr> sahip olmalı.
+
+///
 
 ### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
@@ -89,10 +98,13 @@ def read_url():
 
 `requests.get(...)` ile `@app.get(...)` arasındaki benzerliklere bakın.
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    * Basit ve sezgisel bir API'ya sahip olmalı.
-    * HTTP metot isimlerini (işlemlerini) anlaşılır olacak bir şekilde, direkt kullanmalı.
-    * Mantıklı varsayılan değerlere ve buna rağmen güçlü bir özelleştirme desteğine sahip olmalı.
+/// check | "**FastAPI**'a nasıl ilham verdi?"
+
+* Basit ve sezgisel bir API'ya sahip olmalı.
+* HTTP metot isimlerini (işlemlerini) anlaşılır olacak bir şekilde, direkt kullanmalı.
+* Mantıklı varsayılan değerlere ve buna rağmen güçlü bir özelleştirme desteğine sahip olmalı.
+
+///
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
@@ -106,15 +118,18 @@ Swagger bir noktada Linux Foundation'a verildi ve adı OpenAPI olarak değiştir
 
 İşte bu yüzden versiyon 2.0 hakkında konuşurken "Swagger", versiyon 3 ve üzeri için ise "OpenAPI" adını kullanmak daha yaygın.
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    API spesifikasyonları için özel bir şema yerine bir <abbr title="Open Standard: Açık Standart, Açık kaynak olarak yayınlanan standart">açık standart</abbr> benimseyip kullanmalı.
+/// check | "**FastAPI**'a nasıl ilham verdi?"
 
-    Ayrıca standarda bağlı kullanıcı arayüzü araçlarını entegre etmeli:
+API spesifikasyonları için özel bir şema yerine bir <abbr title="Open Standard: Açık Standart, Açık kaynak olarak yayınlanan standart">açık standart</abbr> benimseyip kullanmalı.
 
-    * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
-    * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
+Ayrıca standarda bağlı kullanıcı arayüzü araçlarını entegre etmeli:
 
-    Yukarıdaki ikisi oldukça popüler ve istikrarlı olduğu için seçildi, ancak hızlı bir araştırma yaparak **FastAPI** ile kullanabileceğiniz pek çok OpenAPI alternatifi arayüz bulabilirsiniz.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
+* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
+
+Yukarıdaki ikisi oldukça popüler ve istikrarlı olduğu için seçildi, ancak hızlı bir araştırma yaparak **FastAPI** ile kullanabileceğiniz pek çok OpenAPI alternatifi arayüz bulabilirsiniz.
+
+///
 
 ### Flask REST framework'leri
 
@@ -132,8 +147,11 @@ Marshmallow bu özellikleri sağlamak için geliştirilmişti. Benim de geçmiş
 
 Ama... Python'un tip belirteçleri gelmeden önce oluşturulmuştu. Yani her <abbr title="Verilerin nasıl oluşturulması gerektiğinin tanımı">şemayı</abbr> tanımlamak için Marshmallow'un sunduğu spesifik araçları ve sınıfları kullanmanız gerekiyordu.
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    Kod kullanarak otomatik olarak veri tipini ve veri doğrulamayı belirten "şemalar" tanımlamalı.
+/// check | "**FastAPI**'a nasıl ilham verdi?"
+
+Kod kullanarak otomatik olarak veri tipini ve veri doğrulamayı belirten "şemalar" tanımlamalı.
+
+///
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
 
@@ -145,11 +163,17 @@ Veri doğrulama için arka planda Marshmallow kullanıyor, hatta aynı geliştir
 
 Webargs da harika bir araç ve onu da geçmişte henüz **FastAPI** yokken çok kullandım.
 
-!!! info "Bilgi"
-    Webargs aynı Marshmallow geliştirileri tarafından oluşturuldu.
+/// info | "Bilgi"
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    Gelen istek verisi için otomatik veri doğrulamaya sahip olmalı.
+Webargs aynı Marshmallow geliştirileri tarafından oluşturuldu.
+
+///
+
+/// check | "**FastAPI**'a nasıl ilham verdi?"
+
+Gelen istek verisi için otomatik veri doğrulamaya sahip olmalı.
+
+///
 
 ### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
 
@@ -167,11 +191,17 @@ Fakat sonrasında yine mikro sözdizimi problemiyle karşılaşıyoruz. Python m
 
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML kodunu güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
-!!! info "Bilgi"
-    APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu.
+/// info | "Bilgi"
 
-!!! check "**FastAPI**'a nasıl ilham verdi?"
-    API'lar için açık standart desteği olmalı (OpenAPI gibi).
+APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu.
+
+///
+
+/// check | "**FastAPI**'a nasıl ilham verdi?"
+
+API'lar için açık standart desteği olmalı (OpenAPI gibi).
+
+///
 
 ### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a>
 
@@ -193,11 +223,17 @@ Bunu kullanmak, bir kaç <abbr title="full-stack: Hem ön uç hem de arka uç ge
 
 Aynı full-stack üreticiler [**FastAPI** Proje Üreticileri](project-generation.md){.internal-link target=_blank}'nin de temelini oluşturdu.
 
-!!! info "Bilgi"
-    Flask-apispec de aynı Marshmallow geliştiricileri tarafından üretildi.
+/// info | "Bilgi"
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Veri dönüşümü ve veri doğrulamayı tanımlayan kodu kullanarak otomatik olarak OpenAPI şeması oluşturmalı.
+Flask-apispec de aynı Marshmallow geliştiricileri tarafından üretildi.
+
+///
+
+/// check | "**FastAPI**'a nasıl ilham oldu?"
+
+Veri dönüşümü ve veri doğrulamayı tanımlayan kodu kullanarak otomatik olarak OpenAPI şeması oluşturmalı.
+
+///
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (and <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
 
@@ -213,24 +249,33 @@ Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, 
 
 İç içe geçen derin modelleri pek iyi işleyemiyor. Yani eğer istekteki JSON gövdesi derin bir JSON objesiyse düzgün bir şekilde dökümante edilip doğrulanamıyor.
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Güzel bir editör desteği için Python tiplerini kullanmalı.
+/// check | "**FastAPI**'a nasıl ilham oldu?"
 
-    Güçlü bir bağımlılık enjeksiyon sistemine sahip olmalı. Kod tekrarını minimuma indirecek bir yol bulmalı.
+Güzel bir editör desteği için Python tiplerini kullanmalı.
+
+Güçlü bir bağımlılık enjeksiyon sistemine sahip olmalı. Kod tekrarını minimuma indirecek bir yol bulmalı.
+
+///
 
 ### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a>
 
 Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriydi. Flask'a epey benzeyecek şekilde geliştirilmişti.
 
-!!! note "Teknik detaylar"
-    İçerisinde standart Python `asyncio` döngüsü yerine <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> kullanıldı. Hızının asıl kaynağı buydu.
+/// note | "Teknik detaylar"
 
-    Uvicorn ve Starlette'e ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
+İçerisinde standart Python `asyncio` döngüsü yerine <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> kullanıldı. Hızının asıl kaynağı buydu.
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Uçuk performans sağlayacak bir yol bulmalı.
+Uvicorn ve Starlette'e ilham kaynağı olduğu oldukça açık, şu anda ikisi de açık karşılaştırmalarda Sanicten daha hızlı gözüküyor.
 
-    Tam da bu yüzden **FastAPI** Starlette'e dayanıyor, çünkü Starlette şu anda kullanılabilir en hızlı framework. (üçüncü parti karşılaştırmalı testlerine göre)
+///
+
+/// check | "**FastAPI**'a nasıl ilham oldu?"
+
+Uçuk performans sağlayacak bir yol bulmalı.
+
+Tam da bu yüzden **FastAPI** Starlette'e dayanıyor, çünkü Starlette şu anda kullanılabilir en hızlı framework. (üçüncü parti karşılaştırmalı testlerine göre)
+
+///
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
 
@@ -240,12 +285,15 @@ Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak 
 
 Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un tasarımından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Harika bir performans'a sahip olmanın yollarını bulmalı.
+/// check | "**FastAPI**'a nasıl ilham oldu?"
 
-    Hug ile birlikte (Hug zaten Falcon'a dayandığından) **FastAPI**'ın fonksiyonlarda `cevap` parametresi belirtmesinde ilham kaynağı oldu.
+Harika bir performans'a sahip olmanın yollarını bulmalı.
 
-    FastAPI'da opsiyonel olmasına rağmen, daha çok header'lar, çerezler ve alternatif durum kodları belirlemede kullanılıyor.
+Hug ile birlikte (Hug zaten Falcon'a dayandığından) **FastAPI**'ın fonksiyonlarda `cevap` parametresi belirtmesinde ilham kaynağı oldu.
+
+FastAPI'da opsiyonel olmasına rağmen, daha çok header'lar, çerezler ve alternatif durum kodları belirlemede kullanılıyor.
+
+///
 
 ### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a>
 
@@ -263,10 +311,13 @@ Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Async
 
 <abbr title="Route: HTTP isteğinin gittiği yol">Yol</abbr>'lar fonksiyonun üstünde endpoint'i işleyen dekoratörler yerine farklı yerlerde tanımlanan fonksiyonlarla belirlenir. Bu Flask (ve Starlette) yerine daha çok Django'nun yaklaşımına daha yakın bir metot. Bu, kodda nispeten birbiriyle sıkı ilişkili olan şeyleri ayırmaya sebep oluyor.
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Model özelliklerinin "standart" değerlerini kullanarak veri tipleri için ekstra veri doğrulama koşulları tanımlamalı. Bu editör desteğini geliştiriyor ve daha önceden Pydantic'te yoktu.
+/// check | "**FastAPI**'a nasıl ilham oldu?"
 
-    Bu aslında Pydantic'in de aynı doğrulama stiline geçmesinde ilham kaynağı oldu. Şu anda bütün bu özellikler Pydantic'in yapısında yer alıyor.
+Model özelliklerinin "standart" değerlerini kullanarak veri tipleri için ekstra veri doğrulama koşulları tanımlamalı. Bu editör desteğini geliştiriyor ve daha önceden Pydantic'te yoktu.
+
+Bu aslında Pydantic'in de aynı doğrulama stiline geçmesinde ilham kaynağı oldu. Şu anda bütün bu özellikler Pydantic'in yapısında yer alıyor.
+
+///
 
 ### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
@@ -282,15 +333,21 @@ Ayrıca ilginç ve çok rastlanmayan bir özelliği vardı: aynı framework'ü k
 
 Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığından dolayı Websocket'leri ve diğer şeyleri işleyemiyor, ancak yine de yüksek performansa sahip.
 
-!!! info "Bilgi"
-    Hug, Python dosyalarında bulunan dahil etme satırlarını otomatik olarak sıralayan harika bir araç olan <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>'un geliştiricisi Timothy Crosley tarafından geliştirildi.
+/// info | "Bilgi"
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
+Hug, Python dosyalarında bulunan dahil etme satırlarını otomatik olarak sıralayan harika bir araç olan <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>'un geliştiricisi Timothy Crosley tarafından geliştirildi.
 
-    **FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
+///
 
-    **FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
+/// check | "**FastAPI**'a nasıl ilham oldu?"
+
+Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
+
+**FastAPI**, Python tip belirteçlerini kullanarak parametre belirlemede ve API'ı otomatık tanımlayan bir şema üretmede de Hug'a esinlendi.
+
+**FastAPI**'ın header ve çerez tanımlamak için fonksiyonlarda `response` parametresini belirtmesinde de Hug'dan ilham alındı.
+
+///
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
 
@@ -316,23 +373,29 @@ Geliştiricinin Starlette'e odaklanması gerekince proje de artık bir API web f
 
 Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bir proje haline geldi.
 
-!!! info "Bilgi"
-    APIStar, aşağıdaki projeleri de üreten Tom Christie tarafından geliştirildi:
+/// info | "Bilgi"
 
-    * Django REST Framework
-    * **FastAPI**'ın da dayandığı Starlette
-    * Starlette ve **FastAPI** tarafından da kullanılan Uvicorn
+APIStar, aşağıdaki projeleri de üreten Tom Christie tarafından geliştirildi:
 
-!!! check "**FastAPI**'a nasıl ilham oldu?"
-    Var oldu.
+* Django REST Framework
+* **FastAPI**'ın da dayandığı Starlette
+* Starlette ve **FastAPI** tarafından da kullanılan Uvicorn
 
-    Aynı Python veri tipleriyle birden fazla şeyi belirleme (veri doğrulama, veri dönüştürme ve dökümantasyon), bir yandan da harika bir editör desteği sunma, benim muhteşem bulduğum bir fikirdi.
+///
 
-    Uzunca bir süre boyunca benzer bir framework arayıp pek çok farklı alternatifi denedikten sonra, APIStar en iyi seçenekti.
+/// check | "**FastAPI**'a nasıl ilham oldu?"
 
-    Sonra APIStar bir sunucu olmayı bıraktı ve Starlette oluşturuldu. Starlette, böyle bir sunucu sistemi için daha iyi bir temel sunuyordu. Bu da **FastAPI**'ın son esin kaynağıydı.
+Var oldu.
 
-    Ben bu önceki araçlardan öğrendiklerime dayanarak **FastAPI**'ın özelliklerini arttırıp geliştiriyor, <abbr title="Tip desteği (typing support): kod yapısında parametrelere, argümanlara ve objelerin özelliklerine veri tipi atamak">tip desteği</abbr> sistemi ve diğer kısımları iyileştiriyorum ancak yine de **FastAPI**'ı APIStar'ın "ruhani varisi" olarak görüyorum.
+Aynı Python veri tipleriyle birden fazla şeyi belirleme (veri doğrulama, veri dönüştürme ve dökümantasyon), bir yandan da harika bir editör desteği sunma, benim muhteşem bulduğum bir fikirdi.
+
+Uzunca bir süre boyunca benzer bir framework arayıp pek çok farklı alternatifi denedikten sonra, APIStar en iyi seçenekti.
+
+Sonra APIStar bir sunucu olmayı bıraktı ve Starlette oluşturuldu. Starlette, böyle bir sunucu sistemi için daha iyi bir temel sunuyordu. Bu da **FastAPI**'ın son esin kaynağıydı.
+
+Ben bu önceki araçlardan öğrendiklerime dayanarak **FastAPI**'ın özelliklerini arttırıp geliştiriyor, <abbr title="Tip desteği (typing support): kod yapısında parametrelere, argümanlara ve objelerin özelliklerine veri tipi atamak">tip desteği</abbr> sistemi ve diğer kısımları iyileştiriyorum ancak yine de **FastAPI**'ı APIStar'ın "ruhani varisi" olarak görüyorum.
+
+///
 
 ## **FastAPI** Tarafından Kullanılanlar
 
@@ -344,10 +407,13 @@ Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
 Marshmallow ile karşılaştırılabilir. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
 
-!!! check "**FastAPI** nerede kullanıyor?"
-    Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
+/// check | "**FastAPI** nerede kullanıyor?"
 
-    **FastAPI** yaptığı her şeyin yanı sıra bu JSON Şema verisini alıp daha sonra OpenAPI'ya yerleştiriyor.
+Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
+
+**FastAPI** yaptığı her şeyin yanı sıra bu JSON Şema verisini alıp daha sonra OpenAPI'ya yerleştiriyor.
+
+///
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
@@ -376,18 +442,23 @@ Ancak otomatik veri doğrulama, veri dönüştürme ve dökümantasyon sağlamyo
 
 Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı olarak eklediği (Pydantic ile) ana şeylerden biri. **FastAPI** bunun yanında artı olarak bağımlılık enjeksiyonu sistemi, güvenlik araçları, OpenAPI şema üretimi ve benzeri özellikler de ekliyor.
 
-!!! note "Teknik Detaylar"
-    ASGI, Django'nun ana ekibi tarafından geliştirilen yeni bir "standart". Bir "Python standardı" (PEP) olma sürecinde fakat henüz bir standart değil.
+/// note | "Teknik Detaylar"
 
-    Bununla birlikte, halihazırda birçok araç tarafından bir "standart" olarak kullanılmakta. Bu, Uvicorn'u farklı ASGI sunucularıyla (Daphne veya Hypercorn gibi) değiştirebileceğiniz veya `python-socketio` gibi ASGI ile uyumlu araçları ekleyebileciğiniz için birlikte çalışılabilirliği büyük ölçüde arttırıyor.
+ASGI, Django'nun ana ekibi tarafından geliştirilen yeni bir "standart". Bir "Python standardı" (PEP) olma sürecinde fakat henüz bir standart değil.
 
-!!! check "**FastAPI** nerede kullanıyor?"
+Bununla birlikte, halihazırda birçok araç tarafından bir "standart" olarak kullanılmakta. Bu, Uvicorn'u farklı ASGI sunucularıyla (Daphne veya Hypercorn gibi) değiştirebileceğiniz veya `python-socketio` gibi ASGI ile uyumlu araçları ekleyebileciğiniz için birlikte çalışılabilirliği büyük ölçüde arttırıyor.
 
-    Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
+///
 
-    `FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfını miras alıyor!
+/// check | "**FastAPI** nerede kullanıyor?"
 
-    Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendirilmiş hali olan **FastAPI** ile doğrudan yapabilirsiniz.
+Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
+
+`FastAPI` sınıfının kendisi direkt olarak `Starlette` sınıfını miras alıyor!
+
+Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendirilmiş hali olan **FastAPI** ile doğrudan yapabilirsiniz.
+
+///
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
 
@@ -397,12 +468,15 @@ Bir web framework'ünden ziyade bir sunucudur, yani yollara bağlı yönlendirme
 
 Starlette ve **FastAPI** için tavsiye edilen sunucu Uvicorndur.
 
-!!! check "**FastAPI** neden tavsiye ediyor?"
-    **FastAPI** uygulamalarını çalıştırmak için ana web sunucusu Uvicorn!
+/// check | "**FastAPI** neden tavsiye ediyor?"
 
-    Gunicorn ile birleştirdiğinizde asenkron ve çoklu işlem destekleyen bir sunucu elde ediyorsunuz!
+**FastAPI** uygulamalarını çalıştırmak için ana web sunucusu Uvicorn!
 
-    Daha fazla detay için [Deployment](deployment/index.md){.internal-link target=_blank} bölümünü inceleyebilirsiniz.
+Gunicorn ile birleştirdiğinizde asenkron ve çoklu işlem destekleyen bir sunucu elde ediyorsunuz!
+
+Daha fazla detay için [Deployment](deployment/index.md){.internal-link target=_blank} bölümünü inceleyebilirsiniz.
+
+///
 
 ## Karşılaştırma ve Hız
 
