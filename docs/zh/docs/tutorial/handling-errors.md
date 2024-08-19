@@ -67,14 +67,15 @@
 
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    触发 `HTTPException` 时，可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。
+触发 `HTTPException` 时，可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。
 
-    还支持传递 `dict`、`list` 等数据结构。
+还支持传递 `dict`、`list` 等数据结构。
 
-    **FastAPI** 能自动处理这些数据，并将之转换为 JSON。
+**FastAPI** 能自动处理这些数据，并将之转换为 JSON。
 
+///
 
 ## 添加自定义响应头
 
@@ -115,12 +116,13 @@
 
 ```
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    `from starlette.requests import Request` 和 `from starlette.responses import JSONResponse` 也可以用于导入 `Request` 和 `JSONResponse`。
+`from starlette.requests import Request` 和 `from starlette.responses import JSONResponse` 也可以用于导入 `Request` 和 `JSONResponse`。
 
-    **FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应操作都可以直接从 Starlette 导入。同理，`Request` 也是如此。
+**FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应操作都可以直接从 Starlette 导入。同理，`Request` 也是如此。
 
+///
 
 ## 覆盖默认异常处理器
 
@@ -174,12 +176,13 @@ path -> item_id
 
 ### `RequestValidationError` vs `ValidationError`
 
-!!! warning "警告"
+/// warning | "警告"
 
-    如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
+如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
 
+///
 
-`RequestValidationError` 是 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
+`RequestValidationError` 是 Pydantic 的 <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
 
 **FastAPI** 调用的就是 `RequestValidationError` 类，因此，如果在 `response_model` 中使用 Pydantic 模型，且数据有错误时，在日志中就会看到这个错误。
 
@@ -200,12 +203,13 @@ path -> item_id
 
 ```
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    还可以使用 `from starlette.responses import PlainTextResponse`。
+还可以使用 `from starlette.responses import PlainTextResponse`。
 
-    **FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应都可以直接从 Starlette 导入。
+**FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应都可以直接从 Starlette 导入。
 
+///
 
 ### 使用 `RequestValidationError` 的请求体
 

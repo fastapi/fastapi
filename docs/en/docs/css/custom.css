@@ -13,6 +13,10 @@
   white-space: pre-wrap;
 }
 
+.termy .linenos {
+  display: none;
+}
+
 a.external-link {
   /* For right to left languages */
   direction: ltr;

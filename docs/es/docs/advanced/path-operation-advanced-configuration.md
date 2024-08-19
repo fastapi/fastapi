@@ -2,8 +2,11 @@
 
 ## OpenAPI operationId
 
-!!! warning "Advertencia"
-    Si no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
+/// warning | "Advertencia"
+
+Si no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
+
+///
 
 Puedes asignar el `operationId` de OpenAPI para ser usado en tu *operación de path* con el parámetro `operation_id`.
 
@@ -23,13 +26,19 @@ Deberías hacerlo después de adicionar todas tus *operaciones de path*.
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip "Consejo"
-    Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s antes de hacerlo.
+/// tip | "Consejo"
 
-!!! warning "Advertencia"
-    Si haces esto, debes asegurarte de que cada una de tus *funciones de las operaciones de path* tenga un nombre único.
+Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s antes de hacerlo.
 
-    Incluso si están en diferentes módulos (archivos Python).
+///
+
+/// warning | "Advertencia"
+
+Si haces esto, debes asegurarte de que cada una de tus *funciones de las operaciones de path* tenga un nombre único.
+
+Incluso si están en diferentes módulos (archivos Python).
+
+///
 
 ## Excluir de OpenAPI
 

@@ -1,6 +1,5 @@
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from docs_src.custom_request_and_route.tutorial002 import app
 
@@ -23,7 +22,6 @@ def test_exception_handler_body_access():
                         "loc": ["body"],
                         "msg": "Input should be a valid list",
                         "input": {"numbers": [1, 2, 3]},
-                        "url": match_pydantic_error_url("list_type"),
                     }
                 ],
                 "body": '{"numbers": [1, 2, 3]}',
