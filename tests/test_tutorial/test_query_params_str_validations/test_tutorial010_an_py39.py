@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py39
 
@@ -51,7 +50,6 @@ def test_query_params_str_validations_item_query_nonregexquery(client: TestClien
                     "msg": "String should match pattern '^fixedquery$'",
                     "input": "nonregexquery",
                     "ctx": {"pattern": "^fixedquery$"},
-                    "url": match_pydantic_error_url("string_pattern_mismatch"),
                 }
             ]
         }

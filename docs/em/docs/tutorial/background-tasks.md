@@ -57,17 +57,21 @@
 
 **FastAPI** 💭 ⚫️❔ 🔠 💼 &amp; ❔ 🏤-⚙️ 🎏 🎚, 👈 🌐 🖥 📋 🔗 👯‍♂️ &amp; 🏃 🖥 ⏮️:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="11  13  20  23"
+{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+```
+
+////
 
 👉 🖼, 📧 🔜 ✍ `log.txt` 📁 *⏮️* 📨 📨.
 
