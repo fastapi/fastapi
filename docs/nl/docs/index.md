@@ -450,48 +450,45 @@ Zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal
 
 ## Afhankelijkheden
 
-Used by Pydantic:
+FastAPI steunt op Pydantic en Starlette.
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
-* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+### `standard` Afhankelijkheden
+
+Wanneer je FastAPI installeert met `pip install "fastapi[standard]"`, worden de volgende `standard` optionele afhankelijkheden geïnstalleerd:
 
 Gebruikt door Pydantic:
 
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - voor email validatie.
+
+Gebruikt door Starlette:
+
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Vereist indien u de `TestClient` wil gebruiken.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Vereist als u de standaard templateconfiguratie wilt gebruiken.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist als je het <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist indien u <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
 
 Gebruikt door FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - voor de server die uw applicatie laadt en bedient.
 * `fastapi-cli` - om het `fastapi` commando te voorzien.
 
-Wanneer je `fastapi` installeert, worden deze afhankelijkheden automatisch geïnstalleerd.
+### Zonder `standard` Afhankelijkheden
 
-Bijkomende optionele afhankelijkheden:
+Indien u de optionele `standard` afhankelijkheden niet wenst te installeren, kan u installeren met `pip install fastapi` in plaats van `pip install "fastapi[standard]"`.
+
+### Bijkomende Optionele Afhankelijkheden
+
+Er zijn nog een aantal bijkomende afhankelijkheden die u eventueel kan installeren.
+
+Bijkomende optionele afhankelijkheden voor Pydantic:
+
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - voor het beheren van settings.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - voor extra data types die gebruikt kunnen worden met Pydantic.
+
+Bijkomende optionele afhankelijkheden voor FastAPI:
 
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Vereist indien u `ORJSONResponse` wil gebruiken.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Vereist indien u `UJSONResponse` wil gebruiken.
 
-## `fastapi-slim`
-
-Indien je geen bijkomende optionele afhankelijkheden wil installeren, installeer dan `fastapi-slim`.
-
-Wanneer je installeert met het commando
-
-```bash
-pip install fastapi
-```
-
-...zal dit dezelfde code en afhankelijkheden installeren dan via het commando
-
-```bash
-pip install "fastapi-slim[standard]"
-```
-
-De standaard bijkomende afhankelijkheden worden hierboven opgelijst. 
-
-## License
+## Licentie
 
 Dit project is gelicenseerd onder de voorwaarden van de MIT licentie.
