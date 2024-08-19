@@ -4,7 +4,7 @@ When you need to send data from a client (let's say, a browser) to your API, you
 
 A **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.
 
-Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
+Your API almost always has to send a **response** body. But clients don't necessarily need to send **request bodies** all the time, sometimes they only request a path, maybe with some query parameters, but don't send a body.
 
 To declare a **request** body, you use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
@@ -237,7 +237,9 @@ The function parameters will be recognized as follows:
 
 FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+The `str | None` (Python 3.10+) or `Union` in `Union[str, None]` (Python 3.8+) is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
+
+But adding the type annotations will allow your editor to give you better support and detect errors.
 
 ///
 

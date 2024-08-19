@@ -437,7 +437,7 @@ Per approfondire, consulta la sezione <a href="https://fastapi.tiangolo.com/benc
 
 Usate da Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - per la validazione di email.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - per la validazione di email.
 
 Usate da Starlette:
 

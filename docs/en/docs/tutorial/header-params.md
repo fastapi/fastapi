@@ -62,7 +62,7 @@ Prefer to use the `Annotated` version if possible.
 
 Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.
 
-The first value is the default value, you can pass all the extra validation or annotation parameters:
+You can define the default value as well as all the extra validation or annotation parameters:
 
 //// tab | Python 3.10+
 

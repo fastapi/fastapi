@@ -54,7 +54,7 @@ Now, let's see how you could use that to return a custom response.
 
 Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
 
-You could put your XML content in a string, put it in a `Response`, and return it:
+You could put your XML content in a string, put that in a `Response`, and return it:
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
