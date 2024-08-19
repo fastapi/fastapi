@@ -12,7 +12,7 @@ def test_get_item():
     assert response.json() == {
         "name": "Island In The Moon",
         "price": 12.99,
-        "description": "A place to be be playin' and havin' fun",
+        "description": "A place to be playin' and havin' fun",
         "tags": ["breater"],
         "tax": None,
     }

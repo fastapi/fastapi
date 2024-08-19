@@ -2,8 +2,11 @@
 
 *path operationデコレータ*を設定するためのパラメータがいくつかあります。
 
-!!! warning "注意"
-    これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
+/// warning | "注意"
+
+これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
+
+///
 
 ## レスポンスステータスコード
 
@@ -19,10 +22,13 @@
 
 そのステータスコードはレスポンスで使用され、OpenAPIスキーマに追加されます。
 
-!!! note "技術詳細"
-    また、`from starlette import status`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+また、`from starlette import status`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+
+///
 
 ## タグ
 
@@ -66,13 +72,19 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 {!../../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
-!!! info "情報"
-    `respnse_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
+/// info | "情報"
 
-!!! check "確認"
-    OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
+`respnse_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
 
-    そのため、それを提供しない場合は、**FastAPI** が自動的に「成功のレスポンス」を生成します。
+///
+
+/// check | "確認"
+
+OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
+
+そのため、それを提供しない場合は、**FastAPI** が自動的に「成功のレスポンス」を生成します。
+
+///
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image03.png">
 

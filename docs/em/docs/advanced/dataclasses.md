@@ -20,12 +20,15 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 
 👉 👷 🎏 🌌 ⏮️ Pydantic 🏷. &amp; ⚫️ 🤙 🏆 🎏 🌌 🔘, ⚙️ Pydantic.
 
-!!! info
-    ✔️ 🤯 👈 🎻 💪 🚫 🌐 Pydantic 🏷 💪.
+/// info
 
-    , 👆 5️⃣📆 💪 ⚙️ Pydantic 🏷.
+✔️ 🤯 👈 🎻 💪 🚫 🌐 Pydantic 🏷 💪.
 
-    ✋️ 🚥 👆 ✔️ 📚 🎻 🤥 🤭, 👉 👌 🎱 ⚙️ 👫 🏋️ 🕸 🛠️ ⚙️ FastAPI. 👶
+, 👆 5️⃣📆 💪 ⚙️ Pydantic 🏷.
+
+✋️ 🚥 👆 ✔️ 📚 🎻 🤥 🤭, 👉 👌 🎱 ⚙️ 👫 🏋️ 🕸 🛠️ ⚙️ FastAPI. 👶
+
+///
 
 ## 🎻 `response_model`
 
