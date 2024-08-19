@@ -314,11 +314,11 @@ Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Klik op de knop "Try it out", hiermee kunt u de parameters invullen en direct met de API interacteren:
+* Klik op de knop "Try it out", hiermee kan je de parameters invullen en direct met de API interacteren:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Klik vervolgens op de knop "Execute", de gebruikersinterface zal communiceren met uw API, de parameters verzenden, de resultaten ophalen en deze op het scherm tonen:
+* Klik vervolgens op de knop "Execute", de gebruikersinterface zal communiceren met jouw API, de parameters verzenden, de resultaten ophalen en deze op het scherm tonen:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -462,22 +462,22 @@ Gebruikt door Pydantic:
 
 Gebruikt door Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Vereist indien u de `TestClient` wil gebruiken.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Vereist als u de standaard templateconfiguratie wilt gebruiken.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist indien u <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Vereist indien je de `TestClient` wil gebruiken.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Vereist als je de standaard templateconfiguratie wil gebruiken.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Vereist indien je <abbr title="het omzetten van de string die uit een HTTP verzoek komt in Python data">"parsen"</abbr> van formulieren wil ondersteunen met `requests.form()`.
 
 Gebruikt door FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - voor de server die uw applicatie laadt en bedient.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - voor de server die jouw applicatie laadt en bedient.
 * `fastapi-cli` - om het `fastapi` commando te voorzien.
 
 ### Zonder `standard` Afhankelijkheden
 
-Indien u de optionele `standard` afhankelijkheden niet wenst te installeren, kan u installeren met `pip install fastapi` in plaats van `pip install "fastapi[standard]"`.
+Indien je de optionele `standard` afhankelijkheden niet wenst te installeren, kan je installeren met `pip install fastapi` in plaats van `pip install "fastapi[standard]"`.
 
 ### Bijkomende Optionele Afhankelijkheden
 
-Er zijn nog een aantal bijkomende afhankelijkheden die u eventueel kan installeren.
+Er zijn nog een aantal bijkomende afhankelijkheden die je eventueel kan installeren.
 
 Bijkomende optionele afhankelijkheden voor Pydantic:
 
@@ -486,8 +486,8 @@ Bijkomende optionele afhankelijkheden voor Pydantic:
 
 Bijkomende optionele afhankelijkheden voor FastAPI:
 
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Vereist indien u `ORJSONResponse` wil gebruiken.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Vereist indien u `UJSONResponse` wil gebruiken.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Vereist indien je `ORJSONResponse` wil gebruiken.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Vereist indien je `UJSONResponse` wil gebruiken.
 
 ## Licentie
 
