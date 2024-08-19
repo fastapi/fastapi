@@ -12,13 +12,13 @@ FastAPIやユーザーや開発者を応援したいですか？
 
 ## GitHubで **FastAPI** にStar
 
-GitHubでFastAPIに「Star」をつけることができます (右上部のStarボタンをクリック): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+GitHubでFastAPIに「Star」をつけることができます (右上部のStarボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
 
 スターを増やすことで、他のユーザーの目につきやすくなり、多くの人にとって便利なものであることを示せます。
 
 ## GitHubレポジトリのリリースをWatch
 
-GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリック): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 そこで「Releases only」を選択できます。
 
@@ -42,7 +42,7 @@ GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリ�
 
 ## **FastAPI** に関するツイート
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/fastapi/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
 
 **FastAPI** がどのように使われ、どこが気に入られ、どんなプロジェクト/会社で使われているかなどについて知りたいです。
 
@@ -54,11 +54,11 @@ GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリ�
 
 ## GitHub issuesで他の人を助ける
 
-<a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">既存のissues</a>を確認して、他の人を助けてみてください。皆さんが回答を知っているかもしれない質問がほとんどです。🤓
+<a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">既存のissues</a>を確認して、他の人を助けてみてください。皆さんが回答を知っているかもしれない質問がほとんどです。🤓
 
 ## GitHubレポジトリをWatch
 
-GitHubでFastAPIを「watch」できます (右上部の「watch」ボタンをクリック): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+GitHubでFastAPIを「watch」できます (右上部の「watch」ボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
 「Releases only」ではなく「Watching」を選択すると、新たなissueが立てられた際に通知されます。
 
@@ -66,7 +66,7 @@ GitHubでFastAPIを「watch」できます (右上部の「watch」ボタンを�
 
 ## issuesを立てる
 
-GitHubレポジトリで<a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">新たなissueを立てられます</a>。例えば:
+GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">新たなissueを立てられます</a>。例えば:
 
 * 質問、または、問題の報告
 * 新機能の提案
@@ -75,26 +75,12 @@ GitHubレポジトリで<a href="https://github.com/tiangolo/fastapi/issues/new/
 
 ## プルリクエストをする
 
-以下の様な<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">プルリクエストを作成</a>できます:
+以下の様な<a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">プルリクエストを作成</a>できます:
 
 * ドキュメントのタイプミスを修正。
 * 新たなドキュメントセクションを提案。
 * 既存のissue/バグを修正。
 * 新機能を追加。
-
-## チャットに参加
-
-Gitterでチャットに参加: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
-
-そこで、他の人と手早く会話したり、手助けやアイデアの共有などができます。
-
-しかし、「自由な会話」が許容されているので一般的すぎて回答が難しい質問もしやすくなります。そのせいで回答を得られないかもしれません。
-
-GitHub issuesでは良い回答を得やすい質問ができるように、もしくは、質問する前に自身で解決できるようにテンプレートがガイドしてくれます。そして、GitHubではたとえ時間がかかっても全てに答えているか確認できます。個人的にはGitterチャットでは同じことはできないです。😅
-
-Gitterでの会話はGitHubほど簡単に検索できないので、質問と回答が会話の中に埋もれてしまいます。
-
-一方、チャットには1000人以上いるので、いつでも話し相手が見つかる可能性が高いです。😄
 
 ## 開発者のスポンサーになる
 

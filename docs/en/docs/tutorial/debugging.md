@@ -64,7 +64,7 @@ from myapp import app
 # Some more code
 ```
 
-in that case, the automatic variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
+in that case, the automatically created variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
 
 So, the line:
 
@@ -74,8 +74,11 @@ So, the line:
 
 will not be executed.
 
-!!! info
-    For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
+/// info
+
+For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
+
+///
 
 ## Run your code with your debugger
 
