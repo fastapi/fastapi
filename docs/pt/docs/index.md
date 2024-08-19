@@ -434,7 +434,7 @@ Para entender mais sobre performance, veja a seção <a href="https://fastapi.ti
 
 Usados por Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validação de email.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - para validação de email.
 
 Usados por Starlette:
 

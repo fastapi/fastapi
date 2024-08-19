@@ -442,7 +442,7 @@ item: Item
 
 استفاده شده توسط Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - برای اعتبارسنجی آدرس‌های ایمیل.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - برای اعتبارسنجی آدرس‌های ایمیل.
 
 استفاده شده توسط Starlette:
 
