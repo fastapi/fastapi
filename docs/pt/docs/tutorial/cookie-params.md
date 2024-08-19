@@ -20,13 +20,19 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 {!../../../docs_src/cookie_params/tutorial001.py!}
 ```
 
-!!! note "Detalhes Técnicos"
-    `Cookie` é uma classe "irmã" de `Path` e `Query`. Ela também herda da mesma classe em comum `Param`.
+/// note | "Detalhes Técnicos"
 
-    Mas lembre-se que quando você importa `Query`, `Path`, `Cookie` e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
+`Cookie` é uma classe "irmã" de `Path` e `Query`. Ela também herda da mesma classe em comum `Param`.
 
-!!! info "Informação"
-    Para declarar cookies, você precisa usar `Cookie`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+Mas lembre-se que quando você importa `Query`, `Path`, `Cookie` e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
+
+///
+
+/// info | "Informação"
+
+Para declarar cookies, você precisa usar `Cookie`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+
+///
 
 ## Recapitulando
 
