@@ -12,7 +12,7 @@ authors:
     family-names: Ramírez
     email: tiangolo@gmail.com
 identifiers:
-repository-code: 'https://github.com/tiangolo/fastapi'
+repository-code: 'https://github.com/fastapi/fastapi'
 url: 'https://fastapi.tiangolo.com'
 abstract: >-
   FastAPI framework, high performance, easy to learn, fast to code,

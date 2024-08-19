@@ -63,12 +63,15 @@
 }
 ```
 
-!!! tip
-    🕐❔ 🙋‍♀ `HTTPException`, 👆 💪 🚶‍♀️ 🙆 💲 👈 💪 🗜 🎻 🔢 `detail`, 🚫 🕴 `str`.
+/// tip
 
-    👆 💪 🚶‍♀️ `dict`, `list`, ♒️.
+🕐❔ 🙋‍♀ `HTTPException`, 👆 💪 🚶‍♀️ 🙆 💲 👈 💪 🗜 🎻 🔢 `detail`, 🚫 🕴 `str`.
 
-    👫 🍵 🔁 **FastAPI** &amp; 🗜 🎻.
+👆 💪 🚶‍♀️ `dict`, `list`, ♒️.
+
+👫 🍵 🔁 **FastAPI** &amp; 🗜 🎻.
+
+///
 
 ## 🚮 🛃 🎚
 
@@ -106,10 +109,13 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.requests import Request` &amp; `from starlette.responses import JSONResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request`.
+👆 💪 ⚙️ `from starlette.requests import Request` &amp; `from starlette.responses import JSONResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request`.
+
+///
 
 ## 🔐 🔢 ⚠ 🐕‍🦺
 
@@ -160,8 +166,11 @@ path -> item_id
 
 #### `RequestValidationError` 🆚 `ValidationError`
 
-!!! warning
-    👫 📡 ℹ 👈 👆 💪 🚶 🚥 ⚫️ 🚫 ⚠ 👆 🔜.
+/// warning
+
+👫 📡 ℹ 👈 👆 💪 🚶 🚥 ⚫️ 🚫 ⚠ 👆 🔜.
+
+///
 
 `RequestValidationError` 🎧-🎓 Pydantic <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
@@ -183,10 +192,13 @@ path -> item_id
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import PlainTextResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import PlainTextResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### ⚙️ `RequestValidationError` 💪
 

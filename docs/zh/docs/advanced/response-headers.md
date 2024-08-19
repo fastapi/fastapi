@@ -25,12 +25,15 @@
 ```
 
 
-!!! note "技术细节"
-    你也可以使用`from starlette.responses import Response`或`from starlette.responses import JSONResponse`。
+/// note | "技术细节"
 
-    **FastAPI**提供了与`fastapi.responses`相同的`starlette.responses`，只是为了方便开发者。但是，大多数可用的响应都直接来自Starlette。
+你也可以使用`from starlette.responses import Response`或`from starlette.responses import JSONResponse`。
 
-    由于`Response`经常用于设置头部和cookies，因此**FastAPI**还在`fastapi.Response`中提供了它。
+**FastAPI**提供了与`fastapi.responses`相同的`starlette.responses`，只是为了方便开发者。但是，大多数可用的响应都直接来自Starlette。
+
+由于`Response`经常用于设置头部和cookies，因此**FastAPI**还在`fastapi.Response`中提供了它。
+
+///
 
 ## 自定义头部
 

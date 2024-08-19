@@ -6,41 +6,57 @@
 
 首先，导入 `Cookie`：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+/// tip
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="1"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 ## 声明 `Cookie` 参数
 
@@ -49,51 +65,71 @@
 第一个值是默认值，还可以传递所有验证参数或注释参数：
 
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+```Python hl_lines="10"
+{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        尽可能选择使用 `Annotated` 的版本。
+/// tip
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+尽可能选择使用 `Annotated` 的版本。
 
-!!! note "技术细节"
+///
 
-    `Cookie` 、`Path` 、`Query` 是**兄弟类**，都继承自共用的 `Param` 类。
+```Python hl_lines="7"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
 
-    注意，从 `fastapi` 导入的 `Query`、`Path`、`Cookie` 等对象，实际上是返回特殊类的函数。
+////
 
-!!! info "说明"
+//// tab | Python 3.8+ non-Annotated
 
-    必须使用 `Cookie` 声明 cookie 参数，否则该参数会被解释为查询参数。
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
+
+/// note | "技术细节"
+
+`Cookie` 、`Path` 、`Query` 是**兄弟类**，都继承自共用的 `Param` 类。
+
+注意，从 `fastapi` 导入的 `Query`、`Path`、`Cookie` 等对象，实际上是返回特殊类的函数。
+
+///
+
+/// info | "说明"
+
+必须使用 `Cookie` 声明 cookie 参数，否则该参数会被解释为查询参数。
+
+///
 
 ## 小结
 

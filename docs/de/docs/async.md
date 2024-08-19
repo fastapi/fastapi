@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-     Sie können `await` nur innerhalb von Funktionen verwenden, die mit `async def` erstellt wurden.
+/// note
+
+Sie können `await` nur innerhalb von Funktionen verwenden, die mit `async def` erstellt wurden.
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ Sie essen sie und sind fertig. ⏹
 
 Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 vor der Theke verbracht wurde. 😞
 
-!!! info
-    Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -392,12 +401,15 @@ All das ist es, was FastAPI (via Starlette) befeuert und es eine so beeindrucken
 
 ## Sehr technische Details
 
-!!! warning "Achtung"
-    Das folgende können Sie wahrscheinlich überspringen.
+/// warning | "Achtung"
 
-    Dies sind sehr technische Details darüber, wie **FastAPI** unter der Haube funktioniert.
+Das folgende können Sie wahrscheinlich überspringen.
 
-    Wenn Sie über gute technische Kenntnisse verfügen (Coroutinen, Threads, Blocking, usw.) und neugierig sind, wie FastAPI mit `async def`s im Vergleich zu normalen `def`s umgeht, fahren Sie fort.
+Dies sind sehr technische Details darüber, wie **FastAPI** unter der Haube funktioniert.
+
+Wenn Sie über gute technische Kenntnisse verfügen (Coroutinen, Threads, Blocking, usw.) und neugierig sind, wie FastAPI mit `async def`s im Vergleich zu normalen `def`s umgeht, fahren Sie fort.
+
+///
 
 ### Pfadoperation-Funktionen
 
