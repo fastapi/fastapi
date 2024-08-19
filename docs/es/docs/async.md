@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note "Nota"
-    Solo puedes usar `await` dentro de funciones creadas con `async def`.
+/// note | "Nota"
+
+Solo puedes usar `await` dentro de funciones creadas con `async def`.
+
+///
 
 ---
 
@@ -135,8 +138,11 @@ Tú y esa persona 😍 se comen las hamburguesas 🍔 y la pasan genial ✨.
 
 <img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-07.png" alt="illustration">
 
-!!! info
-     Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -198,8 +204,11 @@ Sólo las comes y listo 🍔 ⏹.
 
 No has hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo esperando 🕙 frente al mostrador 😞.
 
-!!! info
-     Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -387,12 +396,15 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que hace que te
 
 ## Detalles muy técnicos
 
-!!! warning "Advertencia"
-    Probablemente puedas saltarte esto.
+/// warning | "Advertencia"
 
-    Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
+Probablemente puedas saltarte esto.
 
-    Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
+Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
+
+Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
+
+///
 
 ### Path operation functions
 

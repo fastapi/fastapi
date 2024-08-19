@@ -14,53 +14,75 @@ Mas você também deseja aceitar novos itens. E quando os itens não existiam, e
 
 Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretamente, definindo o `status_code` que você deseja:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="4  26"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Faça uso da versão `Annotated` quando possível.
+```Python hl_lines="4  26"
+{!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="2  23"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Dica"
-        Faça uso da versão `Annotated` quando possível.
+/// tip | "Dica"
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
-    ```
+Faça uso da versão `Annotated` quando possível.
 
-!!! warning "Aviso"
-    Quando você retorna um `Response` diretamente, como no exemplo acima, ele será retornado diretamente.
+///
 
-    Ele não será serializado com um modelo, etc.
+```Python hl_lines="2  23"
+{!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
+```
 
-    Garanta que ele tenha toda informação que você deseja, e que os valores sejam um JSON válido (caso você esteja usando `JSONResponse`).
+////
 
-!!! note "Detalhes técnicos"
-    Você também pode utilizar `from starlette.responses import JSONResponse`.
+//// tab | Python 3.8+ non-Annotated
 
-    O **FastAPI** disponibiliza o `starlette.responses` como `fastapi.responses` apenas por conveniência para você, o programador. Porém a maioria dos retornos disponíveis vem diretamente do Starlette. O mesmo com `status`.
+/// tip | "Dica"
+
+Faça uso da versão `Annotated` quando possível.
+
+///
+
+```Python hl_lines="4  25"
+{!> ../../../docs_src/additional_status_codes/tutorial001.py!}
+```
+
+////
+
+/// warning | "Aviso"
+
+Quando você retorna um `Response` diretamente, como no exemplo acima, ele será retornado diretamente.
+
+Ele não será serializado com um modelo, etc.
+
+Garanta que ele tenha toda informação que você deseja, e que os valores sejam um JSON válido (caso você esteja usando `JSONResponse`).
+
+///
+
+/// note | "Detalhes técnicos"
+
+Você também pode utilizar `from starlette.responses import JSONResponse`.
+
+O **FastAPI** disponibiliza o `starlette.responses` como `fastapi.responses` apenas por conveniência para você, o programador. Porém a maioria dos retornos disponíveis vem diretamente do Starlette. O mesmo com `status`.
+
+///
 
 ## OpenAPI e documentação da API
 
