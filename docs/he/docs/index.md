@@ -446,7 +446,7 @@ item: Item
 
 בשימוש Pydantic:
 
--   <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - לאימות כתובות אימייל.
+-   <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - לאימות כתובות אימייל.
 
 בשימוש Starlette:
 

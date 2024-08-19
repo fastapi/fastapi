@@ -202,8 +202,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
     The `--no-cache-dir` option tells `pip` to not save the downloaded packages locally, as that is only if `pip` was going to be run again to install the same packages, but that's not the case when working with containers.
 
-    !!! note
-        The `--no-cache-dir` is only related to `pip`, it has nothing to do with Docker or containers.
+    /// note
+
+    The `--no-cache-dir` is only related to `pip`, it has nothing to do with Docker or containers.
+
+    ///
 
     The `--upgrade` option tells `pip` to upgrade the packages if they are already installed.
 
