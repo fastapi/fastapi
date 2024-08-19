@@ -64,8 +64,11 @@ The marker `@pytest.mark.anyio` tells pytest that this test function should be c
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
-!!! tip
-    Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+/// tip
+
+Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+
+///
 
 Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
 
@@ -81,15 +84,24 @@ response = client.get('/')
 
 ...that we used to make our requests with the `TestClient`.
 
-!!! tip
-    Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+/// tip
 
-!!! warning
-    If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+
+///
+
+/// warning
+
+If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+
+///
 
 ## Other Asynchronous Function Calls
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
-!!! tip
-    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) Remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+/// tip
+
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) Remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+
+///

@@ -10,8 +10,11 @@ Primeiro, você tem que importá-lo:
 {!../../../docs_src/body_fields/tutorial001.py!}
 ```
 
-!!! warning "Aviso"
-    Note que `Field` é importado diretamente do `pydantic`, não do `fastapi` como todo o resto (`Query`, `Path`, `Body`, etc).
+/// warning | "Aviso"
+
+Note que `Field` é importado diretamente do `pydantic`, não do `fastapi` como todo o resto (`Query`, `Path`, `Body`, etc).
+
+///
 
 ## Declare atributos do modelo
 
@@ -23,17 +26,23 @@ Você pode então utilizar `Field` com atributos do modelo:
 
 `Field` funciona da mesma forma que `Query`, `Path` e `Body`, ele possui todos os mesmos parâmetros, etc.
 
-!!! note "Detalhes técnicos"
-    Na realidade, `Query`, `Path` e outros que você verá em seguida, criam objetos de subclasses de uma classe `Param` comum, que é ela mesma uma subclasse da classe `FieldInfo` do Pydantic.
+/// note | "Detalhes técnicos"
 
-    E `Field` do Pydantic retorna uma instância de `FieldInfo` também.
+Na realidade, `Query`, `Path` e outros que você verá em seguida, criam objetos de subclasses de uma classe `Param` comum, que é ela mesma uma subclasse da classe `FieldInfo` do Pydantic.
 
-    `Body` também retorna objetos de uma subclasse de `FieldInfo` diretamente. E tem outras que você verá mais tarde que são subclasses da classe `Body`.
+E `Field` do Pydantic retorna uma instância de `FieldInfo` também.
 
-    Lembre-se que quando você importa `Query`, `Path`, e outros de `fastapi`, esse são na realidade funções que retornam classes especiais.
+`Body` também retorna objetos de uma subclasse de `FieldInfo` diretamente. E tem outras que você verá mais tarde que são subclasses da classe `Body`.
 
-!!! tip "Dica"
-    Note como cada atributo do modelo com um tipo, valor padrão e `Field` possuem a mesma estrutura que parâmetros de *funções de operações de rota*, com `Field` ao invés de `Path`, `Query` e `Body`.
+Lembre-se que quando você importa `Query`, `Path`, e outros de `fastapi`, esse são na realidade funções que retornam classes especiais.
+
+///
+
+/// tip | "Dica"
+
+Note como cada atributo do modelo com um tipo, valor padrão e `Field` possuem a mesma estrutura que parâmetros de *funções de operações de rota*, com `Field` ao invés de `Path`, `Query` e `Body`.
+
+///
 
 ## Adicione informações extras
 

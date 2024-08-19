@@ -4,20 +4,24 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 为此，请使用 `yield` 而不是 `return`，然后再编写额外的步骤（代码）。
 
-!!! tip "提示"
-    确保只使用一次 `yield` 。
+/// tip | "提示"
 
-!!! note "技术细节"
+确保只使用一次 `yield` 。
 
-    任何一个可以与以下内容一起使用的函数：
+///
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或者
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+/// note | "技术细节"
 
-    都可以作为 **FastAPI** 的依赖项。
+任何一个可以与以下内容一起使用的函数：
 
-    实际上，FastAPI内部就使用了这两个装饰器。
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或者
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
+都可以作为 **FastAPI** 的依赖项。
+
+实际上，FastAPI内部就使用了这两个装饰器。
+
+///
 
 ## 使用 `yield` 的数据库依赖项
 
@@ -41,11 +45,13 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-!!! tip "提示"
+/// tip | "提示"
 
-    您可以使用 `async` 或普通函数。
+您可以使用 `async` 或普通函数。
 
-    **FastAPI** 会像处理普通依赖关系一样，对每个依赖关系做正确的处理。
+**FastAPI** 会像处理普通依赖关系一样，对每个依赖关系做正确的处理。
+
+///
 
 ## 同时包含了 `yield` 和 `try` 的依赖项
 
@@ -68,26 +74,35 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 例如，`dependency_c` 可以依赖于 `dependency_b`，而 `dependency_b` 则依赖于 `dependency_a`。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="6  14  22"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="5  13  21"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用“ Annotated”版本。
+////
 
-    ```Python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+如果可能，请尽量使用“ Annotated”版本。
+
+///
+
+```Python hl_lines="4  12  20"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 所有这些依赖都可以使用`yield`。
 
@@ -95,26 +110,35 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 而`dependency_b` 反过来则需要`dependency_a`（此处称为 `dep_a`）的值在其退出代码中可用。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
+```Python hl_lines="18-19  26-27"
+{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="17-18  25-26"
+{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用“ Annotated”版本。
+////
 
-    ```Python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+如果可能，请尽量使用“ Annotated”版本。
+
+///
+
+```Python hl_lines="16-17  24-25"
+{!> ../../../docs_src/dependencies/tutorial008.py!}
+```
+
+////
 
 同样，你可以有混合了`yield`和`return`的依赖。
 
@@ -124,12 +148,13 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 **FastAPI** 将确保按正确的顺序运行所有内容。
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    这是由 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>完成的。
+这是由 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>完成的。
 
-    **FastAPI** 在内部使用它们来实现这一点。
+**FastAPI** 在内部使用它们来实现这一点。
 
+///
 
 ## 使用 `yield` 和 `HTTPException` 的依赖项
 
@@ -151,9 +176,11 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为“退出”
 
 如果你有自定义异常，希望在返回响应之前处理，并且可能修改响应甚至触发`HTTPException`，可以创建[自定义异常处理程序](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}。
 
-!!! tip
+/// tip
 
-    在`yield`之前仍然可以引发包括`HTTPException`在内的异常，但在`yield`之后则不行。
+在`yield`之前仍然可以引发包括`HTTPException`在内的异常，但在`yield`之后则不行。
+
+///
 
 执行的顺序大致如下图所示。时间从上到下流动。每列都是相互交互或执行代码的其中一部分。
 
@@ -197,15 +224,21 @@ participant tasks as Background tasks
     end
 ```
 
-!!! info
-    只会向客户端发送**一次响应**，可能是一个错误响应之一，也可能是来自*路径操作*的响应。
+/// info
 
-    在发送了其中一个响应之后，就无法再发送其他响应了。
+只会向客户端发送**一次响应**，可能是一个错误响应之一，也可能是来自*路径操作*的响应。
 
-!!! tip
-    这个图表展示了`HTTPException`，但你也可以引发任何其他你创建了[自定义异常处理程序](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}的异常。
+在发送了其中一个响应之后，就无法再发送其他响应了。
 
-    如果你引发任何异常，它将传递给带有`yield`的依赖，包括`HTTPException`，然后**再次**传递给异常处理程序。如果没有针对该异常的异常处理程序，那么它将被默认的内部`ServerErrorMiddleware`处理，返回500 HTTP状态码，告知客户端服务器发生了错误。
+///
+
+/// tip
+
+这个图表展示了`HTTPException`，但你也可以引发任何其他你创建了[自定义异常处理程序](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}的异常。
+
+如果你引发任何异常，它将传递给带有`yield`的依赖，包括`HTTPException`，然后**再次**传递给异常处理程序。如果没有针对该异常的异常处理程序，那么它将被默认的内部`ServerErrorMiddleware`处理，返回500 HTTP状态码，告知客户端服务器发生了错误。
+
+///
 
 ## 上下文管理器
 
@@ -229,10 +262,13 @@ with open("./somefile.txt") as f:
 
 ### 在依赖项中使用带有`yield`的上下文管理器
 
-!!! warning
-    这是一个更为“高级”的想法。
+/// warning
 
-    如果您刚开始使用**FastAPI**，您可能暂时可以跳过它。
+这是一个更为“高级”的想法。
+
+如果您刚开始使用**FastAPI**，您可能暂时可以跳过它。
+
+///
 
 在Python中，你可以通过<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">创建一个带有`__enter__()`和`__exit__()`方法的类</a>来创建上下文管理器。
 
@@ -242,12 +278,15 @@ with open("./somefile.txt") as f:
 {!../../../docs_src/dependencies/tutorial010.py!}
 ```
 
-!!! tip
-    另一种创建上下文管理器的方法是：
+/// tip
 
-    * <a href="https://docs.python.org/zh-cn/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>或者
-    * <a href="https://docs.python.org/zh-cn/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+另一种创建上下文管理器的方法是：
 
-    使用上下文管理器装饰一个只有单个`yield`的函数。这就是**FastAPI**在内部用于带有`yield`的依赖项的方式。
+* <a href="https://docs.python.org/zh-cn/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>或者
+* <a href="https://docs.python.org/zh-cn/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
-    但是你不需要为FastAPI的依赖项使用这些装饰器（而且也不应该）。FastAPI会在内部为你处理这些。
+使用上下文管理器装饰一个只有单个`yield`的函数。这就是**FastAPI**在内部用于带有`yield`的依赖项的方式。
+
+但是你不需要为FastAPI的依赖项使用这些装饰器（而且也不应该）。FastAPI会在内部为你处理这些。
+
+///

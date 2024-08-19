@@ -64,10 +64,13 @@ These are the users that have been [helping others the most with questions in Gi
 
 They have proven to be **FastAPI Experts** by helping many others. ✨
 
-!!! tip
-    You could become an official FastAPI Expert too!
+/// tip
 
-    Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+You could become an official FastAPI Expert too!
+
+Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+
+///
 
 You can see the **FastAPI Experts** for:
 

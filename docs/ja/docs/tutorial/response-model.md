@@ -12,8 +12,11 @@
 {!../../../docs_src/response_model/tutorial001.py!}
 ```
 
-!!! note "備考"
-    `response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数* のパラメータではありません。
+/// note | "備考"
+
+`response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数* のパラメータではありません。
+
+///
 
 Pydanticモデルの属性に対して宣言するのと同じ型を受け取るので、Pydanticモデルになることもできますが、例えば、`List[Item]`のようなPydanticモデルの`list`になることもできます。
 
@@ -28,8 +31,11 @@ FastAPIは`response_model`を使って以下のことをします:
 
 * 出力データをモデルのデータに限定します。これがどのように重要なのか以下で見ていきましょう。
 
-!!! note "技術詳細"
-    レスポンスモデルは、関数の戻り値のアノテーションではなく、このパラメータで宣言されています。なぜなら、パス関数は実際にはそのレスポンスモデルを返すのではなく、`dict`やデータベースオブジェクト、あるいは他のモデルを返し、`response_model`を使用してフィールドの制限やシリアライズを行うからです。
+/// note | "技術詳細"
+
+レスポンスモデルは、関数の戻り値のアノテーションではなく、このパラメータで宣言されています。なぜなら、パス関数は実際にはそのレスポンスモデルを返すのではなく、`dict`やデータベースオブジェクト、あるいは他のモデルを返し、`response_model`を使用してフィールドの制限やシリアライズを行うからです。
+
+///
 
 ## 同じ入力データの返却
 
@@ -51,8 +57,11 @@ FastAPIは`response_model`を使って以下のことをします:
 
 しかし、同じモデルを別の*path operation*に使用すると、すべてのクライアントにユーザーのパスワードを送信してしまうことになります。
 
-!!! danger "危険"
-    ユーザーの平文のパスワードを保存したり、レスポンスで送信したりすることは絶対にしないでください。
+/// danger | "危険"
+
+ユーザーの平文のパスワードを保存したり、レスポンスで送信したりすることは絶対にしないでください。
+
+///
 
 ## 出力モデルの追加
 
@@ -121,16 +130,22 @@ FastAPIは`response_model`を使って以下のことをします:
 }
 ```
 
-!!! info "情報"
-    FastAPIはこれをするために、Pydanticモデルの`.dict()`を<a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">その`exclude_unset`パラメータ</a>で使用しています。
+/// info | "情報"
 
-!!! info "情報"
-    以下も使用することができます:
+FastAPIはこれをするために、Pydanticモデルの`.dict()`を<a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">その`exclude_unset`パラメータ</a>で使用しています。
 
-    * `response_model_exclude_defaults=True`
-    * `response_model_exclude_none=True`
+///
 
-    `exclude_defaults`と`exclude_none`については、<a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydanticのドキュメント</a>で説明されている通りです。
+/// info | "情報"
+
+以下も使用することができます:
+
+* `response_model_exclude_defaults=True`
+* `response_model_exclude_none=True`
+
+`exclude_defaults`と`exclude_none`については、<a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">Pydanticのドキュメント</a>で説明されている通りです。
+
+///
 
 #### デフォルト値を持つフィールドの値を持つデータ
 
@@ -165,9 +180,12 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 そのため、それらはJSONレスポンスに含まれることになります。
 
-!!! tip "豆知識"
-    デフォルト値は`None`だけでなく、なんでも良いことに注意してください。
-    例えば、リスト（`[]`）や`10.5`の`float`などです。
+/// tip | "豆知識"
+
+デフォルト値は`None`だけでなく、なんでも良いことに注意してください。
+例えば、リスト（`[]`）や`10.5`の`float`などです。
+
+///
 
 ### `response_model_include`と`response_model_exclude`
 
@@ -177,21 +195,27 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 これは、Pydanticモデルが１つしかなく、出力からいくつかのデータを削除したい場合のクイックショートカットとして使用することができます。
 
-!!! tip "豆知識"
-    それでも、これらのパラメータではなく、複数のクラスを使用して、上記のようなアイデアを使うことをおすすめします。
+/// tip | "豆知識"
 
-    これは`response_model_include`や`response_mode_exclude`を使用していくつかの属性を省略しても、アプリケーションのOpenAPI（とドキュメント）で生成されたJSON Schemaが完全なモデルになるからです。
+それでも、これらのパラメータではなく、複数のクラスを使用して、上記のようなアイデアを使うことをおすすめします。
 
-    同様に動作する`response_model_by_alias`にも当てはまります。
+これは`response_model_include`や`response_mode_exclude`を使用していくつかの属性を省略しても、アプリケーションのOpenAPI（とドキュメント）で生成されたJSON Schemaが完全なモデルになるからです。
+
+同様に動作する`response_model_by_alias`にも当てはまります。
+
+///
 
 ```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
 
-!!! tip "豆知識"
-    `{"name", "description"}`の構文はこれら２つの値をもつ`set`を作成します。
+/// tip | "豆知識"
 
-    これは`set(["name", "description"])`と同等です。
+`{"name", "description"}`の構文はこれら２つの値をもつ`set`を作成します。
+
+これは`set(["name", "description"])`と同等です。
+
+///
 
 #### `set`の代わりに`list`を使用する
 

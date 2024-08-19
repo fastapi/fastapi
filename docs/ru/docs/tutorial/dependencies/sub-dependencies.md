@@ -10,41 +10,57 @@
 
 Можно создать первую зависимость следующим образом:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 без Annotated"
+//// tab | Python 3.6+
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="9-10"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.6 без Annotated"
+//// tab | Python 3.10 без Annotated
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+/// tip | "Подсказка"
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.6 без Annotated
+
+/// tip | "Подсказка"
+
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Она объявляет необязательный параметр запроса `q` как строку, а затем возвращает его.
 
@@ -54,41 +70,57 @@
 
 Затем можно создать еще одну функцию зависимости, которая в то же время содержит внутри себя первую зависимость (таким образом, она тоже является "зависимой"):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 без Annotated"
+//// tab | Python 3.6+
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="14"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.6 без Annotated"
+//// tab | Python 3.10 без Annotated
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+/// tip | "Подсказка"
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.6 без Annotated
+
+/// tip | "Подсказка"
+
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Остановимся на объявленных параметрах:
 
@@ -101,46 +133,65 @@
 
 Затем мы можем использовать зависимость вместе с:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 без Annotated"
+//// tab | Python 3.6+
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+```Python hl_lines="24"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.6 без Annotated"
+//// tab | Python 3.10 без Annotated
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+/// tip | "Подсказка"
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Предпочтительнее использовать версию с аннотацией, если это возможно.
 
-!!! info "Дополнительная информация"
-    Обратите внимание, что мы объявляем только одну зависимость в *функции операции пути* - `query_or_cookie_extractor`.
+///
 
-    Но **FastAPI** будет знать, что сначала он должен выполнить `query_extractor`, чтобы передать результаты этого в `query_or_cookie_extractor` при его вызове.
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.6 без Annotated
+
+/// tip | "Подсказка"
+
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="22"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
+
+/// info | "Дополнительная информация"
+
+Обратите внимание, что мы объявляем только одну зависимость в *функции операции пути* - `query_or_cookie_extractor`.
+
+Но **FastAPI** будет знать, что сначала он должен выполнить `query_extractor`, чтобы передать результаты этого в `query_or_cookie_extractor` при его вызове.
+
+///
 
 ```mermaid
 graph TB
@@ -161,22 +212,29 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 В расширенном сценарии, когда вы знаете, что вам нужно, чтобы зависимость вызывалась на каждом шаге (возможно, несколько раз) в одном и том же запросе, вместо использования "кэшированного" значения, вы можете установить параметр `use_cache=False` при использовании `Depends`:
 
-=== "Python 3.6+"
+//// tab | Python 3.6+
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
-        return {"fresh_value": fresh_value}
-    ```
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+    return {"fresh_value": fresh_value}
+```
 
-=== "Python 3.6+ без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Предпочтительнее использовать версию с аннотацией, если это возможно.
+//// tab | Python 3.6+ без Annotated
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
-        return {"fresh_value": fresh_value}
-    ```
+/// tip | "Подсказка"
+
+Предпочтительнее использовать версию с аннотацией, если это возможно.
+
+///
+
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
+    return {"fresh_value": fresh_value}
+```
+
+////
 
 ## Резюме
 
@@ -186,9 +244,12 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Но, тем не менее, эта система очень мощная и позволяет вам объявлять вложенные графы (деревья) зависимостей сколь угодно глубоко.
 
-!!! tip "Подсказка"
-    Все это может показаться не столь полезным на этих простых примерах.
+/// tip | "Подсказка"
 
-    Но вы увидите как это пригодится в главах посвященных безопасности.
+Все это может показаться не столь полезным на этих простых примерах.
 
-    И вы также увидите, сколько кода это вам сэкономит.
+Но вы увидите как это пригодится в главах посвященных безопасности.
+
+И вы также увидите, сколько кода это вам сэкономит.
+
+///
