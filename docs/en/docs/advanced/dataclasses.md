@@ -20,12 +20,15 @@ And of course, it supports the same:
 
 This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
 
-!!! info
-    Keep in mind that dataclasses can't do everything Pydantic models can do.
+/// info
 
-    So, you might still need to use Pydantic models.
+Keep in mind that dataclasses can't do everything Pydantic models can do.
 
-    But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+So, you might still need to use Pydantic models.
+
+But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+
+///
 
 ## Dataclasses in `response_model`
 
@@ -77,7 +80,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
     As always, in FastAPI you can combine `def` and `async def` as needed.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank" class="internal-link">`async` and `await`</a>.
+    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
 

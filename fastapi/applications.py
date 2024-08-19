@@ -40,7 +40,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -902,7 +902,7 @@ class FastAPI(Starlette):
                 A state object for the application. This is the same object for the
                 entire application, it doesn't change from request to request.
 
-                You normally woudln't use this in FastAPI, for most of the cases you
+                You normally wouldn't use this in FastAPI, for most of the cases you
                 would instead use FastAPI dependencies.
 
                 This is simply inherited from Starlette.
@@ -1056,7 +1056,7 @@ class FastAPI(Starlette):
     def add_api_route(
         self,
         path: str,
-        endpoint: Callable[..., Coroutine[Any, Any, Response]],
+        endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,

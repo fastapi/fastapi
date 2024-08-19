@@ -65,10 +65,13 @@ my_second_user: User = User(**second_user_data)
 ```
 
 
-!!! info
-    `**second_user_data` 意思是:
+/// info
 
-    直接将`second_user_data`字典的键和值直接作为key-value参数传递，等同于：`User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` 意思是:
+
+直接将`second_user_data`字典的键和值直接作为key-value参数传递，等同于：`User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### 编辑器支持
 
