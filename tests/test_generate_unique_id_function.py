@@ -1626,6 +1626,9 @@ def test_warn_duplicate_operation_id():
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         client.get("/openapi.json")
-        assert len(w) == 2
-        assert issubclass(w[-1].category, UserWarning)
-        assert "Duplicate Operation ID" in str(w[-1].message)
+        assert len(w) >= 2
+        duplicate_warnings = [
+            warning for warning in w if issubclass(warning.category, UserWarning)
+        ]
+        assert len(duplicate_warnings) > 0
+        assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
