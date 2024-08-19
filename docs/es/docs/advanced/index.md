@@ -6,10 +6,13 @@ El [Tutorial - Guía de Usuario](../tutorial/index.md){.internal-link target=_bl
 
 En las secciones siguientes verás otras opciones, configuraciones, y características adicionales.
 
-!!! tip
-    Las próximas secciones **no son necesariamente "avanzadas"**.
+/// tip
 
-    Y es posible que para tu caso, la solución se encuentre en una de estas.
+Las próximas secciones **no son necesariamente "avanzadas"**.
+
+Y es posible que para tu caso, la solución se encuentre en una de estas.
+
+///
 
 ## Lee primero el Tutorial
 

@@ -25,76 +25,89 @@
 
 Вы можете установить сервер, совместимый с протоколом ASGI, так:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, очень быстрый ASGI сервер, основанный на библиотеках uvloop и httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, очень быстрый ASGI сервер, основанный на библиотеках uvloop и httptools.
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-    !!! tip "Подсказка"
-        С опцией `standard`, Uvicorn будет устанавливаться и использоваться с некоторыми дополнительными рекомендованными зависимостями.
+/// tip | "Подсказка"
 
-        В них входит `uvloop`, высокопроизводительная замена `asyncio`, которая значительно ускоряет работу асинхронных программ.
+С опцией `standard`, Uvicorn будет устанавливаться и использоваться с некоторыми дополнительными рекомендованными зависимостями.
 
-=== "Hypercorn"
+В них входит `uvloop`, высокопроизводительная замена `asyncio`, которая значительно ускоряет работу асинхронных программ.
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ASGI сервер, поддерживающий протокол HTTP/2.
+///
 
-    <div class="termy">
+////
 
-    ```console
-    $ pip install hypercorn
+//// tab | Hypercorn
 
-    ---> 100%
-    ```
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, ASGI сервер, поддерживающий протокол HTTP/2.
 
-    </div>
+<div class="termy">
 
-    ...или какой-либо другой ASGI сервер.
+```console
+$ pip install hypercorn
+
+---> 100%
+```
+
+</div>
+
+...или какой-либо другой ASGI сервер.
+
+////
 
 ## Запуск серверной программы
 
 Затем запустите ваше приложение так же, как было указано в руководстве ранее, но без опции `--reload`:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
 
-!!! warning "Предупреждение"
+</div>
 
-    Не забудьте удалить опцию `--reload`, если ранее пользовались ею.
+////
 
-    Включение опции `--reload` требует дополнительных ресурсов, влияет на стабильность работы приложения и может повлечь прочие неприятности.
+/// warning | "Предупреждение"
 
-    Она сильно помогает во время **разработки**, но **не следует** использовать её при **реальной работе** приложения.
+Не забудьте удалить опцию `--reload`, если ранее пользовались ею.
+
+Включение опции `--reload` требует дополнительных ресурсов, влияет на стабильность работы приложения и может повлечь прочие неприятности.
+
+Она сильно помогает во время **разработки**, но **не следует** использовать её при **реальной работе** приложения.
+
+///
 
 ## Hypercorn с Trio
 
