@@ -14,8 +14,11 @@
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
-!!! tip "豆知識"
-    `JSONResponse` それ自体は、 `Response` のサブクラスです。
+/// tip | "豆知識"
+
+`JSONResponse` それ自体は、 `Response` のサブクラスです。
+
+///
 
 `Response` を返した場合は、**FastAPI** は直接それを返します。
 
@@ -35,10 +38,13 @@
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "技術詳細"
-    また、`from starlette.responses import JSONResponse` も利用できます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性のために `fastapi.responses` という `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+また、`from starlette.responses import JSONResponse` も利用できます。
+
+**FastAPI** は開発者の利便性のために `fastapi.responses` という `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+
+///
 
 ## カスタム `Response` を返す
 

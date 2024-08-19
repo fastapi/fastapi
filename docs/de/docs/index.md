@@ -449,7 +449,7 @@ Um mehr darüber zu erfahren, siehe den Abschnitt <a href="https://fastapi.tiang
 
 Wird von Pydantic verwendet:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - für E-Mail-Validierung.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - für E-Mail-Validierung.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - für die Verwaltung von Einstellungen.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - für zusätzliche Typen, mit Pydantic zu verwenden.
 

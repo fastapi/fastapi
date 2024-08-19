@@ -12,8 +12,11 @@ Bu  pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme
 
 **FastAPI** kullanmayacak olsanız bile tür belirteçleri hakkında bilgi edinmenizde fayda var.
 
-!!! note "Not"
-    Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
+/// note | "Not"
+
+Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
+
+///
 
 ## Motivasyon
 
@@ -172,10 +175,13 @@ Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli para
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip "Ipucu"
-    Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
+/// tip | "Ipucu"
 
-    Bu durumda `str`, `List`e iletilen tür parametresidir.
+Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
+
+Bu durumda `str`, `List`e iletilen tür parametresidir.
+
+///
 
 Bunun anlamı şudur: "`items` değişkeni bir `list`tir ve bu listedeki öğelerin her biri bir `str`dir".
 
@@ -281,8 +287,11 @@ Resmi Pydantic dokümanlarından alınmıştır:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info
-    Daha fazla şey öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
+/// info
+
+Daha fazla şey öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
+
+///
 
 **FastAPI** tamamen Pydantic'e dayanmaktadır.
 
@@ -310,5 +319,8 @@ Bütün bunlar kulağa soyut gelebilir. Merak etme. Tüm bunları çalışırken
 
 Önemli olan, standart Python türlerini tek bir yerde kullanarak (daha fazla sınıf, dekoratör vb. eklemek yerine), **FastAPI**'nin bizim için işi yapmasını sağlamak.
 
-!!! info
-   Tüm öğreticiyi zaten okuduysanız ve türler hakkında daha fazla bilgi için geri döndüyseniz, iyi bir kaynak:<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> the "cheat sheet" from `mypy`</a>.
+/// info
+
+Tüm öğreticiyi zaten okuduysanız ve türler hakkında daha fazla bilgi için geri döndüyseniz, iyi bir kaynak:<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank"> the "cheat sheet" from `mypy`</a>.
+
+///

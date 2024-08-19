@@ -35,8 +35,11 @@
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip
-     `callback_url` 🔢 🔢 ⚙️ Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">📛</a> 🆎.
+/// tip
+
+`callback_url` 🔢 🔢 ⚙️ Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">📛</a> 🆎.
+
+///
 
 🕴 🆕 👜 `callbacks=messages_callback_router.routes` ❌ *➡ 🛠️ 👨‍🎨*. 👥 🔜 👀 ⚫️❔ 👈 ⏭.
 
@@ -61,10 +64,13 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 👉 🖼 🚫 🛠️ ⏲ ⚫️ (👈 💪 ⏸ 📟), 🕴 🧾 🍕.
 
-!!! tip
-    ☑ ⏲ 🇺🇸🔍 📨.
+/// tip
 
-    🕐❔ 🛠️ ⏲ 👆, 👆 💪 ⚙️ 🕳 💖 <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲</a> ⚖️ <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">📨</a>.
+☑ ⏲ 🇺🇸🔍 📨.
+
+🕐❔ 🛠️ ⏲ 👆, 👆 💪 ⚙️ 🕳 💖 <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲</a> ⚖️ <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">📨</a>.
+
+///
 
 ## ✍ ⏲ 🧾 📟
 
@@ -74,10 +80,13 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 👥 🔜 ⚙️ 👈 🎏 💡 📄 ❔ *🔢 🛠️* 🔜 👀 💖... 🏗 *➡ 🛠️(Ⓜ)* 👈 🔢 🛠️ 🔜 🛠️ (🕐 👆 🛠️ 🔜 🤙).
 
-!!! tip
-    🕐❔ ✍ 📟 📄 ⏲, ⚫️ 💪 ⚠ 🌈 👈 👆 👈 *🔢 👩‍💻*. &amp; 👈 👆 ⏳ 🛠️ *🔢 🛠️*, 🚫 *👆 🛠️*.
+/// tip
 
-    🍕 🛠️ 👉 ☝ 🎑 ( *🔢 👩‍💻*) 💪 ℹ 👆 💭 💖 ⚫️ 🌅 ⭐ 🌐❔ 🚮 🔢, Pydantic 🏷 💪, 📨, ♒️. 👈 *🔢 🛠️*.
+🕐❔ ✍ 📟 📄 ⏲, ⚫️ 💪 ⚠ 🌈 👈 👆 👈 *🔢 👩‍💻*. &amp; 👈 👆 ⏳ 🛠️ *🔢 🛠️*, 🚫 *👆 🛠️*.
+
+🍕 🛠️ 👉 ☝ 🎑 ( *🔢 👩‍💻*) 💪 ℹ 👆 💭 💖 ⚫️ 🌅 ⭐ 🌐❔ 🚮 🔢, Pydantic 🏷 💪, 📨, ♒️. 👈 *🔢 🛠️*.
+
+///
 
 ### ✍ ⏲ `APIRouter`
 
@@ -154,8 +163,11 @@ https://www.external.org/events/invoices/2expen51ve
 }
 ```
 
-!!! tip
-    👀 ❔ ⏲ 📛 ⚙️ 🔌 📛 📨 🔢 🔢 `callback_url` (`https://www.external.org/events`) &amp; 🧾 `id` ⚪️➡️ 🔘 🎻 💪 (`2expen51ve`).
+/// tip
+
+👀 ❔ ⏲ 📛 ⚙️ 🔌 📛 📨 🔢 🔢 `callback_url` (`https://www.external.org/events`) &amp; 🧾 `id` ⚪️➡️ 🔘 🎻 💪 (`2expen51ve`).
+
+///
 
 ### 🚮 ⏲ 📻
 
@@ -167,8 +179,11 @@ https://www.external.org/events/invoices/2expen51ve
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-!!! tip
-    👀 👈 👆 🚫 🚶‍♀️ 📻 ⚫️ (`invoices_callback_router`) `callback=`, ✋️ 🔢 `.routes`, `invoices_callback_router.routes`.
+/// tip
+
+👀 👈 👆 🚫 🚶‍♀️ 📻 ⚫️ (`invoices_callback_router`) `callback=`, ✋️ 🔢 `.routes`, `invoices_callback_router.routes`.
+
+///
 
 ### ✅ 🩺
 

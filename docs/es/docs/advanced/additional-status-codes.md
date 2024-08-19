@@ -18,17 +18,23 @@ Para conseguir esto importa `JSONResponse` y devuelve ahí directamente tu conte
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-!!! warning "Advertencia"
-    Cuando devuelves directamente una `Response`, como en los ejemplos anteriores, será devuelta directamente.
+/// warning | "Advertencia"
 
-    No será serializado con el modelo, etc.
+Cuando devuelves directamente una `Response`, como en los ejemplos anteriores, será devuelta directamente.
 
-    Asegúrate de que la respuesta tenga los datos que quieras, y que los valores sean JSON válidos (si estás usando `JSONResponse`).
+No será serializado con el modelo, etc.
 
-!!! note "Detalles Técnicos"
-    También podrías utilizar `from starlette.responses import JSONResponse`.
+Asegúrate de que la respuesta tenga los datos que quieras, y que los valores sean JSON válidos (si estás usando `JSONResponse`).
 
-    **FastAPI** provee las mismas `starlette.responses` que `fastapi.responses` simplemente como una convención para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette. Lo mismo con `status`.
+///
+
+/// note | "Detalles Técnicos"
+
+También podrías utilizar `from starlette.responses import JSONResponse`.
+
+**FastAPI** provee las mismas `starlette.responses` que `fastapi.responses` simplemente como una convención para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette. Lo mismo con `status`.
+
+///
 
 ## OpenAPI y documentación de API
 
