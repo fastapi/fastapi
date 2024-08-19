@@ -43,11 +43,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** 为常见用例提供了一些中间件，下面介绍怎么使用这些中间件。
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    以下几个示例中也可以使用 `from starlette.middleware.something import SomethingMiddleware`。
+以下几个示例中也可以使用 `from starlette.middleware.something import SomethingMiddleware`。
 
-    **FastAPI** 在 `fastapi.middleware` 中提供的中间件只是为了方便开发者使用，但绝大多数可用的中间件都直接继承自 Starlette。
+**FastAPI** 在 `fastapi.middleware` 中提供的中间件只是为了方便开发者使用，但绝大多数可用的中间件都直接继承自 Starlette。
+
+///
 
 ## `HTTPSRedirectMiddleware`
 
@@ -93,7 +95,6 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 例如：
 
-* <a href="https://docs.sentry.io/platforms/python/asgi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn 的 `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 

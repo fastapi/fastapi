@@ -69,13 +69,19 @@ Del mismo modo puedes declarar parámetros de query opcionales definiendo el val
 
 En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
 
-!!! check "Revisa"
-    También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
+/// check | "Revisa"
 
-!!! note "Nota"
-    FastAPI sabrá que `q` es opcional por el `= None`.
+También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
 
-    El `Union` en `Union[str, None]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Union[str, None]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
+///
+
+/// note | "Nota"
+
+FastAPI sabrá que `q` es opcional por el `= None`.
+
+El `Union` en `Union[str, None]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Union[str, None]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
+
+///
 
 ## Conversión de tipos de parámetros de query
 
@@ -193,5 +199,8 @@ En este caso hay 3 parámetros de query:
 * `skip`, un `int` con un valor por defecto de `0`.
 * `limit`, un `int` opcional.
 
-!!! tip "Consejo"
-    También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
+/// tip | "Consejo"
+
+También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
+
+///
