@@ -1,9 +1,12 @@
 # Réponses supplémentaires dans OpenAPI
 
-!!! warning "Attention"
-    Ceci concerne un sujet plutôt avancé.
+/// warning | "Attention"
 
-    Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+Ceci concerne un sujet plutôt avancé.
+
+Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+
+///
 
 Vous pouvez déclarer des réponses supplémentaires, avec des codes HTTP, des types de médias, des descriptions, etc.
 
@@ -27,20 +30,26 @@ Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un mod
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! note "Remarque"
-    Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
+/// note | "Remarque"
 
-!!! info
-    La clé `model` ne fait pas partie d'OpenAPI.
+Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
-    **FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+///
 
-    Le bon endroit est :
+/// info
 
-    * Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
-        * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
-            * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
-                * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+La clé `model` ne fait pas partie d'OpenAPI.
+
+**FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+
+Le bon endroit est :
+
+* Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
+    * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
+        * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
+            * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+
+///
 
 Les réponses générées au format OpenAPI pour cette *opération de chemin* seront :
 
@@ -172,13 +181,19 @@ Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, 
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! note "Remarque"
-    Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
+/// note | "Remarque"
 
-!!! info
-    À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
-    Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+///
+
+/// info
+
+À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+
+Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+
+///
 
 ## Combinaison d'informations
 

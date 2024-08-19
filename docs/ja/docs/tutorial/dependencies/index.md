@@ -75,8 +75,11 @@
 
 そして、その関数は、*path operation関数*が行うのと同じ方法でパラメータを取ります。
 
-!!! tip "豆知識"
-    次の章では、関数以外の「もの」が依存関係として使用できるものを見ていきます。
+/// tip | "豆知識"
+
+次の章では、関数以外の「もの」が依存関係として使用できるものを見ていきます。
+
+///
 
 新しいリクエストが到着するたびに、**FastAPI** が以下のような処理を行います:
 
@@ -97,10 +100,13 @@ common_parameters --> read_users
 
 この方法では、共有されるコードを一度書き、**FastAPI** が*path operations*のための呼び出しを行います。
 
-!!! check "確認"
-    特別なクラスを作成してどこかで **FastAPI** に渡して「登録」する必要はないことに注意してください。
+/// check | "確認"
 
-    `Depends`を渡すだけで、**FastAPI** が残りの処理をしてくれます。
+特別なクラスを作成してどこかで **FastAPI** に渡して「登録」する必要はないことに注意してください。
+
+`Depends`を渡すだけで、**FastAPI** が残りの処理をしてくれます。
+
+///
 
 ## `async`にするかどうか
 
@@ -112,8 +118,11 @@ common_parameters --> read_users
 
 それは重要ではありません。**FastAPI** は何をすべきかを知っています。
 
-!!! note "備考"
-    わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+/// note | "備考"
+
+わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+
+///
 
 ## OpenAPIとの統合
 

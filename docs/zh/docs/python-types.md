@@ -12,8 +12,11 @@
 
 但即使你不会用到 **FastAPI**，了解一下类型提示也会让你从中受益。
 
-!!! note
-    如果你已经精通 Python，并且了解关于类型提示的一切知识，直接跳到下一章节吧。
+/// note
+
+如果你已经精通 Python，并且了解关于类型提示的一切知识，直接跳到下一章节吧。
+
+///
 
 ## 动机
 
@@ -253,8 +256,11 @@ John Doe
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-!!! info
-    想进一步了解 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic，请阅读其文档</a>.
+/// info
+
+想进一步了解 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic，请阅读其文档</a>.
+
+///
 
 整个 **FastAPI** 建立在 Pydantic 的基础之上。
 
@@ -282,5 +288,8 @@ John Doe
 
 最重要的是，通过使用标准的 Python 类型，只需要在一个地方声明（而不是添加更多的类、装饰器等），**FastAPI** 会为你完成很多的工作。
 
-!!! info
-    如果你已经阅读了所有教程，回过头来想了解有关类型的更多信息，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">来自 `mypy` 的"速查表"</a>是不错的资源。
+/// info
+
+如果你已经阅读了所有教程，回过头来想了解有关类型的更多信息，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">来自 `mypy` 的"速查表"</a>是不错的资源。
+
+///
