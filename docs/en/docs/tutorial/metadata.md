@@ -22,8 +22,11 @@ You can set them as follows:
 {!../../../docs_src/metadata/tutorial001.py!}
 ```
 
-!!! tip
-    You can write Markdown in the `description` field and it will be rendered in the output.
+/// tip
+
+You can write Markdown in the `description` field and it will be rendered in the output.
+
+///
 
 With this configuration, the automatic API docs would look like:
 
@@ -65,8 +68,11 @@ Create metadata for your tags and pass it to the `openapi_tags` parameter:
 
 Notice that you can use Markdown inside of the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
 
-!!! tip
-    You don't have to add metadata for all the tags that you use.
+/// tip
+
+You don't have to add metadata for all the tags that you use.
+
+///
 
 ### Use your tags
 
@@ -76,8 +82,11 @@ Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assig
 {!../../../docs_src/metadata/tutorial004.py!}
 ```
 
-!!! info
-    Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+/// info
+
+Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+
+///
 
 ### Check the docs
 

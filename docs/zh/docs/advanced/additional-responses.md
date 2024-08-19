@@ -20,19 +20,23 @@
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
+/// note
 
-!!! Note
-	请记住，您必须直接返回 `JSONResponse` 。
+请记住，您必须直接返回 `JSONResponse` 。
 
-!!! Info
-	`model` 密钥不是OpenAPI的一部分。
-	**FastAPI**将从那里获取`Pydantic`模型，生成` JSON Schema` ，并将其放在正确的位置。
-	- 正确的位置是：
-		- 在键 `content` 中，其具有另一个`JSON`对象（ `dict` ）作为值，该`JSON`对象包含：
-			- 媒体类型的密钥，例如 `application/json` ，它包含另一个`JSON`对象作为值，该对象包含：
-				- 一个键` schema` ，它的值是来自模型的`JSON Schema`，正确的位置在这里。
-					- **FastAPI**在这里添加了对OpenAPI中另一个地方的全局JSON模式的引用，而不是直接包含它。这样，其他应用程序和客户端可以直接使用这些JSON模式，提供更好的代码生成工具等。
+///
 
+/// info
+
+`model` 密钥不是OpenAPI的一部分。
+**FastAPI**将从那里获取`Pydantic`模型，生成` JSON Schema` ，并将其放在正确的位置。
+- 正确的位置是：
+    - 在键 `content` 中，其具有另一个`JSON`对象（ `dict` ）作为值，该`JSON`对象包含：
+        - 媒体类型的密钥，例如 `application/json` ，它包含另一个`JSON`对象作为值，该对象包含：
+            - 一个键` schema` ，它的值是来自模型的`JSON Schema`，正确的位置在这里。
+                - **FastAPI**在这里添加了对OpenAPI中另一个地方的全局JSON模式的引用，而不是直接包含它。这样，其他应用程序和客户端可以直接使用这些JSON模式，提供更好的代码生成工具等。
+
+///
 
 **在OpenAPI中为该路径操作生成的响应将是：**
 
@@ -163,12 +167,18 @@
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! Note
-	- 请注意，您必须直接使用 `FileResponse` 返回图像。
+/// note
 
-!!! Info
-	- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
-	- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
+- 请注意，您必须直接使用 `FileResponse` 返回图像。
+
+///
+
+/// info
+
+- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
+- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
+
+///
 
 ## 组合信息
 您还可以联合接收来自多个位置的响应信息，包括 `response_model `、 `status_code` 和 `responses `参数。

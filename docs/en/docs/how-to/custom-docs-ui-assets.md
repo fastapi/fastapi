@@ -40,12 +40,15 @@ And similarly for ReDoc...
 {!../../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test it
 
@@ -177,12 +180,15 @@ And similarly for ReDoc...
 {!../../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test static files
 
