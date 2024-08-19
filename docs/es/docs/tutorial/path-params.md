@@ -24,7 +24,7 @@ Puedes declarar el tipo de un parámetro de path en la función usando las anota
 
 En este caso, `item_id` es declarado como un `int`.
 
-/// check | "Revisa"
+/// check | Revisa
 
 Esto te dará soporte en el editor dentro de tu función, con chequeo de errores, auto-completado, etc.
 
@@ -38,7 +38,7 @@ Si corres este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/it
 {"item_id":3}
 ```
 
-/// check | "Revisa"
+/// check | Revisa
 
 Observa que el valor que recibió (y devolvió) tu función es `3`, como un Python `int`, y no un string `"3"`.
 
@@ -69,7 +69,7 @@ debido a que el parámetro de path `item_id` tenía el valor `"foo"`, que no es 
 
 El mismo error aparecería si pasaras un `float` en vez de un `int` como en: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "Revisa"
+/// check | Revisa
 
 Así, con la misma declaración de tipo de Python, **FastAPI** te da validación de datos.
 
@@ -85,7 +85,7 @@ Cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="externa
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "Revisa"
+/// check | Revisa
 
 Nuevamente, con la misma declaración de tipo de Python, **FastAPI** te da documentación automática e interactiva (integrándose con Swagger UI)
 
@@ -143,7 +143,7 @@ Luego crea atributos de clase con valores fijos, que serán los valores disponib
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "Información"
+/// info | Información
 
 Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (o enums) están disponibles en Python</a> desde la versión 3.4.
 

@@ -32,7 +32,7 @@ Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s ante
 
 ///
 
-/// warning | "Advertencia"
+/// warning | Advertencia
 
 Si haces esto, debes asegurarte de que cada una de tus *funciones de las operaciones de path* tenga un nombre único.
 
