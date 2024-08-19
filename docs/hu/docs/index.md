@@ -5,11 +5,11 @@
     <em>FastAPI keretrendszer, nagy teljesítmény, könnyen tanulható, gyorsan kódolható, productionre kész</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -23,7 +23,7 @@
 
 **Dokumentáció**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Forrás kód**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Forrás kód**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
@@ -63,7 +63,7 @@ Kulcs funkciók:
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -376,7 +376,7 @@ Visszatérve az előző kód példához. A **FastAPI**:
 * Validálja hogy van egy `item_id` mező a `GET` és `PUT` kérésekben.
 * Validálja hogy az `item_id` `int` típusú a `GET` és `PUT` kérésekben.
     * Ha nem akkor látni fogunk egy tiszta hibát ezzel kapcsolatban.
-* ellenőrzi hogyha van egy opcionális query paraméter `q` névvel (azaz `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` kérések esetén.
+* ellenőrzi hogyha van egy opcionális query paraméter `q` névvel (azaz `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` kérések esetén.
     * Mivel a `q` paraméter `= None`-al van deklarálva, ezért opcionális.
     * `None` nélkül ez a mező kötelező lenne (mint például a body `PUT` kérések esetén).
 * a `/items/{item_id}` címre érkező `PUT` kérések esetén, a JSON-t a következőképpen olvassa be:
@@ -443,7 +443,7 @@ Ezeknek a további megértéséhez: <a href="https://fastapi.tiangolo.com/benchm
 
 Pydantic által használt:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - e-mail validációkra.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - e-mail validációkra.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - Beállítások követésére.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Extra típusok Pydantic-hoz.
 
