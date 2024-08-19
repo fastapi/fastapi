@@ -151,10 +151,13 @@ And still, you would probably not want the application to stay dead because ther
 
 But in those cases with really bad errors that crash the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
 
-!!! tip
-    ...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
+/// tip
 
-    So let's focus on the main cases, where it could crash entirely in some particular cases **in the future**, and it still makes sense to restart it.
+...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
+
+So let's focus on the main cases, where it could crash entirely in some particular cases **in the future**, and it still makes sense to restart it.
+
+///
 
 You would probably want to have the thing in charge of restarting your application as an **external component**, because by that point, the same application with Uvicorn and Python already crashed, so there's nothing in the same code of the same app that could do anything about it.
 
@@ -238,10 +241,13 @@ Here are some possible combinations and strategies:
 * **Cloud services** that handle this for you
     * The cloud service will probably **handle replication for you**. It would possibly let you define **a process to run**, or a **container image** to use, in any case, it would most probably be **a single Uvicorn process**, and the cloud service would be in charge of replicating it.
 
-!!! tip
-    Don't worry if some of these items about **containers**, Docker, or Kubernetes don't make a lot of sense yet.
+/// tip
 
-    I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+Don't worry if some of these items about **containers**, Docker, or Kubernetes don't make a lot of sense yet.
+
+I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Previous Steps Before Starting
 
@@ -257,10 +263,13 @@ And you will have to make sure that it's a single process running those previous
 
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
-!!! tip
-    Also, keep in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+/// tip
 
-    In that case, you wouldn't have to worry about any of this. 🤷
+Also, keep in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+
+In that case, you wouldn't have to worry about any of this. 🤷
+
+///
 
 ### Examples of Previous Steps Strategies
 
@@ -272,8 +281,11 @@ Here are some possible ideas:
 * A bash script that runs the previous steps and then starts your application
     * You would still need a way to start/restart *that* bash script, detect errors, etc.
 
-!!! tip
-    I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+/// tip
+
+I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Resource Utilization
 

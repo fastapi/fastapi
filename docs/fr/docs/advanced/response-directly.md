@@ -14,8 +14,11 @@ Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés 
 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
-!!! note "Remarque"
-    `JSONResponse` est elle-même une sous-classe de `Response`.
+/// note | "Remarque"
+
+`JSONResponse` est elle-même une sous-classe de `Response`.
+
+///
 
 Et quand vous retournez une `Response`, **FastAPI** la transmet directement.
 
@@ -35,10 +38,13 @@ Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convert
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Détails techniques"
-    Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
+/// note | "Détails techniques"
 
-    **FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
+Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
+
+**FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
+
+///
 
 ## Renvoyer une `Response` personnalisée
 
