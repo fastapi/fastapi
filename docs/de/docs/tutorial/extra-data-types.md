@@ -55,76 +55,108 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 
 Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der oben genannten Typen verwenden.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="1  3  13-17"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="1  3  13-17"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1  2  11-15"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
 
-    ```Python hl_lines="1  2  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1  2  11-15"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1  2  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////
 
 Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Datentyp haben und Sie beispielsweise normale Datumsmanipulationen durchführen können, wie zum Beispiel:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="19-20"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="19-20"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="17-18"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////

@@ -12,9 +12,11 @@ O **FastAPI** é baseado nesses type hints, eles oferecem muitas vantagens e ben
 
 Mas mesmo que você nunca use o **FastAPI**, você se beneficiaria de aprender um pouco sobre eles.
 
-!!! note "Nota"
-     Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
+/// note | "Nota"
 
+Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
+
+///
 
 ## Motivação
 
@@ -173,10 +175,13 @@ Como a lista é um tipo que contém alguns tipos internos, você os coloca entre
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip "Dica"
-    Esses tipos internos entre colchetes são chamados de "parâmetros de tipo".
+/// tip | "Dica"
 
-    Nesse caso, `str` é o parâmetro de tipo passado para `List`.
+Esses tipos internos entre colchetes são chamados de "parâmetros de tipo".
+
+Nesse caso, `str` é o parâmetro de tipo passado para `List`.
+
+///
 
 Isso significa que: "a variável `items` é uma `list`, e cada um dos itens desta lista é uma `str`".
 
@@ -282,8 +287,11 @@ Retirado dos documentos oficiais dos Pydantic:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info "Informação"
-    Para saber mais sobre o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
+/// info | "Informação"
+
+Para saber mais sobre o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
+
+///
 
 **FastAPI** é todo baseado em Pydantic.
 
@@ -311,5 +319,8 @@ Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em aç�
 
 O importante é que, usando tipos padrão de Python, em um único local (em vez de adicionar mais classes, decoradores, etc.), o **FastAPI** fará muito trabalho para você.
 
-!!! info "Informação"
-    Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" _ blank "> a "cheat sheet" do `mypy` </a>.
+/// info | "Informação"
+
+Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" _ blank "> a "cheat sheet" do `mypy` </a>.
+
+///

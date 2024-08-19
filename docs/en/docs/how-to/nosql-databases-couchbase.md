@@ -1,14 +1,20 @@
 # ~~NoSQL (Distributed / Big Data) Databases with Couchbase~~ (deprecated)
 
-!!! info
-    These docs are about to be updated. 🎉
+/// info
 
-    The current version assumes Pydantic v1.
+These docs are about to be updated. 🎉
 
-    The new docs will hopefully use Pydantic v2 and will use <a href="https://art049.github.io/odmantic/" class="external-link" target="_blank">ODMantic</a> with MongoDB.
+The current version assumes Pydantic v1.
 
-!!! warning "Deprecated"
-    This tutorial is deprecated and will be removed in a future version.
+The new docs will hopefully use Pydantic v2 and will use <a href="https://art049.github.io/odmantic/" class="external-link" target="_blank">ODMantic</a> with MongoDB.
+
+///
+
+/// warning | "Deprecated"
+
+This tutorial is deprecated and will be removed in a future version.
+
+///
 
 **FastAPI** can also be integrated with any <abbr title="Distributed database (Big Data), also 'Not Only SQL'">NoSQL</abbr>.
 
@@ -22,8 +28,11 @@ You can adapt it to any other NoSQL database like:
 * **ArangoDB**
 * **ElasticSearch**, etc.
 
-!!! tip
-    There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+/// tip
+
+There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+
+///
 
 ## Import Couchbase components
 
@@ -94,10 +103,13 @@ We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of 
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
-!!! note
-    Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
+/// note
 
-    But it is not part of the general `User` model (the one we will return in the *path operation*).
+Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
+
+But it is not part of the general `User` model (the one we will return in the *path operation*).
+
+///
 
 ## Get the user
 
