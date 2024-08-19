@@ -29,13 +29,13 @@
 
 **Documentatie**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Bron Code**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Broncode**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
 FastAPI is een modern, snel (hoog presterend), web framework voor het bouwen van API's in Python gebruikmakend van standaard Python type hints.
 
-De belangrijkste kenmerken:
+De belangrijkste kenmerken zijn:
 
 * **Snel**: Zeer hoge prestaties, vergelijkbaar met **NodeJS** en **Go** (met dank aan Starlette en Pydantic). [Een van de snelste beschikbare Python frameworks](#prestaties).
 * **Snel te programmeren**: Verhoog de snelheid om functionaliteit te ontwikkelen met ongeveer 200% tot 300%. *
@@ -46,7 +46,7 @@ De belangrijkste kenmerken:
 * **Robust**: Code gereed voor productie. Met automatische interactieve documentatie.
 * **Standards-based**: Gebaseerd op (en volledig verenigbaar met) open standaarden voor API's: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (voorheen bekend als Swagger) en <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* schatting op basis van testen op een intern ontwikkelteam en bouwen van productieapplicaties.</small>
+<small>* schatting op basis van testen met een intern ontwikkelteam en bouwen van productieapplicaties.</small>
 
 ## Sponsors
 
@@ -67,13 +67,13 @@ De belangrijkste kenmerken:
 
 ## Meningen
 
-"_[...] Ik gebruik tegenwoordig heel vaak **FastAPI**. [...] Ik ben van plan om het te gebruiken voor alle **ML-services van mijn team bij Microsoft**. Sommige van deze worden geïntegreerd in het kernproduct van **Windows** en sommige **Office**-producten._"
+"_[...] Ik gebruik **FastAPI** heel vaak tegenwoordig. [...] Ik ben van plan om het te gebruiken voor alle **ML-services van mijn team bij Microsoft**. Sommige van deze worden geïntegreerd in het kernproduct van **Windows** en sommige **Office**-producten._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_We hebben de **FastAPI** library geadopteerd om een **REST** server te maken die gequeried kan worden om **voorspellingen** op te vragen. [voor Ludwig]_"
+"_We hebben de **FastAPI** library gebruikt om een **REST** server te maken die bevraagd kan worden om **voorspellingen** te maken. [voor Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin en Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -91,17 +91,17 @@ De belangrijkste kenmerken:
 
 ---
 
-"_Eerlijk, wat je hebt gebouwd ziet er super solide en gepolijst uit. In veel opzichten is het wat ik wilde dat **Hug** kon zijn - het is echt inspirerend om iemand dit te zien bouwen._"
+"_Wat je hebt gebouwd ziet er echt super solide en gepolijst uit. In veel opzichten is het wat ik wilde dat **Hug** kon zijn - het is echt inspirerend om iemand dit te zien bouwen._"
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"Als u op zoek bent naar een **modern framework** voor het bouwen van REST API's, bekijk dan **FastAPI** [...] Het is snel, gebruiksvriendelijk en gemakkelijk te leren [...]_"
+"Wie geïnteresseerd is in een **modern framework** voor het bouwen van REST API's, bekijkt best eens **FastAPI** [...] Het is snel, gebruiksvriendelijk en gemakkelijk te leren [...]_"
 
-"_We zijn overgestapt naar **FastAPI** voor onze **API's** [...] Ik denk dat je het leuk zult vinden [...]_"
+"_We zijn overgestapt naar **FastAPI** voor onze **API's** [...] Het gaat jou vast ook bevallen [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> oprichters - <a href="https://spacy.io" target="_blank">spaCy</a> ontwikkelaars</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -115,11 +115,11 @@ De belangrijkste kenmerken:
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Als je een <abbr title="Command Line Interface">CLI</abbr>-app bouwt die in de terminal moet worden gebruikt in plaats van een web-API, ga dan naar <a href="https://typer.tiangolo.com/ " class="external-link" target="_blank">**Typer**</a>.
+Als je een <abbr title="Command Line Interface">CLI</abbr>-app bouwt die in de terminal moet worden gebruikt in plaats van een web-API, gebruik dan <a href="https://typer.tiangolo.com/ " class="external-link" target="_blank">**Typer**</a>.
 
 **Typer** is het kleine broertje van FastAPI. En het is bedoeld als de **FastAPI van CLI's**. ️
 
-## RequVereistenirements
+## Vereisten
 
 FastAPI staat op de schouders van reuzen:
 
@@ -131,18 +131,20 @@ FastAPI staat op de schouders van reuzen:
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
+**Opmerking**: Zet `"fastapi[standard]"` in aanhalingstekens om ervoor te zorgen dat het werkt in alle terminals.
+
 ## Voorbeeld
 
 ### Creëer het
 
-* Maak het bestand `main.py` met:
+* Maak het bestand `main.py` aan met daarin:
 
 ```Python
 from typing import Union
@@ -191,7 +193,7 @@ Als je het niet weet, kijk dan in het gedeelte _"Heb je haast?"_ over <a href="h
 
 </details>
 
-### Run it
+### Voer het uit
 
 Run de server met:
 
@@ -225,7 +227,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Over het commando <code>fastapi dev main.py</code>...</summary>
 
-Het commando `fastapi dev` leest het `main.py` bestand, detecteert de **FastAPI** app, and start een server met <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+Het commando `fastapi dev` leest het `main.py` bestand, detecteert de **FastAPI** app, en start een server met <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
 Standaard zal dit commando `fastapi dev` starten met "auto-reload" geactiveerd voor ontwikkeling op het lokale systeem.
 
@@ -237,20 +239,20 @@ Je kan hier meer over lezen in de <a href="https://fastapi.tiangolo.com/fastapi-
 
 Open je browser op <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Je zult een JSON response zien als:
+Je zult een JSON response zien:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-Je hebt een API gemaakt die:
+Je hebt nu reeds een API gemaakt die:
 
 * HTTP verzoeken kan ontvangen op de _paden_ `/` en `/items/{item_id}`.
-* Beide _paden_ hebben `GET` <em>bewerkingen</em> (ook bekend als HTTP _methoden_).
+* Beide _paden_ hebben `GET` <em>operaties</em> (ook bekend als HTTP _methoden_).
 * Het _pad_ `/items/{item_id}` heeft een _pad parameter_ `item_id` dat een `int` moet zijn.
 * Het _pad_ `/items/{item_id}` heeft een optionele `str` _query parameter_ `q`.
 
-### Interactieve API docs
+### Interactieve API documentatie
 
 Ga naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -258,7 +260,7 @@ Je ziet de automatische interactieve API docs (verstrekt door <a href="https://g
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Alternatieve API documentatie
 
 Ga vervolgens naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -270,7 +272,7 @@ Je ziet de automatische interactieve API docs (verstrekt door <a href="https://g
 
 Pas nu het bestand `main.py` aan om de body van een `PUT` request te ontvangen.
 
-Met dank aan Pydantic kunnen we de body declareren standaard Python types.
+Met dank aan Pydantic kunnen we de body declareren met standaard Python types.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -304,7 +306,7 @@ def update_item(item_id: int, item: Item):
 
 De `fastapi dev` server zou automatisch moeten herladen.
 
-### Interactive API docs upgrade
+### Interactieve API documentatie upgrade
 
 Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -320,7 +322,7 @@ Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### Alternatieve API documentatie upgrade
 
 Ga vervolgens naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -334,7 +336,7 @@ Samengevat declareer je **eenmalig** de types van parameters, body, etc. als fun
 
 Dat doe je met standaard moderne Python types.
 
-Je hoeft geen nieuwe syntaxis te leren, de methods of classes van een specifieke bibliotheek, etc.
+Je hoeft geen nieuwe syntaxis te leren, de methods of klassen van een specifieke bibliotheek, etc.
 
 Gewoon standaard **Python**.
 
@@ -354,7 +356,7 @@ item: Item
 
 * Editor ondersteuning, inclusief:
     * Code aanvulling.
-    * Type checks.
+    * Type validatie.
 * Validatie van data:
     * Automatische en duidelijke foutboodschappen wanneer de data ongeldig is.
     * Validatie zelfs voor diep geneste JSON objecten.
@@ -381,19 +383,19 @@ item: Item
 Terugkomend op het vorige code voorbeeld, **FastAPI** zal:
 
 * Valideren dat er een `item_id` bestaat in het pad voor `GET` en `PUT` verzoeken.
-* Valideren dat de `item_id` van het type `int` is voor `GET` en `PUT` verzoeken.
+* Valideren dat het `item_id` van het type `int` is voor `GET` en `PUT` verzoeken.
     * Wanneer dat niet het geval is, krijgt de cliënt een nuttige, duidelijke foutmelding.
 * Controleren of er een optionele query parameter is met de naam `q` (zoals in `http://127.0.0.1:8000/items/foo?q=somequery`) voor `GET` verzoeken.
-    * Doordat de `q` parameter wordt gedeclareerd met `= None`, is deze optioneel.
-    * Zonder de `None` zou het verplicht zijn (net als bij de body in het geval met `PUT`).
+    * Aangezien de `q` parameter werd gedeclareerd met `= None`, is deze optioneel.
+    * Zonder de `None` declaratie zou deze verplicht zijn (net als bij de body in het geval met `PUT`).
 * Voor `PUT` verzoeken naar `/items/{item_id}`, lees de body als JSON:
-    * Controleer of het een verplicht attribuut `naam` heeft en dat een `str` is.
-    * Controleer of het een verplicht attribuut `price` heeft en dat een`float` is.
+    * Controleer of het een verplicht attribuut `naam` heeft en dat dat een `str` is.
+    * Controleer of het een verplicht attribuut `price` heeft en dat dat een`float` is.
     * Controleer of het een optioneel attribuut `is_offer` heeft, dat een `bool` is wanneer het aanwezig is.
-    * Dit alles zou ook werken voor diep geneste JSON objecten.
+    * Dit alles werkt ook voor diep geneste JSON objecten.
 * Converteer automatisch van en naar JSON.
 * Documenteer alles met OpenAPI, dat gebruikt kan worden door:
-    * Interactieve documentatiesystemen..
+    * Interactieve documentatiesystemen.
     * Automatische client code generatie systemen, voor vele talen.
 * Biedt 2 interactieve documentatie-webinterfaces aan.
 
@@ -427,13 +429,13 @@ Voor een vollediger voorbeeld met meer mogelijkheden, zie de <a href="https://fa
 
 **Spoiler alert**: de tutorial - gebruikershandleiding bevat:
 
-* Declaratie van **parameters** van andere verschillende plaatsen zoals: **headers**, **cookies**, **formuliervelden** en **bestanden**.
+* Declaratie van **parameters** op andere plaatsen zoals: **headers**, **cookies**, **formuliervelden** en **bestanden**.
 * Hoe stel je **validatie restricties** in zoals `maximum_length` of een `regex`.
 * Een zeer krachtig en eenvoudig te gebruiken **<abbr title="ook bekend als componenten, middelen, verstrekkers, diensten, injectables">Dependency Injection</abbr>** systeem.
 * Beveiliging en authenticatie, inclusief ondersteuning voor **OAuth2** met **JWT-tokens** en **HTTP Basic** auth.
 * Meer geavanceerde (maar even eenvoudige) technieken voor het declareren van **diep geneste JSON modellen** (met dank aan Pydantic).
 * **GraphQL** integratie met <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> en andere packages.
-* Veel extra functies (thanks to Starlette) zoas:
+* Veel extra functies (met dank aan Starlette) zoals:
     * **WebSockets**
     * uiterst gemakkelijke tests gebaseerd op HTTPX en `pytest`
     * **CORS**
@@ -442,7 +444,7 @@ Voor een vollediger voorbeeld met meer mogelijkheden, zie de <a href="https://fa
 
 ## Prestaties
 
-Onafhankelijke TechEmpower benchmarks tonen **FastAPI** applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
+Onafhankelijke TechEmpower benchmarks tonen **FastAPI** applicaties draaiend onder Uvicorn aan als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
 
 Zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a> om hier meer over te lezen.
 
