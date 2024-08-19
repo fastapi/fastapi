@@ -42,8 +42,11 @@ fastapi>=0.45.0,<0.46.0
 
 FastAPI 还遵循这样的约定：任何`PATCH`版本更改都是为了bug修复和non-breaking changes。
 
-!!! tip
-     "PATCH"是最后一个数字，例如，在`0.2.3`中，PATCH版本是`3`。
+/// tip
+
+"PATCH"是最后一个数字，例如，在`0.2.3`中，PATCH版本是`3`。
+
+///
 
 因此，你应该能够固定到如下版本：
 
@@ -53,8 +56,11 @@ fastapi>=0.45.0,<0.46.0
 
 "MINOR"版本中会添加breaking changes和新功能。
 
-!!! tip
-     "MINOR"是中间的数字，例如，在`0.2.3`中，MINOR版本是`2`。
+/// tip
+
+"MINOR"是中间的数字，例如，在`0.2.3`中，MINOR版本是`2`。
+
+///
 
 ## 升级FastAPI版本
 

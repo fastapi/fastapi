@@ -6,10 +6,13 @@ The main [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_bl
 
 In the next sections you will see other options, configurations, and additional features.
 
-!!! tip
-    The next sections are **not necessarily "advanced"**.
+/// tip
 
-    And it's possible that for your use case, the solution is in one of them.
+The next sections are **not necessarily "advanced"**.
+
+And it's possible that for your use case, the solution is in one of them.
+
+///
 
 ## Read the Tutorial first
 

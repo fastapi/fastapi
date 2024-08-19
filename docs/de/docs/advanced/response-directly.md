@@ -14,8 +14,11 @@ Das kann beispielsweise nützlich sein, um benutzerdefinierte Header oder Cookie
 
 Tatsächlich können Sie jede `Response` oder jede Unterklasse davon zurückgeben.
 
-!!! tip "Tipp"
-    `JSONResponse` selbst ist eine Unterklasse von `Response`.
+/// tip | "Tipp"
+
+`JSONResponse` selbst ist eine Unterklasse von `Response`.
+
+///
 
 Und wenn Sie eine `Response` zurückgeben, wird **FastAPI** diese direkt weiterleiten.
 
@@ -35,10 +38,13 @@ In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import JSONResponse` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import JSONResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+///
 
 ## Eine benutzerdefinierte `Response` zurückgeben
 

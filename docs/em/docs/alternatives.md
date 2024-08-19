@@ -30,12 +30,17 @@
 
 ⚫️ 🕐 🥇 🖼 **🏧 🛠️ 🧾**, &amp; 👉 🎯 🕐 🥇 💭 👈 😮 "🔎" **FastAPI**.
 
-!!! note
-    ✳ 🎂 🛠️ ✍ ✡ 🇺🇸🏛. 🎏 👼 💃 &amp; Uvicorn, 🔛 ❔ **FastAPI** ⚓️.
+/// note
 
+✳ 🎂 🛠️ ✍ ✡ 🇺🇸🏛. 🎏 👼 💃 &amp; Uvicorn, 🔛 ❔ **FastAPI** ⚓️.
 
-!!! check "😮 **FastAPI** "
-    ✔️ 🏧 🛠️ 🧾 🕸 👩‍💻 🔢.
+///
+
+/// check | "😮 **FastAPI** "
+
+✔️ 🏧 🛠️ 🧾 🕸 👩‍💻 🔢.
+
+///
 
 ### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">🏺</a>
 
@@ -51,11 +56,13 @@
 
 👐 🦁 🏺, ⚫️ 😑 💖 👍 🏏 🏗 🔗. ⏭ 👜 🔎 "✳ 🎂 🛠️" 🏺.
 
-!!! check "😮 **FastAPI** "
-    ◾-🛠️. ⚒ ⚫️ ⏩ 🌀 &amp; 🏏 🧰 &amp; 🍕 💪.
+/// check | "😮 **FastAPI** "
 
-    ✔️ 🙅 &amp; ⏩ ⚙️ 🕹 ⚙️.
+◾-🛠️. ⚒ ⚫️ ⏩ 🌀 &amp; 🏏 🧰 &amp; 🍕 💪.
 
+✔️ 🙅 &amp; ⏩ ⚙️ 🕹 ⚙️.
+
+///
 
 ### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">📨</a>
 
@@ -91,11 +98,13 @@ def read_url():
 
 👀 🔀 `requests.get(...)` &amp; `@app.get(...)`.
 
-!!! check "😮 **FastAPI** "
-    * ✔️ 🙅 &amp; 🏋️ 🛠️.
-    * ⚙️ 🇺🇸🔍 👩‍🔬 📛 (🛠️) 🔗, 🎯 &amp; 🏋️ 🌌.
-    * ✔️ 🤔 🔢, ✋️ 🏋️ 🛃.
+/// check | "😮 **FastAPI** "
 
+* ✔️ 🙅 &amp; 🏋️ 🛠️.
+* ⚙️ 🇺🇸🔍 👩‍🔬 📛 (🛠️) 🔗, 🎯 &amp; 🏋️ 🌌.
+* ✔️ 🤔 🔢, ✋️ 🏋️ 🛃.
+
+///
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">🦁</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">🗄</a>
 
@@ -109,15 +118,18 @@ def read_url():
 
 👈 ⚫️❔ 🕐❔ 💬 🔃 ⏬ 2️⃣.0️⃣ ⚫️ ⚠ 💬 "🦁", &amp; ⏬ 3️⃣ ➕ "🗄".
 
-!!! check "😮 **FastAPI** "
-    🛠️ &amp; ⚙️ 📂 🐩 🛠️ 🔧, ↩️ 🛃 🔗.
+/// check | "😮 **FastAPI** "
 
-     &amp; 🛠️ 🐩-⚓️ 👩‍💻 🔢 🧰:
+🛠️ &amp; ⚙️ 📂 🐩 🛠️ 🔧, ↩️ 🛃 🔗.
 
-    * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>
-    * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">📄</a>
+ &amp; 🛠️ 🐩-⚓️ 👩‍💻 🔢 🧰:
 
-    👫 2️⃣ 👐 ➖ 📶 🌟 &amp; ⚖, ✋️ 🔨 ⏩ 🔎, 👆 💪 🔎 💯 🌖 🎛 👩‍💻 🔢 🗄 (👈 👆 💪 ⚙️ ⏮️ **FastAPI**).
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>
+* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">📄</a>
+
+👫 2️⃣ 👐 ➖ 📶 🌟 &amp; ⚖, ✋️ 🔨 ⏩ 🔎, 👆 💪 🔎 💯 🌖 🎛 👩‍💻 🔢 🗄 (👈 👆 💪 ⚙️ ⏮️ **FastAPI**).
+
+///
 
 ### 🏺 🎂 🛠️
 
@@ -135,8 +147,11 @@ def read_url():
 
 ✋️ ⚫️ ✍ ⏭ 📤 🔀 🐍 🆎 🔑. , 🔬 🔠 <abbr title="the definition of how data should be formed">🔗</abbr> 👆 💪 ⚙️ 🎯 🇨🇻 &amp; 🎓 🚚 🍭.
 
-!!! check "😮 **FastAPI** "
-    ⚙️ 📟 🔬 "🔗" 👈 🚚 💽 🆎 &amp; 🔬, 🔁.
+/// check | "😮 **FastAPI** "
+
+⚙️ 📟 🔬 "🔗" 👈 🚚 💽 🆎 &amp; 🔬, 🔁.
+
+///
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webarg</a>
 
@@ -148,11 +163,17 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 ⚫️ 👑 🧰 &amp; 👤 ✔️ ⚙️ ⚫️ 📚 💁‍♂️, ⏭ ✔️ **FastAPI**.
 
-!!! info
-    Webarg ✍ 🎏 🍭 👩‍💻.
+/// info
 
-!!! check "😮 **FastAPI** "
-    ✔️ 🏧 🔬 📨 📨 💽.
+Webarg ✍ 🎏 🍭 👩‍💻.
+
+///
+
+/// check | "😮 **FastAPI** "
+
+✔️ 🏧 🔬 📨 📨 💽.
+
+///
 
 ### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
 
@@ -172,12 +193,17 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 👨‍🎨 💪 🚫 ℹ 🌅 ⏮️ 👈. &amp; 🚥 👥 🔀 🔢 ⚖️ 🍭 🔗 &amp; 💭 🔀 👈 📁#️⃣, 🏗 🔗 🔜 ❌.
 
-!!! info
-    APISpec ✍ 🎏 🍭 👩‍💻.
+/// info
 
+APISpec ✍ 🎏 🍭 👩‍💻.
 
-!!! check "😮 **FastAPI** "
-    🐕‍🦺 📂 🐩 🛠️, 🗄.
+///
+
+/// check | "😮 **FastAPI** "
+
+🐕‍🦺 📂 🐩 🛠️, 🗄.
+
+///
 
 ### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">🏺-Apispec</a>
 
@@ -199,11 +225,17 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 &amp; 👫 🎏 🌕-📚 🚂 🧢 [**FastAPI** 🏗 🚂](project-generation.md){.internal-link target=_blank}.
 
-!!! info
-    🏺-Apispec ✍ 🎏 🍭 👩‍💻.
+/// info
 
-!!! check "😮 **FastAPI** "
-    🏗 🗄 🔗 🔁, ⚪️➡️ 🎏 📟 👈 🔬 🛠️ &amp; 🔬.
+🏺-Apispec ✍ 🎏 🍭 👩‍💻.
+
+///
+
+/// check | "😮 **FastAPI** "
+
+🏗 🗄 🔗 🔁, ⚪️➡️ 🎏 📟 👈 🔬 🛠️ &amp; 🔬.
+
+///
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (&amp; <a href="https://angular.io/" class="external-link" target="_blank">📐</a>)
 
@@ -219,24 +251,33 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 ⚫️ 💪 🚫 🍵 🔁 🏷 📶 👍. , 🚥 🎻 💪 📨 🎻 🎚 👈 ✔️ 🔘 🏑 👈 🔄 🐦 🎻 🎚, ⚫️ 🚫🔜 ☑ 📄 &amp; ✔.
 
-!!! check "😮 **FastAPI** "
-    ⚙️ 🐍 🆎 ✔️ 👑 👨‍🎨 🐕‍🦺.
+/// check | "😮 **FastAPI** "
 
-    ✔️ 🏋️ 🔗 💉 ⚙️. 🔎 🌌 📉 📟 🔁.
+⚙️ 🐍 🆎 ✔️ 👑 👨‍🎨 🐕‍🦺.
+
+✔️ 🏋️ 🔗 💉 ⚙️. 🔎 🌌 📉 📟 🔁.
+
+///
 
 ### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">🤣</a>
 
 ⚫️ 🕐 🥇 📶 ⏩ 🐍 🛠️ ⚓️ 🔛 `asyncio`. ⚫️ ⚒ 📶 🎏 🏺.
 
-!!! note "📡 ℹ"
-    ⚫️ ⚙️ <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> ↩️ 🔢 🐍 `asyncio` ➰. 👈 ⚫️❔ ⚒ ⚫️ ⏩.
+/// note | "📡 ℹ"
 
-    ⚫️ 🎯 😮 Uvicorn &amp; 💃, 👈 ⏳ ⏩ 🌘 🤣 📂 📇.
+⚫️ ⚙️ <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> ↩️ 🔢 🐍 `asyncio` ➰. 👈 ⚫️❔ ⚒ ⚫️ ⏩.
 
-!!! check "😮 **FastAPI** "
-    🔎 🌌 ✔️ 😜 🎭.
+⚫️ 🎯 😮 Uvicorn &amp; 💃, 👈 ⏳ ⏩ 🌘 🤣 📂 📇.
 
-    👈 ⚫️❔ **FastAPI** ⚓️ 🔛 💃, ⚫️ ⏩ 🛠️ 💪 (💯 🥉-🥳 📇).
+///
+
+/// check | "😮 **FastAPI** "
+
+🔎 🌌 ✔️ 😜 🎭.
+
+👈 ⚫️❔ **FastAPI** ⚓️ 🔛 💃, ⚫️ ⏩ 🛠️ 💪 (💯 🥉-🥳 📇).
+
+///
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">🦅</a>
 
@@ -246,12 +287,15 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 , 💽 🔬, 🛠️, &amp; 🧾, ✔️ ⌛ 📟, 🚫 🔁. ⚖️ 👫 ✔️ 🛠️ 🛠️ 🔛 🔝 🦅, 💖 🤗. 👉 🎏 🔺 🔨 🎏 🛠️ 👈 😮 🦅 🔧, ✔️ 1️⃣ 📨 🎚 &amp; 1️⃣ 📨 🎚 🔢.
 
-!!! check "😮 **FastAPI** "
-    🔎 🌌 🤚 👑 🎭.
+/// check | "😮 **FastAPI** "
 
-    ⤴️ ⏮️ 🤗 (🤗 ⚓️ 🔛 🦅) 😮 **FastAPI** 📣 `response` 🔢 🔢.
+🔎 🌌 🤚 👑 🎭.
 
-    👐 FastAPI ⚫️ 📦, &amp; ⚙️ ✴️ ⚒ 🎚, 🍪, &amp; 🎛 👔 📟.
+⤴️ ⏮️ 🤗 (🤗 ⚓️ 🔛 🦅) 😮 **FastAPI** 📣 `response` 🔢 🔢.
+
+👐 FastAPI ⚫️ 📦, &amp; ⚙️ ✴️ ⚒ 🎚, 🍪, &amp; 🎛 👔 📟.
+
+///
 
 ### <a href="https://moltenframework.com/" class="external-link" target="_blank">♨</a>
 
@@ -269,10 +313,13 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 🛣 📣 👁 🥉, ⚙️ 🔢 📣 🎏 🥉 (↩️ ⚙️ 👨‍🎨 👈 💪 🥉 ▶️️ 🔛 🔝 🔢 👈 🍵 🔗). 👉 🔐 ❔ ✳ 🔨 ⚫️ 🌘 ❔ 🏺 (&amp; 💃) 🔨 ⚫️. ⚫️ 🎏 📟 👜 👈 📶 😆 🔗.
 
-!!! check "😮 **FastAPI** "
-    🔬 ➕ 🔬 💽 🆎 ⚙️ "🔢" 💲 🏷 🔢. 👉 📉 👨‍🎨 🐕‍🦺, &amp; ⚫️ 🚫 💪 Pydantic ⏭.
+/// check | "😮 **FastAPI** "
 
-    👉 🤙 😮 🛠️ 🍕 Pydantic, 🐕‍🦺 🎏 🔬 📄 👗 (🌐 👉 🛠️ 🔜 ⏪ 💪 Pydantic).
+🔬 ➕ 🔬 💽 🆎 ⚙️ "🔢" 💲 🏷 🔢. 👉 📉 👨‍🎨 🐕‍🦺, &amp; ⚫️ 🚫 💪 Pydantic ⏭.
+
+👉 🤙 😮 🛠️ 🍕 Pydantic, 🐕‍🦺 🎏 🔬 📄 👗 (🌐 👉 🛠️ 🔜 ⏪ 💪 Pydantic).
+
+///
 
 ### <a href="https://www.hug.rest/" class="external-link" target="_blank">🤗</a>
 
@@ -288,15 +335,21 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 ⚫️ ⚓️ 🔛 ⏮️ 🐩 🔁 🐍 🕸 🛠️ (🇨🇻), ⚫️ 💪 🚫 🍵 *️⃣ &amp; 🎏 👜, 👐 ⚫️ ✔️ ↕ 🎭 💁‍♂️.
 
-!!! info
-    🤗 ✍ ✡ 🗄, 🎏 👼 <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, 👑 🧰 🔁 😇 🗄 🐍 📁.
+/// info
 
-!!! check "💭 😮 **FastAPI**"
-    🤗 😮 🍕 APIStar, &amp; 1️⃣ 🧰 👤 🔎 🏆 👍, 🌟 APIStar.
+🤗 ✍ ✡ 🗄, 🎏 👼 <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, 👑 🧰 🔁 😇 🗄 🐍 📁.
 
-    🤗 ℹ 😍 **FastAPI** ⚙️ 🐍 🆎 🔑 📣 🔢, &amp; 🏗 🔗 ⚖ 🛠️ 🔁.
+///
 
-    🤗 😮 **FastAPI** 📣 `response` 🔢 🔢 ⚒ 🎚 &amp; 🍪.
+/// check | "💭 😮 **FastAPI**"
+
+🤗 😮 🍕 APIStar, &amp; 1️⃣ 🧰 👤 🔎 🏆 👍, 🌟 APIStar.
+
+🤗 ℹ 😍 **FastAPI** ⚙️ 🐍 🆎 🔑 📣 🔢, &amp; 🏗 🔗 ⚖ 🛠️ 🔁.
+
+🤗 😮 **FastAPI** 📣 `response` 🔢 🔢 ⚒ 🎚 &amp; 🍪.
+
+///
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (&lt;= 0️⃣.5️⃣)
 
@@ -322,23 +375,29 @@ Webarg 🧰 👈 ⚒ 🚚 👈 🔛 🔝 📚 🛠️, 🔌 🏺.
 
 🔜 APIStar ⚒ 🧰 ✔ 🗄 🔧, 🚫 🕸 🛠️.
 
-!!! info
-    APIStar ✍ ✡ 🇺🇸🏛. 🎏 👨 👈 ✍:
+/// info
 
-    * ✳ 🎂 🛠️
-    * 💃 (❔ **FastAPI** ⚓️)
-    * Uvicorn (⚙️ 💃 &amp; **FastAPI**)
+APIStar ✍ ✡ 🇺🇸🏛. 🎏 👨 👈 ✍:
 
-!!! check "😮 **FastAPI** "
-    🔀.
+* ✳ 🎂 🛠️
+* 💃 (❔ **FastAPI** ⚓️)
+* Uvicorn (⚙️ 💃 &amp; **FastAPI**)
 
-    💭 📣 💗 👜 (💽 🔬, 🛠️ &amp; 🧾) ⏮️ 🎏 🐍 🆎, 👈 🎏 🕰 🚚 👑 👨‍🎨 🐕‍🦺, 🕳 👤 🤔 💎 💭.
+///
 
-     &amp; ⏮️ 🔎 📏 🕰 🎏 🛠️ &amp; 🔬 📚 🎏 🎛, APIStar 🏆 🎛 💪.
+/// check | "😮 **FastAPI** "
 
-    ⤴️ APIStar ⛔️ 🔀 💽 &amp; 💃 ✍, &amp; 🆕 👻 🏛 ✅ ⚙️. 👈 🏁 🌈 🏗 **FastAPI**.
+🔀.
 
-    👤 🤔 **FastAPI** "🛐 👨‍💼" APIStar, ⏪ 📉 &amp; 📈 ⚒, ⌨ ⚙️, &amp; 🎏 🍕, ⚓️ 🔛 🏫 ⚪️➡️ 🌐 👉 ⏮️ 🧰.
+💭 📣 💗 👜 (💽 🔬, 🛠️ &amp; 🧾) ⏮️ 🎏 🐍 🆎, 👈 🎏 🕰 🚚 👑 👨‍🎨 🐕‍🦺, 🕳 👤 🤔 💎 💭.
+
+ &amp; ⏮️ 🔎 📏 🕰 🎏 🛠️ &amp; 🔬 📚 🎏 🎛, APIStar 🏆 🎛 💪.
+
+⤴️ APIStar ⛔️ 🔀 💽 &amp; 💃 ✍, &amp; 🆕 👻 🏛 ✅ ⚙️. 👈 🏁 🌈 🏗 **FastAPI**.
+
+👤 🤔 **FastAPI** "🛐 👨‍💼" APIStar, ⏪ 📉 &amp; 📈 ⚒, ⌨ ⚙️, &amp; 🎏 🍕, ⚓️ 🔛 🏫 ⚪️➡️ 🌐 👉 ⏮️ 🧰.
+
+///
 
 ## ⚙️ **FastAPI**
 
@@ -350,10 +409,13 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 ⚫️ ⭐ 🍭. 👐 ⚫️ ⏩ 🌘 🍭 📇. &amp; ⚫️ ⚓️ 🔛 🎏 🐍 🆎 🔑, 👨‍🎨 🐕‍🦺 👑.
 
-!!! check "**FastAPI** ⚙️ ⚫️"
-    🍵 🌐 💽 🔬, 💽 🛠️ &amp; 🏧 🏷 🧾 (⚓️ 🔛 🎻 🔗).
+/// check | "**FastAPI** ⚙️ ⚫️"
 
-    **FastAPI** ⤴️ ✊ 👈 🎻 🔗 💽 &amp; 🚮 ⚫️ 🗄, ↖️ ⚪️➡️ 🌐 🎏 👜 ⚫️ 🔨.
+🍵 🌐 💽 🔬, 💽 🛠️ &amp; 🏧 🏷 🧾 (⚓️ 🔛 🎻 🔗).
+
+**FastAPI** ⤴️ ✊ 👈 🎻 🔗 💽 &amp; 🚮 ⚫️ 🗄, ↖️ ⚪️➡️ 🌐 🎏 👜 ⚫️ 🔨.
+
+///
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a>
 
@@ -382,17 +444,23 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 👈 1️⃣ 👑 👜 👈 **FastAPI** 🚮 🔛 🔝, 🌐 ⚓️ 🔛 🐍 🆎 🔑 (⚙️ Pydantic). 👈, ➕ 🔗 💉 ⚙️, 💂‍♂ 🚙, 🗄 🔗 ⚡, ♒️.
 
-!!! note "📡 ℹ"
-    🔫 🆕 "🐩" ➖ 🛠️ ✳ 🐚 🏉 👨‍🎓. ⚫️ 🚫 "🐍 🐩" (🇩🇬), 👐 👫 🛠️ 🔨 👈.
+/// note | "📡 ℹ"
 
-    👐, ⚫️ ⏪ ➖ ⚙️ "🐩" 📚 🧰. 👉 📉 📉 🛠️, 👆 💪 🎛 Uvicorn 🙆 🎏 🔫 💽 (💖 👸 ⚖️ Hypercorn), ⚖️ 👆 💪 🚮 🔫 🔗 🧰, 💖 `python-socketio`.
+🔫 🆕 "🐩" ➖ 🛠️ ✳ 🐚 🏉 👨‍🎓. ⚫️ 🚫 "🐍 🐩" (🇩🇬), 👐 👫 🛠️ 🔨 👈.
 
-!!! check "**FastAPI** ⚙️ ⚫️"
-    🍵 🌐 🐚 🕸 🍕. ❎ ⚒ 🔛 🔝.
+👐, ⚫️ ⏪ ➖ ⚙️ "🐩" 📚 🧰. 👉 📉 📉 🛠️, 👆 💪 🎛 Uvicorn 🙆 🎏 🔫 💽 (💖 👸 ⚖️ Hypercorn), ⚖️ 👆 💪 🚮 🔫 🔗 🧰, 💖 `python-socketio`.
 
-    🎓 `FastAPI` ⚫️ 😖 🔗 ⚪️➡️ 🎓 `Starlette`.
+///
 
-    , 🕳 👈 👆 💪 ⏮️ 💃, 👆 💪 ⚫️ 🔗 ⏮️ **FastAPI**, ⚫️ 🌖 💃 🔛 💊.
+/// check | "**FastAPI** ⚙️ ⚫️"
+
+🍵 🌐 🐚 🕸 🍕. ❎ ⚒ 🔛 🔝.
+
+🎓 `FastAPI` ⚫️ 😖 🔗 ⚪️➡️ 🎓 `Starlette`.
+
+, 🕳 👈 👆 💪 ⏮️ 💃, 👆 💪 ⚫️ 🔗 ⏮️ **FastAPI**, ⚫️ 🌖 💃 🔛 💊.
+
+///
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
 
@@ -402,12 +470,15 @@ Uvicorn 🌩-⏩ 🔫 💽, 🏗 🔛 uvloop &amp; httptool.
 
 ⚫️ 👍 💽 💃 &amp; **FastAPI**.
 
-!!! check "**FastAPI** 👍 ⚫️"
-    👑 🕸 💽 🏃 **FastAPI** 🈸.
+/// check | "**FastAPI** 👍 ⚫️"
 
-    👆 💪 🌀 ⚫️ ⏮️ 🐁, ✔️ 🔁 👁-🛠️ 💽.
+👑 🕸 💽 🏃 **FastAPI** 🈸.
 
-    ✅ 🌅 ℹ [🛠️](deployment/index.md){.internal-link target=_blank} 📄.
+👆 💪 🌀 ⚫️ ⏮️ 🐁, ✔️ 🔁 👁-🛠️ 💽.
+
+✅ 🌅 ℹ [🛠️](deployment/index.md){.internal-link target=_blank} 📄.
+
+///
 
 ## 📇 &amp; 🚅
 
