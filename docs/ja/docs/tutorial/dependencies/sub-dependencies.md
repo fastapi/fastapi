@@ -41,10 +41,13 @@
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
-!!! info "情報"
-    *path operation関数*の中で宣言している依存関係は`query_or_cookie_extractor`の１つだけであることに注意してください。
+/// info | "情報"
 
-    しかし、**FastAPI** は`query_extractor`を最初に解決し、その結果を`query_or_cookie_extractor`を呼び出す時に渡す必要があることを知っています。
+*path operation関数*の中で宣言している依存関係は`query_or_cookie_extractor`の１つだけであることに注意してください。
+
+しかし、**FastAPI** は`query_extractor`を最初に解決し、その結果を`query_or_cookie_extractor`を呼び出す時に渡す必要があることを知っています。
+
+///
 
 ```mermaid
 graph TB
@@ -78,9 +81,12 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 しかし、それでも非常に強力で、任意の深くネストされた依存関係「グラフ」（ツリー）を宣言することができます。
 
-!!! tip "豆知識"
-    これらの単純な例では、全てが役に立つとは言えないかもしれません。
+/// tip | "豆知識"
 
-    しかし、**security** についての章で、それがどれほど有用であるかがわかるでしょう。
+これらの単純な例では、全てが役に立つとは言えないかもしれません。
 
-    そして、あなたを救うコードの量もみることになるでしょう。
+しかし、**security** についての章で、それがどれほど有用であるかがわかるでしょう。
+
+そして、あなたを救うコードの量もみることになるでしょう。
+
+///
