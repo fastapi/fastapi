@@ -24,8 +24,11 @@ Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiy
 
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
-!!! check "Ek bilgi"
-    Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
+/// check | "Ek bilgi"
+
+Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
+
+///
 
 ## Veri <abbr title="Dönüşüm: serialization, parsing ve marshalling olarak da biliniyor">Dönüşümü</abbr>
 
@@ -35,10 +38,13 @@ Eğer bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:800
 {"item_id":3}
 ```
 
-!!! check "Ek bilgi"
-    Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
+/// check | "Ek bilgi"
 
-    Bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
+
+Bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+
+///
 
 ## Veri Doğrulama
 
@@ -65,12 +71,15 @@ Eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external
 
 Aynı hata <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> sayfasında olduğu gibi `int` yerine `float` bir değer verseydik de ortaya çıkardı.
 
-!!! check "Ek bilgi"
-    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
+/// check | "Ek bilgi"
 
-    Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
+Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
 
-    Bu özellik, API'ınızla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
+Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
+
+Bu özellik, API'ınızla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
+
+///
 
 ## Dokümantasyon
 
@@ -78,10 +87,13 @@ Ayrıca, tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-l
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check "Ek bilgi"
-    Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
+/// check | "Ek bilgi"
 
-    Dikkatinizi çekerim ki, yol parametresi integer olarak tanımlanmıştır.
+Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
+
+Dikkatinizi çekerim ki, yol parametresi integer olarak tanımlanmıştır.
+
+///
 
 ## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon
 
@@ -141,11 +153,17 @@ Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info "Bilgi"
-    3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
+/// info | "Bilgi"
 
-!!! tip "İpucu"
-    Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
+3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
+
+///
+
+/// tip | "İpucu"
+
+Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
+
+///
 
 ### Bir *Yol Parametresi* Tanımlayalım
 
@@ -181,8 +199,11 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip "İpucu"
-    `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
+/// tip | "İpucu"
+
+`"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
+
+///
 
 #### *Enumeration Üyelerini* Döndürelim
 
@@ -235,10 +256,13 @@ Böylece şunun gibi bir kullanım yapabilirsiniz:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip "İpucu"
-    Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
+/// tip | "İpucu"
 
-    Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
+Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
+
+Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
+
+///
 
 ## Özet
 
