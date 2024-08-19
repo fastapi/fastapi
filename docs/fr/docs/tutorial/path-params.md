@@ -28,9 +28,12 @@ Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en uti
 
 Ici, `item_id` est déclaré comme `int`.
 
-!!! check "vérifier"
-    Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
-    que des vérifications d'erreur, de l'auto-complétion, etc.
+/// check | "vérifier"
+
+Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
+que des vérifications d'erreur, de l'auto-complétion, etc.
+
+///
 
 ## <abbr title="aussi appelé sérialisation, ou parfois parsing ou marshalling en anglais">Conversion</abbr> de données
 
@@ -40,12 +43,15 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
 {"item_id":3}
 ```
 
-!!! check "vérifier"
-    Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
-    en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
+/// check | "vérifier"
 
-    Grâce aux déclarations de types, **FastAPI** fournit du
-    <abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
+Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
+en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
+
+Grâce aux déclarations de types, **FastAPI** fournit du
+<abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
+
+///
 
 ## Validation de données
 
@@ -72,12 +78,15 @@ La même erreur se produira si vous passez un nombre flottant (`float`) et non u
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
 
 
-!!! check "vérifier"
-    Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
+/// check | "vérifier"
 
-    Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.
+Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
 
-    Ce qui est incroyablement utile au moment de développer et débugger du code qui interagit avec votre API.
+Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.
+
+Ce qui est incroyablement utile au moment de développer et débugger du code qui interagit avec votre API.
+
+///
 
 ## Documentation
 
@@ -86,10 +95,13 @@ documentation générée automatiquement et interactive :
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! info
-    À nouveau, en utilisant uniquement les déclarations de type Python, **FastAPI** vous fournit automatiquement une documentation interactive (via Swagger UI).
+/// info
 
-    On voit bien dans la documentation que `item_id` est déclaré comme entier.
+À nouveau, en utilisant uniquement les déclarations de type Python, **FastAPI** vous fournit automatiquement une documentation interactive (via Swagger UI).
+
+On voit bien dans la documentation que `item_id` est déclaré comme entier.
+
+///
 
 ## Les avantages d'avoir une documentation basée sur une norme, et la documentation alternative.
 
@@ -141,11 +153,17 @@ Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les va
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Les énumérations (ou enums) sont disponibles en Python</a> depuis la version 3.4.
+/// info
 
-!!! tip "Astuce"
-    Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Les énumérations (ou enums) sont disponibles en Python</a> depuis la version 3.4.
+
+///
+
+/// tip | "Astuce"
+
+Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
+
+///
 
 ### Déclarer un paramètre de chemin
 
@@ -181,8 +199,11 @@ Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici)
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip "Astuce"
-    Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
+/// tip | "Astuce"
+
+Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
+
+///
 
 #### Retourner des *membres d'énumération*
 
@@ -235,10 +256,13 @@ Vous pouvez donc l'utilisez comme tel :
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip "Astuce"
-    Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
+/// tip | "Astuce"
 
-    Dans ce cas, l'URL serait : `/files//home/johndoe/myfile.txt`, avec un double slash (`//`) entre `files` et `home`.
+Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
+
+Dans ce cas, l'URL serait : `/files//home/johndoe/myfile.txt`, avec un double slash (`//`) entre `files` et `home`.
+
+///
 
 ## Récapitulatif
 
