@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 
 @pytest.fixture(name="client")
@@ -29,7 +28,6 @@ def test_users_with_no_token(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -64,7 +62,6 @@ def test_users_foo_with_no_token(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -99,7 +96,6 @@ def test_users_me_with_no_token(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -145,7 +141,6 @@ def test_items_with_no_token_jessica(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -192,7 +187,6 @@ def test_items_plumbus_with_no_token(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -233,7 +227,6 @@ def test_items_with_missing_x_token_header(client: TestClient):
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -262,7 +255,6 @@ def test_items_plumbus_with_missing_x_token_header(client: TestClient):
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -297,7 +289,6 @@ def test_root_with_no_token(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -326,14 +317,12 @@ def test_put_no_header(client: TestClient):
                     "loc": ["query", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }

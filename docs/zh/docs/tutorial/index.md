@@ -52,22 +52,25 @@ $ pip install "fastapi[all]"
 
 ......以上安装还包括了 `uvicorn`，你可以将其用作运行代码的服务器。
 
-!!! note
-    你也可以分开来安装。
+/// note
 
-    假如你想将应用程序部署到生产环境，你可能要执行以下操作：
+你也可以分开来安装。
 
-    ```
-    pip install fastapi
-    ```
+假如你想将应用程序部署到生产环境，你可能要执行以下操作：
 
-    并且安装`uvicorn`来作为服务器：
+```
+pip install fastapi
+```
 
-    ```
-    pip install "uvicorn[standard]"
-    ```
+并且安装`uvicorn`来作为服务器：
 
-    然后对你想使用的每个可选依赖项也执行相同的操作。
+```
+pip install "uvicorn[standard]"
+```
+
+然后对你想使用的每个可选依赖项也执行相同的操作。
+
+///
 
 ## 进阶用户指南
 
