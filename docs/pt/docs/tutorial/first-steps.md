@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "Nota"
-    O comando `uvicorn main:app` se refere a:
+/// note | "Nota"
 
-    * `main`: o arquivo `main.py` (o "módulo" Python).
-    * `app`: o objeto criado no arquivo `main.py` com a linha `app = FastAPI()`.
-    * `--reload`: faz o servidor reiniciar após mudanças de código. Use apenas para desenvolvimento.
+O comando `uvicorn main:app` se refere a:
+
+* `main`: o arquivo `main.py` (o "módulo" Python).
+* `app`: o objeto criado no arquivo `main.py` com a linha `app = FastAPI()`.
+* `--reload`: faz o servidor reiniciar após mudanças de código. Use apenas para desenvolvimento.
+
+///
 
 Na saída, temos:
 
@@ -136,10 +139,13 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
-!!! note "Detalhes técnicos"
-    `FastAPI` é uma classe que herda diretamente de `Starlette`.
+/// note | "Detalhes técnicos"
 
-    Você pode usar todas as funcionalidades do <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> com `FastAPI` também.
+`FastAPI` é uma classe que herda diretamente de `Starlette`.
+
+Você pode usar todas as funcionalidades do <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> com `FastAPI` também.
+
+///
 
 ### Passo 2: crie uma "instância" de `FastAPI`
 
@@ -199,8 +205,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info "Informação"
-    Uma "rota" também é comumente chamada de "endpoint".
+/// info | "Informação"
+
+Uma "rota" também é comumente chamada de "endpoint".
+
+///
 
 Ao construir uma API, a "rota" é a principal forma de separar "preocupações" e "recursos".
 
@@ -250,16 +259,19 @@ O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável 
 * a rota `/`
 * usando o  <abbr title="o método HTTP GET">operador <code>get</code></abbr>
 
-!!! info "`@decorador`"
-    Essa sintaxe `@alguma_coisa` em Python é chamada de "decorador".
+/// info | "`@decorador`"
 
-    Você o coloca em cima de uma função. Como um chapéu decorativo (acho que é daí que vem o termo).
+Essa sintaxe `@alguma_coisa` em Python é chamada de "decorador".
 
-    Um "decorador" pega a função abaixo e faz algo com ela.
+Você o coloca em cima de uma função. Como um chapéu decorativo (acho que é daí que vem o termo).
 
-    Em nosso caso, este decorador informa ao **FastAPI** que a função abaixo corresponde a **rota** `/` com uma **operação** `get`.
+Um "decorador" pega a função abaixo e faz algo com ela.
 
-    É o "**decorador de rota**".
+Em nosso caso, este decorador informa ao **FastAPI** que a função abaixo corresponde a **rota** `/` com uma **operação** `get`.
+
+É o "**decorador de rota**".
+
+///
 
 Você também pode usar as outras operações:
 
@@ -274,14 +286,17 @@ E os mais exóticos:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip "Dica"
-    Você está livre para usar cada operação (método HTTP) como desejar.
+/// tip | "Dica"
 
-    O **FastAPI** não impõe nenhum significado específico.
+Você está livre para usar cada operação (método HTTP) como desejar.
 
-    As informações aqui são apresentadas como uma orientação, não uma exigência.
+O **FastAPI** não impõe nenhum significado específico.
 
-    Por exemplo, ao usar GraphQL, você normalmente executa todas as ações usando apenas operações `POST`.
+As informações aqui são apresentadas como uma orientação, não uma exigência.
+
+Por exemplo, ao usar GraphQL, você normalmente executa todas as ações usando apenas operações `POST`.
+
+///
 
 ### Passo 4: defina uma **função de rota**
 
@@ -309,8 +324,11 @@ Você também pode defini-la como uma função normal em vez de `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "Nota"
-    Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
+/// note | "Nota"
+
+Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
+
+///
 
 ### Passo 5: retorne o conteúdo
 

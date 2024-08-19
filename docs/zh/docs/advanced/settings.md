@@ -8,44 +8,51 @@
 
 ## 环境变量
 
-!!! tip
-    如果您已经知道什么是"环境变量"以及如何使用它们，请随意跳到下面的下一节。
+/// tip
+
+如果您已经知道什么是"环境变量"以及如何使用它们，请随意跳到下面的下一节。
+
+///
 
 环境变量（也称为"env var"）是一种存在于 Python 代码之外、存在于操作系统中的变量，可以被您的 Python 代码（或其他程序）读取。
 
 您可以在 shell 中创建和使用环境变量，而无需使用 Python：
 
-=== "Linux、macOS、Windows Bash"
+//// tab | Linux、macOS、Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // 您可以创建一个名为 MY_NAME 的环境变量
-    $ export MY_NAME="Wade Wilson"
+```console
+// 您可以创建一个名为 MY_NAME 的环境变量
+$ export MY_NAME="Wade Wilson"
 
-    // 然后您可以与其他程序一起使用它，例如
-    $ echo "Hello $MY_NAME"
+// 然后您可以与其他程序一起使用它，例如
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    // 创建一个名为 MY_NAME 的环境变量
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // 与其他程序一起使用它，例如
-    $ echo "Hello $Env:MY_NAME"
+```console
+// 创建一个名为 MY_NAME 的环境变量
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// 与其他程序一起使用它，例如
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### 在 Python 中读取环境变量
 
@@ -60,10 +67,13 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-!!! tip
-    <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的第二个参数是要返回的默认值。
+/// tip
 
-    如果没有提供默认值，默认为 `None`，此处我们提供了 `"World"` 作为要使用的默认值。
+<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的第二个参数是要返回的默认值。
+
+如果没有提供默认值，默认为 `None`，此处我们提供了 `"World"` 作为要使用的默认值。
+
+///
 
 然后，您可以调用该 Python 程序：
 
@@ -116,8 +126,11 @@ Hello World from Python
 
 </div>
 
-!!! tip
-    您可以在 <a href="https://12factor.net/config" class="external-link" target="_blank">Twelve-Factor App: Config</a> 中阅读更多相关信息。
+/// tip
+
+您可以在 <a href="https://12factor.net/config" class="external-link" target="_blank">Twelve-Factor App: Config</a> 中阅读更多相关信息。
+
+///
 
 ### 类型和验证
 
@@ -141,8 +154,11 @@ Hello World from Python
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
-!!! tip
-    如果您需要一个快速的复制粘贴示例，请不要使用此示例，而应使用下面的最后一个示例。
+/// tip
+
+如果您需要一个快速的复制粘贴示例，请不要使用此示例，而应使用下面的最后一个示例。
+
+///
 
 然后，当您创建该 `Settings` 类的实例（在此示例中是 `settings` 对象）时，Pydantic 将以不区分大小写的方式读取环境变量，因此，大写的变量 `APP_NAME` 仍将为属性 `app_name` 读取。
 
@@ -170,8 +186,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 </div>
 
-!!! tip
-    要为单个命令设置多个环境变量，只需用空格分隔它们，并将它们全部放在命令之前。
+/// tip
+
+要为单个命令设置多个环境变量，只需用空格分隔它们，并将它们全部放在命令之前。
+
+///
 
 然后，`admin_email` 设置将为 `"deadpool@example.com"`。
 
@@ -194,8 +213,12 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 ```Python hl_lines="3  11-13"
 {!../../../docs_src/settings/app01/main.py!}
 ```
-!!! tip
-    您还需要一个名为 `__init__.py` 的文件，就像您在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+
+/// tip
+
+您还需要一个名为 `__init__.py` 的文件，就像您在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+
+///
 
 ## 在依赖项中使用设置
 
@@ -217,54 +240,75 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 现在我们创建一个依赖项，返回一个新的 `config.Settings()`。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="6  12-13"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="5  11-12"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
 
-!!! tip
-    我们稍后会讨论 `@lru_cache`。
+/// tip
 
-    目前，您可以将 `get_settings()` 视为普通函数。
+如果可能，请尽量使用 `Annotated` 版本。
+
+///
+
+```Python hl_lines="5  11-12"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
+
+/// tip
+
+我们稍后会讨论 `@lru_cache`。
+
+目前，您可以将 `get_settings()` 视为普通函数。
+
+///
 
 然后，我们可以将其作为依赖项从“路径操作函数”中引入，并在需要时使用它。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
-    ```
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="17  19-21"
+{!> ../../../docs_src/settings/app02_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="16  18-20"
-    {!> ../../../docs_src/settings/app02/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
+
+/// tip
+
+如果可能，请尽量使用 `Annotated` 版本。
+
+///
+
+```Python hl_lines="16  18-20"
+{!> ../../../docs_src/settings/app02/main.py!}
+```
+
+////
 
 ### 设置和测试
 
@@ -284,15 +328,21 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 这种做法相当常见，有一个名称，这些环境变量通常放在一个名为 `.env` 的文件中，该文件被称为“dotenv”。
 
-!!! tip
-    以点 (`.`) 开头的文件是 Unix-like 系统（如 Linux 和 macOS）中的隐藏文件。
+/// tip
 
-    但是，dotenv 文件实际上不一定要具有确切的文件名。
+以点 (`.`) 开头的文件是 Unix-like 系统（如 Linux 和 macOS）中的隐藏文件。
+
+但是，dotenv 文件实际上不一定要具有确切的文件名。
+
+///
 
 Pydantic 支持使用外部库从这些类型的文件中读取。您可以在<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic 设置: Dotenv (.env) 支持</a>中阅读更多相关信息。
 
-!!! tip
-    要使其工作，您需要执行 `pip install python-dotenv`。
+/// tip
+
+要使其工作，您需要执行 `pip install python-dotenv`。
+
+///
 
 ### `.env` 文件
 
@@ -313,8 +363,11 @@ APP_NAME="ChimichangApp"
 
 在这里，我们在 Pydantic 的 `Settings` 类中创建了一个名为 `Config` 的类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
 
-!!! tip
-    `Config` 类仅用于 Pydantic 配置。您可以在<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
+/// tip
+
+`Config` 类仅用于 Pydantic 配置。您可以在<a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic Model Config</a>中阅读更多相关信息。
+
+///
 
 ### 使用 `lru_cache` 仅创建一次 `Settings`
 
@@ -339,26 +392,35 @@ def get_settings():
 
 但是，由于我们在顶部使用了 `@lru_cache` 装饰器，因此只有在第一次调用它时，才会创建 `Settings` 对象一次。 ✔️
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
-    ```
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an/main.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ 非注解版本"
+```Python hl_lines="1  11"
+{!> ../../../docs_src/settings/app03_an/main.py!}
+```
 
-    !!! tip
-        如果可能，请尽量使用 `Annotated` 版本。
+////
 
-    ```Python hl_lines="1  10"
-    {!> ../../../docs_src/settings/app03/main.py!}
-    ```
+//// tab | Python 3.8+ 非注解版本
+
+/// tip
+
+如果可能，请尽量使用 `Annotated` 版本。
+
+///
+
+```Python hl_lines="1  10"
+{!> ../../../docs_src/settings/app03/main.py!}
+```
+
+////
 
 然后，在下一次请求的依赖项中对 `get_settings()` 进行任何后续调用时，它不会执行 `get_settings()` 的内部代码并创建新的 `Settings` 对象，而是返回在第一次调用时返回的相同对象，一次又一次。
 

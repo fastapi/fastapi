@@ -11,7 +11,7 @@ from pydantic import BaseModel, BaseSettings, SecretStr
 
 awaiting_label = "awaiting-review"
 lang_all_label = "lang-all"
-approved_label = "approved-2"
+approved_label = "approved-1"
 translations_path = Path(__file__).parent / "translations.yml"
 
 github_graphql_url = "https://api.github.com/graphql"
@@ -19,7 +19,7 @@ questions_translations_category_id = "DIC_kwDOCZduT84CT5P9"
 
 all_discussions_query = """
 query Q($category_id: ID) {
-  repository(name: "fastapi", owner: "tiangolo") {
+  repository(name: "fastapi", owner: "fastapi") {
     discussions(categoryId: $category_id, first: 100) {
       nodes {
         title
@@ -41,7 +41,7 @@ query Q($category_id: ID) {
 
 translation_discussion_query = """
 query Q($after: String, $discussion_number: Int!) {
-  repository(name: "fastapi", owner: "tiangolo") {
+  repository(name: "fastapi", owner: "fastapi") {
     discussion(number: $discussion_number) {
       comments(first: 100, after: $after) {
         edges {
