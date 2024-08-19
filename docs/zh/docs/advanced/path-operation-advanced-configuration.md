@@ -2,8 +2,11 @@
 
 ## OpenAPI 的 operationId
 
-!!! warning
-    如果你并非 OpenAPI 的「专家」，你可能不需要这部分内容。
+/// warning
+
+如果你并非 OpenAPI 的「专家」，你可能不需要这部分内容。
+
+///
 
 你可以在路径操作中通过参数 `operation_id` 设置要使用的 OpenAPI `operationId`。
 
@@ -23,13 +26,19 @@
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip
-    如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
+/// tip
 
-!!! warning
-    如果你这样做，务必确保你的每个 *路径操作函数* 的名字唯一。
+如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
 
-    即使它们在不同的模块中（Python 文件）。
+///
+
+/// warning
+
+如果你这样做，务必确保你的每个 *路径操作函数* 的名字唯一。
+
+即使它们在不同的模块中（Python 文件）。
+
+///
 
 ## 从 OpenAPI 中排除
 
