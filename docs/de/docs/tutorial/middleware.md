@@ -11,10 +11,13 @@ Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bev
 * Sie kann etwas mit dieser **Response** tun oder beliebigen Code ausführen.
 * Dann gibt sie die **Response** zurück.
 
-!!! note "Technische Details"
-    Wenn Sie Abhängigkeiten mit `yield` haben, wird der Exit-Code *nach* der Middleware ausgeführt.
+/// note | "Technische Details"
 
-    Wenn es Hintergrundaufgaben gab (später dokumentiert), werden sie *nach* allen Middlewares ausgeführt.
+Wenn Sie Abhängigkeiten mit `yield` haben, wird der Exit-Code *nach* der Middleware ausgeführt.
+
+Wenn es Hintergrundaufgaben gab (später dokumentiert), werden sie *nach* allen Middlewares ausgeführt.
+
+///
 
 ## Erstellung einer Middleware
 
@@ -32,15 +35,21 @@ Die Middleware-Funktion erhält:
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
+/// tip | "Tipp"
 
-    Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
+Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
 
-!!! note "Technische Details"
-    Sie könnten auch `from starlette.requests import Request` verwenden.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
 
-    **FastAPI** bietet es als Komfort für Sie, den Entwickler, an. Aber es stammt direkt von Starlette.
+///
+
+/// note | "Technische Details"
+
+Sie könnten auch `from starlette.requests import Request` verwenden.
+
+**FastAPI** bietet es als Komfort für Sie, den Entwickler, an. Aber es stammt direkt von Starlette.
+
+///
 
 ### Vor und nach der `response`
 

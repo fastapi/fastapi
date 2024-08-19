@@ -48,7 +48,7 @@ my_list: List[str]
 
 ## 집합 타입
 
-그런데 생각해보니 태그는 반복되면 안 돼고, 고유한(Unique) 문자열이어야 할 것 같습니다.
+그런데 생각해보니 태그는 반복되면 안 되고, 고유한(Unique) 문자열이어야 할 것 같습니다.
 
 그리고 파이썬은 집합을 위한 특별한 데이터 타입 `set`이 있습니다.
 
@@ -117,7 +117,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 `str`, `int`, `float` 등과 같은 단일 타입과는 별개로, `str`을 상속하는 더 복잡한 단일 타입을 사용할 수 있습니다.
 
-모든 옵션을 보려면, <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic's exotic types</a> 문서를 확인하세요. 다음 장에서 몇가지 예제를 볼 수 있습니다.
+모든 옵션을 보려면, <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic's exotic types</a> 문서를 확인하세요. 다음 장에서 몇가지 예제를 볼 수 있습니다.
 
 예를 들어 `Image` 모델 안에 `url` 필드를 `str` 대신 Pydantic의 `HttpUrl`로 선언할 수 있습니다:
 
@@ -161,8 +161,11 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 }
 ```
 
-!!! info "정보"
-    `images` 키가 어떻게 이미지 객체 리스트를 갖는지 주목하세요.
+/// info | "정보"
+
+`images` 키가 어떻게 이미지 객체 리스트를 갖는지 주목하세요.
+
+///
 
 ## 깊게 중첩된 모델
 
@@ -172,8 +175,11 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-!!! info "정보"
-    `Offer`가 선택사항 `Image` 리스트를 차례로 갖는 `Item` 리스트를 어떻게 가지고 있는지 주목하세요
+/// info | "정보"
+
+`Offer`가 선택사항 `Image` 리스트를 차례로 갖는 `Item` 리스트를 어떻게 가지고 있는지 주목하세요
+
+///
 
 ## 순수 리스트의 본문
 
@@ -221,14 +227,17 @@ Pydantic 모델 대신에 `dict`를 직접 사용하여 작업할 경우, 이러
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-!!! tip "팁"
-    JSON은 오직 `str`형 키만 지원한다는 것을 염두에 두세요.
+/// tip | "팁"
 
-    하지만 Pydantic은 자동 데이터 변환이 있습니다.
+JSON은 오직 `str`형 키만 지원한다는 것을 염두에 두세요.
 
-    즉, API 클라이언트가 문자열을 키로 보내더라도 해당 문자열이 순수한 정수를 포함하는한 Pydantic은 이를 변환하고 검증합니다.
+하지만 Pydantic은 자동 데이터 변환이 있습니다.
 
-    그러므로 `weights`로 받은 `dict`는 실제로 `int` 키와 `float` 값을 가집니다.
+즉, API 클라이언트가 문자열을 키로 보내더라도 해당 문자열이 순수한 정수를 포함하는한 Pydantic은 이를 변환하고 검증합니다.
+
+그러므로 `weights`로 받은 `dict`는 실제로 `int` 키와 `float` 값을 가집니다.
+
+///
 
 ## 요약
 

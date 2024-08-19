@@ -29,13 +29,16 @@ Crea un response tal como se describe en [Retornar una respuesta directamente](r
 {!../../../docs_src/response_headers/tutorial001.py!}
 ```
 
-!!! note "Detalles Técnicos"
-    También podrías utilizar `from starlette.responses import Response` o `from starlette.responses import JSONResponse`.
+/// note | "Detalles Técnicos"
 
-    **FastAPI** proporciona las mismas `starlette.responses` en `fastapi.responses` sólo que de una manera más conveniente para ti, el desarrollador. En otras palabras, muchas de las responses disponibles provienen directamente de Starlette.
+También podrías utilizar `from starlette.responses import Response` o `from starlette.responses import JSONResponse`.
+
+**FastAPI** proporciona las mismas `starlette.responses` en `fastapi.responses` sólo que de una manera más conveniente para ti, el desarrollador. En otras palabras, muchas de las responses disponibles provienen directamente de Starlette.
 
 
-    Y como la `Response` puede ser usada frecuentemente para configurar headers y cookies, **FastAPI** también la provee en `fastapi.Response`.
+Y como la `Response` puede ser usada frecuentemente para configurar headers y cookies, **FastAPI** también la provee en `fastapi.Response`.
+
+///
 
 ## Headers Personalizados
 

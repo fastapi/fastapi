@@ -2,8 +2,7 @@
 
 There are several middlewares available provided by Starlette directly.
 
-Read more about them in the
-[FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/).
+Read more about them in the [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/).
 
 ::: fastapi.middleware.cors.CORSMiddleware
 

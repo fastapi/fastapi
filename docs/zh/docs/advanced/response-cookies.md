@@ -28,20 +28,26 @@
 {!../../../docs_src/response_cookies/tutorial001.py!}
 ```
 
-!!! tip
-    需要注意，如果你直接反馈一个response对象，而不是使用`Response`入参，FastAPI则会直接反馈你封装的response对象。
+/// tip
 
-    所以你需要确保你响应数据类型的正确性，如：你可以使用`JSONResponse`来兼容JSON的场景。
+需要注意，如果你直接反馈一个response对象，而不是使用`Response`入参，FastAPI则会直接反馈你封装的response对象。
 
-    同时，你也应当仅反馈通过`response_model`过滤过的数据。
+所以你需要确保你响应数据类型的正确性，如：你可以使用`JSONResponse`来兼容JSON的场景。
+
+同时，你也应当仅反馈通过`response_model`过滤过的数据。
+
+///
 
 ### 更多信息
 
-!!! note "技术细节"
-    你也可以使用`from starlette.responses import Response` 或者 `from starlette.responses import JSONResponse`。
+/// note | "技术细节"
 
-    为了方便开发者，**FastAPI** 封装了相同数据类型，如`starlette.responses` 和 `fastapi.responses`。不过大部分response对象都是直接引用自Starlette。
+你也可以使用`from starlette.responses import Response` 或者 `from starlette.responses import JSONResponse`。
 
-    因为`Response`对象可以非常便捷的设置headers和cookies，所以 **FastAPI** 同时也封装了`fastapi.Response`。
+为了方便开发者，**FastAPI** 封装了相同数据类型，如`starlette.responses` 和 `fastapi.responses`。不过大部分response对象都是直接引用自Starlette。
+
+因为`Response`对象可以非常便捷的设置headers和cookies，所以 **FastAPI** 同时也封装了`fastapi.Response`。
+
+///
 
 如果你想查看所有可用的参数和选项，可以参考 <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Starlette帮助文档</a>
