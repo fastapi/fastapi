@@ -1,4 +1,4 @@
-# Introdução à segurança
+# Segurança
 
 Há várias formas de lidar segurança, autenticação e autorização.
 
@@ -32,9 +32,11 @@ Não é muito popular ou usado nos dias atuais.
 
 OAuth2 não especifica como criptografar a comunicação, ele espera que você tenha sua aplicação em um servidor HTTPS.
 
-!!! tip "Dica"
-    Na seção sobre **deployment** você irá ver como configurar HTTPS de modo gratuito, usando Traefik e Let’s Encrypt.
+/// tip | "Dica"
 
+Na seção sobre **deployment** você irá ver como configurar HTTPS de modo gratuito, usando Traefik e Let’s Encrypt.
+
+///
 
 ## OpenID Connect
 
@@ -87,10 +89,13 @@ OpenAPI define os seguintes esquemas de segurança:
     * Essa descoberta automática é o que é definido na especificação OpenID Connect.
 
 
-!!! tip "Dica"
-    Integração com outros provedores de autenticação/autorização como Google, Facebook, Twitter, GitHub, etc. é bem possível e relativamente fácil.
+/// tip | "Dica"
 
-    O problema mais complexo é criar um provedor de autenticação/autorização como eles, mas o FastAPI dá a você ferramentas para fazer isso facilmente, enquanto faz o trabalho pesado para você.
+Integração com outros provedores de autenticação/autorização como Google, Facebook, Twitter, GitHub, etc. é bem possível e relativamente fácil.
+
+O problema mais complexo é criar um provedor de autenticação/autorização como eles, mas o FastAPI dá a você ferramentas para fazer isso facilmente, enquanto faz o trabalho pesado para você.
+
+///
 
 ## **FastAPI** utilitários
 

@@ -1,8 +1,13 @@
+---
+hide:
+  - navigation
+---
+
 # FastAPI People
 
 FastAPI has an amazing community that welcomes people from all backgrounds.
 
-## Creator - Maintainer
+## Creator
 
 Hey! 👋
 
@@ -18,7 +23,7 @@ This is me:
 </div>
 {% endif %}
 
-I'm the creator and maintainer of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+I'm the creator of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...But here I want to show you the community.
 
@@ -28,39 +33,120 @@ I'm the creator and maintainer of **FastAPI**. You can read more about that in [
 
 These are the people that:
 
-* [Help others with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * Review Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
+* Help [manage the repository](management-tasks.md){.internal-link target=_blank} (team members).
+
+All these tasks help maintain the repository.
 
 A round of applause to them. 👏 🙇
 
-## Most active users last month
+## Team
 
-These are the users that have been [helping others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} during the last month. ☕
+This is the current list of team members. 😎
+
+They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md){.internal-link target=_blank} and together we  [manage the FastAPI repository](./management.md){.internal-link target=_blank}.
+
+<div class="user-list user-list-center">
+{% for user in members["members"] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatar_url }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+{% endfor %}
+
+</div>
+
+Although the team members have the permissions to perform privileged tasks, all the [help from others maintaining FastAPI](./help-fastapi.md#help-maintain-fastapi){.internal-link target=_blank} is very much appreciated! 🙇‍♂️
+
+## FastAPI Experts
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🙇
+
+They have proven to be **FastAPI Experts** by helping many others. ✨
+
+/// tip
+
+You could become an official FastAPI Expert too!
+
+Just [help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🤓
+
+///
+
+You can see the **FastAPI Experts** for:
+
+* [Last Month](#fastapi-experts-last-month) 🤓
+* [3 Months](#fastapi-experts-3-months) 😎
+* [6 Months](#fastapi-experts-6-months) 🧐
+* [1 Year](#fastapi-experts-1-year) 🧑‍🔬
+* [**All Time**](#fastapi-experts-all-time) 🧙
+
+### FastAPI Experts - Last Month
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. 🤓
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.last_month_active %}
+{% for user in people.last_month_experts[:10] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
 {% endif %}
 
-## Experts
+### FastAPI Experts - 3 Months
 
-Here are the **FastAPI Experts**. 🤓
-
-These are the users that have [helped others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} through *all time*.
-
-They have proven to be experts by helping many others. ✨
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. 😎
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.experts %}
+{% for user in people.three_months_experts[:10] %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - 6 Months
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. 🧐
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.six_months_experts[:10] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - 1 Year
+
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. 🧑‍🔬
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.one_year_experts[:20] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+{% endfor %}
+
+</div>
+{% endif %}
+
+### FastAPI Experts - All Time
+
+Here are the all time **FastAPI Experts**. 🤓🤯
+
+These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*. 🧙
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.experts[:50] %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
@@ -76,7 +162,7 @@ They have contributed source code, documentation, translations, etc. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_contributors %}
+{% for user in people.top_contributors[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Pull Requests: {{ user.count }}</div></div>
 {% endfor %}
@@ -84,23 +170,17 @@ They have contributed source code, documentation, translations, etc. 📦
 </div>
 {% endif %}
 
-There are many other contributors (more than a hundred), you can see them all in the <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
+There are many other contributors (more than a hundred), you can see them all in the <a href="https://github.com/fastapi/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
 
-## Top Reviewers
+## Top Translation Reviewers
 
-These users are the **Top Reviewers**. 🕵️
-
-### Reviews for Translations
+These users are the **Top Translation Reviewers**. 🕵️
 
 I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
 
----
-
-The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, ensuring the quality of the code, documentation, and especially, the **translations**.
-
 {% if people %}
 <div class="user-list user-list-center">
-{% for user in people.top_reviewers %}
+{% for user in people.top_translations_reviewers[:50] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
 {% endfor %}
@@ -169,9 +249,9 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 
 The main intention of this page is to highlight the effort of the community to help others.
 
-Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with issues and reviewing Pull Requests with translations.
+Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with questions and reviewing Pull Requests with translations.
 
-The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+The data is calculated each month, you can read the <a href="https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
 
 Here I'm also highlighting contributions from sponsors.
 
