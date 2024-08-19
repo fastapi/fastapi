@@ -32,7 +32,7 @@ Primero importa `Cookie`:
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Es preferible utilizar la versión `Annotated` si es posible.
 
@@ -46,7 +46,7 @@ Es preferible utilizar la versión `Annotated` si es posible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Es preferible utilizar la versión `Annotated` si es posible.
 
@@ -90,9 +90,9 @@ El primer valor es el valor por defecto, puedes pasar todos los parámetros adic
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Consejo"
+/// tip | Consejo
 
-Prefer to use the `Annotated` version if possible.
+Es preferible utilizar la versión `Annotated` si es posible.
 
 ///
 
@@ -104,7 +104,7 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Es preferible utilizar la versión `Annotated` si es posible.
 

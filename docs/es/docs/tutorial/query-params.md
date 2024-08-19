@@ -199,7 +199,7 @@ En este caso hay 3 parámetros de query:
 * `skip`, un `int` con un valor por defecto de `0`.
 * `limit`, un `int` opcional.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
 

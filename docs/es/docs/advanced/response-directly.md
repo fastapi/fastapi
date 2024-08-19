@@ -14,7 +14,7 @@ Esto puede ser útil, por ejemplo, para devolver cookies o headers personalizado
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de la misma.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 `JSONResponse` en sí misma es una subclase de `Response`.
 

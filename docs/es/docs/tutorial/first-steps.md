@@ -286,7 +286,7 @@ y las más exóticas:
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Tienes la libertad de usar cada operación (método de HTTP) como quieras.
 

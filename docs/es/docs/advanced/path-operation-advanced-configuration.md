@@ -26,7 +26,7 @@ Deberías hacerlo después de adicionar todas tus *operaciones de path*.
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s antes de hacerlo.
 

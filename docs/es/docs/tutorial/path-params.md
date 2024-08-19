@@ -149,7 +149,7 @@ Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" 
 
 ///
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Técnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
 
@@ -189,7 +189,7 @@ Puedes obtener el valor exacto (un `str` en este caso) usando `model_name.value`
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 También podrías obtener el valor `"lenet"` con `ModelName.lenet.value`.
 
@@ -246,7 +246,7 @@ Entonces lo puedes usar con:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Podrías necesitar que el parámetro contenga `/home/johndoe/myfile.txt` con un slash inicial (`/`).
 
