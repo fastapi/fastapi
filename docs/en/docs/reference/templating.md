@@ -2,8 +2,7 @@
 
 You can use the `Jinja2Templates` class to render Jinja templates.
 
-Read more about it in the
-[FastAPI docs for Templates](https://fastapi.tiangolo.com/advanced/templates/).
+Read more about it in the [FastAPI docs for Templates](https://fastapi.tiangolo.com/advanced/templates/).
 
 You can import it directly from `fastapi.templating`:
 
