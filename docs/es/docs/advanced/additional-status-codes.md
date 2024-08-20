@@ -18,7 +18,7 @@ Para conseguir esto importa `JSONResponse` y devuelve ahí directamente tu conte
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-/// warning | "Advertencia"
+/// warning | Advertencia
 
 Cuando devuelves directamente una `Response`, como en los ejemplos anteriores, será devuelta directamente.
 
@@ -28,7 +28,7 @@ Asegúrate de que la respuesta tenga los datos que quieras, y que los valores se
 
 ///
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 También podrías utilizar `from starlette.responses import JSONResponse`.
 

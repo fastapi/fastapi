@@ -6,7 +6,7 @@ El [Tutorial - Guía de Usuario](../tutorial/index.md){.internal-link target=_bl
 
 En las secciones siguientes verás otras opciones, configuraciones, y características adicionales.
 
-/// tip
+/// tip | Consejo
 
 Las próximas secciones **no son necesariamente "avanzadas"**.
 

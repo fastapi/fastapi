@@ -12,7 +12,7 @@ Todo **FastAPI** está basado en estos type hints, lo que le da muchas ventajas 
 
 Pero, así nunca uses **FastAPI** te beneficiarás de aprender un poco sobre los type hints.
 
-/// note | "Nota"
+/// note | Nota
 
 Si eres un experto en Python y ya lo sabes todo sobre los type hints, salta al siguiente capítulo.
 
@@ -256,7 +256,7 @@ Tomado de la documentación oficial de Pydantic:
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-/// info | "Información"
+/// info | Información
 
 Para aprender más sobre <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic mira su documentación</a>.
 
@@ -288,7 +288,7 @@ Puede que todo esto suene abstracto. Pero no te preocupes que todo lo verás en 
 
 Lo importante es que usando los tipos de Python estándar en un único lugar (en vez de añadir más clases, decorator, etc.) **FastAPI** hará mucho del trabajo por ti.
 
-/// info | "Información"
+/// info | Información
 
 Si ya pasaste por todo el tutorial y volviste a la sección de los tipos, una buena referencia es <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">la "cheat sheet" de `mypy`</a>.
 
