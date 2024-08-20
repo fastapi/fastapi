@@ -22,8 +22,11 @@ Mit **FastAPI** können Sie mithilfe von OpenAPI die Namen dieser Webhooks, die 
 
 Dies kann es Ihren Benutzern viel einfacher machen, **deren APIs zu implementieren**, um Ihre **Webhook**-Requests zu empfangen. Möglicherweise können diese sogar einen Teil des eigenem API-Codes automatisch generieren.
 
-!!! info
-    Webhooks sind in OpenAPI 3.1.0 und höher verfügbar und werden von FastAPI `0.99.0` und höher unterstützt.
+/// info
+
+Webhooks sind in OpenAPI 3.1.0 und höher verfügbar und werden von FastAPI `0.99.0` und höher unterstützt.
+
+///
 
 ## Eine Anwendung mit Webhooks
 
@@ -35,8 +38,11 @@ Wenn Sie eine **FastAPI**-Anwendung erstellen, gibt es ein `webhooks`-Attribut, 
 
 Die von Ihnen definierten Webhooks landen im **OpenAPI**-Schema und der automatischen **Dokumentations-Oberfläche**.
 
-!!! info
-    Das `app.webhooks`-Objekt ist eigentlich nur ein `APIRouter`, derselbe Typ, den Sie verwenden würden, wenn Sie Ihre Anwendung mit mehreren Dateien strukturieren.
+/// info
+
+Das `app.webhooks`-Objekt ist eigentlich nur ein `APIRouter`, derselbe Typ, den Sie verwenden würden, wenn Sie Ihre Anwendung mit mehreren Dateien strukturieren.
+
+///
 
 Beachten Sie, dass Sie bei Webhooks tatsächlich keinen *Pfad* (wie `/items/`) deklarieren, sondern dass der Text, den Sie dort übergeben, lediglich eine **Kennzeichnung** des Webhooks (der Name des Events) ist. Zum Beispiel ist in `@app.webhooks.post("new-subscription")` der Webhook-Name `new-subscription`.
 
