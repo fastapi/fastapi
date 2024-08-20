@@ -6,23 +6,29 @@ Um einen Artikel zu aktualisieren, können Sie die <a href="https://developer.mo
 
 Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (in z. B. einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="28-33"
-    {!> ../../../docs_src/body_updates/tutorial001_py310.py!}
-    ```
+```Python hl_lines="28-33"
+{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="30-35"
-    {!> ../../../docs_src/body_updates/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="30-35"
+{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="30-35"
-    {!> ../../../docs_src/body_updates/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="30-35"
+{!> ../../../docs_src/body_updates/tutorial001.py!}
+```
+
+////
 
 `PUT` wird verwendet, um Daten zu empfangen, die die existierenden Daten ersetzen sollen.
 
@@ -48,14 +54,17 @@ Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/
 
 Das bedeutet, sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
 
-!!! note "Hinweis"
-    `PATCH` wird seltener verwendet und ist weniger bekannt als `PUT`.
+/// note | "Hinweis"
 
-    Und viele Teams verwenden ausschließlich `PUT`, selbst für nur Teil-Aktualisierungen.
+`PATCH` wird seltener verwendet und ist weniger bekannt als `PUT`.
 
-    Es steht Ihnen **frei**, das zu verwenden, was Sie möchten, **FastAPI** legt Ihnen keine Einschränkungen auf.
+Und viele Teams verwenden ausschließlich `PUT`, selbst für nur Teil-Aktualisierungen.
 
-    Aber dieser Leitfaden zeigt Ihnen mehr oder weniger, wie die beiden normalerweise verwendet werden.
+Es steht Ihnen **frei**, das zu verwenden, was Sie möchten, **FastAPI** legt Ihnen keine Einschränkungen auf.
+
+Aber dieser Leitfaden zeigt Ihnen mehr oder weniger, wie die beiden normalerweise verwendet werden.
+
+///
 
 ### Pydantics `exclude_unset`-Parameter verwenden
 
@@ -63,61 +72,79 @@ Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter
 
 Wie in `item.model_dump(exclude_unset=True)`.
 
-!!! info
-    In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+/// info
 
-    Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+
+Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
+///
 
 Das wird ein `dict` erstellen, mit nur den Daten, die gesetzt wurden als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
 Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) gesendeten Daten enthält, ohne Defaultwerte:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="32"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="32"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="34"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="34"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="34"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="34"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
+
+////
 
 ### Pydantics `update`-Parameter verwenden
 
 Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
 
-!!! info
-    In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
+/// info
 
-    Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
+In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
+
+Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
+
+///
 
 Wie in `stored_item_model.model_copy(update=update_data)`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="33"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="33"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="35"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="35"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="35"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="35"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
+
+////
 
 ### Rekapitulation zum teilweisen Ersetzen
 
@@ -134,32 +161,44 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 * Speichern Sie die Daten in Ihrer Datenbank.
 * Geben Sie das aktualisierte Modell zurück.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="28-35"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-    ```
+```Python hl_lines="28-35"
+{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="30-37"
-    {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="30-37"
+{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="30-37"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
-    ```
+////
 
-!!! tip "Tipp"
-    Sie können tatsächlich die gleiche Technik mit einer HTTP `PUT` Operation verwenden.
+//// tab | Python 3.8+
 
-    Aber dieses Beispiel verwendet `PATCH`, da dieses für solche Anwendungsfälle geschaffen wurde.
+```Python hl_lines="30-37"
+{!> ../../../docs_src/body_updates/tutorial002.py!}
+```
 
-!!! note "Hinweis"
-    Beachten Sie, dass das hereinkommende Modell immer noch validiert wird.
+////
 
-    Wenn Sie also Teil-Aktualisierungen empfangen wollen, die alle Attribute auslassen können, müssen Sie ein Modell haben, dessen Attribute alle als optional gekennzeichnet sind (mit Defaultwerten oder `None`).
+/// tip | "Tipp"
 
-    Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
+Sie können tatsächlich die gleiche Technik mit einer HTTP `PUT` Operation verwenden.
+
+Aber dieses Beispiel verwendet `PATCH`, da dieses für solche Anwendungsfälle geschaffen wurde.
+
+///
+
+/// note | "Hinweis"
+
+Beachten Sie, dass das hereinkommende Modell immer noch validiert wird.
+
+Wenn Sie also Teil-Aktualisierungen empfangen wollen, die alle Attribute auslassen können, müssen Sie ein Modell haben, dessen Attribute alle als optional gekennzeichnet sind (mit Defaultwerten oder `None`).
+
+Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
+
+///

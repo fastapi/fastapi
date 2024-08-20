@@ -40,10 +40,13 @@ $ pip install pyjwt
 
 </div>
 
-!!! info "情報"
+/// info | "情報"
+
 RSA や ECDSA のようなデジタル署名アルゴリズムを使用する予定がある場合は、暗号化ライブラリの依存関係である`pyjwt[crypto]`をインストールする必要があります。
 
-    詳細については、<a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT インストールドキュメント</a>を参照してください。
+詳細については、<a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT インストールドキュメント</a>を参照してください。
+
+///
 
 ## パスワードのハッシュ化
 
@@ -79,12 +82,15 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-!!! tip "豆知識"
+/// tip | "豆知識"
+
 `passlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
 
-    例えば、Djangoアプリケーションからデータベース内の同じデータをFastAPIアプリケーションと共有できるだけではなく、同じデータベースを使用してDjangoアプリケーションを徐々に移行することもできます。
+例えば、Django アプリケーションからデータベース内の同じデータを FastAPI アプリケーションと共有できるだけではなく、同じデータベースを使用して Django アプリケーションを徐々に移行することもできます。
 
-    また、ユーザーはDjangoアプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
+また、ユーザーは Django アプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
+
+///
 
 ## パスワードのハッシュ化と検証
 
@@ -92,12 +98,15 @@ $ pip install passlib[bcrypt]
 
 PassLib の「context」を作成します。これは、パスワードのハッシュ化と検証に使用されるものです。
 
-!!! tip "豆知識"
+/// tip | "豆知識"
+
 PassLib の context には、検証だけが許された非推奨の古いハッシュアルゴリズムを含む、様々なハッシュアルゴリズムを使用した検証機能もあります。
 
-    例えば、この機能を使用して、別のシステム（Djangoなど）によって生成されたパスワードを読み取って検証し、Bcryptなどの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
+例えば、この機能を使用して、別のシステム（Django など）によって生成されたパスワードを読み取って検証し、Bcrypt などの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
 
-    そして、同時にそれらはすべてに互換性があります。
+そして、同時にそれらはすべてに互換性があります。
+
+///
 
 ユーザーから送られてきたパスワードをハッシュ化するユーティリティー関数を作成します。
 
@@ -109,8 +118,11 @@ PassLib の context には、検証だけが許された非推奨の古いハッ
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
-!!! note "備考"
+/// note | "備考"
+
 新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`
+
+///
 
 ## JWT トークンの取り扱い
 
@@ -203,8 +215,11 @@ ID の衝突を回避するために、ユーザーの JWT トークンを作成
 Username: `johndoe`
 Password: `secret`
 
-!!! check "確認"
+/// check | "確認"
+
 コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+
+///
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -225,8 +240,11 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image10.png">
 
-!!! note "備考"
+/// note | "備考"
+
 ヘッダーの`Authorization`には、`Bearer`で始まる値があります。
+
+///
 
 ## `scopes` を使った高度なユースケース
 

@@ -30,20 +30,26 @@ Then set Cookies in it, and then return it:
 {!../../../docs_src/response_cookies/tutorial001.py!}
 ```
 
-!!! tip
-    Keep in mind that if you return a response directly instead of using the `Response` parameter, FastAPI will return it directly.
+/// tip
 
-    So, you will have to make sure your data is of the correct type. E.g. it is compatible with JSON, if you are returning a `JSONResponse`.
+Keep in mind that if you return a response directly instead of using the `Response` parameter, FastAPI will return it directly.
 
-    And also that you are not sending any data that should have been filtered by a `response_model`.
+So, you will have to make sure your data is of the correct type. E.g. it is compatible with JSON, if you are returning a `JSONResponse`.
+
+And also that you are not sending any data that should have been filtered by a `response_model`.
+
+///
 
 ### More info
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
 
-    And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
+
+///
 
 To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.

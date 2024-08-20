@@ -1,7 +1,4 @@
----
-hide:
-  - navigation
----
+# FastAPI
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -14,11 +11,11 @@ hide:
     <em>FastAPI 프레임워크, 고성능, 간편한 학습, 빠른 코드 작성, 준비된 프로덕션</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -29,7 +26,7 @@ hide:
 
 **문서**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**소스 코드**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**소스 코드**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -70,7 +67,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부를 바꿀 계획입니다. 그중 일부는 핵심 **Windows**와 몇몇의 **Office** 제품들이 통합되고 있습니다._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>마이크로소프트</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>마이크로소프트</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -133,7 +130,7 @@ $ pip install fastapi
 
 </div>
 
-프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
+프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
 
 <div class="termy">
 
@@ -444,7 +441,7 @@ item: Item
 
 Pydantic이 사용하는:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 이메일 유효성 검사.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 이메일 유효성 검사.
 
 Starlette이 사용하는:
 

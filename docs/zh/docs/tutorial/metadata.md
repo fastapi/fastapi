@@ -22,8 +22,11 @@
 {!../../../docs_src/metadata/tutorial001.py!}
 ```
 
-!!! tip
-    您可以在 `description` 字段中编写 Markdown，它将在输出中呈现。
+/// tip
+
+您可以在 `description` 字段中编写 Markdown，它将在输出中呈现。
+
+///
 
 通过这样设置，自动 API 文档看起来会像：
 
@@ -43,8 +46,11 @@
 
 注意你可以在描述内使用 Markdown，例如「login」会显示为粗体（**login**）以及「fancy」会显示为斜体（_fancy_）。
 
-!!! tip "提示"
-    不必为你使用的所有标签都添加元数据。
+/// tip | "提示"
+
+不必为你使用的所有标签都添加元数据。
+
+///
 
 ### 使用你的标签
 
@@ -54,8 +60,11 @@
 {!../../../docs_src/metadata/tutorial004.py!}
 ```
 
-!!! info "信息"
-    阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags){.internal-link target=_blank}。
+/// info | "信息"
+
+阅读更多关于标签的信息[路径操作配置](path-operation-configuration.md#tags){.internal-link target=_blank}。
+
+///
 
 ### 查看文档
 
