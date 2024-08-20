@@ -54,7 +54,7 @@ _path operation 関数_ で`Response`型のパラメータを宣言すること�
 
 <!-- **FastAPI** will use that *temporal* response to extract the status code (also cookies and headers), and will put them in the final response that contains the value you returned, filtered by any `response_model`. -->
 
-**FastAPI**はその*temporal*レスポンスを使用してステータスコード(クッキーとヘッダも)を取り出し、任意の`response_model`によってフィルタリングされて、返したい値を含む最後のレスポンスに展開します。
+_FastAPI_ はその _temporal_ レスポンスを使用してステータスコード(クッキーとヘッダも)を取り出し、任意の`response_model`によってフィルタリングされて、返したい値を含む最後のレスポンスに展開します。
 
 <!-- You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win. -->
 
