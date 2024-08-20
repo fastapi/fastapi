@@ -4,7 +4,7 @@
 
 Hay algunas características adicionales para manejar la seguridad además de las que se tratan en el [Tutorial - Guía de Usuario: Seguridad](../../tutorial/security/index.md){.internal-link target=_blank}.
 
-/// tip
+/// tip | Consejo
 
 Las siguientes secciones **no necesariamente son "avanzadas"**.
 
