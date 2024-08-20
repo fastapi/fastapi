@@ -74,8 +74,11 @@ from myapp import app
 
 🔜 🚫 🛠️.
 
-!!! info
-    🌅 ℹ, ✅ <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">🛂 🐍 🩺</a>.
+/// info
+
+🌅 ℹ, ✅ <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">🛂 🐍 🩺</a>.
+
+///
 
 ## 🏃 👆 📟 ⏮️ 👆 🕹
 

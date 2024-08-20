@@ -26,7 +26,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 Now you can create the *path operations* for the custom docs.
 
-You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+You can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -40,12 +40,15 @@ And similarly for ReDoc...
 {!../../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test it
 
@@ -96,8 +99,8 @@ You can probably right-click each link and select an option similar to `Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 And **ReDoc** uses the file:
 
@@ -163,7 +166,7 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 And the same way as with a custom CDN, now you can create the *path operations* for the custom docs.
 
-Again, you can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Again, you can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -177,12 +180,15 @@ And similarly for ReDoc...
 {!../../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test static files
 

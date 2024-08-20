@@ -78,7 +78,10 @@
 
 <abbr title="교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보를 알고싶다면, <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하기 바랍니다.
 
-!!! note "기술적 세부 사항"
-    `from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
+/// note | "기술적 세부 사항"
 
-    **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 대부분의 미들웨어가 Stralette으로부터 직접 제공됩니다.
+`from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
+
+**FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 대부분의 미들웨어가 Stralette으로부터 직접 제공됩니다.
+
+///

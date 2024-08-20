@@ -40,7 +40,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -297,7 +297,7 @@ class FastAPI(Starlette):
                 browser tabs open). Or if you want to leave fixed the possible URLs.
 
                 If the servers `list` is not provided, or is an empty `list`, the
-                default value would be a a `dict` with a `url` value of `/`.
+                default value would be a `dict` with a `url` value of `/`.
 
                 Each item in the `list` is a `dict` containing:
 
@@ -902,7 +902,7 @@ class FastAPI(Starlette):
                 A state object for the application. This is the same object for the
                 entire application, it doesn't change from request to request.
 
-                You normally woudln't use this in FastAPI, for most of the cases you
+                You normally wouldn't use this in FastAPI, for most of the cases you
                 would instead use FastAPI dependencies.
 
                 This is simply inherited from Starlette.
@@ -1019,7 +1019,7 @@ class FastAPI(Starlette):
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
+                    title=f"{self.title} - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
@@ -1043,7 +1043,7 @@ class FastAPI(Starlette):
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=openapi_url, title=f"{self.title} - ReDoc"
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
@@ -1056,7 +1056,7 @@ class FastAPI(Starlette):
     def add_api_route(
         self,
         path: str,
-        endpoint: Callable[..., Coroutine[Any, Any, Response]],
+        endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,

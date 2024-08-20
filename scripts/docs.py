@@ -11,9 +11,6 @@ from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-import mkdocs.commands.build
-import mkdocs.commands.serve
-import mkdocs.config
 import mkdocs.utils
 import typer
 import yaml
@@ -28,6 +25,16 @@ mkdocs_name = "mkdocs.yml"
 missing_translation_snippet = """
 {!../../../docs/missing-translation.md!}
 """
+
+non_translated_sections = [
+    "reference/",
+    "release-notes.md",
+    "fastapi-people.md",
+    "external-links.md",
+    "newsletter.md",
+    "management-tasks.md",
+    "management.md",
+]
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
@@ -165,6 +172,13 @@ def generate_readme_content() -> str:
     pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
     new_content = pre_content + message + post_content
+    # Remove content between <!-- only-mkdocs --> and <!-- /only-mkdocs -->
+    new_content = re.sub(
+        r"<!-- only-mkdocs -->.*?<!-- /only-mkdocs -->",
+        "",
+        new_content,
+        flags=re.DOTALL,
+    )
     return new_content
 
 
@@ -247,6 +261,7 @@ def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
     ),
+    dirty: bool = False,
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
@@ -258,12 +273,16 @@ def live(
     en.
     """
     # Enable line numbers during local development to make it easier to highlight
-    os.environ["LINENUMS"] = "true"
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang
-    os.chdir(lang_path)
-    mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
+    # Enable line numbers during local development to make it easier to highlight
+    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
+    if dirty:
+        args.append("--dirty")
+    subprocess.run(
+        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+    )
 
 
 def get_updated_config_content() -> Dict[str, Any]:
@@ -325,9 +344,33 @@ def verify_config() -> None:
 
 
 @app.command()
+def verify_non_translated() -> None:
+    """
+    Verify there are no files in the non translatable pages.
+    """
+    print("Verifying non translated pages")
+    lang_paths = get_lang_paths()
+    error_paths = []
+    for lang in lang_paths:
+        if lang.name == "en":
+            continue
+        for non_translatable in non_translated_sections:
+            non_translatable_path = lang / "docs" / non_translatable
+            if non_translatable_path.exists():
+                error_paths.append(non_translatable_path)
+    if error_paths:
+        print("Non-translated pages found, remove them:")
+        for error_path in error_paths:
+            print(error_path)
+        raise typer.Abort()
+    print("No non-translated pages found ✅")
+
+
+@app.command()
 def verify_docs():
     verify_readme()
     verify_config()
+    verify_non_translated()
 
 
 @app.command()

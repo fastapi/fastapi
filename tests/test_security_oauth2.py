@@ -2,7 +2,6 @@ from dirty_equals import IsDict
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -71,21 +70,18 @@ def test_strict_login_no_data():
                     "loc": ["body", "grant_type"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "username"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "password"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -124,7 +120,6 @@ def test_strict_login_no_grant_type():
                     "loc": ["body", "grant_type"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -157,7 +152,6 @@ def test_strict_login_incorrect_grant_type():
                     "msg": "String should match pattern 'password'",
                     "input": "incorrect",
                     "ctx": {"pattern": "password"},
-                    "url": match_pydantic_error_url("string_pattern_mismatch"),
                 }
             ]
         }
