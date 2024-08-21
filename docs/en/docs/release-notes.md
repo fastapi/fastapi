@@ -31,6 +31,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/request_file.md`. PR [#12018](https://github.com/fastapi/fastapi/pull/12018) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Japanese translation for `docs/ja/docs/learn/index.md`. PR [#11592](https://github.com/fastapi/fastapi/pull/11592) by [@ukwhatn](https://github.com/ukwhatn).
 * 📝 Update Spanish translation docs for consistency. PR [#12044](https://github.com/fastapi/fastapi/pull/12044) by [@alejsdev](https://github.com/alejsdev).
 * 🌐 Update docs about dependencies with yield. PR [#12028](https://github.com/fastapi/fastapi/pull/12028) by [@xuvjso](https://github.com/xuvjso).
