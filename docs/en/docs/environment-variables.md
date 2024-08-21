@@ -157,7 +157,7 @@ You can read more about it at <a href="https://12factor.net/config" class="exter
 
 ///
 
-## Types and validation
+## Types and Validation
 
 These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
