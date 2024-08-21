@@ -31,11 +31,14 @@ hide:
 
 ### Translations
 
+* 📝 Update Spanish translation docs for consistency. PR [#12044](https://github.com/fastapi/fastapi/pull/12044) by [@alejsdev](https://github.com/alejsdev).
+* 🌐 Update docs about dependencies with yield. PR [#12028](https://github.com/fastapi/fastapi/pull/12028) by [@xuvjso](https://github.com/xuvjso).
 * 📝 Update FastAPI People, do not translate to have the most recent info. PR [#12034](https://github.com/fastapi/fastapi/pull/12034) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Urdu translation for `docs/ur/docs/benchmarks.md`. PR [#10046](https://github.com/fastapi/fastapi/pull/10046) by [@AhsanSheraz](https://github.com/AhsanSheraz).
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12046](https://github.com/fastapi/fastapi/pull/12046) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🔧 Update coverage config files. PR [#12035](https://github.com/fastapi/fastapi/pull/12035) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Standardize shebang across shell scripts. PR [#11942](https://github.com/fastapi/fastapi/pull/11942) by [@gitworkflows](https://github.com/gitworkflows).
 * ⬆ Update sqlalchemy requirement from <1.4.43,>=1.3.18 to >=1.3.18,<2.0.33. PR [#11979](https://github.com/fastapi/fastapi/pull/11979) by [@dependabot[bot]](https://github.com/apps/dependabot).
