@@ -4,9 +4,7 @@ This tutorial shows you how to use **FastAPI** with most of its features, step b
 
 Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
 
-It is also built to work as a future reference.
-
-So you can come back and see exactly what you need.
+It is also built to work as a future reference so you can come back and see exactly what you need.
 
 ## Run the code
 
@@ -71,7 +69,9 @@ Using it in your editor is what really shows you the benefits of FastAPI, seeing
 
 ## Install FastAPI
 
-The first step is to install FastAPI:
+The first step is to install FastAPI.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then **install FastAPI**:
 
 <div class="termy">
 
