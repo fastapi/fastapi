@@ -6,7 +6,11 @@ You can define files to be uploaded by the client using `File`.
 
 To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-E.g. `pip install python-multipart`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install python-multipart
+```
 
 This is because uploaded files are sent as "form data".
 

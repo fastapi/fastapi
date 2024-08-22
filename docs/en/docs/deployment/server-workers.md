@@ -39,6 +39,8 @@ And then the Gunicorn-compatible **Uvicorn worker** class would be in charge of 
 
 ## Install Gunicorn and Uvicorn
 
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `gunicorn`:
+
 <div class="termy">
 
 ```console

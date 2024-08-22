@@ -12,7 +12,11 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
-E.g. `pip install httpx`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install httpx
+```
 
 ///
 
@@ -206,7 +210,9 @@ If you have a Pydantic model in your test and you want to send its data to the a
 
 ## Run it
 
-After that, you just need to install `pytest`:
+After that, you just need to install `pytest`.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
 
 <div class="termy">
 
