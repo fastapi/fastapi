@@ -65,7 +65,7 @@ The main thing you need to run a **FastAPI** application (or any other ASGI appl
 There are several alternatives, including:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: a high performance ASGI server.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: the ASGI server built for Django Channels.
 
 ## Server Machine and Server Program
@@ -82,91 +82,110 @@ When referring to the remote machine, it's common to call it **server**, but als
 
 When you install FastAPI, it comes with a production server, Uvicorn, and you can start it with the `fastapi run` command.
 
-But you can also install an ASGI server manually:
+But you can also install an ASGI server manually.
 
-=== "Uvicorn"
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then you can install the server:
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+//// tab | Uvicorn
 
-    <div class="termy">
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
-    ```console
-    $ pip install "uvicorn[standard]"
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install "uvicorn[standard]"
 
-    </div>
+---> 100%
+```
 
-    !!! tip
-        By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
+</div>
 
-        That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+/// tip
 
-        When you install FastAPI with something like `pip install fastapi` you already get `uvicorn[standard]` as well.
+By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
 
-=== "Hypercorn"
+That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+When you install FastAPI with something like `pip install "fastapi[standard]"` you already get `uvicorn[standard]` as well.
 
-    <div class="termy">
+///
 
-    ```console
-    $ pip install hypercorn
+////
 
-    ---> 100%
-    ```
+//// tab | Hypercorn
 
-    </div>
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
-    ...or any other ASGI server.
+<div class="termy">
+
+```console
+$ pip install hypercorn
+
+---> 100%
+```
+
+</div>
+
+...or any other ASGI server.
+
+////
 
 ## Run the Server Program
 
 If you installed an ASGI server manually, you would normally need to pass an import string in a special format for it to import your FastAPI application:
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
-=== "Hypercorn"
+////
 
-    <div class="termy">
+//// tab | Hypercorn
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    </div>
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
 
-!!! note
-    The command `uvicorn main:app` refers to:
+</div>
 
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+////
 
-    It is equivalent to:
+/// note
 
-    ```Python
-    from main import app
-    ```
+The command `uvicorn main:app` refers to:
 
-!!! warning
-    Uvicorn and others support a `--reload` option that is useful during development.
+* `main`: the file `main.py` (the Python "module").
+* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
 
-    The `--reload` option consumes much more resources, is more unstable, etc.
+It is equivalent to:
 
-    It helps a lot during **development**, but you **shouldn't** use it in **production**.
+```Python
+from main import app
+```
+
+///
+
+/// warning
+
+Uvicorn and others support a `--reload` option that is useful during development.
+
+The `--reload` option consumes much more resources, is more unstable, etc.
+
+It helps a lot during **development**, but you **shouldn't** use it in **production**.
+
+///
 
 ## Hypercorn with Trio
 

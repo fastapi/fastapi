@@ -63,12 +63,15 @@ But if the client requests `http://example.com/items/bar` (a non-existent `item_
 }
 ```
 
-!!! tip
-    When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.
+/// tip
 
-    You could pass a `dict`, a `list`, etc.
+When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.
 
-    They are handled automatically by **FastAPI** and converted to JSON.
+You could pass a `dict`, a `list`, etc.
+
+They are handled automatically by **FastAPI** and converted to JSON.
+
+///
 
 ## Add custom headers
 
@@ -106,10 +109,13 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "Technical Details"
-    You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request`.
+You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
+
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request`.
+
+///
 
 ## Override the default exception handlers
 
@@ -160,8 +166,11 @@ path -> item_id
 
 #### `RequestValidationError` vs `ValidationError`
 
-!!! warning
-    These are technical details that you might skip if it's not important for you now.
+/// warning
+
+These are technical details that you might skip if it's not important for you now.
+
+///
 
 `RequestValidationError` is a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
@@ -183,10 +192,13 @@ For example, you could want to return a plain text response instead of JSON for 
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import PlainTextResponse`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+You could also use `from starlette.responses import PlainTextResponse`.
+
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+///
 
 ### Use the `RequestValidationError` body
 
