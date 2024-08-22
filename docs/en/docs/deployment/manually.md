@@ -82,7 +82,9 @@ When referring to the remote machine, it's common to call it **server**, but als
 
 When you install FastAPI, it comes with a production server, Uvicorn, and you can start it with the `fastapi run` command.
 
-But you can also install an ASGI server manually:
+But you can also install an ASGI server manually.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then you can install the server:
 
 //// tab | Uvicorn
 

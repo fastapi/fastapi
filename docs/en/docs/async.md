@@ -369,6 +369,8 @@ In particular, you can directly use <a href="https://anyio.readthedocs.io/en/sta
 
 And even if you were not using FastAPI, you could also write your own async applications with <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> to be highly compatible and get its benefits (e.g. *structured concurrency*).
 
+I created another library on top of AnyIO, as a thin layer on top, to improve a bit the type annotations and get better **autocompletion**, **inline errors**, etc. It also has a friendly introduction and tutorial to help you **understand** and write **your own async code**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. It would be particularly useful if you need to **combine async code with regular** (blocking/synchronous) code.
+
 ### Other forms of asynchronous code
 
 This style of using `async` and `await` is relatively new in the language.
