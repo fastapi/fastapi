@@ -449,7 +449,7 @@ Láti ní òye síi nípa rẹ̀, wo abala àwọn <a href="https://fastapi.tian
 
 Èyí tí Pydantic ń lò:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - fún ifọwọsi ímeèlì.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - fún ifọwọsi ímeèlì.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - fún ètò ìsàkóso.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - fún àfikún oríṣi láti lọ pẹ̀lú Pydantic.
 

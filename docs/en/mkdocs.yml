@@ -102,13 +102,14 @@ plugins:
           show_symbol_type_toc: true
 
 nav:
-- FastAPI:
-  - index.md
-  - features.md
+- FastAPI: index.md
+- features.md
 - Learn:
   - learn/index.md
   - python-types.md
   - async.md
+  - environment-variables.md
+  - virtual-environments.md
   - Tutorial - User Guide:
     - tutorial/index.md
     - tutorial/first-steps.md

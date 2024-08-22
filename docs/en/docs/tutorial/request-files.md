@@ -6,7 +6,11 @@ You can define files to be uploaded by the client using `File`.
 
 To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-E.g. `pip install python-multipart`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install python-multipart
+```
 
 This is because uploaded files are sent as "form data".
 
@@ -152,7 +156,7 @@ Using `UploadFile` has several advantages over `bytes`:
 
 * `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).
 * `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).
-* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
+* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file object that you can pass directly to other functions or libraries that expect a "file-like" object.
 
 `UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 

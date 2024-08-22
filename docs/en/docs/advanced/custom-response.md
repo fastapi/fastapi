@@ -255,11 +255,11 @@ This includes many libraries to interact with cloud storage, video processing, a
 
 1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
 2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
-3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function (`iterfile`).
 
     So, it is a generator function that transfers the "generating" work to something else internally.
 
-    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
+    By doing it this way, we can put it in a `with` block, and that way, ensure that the file-like object is closed after finishing.
 
 /// tip
 
