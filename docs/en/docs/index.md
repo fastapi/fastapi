@@ -128,6 +128,8 @@ FastAPI stands on the shoulders of giants:
 
 ## Installation
 
+Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
+
 <div class="termy">
 
 ```console
@@ -458,7 +460,7 @@ When you install FastAPI with `pip install "fastapi[standard]"` it comes the `st
 
 Used by Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
 
 Used by Starlette:
 

@@ -118,7 +118,11 @@
 
   👥 [디스코드 채팅 서버](https://discord.gg/VQjSZaeJmf) 👥 에 가입하고 FastAPI 커뮤니티에서 다른 사람들과 어울리세요.
 
-  !!! tip 질문이 있는 경우, [GitHub 이슈 ](https://github.com/fastapi/fastapi/issues/new/choose) 에서 질문하십시오, [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 의 도움을 받을 가능성이 높습니다{.internal-link target=_blank} .
+  /// tip
+
+  질문이 있는 경우, [GitHub 이슈 ](https://github.com/fastapi/fastapi/issues/new/choose) 에서 질문하십시오, [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts) 의 도움을 받을 가능성이 높습니다{.internal-link target=_blank} .
+
+  ///
 
   ```
   다른 일반적인 대화에서만 채팅을 사용하십시오.

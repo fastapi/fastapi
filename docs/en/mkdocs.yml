@@ -35,7 +35,7 @@ theme:
   - navigation.indexes
   - navigation.instant
   - navigation.instant.prefetch
-  - navigation.instant.preview
+  # - navigation.instant.preview
   - navigation.instant.progress
   - navigation.path
   - navigation.tabs
@@ -57,7 +57,8 @@ repo_url: https://github.com/fastapi/fastapi
 plugins:
   # Material for MkDocs
   search:
-  social:
+  # Configured in mkdocs.insiders.yml
+  # social:
   # Other plugins
   macros:
     include_yaml:
@@ -101,13 +102,14 @@ plugins:
           show_symbol_type_toc: true
 
 nav:
-- FastAPI:
-  - index.md
-  - features.md
+- FastAPI: index.md
+- features.md
 - Learn:
   - learn/index.md
   - python-types.md
   - async.md
+  - environment-variables.md
+  - virtual-environments.md
   - Tutorial - User Guide:
     - tutorial/index.md
     - tutorial/first-steps.md

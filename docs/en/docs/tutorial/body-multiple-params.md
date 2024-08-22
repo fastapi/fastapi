@@ -228,7 +228,7 @@ For example:
 
 //// tab | Python 3.10+
 
-```Python hl_lines="27"
+```Python hl_lines="28"
 {!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
 ```
 
@@ -236,7 +236,7 @@ For example:
 
 //// tab | Python 3.9+
 
-```Python hl_lines="27"
+```Python hl_lines="28"
 {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
 ```
 
@@ -244,7 +244,7 @@ For example:
 
 //// tab | Python 3.8+
 
-```Python hl_lines="28"
+```Python hl_lines="29"
 {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
 ```
 
@@ -258,7 +258,7 @@ Prefer to use the `Annotated` version if possible.
 
 ///
 
-```Python hl_lines="25"
+```Python hl_lines="26"
 {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
@@ -272,7 +272,7 @@ Prefer to use the `Annotated` version if possible.
 
 ///
 
-```Python hl_lines="27"
+```Python hl_lines="28"
 {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
