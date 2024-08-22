@@ -14,6 +14,7 @@ hide:
 
 ### Docs
 
+* 📝 Add docs about Environment Variables and Virtual Environments. PR [#12054](https://github.com/fastapi/fastapi/pull/12054) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add Asyncer mention in async docs. PR [#12037](https://github.com/fastapi/fastapi/pull/12037) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Move the Features docs to the top level to improve the main page menu. PR [#12036](https://github.com/fastapi/fastapi/pull/12036) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix import typo in reference example for `Security`. PR [#11168](https://github.com/fastapi/fastapi/pull/11168) by [@0shah0](https://github.com/0shah0).
