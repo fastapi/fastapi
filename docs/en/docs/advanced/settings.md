@@ -8,7 +8,7 @@ For this reason it's common to provide them in environment variables that are re
 
 /// tip
 
-To understand environment variables you can read the page [Environment Variables](../environment-variables.md){.internal-link target=_blank}
+To understand environment variables you can read [Environment Variables](../environment-variables.md){.internal-link target=_blank}.
 
 ///
 
@@ -16,7 +16,7 @@ To understand environment variables you can read the page [Environment Variables
 
 These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
-That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or validation has to be done in code.
+That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or any validation has to be done in code.
 
 ## Pydantic `Settings`
 

@@ -106,7 +106,7 @@ But you could customize it passing an additional argument with the directory nam
 
 ////
 
-That creates a new virtual environment in a directory called `.venv`.
+That command creates a new virtual environment in a directory called `.venv`.
 
 /// details | `.venv` or other name
 
@@ -269,7 +269,7 @@ $ echo "*" > .venv/.gitignore
 /// details | What that command means
 
 * `echo "*"`: will "print" the text `*` in the terminal (the next part changes that a bit)
-* `>`: anything printed to the terminal by the previous command before `>` should not be printed but instead written to the file that goes next to `>`
+* `>`: anything printed to the terminal by the command to the left of `>` should not be printed but instead written to the file that goes to the right of `>`
 * `.gitignore`: the name of the file where the text should be written
 
 And `*` for Git means "everything". So, it will ignore everything in the `.venv` directory.
@@ -300,7 +300,7 @@ If you're in a hurry and don't want to use a file to declare your project's pack
 
 /// tip
 
-It's a (very) good idea to put the packages and versions your program needs in a file later (for example `requirements.txt` or `pyproject.toml`).
+It's a (very) good idea to put the packages and versions your program needs in a file (for example `requirements.txt` or `pyproject.toml`).
 
 ///
 
@@ -358,6 +358,7 @@ If you have <a href="https://github.com/astral-sh/uv" class="external-link" targ
 
 ```console
 $ uv pip install -r requirements.txt
+---> 100%
 ```
 
 </div>
@@ -486,7 +487,7 @@ flowchart LR
     end
 ```
 
-But then if you want to run `priosner-of-azkaban`, you will need to uninstall `harry` version `1` and install `harry` version `3` (or just installing version `3` would automatically uninstall version `1`).
+But then if you want to run `prisoner-of-azkaban`, you will need to uninstall `harry` version `1` and install `harry` version `3` (or just installing version `3` would automatically uninstall version `1`).
 
 <div class="termy">
 
@@ -497,6 +498,8 @@ $ pip install "harry==3"
 </div>
 
 And then you would end up with `harry` version `3` installed in your global Python environment.
+
+And if you try to run `philosophers-stone` again, there's a chance it would **not work** because it needs `harry` version `1`.
 
 ```mermaid
 flowchart LR
@@ -513,7 +516,13 @@ flowchart LR
     end
 ```
 
-Now, imagine that with **many** other **packages** that all your **projects depend on**. That's very difficult to manage. And you would probably end up trying to run some projects with some **incompatible versions** of the packages, and not knowing why some are working or not.
+/// tip
+
+It's very common in Python packages to try the best to **avoid breaking changes** in **new versions**, but it's better to be safe, and install newer versions intentionally and when you can run the tests to check everything is working correctly.
+
+///
+
+Now, imagine that with **many** other **packages** that all your **projects depend on**. That's very difficult to manage. And you would probably end up running some projects with some **incompatible versions** of the packages, and not knowing why something isn't working.
 
 Also, depending on your operating system (e.g. Linux, Windows, macOS), it could have come with Python already installed. And in that case it probably had some packages pre-installed with some specific versions **needed by your system**. If you install packages in the global Python environment, you could end up **breaking** some of the programs that came with your operating system.
 
@@ -610,7 +619,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-That command will create some [environment variables](environment-variables.md){.internal-link target=_blank} that will be available for the next commands.
+That command will create or modify some [environment variables](environment-variables.md){.internal-link target=_blank} that will be available for the next commands.
 
 One of those variables is the `PATH` variable.
 
@@ -620,7 +629,7 @@ You can learn more about the `PATH` environment variable in the [Environment Var
 
 ///
 
-Activating a virtual environment adds its path, `.venv/bin` (on Linux and macOS) or `.venv\Scripts` (on Windows) to the `PATH` environment variable.
+Activating a virtual environment adds its path `.venv/bin` (on Linux and macOS) or `.venv\Scripts` (on Windows) to the `PATH` environment variable.
 
 Let's say that before activating the environment, the `PATH` variable looked like this:
 
@@ -701,7 +710,9 @@ and use that one.
 
 ////
 
-Activating a virtual environment also changes a couple of other things, but this is one of the most important details.
+An important detail is that it will put the virtual environment path at the **beginning** of the `PATH` variable. The system will find it **before** finding any other Python available. This way, when you run `python`, it will use the Python **from the virtual environment** instead of any other `python` (for example, a `python` from a global environment).
+
+Activating a virtual environment also changes a couple of other things, but this is one of the most important things it does.
 
 ## Checking a Virtual Environment
 
@@ -823,7 +834,7 @@ Once you are ready and want to use a tool to **manage the entire project**, pack
 * Manage the **virtual environment** for your projects
 * Install **packages**
 * Manage package **dependencies and versions** for your project
-* Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project exactly the same as in your computer while developing, this is called **locking**
+* Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project in production exactly the same as in your computer while developing, this is called **locking**
 * And many other things
 
 ## Conclusion

@@ -58,9 +58,11 @@ The <a href="https://github.com/Kludex/python-multipart" class="external-link" t
 
 However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
 
-To install it manually, make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it with:
+To install it manually, make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it with:
 
-`pip install python-multipart`
+```console
+$ pip install python-multipart
+```
 
 This is because **OAuth2** uses "form data" for sending the `username` and `password`.
 

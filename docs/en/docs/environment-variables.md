@@ -161,11 +161,11 @@ You can read more about it at <a href="https://12factor.net/config" class="exter
 
 These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
-That means that **any value** read in Python from an environment variable **will be a `str`**, and any conversion to a different type or validation has to be done in code.
+That means that **any value** read in Python from an environment variable **will be a `str`**, and any conversion to a different type or any validation has to be done in code.
 
 You will learn more about using environment variables for handling **application settings** in the [Advanced User Guide - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank}.
 
-## `PATH` environment variable
+## `PATH` Environment Variable
 
 There is a **special** environment variable called **`PATH`** that is used by the operating systems (Linux, macOS, Windows) to find programs to run.
 
@@ -192,13 +192,13 @@ This means that the system should look for programs in the directories:
 //// tab | Windows
 
 ```plaintext
-C:\Program Files\Python39\Scripts;C:\Program Files\Python39;C:\Windows\System32
+C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32
 ```
 
 This means that the system should look for programs in the directories:
 
-* `C:\Program Files\Python39\Scripts`
-* `C:\Program Files\Python39`
+* `C:\Program Files\Python312\Scripts`
+* `C:\Program Files\Python312`
 * `C:\Windows\System32`
 
 ////
@@ -236,7 +236,7 @@ Let's say you install Python and it ends up in a directory `C:\opt\custompython\
 If you say yes to update the `PATH` environment variable, then the installer will add `C:\opt\custompython\bin` to the `PATH` environment variable.
 
 ```plaintext
-C:\Program Files\Python39\Scripts;C:\Program Files\Python39;C:\Windows\System32;C:\opt\custompython\bin
+C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
 This way, when you type `python` in the terminal, the system will find the Python program in `C:\opt\custompython\bin` (the last directory) and use that one.

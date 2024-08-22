@@ -30,7 +30,7 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 
 We need to install `PyJWT` to generate and verify the JWT tokens in Python.
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `pyjwt`:
+Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `pyjwt`:
 
 <div class="termy">
 
