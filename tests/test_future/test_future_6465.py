@@ -20,13 +20,12 @@ class Item(BaseModel):
     tax: Optional[float] = None
 
 
-@app.get("/items/")
-@login_required
-def get_item(item_id: int) -> Item:
-    return Item(name="name", price=42.42)
-
-
 @needs_py310
 def test_future_6465():
+    @app.get("/items/")
+    @login_required
+    def get_item(item_id: int) -> Item:
+        return Item(name="name", price=42.42)
+
     res = client.get("/items?item_id=3")
     assert res.status_code == 200

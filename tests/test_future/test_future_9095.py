@@ -16,12 +16,11 @@ class Test:
         return "test"
 
 
-@app.get("/test/")
-def call(test: str = Depends(Test())):
-    return {"test": test}
-
-
 @needs_py310
 def test_call():
+    @app.get("/test/")
+    def call(test: str = Depends(Test())):
+        return {"test": test}
+
     response = client.get("/test")
     assert response.status_code == 200
