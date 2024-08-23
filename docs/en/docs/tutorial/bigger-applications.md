@@ -1,6 +1,6 @@
 # Bigger Applications - Multiple Files
 
-If you are building an application or a web API, it's rarely the case that you can put everything on a single file.
+If you are building an application or a web API, it's rarely the case that you can put everything in a single file.
 
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
