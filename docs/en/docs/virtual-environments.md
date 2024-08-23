@@ -558,7 +558,7 @@ The solution to the problems of having all the packages in the global environmen
 
 A virtual environment is a **directory**, very similar to the global one, where you can install the packages for a project.
 
-This way, each project will have it's own virtual environment (`.venv` directory) with its own packages.
+This way, each project will have its own virtual environment (`.venv` directory) with its own packages.
 
 ```mermaid
 flowchart TB
