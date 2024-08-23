@@ -478,7 +478,7 @@ We can declare all that without having to modify the original `APIRouter` by pas
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-That way, the original `APIRouter` will keep unmodified, so we can still share that same `app/internal/admin.py` file with other projects in the organization.
+That way, the original `APIRouter` will stay unmodified, so we can still share that same `app/internal/admin.py` file with other projects in the organization.
 
 The result is that in our app, each of the *path operations* from the `admin` module will have:
 
