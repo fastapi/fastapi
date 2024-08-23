@@ -1,7 +1,7 @@
 import inspect
 import sys
 from contextlib import AsyncExitStack, contextmanager
-from copy import deepcopy
+from copy import copy, deepcopy
 from typing import (
     Any,
     Callable,
@@ -349,9 +349,9 @@ def analyze_param(
             if isinstance(arg, (params.Param, params.Body, params.Depends))
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[
-                FieldInfo, params.Depends, None
-            ] = fastapi_specific_annotations[-1]
+            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
+                fastapi_specific_annotations[-1]
+            )
         else:
             fastapi_annotation = None
         if isinstance(fastapi_annotation, FieldInfo):
@@ -391,6 +391,8 @@ def analyze_param(
             field_info.annotation = type_annotation
 
     if depends is not None and depends.dependency is None:
+        # Copy `depends` before mutating it
+        depends = copy(depends)
         depends.dependency = type_annotation
 
     if lenient_issubclass(
