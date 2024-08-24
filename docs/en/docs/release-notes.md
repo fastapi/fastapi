@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.112.2
+
 ### Fixes
 
 * 🐛 Fix `allow_inf_nan` option for Param and Body classes. PR [#11867](https://github.com/fastapi/fastapi/pull/11867) by [@giunio-prc](https://github.com/giunio-prc).
