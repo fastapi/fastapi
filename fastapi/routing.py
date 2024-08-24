@@ -1,6 +1,7 @@
 import asyncio
 import dataclasses
 import email.message
+import functools
 import inspect
 import json
 from contextlib import AsyncExitStack, asynccontextmanager
@@ -20,10 +21,9 @@ from typing import (
     Type,
     Union,
 )
+
 import anyio
 from anyio import CapacityLimiter
-import functools
-
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -169,7 +169,9 @@ async def serialize_response(
             # Run without a capacity limit for similar reasons as marked in fastapi/concurrency.py
             exit_limiter = CapacityLimiter(1)
             validate_func = functools.partial(field.validate, loc=("response",))
-            value, errors_ = await anyio.to_thread.run_sync(validate_func, response_content, {}, limiter=exit_limiter)
+            value, errors_ = await anyio.to_thread.run_sync(
+                validate_func, response_content, {}, limiter=exit_limiter
+            )
         if isinstance(errors_, list):
             errors.extend(errors_)
         elif errors_:
