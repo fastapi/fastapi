@@ -9,6 +9,7 @@ hide:
 
 ### Fixes
 
+* 🐛 Fix `allow_inf_nan` option for Param and Body classes. PR [#11867](https://github.com/fastapi/fastapi/pull/11867) by [@giunio-prc](https://github.com/giunio-prc).
 * 🐛 Ensure that `app.include_router` merges nested lifespans. PR [#9630](https://github.com/fastapi/fastapi/pull/9630) by [@Lancetnik](https://github.com/Lancetnik).
 
 ### Refactors
