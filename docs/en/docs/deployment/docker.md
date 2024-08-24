@@ -232,6 +232,38 @@ Review what each line does by clicking each number bubble in the code. 👆
 
 ///
 
+/// warning
+
+Make sure to **always** use the **exec form** of the `CMD` instruction, as explained below.
+
+///
+
+#### Use `CMD` - Exec Form
+
+The <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker instruction can be written using two forms:
+
+✅ **Exec** form:
+
+```Dockerfile
+# ✅ Do this
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+```
+
+⛔️ **Shell** form:
+
+```Dockerfile
+# ⛔️ Don't do this
+CMD fastapi run app/main.py --port 80
+```
+
+Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md){.internal-link target=_blank} are triggered.
+
+You can read more about it in the <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker docs for shell and exec form</a>.
+
+This can be quite noticeable when using `docker compose`. See this Docker Compose FAQ section for more technical details: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>.
+
+#### Directory Structure
+
 You should now have a directory structure like:
 
 ```
