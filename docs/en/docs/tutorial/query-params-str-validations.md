@@ -273,7 +273,7 @@ The **default** value of the **function parameter** is the **actual default** va
 
 You could **call** that same function in **other places** without FastAPI, and it would **work as expected**. If there's a **required** parameter (without a default value), your **editor** will let you know with an error, **Python** will also complain if you run it without passing the required parameter.
 
-When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other place**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
+When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other places**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
 
 Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
@@ -645,7 +645,7 @@ Remember that in most of the cases, when something is required, you can simply o
 
 ## Query parameter list / multiple values
 
-When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.
+When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
 
 For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
 
@@ -1182,4 +1182,4 @@ Validations specific for strings:
 
 In these examples you saw how to declare validations for `str` values.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+See the next chapters to learn how to declare validations for other types, like numbers.

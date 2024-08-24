@@ -152,7 +152,7 @@ A "bearer" token is not the only option.
 
 But it's the best one for our use case.
 
-And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that suits better your needs.
+And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that better suits your needs.
 
 In that case, **FastAPI** also provides you with the tools to build it.
 

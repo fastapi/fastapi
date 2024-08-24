@@ -28,7 +28,7 @@ This gives you a lot of flexibility. You can return any data type, override any 
 
 ## Using the `jsonable_encoder` in a `Response`
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
+Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure its contents are ready for it.
 
 For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
 
