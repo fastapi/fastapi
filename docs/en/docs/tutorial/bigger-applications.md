@@ -519,12 +519,12 @@ As we cannot just isolate them and "mount" them independently of the rest, the *
 
 ## Check the automatic API docs
 
-Now, run `uvicorn`, using the module `app.main` and the variable `app`:
+Now, run your app:
 
 <div class="termy">
 
 ```console
-$ uvicorn app.main:app --reload
+$ fastapi dev app/main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
