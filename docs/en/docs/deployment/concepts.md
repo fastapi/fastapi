@@ -94,7 +94,7 @@ In most cases, when you create a web API, you want it to be **always running**, 
 
 ### In a Remote Server
 
-When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is to use `fastapi run`, Uvicorn (or similar) manually, the same way you do when developing locally.
+When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is use `fastapi run` (which uses Uvicorn) or something  similar, manually, the same way you do when developing locally.
 
 And it will work and will be useful **during development**.
 
@@ -178,7 +178,7 @@ For example, this could be handled by:
 
 ## Replication - Processes and Memory
 
-With a FastAPI application, using a server program like Uvicorn, running it once in **one process** can serve multiple clients concurrently.
+With a FastAPI application, using a server program like the `fastapi` command that runs Uvicorn, running it once in **one process** can serve multiple clients concurrently.
 
 But in many cases, you will want to run several worker processes at the same time.
 
@@ -232,9 +232,7 @@ The main constraint to consider is that there has to be a **single** component h
 
 Here are some possible combinations and strategies:
 
-* **Gunicorn** managing **Uvicorn workers**
-    * Gunicorn would be the **process manager** listening on the **IP** and **port**, the replication would be by having **multiple Uvicorn worker processes**.
-* **Uvicorn** managing **Uvicorn workers**
+* **Uvicorn** with `--workers`
     * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**.
 * **Kubernetes** and other distributed **container systems**
     * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running.
