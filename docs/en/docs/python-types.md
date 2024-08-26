@@ -324,7 +324,7 @@ In Python 3.6 and above (including Python 3.10) you can declare it by importing 
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+Using `Optional[str]` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
 
 `Optional[Something]` is actually a shortcut for `Union[Something, None]`, they are equivalent.
 
