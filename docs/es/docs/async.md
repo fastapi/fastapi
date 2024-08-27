@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Solo puedes usar `await` dentro de funciones creadas con `async def`.
 
@@ -138,7 +138,7 @@ Tú y esa persona 😍 se comen las hamburguesas 🍔 y la pasan genial ✨.
 
 <img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-07.png" alt="illustration">
 
-/// info
+/// info | Información
 
 Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -204,7 +204,7 @@ Sólo las comes y listo 🍔 ⏹.
 
 No has hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo esperando 🕙 frente al mostrador 😞.
 
-/// info
+/// info | Información
 
 Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -396,7 +396,7 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que hace que te
 
 ## Detalles muy técnicos
 
-/// warning | "Advertencia"
+/// warning | Advertencia
 
 Probablemente puedas saltarte esto.
 

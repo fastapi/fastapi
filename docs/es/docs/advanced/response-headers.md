@@ -29,7 +29,7 @@ Crea un response tal como se describe en [Retornar una respuesta directamente](r
 {!../../../docs_src/response_headers/tutorial001.py!}
 ```
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 También podrías utilizar `from starlette.responses import Response` o `from starlette.responses import JSONResponse`.
 

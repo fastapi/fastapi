@@ -14,7 +14,7 @@ Esto puede ser útil, por ejemplo, para devolver cookies o headers personalizado
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de la misma.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 `JSONResponse` en sí misma es una subclase de `Response`.
 
@@ -38,7 +38,7 @@ Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos ante
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 También puedes usar `from starlette.responses import JSONResponse`.
 

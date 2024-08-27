@@ -1,6 +1,6 @@
 # Bigger Applications - Multiple Files
 
-If you are building an application or a web API, it's rarely the case that you can put everything on a single file.
+If you are building an application or a web API, it's rarely the case that you can put everything in a single file.
 
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
@@ -478,7 +478,7 @@ We can declare all that without having to modify the original `APIRouter` by pas
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-That way, the original `APIRouter` will keep unmodified, so we can still share that same `app/internal/admin.py` file with other projects in the organization.
+That way, the original `APIRouter` will stay unmodified, so we can still share that same `app/internal/admin.py` file with other projects in the organization.
 
 The result is that in our app, each of the *path operations* from the `admin` module will have:
 
@@ -519,12 +519,12 @@ As we cannot just isolate them and "mount" them independently of the rest, the *
 
 ## Check the automatic API docs
 
-Now, run `uvicorn`, using the module `app.main` and the variable `app`:
+Now, run your app:
 
 <div class="termy">
 
 ```console
-$ uvicorn app.main:app --reload
+$ fastapi dev app/main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
