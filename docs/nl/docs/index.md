@@ -33,16 +33,16 @@
 
 ---
 
-FastAPI is een modern, snel (zeer goede prestaties), web framework voor het bouwen van API's in Python gebruikmakend van standaard Python type hints.
+FastAPI is een modern, snel (zeer goede prestaties), web framework voor het bouwen van API's in Python, gebruikmakend van standaard Python type-hints.
 
 De belangrijkste kenmerken zijn:
 
-* **Snel**: Zeer hoge prestaties, vergelijkbaar met **NodeJS** en **Go** (met dank aan Starlette en Pydantic). [Een van de snelste beschikbare Python frameworks](#prestaties).
+* **Snel**: Zeer goede prestaties, vergelijkbaar met **NodeJS** en **Go** (dankzij Starlette en Pydantic). [Een van de snelste beschikbare Python frameworks](#prestaties).
 * **Snel te programmeren**: Verhoog de snelheid om functionaliteit te ontwikkelen met ongeveer 200% tot 300%. *
 * **Minder bugs**: Verminder ongeveer 40% van de door mensen (ontwikkelaars) veroorzaakte fouten. *
 * **Intuïtief**: Buitengewoon goede ondersteuning voor editors. <abbr title="ook bekend als automatisch aanvullen, automatisch aanvullen, IntelliSense">Overal automische code aanvulling</abbr>. Minder tijd kwijt aan debuggen.
 * **Eenvoudig**: Ontworpen om gemakkelijk te gebruiken en te leren. Minder tijd nodig om documentatie te lezen.
-* **Kort**: Minimaliseer codeduplicatie. Meerdere functionaliteit voor elke parameterdeclaratie. Minder bugs.
+* **Kort**: Minimaliseer codeduplicatie. Elke parameterdeclaratie ondersteunt meerdere functionaliteiten. Minder bugs.
 * **Robust**: Code gereed voor productie. Met automatische interactieve documentatie.
 * **Standards-based**: Gebaseerd op (en volledig verenigbaar met) open standaarden voor API's: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (voorheen bekend als Swagger) en <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
@@ -138,7 +138,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Opmerking**: Zet `"fastapi[standard]"` in aanhalingstekens om ervoor te zorgen dat het werkt in alle terminals.
+**Opmerking**: Zet `"fastapi[standard]"` tussen aanhalingstekens om ervoor te zorgen dat het werkt in alle terminals.
 
 ## Voorbeeld
 
@@ -245,7 +245,7 @@ Je zult een JSON response zien:
 {"item_id": 5, "q": "somequery"}
 ```
 
-Je hebt nu reeds een API gemaakt die:
+Je hebt een API gemaakt die:
 
 * HTTP verzoeken kan ontvangen op de _paden_ `/` en `/items/{item_id}`.
 * Beide _paden_ hebben `GET` <em>operaties</em> (ook bekend als HTTP _methoden_).
@@ -256,7 +256,7 @@ Je hebt nu reeds een API gemaakt die:
 
 Ga naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Je ziet de automatische interactieve API docs (verstrekt door <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Je ziet de automatische interactieve API documentatie (verstrekt door <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
@@ -264,7 +264,7 @@ Je ziet de automatische interactieve API docs (verstrekt door <a href="https://g
 
 Ga vervolgens naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-Je ziet de automatische interactieve API docs (verstrekt door <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Je ziet de automatische interactieve API documentatie (verstrekt door <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -272,7 +272,7 @@ Je ziet de automatische interactieve API docs (verstrekt door <a href="https://g
 
 Pas nu het bestand `main.py` aan om de body van een `PUT` request te ontvangen.
 
-Met dank aan Pydantic kunnen we de body declareren met standaard Python types.
+Dankzij Pydantic kunnen we de body declareren met standaard Python types.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -336,7 +336,7 @@ Samengevat declareer je **eenmalig** de types van parameters, body, etc. als fun
 
 Dat doe je met standaard moderne Python types.
 
-Je hoeft geen nieuwe syntaxis te leren, de methods of klassen van een specifieke bibliotheek, etc.
+Je hoeft geen nieuwe syntax te leren, de methods of klassen van een specifieke bibliotheek, etc.
 
 Gewoon standaard **Python**.
 
@@ -403,7 +403,7 @@ Terugkomend op het vorige code voorbeeld, **FastAPI** zal:
 
 Dit was nog maar een snel overzicht, maar je zou nu toch al een idee moeten hebben over hoe het allemaal werkt.
 
-Probeer de lijn te veranderen met:
+Probeer de regel te veranderen met:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -433,9 +433,9 @@ Voor een vollediger voorbeeld met meer mogelijkheden, zie de <a href="https://fa
 * Hoe stel je **validatie restricties** in zoals `maximum_length` of een `regex`.
 * Een zeer krachtig en eenvoudig te gebruiken **<abbr title="ook bekend als componenten, middelen, verstrekkers, diensten, injectables">Dependency Injection</abbr>** systeem.
 * Beveiliging en authenticatie, inclusief ondersteuning voor **OAuth2** met **JWT-tokens** en **HTTP Basic** auth.
-* Meer geavanceerde (maar even eenvoudige) technieken voor het declareren van **diep geneste JSON modellen** (met dank aan Pydantic).
+* Meer geavanceerde (maar even eenvoudige) technieken voor het declareren van **diep geneste JSON modellen** (dankzij Pydantic).
 * **GraphQL** integratie met <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> en andere packages.
-* Veel extra functies (met dank aan Starlette) zoals:
+* Veel extra functies (dankzij Starlette) zoals:
     * **WebSockets**
     * uiterst gemakkelijke tests gebaseerd op HTTPX en `pytest`
     * **CORS**
@@ -450,7 +450,7 @@ Zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal
 
 ## Afhankelijkheden
 
-FastAPI steunt op Pydantic en Starlette.
+FastAPI maakt gebruik van Pydantic en Starlette.
 
 ### `standard` Afhankelijkheden
 
