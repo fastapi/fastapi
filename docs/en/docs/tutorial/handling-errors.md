@@ -176,7 +176,7 @@ These are technical details that you might skip if it's not important for you no
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
-But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
+But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with an HTTP status code `500`.
 
 It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
 
@@ -262,7 +262,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 ### Reuse **FastAPI**'s exception handlers
 
-If you want to use the exception along with the same default exception handlers from  **FastAPI**, You can import and reuse the default exception handlers from `fastapi.exception_handlers`:
+If you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:
 
 ```Python hl_lines="2-5  15  21"
 {!../../../docs_src/handling_errors/tutorial006.py!}

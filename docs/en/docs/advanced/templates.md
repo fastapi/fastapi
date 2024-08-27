@@ -8,7 +8,7 @@ There are utilities to configure it easily that you can use directly in your **F
 
 ## Install dependencies
 
-Install `jinja2`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `jinja2`:
 
 <div class="termy">
 
