@@ -409,13 +409,13 @@ Probeer de regel te veranderen met:
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...from:
+...van:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...to:
+...naar:
 
 ```Python
         ... "item_price": item.price ...
