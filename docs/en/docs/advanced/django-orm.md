@@ -24,11 +24,11 @@ pip install fastapi
 
 Let's create a basic FastAPI application in a new file called `main.py`:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    {!> ../../../docs_src/django_orm/tutorial001.py[ln:5,13]!}
-    ```
+```Python
+{!> ../../../docs_src/django_orm/tutorial001.py[ln:5,13]!}
+```
 
 In the next steps we'll import the `Question` model from Django, and create a FastAPI endpoint to list all questions.
 
@@ -36,11 +36,11 @@ In the next steps we'll import the `Question` model from Django, and create a Fa
 
 In your `main.py` file, let's import the `Question` model and create a FastAPI endpoint to list all questions:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    {!> ../../../docs_src/django_orm/tutorial001.py[ln:10,16-20]!}
-    ```
+ ```Python
+{!> ../../../docs_src/django_orm/tutorial001.py[ln:10,16-20]!}
+```
 
 ## Step 4: Run the FastAPI application
 
@@ -67,11 +67,11 @@ To fix this error, we need to configure Django settings before importing the Dja
 
 In the `main.py` add the following code **before** importing the Django models:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    {!> ../../../docs_src/django_orm/tutorial001.py[ln:1,7-10]!}
-    ```
+```Python
+{!> ../../../docs_src/django_orm/tutorial001.py[ln:1,7-10]!}
+```
 
 Now, if you run the FastAPI application again, you should see the list of questions at `http://localhost:8000/questions`! 🎉
 
@@ -84,8 +84,8 @@ In this guide, we learned how to use Django's ORM with FastAPI. This can be extr
 Django's support for async is currently limited, if you need to do run any query in an async route (or function),
 you need to either use the async equivalent of the query or use `sync_to_async` from `asgiref.sync` to run the query:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    {!> ../../../docs_src/django_orm/tutorial001.py[ln:23-37]!}
-    ```
+```Python
+{!> ../../../docs_src/django_orm/tutorial001.py[ln:23-37]!}
+```
