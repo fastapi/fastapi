@@ -38,7 +38,7 @@ In your `main.py` file, let's import the `Question` model and create a FastAPI e
 
 //// tab | Python 3.8+
 
- ```Python
+```Python
 {!> ../../../docs_src/django_orm/tutorial001.py[ln:10,16-20]!}
 ```
 
