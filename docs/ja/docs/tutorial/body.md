@@ -6,14 +6,17 @@
 
 APIはほとんどの場合 **レスポンス** ボディを送らなければなりません。しかし、クライアントは必ずしも **リクエスト** ボディを送らなければいけないわけではありません。
 
-**リクエスト** ボディを宣言するために <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
+**リクエスト** ボディを宣言するために <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
 
-!!! info "情報"
-    データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。
+/// info | "情報"
 
-    GET リクエストでボディを送信することは、仕様では未定義の動作ですが、FastAPI でサポートされており、非常に複雑な（極端な）ユースケースにのみ対応しています。
+データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。
 
-    非推奨なので、Swagger UIを使った対話型のドキュメントにはGETのボディ情報は表示されません。さらに、中継するプロキシが対応していない可能性があります。
+GET リクエストでボディを送信することは、仕様では未定義の動作ですが、FastAPI でサポートされており、非常に複雑な（極端な）ユースケースにのみ対応しています。
+
+非推奨なので、Swagger UIを使った対話型のドキュメントにはGETのボディ情報は表示されません。さらに、中継するプロキシが対応していない可能性があります。
+
+///
 
 ## Pydanticの `BaseModel` をインポート
 
@@ -110,16 +113,19 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "豆知識"
-    <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
+/// tip | "豆知識"
 
-    以下のエディターサポートが強化されます:
+<a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
 
-    * 自動補完
-    * 型チェック
-    * リファクタリング
-    * 検索
-    * インスペクション
+以下のエディターサポートが強化されます:
+
+* 自動補完
+* 型チェック
+* リファクタリング
+* 検索
+* インスペクション
+
+///
 
 ## モデルの使用
 
@@ -155,11 +161,14 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 * パラメータが**単数型** (`int`、`float`、`str`、`bool` など)の場合は**クエリ**パラメータとして解釈されます。
 * パラメータが **Pydantic モデル**型で宣言された場合、リクエスト**ボディ**として解釈されます。
 
-!!! note "備考"
-    FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
+/// note | "備考"
 
-    `Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
+FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
+
+`Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
+
+///
 
 ## Pydanticを使わない方法
 
-もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。
+もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#_2){.internal-link target=_blank}を確認してください。

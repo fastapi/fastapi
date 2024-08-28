@@ -41,11 +41,13 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
-!!! info "信息"
+/// info | "信息"
 
-    注意，这里在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor` 。
+注意，这里在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor` 。
 
-    但 **FastAPI** 必须先处理 `query_extractor`，以便在调用 `query_or_cookie_extractor` 时使用 `query_extractor` 返回的结果。
+但 **FastAPI** 必须先处理 `query_extractor`，以便在调用 `query_or_cookie_extractor` 时使用 `query_extractor` 返回的结果。
+
+///
 
 ```mermaid
 graph TB
@@ -79,10 +81,12 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 但它依然非常强大，能够声明任意嵌套深度的「图」或树状的依赖结构。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    这些简单的例子现在看上去虽然没有什么实用价值，
+这些简单的例子现在看上去虽然没有什么实用价值，
 
-    但在**安全**一章中，您会了解到这些例子的用途，
+但在**安全**一章中，您会了解到这些例子的用途，
 
-    以及这些例子所能节省的代码量。
+以及这些例子所能节省的代码量。
+
+///
