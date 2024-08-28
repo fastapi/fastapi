@@ -11,10 +11,13 @@
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "Технические детали"
-    Вы также можете использовать `from starlette.staticfiles import StaticFiles`.
+/// note | "Технические детали"
 
-    **FastAPI** предоставляет `starlette.staticfiles` под псевдонимом `fastapi.staticfiles`, просто для вашего удобства, как разработчика. Но на самом деле это берётся напрямую из библиотеки Starlette.
+Вы также можете использовать `from starlette.staticfiles import StaticFiles`.
+
+**FastAPI** предоставляет `starlette.staticfiles` под псевдонимом `fastapi.staticfiles`, просто для вашего удобства, как разработчика. Но на самом деле это берётся напрямую из библиотеки Starlette.
+
+///
 
 ### Что такое "Монтирование"
 

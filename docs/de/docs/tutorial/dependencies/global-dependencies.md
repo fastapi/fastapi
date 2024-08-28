@@ -6,26 +6,35 @@ Bei einigen Anwendungstypen möchten Sie möglicherweise Abhängigkeiten zur ges
 
 In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial012_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8 nicht annotiert"
+```Python hl_lines="16"
+{!> ../../../docs_src/dependencies/tutorial012_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/dependencies/tutorial012.py!}
-    ```
+//// tab | Python 3.8 nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="15"
+{!> ../../../docs_src/dependencies/tutorial012.py!}
+```
+
+////
 
 Und alle Ideen aus dem Abschnitt über das [Hinzufügen von `dependencies` zu den *Pfadoperation-Dekoratoren*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} gelten weiterhin, aber in diesem Fall für alle *Pfadoperationen* in der Anwendung.
 

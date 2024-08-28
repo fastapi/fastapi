@@ -35,20 +35,24 @@
 
 把*路径操作函数*的参数类型声明为 `Request`，**FastAPI** 就能把 `Request` 传递到参数里。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    注意，本例除了声明请求参数之外，还声明了路径参数。
+注意，本例除了声明请求参数之外，还声明了路径参数。
 
-    因此，能够提取、验证路径参数、并转换为指定类型，还可以用 OpenAPI 注释。
+因此，能够提取、验证路径参数、并转换为指定类型，还可以用 OpenAPI 注释。
 
-    同样，您也可以正常声明其它参数，而且还可以提取 `Request`。
+同样，您也可以正常声明其它参数，而且还可以提取 `Request`。
+
+///
 
 ## `Request` 文档
 
 更多细节详见 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette 官档 - `Request` 对象</a>。
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    您也可以使用 `from starlette.requests import Request`。
+您也可以使用 `from starlette.requests import Request`。
 
-    **FastAPI** 的 `from fastapi import Request` 只是为开发者提供的快捷方式，但其实它直接继承自 Starlette。
+**FastAPI** 的 `from fastapi import Request` 只是为开发者提供的快捷方式，但其实它直接继承自 Starlette。
+
+///

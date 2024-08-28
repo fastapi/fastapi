@@ -10,111 +10,123 @@ Sehen wir uns an, wie das funktioniert und wie Sie es bei Bedarf ändern können
 
 Nehmen wir an, Sie haben ein Pydantic-Modell mit Defaultwerten wie dieses:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
+```Python hl_lines="7"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
 
-    # Code unterhalb weggelassen 👇
-    ```
+# Code unterhalb weggelassen 👇
+```
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-    </details>
+</details>
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
+//// tab | Python 3.9+
 
-    # Code unterhalb weggelassen 👇
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+# Code unterhalb weggelassen 👇
+```
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
 
-    </details>
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+</details>
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
+////
 
-    # Code unterhalb weggelassen 👇
-    ```
+//// tab | Python 3.8+
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+```Python hl_lines="9"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+# Code unterhalb weggelassen 👇
+```
 
-    </details>
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
+
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+</details>
+
+////
 
 ### Modell für Eingabe
 
 Wenn Sie dieses Modell wie hier als Eingabe verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
+```Python hl_lines="14"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
 
-    # Code unterhalb weggelassen 👇
-    ```
+# Code unterhalb weggelassen 👇
+```
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-    </details>
+</details>
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
+//// tab | Python 3.9+
 
-    # Code unterhalb weggelassen 👇
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+# Code unterhalb weggelassen 👇
+```
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
 
-    </details>
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+</details>
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
+////
 
-    # Code unterhalb weggelassen 👇
-    ```
+//// tab | Python 3.8+
 
-    <details>
-    <summary>👀 Vollständige Dateivorschau</summary>
+```Python hl_lines="16"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+# Code unterhalb weggelassen 👇
+```
 
-    </details>
+<details>
+<summary>👀 Vollständige Dateivorschau</summary>
+
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+</details>
+
+////
 
 ... dann ist das Feld `description` **nicht erforderlich**. Weil es den Defaultwert `None` hat.
 
@@ -130,23 +142,29 @@ Sie können überprüfen, dass das Feld `description` in der Dokumentation kein 
 
 Wenn Sie jedoch dasselbe Modell als Ausgabe verwenden, wie hier:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="21"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+////
 
 ... dann, weil  `description` einen Defaultwert hat, wird es, wenn Sie für dieses Feld **nichts zurückgeben**, immer noch diesen **Defaultwert** haben.
 
@@ -199,26 +217,35 @@ Der Hauptanwendungsfall hierfür besteht wahrscheinlich darin, dass Sie das mal 
 
 In diesem Fall können Sie diese Funktion in **FastAPI** mit dem Parameter `separate_input_output_schemas=False` deaktivieren.
 
-!!! info
-    Unterstützung für `separate_input_output_schemas` wurde in FastAPI `0.102.0` hinzugefügt. 🤓
+/// info
 
-=== "Python 3.10+"
+Unterstützung für `separate_input_output_schemas` wurde in FastAPI `0.102.0` hinzugefügt. 🤓
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
-    ```
+///
 
-=== "Python 3.9+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
-    ```
+//// tab | Python 3.9+
+
+```Python hl_lines="12"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="12"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
+```
+
+////
 
 ### Gleiches Schema für Eingabe- und Ausgabemodelle in der Dokumentation
 

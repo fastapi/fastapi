@@ -4,27 +4,36 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 これを行うには、`return`の代わりに`yield`を使い、その後に追加のステップを書きます。
 
-!!! tip "豆知識"
-    `yield`は必ず一度だけ使用するようにしてください。
+/// tip | "豆知識"
 
-!!! info "情報"
-    これを動作させるには、**Python 3.7** 以上を使用するか、**Python 3.6** では"backports"をインストールする必要があります:
+`yield`は必ず一度だけ使用するようにしてください。
 
-    ```
-    pip install async-exit-stack async-generator
-    ```
+///
 
-    これにより<a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a>と<a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>がインストールされます。
+/// info | "情報"
 
-!!! note "技術詳細"
-    以下と一緒に使用できる関数なら何でも有効です:
+これを動作させるには、**Python 3.7** 以上を使用するか、**Python 3.6** では"backports"をインストールする必要があります:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>または
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+```
+pip install async-exit-stack async-generator
+```
 
-    これらは **FastAPI** の依存関係として使用するのに有効です。
+これにより<a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a>と<a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>がインストールされます。
 
-    実際、FastAPIは内部的にこれら２つのデコレータを使用しています。
+///
+
+/// note | "技術詳細"
+
+以下と一緒に使用できる関数なら何でも有効です:
+
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>または
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+
+これらは **FastAPI** の依存関係として使用するのに有効です。
+
+実際、FastAPIは内部的にこれら２つのデコレータを使用しています。
+
+///
 
 ## `yield`を持つデータベースの依存関係
 
@@ -48,10 +57,13 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-!!! tip "豆知識"
-    `async`や通常の関数を使用することができます。
+/// tip | "豆知識"
 
-    **FastAPI** は、通常の依存関係と同じように、それぞれで正しいことを行います。
+`async`や通常の関数を使用することができます。
+
+**FastAPI** は、通常の依存関係と同じように、それぞれで正しいことを行います。
+
+///
 
 ## `yield`と`try`を持つ依存関係
 
@@ -97,10 +109,13 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 **FastAPI** は、全てが正しい順序で実行されていることを確認します。
 
-!!! note "技術詳細"
-    これはPythonの<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>のおかげで動作します。
+/// note | "技術詳細"
 
-    **FastAPI** はこれを実現するために内部的に使用しています。
+これはPythonの<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>のおかげで動作します。
+
+**FastAPI** はこれを実現するために内部的に使用しています。
+
+///
 
 ## `yield`と`HTTPException`を持つ依存関係
 
@@ -122,8 +137,11 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成してください。
 
-!!! tip "豆知識"
-    `HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
+/// tip | "豆知識"
+
+`HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
+
+///
 
 実行の順序は多かれ少なかれ以下の図のようになります。時間は上から下へと流れていきます。そして、各列はコードを相互作用させたり、実行したりしている部分の一つです。
 
@@ -165,15 +183,21 @@ participant tasks as Background tasks
     end
 ```
 
-!!! info "情報"
-    **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
+/// info | "情報"
 
-    いずれかのレスポンスが送信された後、他のレスポンスを送信することはできません。
+**１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 
-!!! tip "豆知識"
-    この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
+いずれかのレスポンスが送信された後、他のレスポンスを送信することはできません。
 
-    しかし例外ハンドラで処理されない例外を発生させた場合は、依存関係の終了コードで処理されます。
+///
+
+/// tip | "豆知識"
+
+この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
+
+しかし例外ハンドラで処理されない例外を発生させた場合は、依存関係の終了コードで処理されます。
+
+///
 
 ## コンテキストマネージャ
 
@@ -197,10 +221,13 @@ with open("./somefile.txt") as f:
 
 ### `yield`を持つ依存関係でのコンテキストマネージャの使用
 
-!!! warning "注意"
-    これは多かれ少なかれ、「高度な」発想です。
+/// warning | "注意"
 
-    **FastAPI** を使い始めたばかりの方は、とりあえずスキップした方がよいかもしれません。
+これは多かれ少なかれ、「高度な」発想です。
+
+**FastAPI** を使い始めたばかりの方は、とりあえずスキップした方がよいかもしれません。
+
+///
 
 Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">以下の２つのメソッドを持つクラスを作成する: `__enter__()`と`__exit__()`</a>ことでコンテキストマネージャを作成することができます。
 
@@ -210,16 +237,19 @@ Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#conte
 {!../../../docs_src/dependencies/tutorial010.py!}
 ```
 
-!!! tip "豆知識"
-    コンテキストマネージャを作成するもう一つの方法はwithです:
+/// tip | "豆知識"
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> または
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+コンテキストマネージャを作成するもう一つの方法はwithです:
 
-    これらを使って、関数を単一の`yield`でデコレートすることができます。
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> または
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
-    これは **FastAPI** が内部的に`yield`を持つ依存関係のために使用しているものです。
+これらを使って、関数を単一の`yield`でデコレートすることができます。
 
-    しかし、FastAPIの依存関係にデコレータを使う必要はありません（そして使うべきではありません）。
+これは **FastAPI** が内部的に`yield`を持つ依存関係のために使用しているものです。
 
-    FastAPIが内部的にやってくれます。
+しかし、FastAPIの依存関係にデコレータを使う必要はありません（そして使うべきではありません）。
+
+FastAPIが内部的にやってくれます。
+
+///

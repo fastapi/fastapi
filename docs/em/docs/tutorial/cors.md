@@ -78,7 +78,10 @@
 
 🌖 ℹ 🔃 <abbr title="Cross-Origin Resource Sharing">⚜</abbr>, ✅ <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">🦎 ⚜ 🧾</a>.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.middleware.cors import CORSMiddleware`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 📚 🛠️ `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠️ 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.middleware.cors import CORSMiddleware`.
+
+**FastAPI** 🚚 📚 🛠️ `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠️ 👟 🔗 ⚪️➡️ 💃.
+
+///

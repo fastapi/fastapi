@@ -6,17 +6,21 @@
 
 🥇, 🗄 `Path` ⚪️➡️ `fastapi`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="1"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
+
+////
 
 ## 📣 🗃
 
@@ -24,24 +28,31 @@
 
 🖼, 📣 `title` 🗃 💲 ➡ 🔢 `item_id` 👆 💪 🆎:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-!!! note
-    ➡ 🔢 🕧 ✔ ⚫️ ✔️ 🍕 ➡.
+```Python hl_lines="8"
+{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
 
-    , 👆 🔜 📣 ⚫️ ⏮️ `...` ™ ⚫️ ✔.
+////
 
-    👐, 🚥 👆 📣 ⚫️ ⏮️ `None` ⚖️ ⚒ 🔢 💲, ⚫️ 🔜 🚫 📉 🕳, ⚫️ 🔜 🕧 🚚.
+/// note
+
+➡ 🔢 🕧 ✔ ⚫️ ✔️ 🍕 ➡.
+
+, 👆 🔜 📣 ⚫️ ⏮️ `...` ™ ⚫️ ✔.
+
+👐, 🚥 👆 📣 ⚫️ ⏮️ `None` ⚖️ ⚒ 🔢 💲, ⚫️ 🔜 🚫 📉 🕳, ⚫️ 🔜 🕧 🚚.
+
+///
 
 ## ✔ 🔢 👆 💪
 
@@ -121,18 +132,24 @@
 * `lt`: `l`👭 `t`👲
 * `le`: `l`👭 🌘 ⚖️ `e`🅾
 
-!!! info
-    `Query`, `Path`, &amp; 🎏 🎓 👆 🔜 👀 ⏪ 🏿 ⚠ `Param` 🎓.
+/// info
 
-    🌐 👫 💰 🎏 🔢 🌖 🔬 &amp; 🗃 👆 ✔️ 👀.
+`Query`, `Path`, &amp; 🎏 🎓 👆 🔜 👀 ⏪ 🏿 ⚠ `Param` 🎓.
 
-!!! note "📡 ℹ"
-    🕐❔ 👆 🗄 `Query`, `Path` &amp; 🎏 ⚪️➡️ `fastapi`, 👫 🤙 🔢.
+🌐 👫 💰 🎏 🔢 🌖 🔬 &amp; 🗃 👆 ✔️ 👀.
 
-    👈 🕐❔ 🤙, 📨 👐 🎓 🎏 📛.
+///
 
-    , 👆 🗄 `Query`, ❔ 🔢. &amp; 🕐❔ 👆 🤙 ⚫️, ⚫️ 📨 👐 🎓 🌟 `Query`.
+/// note | "📡 ℹ"
 
-    👫 🔢 📤 (↩️ ⚙️ 🎓 🔗) 👈 👆 👨‍🎨 🚫 ™ ❌ 🔃 👫 🆎.
+🕐❔ 👆 🗄 `Query`, `Path` &amp; 🎏 ⚪️➡️ `fastapi`, 👫 🤙 🔢.
 
-    👈 🌌 👆 💪 ⚙️ 👆 😐 👨‍🎨 &amp; 🛠️ 🧰 🍵 ✔️ 🚮 🛃 📳 🤷‍♂ 📚 ❌.
+👈 🕐❔ 🤙, 📨 👐 🎓 🎏 📛.
+
+, 👆 🗄 `Query`, ❔ 🔢. &amp; 🕐❔ 👆 🤙 ⚫️, ⚫️ 📨 👐 🎓 🌟 `Query`.
+
+👫 🔢 📤 (↩️ ⚙️ 🎓 🔗) 👈 👆 👨‍🎨 🚫 ™ ❌ 🔃 👫 🆎.
+
+👈 🌌 👆 💪 ⚙️ 👆 😐 👨‍🎨 &amp; 🛠️ 🧰 🍵 ✔️ 🚮 🛃 📳 🤷‍♂ 📚 ❌.
+
+///
