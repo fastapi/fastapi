@@ -20,35 +20,47 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 ## Ausführen
 
-!!! info
-    Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    Z. B. `pip install python-multipart`.
+Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Das, weil **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
+Z. B. `pip install python-multipart`.
+
+Das, weil **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
+
+///
 
 Führen Sie das Beispiel aus mit:
 
@@ -70,17 +82,23 @@ Sie werden etwa Folgendes sehen:
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! check "Authorize-Button!"
-    Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
+/// check | "Authorize-Button!"
 
-    Und Ihre *Pfadoperation* hat in der oberen rechten Ecke ein kleines Schloss, auf das Sie klicken können.
+Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
+
+Und Ihre *Pfadoperation* hat in der oberen rechten Ecke ein kleines Schloss, auf das Sie klicken können.
+
+///
 
 Und wenn Sie darauf klicken, erhalten Sie ein kleines Anmeldeformular zur Eingabe eines `username` und `password` (und anderer optionaler Felder):
 
 <img src="/img/tutorial/security/image02.png">
 
-!!! note "Hinweis"
-    Es spielt keine Rolle, was Sie in das Formular eingeben, es wird noch nicht funktionieren. Wir kommen dahin.
+/// note | "Hinweis"
+
+Es spielt keine Rolle, was Sie in das Formular eingeben, es wird noch nicht funktionieren. Wir kommen dahin.
+
+///
 
 Dies ist natürlich nicht das Frontend für die Endbenutzer, aber es ist ein großartiges automatisches Tool, um Ihre gesamte API interaktiv zu dokumentieren.
 
@@ -122,53 +140,71 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 
 In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem **Bearer**-Token. Wir machen das mit der Klasse `OAuth2PasswordBearer`.
 
-!!! info
-    Ein „Bearer“-Token ist nicht die einzige Option.
+/// info
 
-    Aber es ist die beste für unseren Anwendungsfall.
+Ein „Bearer“-Token ist nicht die einzige Option.
 
-    Und es ist wahrscheinlich auch für die meisten anderen Anwendungsfälle die beste, es sei denn, Sie sind ein OAuth2-Experte und wissen genau, warum es eine andere Option gibt, die Ihren Anforderungen besser entspricht.
+Aber es ist die beste für unseren Anwendungsfall.
 
-    In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen brauchen.
+Und es ist wahrscheinlich auch für die meisten anderen Anwendungsfälle die beste, es sei denn, Sie sind ein OAuth2-Experte und wissen genau, warum es eine andere Option gibt, die Ihren Anforderungen besser entspricht.
+
+In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen brauchen.
+
+///
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="7"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python  hl_lines="7"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
+/// tip | "Tipp"
 
-    Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-    Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
+///
+
+```Python hl_lines="6"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
+
+Da wir eine relative URL verwenden, würde sich das, wenn sich Ihre API unter `https://example.com/` befindet, auf `https://example.com/token` beziehen. Wenn sich Ihre API jedoch unter `https://example.com/api/v1/` befände, würde es sich auf `https://example.com/api/v1/token` beziehen.
+
+Die Verwendung einer relativen URL ist wichtig, um sicherzustellen, dass Ihre Anwendung auch in einem fortgeschrittenen Anwendungsfall, wie [hinter einem Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}, weiterhin funktioniert.
+
+///
 
 Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern deklariert, dass die URL `/token` diejenige sein wird, die der Client verwenden soll, um den Token abzurufen. Diese Information wird in OpenAPI und dann in den interaktiven API-Dokumentationssystemen verwendet.
 
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
-!!! info
-    Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
+/// info
 
-    Das liegt daran, dass FastAPI denselben Namen wie in der OpenAPI-Spezifikation verwendet. Sodass Sie, wenn Sie mehr über eines dieser Sicherheitsschemas herausfinden möchten, den Namen einfach kopieren und einfügen können, um weitere Informationen darüber zu erhalten.
+Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
+
+Das liegt daran, dass FastAPI denselben Namen wie in der OpenAPI-Spezifikation verwendet. Sodass Sie, wenn Sie mehr über eines dieser Sicherheitsschemas herausfinden möchten, den Namen einfach kopieren und einfügen können, um weitere Informationen darüber zu erhalten.
+
+///
 
 Die Variable `oauth2_scheme` ist eine Instanz von `OAuth2PasswordBearer`, aber auch ein „Callable“.
 
@@ -184,35 +220,47 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python  hl_lines="11"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python  hl_lines="11"
+{!> ../../../docs_src/security/tutorial001_an.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/security/tutorial001.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="10"
+{!> ../../../docs_src/security/tutorial001.py!}
+```
+
+////
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 
 **FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein „Sicherheitsschema“ im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
-!!! info "Technische Details"
-    **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
+/// info | "Technische Details"
 
-    Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische API-Dokumentation), erben von `SecurityBase`, so weiß **FastAPI**, wie es sie in OpenAPI integrieren muss.
+**FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
+
+Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische API-Dokumentation), erben von `SecurityBase`, so weiß **FastAPI**, wie es sie in OpenAPI integrieren muss.
+
+///
 
 ## Was es macht
 

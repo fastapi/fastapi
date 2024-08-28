@@ -4,8 +4,11 @@
 
 Mas é bem mais complexo do que isso.
 
-!!! tip "Dica"
-    Se você está com pressa ou não se importa, continue com as seções seguintes para instruções passo a passo para configurar tudo com diferentes técnicas.
+/// tip | "Dica"
+
+Se você está com pressa ou não se importa, continue com as seções seguintes para instruções passo a passo para configurar tudo com diferentes técnicas.
+
+///
 
 Para aprender o básico de HTTPS de uma perspectiva do usuário, verifique <a href="https://howhttps.works/pt-br/" class="external-link" target="_blank">https://howhttps.works/pt-br/</a>.
 

@@ -35,18 +35,24 @@ Dazu müssen Sie direkt auf den Request zugreifen.
 
 Durch die Deklaration eines *Pfadoperation-Funktionsparameters*, dessen Typ der `Request` ist, weiß **FastAPI**, dass es den `Request` diesem Parameter übergeben soll.
 
-!!! tip "Tipp"
-    Beachten Sie, dass wir in diesem Fall einen Pfad-Parameter zusätzlich zum Request-Parameter deklarieren.
+/// tip | "Tipp"
 
-    Der Pfad-Parameter wird also extrahiert, validiert, in den spezifizierten Typ konvertiert und mit OpenAPI annotiert.
+Beachten Sie, dass wir in diesem Fall einen Pfad-Parameter zusätzlich zum Request-Parameter deklarieren.
 
-    Auf die gleiche Weise können Sie wie gewohnt jeden anderen Parameter deklarieren und zusätzlich auch den `Request` erhalten.
+Der Pfad-Parameter wird also extrahiert, validiert, in den spezifizierten Typ konvertiert und mit OpenAPI annotiert.
+
+Auf die gleiche Weise können Sie wie gewohnt jeden anderen Parameter deklarieren und zusätzlich auch den `Request` erhalten.
+
+///
 
 ## `Request`-Dokumentation
 
 Weitere Details zum <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`-Objekt finden Sie in der offiziellen Starlette-Dokumentation</a>.
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.requests import Request` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** stellt es direkt zur Verfügung, als Komfort für Sie, den Entwickler. Es kommt aber direkt von Starlette.
+Sie können auch `from starlette.requests import Request` verwenden.
+
+**FastAPI** stellt es direkt zur Verfügung, als Komfort für Sie, den Entwickler. Es kommt aber direkt von Starlette.
+
+///

@@ -74,8 +74,11 @@ from myapp import app
 
 не будет выполнена.
 
-!!! info "Информация"
-    Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+/// info | "Информация"
+
+Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+
+///
 
 ## Запуск вашего кода с помощью отладчика
 

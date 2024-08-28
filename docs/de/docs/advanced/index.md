@@ -6,10 +6,13 @@ Das Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link t
 
 In den nächsten Abschnitten sehen Sie weitere Optionen, Konfigurationen und zusätzliche Funktionen.
 
-!!! tip "Tipp"
-    Die nächsten Abschnitte sind **nicht unbedingt „fortgeschritten“**.
+/// tip | "Tipp"
 
-    Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon liegt.
+Die nächsten Abschnitte sind **nicht unbedingt „fortgeschritten“**.
+
+Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon liegt.
+
+///
 
 ## Lesen Sie zuerst das Tutorial
 

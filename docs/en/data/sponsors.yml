@@ -11,9 +11,6 @@ gold:
   - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
     title: Automate FastAPI documentation generation with Bump.sh
     img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
-  - url: https://reflex.dev
-    title: Reflex
-    img: https://fastapi.tiangolo.com/img/sponsors/reflex.png
   - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
     title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
     img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
@@ -35,17 +32,17 @@ gold:
   - url: https://fine.dev?ref=fastapibadge
     title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
     img: https://fastapi.tiangolo.com/img/sponsors/fine.png
+  - url: https://liblab.com?utm_source=fastapi
+    title: liblab - Generate SDKs from FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
 silver:
-  - url: https://training.talkpython.fm/fastapi-courses
-    title: FastAPI video courses on demand from people you trust
-    img: https://fastapi.tiangolo.com/img/sponsors/talkpython-v2.jpg
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks
     img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
-  - url: https://speakeasyapi.dev?utm_source=fastapi+repo&utm_medium=github+sponsorship
+  - url: https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship
     title: SDKs for your API | Speakeasy
     img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
   - url: https://www.svix.com/

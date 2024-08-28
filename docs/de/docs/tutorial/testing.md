@@ -8,10 +8,13 @@ Damit können Sie <a href="https://docs.pytest.org/" class="external-link" targe
 
 ## Verwendung von `TestClient`
 
-!!! info
-    Um `TestClient` zu verwenden, installieren Sie zunächst <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+/// info
 
-    Z. B. `pip install httpx`.
+Um `TestClient` zu verwenden, installieren Sie zunächst <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+
+Z. B. `pip install httpx`.
+
+///
 
 Importieren Sie `TestClient`.
 
@@ -27,20 +30,29 @@ Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken,
 {!../../../docs_src/app_testing/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass die Testfunktionen normal `def` und nicht `async def` sind.
+/// tip | "Tipp"
 
-    Und die Anrufe an den Client sind ebenfalls normale Anrufe, die nicht `await` verwenden.
+Beachten Sie, dass die Testfunktionen normal `def` und nicht `async def` sind.
 
-    Dadurch können Sie `pytest` ohne Komplikationen direkt nutzen.
+Und die Anrufe an den Client sind ebenfalls normale Anrufe, die nicht `await` verwenden.
 
-!!! note "Technische Details"
-    Sie könnten auch `from starlette.testclient import TestClient` verwenden.
+Dadurch können Sie `pytest` ohne Komplikationen direkt nutzen.
 
-    **FastAPI** stellt denselben `starlette.testclient` auch via `fastapi.testclient` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+///
 
-!!! tip "Tipp"
-    Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
+/// note | "Technische Details"
+
+Sie könnten auch `from starlette.testclient import TestClient` verwenden.
+
+**FastAPI** stellt denselben `starlette.testclient` auch via `fastapi.testclient` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+
+///
+
+/// tip | "Tipp"
+
+Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
+
+///
 
 ## Tests separieren
 
@@ -110,41 +122,57 @@ Sie verfügt über eine `POST`-Operation, die mehrere Fehler zurückgeben könnt
 
 Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python
+{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python
+{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python
+{!> ../../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Erweiterte Testdatei
 
@@ -168,10 +196,13 @@ Z. B.:
 
 Weitere Informationen zum Übergeben von Daten an das Backend (mithilfe von `httpx` oder dem `TestClient`) finden Sie in der <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX-Dokumentation</a>.
 
-!!! info
-    Beachten Sie, dass der `TestClient` Daten empfängt, die nach JSON konvertiert werden können, keine Pydantic-Modelle.
+/// info
 
-    Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des Testens an die Anwendung senden möchten, können Sie den `jsonable_encoder` verwenden, der in [JSON-kompatibler Encoder](encoder.md){.internal-link target=_blank} beschrieben wird.
+Beachten Sie, dass der `TestClient` Daten empfängt, die nach JSON konvertiert werden können, keine Pydantic-Modelle.
+
+Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des Testens an die Anwendung senden möchten, können Sie den `jsonable_encoder` verwenden, der in [JSON-kompatibler Encoder](encoder.md){.internal-link target=_blank} beschrieben wird.
+
+///
 
 ## Tests ausführen
 

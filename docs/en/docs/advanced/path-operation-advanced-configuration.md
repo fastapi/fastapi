@@ -2,8 +2,11 @@
 
 ## OpenAPI operationId
 
-!!! warning
-    If you are not an "expert" in OpenAPI, you probably don't need this.
+/// warning
+
+If you are not an "expert" in OpenAPI, you probably don't need this.
+
+///
 
 You can set the OpenAPI `operationId` to be used in your *path operation* with the parameter `operation_id`.
 
@@ -23,13 +26,19 @@ You should do it after adding all your *path operations*.
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip
-    If you manually call `app.openapi()`, you should update the `operationId`s before that.
+/// tip
 
-!!! warning
-    If you do this, you have to make sure each one of your *path operation functions* has a unique name.
+If you manually call `app.openapi()`, you should update the `operationId`s before that.
 
-    Even if they are in different modules (Python files).
+///
+
+/// warning
+
+If you do this, you have to make sure each one of your *path operation functions* has a unique name.
+
+Even if they are in different modules (Python files).
+
+///
 
 ## Exclude from OpenAPI
 
@@ -65,8 +74,11 @@ There's a whole chapter here in the documentation about it, you can read it at [
 
 When you declare a *path operation* in your application, **FastAPI** automatically generates the relevant metadata about that *path operation* to be included in the OpenAPI schema.
 
-!!! note "Technical details"
-    In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
+/// note | "Technical details"
+
+In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
+
+///
 
 It has all the information about the *path operation* and is used to generate the automatic documentation.
 
@@ -74,10 +86,13 @@ It includes the `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 This *path operation*-specific OpenAPI schema is normally generated automatically by **FastAPI**, but you can also extend it.
 
-!!! tip
-    This is a low level extension point.
+/// tip
 
-    If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+This is a low level extension point.
+
+If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+
+///
 
 You can extend the OpenAPI schema for a *path operation* using the parameter `openapi_extra`.
 
@@ -150,20 +165,27 @@ And you could do this even if the data type in the request is not JSON.
 
 For example, in this application we don't use FastAPI's integrated functionality to extract the JSON Schema from Pydantic models nor the automatic validation for JSON. In fact, we are declaring the request content type as YAML, not JSON:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_json_schema()`.
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
+
+////
+
+/// info
+
+In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_json_schema()`.
+
+///
 
 Nevertheless, although we are not using the default integrated functionality, we are still using a Pydantic model to manually generate the JSON Schema for the data that we want to receive in YAML.
 
@@ -171,22 +193,32 @@ Then we use the request directly, and extract the body as `bytes`. This means th
 
 And then in our code, we parse that YAML content directly, and then we are again using the same Pydantic model to validate the YAML content:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
 
-!!! tip
-    Here we reuse the same Pydantic model.
+////
 
-    But the same way, we could have validated it in some other way.
+/// info
+
+In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
+
+///
+
+/// tip
+
+Here we reuse the same Pydantic model.
+
+But the same way, we could have validated it in some other way.
+
+///

@@ -18,7 +18,7 @@ jobs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
     - uses: actions/checkout@v4
-    # For pull requests it's not necessary to checkout the code but for master it is
+    # For pull requests it's not necessary to checkout the code but for the main branch it is
     - uses: dorny/paths-filter@v3
       id: filter
       with:
@@ -28,9 +28,12 @@ jobs:
             - docs/**
             - docs_src/**
             - requirements-docs.txt
+            - requirements-docs-insiders.txt
             - pyproject.toml
             - mkdocs.yml
             - mkdocs.insiders.yml
+            - mkdocs.maybe-insiders.yml
+            - mkdocs.no-insiders.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
   langs:
@@ -49,17 +52,16 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-tests.txt') }}-v07
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-insiders.txt', 'requirements-docs-tests.txt') }}-v08
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
       # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
       - name: Install Material for MkDocs Insiders
         if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' ) && steps.cache.outputs.cache-hit != 'true'
-        run: |
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/squidfunk/mkdocs-material-insiders.git
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/griffe-typing-deprecated.git
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/mkdocstrings-python.git
+        run: pip install -r requirements-docs-insiders.txt
+        env:
+          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Verify Docs
         run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
@@ -90,16 +92,15 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-tests.txt') }}-v08
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-insiders.txt', 'requirements-docs-tests.txt') }}-v08
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
       - name: Install Material for MkDocs Insiders
         if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' ) && steps.cache.outputs.cache-hit != 'true'
-        run: |
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/squidfunk/mkdocs-material-insiders.git
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/griffe-typing-deprecated.git
-          pip install git+https://${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}@github.com/pawamoy-insiders/mkdocstrings-python.git
+        run: pip install -r requirements-docs-insiders.txt
+        env:
+          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
       - uses: actions/cache@v4
