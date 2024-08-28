@@ -6,17 +6,21 @@
 
 Сначала импортируйте `Cookie`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="3"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
+
+////
 
 ## Объявление параметров `Cookie`
 
@@ -24,25 +28,35 @@
 
 Первое значение - это значение по умолчанию, вы можете передать все дополнительные параметры проверки или аннотации:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! note "Технические детали"
-    `Cookie` - это класс, родственный `Path` и `Query`. Он также наследуется от общего класса `Param`.
+```Python hl_lines="9"
+{!> ../../../docs_src/cookie_params/tutorial001.py!}
+```
 
-    Но помните, что когда вы импортируете `Query`, `Path`, `Cookie` и другое из `fastapi`, это фактически функции, которые возвращают специальные классы.
+////
 
-!!! info "Дополнительная информация"
-    Для объявления cookies, вам нужно использовать `Cookie`, иначе параметры будут интерпретированы как параметры запроса.
+/// note | "Технические детали"
+
+`Cookie` - это класс, родственный `Path` и `Query`. Он также наследуется от общего класса `Param`.
+
+Но помните, что когда вы импортируете `Query`, `Path`, `Cookie` и другое из `fastapi`, это фактически функции, которые возвращают специальные классы.
+
+///
+
+/// info | "Дополнительная информация"
+
+Для объявления cookies, вам нужно использовать `Cookie`, иначе параметры будут интерпретированы как параметры запроса.
+
+///
 
 ## Резюме
 

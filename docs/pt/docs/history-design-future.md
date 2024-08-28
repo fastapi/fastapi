@@ -1,6 +1,6 @@
 # História, Design e Futuro
 
-Há algum tempo, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">um usuário **FastAPI** perguntou</a>:
+Há algum tempo, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">um usuário **FastAPI** perguntou</a>:
 
 > Qual é a história desse projeto? Parece que surgiu do nada e se tornou incrível em poucas semanas [...]
 
@@ -54,7 +54,7 @@ Tudo de uma forma que oferecesse a melhor experiência de desenvolvimento para t
 
 ## Requisitos
 
-Após testar várias alternativas, eu decidi que usaria o <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> por suas vantagens.
+Após testar várias alternativas, eu decidi que usaria o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> por suas vantagens.
 
 Então eu contribuí com ele, para deixá-lo completamente de acordo com o JSON Schema, para dar suporte a diferentes maneiras de definir declarações de restrições, e melhorar o suporte a editores (conferências de tipos, auto completações) baseado nos testes em vários editores.
 

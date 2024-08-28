@@ -75,9 +75,11 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 
 该函数接收的参数和*路径操作函数*的参数一样。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    下一章介绍，除了函数还有哪些「对象」可以用作依赖项。
+下一章介绍，除了函数还有哪些「对象」可以用作依赖项。
+
+///
 
 接收到新的请求时，**FastAPI** 执行如下操作：
 
@@ -98,11 +100,13 @@ common_parameters --> read_users
 
 这样，只编写一次代码，**FastAPI** 就可以为多个*路径操作*共享这段代码 。
 
-!!! check "检查"
+/// check | "检查"
 
-    注意，无需创建专门的类，并将之传递给 **FastAPI** 以进行「注册」或执行类似的操作。
+注意，无需创建专门的类，并将之传递给 **FastAPI** 以进行「注册」或执行类似的操作。
 
-    只要把它传递给 `Depends`，**FastAPI** 就知道该如何执行后续操作。
+只要把它传递给 `Depends`，**FastAPI** 就知道该如何执行后续操作。
+
+///
 
 ## 要不要使用 `async`？
 
@@ -114,9 +118,11 @@ common_parameters --> read_users
 
 上述这些操作都是可行的，**FastAPI** 知道该怎么处理。
 
-!!! note "笔记"
+/// note | "笔记"
 
-    如里不了解异步，请参阅[异步：*“着急了？”*](../../async.md){.internal-link target=_blank} 一章中 `async` 和 `await` 的内容。
+如里不了解异步，请参阅[异步：*“着急了？”*](../../async.md){.internal-link target=_blank} 一章中 `async` 和 `await` 的内容。
+
+///
 
 ## 与 OpenAPI 集成
 

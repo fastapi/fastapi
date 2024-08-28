@@ -1,6 +1,6 @@
 import inspect
-from contextlib import contextmanager
-from copy import deepcopy
+from contextlib import AsyncExitStack, contextmanager
+from copy import copy, deepcopy
 from typing import (
     Any,
     Callable,
@@ -46,7 +46,6 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
-    AsyncExitStack,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -343,9 +342,9 @@ def analyze_param(
             if isinstance(arg, (params.Param, params.Body, params.Depends))
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[
-                FieldInfo, params.Depends, None
-            ] = fastapi_specific_annotations[-1]
+            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
+                fastapi_specific_annotations[-1]
+            )
         else:
             fastapi_annotation = None
         if isinstance(fastapi_annotation, FieldInfo):
@@ -385,6 +384,8 @@ def analyze_param(
             field_info.annotation = type_annotation
 
     if depends is not None and depends.dependency is None:
+        # Copy `depends` before mutating it
+        depends = copy(depends)
         depends.dependency = type_annotation
 
     if lenient_issubclass(
@@ -529,6 +530,7 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    async_exit_stack: AsyncExitStack,
 ) -> Tuple[
     Dict[str, Any],
     List[Any],
@@ -575,6 +577,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            async_exit_stack=async_exit_stack,
         )
         (
             sub_values,
@@ -590,10 +593,8 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+                call=call, stack=async_exit_stack, sub_values=sub_values
             )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
@@ -744,7 +745,7 @@ async def request_body_to_args(
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(
-                    fn: Callable[[], Coroutine[Any, Any, Any]]
+                    fn: Callable[[], Coroutine[Any, Any, Any]],
                 ) -> None:
                     result = await fn()
                     results.append(result)  # noqa: B023
