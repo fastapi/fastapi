@@ -11,10 +11,13 @@
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.staticfiles import StaticFiles`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.staticfiles` `fastapi.staticfiles` 🏪 👆, 👩‍💻. ✋️ ⚫️ 🤙 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.staticfiles import StaticFiles`.
+
+**FastAPI** 🚚 🎏 `starlette.staticfiles` `fastapi.staticfiles` 🏪 👆, 👩‍💻. ✋️ ⚫️ 🤙 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### ⚫️❔ "🗜"
 

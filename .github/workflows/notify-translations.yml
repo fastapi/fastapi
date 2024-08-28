@@ -15,6 +15,9 @@ on:
         required: false
         default: 'false'
 
+permissions:
+  discussions: write
+
 jobs:
   notify-translations:
     runs-on: ubuntu-latest
@@ -32,4 +35,4 @@ jobs:
           limit-access-to-actor: true
       - uses: ./.github/actions/notify-translations
         with:
-          token: ${{ secrets.FASTAPI_NOTIFY_TRANSLATIONS }}
+          token: ${{ secrets.GITHUB_TOKEN }}

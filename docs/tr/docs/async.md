@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note "Not"
-    Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
+/// note | "Not"
+
+Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
+
+///
 
 ---
 
@@ -363,12 +366,15 @@ FastAPI'ye (Starlette aracılığıyla) güç veren ve bu kadar etkileyici bir p
 
 ## Çok Teknik Detaylar
 
-!!! warning
-    Muhtemelen burayı atlayabilirsiniz.
+/// warning
 
-    Bunlar, **FastAPI**'nin altta nasıl çalıştığına dair çok teknik ayrıntılardır.
+Muhtemelen burayı atlayabilirsiniz.
 
-    Biraz teknik bilginiz varsa (co-routines, threads, blocking, vb)ve FastAPI'nin "async def" ile normal "def" arasındaki farkı nasıl işlediğini merak ediyorsanız, devam edin.
+Bunlar, **FastAPI**'nin altta nasıl çalıştığına dair çok teknik ayrıntılardır.
+
+Biraz teknik bilginiz varsa (co-routines, threads, blocking, vb)ve FastAPI'nin "async def" ile normal "def" arasındaki farkı nasıl işlediğini merak ediyorsanız, devam edin.
+
+///
 
 ### Path fonksiyonu
 

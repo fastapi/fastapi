@@ -20,12 +20,15 @@ And of course, it supports the same:
 
 This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
 
-!!! info
-    Keep in mind that dataclasses can't do everything Pydantic models can do.
+/// info
 
-    So, you might still need to use Pydantic models.
+Keep in mind that dataclasses can't do everything Pydantic models can do.
 
-    But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+So, you might still need to use Pydantic models.
+
+But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+
+///
 
 ## Dataclasses in `response_model`
 

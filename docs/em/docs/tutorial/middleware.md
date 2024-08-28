@@ -11,10 +11,13 @@
 * ⚫️ 💪 🕳 👈 **📨** ⚖️ 🏃 🙆 💪 📟.
 * ⤴️ ⚫️ 📨 **📨**.
 
-!!! note "📡 ℹ"
-    🚥 👆 ✔️ 🔗 ⏮️ `yield`, 🚪 📟 🔜 🏃 *⏮️* 🛠️.
+/// note | "📡 ℹ"
 
-    🚥 📤 🙆 🖥 📋 (📄 ⏪), 👫 🔜 🏃 *⏮️* 🌐 🛠️.
+🚥 👆 ✔️ 🔗 ⏮️ `yield`, 🚪 📟 🔜 🏃 *⏮️* 🛠️.
+
+🚥 📤 🙆 🖥 📋 (📄 ⏪), 👫 🔜 🏃 *⏮️* 🌐 🛠️.
+
+///
 
 ## ✍ 🛠️
 
@@ -32,15 +35,21 @@
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! tip
-    ✔️ 🤯 👈 🛃 © 🎚 💪 🚮 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">⚙️ '✖-' 🔡</a>.
+/// tip
 
-    ✋️ 🚥 👆 ✔️ 🛃 🎚 👈 👆 💚 👩‍💻 🖥 💪 👀, 👆 💪 🚮 👫 👆 ⚜ 📳 ([⚜ (✖️-🇨🇳 ℹ 🤝)](cors.md){.internal-link target=_blank}) ⚙️ 🔢 `expose_headers` 📄 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">💃 ⚜ 🩺</a>.
+✔️ 🤯 👈 🛃 © 🎚 💪 🚮 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">⚙️ '✖-' 🔡</a>.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.requests import Request`.
+✋️ 🚥 👆 ✔️ 🛃 🎚 👈 👆 💚 👩‍💻 🖥 💪 👀, 👆 💪 🚮 👫 👆 ⚜ 📳 ([⚜ (✖️-🇨🇳 ℹ 🤝)](cors.md){.internal-link target=_blank}) ⚙️ 🔢 `expose_headers` 📄 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">💃 ⚜ 🩺</a>.
 
-    **FastAPI** 🚚 ⚫️ 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+///
+
+/// note | "📡 ℹ"
+
+👆 💪 ⚙️ `from starlette.requests import Request`.
+
+**FastAPI** 🚚 ⚫️ 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### ⏭ &amp; ⏮️ `response`
 

@@ -2,8 +2,11 @@
 
 ## ID d'opération OpenAPI
 
-!!! warning "Attention"
-    Si vous n'êtes pas un "expert" en OpenAPI, vous n'en avez probablement pas besoin.
+/// warning | "Attention"
+
+Si vous n'êtes pas un "expert" en OpenAPI, vous n'en avez probablement pas besoin.
+
+///
 
 Dans OpenAPI, les chemins sont des ressources, tels que /users/ ou /items/, exposées par votre API, et les opérations sont les méthodes HTTP utilisées pour manipuler ces chemins, telles que GET, POST ou DELETE. Les operationId sont des chaînes uniques facultatives utilisées pour identifier une opération d'un chemin. Vous pouvez définir l'OpenAPI `operationId` à utiliser dans votre *opération de chemin* avec le paramètre `operation_id`.
 
@@ -23,13 +26,19 @@ Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip "Astuce"
-    Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant.
+/// tip | "Astuce"
 
-!!! warning "Attention"
-    Pour faire cela, vous devez vous assurer que chacun de vos *chemin* ait un nom unique.
+Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant.
 
-    Même s'ils se trouvent dans des modules différents (fichiers Python).
+///
+
+/// warning | "Attention"
+
+Pour faire cela, vous devez vous assurer que chacun de vos *chemin* ait un nom unique.
+
+Même s'ils se trouvent dans des modules différents (fichiers Python).
+
+///
 
 ## Exclusion d'OpenAPI
 
@@ -65,8 +74,11 @@ Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le 
 
 Lorsque vous déclarez un *chemin* dans votre application, **FastAPI** génère automatiquement les métadonnées concernant ce *chemin* à inclure dans le schéma OpenAPI.
 
-!!! note "Détails techniques"
-    La spécification OpenAPI appelle ces métadonnées des <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objets d'opération</a>.
+/// note | "Détails techniques"
+
+La spécification OpenAPI appelle ces métadonnées des <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objets d'opération</a>.
+
+///
 
 Il contient toutes les informations sur le *chemin* et est utilisé pour générer automatiquement la documentation.
 
@@ -74,8 +86,11 @@ Il inclut les `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 Ce schéma OpenAPI spécifique aux *operations* est normalement généré automatiquement par **FastAPI**, mais vous pouvez également l'étendre.
 
-!!! tip "Astuce"
-    Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
+/// tip | "Astuce"
+
+Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
+
+///
 
 Vous pouvez étendre le schéma OpenAPI pour une *opération de chemin* en utilisant le paramètre `openapi_extra`.
 
@@ -162,7 +177,10 @@ Et nous analysons directement ce contenu YAML, puis nous utilisons à nouveau le
 {!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
-!!! tip "Astuce"
-    Ici, nous réutilisons le même modèle Pydantic.
+/// tip | "Astuce"
 
-    Mais nous aurions pu tout aussi bien pu le valider d'une autre manière.
+Ici, nous réutilisons le même modèle Pydantic.
+
+Mais nous aurions pu tout aussi bien pu le valider d'une autre manière.
+
+///

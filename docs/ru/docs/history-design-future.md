@@ -1,6 +1,6 @@
 # История создания и дальнейшее развитие
 
-Однажды, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">один из пользователей **FastAPI** задал вопрос</a>:
+Однажды, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">один из пользователей **FastAPI** задал вопрос</a>:
 
 > Какова история этого проекта? Создаётся впечатление, что он явился из ниоткуда и завоевал мир за несколько недель [...]
 

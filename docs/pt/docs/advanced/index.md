@@ -6,10 +6,13 @@ O [Tutorial - Guia de Usuário](../tutorial/index.md){.internal-link target=_bla
 
 Na próxima seção você verá outras opções, configurações, e recursos adicionais.
 
-!!! tip "Dica"
-    As próximas seções **não são necessáriamente "avançadas"**
+/// tip | "Dica"
 
-    E é possível que para seu caso de uso, a solução esteja em uma delas.
+As próximas seções **não são necessáriamente "avançadas"**
+
+E é possível que para seu caso de uso, a solução esteja em uma delas.
+
+///
 
 ## Leia o Tutorial primeiro
 

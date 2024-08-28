@@ -12,13 +12,19 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note "Nota"
-    Observe que `status_code` é um parâmetro do método "decorador" (get, post, etc). Não da sua função de *operação de caminho*, como todos os parâmetros e corpo.
+/// note | "Nota"
+
+Observe que `status_code` é um parâmetro do método "decorador" (get, post, etc). Não da sua função de *operação de caminho*, como todos os parâmetros e corpo.
+
+///
 
 O parâmetro `status_code` recebe um número com o código de status HTTP.
 
-!!! info "Informação"
-    `status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+/// info | "Informação"
+
+`status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+
+///
 
 Dessa forma:
 
@@ -27,15 +33,21 @@ Dessa forma:
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-!!! note "Nota"
-    Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo.
+/// note | "Nota"
 
-    O FastAPI sabe disso e produzirá documentos OpenAPI informando que não há corpo de resposta.
+Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo.
+
+O FastAPI sabe disso e produzirá documentos OpenAPI informando que não há corpo de resposta.
+
+///
 
 ## Sobre os códigos de status HTTP
 
-!!! note "Nota"
-    Se você já sabe o que são códigos de status HTTP, pule para a próxima seção.
+/// note | "Nota"
+
+Se você já sabe o que são códigos de status HTTP, pule para a próxima seção.
+
+///
 
 Em HTTP, você envia um código de status numérico de 3 dígitos como parte da resposta.
 
@@ -55,8 +67,11 @@ Resumidamente:
     * Para erros genéricos do cliente, você pode usar apenas `400`.
 * `500` e acima são para erros do servidor. Você quase nunca os usa diretamente. Quando algo der errado em alguma parte do código do seu aplicativo ou servidor, ele retornará automaticamente um desses códigos de status.
 
-!!! tip "Dica"
-    Para saber mais sobre cada código de status e qual código serve para quê, verifique o <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentação sobre códigos de status HTTP</a>.
+/// tip | "Dica"
+
+Para saber mais sobre cada código de status e qual código serve para quê, verifique o <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentação sobre códigos de status HTTP</a>.
+
+///
 
 ## Atalho para lembrar os nomes
 
@@ -80,11 +95,13 @@ Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa form
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-!!! note "Detalhes técnicos"
-    Você também pode usar `from starlette import status`.
+/// note | "Detalhes técnicos"
 
-    **FastAPI** fornece o mesmo `starlette.status` como `fastapi.status` apenas como uma conveniência para você, o desenvolvedor. Mas vem diretamente da Starlette.
+Você também pode usar `from starlette import status`.
 
+**FastAPI** fornece o mesmo `starlette.status` como `fastapi.status` apenas como uma conveniência para você, o desenvolvedor. Mas vem diretamente da Starlette.
+
+///
 
 ## Alterando o padrão
 

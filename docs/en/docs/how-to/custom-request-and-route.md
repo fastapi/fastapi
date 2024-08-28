@@ -6,10 +6,13 @@ In particular, this may be a good alternative to logic in a middleware.
 
 For example, if you want to read or manipulate the request body before it is processed by your application.
 
-!!! danger
-    This is an "advanced" feature.
+/// danger
 
-    If you are just starting with **FastAPI** you might want to skip this section.
+This is an "advanced" feature.
+
+If you are just starting with **FastAPI** you might want to skip this section.
+
+///
 
 ## Use cases
 
@@ -27,8 +30,11 @@ And an `APIRoute` subclass to use that custom request class.
 
 ### Create a custom `GzipRequest` class
 
-!!! tip
-    This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+/// tip
+
+This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+
+///
 
 First, we create a `GzipRequest` class, which will overwrite the `Request.body()` method to decompress the body in the presence of an appropriate header.
 
@@ -54,16 +60,19 @@ Here we use it to create a `GzipRequest` from the original request.
 {!../../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-!!! note "Technical Details"
-    A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
+/// note | "Technical Details"
 
-    A `Request` also has a `request.receive`, that's a function to "receive" the body of the request.
+A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
 
-    The `scope` `dict` and `receive` function are both part of the ASGI specification.
+A `Request` also has a `request.receive`, that's a function to "receive" the body of the request.
 
-    And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
+The `scope` `dict` and `receive` function are both part of the ASGI specification.
 
-    To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
+
+To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+
+///
 
 The only thing the function returned by `GzipRequest.get_route_handler` does differently is convert the `Request` to a `GzipRequest`.
 
@@ -75,10 +84,13 @@ But because of our changes in `GzipRequest.body`, the request body will be autom
 
 ## Accessing the request body in an exception handler
 
-!!! tip
-    To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+/// tip
 
-    But this example is still valid and it shows how to interact with the internal components.
+To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+
+But this example is still valid and it shows how to interact with the internal components.
+
+///
 
 We can also use this same approach to access the request body in an exception handler.
 

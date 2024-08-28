@@ -11,10 +11,13 @@
 * **응답** 또는 다른 필요한 코드를 실행시키는 동작을 할 수 있습니다.
 * **응답**를 반환합니다.
 
-!!! note "기술 세부사항"
-    만약 `yield`를 사용한 의존성을 가지고 있다면, 미들웨어가 실행되고 난 후에 exit이 실행됩니다.
+/// note | "기술 세부사항"
 
-    만약 (나중에 문서에서 다룰) 백그라운드 작업이 있다면, 모든 미들웨어가 실행되고 *난 후에* 실행됩니다.
+만약 `yield`를 사용한 의존성을 가지고 있다면, 미들웨어가 실행되고 난 후에 exit이 실행됩니다.
+
+만약 (나중에 문서에서 다룰) 백그라운드 작업이 있다면, 모든 미들웨어가 실행되고 *난 후에* 실행됩니다.
+
+///
 
 ## 미들웨어 만들기
 
@@ -32,15 +35,21 @@
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! tip "팁"
-    사용자 정의 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-' 접두사를 사용</a>하여 추가할 수 있습니다.
+/// tip | "팁"
 
-    그러나 만약 클라이언트의 브라우저에서 볼 수 있는 사용자 정의 헤더를 가지고 있다면, 그것들을 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})에 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette CORS 문서</a>에 명시된 `expose_headers` 매개변수를 이용하여 헤더들을 추가하여야합니다.
+사용자 정의 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-' 접두사를 사용</a>하여 추가할 수 있습니다.
 
-!!! note "기술적 세부사항"
-    `from starlette.requests import request`를 사용할 수도 있습니다.
+그러나 만약 클라이언트의 브라우저에서 볼 수 있는 사용자 정의 헤더를 가지고 있다면, 그것들을 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})에 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette CORS 문서</a>에 명시된 `expose_headers` 매개변수를 이용하여 헤더들을 추가하여야합니다.
 
-    **FastAPI**는 개발자에게 편의를 위해 이를 제공합니다. 그러나 Starlette에서 직접 파생되었습니다.
+///
+
+/// note | "기술적 세부사항"
+
+`from starlette.requests import request`를 사용할 수도 있습니다.
+
+**FastAPI**는 개발자에게 편의를 위해 이를 제공합니다. 그러나 Starlette에서 직접 파생되었습니다.
+
+///
 
 ### `response`의 전과 후
 
