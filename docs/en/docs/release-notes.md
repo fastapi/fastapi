@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Dutch translation for `docs/nl/docs/index.md`. PR [#12042](https://github.com/fastapi/fastapi/pull/12042) by [@svlandeg](https://github.com/svlandeg).
 * 🌐 Update Chinese translation for `docs/zh/docs/how-to/index.md`. PR [#12070](https://github.com/fastapi/fastapi/pull/12070) by [@synthpop123](https://github.com/synthpop123).
 
 ### Internal
