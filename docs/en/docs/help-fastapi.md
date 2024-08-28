@@ -66,7 +66,7 @@ I love to hear about how **FastAPI** is being used, what you have liked in it, i
 ## Vote for FastAPI
 
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
-* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
+* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
 * <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">Say you use **FastAPI** on StackShare</a>.
 
 ## Help others with questions in GitHub

@@ -113,7 +113,7 @@ For the other languages, confirm that:
 * The title is correct following the instructions above.
 * It has the labels `lang-all` and `lang-{lang code}`.
 * The PR changes only one Markdown file adding a translation.
-    * Or in some cases, at most two files, if they are small and people reviewed them.
+    * Or in some cases, at most two files, if they are small, for the same language, and people reviewed them.
     * If it's the first translation for that language, it will have additional `mkdocs.yml` files, for those cases follow the instructions below.
 * The PR doesn't add any additional or extraneous files.
 * The translation seems to have a similar structure as the original English file.

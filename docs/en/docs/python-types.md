@@ -324,7 +324,7 @@ In Python 3.6 and above (including Python 3.10) you can declare it by importing 
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+Using `Optional[str]` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
 
 `Optional[Something]` is actually a shortcut for `Union[Something, None]`, they are equivalent.
 
@@ -519,7 +519,7 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 /// tip
 
-Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 ///
 
