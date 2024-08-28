@@ -4,8 +4,11 @@
 
 **FastAPI** 🚚 🏪 🧰 📊 👆 🈸 ⏪ 🚧 🌐 💪.
 
-!!! info
-    🚥 👆 👟 ⚪️➡️ 🏺, 👉 🔜 🌓 🏺 📗.
+/// info
+
+🚥 👆 👟 ⚪️➡️ 🏺, 👉 🔜 🌓 🏺 📗.
+
+///
 
 ## 🖼 📁 📊
 
@@ -26,16 +29,19 @@
 │       └── admin.py
 ```
 
-!!! tip
-    📤 📚 `__init__.py` 📁: 1️⃣ 🔠 📁 ⚖️ 📁.
+/// tip
 
-    👉 ⚫️❔ ✔ 🏭 📟 ⚪️➡️ 1️⃣ 📁 🔘 ➕1️⃣.
+📤 📚 `__init__.py` 📁: 1️⃣ 🔠 📁 ⚖️ 📁.
 
-    🖼, `app/main.py` 👆 💪 ✔️ ⏸ 💖:
+👉 ⚫️❔ ✔ 🏭 📟 ⚪️➡️ 1️⃣ 📁 🔘 ➕1️⃣.
 
-    ```
-    from app.routers import items
-    ```
+🖼, `app/main.py` 👆 💪 ✔️ ⏸ 💖:
+
+```
+from app.routers import items
+```
+
+///
 
 *  `app` 📁 🔌 🌐. &amp; ⚫️ ✔️ 🛁 📁 `app/__init__.py`, ⚫️ "🐍 📦" (🗃 "🐍 🕹"): `app`.
 * ⚫️ 🔌 `app/main.py` 📁. ⚫️ 🔘 🐍 📦 (📁 ⏮️ 📁 `__init__.py`), ⚫️ "🕹" 👈 📦: `app.main`.
@@ -99,8 +105,11 @@
 
 🌐 🎏 `parameters`, `responses`, `dependencies`, `tags`, ♒️.
 
-!!! tip
-    👉 🖼, 🔢 🤙 `router`, ✋️ 👆 💪 📛 ⚫️ 👐 👆 💚.
+/// tip
+
+👉 🖼, 🔢 🤙 `router`, ✋️ 👆 💪 📛 ⚫️ 👐 👆 💚.
+
+///
 
 👥 🔜 🔌 👉 `APIRouter` 👑 `FastAPI` 📱, ✋️ 🥇, ➡️ ✅ 🔗 &amp; ➕1️⃣ `APIRouter`.
 
@@ -116,10 +125,13 @@
 {!../../../docs_src/bigger_applications/app/dependencies.py!}
 ```
 
-!!! tip
-    👥 ⚙️ 💭 🎚 📉 👉 🖼.
+/// tip
 
-    ✋️ 🎰 💼 👆 🔜 🤚 👍 🏁 ⚙️ 🛠️ [💂‍♂ 🚙](security/index.md){.internal-link target=_blank}.
+👥 ⚙️ 💭 🎚 📉 👉 🖼.
+
+✋️ 🎰 💼 👆 🔜 🤚 👍 🏁 ⚙️ 🛠️ [💂‍♂ 🚙](security/index.md){.internal-link target=_blank}.
+
+///
 
 ## ➕1️⃣ 🕹 ⏮️ `APIRouter`
 
@@ -163,8 +175,11 @@ async def read_item(item_id: str):
 
 &amp; 👥 💪 🚮 📇 `dependencies` 👈 🔜 🚮 🌐 *➡ 🛠️* 📻 &amp; 🔜 🛠️/❎ 🔠 📨 ⚒ 👫.
 
-!!! tip
-    🗒 👈, 🌅 💖 [🔗 *➡ 🛠️ 👨‍🎨*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, 🙅‍♂ 💲 🔜 🚶‍♀️ 👆 *➡ 🛠️ 🔢*.
+/// tip
+
+🗒 👈, 🌅 💖 [🔗 *➡ 🛠️ 👨‍🎨*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, 🙅‍♂ 💲 🔜 🚶‍♀️ 👆 *➡ 🛠️ 🔢*.
+
+///
 
 🔚 🏁 👈 🏬 ➡ 🔜:
 
@@ -181,11 +196,17 @@ async def read_item(item_id: str):
     * 📻 🔗 🛠️ 🥇, ⤴️ [`dependencies` 👨‍🎨](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, &amp; ⤴️ 😐 🔢 🔗.
     * 👆 💪 🚮 [`Security` 🔗 ⏮️ `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
-!!! tip
-    ✔️ `dependencies` `APIRouter` 💪 ⚙️, 🖼, 🚚 🤝 🎂 👪 *➡ 🛠️*. 🚥 🔗 🚫 🚮 📦 🔠 1️⃣ 👫.
+/// tip
 
-!!! check
-     `prefix`, `tags`, `responses`, &amp; `dependencies` 🔢 (📚 🎏 💼) ⚒ ⚪️➡️ **FastAPI** ℹ 👆 ❎ 📟 ❎.
+✔️ `dependencies` `APIRouter` 💪 ⚙️, 🖼, 🚚 🤝 🎂 👪 *➡ 🛠️*. 🚥 🔗 🚫 🚮 📦 🔠 1️⃣ 👫.
+
+///
+
+/// check
+
+`prefix`, `tags`, `responses`, &amp; `dependencies` 🔢 (📚 🎏 💼) ⚒ ⚪️➡️ **FastAPI** ℹ 👆 ❎ 📟 ❎.
+
+///
 
 ### 🗄 🔗
 
@@ -201,8 +222,11 @@ async def read_item(item_id: str):
 
 #### ❔ ⚖ 🗄 👷
 
-!!! tip
-    🚥 👆 💭 👌 ❔ 🗄 👷, 😣 ⏭ 📄 🔛.
+/// tip
+
+🚥 👆 💭 👌 ❔ 🗄 👷, 😣 ⏭ 📄 🔛.
+
+///
 
 👁 ❣ `.`, 💖:
 
@@ -269,10 +293,13 @@ that 🔜 ⛓:
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-!!! tip
-    👉 🏁 ➡ 🛠️ 🔜 ✔️ 🌀 🔖: `["items", "custom"]`.
+/// tip
 
-     &amp; ⚫️ 🔜 ✔️ 👯‍♂️ 📨 🧾, 1️⃣ `404` &amp; 1️⃣ `403`.
+👉 🏁 ➡ 🛠️ 🔜 ✔️ 🌀 🔖: `["items", "custom"]`.
+
+ &amp; ⚫️ 🔜 ✔️ 👯‍♂️ 📨 🧾, 1️⃣ `404` &amp; 1️⃣ `403`.
+
+///
 
 ## 👑 `FastAPI`
 
@@ -328,20 +355,23 @@ from .routers import items, users
 from app.routers import items, users
 ```
 
-!!! info
-    🥇 ⏬ "⚖ 🗄":
+/// info
 
-    ```Python
-    from .routers import items, users
-    ```
+🥇 ⏬ "⚖ 🗄":
 
-    🥈 ⏬ "🎆 🗄":
+```Python
+from .routers import items, users
+```
 
-    ```Python
-    from app.routers import items, users
-    ```
+🥈 ⏬ "🎆 🗄":
 
-    💡 🌅 🔃 🐍 📦 &amp; 🕹, ✍ <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">🛂 🐍 🧾 🔃 🕹</a>.
+```Python
+from app.routers import items, users
+```
+
+💡 🌅 🔃 🐍 📦 &amp; 🕹, ✍ <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">🛂 🐍 🧾 🔃 🕹</a>.
+
+///
 
 ### ❎ 📛 💥
 
@@ -372,26 +402,35 @@ from .routers.users import router
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-!!! info
-    `users.router` 🔌 `APIRouter` 🔘 📁 `app/routers/users.py`.
+/// info
 
-     &amp; `items.router` 🔌 `APIRouter` 🔘 📁 `app/routers/items.py`.
+`users.router` 🔌 `APIRouter` 🔘 📁 `app/routers/users.py`.
+
+ &amp; `items.router` 🔌 `APIRouter` 🔘 📁 `app/routers/items.py`.
+
+///
 
 ⏮️ `app.include_router()` 👥 💪 🚮 🔠 `APIRouter` 👑 `FastAPI` 🈸.
 
 ⚫️ 🔜 🔌 🌐 🛣 ⚪️➡️ 👈 📻 🍕 ⚫️.
 
-!!! note "📡 ℹ"
-    ⚫️ 🔜 🤙 🔘 ✍ *➡ 🛠️* 🔠 *➡ 🛠️* 👈 📣 `APIRouter`.
+/// note | "📡 ℹ"
 
-    , ⛅ 🎑, ⚫️ 🔜 🤙 👷 🚥 🌐 🎏 👁 📱.
+⚫️ 🔜 🤙 🔘 ✍ *➡ 🛠️* 🔠 *➡ 🛠️* 👈 📣 `APIRouter`.
 
-!!! check
-    👆 🚫 ✔️ 😟 🔃 🎭 🕐❔ ✅ 📻.
+, ⛅ 🎑, ⚫️ 🔜 🤙 👷 🚥 🌐 🎏 👁 📱.
 
-    👉 🔜 ✊ ⏲ &amp; 🔜 🕴 🔨 🕴.
+///
 
-    ⚫️ 🏆 🚫 📉 🎭. 👶
+/// check
+
+👆 🚫 ✔️ 😟 🔃 🎭 🕐❔ ✅ 📻.
+
+👉 🔜 ✊ ⏲ &amp; 🔜 🕴 🔨 🕴.
+
+⚫️ 🏆 🚫 📉 🎭. 👶
+
+///
 
 ### 🔌 `APIRouter` ⏮️ 🛃 `prefix`, `tags`, `responses`, &amp; `dependencies`
 
@@ -438,16 +477,19 @@ from .routers.users import router
 
 &amp; ⚫️ 🔜 👷 ☑, 👯‍♂️ ⏮️ 🌐 🎏 *➡ 🛠️* 🚮 ⏮️ `app.include_router()`.
 
-!!! info "📶 📡 ℹ"
-    **🗒**: 👉 📶 📡 ℹ 👈 👆 🎲 💪 **🚶**.
+/// info | "📶 📡 ℹ"
 
-    ---
+**🗒**: 👉 📶 📡 ℹ 👈 👆 🎲 💪 **🚶**.
 
-     `APIRouter`Ⓜ 🚫 "🗻", 👫 🚫 👽 ⚪️➡️ 🎂 🈸.
+---
 
-    👉 ↩️ 👥 💚 🔌 👫 *➡ 🛠️* 🗄 🔗 &amp; 👩‍💻 🔢.
+ `APIRouter`Ⓜ 🚫 "🗻", 👫 🚫 👽 ⚪️➡️ 🎂 🈸.
 
-    👥 🚫🔜 ❎ 👫 &amp; "🗻" 👫 ➡ 🎂, *➡ 🛠️* "🖖" (🏤-✍), 🚫 🔌 🔗.
+👉 ↩️ 👥 💚 🔌 👫 *➡ 🛠️* 🗄 🔗 &amp; 👩‍💻 🔢.
+
+👥 🚫🔜 ❎ 👫 &amp; "🗻" 👫 ➡ 🎂, *➡ 🛠️* "🖖" (🏤-✍), 🚫 🔌 🔗.
+
+///
 
 ## ✅ 🏧 🛠️ 🩺
 

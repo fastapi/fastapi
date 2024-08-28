@@ -2,8 +2,11 @@
 
 ## OpenAPI operationId
 
-!!! warning "Achtung"
-    Wenn Sie kein „Experte“ für OpenAPI sind, brauchen Sie dies wahrscheinlich nicht.
+/// warning | "Achtung"
+
+Wenn Sie kein „Experte“ für OpenAPI sind, brauchen Sie dies wahrscheinlich nicht.
+
+///
 
 Mit dem Parameter `operation_id` können Sie die OpenAPI `operationId` festlegen, die in Ihrer *Pfadoperation* verwendet werden soll.
 
@@ -23,13 +26,19 @@ Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip "Tipp"
-    Wenn Sie `app.openapi()` manuell aufrufen, sollten Sie vorher die `operationId`s aktualisiert haben.
+/// tip | "Tipp"
 
-!!! warning "Achtung"
-    Wenn Sie dies tun, müssen Sie sicherstellen, dass jede Ihrer *Pfadoperation-Funktionen* einen eindeutigen Namen hat.
+Wenn Sie `app.openapi()` manuell aufrufen, sollten Sie vorher die `operationId`s aktualisiert haben.
 
-    Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
+///
+
+/// warning | "Achtung"
+
+Wenn Sie dies tun, müssen Sie sicherstellen, dass jede Ihrer *Pfadoperation-Funktionen* einen eindeutigen Namen hat.
+
+Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
+
+///
 
 ## Von OpenAPI ausschließen
 
@@ -65,8 +74,11 @@ Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es un
 
 Wenn Sie in Ihrer Anwendung eine *Pfadoperation* deklarieren, generiert **FastAPI** automatisch die relevanten Metadaten dieser *Pfadoperation*, die in das OpenAPI-Schema aufgenommen werden sollen.
 
-!!! note "Technische Details"
-    In der OpenAPI-Spezifikation wird das <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operationsobjekt</a> genannt.
+/// note | "Technische Details"
+
+In der OpenAPI-Spezifikation wird das <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operationsobjekt</a> genannt.
+
+///
 
 Es hat alle Informationen zur *Pfadoperation* und wird zur Erstellung der automatischen Dokumentation verwendet.
 
@@ -74,10 +86,13 @@ Es enthält `tags`, `parameters`, `requestBody`, `responses`, usw.
 
 Dieses *Pfadoperation*-spezifische OpenAPI-Schema wird normalerweise automatisch von **FastAPI** generiert, Sie können es aber auch erweitern.
 
-!!! tip "Tipp"
-    Dies ist ein Low-Level Erweiterungspunkt.
+/// tip | "Tipp"
 
-    Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
+Dies ist ein Low-Level Erweiterungspunkt.
+
+Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
+
+///
 
 Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie den Parameter `openapi_extra` verwenden.
 
@@ -150,20 +165,27 @@ Und Sie könnten dies auch tun, wenn der Datentyp in der Anfrage nicht JSON ist.
 
 In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Funktionalität von FastAPI zum Extrahieren des JSON-Schemas aus Pydantic-Modellen noch die automatische Validierung für JSON. Tatsächlich deklarieren wir den Request-Content-Type als YAML und nicht als JSON:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
+```Python hl_lines="17-22  24"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
+
+////
+
+/// info
+
+In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
+
+///
 
 Obwohl wir nicht die standardmäßig integrierte Funktionalität verwenden, verwenden wir dennoch ein Pydantic-Modell, um das JSON-Schema für die Daten, die wir in YAML empfangen möchten, manuell zu generieren.
 
@@ -171,22 +193,32 @@ Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das 
 
 Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann wieder dasselbe Pydantic-Modell, um den YAML-Inhalt zu validieren:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+```
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.
+```Python hl_lines="26-33"
+{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+```
 
-!!! tip "Tipp"
-    Hier verwenden wir dasselbe Pydantic-Modell wieder.
+////
 
-    Aber genauso hätten wir es auch auf andere Weise validieren können.
+/// info
+
+In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.
+
+///
+
+/// tip | "Tipp"
+
+Hier verwenden wir dasselbe Pydantic-Modell wieder.
+
+Aber genauso hätten wir es auch auf andere Weise validieren können.
+
+///

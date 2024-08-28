@@ -70,8 +70,11 @@ from myapp import app
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-!!! info
-    更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
+/// info
+
+更多信息请检查 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">Python 官方文档</a>.
+
+///
 
 ## 使用你的调试器运行代码
 

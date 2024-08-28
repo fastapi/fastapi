@@ -12,7 +12,7 @@ on:
 
 jobs:
   fastapi-people:
-    if: github.repository_owner == 'tiangolo'
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context

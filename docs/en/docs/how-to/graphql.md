@@ -4,12 +4,15 @@ As **FastAPI** is based on the **ASGI** standard, it's very easy to integrate an
 
 You can combine normal FastAPI *path operations* with GraphQL on the same application.
 
-!!! tip
-    **GraphQL** solves some very specific use cases.
+/// tip
 
-    It has **advantages** and **disadvantages** when compared to common **web APIs**.
+**GraphQL** solves some very specific use cases.
 
-    Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+It has **advantages** and **disadvantages** when compared to common **web APIs**.
+
+Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+
+///
 
 ## GraphQL Libraries
 
@@ -46,8 +49,11 @@ Previous versions of Starlette included a `GraphQLApp` class to integrate with <
 
 It was deprecated from Starlette, but if you have code that used it, you can easily **migrate** to <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, that covers the same use case and has an **almost identical interface**.
 
-!!! tip
-    If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+/// tip
+
+If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+
+///
 
 ## Learn More
 

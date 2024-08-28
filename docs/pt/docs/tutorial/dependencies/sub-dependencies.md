@@ -10,41 +10,57 @@ O **FastAPI** se encarrega de resolver essas dependências.
 
 Você pode criar uma primeira dependência (injetável) dessa forma:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="9-10"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 non-Annotated"
+//// tab | Python 3.10 non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Esse código declara um parâmetro de consulta opcional, `q`, com o tipo `str`, e então retorna esse parâmetro.
 
@@ -54,41 +70,57 @@ Isso é bastante simples (e não muito útil), mas irá nos ajudar a focar em co
 
 Então, você pode criar uma outra função para uma dependência (um "injetável") que ao mesmo tempo declara sua própria dependência (o que faz dela um "dependente" também):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="14"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 non-Annotated"
+//// tab | Python 3.10 non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
 
 Vamos focar nos parâmetros declarados:
 
@@ -101,46 +133,65 @@ Vamos focar nos parâmetros declarados:
 
 Então podemos utilizar a dependência com:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-    ```
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="23"
+{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+```
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
+////
 
-=== "Python 3.10 non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="24"
+{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+```
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-    ```
+////
 
-=== "Python 3.8 non-Annotated"
+//// tab | Python 3.10 non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
-    ```
+Utilize a versão com `Annotated` se possível.
 
-!!! info "Informação"
-    Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
+///
 
-    Mas o **FastAPI** saberá que precisa solucionar `query_extractor` primeiro, para passar o resultado para `query_or_cookie_extractor` enquanto chama a função.
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8 non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="22"
+{!> ../../../docs_src/dependencies/tutorial005.py!}
+```
+
+////
+
+/// info | "Informação"
+
+Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
+
+Mas o **FastAPI** saberá que precisa solucionar `query_extractor` primeiro, para passar o resultado para `query_or_cookie_extractor` enquanto chama a função.
+
+///
 
 ```mermaid
 graph TB
@@ -161,22 +212,29 @@ E o valor retornado é salvo em um <abbr title="Um utilitário/sistema para arma
 
 Em um cenário avançado onde você precise que a dependência seja calculada em cada passo (possivelmente várias vezes) de uma requisição em vez de utilizar o valor em "cache", você pode definir o parâmetro `use_cache=False` em `Depends`:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
-        return {"fresh_value": fresh_value}
-    ```
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+    return {"fresh_value": fresh_value}
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python hl_lines="1"
-    async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
-        return {"fresh_value": fresh_value}
-    ```
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
+    return {"fresh_value": fresh_value}
+```
+
+////
 
 ## Recapitulando
 
@@ -186,9 +244,12 @@ Consiste apenas de funções que parecem idênticas a *funções de operação d
 
 Mas ainda assim, é bastante poderoso, e permite que você declare grafos (árvores) de dependências com uma profundidade arbitrária.
 
-!!! tip "Dica"
-    Tudo isso pode não parecer muito útil com esses exemplos.
+/// tip | "Dica"
 
-    Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
+Tudo isso pode não parecer muito útil com esses exemplos.
 
-    E você também verá a quantidade de código que você não precisara escrever.
+Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
+
+E você também verá a quantidade de código que você não precisara escrever.
+
+///

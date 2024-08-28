@@ -1,9 +1,12 @@
 # Retornos Adicionais no OpenAPI
 
-!!! warning "Aviso"
-    Este é um tema bem avançado.
+/// warning | "Aviso"
 
-    Se você está começando com o **FastAPI**, provavelmente você não precisa disso.
+Este é um tema bem avançado.
+
+Se você está começando com o **FastAPI**, provavelmente você não precisa disso.
+
+///
 
 Você pode declarar retornos adicionais, com códigos de status adicionais, media types, descrições, etc.
 
@@ -27,20 +30,26 @@ Por exemplo, para declarar um outro retorno com o status code `404` e um modelo 
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! note "Nota"
-    Lembre-se que você deve retornar o `JSONResponse` diretamente.
+/// note | "Nota"
 
-!!! info "Informação"
-    A chave `model` não é parte do OpenAPI.
+Lembre-se que você deve retornar o `JSONResponse` diretamente.
 
-    O **FastAPI** pegará o modelo do Pydantic, gerará o `JSON Schema`, e adicionará no local correto.
+///
 
-    O local correto é:
+/// info | "Informação"
 
-    * Na chave `content`, que tem como valor um outro objeto JSON (`dict`) que contém:
-        * Uma chave com o media type, como por exemplo `application/json`, que contém como valor um outro objeto JSON, contendo::
-            * Uma chave `schema`, que contém como valor o JSON Schema do modelo, sendo este o local correto.
-                * O **FastAPI** adiciona aqui a referência dos esquemas JSON globais que estão localizados em outro lugar, ao invés de incluí-lo diretamente. Deste modo, outras aplicações e clientes podem utilizar estes esquemas JSON diretamente, fornecer melhores ferramentas de geração de código, etc.
+A chave `model` não é parte do OpenAPI.
+
+O **FastAPI** pegará o modelo do Pydantic, gerará o `JSON Schema`, e adicionará no local correto.
+
+O local correto é:
+
+* Na chave `content`, que tem como valor um outro objeto JSON (`dict`) que contém:
+    * Uma chave com o media type, como por exemplo `application/json`, que contém como valor um outro objeto JSON, contendo::
+        * Uma chave `schema`, que contém como valor o JSON Schema do modelo, sendo este o local correto.
+            * O **FastAPI** adiciona aqui a referência dos esquemas JSON globais que estão localizados em outro lugar, ao invés de incluí-lo diretamente. Deste modo, outras aplicações e clientes podem utilizar estes esquemas JSON diretamente, fornecer melhores ferramentas de geração de código, etc.
+
+///
 
 O retorno gerado no OpenAI para esta *operação de caminho* será:
 
@@ -172,13 +181,19 @@ Por exemplo, você pode adicionar um media type adicional de `image/png`, declar
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! note "Nota"
-    Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
+/// note | "Nota"
 
-!!! info "Informação"
-    A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que o retorno possui o mesmo media type contido na classe principal de retorno (padrão `application/json`).
+Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
 
-    Porém se você especificou uma classe de retorno com o valor `None` como media type, o FastAPI utilizará `application/json` para qualquer retorno adicional que possui um modelo associado.
+///
+
+/// info | "Informação"
+
+A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que o retorno possui o mesmo media type contido na classe principal de retorno (padrão `application/json`).
+
+Porém se você especificou uma classe de retorno com o valor `None` como media type, o FastAPI utilizará `application/json` para qualquer retorno adicional que possui um modelo associado.
+
+///
 
 ## Combinando informações
 

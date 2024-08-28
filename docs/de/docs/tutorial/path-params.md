@@ -24,8 +24,11 @@ Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion dekl
 
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
-!!! check
-    Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
+/// check
+
+Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
+
+///
 
 ## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr>
 
@@ -35,10 +38,13 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 {"item_id":3}
 ```
 
-!!! check
-    Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
+/// check
 
-    Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
+
+Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+
+///
 
 ## Datenvalidierung
 
@@ -65,12 +71,15 @@ Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
-    Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
+/// check
 
-    Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
+Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
 
-    Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit ihrer API interagiert.
+Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
+
+Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit ihrer API interagiert.
+
+///
 
 ## Dokumentation
 
@@ -78,10 +87,13 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
-    Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+/// check
 
-    Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
+Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+
+Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
+
+///
 
 ## Nützliche Standards. Alternative Dokumentation
 
@@ -141,11 +153,17 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
+/// info
 
-!!! tip "Tipp"
-    Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
+
+///
+
+/// tip | "Tipp"
+
+Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
+
+///
 
 ### Deklarieren Sie einen *Pfad-Parameter*
 
@@ -181,8 +199,11 @@ Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip "Tipp"
-    Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
+/// tip | "Tipp"
+
+Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
+
+///
 
 #### *Enum-Member* zurückgeben
 
@@ -235,10 +256,13 @@ Sie verwenden das also wie folgt:
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip "Tipp"
-    Der Parameter könnte einen führenden Schrägstrich (`/`) haben, wie etwa in `/home/johndoe/myfile.txt`.
+/// tip | "Tipp"
 
-    In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
+Der Parameter könnte einen führenden Schrägstrich (`/`) haben, wie etwa in `/home/johndoe/myfile.txt`.
+
+In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
+
+///
 
 ## Zusammenfassung
 

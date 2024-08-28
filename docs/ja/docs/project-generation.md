@@ -14,7 +14,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
 * Docker Swarm モードデプロイ。
 * ローカル開発環境向けの**Docker Compose**インテグレーションと最適化。
 * UvicornとGunicornを使用した**リリース可能な** Python web サーバ。
-* Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> バックエンド:
+* Python <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**</a> バックエンド:
     * **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげ)。
     * **直感的**: 素晴らしいエディタのサポートや <abbr title="自動補完、インテリセンスとも呼ばれる">補完。</abbr> デバッグ時間の短縮。
     * **簡単**: 簡単に利用、習得できるようなデザイン。ドキュメントを読む時間を削減。

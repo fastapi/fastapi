@@ -44,10 +44,13 @@ $ pip install "python-jose[cryptography]"
 
 Hier verwenden wir das empfohlene: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
 
-!!! tip "Tipp"
-    Dieses Tutorial verwendete zuvor <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+/// tip | "Tipp"
 
-    Es wurde jedoch aktualisiert, stattdessen python-jose zu verwenden, da dieses alle Funktionen von PyJWT sowie einige Extras bietet, die Sie später möglicherweise benötigen, wenn Sie Integrationen mit anderen Tools erstellen.
+Dieses Tutorial verwendete zuvor <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+
+Es wurde jedoch aktualisiert, stattdessen python-jose zu verwenden, da dieses alle Funktionen von PyJWT sowie einige Extras bietet, die Sie später möglicherweise benötigen, wenn Sie Integrationen mit anderen Tools erstellen.
+
+///
 
 ## Passwort-Hashing
 
@@ -83,12 +86,15 @@ $ pip install "passlib[bcrypt]"
 
 </div>
 
-!!! tip "Tipp"
-    Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plugin, oder vielen anderen erstellt wurden.
+/// tip | "Tipp"
 
-    So könnten Sie beispielsweise die gleichen Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
+Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plugin, oder vielen anderen erstellt wurden.
 
-    Und Ihre Benutzer könnten sich gleichzeitig über Ihre Django-Anwendung oder Ihre **FastAPI**-Anwendung anmelden.
+So könnten Sie beispielsweise die gleichen Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
+
+Und Ihre Benutzer könnten sich gleichzeitig über Ihre Django-Anwendung oder Ihre **FastAPI**-Anwendung anmelden.
+
+///
 
 ## Die Passwörter hashen und überprüfen
 
@@ -96,12 +102,15 @@ Importieren Sie die benötigten Tools aus `passlib`.
 
 Erstellen Sie einen PassLib-„Kontext“. Der wird für das Hashen und Verifizieren von Passwörtern verwendet.
 
-!!! tip "Tipp"
-    Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich deprecateter Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
+/// tip | "Tipp"
 
-    Sie könnten ihn beispielsweise verwenden, um von einem anderen System (wie Django) generierte Passwörter zu lesen und zu verifizieren, aber alle neuen Passwörter mit einem anderen Algorithmus wie Bcrypt zu hashen.
+Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich deprecateter Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
 
-    Und mit allen gleichzeitig kompatibel sein.
+Sie könnten ihn beispielsweise verwenden, um von einem anderen System (wie Django) generierte Passwörter zu lesen und zu verifizieren, aber alle neuen Passwörter mit einem anderen Algorithmus wie Bcrypt zu hashen.
+
+Und mit allen gleichzeitig kompatibel sein.
+
+///
 
 Erstellen Sie eine Hilfsfunktion, um ein vom Benutzer stammendes Passwort zu hashen.
 
@@ -109,44 +118,63 @@ Und eine weitere, um zu überprüfen, ob ein empfangenes Passwort mit dem gespei
 
 Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="7  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="7  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="6  47  54-55  58-59  68-74"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-!!! note "Hinweis"
-    Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie, wie das gehashte Passwort jetzt aussieht: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+///
+
+```Python hl_lines="6  47  54-55  58-59  68-74"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
+
+/// note | "Hinweis"
+
+Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie, wie das gehashte Passwort jetzt aussieht: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+
+///
 
 ## JWT-Token verarbeiten
 
@@ -176,41 +204,57 @@ Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die Response verw
 
 Erstellen Sie eine Hilfsfunktion, um einen neuen Zugriffstoken zu generieren.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="6  13-15  29-31 79-87"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="6  13-15  29-31 79-87"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="5  11-13  27-29  77-85"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="5  11-13  27-29  77-85"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## Die Abhängigkeiten aktualisieren
 
@@ -220,41 +264,57 @@ Dekodieren Sie den empfangenen Token, validieren Sie ihn und geben Sie den aktue
 
 Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="89-106"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="89-106"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="89-106"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="89-106"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="90-107"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="90-107"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="88-105"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="89-106"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="88-105"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="89-106"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## Die *Pfadoperation* `/token` aktualisieren
 
@@ -262,41 +322,57 @@ Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufz
 
 Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="117-132"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="117-132"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="117-132"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="117-132"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="114-129"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="115-130"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="114-129"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="115-130"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ### Technische Details zum JWT-„Subjekt“ `sub`
 
@@ -335,8 +411,11 @@ Verwenden Sie die Anmeldeinformationen:
 Benutzername: `johndoe`
 Passwort: `secret`.
 
-!!! check
-    Beachten Sie, dass im Code nirgendwo das Klartext-Passwort "`secret`" steht, wir haben nur die gehashte Version.
+/// check
+
+Beachten Sie, dass im Code nirgendwo das Klartext-Passwort "`secret`" steht, wir haben nur die gehashte Version.
+
+///
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -357,8 +436,11 @@ Wenn Sie die Developer Tools öffnen, können Sie sehen, dass die gesendeten Dat
 
 <img src="/img/tutorial/security/image10.png">
 
-!!! note "Hinweis"
-    Beachten Sie den Header `Authorization` mit einem Wert, der mit `Bearer` beginnt.
+/// note | "Hinweis"
+
+Beachten Sie den Header `Authorization` mit einem Wert, der mit `Bearer` beginnt.
+
+///
 
 ## Fortgeschrittene Verwendung mit `scopes`
 

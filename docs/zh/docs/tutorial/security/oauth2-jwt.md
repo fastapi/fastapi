@@ -40,11 +40,13 @@ $ pip install pyjwt
 
 </div>
 
-!!! info "说明"
+/// info | "说明"
 
-    如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
+如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
 
-    您可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 获得更多信息。
+您可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 获得更多信息。
+
+///
 
 ## 密码哈希
 
@@ -80,13 +82,15 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-!!! tip "提示"
+/// tip | "提示"
 
-    `passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
+`passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
 
-    例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
+例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
 
-    并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
+并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
+
+///
 
 ## 密码哈希与校验
 
@@ -94,13 +98,15 @@ $ pip install passlib[bcrypt]
 
 创建用于密码哈希和身份校验的 PassLib **上下文**。
 
-!!! tip "提示"
+/// tip | "提示"
 
-    PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
+PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
 
-    例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
+例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
 
-    同时，这些功能都是兼容的。
+同时，这些功能都是兼容的。
+
+///
 
 接下来，创建三个工具函数，其中一个函数用于哈希用户的密码。
 
@@ -108,45 +114,63 @@ $ pip install passlib[bcrypt]
 
 第三个函数用于身份验证，并返回用户。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="8  50  57-58  61-62  71-77"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="8  50  57-58  61-62  71-77"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="7  48  55-56  59-60  69-75"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="8  49  56-57  60-61  70-76"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
 
-!!! note "笔记"
+///
 
-    查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
+```Python hl_lines="7  48  55-56  59-60  69-75"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="8  49  56-57  60-61  70-76"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
+
+/// note | "笔记"
+
+查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
+
+///
 
 ## 处理 JWT 令牌
 
@@ -188,41 +212,57 @@ $ openssl rand -hex 32
 
 如果令牌无效，则直接返回 HTTP 错误。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="4 7  14-16  30-32 80-88"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="4 7  14-16  30-32 80-88"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="3 6  12-14  28-30  78-86"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="4 7  13-15  29-31  79-87"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="3 6  12-14  28-30  78-86"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="4 7  13-15  29-31  79-87"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ## 更新 `/token` *路径操作*
 
@@ -230,41 +270,57 @@ $ openssl rand -hex 32
 
 创建并返回真正的 JWT 访问令牌。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="118-133"
-    {!> ../../../docs_src/security/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="118-133"
+{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="119-134"
-    {!> ../../../docs_src/security/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="119-134"
+{!> ../../../docs_src/security/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="115-130"
-    {!> ../../../docs_src/security/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="116-131"
-    {!> ../../../docs_src/security/tutorial004.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="115-130"
+{!> ../../../docs_src/security/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="116-131"
+{!> ../../../docs_src/security/tutorial004.py!}
+```
+
+////
 
 ### JWT `sub` 的技术细节
 
@@ -302,9 +358,11 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 用户名: `johndoe` 密码: `secret`
 
-!!! check "检查"
+/// check | "检查"
 
-    注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
+注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
+
+///
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image08.png">
 
@@ -325,9 +383,11 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image10.png">
 
-!!! note "笔记"
+/// note | "笔记"
 
-    注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
+注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
+
+///
 
 ## `scopes` 高级用法
 

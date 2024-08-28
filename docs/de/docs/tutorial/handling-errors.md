@@ -63,12 +63,15 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 }
 ```
 
-!!! tip "Tipp"
-    Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
+/// tip | "Tipp"
 
-    Zum Beispiel ein `dict`, eine `list`, usw.
+Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
 
-    Das wird automatisch von **FastAPI** gehandhabt und der Wert nach JSON konvertiert.
+Zum Beispiel ein `dict`, eine `list`, usw.
+
+Das wird automatisch von **FastAPI** gehandhabt und der Wert nach JSON konvertiert.
+
+///
 
 ## Benutzerdefinierte Header hinzufügen
 
@@ -106,10 +109,13 @@ Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-I
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `Request`.
+Sie können auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `Request`.
+
+///
 
 ## Die Default-Exceptionhandler überschreiben
 
@@ -160,8 +166,11 @@ path -> item_id
 
 #### `RequestValidationError` vs. `ValidationError`
 
-!!! warning "Achtung"
-    Das folgende sind technische Details, die Sie überspringen können, wenn sie für Sie nicht wichtig sind.
+/// warning | "Achtung"
+
+Das folgende sind technische Details, die Sie überspringen können, wenn sie für Sie nicht wichtig sind.
+
+///
 
 `RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
@@ -183,10 +192,13 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+///
 
 ### Den `RequestValidationError`-Body verwenden
 

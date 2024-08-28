@@ -2,8 +2,11 @@
 
 📤 📚 🔢 👈 👆 💪 🚶‍♀️ 👆 *➡ 🛠️ 👨‍🎨* 🔗 ⚫️.
 
-!!! warning
-    👀 👈 👫 🔢 🚶‍♀️ 🔗 *➡ 🛠️ 👨‍🎨*, 🚫 👆 *➡ 🛠️ 🔢*.
+/// warning
+
+👀 👈 👫 🔢 🚶‍♀️ 🔗 *➡ 🛠️ 👨‍🎨*, 🚫 👆 *➡ 🛠️ 🔢*.
+
+///
 
 ## 📨 👔 📟
 
@@ -13,52 +16,67 @@
 
 ✋️ 🚥 👆 🚫 💭 ⚫️❔ 🔠 🔢 📟, 👆 💪 ⚙️ ⌨ 📉 `status`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
-    ```
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="3  17"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="1  15"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="1  15"
+{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+```
+
+////
 
 👈 👔 📟 🔜 ⚙️ 📨 &amp; 🔜 🚮 🗄 🔗.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette import status`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.status` `fastapi.status` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette import status`.
+
+**FastAPI** 🚚 🎏 `starlette.status` `fastapi.status` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ## 🔖
 
 👆 💪 🚮 🔖 👆 *➡ 🛠️*, 🚶‍♀️ 🔢 `tags` ⏮️ `list` `str` (🛎 1️⃣ `str`):
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
-    ```
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="17  22  27"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+```
 
-    ```Python hl_lines="15  20  25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="15  20  25"
+{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+```
+
+////
 
 👫 🔜 🚮 🗄 🔗 &amp; ⚙️ 🏧 🧾 🔢:
 
@@ -80,23 +98,29 @@
 
 👆 💪 🚮 `summary` &amp; `description`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
-    ```
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="20-21"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+```
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="18-19"
+{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+```
+
+////
 
 ## 📛 ⚪️➡️ #️⃣
 
@@ -104,23 +128,29 @@
 
 👆 💪 ✍ <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">✍</a> #️⃣ , ⚫️ 🔜 🔬 &amp; 🖥 ☑ (✊ 🔘 🏧 #️⃣ 📐).
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
-    ```
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="19-27"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+```
 
-    ```Python hl_lines="17-25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
-    ```
+////
+
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="17-25"
+{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+```
+
+////
 
 ⚫️ 🔜 ⚙️ 🎓 🩺:
 
@@ -130,31 +160,43 @@
 
 👆 💪 ✔ 📨 📛 ⏮️ 🔢 `response_description`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
-    ```
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+```Python hl_lines="21"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+```
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
-    ```
+////
 
-!!! info
-    👀 👈 `response_description` 🔗 🎯 📨, `description` 🔗 *➡ 🛠️* 🏢.
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-!!! check
-    🗄 ✔ 👈 🔠 *➡ 🛠️* 🚚 📨 📛.
+```Python hl_lines="19"
+{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+```
 
-    , 🚥 👆 🚫 🚚 1️⃣, **FastAPI** 🔜 🔁 🏗 1️⃣ "🏆 📨".
+////
+
+/// info
+
+👀 👈 `response_description` 🔗 🎯 📨, `description` 🔗 *➡ 🛠️* 🏢.
+
+///
+
+/// check
+
+🗄 ✔ 👈 🔠 *➡ 🛠️* 🚚 📨 📛.
+
+, 🚥 👆 🚫 🚚 1️⃣, **FastAPI** 🔜 🔁 🏗 1️⃣ "🏆 📨".
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

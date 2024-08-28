@@ -43,8 +43,11 @@ browser --> proxy
 proxy --> server
 ```
 
-!!! tip "Tipp"
-    Die IP `0.0.0.0` wird üblicherweise verwendet, um anzudeuten, dass das Programm alle auf diesem Computer/Server verfügbaren IPs abhört.
+/// tip | "Tipp"
+
+Die IP `0.0.0.0` wird üblicherweise verwendet, um anzudeuten, dass das Programm alle auf diesem Computer/Server verfügbaren IPs abhört.
+
+///
 
 Die Benutzeroberfläche der Dokumentation würde benötigen, dass das OpenAPI-Schema deklariert, dass sich dieser API-`server` unter `/api/v1` (hinter dem Proxy) befindet. Zum Beispiel:
 
@@ -81,10 +84,13 @@ $ uvicorn main:app --root-path /api/v1
 
 Falls Sie Hypercorn verwenden, das hat auch die Option `--root-path`.
 
-!!! note "Technische Details"
-    Die ASGI-Spezifikation definiert einen `root_path` für diesen Anwendungsfall.
+/// note | "Technische Details"
 
-    Und die Kommandozeilenoption `--root-path` stellt diesen `root_path` bereit.
+Die ASGI-Spezifikation definiert einen `root_path` für diesen Anwendungsfall.
+
+Und die Kommandozeilenoption `--root-path` stellt diesen `root_path` bereit.
+
+///
 
 ### Überprüfen des aktuellen `root_path`
 
@@ -172,8 +178,11 @@ Dann erstellen Sie eine Datei `traefik.toml` mit:
 
 Dadurch wird Traefik angewiesen, Port 9999 abzuhören und eine andere Datei `routes.toml` zu verwenden.
 
-!!! tip "Tipp"
-    Wir verwenden Port 9999 anstelle des Standard-HTTP-Ports 80, damit Sie ihn nicht mit Administratorrechten (`sudo`) ausführen müssen.
+/// tip | "Tipp"
+
+Wir verwenden Port 9999 anstelle des Standard-HTTP-Ports 80, damit Sie ihn nicht mit Administratorrechten (`sudo`) ausführen müssen.
+
+///
 
 Erstellen Sie nun die andere Datei `routes.toml`:
 
@@ -239,8 +248,11 @@ Wenn Sie nun zur URL mit dem Port für Uvicorn gehen: <a href="http://127.0.0.1:
 }
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass, obwohl Sie unter `http://127.0.0.1:8000/app` darauf zugreifen, als `root_path` angezeigt wird `/api/v1`, welches aus der Option `--root-path` stammt.
+/// tip | "Tipp"
+
+Beachten Sie, dass, obwohl Sie unter `http://127.0.0.1:8000/app` darauf zugreifen, als `root_path` angezeigt wird `/api/v1`, welches aus der Option `--root-path` stammt.
+
+///
 
 Öffnen Sie nun die URL mit dem Port für Traefik, einschließlich des Pfadpräfixes: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
@@ -283,8 +295,11 @@ Dies liegt daran, dass FastAPI diesen `root_path` verwendet, um den Default-`ser
 
 ## Zusätzliche Server
 
-!!! warning "Achtung"
-    Dies ist ein fortgeschrittener Anwendungsfall. Überspringen Sie das gerne.
+/// warning | "Achtung"
+
+Dies ist ein fortgeschrittener Anwendungsfall. Überspringen Sie das gerne.
+
+///
 
 Standardmäßig erstellt **FastAPI** einen `server` im OpenAPI-Schema mit der URL für den `root_path`.
 
@@ -323,15 +338,21 @@ Erzeugt ein OpenAPI-Schema, wie:
 }
 ```
 
-!!! tip "Tipp"
-    Beachten Sie den automatisch generierten Server mit dem `URL`-Wert `/api/v1`, welcher vom `root_path` stammt.
+/// tip | "Tipp"
+
+Beachten Sie den automatisch generierten Server mit dem `URL`-Wert `/api/v1`, welcher vom `root_path` stammt.
+
+///
 
 In der Dokumentationsoberfläche unter <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> würde es so aussehen:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-!!! tip "Tipp"
-    Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server.
+/// tip | "Tipp"
+
+Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server.
+
+///
 
 ### Den automatischen Server von `root_path` deaktivieren
 

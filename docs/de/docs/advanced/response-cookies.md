@@ -30,20 +30,26 @@ Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 {!../../../docs_src/response_cookies/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass, wenn Sie eine Response direkt zurückgeben, anstatt den `Response`-Parameter zu verwenden, FastAPI diese direkt zurückgibt.
+/// tip | "Tipp"
 
-    Sie müssen also sicherstellen, dass Ihre Daten vom richtigen Typ sind. Z. B. sollten diese mit JSON kompatibel sein, wenn Sie eine `JSONResponse` zurückgeben.
+Beachten Sie, dass, wenn Sie eine Response direkt zurückgeben, anstatt den `Response`-Parameter zu verwenden, FastAPI diese direkt zurückgibt.
 
-    Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten gefiltert werden sollen.
+Sie müssen also sicherstellen, dass Ihre Daten vom richtigen Typ sind. Z. B. sollten diese mit JSON kompatibel sein, wenn Sie eine `JSONResponse` zurückgeben.
+
+Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten gefiltert werden sollen.
+
+///
 
 ### Mehr Informationen
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 
-    Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird, stellt **FastAPI** diese auch unter `fastapi.Response` bereit.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird, stellt **FastAPI** diese auch unter `fastapi.Response` bereit.
+
+///
 
 Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.

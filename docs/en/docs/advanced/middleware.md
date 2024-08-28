@@ -43,10 +43,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
-!!! note "Technical Details"
-    For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+/// note | "Technical Details"
 
-    **FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+
+**FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+
+///
 
 ## `HTTPSRedirectMiddleware`
 
@@ -86,6 +89,7 @@ The middleware will handle both standard and streaming responses.
 The following arguments are supported:
 
 * `minimum_size` - Do not GZip responses that are smaller than this minimum size in bytes. Defaults to `500`.
+* `compresslevel` - Used during GZip compression. It is an integer ranging from 1 to 9. Defaults to `9`. Lower value results in faster compression but larger file sizes, while higher value results in slower compression but smaller file sizes.
 
 ## Other middlewares
 
@@ -93,7 +97,6 @@ There are many other ASGI middlewares.
 
 For example:
 
-* <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
