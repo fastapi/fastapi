@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update comma in `docs/en/docs/async.md`. PR [#12062](https://github.com/fastapi/fastapi/pull/12062) by [@Alec-Gillis](https://github.com/Alec-Gillis).
 * 📝 Update docs about serving FastAPI: ASGI servers, Docker containers, etc.. PR [#12069](https://github.com/fastapi/fastapi/pull/12069) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Clarify `response_class` parameter, validations, and returning a response directly. PR [#12067](https://github.com/fastapi/fastapi/pull/12067) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Fix minor typos and issues in the documentation. PR [#12063](https://github.com/fastapi/fastapi/pull/12063) by [@svlandeg](https://github.com/svlandeg).
