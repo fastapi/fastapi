@@ -2,12 +2,15 @@
 
 👆 💪 🔬 📁 📂 👩‍💻 ⚙️ `File`.
 
-!!! info
-    📨 📂 📁, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    🤶 Ⓜ. `pip install python-multipart`.
+📨 📂 📁, 🥇 ❎ <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-    👉 ↩️ 📂 📁 📨 "📨 💽".
+🤶 Ⓜ. `pip install python-multipart`.
+
+👉 ↩️ 📂 📁 📨 "📨 💽".
+
+///
 
 ## 🗄 `File`
 
@@ -25,13 +28,19 @@
 {!../../../docs_src/request_files/tutorial001.py!}
 ```
 
-!!! info
-    `File` 🎓 👈 😖 🔗 ⚪️➡️ `Form`.
+/// info
 
-    ✋️ 💭 👈 🕐❔ 👆 🗄 `Query`, `Path`, `File` &amp; 🎏 ⚪️➡️ `fastapi`, 👈 🤙 🔢 👈 📨 🎁 🎓.
+`File` 🎓 👈 😖 🔗 ⚪️➡️ `Form`.
 
-!!! tip
-    📣 📁 💪, 👆 💪 ⚙️ `File`, ↩️ ⏪ 🔢 🔜 🔬 🔢 🔢 ⚖️ 💪 (🎻) 🔢.
+✋️ 💭 👈 🕐❔ 👆 🗄 `Query`, `Path`, `File` &amp; 🎏 ⚪️➡️ `fastapi`, 👈 🤙 🔢 👈 📨 🎁 🎓.
+
+///
+
+/// tip
+
+📣 📁 💪, 👆 💪 ⚙️ `File`, ↩️ ⏪ 🔢 🔜 🔬 🔢 🔢 ⚖️ 💪 (🎻) 🔢.
+
+///
 
 📁 🔜 📂 "📨 💽".
 
@@ -90,11 +99,17 @@ contents = await myfile.read()
 contents = myfile.file.read()
 ```
 
-!!! note "`async` 📡 ℹ"
-    🕐❔ 👆 ⚙️ `async` 👩‍🔬, **FastAPI** 🏃 📁 👩‍🔬 🧵 &amp; ⌛ 👫.
+/// note | "`async` 📡 ℹ"
 
-!!! note "💃 📡 ℹ"
-    **FastAPI**'Ⓜ `UploadFile` 😖 🔗 ⚪️➡️ **💃**'Ⓜ `UploadFile`, ✋️ 🚮 💪 🍕 ⚒ ⚫️ 🔗 ⏮️ **Pydantic** &amp; 🎏 🍕 FastAPI.
+🕐❔ 👆 ⚙️ `async` 👩‍🔬, **FastAPI** 🏃 📁 👩‍🔬 🧵 &amp; ⌛ 👫.
+
+///
+
+/// note | "💃 📡 ℹ"
+
+**FastAPI**'Ⓜ `UploadFile` 😖 🔗 ⚪️➡️ **💃**'Ⓜ `UploadFile`, ✋️ 🚮 💪 🍕 ⚒ ⚫️ 🔗 ⏮️ **Pydantic** &amp; 🎏 🍕 FastAPI.
+
+///
 
 ## ⚫️❔ "📨 💽"
 
@@ -102,33 +117,43 @@ contents = myfile.file.read()
 
 **FastAPI** 🔜 ⚒ 💭 ✍ 👈 📊 ⚪️➡️ ▶️️ 🥉 ↩️ 🎻.
 
-!!! note "📡 ℹ"
-    📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded` 🕐❔ ⚫️ 🚫 🔌 📁.
+/// note | "📡 ℹ"
 
-    ✋️ 🕐❔ 📨 🔌 📁, ⚫️ 🗜 `multipart/form-data`. 🚥 👆 ⚙️ `File`, **FastAPI** 🔜 💭 ⚫️ ✔️ 🤚 📁 ⚪️➡️ ☑ 🍕 💪.
+📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded` 🕐❔ ⚫️ 🚫 🔌 📁.
 
-    🚥 👆 💚 ✍ 🌖 🔃 👉 🔢 &amp; 📨 🏑, 👳 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🕸 🩺 <code>POST</code></a>.
+✋️ 🕐❔ 📨 🔌 📁, ⚫️ 🗜 `multipart/form-data`. 🚥 👆 ⚙️ `File`, **FastAPI** 🔜 💭 ⚫️ ✔️ 🤚 📁 ⚪️➡️ ☑ 🍕 💪.
 
-!!! warning
-    👆 💪 📣 💗 `File` &amp; `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `multipart/form-data` ↩️ `application/json`.
+🚥 👆 💚 ✍ 🌖 🔃 👉 🔢 &amp; 📨 🏑, 👳 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🕸 🩺 <code>POST</code></a>.
 
-    👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+///
+
+/// warning
+
+👆 💪 📣 💗 `File` &amp; `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `multipart/form-data` ↩️ `application/json`.
+
+👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
+
+///
 
 ## 📦 📁 📂
 
 👆 💪 ⚒ 📁 📦 ⚙️ 🐩 🆎 ✍ &amp; ⚒ 🔢 💲 `None`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
+```Python hl_lines="9  17"
+{!> ../../../docs_src/request_files/tutorial001_02.py!}
+```
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="7  14"
-    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-    ```
+//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
+
+```Python hl_lines="7  14"
+{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+```
+
+////
 
 ## `UploadFile` ⏮️ 🌖 🗃
 
@@ -146,40 +171,51 @@ contents = myfile.file.read()
 
 ⚙️ 👈, 📣 📇 `bytes` ⚖️ `UploadFile`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
+```Python hl_lines="10  15"
+{!> ../../../docs_src/request_files/tutorial002.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="8  13"
+{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+```
+
+////
 
 👆 🔜 📨, 📣, `list` `bytes` ⚖️ `UploadFile`Ⓜ.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import HTMLResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import HTMLResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### 💗 📁 📂 ⏮️ 🌖 🗃
 
 &amp; 🎏 🌌 ⏭, 👆 💪 ⚙️ `File()` ⚒ 🌖 🔢, `UploadFile`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
+```Python hl_lines="18"
+{!> ../../../docs_src/request_files/tutorial003.py!}
+```
 
-=== "🐍 3️⃣.9️⃣ &amp; 🔛"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
-    ```
+//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
+
+```Python hl_lines="16"
+{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+```
+
+////
 
 ## 🌃
 

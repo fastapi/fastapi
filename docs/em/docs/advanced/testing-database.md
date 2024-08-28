@@ -52,10 +52,13 @@
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
-!!! tip
-    👆 💪 📉 ❎ 👈 📟 🚮 ⚫️ 🔢 &amp; ⚙️ ⚫️ ⚪️➡️ 👯‍♂️ `database.py` &amp; `tests/test_sql_app.py`.
+/// tip
 
-    🦁 &amp; 🎯 🔛 🎯 🔬 📟, 👥 🖨 ⚫️.
+👆 💪 📉 ❎ 👈 📟 🚮 ⚫️ 🔢 &amp; ⚙️ ⚫️ ⚪️➡️ 👯‍♂️ `database.py` &amp; `tests/test_sql_app.py`.
+
+🦁 &amp; 🎯 🔛 🎯 🔬 📟, 👥 🖨 ⚫️.
+
+///
 
 ## ✍ 💽
 
@@ -81,8 +84,11 @@ Base.metadata.create_all(bind=engine)
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
-!!! tip
-    📟 `override_get_db()` 🌖 ⚫️❔ 🎏 `get_db()`, ✋️ `override_get_db()` 👥 ⚙️ `TestingSessionLocal` 🔬 💽 ↩️.
+/// tip
+
+📟 `override_get_db()` 🌖 ⚫️❔ 🎏 `get_db()`, ✋️ `override_get_db()` 👥 ⚙️ `TestingSessionLocal` 🔬 💽 ↩️.
+
+///
 
 ## 💯 📱
 

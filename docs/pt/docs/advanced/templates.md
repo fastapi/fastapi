@@ -29,20 +29,27 @@ $ pip install jinja2
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
-!!! note
-    Antes do FastAPI 0.108.0, Starlette 0.29.0, `name` era o primeiro parâmetro.
+/// note
 
-    Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no "context" dict para o Jinja2.
+Antes do FastAPI 0.108.0, Starlette 0.29.0, `name` era o primeiro parâmetro.
 
+Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no "context" dict para o Jinja2.
 
-!!! tip "Dica"
-    Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
+///
 
+/// tip | "Dica"
 
-!!! note "Detalhes Técnicos"
-    Você também poderia usar `from starlette.templating import Jinja2Templates`.
+Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
 
-    **FastAPI** fornece o mesmo `starlette.templating` como `fastapi.templating` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria das respostas disponíveis vêm diretamente do Starlette. O mesmo acontece com `Request` e `StaticFiles`.
+///
+
+/// note | "Detalhes Técnicos"
+
+Você também poderia usar `from starlette.templating import Jinja2Templates`.
+
+**FastAPI** fornece o mesmo `starlette.templating` como `fastapi.templating` apenas como uma conveniência para você, o desenvolvedor. Mas a maioria das respostas disponíveis vêm diretamente do Starlette. O mesmo acontece com `Request` e `StaticFiles`.
+
+///
 
 ## Escrevendo Templates
 

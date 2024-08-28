@@ -18,17 +18,23 @@
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-!!! warning "注意"
-    上記の例のように `Response` を明示的に返す場合、それは直接返されます。
+/// warning | "注意"
 
-    モデルなどはシリアライズされません。
+上記の例のように `Response` を明示的に返す場合、それは直接返されます。
 
-    必要なデータが含まれていることや、値が有効なJSONであること (`JSONResponse` を使う場合) を確認してください。
+モデルなどはシリアライズされません。
 
-!!! note "技術詳細"
-    `from starlette.responses import JSONResponse` を利用することもできます。
+必要なデータが含まれていることや、値が有効なJSONであること (`JSONResponse` を使う場合) を確認してください。
 
-    **FastAPI** は `fastapi.responses` と同じ `starlette.responses` を、開発者の利便性のために提供しています。しかし有効なレスポンスはほとんどStarletteから来ています。 `status` についても同じです。
+///
+
+/// note | "技術詳細"
+
+`from starlette.responses import JSONResponse` を利用することもできます。
+
+**FastAPI** は `fastapi.responses` と同じ `starlette.responses` を、開発者の利便性のために提供しています。しかし有効なレスポンスはほとんどStarletteから来ています。 `status` についても同じです。
+
+///
 
 ## OpenAPIとAPIドキュメント
 

@@ -32,14 +32,17 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 * `instagram_basic`은 페이스북/인스타그램에서 사용합니다.
 * `https://www.googleapis.com/auth/drive`는 Google에서 사용합니다.
 
-!!! 정보
-    OAuth2에서 "범위"는 필요한 특정 권한을 선언하는 문자열입니다.
+/// 정보
 
-    `:`과 같은 다른 문자가 있는지 또는 URL인지는 중요하지 않습니다.
+OAuth2에서 "범위"는 필요한 특정 권한을 선언하는 문자열입니다.
 
-    이러한 세부 사항은 구현에 따라 다릅니다.
+`:`과 같은 다른 문자가 있는지 또는 URL인지는 중요하지 않습니다.
 
-    OAuth2의 경우 문자열일 뿐입니다.
+이러한 세부 사항은 구현에 따라 다릅니다.
+
+OAuth2의 경우 문자열일 뿐입니다.
+
+///
 
 ## `username`과 `password`를 가져오는 코드
 
@@ -49,17 +52,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동*에서 `Depends`의 의존성으로 사용합니다.
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="4  76"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="4  76"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="2  74"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="2  74"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 `OAuth2PasswordRequestForm`은 다음을 사용하여 폼 본문을 선언하는 클래스 의존성입니다:
 
@@ -68,29 +75,38 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 * `scope`는 선택적인 필드로 공백으로 구분된 문자열로 구성된 큰 문자열입니다.
 * `grant_type`(선택적으로 사용).
 
-!!! 팁
-    OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` 필드를 *요구*하지만 `OAuth2PasswordRequestForm`은 이를 강요하지 않습니다.
+/// 팁
 
-    사용해야 한다면 `OAuth2PasswordRequestForm` 대신 `OAuth2PasswordRequestFormStrict`를 사용하면 됩니다.
+OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` 필드를 *요구*하지만 `OAuth2PasswordRequestForm`은 이를 강요하지 않습니다.
+
+사용해야 한다면 `OAuth2PasswordRequestForm` 대신 `OAuth2PasswordRequestFormStrict`를 사용하면 됩니다.
+
+///
 
 * `client_id`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 * `client_secret`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 
-!!! 정보
-    `OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
+/// 정보
 
-    `OAuth2PasswordBearer`는 **FastAPI**가 보안 체계임을 알도록 합니다. 그래서 OpenAPI에 그렇게 추가됩니다.
+`OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
 
-    그러나 `OAuth2PasswordRequestForm`은 직접 작성하거나 `Form` 매개변수를 직접 선언할 수 있는 클래스 의존성일 뿐입니다.
+`OAuth2PasswordBearer`는 **FastAPI**가 보안 체계임을 알도록 합니다. 그래서 OpenAPI에 그렇게 추가됩니다.
 
-    그러나 일반적인 사용 사례이므로 더 쉽게 하기 위해 **FastAPI**에서 직접 제공합니다.
+그러나 `OAuth2PasswordRequestForm`은 직접 작성하거나 `Form` 매개변수를 직접 선언할 수 있는 클래스 의존성일 뿐입니다.
+
+그러나 일반적인 사용 사례이므로 더 쉽게 하기 위해 **FastAPI**에서 직접 제공합니다.
+
+///
 
 ### 폼 데이터 사용하기
 
-!!! 팁
-    종속성 클래스 `OAuth2PasswordRequestForm`의 인스턴스에는 공백으로 구분된 긴 문자열이 있는 `scope` 속성이 없고 대신 전송된 각 범위에 대한 실제 문자열 목록이 있는 `scopes` 속성이 있습니다.
+/// 팁
 
-    이 예제에서는 `scopes`를 사용하지 않지만 필요한 경우, 기능이 있습니다.
+종속성 클래스 `OAuth2PasswordRequestForm`의 인스턴스에는 공백으로 구분된 긴 문자열이 있는 `scope` 속성이 없고 대신 전송된 각 범위에 대한 실제 문자열 목록이 있는 `scopes` 속성이 있습니다.
+
+이 예제에서는 `scopes`를 사용하지 않지만 필요한 경우, 기능이 있습니다.
+
+///
 
 이제 폼 필드의 `username`을 사용하여 (가짜) 데이터베이스에서 유저 데이터를 가져옵니다.
 
@@ -98,17 +114,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 오류의 경우 `HTTPException` 예외를 사용합니다:
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="3  77-79"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="3  77-79"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="1  75-77"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="1  75-77"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 ### 패스워드 확인하기
 
@@ -134,17 +154,21 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 따라서 해커는 다른 시스템에서 동일한 암호를 사용하려고 시도할 수 없습니다(많은 사용자가 모든 곳에서 동일한 암호를 사용하므로 이는 위험할 수 있습니다).
 
-=== "P파이썬 3.7 이상"
+//// tab | P파이썬 3.7 이상
 
-    ```Python hl_lines="80-83"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="80-83"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="78-81"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
+
+```Python hl_lines="78-81"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
 
 #### `**user_dict`에 대해
 
@@ -162,8 +186,11 @@ UserInDB(
 )
 ```
 
-!!! 정보
-    `**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user_indict){.internal-link target=_blank}를 다시 읽어봅시다.
+/// 정보
+
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user_indict){.internal-link target=_blank}를 다시 읽어봅시다.
+
+///
 
 ## 토큰 반환하기
 
@@ -175,31 +202,41 @@ UserInDB(
 
 이 간단한 예제에서는 완전히 안전하지 않고, 동일한 `username`을 토큰으로 반환합니다.
 
-!!! 팁
-    다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
+/// 팁
 
-    하지만 지금은 필요한 세부 정보에 집중하겠습니다.
+다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
 
-=== "파이썬 3.7 이상"
+하지만 지금은 필요한 세부 정보에 집중하겠습니다.
 
-    ```Python hl_lines="85"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+///
 
-=== "파이썬 3.10 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="83"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+```Python hl_lines="85"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-!!! 팁
-    사양에 따라 이 예제와 동일하게 `access_token` 및 `token_type`이 포함된 JSON을 반환해야 합니다.
+////
 
-    이는 코드에서 직접 수행해야 하며 해당 JSON 키를 사용해야 합니다.
+//// tab | 파이썬 3.10 이상
 
-    사양을 준수하기 위해 스스로 올바르게 수행하기 위해 거의 유일하게 기억해야 하는 것입니다.
+```Python hl_lines="83"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
 
-    나머지는 **FastAPI**가 처리합니다.
+////
+
+/// 팁
+
+사양에 따라 이 예제와 동일하게 `access_token` 및 `token_type`이 포함된 JSON을 반환해야 합니다.
+
+이는 코드에서 직접 수행해야 하며 해당 JSON 키를 사용해야 합니다.
+
+사양을 준수하기 위해 스스로 올바르게 수행하기 위해 거의 유일하게 기억해야 하는 것입니다.
+
+나머지는 **FastAPI**가 처리합니다.
+
+///
 
 ## 의존성 업데이트하기
 
@@ -213,32 +250,39 @@ UserInDB(
 
 따라서 엔드포인트에서는 사용자가 존재하고 올바르게 인증되었으며 활성 상태인 경우에만 사용자를 얻습니다:
 
-=== "파이썬 3.7 이상"
+//// tab | 파이썬 3.7 이상
 
-    ```Python hl_lines="58-66  69-72  90"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+```Python hl_lines="58-66  69-72  90"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
 
-=== "파이썬 3.10 이상"
+////
 
-    ```Python hl_lines="55-64  67-70  88"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | 파이썬 3.10 이상
 
-!!! 정보
-    여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.
+```Python hl_lines="55-64  67-70  88"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
 
-    모든 HTTP(오류) 상태 코드 401 "UNAUTHORIZED"는 `WWW-Authenticate` 헤더도 반환해야 합니다.
+////
 
-    베어러 토큰의 경우(지금의 경우) 해당 헤더의 값은 `Bearer`여야 합니다.
+/// 정보
 
-    실제로 추가 헤더를 건너뛸 수 있으며 여전히 작동합니다.
+여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.
 
-    그러나 여기에서는 사양을 준수하도록 제공됩니다.
+모든 HTTP(오류) 상태 코드 401 "UNAUTHORIZED"는 `WWW-Authenticate` 헤더도 반환해야 합니다.
 
-    또한 이를 예상하고 (현재 또는 미래에) 사용하는 도구가 있을 수 있으며, 현재 또는 미래에 자신 혹은 자신의 유저들에게 유용할 것입니다.
+베어러 토큰의 경우(지금의 경우) 해당 헤더의 값은 `Bearer`여야 합니다.
 
-    그것이 표준의 이점입니다 ...
+실제로 추가 헤더를 건너뛸 수 있으며 여전히 작동합니다.
+
+그러나 여기에서는 사양을 준수하도록 제공됩니다.
+
+또한 이를 예상하고 (현재 또는 미래에) 사용하는 도구가 있을 수 있으며, 현재 또는 미래에 자신 혹은 자신의 유저들에게 유용할 것입니다.
+
+그것이 표준의 이점입니다 ...
+
+///
 
 ## 확인하기
 

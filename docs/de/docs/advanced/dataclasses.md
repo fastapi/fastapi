@@ -20,12 +20,15 @@ Und natürlich wird das gleiche unterstützt:
 
 Das funktioniert genauso wie mit Pydantic-Modellen. Und tatsächlich wird es unter der Haube mittels Pydantic auf die gleiche Weise bewerkstelligt.
 
-!!! info
-    Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
+/// info
 
-    Daher müssen Sie möglicherweise weiterhin Pydantic-Modelle verwenden.
+Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
 
-    Wenn Sie jedoch eine Menge Datenklassen herumliegen haben, ist dies ein guter Trick, um sie für eine Web-API mithilfe von FastAPI zu verwenden. 🤓
+Daher müssen Sie möglicherweise weiterhin Pydantic-Modelle verwenden.
+
+Wenn Sie jedoch eine Menge Datenklassen herumliegen haben, ist dies ein guter Trick, um sie für eine Web-API mithilfe von FastAPI zu verwenden. 🤓
+
+///
 
 ## Datenklassen als `response_model`
 

@@ -1,5 +1,8 @@
 Articles:
   English:
+  - author: Stephen Siegert - Neon
+    link: https://neon.tech/blog/deploy-a-serverless-fastapi-app-with-neon-postgres-and-aws-app-runner-at-any-scale
+    title: Deploy a Serverless FastAPI App with Neon Postgres and AWS App Runner at any scale
   - author: Kurtis Pykes - NVIDIA
     link: https://developer.nvidia.com/blog/building-a-machine-learning-microservice-with-fastapi/
     title: Building a Machine Learning Microservice with FastAPI
@@ -24,7 +27,7 @@ Articles:
   - author: Nicoló Lino
     author_link: https://www.nlino.com
     link: https://github.com/softwarebloat/python-tracing-demo
-    title: Instrument a FastAPI service adding tracing with OpenTelemetry and send/show traces in Grafana Tempo
+    title: Instrument FastAPI with OpenTelemetry tracing and visualize traces in Grafana Tempo.
   - author: Mikhail Rozhkov, Elena Samuylova
     author_link: https://www.linkedin.com/in/mnrozhkov/
     link: https://www.evidentlyai.com/blog/fastapi-tutorial
@@ -257,6 +260,10 @@ Articles:
     author_link: https://medium.com/@krishnardt365
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
+  - author: Devon Ray
+    author_link: https://devonray.com
+    link: https://devonray.com/blog/deploying-a-fastapi-project-using-aws-lambda-aurora-cdk
+    title: Deployment using Docker, Lambda, Aurora, CDK & GH Actions
   German:
   - author: Marcel Sander (actidoo)
     author_link: https://www.actidoo.com
@@ -347,6 +354,11 @@ Articles:
     author_link: http://editor.leonh.space/
     link: https://editor.leonh.space/2022/tortoise/
     title: 'Tortoise ORM / FastAPI 整合快速筆記'
+  Spanish:
+  - author: Eduardo Zepeda
+    author_link: https://coffeebytes.dev/en/authors/eduardo-zepeda/
+    link: https://coffeebytes.dev/es/python-fastapi-el-mejor-framework-de-python/
+    title: 'Tutorial de FastAPI, ¿el mejor framework de Python?'
 Podcasts:
   English:
   - author: Real Python

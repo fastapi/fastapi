@@ -57,17 +57,21 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 **FastAPI**는 각 경우에 수행할 작업과 동일한 개체를 내부적으로 재사용하기에, 모든 백그라운드 작업이 함께 병합되고 나중에 백그라운드에서 실행됩니다.
 
-=== "Python 3.6 and above"
+//// tab | Python 3.6 and above
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002.py!}
+```
 
-=== "Python 3.10 and above"
+////
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10 and above
+
+```Python hl_lines="11  13  20  23"
+{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+```
+
+////
 
 이 예제에서는 응답이 반환된 후에 `log.txt` 파일에 메시지가 기록됩니다.
 

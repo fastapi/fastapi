@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "Hinweis"
-    Der Befehl `uvicorn main:app` bezieht sich auf:
+/// note | "Hinweis"
 
-    * `main`: die Datei `main.py` (das sogenannte Python-„Modul“).
-    * `app`: das Objekt, welches in der Datei `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
-    * `--reload`: lässt den Server nach Codeänderungen neu starten. Verwenden Sie das nur während der Entwicklung.
+Der Befehl `uvicorn main:app` bezieht sich auf:
+
+* `main`: die Datei `main.py` (das sogenannte Python-„Modul“).
+* `app`: das Objekt, welches in der Datei `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
+* `--reload`: lässt den Server nach Codeänderungen neu starten. Verwenden Sie das nur während der Entwicklung.
+
+///
 
 In der Konsolenausgabe sollte es eine Zeile geben, die ungefähr so aussieht:
 
@@ -136,10 +139,13 @@ Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generier
 
 `FastAPI` ist eine Python-Klasse, die die gesamte Funktionalität für Ihre API bereitstellt.
 
-!!! note "Technische Details"
-    `FastAPI`  ist eine Klasse, die direkt von `Starlette` erbt.
+/// note | "Technische Details"
 
-    Sie können alle <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>-Funktionalitäten auch mit `FastAPI` nutzen.
+`FastAPI`  ist eine Klasse, die direkt von `Starlette` erbt.
+
+Sie können alle <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>-Funktionalitäten auch mit `FastAPI` nutzen.
+
+///
 
 ### Schritt 2: Erzeugen einer `FastAPI`-„Instanz“
 
@@ -199,8 +205,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    Ein „Pfad“ wird häufig auch als „Endpunkt“ oder „Route“ bezeichnet.
+/// info
+
+Ein „Pfad“ wird häufig auch als „Endpunkt“ oder „Route“ bezeichnet.
+
+///
 
 Bei der Erstellung einer API ist der „Pfad“ die wichtigste Möglichkeit zur Trennung von „Anliegen“ und „Ressourcen“.
 
@@ -250,16 +259,19 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
  * den Pfad `/`
  * unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
 
-!!! info "`@decorator` Information"
-    Diese `@something`-Syntax wird in Python „Dekorator“ genannt.
+/// info | "`@decorator` Information"
 
-    Sie platzieren ihn über einer Funktion. Wie ein hübscher, dekorativer Hut (daher kommt wohl der Begriff).
+Diese `@something`-Syntax wird in Python „Dekorator“ genannt.
 
-    Ein „Dekorator“ nimmt die darunter stehende Funktion und macht etwas damit.
+Sie platzieren ihn über einer Funktion. Wie ein hübscher, dekorativer Hut (daher kommt wohl der Begriff).
 
-    In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion mit dem **Pfad** `/` und der **Operation** `get` zusammenhängt.
+Ein „Dekorator“ nimmt die darunter stehende Funktion und macht etwas damit.
 
-    Dies ist der „**Pfadoperation-Dekorator**“.
+In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion mit dem **Pfad** `/` und der **Operation** `get` zusammenhängt.
+
+Dies ist der „**Pfadoperation-Dekorator**“.
+
+///
 
 Sie können auch die anderen Operationen verwenden:
 
@@ -274,14 +286,17 @@ Oder die exotischeren:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip "Tipp"
-    Es steht Ihnen frei, jede Operation (HTTP-Methode) so zu verwenden, wie Sie es möchten.
+/// tip | "Tipp"
 
-    **FastAPI** erzwingt keine bestimmte Bedeutung.
+Es steht Ihnen frei, jede Operation (HTTP-Methode) so zu verwenden, wie Sie es möchten.
 
-    Die hier aufgeführten Informationen dienen als Leitfaden und sind nicht verbindlich.
+**FastAPI** erzwingt keine bestimmte Bedeutung.
 
-    Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit „POST“-Operationen durch.
+Die hier aufgeführten Informationen dienen als Leitfaden und sind nicht verbindlich.
+
+Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit „POST“-Operationen durch.
+
+///
 
 ### Schritt 4: Definieren der **Pfadoperation-Funktion**
 
@@ -309,8 +324,11 @@ Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "Hinweis"
-    Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *„In Eile?“*](../async.md#in-eile){.internal-link target=_blank}.
+/// note | "Hinweis"
+
+Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *„In Eile?“*](../async.md#in-eile){.internal-link target=_blank}.
+
+///
 
 ### Schritt 5: den Inhalt zurückgeben
 

@@ -1,14 +1,20 @@
 # ~~Async SQL (Relational) Databases with Encode/Databases~~ (deprecated)
 
-!!! info
-    These docs are about to be updated. 🎉
+/// info
 
-    The current version assumes Pydantic v1.
+These docs are about to be updated. 🎉
 
-    The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> once it is updated to use Pydantic v2 as well.
+The current version assumes Pydantic v1.
 
-!!! warning "Deprecated"
-    This tutorial is deprecated and will be removed in a future version.
+The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> once it is updated to use Pydantic v2 as well.
+
+///
+
+/// warning | "Deprecated"
+
+This tutorial is deprecated and will be removed in a future version.
+
+///
 
 You can also use <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases`</a> with **FastAPI** to connect to databases using `async` and `await`.
 
@@ -22,10 +28,13 @@ In this example, we'll use **SQLite**, because it uses a single file and Python 
 
 Later, for your production application, you might want to use a database server like **PostgreSQL**.
 
-!!! tip
-    You could adopt ideas from the section about SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), like using utility functions to perform operations in the database, independent of your **FastAPI** code.
+/// tip
 
-    This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
+You could adopt ideas from the section about SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), like using utility functions to perform operations in the database, independent of your **FastAPI** code.
+
+This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
+
+///
 
 ## Import and set up `SQLAlchemy`
 
@@ -37,10 +46,13 @@ Later, for your production application, you might want to use a database server 
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! tip
-    Notice that all this code is pure SQLAlchemy Core.
+/// tip
 
-    `databases` is not doing anything here yet.
+Notice that all this code is pure SQLAlchemy Core.
+
+`databases` is not doing anything here yet.
+
+///
 
 ## Import and set up `databases`
 
@@ -52,8 +64,11 @@ Later, for your production application, you might want to use a database server 
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! tip
-    If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
+/// tip
+
+If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
+
+///
 
 ## Create the tables
 
@@ -100,8 +115,11 @@ Create the *path operation function* to read notes:
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! note
-    Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+/// note
+
+Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+
+///
 
 ### Notice the `response_model=List[Note]`
 
@@ -117,13 +135,19 @@ Create the *path operation function* to create notes:
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
-!!! info
-    In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+/// info
 
-    The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
 
-!!! note
-    Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
+///
+
+/// note
+
+Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+
+///
 
 ### About `{**note.dict(), "id": last_record_id}`
 

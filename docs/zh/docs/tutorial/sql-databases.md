@@ -1,12 +1,22 @@
 # SQL (关系型) 数据库
 
+/// info
+
+这些文档即将被更新。🎉
+
+当前版本假设Pydantic v1和SQLAlchemy版本小于2。
+
+新的文档将包括Pydantic v2以及 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>（也是基于SQLAlchemy），一旦SQLModel更新为为使用Pydantic v2。
+
+///
+
 **FastAPI**不需要你使用SQL(关系型)数据库。
 
 但是您可以使用任何您想要的关系型数据库。
 
 在这里，让我们看一个使用着[SQLAlchemy](https://www.sqlalchemy.org/)的示例。
 
-您可以很容易地将SQLAlchemy支持任何数据库，像：
+您可以很容易地将其调整为任何SQLAlchemy支持的数据库，如：
 
 * PostgreSQL
 * MySQL
@@ -18,11 +28,17 @@
 
 稍后，对于您的产品级别的应用程序，您可能会要使用像**PostgreSQL**这样的数据库服务器。
 
-!!! tip
-    这儿有一个**FastAPI**和**PostgreSQL**的官方项目生成器，全部基于**Docker**，包括前端和更多工具：<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+/// tip
 
-!!! note
-    请注意，大部分代码是`SQLAlchemy`的标准代码，您可以用于任何框架。FastAPI特定的代码和往常一样少。
+这儿有一个**FastAPI**和**PostgreSQL**的官方项目生成器，全部基于**Docker**，包括前端和更多工具：<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+
+///
+
+/// note
+
+请注意，大部分代码是`SQLAlchemy`的标准代码，您可以用于任何框架。FastAPI特定的代码和往常一样少。
+
+///
 
 ## ORMs（对象关系映射）
 
@@ -56,8 +72,11 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 
 以类似的方式，您也可以使用任何其他 ORM。
 
-!!! tip
-    在文档中也有一篇使用 Peewee 的等效的文章。
+/// tip
+
+在文档中也有一篇使用 Peewee 的等效的文章。
+
+///
 
 ## 文件结构
 
@@ -74,13 +93,13 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
     └── schemas.py
 ```
 
-该文件`__init__.py`只是一个空文件，但它告诉 Python 其中`sql_app`的所有模块（Python 文件）都是一个包。
+该文件`__init__.py`只是一个空文件，但它告诉 Python `sql_app` 是一个包。
 
 现在让我们看看每个文件/模块的作用。
 
 ## 安装 SQLAlchemy
 
-先下载`SQLAlchemy`所需要的依赖：
+首先你需要安装`SQLAlchemy`:
 
 <div class="termy">
 
@@ -122,9 +141,11 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 ...并根据您的数据库数据和相关凭据（也适用于 MySQL、MariaDB 或任何其他）对其进行调整。
 
-!!! tip
+/// tip
 
-    如果您想使用不同的数据库，这是就是您必须修改的地方。
+如果您想使用不同的数据库，这是就是您必须修改的地方。
+
+///
 
 ### 创建 SQLAlchemy 引擎
 
@@ -146,23 +167,25 @@ connect_args={"check_same_thread": False}
 
 ...仅用于`SQLite`，在其他数据库不需要它。
 
-!!! info "技术细节"
+/// info | "技术细节"
 
-    默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
+默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
 
-    这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
+这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
 
-    但是在 FastAPI 中，普遍使用def函数，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
+但是在 FastAPI 中，使用普通函数（def）时，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
 
-    此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
+此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
+
+///
 
 ### 创建一个`SessionLocal`类
 
-每个实例`SessionLocal`都会是一个数据库会话。当然该类本身还不是数据库会话。
+每个`SessionLocal`类的实例都会是一个数据库会话。当然该类本身还不是数据库会话。
 
 但是一旦我们创建了一个`SessionLocal`类的实例，这个实例将是实际的数据库会话。
 
-我们命名它是`SessionLocal`为了将它与我们从 SQLAlchemy 导入的`Session`区别开来。
+我们将它命名为`SessionLocal`是为了将它与我们从 SQLAlchemy 导入的`Session`区别开来。
 
 稍后我们将使用`Session`（从 SQLAlchemy 导入的那个）。
 
@@ -176,7 +199,7 @@ connect_args={"check_same_thread": False}
 
 现在我们将使用`declarative_base()`返回一个类。
 
-稍后我们将用这个类继承，来创建每个数据库模型或类（ORM 模型）：
+稍后我们将继承这个类，来创建每个数据库模型或类（ORM 模型）：
 
 ```Python hl_lines="13"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -190,10 +213,13 @@ connect_args={"check_same_thread": False}
 
 我们将使用我们之前创建的`Base`类来创建 SQLAlchemy 模型。
 
-!!! tip
-    SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的这些类和实例。
+/// tip
 
-    而 Pydantic 也使用“模型”这个术语 来指代不同的东西，即数据验证、转换以及文档类和实例。
+SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的这些类和实例。
+
+而 Pydantic 也使用“模型”这个术语 来指代不同的东西，即数据验证、转换以及文档类和实例。
+
+///
 
 从`database`（来自上面的`database.py`文件）导入`Base`。
 
@@ -209,7 +235,7 @@ connect_args={"check_same_thread": False}
 
 ### 创建模型属性/列
 
-现在创建所有模型（类）属性。
+现在创建所有模型（类）的属性。
 
 这些属性中的每一个都代表其相应数据库表中的一列。
 
@@ -243,40 +269,49 @@ connect_args={"check_same_thread": False}
 
 现在让我们查看一下文件`sql_app/schemas.py`。
 
-!!! tip
-    为了避免 SQLAlchemy*模型*和 Pydantic*模型*之间的混淆，我们将有`models.py`（SQLAlchemy 模型的文件）和`schemas.py`（ Pydantic 模型的文件）。
+/// tip
 
-    这些 Pydantic 模型或多或少地定义了一个“schema”（一个有效的数据形状）。
+为了避免 SQLAlchemy*模型*和 Pydantic*模型*之间的混淆，我们将有`models.py`（SQLAlchemy 模型的文件）和`schemas.py`（ Pydantic 模型的文件）。
 
-    因此，这将帮助我们在使用两者时避免混淆。
+这些 Pydantic 模型或多或少地定义了一个“schema”（一个有效的数据形状）。
+
+因此，这将帮助我们在使用两者时避免混淆。
+
+///
 
 ### 创建初始 Pydantic*模型*/模式
 
-创建一个`ItemBase`和`UserBase`Pydantic*模型*（或者我们说“schema”）以及在创建或读取数据时具有共同的属性。
+创建一个`ItemBase`和`UserBase`Pydantic*模型*（或者我们说“schema”），他们拥有创建或读取数据时具有的共同属性。
 
-`ItemCreate`为 创建一个`UserCreate`继承自它们的所有属性（因此它们将具有相同的属性），以及创建所需的任何其他数据（属性）。
+然后创建一个继承自他们的`ItemCreate`和`UserCreate`，并添加创建时所需的其他数据（或属性）。
 
 因此在创建时也应当有一个`password`属性。
 
-但是为了安全起见，`password`不会出现在其他同类 Pydantic*模型*中，例如用户请求时不应该从 API 返回响应中包含它。
+但是为了安全起见，`password`不会出现在其他同类 Pydantic*模型*中，例如通过API读取一个用户数据时，它不应当包含在内。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+```Python hl_lines="1  4-6  9-10  21-22  25-26"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3  6-8  11-12  23-24  27-28"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="3  6-8  11-12  23-24  27-28"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
+
+////
 
 #### SQLAlchemy 风格和 Pydantic 风格
 
@@ -304,26 +339,35 @@ name: str
 
 不仅是这些项目的 ID，还有我们在 Pydantic*模型*中定义的用于读取项目的所有数据：`Item`.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13-15  29-32"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+```Python hl_lines="13-15  29-32"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15-17  31-34"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+////
 
-!!! tip
-    请注意，读取用户（从 API 返回）时将使用不包括`password`的`User` Pydantic*模型*。
+//// tab | Python 3.8+
+
+```Python hl_lines="15-17  31-34"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
+
+////
+
+/// tip
+
+请注意，读取用户（从 API 返回）时将使用不包括`password`的`User` Pydantic*模型*。
+
+///
 
 ### 使用 Pydantic 的`orm_mode`
 
@@ -333,32 +377,41 @@ name: str
 
 在`Config`类中，设置属性`orm_mode = True`。
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  17-18  29  34-35"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+```Python hl_lines="13  17-18  29  34-35"
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  19-20  31  36-37"
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+////
 
-!!! tip
-    请注意，它使用`=`分配一个值，例如：
+//// tab | Python 3.8+
 
-    `orm_mode = True`
+```Python hl_lines="15  19-20  31  36-37"
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
 
-    它不使用之前的`:`来类型声明。
+////
 
-    这是设置配置值，而不是声明类型。
+/// tip
+
+请注意，它使用`=`分配一个值，例如：
+
+`orm_mode = True`
+
+它不使用之前的`:`来类型声明。
+
+这是设置配置值，而不是声明类型。
+
+///
 
 Pydantic`orm_mode`将告诉 Pydantic*模型*读取数据，即它不是一个`dict`，而是一个 ORM 模型（或任何其他具有属性的任意对象）。
 
@@ -368,7 +421,7 @@ Pydantic`orm_mode`将告诉 Pydantic*模型*读取数据，即它不是一个`di
 id = data["id"]
 ```
 
-尝试从属性中获取它，如：
+它还会尝试从属性中获取它，如：
 
 ```Python
 id = data.id
@@ -404,7 +457,7 @@ current_user.items
 
 在这个文件中，我们将编写可重用的函数用来与数据库中的数据进行交互。
 
-**CRUD**分别为：**增加**、**查询**、**更改**和**删除**，即增删改查。
+**CRUD**分别为：增加（**C**reate）、查询（**R**ead）、更改（**U**pdate）、删除（**D**elete），即增删改查。
 
 ...虽然在这个例子中我们只是新增和查询。
 
@@ -414,7 +467,7 @@ current_user.items
 
 导入之前的`models`（SQLAlchemy 模型）和`schemas`（Pydantic*模型*/模式）。
 
-创建一些实用函数来完成：
+创建一些工具函数来完成：
 
 * 通过 ID 和电子邮件查询单个用户。
 * 查询多个用户。
@@ -424,52 +477,64 @@ current_user.items
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip
-    通过创建仅专用于与数据库交互（获取用户或项目）的函数，独立于*路径操作函数*，您可以更轻松地在多个部分中重用它们，并为它们添加单元测试。
+/// tip
+
+通过创建仅专用于与数据库交互（获取用户或项目）的函数，独立于*路径操作函数*，您可以更轻松地在多个部分中重用它们，并为它们添加单元测试。
+
+///
 
 ### 创建数据
 
-现在创建实用程序函数来创建数据。
+现在创建工具函数来创建数据。
 
 它的步骤是：
 
 * 使用您的数据创建一个 SQLAlchemy 模型*实例。*
-* 使用`add`来将该实例对象添加到您的数据库。
-* 使用`commit`来对数据库的事务提交（以便保存它们）。
-* 使用`refresh`来刷新您的数据库实例（以便它包含来自数据库的任何新数据，例如生成的 ID）。
+* 使用`add`来将该实例对象添加到数据库会话。
+* 使用`commit`来将更改提交到数据库（以便保存它们）。
+* 使用`refresh`来刷新您的实例对象（以便它包含来自数据库的任何新数据，例如生成的 ID）。
 
 ```Python hl_lines="18-24  31-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip
-    SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含散列的安全密码。
+/// tip
 
-    但由于 API 客户端提供的是原始密码，因此您需要将其提取并在应用程序中生成散列密码。
+SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含散列的安全密码。
 
-    然后将hashed_password参数与要保存的值一起传递。
+但由于 API 客户端提供的是原始密码，因此您需要将其提取并在应用程序中生成散列密码。
 
-!!! warning
-    此示例不安全，密码未经过哈希处理。
+然后将hashed_password参数与要保存的值一起传递。
 
-    在现实生活中的应用程序中，您需要对密码进行哈希处理，并且永远不要以明文形式保存它们。
+///
 
-    有关更多详细信息，请返回教程中的安全部分。
+/// warning
 
-    在这里，我们只关注数据库的工具和机制。
+此示例不安全，密码未经过哈希处理。
 
-!!! tip
-    这里不是将每个关键字参数传递给Item并从Pydantic模型中读取每个参数，而是先生成一个字典，其中包含Pydantic模型的数据：
+在现实生活中的应用程序中，您需要对密码进行哈希处理，并且永远不要以明文形式保存它们。
 
-    `item.dict()`
+有关更多详细信息，请返回教程中的安全部分。
 
-    然后我们将dict的键值对 作为关键字参数传递给 SQLAlchemy `Item`：
+在这里，我们只关注数据库的工具和机制。
 
-    `Item(**item.dict())`
+///
 
-    然后我们传递 Pydantic模型未提供的额外关键字参数`owner_id`：
+/// tip
 
-    `Item(**item.dict(), owner_id=user_id)`
+这里不是将每个关键字参数传递给Item并从Pydantic模型中读取每个参数，而是先生成一个字典，其中包含Pydantic模型的数据：
+
+`item.dict()`
+
+然后我们将dict的键值对 作为关键字参数传递给 SQLAlchemy `Item`：
+
+`Item(**item.dict())`
+
+然后我们传递 Pydantic模型未提供的额外关键字参数`owner_id`：
+
+`Item(**item.dict(), owner_id=user_id)`
+
+///
 
 ## 主**FastAPI**应用程序
 
@@ -479,17 +544,21 @@ current_user.items
 
 以非常简单的方式创建数据库表：
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
+
+////
 
 #### Alembic 注意
 
@@ -499,77 +568,95 @@ current_user.items
 
 “迁移”是每当您更改 SQLAlchemy 模型的结构、添加新属性等以在数据库中复制这些更改、添加新列、新表等时所需的一组步骤。
 
-您可以在[Project Generation - Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/)。
+您可以在[Full Stack FastAPI Template](https://fastapi.tiangolo.com/zh/project-generation/)的模板中找到一个 FastAPI 项目中的 Alembic 示例。具体在[`alembic`代码目录中](https://github.com/tiangolo/full-stack-fastapi-template/tree/master/backend/app/alembic)。
 
 ### 创建依赖项
 
 现在使用我们在`sql_app/database.py`文件中创建的`SessionLocal`来创建依赖项。
 
-我们需要每个请求有一个独立的数据库会话/连接（`SessionLocal`），在所有请求中使用相同的会话，然后在请求完成后关闭它。
+我们需要每个请求有一个独立的数据库会话/连接（`SessionLocal`），在整个请求中使用相同的会话，然后在请求完成后关闭它。
 
 然后将为下一个请求创建一个新会话。
 
-为此，我们将创建一个新的依赖项`yield`，正如前面关于[Dependencies with`yield`](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/)的部分中所解释的那样。
+为此，我们将创建一个包含`yield`的依赖项，正如前面关于[Dependencies with`yield`](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/)的部分中所解释的那样。
 
 我们的依赖项将创建一个新的 SQLAlchemy `SessionLocal`，它将在单个请求中使用，然后在请求完成后关闭它。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="13-18"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+```Python hl_lines="13-18"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="15-20"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! info
-    我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+```Python hl_lines="15-20"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-    然后我们在finally块中关闭它。
+////
 
-    通过这种方式，我们确保数据库会话在请求后始终关闭。即使在处理请求时出现异常。
+/// info
 
-    但是您不能从退出代码中引发另一个异常（在yield之后）。可以查阅 [Dependencies with yield and HTTPException](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception)
+我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+
+然后我们在finally块中关闭它。
+
+通过这种方式，我们确保数据库会话在请求后始终关闭。即使在处理请求时出现异常。
+
+但是您不能从退出代码中引发另一个异常（在yield之后）。可以查阅 [Dependencies with yield and HTTPException](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception)
+
+///
 
 *然后，当在路径操作函数*中使用依赖项时，我们使用`Session`，直接从 SQLAlchemy 导入的类型声明它。
 
 *这将为我们在路径操作函数*中提供更好的编辑器支持，因为编辑器将知道`db`参数的类型`Session`：
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="22  30  36  45  51"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+```Python hl_lines="22  30  36  45  51"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="24  32  38  47  53"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! info "技术细节"
-    参数`db`实际上是 type `SessionLocal`，但是这个类（用 创建`sessionmaker()`）是 SQLAlchemy 的“代理” `Session`，所以，编辑器并不真正知道提供了哪些方法。
+```Python hl_lines="24  32  38  47  53"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
 
-    但是通过将类型声明为Session，编辑器现在可以知道可用的方法（.add()、.query()、.commit()等）并且可以提供更好的支持（比如完成）。类型声明不影响实际对象。
+////
+
+/// info | "技术细节"
+
+参数`db`实际上是 type `SessionLocal`，但是这个类（用 创建`sessionmaker()`）是 SQLAlchemy 的“代理” `Session`，所以，编辑器并不真正知道提供了哪些方法。
+
+但是通过将类型声明为Session，编辑器现在可以知道可用的方法（.add()、.query()、.commit()等）并且可以提供更好的支持（比如完成）。类型声明不影响实际对象。
+
+///
 
 ### 创建您的**FastAPI** *路径操作*
 
 现在，到了最后，编写标准的**FastAPI** *路径操作*代码。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
+
+////
 
 我们在依赖项中的每个请求之前利用`yield`创建数据库会话，然后关闭它。
 
@@ -577,15 +664,21 @@ current_user.items
 
 这样，我们就可以直接从*路径操作函数*内部调用`crud.get_user`并使用该会话，来进行对数据库操作。
 
-!!! tip
-    请注意，您返回的值是 SQLAlchemy 模型或 SQLAlchemy 模型列表。
+/// tip
 
-    但是由于所有路径操作的response_model都使用 Pydantic模型/使用orm_mode模式，因此您的 Pydantic 模型中声明的数据将从它们中提取并返回给客户端，并进行所有正常的过滤和验证。
+请注意，您返回的值是 SQLAlchemy 模型或 SQLAlchemy 模型列表。
 
-!!! tip
-    另请注意，`response_models`应当是标准 Python 类型，例如`List[schemas.Item]`.
+但是由于所有路径操作的response_model都使用 Pydantic模型/使用orm_mode模式，因此您的 Pydantic 模型中声明的数据将从它们中提取并返回给客户端，并进行所有正常的过滤和验证。
 
-    但是由于它的内容/参数List是一个 使用orm_mode模式的Pydantic模型，所以数据将被正常检索并返回给客户端，所以没有问题。
+///
+
+/// tip
+
+另请注意，`response_models`应当是标准 Python 类型，例如`List[schemas.Item]`.
+
+但是由于它的内容/参数List是一个 使用orm_mode模式的Pydantic模型，所以数据将被正常检索并返回给客户端，所以没有问题。
+
+///
 
 ### 关于 `def` 对比 `async def`
 
@@ -614,11 +707,17 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     ...
 ```
 
-!!! info
-    如果您需要异步连接到关系数据库，请参阅[Async SQL (Relational) Databases](https://fastapi.tiangolo.com/zh/advanced/async-sql-databases/)
+/// info
 
-!!! note "Very Technical Details"
-    如果您很好奇并且拥有深厚的技术知识，您可以在[Async](https://fastapi.tiangolo.com/zh/async/#very-technical-details)文档中查看有关如何处理 `async def`于`def`差别的技术细节。
+如果您需要异步连接到关系数据库，请参阅[Async SQL (Relational) Databases](https://fastapi.tiangolo.com/zh/advanced/async-sql-databases/)
+
+///
+
+/// note | "Very Technical Details"
+
+如果您很好奇并且拥有深厚的技术知识，您可以在[Async](https://fastapi.tiangolo.com/zh/async/#very-technical-details)文档中查看有关如何处理 `async def`于`def`差别的技术细节。
+
+///
 
 ## 迁移
 
@@ -652,23 +751,29 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/schemas.py`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-    ```
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+```
+
+////
 
 * `sql_app/crud.py`:
 
@@ -678,25 +783,31 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/main.py`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-    ```
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python
+{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+```
+
+////
 
 ## 执行项目
 
 您可以复制这些代码并按原样使用它。
 
-!!! info
+/// info
 
-    事实上，这里的代码只是大多数测试代码的一部分。
+事实上，这里的代码只是大多数测试代码的一部分。
+
+///
 
 你可以用 Uvicorn 运行它：
 
@@ -729,38 +840,45 @@ $ uvicorn sql_app.main:app --reload
 
 ## 中间件替代数据库会话
 
-如果你不能使用依赖项`yield`——例如，如果你没有使用**Python 3.7**并且不能安装上面提到的**Python 3.6**的“backports” ——你可以在类似的“中间件”中设置会话方法。
+如果你不能使用带有`yield`的依赖项——例如，如果你没有使用**Python 3.7**并且不能安装上面提到的**Python 3.6**的“backports” ——你可以使用类似的方法在“中间件”中设置会话。
 
-“中间件”基本功能是一个为每个请求执行的函数在请求之前进行执行相应的代码，以及在请求执行之后执行相应的代码。
+“中间件”基本上是一个对每个请求都执行的函数，其中一些代码在端点函数之前执行，另一些代码在端点函数之后执行。
 
 ### 创建中间件
 
-我们将添加中间件（只是一个函数）将为每个请求创建一个新的 SQLAlchemy`SessionLocal`，将其添加到请求中，然后在请求完成后关闭它。
+我们要添加的中间件（只是一个函数）将为每个请求创建一个新的 SQLAlchemy`SessionLocal`，将其添加到请求中，然后在请求完成后关闭它。
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="12-20"
-    {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
-    ```
+```Python hl_lines="12-20"
+{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="14-22"
-    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! info
-    我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+```Python hl_lines="14-22"
+{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
+```
 
-    然后我们在finally块中关闭它。
+////
 
-    通过这种方式，我们确保数据库会话在请求后始终关闭，即使在处理请求时出现异常也会关闭。
+/// info
+
+我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
+
+然后我们在finally块中关闭它。
+
+通过这种方式，我们确保数据库会话在请求后始终关闭，即使在处理请求时出现异常也会关闭。
+
+///
 
 ### 关于`request.state`
 
 `request.state`是每个`Request`对象的属性。它用于存储附加到请求本身的任意对象，例如本例中的数据库会话。您可以在[Starlette 的关于`Request`state](https://www.starlette.io/requests/#other-state)的文档中了解更多信息。
 
-对于这种情况下，它帮助我们确保在所有请求中使用单个数据库会话，然后关闭（在中间件中）。
+对于这种情况下，它帮助我们确保在整个请求中使用单个数据库会话，然后关闭（在中间件中）。
 
 ### 使用`yield`依赖项与使用中间件的区别
 
@@ -775,10 +893,16 @@ $ uvicorn sql_app.main:app --reload
     * 将为每个请求创建一个连接。
     * 即使处理该请求的*路径操作*不需要数据库。
 
-!!! tip
-    `tyield`当依赖项 足以满足用例时，使用`tyield`依赖项方法会更好。
+/// tip
 
-!!! info
-    `yield`的依赖项是最近刚加入**FastAPI**中的。
+最好使用带有yield的依赖项，如果这足够满足用例需求
 
-    所以本教程的先前版本只有带有中间件的示例，并且可能有多个应用程序使用中间件进行数据库会话管理。
+///
+
+/// info
+
+带有`yield`的依赖项是最近刚加入**FastAPI**中的。
+
+所以本教程的先前版本只有带有中间件的示例，并且可能有多个应用程序使用中间件进行数据库会话管理。
+
+///
