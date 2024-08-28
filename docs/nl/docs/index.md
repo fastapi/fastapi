@@ -403,7 +403,7 @@ Terugkomend op het vorige code voorbeeld, **FastAPI** zal:
 
 Dit was nog maar een snel overzicht, maar je zou nu toch al een idee moeten hebben over hoe het allemaal werkt.
 
-Probeer de regel te veranderen met:
+Probeer deze regel te veranderen:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
