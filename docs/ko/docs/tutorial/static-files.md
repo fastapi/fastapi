@@ -11,10 +11,13 @@
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "기술적 세부사항"
-    `from starlette.staticfiles import StaticFiles` 를 사용할 수도 있습니다.
+/// note | "기술적 세부사항"
 
-    **FastAPI**는 단지 개발자인, 당신에게 편의를 제공하기 위해 `fastapi.static files` 와 동일한 `starlett.static files`를 제공합니다. 하지만 사실 이것은 Starlett에서 직접 온 것입니다.
+`from starlette.staticfiles import StaticFiles` 를 사용할 수도 있습니다.
+
+**FastAPI**는 단지 개발자인, 당신에게 편의를 제공하기 위해 `fastapi.static files` 와 동일한 `starlett.static files`를 제공합니다. 하지만 사실 이것은 Starlett에서 직접 온 것입니다.
+
+///
 
 ### "마운팅" 이란
 

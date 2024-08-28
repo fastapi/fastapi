@@ -8,24 +8,31 @@
 
 Вы можете объявить ключ `example` для модели Pydantic, используя класс `Config` и переменную `schema_extra`, как описано в <a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Pydantic документации: Настройка схемы</a>:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13-21"
-    {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
-    ```
+```Python hl_lines="13-21"
+{!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="15-23"
-    {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="15-23"
+{!> ../../../docs_src/schema_extra_example/tutorial001.py!}
+```
+
+////
 
 Эта дополнительная информация будет включена в **JSON Schema** выходных данных для этой модели, и она будет использоваться в документации к API.
 
-!!! tip Подсказка
-    Вы можете использовать тот же метод для расширения JSON-схемы и добавления своей собственной дополнительной информации.
+/// tip | Подсказка
 
-    Например, вы можете использовать это для добавления дополнительной информации для пользовательского интерфейса в вашем веб-приложении и т.д.
+Вы можете использовать тот же метод для расширения JSON-схемы и добавления своей собственной дополнительной информации.
+
+Например, вы можете использовать это для добавления дополнительной информации для пользовательского интерфейса в вашем веб-приложении и т.д.
+
+///
 
 ## Дополнительные аргументы поля `Field`
 
@@ -33,20 +40,27 @@
 
 Вы можете использовать это, чтобы добавить аргумент `example` для каждого поля:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="2  8-11"
-    {!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
-    ```
+```Python hl_lines="2  8-11"
+{!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="4  10-13"
-    {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! warning Внимание
-    Имейте в виду, что эти дополнительные переданные аргументы не добавляют никакой валидации, только дополнительную информацию для документации.
+```Python hl_lines="4  10-13"
+{!> ../../../docs_src/schema_extra_example/tutorial002.py!}
+```
+
+////
+
+/// warning | Внимание
+
+Имейте в виду, что эти дополнительные переданные аргументы не добавляют никакой валидации, только дополнительную информацию для документации.
+
+///
 
 ## Использование `example` и `examples` в OpenAPI
 
@@ -66,41 +80,57 @@
 
 Здесь мы передаём аргумент `example`, как пример данных ожидаемых в параметре `Body()`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="22-27"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="22-27"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="22-27"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="22-27"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="23-28"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip Заметка
-        Рекомендуется использовать версию с `Annotated`, если это возможно.
+```Python hl_lines="23-28"
+{!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="18-23"
-    {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip Заметка
-        Рекомендуется использовать версию с `Annotated`, если это возможно.
+/// tip | Заметка
 
-    ```Python hl_lines="20-25"
-    {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
-    ```
+Рекомендуется использовать версию с `Annotated`, если это возможно.
+
+///
+
+```Python hl_lines="18-23"
+{!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | Заметка
+
+Рекомендуется использовать версию с `Annotated`, если это возможно.
+
+///
+
+```Python hl_lines="20-25"
+{!> ../../../docs_src/schema_extra_example/tutorial003.py!}
+```
+
+////
 
 ### Аргумент "example" в UI документации
 
@@ -121,41 +151,57 @@
 * `value`: Это конкретный пример, который отображается, например, в виде типа `dict`.
 * `externalValue`: альтернатива параметру `value`, URL-адрес, указывающий на пример. Хотя это может не поддерживаться таким же количеством инструментов разработки и тестирования API, как параметр `value`.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="23-49"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="23-49"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="23-49"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="23-49"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="24-50"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip Заметка
-        Рекомендуется использовать версию с `Annotated`, если это возможно.
+```Python hl_lines="24-50"
+{!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
+```
 
-    ```Python hl_lines="19-45"
-    {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip Заметка
-        Рекомендуется использовать версию с `Annotated`, если это возможно.
+/// tip | Заметка
 
-    ```Python hl_lines="21-47"
-    {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
-    ```
+Рекомендуется использовать версию с `Annotated`, если это возможно.
+
+///
+
+```Python hl_lines="19-45"
+{!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | Заметка
+
+Рекомендуется использовать версию с `Annotated`, если это возможно.
+
+///
+
+```Python hl_lines="21-47"
+{!> ../../../docs_src/schema_extra_example/tutorial004.py!}
+```
+
+////
 
 ### Аргумент "examples" в UI документации
 
@@ -165,10 +211,13 @@
 
 ## Технические Детали
 
-!!! warning Внимание
-    Эти технические детали относятся к стандартам  **JSON Schema** и **OpenAPI**.
+/// warning | Внимание
 
-    Если предложенные выше идеи уже работают для вас, возможно этого будет достаточно и эти детали вам не потребуются, можете спокойно их пропустить.
+Эти технические детали относятся к стандартам  **JSON Schema** и **OpenAPI**.
+
+Если предложенные выше идеи уже работают для вас, возможно этого будет достаточно и эти детали вам не потребуются, можете спокойно их пропустить.
+
+///
 
 Когда вы добавляете пример внутрь модели Pydantic, используя `schema_extra` или `Field(example="something")`, этот пример добавляется в **JSON Schema** для данной модели Pydantic.
 

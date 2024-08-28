@@ -8,26 +8,33 @@ Isso é especialmente o caso para modelos de usuários, porque:
 * O **modelo de saída** não deve ter uma senha.
 * O **modelo de banco de dados** provavelmente precisaria ter uma senha criptografada.
 
-!!! danger
-    Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
+/// danger
 
-    Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
+
+Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+
+///
 
 ## Múltiplos modelos
 
 Aqui está uma ideia geral de como os modelos poderiam parecer com seus campos de senha e os lugares onde são usados:
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
-    {!> ../../../docs_src/extra_models/tutorial001.py!}
-    ```
+```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
+{!> ../../../docs_src/extra_models/tutorial001.py!}
+```
 
-=== "Python 3.10 and above"
+////
 
-    ```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
-    {!> ../../../docs_src/extra_models/tutorial001_py310.py!}
-    ```
+//// tab | Python 3.10 and above
+
+```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
+{!> ../../../docs_src/extra_models/tutorial001_py310.py!}
+```
+
+////
 
 ### Sobre `**user_in.dict()`
 
@@ -139,8 +146,11 @@ UserInDB(
 )
 ```
 
-!!! warning
-    As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real.
+/// warning
+
+As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real.
+
+///
 
 ## Reduzir duplicação
 
@@ -158,17 +168,21 @@ Toda conversão de dados, validação, documentação, etc. ainda funcionará no
 
 Dessa forma, podemos declarar apenas as diferenças entre os modelos (com `password` em texto claro, com `hashed_password` e sem senha):
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="9  15-16  19-20  23-24"
-    {!> ../../../docs_src/extra_models/tutorial002.py!}
-    ```
+```Python hl_lines="9  15-16  19-20  23-24"
+{!> ../../../docs_src/extra_models/tutorial002.py!}
+```
 
-=== "Python 3.10 and above"
+////
 
-    ```Python hl_lines="7  13-14  17-18  21-22"
-    {!> ../../../docs_src/extra_models/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10 and above
+
+```Python hl_lines="7  13-14  17-18  21-22"
+{!> ../../../docs_src/extra_models/tutorial002_py310.py!}
+```
+
+////
 
 ## `Union` ou `anyOf`
 
@@ -178,20 +192,27 @@ Isso será definido no OpenAPI com `anyOf`.
 
 Para fazer isso, use a dica de tipo padrão do Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-!!! note
-    Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
+/// note
 
-=== "Python 3.8 and above"
+Ao definir um <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, inclua o tipo mais específico primeiro, seguido pelo tipo menos específico. No exemplo abaixo, o tipo mais específico `PlaneItem` vem antes de `CarItem` em `Union[PlaneItem, CarItem]`.
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003.py!}
-    ```
+///
 
-=== "Python 3.10 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
-    ```
+```Python hl_lines="1  14-15  18-20  33"
+{!> ../../../docs_src/extra_models/tutorial003.py!}
+```
+
+////
+
+//// tab | Python 3.10 and above
+
+```Python hl_lines="1  14-15  18-20  33"
+{!> ../../../docs_src/extra_models/tutorial003_py310.py!}
+```
+
+////
 
 ### `Union` no Python 3.10
 
@@ -213,17 +234,21 @@ Da mesma forma, você pode declarar respostas de listas de objetos.
 
 Para isso, use o padrão Python `typing.List` (ou simplesmente `list` no Python 3.9 e superior):
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="1  20"
-    {!> ../../../docs_src/extra_models/tutorial004.py!}
-    ```
+```Python hl_lines="1  20"
+{!> ../../../docs_src/extra_models/tutorial004.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/extra_models/tutorial004_py39.py!}
-    ```
+//// tab | Python 3.9 and above
+
+```Python hl_lines="18"
+{!> ../../../docs_src/extra_models/tutorial004_py39.py!}
+```
+
+////
 
 ## Resposta com `dict` arbitrário
 
@@ -233,17 +258,21 @@ Isso é útil se você não souber os nomes de campo / atributo válidos (que se
 
 Neste caso, você pode usar `typing.Dict` (ou simplesmente dict no Python 3.9 e superior):
 
-=== "Python 3.8 and above"
+//// tab | Python 3.8 and above
 
-    ```Python hl_lines="1  8"
-    {!> ../../../docs_src/extra_models/tutorial005.py!}
-    ```
+```Python hl_lines="1  8"
+{!> ../../../docs_src/extra_models/tutorial005.py!}
+```
 
-=== "Python 3.9 and above"
+////
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/extra_models/tutorial005_py39.py!}
-    ```
+//// tab | Python 3.9 and above
+
+```Python hl_lines="6"
+{!> ../../../docs_src/extra_models/tutorial005_py39.py!}
+```
+
+////
 
 ## Em resumo
 

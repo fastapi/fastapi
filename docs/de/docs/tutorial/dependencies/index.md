@@ -30,41 +30,57 @@ Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection
 Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8-9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="9-12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="6-7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="8-11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Das war's schon.
 
@@ -84,90 +100,125 @@ In diesem Fall erwartet diese Abhängigkeit:
 
 Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
 
-!!! info
-    FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
+/// info
 
-    Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
-    Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
+
+Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+
+///
 
 ### `Depends` importieren
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="3"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 ### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr>
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="13  18"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="16  21"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="11  16"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="15  20"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Obwohl Sie `Depends` in den Parametern Ihrer Funktion genauso verwenden wie `Body`, `Query`, usw., funktioniert `Depends` etwas anders.
 
@@ -179,8 +230,11 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
-!!! tip "Tipp"
-    Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
+/// tip | "Tipp"
+
+Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
+
+///
 
 Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
 
@@ -201,10 +255,13 @@ common_parameters --> read_users
 
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
-!!! check
-    Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
+/// check
 
-    Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
+Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
+
+Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erledigt wird.
+
+///
 
 ## `Annotated`-Abhängigkeiten wiederverwenden
 
@@ -218,28 +275,37 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in einer Variablen speichern und an mehreren Stellen verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+```Python hl_lines="12  16  21"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="14  18  23"
+{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+```
 
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
+////
 
-!!! tip "Tipp"
-    Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+//// tab | Python 3.8+
 
-    Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
+```Python hl_lines="15  19  24"
+{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
+
+Da **FastAPI** jedoch auf Standard-Python, einschließlich `Annotated`, basiert, können Sie diesen Trick in Ihrem Code verwenden. 😎
+
+///
 
 Die Abhängigkeiten funktionieren weiterhin wie erwartet, und das **Beste daran** ist, dass die **Typinformationen erhalten bleiben**, was bedeutet, dass Ihr Editor Ihnen weiterhin **automatische Vervollständigung**, **Inline-Fehler**, usw. bieten kann. Das Gleiche gilt für andere Tools wie `mypy`.
 
@@ -255,8 +321,11 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
-!!! note "Hinweis"
-    Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+/// note | "Hinweis"
+
+Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+
+///
 
 ## Integriert in OpenAPI
 

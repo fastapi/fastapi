@@ -10,10 +10,13 @@
 
 쿼리 매개변수 `q`는 `Optional[str]` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
 
-!!! note "참고"
-    FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압니다.
+/// note | "참고"
 
-    `Optional[str]`에 있는 `Optional`은 FastAPI가 사용하는게 아니지만, 편집기에게 더 나은 지원과 오류 탐지를 제공하게 해줍니다.
+FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압니다.
+
+`Optional[str]`에 있는 `Optional`은 FastAPI가 사용하는게 아니지만, 편집기에게 더 나은 지원과 오류 탐지를 제공하게 해줍니다.
+
+///
 
 ## 추가 검증
 
@@ -51,22 +54,25 @@ q: Optional[str] = None
 
 하지만 명시적으로 쿼리 매개변수를 선언합니다.
 
-!!! info "정보"
-    FastAPI는 다음 부분에 관심이 있습니다:
+/// info | "정보"
 
-    ```Python
-    = None
-    ```
+FastAPI는 다음 부분에 관심이 있습니다:
 
-    또는:
+```Python
+= None
+```
 
-    ```Python
-    = Query(None)
-    ```
+또는:
 
-    그리고 `None`을 사용하여 쿼라 매개변수가 필수적이지 않다는 것을 파악합니다.
+```Python
+= Query(None)
+```
 
-    `Optional` 부분은 편집기에게 더 나은 지원을 제공하기 위해서만 사용됩니다.
+그리고 `None`을 사용하여 쿼라 매개변수가 필수적이지 않다는 것을 파악합니다.
+
+`Optional` 부분은 편집기에게 더 나은 지원을 제공하기 위해서만 사용됩니다.
+
+///
 
 또한 `Query`로 더 많은 매개변수를 전달할 수 있습니다. 지금의 경우 문자열에 적용되는 `max_length` 매개변수입니다:
 
@@ -112,8 +118,11 @@ q: str = Query(None, max_length=50)
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! note "참고"
-    기본값을 갖는 것만으로 매개변수는 선택적이 됩니다.
+/// note | "참고"
+
+기본값을 갖는 것만으로 매개변수는 선택적이 됩니다.
+
+///
 
 ## 필수로 만들기
 
@@ -141,8 +150,11 @@ q: Optional[str] = Query(None, min_length=3)
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! info "정보"
-    이전에 `...`를 본적이 없다면: 특별한 단일값으로, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">파이썬의 일부이며 "Ellipsis"라 부릅니다</a>.
+/// info | "정보"
+
+이전에 `...`를 본적이 없다면: 특별한 단일값으로, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">파이썬의 일부이며 "Ellipsis"라 부릅니다</a>.
+
+///
 
 이렇게 하면 **FastAPI**가 이 매개변수는 필수임을 알 수 있습니다.
 
@@ -175,8 +187,11 @@ http://localhost:8000/items/?q=foo&q=bar
 }
 ```
 
-!!! tip "팁"
-    위의 예와 같이 `list` 자료형으로 쿼리 매개변수를 선언하려면 `Query`를 명시적으로 사용해야 합니다. 그렇지 않으면 요청 본문으로 해석됩니다.
+/// tip | "팁"
+
+위의 예와 같이 `list` 자료형으로 쿼리 매개변수를 선언하려면 `Query`를 명시적으로 사용해야 합니다. 그렇지 않으면 요청 본문으로 해석됩니다.
+
+///
 
 대화형 API 문서는 여러 값을 허용하도록 수정 됩니다:
 
@@ -215,10 +230,13 @@ http://localhost:8000/items/
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! note "참고"
-    이 경우 FastAPI는 리스트의 내용을 검사하지 않음을 명심하기 바랍니다.
+/// note | "참고"
 
-    예를 들어, `List[int]`는 리스트 내용이 정수인지 검사(및 문서화)합니다. 하지만 `list` 단독일 경우는 아닙니다.
+이 경우 FastAPI는 리스트의 내용을 검사하지 않음을 명심하기 바랍니다.
+
+예를 들어, `List[int]`는 리스트 내용이 정수인지 검사(및 문서화)합니다. 하지만 `list` 단독일 경우는 아닙니다.
+
+///
 
 ## 더 많은 메타데이터 선언
 
@@ -226,10 +244,13 @@ http://localhost:8000/items/
 
 해당 정보는 생성된 OpenAPI에 포함되고 문서 사용자 인터페이스 및 외부 도구에서 사용됩니다.
 
-!!! note "참고"
-    도구에 따라 OpenAPI 지원 수준이 다를 수 있음을 명심하기 바랍니다.
+/// note | "참고"
 
-    일부는 아직 선언된 추가 정보를 모두 표시하지 않을 수 있지만, 대부분의 경우 누락된 기능은 이미 개발 계획이 있습니다.
+도구에 따라 OpenAPI 지원 수준이 다를 수 있음을 명심하기 바랍니다.
+
+일부는 아직 선언된 추가 정보를 모두 표시하지 않을 수 있지만, 대부분의 경우 누락된 기능은 이미 개발 계획이 있습니다.
+
+///
 
 `title`을 추가할 수 있습니다:
 

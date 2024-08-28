@@ -52,22 +52,25 @@ $ pip install fastapi[all]
 
 ... qui comprend également `uvicorn`, que vous pouvez utiliser comme serveur pour exécuter votre code.
 
-!!! note
-    Vous pouvez également l'installer pièce par pièce.
+/// note
 
-    C'est ce que vous feriez probablement une fois que vous voudrez déployer votre application en production :
+Vous pouvez également l'installer pièce par pièce.
 
-    ```
-    pip install fastapi
-    ```
+C'est ce que vous feriez probablement une fois que vous voudrez déployer votre application en production :
 
-    Installez également `uvicorn` pour qu'il fonctionne comme serveur :
+```
+pip install fastapi
+```
 
-    ```
-    pip install uvicorn
-    ```
+Installez également `uvicorn` pour qu'il fonctionne comme serveur :
 
-    Et la même chose pour chacune des dépendances facultatives que vous voulez utiliser.
+```
+pip install uvicorn
+```
+
+Et la même chose pour chacune des dépendances facultatives que vous voulez utiliser.
+
+///
 
 ## Guide utilisateur avancé
 

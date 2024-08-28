@@ -8,28 +8,35 @@ Ihre API sendet fast immer einen **Response**body. Aber Clients senden nicht unb
 
 Um einen **Request**body zu deklarieren, verwenden Sie <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>-Modelle mit allen deren Fähigkeiten und Vorzügen.
 
-!!! info
-    Um Daten zu versenden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
+/// info
 
-    Senden Sie einen Body mit einem `GET`-Request, dann führt das laut Spezifikation zu undefiniertem Verhalten. Trotzdem wird es von FastAPI unterstützt, für sehr komplexe/extreme Anwendungsfälle.
+Um Daten zu versenden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
 
-    Da aber davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutzeroberfläche die Dokumentation für den Body auch nicht an, wenn `GET` verwendet wird. Dazwischengeschaltete Proxys unterstützen es möglicherweise auch nicht.
+Senden Sie einen Body mit einem `GET`-Request, dann führt das laut Spezifikation zu undefiniertem Verhalten. Trotzdem wird es von FastAPI unterstützt, für sehr komplexe/extreme Anwendungsfälle.
+
+Da aber davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutzeroberfläche die Dokumentation für den Body auch nicht an, wenn `GET` verwendet wird. Dazwischengeschaltete Proxys unterstützen es möglicherweise auch nicht.
+
+///
 
 ## Importieren Sie Pydantics `BaseModel`
 
 Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="2"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="4"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 ## Erstellen Sie Ihr Datenmodell
 
@@ -37,17 +44,21 @@ Dann deklarieren Sie Ihr Datenmodell als eine Klasse, die von `BaseModel` erbt.
 
 Verwenden Sie Standard-Python-Typen für die Klassenattribute:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="5-9"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="5-9"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="7-11"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="7-11"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 Wie auch bei Query-Parametern gilt, wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Ansonsten ist es erforderlich. Verwenden Sie `None`, um es als optional zu kennzeichnen.
 
@@ -75,17 +86,21 @@ Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre fol
 
 Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial001.py!}
+```
+
+////
 
 ... und deklarieren Sie seinen Typ als das Modell, welches Sie erstellt haben, `Item`.
 
@@ -134,32 +149,39 @@ Aber Sie bekommen die gleiche Editor-Unterstützung in <a href="https://www.jetb
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "Tipp"
-    Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
+/// tip | "Tipp"
 
-    Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
+Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
 
-    * Code-Vervollständigung
-    * Typüberprüfungen
-    * Refaktorisierung
-    * Suchen
-    * Inspektionen
+Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
+
+* Code-Vervollständigung
+* Typüberprüfungen
+* Refaktorisierung
+* Suchen
+* Inspektionen
+
+///
 
 ## Das Modell verwenden
 
 Innerhalb der Funktion können Sie alle Attribute des Modells direkt verwenden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/body/tutorial002_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/body/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/body/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/body/tutorial002.py!}
+```
+
+////
 
 ## Requestbody- + Pfad-Parameter
 
@@ -167,17 +189,21 @@ Sie können Pfad- und Requestbody-Parameter gleichzeitig deklarieren.
 
 **FastAPI** erkennt, dass Funktionsparameter, die mit Pfad-Parametern übereinstimmen, **vom Pfad genommen** werden sollen, und dass Funktionsparameter, welche Pydantic-Modelle sind, **vom Requestbody genommen** werden sollen.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/body/tutorial003_py310.py!}
-    ```
+```Python hl_lines="15-16"
+{!> ../../../docs_src/body/tutorial003_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/body/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="17-18"
+{!> ../../../docs_src/body/tutorial003.py!}
+```
+
+////
 
 ## Requestbody- + Pfad- + Query-Parameter
 
@@ -185,17 +211,21 @@ Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** 
 
 **FastAPI** wird jeden Parameter korrekt erkennen und die Daten vom richtigen Ort holen.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial004_py310.py!}
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/body/tutorial004_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial004.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../../docs_src/body/tutorial004.py!}
+```
+
+////
 
 Die Funktionsparameter werden wie folgt erkannt:
 
@@ -203,10 +233,13 @@ Die Funktionsparameter werden wie folgt erkannt:
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
 * Wenn der Parameter vom Typ eines **Pydantic-Modells** ist, wird er als Request**body** interpretiert.
 
-!!! note "Hinweis"
-    FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
+/// note | "Hinweis"
 
-    Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
+
+Das `Union` in `Union[str, None]` wird von FastAPI nicht verwendet, aber es erlaubt Ihrem Editor, Sie besser zu unterstützen und Fehler zu erkennen.
+
+///
 
 ## Ohne Pydantic
 

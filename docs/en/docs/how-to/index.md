@@ -6,6 +6,8 @@ Most of these ideas would be more or less **independent**, and in most cases you
 
 If something seems interesting and useful to your project, go ahead and check it, but otherwise, you might probably just skip them.
 
-!!! tip
+/// tip
 
-    If you want to **learn FastAPI** in a structured way (recommended), go and read the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} chapter by chapter instead.
+If you want to **learn FastAPI** in a structured way (recommended), go and read the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} chapter by chapter instead.
+
+///

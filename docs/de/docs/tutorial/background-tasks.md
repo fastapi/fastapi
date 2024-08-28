@@ -57,41 +57,57 @@ Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einb
 
 **FastAPI** weiß, was jeweils zu tun ist und wie dasselbe Objekt wiederverwendet werden kann, sodass alle Hintergrundtasks zusammengeführt und anschließend im Hintergrund ausgeführt werden:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="14  16  23  26"
-    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="14  16  23  26"
+{!> ../../../docs_src/background_tasks/tutorial002_an.py!}
+```
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="11  13  20  23"
+{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="13  15  22  25"
+{!> ../../../docs_src/background_tasks/tutorial002.py!}
+```
+
+////
 
 In obigem Beispiel werden die Nachrichten, *nachdem* die Response gesendet wurde, in die Datei `log.txt` geschrieben.
 
