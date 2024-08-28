@@ -363,6 +363,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl - Nederlands
   - link: /pl/
     name: pl - Polski
   - link: /pt/
