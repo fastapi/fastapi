@@ -24,9 +24,7 @@ The query parameter `q` is of type `Union[str, None]` (or `str | None` in Python
 
 /// note
 
-The `str | None` (Python 3.10+) or `Union` in `Union[str, None]` (Python 3.8+) is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
-
-But adding the type annotations will allow your editor to give you better support and detect errors.
+Adding the type annotations will allow your editor to give you better support and detect errors.
 
 ///
 
