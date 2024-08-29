@@ -1,0 +1,49 @@
+name: Generate Client
+
+on:
+  pull_request:
+    types:
+    - opened
+    - synchronize
+
+jobs:
+  generate-client:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.FULL_STACK_FASTAPI_TEMPLATE_REPO_TOKEN }}
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: npm ci
+      working-directory: frontend
+    - run: pip install ./backend
+    - run: bash scripts/generate-client.sh
+    - name: Commit changes
+      run: |
+        git config --local user.email "github-actions@github.com"
+        git config --local user.name "github-actions"
+        git add frontend/src/client
+        git diff --staged --quiet || git commit -m "✨ Autogenerate frontend client"
+        git push
+
+  # https://github.com/marketplace/actions/alls-green#why
+  generate-client-alls-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - generate-client
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
+          
