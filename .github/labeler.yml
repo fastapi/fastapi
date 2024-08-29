@@ -6,7 +6,7 @@ docs:
       - all-globs-to-all-files:
         - '!frontend/**'
         - '!backend/**'
-        - '!'.github/**'
+        - '!.github/**'
         - '!scripts/**'
         - '!.gitignore'
         - '!.pre-commit-config.yaml'
