@@ -3,6 +3,13 @@ docs:
     - changed-files:
       - any-glob-to-any-file:
         - '**/*.md'
+      - all-globs-to-all-files:
+        - '!frontend/**'
+        - '!backend/**'
+        - '!'.github/**'
+        - '!scripts/**'
+        - '!.gitignore'
+        - '!.pre-commit-config.yaml'
 
 internal:
   - all:
