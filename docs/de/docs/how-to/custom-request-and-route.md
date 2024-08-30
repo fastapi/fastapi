@@ -6,10 +6,13 @@ Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.
 
 Wenn Sie beispielsweise den Requestbody lesen oder manipulieren möchten, bevor er von Ihrer Anwendung verarbeitet wird.
 
-!!! danger "Gefahr"
-    Dies ist eine „fortgeschrittene“ Funktion.
+/// danger | "Gefahr"
 
-    Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie diesen Abschnitt vielleicht überspringen.
+Dies ist eine „fortgeschrittene“ Funktion.
+
+Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie diesen Abschnitt vielleicht überspringen.
+
+///
 
 ## Anwendungsfälle
 
@@ -27,8 +30,11 @@ Und eine `APIRoute`-Unterklasse zur Verwendung dieser benutzerdefinierten Reques
 
 ### Eine benutzerdefinierte `GzipRequest`-Klasse erstellen
 
-!!! tip "Tipp"
-    Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} verwenden.
+/// tip | "Tipp"
+
+Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} verwenden.
+
+///
 
 Zuerst erstellen wir eine `GzipRequest`-Klasse, welche die Methode `Request.body()` überschreibt, um den Body bei Vorhandensein eines entsprechenden Headers zu dekomprimieren.
 
@@ -54,16 +60,19 @@ Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` z
 {!../../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-!!! note "Technische Details"
-    Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-`dict` ist, welches die mit dem Request verbundenen Metadaten enthält.
+/// note | "Technische Details"
 
-    Ein `Request` hat auch ein `request.receive`, welches eine Funktion ist, die den Hauptteil des Requests empfängt.
+Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-`dict` ist, welches die mit dem Request verbundenen Metadaten enthält.
 
-    Das `scope`-`dict` und die `receive`-Funktion sind beide Teil der ASGI-Spezifikation.
+Ein `Request` hat auch ein `request.receive`, welches eine Funktion ist, die den Hauptteil des Requests empfängt.
 
-    Und diese beiden Dinge, `scope` und `receive`, werden benötigt, um eine neue `Request`-Instanz zu erstellen.
+Das `scope`-`dict` und die `receive`-Funktion sind beide Teil der ASGI-Spezifikation.
 
-    Um mehr über den `Request` zu erfahren, schauen Sie sich <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlettes Dokumentation zu Requests</a> an.
+Und diese beiden Dinge, `scope` und `receive`, werden benötigt, um eine neue `Request`-Instanz zu erstellen.
+
+Um mehr über den `Request` zu erfahren, schauen Sie sich <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlettes Dokumentation zu Requests</a> an.
+
+///
 
 Das Einzige, was die von `GzipRequest.get_route_handler` zurückgegebene Funktion anders macht, ist die Konvertierung von `Request` in ein `GzipRequest`.
 
@@ -75,10 +84,13 @@ Aufgrund unserer Änderungen in `GzipRequest.body` wird der Requestbody jedoch b
 
 ## Zugriff auf den Requestbody in einem Exceptionhandler
 
-!!! tip "Tipp"
-    Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#den-requestvalidationerror-body-verwenden){.internal-link target=_blank}).
+/// tip | "Tipp"
 
-    Dieses Beispiel ist jedoch immer noch gültig und zeigt, wie mit den internen Komponenten interagiert wird.
+Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#den-requestvalidationerror-body-verwenden){.internal-link target=_blank}).
+
+Dieses Beispiel ist jedoch immer noch gültig und zeigt, wie mit den internen Komponenten interagiert wird.
+
+///
 
 Wir können denselben Ansatz auch verwenden, um in einem Exceptionhandler auf den Requestbody zuzugreifen.
 

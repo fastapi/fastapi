@@ -4,12 +4,15 @@ As **FastAPI** is based on the **ASGI** standard, it's very easy to integrate an
 
 You can combine normal FastAPI *path operations* with GraphQL on the same application.
 
-!!! tip
-    **GraphQL** solves some very specific use cases.
+/// tip
 
-    It has **advantages** and **disadvantages** when compared to common **web APIs**.
+**GraphQL** solves some very specific use cases.
 
-    Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+It has **advantages** and **disadvantages** when compared to common **web APIs**.
+
+Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+
+///
 
 ## GraphQL Libraries
 
@@ -18,7 +21,7 @@ Here are some of the **GraphQL** libraries that have **ASGI** support. You could
 * <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> 🍓
     * With <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">docs for FastAPI</a>
 * <a href="https://ariadnegraphql.org/" class="external-link" target="_blank">Ariadne</a>
-    * With <a href="https://ariadnegraphql.org/docs/starlette-integration" class="external-link" target="_blank">docs for Starlette</a> (that also apply to FastAPI)
+    * With <a href="https://ariadnegraphql.org/docs/fastapi-integration" class="external-link" target="_blank">docs for FastAPI</a>
 * <a href="https://tartiflette.io/" class="external-link" target="_blank">Tartiflette</a>
     * With <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a> to provide ASGI integration
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
@@ -46,8 +49,11 @@ Previous versions of Starlette included a `GraphQLApp` class to integrate with <
 
 It was deprecated from Starlette, but if you have code that used it, you can easily **migrate** to <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, that covers the same use case and has an **almost identical interface**.
 
-!!! tip
-    If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+/// tip
+
+If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+
+///
 
 ## Learn More
 

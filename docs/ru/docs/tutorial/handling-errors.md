@@ -63,12 +63,15 @@
 }
 ```
 
-!!! tip "Подсказка"
-    При вызове `HTTPException` в качестве параметра `detail` можно передавать любое значение, которое может быть преобразовано в JSON, а не только `str`.
+/// tip | "Подсказка"
 
-    Вы можете передать `dict`, `list` и т.д.
+При вызове `HTTPException` в качестве параметра `detail` можно передавать любое значение, которое может быть преобразовано в JSON, а не только `str`.
 
-    Они автоматически обрабатываются **FastAPI** и преобразуются в JSON.
+Вы можете передать `dict`, `list` и т.д.
+
+Они автоматически обрабатываются **FastAPI** и преобразуются в JSON.
+
+///
 
 ## Добавление пользовательских заголовков
 
@@ -106,10 +109,13 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "Технические детали"
-    Также можно использовать `from starlette.requests import Request` и `from starlette.responses import JSONResponse`.
+/// note | "Технические детали"
 
-    **FastAPI** предоставляет тот же `starlette.responses`, что и `fastapi.responses`, просто для удобства разработчика. Однако большинство доступных ответов поступает непосредственно из Starlette. То же самое касается и `Request`.
+Также можно использовать `from starlette.requests import Request` и `from starlette.responses import JSONResponse`.
+
+**FastAPI** предоставляет тот же `starlette.responses`, что и `fastapi.responses`, просто для удобства разработчика. Однако большинство доступных ответов поступает непосредственно из Starlette. То же самое касается и `Request`.
+
+///
 
 ## Переопределение стандартных обработчиков исключений
 
@@ -160,8 +166,11 @@ path -> item_id
 
 #### `RequestValidationError` или `ValidationError`
 
-!!! warning "Внимание"
-    Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
+/// warning | "Внимание"
+
+Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
+
+///
 
 `RequestValidationError` является подклассом Pydantic <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
@@ -183,10 +192,13 @@ path -> item_id
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "Технические детали"
-    Можно также использовать `from starlette.responses import PlainTextResponse`.
+/// note | "Технические детали"
 
-    **FastAPI** предоставляет тот же `starlette.responses`, что и `fastapi.responses`, просто для удобства разработчика. Однако большинство доступных ответов поступает непосредственно из Starlette.
+Можно также использовать `from starlette.responses import PlainTextResponse`.
+
+**FastAPI** предоставляет тот же `starlette.responses`, что и `fastapi.responses`, просто для удобства разработчика. Однако большинство доступных ответов поступает непосредственно из Starlette.
+
+///
 
 ### Используйте тело `RequestValidationError`
 

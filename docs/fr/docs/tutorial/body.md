@@ -8,12 +8,15 @@ Votre API aura presque toujours à envoyer un corps de **réponse**. Mais un cli
 
 Pour déclarer un corps de **requête**, on utilise les modèles de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> en profitant de tous leurs avantages et fonctionnalités.
 
-!!! info
-    Pour envoyer de la donnée, vous devriez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
+/// info
 
-    Envoyer un corps dans une requête `GET` a un comportement non défini dans les spécifications, cela est néanmoins supporté par **FastAPI**, seulement pour des cas d'utilisation très complexes/extrêmes.
+Pour envoyer de la donnée, vous devriez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
 
-    Ceci étant découragé, la documentation interactive générée par Swagger UI ne montrera pas de documentation pour le corps d'une requête `GET`, et les proxys intermédiaires risquent de ne pas le supporter.
+Envoyer un corps dans une requête `GET` a un comportement non défini dans les spécifications, cela est néanmoins supporté par **FastAPI**, seulement pour des cas d'utilisation très complexes/extrêmes.
+
+Ceci étant découragé, la documentation interactive générée par Swagger UI ne montrera pas de documentation pour le corps d'une requête `GET`, et les proxys intermédiaires risquent de ne pas le supporter.
+
+///
 
 ## Importez le `BaseModel` de Pydantic
 
@@ -110,16 +113,19 @@ Mais vous auriez le même support de l'éditeur avec <a href="https://www.jetbra
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "Astuce"
-    Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+/// tip | "Astuce"
 
-    Ce qui améliore le support pour les modèles Pydantic avec :
+Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
-    * de l'auto-complétion
-    * des vérifications de type
-    * du "refactoring" (ou remaniement de code)
-    * de la recherche
-    * de l'inspection
+Ce qui améliore le support pour les modèles Pydantic avec :
+
+* de l'auto-complétion
+* des vérifications de type
+* du "refactoring" (ou remaniement de code)
+* de la recherche
+* de l'inspection
+
+///
 
 ## Utilisez le modèle
 
@@ -155,10 +161,13 @@ Les paramètres de la fonction seront reconnus comme tel :
 * Si le paramètre est d'un **type singulier** (comme `int`, `float`, `str`, `bool`, etc.), il sera interprété comme un paramètre de **requête**.
 * Si le paramètre est déclaré comme ayant pour type un **modèle Pydantic**, il sera interprété comme faisant partie du **corps** de la requête.
 
-!!! note
-    **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `=None`.
+/// note
 
-    Le type `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais sera utile à votre éditeur pour améliorer le support offert par ce dernier et détecter plus facilement des erreurs de type.
+**FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `=None`.
+
+Le type `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais sera utile à votre éditeur pour améliorer le support offert par ce dernier et détecter plus facilement des erreurs de type.
+
+///
 
 ## Sans Pydantic
 

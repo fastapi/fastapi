@@ -6,10 +6,13 @@
 
 🖼, 🚥 👆 💚 ✍ ⚖️ 🔬 📨 💪 ⏭ ⚫️ 🛠️ 👆 🈸.
 
-!!! danger
-    👉 "🏧" ⚒.
+/// danger
 
-    🚥 👆 ▶️ ⏮️ **FastAPI** 👆 💪 💚 🚶 👉 📄.
+👉 "🏧" ⚒.
+
+🚥 👆 ▶️ ⏮️ **FastAPI** 👆 💪 💚 🚶 👉 📄.
+
+///
 
 ## ⚙️ 💼
 
@@ -27,8 +30,11 @@
 
 ### ✍ 🛃 `GzipRequest` 🎓
 
-!!! tip
-    👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+/// tip
+
+👉 🧸 🖼 🎦 ❔ ⚫️ 👷, 🚥 👆 💪 🗜 🐕‍🦺, 👆 💪 ⚙️ 🚚 [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+
+///
 
 🥇, 👥 ✍ `GzipRequest` 🎓, ❔ 🔜 📁 `Request.body()` 👩‍🔬 🗜 💪 🔍 ☑ 🎚.
 
@@ -54,16 +60,19 @@
 {!../../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-!!! note "📡 ℹ"
-     `Request` ✔️ `request.scope` 🔢, 👈 🐍 `dict` ⚗ 🗃 🔗 📨.
+/// note | "📡 ℹ"
 
-     `Request` ✔️ `request.receive`, 👈 🔢 "📨" 💪 📨.
+`Request` ✔️ `request.scope` 🔢, 👈 🐍 `dict` ⚗ 🗃 🔗 📨.
 
-     `scope` `dict` &amp; `receive` 🔢 👯‍♂️ 🍕 🔫 🔧.
+ `Request` ✔️ `request.receive`, 👈 🔢 "📨" 💪 📨.
 
-     &amp; 👈 2️⃣ 👜, `scope` &amp; `receive`, ⚫️❔ 💪 ✍ 🆕 `Request` 👐.
+ `scope` `dict` &amp; `receive` 🔢 👯‍♂️ 🍕 🔫 🔧.
 
-    💡 🌅 🔃 `Request` ✅ <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">💃 🩺 🔃 📨</a>.
+ &amp; 👈 2️⃣ 👜, `scope` &amp; `receive`, ⚫️❔ 💪 ✍ 🆕 `Request` 👐.
+
+💡 🌅 🔃 `Request` ✅ <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">💃 🩺 🔃 📨</a>.
+
+///
 
 🕴 👜 🔢 📨 `GzipRequest.get_route_handler` 🔨 🎏 🗜 `Request` `GzipRequest`.
 
@@ -75,10 +84,13 @@
 
 ## 🔐 📨 💪 ⚠ 🐕‍🦺
 
-!!! tip
-    ❎ 👉 🎏 ⚠, ⚫️ 🎲 📚 ⏩ ⚙️ `body` 🛃 🐕‍🦺 `RequestValidationError` ([🚚 ❌](../tutorial/handling-errors.md#requestvalidationerror){.internal-link target=_blank}).
+/// tip
 
-    ✋️ 👉 🖼 ☑ &amp; ⚫️ 🎦 ❔ 🔗 ⏮️ 🔗 🦲.
+❎ 👉 🎏 ⚠, ⚫️ 🎲 📚 ⏩ ⚙️ `body` 🛃 🐕‍🦺 `RequestValidationError` ([🚚 ❌](../tutorial/handling-errors.md#requestvalidationerror){.internal-link target=_blank}).
+
+✋️ 👉 🖼 ☑ &amp; ⚫️ 🎦 ❔ 🔗 ⏮️ 🔗 🦲.
+
+///
 
 👥 💪 ⚙️ 👉 🎏 🎯 🔐 📨 💪 ⚠ 🐕‍🦺.
 

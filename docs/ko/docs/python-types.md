@@ -12,8 +12,11 @@
 
 비록 **FastAPI**를 쓰지 않는다고 하더라도, 조금이라도 알아두면 도움이 될 것입니다.
 
-!!! note "참고"
-    파이썬에 능숙하셔서 타입 힌트에 대해 모두 아신다면, 다음 챕터로 건너뛰세요.
+/// note | "참고"
+
+파이썬에 능숙하셔서 타입 힌트에 대해 모두 아신다면, 다음 챕터로 건너뛰세요.
+
+///
 
 ## 동기 부여
 
@@ -172,10 +175,13 @@ John Doe
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip "팁"
-    대괄호 안의 내부 타입은 "타입 매개변수(type paramters)"라고 합니다.
+/// tip | "팁"
 
-    이번 예제에서는 `str`이 `List`에 들어간 타입 매개변수 입니다.
+대괄호 안의 내부 타입은 "타입 매개변수(type paramters)"라고 합니다.
+
+이번 예제에서는 `str`이 `List`에 들어간 타입 매개변수 입니다.
+
+///
 
 이는 "`items`은 `list`인데, 배열에 들어있는 아이템 각각은 `str`이다"라는 뜻입니다.
 
@@ -281,9 +287,11 @@ Pydantic 공식 문서 예시:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info "정보"
-    Pydantic<에 대해 더 배우고 싶다면 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
+/// info | "정보"
 
+Pydantic<에 대해 더 배우고 싶다면 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
+
+///
 
 **FastAPI**는 모두 Pydantic을 기반으로 되어 있습니다.
 
@@ -311,5 +319,8 @@ Pydantic 공식 문서 예시:
 
 가장 중요한 건, 표준 파이썬 타입을 한 곳에서(클래스를 더하거나, 데코레이터 사용하는 대신) 사용함으로써 **FastAPI**가 당신을 위해 많은 일을 해준다는 사실이죠.
 
-!!! info "정보"
-    만약 모든 자습서를 다 보았음에도 타입에 대해서 더 보고자 방문한 경우에는 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`에서 제공하는 "cheat sheet"</a>이 좋은 자료가 될 겁니다.
+/// info | "정보"
+
+만약 모든 자습서를 다 보았음에도 타입에 대해서 더 보고자 방문한 경우에는 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`에서 제공하는 "cheat sheet"</a>이 좋은 자료가 될 겁니다.
+
+///

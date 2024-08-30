@@ -8,7 +8,7 @@ There are utilities to configure it easily that you can use directly in your **F
 
 ## Install dependencies
 
-Install `jinja2`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `jinja2`:
 
 <div class="termy">
 
@@ -31,18 +31,27 @@ $ pip install jinja2
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
-!!! note
-    Before FastAPI 0.108.0, Starlette 0.29.0, the `name` was the first parameter.
+/// note
 
-    Also, before that, in previous versions, the `request` object was passed as part of the key-value pairs in the context for Jinja2.
+Before FastAPI 0.108.0, Starlette 0.29.0, the `name` was the first parameter.
 
-!!! tip
-    By declaring `response_class=HTMLResponse` the docs UI will be able to know that the response will be HTML.
+Also, before that, in previous versions, the `request` object was passed as part of the key-value pairs in the context for Jinja2.
 
-!!! note "Technical Details"
-    You could also use `from starlette.templating import Jinja2Templates`.
+///
 
-    **FastAPI** provides the same `starlette.templating` as `fastapi.templating` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request` and `StaticFiles`.
+/// tip
+
+By declaring `response_class=HTMLResponse` the docs UI will be able to know that the response will be HTML.
+
+///
+
+/// note | "Technical Details"
+
+You could also use `from starlette.templating import Jinja2Templates`.
+
+**FastAPI** provides the same `starlette.templating` as `fastapi.templating` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request` and `StaticFiles`.
+
+///
 
 ## Writing templates
 

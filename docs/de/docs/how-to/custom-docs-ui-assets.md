@@ -40,12 +40,15 @@ Und genau so für ReDoc ...
 {!../../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-!!! tip "Tipp"
-    Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
+/// tip | "Tipp"
 
-    Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
-    Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+
+Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+
+///
 
 ### Eine *Pfadoperation* erstellen, um es zu testen
 
@@ -177,12 +180,15 @@ Und genau so für ReDoc ...
 {!../../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-!!! tip "Tipp"
-    Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
+/// tip | "Tipp"
 
-    Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
-    Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+Wenn Sie Ihre API mit einem OAuth2-Anbieter integrieren, können Sie sich authentifizieren und mit den erworbenen Anmeldeinformationen zur API-Dokumentation zurückkehren. Und mit ihr interagieren, die echte OAuth2-Authentifizierung verwendend.
+
+Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „Umleitungs“-Helfer.
+
+///
 
 ### Eine *Pfadoperation* erstellen, um statische Dateien zu testen
 
