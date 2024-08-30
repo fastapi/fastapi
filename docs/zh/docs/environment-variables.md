@@ -6,15 +6,15 @@
 
 ///
 
-环境变量（有时也被称为"**env var**"）是在种存在于Python代码**外面**的变量, 例如在**操作系统**中。它可以被Python代码读取，（当然也可以被其他程序读取）.
+环境变量（有时也被称为" **env var** "）是在种存在于Python代码 **外面** 的变量, 例如在 **操作系统** 中。它可以被Python代码读取，当然也可以被其他程序读取。
 
-环境变量在处理应用**设置**时非常有用，例如在安装Python时。
+环境变量在处理应用 **设置** 时非常有用，例如在 **安装** Python时。
 
 ## 创建和使用环境变量
 
-你可以在**终端或命令行**中**创建**和使用环境变量，而不需要打开Python。
+你可以在 **终端或命令行** 中 **创建** 和使用环境变量，而不需要打开Python。
 
-//// tag | Linux, macOS, Windows Bash
+//// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
@@ -32,7 +32,7 @@ Hello Wade Wilson
 
 ////
 
-//// tag | Windows PowerShell
+//// tab | Windows PowerShell
 
 <div class="termy">
 
@@ -52,7 +52,7 @@ Hello Wade Wilson
 
 ## 在 Python 中读取环境变量
 
-您还可以在 Python **外部**、在终端中（或使用任何其他方法）创建环境变量，然后**在Python中读取它们**。
+您还可以在 Python **外部**、在终端中（或使用任何其他方法）创建环境变量，然后 **在Python中读取它们** 。
 
 例如，你可以有一个文件“main.py”，其中包含：
 
@@ -73,7 +73,7 @@ print(f"Hello {name} from Python")
 
 然后你可以调用该 Python 程序：
 
-//// tag | Linux, macOS, Windows Bash
+//// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
@@ -127,9 +127,9 @@ Hello Wade Wilson from Python
 
 ////
 
-由于环境变量可以在代码之外设置，同时可以由代码读取。它不必与其余文件一起存储（例如，提交给“git”时）。因此常被用于配置或**设置**。
+由于环境变量可以在代码之外设置，同时可以由代码读取。它不必与其余文件一起存储（例如，提交给“git”时）。因此常被用于配置或 **设置** 。
 
-您还可以仅为**特定程序调用**创建环境变量，该变量仅对该程序可用。同时，它仅在其设定的时间内可用。
+您还可以仅为 **特定程序调用** 创建环境变量，该变量仅对该程序可用。同时，它仅在其设定的时间内可用。
 
 因此，请在程序编写之前创建。请参看以下例子：
 
@@ -159,9 +159,9 @@ Hello World from Python
 
 ## 类型和变量
 
-这些环境变量只能处理**文本字符串**，因为它们是 Python 外部的。同时，它必须与其他程序和系统的其余部分兼容（甚至与不同的操作系统，如 Linux、Windows、macOS）。
+这些环境变量只能处理 **文本字符串** ，因为它们是 Python 外部的。同时，它必须与其他程序和系统的其余部分兼容（甚至与不同的操作系统，如 Linux、Windows、macOS）。
 
-这意味着使用 Python 读取的环境变量，其所包含的**任何值**都将是 **`str`**类型。并且它在 Python 中执行的任何类型转换或任何验证都必须在您编写的代码中完成。
+这意味着使用 Python 读取的环境变量，其所包含的 **任何值** 都将是 **`str`** 类型。并且它在 Python 中执行的任何类型转换或任何验证都必须在您编写的代码中完成。
 
 您可以在[Advanced User Guide - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank}了解更多为**应用设置**提供环境变量的信息。
 
