@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add note about `time.perf_counter()` in middlewares. PR [#12095](https://github.com/fastapi/fastapi/pull/12095) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Tweak middleware code sample `time.time()` to `time.perf_counter()`. PR [#11957](https://github.com/fastapi/fastapi/pull/11957) by [@domdent](https://github.com/domdent).
 * 🔧 Update sponsors: Coherence. PR [#12093](https://github.com/fastapi/fastapi/pull/12093) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Fix async test example not to trigger DeprecationWarning. PR [#12084](https://github.com/fastapi/fastapi/pull/12084) by [@marcinsulikowski](https://github.com/marcinsulikowski).
