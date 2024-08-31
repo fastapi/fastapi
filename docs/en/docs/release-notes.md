@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Refactor and simplify dependencies data structures with dataclasses. PR [#12098](https://github.com/fastapi/fastapi/pull/12098) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Add note about `time.perf_counter()` in middlewares. PR [#12095](https://github.com/fastapi/fastapi/pull/12095) by [@tiangolo](https://github.com/tiangolo).
