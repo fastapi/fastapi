@@ -2,8 +2,11 @@
 
 ## OpenAPI operationId
 
-!!! warning "注意"
-    あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
+/// warning | "注意"
+
+あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
+
+///
 
 *path operation* で `operation_id` パラメータを利用することで、OpenAPIの `operationId` を設定できます。
 
@@ -23,13 +26,19 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip "豆知識"
-    `app.openapi()` を手動でコールする場合、その前に`operationId`を更新する必要があります。
+/// tip | "豆知識"
 
-!!! warning "注意"
-    この方法をとる場合、各 *path operation関数* が一意な名前である必要があります。
+`app.openapi()` を手動でコールする場合、その前に`operationId`を更新する必要があります。
 
-    それらが異なるモジュール (Pythonファイル) にあるとしてもです。
+///
+
+/// warning | "注意"
+
+この方法をとる場合、各 *path operation関数* が一意な名前である必要があります。
+
+それらが異なるモジュール (Pythonファイル) にあるとしてもです。
+
+///
 
 ## OpenAPIから除外する
 

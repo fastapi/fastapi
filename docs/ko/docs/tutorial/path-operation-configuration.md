@@ -2,8 +2,11 @@
 
 *경로 작동 데코레이터*를 설정하기 위해서 전달할수 있는 몇 가지 매개변수가 있습니다.
 
-!!! warning "경고"
-    아래 매개변수들은 *경로 작동 함수*가 아닌 *경로 작동 데코레이터*에 직접 전달된다는 사실을 기억하십시오.
+/// warning | "경고"
+
+아래 매개변수들은 *경로 작동 함수*가 아닌 *경로 작동 데코레이터*에 직접 전달된다는 사실을 기억하십시오.
+
+///
 
 ## 응답 상태 코드
 
@@ -19,10 +22,13 @@
 
 각 상태 코드들은 응답에 사용되며, OpenAPI 스키마에 추가됩니다.
 
-!!! note "기술적 세부사항"
-    다음과 같이 임포트하셔도 좋습니다. `from starlette import status`.
+/// note | "기술적 세부사항"
 
-    **FastAPI**는 개발자 여러분의 편의를 위해서 `starlette.status`와 동일한 `fastapi.status`를 제공합니다. 하지만 Starlette에서 직접 온 것입니다.
+다음과 같이 임포트하셔도 좋습니다. `from starlette import status`.
+
+**FastAPI**는 개발자 여러분의 편의를 위해서 `starlette.status`와 동일한 `fastapi.status`를 제공합니다. 하지만 Starlette에서 직접 온 것입니다.
+
+///
 
 ## 태그
 
@@ -66,13 +72,19 @@
 {!../../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
-!!! info "정보"
-    `response_description`은 구체적으로 응답을 지칭하며, `description`은 일반적인 *경로 작동*을 지칭합니다.
+/// info | "정보"
 
-!!! check "확인"
-    OpenAPI는 각 *경로 작동*이 응답에 관한 설명을 요구할 것을 명시합니다.
+`response_description`은 구체적으로 응답을 지칭하며, `description`은 일반적인 *경로 작동*을 지칭합니다.
 
-    따라서, 응답에 관한 설명이 없을경우, **FastAPI**가 자동으로 "성공 응답" 중 하나를 생성합니다.
+///
+
+/// check | "확인"
+
+OpenAPI는 각 *경로 작동*이 응답에 관한 설명을 요구할 것을 명시합니다.
+
+따라서, 응답에 관한 설명이 없을경우, **FastAPI**가 자동으로 "성공 응답" 중 하나를 생성합니다.
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

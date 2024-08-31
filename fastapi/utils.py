@@ -34,9 +34,9 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 # Cache for `create_cloned_field`
-_CLONED_TYPES_CACHE: MutableMapping[
-    Type[BaseModel], Type[BaseModel]
-] = WeakKeyDictionary()
+_CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
+    WeakKeyDictionary()
+)
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
@@ -221,9 +221,3 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
-
-
-def match_pydantic_error_url(error_type: str) -> Any:
-    from dirty_equals import IsStr
-
-    return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")

@@ -8,7 +8,7 @@ JSON Schemaの追加情報を宣言する方法はいくつかあります。
 
 ## Pydanticの`schema_extra`
 
-<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydanticのドキュメント: スキーマのカスタマイズ</a>で説明されているように、`Config`と`schema_extra`を使ってPydanticモデルの例を宣言することができます:
+<a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Pydanticのドキュメント: スキーマのカスタマイズ</a>で説明されているように、`Config`と`schema_extra`を使ってPydanticモデルの例を宣言することができます:
 
 ```Python hl_lines="15 16 17 18 19 20 21 22 23"
 {!../../../docs_src/schema_extra_example/tutorial001.py!}
@@ -24,8 +24,11 @@ JSON Schemaの追加情報を宣言する方法はいくつかあります。
 {!../../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
-!!! warning "注意"
-    これらの追加引数が渡されても、文書化のためのバリデーションは追加されず、注釈だけが追加されることを覚えておいてください。
+/// warning | "注意"
+
+これらの追加引数が渡されても、文書化のためのバリデーションは追加されず、注釈だけが追加されることを覚えておいてください。
+
+///
 
 ## `Body`の追加引数
 

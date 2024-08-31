@@ -1,28 +1,40 @@
 # ~~SQL (Relational) Databases with Peewee~~ (deprecated)
 
-!!! warning "Deprecated"
-    This tutorial is deprecated and will be removed in a future version.
+/// warning | "Deprecated"
 
-!!! warning
-    If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
+This tutorial is deprecated and will be removed in a future version.
 
-    Feel free to skip this.
+///
 
-    Peewee is not recommended with FastAPI as it doesn't play well with anything async Python. There are several better alternatives.
+/// warning
 
-!!! info
-    These docs assume Pydantic v1.
+If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
 
-    Because Pewee doesn't play well with anything async and there are better alternatives, I won't update these docs for Pydantic v2, they are kept for now only for historical purposes.
+Feel free to skip this.
 
-    The examples here are no longer tested in CI (as they were before).
+Peewee is not recommended with FastAPI as it doesn't play well with anything async Python. There are several better alternatives.
+
+///
+
+/// info
+
+These docs assume Pydantic v1.
+
+Because Pewee doesn't play well with anything async and there are better alternatives, I won't update these docs for Pydantic v2, they are kept for now only for historical purposes.
+
+The examples here are no longer tested in CI (as they were before).
+
+///
 
 If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
 
 If you already have a code base that uses <a href="https://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
 
-!!! warning "Python 3.7+ required"
-    You will need Python 3.7 or above to safely use Peewee with FastAPI.
+/// warning | "Python 3.7+ required"
+
+You will need Python 3.7 or above to safely use Peewee with FastAPI.
+
+///
 
 ## Peewee for async
 
@@ -36,8 +48,11 @@ But if you need to change some of the defaults, support more than one predefined
 
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
-!!! note "Technical Details"
-    You can read more about Peewee's stand about async in Python <a href="https://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
+/// note | "Technical Details"
+
+You can read more about Peewee's stand about async in Python <a href="https://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
+
+///
 
 ## The same app
 
@@ -77,8 +92,11 @@ Let's first check all the normal Peewee code, create a Peewee database:
 {!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
-!!! tip
-    Keep in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
+/// tip
+
+Keep in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
+
+///
 
 #### Note
 
@@ -96,9 +114,11 @@ connect_args={"check_same_thread": False}
 
 ...it is needed only for `SQLite`.
 
-!!! info "Technical Details"
+/// info | "Technical Details"
 
-    Exactly the same technical details as in [SQL (Relational) Databases](../tutorial/sql-databases.md#note){.internal-link target=_blank} apply.
+Exactly the same technical details as in [SQL (Relational) Databases](../tutorial/sql-databases.md#note){.internal-link target=_blank} apply.
+
+///
 
 ### Make Peewee async-compatible `PeeweeConnectionState`
 
@@ -106,14 +126,17 @@ The main issue with Peewee and FastAPI is that Peewee relies heavily on <a href=
 
 And `threading.local` is not compatible with the new async features of modern Python.
 
-!!! note "Technical Details"
-    `threading.local` is used to have a "magic" variable that has a different value for each thread.
+/// note | "Technical Details"
 
-    This was useful in older frameworks designed to have one single thread per request, no more, no less.
+`threading.local` is used to have a "magic" variable that has a different value for each thread.
 
-    Using this, each request would have its own database connection/session, which is the actual final goal.
+This was useful in older frameworks designed to have one single thread per request, no more, no less.
 
-    But FastAPI, using the new async features, could handle more than one request on the same thread. And at the same time, for a single request, it could run multiple things in different threads (in a threadpool), depending on if you use `async def` or normal `def`. This is what gives all the performance improvements to FastAPI.
+Using this, each request would have its own database connection/session, which is the actual final goal.
+
+But FastAPI, using the new async features, could handle more than one request on the same thread. And at the same time, for a single request, it could run multiple things in different threads (in a threadpool), depending on if you use `async def` or normal `def`. This is what gives all the performance improvements to FastAPI.
+
+///
 
 But Python 3.7 and above provide a more advanced alternative to `threading.local`, that can also be used in the places where `threading.local` would be used, but is compatible with the new async features.
 
@@ -137,10 +160,13 @@ It has all the logic to make Peewee use `contextvars` instead of `threading.loca
 
 So, we need to do some extra tricks to make it work as if it was just using `threading.local`. The `__init__`, `__setattr__`, and `__getattr__` implement all the required tricks for this to be used by Peewee without knowing that it is now compatible with FastAPI.
 
-!!! tip
-    This will just make Peewee behave correctly when used with FastAPI. Not randomly opening or closing connections that are being used, creating errors, etc.
+/// tip
 
-    But it doesn't give Peewee async super-powers. You should still use normal `def` functions and not `async def`.
+This will just make Peewee behave correctly when used with FastAPI. Not randomly opening or closing connections that are being used, creating errors, etc.
+
+But it doesn't give Peewee async super-powers. You should still use normal `def` functions and not `async def`.
+
+///
 
 ### Use the custom `PeeweeConnectionState` class
 
@@ -150,11 +176,17 @@ Now, overwrite the `._state` internal attribute in the Peewee database `db` obje
 {!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
-!!! tip
-    Make sure you overwrite `db._state` *after* creating `db`.
+/// tip
 
-!!! tip
-    You would do the same for any other Peewee database, including `PostgresqlDatabase`, `MySQLDatabase`, etc.
+Make sure you overwrite `db._state` *after* creating `db`.
+
+///
+
+/// tip
+
+You would do the same for any other Peewee database, including `PostgresqlDatabase`, `MySQLDatabase`, etc.
+
+///
 
 ## Create the database models
 
@@ -166,10 +198,13 @@ Now create the Peewee models (classes) for `User` and `Item`.
 
 This is the same you would do if you followed the Peewee tutorial and updated the models to have the same data as in the SQLAlchemy tutorial.
 
-!!! tip
-    Peewee also uses the term "**model**" to refer to these classes and instances that interact with the database.
+/// tip
 
-    But Pydantic also uses the term "**model**" to refer to something different, the data validation, conversion, and documentation classes and instances.
+Peewee also uses the term "**model**" to refer to these classes and instances that interact with the database.
+
+But Pydantic also uses the term "**model**" to refer to something different, the data validation, conversion, and documentation classes and instances.
+
+///
 
 Import `db` from `database` (the file `database.py` from above) and use it here.
 
@@ -177,25 +212,31 @@ Import `db` from `database` (the file `database.py` from above) and use it here.
 {!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
-!!! tip
-    Peewee creates several magic attributes.
+/// tip
 
-    It will automatically add an `id` attribute as an integer to be the primary key.
+Peewee creates several magic attributes.
 
-    It will chose the name of the tables based on the class names.
+It will automatically add an `id` attribute as an integer to be the primary key.
 
-    For the `Item`, it will create an attribute `owner_id` with the integer ID of the `User`. But we don't declare it anywhere.
+It will chose the name of the tables based on the class names.
+
+For the `Item`, it will create an attribute `owner_id` with the integer ID of the `User`. But we don't declare it anywhere.
+
+///
 
 ## Create the Pydantic models
 
 Now let's check the file `sql_app/schemas.py`.
 
-!!! tip
-    To avoid confusion between the Peewee *models* and the Pydantic *models*, we will have the file `models.py` with the Peewee models, and the file `schemas.py` with the Pydantic models.
+/// tip
 
-    These Pydantic models define more or less a "schema" (a valid data shape).
+To avoid confusion between the Peewee *models* and the Pydantic *models*, we will have the file `models.py` with the Peewee models, and the file `schemas.py` with the Pydantic models.
 
-    So this will help us avoiding confusion while using both.
+These Pydantic models define more or less a "schema" (a valid data shape).
+
+So this will help us avoiding confusion while using both.
+
+///
 
 ### Create the Pydantic *models* / schemas
 
@@ -205,12 +246,15 @@ Create all the same Pydantic models as in the SQLAlchemy tutorial:
 {!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
-!!! tip
-    Here we are creating the models with an `id`.
+/// tip
 
-    We didn't explicitly specify an `id` attribute in the Peewee models, but Peewee adds one automatically.
+Here we are creating the models with an `id`.
 
-    We are also adding the magic `owner_id` attribute to `Item`.
+We didn't explicitly specify an `id` attribute in the Peewee models, but Peewee adds one automatically.
+
+We are also adding the magic `owner_id` attribute to `Item`.
+
+///
 
 ### Create a `PeeweeGetterDict` for the Pydantic *models* / schemas
 
@@ -236,8 +280,11 @@ And if that's the case, just return a `list` with it.
 
 And then we use it in the Pydantic *models* / schemas that use `orm_mode = True`, with the configuration variable `getter_dict = PeeweeGetterDict`.
 
-!!! tip
-    We only need to create one `PeeweeGetterDict` class, and we can use it in all the Pydantic *models* / schemas.
+/// tip
+
+We only need to create one `PeeweeGetterDict` class, and we can use it in all the Pydantic *models* / schemas.
+
+///
 
 ## CRUD utils
 
@@ -309,12 +356,15 @@ For that, we need to create another `async` dependency `reset_db_state()` that i
 
 For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc).
 
-!!! tip
-    As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
+/// tip
 
-    But context variables are aware of these async features, so, a Peewee database state set in the `async` dependency `reset_db_state()` will keep its own data throughout the entire request.
+As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
 
-    And at the same time, the other concurrent request will have its own database state that will be independent for the whole request.
+But context variables are aware of these async features, so, a Peewee database state set in the `async` dependency `reset_db_state()` will keep its own data throughout the entire request.
+
+And at the same time, the other concurrent request will have its own database state that will be independent for the whole request.
+
+///
 
 #### Peewee Proxy
 
@@ -479,8 +529,11 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 ## Technical Details
 
-!!! warning
-    These are very technical details that you probably don't need.
+/// warning
+
+These are very technical details that you probably don't need.
+
+///
 
 ### The problem
 

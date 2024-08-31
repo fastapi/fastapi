@@ -1,6 +1,5 @@
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from docs_src.handling_errors.tutorial006 import app
 
@@ -18,7 +17,6 @@ def test_get_validation_error():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foo",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }

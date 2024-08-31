@@ -11,10 +11,13 @@ Você pode servir arquivos estáticos automaticamente de um diretório usando `S
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "Detalhes técnicos"
-    Você também pode usar `from starlette.staticfiles import StaticFiles`.
+/// note | "Detalhes técnicos"
 
-    O **FastAPI** fornece o mesmo que `starlette.staticfiles` como `fastapi.staticfiles` apenas como uma conveniência para você, o desenvolvedor. Mas na verdade vem diretamente da Starlette.
+Você também pode usar `from starlette.staticfiles import StaticFiles`.
+
+O **FastAPI** fornece o mesmo que `starlette.staticfiles` como `fastapi.staticfiles` apenas como uma conveniência para você, o desenvolvedor. Mas na verdade vem diretamente da Starlette.
+
+///
 
 ### O que é "Montagem"
 
