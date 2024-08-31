@@ -170,7 +170,7 @@ If you run the examples with, e.g.:
 <div class="termy">
 
 ```console
-$ uvicorn tutorial001:app --reload
+$ fastapi dev tutorial001.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
