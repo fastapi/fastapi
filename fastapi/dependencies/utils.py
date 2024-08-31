@@ -529,6 +529,15 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+@dataclass
+class SolvedDependency:
+    values: Dict[str, Any]
+    errors: List[Any]
+    background_tasks: Optional[StarletteBackgroundTasks]
+    response: Response
+    dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -539,13 +548,7 @@ async def solve_dependencies(
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
     async_exit_stack: AsyncExitStack,
-) -> Tuple[
-    Dict[str, Any],
-    List[Any],
-    Optional[StarletteBackgroundTasks],
-    Response,
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-]:
+) -> SolvedDependency:
     values: Dict[str, Any] = {}
     errors: List[Any] = []
     if response is None:
@@ -587,27 +590,21 @@ async def solve_dependencies(
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
         )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
-        ) = solved_result
-        dependency_cache.update(sub_dependency_cache)
-        if sub_errors:
-            errors.extend(sub_errors)
+        background_tasks = solved_result.background_tasks
+        dependency_cache.update(solved_result.dependency_cache)
+        if solved_result.errors:
+            errors.extend(solved_result.errors)
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             solved = await solve_generator(
-                call=call, stack=async_exit_stack, sub_values=sub_values
+                call=call, stack=async_exit_stack, sub_values=solved_result.values
             )
         elif is_coroutine_callable(call):
-            solved = await call(**sub_values)
+            solved = await call(**solved_result.values)
         else:
-            solved = await run_in_threadpool(call, **sub_values)
+            solved = await run_in_threadpool(call, **solved_result.values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
@@ -654,7 +651,13 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks, response, dependency_cache
+    return SolvedDependency(
+        values=values,
+        errors=errors,
+        background_tasks=background_tasks,
+        response=response,
+        dependency_cache=dependency_cache,
+    )
 
 
 def request_params_to_args(
