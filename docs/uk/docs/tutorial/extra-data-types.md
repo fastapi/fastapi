@@ -55,76 +55,108 @@
 
 Ось приклад *path operation* з параметрами, використовуючи деякі з вищезазначених типів.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="1  3  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="1  3  13-17"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
+```Python hl_lines="1  3  13-17"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="1  2  11-15"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
+/// tip
 
-    ```Python hl_lines="1  2  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Бажано використовувати `Annotated` версію, якщо це можливо.
+
+///
+
+```Python hl_lines="1  2  11-15"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Бажано використовувати `Annotated` версію, якщо це можливо.
+
+///
+
+```Python hl_lines="1  2  12-16"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////
 
 Зверніть увагу, що параметри всередині функції мають свій звичайний тип даних, і ви можете, наприклад, виконувати звичайні маніпуляції з датами, такі як:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="19-20"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
+```Python hl_lines="19-20"
+{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
+/// tip
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+Бажано використовувати `Annotated` версію, якщо це можливо.
+
+///
+
+```Python hl_lines="17-18"
+{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Бажано використовувати `Annotated` версію, якщо це можливо.
+
+///
+
+```Python hl_lines="18-19"
+{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+```
+
+////

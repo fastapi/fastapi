@@ -32,14 +32,17 @@ They are normally used to declare specific security permissions, for example:
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
-!!! info
-    In OAuth2 a "scope" is just a string that declares a specific permission required.
+/// info
 
-    It doesn't matter if it has other characters like `:` or if it is a URL.
+In OAuth2 a "scope" is just a string that declares a specific permission required.
 
-    Those details are implementation specific.
+It doesn't matter if it has other characters like `:` or if it is a URL.
 
-    For OAuth2 they are just strings.
+Those details are implementation specific.
+
+For OAuth2 they are just strings.
+
+///
 
 ## Code to get the `username` and `password`
 
@@ -49,41 +52,57 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="4  78"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="4  78"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="4  78"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="4  78"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="4  79"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="4  79"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="2  74"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="4  76"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="2  74"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="4  76"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 `OAuth2PasswordRequestForm` is a class dependency that declares a form body with:
 
@@ -92,29 +111,38 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 * An optional `scope` field as a big string, composed of strings separated by spaces.
 * An optional `grant_type`.
 
-!!! tip
-    The OAuth2 spec actually *requires* a field `grant_type` with a fixed value of `password`, but `OAuth2PasswordRequestForm` doesn't enforce it.
+/// tip
 
-    If you need to enforce it, use `OAuth2PasswordRequestFormStrict` instead of `OAuth2PasswordRequestForm`.
+The OAuth2 spec actually *requires* a field `grant_type` with a fixed value of `password`, but `OAuth2PasswordRequestForm` doesn't enforce it.
+
+If you need to enforce it, use `OAuth2PasswordRequestFormStrict` instead of `OAuth2PasswordRequestForm`.
+
+///
 
 * An optional `client_id` (we don't need it for our example).
 * An optional `client_secret` (we don't need it for our example).
 
-!!! info
-    The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
+/// info
 
-    `OAuth2PasswordBearer` makes **FastAPI** know that it is a security scheme. So it is added that way to OpenAPI.
+The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
 
-    But `OAuth2PasswordRequestForm` is just a class dependency that you could have written yourself, or you could have declared `Form` parameters directly.
+`OAuth2PasswordBearer` makes **FastAPI** know that it is a security scheme. So it is added that way to OpenAPI.
 
-    But as it's a common use case, it is provided by **FastAPI** directly, just to make it easier.
+But `OAuth2PasswordRequestForm` is just a class dependency that you could have written yourself, or you could have declared `Form` parameters directly.
+
+But as it's a common use case, it is provided by **FastAPI** directly, just to make it easier.
+
+///
 
 ### Use the form data
 
-!!! tip
-    The instance of the dependency class `OAuth2PasswordRequestForm` won't have an attribute `scope` with the long string separated by spaces, instead, it will have a `scopes` attribute with the actual list of strings for each scope sent.
+/// tip
 
-    We are not using `scopes` in this example, but the functionality is there if you need it.
+The instance of the dependency class `OAuth2PasswordRequestForm` won't have an attribute `scope` with the long string separated by spaces, instead, it will have a `scopes` attribute with the actual list of strings for each scope sent.
+
+We are not using `scopes` in this example, but the functionality is there if you need it.
+
+///
 
 Now, get the user data from the (fake) database, using the `username` from the form field.
 
@@ -122,41 +150,57 @@ If there is no such user, we return an error saying "Incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="3  79-81"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="3  79-81"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="3  79-81"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="3  79-81"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="3  80-82"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="3  80-82"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="1  75-77"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="3  77-79"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="1  75-77"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="3  77-79"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 ### Check the password
 
@@ -182,41 +226,57 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="82-85"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="82-85"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="82-85"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="82-85"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="83-86"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="83-86"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="78-81"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="80-83"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="78-81"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="80-83"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
 
 #### About `**user_dict`
 
@@ -234,8 +294,11 @@ UserInDB(
 )
 ```
 
-!!! info
-    For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
+/// info
+
+For a more complete explanation of `**user_dict` check back in [the documentation for **Extra Models**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
+
+///
 
 ## Return the token
 
@@ -247,55 +310,77 @@ And it should have an `access_token`, with a string containing our access token.
 
 For this simple example, we are going to just be completely insecure and return the same `username` as the token.
 
-!!! tip
-    In the next chapter, you will see a real secure implementation, with password hashing and <abbr title="JSON Web Tokens">JWT</abbr> tokens.
+/// tip
 
-    But for now, let's focus on the specific details we need.
+In the next chapter, you will see a real secure implementation, with password hashing and <abbr title="JSON Web Tokens">JWT</abbr> tokens.
 
-=== "Python 3.10+"
+But for now, let's focus on the specific details we need.
 
-    ```Python hl_lines="87"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+///
 
-=== "Python 3.9+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="87"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+```Python hl_lines="87"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="88"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.10+ non-Annotated"
+```Python hl_lines="87"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="83"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ non-Annotated"
+```Python hl_lines="88"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+////
 
-    ```Python hl_lines="85"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-!!! tip
-    By the spec, you should return a JSON with an `access_token` and a `token_type`, the same as in this example.
+/// tip
 
-    This is something that you have to do yourself in your code, and make sure you use those JSON keys.
+Prefer to use the `Annotated` version if possible.
 
-    It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
+///
 
-    For the rest, **FastAPI** handles it for you.
+```Python hl_lines="83"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python hl_lines="85"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
+
+/// tip
+
+By the spec, you should return a JSON with an `access_token` and a `token_type`, the same as in this example.
+
+This is something that you have to do yourself in your code, and make sure you use those JSON keys.
+
+It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
+
+For the rest, **FastAPI** handles it for you.
+
+///
 
 ## Update the dependencies
 
@@ -309,56 +394,75 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="58-66  69-74  94"
-    {!> ../../../docs_src/security/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="58-66  69-74  94"
+{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="58-66  69-74  94"
-    {!> ../../../docs_src/security/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="58-66  69-74  94"
+{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="59-67  70-75  95"
-    {!> ../../../docs_src/security/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python hl_lines="59-67  70-75  95"
+{!> ../../../docs_src/security/tutorial003_an.py!}
+```
 
-    ```Python hl_lines="56-64  67-70  88"
-    {!> ../../../docs_src/security/tutorial003_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="58-66  69-72  90"
-    {!> ../../../docs_src/security/tutorial003.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
 
-!!! info
-    The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.
+///
 
-    Any HTTP (error) status code 401 "UNAUTHORIZED" is supposed to also return a `WWW-Authenticate` header.
+```Python hl_lines="56-64  67-70  88"
+{!> ../../../docs_src/security/tutorial003_py310.py!}
+```
 
-    In the case of bearer tokens (our case), the value of that header should be `Bearer`.
+////
 
-    You can actually skip that extra header and it would still work.
+//// tab | Python 3.8+ non-Annotated
 
-    But it's provided here to be compliant with the specifications.
+/// tip
 
-    Also, there might be tools that expect and use it (now or in the future) and that might be useful for you or your users, now or in the future.
+Prefer to use the `Annotated` version if possible.
 
-    That's the benefit of standards...
+///
+
+```Python hl_lines="58-66  69-72  90"
+{!> ../../../docs_src/security/tutorial003.py!}
+```
+
+////
+
+/// info
+
+The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.
+
+Any HTTP (error) status code 401 "UNAUTHORIZED" is supposed to also return a `WWW-Authenticate` header.
+
+In the case of bearer tokens (our case), the value of that header should be `Bearer`.
+
+You can actually skip that extra header and it would still work.
+
+But it's provided here to be compliant with the specifications.
+
+Also, there might be tools that expect and use it (now or in the future) and that might be useful for you or your users, now or in the future.
+
+That's the benefit of standards...
+
+///
 
 ## See it in action
 

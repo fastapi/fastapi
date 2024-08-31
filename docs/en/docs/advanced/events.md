@@ -38,10 +38,13 @@ Here we are simulating the expensive *startup* operation of loading the model by
 
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
 
-!!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+/// tip
 
-    Maybe you need to start a new version, or you just got tired of running it. 🤷
+The `shutdown` would happen when you are **stopping** the application.
+
+Maybe you need to start a new version, or you just got tired of running it. 🤷
+
+///
 
 ### Lifespan function
 
@@ -91,10 +94,13 @@ The `lifespan` parameter of the `FastAPI` app takes an **async context manager**
 
 ## Alternative Events (deprecated)
 
-!!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
+/// warning
 
-    You can probably skip this part.
+The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
+
+You can probably skip this part.
+
+///
 
 There's an alternative way to define this logic to be executed during *startup* and during *shutdown*.
 
@@ -126,17 +132,23 @@ To add a function that should be run when the application is shutting down, decl
 
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 
-!!! info
-    In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
+/// info
 
-!!! tip
-    Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
 
-    So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
+///
 
-    But `open()` doesn't use `async` and `await`.
+/// tip
 
-    So, we declare the event handler function with standard `def` instead of `async def`.
+Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+
+So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
+
+But `open()` doesn't use `async` and `await`.
+
+So, we declare the event handler function with standard `def` instead of `async def`.
+
+///
 
 ### `startup` and `shutdown` together
 
@@ -152,10 +164,13 @@ Just a technical detail for the curious nerds. 🤓
 
 Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
 
-!!! info
-    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+/// info
 
-    Including how to handle lifespan state that can be used in other areas of your code.
+You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+
+Including how to handle lifespan state that can be used in other areas of your code.
+
+///
 
 ## Sub Applications
 

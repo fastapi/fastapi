@@ -12,8 +12,11 @@ Bằng việc khai báo kiểu dữ liệu cho các biến của bạn, các tr�
 
 Nhưng thậm chí nếu bạn không bao giờ sử dụng **FastAPI**, bạn sẽ được lợi từ việc học một ít về chúng.
 
-!!! note
-    Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ về gợi ý kiểu dữ liệu, bỏ qua và đi tới chương tiếp theo.
+/// note
+
+Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ về gợi ý kiểu dữ liệu, bỏ qua và đi tới chương tiếp theo.
+
+///
 
 ## Động lực
 
@@ -170,45 +173,55 @@ Nếu bạn có thể sử dụng **phiên bản cuối cùng của Python**, s�
 
 Ví dụ, hãy định nghĩa một biến là `list` các `str`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    Khai báo biến với cùng dấu hai chấm (`:`).
+Khai báo biến với cùng dấu hai chấm (`:`).
 
-    Tương tự kiểu dữ liệu `list`.
+Tương tự kiểu dữ liệu `list`.
 
-    Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệu có sẵn, bạn đặt chúng trong các dấu ngoặc vuông:
+Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệu có sẵn, bạn đặt chúng trong các dấu ngoặc vuông:
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial006_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    Từ `typing`, import `List` (với chữ cái `L` viết hoa):
+//// tab | Python 3.8+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
+Từ `typing`, import `List` (với chữ cái `L` viết hoa):
 
-    Khai báo biến với cùng dấu hai chấm (`:`).
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial006.py!}
+```
 
-    Tương tự như kiểu dữ liệu, `List` bạn import từ `typing`.
+Khai báo biến với cùng dấu hai chấm (`:`).
 
-    Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có sẵn, bạn đặt chúng bên trong dấu ngoặc vuông:
+Tương tự như kiểu dữ liệu, `List` bạn import từ `typing`.
 
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
+Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có sẵn, bạn đặt chúng bên trong dấu ngoặc vuông:
 
-!!! info
-    Các kiểu dữ liệu có sẵn bên trong dấu ngoặc vuông được gọi là "tham số kiểu dữ liệu".
+```Python hl_lines="4"
+{!> ../../../docs_src/python_types/tutorial006.py!}
+```
 
-    Trong trường hợp này, `str` là tham số kiểu dữ liệu được truyền tới `List` (hoặc `list` trong Python 3.9 trở lên).
+////
+
+/// info
+
+Các kiểu dữ liệu có sẵn bên trong dấu ngoặc vuông được gọi là "tham số kiểu dữ liệu".
+
+Trong trường hợp này, `str` là tham số kiểu dữ liệu được truyền tới `List` (hoặc `list` trong Python 3.9 trở lên).
+
+///
 
 Có nghĩa là: "biến `items` là một `list`, và mỗi phần tử trong danh sách này là một `str`".
 
-!!! tip
-    Nếu bạn sử dụng Python 3.9 hoặc lớn hơn, bạn không phải import `List` từ `typing`, bạn có thể sử dụng `list` để thay thế.
+/// tip
+
+Nếu bạn sử dụng Python 3.9 hoặc lớn hơn, bạn không phải import `List` từ `typing`, bạn có thể sử dụng `list` để thay thế.
+
+///
 
 Bằng cách này, trình soạn thảo của bạn có thể hỗ trợ trong khi xử lí các phần tử trong danh sách:
 
@@ -224,17 +237,21 @@ Và do vậy, trình soạn thảo biết nó là một `str`, và cung cấp s�
 
 Bạn sẽ làm điều tương tự để khai báo các `tuple` và  các `set`:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial007_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial007_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial007.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial007.py!}
+```
+
+////
 
 Điều này có nghĩa là:
 
@@ -249,17 +266,21 @@ Tham số kiểu dữ liệu đầu tiên dành cho khóa của `dict`.
 
 Tham số kiểu dữ liệu thứ hai dành cho giá trị của `dict`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial008_py39.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial008_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial008.py!}
+```
+
+////
 
 Điều này có nghĩa là:
 
@@ -278,17 +299,21 @@ In Python 3.10 there's also a **new syntax** where you can put the possible type
 Trong Python 3.10 cũng có một **cú pháp mới** mà bạn có thể đặt những kiểu giá trị khả thi phân cách bởi một dấu <abbr title='cũng được gọi là "toán tử nhị phân"'>sổ dọc (`|`)</abbr>.
 
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial008b_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008b.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial008b.py!}
+```
+
+////
 
 Trong cả hai trường hợp có nghĩa là `item` có thể là một `int` hoặc `str`.
 
@@ -308,23 +333,29 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
 
 Điều này cũng có nghĩa là trong Python 3.10, bạn có thể sử dụng `Something | None`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial009_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../../docs_src/python_types/tutorial009_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial009.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ alternative"
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial009.py!}
+```
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial009b.py!}
-    ```
+////
+
+//// tab | Python 3.8+ alternative
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial009b.py!}
+```
+
+////
 
 #### Sử dụng `Union` hay `Optional`
 
@@ -372,47 +403,53 @@ Và sau đó, bạn sẽ không phải lo rằng những cái tên như `Optiona
 
 Những kiểu dữ liệu này lấy tham số kiểu dữ liệu trong dấu ngoặc vuông được gọi là **Kiểu dữ liệu tổng quát**, cho ví dụ:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    Bạn có thể sử dụng các kiểu dữ liệu có sẵn như là kiểu dữ liệu tổng quát (với ngoặc vuông và kiểu dữ liệu bên trong):
+Bạn có thể sử dụng các kiểu dữ liệu có sẵn như là kiểu dữ liệu tổng quát (với ngoặc vuông và kiểu dữ liệu bên trong):
 
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-    Và tương tự với Python 3.6, từ mô đun `typing`:
+Và tương tự với Python 3.6, từ mô đun `typing`:
 
-    * `Union`
-    * `Optional` (tương tự như Python 3.6)
-    * ...và các kiểu dữ liệu khác.
+* `Union`
+* `Optional` (tương tự như Python 3.6)
+* ...và các kiểu dữ liệu khác.
 
-    Trong Python 3.10, thay vì sử dụng `Union` và `Optional`, bạn có thể sử dụng <abbr title='cũng gọi là "toán tử nhị phân", nhưng ý nghĩa không liên quan ở đây'>sổ dọc ('|')</abbr> để khai báo hợp của các kiểu dữ liệu, điều đó tốt hơn và đơn giản hơn nhiều.
+Trong Python 3.10, thay vì sử dụng `Union` và `Optional`, bạn có thể sử dụng <abbr title='cũng gọi là "toán tử nhị phân", nhưng ý nghĩa không liên quan ở đây'>sổ dọc ('|')</abbr> để khai báo hợp của các kiểu dữ liệu, điều đó tốt hơn và đơn giản hơn nhiều.
 
-=== "Python 3.9+"
+////
 
-    Bạn có thể sử dụng các kiểu dữ liệu có sẵn tương tự như (với ngoặc vuông và kiểu dữ liệu bên trong):
+//// tab | Python 3.9+
 
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
+Bạn có thể sử dụng các kiểu dữ liệu có sẵn tương tự như (với ngoặc vuông và kiểu dữ liệu bên trong):
 
-    Và tương tự với Python 3.6, từ mô đun `typing`:
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
-    * `Union`
-    * `Optional`
-    * ...and others.
+Và tương tự với Python 3.6, từ mô đun `typing`:
 
-=== "Python 3.8+"
+* `Union`
+* `Optional`
+* ...and others.
 
-    * `List`
-    * `Tuple`
-    * `Set`
-    * `Dict`
-    * `Union`
-    * `Optional`
-    * ...và các kiểu khác.
+////
+
+//// tab | Python 3.8+
+
+* `List`
+* `Tuple`
+* `Set`
+* `Dict`
+* `Union`
+* `Optional`
+* ...và các kiểu khác.
+
+////
 
 ### Lớp như kiểu dữ liệu
 
@@ -452,56 +489,71 @@ Và bạn nhận được tất cả sự hỗ trợ của trình soạn thảo 
 
 Một ví dụ từ tài liệu chính thức của Pydantic:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/python_types/tutorial011_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python
+{!> ../../../docs_src/python_types/tutorial011_py39.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/python_types/tutorial011.py!}
-    ```
+////
 
-!!! info
-    Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+//// tab | Python 3.8+
+
+```Python
+{!> ../../../docs_src/python_types/tutorial011.py!}
+```
+
+////
+
+/// info
+
+Để học nhiều hơn về <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, tham khảo tài liệu của nó</a>.
+
+///
 
 **FastAPI** được dựa hoàn toàn trên Pydantic.
 
 Bạn sẽ thấy nhiều ví dụ thực tế hơn trong [Hướng dẫn sử dụng](tutorial/index.md){.internal-link target=_blank}.
 
-!!! tip
-    Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+/// tip
 
+Pydantic có một hành vi đặc biệt khi bạn sử dụng `Optional` hoặc `Union[Something, None]` mà không có giá trị mặc dịnh, bạn có thể đọc nhiều hơn về nó trong tài liệu của Pydantic về <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+
+///
 
 ## Type Hints với Metadata Annotations
 
 Python cũng có một tính năng cho phép đặt **metadata bổ sung** trong những gợi ý kiểu dữ liệu này bằng cách sử dụng `Annotated`.
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đó bạn có thể import nó từ `typing`.
+Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đó bạn có thể import nó từ `typing`.
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial013_py39.py!}
-    ```
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial013_py39.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    Ở phiên bản dưới Python 3.9, bạn import `Annotated` từ `typing_extensions`.
+//// tab | Python 3.8+
 
-    Nó đã được cài đặt sẵng cùng với **FastAPI**.
+Ở phiên bản dưới Python 3.9, bạn import `Annotated` từ `typing_extensions`.
 
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial013.py!}
-    ```
+Nó đã được cài đặt sẵng cùng với **FastAPI**.
+
+```Python hl_lines="1  4"
+{!> ../../../docs_src/python_types/tutorial013.py!}
+```
+
+////
 
 Python bản thân nó không làm bất kì điều gì với `Annotated`. Với các trình soạn thảo và các công cụ khác, kiểu dữ liệu vẫn là `str`.
 
@@ -514,10 +566,13 @@ Bây giờ, bạn chỉ cần biết rằng `Annotated` tồn tại, và nó là
 
 Sau đó, bạn sẽ thấy sự **mạnh mẽ** mà nó có thể làm.
 
-!!! tip
-    Thực tế, cái này là **tiêu chuẩn của Python**, nghĩa là bạn vẫn sẽ có được **trải nghiệm phát triển tốt nhất có thể** với trình soạn thảo của bạn, với các công cụ bạn sử dụng để phân tích và tái cấu trúc code của bạn, etc. ✨
+/// tip
 
-    Và code của bạn sẽ tương thích với nhiều công cụ và thư viện khác của Python. 🚀
+Thực tế, cái này là **tiêu chuẩn của Python**, nghĩa là bạn vẫn sẽ có được **trải nghiệm phát triển tốt nhất có thể** với trình soạn thảo của bạn, với các công cụ bạn sử dụng để phân tích và tái cấu trúc code của bạn, etc. ✨
+
+Và code của bạn sẽ tương thích với nhiều công cụ và thư viện khác của Python. 🚀
+
+///
 
 ## Các gợi ý kiểu dữ liệu trong **FastAPI**
 
@@ -541,5 +596,8 @@ Với **FastAPI**, bạn khai báo các tham số với gợi ý kiểu và bạ
 
 Điều quan trọng là bằng việc sử dụng các kiểu dữ liệu chuẩn của Python (thay vì thêm các lớp, decorators,...), **FastAPI** sẽ thực hiện nhiều công việc cho bạn.
 
-!!! info
-    Nếu bạn đã đi qua toàn bộ các hướng dẫn và quay trở lại để tìm hiểu nhiều hơn về các kiểu dữ liệu, một tài nguyên tốt như <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" từ `mypy`</a>.
+/// info
+
+Nếu bạn đã đi qua toàn bộ các hướng dẫn và quay trở lại để tìm hiểu nhiều hơn về các kiểu dữ liệu, một tài nguyên tốt như <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" từ `mypy`</a>.
+
+///

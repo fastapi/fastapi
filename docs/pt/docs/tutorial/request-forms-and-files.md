@@ -2,11 +2,13 @@
 
 Você pode definir arquivos e campos de formulário ao mesmo tempo usando `File` e `Form`.
 
-!!! info "Informação"
-    Para receber arquivos carregados e/ou dados de formulário, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+/// info | "Informação"
 
-    Por exemplo: `pip install python-multipart`.
+Para receber arquivos carregados e/ou dados de formulário, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
+Por exemplo: `pip install python-multipart`.
+
+///
 
 ## Importe `File` e `Form`
 
@@ -26,10 +28,13 @@ Os arquivos e campos de formulário serão carregados como dados de formulário 
 
 E você pode declarar alguns dos arquivos como `bytes` e alguns como `UploadFile`.
 
-!!! warning "Aviso"
-    Você pode declarar vários parâmetros `File` e `Form` em uma *operação de caminho*, mas não é possível declarar campos `Body` para receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
+/// warning | "Aviso"
 
-    Isso não é uma limitação do **FastAPI** , é parte do protocolo HTTP.
+Você pode declarar vários parâmetros `File` e `Form` em uma *operação de caminho*, mas não é possível declarar campos `Body` para receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
+
+Isso não é uma limitação do **FastAPI** , é parte do protocolo HTTP.
+
+///
 
 ## Recapitulando
 

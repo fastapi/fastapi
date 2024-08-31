@@ -27,8 +27,11 @@ Und diese Funktion `get_openapi()` erhält als Parameter:
 * `description`: Die Beschreibung Ihrer API. Dies kann Markdown enthalten und wird in der Dokumentation angezeigt.
 * `routes`: Eine Liste von Routen, dies sind alle registrierten *Pfadoperationen*. Sie stammen von `app.routes`.
 
-!!! info
-    Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von FastAPI 0.99.0 und höher unterstützt.
+/// info
+
+Der Parameter `summary` ist in OpenAPI 3.1.0 und höher verfügbar und wird von FastAPI 0.99.0 und höher unterstützt.
+
+///
 
 ## Überschreiben der Standardeinstellungen
 

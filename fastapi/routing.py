@@ -3,14 +3,16 @@ import dataclasses
 import email.message
 import inspect
 import json
-from contextlib import AsyncExitStack
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
     Any,
+    AsyncIterator,
     Callable,
     Coroutine,
     Dict,
     List,
+    Mapping,
     Optional,
     Sequence,
     Set,
@@ -67,7 +69,7 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.routing import Mount as Mount  # noqa
-from starlette.types import ASGIApp, Lifespan, Scope
+from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Doc, deprecated
 
@@ -117,6 +119,23 @@ def _prepare_response_content(
     elif dataclasses.is_dataclass(res):
         return dataclasses.asdict(res)
     return res
+
+
+def _merge_lifespan_context(
+    original_context: Lifespan[Any], nested_context: Lifespan[Any]
+) -> Lifespan[Any]:
+    @asynccontextmanager
+    async def merged_lifespan(
+        app: AppType,
+    ) -> AsyncIterator[Optional[Mapping[str, Any]]]:
+        async with original_context(app) as maybe_original_state:
+            async with nested_context(app) as maybe_nested_state:
+                if maybe_nested_state is None and maybe_original_state is None:
+                    yield None  # old ASGI compatibility
+                else:
+                    yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
+
+    return merged_lifespan  # type: ignore[return-value]
 
 
 async def serialize_response(
@@ -454,9 +473,9 @@ class APIRoute(routing.Route):
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
-            current_generate_unique_id: Callable[
-                ["APIRoute"], str
-            ] = generate_unique_id_function.value
+            current_generate_unique_id: Callable[[APIRoute], str] = (
+                generate_unique_id_function.value
+            )
         else:
             current_generate_unique_id = generate_unique_id_function
         self.unique_id = self.operation_id or current_generate_unique_id(self)
@@ -482,9 +501,9 @@ class APIRoute(routing.Route):
             # By being a new field, no inheritance will be passed as is. A new model
             # will always be created.
             # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[
-                ModelField
-            ] = create_cloned_field(self.response_field)
+            self.secure_cloned_response_field: Optional[ModelField] = (
+                create_cloned_field(self.response_field)
+            )
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
@@ -1308,6 +1327,10 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
+        self.lifespan_context = _merge_lifespan_context(
+            self.lifespan_context,
+            router.lifespan_context,
+        )
 
     def get(
         self,

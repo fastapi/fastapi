@@ -28,48 +28,67 @@ Um eine Abhängigkeit für das Testen zu überschreiben, geben Sie als Schlüsse
 
 Und dann ruft **FastAPI** diese Überschreibung anstelle der ursprünglichen Abhängigkeit auf.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="26-27  30"
-    {!> ../../../docs_src/dependency_testing/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="26-27  30"
+{!> ../../../docs_src/dependency_testing/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="28-29  32"
-    {!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="28-29  32"
+{!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="29-30  33"
-    {!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ nicht annotiert"
+//// tab | Python 3.8+
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+```Python hl_lines="29-30  33"
+{!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="24-25  28"
-    {!> ../../../docs_src/dependency_testing/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ nicht annotiert"
+//// tab | Python 3.10+ nicht annotiert
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | "Tipp"
 
-    ```Python hl_lines="28-29  32"
-    {!> ../../../docs_src/dependency_testing/tutorial001.py!}
-    ```
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
-!!! tip "Tipp"
-    Sie können eine Überschreibung für eine Abhängigkeit festlegen, die an einer beliebigen Stelle in Ihrer **FastAPI**-Anwendung verwendet wird.
+///
 
-    Die ursprüngliche Abhängigkeit könnte in einer *Pfadoperation-Funktion*, einem *Pfadoperation-Dekorator* (wenn Sie den Rückgabewert nicht verwenden), einem `.include_router()`-Aufruf, usw. verwendet werden.
+```Python hl_lines="24-25  28"
+{!> ../../../docs_src/dependency_testing/tutorial001_py310.py!}
+```
 
-    FastAPI kann sie in jedem Fall überschreiben.
+////
+
+//// tab | Python 3.8+ nicht annotiert
+
+/// tip | "Tipp"
+
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="28-29  32"
+{!> ../../../docs_src/dependency_testing/tutorial001.py!}
+```
+
+////
+
+/// tip | "Tipp"
+
+Sie können eine Überschreibung für eine Abhängigkeit festlegen, die an einer beliebigen Stelle in Ihrer **FastAPI**-Anwendung verwendet wird.
+
+Die ursprüngliche Abhängigkeit könnte in einer *Pfadoperation-Funktion*, einem *Pfadoperation-Dekorator* (wenn Sie den Rückgabewert nicht verwenden), einem `.include_router()`-Aufruf, usw. verwendet werden.
+
+FastAPI kann sie in jedem Fall überschreiben.
+
+///
 
 Anschließend können Sie Ihre Überschreibungen zurücksetzen (entfernen), indem Sie `app.dependency_overrides` auf ein leeres `dict` setzen:
 
@@ -77,5 +96,8 @@ Anschließend können Sie Ihre Überschreibungen zurücksetzen (entfernen), inde
 app.dependency_overrides = {}
 ```
 
-!!! tip "Tipp"
-    Wenn Sie eine Abhängigkeit nur während einiger Tests überschreiben möchten, können Sie die Überschreibung zu Beginn des Tests (innerhalb der Testfunktion) festlegen und am Ende (am Ende der Testfunktion) zurücksetzen.
+/// tip | "Tipp"
+
+Wenn Sie eine Abhängigkeit nur während einiger Tests überschreiben möchten, können Sie die Überschreibung zu Beginn des Tests (innerhalb der Testfunktion) festlegen und am Ende (am Ende der Testfunktion) zurücksetzen.
+
+///

@@ -14,10 +14,13 @@ Você pode declarar um `example` para um modelo Pydantic usando `Config` e `sche
 
 Essas informações extras serão adicionadas como se encontram no **JSON Schema** de resposta desse modelo e serão usadas na documentação da API.
 
-!!! tip "Dica"
-    Você pode usar a mesma técnica para estender o JSON Schema e adicionar suas próprias informações extras de forma personalizada.
+/// tip | "Dica"
 
-    Por exemplo, você pode usar isso para adicionar metadados para uma interface de usuário de front-end, etc.
+Você pode usar a mesma técnica para estender o JSON Schema e adicionar suas próprias informações extras de forma personalizada.
+
+Por exemplo, você pode usar isso para adicionar metadados para uma interface de usuário de front-end, etc.
+
+///
 
 ## `Field` de argumentos adicionais
 
@@ -29,8 +32,11 @@ Você pode usar isso para adicionar um `example` para cada campo:
 {!../../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
-!!! warning "Atenção"
-    Lembre-se de que esses argumentos extras passados ​​não adicionarão nenhuma validação, apenas informações extras, para fins de documentação.
+/// warning | "Atenção"
+
+Lembre-se de que esses argumentos extras passados ​​não adicionarão nenhuma validação, apenas informações extras, para fins de documentação.
+
+///
 
 ## `example` e `examples` no OpenAPI
 
@@ -85,10 +91,13 @@ Com `examples` adicionado a `Body()`, os `/docs` vão ficar assim:
 
 ## Detalhes técnicos
 
-!!! warning "Atenção"
-    Esses são detalhes muito técnicos sobre os padrões **JSON Schema** e **OpenAPI**.
+/// warning | "Atenção"
 
-    Se as ideias explicadas acima já funcionam para você, isso pode ser o suficiente, e você provavelmente não precisa desses detalhes, fique à vontade para pular.
+Esses são detalhes muito técnicos sobre os padrões **JSON Schema** e **OpenAPI**.
+
+Se as ideias explicadas acima já funcionam para você, isso pode ser o suficiente, e você provavelmente não precisa desses detalhes, fique à vontade para pular.
+
+///
 
 Quando você adiciona um exemplo dentro de um modelo Pydantic, usando `schema_extra` ou` Field(example="something") `esse exemplo é adicionado ao **JSON Schema** para esse modelo Pydantic.
 

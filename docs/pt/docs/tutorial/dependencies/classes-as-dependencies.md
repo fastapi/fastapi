@@ -6,41 +6,57 @@ Antes de nos aprofundarmos no sistema de **Injeção de Dependência**, vamos me
 
 No exemplo anterior, nós retornávamos um `dict` da nossa dependência ("injetável"):
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="12"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+/// tip | "Dica"
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="7"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="11"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Mas assim obtemos um `dict` como valor do parâmetro `commons` na *função de operação de rota*.
 
@@ -103,123 +119,165 @@ Isso também se aplica a objetos chamáveis que não recebem nenhum parâmetro. 
 
 Então, podemos mudar o "injetável" na dependência `common_parameters` acima para a classe `CommonQueryParams`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="11-15"
+{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="11-15"
+{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="12-16"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="12-16"
+{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+```
 
+////
 
-    ```Python hl_lines="9-13"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
+```Python hl_lines="9-13"
+{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="11-15"
+{!> ../../../docs_src/dependencies/tutorial002.py!}
+```
+
+////
 
 Observe o método `__init__` usado para criar uma instância da classe:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="12"
+{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="12"
+{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="13"
+{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+```
 
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="12"
+{!> ../../../docs_src/dependencies/tutorial002.py!}
+```
+
+////
 
 ...ele possui os mesmos parâmetros que nosso `common_parameters` anterior:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="9"
+{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+```
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="10"
+{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+```
 
+////
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+```Python hl_lines="6"
+{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="9"
+{!> ../../../docs_src/dependencies/tutorial001.py!}
+```
+
+////
 
 Esses parâmetros são utilizados pelo **FastAPI** para "definir" a dependência.
 
@@ -235,43 +293,57 @@ Os dados serão convertidos, validados, documentados no esquema da OpenAPI e etc
 
 Agora você pode declarar sua dependência utilizando essa classe.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="20"
+{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+```
 
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial002.py!}
+```
+
+////
 
 O **FastAPI** chama a classe `CommonQueryParams`. Isso cria uma "instância" dessa classe e é a instância que será passada para o parâmetro `commons` na sua função.
 
@@ -279,21 +351,27 @@ O **FastAPI** chama a classe `CommonQueryParams`. Isso cria uma "instância" des
 
 Perceba como escrevemos `CommonQueryParams` duas vezes no código abaixo:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
+/// tip | "Dica"
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
 
 O último `CommonQueryParams`, em:
 
@@ -309,81 +387,107 @@ O último `CommonQueryParams`, em:
 
 Nesse caso, o primeiro `CommonQueryParams`, em:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, ...
-    ```
+```Python
+commons: Annotated[CommonQueryParams, ...
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
+/// tip | "Dica"
 
-    ```Python
-    commons: CommonQueryParams ...
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons: CommonQueryParams ...
+```
+
+////
 
 ...não tem nenhum signficado especial para o **FastAPI**. O FastAPI não irá utilizá-lo para conversão dos dados, validação, etc (já que ele utiliza `Depends(CommonQueryParams)` para isso).
 
 Na verdade você poderia escrever apenas:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[Any, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[Any, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
+/// tip | "Dica"
 
-    ```Python
-    commons = Depends(CommonQueryParams)
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons = Depends(CommonQueryParams)
+```
+
+////
 
 ...como em:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial003_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="20"
+{!> ../../../docs_src/dependencies/tutorial003_an.py!}
+```
 
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003.py!}
-    ```
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial003.py!}
+```
+
+////
 
 Mas declarar o tipo é encorajado por que é a forma que o seu editor de texto sabe o que será passado como valor do parâmetro `commons`.
 
@@ -393,20 +497,27 @@ Mas declarar o tipo é encorajado por que é a forma que o seu editor de texto s
 
 Mas você pode ver que temos uma repetição do código neste exemplo, escrevendo `CommonQueryParams` duas vezes:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
 
 O **FastAPI** nos fornece um atalho para esses casos, onde a dependência é *especificamente* uma classe que o **FastAPI** irá "chamar" para criar uma instância da própria classe.
 
@@ -414,84 +525,114 @@ Para esses casos específicos, você pode fazer o seguinte:
 
 Em vez de escrever:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.8+ non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
 
 ...escreva:
 
-=== "Python 3.8+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends()]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends()]
+```
 
-=== "Python 3.8 non-Annotated"
+////
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+//// tab | Python 3.8 non-Annotated
 
+/// tip | "Dica"
 
-    ```Python
-    commons: CommonQueryParams = Depends()
-    ```
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends()
+```
+
+////
 
 Você declara a dependência como o tipo do parâmetro, e utiliza `Depends()` sem nenhum parâmetro, em vez de ter que escrever a classe *novamente* dentro de `Depends(CommonQueryParams)`.
 
 O mesmo exemplo ficaria então dessa forma:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
+```
 
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial004_an.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+```Python hl_lines="20"
+{!> ../../../docs_src/dependencies/tutorial004_an.py!}
+```
 
+////
 
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
-    ```
+//// tab | Python 3.10+ non-Annotated
 
-=== "Python 3.8+ non-Annotated"
+/// tip | "Dica"
 
-    !!! tip "Dica"
-        Utilize a versão com `Annotated` se possível.
+Utilize a versão com `Annotated` se possível.
 
+///
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004.py!}
-    ```
+```Python hl_lines="17"
+{!> ../../../docs_src/dependencies/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | "Dica"
+
+Utilize a versão com `Annotated` se possível.
+
+///
+
+```Python hl_lines="19"
+{!> ../../../docs_src/dependencies/tutorial004.py!}
+```
+
+////
 
 ...e o **FastAPI** saberá o que fazer.
 
-!!! tip "Dica"
-    Se isso parece mais confuso do que útil, não utilize, você não *precisa* disso.
+/// tip | "Dica"
 
-    É apenas um atalho. Por que o **FastAPI** se preocupa em ajudar a minimizar a repetição de código.
+Se isso parece mais confuso do que útil, não utilize, você não *precisa* disso.
+
+É apenas um atalho. Por que o **FastAPI** se preocupa em ajudar a minimizar a repetição de código.
+
+///

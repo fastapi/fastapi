@@ -10,111 +10,123 @@ Let's see how that works and how to change it if you need to do that.
 
 Let's say you have a Pydantic model with default values, like this one:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
+```Python hl_lines="7"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
 
-    # Code below omitted 👇
-    ```
+# Code below omitted 👇
+```
 
-    <details>
-    <summary>👀 Full file preview</summary>
+<details>
+<summary>👀 Full file preview</summary>
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-    </details>
+</details>
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
+//// tab | Python 3.9+
 
-    # Code below omitted 👇
-    ```
+```Python hl_lines="9"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
 
-    <details>
-    <summary>👀 Full file preview</summary>
+# Code below omitted 👇
+```
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+<details>
+<summary>👀 Full file preview</summary>
 
-    </details>
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+</details>
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
+////
 
-    # Code below omitted 👇
-    ```
+//// tab | Python 3.8+
 
-    <details>
-    <summary>👀 Full file preview</summary>
+```Python hl_lines="9"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+# Code below omitted 👇
+```
 
-    </details>
+<details>
+<summary>👀 Full file preview</summary>
+
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+</details>
+
+////
 
 ### Model for Input
 
 If you use this model as an input like here:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
+```Python hl_lines="14"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
 
-    # Code below omitted 👇
-    ```
+# Code below omitted 👇
+```
 
-    <details>
-    <summary>👀 Full file preview</summary>
+<details>
+<summary>👀 Full file preview</summary>
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-    </details>
+</details>
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
+//// tab | Python 3.9+
 
-    # Code below omitted 👇
-    ```
+```Python hl_lines="16"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
 
-    <details>
-    <summary>👀 Full file preview</summary>
+# Code below omitted 👇
+```
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+<details>
+<summary>👀 Full file preview</summary>
 
-    </details>
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-=== "Python 3.8+"
+</details>
 
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
+////
 
-    # Code below omitted 👇
-    ```
+//// tab | Python 3.8+
 
-    <details>
-    <summary>👀 Full file preview</summary>
+```Python hl_lines="16"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
 
-    ```Python
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+# Code below omitted 👇
+```
 
-    </details>
+<details>
+<summary>👀 Full file preview</summary>
+
+```Python
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+</details>
+
+////
 
 ...then the `description` field will **not be required**. Because it has a default value of `None`.
 
@@ -130,23 +142,29 @@ You can confirm that in the docs, the `description` field doesn't have a **red a
 
 But if you use the same model as an output, like here:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-    ```
+```Python hl_lines="19"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+```Python hl_lines="21"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
+```
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
-    ```
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="21"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial001.py!}
+```
+
+////
 
 ...then because `description` has a default value, if you **don't return anything** for that field, it will still have that **default value**.
 
@@ -199,26 +217,35 @@ Probably the main use case for this is if you already have some autogenerated cl
 
 In that case, you can disable this feature in **FastAPI**, with the parameter `separate_input_output_schemas=False`.
 
-!!! info
-    Support for `separate_input_output_schemas` was added in FastAPI `0.102.0`. 🤓
+/// info
 
-=== "Python 3.10+"
+Support for `separate_input_output_schemas` was added in FastAPI `0.102.0`. 🤓
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
-    ```
+///
 
-=== "Python 3.9+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
-    ```
+```Python hl_lines="10"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
-    ```
+//// tab | Python 3.9+
+
+```Python hl_lines="12"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="12"
+{!> ../../../docs_src/separate_openapi_schemas/tutorial002.py!}
+```
+
+////
 
 ### Same Schema for Input and Output Models in Docs
 
