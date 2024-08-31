@@ -55,7 +55,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import create_response_field, get_path_param_names
+from fastapi.utils import create_model_field, get_path_param_names
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -449,7 +449,7 @@ def analyze_param(
         else:
             alias = field_info.alias or param_name
         field_info.alias = alias
-        field = create_response_field(
+        field = create_model_field(
             name=param_name,
             type_=use_annotation_from_field_info,
             default=field_info.default,
@@ -818,7 +818,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    final_field = create_response_field(
+    final_field = create_model_field(
         name="body",
         type_=BodyModel,
         required=required,
