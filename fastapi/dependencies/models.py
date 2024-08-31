@@ -11,7 +11,7 @@ class SecurityRequirement:
     scopes: Optional[Sequence[str]] = None
 
 
-@dataclass(kw_only=True)
+@dataclass
 class Dependant:
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
