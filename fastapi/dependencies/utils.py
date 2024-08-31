@@ -1,6 +1,7 @@
 import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
+from dataclasses import dataclass
 from typing import (
     Any,
     Callable,
@@ -258,16 +259,16 @@ def get_dependant(
     )
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
-        type_annotation, depends, param_field = analyze_param(
+        param_details = analyze_param(
             param_name=param_name,
             annotation=param.annotation,
             value=param.default,
             is_path_param=is_path_param,
         )
-        if depends is not None:
+        if param_details.depends is not None:
             sub_dependant = get_param_sub_dependant(
                 param_name=param_name,
-                depends=depends,
+                depends=param_details.depends,
                 path=path,
                 security_scopes=security_scopes,
             )
@@ -275,18 +276,18 @@ def get_dependant(
             continue
         if add_non_field_param_to_dependency(
             param_name=param_name,
-            type_annotation=type_annotation,
+            type_annotation=param_details.type_annotation,
             dependant=dependant,
         ):
             assert (
-                param_field is None
+                param_details.field is None
             ), f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             continue
-        assert param_field is not None
-        if is_body_param(param_field=param_field, is_path_param=is_path_param):
-            dependant.body_params.append(param_field)
+        assert param_details.field is not None
+        if is_body_param(param_field=param_details.field, is_path_param=is_path_param):
+            dependant.body_params.append(param_details.field)
         else:
-            add_param_to_fields(field=param_field, dependant=dependant)
+            add_param_to_fields(field=param_details.field, dependant=dependant)
     return dependant
 
 
@@ -314,13 +315,20 @@ def add_non_field_param_to_dependency(
     return None
 
 
+@dataclass
+class ParamDetails:
+    type_annotation: Any
+    depends: Optional[params.Depends]
+    field: Optional[ModelField]
+
+
 def analyze_param(
     *,
     param_name: str,
     annotation: Any,
     value: Any,
     is_path_param: bool,
-) -> Tuple[Any, Optional[params.Depends], Optional[ModelField]]:
+) -> ParamDetails:
     field_info = None
     depends = None
     type_annotation: Any = Any
@@ -450,7 +458,7 @@ def analyze_param(
             field_info=field_info,
         )
 
-    return type_annotation, depends, field
+    return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
 
 def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
