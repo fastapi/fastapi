@@ -312,17 +312,20 @@ def get_request_handler(
                             response_args["status_code"] = current_status_code
                         if sub_response.status_code:
                             response_args["status_code"] = sub_response.status_code
-                        content = await serialize_response(
-                            field=response_field,
-                            response_content=raw_response,
-                            include=response_model_include,
-                            exclude=response_model_exclude,
-                            by_alias=response_model_by_alias,
-                            exclude_unset=response_model_exclude_unset,
-                            exclude_defaults=response_model_exclude_defaults,
-                            exclude_none=response_model_exclude_none,
-                            is_coroutine=is_coroutine,
-                        )
+                        # Some response classes handle serialization themselves via iteration
+                        content = raw_response
+                        if not hasattr(actual_response_class, 'body_iterator'):
+                            content = await serialize_response(
+                                field=response_field,
+                                response_content=raw_response,
+                                include=response_model_include,
+                                exclude=response_model_exclude,
+                                by_alias=response_model_by_alias,
+                                exclude_unset=response_model_exclude_unset,
+                                exclude_defaults=response_model_exclude_defaults,
+                                exclude_none=response_model_exclude_none,
+                                is_coroutine=is_coroutine,
+                            )
                         response = actual_response_class(content, **response_args)
                         if not is_body_allowed_for_status_code(response.status_code):
                             response.body = b""
