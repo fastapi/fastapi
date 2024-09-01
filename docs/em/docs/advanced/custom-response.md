@@ -12,8 +12,11 @@
 
 &amp; 🚥 👈 `Response` ✔️ 🎻 📻 🆎 (`application/json`), 💖 💼 ⏮️ `JSONResponse` &amp; `UJSONResponse`, 💽 👆 📨 🔜 🔁 🗜 (&amp; ⛽) ⏮️ 🙆 Pydantic `response_model` 👈 👆 📣 *➡ 🛠️ 👨‍🎨*.
 
-!!! note
-    🚥 👆 ⚙️ 📨 🎓 ⏮️ 🙅‍♂ 📻 🆎, FastAPI 🔜 ⌛ 👆 📨 ✔️ 🙅‍♂ 🎚, ⚫️ 🔜 🚫 📄 📨 📁 🚮 🏗 🗄 🩺.
+/// note
+
+🚥 👆 ⚙️ 📨 🎓 ⏮️ 🙅‍♂ 📻 🆎, FastAPI 🔜 ⌛ 👆 📨 ✔️ 🙅‍♂ 🎚, ⚫️ 🔜 🚫 📄 📨 📁 🚮 🏗 🗄 🩺.
+
+///
 
 ## ⚙️ `ORJSONResponse`
 
@@ -31,15 +34,21 @@
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-!!! info
-    🔢 `response_class` 🔜 ⚙️ 🔬 "📻 🆎" 📨.
+/// info
 
-    👉 💼, 🇺🇸🔍 🎚 `Content-Type` 🔜 ⚒ `application/json`.
+🔢 `response_class` 🔜 ⚙️ 🔬 "📻 🆎" 📨.
 
-     &amp; ⚫️ 🔜 📄 ✅ 🗄.
+👉 💼, 🇺🇸🔍 🎚 `Content-Type` 🔜 ⚒ `application/json`.
 
-!!! tip
-     `ORJSONResponse` ⏳ 🕴 💪 FastAPI, 🚫 💃.
+ &amp; ⚫️ 🔜 📄 ✅ 🗄.
+
+///
+
+/// tip
+
+`ORJSONResponse` ⏳ 🕴 💪 FastAPI, 🚫 💃.
+
+///
 
 ## 🕸 📨
 
@@ -52,12 +61,15 @@
 {!../../../docs_src/custom_response/tutorial002.py!}
 ```
 
-!!! info
-    🔢 `response_class` 🔜 ⚙️ 🔬 "📻 🆎" 📨.
+/// info
 
-    👉 💼, 🇺🇸🔍 🎚 `Content-Type` 🔜 ⚒ `text/html`.
+🔢 `response_class` 🔜 ⚙️ 🔬 "📻 🆎" 📨.
 
-     &amp; ⚫️ 🔜 📄 ✅ 🗄.
+👉 💼, 🇺🇸🔍 🎚 `Content-Type` 🔜 ⚒ `text/html`.
+
+ &amp; ⚫️ 🔜 📄 ✅ 🗄.
+
+///
 
 ### 📨 `Response`
 
@@ -69,11 +81,17 @@
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
 
-!!! warning
-     `Response` 📨 🔗 👆 *➡ 🛠️ 🔢* 🏆 🚫 📄 🗄 (🖼, `Content-Type` 🏆 🚫 📄) &amp; 🏆 🚫 ⭐ 🏧 🎓 🩺.
+/// warning
 
-!!! info
-    ↗️, ☑ `Content-Type` 🎚, 👔 📟, ♒️, 🔜 👟 ⚪️➡️ `Response` 🎚 👆 📨.
+`Response` 📨 🔗 👆 *➡ 🛠️ 🔢* 🏆 🚫 📄 🗄 (🖼, `Content-Type` 🏆 🚫 📄) &amp; 🏆 🚫 ⭐ 🏧 🎓 🩺.
+
+///
+
+/// info
+
+↗️, ☑ `Content-Type` 🎚, 👔 📟, ♒️, 🔜 👟 ⚪️➡️ `Response` 🎚 👆 📨.
+
+///
 
 ### 📄 🗄 &amp; 🔐 `Response`
 
@@ -103,10 +121,13 @@
 
 ✔️ 🤯 👈 👆 💪 ⚙️ `Response` 📨 🕳 🙆, ⚖️ ✍ 🛃 🎧-🎓.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import HTMLResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import HTMLResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### `Response`
 
@@ -153,15 +174,21 @@ FastAPI (🤙 💃) 🔜 🔁 🔌 🎚-📐 🎚. ⚫️ 🔜 🔌 🎚-🆎 �
 
 🎛 🎻 📨 ⚙️ <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
-!!! warning
-    `ujson` 🌘 💛 🌘 🐍 🏗-🛠️ ❔ ⚫️ 🍵 📐-💼.
+/// warning
+
+`ujson` 🌘 💛 🌘 🐍 🏗-🛠️ ❔ ⚫️ 🍵 📐-💼.
+
+///
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
 ```
 
-!!! tip
-    ⚫️ 💪 👈 `ORJSONResponse` 💪 ⏩ 🎛.
+/// tip
+
+⚫️ 💪 👈 `ORJSONResponse` 💪 ⏩ 🎛.
+
+///
 
 ### `RedirectResponse`
 
@@ -222,8 +249,11 @@ FastAPI (🤙 💃) 🔜 🔁 🔌 🎚-📐 🎚. ⚫️ 🔜 🔌 🎚-🆎 �
 
     🔨 ⚫️ 👉 🌌, 👥 💪 🚮 ⚫️ `with` 🍫, &amp; 👈 🌌, 🚚 👈 ⚫️ 📪 ⏮️ 🏁.
 
-!!! tip
-    👀 👈 📥 👥 ⚙️ 🐩 `open()` 👈 🚫 🐕‍🦺 `async` &amp; `await`, 👥 📣 ➡ 🛠️ ⏮️ 😐 `def`.
+/// tip
+
+👀 👈 📥 👥 ⚙️ 🐩 `open()` 👈 🚫 🐕‍🦺 `async` &amp; `await`, 👥 📣 ➡ 🛠️ ⏮️ 😐 `def`.
+
+///
 
 ### `FileResponse`
 
@@ -292,8 +322,11 @@ FastAPI (🤙 💃) 🔜 🔁 🔌 🎚-📐 🎚. ⚫️ 🔜 🔌 🎚-🆎 �
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 
-!!! tip
-    👆 💪 🔐 `response_class` *➡ 🛠️* ⏭.
+/// tip
+
+👆 💪 🔐 `response_class` *➡ 🛠️* ⏭.
+
+///
 
 ## 🌖 🧾
 

@@ -45,7 +45,7 @@ FastAPI includes some default configuration parameters appropriate for most of t
 It includes these default configurations:
 
 ```Python
-{!../../../fastapi/openapi/docs.py[ln:7-13]!}
+{!../../../fastapi/openapi/docs.py[ln:7-23]!}
 ```
 
 You can override any of them by setting a different value in the argument `swagger_ui_parameters`.

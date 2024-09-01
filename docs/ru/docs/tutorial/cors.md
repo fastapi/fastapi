@@ -78,7 +78,10 @@
 
 Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Документации CORS от Mozilla</a>.
 
-!!! note "Технические детали"
-    Вы также можете использовать `from starlette.middleware.cors import CORSMiddleware`.
+/// note | "Технические детали"
 
-    **FastAPI** предоставляет несколько middleware в `fastapi.middleware` только для вашего удобства как разработчика. Но большинство доступных middleware взяты напрямую из Starlette.
+Вы также можете использовать `from starlette.middleware.cors import CORSMiddleware`.
+
+**FastAPI** предоставляет несколько middleware в `fastapi.middleware` только для вашего удобства как разработчика. Но большинство доступных middleware взяты напрямую из Starlette.
+
+///

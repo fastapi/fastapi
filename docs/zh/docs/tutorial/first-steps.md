@@ -24,13 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    `uvicorn main:app` 命令含义如下:
+/// note
 
-    * `main`：`main.py` 文件（一个 Python「模块」）。
-    * `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
-    * `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
+`uvicorn main:app` 命令含义如下:
 
+* `main`：`main.py` 文件（一个 Python「模块」）。
+* `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
+* `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
+
+///
 
 在输出中，会有一行信息像下面这样：
 
@@ -138,10 +140,13 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
-!!! note "技术细节"
-    `FastAPI` 是直接从 `Starlette` 继承的类。
+/// note | "技术细节"
 
-    你可以通过 `FastAPI` 使用所有的 Starlette 的功能。
+`FastAPI` 是直接从 `Starlette` 继承的类。
+
+你可以通过 `FastAPI` 使用所有的 Starlette 的功能。
+
+///
 
 ### 步骤 2：创建一个 `FastAPI`「实例」
 
@@ -201,8 +206,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    「路径」也通常被称为「端点」或「路由」。
+/// info
+
+「路径」也通常被称为「端点」或「路由」。
+
+///
 
 开发 API 时，「路径」是用来分离「关注点」和「资源」的主要手段。
 
@@ -252,16 +260,19 @@ https://example.com/items/foo
 * 请求路径为 `/`
 * 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
 
-!!! info "`@decorator` Info"
-    `@something` 语法在 Python 中被称为「装饰器」。
+/// info | "`@decorator` Info"
 
-    像一顶漂亮的装饰帽一样，将它放在一个函数的上方（我猜测这个术语的命名就是这么来的）。
+`@something` 语法在 Python 中被称为「装饰器」。
 
-    装饰器接收位于其下方的函数并且用它完成一些工作。
+像一顶漂亮的装饰帽一样，将它放在一个函数的上方（我猜测这个术语的命名就是这么来的）。
 
-    在我们的例子中，这个装饰器告诉 **FastAPI** 位于其下方的函数对应着**路径** `/` 加上 `get` **操作**。
+装饰器接收位于其下方的函数并且用它完成一些工作。
 
-    它是一个「**路径操作装饰器**」。
+在我们的例子中，这个装饰器告诉 **FastAPI** 位于其下方的函数对应着**路径** `/` 加上 `get` **操作**。
+
+它是一个「**路径操作装饰器**」。
+
+///
 
 你也可以使用其他的操作：
 
@@ -276,14 +287,17 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    您可以随意使用任何一个操作（HTTP方法）。
+/// tip
 
-    **FastAPI** 没有强制要求操作有任何特定的含义。
+您可以随意使用任何一个操作（HTTP方法）。
 
-    此处提供的信息仅作为指导，而不是要求。
+**FastAPI** 没有强制要求操作有任何特定的含义。
 
-    比如，当使用 GraphQL 时通常你所有的动作都通过 `post` 一种方法执行。
+此处提供的信息仅作为指导，而不是要求。
+
+比如，当使用 GraphQL 时通常你所有的动作都通过 `post` 一种方法执行。
+
+///
 
 ### 步骤 4：定义**路径操作函数**
 
@@ -311,8 +325,11 @@ https://example.com/items/foo
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    如果你不知道两者的区别，请查阅 [Async: *"In a hurry?"*](https://fastapi.tiangolo.com/async/#in-a-hurry){.internal-link target=_blank}。
+/// note
+
+如果你不知道两者的区别，请查阅 [Async: *"In a hurry?"*](https://fastapi.tiangolo.com/async/#in-a-hurry){.internal-link target=_blank}。
+
+///
 
 ### 步骤 5：返回内容
 

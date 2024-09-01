@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py39
 
@@ -26,14 +25,12 @@ def test_get_no_headers(client: TestClient):
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["header", "x-key"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }

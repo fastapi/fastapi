@@ -20,10 +20,12 @@ from typing import (
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as PYDANTIC_VERSION
+from pydantic.version import VERSION as P_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
+# Reassign variable to make it reexported for mypy
+PYDANTIC_VERSION = P_VERSION
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 
@@ -127,7 +129,7 @@ if PYDANTIC_V2:
                 )
             except ValidationError as exc:
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(), loc_prefix=loc
+                    errors=exc.errors(include_url=False), loc_prefix=loc
                 )
 
         def serialize(
@@ -266,7 +268,7 @@ if PYDANTIC_V2:
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors()[0]
+        ).errors(include_url=False)[0]
         error["input"] = None
         return error  # type: ignore[return-value]
 

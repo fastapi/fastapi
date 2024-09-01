@@ -128,7 +128,7 @@ def test_token_no_scope():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_inexistent_user():
+def test_token_nonexistent_user():
     response = client.get(
         "/users/me",
         headers={

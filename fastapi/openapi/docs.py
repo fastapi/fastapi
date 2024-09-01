@@ -3,7 +3,7 @@ from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],
@@ -53,7 +53,7 @@ def get_swagger_ui_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
+    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js",
     swagger_css_url: Annotated[
         str,
         Doc(
@@ -63,7 +63,7 @@ def get_swagger_ui_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
+    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css",
     swagger_favicon_url: Annotated[
         str,
         Doc(
