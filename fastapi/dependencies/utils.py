@@ -795,8 +795,6 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        if isinstance(first_param.field_info, params.Form):
-            ensure_multipart_is_installed()
         return first_param
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
