@@ -113,6 +113,7 @@ jobs:
         with:
           name: docs-site-${{ matrix.lang }}
           path: ./site/**
+          include-hidden-files: true
 
   # https://github.com/marketplace/actions/alls-green#why
   docs-all-green:  # This job does nothing and is only used for the branch protection
