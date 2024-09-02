@@ -563,6 +563,7 @@ async def solve_dependencies(
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
     async_exit_stack: AsyncExitStack,
+    embed_body_fields: bool,
 ) -> SolvedDependency:
     values: Dict[str, Any] = {}
     errors: List[Any] = []
@@ -604,6 +605,7 @@ async def solve_dependencies(
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
+            embed_body_fields=embed_body_fields,
         )
         background_tasks = solved_result.background_tasks
         dependency_cache.update(solved_result.dependency_cache)
@@ -646,7 +648,9 @@ async def solve_dependencies(
             body_values,
             body_errors,
         ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, received_body=body
+            required_params=dependant.body_params,
+            received_body=body,
+            embed_body_fields=embed_body_fields,
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -710,9 +714,30 @@ def request_params_to_args(
     return values, errors
 
 
+def _should_embed_body_fields(fields: List[ModelField]) -> bool:
+    if not fields:
+        return False
+    first_field = fields[0]
+    body_param_names_set = {field.name for field in fields}
+    embed = (
+        # A top level field has to be a single field, not multiple
+        len(body_param_names_set) > 1
+        # If it explicitly specifies it is embedded, it's not top level
+        or getattr(first_field.field_info, "embed", None)
+        # If it's a Form (or File) field, it has to be a BaseModel to be top level
+        # otherwise it has to be embedded, so that the key value pair can be extracted
+        or (
+            isinstance(first_field.field_info, params.Form)
+            and not isinstance(first_field.type_, BaseModel)
+        )
+    )
+    return embed
+
+
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
+    embed_body_fields: bool,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values = {}
     errors: List[Dict[str, Any]] = []
@@ -792,8 +817,19 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
-    flat_dependant = get_flat_dependant(dependant)
+def get_body_field(
+    *, flat_dependant: Dependant, name: str, embed_body_fields: bool
+) -> Optional[ModelField]:
+    """
+    Get a ModelField representing the request body for a path operation, combining
+    all body parameters into a single field if necessary.
+
+    Used to check if it's form data (with `isinstance(body_field, params.Form)`)
+    or JSON and to generate the JSON Schema for a request body.
+
+    This is **not** used to validate/parse the request body, that's done with each
+    individual body parameter.
+    """
     if not flat_dependant.body_params:
         return None
     first_param = flat_dependant.body_params[0]
