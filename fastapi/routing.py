@@ -49,7 +49,7 @@ from fastapi.exceptions import (
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
-    create_response_field,
+    create_model_field,
     generate_unique_id,
     get_value_or_default,
     is_body_allowed_for_status_code,
@@ -497,7 +497,7 @@ class APIRoute(routing.Route):
                 status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            self.response_field = create_response_field(
+            self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
@@ -530,7 +530,7 @@ class APIRoute(routing.Route):
                     additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                response_field = create_response_field(name=response_name, type_=model)
+                response_field = create_model_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
