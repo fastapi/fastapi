@@ -52,6 +52,7 @@ jobs:
         name: playwright-report
         path: frontend/playwright-report/
         retention-days: 30
+        include-hidden-files: true
 
   # https://github.com/marketplace/actions/alls-green#why
   e2e-alls-green:  # This job does nothing and is only used for the branch protection
