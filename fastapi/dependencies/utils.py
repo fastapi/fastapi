@@ -648,7 +648,7 @@ async def solve_dependencies(
             body_values,
             body_errors,
         ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params,
+            body_fields=dependant.body_params,
             received_body=body,
             embed_body_fields=embed_body_fields,
         )
@@ -735,21 +735,21 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
 
 
 async def request_body_to_args(
-    required_params: List[ModelField],
+    body_fields: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
     embed_body_fields: bool,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values = {}
     errors: List[Dict[str, Any]] = []
-    if required_params:
-        field = required_params[0]
+    if body_fields:
+        field = body_fields[0]
         field_info = field.field_info
         embed = getattr(field_info, "embed", None)
-        field_alias_omitted = len(required_params) == 1 and not embed
+        field_alias_omitted = len(body_fields) == 1 and not embed
         if field_alias_omitted:
             received_body = {field.alias: received_body}
 
-        for field in required_params:
+        for field in body_fields:
             loc: Tuple[str, ...]
             if field_alias_omitted:
                 loc = ("body",)
