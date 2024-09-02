@@ -11,10 +11,13 @@
 * 它可以对该**响应**做些什么或者执行任何需要的代码.
 * 然后它返回这个 **响应**.
 
-!!! note "技术细节"
-    如果你使用了 `yield` 关键字依赖, 依赖中的退出代码将在执行中间件*后*执行.
+/// note | "技术细节"
 
-    如果有任何后台任务(稍后记录), 它们将在执行中间件*后*运行.
+如果你使用了 `yield` 关键字依赖, 依赖中的退出代码将在执行中间件*后*执行.
+
+如果有任何后台任务(稍后记录), 它们将在执行中间件*后*运行.
+
+///
 
 ## 创建中间件
 
@@ -32,15 +35,21 @@
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-!!! tip
-    请记住可以 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">用'X-' 前缀</a>添加专有自定义请求头.
+/// tip
 
-    但是如果你想让浏览器中的客户端看到你的自定义请求头, 你需要把它们加到 CORS 配置 ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) 的 `expose_headers` 参数中,在 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>文档中.
+请记住可以 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">用'X-' 前缀</a>添加专有自定义请求头.
 
-!!! note "技术细节"
-    你也可以使用 `from starlette.requests import Request`.
+但是如果你想让浏览器中的客户端看到你的自定义请求头, 你需要把它们加到 CORS 配置 ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) 的 `expose_headers` 参数中,在 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>文档中.
 
-    **FastAPI** 为了开发者方便提供了该对象. 但其实它直接来自于 Starlette.
+///
+
+/// note | "技术细节"
+
+你也可以使用 `from starlette.requests import Request`.
+
+**FastAPI** 为了开发者方便提供了该对象. 但其实它直接来自于 Starlette.
+
+///
 
 ### 在 `response` 的前和后
 

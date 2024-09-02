@@ -22,8 +22,11 @@ With **FastAPI**, using OpenAPI, you can define the names of these webhooks, the
 
 This can make it a lot easier for your users to **implement their APIs** to receive your **webhook** requests, they might even be able to autogenerate some of their own API code.
 
-!!! info
-    Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0` and above.
+/// info
+
+Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0` and above.
+
+///
 
 ## An app with webhooks
 
@@ -35,8 +38,11 @@ When you create a **FastAPI** application, there is a `webhooks` attribute that 
 
 The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.
 
-!!! info
-    The `app.webhooks` object is actually just an `APIRouter`, the same type you would use when structuring your app with multiple files.
+/// info
+
+The `app.webhooks` object is actually just an `APIRouter`, the same type you would use when structuring your app with multiple files.
+
+///
 
 Notice that with webhooks you are actually not declaring a *path* (like `/items/`), the text you pass there is just an **identifier** of the webhook (the name of the event), for example in `@app.webhooks.post("new-subscription")`, the webhook name is `new-subscription`.
 
@@ -44,7 +50,7 @@ This is because it is expected that **your users** would define the actual **URL
 
 ### Check the docs
 
-Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see your docs have the normal *path operations* and now also some **webhooks**:
 

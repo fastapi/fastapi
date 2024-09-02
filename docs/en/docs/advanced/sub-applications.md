@@ -36,12 +36,12 @@ In this case, it will be mounted at the path `/subapi`:
 
 ### Check the automatic API docs
 
-Now, run `uvicorn` with the main app, if your file is `main.py`, it would be:
+Now, run the `fastapi` command with your file:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -70,4 +70,4 @@ That way, the sub-application will know to use that path prefix for the docs UI.
 
 And the sub-application could also have its own mounted sub-applications and everything would work correctly, because FastAPI handles all these `root_path`s automatically.
 
-You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](./behind-a-proxy.md){.internal-link target=_blank}.
+You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
