@@ -14,6 +14,7 @@
 
 ### Internal
 
+* 💚 Set `include-hidden-files` to `True` when using the `upload-artifact` GH action. PR [#1327](https://github.com/fastapi/full-stack-fastapi-template/pull/1327) by [@svlandeg](https://github.com/svlandeg).
 * 👷🏻 Auto-generate frontend client . PR [#1320](https://github.com/fastapi/full-stack-fastapi-template/pull/1320) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix in `.github/labeler.yml`. PR [#1322](https://github.com/fastapi/full-stack-fastapi-template/pull/1322) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Update `.github/labeler.yml`. PR [#1321](https://github.com/fastapi/full-stack-fastapi-template/pull/1321) by [@alejsdev](https://github.com/alejsdev).
