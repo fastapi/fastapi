@@ -185,7 +185,7 @@ class HTTPBasic(HTTPBase):
                 The text to be returned to the client when `auto_error`
                 raises an HTTP exception.
 
-                It useful when you have multiple errors defined: set
+                It's useful when you have multiple errors defined: set
                 different detail text to easily differentiate which error was raised.
                 """
             ),
@@ -313,7 +313,7 @@ class HTTPBearer(HTTPBase):
                 The text to be returned to the client when `auto_error`
                 raises an HTTP exception.
 
-                It useful when you have multiple errors defined: set
+                It's useful when you have multiple errors defined: set
                 different detail text to easily differentiate which error was raised.
                 """
             ),
@@ -429,7 +429,7 @@ class HTTPDigest(HTTPBase):
                 The text to be returned to the client when `auto_error`
                 raises an HTTP exception.
 
-                It useful when you have multiple errors defined: set
+                It's useful when you have multiple errors defined: set
                 different detail text to easily differentiate which error was raised.
                 """
             ),
