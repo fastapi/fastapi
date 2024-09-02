@@ -742,11 +742,11 @@ async def request_body_to_args(
     values = {}
     errors: List[Dict[str, Any]] = []
     if body_fields:
-        field = body_fields[0]
-        field_info = field.field_info
+        first_field = body_fields[0]
+        first_field_info = first_field.field_info
         field_alias_omitted = len(body_fields) == 1 and not embed_body_fields
         if field_alias_omitted:
-            received_body = {field.alias: received_body}
+            received_body = {first_field.alias: received_body}
 
         for field in body_fields:
             loc: Tuple[str, ...]
@@ -767,9 +767,9 @@ async def request_body_to_args(
                         continue
             if (
                 value is None
-                or (isinstance(field_info, params.Form) and value == "")
+                or (isinstance(first_field_info, params.Form) and value == "")
                 or (
-                    isinstance(field_info, params.Form)
+                    isinstance(first_field_info, params.Form)
                     and is_sequence_field(field)
                     and len(value) == 0
                 )
@@ -780,14 +780,14 @@ async def request_body_to_args(
                     values[field.name] = deepcopy(field.default)
                 continue
             if (
-                isinstance(field_info, params.File)
+                isinstance(first_field_info, params.File)
                 and is_bytes_field(field)
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
             elif (
                 is_bytes_sequence_field(field)
-                and isinstance(field_info, params.File)
+                and isinstance(first_field_info, params.File)
                 and value_is_sequence(value)
             ):
                 # For types
