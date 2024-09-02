@@ -6,16 +6,16 @@
 
 ### Gebaseerd op open standaarden
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> voor het maken van API's, inclusief declaraties van <abbr title="ook bekend als: endpoints, routess">pad</abbr><abbr title="ook bekend als HTTP-methoden, zoals POST, GET, PUT, DELETE">bewerkingen</abbr>, parameters, request bodies, beveiliging, etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> voor het maken van API's, inclusief declaraties van <abbr title="ook bekend als: endpoints, routess">pad</abbr><abbr title="ook bekend als HTTP-methoden, zoals POST, GET, PUT, DELETE">bewerkingen</abbr>, parameters, request bodies, beveiliging, enz.
 * Automatische datamodel documentatie met <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (aangezien OpenAPI zelf is gebaseerd op JSON Schema).
-* Ontworpen op basis van deze standaarden, na zorgvuldig onderzoek. In plaats achteraf deze laag er bovenop te bouwen.
-* Dit maakt het ook mogelijk om automatisch **clientcode te genereren** in verschillende programeertalen.
+* Ontworpen op basis van deze standaarden, na zorgvuldig onderzoek. In plaats van achteraf deze laag er bovenop te bouwen.
+* Dit maakt het ook mogelijk om automatisch **clientcode te genereren** in verschillende programmeertalen.
 
 ### Automatische documentatie
 
 Interactieve API-documentatie en verkenning van webgebruikersinterfaces. Aangezien dit framework is gebaseerd op OpenAPI, zijn er meerdere documentatie opties mogelijk, waarvan er standaard 2 zijn inbegrepen.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, met interactieve interface, maakt het mogelijk je API rechtstreeks vanuit de browser aanteroepen en te testen.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, met interactieve interface, maakt het mogelijk je API rechtstreeks vanuit de browser aan te roepen en te testen.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
@@ -25,11 +25,11 @@ Interactieve API-documentatie en verkenning van webgebruikersinterfaces. Aangezi
 
 ### Gewoon Moderne Python
 
-Het is allemaal gebaseerd op standaard **Python type** declaraties (met dank aan Pydantic). Je hoeft dus geen nieuwe syntax te leren. Het is gewoon standaard moderne Python.
+Het is allemaal gebaseerd op standaard **Python type** declaraties (dankzij Pydantic). Je hoeft dus geen nieuwe syntax te leren. Het is gewoon standaard moderne Python.
 
-Als je een opfriscursus van 2 minuten nodig hebt over het gebruik van Python types (zelfs als je FastAPI niet gebruikt), bekijk dan een korte tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+Als je een opfriscursus van 2 minuten nodig hebt over het gebruik van Python types (zelfs als je FastAPI niet gebruikt), bekijk dan deze korte tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
 
-Je schrijft gewoonn standaard Python met types:
+Je schrijft gewoon standaard Python met types:
 
 ```Python
 from datetime import date
@@ -65,7 +65,7 @@ my_second_user: User = User(**second_user_data)
 
 /// info
 
-`**second_user_data` betekend:
+`**second_user_data` betekent:
 
 Geef de keys en values van de `second_user_data` dict direct door als key-value argumenten, gelijk aan: `User(id=4, name=“Mary”, joined=“2018-11-30”)`
 
@@ -191,11 +191,11 @@ Met **FastAPI** krijg je alle functionaliteit van **Pydantic** (omdat FastAPI is
     * Je hoeft geen nieuwe microtaal voor schemadefinities te leren.
     * Als je bekend bent Python types, weet je hoe je Pydantic moet gebruiken.
 * Werkt goed samen met je **<abbr title=“Integrated Development Environment, vergelijkbaar met een code editor”>IDE</abbr>/<abbr title=“Een programma dat controleert op fouten in de code”>linter</abbr>/hersenen**:
-    * Doordat pydantic's data structuren enkel instanties zijn van classes, die je definieert, werken autocompletion, linting, mypy en je intuïtie allemaal goed met je gevalideerde data.
-* Valideer **complexes structuren**:
+    * Doordat pydantic's datastructuren enkel instanties zijn van klassen, die je definieert, werkt automatische aanvulling, linting, mypy en je intuïtie allemaal goed met je gevalideerde data.
+* Valideer **complexe structuren**:
     * Gebruik van hiërarchische Pydantic modellen, Python `typing`'s `List` en `Dict`, etc.
     * Met validators kunnen complexe dataschema's duidelijk en eenvoudig worden gedefinieerd, gecontroleerd en gedocumenteerd als JSON Schema.
-    * Je kunt diep geneste JSON** objecten laten valideren en annoteren.
+    * Je kunt diep **geneste JSON** objecten laten valideren en annoteren.
 * **Uitbreidbaar**:
     * Met Pydantic kunnen op maat gemaakte datatypen worden gedefinieerd of je kunt validatie uitbreiden met methoden op een model dat is ingericht met de decorator validator.
 * 100% van de code is getest.
