@@ -520,7 +520,7 @@ else:
         return BodyModel
 
     def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-        return list(model.__fields__.values())
+        return list(model.__fields__.values())  # type: ignore[attr-defined]
 
 
 def _regenerate_error_with_loc(
