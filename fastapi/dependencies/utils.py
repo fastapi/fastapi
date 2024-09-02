@@ -717,21 +717,23 @@ def request_params_to_args(
 def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     if not fields:
         return False
-    first_field = fields[0]
+    # More than one dependency could have the same field, it would show up as multiple
+    # fields but it's the same one, so count them by name
     body_param_names_set = {field.name for field in fields}
-    embed = (
-        # A top level field has to be a single field, not multiple
-        len(body_param_names_set) > 1
-        # If it explicitly specifies it is embedded, it's not top level
-        or getattr(first_field.field_info, "embed", None)
-        # If it's a Form (or File) field, it has to be a BaseModel to be top level
-        # otherwise it has to be embedded, so that the key value pair can be extracted
-        or (
-            isinstance(first_field.field_info, params.Form)
-            and not isinstance(first_field.type_, BaseModel)
-        )
-    )
-    return embed
+    # A top level field has to be a single field, not multiple
+    if len(body_param_names_set) > 1:
+        return True
+    first_field = fields[0]
+    # If it explicitly specifies it is embedded, it has to be embedded
+    if getattr(first_field.field_info, "embed", None):
+        return True
+    # If it's a Form (or File) field, it has to be a BaseModel to be top level
+    # otherwise it has to be embedded, so that the key value pair can be extracted
+    if isinstance(first_field.field_info, params.Form) and not isinstance(
+        first_field.type_, BaseModel
+    ):
+        return True
+    return False
 
 
 async def request_body_to_args(
