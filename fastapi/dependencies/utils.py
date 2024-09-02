@@ -832,8 +832,7 @@ def get_body_field(
     if not flat_dependant.body_params:
         return None
     first_param = flat_dependant.body_params[0]
-    body_param_names_set = {param.name for param in flat_dependant.body_params}
-    if len(body_param_names_set) == 1 and not embed_body_fields:
+    if not embed_body_fields:
         return first_param
     model_name = "Body_" + name
     BodyModel = create_body_model(
