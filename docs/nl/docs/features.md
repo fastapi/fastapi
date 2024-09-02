@@ -75,9 +75,9 @@ Geef de keys en values van de `second_user_data` dict direct door als key-value 
 
 Het gehele framework is ontworpen om eenvoudig en intuïtief te zijn in gebruik. Alle beslissingen zijn getest op meerdere code-editors nog voordat het daadwerkelijke ontwikkelen begon, om zo de beste ontwikkelervaring te garanderen.
 
-Uit enquêtes onder Python ontwikkelaars blijkt maar al te duidelijk dat "autocompletion" <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">een van de meest gebruikte functionaliteiten is</a>.
+Uit enquêtes onder Python ontwikkelaars blijkt maar al te duidelijk dat "(automatische) code aanvulling" <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">een van de meest gebruikte functionaliteiten is</a>.
 
-Het hele **FastAPI** framework is daarop gebaseerd. Autocompletion werkt overal.
+Het hele **FastAPI** framework is daarop gebaseerd. Automatische code aanvulling werkt overal.
 
 Je hoeft zelden terug te vallen op de documentatie.
 
@@ -136,7 +136,7 @@ Gebouwd als een herbruikbare tool met componenten die makkelijk zijn te integrer
 
 ### Dependency Injection
 
-FastAPI bevat een uiterst eenvoudig, maar uiterst krachtig <abbr title='ook bekend als "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> systeem.
+FastAPI bevat een uiterst eenvoudig, maar uiterst krachtig <abbr title='ook bekend als "componenten", "bronnen", "diensten", "aanbieders"'><strong>Dependency Injection</strong></abbr> systeem.
 
 * Zelfs dependencies kunnen dependencies hebben, waardoor een hiërarchie of **“graph” van dependencies** ontstaat.
 * Allemaal **automatisch afgehandeld** door het framework.
