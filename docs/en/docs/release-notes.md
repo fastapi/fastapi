@@ -30,6 +30,7 @@ hide:
 
 ### Translations
 
+* 🌐  Add Dutch translation for `docs/nl/docs/features.md`. PR [#12101](https://github.com/fastapi/fastapi/pull/12101) by [@maxscheijen](https://github.com/maxscheijen).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-events.md`. PR [#12108](https://github.com/fastapi/fastapi/pull/12108) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/security/index.md`. PR [#12114](https://github.com/fastapi/fastapi/pull/12114) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Add Dutch translation for `docs/nl/docs/index.md`. PR [#12042](https://github.com/fastapi/fastapi/pull/12042) by [@svlandeg](https://github.com/svlandeg).
