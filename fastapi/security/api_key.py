@@ -108,7 +108,7 @@ class APIKeyQuery(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.query_params.get(self.model.name)
+        api_key = request.query_params.get(self.model.name)
         return self.check_api_key(api_key, self.auto_error)
 
 
@@ -196,7 +196,7 @@ class APIKeyHeader(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.headers.get(self.model.name)
+        api_key = request.headers.get(self.model.name)
         return self.check_api_key(api_key, self.auto_error)
 
 
