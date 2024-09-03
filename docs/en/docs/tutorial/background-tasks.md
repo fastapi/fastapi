@@ -9,7 +9,7 @@ This includes, for example:
 * Email notifications sent after performing an action:
     * As connecting to an email server and sending an email tends to be "slow" (several seconds), you can return the response right away and send the email notification in the background.
 * Processing data:
-    * For example, let's say you receive a file that must go through a slow process, you can return a response of "Accepted" (HTTP 202) and process it in the background.
+    * For example, let's say you receive a file that must go through a slow process, you can return a response of "Accepted" (HTTP 202) and process the file in the background.
 
 ## Using `BackgroundTasks`
 

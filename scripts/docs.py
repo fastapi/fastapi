@@ -26,6 +26,16 @@ missing_translation_snippet = """
 {!../../../docs/missing-translation.md!}
 """
 
+non_translated_sections = [
+    "reference/",
+    "release-notes.md",
+    "fastapi-people.md",
+    "external-links.md",
+    "newsletter.md",
+    "management-tasks.md",
+    "management.md",
+]
+
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
 en_config_path: Path = en_docs_path / mkdocs_name
@@ -251,6 +261,7 @@ def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
     ),
+    dirty: bool = False,
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
@@ -265,11 +276,12 @@ def live(
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang
+    # Enable line numbers during local development to make it easier to highlight
+    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
+    if dirty:
+        args.append("--dirty")
     subprocess.run(
-        ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008", "--dirty"],
-        env={**os.environ, "LINENUMS": "true"},
-        cwd=lang_path,
-        check=True,
+        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
     )
 
 
@@ -332,9 +344,33 @@ def verify_config() -> None:
 
 
 @app.command()
+def verify_non_translated() -> None:
+    """
+    Verify there are no files in the non translatable pages.
+    """
+    print("Verifying non translated pages")
+    lang_paths = get_lang_paths()
+    error_paths = []
+    for lang in lang_paths:
+        if lang.name == "en":
+            continue
+        for non_translatable in non_translated_sections:
+            non_translatable_path = lang / "docs" / non_translatable
+            if non_translatable_path.exists():
+                error_paths.append(non_translatable_path)
+    if error_paths:
+        print("Non-translated pages found, remove them:")
+        for error_path in error_paths:
+            print(error_path)
+        raise typer.Abort()
+    print("No non-translated pages found ✅")
+
+
+@app.command()
 def verify_docs():
     verify_readme()
     verify_config()
+    verify_non_translated()
 
 
 @app.command()
