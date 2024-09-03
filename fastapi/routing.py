@@ -407,14 +407,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self._flat_dependant = get_flat_dependant(self.dependant)
-        self._has_embedded_body_fields = _should_embed_body_fields(
+        self._embed_body_fields = _should_embed_body_fields(
             self._flat_dependant.body_params
         )
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
-                embed_body_fields=self._has_embedded_body_fields,
+                embed_body_fields=self._embed_body_fields,
             )
         )
 
@@ -556,13 +556,13 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self._flat_dependant = get_flat_dependant(self.dependant)
-        self._has_embedded_body_fields = _should_embed_body_fields(
+        self._embed_body_fields = _should_embed_body_fields(
             self._flat_dependant.body_params
         )
         self.body_field = get_body_field(
             flat_dependant=self._flat_dependant,
             name=self.unique_id,
-            embed_body_fields=self._has_embedded_body_fields,
+            embed_body_fields=self._embed_body_fields,
         )
         self.app = request_response(self.get_route_handler())
 
@@ -580,7 +580,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
-            embed_body_fields=self._has_embedded_body_fields,
+            embed_body_fields=self._embed_body_fields,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:

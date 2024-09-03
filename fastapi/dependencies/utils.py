@@ -679,6 +679,24 @@ async def solve_dependencies(
     )
 
 
+def _validate_value_with_model_field(
+    *, field: ModelField, value: Any, values: Dict[str, Any], loc: Tuple[str, ...]
+) -> Tuple[Any, List[Any]]:
+    if value is None:
+        if field.required:
+            return None, [get_missing_field_error(loc=loc)]
+        else:
+            return deepcopy(field.default), []
+    v_, errors_ = field.validate(value, values, loc=loc)
+    if isinstance(errors_, ErrorWrapper):
+        return None, [errors_]
+    elif isinstance(errors_, list):
+        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        return None, new_errors
+    else:
+        return v_, []
+
+
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
@@ -697,18 +715,11 @@ def request_params_to_args(
             field_info, params.Param
         ), "Params must be subclasses of Param"
         loc = (field_info.in_.value, field.alias)
-        if value is None:
-            if field.required:
-                errors.append(get_missing_field_error(loc=loc))
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
-        v_, errors_ = field.validate(value, values, loc=loc)
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
-            errors.extend(new_errors)
+        v_, errors_ = _validate_value_with_model_field(
+            field=field, value=value, values=values, loc=loc
+        )
+        if errors_:
+            errors.extend(errors_)
         else:
             values[field.name] = v_
     return values, errors
@@ -803,39 +814,33 @@ async def request_body_to_args(
     if not body_fields:
         return values, errors
     first_field = body_fields[0]
-    field_alias_omitted = len(body_fields) == 1 and not embed_body_fields
+    single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     body_to_process = received_body
-    if field_alias_omitted:
-        body_to_process = {first_field.alias: received_body}
-    elif isinstance(received_body, FormData):
+    if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(body_fields, received_body)
 
     for field in body_fields:
         loc: Tuple[str, ...]
-        if field_alias_omitted:
+        if single_not_embedded_field:
             loc = ("body",)
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=body_to_process, values=values, loc=loc
+            )
         else:
             loc = ("body", field.alias)
+            value: Optional[Any] = None
+            if body_to_process is not None:
+                try:
+                    value = body_to_process.get(field.alias)
+                except AttributeError:
+                    errors.append(get_missing_field_error(loc))
+                    continue
+            v_, errors_ = _validate_value_with_model_field(
+                field=field, value=value, values=values, loc=loc
+            )
 
-        value: Optional[Any] = None
-        if body_to_process is not None:
-            try:
-                value = body_to_process.get(field.alias)
-            except AttributeError:
-                errors.append(get_missing_field_error(loc))
-                continue
-        if value is None:
-            if field.required:
-                errors.append(get_missing_field_error(loc))
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
-        v_, errors_ = field.validate(value, values, loc=loc)
-
-        if isinstance(errors_, list):
+        if errors_:
             errors.extend(errors_)
-        elif errors_:
-            errors.append(errors_)
         else:
             values[field.name] = v_
     return values, errors
