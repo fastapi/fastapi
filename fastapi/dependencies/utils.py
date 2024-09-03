@@ -56,7 +56,6 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -456,9 +455,7 @@ def analyze_param(
             ensure_multipart_is_installed()
             # Set default field_info.embed
             if field_info.embed is None:
-                # Scalar Form and File fields
-                if not lenient_issubclass(type_annotation, BaseModel):
-                    field_info.embed = True
+                field_info.embed = True
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
         else:
@@ -740,9 +737,7 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
         return True
     # If it's a Form (or File) field, it has to be a BaseModel to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
-    if isinstance(first_field.field_info, params.Form) and not lenient_issubclass(
-        first_field.type_, BaseModel
-    ):
+    if isinstance(first_field.field_info, params.Form):
         return True
     return False
 
