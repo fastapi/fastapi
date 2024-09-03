@@ -67,7 +67,7 @@ my_second_user: User = User(**second_user_data)
 
 `**second_user_data` betekent:
 
-Geef de sleutels (keys) en waarden (values) de `second_user_data` dict direct door als sleutel-waarden argumenten, gelijk aan: `User(id=4, name=“Mary”, joined=“2018-11-30”)`
+Geef de sleutels (keys) en waarden (values) van de `second_user_data` dict direct door als sleutel-waarden argumenten, gelijk aan: `User(id=4, name=“Mary”, joined=“2018-11-30”)`
 
 ///
 
