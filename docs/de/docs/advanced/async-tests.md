@@ -72,7 +72,7 @@ Beachten Sie, dass die Testfunktion jetzt `async def` ist und nicht nur `def` wi
 
 Dann können wir einen `AsyncClient` mit der App erstellen und mit `await` asynchrone Requests an ihn senden.
 
-```Python hl_lines="9-10"
+```Python hl_lines="9-12"
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 

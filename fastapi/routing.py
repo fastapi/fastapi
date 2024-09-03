@@ -49,7 +49,7 @@ from fastapi.exceptions import (
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
-    create_response_field,
+    create_model_field,
     generate_unique_id,
     get_value_or_default,
     is_body_allowed_for_status_code,
@@ -292,26 +292,34 @@ def get_request_handler(
                     dependency_overrides_provider=dependency_overrides_provider,
                     async_exit_stack=async_exit_stack,
                 )
-                values, errors, background_tasks, sub_response, _ = solved_result
+                errors = solved_result.errors
                 if not errors:
                     raw_response = await run_endpoint_function(
-                        dependant=dependant, values=values, is_coroutine=is_coroutine
+                        dependant=dependant,
+                        values=solved_result.values,
+                        is_coroutine=is_coroutine,
                     )
                     if isinstance(raw_response, Response):
                         if raw_response.background is None:
-                            raw_response.background = background_tasks
+                            raw_response.background = solved_result.background_tasks
                         response = raw_response
                     else:
-                        response_args: Dict[str, Any] = {"background": background_tasks}
+                        response_args: Dict[str, Any] = {
+                            "background": solved_result.background_tasks
+                        }
                         # If status_code was set, use it, otherwise use the default from the
                         # response class, in the case of redirect it's 307
                         current_status_code = (
-                            status_code if status_code else sub_response.status_code
+                            status_code
+                            if status_code
+                            else solved_result.response.status_code
                         )
                         if current_status_code is not None:
                             response_args["status_code"] = current_status_code
-                        if sub_response.status_code:
-                            response_args["status_code"] = sub_response.status_code
+                        if solved_result.response.status_code:
+                            response_args["status_code"] = (
+                                solved_result.response.status_code
+                            )
                         content = await serialize_response(
                             field=response_field,
                             response_content=raw_response,
@@ -326,7 +334,7 @@ def get_request_handler(
                         response = actual_response_class(content, **response_args)
                         if not is_body_allowed_for_status_code(response.status_code):
                             response.body = b""
-                        response.headers.raw.extend(sub_response.headers.raw)
+                        response.headers.raw.extend(solved_result.response.headers.raw)
             if errors:
                 validation_error = RequestValidationError(
                     _normalize_errors(errors), body=body
@@ -360,11 +368,12 @@ def get_websocket_app(
                 dependency_overrides_provider=dependency_overrides_provider,
                 async_exit_stack=async_exit_stack,
             )
-            values, errors, _, _2, _3 = solved_result
-            if errors:
-                raise WebSocketRequestValidationError(_normalize_errors(errors))
+            if solved_result.errors:
+                raise WebSocketRequestValidationError(
+                    _normalize_errors(solved_result.errors)
+                )
             assert dependant.call is not None, "dependant.call must be a function"
-            await dependant.call(**values)
+            await dependant.call(**solved_result.values)
 
     return app
 
@@ -488,7 +497,7 @@ class APIRoute(routing.Route):
                 status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            self.response_field = create_response_field(
+            self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
@@ -521,7 +530,7 @@ class APIRoute(routing.Route):
                     additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                response_field = create_response_field(name=response_name, type_=model)
+                response_field = create_model_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
