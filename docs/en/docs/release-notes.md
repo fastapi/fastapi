@@ -37,6 +37,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.10.0 to 1.10.1. PR [#12120](https://github.com/fastapi/fastapi/pull/12120) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pillow from 10.3.0 to 10.4.0. PR [#12105](https://github.com/fastapi/fastapi/pull/12105) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 💚 Set `include-hidden-files` to `True` when using the `upload-artifact` GH action. PR [#12118](https://github.com/fastapi/fastapi/pull/12118) by [@svlandeg](https://github.com/svlandeg).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.0. PR [#12112](https://github.com/fastapi/fastapi/pull/12112) by [@dependabot[bot]](https://github.com/apps/dependabot).
