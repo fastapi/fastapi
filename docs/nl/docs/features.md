@@ -67,7 +67,7 @@ my_second_user: User = User(**second_user_data)
 
 `**second_user_data` betekent:
 
-Geef de keys en values van de `second_user_data` dict direct door als key-value argumenten, gelijk aan: `User(id=4, name=“Mary”, joined=“2018-11-30”)`
+Geef de sleutels (keys) en waarden (values) de `second_user_data` dict direct door als sleutel-waarden argumenten, gelijk aan: `User(id=4, name=“Mary”, joined=“2018-11-30”)`
 
 ///
 
@@ -107,7 +107,7 @@ Maar standaard werkt alles **“gewoon”**.
     * JSON objecten (`dict`).
     * JSON array (`list`) die itemtypes definiëren.
     * String (`str`) velden, die min en max lengtes hebben.
-    * Getallen (`int`, `float`) met min en max waarden, etc.
+    * Getallen (`int`, `float`) met min en max waarden, enz.
 
 * Validatie voor meer exotische typen, zoals:
     * URL.
@@ -119,7 +119,7 @@ Alle validatie wordt uitgevoerd door het beproefde en robuuste **Pydantic**.
 
 ### Beveiliging en authenticatie
 
-Beveiliging en authenticatie is geïntegreerd. Zonder compromissen te doen naar databases of datasmodellen.
+Beveiliging en authenticatie is geïntegreerd. Zonder compromissen te doen naar databases of datamodellen.
 
 Alle beveiligingsschema's gedefinieerd in OpenAPI, inclusief:
 
@@ -128,11 +128,11 @@ Alle beveiligingsschema's gedefinieerd in OpenAPI, inclusief:
 * API keys in:
     * Headers.
     * Query parameters.
-    * Cookies, etc.
+    * Cookies, enz.
 
 Plus alle beveiligingsfuncties van Starlette (inclusief **sessiecookies**).
 
-Gebouwd als een herbruikbare tool met componenten die makkelijk zijn te integreren in en met je systemen, datastores, relationele en NoSQL databases, etc.
+Gebouwd als een herbruikbare tool met componenten die makkelijk te integreren zijn in en met je systemen, datastores, relationele en NoSQL databases, enz.
 
 ### Dependency Injection
 
@@ -142,8 +142,8 @@ FastAPI bevat een uiterst eenvoudig, maar uiterst krachtig <abbr title='ook beke
 * Allemaal **automatisch afgehandeld** door het framework.
 * Alle dependencies kunnen data nodig hebben van request, de vereiste **padoperaties veranderen** en automatische documentatie verstrekken.
 * **Automatische validatie** zelfs voor *padoperatie* parameters gedefinieerd in dependencies.
-* Ondersteuning voor complexe gebruikersauthenticatiesystemen, **databaseverbindingen**, etc.
-* **Geen compromis** met databases, frontends, etc. Maar eenvoudige integratie met ze allemaal.
+* Ondersteuning voor complexe gebruikersauthenticatiesystemen, **databaseverbindingen**, enz.
+* **Geen compromisen** met databases, gebruikersinterfaces, enz. Maar eenvoudige integratie met ze allemaal.
 
 ### Ongelimiteerde "plug-ins"
 
@@ -183,7 +183,7 @@ Inclusief externe pakketten die ook gebaseerd zijn op Pydantic, zoals <abbr titl
 
 Dit betekent ook dat je in veel gevallen het object dat je van een request krijgt **direct naar je database** kunt sturen, omdat alles automatisch wordt gevalideerd.
 
-Hetzelfde geldt ook andersom, in veel gevallen kun je dus het object dat je krijgt van de database **direct** doorgeven aan de client**.
+Hetzelfde geldt ook andersom, in veel gevallen kun je dus het object dat je krijgt van de database **direct doorgeven aan de client**.
 
 Met **FastAPI** krijg je alle functionaliteit van **Pydantic** (omdat FastAPI is gebaseerd op Pydantic voor alle dataverwerking):
 
@@ -193,7 +193,7 @@ Met **FastAPI** krijg je alle functionaliteit van **Pydantic** (omdat FastAPI is
 * Werkt goed samen met je **<abbr title=“Integrated Development Environment, vergelijkbaar met een code editor”>IDE</abbr>/<abbr title=“Een programma dat controleert op fouten in de code”>linter</abbr>/hersenen**:
     * Doordat pydantic's datastructuren enkel instanties zijn van klassen, die je definieert, werkt automatische aanvulling, linting, mypy en je intuïtie allemaal goed met je gevalideerde data.
 * Valideer **complexe structuren**:
-    * Gebruik van hiërarchische Pydantic modellen, Python `typing`'s `List` en `Dict`, etc.
+    * Gebruik van hiërarchische Pydantic modellen, Python `typing`'s `List` en `Dict`, enz.
     * Met validators kunnen complexe dataschema's duidelijk en eenvoudig worden gedefinieerd, gecontroleerd en gedocumenteerd als JSON Schema.
     * Je kunt diep **geneste JSON** objecten laten valideren en annoteren.
 * **Uitbreidbaar**:
