@@ -680,12 +680,12 @@ def _validate_value_with_model_field(
 
 
 def request_params_to_args(
-    required_params: Sequence[ModelField],
+    fields: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[Any]]:
     values: Dict[str, Any] = {}
     errors = []
-    for field in required_params:
+    for field in fields:
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
         ):
