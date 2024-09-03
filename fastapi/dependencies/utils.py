@@ -752,18 +752,14 @@ async def _extract_form_body(
 
     for field in body_fields:
         value: Any = None
-        if (is_sequence_field(field)) and isinstance(received_body, FormData):
+        if is_sequence_field(field):
             value = received_body.getlist(field.alias)
         else:
             value = received_body.get(field.alias, None)
         if (
             value is None
-            or (isinstance(first_field_info, params.Form) and value == "")
-            or (
-                isinstance(first_field_info, params.Form)
-                and is_sequence_field(field)
-                and len(value) == 0
-            )
+            or value == ""
+            or (is_sequence_field(field) and len(value) == 0)
         ):
             if field.required:
                 continue
