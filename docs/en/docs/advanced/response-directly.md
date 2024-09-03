@@ -28,7 +28,7 @@ This gives you a lot of flexibility. You can return any data type, override any 
 
 ## Using the `jsonable_encoder` in a `Response`
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
+Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure its contents are ready for it.
 
 For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
 
@@ -54,7 +54,7 @@ Now, let's see how you could use that to return a custom response.
 
 Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
 
-You could put your XML content in a string, put it in a `Response`, and return it:
+You could put your XML content in a string, put that in a `Response`, and return it:
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}

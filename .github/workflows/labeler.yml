@@ -1,4 +1,4 @@
-name: Pull Request Labeler and Checker
+name: Labels
 on:
   pull_request_target:
     types:
@@ -19,7 +19,10 @@ jobs:
     - uses: actions/labeler@v5
   # Run this after labeler applied labels
   check-labels:
-    name: Check labels
+    needs:
+      - labeler
+    permissions:
+      pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - uses: docker://agilepathway/pull-request-label-checker:latest

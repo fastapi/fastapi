@@ -40,7 +40,7 @@ Keep in mind that you have to return the `JSONResponse` directly.
 
 The `model` key is not part of OpenAPI.
 
-**FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
+**FastAPI** will take the Pydantic model from there, generate the JSON Schema, and put it in the correct place.
 
 The correct place is:
 
@@ -251,5 +251,5 @@ For example:
 
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responsesObject" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.

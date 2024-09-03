@@ -4,9 +4,9 @@ By default, **FastAPI** will return the responses using `JSONResponse`.
 
 You can override it by returning a `Response` directly as seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}.
 
-But if you return a `Response` directly, the data won't be automatically converted, and the documentation won't be automatically generated (for example, including the specific "media type", in the HTTP header `Content-Type` as part of the generated OpenAPI).
+But if you return a `Response` directly (or any subclass, like `JSONResponse`), the data won't be automatically converted (even if you declare a `response_model`), and the documentation won't be automatically generated (for example, including the specific "media type", in the HTTP header `Content-Type` as part of the generated OpenAPI).
 
-But you can also declare the `Response` that you want to be used, in the *path operation decorator*.
+But you can also declare the `Response` that you want to be used (e.g. any `Response` subclass), in the *path operation decorator* using the `response_class` parameter.
 
 The contents that you return from your *path operation function* will be put inside of that `Response`.
 
@@ -255,11 +255,11 @@ This includes many libraries to interact with cloud storage, video processing, a
 
 1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
 2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
-3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function (`iterfile`).
 
     So, it is a generator function that transfers the "generating" work to something else internally.
 
-    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
+    By doing it this way, we can put it in a `with` block, and that way, ensure that the file-like object is closed after finishing.
 
 /// tip
 

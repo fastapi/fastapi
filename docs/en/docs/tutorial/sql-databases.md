@@ -101,7 +101,9 @@ Now let's see what each file/module does.
 
 ## Install `SQLAlchemy`
 
-First you need to install `SQLAlchemy`:
+First you need to install `SQLAlchemy`.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
 
 <div class="termy">
 

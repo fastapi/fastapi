@@ -6,117 +6,13 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 If you already cloned the <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
 
-### Virtual environment with `venv`
+### Virtual environment
 
-You can create an isolated virtual local environment in a directory using Python's `venv` module. Let's do this in the cloned repository (where the `requirements.txt` is):
-
-<div class="termy">
-
-```console
-$ python -m venv env
-```
-
-</div>
-
-That will create a directory `./env/` with the Python binaries, and then you will be able to install packages for that local environment.
-
-### Activate the environment
-
-Activate the new environment with:
-
-//// tab | Linux, macOS
-
-<div class="termy">
-
-```console
-$ source ./env/bin/activate
-```
-
-</div>
-
-////
-
-//// tab | Windows PowerShell
-
-<div class="termy">
-
-```console
-$ .\env\Scripts\Activate.ps1
-```
-
-</div>
-
-////
-
-//// tab | Windows Bash
-
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
-
-<div class="termy">
-
-```console
-$ source ./env/Scripts/activate
-```
-
-</div>
-
-////
-
-To check it worked, use:
-
-//// tab | Linux, macOS, Windows Bash
-
-<div class="termy">
-
-```console
-$ which pip
-
-some/directory/fastapi/env/bin/pip
-```
-
-</div>
-
-////
-
-//// tab | Windows PowerShell
-
-<div class="termy">
-
-```console
-$ Get-Command pip
-
-some/directory/fastapi/env/bin/pip
-```
-
-</div>
-
-////
-
-If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
-
-Make sure you have the latest pip version on your local environment to avoid errors on the next steps:
-
-<div class="termy">
-
-```console
-$ python -m pip install --upgrade pip
-
----> 100%
-```
-
-</div>
-
-/// tip
-
-Every time you install a new package with `pip` under that environment, activate the environment again.
-
-This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
-
-///
+Follow the instructions to create and activate a [virtual environment](virtual-environments.md){.internal-link target=_blank} for the internal code of `fastapi`.
 
 ### Install requirements using pip
 
-After activating the environment as described above:
+After activating the environment, install the required packages:
 
 <div class="termy">
 
@@ -160,7 +56,19 @@ $ bash scripts/format.sh
 
 It will also auto-sort all your imports.
 
-For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `-e`.
+## Tests
+
+There is a script that you can run locally to test all the code and generate coverage reports in HTML:
+
+<div class="termy">
+
+```console
+$ bash scripts/test-cov-html.sh
+```
+
+</div>
+
+This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
 
 ## Docs
 
@@ -262,7 +170,7 @@ If you run the examples with, e.g.:
 <div class="termy">
 
 ```console
-$ uvicorn tutorial001:app --reload
+$ fastapi dev tutorial001.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -370,6 +278,20 @@ If you go to your browser you will see that now the docs show your new section (
 
 Now you can translate it all and see how it looks as you save the file.
 
+#### Don't Translate these Pages
+
+🚨 Don't translate:
+
+* Files under `reference/`
+* `release-notes.md`
+* `fastapi-people.md`
+* `external-links.md`
+* `newsletter.md`
+* `management-tasks.md`
+* `management.md`
+
+Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
+
 #### New Language
 
 Let's say that you want to add translations for a language that is not yet translated, not even some pages.
@@ -468,17 +390,3 @@ Serving at: http://127.0.0.1:8008
     * Search for such links in the translated document using the regex `#[^# ]`.
     * Search in all documents already translated into your language for `your-translated-document.md`. For example VS Code has an option "Edit" -> "Find in Files".
     * When translating a document, do not "pre-translate" `#hash-parts` that link to headings in untranslated documents.
-
-## Tests
-
-There is a script that you can run locally to test all the code and generate coverage reports in HTML:
-
-<div class="termy">
-
-```console
-$ bash scripts/test-cov-html.sh
-```
-
-</div>
-
-This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.

@@ -37,7 +37,7 @@ This part is pretty normal, most of the code is probably already familiar to you
 
 /// tip
 
-The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/concepts/types/#urls" class="external-link" target="_blank">URL</a> type.
+The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
 
 ///
 

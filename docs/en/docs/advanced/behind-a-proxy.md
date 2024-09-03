@@ -211,7 +211,7 @@ Now create that other file `routes.toml`:
 
 This file configures Traefik to use the path prefix `/api/v1`.
 
-And then it will redirect its requests to your Uvicorn running on `http://127.0.0.1:8000`.
+And then Traefik will redirect its requests to your Uvicorn running on `http://127.0.0.1:8000`.
 
 Now start Traefik:
 
