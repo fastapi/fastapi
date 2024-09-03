@@ -736,6 +736,63 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     return False
 
 
+async def _extract_form_body(
+    body_fields: List[ModelField],
+    received_body: FormData,
+) -> Dict[str, Any]:
+    values = {}
+    first_field = body_fields[0]
+    first_field_info = first_field.field_info
+
+    for field in body_fields:
+        value: Any = None
+        if (is_sequence_field(field)) and isinstance(received_body, FormData):
+            value = received_body.getlist(field.alias)
+        else:
+            value = received_body.get(field.alias, None)
+        if (
+            value is None
+            or (isinstance(first_field_info, params.Form) and value == "")
+            or (
+                isinstance(first_field_info, params.Form)
+                and is_sequence_field(field)
+                and len(value) == 0
+            )
+        ):
+            if field.required:
+                continue
+            else:
+                values[field.name] = deepcopy(field.default)
+            continue
+        if (
+            isinstance(first_field_info, params.File)
+            and is_bytes_field(field)
+            and isinstance(value, UploadFile)
+        ):
+            value = await value.read()
+        elif (
+            is_bytes_sequence_field(field)
+            and isinstance(first_field_info, params.File)
+            and value_is_sequence(value)
+        ):
+            # For types
+            assert isinstance(value, sequence_types)  # type: ignore[arg-type]
+            results: List[Union[bytes, str]] = []
+
+            async def process_fn(
+                fn: Callable[[], Coroutine[Any, Any, Any]],
+            ) -> None:
+                result = await fn()
+                results.append(result)  # noqa: B023
+
+            async with anyio.create_task_group() as tg:
+                for sub_value in value:
+                    tg.start_soon(process_fn, sub_value.read)
+            value = serialize_sequence_value(field=field, value=results)
+        values[field.name] = value
+    return values
+
+
 async def request_body_to_args(
     body_fields: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
@@ -743,78 +800,44 @@ async def request_body_to_args(
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values = {}
     errors: List[Dict[str, Any]] = []
-    if body_fields:
-        first_field = body_fields[0]
-        first_field_info = first_field.field_info
-        field_alias_omitted = len(body_fields) == 1 and not embed_body_fields
+    if not body_fields:
+        return values, errors
+    first_field = body_fields[0]
+    field_alias_omitted = len(body_fields) == 1 and not embed_body_fields
+    body_to_process = received_body
+    if field_alias_omitted:
+        body_to_process = {first_field.alias: received_body}
+    elif isinstance(received_body, FormData):
+        body_to_process = await _extract_form_body(body_fields, received_body)
+
+    for field in body_fields:
+        loc: Tuple[str, ...]
         if field_alias_omitted:
-            received_body = {first_field.alias: received_body}
+            loc = ("body",)
+        else:
+            loc = ("body", field.alias)
 
-        for field in body_fields:
-            loc: Tuple[str, ...]
-            if field_alias_omitted:
-                loc = ("body",)
-            else:
-                loc = ("body", field.alias)
-
-            value: Optional[Any] = None
-            if received_body is not None:
-                if (is_sequence_field(field)) and isinstance(received_body, FormData):
-                    value = received_body.getlist(field.alias)
-                else:
-                    try:
-                        value = received_body.get(field.alias)
-                    except AttributeError:
-                        errors.append(get_missing_field_error(loc))
-                        continue
-            if (
-                value is None
-                or (isinstance(first_field_info, params.Form) and value == "")
-                or (
-                    isinstance(first_field_info, params.Form)
-                    and is_sequence_field(field)
-                    and len(value) == 0
-                )
-            ):
-                if field.required:
-                    errors.append(get_missing_field_error(loc))
-                else:
-                    values[field.name] = deepcopy(field.default)
+        value: Optional[Any] = None
+        if body_to_process is not None:
+            try:
+                value = body_to_process.get(field.alias)
+            except AttributeError:
+                errors.append(get_missing_field_error(loc))
                 continue
-            if (
-                isinstance(first_field_info, params.File)
-                and is_bytes_field(field)
-                and isinstance(value, UploadFile)
-            ):
-                value = await value.read()
-            elif (
-                is_bytes_sequence_field(field)
-                and isinstance(first_field_info, params.File)
-                and value_is_sequence(value)
-            ):
-                # For types
-                assert isinstance(value, sequence_types)  # type: ignore[arg-type]
-                results: List[Union[bytes, str]] = []
-
-                async def process_fn(
-                    fn: Callable[[], Coroutine[Any, Any, Any]],
-                ) -> None:
-                    result = await fn()
-                    results.append(result)  # noqa: B023
-
-                async with anyio.create_task_group() as tg:
-                    for sub_value in value:
-                        tg.start_soon(process_fn, sub_value.read)
-                value = serialize_sequence_value(field=field, value=results)
-
-            v_, errors_ = field.validate(value, values, loc=loc)
-
-            if isinstance(errors_, list):
-                errors.extend(errors_)
-            elif errors_:
-                errors.append(errors_)
+        if value is None:
+            if field.required:
+                errors.append(get_missing_field_error(loc))
             else:
-                values[field.name] = v_
+                values[field.name] = deepcopy(field.default)
+            continue
+        v_, errors_ = field.validate(value, values, loc=loc)
+
+        if isinstance(errors_, list):
+            errors.extend(errors_)
+        elif errors_:
+            errors.append(errors_)
+        else:
+            values[field.name] = v_
     return values, errors
 
 
