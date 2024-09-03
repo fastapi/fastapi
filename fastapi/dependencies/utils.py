@@ -740,7 +740,7 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
         return True
     # If it's a Form (or File) field, it has to be a BaseModel to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
-    if isinstance(first_field.field_info, params.Form) and not isinstance(
+    if isinstance(first_field.field_info, params.Form) and not lenient_issubclass(
         first_field.type_, BaseModel
     ):
         return True
