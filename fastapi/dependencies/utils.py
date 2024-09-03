@@ -701,7 +701,7 @@ def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[Any]]:
-    values = {}
+    values: Dict[str, Any] = {}
     errors = []
     for field in required_params:
         if is_scalar_sequence_field(field) and isinstance(
@@ -809,7 +809,7 @@ async def request_body_to_args(
     received_body: Optional[Union[Dict[str, Any], FormData]],
     embed_body_fields: bool,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
-    values = {}
+    values: Dict[str, Any] = {}
     errors: List[Dict[str, Any]] = []
     if not body_fields:
         return values, errors
@@ -820,7 +820,7 @@ async def request_body_to_args(
         body_to_process = await _extract_form_body(body_fields, received_body)
 
     if single_not_embedded_field:
-        loc = ("body",)
+        loc: Tuple[str, ...] = ("body",)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=body_to_process, values=values, loc=loc
         )
