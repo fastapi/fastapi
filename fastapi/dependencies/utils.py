@@ -282,7 +282,7 @@ def get_dependant(
             ), f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             continue
         assert param_details.field is not None
-        if is_body_param(param_field=param_details.field, is_path_param=is_path_param):
+        if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:
             add_param_to_fields(field=param_details.field, dependant=dependant)
@@ -469,27 +469,12 @@ def analyze_param(
             required=field_info.default in (Required, Undefined),
             field_info=field_info,
         )
-
-    return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
-
-
-def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     if is_path_param:
         assert is_scalar_field(
-            field=param_field
+            field=field
         ), "Path params must be of one of the supported types"
-        return False
-    elif is_scalar_field(field=param_field):
-        return False
-    elif isinstance(
-        param_field.field_info, (params.Query, params.Header)
-    ) and is_scalar_sequence_field(param_field):
-        return False
-    else:
-        assert isinstance(
-            param_field.field_info, params.Body
-        ), f"Param: {param_field.name} can only be a request body, using Body()"
-        return True
+
+    return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
 
 def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
