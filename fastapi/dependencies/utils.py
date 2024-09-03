@@ -814,12 +814,12 @@ async def request_body_to_args(
     if not body_fields:
         return values, errors
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
+    first_field = body_fields[0]
     body_to_process = received_body
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(body_fields, received_body)
 
     if single_not_embedded_field:
-        first_field = body_fields[0]
         loc = ("body",)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=body_to_process, values=values, loc=loc
