@@ -810,7 +810,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
-        ignore_trailing_whitespaces: Annotated[
+        ignore_trailing_slash: Annotated[
             bool,
             Doc(
                 """
@@ -950,7 +950,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
-            ignore_trailing_whitespaces=ignore_trailing_whitespaces,
+            ignore_trailing_slash=ignore_trailing_slash,
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
@@ -970,11 +970,14 @@ class FastAPI(Starlette):
         )
         self.middleware_stack: Union[ASGIApp, None] = None
 
-        if ignore_trailing_whitespaces:
-            async def middleware_ignore_tailing_whitespace(request: Request, call_next):
-                request.scope["path"] = request.scope["path"].rstrip("/")
-                return await call_next(request)
-            self.add_middleware(BaseHTTPMiddleware, dispatch=middleware_ignore_tailing_whitespace)
+        if ignore_trailing_slash:
+            def ignore_trailing_whitespace_middleware(app):
+                async def ignore_trailing_whitespace_wrapper(scope, receive, send):
+                    scope["path"] = scope["path"].rstrip("/")
+                    await app(scope, receive, send)
+                return ignore_trailing_whitespace_wrapper
+            self.add_middleware(ignore_trailing_whitespace_middleware)
+
         self.setup()
 
     def openapi(self) -> Dict[str, Any]:

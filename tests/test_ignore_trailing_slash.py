@@ -1,29 +1,45 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, APIRouter
 from fastapi.testclient import TestClient
 
-recognizing_app = FastAPI()
-ignoring_app = FastAPI(ignore_trailing_whitespaces=True)
+app = FastAPI(ignore_trailing_slash=True)
+router = APIRouter()
 
-@recognizing_app.get("/example")
-@ignoring_app.get("/example")
-async def return_data():
-    return {"msg": "Reached the route!"}
+@app.get("/example")
+async def example_endpoint():
+    return {"msg": "Example"}
 
-recognizing_client = TestClient(recognizing_app)
-ignoring_client = TestClient(ignoring_app)
+@app.websocket("/websocket")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Websocket")
+    await websocket.close()
 
-def test_recognizing_trailing_slash():
-    response = recognizing_client.get("/example", follow_redirects=False)
-    assert response.status_code == 200
-    assert response.json()["msg"] == "Reached the route!"
-    response = recognizing_client.get("/example/", follow_redirects=False)
-    assert response.status_code == 307
-    assert response.headers["location"].endswith("/example")
+@router.get("/example")
+def route_endpoint():
+    return {"msg": "Routing Example"}
+
+app.include_router(router, prefix="/router")
+
+client = TestClient(app)
 
 def test_ignoring_trailing_slash():
-    response = ignoring_client.get("/example", follow_redirects=False)
+    response = client.get("/example", follow_redirects=False)
     assert response.status_code == 200
-    assert response.json()["msg"] == "Reached the route!"
-    response = ignoring_client.get("/example/", follow_redirects=False)
+    assert response.json()["msg"] == "Example"
+    response = client.get("/example/", follow_redirects=False)
     assert response.status_code == 200
-    assert response.json()["msg"] == "Reached the route!"
+    assert response.json()["msg"] == "Example"
+
+def test_ignoring_trailing_shlash_ws():
+    with client.websocket_connect("/websocket") as websocket:
+        assert websocket.receive_text() == "Websocket"
+    with client.websocket_connect("/websocket/") as websocket:
+        assert websocket.receive_text() == "Websocket"
+
+def test_ignoring_trailing_routing():
+    response = client.get("router/example", follow_redirects=False)
+    assert response.status_code == 200
+    assert response.json()["msg"] == "Routing Example"
+    response = client.get("router/example/", follow_redirects=False)
+    assert response.status_code == 200
+    assert response.json()["msg"] == "Routing Example"

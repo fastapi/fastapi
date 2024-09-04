@@ -811,7 +811,7 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
-        ignore_trailing_whitespaces: Annotated[
+        ignore_trailing_slash: Annotated[
             bool,
             Doc(
                 """
@@ -843,7 +843,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
-        self.ignore_trailing_whitespaces = ignore_trailing_whitespaces
+        self.ignore_trailing_slash = ignore_trailing_slash
 
     def route(
         self,
@@ -852,7 +852,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-        if self.ignore_trailing_whitespaces:
+        if self.ignore_trailing_slash:
             path = path.rstrip("/")
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_route(
@@ -900,7 +900,7 @@ class APIRouter(routing.Router):
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
     ) -> None:
-        if self.ignore_trailing_whitespaces:
+        if self.ignore_trailing_slash:
             path = path.rstrip("/")
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1020,7 +1020,7 @@ class APIRouter(routing.Router):
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> None:
-        if self.ignore_trailing_whitespaces:
+        if self.ignore_trailing_slash:
             path = path.rstrip("/")
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -1105,7 +1105,7 @@ class APIRouter(routing.Router):
     def websocket_route(
         self, path: str, name: Union[str, None] = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-        if self.ignore_trailing_whitespaces:
+        if self.ignore_trailing_slash:
             path = path.rstrip("/")
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_websocket_route(path, func, name=name)
@@ -1265,7 +1265,7 @@ class APIRouter(routing.Router):
             responses = {}
         for route in router.routes:
             path = route.path
-            if self.ignore_trailing_whitespaces:
+            if self.ignore_trailing_slash:
                 path = path.rstrip("/")
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
