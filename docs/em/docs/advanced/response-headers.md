@@ -28,12 +28,15 @@
 {!../../../docs_src/response_headers/tutorial001.py!}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import Response` ⚖️ `from starlette.responses import JSONResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import Response` ⚖️ `from starlette.responses import JSONResponse`.
 
-     &amp; `Response` 💪 ⚙️ 🛎 ⚒ 🎚 &amp; 🍪, **FastAPI** 🚚 ⚫️ `fastapi.Response`.
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+ &amp; `Response` 💪 ⚙️ 🛎 ⚒ 🎚 &amp; 🍪, **FastAPI** 🚚 ⚫️ `fastapi.Response`.
+
+///
 
 ## 🛃 🎚
 

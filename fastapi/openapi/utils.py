@@ -123,7 +123,7 @@ def get_openapi_operation_parameters(
         elif field_info.example != Undefined:
             parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:
-            parameter["deprecated"] = field_info.deprecated
+            parameter["deprecated"] = True
         parameters.append(parameter)
     return parameters
 

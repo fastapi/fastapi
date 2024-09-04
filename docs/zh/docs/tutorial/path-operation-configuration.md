@@ -2,9 +2,11 @@
 
 *路径操作装饰器*支持多种配置参数。
 
-!!! warning "警告"
+/// warning | "警告"
 
-    注意：以下参数应直接传递给**路径操作装饰器**，不能传递给*路径操作函数*。
+注意：以下参数应直接传递给**路径操作装饰器**，不能传递给*路径操作函数*。
+
+///
 
 ## `status_code` 状态码
 
@@ -20,11 +22,13 @@
 
 状态码在响应中使用，并会被添加到 OpenAPI 概图。
 
-!!! note "技术细节"
+/// note | "技术细节"
 
-    也可以使用 `from starlette import status` 导入状态码。
+也可以使用 `from starlette import status` 导入状态码。
 
-    **FastAPI** 的`fastapi.status` 和 `starlette.status` 一样，只是快捷方式。实际上，`fastapi.status` 直接继承自 Starlette。
+**FastAPI** 的`fastapi.status` 和 `starlette.status` 一样，只是快捷方式。实际上，`fastapi.status` 直接继承自 Starlette。
+
+///
 
 ## `tags` 参数
 
@@ -68,15 +72,19 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 {!../../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
-!!! info "说明"
+/// info | "说明"
 
-    注意，`response_description` 只用于描述响应，`description` 一般则用于描述*路径操作*。
+注意，`response_description` 只用于描述响应，`description` 一般则用于描述*路径操作*。
 
-!!! check "检查"
+///
 
-    OpenAPI 规定每个*路径操作*都要有响应描述。
+/// check | "检查"
 
-    如果没有定义响应描述，**FastAPI** 则自动生成内容为 "Successful response" 的响应描述。
+OpenAPI 规定每个*路径操作*都要有响应描述。
+
+如果没有定义响应描述，**FastAPI** 则自动生成内容为 "Successful response" 的响应描述。
+
+///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 

@@ -20,10 +20,12 @@ from typing import (
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as PYDANTIC_VERSION
+from pydantic.version import VERSION as P_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
+# Reassign variable to make it reexported for mypy
+PYDANTIC_VERSION = P_VERSION
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 
@@ -127,7 +129,7 @@ if PYDANTIC_V2:
                 )
             except ValidationError as exc:
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(), loc_prefix=loc
+                    errors=exc.errors(include_url=False), loc_prefix=loc
                 )
 
         def serialize(
@@ -249,7 +251,12 @@ if PYDANTIC_V2:
         return is_bytes_sequence_annotation(field.type_)
 
     def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
-        return type(field_info).from_annotation(annotation)
+        cls = type(field_info)
+        merged_field_info = cls.from_annotation(annotation)
+        new_field_info = copy(field_info)
+        new_field_info.metadata = merged_field_info.metadata
+        new_field_info.annotation = merged_field_info.annotation
+        return new_field_info
 
     def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         origin_type = (
@@ -261,7 +268,7 @@ if PYDANTIC_V2:
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors()[0]
+        ).errors(include_url=False)[0]
         error["input"] = None
         return error  # type: ignore[return-value]
 
