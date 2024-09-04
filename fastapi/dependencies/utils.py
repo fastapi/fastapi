@@ -791,8 +791,7 @@ async def request_body_to_args(
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values: Dict[str, Any] = {}
     errors: List[Dict[str, Any]] = []
-    if not body_fields:
-        return values, errors
+    assert body_fields, "request_body_to_args() should be called with fields"
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
     body_to_process = received_body
