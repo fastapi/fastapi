@@ -19,9 +19,10 @@ _P = ParamSpec("_P")
 _T = TypeVar("_T")
 
 async def run_in_threadpool(
-    func: typing.Callable[_P, _T], *args: _P.args,
-        _limiter: Optional[anyio.CapacityLimiter] = None,
-        **kwargs: _P.kwargs
+    func: typing.Callable[_P, _T],
+    *args: typing.Any,
+    _limiter: Optional[anyio.CapacityLimiter] = None,
+    **kwargs: typing.Any
 ) -> _T:
     if kwargs:  # pragma: no cover
         # run_sync doesn't accept 'kwargs', so bind them in here
