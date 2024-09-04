@@ -453,9 +453,6 @@ def analyze_param(
         )
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
-            # Set default field_info.embed
-            if field_info.embed is None:
-                field_info.embed = True
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
         else:
