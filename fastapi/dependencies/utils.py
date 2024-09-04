@@ -473,6 +473,8 @@ def analyze_param(
         assert is_scalar_field(
             field=field
         ), "Path params must be of one of the supported types"
+    elif isinstance(field_info, params.Query):
+        assert is_scalar_field(field) or is_scalar_sequence_field(field)
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
