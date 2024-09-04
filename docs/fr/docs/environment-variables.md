@@ -1,28 +1,28 @@
-# Environment Variables
+# Variables d'environnement
 
 /// tip
 
-If you already know what "environment variables" are and how to use them, feel free to skip this.
+Si vous savez déjà ce que sont les "variables d'environnement" et comment les utiliser, vous pouvez passer cette partie.
 
 ///
 
-An environment variable (also known as "**env var**") is a variable that lives **outside** of the Python code, in the **operating system**, and could be read by your Python code (or by other programs as well).
+Une variable d'environnement (aussi appelée "**env var**") est une variable qui existe **en dehors** du code Python, au niveau du **système d'exploitation**, et qui peut être lue par votre code Python (ainsi que par d'autres programmes).
 
-Environment variables could be useful for handling application **settings**, as part of the **installation** of Python, etc.
+Les variables d'environnement sont utiles pour gérer les **paramètres** de l'application, dans le cadre de **l'installation** de Python, etc.
 
-## Create and Use Env Vars
+## Créer et utiliser les variables d'environnements
 
-You can **create** and use environment variables in the **shell (terminal)**, without needing Python:
+Il est possible de créer et d'utiliser les variables d'environnement dans un **shell (terminal)**, sans avoir à utiliser Python:
 
 //// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
 ```console
-// You could create an env var MY_NAME with
+// Vous pouvez créer une variable d'environnement MY_NAME avec
 $ export MY_NAME="Wade Wilson"
 
-// Then you could use it with other programs, like
+// Puis vous pouvez l'utiliser dans d'autre programmes, comme
 $ echo "Hello $MY_NAME"
 
 Hello Wade Wilson
@@ -37,10 +37,10 @@ Hello Wade Wilson
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME
+// Créez une variable d'environnement MY_NAME
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Use it with other programs, like
+// Utilisez-la dans d'autres programmes, comme
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
@@ -50,11 +50,11 @@ Hello Wade Wilson
 
 ////
 
-## Read env vars in Python
+## Lire les variables d'environnement en Python
 
-You could also create environment variables **outside** of Python, in the terminal (or with any other method), and then **read them in Python**.
+Vous avez aussi la possibilité de créer une variable d'environnement **en dehors** de Python, dans le terminal (ou avec n'importe quelle autre méthode), puis la **lire en Python**. 
 
-For example you could have a file `main.py` with:
+Par exemple, vous pouvez avoir un fichier `main.py` avec:
 
 ```Python hl_lines="3"
 import os
@@ -65,33 +65,33 @@ print(f"Hello {name} from Python")
 
 /// tip
 
-The second argument to <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> is the default value to return.
+Le second argument de <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> est la valeur par défaut à retourner.
 
-If not provided, it's `None` by default, here we provide `"World"` as the default value to use.
+Si elle n'est pas fournie, ce sera `None` par defaut. Ici, on passe `"World"` comme valeur par défaut à utiliser.
 
 ///
 
-Then you could call that Python program:
+Vous pouvez ensuite appeler ce programme Python:
 
 //// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Ici la variable d'environnement n'est pas encore fixée
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Comme nous n'avons pas fixé la variable d'environnement, nous obtenons la valeur par défaut
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Mais si nous créons d'abord une variable d'environnement
 $ export MY_NAME="Wade Wilson"
 
-// And then call the program again
+// Puis que l'on rappelle le programme
 $ python main.py
 
-// Now it can read the environment variable
+// Maintenant il peut lire la variable d'environnement
 
 Hello Wade Wilson from Python
 ```
@@ -105,20 +105,20 @@ Hello Wade Wilson from Python
 <div class="termy">
 
 ```console
-// Here we don't set the env var yet
+// Ici la variable d'environnement n'est pas encore fixée
 $ python main.py
 
-// As we didn't set the env var, we get the default value
+// Comme nous n'avons pas fixé la variable d'environnement, nous obtenons la valeur par défaut
 
 Hello World from Python
 
-// But if we create an environment variable first
+// Mais si nous créons d'abord une variable d'environnement
 $ $Env:MY_NAME = "Wade Wilson"
 
-// And then call the program again
+// Puis que l'on rappelle le programme
 $ python main.py
 
-// Now it can read the environment variable
+// Maintenant il peut lire la variable d'environnement
 
 Hello Wade Wilson from Python
 ```
@@ -127,23 +127,23 @@ Hello Wade Wilson from Python
 
 ////
 
-As environment variables can be set outside of the code, but can be read by the code, and don't have to be stored (committed to `git`) with the rest of the files, it's common to use them for configurations or **settings**.
+Comme les variables d'environnement peuvent être fixées à l'extérieur du code, mais peuvent être lues par le code, et n'ont pas à être stockées (commitées sur `git`) avec les autres fichiers, il est commun de les utiliser pour les configurations ou les **paramètres**.
 
-You can also create an environment variable only for a **specific program invocation**, that is only available to that program, and only for its duration.
+Vous pouvez aussi créer une variable d'environnement pour **l'invocation d'un programme spécifique**. Elle ne sera utilisable que pour ce programme, et seulement pour sa durée d'exécution.
 
-To do that, create it right before the program itself, on the same line:
+Pour ce faire, créez-la en amont du programme lui-même, sur la même ligne:
 
 <div class="termy">
 
 ```console
-// Create an env var MY_NAME in line for this program call
+// Créez une variable d'environnement MY_NAME sur la même ligne que l'appel du programme
 $ MY_NAME="Wade Wilson" python main.py
 
-// Now it can read the environment variable
+// Maintenant il peut lire cette variable d'environnement
 
 Hello Wade Wilson from Python
 
-// The env var no longer exists afterwards
+// La variable d'environnement n'existe plus ensuite
 $ python main.py
 
 Hello World from Python
@@ -153,25 +153,26 @@ Hello World from Python
 
 /// tip
 
-You can read more about it at <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+Pour en savoir plus, consultez <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
 
 ///
 
-## Types and Validation
+## Types et Validation
 
-These environment variables can only handle **text strings**, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
+Ces variables d'environnement ne peuvent que traiter des **chaînes de texte**, car elles sont externes à Python et doivent être compatibles avec d'autres programmes et le reste du système (voire même avec différents systèmes d'exploitations, comme Linux, Windows, macOS).
 
-That means that **any value** read in Python from an environment variable **will be a `str`**, and any conversion to a different type or any validation has to be done in code.
+Cela signifie que **chaque valeur** lue en Python d'une variable d'environnement **sera un `str`**, et toute conversion vers un type différent ou toute validation doit être faite dans le code.
 
-You will learn more about using environment variables for handling **application settings** in the [Advanced User Guide - Settings and Environment Variables](./advanced/settings.md){.internal-link target=_blank}.
+Le [Guide de l'utilisateur avancé - Paramètres et Variables d'environnement](./advanced/settings.md){.internal-link target=_blank} vous permettra d'en savoir plus sur les variables d'environnement pour gérer les paramètres de l'application.
 
-## `PATH` Environment Variable
 
-There is a **special** environment variable called **`PATH`** that is used by the operating systems (Linux, macOS, Windows) to find programs to run.
+## La variable d'environnement `PATH`
 
-The value of the variable `PATH` is a long string that is made of directories separated by a colon `:` on Linux and macOS, and by a semicolon `;` on Windows.
+Il existe une variable d'environnement **spéciale** appelée **`PATH`** utilisée par les systèmes d'exploitation (Linux, macOS, Windows) pour trouver les programmes à exécuter.
 
-For example, the `PATH` environment variable could look like this:
+La valeur de la variable `PATH` est une longue chaîne de caractères, composée de répertoires séparés par un `:` sur Linux et macOS, et par un point-virgule `;` sur Windows.
+
+Par exemple, la variable d'environnement `PATH` peut se présenter de la manière suivante:
 
 //// tab | Linux, macOS
 
@@ -179,7 +180,7 @@ For example, the `PATH` environment variable could look like this:
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-This means that the system should look for programs in the directories:
+Cela signifie que le système doit rechercher des programmes dans les répertoires:
 
 * `/usr/local/bin`
 * `/usr/bin`
@@ -195,7 +196,7 @@ This means that the system should look for programs in the directories:
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32
 ```
 
-This means that the system should look for programs in the directories:
+Cela signifie que le système doit rechercher des programmes dans les répertoires:
 
 * `C:\Program Files\Python312\Scripts`
 * `C:\Program Files\Python312`
@@ -203,49 +204,48 @@ This means that the system should look for programs in the directories:
 
 ////
 
-When you type a **command** in the terminal, the operating system **looks for** the program in **each of those directories** listed in the `PATH` environment variable.
+Lorsque vous tapez une **commande** dans le terminal, le système d'exploitation **recherche** le programme dans **chaque répertoire** répertorié dans la variable d'environnement `PATH`.
 
-For example, when you type `python` in the terminal, the operating system looks for a program called `python` in the **first directory** in that list.
+Par exemple, si vous tapez `python` dans le terminal, le système d'exploitation recherche un programme nommé `python` dans le **premier répertoire** de cette liste.
 
-If it finds it, then it will **use it**. Otherwise it keeps looking in the **other directories**.
+S'il le trouve, alors il **l'utilisera**. Autrement, il continue de chercher dans les **autres répertoires**.
 
-### Installing Python and Updating the `PATH`
+### Installer Python and modifier the `PATH`
 
-When you install Python, you might be asked if you want to update the `PATH` environment variable.
+Lorsque vous installez Python, il peut vous être demandé de modifier la variable d'environnement `PATH`.
 
 //// tab | Linux, macOS
 
-Let's say you install Python and it ends up in a directory `/opt/custompython/bin`.
+Disons que vous installez Python, et qu'il finisse dans le répertoire `/opt/custompython/bin`.
 
-If you say yes to update the `PATH` environment variable, then the installer will add `/opt/custompython/bin` to the `PATH` environment variable.
+Si vous acceptez de mettre à jour la variable d'environnement `PATH`, l'installateur inclura alors `/opt/custompython/bin` à la variable d'environnement `PATH`.
 
-It could look like this:
+Ce qui pourrait donner:
 
 ```plaintext
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
 ```
 
-This way, when you type `python` in the terminal, the system will find the Python program in `/opt/custompython/bin` (the last directory) and use that one.
+En tapant `python` dans le terminal, le système trouvera le programme Python dans `/opt/custompython/bin` (le dernier répertoire) et utilisera celui-ci.
 
 ////
 
 //// tab | Windows
 
-Let's say you install Python and it ends up in a directory `C:\opt\custompython\bin`.
+Disons que vous installez Python, et il finis dans le répertoire `C:\opt\custompython\bin`.
 
-If you say yes to update the `PATH` environment variable, then the installer will add `C:\opt\custompython\bin` to the `PATH` environment variable.
+Si vous acceptez de mettre à jour la variable d'environnement `PATH`, l'installateur inclura alors `C:\opt\custompython\bin` à la variable d'environnement `PATH`.
 
 ```plaintext
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
-This way, when you type `python` in the terminal, the system will find the Python program in `C:\opt\custompython\bin` (the last directory) and use that one.
+En tapant `python` dans le terminal, le système trouvera le programme Python dans `/opt/custompython/bin` (le dernier répertoire) et utilisera celui-ci.
 
 ////
 
-This way, when you type `python` in the terminal, the system will find the Python program in `/opt/custompython/bin` (the last directory) and use that one.
 
-So, if you type:
+Donc, si vous tapez:
 
 <div class="termy">
 
@@ -257,9 +257,9 @@ $ python
 
 //// tab | Linux, macOS
 
-The system will **find** the `python` program in `/opt/custompython/bin` and run it.
+Le système **trouvera** le programme `python` dans `/opt/custompython/bin` et le lancera.
 
-It would be roughly equivalent to typing:
+Ce serait à peu près équivalent à taper:
 
 <div class="termy">
 
@@ -273,9 +273,9 @@ $ /opt/custompython/bin/python
 
 //// tab | Windows
 
-The system will **find** the `python` program in `C:\opt\custompython\bin\python` and run it.
+Le système **trouvera** le programme `python` dans `C:\opt\custompython\bin` et le lancera.
 
-It would be roughly equivalent to typing:
+Ce serait à peut près équivalent à taper:
 
 <div class="termy">
 
@@ -287,14 +287,14 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-This information will be useful when learning about [Virtual Environments](virtual-environments.md){.internal-link target=_blank}.
+Cette information vous sera utile, quand vous apprendrez les [Environnements virtuels](virtual-environments.md){.internal-link target=_blank}.
 
 ## Conclusion
 
-With this you should have a basic understanding of what **environment variables** are and how to use them in Python.
+Maintenant, vous devriez avoir une compréhension basique des variables d'environnement, et leurs utilisation en Python.
 
-You can also read more about them in the <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a>.
+Vous pouvez aussi en apprendre plus sur elles sur <a href="https://fr.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia pour les variables d'environnements</a>.
 
-In many cases it's not very obvious how environment variables would be useful and applicable right away. But they keep showing up in many different scenarios when you are developing, so it's good to know about them.
+Il sera difficile de comprendre rapidement leurs utilités et leurs applications dans de nombreux cas.  Cependant, elles se manifesteront dans divers scénarios lorsque vous développerez, il est donc bénéfique de les connaître.
 
-For example, you will need this information in the next section, about [Virtual Environments](virtual-environments.md).
+Par exemple, vous aurez besoin de cette information dans la section suivante, sur les [Environnements Virtuels](virtual-environments.md).
