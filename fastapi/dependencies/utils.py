@@ -59,7 +59,13 @@ from fastapi.utils import create_model_field, get_path_param_names
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
-from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
+from starlette.datastructures import (
+    FormData,
+    Headers,
+    ImmutableMultiDict,
+    QueryParams,
+    UploadFile,
+)
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
@@ -678,6 +684,24 @@ def _validate_value_with_model_field(
         return v_, []
 
 
+def _get_multidict_value(field: ModelField, values: Mapping) -> Any:
+    if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
+        value = values.getlist(field.alias)
+    else:
+        value = values.get(field.alias, None)
+    if (
+        value is None
+        or isinstance(field.field_info, params.Form)
+        and value == ""
+        or (is_sequence_field(field) and len(value) == 0)
+    ):
+        if field.required:
+            return
+        else:
+            return deepcopy(field.default)
+    return value
+
+
 def request_params_to_args(
     fields: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
@@ -685,12 +709,7 @@ def request_params_to_args(
     values: Dict[str, Any] = {}
     errors = []
     for field in fields:
-        if is_scalar_sequence_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
-        else:
-            value = received_params.get(field.alias)
+        value = _get_multidict_value(field, received_params)
         field_info = field.field_info
         assert isinstance(
             field_info, params.Param
@@ -735,21 +754,7 @@ async def _extract_form_body(
     first_field_info = first_field.field_info
 
     for field in body_fields:
-        value: Any = None
-        if is_sequence_field(field):
-            value = received_body.getlist(field.alias)
-        else:
-            value = received_body.get(field.alias, None)
-        if (
-            value is None
-            or value == ""
-            or (is_sequence_field(field) and len(value) == 0)
-        ):
-            if field.required:
-                continue
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
+        value = _get_multidict_value(field, received_body)
         if (
             isinstance(first_field_info, params.File)
             and is_bytes_field(field)
