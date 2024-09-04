@@ -279,6 +279,12 @@ if PYDANTIC_V2:
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
 
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return [
+            ModelField(field_info=field_info, name=name)
+            for name, field_info in model.model_fields.items()
+        ]
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
@@ -512,6 +518,9 @@ else:
         for f in fields:
             BodyModel.__fields__[f.name] = f  # type: ignore[index]
         return BodyModel
+
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return list(model.__fields__.values())  # type: ignore[attr-defined]
 
 
 def _regenerate_error_with_loc(
