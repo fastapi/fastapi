@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any, Callable, List, Optional, Sequence, Tuple
-import anyio
 
+import anyio
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
 

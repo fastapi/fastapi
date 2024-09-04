@@ -1,8 +1,8 @@
 import warnings
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
-import anyio
 
+import anyio
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
@@ -761,7 +761,9 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *,
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
         use_cache: bool = True,
         limiter: Optional[anyio.CapacityLimiter] = None,
     ):
@@ -772,8 +774,11 @@ class Depends:
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        limiter = f", limiter=CapacityLimiter({self.limiter.total_tokens})" \
-            if self.limiter else ""
+        limiter = (
+            f", limiter=CapacityLimiter({self.limiter.total_tokens})"
+            if self.limiter
+            else ""
+        )
         return f"{self.__class__.__name__}({attr}{cache}{limiter})"
 
 

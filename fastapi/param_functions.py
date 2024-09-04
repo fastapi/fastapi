@@ -1,6 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
-import anyio
 
+import anyio
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
@@ -2384,5 +2384,6 @@ def Security(  # noqa: N802
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache,
-                           limiter=limiter)
+    return params.Security(
+        dependency=dependency, scopes=scopes, use_cache=use_cache, limiter=limiter
+    )

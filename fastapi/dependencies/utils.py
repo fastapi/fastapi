@@ -533,12 +533,16 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 
 async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any],
+    *,
+    call: Callable[..., Any],
+    stack: AsyncExitStack,
+    sub_values: Dict[str, Any],
     limiter: Optional[anyio.CapacityLimiter] = None,
 ) -> Any:
     if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values),
-                                          limiter=limiter)
+        cm = contextmanager_in_threadpool(
+            contextmanager(call)(**sub_values), limiter=limiter
+        )
     elif is_async_gen_callable(call):
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
@@ -615,14 +619,17 @@ async def solve_dependencies(
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             solved = await solve_generator(
-                call=call, stack=async_exit_stack, sub_values=solved_result.values,
+                call=call,
+                stack=async_exit_stack,
+                sub_values=solved_result.values,
                 limiter=sub_dependant.limiter,
             )
         elif is_coroutine_callable(call):
             solved = await call(**solved_result.values)
         else:
-            solved = await run_in_threadpool(call, _limiter=sub_dependant.limiter,
-                                             **solved_result.values)
+            solved = await run_in_threadpool(
+                call, _limiter=sub_dependant.limiter, **solved_result.values
+            )
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
