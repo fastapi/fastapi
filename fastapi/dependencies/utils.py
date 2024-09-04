@@ -684,15 +684,18 @@ def _validate_value_with_model_field(
         return v_, []
 
 
-def _get_multidict_value(field: ModelField, values: Mapping) -> Any:
+def _get_multidict_value(field: ModelField, values: Mapping[str, Any]) -> Any:
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(field.alias)
     else:
         value = values.get(field.alias, None)
     if (
         value is None
-        or isinstance(field.field_info, params.Form)
-        and value == ""
+        or (
+            isinstance(field.field_info, params.Form)
+            and isinstance(value, str)  # For type checks
+            and value == ""
+        )
         or (is_sequence_field(field) and len(value) == 0)
     ):
         if field.required:
