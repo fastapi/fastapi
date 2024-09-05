@@ -97,16 +97,16 @@ def test_no_data():
         {
             "detail": [
                 {
-                    "type": "string_type",
+                    "type": "missing",
                     "loc": ["body", "username"],
-                    "msg": "Input should be a valid string",
-                    "input": None,
+                    "msg": "Field required",
+                    "input": {"tags": ["foo", "bar"]},
                 },
                 {
-                    "type": "string_type",
+                    "type": "missing",
                     "loc": ["body", "lastname"],
-                    "msg": "Input should be a valid string",
-                    "input": None,
+                    "msg": "Field required",
+                    "input": {"tags": ["foo", "bar"]},
                 },
             ]
         }
@@ -116,13 +116,13 @@ def test_no_data():
             "detail": [
                 {
                     "loc": ["body", "username"],
-                    "msg": "none is not an allowed value",
-                    "type": "type_error.none.not_allowed",
+                    "msg": "field required",
+                    "type": "value_error.missing",
                 },
                 {
                     "loc": ["body", "lastname"],
-                    "msg": "none is not an allowed value",
-                    "type": "type_error.none.not_allowed",
+                    "msg": "field required",
+                    "type": "value_error.missing",
                 },
             ]
         }
