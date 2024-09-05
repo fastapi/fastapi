@@ -1,11 +1,13 @@
-from typing import List, Union
+from typing import Any, Dict, List, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
+    get_model_fields,
     is_bytes_sequence_annotation,
+    is_scalar_field,
     is_uploadfile_sequence_annotation,
 )
 from fastapi.testclient import TestClient
@@ -91,3 +93,12 @@ def test_is_uploadfile_sequence_annotation():
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+
+
+def test_is_pv1_scalar_field():
+    # For coverage
+    class Model(BaseModel):
+        foo: Union[str, Dict[str, Any]]
+
+    fields = get_model_fields(Model)
+    assert not is_scalar_field(fields[0])
