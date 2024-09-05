@@ -264,6 +264,14 @@ Articles:
     author_link: https://devonray.com
     link: https://devonray.com/blog/deploying-a-fastapi-project-using-aws-lambda-aurora-cdk
     title: Deployment using Docker, Lambda, Aurora, CDK & GH Actions
+  - author: Shubhendra Kushwaha
+    author_link: https://www.linkedin.com/in/theshubhendra/
+    link: https://theshubhendra.medium.com/mastering-soft-delete-advanced-sqlalchemy-techniques-4678f4738947
+    title: 'Mastering Soft Delete: Advanced SQLAlchemy Techniques'
+  - author: Shubhendra Kushwaha
+    author_link: https://www.linkedin.com/in/theshubhendra/
+    link: https://theshubhendra.medium.com/role-based-row-filtering-advanced-sqlalchemy-techniques-733e6b1328f6
+    title: 'Role based row filtering: Advanced SQLAlchemy Techniques'
   German:
   - author: Marcel Sander (actidoo)
     author_link: https://www.actidoo.com
