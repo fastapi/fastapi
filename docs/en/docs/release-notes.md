@@ -9,7 +9,7 @@ hide:
 
 ### Features
 
-* ✨ Add support for Pydantic models in `Form` parameters. PR [#12127](https://github.com/fastapi/fastapi/pull/12127) by [@tiangolo](https://github.com/tiangolo).
+## 0.112.4
 
 ### Refactors
 
@@ -18,6 +18,7 @@ hide:
 ### Internal
 
 * ⏪️ Temporarily revert "✨ Add support for Pydantic models in `Form` parameters" to make a checkpoint release. PR [#12128](https://github.com/fastapi/fastapi/pull/12128) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Add support for Pydantic models in `Form` parameters. PR [#12127](https://github.com/fastapi/fastapi/pull/12127) by [@tiangolo](https://github.com/tiangolo). Reverted to make a checkpoint release with only refactors.
 
 ## 0.112.3
 
