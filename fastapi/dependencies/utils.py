@@ -2,6 +2,7 @@ import dataclasses
 import inspect
 import sys
 import warnings
+import types
 from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -22,6 +23,7 @@ from fastapi._compat import (
     ModelField,
     RequiredParam,
     Undefined,
+    UndefinedType,
     _is_error_wrapper,
     _is_model_class,
     copy_field_info,
@@ -597,7 +599,7 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    body: Optional[Union[dict[str, Any], FormData]] = None,
+    body: Optional[Union[dict[str, Any], FormData, UndefinedType]] = Undefined,
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
@@ -733,10 +735,24 @@ async def solve_dependencies(
     )
 
 
+def _allows_none(field: ModelField) -> bool:
+    origin = get_origin(field.type_)
+    return (origin is Union or origin is types.UnionType) and type(None) in get_args(
+        field.type_
+    )
+
+
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
+    if value is Undefined:
+        if field.required:
+            return None, [get_missing_field_error(loc=loc)]
+        else:
+            return deepcopy(field.default), []
     if value is None:
+        if _allows_none(field):
+            return value, []
         if field.required:
             return None, [get_missing_field_error(loc=loc)]
         else:
@@ -755,12 +771,13 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
+    value: Any
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
-        value = values.get(alias, None)
+        value = values.get(alias, Undefined)
     if (
-        value is None
+        value is Undefined
         or (
             isinstance(field.field_info, (params.Form, temp_pydantic_v1_params.Form))
             and isinstance(value, str)  # For type checks
@@ -769,7 +786,7 @@ def _get_multidict_value(
         or (is_sequence_field(field) and len(value) == 0)
     ):
         if field.required:
-            return
+            return Undefined
         else:
             return deepcopy(field.default)
     return value
@@ -935,7 +952,7 @@ async def _extract_form_body(
                 for sub_value in value:
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
-        if value is not None:
+        if value is not Undefined and value is not None:
             values[get_validation_alias(field)] = value
     field_aliases = {get_validation_alias(field) for field in body_fields}
     for key in received_body.keys():
@@ -950,7 +967,7 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: Optional[Union[dict[str, Any], FormData]],
+    received_body: Optional[Union[dict[str, Any], FormData, UndefinedType]],
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -980,10 +997,12 @@ async def request_body_to_args(
         return {first_field.name: v_}, errors_
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
-        value: Optional[Any] = None
-        if body_to_process is not None:
+        value: Optional[Any] = Undefined
+        if body_to_process is not None and not isinstance(
+            body_to_process, UndefinedType
+        ):
             try:
-                value = body_to_process.get(get_validation_alias(field))
+                value = body_to_process.get(get_validation_alias(field), Undefined)
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
