@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+## 0.112.3
+
+This release is mainly internal refactors, it shouldn't affect apps using FastAPI in any way. You don't even have to upgrade to this version yet. There are a few bigger releases coming right after. 🚀
+
 ### Refactors
 
 * ♻️ Refactor internal `check_file_field()`, rename to `ensure_multipart_is_installed()` to clarify its purpose. PR [#12106](https://github.com/fastapi/fastapi/pull/12106) by [@tiangolo](https://github.com/tiangolo).
