@@ -33,7 +33,6 @@ from fastapi._compat import (
     field_annotation_is_scalar,
     get_annotation_from_field_info,
     get_missing_field_error,
-    get_model_fields,
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
@@ -57,7 +56,6 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -745,9 +743,7 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
         return True
     # If it's a Form (or File) field, it has to be a BaseModel to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
-    if isinstance(first_field.field_info, params.Form) and not lenient_issubclass(
-        first_field.type_, BaseModel
-    ):
+    if isinstance(first_field.field_info, params.Form):
         return True
     return False
 
@@ -787,8 +783,7 @@ async def _extract_form_body(
                 for sub_value in value:
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
-        if value is not None:
-            values[field.name] = value
+        values[field.name] = value
     return values
 
 
@@ -803,14 +798,8 @@ async def request_body_to_args(
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
     body_to_process = received_body
-
-    fields_to_extract: List[ModelField] = body_fields
-
-    if single_not_embedded_field and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_model_fields(first_field.type_)
-
     if isinstance(received_body, FormData):
-        body_to_process = await _extract_form_body(fields_to_extract, received_body)
+        body_to_process = await _extract_form_body(body_fields, received_body)
 
     if single_not_embedded_field:
         loc: Tuple[str, ...] = ("body",)
