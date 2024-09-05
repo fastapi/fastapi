@@ -33,8 +33,10 @@ from fastapi._compat import (
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    _should_embed_body_fields,
     get_body_field,
     get_dependant,
+    get_flat_dependant,
     get_parameterless_sub_dependant,
     get_typed_return_annotation,
     solve_dependencies,
@@ -225,6 +227,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -291,6 +294,7 @@ def get_request_handler(
                     body=body,
                     dependency_overrides_provider=dependency_overrides_provider,
                     async_exit_stack=async_exit_stack,
+                    embed_body_fields=embed_body_fields,
                 )
                 errors = solved_result.errors
                 if not errors:
@@ -354,7 +358,9 @@ def get_request_handler(
 
 
 def get_websocket_app(
-    dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
+    dependant: Dependant,
+    dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
@@ -367,6 +373,7 @@ def get_websocket_app(
                 dependant=dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
             )
             if solved_result.errors:
                 raise WebSocketRequestValidationError(
@@ -399,11 +406,15 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
+                embed_body_fields=self._embed_body_fields,
             )
         )
 
@@ -544,7 +555,15 @@ class APIRoute(routing.Route):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-        self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
+        self.body_field = get_body_field(
+            flat_dependant=self._flat_dependant,
+            name=self.unique_id,
+            embed_body_fields=self._embed_body_fields,
+        )
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -561,6 +580,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            embed_body_fields=self._embed_body_fields,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
