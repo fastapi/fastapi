@@ -814,6 +814,13 @@ class FastAPI(Starlette):
             bool,
             Doc(
                 """
+                To ignore (or not) trailing slashes at the end of URIs.
+
+                For example, by setting `ignore_trailing_slash` to True,
+                requests to `/auth` and `/auth/` will have the same behaviour.
+
+                By default (`ignore_trailing_slash` is False), the two requests are treated differently.
+                One of them will result in a 307-redirect.
                 """
             ),
         ] = False,
@@ -973,7 +980,8 @@ class FastAPI(Starlette):
         if ignore_trailing_slash:
             def ignore_trailing_whitespace_middleware(app):
                 async def ignore_trailing_whitespace_wrapper(scope, receive, send):
-                    scope["path"] = scope["path"].rstrip("/")
+                    if scope["type"] in {"http", "websocket"}:
+                        scope["path"] = scope["path"].rstrip("/")
                     await app(scope, receive, send)
                 return ignore_trailing_whitespace_wrapper
             self.add_middleware(ignore_trailing_whitespace_middleware)

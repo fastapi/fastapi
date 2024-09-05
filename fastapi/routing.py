@@ -815,6 +815,13 @@ class APIRouter(routing.Router):
             bool,
             Doc(
                 """
+                To ignore (or not) trailing slashes at the end of URIs.
+
+                For example, by setting `ignore_trailing_slash` to True,
+                requests to `/auth` and `/auth/` will have the same behaviour.
+
+                By default (`ignore_trailing_slash` is False), the two requests are treated differently.
+                One of them will result in a 307-redirect.
                 """
             ),
         ] = False,
