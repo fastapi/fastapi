@@ -7,6 +7,31 @@ hide:
 
 ## Latest Changes
 
+## 0.113.0
+
+Now you can declare form fields with Pydantic models:
+
+```python
+from typing import Annotated
+
+from fastapi import FastAPI, Form
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class FormData(BaseModel):
+    username: str
+    password: str
+
+
+@app.post("/login/")
+async def login(data: Annotated[FormData, Form()]):
+    return data
+```
+
+Read the new docs: [Form Models](https://fastapi.tiangolo.com/tutorial/request-form-models/).
+
 ### Features
 
 * ✨ Add support for Pydantic models in `Form` parameters. PR [#12129](https://github.com/fastapi/fastapi/pull/12129) by [@tiangolo](https://github.com/tiangolo).
