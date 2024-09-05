@@ -7,9 +7,11 @@ hide:
 
 ## Latest Changes
 
-### Features
-
 ## 0.112.4
+
+This release is mainly a big internal refactor to enable adding support for Pydantic models for `Form` fields, but that feature comes in the next release.
+
+This release shouldn't affect apps using FastAPI in any way. You don't even have to upgrade to this version yet. It's just a checkpoint. 🤓
 
 ### Refactors
 
