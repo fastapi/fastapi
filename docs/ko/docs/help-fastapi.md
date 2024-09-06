@@ -64,7 +64,7 @@
 
   [**FastAPI**에 대해 트윗](https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi) 하고 FastAPI가 마음에 드는 이유를 알려주세요. 🎉
 
-  **FastAPI**가 어떻게 사용되고 있는지, 어떤 점이 마음에 들었는지, 어떤 프로젝트/회사에서 사용하고 있는지 등에 대해 듣고 싶습니다.
+  **FastAPI** 가 어떻게 사용되고 있는지, 어떤 점이 마음에 들었는지, 어떤 프로젝트/회사에서 사용하고 있는지 등에 대해 듣고 싶습니다.
 
   ## FastAPI에 투표하기
 
@@ -89,8 +89,8 @@
 
   GitHub 저장소에 [새로운 이슈 생성](https://github.com/fastapi/fastapi/issues/new/choose) 을 할 수 있습니다, 예를들면 다음과 같습니다:
 
-  - **질문**을 하거나 **문제**에 대해 질문합니다.
-  - 새로운 **기능**을 제안 합니다.
+  - **질문** 을 하거나 **문제**에 대해 질문합니다.
+  - 새로운 **기능** 을 제안 합니다.
 
   **참고**: 만약 이슈를 생성한다면, 저는 여러분에게 다른 사람들을 도와달라고 부탁할 것입니다. 😉
 
