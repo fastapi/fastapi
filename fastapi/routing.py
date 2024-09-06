@@ -505,6 +505,10 @@ class APIRoute(routing.Route):
         if isinstance(status_code, IntEnum):
             status_code = int(status_code)
         self.status_code = status_code
+        if self.response_model:
+            assert is_body_allowed_for_status_code(
+                status_code
+            ), f"Status code {status_code} must not have a response body"
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
