@@ -123,7 +123,7 @@
 
 <img src="/img/tutorial/body/image01.png">
 
-이를 필요로 하는 각각의 *경로 작동*내부의 API 문서에도 사용됩니다:
+이를 필요로 하는 각각의 *경로 작동* 내부의 API 문서에도 사용됩니다:
 
 <img src="/img/tutorial/body/image02.png">
 
