@@ -50,7 +50,7 @@ El lugar correcto es:
         * Una key `schema`, cuyo valor es el esquema JSON para el modelo, este es el lugar correcto.
             *  **FastAPI** añade una referencia en este lugar hacia el esquema global JSON ubicado en otro sitio dentro de tu OpenAPI en lugar de incluirlo directamente, proveyendo una mejor herramienta de generación de código.
 
-/// 
+///
 
 Las respuestas generadas en OpenAPI para este *path operation* serán:
 
