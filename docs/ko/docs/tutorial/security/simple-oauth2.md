@@ -77,7 +77,7 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 /// 팁
 
-OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` 필드를 *요구*하지만 `OAuth2PasswordRequestForm`은 이를 강요하지 않습니다.
+OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` 필드를 *요구* 하지만 `OAuth2PasswordRequestForm`은 이를 강요하지 않습니다.
 
 사용해야 한다면 `OAuth2PasswordRequestForm` 대신 `OAuth2PasswordRequestFormStrict`를 사용하면 됩니다.
 
