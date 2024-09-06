@@ -709,7 +709,7 @@ async def solve_dependencies(
 
 
 if PYDANTIC_V2:
-    if sys.hexversion >= 0x30A00000:
+    if sys.hexversion >= 0x30A0000:
 
         def _allows_none(field: ModelField) -> bool:
             origin = get_origin(field.type_)
@@ -724,7 +724,7 @@ if PYDANTIC_V2:
 else:
 
     def _allows_none(field: ModelField) -> bool:
-        return field.allow_none
+        return field.allow_none  # type: ignore
 
 
 def _validate_value_with_model_field(
