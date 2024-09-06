@@ -1,6 +1,6 @@
 # 응답 상태 코드
 
-응답 모델과 같은 방법으로, 어떤 *경로 작동*이든 `status_code` 매개변수를 사용하여 응답에 대한 HTTP 상태 코드를 선언할 수 있습니다.
+응답 모델과 같은 방법으로, 어떤 *경로 작동* 이든 `status_code` 매개변수를 사용하여 응답에 대한 HTTP 상태 코드를 선언할 수 있습니다.
 
 * `@app.get()`
 * `@app.post()`
@@ -14,7 +14,7 @@
 
 /// note | "참고"
 
-`status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 모든 매개변수들과 본문처럼 *경로 작동 함수*가 아닙니다.
+`status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 모든 매개변수들과 본문처럼 *경로 작동 함수* 가 아닙니다.
 
 ///
 
@@ -98,7 +98,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 `from starlette import status` 역시 사용할 수 있습니다.
 
-**FastAPI**는 개발자인 여러분의 편의를 위해 `fastapi.status` 와 동일한 `starlette.status` 도 제공합니다. 하지만 이것은 Starlette로부터 직접 제공됩니다.
+**FastAPI** 는 개발자인 여러분의 편의를 위해 `fastapi.status` 와 동일한 `starlette.status` 도 제공합니다. 하지만 이것은 Starlette로부터 직접 제공됩니다.
 
 ///
 

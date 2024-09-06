@@ -14,7 +14,7 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 
 그리고 데이터베이스 모델은 원하는 다른 이름을 사용할 수 있습니다.
 
-그러나 로그인 *경로 작동*의 경우 사양과 호환되도록 이러한 이름을 사용해야 합니다(예를 들어 통합 API 문서 시스템을 사용할 수 있어야 합니다).
+그러나 로그인 *경로 작동* 의 경우 사양과 호환되도록 이러한 이름을 사용해야 합니다(예를 들어 통합 API 문서 시스템을 사용할 수 있어야 합니다).
 
 사양에는 또한 `username`과 `password`가 폼 데이터로 전송되어야 한다고 명시되어 있습니다(따라서 여기에는 JSON이 없습니다).
 
@@ -46,11 +46,11 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 ## `username`과 `password`를 가져오는 코드
 
-이제 **FastAPI**에서 제공하는 유틸리티를 사용하여 이를 처리해 보겠습니다.
+이제 **FastAPI** 에서 제공하는 유틸리티를 사용하여 이를 처리해 보겠습니다.
 
 ### `OAuth2PasswordRequestForm`
 
-먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동*에서 `Depends`의 의존성으로 사용합니다.
+먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동* 에서 `Depends`의 의존성으로 사용합니다.
 
 //// tab | 파이썬 3.7 이상
 
@@ -88,13 +88,13 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 /// 정보
 
-`OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
+`OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI** 에 대한 특수 클래스가 아닙니다.
 
-`OAuth2PasswordBearer`는 **FastAPI**가 보안 체계임을 알도록 합니다. 그래서 OpenAPI에 그렇게 추가됩니다.
+`OAuth2PasswordBearer`는 **FastAPI** 가 보안 체계임을 알도록 합니다. 그래서 OpenAPI에 그렇게 추가됩니다.
 
 그러나 `OAuth2PasswordRequestForm`은 직접 작성하거나 `Form` 매개변수를 직접 선언할 수 있는 클래스 의존성일 뿐입니다.
 
-그러나 일반적인 사용 사례이므로 더 쉽게 하기 위해 **FastAPI**에서 직접 제공합니다.
+그러나 일반적인 사용 사례이므로 더 쉽게 하기 위해 **FastAPI** 에서 직접 제공합니다.
 
 ///
 
@@ -234,7 +234,7 @@ UserInDB(
 
 사양을 준수하기 위해 스스로 올바르게 수행하기 위해 거의 유일하게 기억해야 하는 것입니다.
 
-나머지는 **FastAPI**가 처리합니다.
+나머지는 **FastAPI** 가 처리합니다.
 
 ///
 

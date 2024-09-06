@@ -15,7 +15,7 @@
 
 `from starlette.staticfiles import StaticFiles` 를 사용할 수도 있습니다.
 
-**FastAPI**는 단지 개발자인, 당신에게 편의를 제공하기 위해 `fastapi.static files` 와 동일한 `starlett.static files`를 제공합니다. 하지만 사실 이것은 Starlett에서 직접 온 것입니다.
+**FastAPI** 는 단지 개발자인, 당신에게 편의를 제공하기 위해 `fastapi.static files` 와 동일한 `starlett.static files`를 제공합니다. 하지만 사실 이것은 Starlett에서 직접 온 것입니다.
 
 ///
 
@@ -25,7 +25,7 @@
 
 마운트된 응용 프로그램은 완전히 독립적이기 때문에 `APIRouter`를 사용하는 것과는 다릅니다. OpenAPI 및 응용 프로그램의 문서는 마운트된 응용 프로그램 등에서 어떤 것도 포함하지 않습니다.
 
-자세한 내용은 **숙련된 사용자 안내서**에서 확인할 수 있습니다.
+자세한 내용은 **숙련된 사용자 안내서** 에서 확인할 수 있습니다.
 
 ## 세부사항
 
@@ -33,7 +33,7 @@
 
 `'directory="static"`은 정적 파일이 들어 있는 디렉토리의 이름을 나타냅니다.
 
-`name="static"`은 **FastAPI**에서 내부적으로 사용할 수 있는 이름을 제공합니다.
+`name="static"`은 **FastAPI** 에서 내부적으로 사용할 수 있는 이름을 제공합니다.
 
 이 모든 매개변수는 "`static`"과 다를 수 있으며, 사용자 응용 프로그램의 요구 사항 및 구체적인 세부 정보에 따라 매개변수를 조정할 수 있습니다.
 

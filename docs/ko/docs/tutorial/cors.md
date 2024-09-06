@@ -82,6 +82,6 @@
 
 `from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
 
-**FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 대부분의 미들웨어가 Stralette으로부터 직접 제공됩니다.
+**FastAPI** 는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 대부분의 미들웨어가 Stralette으로부터 직접 제공됩니다.
 
 ///
