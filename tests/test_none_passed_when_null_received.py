@@ -10,7 +10,7 @@ DEFAULT = 1234567890
 
 endpoints = []
 
-if sys.hexversion >= 0x31000000:
+if sys.hexversion >= 0x30A0000:
     from typing import Annotated
 
     @app.post("/api1")
@@ -22,7 +22,7 @@ if sys.hexversion >= 0x31000000:
     endpoints.append("/api1")
 
 
-if sys.hexversion >= 0x30900000:
+if sys.hexversion >= 0x3090000:
     from typing import Annotated
 
     @app.post("/api2")
