@@ -50,11 +50,16 @@ def api4(integer_or_null: Optional[int] = Body(embed=True, default=DEFAULT)) -> 
 endpoints.append("/api4")
 
 
+@app.post("/api5")
+def api5(integer: int = Body(embed=True)) -> dict:
+    return {"received": integer}
+
+
 client = TestClient(app)
 
 
 @pytest.mark.parametrize("api", endpoints)
-def test_api1_integer(api):
+def test_apis(api):
     response = client.post(api, json={"integer_or_null": 100})
     assert response.status_code == 200, response.text
     assert response.json() == {"received": 100}
@@ -62,3 +67,18 @@ def test_api1_integer(api):
     response = client.post(api, json={"integer_or_null": None})
     assert response.status_code == 200, response.text
     assert response.json() == {"received": None}
+
+
+def test_required_field():
+    response = client.post("/api5", json={"integer": None})
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body", "integer"],
+                "msg": "Field required",
+                "type": "missing",
+                "input": None,
+            }
+        ]
+    }
