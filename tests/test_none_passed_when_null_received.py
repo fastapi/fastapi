@@ -71,6 +71,10 @@ def test_apis(api):
 
 
 def test_required_field():
+    response = client.post("/api5", json={"integer": 100})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"received": 100}
+
     response = client.post("/api5", json={"integer": None})
     assert response.status_code == 422, response.text
     assert response.json() == IsDict(
