@@ -2,6 +2,7 @@ import sys
 from typing import Optional, Union
 
 import pytest
+from dirty_equals import IsDict
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
 
@@ -72,13 +73,25 @@ def test_apis(api):
 def test_required_field():
     response = client.post("/api5", json={"integer": None})
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "integer"],
-                "msg": "Field required",
-                "type": "missing",
-                "input": None,
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "loc": ["body", "integer"],
+                    "msg": "Field required",
+                    "type": "missing",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        {
+            "detail": [
+                {
+                    "loc": ["body", "integer"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
