@@ -556,7 +556,7 @@ class Body(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
