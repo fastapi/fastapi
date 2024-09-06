@@ -881,6 +881,7 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         if self.ignore_trailing_slash:
             path = path.rstrip("/")
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_route(
                 path,
@@ -1134,6 +1135,7 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         if self.ignore_trailing_slash:
             path = path.rstrip("/")
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_websocket_route(path, func, name=name)
             return func
@@ -1375,9 +1377,7 @@ class APIRouter(routing.Router):
                     name=route.name,
                 )
             elif isinstance(route, routing.WebSocketRoute):
-                self.add_websocket_route(
-                    prefix + path, route.endpoint, name=route.name
-                )
+                self.add_websocket_route(prefix + path, route.endpoint, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
