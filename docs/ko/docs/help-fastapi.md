@@ -69,7 +69,7 @@
 ## FastAPI에 투표하기
 
   - [Slant에서 **FastAPI** 에 대해 투표하십시오](https://www.slant.co/options/34241/~fastapi-review).
-  - [AlternativeTo**FastAPI** 에 대해 투표하십시오](https://alternativeto.net/software/fastapi/).
+  - [AlternativeTo **FastAPI** 에 대해 투표하십시오](https://alternativeto.net/software/fastapi/).
 
 ## GitHub의 이슈로 다른사람 돕기
 
