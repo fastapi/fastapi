@@ -979,15 +979,18 @@ class FastAPI(Starlette):
 
         if ignore_trailing_slash:
 
-            def ignore_trailing_whitespace_middleware(app):
-                async def ignore_trailing_whitespace_wrapper(scope, receive, send):
+            class _IgnoreTrailingWhitespaceMiddleware:
+                def __init__(self, app: ASGIApp):
+                    self.app = app
+
+                async def __call__(
+                    self, scope: Scope, receive: Receive, send: Send
+                ) -> None:
                     if scope["type"] in {"http", "websocket"}:
                         scope["path"] = scope["path"].rstrip("/")
-                    await app(scope, receive, send)
+                    await self.app(scope, receive, send)
 
-                return ignore_trailing_whitespace_wrapper
-
-            self.add_middleware(ignore_trailing_whitespace_middleware)
+            self.add_middleware(_IgnoreTrailingWhitespaceMiddleware)
 
         self.setup()
 

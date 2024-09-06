@@ -1293,10 +1293,10 @@ class APIRouter(routing.Router):
         if responses is None:
             responses = {}
         for route in router.routes:
-            path = route.path
-            if self.ignore_trailing_slash:
-                path = path.rstrip("/")
             if isinstance(route, APIRoute):
+                path = route.path
+                if self.ignore_trailing_slash:
+                    path = path.rstrip("/")
                 combined_responses = {**responses, **route.responses}
                 use_response_class = get_value_or_default(
                     route.response_class,
@@ -1356,6 +1356,9 @@ class APIRouter(routing.Router):
                     generate_unique_id_function=current_generate_unique_id,
                 )
             elif isinstance(route, routing.Route):
+                path = route.path
+                if self.ignore_trailing_slash:
+                    path = path.rstrip("/")
                 methods = list(route.methods or [])
                 self.add_route(
                     prefix + path,
@@ -1365,6 +1368,9 @@ class APIRouter(routing.Router):
                     name=route.name,
                 )
             elif isinstance(route, APIWebSocketRoute):
+                path = route.path
+                if self.ignore_trailing_slash:
+                    path = path.rstrip("/")
                 current_dependencies = []
                 if dependencies:
                     current_dependencies.extend(dependencies)
@@ -1377,6 +1383,9 @@ class APIRouter(routing.Router):
                     name=route.name,
                 )
             elif isinstance(route, routing.WebSocketRoute):
+                path = route.path
+                if self.ignore_trailing_slash:
+                    path = path.rstrip("/")
                 self.add_websocket_route(prefix + path, route.endpoint, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
