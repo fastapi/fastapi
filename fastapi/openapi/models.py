@@ -17,7 +17,8 @@ from typing_extensions import deprecated as typing_deprecated
 try:
     import email_validator
 
-    assert email_validator  # make autoflake ignore the unused import
+    if not email_validator:
+        raise AssertionError
     from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 

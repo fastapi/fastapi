@@ -231,7 +231,8 @@ def get_openapi_path(
         current_response_class: Type[Response] = route.response_class.value
     else:
         current_response_class = route.response_class
-    assert current_response_class, "A response class is needed to generate OpenAPI"
+    if not current_response_class:
+        raise AssertionError("A response class is needed to generate OpenAPI")
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:

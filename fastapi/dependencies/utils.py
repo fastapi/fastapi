@@ -93,12 +93,14 @@ def ensure_multipart_is_installed() -> None:
         # __version__ is available in both multiparts, and can be mocked
         from multipart import __version__  # type: ignore
 
-        assert __version__
+        if not __version__:
+            raise AssertionError
         try:
             # parse_options_header is only available in the right multipart
             from multipart.multipart import parse_options_header  # type: ignore
 
-            assert parse_options_header
+            if not parse_options_header:
+                raise AssertionError
         except ImportError:
             logger.error(multipart_incorrect_install_error)
             raise RuntimeError(multipart_incorrect_install_error) from None
@@ -114,7 +116,8 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    if not depends.dependency:
+        raise AssertionError
     return get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -125,9 +128,10 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
+    if not callable(depends.dependency):
+        raise AssertionError(
+            "A parameter-less dependency must have a callable dependency"
+        )
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -368,12 +372,14 @@ def analyze_param(
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
-            assert field_info.default is Undefined or field_info.default is Required, (
-                f"`{field_info.__class__.__name__}` default value cannot be set in"
-                f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
-            )
+            if not (field_info.default is Undefined or field_info.default is Required):
+                raise AssertionError(
+                    f"`{field_info.__class__.__name__}` default value cannot be set in"
+                    f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
+                )
             if value is not inspect.Signature.empty:
-                assert not is_path_param, "Path parameters cannot have default values"
+                if is_path_param:
+                    raise AssertionError("Path parameters cannot have default values")
                 field_info.default = value
             else:
                 field_info.default = Required
@@ -475,11 +481,13 @@ def analyze_param(
             field_info=field_info,
         )
         if is_path_param:
-            assert is_scalar_field(
-                field=field
-            ), "Path params must be of one of the supported types"
+            if not is_scalar_field(field=field):
+                raise AssertionError(
+                    "Path params must be of one of the supported types"
+                )
         elif isinstance(field_info, params.Query):
-            assert is_scalar_field(field) or is_scalar_sequence_field(field)
+            if not (is_scalar_field(field) or is_scalar_sequence_field(field)):
+                raise AssertionError
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
@@ -494,9 +502,10 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert (
-            field_info_in == params.ParamTypes.cookie
-        ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
+        if field_info_in != params.ParamTypes.cookie:
+            raise AssertionError(
+                f"non-body parameters must be in path, query, header or cookie: {field.name}"
+            )
         dependant.cookie_params.append(field)
 
 
@@ -802,7 +811,8 @@ async def request_body_to_args(
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values: Dict[str, Any] = {}
     errors: List[Dict[str, Any]] = []
-    assert body_fields, "request_body_to_args() should be called with fields"
+    if not body_fields:
+        raise AssertionError("request_body_to_args() should be called with fields")
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
     body_to_process = received_body

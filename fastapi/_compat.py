@@ -262,7 +262,8 @@ if PYDANTIC_V2:
         origin_type = (
             get_origin(field.field_info.annotation) or field.field_info.annotation
         )
-        assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
+        if not issubclass(origin_type, sequence_types):
+            raise AssertionError
         return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
