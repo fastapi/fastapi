@@ -156,8 +156,7 @@ def test_openapi_schema():
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
-                                    "title": "Item",
+                                    "$ref": "#/components/schemas/Item",
                                     "examples": [
                                         {"data": "Data in Body examples, example1"}
                                     ],
