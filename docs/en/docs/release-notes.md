@@ -7,6 +7,30 @@ hide:
 
 ## Latest Changes
 
+You can restrict form fields to only include those declared in a Pydantic model and forbid any extra field sent in the request using Pydantic's `model_config = {"extra": "forbid"}`:
+
+```python
+from typing import Annotated
+
+from fastapi import FastAPI, Form
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class FormData(BaseModel):
+    username: str
+    password: str
+    model_config = {"extra": "forbid"}
+
+
+@app.post("/login/")
+async def login(data: Annotated[FormData, Form()]):
+    return data
+```
+
+Read the new docs: [Form Models - Forbid Extra Form Fields](https://fastapi.tiangolo.com/tutorial/request-form-models/#forbid-extra-form-fields).
+
 ### Features
 
 * ✨ Add support for forbidding extra form fields with Pydantic models. PR [#12134](https://github.com/fastapi/fastapi/pull/12134) by [@tiangolo](https://github.com/tiangolo).
