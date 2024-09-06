@@ -77,9 +77,9 @@ fastapi>=0.45.0,<0.46.0
 
 `starlette`의 버전은 표시할 수 없습니다.
 
-서로다른 버전의 **FastAPI** 가 구체적이고 새로운 버전의 Starlette을 사용할 것입니다.
+서로다른 버전의 **FastAPI**가 구체적이고 새로운 버전의 Starlette을 사용할 것입니다.
 
-그러므로 **FastAPI** 가 알맞은 Starlette 버전을 사용하도록 하십시오.
+그러므로 **FastAPI**가 알맞은 Starlette 버전을 사용하도록 하십시오.
 
 ## Pydantic에 대해
 
