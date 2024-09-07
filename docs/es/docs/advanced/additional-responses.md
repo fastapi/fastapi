@@ -4,20 +4,20 @@
 
 Este es un tema bastante avanzado.
 
-Si apenas estas empezando con **FastAPI**, Puede que no necesites esto.
+Si estás comenzando con **FastAPI**, es posible que no lo necesites.
 
 ///
 
 
-Tú puedes declarar respuestas adicionales, que contengan códigos de estado, tipos de medio, descripciones y varias cosas adicionales.
+Puedes declarar respuestas adicionales, que contengan códigos de estado, tipos de medio, descripciones, etc.
 
-Ten en cuenta que estas respuestas adicionales se incluirán en el esquema OpenAPI, por lo que también aparecerán en la documentación de la API.
+Esas respuestas adicionales se incluirán en el esquema OpenAPI, por lo que también aparecerán en la documentación de la API.
 
-Pero para que esas respuestas adicionales funcionen tienes que asegurarte de que devuelves un `Response` como un objeto`JSONResponse` directamente, el cual debe incluir código de estado y contenido.
+Pero para que esas respuestas adicionales funcionen, tienes que asegurarte de que devuelves un `Response` como un objeto`JSONResponse` directamente, el cual debe incluir código de estado y contenido.
 
-## Respuesta Adicional con un `model`
+## Respuesta Adicional usando `model`
 
-Puedes pasar un parámetro `responses` a los *path operation decorators*
+Puedes pasar un parámetro `responses` a los *path operation decorators*.
 
 Este parámetro recibe un objeto `dict`, cuyas keys son los códigos de estado para cada respuesta, por ejemplo 200, y  sus valores son otro `dict` con la información necesaria para cada una de las respuestas.
 
@@ -39,7 +39,7 @@ Mantén en mente debes retornar el objeto `JSONResponse` directamente.
 
 /// info
 
-La key `model no es parte de OpenAPI.
+La key `model` no es parte de OpenAPI.
 
 **FastAPI** lo tomará desde el modelo de Pydantic para generar el JSON Schema, y colocarlo en el lugar correcto.
 
@@ -91,7 +91,7 @@ Las respuestas generadas en OpenAPI para este *path operation* serán:
 }
 ```
 
-Los schemas están referenciados a otro lugar dentro del esquema de Open Api.
+Los schemas están referenciados a otro lugar dentro del esquema de OpenAPI.
 
 ```JSON hl_lines="4-16"
 {
@@ -176,7 +176,7 @@ Los schemas están referenciados a otro lugar dentro del esquema de Open Api.
 
 Puedes utilizar los mismos parámetros en tus `responses` para añadir diferentes tipos de medio en la misma respuesta principal.
 
-Por ejemplo, Puedes añadir un tipo de medio adicional de `image/png`, declarando que tu *path operation* pueda retornar un objeto JSON (con el tipo de medio `application/json`) or una imagen PNG:
+Por ejemplo, Puedes añadir un tipo de medio adicional de `image/png`, declarando que tu *path operation* pueda devolver un objeto JSON (con el tipo de medio `application/json`) o una imagen PNG:
 
 ```Python hl_lines="19-24  28"
 {!../../../docs_src/additional_responses/tutorial002.py!}
