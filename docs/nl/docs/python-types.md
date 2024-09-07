@@ -169,11 +169,11 @@ Bijvoorbeeld “**Python 3.6+**” betekent dat het compatibel is met Python 3.6
 
 Als je de **laatste versies van Python** kunt gebruiken, gebruik dan de voorbeelden voor de laatste versie, die hebben de **beste en eenvoudigste syntax**, bijvoorbeeld “**Python 3.10+**”.
 
-#### Lijst
+#### List
 
 Laten we bijvoorbeeld een variabele definiëren als een `list` van `str`.
 
-/// tab | Python 3.9+
+//// tab | Python 3.9+
 
 Declareer de variabele met dezelfde dubbele punt (`:`) syntaxis.
 
