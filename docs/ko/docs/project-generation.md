@@ -14,7 +14,7 @@ GitHub 저장소: <a href="https://github.com/tiangolo/full-stack-fastapi-templa
     - 💾 [PostgreSQL](https://www.postgresql.org): SQL 데이터베이스.
 - 🚀 [React](https://react.dev): 프론트엔드를 위한.
     - 💃 TypeScript, hooks, Vite 및 기타 현대적인 프론트엔드 스택을 사용합니다.
-    - 🎨 [Chakra UI](https://chakra-ui.com) 프론트엔드 컴포넌트를 위한.
+    - 🎨 [Chakra UI](https://chakra-ui.com): 프론트엔드 컴포넌트를 위한.
     - 🤖 자동으로 생성된 프론트엔드 클라이언트.
     - 🧪 종단간 테스팅을 위한 Playwright.
     - 🦇 다크 모드 지원.
