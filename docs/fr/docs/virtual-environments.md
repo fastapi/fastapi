@@ -810,7 +810,7 @@ Mais si vous désactivez l'environnement virtuel et activez le nouvel environnem
 ```console
 $ cd ~/code/prisonnier-d-azkaban
 
-// Vous n'avez pas besoin d'être dans l'ancien dossier pour désactiver, vous pouvez le faire où que vous soyez, même après être allé sur l'autre projet 😎 
+// Vous n'avez pas besoin d'être dans l'ancien dossier pour désactiver, vous pouvez le faire où que vous soyez, même après être allé sur l'autre projet 😎
 $ deactivate
 
 // Activez l'environnement virtuel pour prisonnier-d-azkaban 🚀
