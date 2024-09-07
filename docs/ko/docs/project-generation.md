@@ -12,7 +12,7 @@ GitHub 저장소: <a href="https://github.com/tiangolo/full-stack-fastapi-templa
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com): Python SQL 데이터 상호작용을 위한 (ORM).
     - 🔍 [Pydantic](https://docs.pydantic.dev): FastAPI에 의해 사용되는, 데이터 검증과 설정관리.
     - 💾 [PostgreSQL](https://www.postgresql.org): SQL 데이터베이스.
-- 🚀 [React](https://react.dev): 프론트엔드.
+    - 🚀 [React](https://react.dev): 프론트엔드.
     - 💃 TypeScript, hooks, Vite 및 기타 현대적인 프론트엔드 스택을 사용.
     - 🎨 [Chakra UI](https://chakra-ui.com): 프론트엔드 컴포넌트.
     - 🤖 자동으로 생성된 프론트엔드 클라이언트.
