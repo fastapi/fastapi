@@ -1,4 +1,4 @@
-# Introductie tot Python Typen 
+# Introductie tot Python Typen
 
 Python biedt ondersteuning voor optionele "type hints" (ook wel "type annotaties" genoemd).
 
