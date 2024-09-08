@@ -1040,6 +1040,16 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def add_websocket_route(
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+    ) -> None:
+        if self.ignore_trailing_slash:
+            path = path.rstrip("/")
+        super().add_websocket_route(path, endpoint, name)
+
     def add_api_websocket_route(
         self,
         path: str,

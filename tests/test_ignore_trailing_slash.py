@@ -29,6 +29,20 @@ async def websocket_endpoint_with_slash(websocket: WebSocket):
     await websocket.close()
 
 
+@app.websocket_route("/websocket_route")
+async def websocket_route_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Websocket route")
+    await websocket.close()
+
+
+@app.websocket_route("/websocket_route_2/")
+async def websocket_route_endpoint_with_slash(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Websocket route 2")
+    await websocket.close()
+
+
 @router.get("/example")
 def route_endpoint():
     return {"msg": "Routing Example"}
@@ -58,6 +72,10 @@ def test_ignoring_trailing_shlash_ws():
         assert websocket.receive_text() == "Websocket"
     with client.websocket_connect("/websocket2") as websocket:
         assert websocket.receive_text() == "Websocket 2"
+    with client.websocket_connect("/websocket_route/") as websocket:
+        assert websocket.receive_text() == "Websocket route"
+    with client.websocket_connect("/websocket_route_2/") as websocket:
+        assert websocket.receive_text() == "Websocket route 2"
 
 
 def test_ignoring_trailing_routing():
