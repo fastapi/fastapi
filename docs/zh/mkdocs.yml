@@ -1,1 +1,3 @@
 INHERIT: ../en/mkdocs.yml
+markdown_extensions:
+  pymdownx.betterem:
