@@ -52,7 +52,7 @@ Hello Wade Wilson
 
 ## Lire les variables d'environnement en Python
 
-Vous avez aussi la possibilité de créer une variable d'environnement **en dehors** de Python, dans le terminal (ou avec n'importe quelle autre méthode), puis la **lire en Python**. 
+Vous avez aussi la possibilité de créer une variable d'environnement **en dehors** de Python, dans le terminal (ou avec n'importe quelle autre méthode), puis la **lire en Python**.
 
 Par exemple, vous pouvez avoir un fichier `main.py` avec:
 
