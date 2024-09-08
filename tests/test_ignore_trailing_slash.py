@@ -92,7 +92,35 @@ async def starlette_route_endpoint_with_slash(request: Request):
     return JSONResponse({"msg": "Starlette Route 2"})
 
 
+router_ignore = APIRouter(ignore_trailing_slash=True)
+
+
+@router_ignore.route("/example", ["get"])
+async def router_ignore_example(request: Request):
+    return JSONResponse({"msg": "Router Ignore"})
+
+
+@router_ignore.route("/example2/", ["get"])
+async def router_ignore_example_with_slash(request: Request):
+    return JSONResponse({"msg": "Router Ignore 2"})
+
+
+@router_ignore.websocket_route("/websocket")
+async def router_ignore_websocket(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Router Ignore Websocket")
+    await websocket.close()
+
+
+@router_ignore.websocket_route("/websocket2/")
+async def router_ignore_websocket_with_slash(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Router Ignore Websocket 2")
+    await websocket.close()
+
+
 app.include_router(router, prefix="/router")
+app.include_router(router_ignore, prefix="/router_ignore")
 
 client = TestClient(app)
 
@@ -138,3 +166,16 @@ def test_ignoring_trailing_routing():
         assert websocket.receive_text() == "Websocket route"
     with client.websocket_connect("router/websocket_route_2/") as websocket:
         assert websocket.receive_text() == "Websocket route 2"
+
+
+def test_add_router_with_ignore_flag():
+    response = client.get("/router_ignore/example/", follow_redirects=False)
+    assert response.status_code == 200
+    assert response.json()["msg"] == "Router Ignore"
+    response = client.get("/router_ignore/example2", follow_redirects=False)
+    assert response.status_code == 200
+    assert response.json()["msg"] == "Router Ignore 2"
+    with client.websocket_connect("/router_ignore/websocket/") as websocket:
+        assert websocket.receive_text() == "Router Ignore Websocket"
+    with client.websocket_connect("/router_ignore/websocket2") as websocket:
+        assert websocket.receive_text() == "Router Ignore Websocket 2"
