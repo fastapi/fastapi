@@ -243,8 +243,6 @@ This way, when you type `python` in the terminal, the system will find the Pytho
 
 ////
 
-This way, when you type `python` in the terminal, the system will find the Python program in `/opt/custompython/bin` (the last directory) and use that one.
-
 So, if you type:
 
 <div class="termy">
