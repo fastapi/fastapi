@@ -1,12 +1,12 @@
-# Introductie tot Python Typen
+# Introductie tot Python Types
 
 Python biedt ondersteuning voor optionele "type hints" (ook wel "type annotaties" genoemd).
 
-Deze **"type hints"** of annotaties zijn een speciale syntax waarmee het <abbr title="bijvoorbeel: str, int, float, bool">type</abbr> van een variabele kan worden gedeclareerd.
+Deze **"type hints"** of annotaties zijn een speciale syntax waarmee het <abbr title="bijvoorbeeld: str, int, float, bool">type</abbr> van een variabele kan worden gedeclareerd.
 
 Door types voor je variabelen te declareren, kunnen editors en hulpmiddelen je beter ondersteunen.
 
-Dit is slechts een **korte tutorial/opfrisser** over Python type hints. Het behandelt enkel het minimum dat nodig is om ze te gebruiken met **FastAPI**... en dat is relatief heel weinig.
+Dit is slechts een **korte tutorial/opfrisser** over Python type hints. Het behandelt enkel het minimum dat nodig is om ze te gebruiken met **FastAPI**... en dat is relatief weinig.
 
 **FastAPI** is helemaal gebaseerd op deze type hints, ze geven veel voordelen.
 
@@ -14,7 +14,7 @@ Maar zelfs als je **FastAPI** nooit gebruikt, heb je er baat bij om er iets over
 
 /// note
 
-Als je al een Python expert bent en alles al weet over type hints, sla dan dit hoofdstuk over.
+Als je een Python expert bent en alles al weet over type hints, sla dan dit hoofdstuk over.
 
 ///
 
@@ -26,7 +26,7 @@ Laten we beginnen met een eenvoudig voorbeeld:
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-Aanroepen van dit programma, leidt tot het volgende resultaat.
+Het aanroepen van dit programma leidt tot het volgende resultaat:
 
 ```
 John Doe
@@ -35,7 +35,8 @@ John Doe
 De functie voert het volgende uit:
 
 * Neem een `first_name` en een `last_name`
-* Converteert de eerste letter van elk naar een hoofdletter met `title()`.
+* Converteer de eerste letter van elk naar een hoofdletter met `title()`.
+``
 * <abbr title="Voegt ze samen, als één. Met de inhoud van de een na de ander.">Voeg samen</abbr> met een spatie in het midden.
 
 ```Python hl_lines="2"
@@ -96,9 +97,9 @@ Het is iets anders.
 
 We gebruiken dubbele punten (`:`), geen gelijkheidstekens (`=`).
 
-Het toevoegen van type hints verandert normaal gesproken niet wat er gebeurt in je programma t.o.v. wat er zonder typehints zou gebeuren.
+Het toevoegen van type hints verandert normaal gesproken niet wat er gebeurt in je programma t.o.v. wat er zonder type hints zou gebeuren.
 
-Maar stel je voor dat je weer bezig bent met het maken van een funcite, maar deze keer met typehints.
+Maar stel je voor dat je weer bezig bent met het maken van een functie, maar deze keer met type hints.
 
 Op hetzelfde moment probeer je de automatische aanvulling te activeren met `Ctrl+Spatie` en je ziet:
 
@@ -116,7 +117,7 @@ Bekijk deze functie, deze heeft al type hints:
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Omdat de editor de typen van de variabelen kent, krijgt u niet alleen aanvulling, maar ook controles op fouten:
+Omdat de editor de types van de variabelen kent, krijgt u niet alleen aanvulling, maar ook controles op fouten:
 
 <img src="/img/python-types/image04.png">
 
@@ -126,17 +127,17 @@ Nu weet je hoe je het moet oplossen, converteer `age` naar een string met `str(a
 {!../../../docs_src/python_types/tutorial004.py!}
 ```
 
-## Typen declareren
+## Types declareren
 
 Je hebt net de belangrijkste plek om type hints te declareren gezien. Namelijk als functieparameters.
 
 Dit is ook de belangrijkste plek waar je ze gebruikt met **FastAPI**.
 
-### Eenvoudige typen
+### Eenvoudige types
 
-U kunt alle standaard Python-typen declareren, niet alleen `str`.
+Je kunt alle standaard Python types declareren, niet alleen `str`.
 
-U kunt bijvoorbeeld het volgende gebruiken:
+Je kunt bijvoorbeeld het volgende gebruiken:
 
 * `int`
 * `float`
@@ -149,11 +150,11 @@ U kunt bijvoorbeeld het volgende gebruiken:
 
 ### Generieke types met typeparameters
 
-Er zijn enkele datastructuren die andere waarden kunnen bevatten, zoals `dict`, `list`, `set` en `tuple` en waar ook de interne waarden kunnen ook hun eigen type hebben.
+Er zijn enkele datastructuren die andere waarden kunnen bevatten, zoals `dict`, `list`, `set` en `tuple` en waar ook de interne waarden hun eigen type kunnen hebben.
 
-Deze types die interne types hebben worden “**generic**” types genoemd. Het is mogelijk om ze te declareren, zelfs met hun interne types.
+Deze types die interne types hebben worden “**generieke**” types genoemd. Het is mogelijk om ze te declareren, zelfs met hun interne types.
 
-Om deze types en de interne types te declareren, kun je de standaard Python module `typing` gebruiken. Deze module is speciaal gemaakt om deze typehints te ondersteunen.
+Om deze types en de interne types te declareren, kun je de standaard Python module `typing` gebruiken. Deze module is speciaal gemaakt om deze type hints te ondersteunen.
 
 #### Nieuwere versies van Python
 
@@ -175,7 +176,7 @@ Laten we bijvoorbeeld een variabele definiëren als een `list` van `str`.
 
 //// tab | Python 3.9+
 
-Declareer de variabele met dezelfde dubbele punt (`:`) syntaxis.
+Declareer de variabele met dezelfde dubbele punt (`:`) syntax.
 
 Als type, vul `list` in.
 
@@ -195,7 +196,7 @@ Van `typing`, importeer `List` (met een hoofdletter `L`):
 {!> ../../../docs_src/python_types/tutorial006.py!}
 ```
 
-Declareer de variabele met dezelfde dubbele punt (`:`) syntaxis.
+Declareer de variabele met dezelfde dubbele punt (`:`) syntax.
 
 Zet als type de `List` die je hebt geïmporteerd uit `typing`.
 
@@ -292,9 +293,9 @@ Dit betekent:
 
 Je kunt een variable declareren die van **verschillende typen** kan zijn, bijvoorbeeld een `int` of een `str`.
 
-In Python 3.6 en hoger (inclusief Python 3.10) kun je het `Union`-type van `typing` gebruiken en de mogelijke typen die je wilt accepteren, tussen de vierkante haakjes zetten.
+In Python 3.6 en hoger (inclusief Python 3.10) kun je het `Union`-type van `typing` gebruiken en de mogelijke types die je wilt accepteren, tussen de vierkante haakjes zetten.
 
-In Python 3.10 is er ook een **nieuwe syntaxis** waarin je de mogelijke typen kunt scheiden door een <abbr title='ook wel "bitwise of operator" genoemd, maar die betekenis is hier niet relevant'>verticale balk (`|`)</abbr>.
+In Python 3.10 is er ook een **nieuwe syntax** waarin je de mogelijke types kunt scheiden door een <abbr title='ook wel "bitwise of operator" genoemd, maar die betekenis is hier niet relevant'>verticale balk (`|`)</abbr>.
 
 //// tab | Python 3.10+
 
@@ -328,7 +329,7 @@ Door `Optional[str]` te gebruiken in plaats van alleen `str`, kan de editor je h
 
 `Optional[EenType]` is eigenlijk een snelkoppeling voor `Union[EenType, None]`, ze zijn equivalent.
 
-Dit betekent ook dat u in Python 3.10 `EenType | None` kunt gebruiken:
+Dit betekent ook dat je in Python 3.10 `EenType | None` kunt gebruiken:
 
 //// tab | Python 3.10+
 
@@ -395,11 +396,11 @@ Dan hoef je je geen zorgen te maken over namen als `Optional` en `Union`. 😎
 
 #### Generieke typen
 
-De typen die typeparameters in vierkante haakjes gebruiken, worden **Generieke typen** of **Generics** genoemd, bijvoorbeeld:
+De types die typeparameters in vierkante haakjes gebruiken, worden **Generieke types** of **Generics** genoemd, bijvoorbeeld:
 
 //// tab | Python 3.10+
 
-Je kunt dezelfde ingebouwde typen gebruiken als generics (met vierkante haakjes en typen erin):
+Je kunt dezelfde ingebouwde types gebruiken als generics (met vierkante haakjes en types erin):
 
 * `list`
 * `tuple`
@@ -412,13 +413,13 @@ Hetzelfde als bij Python 3.8, uit de `typing`-module:
 * `Optional` (hetzelfde als bij Python 3.8)
 * ...en anderen.
 
-In Python 3.10 kun je , als alternatief voor de generics `Union` en `Optional`, de <abbr title='ook wel "bitwise or operator" genoemd, maar die betekenis is hier niet relevant'>verticale lijn (`|`)</abbr> gebruiken om unions van typen te voorzien, dat is veel beter en eenvoudiger.
+In Python 3.10 kun je , als alternatief voor de generieke `Union` en `Optional`, de <abbr title='ook wel "bitwise or operator" genoemd, maar die betekenis is hier niet relevant'>verticale lijn (`|`)</abbr> gebruiken om unions van typen te voorzien, dat is veel beter en eenvoudiger.
 
 ////
 
 //// tab | Python 3.9+
 
-Je kunt dezelfde ingebouwde typen gebruiken als generieke typen (met vierkante haakjes en typen erin):
+Je kunt dezelfde ingebouwde types gebruiken als generieke types (met vierkante haakjes en types erin):
 
 * `list`
 * `tuple`
@@ -445,7 +446,7 @@ En hetzelfde als met Python 3.8, vanuit de `typing`-module:
 
 ////
 
-### Klassen als typen
+### Klassen als types
 
 Je kunt een klasse ook declareren als het type van een variabele.
 
@@ -465,7 +466,7 @@ Dan krijg je ook nog eens volledige editorondersteuning:
 
 <img src="/img/python-types/image06.png">
 
-Merk op dat dit betekent date ``one_person` een **instantie** is van de klasse `Person``.
+Merk op dat dit betekent dat "`one_person` een **instantie** is van de klasse `Person`".
 
 Dit betekent niet dat `one_person` de **klasse** is met de naam `Person`.
 
@@ -479,7 +480,7 @@ Elk attribuut heeft een type.
 
 Vervolgens maak je een instantie van die klasse met een aantal waarden en het valideert de waarden, converteert ze naar het juiste type (als dat het geval is) en geeft je een object met alle data terug.
 
-Naarnaast krijg je volledige editorondersteuning met dat resulterende object.
+Daarnaast krijg je volledige editorondersteuning met dat resulterende object.
 
 Een voorbeeld uit de officiële Pydantic-documentatie:
 
@@ -529,7 +530,7 @@ Python heeft ook een functie waarmee je **extra <abbr title="Data over de data, 
 
 //// tab | Python 3.9+
 
-In Python 3.9 is `Annotated` onderdeel van de standaardpakket, dus je kunt het importeren vanuit `typing`
+In Python 3.9 is `Annotated` onderdeel van de standaardpakket, dus je kunt het importeren vanuit `typing`.
 
 ```Python hl_lines="1  4"
 {!> ../../../docs_src/python_types/tutorial013_py39.py!}
@@ -578,16 +579,16 @@ Met **FastAPI** declareer je parameters met type hints en krijg je:
 
 ...en **FastAPI** gebruikt dezelfde declaraties om:
 
-* **Definieer vereisten**: van request pad parameters, query parameters, headers, bodies, dependencies, etc.
-* **Converteer data**: van de request naar het vereiste type.
-* **Valideer data**: afkomstig van elke request:
-    * Genereren van **automatische erros** die naar de client worden geretourneerd wanneer de data ongeldig is.
-* **Documenteer** de API met OpenAPI:
+* **Vereisten te definïeren **: van request pad parameters, query parameters, headers, bodies, dependencies, enz.
+* **Data te converteren**: van de request naar het vereiste type.
+* **Data te valideren**: afkomstig van elke request:
+    * **Automatische foutmeldingen** te genereren die naar de client worden geretourneerd wanneer de data ongeldig is.
+* De API met OpenAPI te **documenteren**:
     * die vervolgens wordt gebruikt door de automatische interactieve documentatie gebruikersinterfaces.
 
 Dit klinkt misschien allemaal abstract. Maak je geen zorgen. Je ziet dit allemaal in actie in de [Tutorial - Gebruikershandleiding](tutorial/index.md){.internal-link target=_blank}.
 
-Het belangrijkste is dat door standaard Python-typen te gebruiken, op één plek (in plaats van meer klassen, decorators, etc. toe te voegen), **FastAPI** een groot deel van het werk voor je doet.
+Het belangrijkste is dat door standaard Python types te gebruiken, op één plek (in plaats van meer klassen, decorators, enz. toe te voegen), **FastAPI** een groot deel van het werk voor je doet.
 
 /// info
 
