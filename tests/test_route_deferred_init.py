@@ -1,3 +1,4 @@
+from itertools import chain
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, FastAPI
@@ -104,3 +105,13 @@ def test_root_router_always_initialized():
     client = TestClient(app)
     response = client.get("/test")
     assert response.status_code == 200
+
+
+def test_include_router_no_init():
+    router1 = create_test_router()
+
+    router2 = create_test_router()
+    router2.include_router(router1)
+
+    for route in chain(router1.routes, router2.routes):
+        check_if_initialized(route, should_not=True)
