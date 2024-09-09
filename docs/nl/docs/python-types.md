@@ -291,7 +291,7 @@ Dit betekent:
 
 #### Union
 
-Je kunt een variable declareren die van **verschillende typen** kan zijn, bijvoorbeeld een `int` of een `str`.
+Je kunt een variable declareren die van **verschillende types** kan zijn, bijvoorbeeld een `int` of een `str`.
 
 In Python 3.6 en hoger (inclusief Python 3.10) kun je het `Union`-type van `typing` gebruiken en de mogelijke types die je wilt accepteren, tussen de vierkante haakjes zetten.
 
