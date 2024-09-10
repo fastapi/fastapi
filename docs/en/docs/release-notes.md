@@ -7,8 +7,18 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Remove duplicate line in docs for `docs/en/docs/environment-variables.md`. PR [#12169](https://github.com/fastapi/fastapi/pull/12169) by [@prometek](https://github.com/prometek).
+
+### Translations
+
+* 🌐 Add Korean translation for `docs/ko/docs/project-generation.md`. PR [#12157](https://github.com/fastapi/fastapi/pull/12157) by [@BORA040126](https://github.com/BORA040126).
+
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12176](https://github.com/fastapi/fastapi/pull/12176) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 👷 Update `issue-manager.yml`. PR [#12159](https://github.com/fastapi/fastapi/pull/12159) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix typo in `fastapi/params.py`. PR [#12143](https://github.com/fastapi/fastapi/pull/12143) by [@surreal30](https://github.com/surreal30).
 
 ## 0.114.0
