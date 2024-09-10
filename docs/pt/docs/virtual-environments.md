@@ -320,7 +320,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-Se você tem <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Se você tem o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
@@ -352,7 +352,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-Se você tem <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Se você tem o <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
