@@ -1,0 +1,73 @@
+name: Deploy Docs
+on:
+  workflow_run:
+    workflows:
+      - Build Docs
+    types:
+      - completed
+
+permissions:
+  deployments: write
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+      - name: Install GitHub Actions dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pip install -r requirements-github-actions.txt
+      - name: Deploy Docs Status Pending
+        run: python ./scripts/deploy_docs_status.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.run_id }}
+
+      - name: Clean site
+        run: |
+          rm -rf ./site
+          mkdir ./site
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./site/
+          pattern: docs-site-*
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Deploy to Cloudflare Pages
+        # hashFiles returns an empty string if there are no files
+        if: hashFiles('./site/*')
+        id: deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: fastapitiangolo
+          directory: './site'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+      - name: Comment Deploy
+        run: python ./scripts/deploy_docs_status.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.url }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.run_id }}
+          IS_DONE: "true"

@@ -1,4 +1,4 @@
-# Implantação - Introdução
+# Implantação
 
 A implantação de uma aplicação **FastAPI** é relativamente simples.
 

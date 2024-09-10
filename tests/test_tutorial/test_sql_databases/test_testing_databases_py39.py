@@ -4,10 +4,12 @@ from pathlib import Path
 
 import pytest
 
-from ...utils import needs_py39
+from ...utils import needs_py39, needs_pydanticv1
 
 
 @needs_py39
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_testing_dbs_py39(tmp_path_factory: pytest.TempPathFactory):
     tmp_path = tmp_path_factory.mktemp("data")
     cwd = os.getcwd()

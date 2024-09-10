@@ -13,23 +13,50 @@ Run the live server:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:single">main.py</u>
+<font color="#3465A4">INFO    </font> Using path <font color="#3465A4">main.py</font>
+<font color="#3465A4">INFO    </font> Resolved absolute path <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
+<font color="#3465A4">INFO    </font> Searching for package file structure from directories with <font color="#3465A4">__init__.py</font> files
+<font color="#3465A4">INFO    </font> Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+ ╭─ <font color="#8AE234"><b>Python module file</b></font> ─╮
+ │                      │
+ │  🐍 main.py          │
+ │                      │
+ ╰──────────────────────╯
+
+<font color="#3465A4">INFO    </font> Importing module <font color="#4E9A06">main</font>
+<font color="#3465A4">INFO    </font> Found importable FastAPI app
+
+ ╭─ <font color="#8AE234"><b>Importable FastAPI app</b></font> ─╮
+ │                          │
+ │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
+ │                          │
+ ╰──────────────────────────╯
+
+<font color="#3465A4">INFO    </font> Using import string <font color="#8AE234"><b>main:app</b></font>
+
+ <span style="background-color:#C4A000"><font color="#2E3436">╭────────── FastAPI CLI - Development mode ───────────╮</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Serving at: http://127.0.0.1:8000                  │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  API docs: http://127.0.0.1:8000/docs               │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Running in development mode, for production use:   │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  </font></span><span style="background-color:#C4A000"><font color="#555753"><b>fastapi run</b></font></span><span style="background-color:#C4A000"><font color="#2E3436">                                        │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">╰─────────────────────────────────────────────────────╯</font></span>
+
+<font color="#4E9A06">INFO</font>:     Will watch for changes in these directories: [&apos;/home/user/code/awesomeapp&apos;]
+<font color="#4E9A06">INFO</font>:     Uvicorn running on <b>http://127.0.0.1:8000</b> (Press CTRL+C to quit)
+<font color="#4E9A06">INFO</font>:     Started reloader process [<font color="#34E2E2"><b>2265862</b></font>] using <font color="#34E2E2"><b>WatchFiles</b></font>
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">2265873</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
 ```
 
 </div>
-
-!!! note
-    The command `uvicorn main:app` refers to:
-
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--reload`: make the server restart after code changes. Only use for development.
 
 In the output, there's a line with something like:
 
@@ -99,7 +126,7 @@ It will show a JSON starting with something like:
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -136,10 +163,13 @@ You could also use it to generate code automatically, for clients that communica
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
+/// note | "Technical Details"
 
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+`FastAPI` is a class that inherits directly from `Starlette`.
+
+You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+
+///
 
 ### Step 2: create a `FastAPI` "instance"
 
@@ -150,36 +180,6 @@ You could also use it to generate code automatically, for clients that communica
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
 This will be the main point of interaction to create all your API.
-
-This `app` is the same one referred by `uvicorn` in the command:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-If you create your app like:
-
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
-```
-
-And put it in a file `main.py`, then you would call `uvicorn` like:
-
-<div class="termy">
-
-```console
-$ uvicorn main:my_awesome_api --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
 
 ### Step 3: create a *path operation*
 
@@ -199,8 +199,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    A "path" is also commonly called an "endpoint" or a "route".
+/// info
+
+A "path" is also commonly called an "endpoint" or a "route".
+
+///
 
 While building an API, the "path" is the main way to separate "concerns" and "resources".
 
@@ -250,16 +253,19 @@ The `@app.get("/")` tells **FastAPI** that the function right below is in charge
 * the path `/`
 * using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
 
-!!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
+/// info | "`@decorator` Info"
 
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
+That `@something` syntax in Python is called a "decorator".
 
-    A "decorator" takes the function below and does something with it.
+You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
 
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+A "decorator" takes the function below and does something with it.
 
-    It is the "**path operation decorator**".
+In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+
+It is the "**path operation decorator**".
+
+///
 
 You can also use the other operations:
 
@@ -274,14 +280,17 @@ And the more exotic ones:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    You are free to use each operation (HTTP method) as you wish.
+/// tip
 
-    **FastAPI** doesn't enforce any specific meaning.
+You are free to use each operation (HTTP method) as you wish.
 
-    The information here is presented as a guideline, not a requirement.
+**FastAPI** doesn't enforce any specific meaning.
 
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+The information here is presented as a guideline, not a requirement.
+
+For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+
+///
 
 ### Step 4: define the **path operation function**
 
@@ -309,8 +318,11 @@ You could also define it as a normal function instead of `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+/// note
+
+If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+
+///
 
 ### Step 5: return the content
 
@@ -328,6 +340,6 @@ There are many other objects and models that will be automatically converted to 
 
 * Import `FastAPI`.
 * Create an `app` instance.
-* Write a **path operation decorator** (like `@app.get("/")`).
-* Write a **path operation function** (like `def root(): ...` above).
-* Run the development server (like `uvicorn main:app --reload`).
+* Write a **path operation decorator** using decorators like `@app.get("/")`.
+* Define a **path operation function**; for example, `def root(): ...`.
+* Run the development server using the command `fastapi dev`.

@@ -14,23 +14,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-python@v4
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - run: pip install smokeshow
 
-      - uses: dawidd6/action-download-artifact@v2.27.0
+      - uses: actions/download-artifact@v4
         with:
-          github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
-          workflow: test.yml
-          commit: ${{ github.event.workflow_run.head_sha }}
+          name: coverage-html
+          path: htmlcov
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
 
-      - run: smokeshow upload coverage-html
+      - run: smokeshow upload htmlcov
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100
           SMOKESHOW_GITHUB_CONTEXT: coverage
-          SMOKESHOW_GITHUB_TOKEN: ${{ secrets.FASTAPI_SMOKESHOW_UPLOAD }}
+          SMOKESHOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SMOKESHOW_GITHUB_PR_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           SMOKESHOW_AUTH_KEY: ${{ secrets.SMOKESHOW_AUTH_KEY }}

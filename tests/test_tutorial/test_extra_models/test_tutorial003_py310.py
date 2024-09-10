@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -38,7 +39,7 @@ def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
@@ -86,7 +87,11 @@ def test_openapi_schema(client: TestClient):
             "schemas": {
                 "PlaneItem": {
                     "title": "PlaneItem",
-                    "required": ["description", "size"],
+                    "required": IsOneOf(
+                        ["description", "type", "size"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["description", "size"],
+                    ),
                     "type": "object",
                     "properties": {
                         "description": {"title": "Description", "type": "string"},
@@ -96,7 +101,11 @@ def test_openapi_schema(client: TestClient):
                 },
                 "CarItem": {
                     "title": "CarItem",
-                    "required": ["description"],
+                    "required": IsOneOf(
+                        ["description", "type"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["description"],
+                    ),
                     "type": "object",
                     "properties": {
                         "description": {"title": "Description", "type": "string"},

@@ -1,4 +1,4 @@
-# Déploiement - Intro
+# Déploiement
 
 Le déploiement d'une application **FastAPI** est relativement simple.
 

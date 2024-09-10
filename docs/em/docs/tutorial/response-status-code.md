@@ -12,13 +12,19 @@
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note
-    👀 👈 `status_code` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠️ 🔢*, 💖 🌐 🔢 &amp; 💪.
+/// note
+
+👀 👈 `status_code` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠️ 🔢*, 💖 🌐 🔢 &amp; 💪.
+
+///
 
 `status_code` 🔢 📨 🔢 ⏮️ 🇺🇸🔍 👔 📟.
 
-!!! info
-    `status_code` 💪 👐 📨 `IntEnum`, ✅ 🐍 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+/// info
+
+`status_code` 💪 👐 📨 `IntEnum`, ✅ 🐍 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+
+///
 
 ⚫️ 🔜:
 
@@ -27,15 +33,21 @@
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-!!! note
-    📨 📟 (👀 ⏭ 📄) 🎦 👈 📨 🔨 🚫 ✔️ 💪.
+/// note
 
-    FastAPI 💭 👉, &amp; 🔜 🏭 🗄 🩺 👈 🇵🇸 📤 🙅‍♂ 📨 💪.
+📨 📟 (👀 ⏭ 📄) 🎦 👈 📨 🔨 🚫 ✔️ 💪.
+
+FastAPI 💭 👉, &amp; 🔜 🏭 🗄 🩺 👈 🇵🇸 📤 🙅‍♂ 📨 💪.
+
+///
 
 ## 🔃 🇺🇸🔍 👔 📟
 
-!!! note
-    🚥 👆 ⏪ 💭 ⚫️❔ 🇺🇸🔍 👔 📟, 🚶 ⏭ 📄.
+/// note
+
+🚥 👆 ⏪ 💭 ⚫️❔ 🇺🇸🔍 👔 📟, 🚶 ⏭ 📄.
+
+///
 
 🇺🇸🔍, 👆 📨 🔢 👔 📟 3️⃣ 9️⃣ 🍕 📨.
 
@@ -54,8 +66,11 @@
     * 💊 ❌ ⚪️➡️ 👩‍💻, 👆 💪 ⚙️ `400`.
 * `500` &amp; 🔛 💽 ❌. 👆 🌖 🙅 ⚙️ 👫 🔗. 🕐❔ 🕳 🚶 ❌ 🍕 👆 🈸 📟, ⚖️ 💽, ⚫️ 🔜 🔁 📨 1️⃣ 👫 👔 📟.
 
-!!! tip
-    💭 🌅 🔃 🔠 👔 📟 &amp; ❔ 📟 ⚫️❔, ✅ <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🧾 🔃 🇺🇸🔍 👔 📟</a>.
+/// tip
+
+💭 🌅 🔃 🔠 👔 📟 &amp; ❔ 📟 ⚫️❔, ✅ <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🧾 🔃 🇺🇸🔍 👔 📟</a>.
+
+///
 
 ## ⌨ 💭 📛
 
@@ -79,10 +94,13 @@
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette import status`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.status` `fastapi.status` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette import status`.
+
+**FastAPI** 🚚 🎏 `starlette.status` `fastapi.status` 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ## 🔀 🔢
 
