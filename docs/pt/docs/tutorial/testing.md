@@ -2,15 +2,15 @@
 
 Graças ao <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
 
-Ele é baseado em <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
+Ele é baseado no <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
-Com ele, você pode usar <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> diretamente com **FastAPI**.
+Com ele, você pode usar o <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> diretamente com **FastAPI**.
 
 ## Usando `TestClient`
 
 /// info | "Informação"
 
-Para usar o `TestClient`, primeiro instale <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+Para usar o `TestClient`, primeiro instale o <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
 Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e instalá-lo, por exemplo:
 
