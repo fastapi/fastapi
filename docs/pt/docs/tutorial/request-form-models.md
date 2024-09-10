@@ -131,4 +131,4 @@ Ele receberá um retorno de erro informando-o que o campo `extra` não é permit
 
 ## Resumo
 
-Você pode utilizar modelos Pydantic para declar campos de formulários no FastAPI. 😎
+Você pode utilizar modelos Pydantic para declarar campos de formulários no FastAPI. 😎
