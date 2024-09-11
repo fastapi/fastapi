@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ➕ Add inline-snapshot for tests. PR [#12189](https://github.com/fastapi/fastapi/pull/12189) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.114.1
 
 ### Refactors
