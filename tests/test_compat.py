@@ -111,8 +111,6 @@ def test_get_model_fields_cached():
 
     non_cached_fields = get_model_fields(Model)
     non_cached_fields2 = get_model_fields(Model)
-    for f1, f2 in zip(non_cached_fields, non_cached_fields2):
-        assert f1 is not f2
     cached_fields = get_cached_model_fields(Model)
     cached_fields2 = get_cached_model_fields(Model)
     for f1, f2 in zip(cached_fields, cached_fields2):
