@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.114.1
+
 ### Refactors
 
 * ⚡️ Improve performance in request body parsing with a cache for internal model fields. PR [#12184](https://github.com/fastapi/fastapi/pull/12184) by [@tiangolo](https://github.com/tiangolo).
