@@ -41,9 +41,9 @@ jobs:
       working-directory: frontend
     - run: docker compose build
     - run: docker compose down -v --remove-orphans
-    - run: docker compose up -d
+    - run: docker compose up -d --wait
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --fail-on-flaky-tests --trace=retain-on-failure
       working-directory: frontend
     - run: docker compose down -v --remove-orphans
     - uses: actions/upload-artifact@v4

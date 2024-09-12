@@ -63,6 +63,12 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?Variable not set}
       - SENTRY_DSN=${SENTRY_DSN}
 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/api/v1/utils/health-check/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
     build:
       context: ./backend
       args:

@@ -386,6 +386,18 @@ export class UtilsService {
       },
     })
   }
+
+  /**
+   * Health Check
+   * @returns boolean Successful Response
+   * @throws ApiError
+   */
+  public static healthCheck(): CancelablePromise<boolean> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/v1/utils/health-check/",
+    })
+  }
 }
 
 export type TDataReadItems = {
