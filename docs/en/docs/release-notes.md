@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/project-generation.md`. PR [#12170](https://github.com/fastapi/fastapi/pull/12170) by [@waketzheng](https://github.com/waketzheng).
 * 🌐 Add Dutch translation for `docs/nl/docs/python-types.md`. PR [#12158](https://github.com/fastapi/fastapi/pull/12158) by [@maxscheijen](https://github.com/maxscheijen).
 
 ### Internal
