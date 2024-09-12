@@ -201,14 +201,23 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
+    if not fields:
+        return fields
+    first_field = fields[0]
+    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
+        return fields_to_extract
+    return fields
+
+
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    return (
-        flat_dependant.path_params
-        + flat_dependant.query_params
-        + flat_dependant.header_params
-        + flat_dependant.cookie_params
-    )
+    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
+    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
+    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
+    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    return path_params + query_params + header_params + cookie_params
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
@@ -479,7 +488,11 @@ def analyze_param(
                 field=field
             ), "Path params must be of one of the supported types"
         elif isinstance(field_info, params.Query):
-            assert is_scalar_field(field) or is_scalar_sequence_field(field)
+            assert (
+                is_scalar_field(field)
+                or is_scalar_sequence_field(field)
+                or lenient_issubclass(field.type_, BaseModel)
+            )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
@@ -712,7 +725,40 @@ def request_params_to_args(
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[Any]]:
     values: Dict[str, Any] = {}
-    errors = []
+    errors: List[Dict[str, Any]] = []
+
+    if not fields:
+        return values, errors
+
+    first_field = fields[0]
+    fields_to_extract = fields
+    single_not_embedded_field = False
+    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
+        single_not_embedded_field = True
+
+    params_to_process: Dict[str, Any] = {}
+
+    for field in fields_to_extract:
+        value = _get_multidict_value(field, received_params)
+        if value is not None:
+            params_to_process[field.name] = value
+
+    for key, value in received_params.items():
+        if key not in params_to_process:
+            params_to_process[key] = value
+
+    if single_not_embedded_field:
+        field_info = first_field.field_info
+        assert isinstance(
+            field_info, params.Param
+        ), "Params must be subclasses of Param"
+        loc: Tuple[str, ...] = (field_info.in_.value,)
+        v_, errors_ = _validate_value_with_model_field(
+            field=first_field, value=params_to_process, values=values, loc=loc
+        )
+        return {first_field.name: v_}, errors_
+
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
