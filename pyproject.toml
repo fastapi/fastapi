@@ -41,7 +41,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.37.2,<0.38.0",
+    "starlette>=0.37.2,<0.39.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
@@ -50,6 +50,8 @@ dependencies = [
 Homepage = "https://github.com/fastapi/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/fastapi/fastapi"
+Issues = "https://github.com/fastapi/fastapi/issues"
+Changelog = "https://fastapi.tiangolo.com/release-notes/"
 
 [project.optional-dependencies]
 
@@ -62,7 +64,7 @@ standard = [
     # For forms and file uploads
     "python-multipart >=0.0.7",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # TODO: this should be part of some pydantic optional extra dependencies
@@ -89,7 +91,7 @@ all = [
     # For ORJSONResponse
     "orjson >=3.2.1",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # Settings management
@@ -147,27 +149,14 @@ xfail_strict = true
 junit_family = "xunit2"
 filterwarnings = [
     "error",
-    # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
-    'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # TODO: remove after upgrading HTTPX to a version newer than 0.23.0
-    # Including PR: https://github.com/encode/httpx/pull/2309
-    "ignore:'cgi' is deprecated:DeprecationWarning",
     # For passlib
     "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
-    # TODO remove pytest-cov
-    'ignore::pytest.PytestDeprecationWarning:pytest_cov',
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
     # https://github.com/sqlalchemy/sqlalchemy/commit/59521abcc0676e936b31a523bd968fc157fef0c2
     'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
-    # TODO: remove after upgrading python-jose to a version that explicitly supports Python 3.12
-    # also, if it won't receive an update, consider replacing python-jose with some alternative
-    # related issues:
-    #   - https://github.com/mpdavis/python-jose/issues/332
-    #   - https://github.com/mpdavis/python-jose/issues/334
-    'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
     # Trio 24.1.0 raises a warning from attrs
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
@@ -176,16 +165,25 @@ filterwarnings = [
 
 [tool.coverage.run]
 parallel = true
+data_file = "coverage/.coverage"
 source = [
     "docs_src",
     "tests",
     "fastapi"
 ]
 context = '${CONTEXT}'
+dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
 ]
+
+[tool.coverage.report]
+show_missing = true
+sort = "-Cover"
+
+[tool.coverage.html]
+show_contexts = true
 
 [tool.ruff.lint]
 select = [
@@ -243,3 +241,7 @@ known-third-party = ["fastapi", "pydantic", "starlette"]
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.
 keep-runtime-typing = true
+
+[tool.inline-snapshot]
+# default-flags=["fix"]
+# default-flags=["create"]

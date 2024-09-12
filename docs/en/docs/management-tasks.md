@@ -113,7 +113,7 @@ For the other languages, confirm that:
 * The title is correct following the instructions above.
 * It has the labels `lang-all` and `lang-{lang code}`.
 * The PR changes only one Markdown file adding a translation.
-    * Or in some cases, at most two files, if they are small and people reviewed them.
+    * Or in some cases, at most two files, if they are small, for the same language, and people reviewed them.
     * If it's the first translation for that language, it will have additional `mkdocs.yml` files, for those cases follow the instructions below.
 * The PR doesn't add any additional or extraneous files.
 * The translation seems to have a similar structure as the original English file.
@@ -280,8 +280,4 @@ Dependabot will create PRs to update dependencies for several things, and those 
 
 When a question in GitHub Discussions has been answered, mark the answer by clicking "Mark as answer".
 
-Many of the current Discussion Questions were migrated from old issues. Many have the label `answered`, that means they were answered when they were issues, but now in GitHub Discussions, it's not known what is the actual response from the messages.
-
-You can filter discussions by [`Questions` that are `Unanswered` and have the label `answered`](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aopen+label%3Aanswered+is%3Aunanswered).
-
-All of those discussions already have an answer in the conversation, you can find it and mark it with the "Mark as answer" button.
+You can filter discussions by <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category:Questions+is:open+is:unanswered" class="external-link" target="_blank">`Questions` that are `Unanswered`</a>.

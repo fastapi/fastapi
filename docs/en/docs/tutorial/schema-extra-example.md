@@ -44,7 +44,7 @@ That extra info will be added as-is to the output **JSON Schema** for that model
 
 //// tab | Pydantic v2
 
-In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic's docs: Model Config</a>.
+In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
@@ -347,7 +347,7 @@ If the ideas above already work for you, that might be enough, and you probably 
 
 Before OpenAPI 3.1.0, OpenAPI used an older and modified version of **JSON Schema**.
 
-JSON Schema didn't have `examples`, so OpenAPI added it's own `example` field to its own modified version.
+JSON Schema didn't have `examples`, so OpenAPI added its own `example` field to its own modified version.
 
 OpenAPI also added `example` and `examples` fields to other parts of the specification:
 

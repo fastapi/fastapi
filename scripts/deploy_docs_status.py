@@ -63,7 +63,8 @@ def main():
     lang_links: dict[str, list[str]] = {}
     for f in docs_files:
         match = re.match(r"docs/([^/]+)/docs/(.*)", f.filename)
-        assert match
+        if not match:
+            continue
         lang = match.group(1)
         path = match.group(2)
         if path.endswith("index.md"):

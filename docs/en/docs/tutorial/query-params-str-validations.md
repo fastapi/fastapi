@@ -155,7 +155,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old) `Query` as the default value
+## Alternative (old): `Query` as the default value
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -209,7 +209,7 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 /// info
 
@@ -273,7 +273,7 @@ The **default** value of the **function parameter** is the **actual default** va
 
 You could **call** that same function in **other places** without FastAPI, and it would **work as expected**. If there's a **required** parameter (without a default value), your **editor** will let you know with an error, **Python** will also complain if you run it without passing the required parameter.
 
-When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other place**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
+When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other places**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
 
 Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
@@ -457,7 +457,7 @@ Having a default value of any type, including `None`, makes the parameter option
 
 ///
 
-## Make it required
+## Required parameters
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -573,7 +573,7 @@ It is used by Pydantic and FastAPI to explicitly declare that a value is require
 
 This will let **FastAPI** know that this parameter is required.
 
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -633,7 +633,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-optional-fields" class="external-link" target="_blank">Required fields</a>.
 
 ///
 
@@ -645,7 +645,7 @@ Remember that in most of the cases, when something is required, you can simply o
 
 ## Query parameter list / multiple values
 
-When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.
+When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
 
 For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
 
@@ -809,7 +809,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
@@ -1107,7 +1107,7 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameters from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
@@ -1182,4 +1182,4 @@ Validations specific for strings:
 
 In these examples you saw how to declare validations for `str` values.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+See the next chapters to learn how to declare validations for other types, like numbers.

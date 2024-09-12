@@ -131,7 +131,7 @@ FastAPI будет использовать значение `response_model` д
 
 /// info | "Информация"
 
-Чтобы использовать `EmailStr`, прежде необходимо установить <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+Чтобы использовать `EmailStr`, прежде необходимо установить <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a>.
 Используйте `pip install email-validator`
 или `pip install pydantic[email]`.
 

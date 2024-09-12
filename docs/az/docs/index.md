@@ -442,7 +442,7 @@ Müstəqil TechEmpower meyarları göstərir ki, Uvicorn üzərində işləyən 
 
 Pydantic tərəfindən istifadə olunanlar:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - e-poçtun yoxlanılması üçün.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - e-poçtun yoxlanılması üçün.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - parametrlərin idarə edilməsi üçün.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Pydantic ilə istifadə edilə bilən əlavə tiplər üçün.
 

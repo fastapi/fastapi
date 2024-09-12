@@ -42,7 +42,7 @@ Siguiendo las convenciones de *Semantic Versioning*, cualquier versión por deba
 
 FastAPI también sigue la convención de que cualquier cambio hecho en una <abbr title="versiones de parche">"PATCH" version</abbr> es para solucionar errores y <abbr title="cambios que no rompan funcionalidades o compatibilidad">*non-breaking changes*</abbr>.
 
-/// tip
+/// tip | Consejo
 
 El <abbr title="parche">"PATCH"</abbr> es el último número, por ejemplo, en `0.2.3`, la <abbr title="versiones de parche">PATCH version</abbr> es `3`.
 
@@ -56,7 +56,7 @@ fastapi>=0.45.0,<0.46.0
 
 En versiones <abbr title="versiones menores">"MINOR"</abbr> son añadidas nuevas características y posibles <abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">breaking changes</abbr>.
 
-/// tip
+/// tip | Consejo
 
 La versión "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la <abbr title="versión menor">"MINOR" version</abbr> es `2`.
 

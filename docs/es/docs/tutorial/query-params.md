@@ -69,13 +69,13 @@ Del mismo modo puedes declarar parámetros de query opcionales definiendo el val
 
 En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
 
-/// check | "Revisa"
+/// check | Revisa
 
 También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
 
 ///
 
-/// note | "Nota"
+/// note | Nota
 
 FastAPI sabrá que `q` es opcional por el `= None`.
 
@@ -199,7 +199,7 @@ En este caso hay 3 parámetros de query:
 * `skip`, un `int` con un valor por defecto de `0`.
 * `limit`, un `int` opcional.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
 
