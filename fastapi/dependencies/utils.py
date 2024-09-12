@@ -32,8 +32,8 @@ from fastapi._compat import (
     evaluate_forwardref,
     field_annotation_is_scalar,
     get_annotation_from_field_info,
+    get_cached_model_fields,
     get_missing_field_error,
-    get_model_fields,
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
@@ -810,7 +810,7 @@ async def request_body_to_args(
     fields_to_extract: List[ModelField] = body_fields
 
     if single_not_embedded_field and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_model_fields(first_field.type_)
+        fields_to_extract = get_cached_model_fields(first_field.type_)
 
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(fields_to_extract, received_body)
