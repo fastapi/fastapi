@@ -2,7 +2,7 @@ name: Issue Manager
 
 on:
   schedule:
-    - cron: "10 3 * * *"
+    - cron: "13 22 * * *"
   issue_comment:
     types:
       - created
@@ -16,6 +16,7 @@ on:
 
 permissions:
   issues: write
+  pull-requests: write
 
 jobs:
   issue-manager:
@@ -26,7 +27,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: tiangolo/issue-manager@0.5.0
+      - uses: tiangolo/issue-manager@0.5.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config: >
@@ -35,8 +36,8 @@ jobs:
                 "delay": 864000,
                 "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
               },
-              "changes-requested": {
+              "waiting": {
                 "delay": 2628000,
-                "message": "As this PR had requested changes to be applied but has been inactive for a while, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
+                "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
               }
             }

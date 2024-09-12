@@ -316,7 +316,7 @@ And you can make it as complex as you want. And still, have it written only once
 
 But you can have thousands of endpoints (*path operations*) using the same security system.
 
-And all of them (or any portion of them that you want) can take the advantage of re-using these dependencies or any other dependencies you create.
+And all of them (or any portion of them that you want) can take advantage of re-using these dependencies or any other dependencies you create.
 
 And all these thousands of *path operations* can be as small as 3 lines:
 

@@ -37,7 +37,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
       - name: Install Pydantic v2
-        run: pip install "pydantic>=2.0.2,<3.0.0"
+        run: pip install --upgrade "pydantic>=2.0.2,<3.0.0"
       - name: Lint
         run: bash scripts/lint.sh
 
@@ -79,7 +79,7 @@ jobs:
         run: pip install "pydantic>=1.10.0,<2.0.0"
       - name: Install Pydantic v2
         if: matrix.pydantic-version == 'pydantic-v2'
-        run: pip install "pydantic>=2.0.2,<3.0.0"
+        run: pip install --upgrade "pydantic>=2.0.2,<3.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
@@ -91,6 +91,7 @@ jobs:
         with:
           name: coverage-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
           path: coverage
+          include-hidden-files: true
 
   coverage-combine:
     needs: [test]
@@ -117,12 +118,13 @@ jobs:
       - run: ls -la coverage
       - run: coverage combine coverage
       - run: coverage report
-      - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
+      - run: coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
         uses: actions/upload-artifact@v4
         with:
           name: coverage-html
           path: htmlcov
+          include-hidden-files: true
 
   # https://github.com/marketplace/actions/alls-green#why
   check:  # This job does nothing and is only used for the branch protection

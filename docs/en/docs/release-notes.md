@@ -7,6 +7,181 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/request-form-models.md`. PR [#12175](https://github.com/fastapi/fastapi/pull/12175) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Chinese translation for `docs/zh/docs/project-generation.md`. PR [#12170](https://github.com/fastapi/fastapi/pull/12170) by [@waketzheng](https://github.com/waketzheng).
+* 🌐 Add Dutch translation for `docs/nl/docs/python-types.md`. PR [#12158](https://github.com/fastapi/fastapi/pull/12158) by [@maxscheijen](https://github.com/maxscheijen).
+
+### Internal
+
+* ➕ Add inline-snapshot for tests. PR [#12189](https://github.com/fastapi/fastapi/pull/12189) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.114.1
+
+### Refactors
+
+* ⚡️ Improve performance in request body parsing with a cache for internal model fields. PR [#12184](https://github.com/fastapi/fastapi/pull/12184) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Remove duplicate line in docs for `docs/en/docs/environment-variables.md`. PR [#12169](https://github.com/fastapi/fastapi/pull/12169) by [@prometek](https://github.com/prometek).
+
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/virtual-environments.md`. PR [#12163](https://github.com/fastapi/fastapi/pull/12163) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/environment-variables.md`. PR [#12162](https://github.com/fastapi/fastapi/pull/12162) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/testing.md`. PR [#12164](https://github.com/fastapi/fastapi/pull/12164) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/debugging.md`. PR [#12165](https://github.com/fastapi/fastapi/pull/12165) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Korean translation for `docs/ko/docs/project-generation.md`. PR [#12157](https://github.com/fastapi/fastapi/pull/12157) by [@BORA040126](https://github.com/BORA040126).
+
+### Internal
+
+* ⬆ Bump tiangolo/issue-manager from 0.5.0 to 0.5.1. PR [#12173](https://github.com/fastapi/fastapi/pull/12173) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12176](https://github.com/fastapi/fastapi/pull/12176) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 👷 Update `issue-manager.yml`. PR [#12159](https://github.com/fastapi/fastapi/pull/12159) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ Fix typo in `fastapi/params.py`. PR [#12143](https://github.com/fastapi/fastapi/pull/12143) by [@surreal30](https://github.com/surreal30).
+
+## 0.114.0
+
+You can restrict form fields to only include those declared in a Pydantic model and forbid any extra field sent in the request using Pydantic's `model_config = {"extra": "forbid"}`:
+
+```python
+from typing import Annotated
+
+from fastapi import FastAPI, Form
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class FormData(BaseModel):
+    username: str
+    password: str
+    model_config = {"extra": "forbid"}
+
+
+@app.post("/login/")
+async def login(data: Annotated[FormData, Form()]):
+    return data
+```
+
+Read the new docs: [Form Models - Forbid Extra Form Fields](https://fastapi.tiangolo.com/tutorial/request-form-models/#forbid-extra-form-fields).
+
+### Features
+
+* ✨ Add support for forbidding extra form fields with Pydantic models. PR [#12134](https://github.com/fastapi/fastapi/pull/12134) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update docs, Form Models section title, to match config name. PR [#12152](https://github.com/fastapi/fastapi/pull/12152) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ✅ Update internal tests for latest Pydantic, including CI tweaks to install the latest Pydantic. PR [#12147](https://github.com/fastapi/fastapi/pull/12147) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.113.0
+
+Now you can declare form fields with Pydantic models:
+
+```python
+from typing import Annotated
+
+from fastapi import FastAPI, Form
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class FormData(BaseModel):
+    username: str
+    password: str
+
+
+@app.post("/login/")
+async def login(data: Annotated[FormData, Form()]):
+    return data
+```
+
+Read the new docs: [Form Models](https://fastapi.tiangolo.com/tutorial/request-form-models/).
+
+### Features
+
+* ✨ Add support for Pydantic models in `Form` parameters. PR [#12129](https://github.com/fastapi/fastapi/pull/12129) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Update sponsors: Coherence link. PR [#12130](https://github.com/fastapi/fastapi/pull/12130) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.112.4
+
+This release is mainly a big internal refactor to enable adding support for Pydantic models for `Form` fields, but that feature comes in the next release.
+
+This release shouldn't affect apps using FastAPI in any way. You don't even have to upgrade to this version yet. It's just a checkpoint. 🤓
+
+### Refactors
+
+* ♻️ Refactor deciding if `embed` body fields, do not overwrite fields, compute once per router, refactor internals in preparation for Pydantic models in `Form`, `Query` and others. PR [#12117](https://github.com/fastapi/fastapi/pull/12117) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⏪️ Temporarily revert "✨ Add support for Pydantic models in `Form` parameters" to make a checkpoint release. PR [#12128](https://github.com/fastapi/fastapi/pull/12128) by [@tiangolo](https://github.com/tiangolo). Restored by PR [#12129](https://github.com/fastapi/fastapi/pull/12129).
+* ✨ Add support for Pydantic models in `Form` parameters. PR [#12127](https://github.com/fastapi/fastapi/pull/12127) by [@tiangolo](https://github.com/tiangolo). Reverted by PR [#12128](https://github.com/fastapi/fastapi/pull/12128) to make a checkpoint release with only refactors. Restored by PR [#12129](https://github.com/fastapi/fastapi/pull/12129).
+
+## 0.112.3
+
+This release is mainly internal refactors, it shouldn't affect apps using FastAPI in any way. You don't even have to upgrade to this version yet. There are a few bigger releases coming right after. 🚀
+
+### Refactors
+
+* ♻️ Refactor internal `check_file_field()`, rename to `ensure_multipart_is_installed()` to clarify its purpose. PR [#12106](https://github.com/fastapi/fastapi/pull/12106) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Rename internal `create_response_field()` to `create_model_field()` as it's used for more than response models. PR [#12103](https://github.com/fastapi/fastapi/pull/12103) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor and simplify internal data from `solve_dependencies()` using dataclasses. PR [#12100](https://github.com/fastapi/fastapi/pull/12100) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor and simplify internal `analyze_param()` to structure data with dataclasses instead of tuple. PR [#12099](https://github.com/fastapi/fastapi/pull/12099) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor and simplify dependencies data structures with dataclasses. PR [#12098](https://github.com/fastapi/fastapi/pull/12098) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Add External Link: Techniques and applications of SQLAlchemy global filters in FastAPI. PR [#12109](https://github.com/fastapi/fastapi/pull/12109) by [@TheShubhendra](https://github.com/TheShubhendra).
+* 📝 Add note about `time.perf_counter()` in middlewares. PR [#12095](https://github.com/fastapi/fastapi/pull/12095) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Tweak middleware code sample `time.time()` to `time.perf_counter()`. PR [#11957](https://github.com/fastapi/fastapi/pull/11957) by [@domdent](https://github.com/domdent).
+* 🔧 Update sponsors: Coherence. PR [#12093](https://github.com/fastapi/fastapi/pull/12093) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Fix async test example not to trigger DeprecationWarning. PR [#12084](https://github.com/fastapi/fastapi/pull/12084) by [@marcinsulikowski](https://github.com/marcinsulikowski).
+* 📝 Update `docs_src/path_params_numeric_validations/tutorial006.py`. PR [#11478](https://github.com/fastapi/fastapi/pull/11478) by [@MuhammadAshiqAmeer](https://github.com/MuhammadAshiqAmeer).
+* 📝 Update comma in `docs/en/docs/async.md`. PR [#12062](https://github.com/fastapi/fastapi/pull/12062) by [@Alec-Gillis](https://github.com/Alec-Gillis).
+* 📝 Update docs about serving FastAPI: ASGI servers, Docker containers, etc.. PR [#12069](https://github.com/fastapi/fastapi/pull/12069) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Clarify `response_class` parameter, validations, and returning a response directly. PR [#12067](https://github.com/fastapi/fastapi/pull/12067) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Fix minor typos and issues in the documentation. PR [#12063](https://github.com/fastapi/fastapi/pull/12063) by [@svlandeg](https://github.com/svlandeg).
+* 📝 Add note in Docker docs about ensuring graceful shutdowns and lifespan events with `CMD` exec form. PR [#11960](https://github.com/fastapi/fastapi/pull/11960) by [@GPla](https://github.com/GPla).
+
+### Translations
+
+* 🌐  Add Dutch translation for `docs/nl/docs/features.md`. PR [#12101](https://github.com/fastapi/fastapi/pull/12101) by [@maxscheijen](https://github.com/maxscheijen).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/testing-events.md`. PR [#12108](https://github.com/fastapi/fastapi/pull/12108) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/security/index.md`. PR [#12114](https://github.com/fastapi/fastapi/pull/12114) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Dutch translation for `docs/nl/docs/index.md`. PR [#12042](https://github.com/fastapi/fastapi/pull/12042) by [@svlandeg](https://github.com/svlandeg).
+* 🌐 Update Chinese translation for `docs/zh/docs/how-to/index.md`. PR [#12070](https://github.com/fastapi/fastapi/pull/12070) by [@synthpop123](https://github.com/synthpop123).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12115](https://github.com/fastapi/fastapi/pull/12115) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.10.0 to 1.10.1. PR [#12120](https://github.com/fastapi/fastapi/pull/12120) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pillow from 10.3.0 to 10.4.0. PR [#12105](https://github.com/fastapi/fastapi/pull/12105) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 💚 Set `include-hidden-files` to `True` when using the `upload-artifact` GH action. PR [#12118](https://github.com/fastapi/fastapi/pull/12118) by [@svlandeg](https://github.com/svlandeg).
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.0. PR [#12112](https://github.com/fastapi/fastapi/pull/12112) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors link: Coherence. PR [#12097](https://github.com/fastapi/fastapi/pull/12097) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update labeler config to handle sponsorships data. PR [#12096](https://github.com/fastapi/fastapi/pull/12096) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, remove Kong. PR [#12085](https://github.com/fastapi/fastapi/pull/12085) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12076](https://github.com/fastapi/fastapi/pull/12076) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 👷 Update `latest-changes` GitHub Action. PR [#12073](https://github.com/fastapi/fastapi/pull/12073) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.112.2
+
+### Fixes
+
+* 🐛 Fix `allow_inf_nan` option for Param and Body classes. PR [#11867](https://github.com/fastapi/fastapi/pull/11867) by [@giunio-prc](https://github.com/giunio-prc).
+* 🐛 Ensure that `app.include_router` merges nested lifespans. PR [#9630](https://github.com/fastapi/fastapi/pull/9630) by [@Lancetnik](https://github.com/Lancetnik).
+
 ### Refactors
 
 * 🎨 Fix typing annotation for semi-internal `FastAPI.add_api_route()`. PR [#10240](https://github.com/fastapi/fastapi/pull/10240) by [@ordinary-jamie](https://github.com/ordinary-jamie).
@@ -14,6 +189,10 @@ hide:
 
 ### Docs
 
+* 📝 Fix a typo in `docs/en/docs/virtual-environments.md`. PR [#12064](https://github.com/fastapi/fastapi/pull/12064) by [@aymenkrifa](https://github.com/aymenkrifa).
+* 📝 Add docs about Environment Variables and Virtual Environments. PR [#12054](https://github.com/fastapi/fastapi/pull/12054) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add Asyncer mention in async docs. PR [#12037](https://github.com/fastapi/fastapi/pull/12037) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Move the Features docs to the top level to improve the main page menu. PR [#12036](https://github.com/fastapi/fastapi/pull/12036) by [@tiangolo](https://github.com/tiangolo).
 * ✏️ Fix import typo in reference example for `Security`. PR [#11168](https://github.com/fastapi/fastapi/pull/11168) by [@0shah0](https://github.com/0shah0).
 * 📝 Highlight correct line in tutorial `docs/en/docs/tutorial/body-multiple-params.md`. PR [#11978](https://github.com/fastapi/fastapi/pull/11978) by [@svlandeg](https://github.com/svlandeg).
 * 🔥 Remove Sentry link from Advanced Middleware docs. PR [#12031](https://github.com/fastapi/fastapi/pull/12031) by [@alejsdev](https://github.com/alejsdev).
@@ -29,10 +208,17 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/request_file.md`. PR [#12018](https://github.com/fastapi/fastapi/pull/12018) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add Japanese translation for `docs/ja/docs/learn/index.md`. PR [#11592](https://github.com/fastapi/fastapi/pull/11592) by [@ukwhatn](https://github.com/ukwhatn).
+* 📝 Update Spanish translation docs for consistency. PR [#12044](https://github.com/fastapi/fastapi/pull/12044) by [@alejsdev](https://github.com/alejsdev).
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#12028](https://github.com/fastapi/fastapi/pull/12028) by [@xuvjso](https://github.com/xuvjso).
+* 📝 Update FastAPI People, do not translate to have the most recent info. PR [#12034](https://github.com/fastapi/fastapi/pull/12034) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Urdu translation for `docs/ur/docs/benchmarks.md`. PR [#10046](https://github.com/fastapi/fastapi/pull/10046) by [@AhsanSheraz](https://github.com/AhsanSheraz).
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12046](https://github.com/fastapi/fastapi/pull/12046) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 🔧 Update coverage config files. PR [#12035](https://github.com/fastapi/fastapi/pull/12035) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Standardize shebang across shell scripts. PR [#11942](https://github.com/fastapi/fastapi/pull/11942) by [@gitworkflows](https://github.com/gitworkflows).
 * ⬆ Update sqlalchemy requirement from <1.4.43,>=1.3.18 to >=1.3.18,<2.0.33. PR [#11979](https://github.com/fastapi/fastapi/pull/11979) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔊 Remove old ignore warnings. PR [#11950](https://github.com/fastapi/fastapi/pull/11950) by [@tiangolo](https://github.com/tiangolo).
