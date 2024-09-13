@@ -7,6 +7,9 @@ app = FastAPI()
 
 
 class CommonHeaders(BaseModel):
+    class Config:
+        extra = "forbid"
+
     host: str
     save_data: bool
     if_modified_since: Union[str, None] = None
