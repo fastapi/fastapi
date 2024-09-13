@@ -1,6 +1,7 @@
 import importlib
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -59,16 +60,30 @@ def test_cookie_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
     assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["cookie", "session_id"],
-                    "msg": "Field required",
-                    "input": {},
-                }
-            ]
-        }
+        IsDict(
+            {
+                "detail": [
+                    {
+                        "type": "missing",
+                        "loc": ["cookie", "session_id"],
+                        "msg": "Field required",
+                        "input": {},
+                    }
+                ]
+            }
+        )
+        | IsDict(
+            # TODO: remove when deprecating Pydantic v1
+            {
+                "detail": [
+                    {
+                        "type": "value_error.missing",
+                        "loc": ["cookie", "session_id"],
+                        "msg": "field required",
+                    }
+                ]
+            }
+        )
     )
 
 
@@ -79,16 +94,30 @@ def test_cookie_param_model_extra(client: TestClient):
         response = c.get("/items/")
     assert response.status_code == 422
     assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "type": "extra_forbidden",
-                    "loc": ["cookie", "extra"],
-                    "msg": "Extra inputs are not permitted",
-                    "input": "track-me-here-too",
-                }
-            ]
-        }
+        IsDict(
+            {
+                "detail": [
+                    {
+                        "type": "extra_forbidden",
+                        "loc": ["cookie", "extra"],
+                        "msg": "Extra inputs are not permitted",
+                        "input": "track-me-here-too",
+                    }
+                ]
+            }
+        )
+        | IsDict(
+            # TODO: remove when deprecating Pydantic v1
+            {
+                "detail": [
+                    {
+                        "type": "value_error.extra",
+                        "loc": ["cookie", "extra"],
+                        "msg": "extra fields not permitted",
+                    }
+                ]
+            }
+        )
     )
 
 
@@ -115,19 +144,37 @@ def test_openapi_schema(client: TestClient):
                                 "name": "fatebook_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Fatebook Tracker",
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [{"type": "string"}, {"type": "null"}],
+                                        "title": "Fatebook Tracker",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "type": "string",
+                                        "title": "Fatebook Tracker",
+                                    }
+                                ),
                             },
                             {
                                 "name": "googall_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Googall Tracker",
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [{"type": "string"}, {"type": "null"}],
+                                        "title": "Googall Tracker",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "type": "string",
+                                        "title": "Googall Tracker",
+                                    }
+                                ),
                             },
                         ],
                         "responses": {
