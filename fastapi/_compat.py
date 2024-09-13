@@ -71,7 +71,6 @@ if PYDANTIC_V2:
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
 
-    Required = PydanticUndefined
     Undefined = PydanticUndefined
     UndefinedType = PydanticUndefinedType
     evaluate_forwardref = eval_type_lenient
@@ -313,9 +312,10 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         ModelField as ModelField,  # noqa: F401
     )
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        Required as Required,  # noqa: F401
-    )
+    # from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
+    #     Required as Required,  # noqa: F401
+    # )
+    Required = Ellipsis
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         Undefined as Undefined,
     )
