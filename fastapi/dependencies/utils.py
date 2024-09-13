@@ -491,7 +491,11 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
-                or lenient_issubclass(field.type_, BaseModel)
+                or (
+                    lenient_issubclass(field.type_, BaseModel)
+                    # For Pydantic v1
+                    and getattr(field, "shape", 1) == 1
+                )
             )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
