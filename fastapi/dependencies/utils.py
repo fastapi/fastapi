@@ -788,7 +788,7 @@ async def _extract_form_body(
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
-            values[field.name] = value
+            values[field.alias] = value
     for key, value in received_body.items():
         if key not in values:
             values[key] = value
