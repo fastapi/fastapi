@@ -7,7 +7,8 @@ app = FastAPI()
 
 
 class Cookies(BaseModel):
-    model_config = {"extra": "forbid"}
+    class Config:
+        extra = "forbid"
 
     session_id: str
     fatebook_tracker: str | None = None
