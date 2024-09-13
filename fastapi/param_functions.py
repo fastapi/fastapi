@@ -19,7 +19,7 @@ def Path(  # noqa: N802
             The parameter is available only for compatibility.
             """
         ),
-    ] = Undefined,
+    ] = ...,
     *,
     default_factory: Annotated[
         Union[Callable[[], Any], None],
