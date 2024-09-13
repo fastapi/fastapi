@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix form field regression with `alias`. PR [#12194](https://github.com/fastapi/fastapi/pull/12194) by [@Wurstnase](https://github.com/Wurstnase).
+
 ### Translations
 
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/request-form-models.md`. PR [#12175](https://github.com/fastapi/fastapi/pull/12175) by [@ceb10n](https://github.com/ceb10n).
