@@ -188,3 +188,9 @@ They will receive an **error** response telling them that the query parameter `e
 ## Summary
 
 You can use **Pydantic models** to declare **query parameters** in **FastAPI**. 😎
+
+/// tip
+
+Spoiler alert: you can also use Pydantic models to declare cookies and headers, but you will read about that later in the tutorial. 🤫
+
+///
