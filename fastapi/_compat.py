@@ -316,7 +316,7 @@ else:
     # from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
     #     Required as Required,  # noqa: F401
     # )
-    Required = Ellipsis
+    Required: Any = Ellipsis
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         Undefined as Undefined,
     )

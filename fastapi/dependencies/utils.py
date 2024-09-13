@@ -375,7 +375,7 @@ def analyze_param(
                 assert not is_path_param, "Path parameters cannot have default values"
                 field_info.default = value
             else:
-                field_info.default = Ellipsis
+                field_info.default = Undefined
         # Get Annotated Depends
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
