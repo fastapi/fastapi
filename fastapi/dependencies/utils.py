@@ -703,11 +703,14 @@ def _validate_value_with_model_field(
         return v_, []
 
 
-def _get_multidict_value(field: ModelField, values: Mapping[str, Any]) -> Any:
+def _get_multidict_value(
+    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+) -> Any:
+    alias = alias or field.alias
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
-        value = values.getlist(field.alias)
+        value = values.getlist(alias)
     else:
-        value = values.get(field.alias, None)
+        value = values.get(alias, None)
     if (
         value is None
         or (
@@ -743,13 +746,28 @@ def request_params_to_args(
 
     params_to_process: Dict[str, Any] = {}
 
+    processed_keys = set()
+
     for field in fields_to_extract:
-        value = _get_multidict_value(field, received_params)
+        alias = None
+        if isinstance(received_params, Headers):
+            # Handle fields extracted from a Pydantic Model for a header, each field
+            # doesn't have a FieldInfo of type Header with the default convert_underscores=True
+            convert_underscores = getattr(field.field_info, "convert_underscores", True)
+            if convert_underscores:
+                alias = (
+                    field.alias
+                    if field.alias != field.name
+                    else field.name.replace("_", "-")
+                )
+        value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
             params_to_process[field.name] = value
+        processed_keys.add(alias or field.alias)
+        processed_keys.add(field.name)
 
     for key, value in received_params.items():
-        if key not in params_to_process:
+        if key not in processed_keys:
             params_to_process[key] = value
 
     if single_not_embedded_field:
