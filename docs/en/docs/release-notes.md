@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.114.2
+
 ### Fixes
 
 * 🐛 Fix form field regression with `alias`. PR [#12194](https://github.com/fastapi/fastapi/pull/12194) by [@Wurstnase](https://github.com/Wurstnase).
