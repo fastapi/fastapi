@@ -126,6 +126,8 @@ nav:
     - tutorial/extra-data-types.md
     - tutorial/cookie-params.md
     - tutorial/header-params.md
+    - tutorial/cookie-param-models.md
+    - tutorial/header-param-models.md
     - tutorial/response-model.md
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
