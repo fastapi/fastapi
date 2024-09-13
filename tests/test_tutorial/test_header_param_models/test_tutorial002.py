@@ -1,6 +1,7 @@
 import importlib
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -69,12 +70,22 @@ def test_header_param_model_invalid(client: TestClient):
     assert response.json() == snapshot(
         {
             "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "save_data"],
-                    "msg": "Field required",
-                    "input": {"x_tag": [], "host": "testserver"},
-                }
+                IsDict(
+                    {
+                        "type": "missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "Field required",
+                        "input": {"x_tag": [], "host": "testserver"},
+                    }
+                )
+                | IsDict(
+                    # TODO: remove when deprecating Pydantic v1
+                    {
+                        "type": "value_error.missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "field required",
+                    }
+                )
             ]
         }
     )
@@ -88,12 +99,22 @@ def test_header_param_model_extra(client: TestClient):
     assert response.json() == snapshot(
         {
             "detail": [
-                {
-                    "type": "extra_forbidden",
-                    "loc": ["header", "extra"],
-                    "msg": "Extra inputs are not permitted",
-                    "input": "plumbus",
-                }
+                IsDict(
+                    {
+                        "type": "extra_forbidden",
+                        "loc": ["header", "extra"],
+                        "msg": "Extra inputs are not permitted",
+                        "input": "plumbus",
+                    }
+                )
+                | IsDict(
+                    # TODO: remove when deprecating Pydantic v1
+                    {
+                        "type": "value_error.extra",
+                        "loc": ["header", "extra"],
+                        "msg": "extra fields not permitted",
+                    }
+                )
             ]
         }
     )
@@ -128,19 +149,37 @@ def test_openapi_schema(client: TestClient):
                                 "name": "if_modified_since",
                                 "in": "header",
                                 "required": False,
-                                "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "If Modified Since",
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [{"type": "string"}, {"type": "null"}],
+                                        "title": "If Modified Since",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "type": "string",
+                                        "title": "If Modified Since",
+                                    }
+                                ),
                             },
                             {
                                 "name": "traceparent",
                                 "in": "header",
                                 "required": False,
-                                "schema": {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Traceparent",
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "anyOf": [{"type": "string"}, {"type": "null"}],
+                                        "title": "Traceparent",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "type": "string",
+                                        "title": "Traceparent",
+                                    }
+                                ),
                             },
                             {
                                 "name": "x_tag",
