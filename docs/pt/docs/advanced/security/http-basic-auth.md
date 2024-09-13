@@ -4,13 +4,13 @@ Para os casos mais simples, você pode utilizar o HTTP Basic Auth.
 
 No HTTP Basic Auth, a aplicação espera um cabeçalho que contém um usuário e uma senha.
 
-Caso ele não receba, ele retorna um erro HTTP 401 "Unauthorized".
+Caso ela não receba, ela retorna um erro HTTP 401 "Unauthorized" (*Não Autorizado*).
 
-E retorna um header `WWW-Authenticate` com o valor `Basic`, e um parâmetro opcional `realm`.
+E retorna um cabeçalho `WWW-Authenticate` com o valor `Basic`, e um parâmetro opcional `realm`.
 
 Isso sinaliza ao navegador para mostrar o prompt integrado para um usuário e senha.
 
-Então, quando você digitar o usuário e senha, o navegador os envia automaticamente no cabeçalho.ly.
+Então, quando você digitar o usuário e senha, o navegador os envia automaticamente no cabeçalho.
 
 ## HTTP Basic Auth Simples
 
@@ -38,7 +38,7 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -50,7 +50,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-Quando você tenta abrir a URL pela primeira vez (ou clicar o botão "Executar" nos documentos) o navegador vai pedir pelo seu usuário e senha:
+Quando você tentar abrir a URL pela primeira vez (ou clicar no botão "Executar" nos documentos) o navegador vai pedir pelo seu usuário e senha:
 
 <img src="/img/tutorial/security/image12.png">
 
@@ -62,7 +62,7 @@ Utilize uma dependência para verificar se o usuário e a senha estão corretos.
 
 Para isso, utilize o módulo padrão do Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar o usuário e senha.
 
-`secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em Inglês), that only contains ASCII characters (the ones in English). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
+O `secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em Inglês). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
 
 Para lidar com isso, primeiramente nós convertemos o `username` e o `password` para `bytes`, codificando-os com UTF-8.
 
@@ -86,7 +86,7 @@ Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `c
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -142,23 +142,24 @@ Neste ponto, ao perceber que o servidor demorou alguns microsegundos a mais para
 
 E eles podem tentar de novo sabendo que provavelmente é algo mais parecido com `stanleyjobsox` do que com `johndoe`.
 
-#### A "professional" attack
+#### Um ataque "profissional"
 
-Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
+Claro, os invasores não tentariam tudo isso de forma manual, eles escreveriam um programa para fazer isso, possivelmente com milhares ou milhões de testes por segundo. E obteriam apenas uma letra a mais por vez.
 
-But doing that, in some minutes or hours the attackers would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
+Mas fazendo isso, em alguns minutos ou horas os invasores teriam adivinhado o usuário e senha corretos, com a "ajuda" da nossa aplicação, apenas usando o tempo levado para responder.
 
-#### Fix it with `secrets.compare_digest()`
+#### Corrija com o `secrets.compare_digest()`
 
-But in our code we are actually using `secrets.compare_digest()`.
+Mas em nosso código nós estamos utilizando o `secrets.compare_digest()`.
 
-In short, it will take the same time to compare `stanleyjobsox` to `stanleyjobson` than it takes to compare `johndoe` to `stanleyjobson`. And the same for the password.
+Resumindo, levará o mesmo tempo para comparar `stanleyjobsox` com `stanleyjobson` do que comparar `johndoe` com `stanleyjobson`. E o mesmo para a senha.
 
-That way, using `secrets.compare_digest()` in your application code, it will be safe against this whole range of security attacks.
+Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação, ela esterá a salvo contra toda essa gama de ataques de segurança.
 
-### Return the error
 
-After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
+### Retorne o erro
+
+Depois de detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
 
 //// tab | Python 3.9+
 
@@ -178,9 +179,9 @@ After detecting that the credentials are incorrect, return an `HTTPException` wi
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
