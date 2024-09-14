@@ -495,4 +495,3 @@ $ bash scripts/test-cov-html.sh
 </div>
 
 Este comando genera un directorio `./htmlcov/`, si abres el archivo `./htmlcov/index.html` en tu navegador, podrás explorar interactivamente las regiones de código que están cubiertas por los tests y notar si hay alguna región que falta.
-
