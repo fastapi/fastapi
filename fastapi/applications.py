@@ -821,6 +821,11 @@ class FastAPI(Starlette):
 
                 By default (`ignore_trailing_slash` is False), the two requests are treated differently.
                 One of them will result in a 307-redirect.
+
+                It's important to understand that when `ignore_trailing_slash=True`, registering both `/auth`
+                and `/auth/` as different routes will be treated as if `/auth` was registered twice. 
+                This means that only the first route registered will be used.
+                Therefore, ensure your route setup does not conflict unintentionally.
                 """
             ),
         ] = False,
