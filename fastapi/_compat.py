@@ -2,6 +2,7 @@ from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
+from functools import lru_cache
 from typing import (
     Any,
     Callable,
@@ -279,6 +280,12 @@ if PYDANTIC_V2:
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
 
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return [
+            ModelField(field_info=field_info, name=name)
+            for name, field_info in model.model_fields.items()
+        ]
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
@@ -513,6 +520,9 @@ else:
             BodyModel.__fields__[f.name] = f  # type: ignore[index]
         return BodyModel
 
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return list(model.__fields__.values())  # type: ignore[attr-defined]
+
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
@@ -532,6 +542,12 @@ def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        for arg in get_args(annotation):
+            if field_annotation_is_sequence(arg):
+                return True
+        return False
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
     )
@@ -634,3 +650,8 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+@lru_cache
+def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+    return get_model_fields(model)
