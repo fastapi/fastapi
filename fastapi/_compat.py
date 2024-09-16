@@ -313,6 +313,7 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         ModelField as ModelField,  # noqa: F401
     )
+
     # Keeping old "Required" functionality from Pydantic V1, without
     # shadowing typing.Required.
     RequiredParam: Any = Ellipsis  # type: ignore[no-redef]
