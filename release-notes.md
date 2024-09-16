@@ -6,6 +6,7 @@
 
 ### Refactors
 
+* 🔥 Enable support for Arm Docker images in Mac, remove old patch. PR [#1341](https://github.com/fastapi/full-stack-fastapi-template/pull/1341) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Remove duplicate information in the ItemCreate model. PR [#1287](https://github.com/fastapi/full-stack-fastapi-template/pull/1287) by [@jjaakko](https://github.com/jjaakko).
 
 ### Docs
