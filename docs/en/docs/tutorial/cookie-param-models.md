@@ -12,7 +12,7 @@ This is supported since FastAPI version `0.115.0`. 🤓
 
 /// tip
 
-This same technique applies to `Query`, `Cookie`, and `Heder`. 😎
+This same technique applies to `Query`, `Cookie`, and `Header`. 😎
 
 ///
 
