@@ -73,7 +73,6 @@ services:
       context: ./backend
       args:
         INSTALL_DEV: ${INSTALL_DEV-false}
-    platform: linux/amd64 # Patch for M1 Mac
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
