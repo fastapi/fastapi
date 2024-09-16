@@ -71,7 +71,8 @@ if PYDANTIC_V2:
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
 
-    RequiredParam = Undefined = PydanticUndefined
+    RequiredParam = PydanticUndefined
+    Undefined = PydanticUndefined
     UndefinedType = PydanticUndefinedType
     evaluate_forwardref = eval_type_lenient
     Validator = Any
