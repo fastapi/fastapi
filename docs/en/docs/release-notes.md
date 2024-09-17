@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for Pydantic models for parameters using `Query`, `Cookie`, `Header`. PR [#12199](https://github.com/fastapi/fastapi/pull/12199) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/security/http-basic-auth.md`. PR [#12195](https://github.com/fastapi/fastapi/pull/12195) by [@ceb10n](https://github.com/ceb10n).
