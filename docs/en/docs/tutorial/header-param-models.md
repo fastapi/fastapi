@@ -92,7 +92,7 @@ You can see the required headers in the docs UI at `/docs`:
 
 ## Forbid Extra Headers
 
-In some special use cases (probably not very common), you might want to **restrict** the headers that you want to receive and **forbid** any **extra** fields.
+In some special use cases (probably not very common), you might want to **restrict** the headers that you want to receive.
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
@@ -164,14 +164,14 @@ Prefer to use the `Annotated` version if possible.
 
 If a client tries to send some **extra headers**, they will receive an **error** response.
 
-For example, if the client tries to send an `extra` header with a value of `plumbus`, they will receive an **error** response telling them that the header parameter `extra` is not allowed:
+For example, if the client tries to send a `tool` header with a value of `plumbus`, they will receive an **error** response telling them that the header parameter `tool` is not allowed:
 
 ```json
 {
     "detail": [
         {
             "type": "extra_forbidden",
-            "loc": ["header", "extra"],
+            "loc": ["header", "tool"],
             "msg": "Extra inputs are not permitted",
             "input": "plumbus",
         }

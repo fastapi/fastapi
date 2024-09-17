@@ -92,7 +92,7 @@ You can see the query parameters in the docs UI at `/docs`:
 
 ## Forbid Extra Query Parameters
 
-In some special use cases (probably not very common), you might want to **restrict** the query parameters that you want to receive and **forbid** any **extra** fields.
+In some special use cases (probably not very common), you might want to **restrict** the query parameters that you want to receive.
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
@@ -164,20 +164,20 @@ Prefer to use the `Annotated` version if possible.
 
 If a client tries to send some **extra** data in the **query parameters**, they will receive an **error** response.
 
-For example, if the client tries to send an `extra` query parameter with a value of `plumbus`, like:
+For example, if the client tries to send a `tool` query parameter with a value of `plumbus`, like:
 
 ```http
-https://example.com/items/?limit=10&extra=plumbus
+https://example.com/items/?limit=10&tool=plumbus
 ```
 
-They will receive an **error** response telling them that the query parameter `extra` is not allowed:
+They will receive an **error** response telling them that the query parameter `tool` is not allowed:
 
 ```json
 {
     "detail": [
         {
             "type": "extra_forbidden",
-            "loc": ["query", "extra"],
+            "loc": ["query", "tool"],
             "msg": "Extra inputs are not permitted",
             "input": "plumbus"
         }

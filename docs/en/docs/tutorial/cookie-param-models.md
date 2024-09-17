@@ -94,7 +94,7 @@ But even if you **fill the data** and click "Execute", because the docs UI works
 
 ## Forbid Extra Cookies
 
-In some special use cases (probably not very common), you might want to **restrict** the cookies that you want to receive and **forbid** any **extra** ones.
+In some special use cases (probably not very common), you might want to **restrict** the cookies that you want to receive.
 
 Your API now has the power to control its own <abbr title="This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪">cookie consent</abbr>. 🤪🍪
 
@@ -134,16 +134,16 @@ If a client tries to send some **extra cookies**, they will receive an **error**
 
 Poor cookie banners with all their effort to get your consent for the <abbr title="This is another joke. Don't pay attention to me. Have some coffee for your cookie. ☕">API to reject it</abbr>. 🍪
 
-For example, if the client tries to send an `extra` cookie with a value of `track-me-here-too`, the client will receive an **error** response telling them that the `extra` <abbr title="Santa disapproves. 🎅 Okay, no more cookie jokes.">cookie is not allowed</abbr>:
+For example, if the client tries to send a `santa_tracker` cookie with a value of `good-list-please`, the client will receive an **error** response telling them that the `santa_tracker` <abbr title="Santa disapproves the lack of cookies. 🎅 Okay, no more cookie jokes.">cookie is not allowed</abbr>:
 
 ```json
 {
     "detail": [
         {
             "type": "extra_forbidden",
-            "loc": ["cookie", "extra"],
+            "loc": ["cookie", "santa_tracker"],
             "msg": "Extra inputs are not permitted",
-            "input": "track-me-here-too",
+            "input": "good-list-please",
         }
     ]
 }
