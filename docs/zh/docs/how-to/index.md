@@ -8,6 +8,6 @@
 
 /// tip | 小技巧
 
-如果你想以系统的方式**学习 FastAPI**（推荐），请阅读 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank} 的每一章节。
+如果你想以系统的方式 **学习 FastAPI**（推荐），请阅读 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank} 的每一章节。
 
 ///

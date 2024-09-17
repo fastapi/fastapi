@@ -1,6 +1,6 @@
 # 路径参数
 
-FastAPI 支持使用 Python 字符串格式化语法声明**路径参数**（**变量**）：
+FastAPI 支持使用 Python 字符串格式化语法声明 **路径参数**（**变量**）：
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
@@ -113,13 +113,13 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 ## 顺序很重要
 
-有时，*路径操作*中的路径是写死的。
+有时，*路径操作* 中的路径是写死的。
 
 比如要使用 `/users/me` 获取当前用户的数据。
 
 然后还要使用 `/users/{user_id}`，通过用户 ID 获取指定用户的数据。
 
-由于*路径操作*是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
+由于 *路径操作* 是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
@@ -135,7 +135,7 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 导入 `Enum` 并创建继承自 `str` 和 `Enum` 的子类。
 
-通过从 `str` 继承，API 文档就能把值的类型定义为**字符串**，并且能正确渲染。
+通过从 `str` 继承，API 文档就能把值的类型定义为 **字符串**，并且能正确渲染。
 
 然后，创建包含固定值的类属性，这些固定值是可用的有效值：
 
@@ -155,9 +155,9 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 
 ///
 
-### 声明*路径参数*
+### 声明 *路径参数*
 
-使用 Enum 类（`ModelName`）创建使用类型注解的*路径参数*：
+使用 `Enum` 类（`ModelName`）创建使用类型注解的 *路径参数*：
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -165,25 +165,25 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 
 ### 查看文档
 
- API 文档会显示预定义*路径参数*的可用值：
+ API 文档会显示预定义 *路径参数*的可用值：
 
 <img src="/img/tutorial/path-params/image03.png">
 
 ### 使用 Python _枚举类型_
 
-*路径参数*的值是枚举的元素。
+*路径参数* 的值是枚举的元素。
 
-#### 比较*枚举元素*
+#### 比较 *枚举元素*
 
-枚举类 `ModelName` 中的*枚举元素*支持比较操作：
+枚举类 `ModelName` 中的 *枚举元素* 支持比较操作：
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### 获取*枚举值*
+#### 获取 *枚举值*
 
-使用 `model_name.value` 或 `your_enum_member.value` 获取实际的值（本例中为**字符串**）：
+使用 `model_name.value` 或 `your_enum_member.value` 获取实际的值（本例中为 **字符串**）：
 
 ```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -195,9 +195,9 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 
 ///
 
-#### 返回*枚举元素*
+#### 返回 *枚举元素*
 
-即使嵌套在 JSON 请求体里（例如， `dict`），也可以从*路径操作*返回*枚举元素*。
+即使嵌套在 JSON 请求体里（例如， `dict`），也可以从 *路径操作* 返回 *枚举元素*。
 
 返回给客户端之前，要把枚举元素转换为对应的值（本例中为字符串）：
 
@@ -250,7 +250,7 @@ OpenAPI 不支持声明包含路径的*路径参数*，因为这会导致测试�
 
 注意，包含 `/home/johndoe/myfile.txt` 的路径参数要以斜杠（`/`）开头。
 
-本例中的 URL 是 `/files//home/johndoe/myfile.txt`。注意，`files` 和 `home` 之间要使用**双斜杠**（`//`）。
+本例中的 URL 是 `/files//home/johndoe/myfile.txt`。注意，`files` 和 `home` 之间要使用 **双斜杠**（`//`）。
 
 ///
 
@@ -259,7 +259,7 @@ OpenAPI 不支持声明包含路径的*路径参数*，因为这会导致测试�
 通过简短、直观的 Python 标准类型声明，**FastAPI** 可以获得：
 
 - 编辑器支持：错误检查，代码自动补全等
-- 数据**<abbr title="把来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>**
+- 数据 **<abbr title="把来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>**
 - 数据校验
 - API 注解和 API 文档
 
