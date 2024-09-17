@@ -2,7 +2,7 @@
 
 /// tip
 
-Si ya conoces lo que "variables de entorno" significa y cómo usarlas, siéntete libre de saltarte esta parte.
+Si ya conoces sobre "variables de entorno" y cómo usarlas, siéntete libre de saltarte esta parte.
 
 ///
 
@@ -163,7 +163,7 @@ Estas variables de entorno solo pueden manejar **cadenas de texto**, ya que son 
 
 Esto significa que **cualquier valor** leído en Python desde una variable de entorno **será un `str`**, y cualquier conversión a un tipo diferente o validación debe hacerse en el código.
 
-Aprenderás más sobre cómo usar las variables de entorno para manejar **ajustes de aplicación** en la[Guía de Usuario Avanzado - Ajustes y Variables de Entorno](./advanced/settings.md){.internal-link target=_blank}.
+Aprenderás más sobre cómo usar las variables de entorno para manejar **ajustes de aplicación** en la [Guía de Usuario Avanzado - Ajustes y Variables de Entorno](./advanced/settings.md){.internal-link target=_blank}.
 
 ## Variable de Entorno `PATH`
 
