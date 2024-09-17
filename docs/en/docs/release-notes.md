@@ -7,6 +7,16 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/security/http-basic-auth.md`. PR [#12195](https://github.com/fastapi/fastapi/pull/12195) by [@ceb10n](https://github.com/ceb10n).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12204](https://github.com/fastapi/fastapi/pull/12204) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.114.2
+
 ### Fixes
 
 * 🐛 Fix form field regression with `alias`. PR [#12194](https://github.com/fastapi/fastapi/pull/12194) by [@Wurstnase](https://github.com/Wurstnase).
