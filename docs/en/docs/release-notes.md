@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.0
+
 ### Highlights
 
 Now you can declare `Query`, `Header`, and `Cookie` parameters with Pydantic models. 🎉
