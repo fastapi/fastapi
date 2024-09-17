@@ -139,7 +139,7 @@ def test_query_param_model_extra(client: TestClient):
             "offset": 5,
             "order_by": "updated_at",
             "tags": ["tag1", "tag2"],
-            "extra": "plumbus",
+            "tool": "plumbus",
         },
     )
     assert response.status_code == 422
@@ -149,7 +149,7 @@ def test_query_param_model_extra(client: TestClient):
                 IsDict(
                     {
                         "type": "extra_forbidden",
-                        "loc": ["query", "extra"],
+                        "loc": ["query", "tool"],
                         "msg": "Extra inputs are not permitted",
                         "input": "plumbus",
                     }
@@ -158,7 +158,7 @@ def test_query_param_model_extra(client: TestClient):
                     # TODO: remove when deprecating Pydantic v1
                     {
                         "type": "value_error.extra",
-                        "loc": ["query", "extra"],
+                        "loc": ["query", "tool"],
                         "msg": "extra fields not permitted",
                     }
                 )

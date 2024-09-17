@@ -93,7 +93,7 @@ def test_header_param_model_invalid(client: TestClient):
 
 def test_header_param_model_extra(client: TestClient):
     response = client.get(
-        "/items/", headers=[("save-data", "true"), ("extra", "plumbus")]
+        "/items/", headers=[("save-data", "true"), ("tool", "plumbus")]
     )
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
@@ -102,7 +102,7 @@ def test_header_param_model_extra(client: TestClient):
                 IsDict(
                     {
                         "type": "extra_forbidden",
-                        "loc": ["header", "extra"],
+                        "loc": ["header", "tool"],
                         "msg": "Extra inputs are not permitted",
                         "input": "plumbus",
                     }
@@ -111,7 +111,7 @@ def test_header_param_model_extra(client: TestClient):
                     # TODO: remove when deprecating Pydantic v1
                     {
                         "type": "value_error.extra",
-                        "loc": ["header", "extra"],
+                        "loc": ["header", "tool"],
                         "msg": "extra fields not permitted",
                     }
                 )

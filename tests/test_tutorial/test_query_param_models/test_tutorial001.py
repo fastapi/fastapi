@@ -133,7 +133,7 @@ def test_query_param_model_extra(client: TestClient):
             "offset": 5,
             "order_by": "updated_at",
             "tags": ["tag1", "tag2"],
-            "extra": "plumbus",
+            "tool": "plumbus",
         },
     )
     assert response.status_code == 200

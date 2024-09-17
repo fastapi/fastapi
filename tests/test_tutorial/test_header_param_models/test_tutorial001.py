@@ -95,7 +95,7 @@ def test_header_param_model_invalid(client: TestClient):
 
 def test_header_param_model_extra(client: TestClient):
     response = client.get(
-        "/items/", headers=[("save-data", "true"), ("extra", "plumbus")]
+        "/items/", headers=[("save-data", "true"), ("tool", "plumbus")]
     )
     assert response.status_code == 200, response.text
     assert response.json() == snapshot(
