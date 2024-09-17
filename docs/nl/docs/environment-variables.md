@@ -8,9 +8,9 @@ Als je al weet wat "omgevingsvariabelen" zijn en hoe je ze kunt gebruiken, kun j
 
 Een omgevingsvariabele (ook bekend als "**env var**") is een variabele die **buiten** de Python-code leeft, in het **besturingssysteem** en die door je Python-code (of door andere programma's) kan worden gelezen.
 
-Omgevingsvariabelen kunnen nuttig zijn voor het verwerken van applicatie **instellingen**, als onderdeel van de **installatie** van Python, enz.
+Omgevingsvariabelen kunnen nuttig zijn voor het bijhouden van applicatie **instellingen**, als onderdeel van de **installatie** van Python, enz.
 
-## Maak en gebruik omgevingsvariabelen
+## Omgevingsvariabelen maken en gebruiken
 
 Je kunt omgevingsvariabelen **maken** en gebruiken in de **shell (terminal)**, zonder dat je Python nodig hebt:
 
@@ -50,9 +50,9 @@ Hello Wade Wilson
 
 ////
 
-## Lees omgevingsvariabelen in Python
+## Omgevingsvariabelen uitlezen in Python
 
-Je kunt ook omgevingsvariabelen **buiten** Python aanmaken, in de terminal (of met een andere methode) en ze vervolgens **in Python uitlezen**.
+Je kunt omgevingsvariabelen **buiten** Python aanmaken, in de terminal (of met een andere methode) en ze vervolgens **in Python uitlezen**.
 
 Je kunt bijvoorbeeld een bestand `main.py` hebben met:
 
@@ -129,7 +129,7 @@ Hello Wade Wilson from Python
 
 Omdat omgevingsvariabelen buiten de code kunnen worden ingesteld, maar wel door de code kunnen worden gelezen en niet hoeven te worden opgeslagen (gecommit naar `git`) met de rest van de bestanden, worden ze vaak gebruikt voor configuraties of **instellingen**.
 
-Je kunt ook een omgevingsvariabele maken die alleen voor een **specifieke programmaaanroep** beschikbaar is, die alleen voor dat programma beschikbaar is en alleen voor de duur van dat programma.
+Je kunt ook een omgevingsvariabele maken die alleen voor een **specifieke programma-aanroep** beschikbaar is, die alleen voor dat programma beschikbaar is en alleen voor de duur van dat programma.
 
 Om dat te doen, maak je het vlak voor het programma zelf aan, op dezelfde regel:
 
@@ -159,7 +159,7 @@ Je kunt er meer over lezen op <a href="https://12factor.net/config" class="exter
 
 ## Types en Validatie
 
-Deze omgevingsvariabelen kunnen alleen **tekstreeksen** verwerken, omdat ze extern zijn aan Python, compatibel moeten zijn met andere programma's en de rest van het systeem (zelfs met verschillende besturingssystemen, zoals Linux, Windows en macOS).
+Deze omgevingsvariabelen kunnen alleen **tekstuele gegevens** verwerken, omdat ze extern zijn aan Python, compatibel moeten zijn met andere programma's en de rest van het systeem (zelfs met verschillende besturingssystemen, zoals Linux, Windows en macOS).
 
 Dat betekent dat **elke waarde** die in Python uit een omgevingsvariabele wordt gelezen **een `str` zal zijn** en dat elke conversie naar een ander type of elke validatie in de code moet worden uitgevoerd.
 
@@ -169,7 +169,7 @@ Meer informatie over het gebruik van omgevingsvariabelen voor het verwerken van 
 
 Er is een **speciale** omgevingsvariabele met de naam **`PATH`**, die door de besturingssystemen (Linux, macOS, Windows) wordt gebruikt om programma's te vinden die uitgevoerd kunnen worden.
 
-De waarde van de variabele `PATH` is een lange tekstreeks die bestaat uit mappen die gescheiden worden door een dubbele punt `:` op Linux en macOS en door een puntkomma `;` op Windows.
+De waarde van de variabele `PATH` is een lange string die bestaat uit mappen die gescheiden worden door een dubbele punt `:` op Linux en macOS en door een puntkomma `;` op Windows.
 
 De omgevingsvariabele `PATH` zou er bijvoorbeeld zo uit kunnen zien:
 
@@ -207,7 +207,7 @@ Wanneer je een **opdracht** in de terminal typt, **zoekt** het besturingssysteem
 
 Wanneer je bijvoorbeeld `python` in de terminal typt, zoekt het besturingssysteem naar een programma met de naam `python` in de **eerste map** in die lijst.
 
-Als het het vindt, zal het het **gebruiken**. Anders blijft het in de **andere mappen** zoeken.
+Zodra het gevonden wordt, zal het dat programma **gebruiken**. Anders blijft het in de **andere mappen** zoeken.
 
 ### Python installeren en `PATH` bijwerken
 
@@ -293,6 +293,6 @@ Hiermee heb je basiskennis van wat **omgevingsvariabelen** zijn en hoe je ze in 
 
 Je kunt er ook meer over lezen op de <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia over omgevingsvariabelen</a>.
 
-In veel gevallen is het niet direct duidelijk hoe omgevingsvariabelen nuttig en hoe je ze moet toepassen. Maar ze blijven in veel verschillende scenario's opduiken als je aan het ontwikkelen bent, dus het is goed om er meer over te weten.
+In veel gevallen is het niet direct duidelijk hoe omgevingsvariabelen nuttig zijn en hoe je ze moet toepassen. Maar ze blijven in veel verschillende scenario's opduiken als je aan het ontwikkelen bent, dus het is goed om er meer over te weten.
 
 Je hebt deze informatie bijvoorbeeld nodig in de volgende sectie, over [Virtuele Omgevingen](virtual-environments.md).
