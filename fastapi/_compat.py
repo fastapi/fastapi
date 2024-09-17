@@ -2,6 +2,7 @@ from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
+from functools import lru_cache
 from typing import (
     Any,
     Callable,
@@ -649,3 +650,8 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+@lru_cache
+def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+    return get_model_fields(model)
