@@ -1282,7 +1282,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     embed: Annotated[
-        bool,
+        Union[bool, None],
         Doc(
             """
             When `embed` is `True`, the parameter will be expected in a JSON body as a
@@ -1294,7 +1294,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Body - Multiple Parameters](https://fastapi.tiangolo.com/tutorial/body-multiple-params/#embed-a-single-body-parameter).
             """
         ),
-    ] = False,
+    ] = None,
     media_type: Annotated[
         str,
         Doc(
