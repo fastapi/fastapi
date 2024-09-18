@@ -1,8 +1,8 @@
 # GraphQL
 
-Como **FastAPI** é baseado no padrão **ASGI**, é muito fácil integrar qualquer biblioteca **GraphQL** também compatível com ASGI.
+Como o **FastAPI** é baseado no padrão **ASGI**, é muito fácil integrar qualquer biblioteca **GraphQL** também compatível com ASGI.
 
-Você pode combinar *operações de caminho* normais do FastAPI com GraphQL na mesma aplicação.
+Você pode combinar *operações de rota* normais do FastAPI com GraphQL na mesma aplicação.
 
 /// tip | "Dica"
 
@@ -31,7 +31,7 @@ Aqui estão algumas das bibliotecas **GraphQL** que têm suporte **ASGI**. Você
 
 Se você precisar ou quiser trabalhar com **GraphQL**, <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> é a biblioteca **recomendada** pois tem o design mais próximo ao design do **FastAPI**, ela é toda baseada em **type annotations**.
 
-Dependendo no seu caso de uso, você pode preferir usar uma biblioteca diferente, mas se você me perguntasse, eu provavelmente sugeriria que você experimentasse o **Strawberry**.
+Dependendo do seu caso de uso, você pode preferir usar uma biblioteca diferente, mas se você me perguntasse, eu provavelmente sugeriria que você experimentasse o **Strawberry**.
 
 Aqui está uma pequena prévia de como você poderia integrar Strawberry com FastAPI:
 
