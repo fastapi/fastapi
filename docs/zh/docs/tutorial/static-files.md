@@ -11,10 +11,13 @@
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
-!!! note "技术细节"
-    你也可以用 `from starlette.staticfiles import StaticFiles`。
+/// note | "技术细节"
 
-    **FastAPI** 提供了和 `starlette.staticfiles` 相同的 `fastapi.staticfiles` ，只是为了方便你，开发者。但它确实来自Starlette。
+你也可以用 `from starlette.staticfiles import StaticFiles`。
+
+**FastAPI** 提供了和 `starlette.staticfiles` 相同的 `fastapi.staticfiles` ，只是为了方便你，开发者。但它确实来自Starlette。
+
+///
 
 ### 什么是"挂载"(Mounting)
 

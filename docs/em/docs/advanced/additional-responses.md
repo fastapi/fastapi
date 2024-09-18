@@ -1,9 +1,12 @@
 # 🌖 📨 🗄
 
-!!! warning
-    👉 👍 🏧 ❔.
+/// warning
 
-    🚥 👆 ▶️ ⏮️ **FastAPI**, 👆 💪 🚫 💪 👉.
+👉 👍 🏧 ❔.
+
+🚥 👆 ▶️ ⏮️ **FastAPI**, 👆 💪 🚫 💪 👉.
+
+///
 
 👆 💪 📣 🌖 📨, ⏮️ 🌖 👔 📟, 🔉 🆎, 📛, ♒️.
 
@@ -27,20 +30,26 @@
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-!!! note
-    ✔️ 🤯 👈 👆 ✔️ 📨 `JSONResponse` 🔗.
+/// note
 
-!!! info
-     `model` 🔑 🚫 🍕 🗄.
+✔️ 🤯 👈 👆 ✔️ 📨 `JSONResponse` 🔗.
 
-    **FastAPI** 🔜 ✊ Pydantic 🏷 ⚪️➡️ 📤, 🏗 `JSON Schema`, &amp; 🚮 ⚫️ ☑ 🥉.
+///
 
-    ☑ 🥉:
+/// info
 
-    * 🔑 `content`, 👈 ✔️ 💲 ➕1️⃣ 🎻 🎚 (`dict`) 👈 🔌:
-        * 🔑 ⏮️ 📻 🆎, ✅ `application/json`, 👈 🔌 💲 ➕1️⃣ 🎻 🎚, 👈 🔌:
-            * 🔑 `schema`, 👈 ✔️ 💲 🎻 🔗 ⚪️➡️ 🏷, 📥 ☑ 🥉.
-                * **FastAPI** 🚮 🔗 📥 🌐 🎻 🔗 ➕1️⃣ 🥉 👆 🗄 ↩️ ✅ ⚫️ 🔗. 👉 🌌, 🎏 🈸 &amp; 👩‍💻 💪 ⚙️ 👈 🎻 🔗 🔗, 🚚 👻 📟 ⚡ 🧰, ♒️.
+`model` 🔑 🚫 🍕 🗄.
+
+**FastAPI** 🔜 ✊ Pydantic 🏷 ⚪️➡️ 📤, 🏗 `JSON Schema`, &amp; 🚮 ⚫️ ☑ 🥉.
+
+☑ 🥉:
+
+* 🔑 `content`, 👈 ✔️ 💲 ➕1️⃣ 🎻 🎚 (`dict`) 👈 🔌:
+    * 🔑 ⏮️ 📻 🆎, ✅ `application/json`, 👈 🔌 💲 ➕1️⃣ 🎻 🎚, 👈 🔌:
+        * 🔑 `schema`, 👈 ✔️ 💲 🎻 🔗 ⚪️➡️ 🏷, 📥 ☑ 🥉.
+            * **FastAPI** 🚮 🔗 📥 🌐 🎻 🔗 ➕1️⃣ 🥉 👆 🗄 ↩️ ✅ ⚫️ 🔗. 👉 🌌, 🎏 🈸 &amp; 👩‍💻 💪 ⚙️ 👈 🎻 🔗 🔗, 🚚 👻 📟 ⚡ 🧰, ♒️.
+
+///
 
 🏗 📨 🗄 👉 *➡ 🛠️* 🔜:
 
@@ -172,13 +181,19 @@
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-!!! note
-    👀 👈 👆 ✔️ 📨 🖼 ⚙️ `FileResponse` 🔗.
+/// note
 
-!!! info
-    🚥 👆 ✔ 🎏 📻 🆎 🎯 👆 `responses` 🔢, FastAPI 🔜 🤔 📨 ✔️ 🎏 📻 🆎 👑 📨 🎓 (🔢 `application/json`).
+👀 👈 👆 ✔️ 📨 🖼 ⚙️ `FileResponse` 🔗.
 
-    ✋️ 🚥 👆 ✔️ ✔ 🛃 📨 🎓 ⏮️ `None` 🚮 📻 🆎, FastAPI 🔜 ⚙️ `application/json` 🙆 🌖 📨 👈 ✔️ 👨‍💼 🏷.
+///
+
+/// info
+
+🚥 👆 ✔ 🎏 📻 🆎 🎯 👆 `responses` 🔢, FastAPI 🔜 🤔 📨 ✔️ 🎏 📻 🆎 👑 📨 🎓 (🔢 `application/json`).
+
+✋️ 🚥 👆 ✔️ ✔ 🛃 📨 🎓 ⏮️ `None` 🚮 📻 🆎, FastAPI 🔜 ⚙️ `application/json` 🙆 🌖 📨 👈 ✔️ 👨‍💼 🏷.
+
+///
 
 ## 🌀 ℹ
 

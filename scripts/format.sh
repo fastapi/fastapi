@@ -1,5 +1,5 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
 set -x
 
-ruff fastapi tests docs_src scripts --fix
+ruff check fastapi tests docs_src scripts --fix
 ruff format fastapi tests docs_src scripts
