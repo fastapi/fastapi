@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares to handle server errors and custom exception handlers work properly.
+But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares handle server errors and custom exception handlers work properly.
 
 For that, you use `app.add_middleware()` (as in the example for CORS).
 
@@ -55,7 +55,7 @@ For the next examples, you could also use `from starlette.middleware.something i
 
 Enforces that all incoming requests must either be `https` or `wss`.
 
-Any incoming requests to `http` or `ws` will be redirected to the secure scheme instead.
+Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
 ```Python hl_lines="2  6"
 {!../../../docs_src/advanced_middleware/tutorial001.py!}

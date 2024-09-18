@@ -303,7 +303,7 @@ This is a more advanced use case. Feel free to skip it.
 
 By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
 
-But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with a staging and production environments.
+But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with both a staging and a production environment.
 
 If you pass a custom list of `servers` and there's a `root_path` (because your API lives behind a proxy), **FastAPI** will insert a "server" with this `root_path` at the beginning of the list.
 

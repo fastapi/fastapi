@@ -142,7 +142,7 @@ It accepts the following parameters:
 * `headers` - A `dict` of strings.
 * `media_type` - A `str` giving the media type. E.g. `"text/html"`.
 
-FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the media_type and appending a charset for text types.
+FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the `media_type` and appending a charset for text types.
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
@@ -154,7 +154,7 @@ Takes some text or bytes and returns an HTML response, as you read above.
 
 ### `PlainTextResponse`
 
-Takes some text or bytes and returns an plain text response.
+Takes some text or bytes and returns a plain text response.
 
 ```Python hl_lines="2  7  9"
 {!../../../docs_src/custom_response/tutorial005.py!}
@@ -273,7 +273,7 @@ Asynchronously streams a file as the response.
 
 Takes a different set of arguments to instantiate than the other response types:
 
-* `path` - The filepath to the file to stream.
+* `path` - The file path to the file to stream.
 * `headers` - Any custom headers to include, as a dictionary.
 * `media_type` - A string giving the media type. If unset, the filename or path will be used to infer a media type.
 * `filename` - If set, this will be included in the response `Content-Disposition`.

@@ -494,7 +494,7 @@ Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here
 ### Upgrades
 
 * ➖ Remove `orjson` and `ujson` from default dependencies. PR [#11842](https://github.com/tiangolo/fastapi/pull/11842) by [@tiangolo](https://github.com/tiangolo).
-    * These dependencies are still installed when you install with `pip install "fastapi[all]"`. But they not included in `pip install fastapi`.
+    * These dependencies are still installed when you install with `pip install "fastapi[all]"`. But they are not included in `pip install fastapi`.
 * 📝 Restored Swagger-UI links to use the latest version possible. PR [#11459](https://github.com/tiangolo/fastapi/pull/11459) by [@UltimateLobster](https://github.com/UltimateLobster).
 
 ### Docs
