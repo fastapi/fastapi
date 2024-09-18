@@ -52,7 +52,7 @@ Hello Wade Wilson
 
 ## Lee Variables de Entorno en Python
 
-También puedes crear variables de entorno **por fuera** de Python, en la terminal (o por cualquier otra método), y luego **leerlas en Python**.
+También puedes crear variables de entorno **por fuera** de Python, en la terminal (o por cualquier otro método), y luego **leerlas en Python**.
 
 Por ejemplo, podrías tener un archivo `main.py` con:
 
