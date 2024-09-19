@@ -39,7 +39,7 @@ Aqui está uma pequena prévia de como você poderia integrar Strawberry com Fas
 {!../../../docs_src/graphql/tutorial001.py!}
 ```
 
-Você pode aprender mais sobre Strawberry em <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry documentation</a>.
+Você pode aprender mais sobre Strawberry na <a href="https://strawberry.rocks/" class="external-link" target="_blank">documentação do Strawberry</a>.
 
 E também na documentação sobre <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry com FastAPI</a>.
 
