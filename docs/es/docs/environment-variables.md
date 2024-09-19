@@ -136,7 +136,7 @@ Para hacer eso, créala justo antes de llamar al programa, en la misma línea:
 <div class="termy">
 
 ```console
-// Crear una variable de entorno MY_NAME en la misma línea para esta ejecución del programa
+// Crea una variable de entorno MY_NAME en la misma línea para esta ejecución del programa
 $ MY_NAME="Wade Wilson" python main.py
 
 // Ahora puede leer la variable de entorno
