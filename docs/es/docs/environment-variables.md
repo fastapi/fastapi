@@ -217,7 +217,7 @@ Cuando instalas Python, es posible que te pregunten si deseas actualizar la vari
 
 Supongamos que instalas Python y termina en un directorio como `/opt/custompython/bin`.
 
-Si dices que si al actualización de la variable de entorno `PATH`, entonces el instalador agregará `/opt/custompython/bin` a la variable de entorno `PATH`.
+Si aceptas actualizar la variable de entorno `PATH`, el instalador agregará `/opt/custompython/bin` a la variable de entorno `PATH`.
 
 Podría verse así:
 
