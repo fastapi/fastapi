@@ -6,7 +6,7 @@ Alguns dos conceitos importantes são:
 
 * Segurança - HTTPS
 * Executando na inicialização
-* Reiniciar
+* Reinicializações
 * Replicação (o número de processos em execução)
 * Memória
 * Etapas anteriores antes de iniciar
@@ -125,7 +125,7 @@ Alguns exemplos de ferramentas que podem fazer esse trabalho são:
 
 I'll give you more concrete examples in the next chapters.
 
-## Reiniciar
+## Reinicializações
 
 Semelhante a garantir que seu aplicativo seja executado na inicialização, você provavelmente também deseja garantir que ele seja **reiniciado** após falhas.
 
@@ -311,7 +311,7 @@ Você leu aqui alguns dos principais conceitos que provavelmente precisa ter em 
 
 * Segurança - HTTPS
 * Executando na inicialização
-* Reiniciar
+* Reinicializações
 * Replicação (o número de processos em execução)
 * Memória
 * Etapas anteriores antes de iniciar
