@@ -149,7 +149,7 @@ For example, you could decide to read and validate the request with your own cod
 
 You could do that with `openapi_extra`:
 
-```Python hl_lines="20-37  39-40"
+```Python hl_lines="19-36  39-40"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
 ```
 
