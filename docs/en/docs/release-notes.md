@@ -11,6 +11,10 @@ hide:
 
 * 📝 Fix small typos in the documentation. PR [#12213](https://github.com/fastapi/fastapi/pull/12213) by [@svlandeg](https://github.com/svlandeg).
 
+### Internal
+
+* ✏️ Fix docstring typos in http security. PR [#12223](https://github.com/fastapi/fastapi/pull/12223) by [@albertvillanova](https://github.com/albertvillanova).
+
 ## 0.115.0
 
 ### Highlights
