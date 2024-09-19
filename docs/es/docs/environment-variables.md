@@ -40,7 +40,7 @@ Hello Wade Wilson
 // Crea un variable de entorno llamada MY_NAME
 $ $Env:MY_NAME = "Wade Wilson"
 
-// Usala con otros programas, como
+// Úsala con otros programas, como
 $ echo "Hello $Env:MY_NAME"
 
 Hello Wade Wilson
