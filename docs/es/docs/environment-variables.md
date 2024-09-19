@@ -207,7 +207,7 @@ Cuando escribes un **comando** en la terminal, el sistema operativo **busca** el
 
 Por ejemplo, cuando escribes `python` en la terminal, el sistema operativo busca un programa llamado `python` en el **primer directorio** de esa lista.
 
-Si lo encuentra, entonces lo **utilizara**. De lo contrario, seguira buscando en los **otros directorios**.
+Si lo encuentra, entonces lo **utilizará**. De lo contrario, seguirá buscando en los **otros directorios**.
 
 ### Instalando Python y Actualizando el `PATH`
 
