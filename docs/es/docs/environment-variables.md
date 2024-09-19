@@ -151,7 +151,7 @@ Hello World from Python
 
 </div>
 
-/// tip
+/// tip | Consejo
 
 Puedes leer más sobre esto en <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
 
