@@ -179,7 +179,7 @@ Por ejemplo, la variable de entorno `PATH` podría verse así:
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-Esto significa que el sistema deberia buscar programas en los directorios:
+Esto significa que el sistema debería buscar programas en los directorios:
 
 * `/usr/local/bin`
 * `/usr/bin`
