@@ -63,7 +63,7 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip
+/// tip | Consejo
 
 El segundo argumento de <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> es el valor por defecto que se devuelve.
 
