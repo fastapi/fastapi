@@ -291,7 +291,7 @@ Esta información será útil cuando aprendas sobre los [Entornos Virtuales](vir
 
 ## Conclusión
 
-Con esto, deberias tener una comprensión básica de lo que son las **variables de entorno** y cómo utilzarlas en Python.
+Con esto, deberías tener una comprensión básica de lo que son las **variables de entorno** y cómo utilizarlas en Python.
 
 También puedes leer más sobre ellas en <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia sobre Variables de Entorno</a>.
 
