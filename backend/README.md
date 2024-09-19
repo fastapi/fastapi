@@ -5,45 +5,11 @@
 * [Docker](https://www.docker.com/).
 * [Poetry](https://python-poetry.org/) for Python package and environment management.
 
-## Local Development
+## Docker Compose
 
-* Start the stack with Docker Compose:
+Start the local development environment with Docker Compose following the guide in [../development.md](../development.md).
 
-```bash
-docker compose up -d
-```
-
-* Now you can open your browser and interact with these URLs:
-
-Frontend, built with Docker, with routes handled based on the path: http://localhost
-
-Backend, JSON based web API based on OpenAPI: http://localhost/api/
-
-Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost/docs
-
-Adminer, database web administration: http://localhost:8080
-
-Traefik UI, to see how the routes are being handled by the proxy: http://localhost:8090
-
-**Note**: The first time you start your stack, it might take a minute for it to be ready. While the backend waits for the database to be ready and configures everything. You can check the logs to monitor it.
-
-To check the logs, run:
-
-```bash
-docker compose logs
-```
-
-To check the logs of a specific service, add the name of the service, e.g.:
-
-```bash
-docker compose logs backend
-```
-
-If your Docker is not running in `localhost` (the URLs above wouldn't work) you would need to use the IP or domain where your Docker is running.
-
-## Backend local development, additional details
-
-### General workflow
+## General Workflow
 
 By default, the dependencies are managed with [Poetry](https://python-poetry.org/), go there and install it.
 
@@ -63,13 +29,13 @@ Make sure your editor is using the correct Python virtual environment.
 
 Modify or add SQLModel models for data and SQL tables in `./backend/app/models.py`, API endpoints in `./backend/app/api/`, CRUD (Create, Read, Update, Delete) utils in `./backend/app/crud.py`.
 
-### VS Code
+## VS Code
 
 There are already configurations in place to run the backend through the VS Code debugger, so that you can use breakpoints, pause and explore variables, etc.
 
 The setup is also already configured so you can run the tests through the VS Code Python tests tab.
 
-### Docker Compose Override
+## Docker Compose Override
 
 During development, you can change Docker Compose settings that will only affect the local development environment in the file `docker-compose.override.yml`.
 
@@ -123,7 +89,7 @@ Nevertheless, if it doesn't detect a change but a syntax error, it will just sto
 
 ...this previous detail is what makes it useful to have the container alive doing nothing and then, in a Bash session, make it run the live reload server.
 
-### Backend tests
+## Backend tests
 
 To test the backend run:
 
@@ -135,7 +101,7 @@ The tests run with Pytest, modify and add tests to `./backend/app/tests/`.
 
 If you use GitHub Actions the tests will run automatically.
 
-#### Test running stack
+### Test running stack
 
 If your stack is already up and you just want to run the tests, you can use:
 
@@ -151,11 +117,11 @@ For example, to stop on first error:
 docker compose exec backend bash /app/tests-start.sh -x
 ```
 
-#### Test Coverage
+### Test Coverage
 
 When the tests are run, a file `htmlcov/index.html` is generated, you can open it in your browser to see the coverage of the tests.
 
-### Migrations
+## Migrations
 
 As during local development your app directory is mounted as a volume inside the container, you can also run the migrations with `alembic` commands inside the container and the migration code will be in your app directory (instead of being only inside the container). So you can add it to your git repository.
 

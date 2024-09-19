@@ -1,5 +1,10 @@
 services:
 
+  # Local services are available on their ports, but also available on:
+  # http://api.localhost.tiangolo.com: backend
+  # http://dashboard.localhost.tiangolo.com: frontend
+  # etc. To enable it, update .env, set:
+  # DOMAIN=localhost.tiangolo.com
   proxy:
     image: traefik:3.0
     volumes:
@@ -54,6 +59,7 @@ services:
     restart: "no"
     ports:
       - "8888:8888"
+      - "8000:80"
     volumes:
       - ./backend/:/app
     build:
@@ -76,10 +82,12 @@ services:
 
   frontend:
     restart: "no"
+    ports:
+      - "5173:80"
     build:
       context: ./frontend
       args:
-        - VITE_API_URL=http://${DOMAIN?Variable not set}
+        - VITE_API_URL=http://localhost:8000
         - NODE_ENV=development
 
 networks:
