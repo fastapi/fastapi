@@ -123,7 +123,7 @@ The JSON Schemas of your models will be part of your OpenAPI generated schema, a
 
 <img src="/img/tutorial/body/image01.png">
 
-And will be also used in the API docs inside each *path operation* that needs them:
+And will also be used in the API docs inside each *path operation* that needs them:
 
 <img src="/img/tutorial/body/image02.png">
 

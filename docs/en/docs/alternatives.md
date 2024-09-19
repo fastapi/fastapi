@@ -474,7 +474,7 @@ It is the recommended server for Starlette and **FastAPI**.
 
 The main web server to run **FastAPI** applications.
 
-You can combine it with Gunicorn, to have an asynchronous multi-process server.
+You can also use the `--workers` command line option to have an asynchronous multi-process server.
 
 Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 

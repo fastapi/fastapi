@@ -108,6 +108,8 @@ nav:
   - learn/index.md
   - python-types.md
   - async.md
+  - environment-variables.md
+  - virtual-environments.md
   - Tutorial - User Guide:
     - tutorial/index.md
     - tutorial/first-steps.md
@@ -116,6 +118,7 @@ nav:
     - tutorial/body.md
     - tutorial/query-params-str-validations.md
     - tutorial/path-params-numeric-validations.md
+    - tutorial/query-param-models.md
     - tutorial/body-multiple-params.md
     - tutorial/body-fields.md
     - tutorial/body-nested-models.md
@@ -123,10 +126,13 @@ nav:
     - tutorial/extra-data-types.md
     - tutorial/cookie-params.md
     - tutorial/header-params.md
+    - tutorial/cookie-param-models.md
+    - tutorial/header-param-models.md
     - tutorial/response-model.md
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
     - tutorial/request-forms.md
+    - tutorial/request-form-models.md
     - tutorial/request-files.md
     - tutorial/request-forms-and-files.md
     - tutorial/handling-errors.md
@@ -361,6 +367,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl - Nederlands
   - link: /pl/
     name: pl - Polski
   - link: /pt/

@@ -72,7 +72,7 @@ Note that the test function is now `async def` instead of just `def` as before w
 
 Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
 
-```Python hl_lines="9-10"
+```Python hl_lines="9-12"
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
@@ -102,6 +102,6 @@ As the testing function is now asynchronous, you can now also call (and `await`)
 
 /// tip
 
-If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) Remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
 
 ///
