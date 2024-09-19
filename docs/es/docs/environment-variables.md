@@ -1,6 +1,6 @@
 # Variables de Entorno
 
-/// tip
+/// tip | Consejo
 
 Si ya conoces sobre "variables de entorno" y cómo usarlas, siéntete libre de saltarte esta parte.
 
