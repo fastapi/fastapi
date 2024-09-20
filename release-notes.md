@@ -10,6 +10,7 @@
 
 ### Refactors
 
+* ♻️ Include `FRONTEND_HOST` in CORS origins by default. PR [#1348](https://github.com/fastapi/full-stack-fastapi-template/pull/1348) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Simplify domains with `api.example.com` for API and `dashboard.example.com` for frontend, improve local development with `localhost`. PR [#1344](https://github.com/fastapi/full-stack-fastapi-template/pull/1344) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Simplify Traefik, remove www-redirects that add complexity. PR [#1343](https://github.com/fastapi/full-stack-fastapi-template/pull/1343) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Enable support for Arm Docker images in Mac, remove old patch. PR [#1341](https://github.com/fastapi/full-stack-fastapi-template/pull/1341) by [@tiangolo](https://github.com/tiangolo).
