@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* ✏️ Fix typo in `docs/es/docs/python-types.md`. PR [#12235](https://github.com/fastapi/fastapi/pull/12235) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
 * 🌐 Add Dutch translation for `docs/nl/docs/environment-variables.md`. PR [#12200](https://github.com/fastapi/fastapi/pull/12200) by [@maxscheijen](https://github.com/maxscheijen).
 * 🌐 Add Portuguese translation for `docs/pt/docs/deployment/manually.md`. PR [#12210](https://github.com/fastapi/fastapi/pull/12210) by [@JoaoGustavoRogel](https://github.com/JoaoGustavoRogel).
 * 🌐 Add Portuguese translation for `docs/pt/docs/deployment/server-workers.md`. PR [#12220](https://github.com/fastapi/fastapi/pull/12220) by [@marcelomarkus](https://github.com/marcelomarkus).
