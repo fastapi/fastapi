@@ -8,7 +8,7 @@ Na maioria dos casos, os principais provedores de nuvem têm guias para implanta
 
 Alguns provedores de nuvem ✨ [**patrocinam o FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, o que garante o **desenvolvimento** contínuo e saudável do FastAPI e seu **ecossistema**.
 
-E isso mostra seu verdadeiro comprometimento com a FastAPI e sua **comunidade** (você), pois eles não querem apenas fornecer a você um **bom serviço**, mas também querem ter certeza de que você tenha uma **estrutura boa e saudável**, a FastAPI. 🙇
+E isso mostra seu verdadeiro comprometimento com o FastAPI e sua **comunidade** (você), pois eles não querem apenas fornecer a você um **bom serviço**, mas também querem ter certeza de que você tenha uma **estrutura boa e saudável**, o FastAPI. 🙇
 
 Talvez você queira experimentar os serviços deles e seguir os guias:
 
