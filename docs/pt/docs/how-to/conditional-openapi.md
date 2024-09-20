@@ -17,13 +17,13 @@ Se você quiser proteger sua API, há várias coisas melhores que você pode faz
 * Certifique-se de ter modelos Pydantic bem definidos para seus corpos de solicitação e respostas.
 * Configure quaisquer permissões e funções necessárias usando dependências.
 * Nunca armazene senhas em texto simples, apenas hashes de senha.
-* Implemente e use ferramentas criptográficas bem conhecidas, como tokens Passlib e JWT, etc.
+* Implemente e use ferramentas criptográficas bem conhecidas, como tokens JWT e Passlib, etc.
 * Adicione controles de permissão mais granulares com escopos OAuth2 quando necessário.
 * ...etc.
 
 No entanto, você pode ter um caso de uso muito específico em que realmente precisa desabilitar a documentação da API para algum ambiente (por exemplo, para produção) ou dependendo de configurações de variáveis ​​de ambiente.
 
-## OpenAPI condicional de configurações e variáveis ​​de ambiente
+## OpenAPI condicional com configurações e variáveis ​​de ambiente
 
 Você pode usar facilmente as mesmas configurações do Pydantic para configurar sua OpenAPI gerada e as interfaces de usuário de documentos.
 
