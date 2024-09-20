@@ -72,66 +72,27 @@ def test_override_with_security():
 
 
 override_with_header_schema = {
-    "components": {
-        "schemas": {
-            "HTTPValidationError": {
-                "properties": {
-                    "detail": {
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                        "title": "Detail",
-                        "type": "array",
-                    }
-                },
-                "title": "HTTPValidationError",
-                "type": "object",
-            },
-            "ValidationError": {
-                "properties": {
-                    "loc": {
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                        "title": "Location",
-                        "type": "array",
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error " "Type", "type": "string"},
-                },
-                "required": ["loc", "msg", "type"],
-                "title": "ValidationError",
-                "type": "object",
-            },
-        }
-    },
-    "info": {"title": "FastAPI", "version": "0.1.0"},
     "openapi": "3.1.0",
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/user": {
             "get": {
+                "summary": "Read User",
                 "operationId": "read_user_user_get",
                 "parameters": [
                     {
-                        "in": "header",
                         "name": "user-id",
+                        "in": "header",
                         "required": True,
-                        "schema": {"title": "User-Id", "type": "integer"},
+                        "schema": {"type": "integer", "title": "User-Id"},
                     }
                 ],
                 "responses": {
                     "200": {
+                        "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
-                    },
-                    "422": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                        "description": "Validation " "Error",
-                    },
+                    }
                 },
-                "summary": "Read User",
             }
         }
     },

@@ -275,14 +275,8 @@ def get_openapi_path(
                 operation.setdefault("security", []).extend(operation_security)
             if security_definitions:
                 security_schemes.update(security_definitions)
-<<<<<<< HEAD
             operation_parameters = _get_openapi_operation_parameters(
-                dependant=route.dependant,
-=======
-            all_route_params = get_flat_params(dependant)
-            operation_parameters = get_openapi_operation_parameters(
-                all_route_params=all_route_params,
->>>>>>> 022f1e79 (Fix openapi document with dependencies override (#5451))
+                dependant=dependant,
                 schema_generator=schema_generator,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -471,7 +465,6 @@ def get_fields_from_routes(
                 dependency_overrides=dependency_overrides,
             )
             params.extend(get_flat_params(dependant))
-
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(
