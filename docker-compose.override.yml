@@ -59,7 +59,7 @@ services:
     restart: "no"
     ports:
       - "8888:8888"
-      - "8000:80"
+      - "8000:8000"
     volumes:
       - ./backend/:/app
     build:
@@ -67,7 +67,11 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
     # command: sleep infinity  # Infinite loop to keep container alive doing nothing
-    command: /start-reload.sh
+    command:
+      - fastapi
+      - run
+      - --reload
+      - "app/main.py"
     environment:
       SMTP_HOST: "mailcatcher"
       SMTP_PORT: "1025"
