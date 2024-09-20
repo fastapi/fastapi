@@ -6,8 +6,7 @@ authors = ["Admin <admin@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
-fastapi = "^0.109.1"
+fastapi = {extras = ["standard"], version = "^0.114.2"}
 python-multipart = "^0.0.7"
 email-validator = "^2.1.0.post1"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
