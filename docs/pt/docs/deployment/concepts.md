@@ -13,7 +13,7 @@ Alguns dos conceitos importantes são:
 
 Veremos como eles afetariam as **implantações**.
 
-No final, o objetivo final é ser capaz de **atender seus clientes de API** de uma forma **segura**, **evitar interrupções** e usar os **recursos de computação** (por exemplo, servidores remotos/máquinas virtuais) da forma mais eficiente possível. 🚀
+No final, o principal objetivo é ser capaz de **atender seus clientes de API** de uma forma **segura**, **evitar interrupções** e usar os **recursos de computação** (por exemplo, servidores remotos/máquinas virtuais) da forma mais eficiente possível. 🚀
 
 Vou lhe contar um pouco mais sobre esses **conceitos** aqui, e espero que isso lhe dê a **intuição** necessária para decidir como implantar sua API em ambientes muito diferentes, possivelmente até mesmo em **futuros** ambientes que ainda não existem.
 
@@ -123,7 +123,7 @@ Alguns exemplos de ferramentas que podem fazer esse trabalho são:
 * Gerenciado internamente por um provedor de nuvem como parte de seus serviços
 * Outros...
 
-I'll give you more concrete examples in the next chapters.
+Darei exemplos mais concretos nos próximos capítulos.
 
 ## Reinicializações
 
@@ -188,7 +188,7 @@ Se você tiver mais clientes do que um único processo pode manipular (por exemp
 
 Quando você executa **vários processos** do mesmo programa de API, eles são comumente chamados de **trabalhadores**.
 
-### Trabalhador Processos e Portas
+### Processos do Trabalhador e Portas
 
 Lembra da documentação [Sobre HTTPS](https.md){.internal-link target=_blank} que diz que apenas um processo pode escutar em uma combinação de porta e endereço IP em um servidor?
 
