@@ -328,7 +328,7 @@ async def parse_request_body(
     request: Request,
     *,
     body_field: Optional[ModelField],
-    is_body_form: bool | None,
+    is_body_form: Optional[Union[ModelField, bool]],
     file_stack: AsyncExitStack,
 ) -> Any:
     try:
