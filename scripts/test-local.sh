@@ -12,4 +12,4 @@ fi
 
 docker-compose build
 docker-compose up -d
-docker-compose exec -T backend bash /app/tests-start.sh "$@"
+docker-compose exec -T backend bash scripts/tests-start.sh "$@"

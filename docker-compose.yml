@@ -55,7 +55,7 @@ services:
       db:
         condition: service_healthy
         restart: true
-    command: bash prestart.sh
+    command: bash scripts/prestart.sh
     env_file:
       - .env
     environment:
