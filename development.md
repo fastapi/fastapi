@@ -5,7 +5,7 @@
 * Start the local stack with Docker Compose:
 
 ```bash
-docker compose up -d
+docker compose watch
 ```
 
 * Now you can open your browser and interact with these URLs:
@@ -22,7 +22,7 @@ Traefik UI, to see how the routes are being handled by the proxy: http://localho
 
 **Note**: The first time you start your stack, it might take a minute for it to be ready. While the backend waits for the database to be ready and configures everything. You can check the logs to monitor it.
 
-To check the logs, run:
+To check the logs, run (in another terminal):
 
 ```bash
 docker compose logs
@@ -42,7 +42,7 @@ For the backend and frontend, they use the same port that would be used by their
 
 This way, you could turn off a Docker Compose service and start its local development service, and everything would keep working, because it all uses the same ports.
 
-For example, you can stop that `frontend` service in the Docker Compose:
+For example, you can stop that `frontend` service in the Docker Compose, in another terminal, run:
 
 ```bash
 docker compose stop frontend
@@ -91,7 +91,7 @@ The domain `localhost.tiangolo.com` is a special domain that is configured (with
 After you update it, run again:
 
 ```bash
-docker compose up -d
+docker compose watch
 ```
 
 When deploying, for example in production, the main Traefik is configured outside of the Docker Compose files. For local development, there's an included Traefik in `docker-compose.override.yml`, just to let you test that the domains work as expected, for example with `api.localhost.tiangolo.com` and `dashboard.localhost.tiangolo.com`.
@@ -109,7 +109,7 @@ They also use some additional configurations taken from environment variables se
 After changing variables, make sure you restart the stack:
 
 ```bash
-docker compose up -d
+docker compose watch
 ```
 
 ## The .env file

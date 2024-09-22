@@ -60,8 +60,6 @@ services:
     ports:
       - "8888:8888"
       - "8000:8000"
-    volumes:
-      - ./backend/:/app
     build:
       context: ./backend
       args:
@@ -72,6 +70,19 @@ services:
       - run
       - --reload
       - "app/main.py"
+    develop:
+      watch:
+        - path: ./backend
+          action: sync
+          target: /app
+          ignore:
+            - ./backend/.venv
+            - .venv
+        - path: ./backend/pyproject.toml
+          action: rebuild
+    # TODO: remove once coverage is done locally
+    volumes:
+      - ./backend/htmlcov:/app/htmlcov
     environment:
       SMTP_HOST: "mailcatcher"
       SMTP_PORT: "1025"

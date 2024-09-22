@@ -41,12 +41,12 @@ During development, you can change Docker Compose settings that will only affect
 
 The changes to that file only affect the local development environment, not the production environment. So, you can add "temporary" changes that help the development workflow.
 
-For example, the directory with the backend code is mounted as a Docker "host volume", mapping the code you change live to the directory inside the container. That allows you to test your changes right away, without having to build the Docker image again. It should only be done during development, for production, you should build the Docker image with a recent version of the backend code. But during development, it allows you to iterate very fast.
+For example, the directory with the backend code is synchronized in the Docker container, copying the code you change live to the directory inside the container. That allows you to test your changes right away, without having to build the Docker image again. It should only be done during development, for production, you should build the Docker image with a recent version of the backend code. But during development, it allows you to iterate very fast.
 
-There is also a command override that runs `/start-reload.sh` (included in the base image) instead of the default `/start.sh` (also included in the base image). It starts a single server process (instead of multiple, as would be for production) and reloads the process whenever the code changes. Have in mind that if you have a syntax error and save the Python file, it will break and exit, and the container will stop. After that, you can restart the container by fixing the error and running again:
+There is also a command override that runs `fastapi run --reload` instead of the default `fastapi run`. It starts a single server process (instead of multiple, as would be for production) and reloads the process whenever the code changes. Have in mind that if you have a syntax error and save the Python file, it will break and exit, and the container will stop. After that, you can restart the container by fixing the error and running again:
 
 ```console
-$ docker compose up -d
+$ docker compose watch
 ```
 
 There is also a commented out `command` override, you can uncomment it and comment the default one. It makes the backend container run a process that does "nothing", but keeps the container alive. That allows you to get inside your running container and execute commands inside, for example a Python interpreter to test installed dependencies, or start the development server that reloads when it detects changes.
@@ -54,10 +54,10 @@ There is also a commented out `command` override, you can uncomment it and comme
 To get inside the container with a `bash` session you can start the stack with:
 
 ```console
-$ docker compose up -d
+$ docker compose watch
 ```
 
-and then `exec` inside the running container:
+and then in another terminal, `exec` inside the running container:
 
 ```console
 $ docker compose exec backend bash
@@ -71,16 +71,16 @@ root@7f2607af31c3:/app#
 
 that means that you are in a `bash` session inside your container, as a `root` user, under the `/app` directory, this directory has another directory called "app" inside, that's where your code lives inside the container: `/app/app`.
 
-There you can use the script `/start-reload.sh` to run the debug live reloading server. You can run that script from inside the container with:
+There you can use the `fastapi run --reload` command to run the debug live reloading server.
 
 ```console
-$ bash /start-reload.sh
+$ fastapi run --reload app/main.py
 ```
 
 ...it will look like:
 
 ```console
-root@7f2607af31c3:/app# bash /start-reload.sh
+root@7f2607af31c3:/app# fastapi run --reload app/main.py
 ```
 
 and then hit enter. That runs the live reloading server that auto reloads when it detects code changes.
