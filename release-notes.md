@@ -10,6 +10,7 @@
 
 ### Refactors
 
+* 🚚 Move location of scripts to simplify file structure. PR [#1352](https://github.com/fastapi/full-stack-fastapi-template/pull/1352) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor prestart (migrations), move that to its own container. PR [#1350](https://github.com/fastapi/full-stack-fastapi-template/pull/1350) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Include `FRONTEND_HOST` in CORS origins by default. PR [#1348](https://github.com/fastapi/full-stack-fastapi-template/pull/1348) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Simplify domains with `api.example.com` for API and `dashboard.example.com` for frontend, improve local development with `localhost`. PR [#1344](https://github.com/fastapi/full-stack-fastapi-template/pull/1344) by [@tiangolo](https://github.com/tiangolo).
