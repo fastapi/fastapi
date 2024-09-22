@@ -46,7 +46,7 @@ La función hace lo siguiente:
 
 Es un programa muy simple.
 
-Ahora, imagina que lo estás escribiendo desde ceros.
+Ahora, imagina que lo estás escribiendo desde cero.
 
 En algún punto habrías comenzado con la definición de la función, tenías los parámetros listos...
 
