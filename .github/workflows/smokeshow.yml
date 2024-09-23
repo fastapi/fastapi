@@ -16,17 +16,14 @@ jobs:
     steps:
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-
+          python-version: "3.10"
       - run: pip install smokeshow
-
       - uses: actions/download-artifact@v4
         with:
           name: coverage-html
           path: backend/htmlcov
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-
       - run: smokeshow upload backend/htmlcov
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}

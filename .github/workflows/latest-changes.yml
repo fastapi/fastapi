@@ -12,9 +12,9 @@ on:
         description: PR number
         required: true
       debug_enabled:
-        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
         required: false
-        default: 'false'
+        default: "false"
 
 jobs:
   latest-changes:
@@ -34,7 +34,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: ./release-notes.md
-          latest_changes_header: '## Latest Changes'
-          end_regex: '^## '
+          latest_changes_header: "## Latest Changes"
+          end_regex: "^## "
           debug_logs: true
-          label_header_prefix: '### '
+          label_header_prefix: "### "
