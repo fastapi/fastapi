@@ -22,11 +22,18 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10'
+    - name: Install uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "0.4.15"
     - name: Install dependencies
       run: npm ci
       working-directory: frontend
-    - run: pip install ./backend
-    - run: bash scripts/generate-client.sh
+    - run: uv sync
+      working-directory: backend
+    - run: uv run bash scripts/generate-client.sh
+      env:
+        VIRTUAL_ENV: backend/.venv
     - name: Commit changes
       run: |
         git config --local user.email "github-actions@github.com"
@@ -46,4 +53,3 @@ jobs:
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
-          
