@@ -58,12 +58,9 @@ services:
   backend:
     restart: "no"
     ports:
-      - "8888:8888"
       - "8000:8000"
     build:
       context: ./backend
-      args:
-        INSTALL_DEV: ${INSTALL_DEV-true}
     # command: sleep infinity  # Infinite loop to keep container alive doing nothing
     command:
       - fastapi
