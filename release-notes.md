@@ -10,6 +10,7 @@
 
 ### Refactors
 
+* ♻️ Update settings to use top level `.env` file. PR [#1359](https://github.com/fastapi/full-stack-fastapi-template/pull/1359) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Migrate from Poetry to uv. PR [#1356](https://github.com/fastapi/full-stack-fastapi-template/pull/1356) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove logic for development dependencies and Jupyter, it was never documented, and I no longer use that trick. PR [#1355](https://github.com/fastapi/full-stack-fastapi-template/pull/1355) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Use Docker Compose `watch`. PR [#1354](https://github.com/fastapi/full-stack-fastapi-template/pull/1354) by [@tiangolo](https://github.com/tiangolo).
