@@ -63,7 +63,6 @@ _exclude:
   # Global
   - .vscode
   - .mypy_cache
-  - poetry.lock
   # Python
   - __pycache__
   - app.egg-info
@@ -71,7 +70,6 @@ _exclude:
   - .mypy_cache
   - .coverage
   - htmlcov
-  - poetry.lock
   - .cache
   - .venv
   # Frontend

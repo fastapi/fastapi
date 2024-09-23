@@ -3,7 +3,7 @@
 ## Requirements
 
 * [Docker](https://www.docker.com/).
-* [Poetry](https://python-poetry.org/) for Python package and environment management.
+* [uv](https://docs.astral.sh/uv/) for Python package and environment management.
 
 ## Docker Compose
 
@@ -11,21 +11,21 @@ Start the local development environment with Docker Compose following the guide 
 
 ## General Workflow
 
-By default, the dependencies are managed with [Poetry](https://python-poetry.org/), go there and install it.
+By default, the dependencies are managed with [uv](https://docs.astral.sh/uv/), go there and install it.
 
 From `./backend/` you can install all the dependencies with:
 
 ```console
-$ poetry install
+$ uv sync
 ```
 
-Then you can start a shell session with the new environment with:
+Then you can activate the virtual environment with:
 
 ```console
-$ poetry shell
+$ source .venv/bin/activate
 ```
 
-Make sure your editor is using the correct Python virtual environment.
+Make sure your editor is using the correct Python virtual environment, with the interpreter at `backend/.venv/bin/python`.
 
 Modify or add SQLModel models for data and SQL tables in `./backend/app/models.py`, API endpoints in `./backend/app/api/`, CRUD (Create, Read, Update, Delete) utils in `./backend/app/crud.py`.
 

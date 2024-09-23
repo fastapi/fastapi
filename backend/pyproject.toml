@@ -1,42 +1,41 @@
-[tool.poetry]
+[project]
 name = "app"
 version = "0.1.0"
 description = ""
-authors = ["Admin <admin@example.com>"]
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "fastapi[standard]<1.0.0,>=0.114.2",
+    "python-multipart<1.0.0,>=0.0.7",
+    "email-validator<3.0.0.0,>=2.1.0.post1",
+    "passlib[bcrypt]<2.0.0,>=1.7.4",
+    "tenacity<9.0.0,>=8.2.3",
+    "pydantic>2.0",
+    "emails<1.0,>=0.6",
+    "jinja2<4.0.0,>=3.1.4",
+    "alembic<2.0.0,>=1.12.1",
+    "httpx<1.0.0,>=0.25.1",
+    "psycopg[binary]<4.0.0,>=3.1.13",
+    "sqlmodel<1.0.0,>=0.0.21",
+    # Pin bcrypt until passlib supports the latest
+    "bcrypt==4.0.1",
+    "pydantic-settings<3.0.0,>=2.2.1",
+    "sentry-sdk[fastapi]<2.0.0,>=1.40.6",
+    "pyjwt<3.0.0,>=2.8.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-fastapi = {extras = ["standard"], version = "^0.114.2"}
-python-multipart = "^0.0.7"
-email-validator = "^2.1.0.post1"
-passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-tenacity = "^8.2.3"
-pydantic = ">2.0"
-emails = "^0.6"
-
-gunicorn = "^22.0.0"
-jinja2 = "^3.1.4"
-alembic = "^1.12.1"
-httpx = "^0.25.1"
-psycopg = {extras = ["binary"], version = "^3.1.13"}
-sqlmodel = "^0.0.21"
-# Pin bcrypt until passlib supports the latest
-bcrypt = "4.0.1"
-pydantic-settings = "^2.2.1"
-sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
-pyjwt = "^2.8.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.3"
-mypy = "^1.8.0"
-ruff = "^0.2.2"
-pre-commit = "^3.6.2"
-types-passlib = "^1.7.7.20240106"
-coverage = "^7.4.3"
+[tool.uv]
+dev-dependencies = [
+    "pytest<8.0.0,>=7.4.3",
+    "mypy<2.0.0,>=1.8.0",
+    "ruff<1.0.0,>=0.2.2",
+    "pre-commit<4.0.0,>=3.6.2",
+    "types-passlib<2.0.0.0,>=1.7.7.20240106",
+    "coverage<8.0.0,>=7.4.3",
+]
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.mypy]
 strict = true
