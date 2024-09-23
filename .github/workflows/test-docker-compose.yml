@@ -1,0 +1,26 @@
+name: Test Docker Compose
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+
+  test-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: docker compose build
+      - run: docker compose down -v --remove-orphans
+      - run: docker compose up -d --wait
+      - name: Test backend is up
+        run: curl http://localhost:8000/api/v1/utils/health-check
+      - name: Test frontend is up
+        run: curl http://localhost:5173
+      - run: docker compose down -v --remove-orphans

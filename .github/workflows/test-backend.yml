@@ -1,4 +1,4 @@
-name: Test
+name: Test Backend
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  test:
+  test-backend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,14 +21,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - run: docker compose build
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "0.4.15"
       - run: docker compose down -v --remove-orphans
-      - run: docker compose up -d
-      - name: Lint
-        run: docker compose exec -T backend bash scripts/lint.sh
+      - run: docker compose up -d db mailcatcher
+      - name: Migrate DB
+        run: uv run bash scripts/prestart.sh
+        working-directory: backend
       - name: Run tests
-        run: docker compose exec -T backend bash scripts/tests-start.sh "Coverage for ${{ github.sha }}"
+        run: uv run bash scripts/tests-start.sh "Coverage for ${{ github.sha }}"
+        working-directory: backend
       - run: docker compose down -v --remove-orphans
       - name: Store coverage files
         uses: actions/upload-artifact@v4
@@ -41,7 +45,7 @@ jobs:
   alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
-      - test
+      - test-backend
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether the needed jobs succeeded or failed
