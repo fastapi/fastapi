@@ -34,6 +34,7 @@
 
 ### Internal
 
+* 🔨 Update `generate-client.sh` script, make it fail on errors, fix generation. PR [#1360](https://github.com/fastapi/full-stack-fastapi-template/pull/1360) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add GitHub Actions workflow to lint backend apart from tests. PR [#1358](https://github.com/fastapi/full-stack-fastapi-template/pull/1358) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Improve playwright CI job. PR [#1335](https://github.com/fastapi/full-stack-fastapi-template/pull/1335) by [@patrick91](https://github.com/patrick91).
 * 👷 Update `issue-manager.yml`. PR [#1329](https://github.com/fastapi/full-stack-fastapi-template/pull/1329) by [@tiangolo](https://github.com/tiangolo).
