@@ -96,7 +96,7 @@ Dans le cas où votre application dépend des événements de durée de vie, le 
 
 ///
 
-## Autres appels de fonction asynchrone 
+## Autres appels de fonction asynchrone
 
 Comme la fonction de test est maintenant asynchrone, vous pouvez désormais aussi appeler (et `await`) d'autres fonctions `async` en plus d'envoyer des requêtes à votre application FastAPI dans vos tests, exactement de la même manière dont vous les auriez appelées à n'importe quel autre endroit de votre code.
 
