@@ -23,5 +23,6 @@ jobs:
         uses: astral-sh/setup-uv@v2
         with:
           version: "0.4.15"
+          enable-cache: true
       - run: uv run bash scripts/lint.sh
         working-directory: backend

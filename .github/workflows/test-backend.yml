@@ -23,6 +23,7 @@ jobs:
         uses: astral-sh/setup-uv@v2
         with:
           version: "0.4.15"
+          enable-cache: true
       - run: docker compose down -v --remove-orphans
       - run: docker compose up -d db mailcatcher
       - name: Migrate DB

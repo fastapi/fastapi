@@ -26,6 +26,7 @@ jobs:
       uses: astral-sh/setup-uv@v2
       with:
         version: "0.4.15"
+        enable-cache: true
     - name: Install dependencies
       run: npm ci
       working-directory: frontend
