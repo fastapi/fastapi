@@ -769,7 +769,7 @@ But if you are building an OAuth2 application that others would connect to (i.e.
 
 The most common is the implicit flow.
 
-The most secure is the code flow, but is more complex to implement as it requires more steps. As it is more complex, many providers end up suggesting the implicit flow.
+The most secure is the code flow, but it's more complex to implement as it requires more steps. As it is more complex, many providers end up suggesting the implicit flow.
 
 /// note
 

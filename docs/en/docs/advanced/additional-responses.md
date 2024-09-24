@@ -18,7 +18,7 @@ But for those additional responses you have to make sure you return a `Response`
 
 You can pass to your *path operation decorators* a parameter `responses`.
 
-It receives a `dict`, the keys are status codes for each response, like `200`, and the values are other `dict`s with the information for each of them.
+It receives a `dict`: the keys are status codes for each response (like `200`), and the values are other `dict`s with the information for each of them.
 
 Each of those response `dict`s can have a key `model`, containing a Pydantic model, just like `response_model`.
 

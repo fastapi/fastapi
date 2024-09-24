@@ -1,37 +1,37 @@
-# Server Workers - Uvicorn with Workers
+# Trabalhadores do Servidor - Uvicorn com Trabalhadores
 
-Let's check back those deployment concepts from before:
+Vamos rever os conceitos de implantação anteriores:
 
-* Security - HTTPS
-* Running on startup
-* Restarts
-* **Replication (the number of processes running)**
-* Memory
-* Previous steps before starting
+* Segurança - HTTPS
+* Executando na inicialização
+* Reinicializações
+* **Replicação (o número de processos em execução)**
+* Memória
+* Etapas anteriores antes de iniciar
 
-Up to this point, with all the tutorials in the docs, you have probably been running a **server program**, for example, using the `fastapi` command, that runs Uvicorn, running a **single process**.
+Até este ponto, com todos os tutoriais nos documentos, você provavelmente estava executando um **programa de servidor**, por exemplo, usando o comando `fastapi`, que executa o Uvicorn, executando um **único processo**.
 
-When deploying applications you will probably want to have some **replication of processes** to take advantage of **multiple cores** and to be able to handle more requests.
+Ao implantar aplicativos, você provavelmente desejará ter alguma **replicação de processos** para aproveitar **vários núcleos** e poder lidar com mais solicitações.
 
-As you saw in the previous chapter about [Deployment Concepts](concepts.md){.internal-link target=_blank}, there are multiple strategies you can use.
+Como você viu no capítulo anterior sobre [Conceitos de implantação](concepts.md){.internal-link target=_blank}, há várias estratégias que você pode usar.
 
-Here I'll show you how to use **Uvicorn** with **worker processes** using the `fastapi` command or the `uvicorn` command directly.
+Aqui mostrarei como usar o **Uvicorn** com **processos de trabalho** usando o comando `fastapi` ou o comando `uvicorn` diretamente.
 
-/// info
+/// info | "Informação"
 
-If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+Se você estiver usando contêineres, por exemplo com Docker ou Kubernetes, falarei mais sobre isso no próximo capítulo: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
 
-In particular, when running on **Kubernetes** you will probably **not** want to use workers and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
+Em particular, ao executar no **Kubernetes** você provavelmente **não** vai querer usar vários trabalhadores e, em vez disso, executar **um único processo Uvicorn por contêiner**, mas falarei sobre isso mais adiante neste capítulo.
 
 ///
 
-## Multiple Workers
+## Vários trabalhadores
 
-You can start multiple workers with the `--workers` command line option:
+Você pode iniciar vários trabalhadores com a opção de linha de comando `--workers`:
 
 //// tab | `fastapi`
 
-If you use the `fastapi` command:
+Se você usar o comando `fastapi`:
 
 <div class="termy">
 
@@ -94,7 +94,7 @@ $ <pre> <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-deco
 
 //// tab | `uvicorn`
 
-If you prefer to use the `uvicorn` command directly:
+Se você preferir usar o comando `uvicorn` diretamente:
 
 <div class="termy">
 
@@ -120,33 +120,33 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 ////
 
-The only new option here is `--workers` telling Uvicorn to start 4 worker processes.
+A única opção nova aqui é `--workers` informando ao Uvicorn para iniciar 4 processos de trabalho.
 
-You can also see that it shows the **PID** of each process, `27365` for the parent process (this is the **process manager**) and one for each worker process: `27368`, `27369`, `27370`, and `27367`.
+Você também pode ver que ele mostra o **PID** de cada processo, `27365` para o processo pai (este é o **gerenciador de processos**) e um para cada processo de trabalho: `27368`, `27369`, `27370` e `27367`.
 
-## Deployment Concepts
+## Conceitos de Implantação
 
-Here you saw how to use multiple **workers** to **parallelize** the execution of the application, take advantage of **multiple cores** in the CPU, and be able to serve **more requests**.
+Aqui você viu como usar vários **trabalhadores** para **paralelizar** a execução do aplicativo, aproveitar **vários núcleos** na CPU e conseguir atender **mais solicitações**.
 
-From the list of deployment concepts from above, using workers would mainly help with the **replication** part, and a little bit with the **restarts**, but you still need to take care of the others:
+Da lista de conceitos de implantação acima, o uso de trabalhadores ajudaria principalmente com a parte da **replicação** e um pouco com as **reinicializações**, mas você ainda precisa cuidar dos outros:
 
-* **Security - HTTPS**
-* **Running on startup**
-* ***Restarts***
-* Replication (the number of processes running)
-* **Memory**
-* **Previous steps before starting**
+* **Segurança - HTTPS**
+* **Executando na inicialização**
+* ***Reinicializações***
+* Replicação (o número de processos em execução)
+* **Memória**
+* **Etapas anteriores antes de iniciar**
 
-## Containers and Docker
+## Contêineres e Docker
 
-In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll explain some strategies you could use to handle the other **deployment concepts**.
+No próximo capítulo sobre [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}, explicarei algumas estratégias que você pode usar para lidar com os outros **conceitos de implantação**.
 
-I'll show you how to **build your own image from scratch** to run a single Uvicorn process. It is a simple process and is probably what you would want to do when using a distributed container management system like **Kubernetes**.
+Vou mostrar como **construir sua própria imagem do zero** para executar um único processo Uvicorn. É um processo simples e provavelmente é o que você gostaria de fazer ao usar um sistema de gerenciamento de contêineres distribuídos como o **Kubernetes**.
 
-## Recap
+## Recapitular
 
-You can use multiple worker processes with the `--workers` CLI option with the `fastapi` or `uvicorn` commands to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.
+Você pode usar vários processos de trabalho com a opção CLI `--workers` com os comandos `fastapi` ou `uvicorn` para aproveitar as vantagens de **CPUs multi-core** e executar **vários processos em paralelo**.
 
-You could use these tools and ideas if you are setting up **your own deployment system** while taking care of the other deployment concepts yourself.
+Você pode usar essas ferramentas e ideias se estiver configurando **seu próprio sistema de implantação** enquanto cuida dos outros conceitos de implantação.
 
-Check out the next chapter to learn about **FastAPI** with containers (e.g. Docker and Kubernetes). You will see that those tools have simple ways to solve the other **deployment concepts** as well. ✨
+Confira o próximo capítulo para aprender sobre **FastAPI** com contêineres (por exemplo, Docker e Kubernetes). Você verá que essas ferramentas têm maneiras simples de resolver os outros **conceitos de implantação** também. ✨

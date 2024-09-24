@@ -7,6 +7,24 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix small typos in the documentation. PR [#12213](https://github.com/fastapi/fastapi/pull/12213) by [@svlandeg](https://github.com/svlandeg).
+
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/cloud.md`. PR [#12217](https://github.com/fastapi/fastapi/pull/12217) by [@marcelomarkus](https://github.com/marcelomarkus).
+* ✏️ Fix typo in `docs/es/docs/python-types.md`. PR [#12235](https://github.com/fastapi/fastapi/pull/12235) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
+* 🌐 Add Dutch translation for `docs/nl/docs/environment-variables.md`. PR [#12200](https://github.com/fastapi/fastapi/pull/12200) by [@maxscheijen](https://github.com/maxscheijen).
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/manually.md`. PR [#12210](https://github.com/fastapi/fastapi/pull/12210) by [@JoaoGustavoRogel](https://github.com/JoaoGustavoRogel).
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/server-workers.md`. PR [#12220](https://github.com/fastapi/fastapi/pull/12220) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/configure-swagger-ui.md`. PR [#12222](https://github.com/fastapi/fastapi/pull/12222) by [@marcelomarkus](https://github.com/marcelomarkus).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12253](https://github.com/fastapi/fastapi/pull/12253) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ✏️ Fix docstring typos in http security. PR [#12223](https://github.com/fastapi/fastapi/pull/12223) by [@albertvillanova](https://github.com/albertvillanova).
+
 ## 0.115.0
 
 ### Highlights
@@ -494,7 +512,7 @@ Discussed here: [#11522](https://github.com/fastapi/fastapi/pull/11522) and here
 ### Upgrades
 
 * ➖ Remove `orjson` and `ujson` from default dependencies. PR [#11842](https://github.com/tiangolo/fastapi/pull/11842) by [@tiangolo](https://github.com/tiangolo).
-    * These dependencies are still installed when you install with `pip install "fastapi[all]"`. But they not included in `pip install fastapi`.
+    * These dependencies are still installed when you install with `pip install "fastapi[all]"`. But they are not included in `pip install fastapi`.
 * 📝 Restored Swagger-UI links to use the latest version possible. PR [#11459](https://github.com/tiangolo/fastapi/pull/11459) by [@UltimateLobster](https://github.com/UltimateLobster).
 
 ### Docs
