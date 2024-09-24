@@ -1,26 +1,26 @@
-# Async Tests
+# Tests Asynchrones
 
-You have already seen how to test your **FastAPI** applications using the provided `TestClient`. Up to now, you have only seen how to write synchronous tests, without using `async` functions.
+Vous avez déjà vu comment tester vos applications **FastAPI** en utilisant le `TestClient` fourni. Jusqu'à présent, vous avez seulement vu comment écrire des tests synchrones, sans utiliser des fonctions `async`.
 
-Being able to use asynchronous functions in your tests could be useful, for example, when you're querying your database asynchronously. Imagine you want to test sending requests to your FastAPI application and then verify that your backend successfully wrote the correct data in the database, while using an async database library.
+Être capable d'utiliser des fonctions asynchrones dans vos tests peut être utile, par exemple, lorsque vous requêtez de manière asynchrone votre base de données. Imaginez que vous vouliez tester l'envoi de requête à votre application FastAPI, puis vérifier que votre backend a bien écrit la bonne donnée dans la base de données, tout en utilisant une librairie de base de données asynchrone.
 
-Let's look at how we can make that work.
+Voyons comment faire.
 
 ## pytest.mark.anyio
 
-If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. AnyIO provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
+Afin de permettre l'appel de fonctions asynchrones dans nos tests, il est essentiel que nos fonctions de tests soient asynchrones. AnyIO propose un plugin soigneusement conçu pour cela, qui nous permet de spécifier que certaines fonctions de test doivent être appelées de manière asynchrone.
 
 ## HTTPX
 
-Even if your **FastAPI** application uses normal `def` functions instead of `async def`, it is still an `async` application underneath.
+Même si votre application **FastAPI** utilise des fonctions `def` normales plutôt que des `async def`, elle reste une application `async` application en dessous.
 
-The `TestClient` does some magic inside to call the asynchronous FastAPI application in your normal `def` test functions, using standard pytest. But that magic doesn't work anymore when we're using it inside asynchronous functions. By running our tests asynchronously, we can no longer use the `TestClient` inside our test functions.
+`TestClient` utilise de la magie à l'intérieur pour appeler l'application FastAPI dans vos fonctions de test `def` normales, en utilisant un standard pytest. Mais cette magie ne marche plus lorsque vous l'utilisez dans une fonction asynchrone. En lançant nos tests de manière asynchrone, `TestClient` ne peut plus être utilisé dans nos fonctions de tests.
 
-The `TestClient` is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, and luckily, we can use it directly to test the API.
+`TestClient` repose <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, et par chance, on peut l'utiliser directement pour tester l'API.
 
-## Example
+## Exemple
 
-For a simple example, let's consider a file structure similar to the one described in [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} and [Testing](../tutorial/testing.md){.internal-link target=_blank}:
+Prenons un exemple simple, on considère une structure de fichier similaire à celle décrite dans [Applications plus grandes](../tutorial/bigger-applications.md){.internal-link target=_blank} et [Testing](../tutorial/testing.md){.internal-link target=_blank}:
 
 ```
 .
@@ -30,21 +30,21 @@ For a simple example, let's consider a file structure similar to the one describ
 │   └── test_main.py
 ```
 
-The file `main.py` would have:
+Dans le fichier `main.py` il y aurait:
 
 ```Python
 {!../../../docs_src/async_tests/main.py!}
 ```
 
-The file `test_main.py` would have the tests for `main.py`, it could look like this now:
+Le fichier `test_main.py` contiendrait les tests pour `main.py`, et pourrait désormais ressembler à :
 
 ```Python
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
-## Run it
+## Lancez les
 
-You can run your tests as usual via:
+Comme d'habitude, vous pouvez lancer vos tests en utilisant :
 
 <div class="termy">
 
@@ -56,9 +56,9 @@ $ pytest
 
 </div>
 
-## In Detail
+## En Détail
 
-The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:
+Le marqueur `@pytest.mark.anyio` informe pytest que la fonction de test doit être appelée de manière asynchrone:
 
 ```Python hl_lines="7"
 {!../../../docs_src/async_tests/test_main.py!}
@@ -66,42 +66,42 @@ The marker `@pytest.mark.anyio` tells pytest that this test function should be c
 
 /// tip
 
-Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+Notez que la fonction de test est maintenant une `async def` plutôt qu'une simple `def` comme précédemment lorsqu'on utilisait `TestClient`.
 
 ///
 
-Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
+Puis on crée un `AsyncClient` avec l'application, et on lui envoie des requêtes, en utilisant `await`.
 
 ```Python hl_lines="9-12"
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
-This is the equivalent to:
+C'est l'équivalent de:
 
 ```Python
 response = client.get('/')
 ```
 
-...that we used to make our requests with the `TestClient`.
+...que l'on utilisait pour faire nos requêtes avec le `TestClient`.
 
 /// tip
 
-Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+Notez que l'on utilise async/await avec le nouvel `AsyncClient` - la requête est asynchrone.
 
 ///
 
 /// warning
 
-If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+Dans le cas où votre application dépend des événements de durée de vie, le `AsyncClient` ne déclenchera pas ces événements. Pour vous assurer qu'ils soient déclenchés, utilisez `LifespanManager` de <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
 
 ///
 
-## Other Asynchronous Function Calls
+## Autres appels de fonction asynchrone 
 
-As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
+Comme la fonction de test est maintenant asynchrone, vous pouvez désormais aussi appeler (et `await`) d'autres fonctions `async` en plus d'envoyer des requêtes à votre application FastAPI dans vos tests, exactement de la même manière dont vous les auriez appelées à n'importe quel autre endroit de votre code.
 
 /// tip
 
-If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+Si vous rencontrez une `RuntimeError: Task attached to a different loop` en intégrant des appels de fonctions asynchrones dans vos tests (par exemple en utilisant <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), n'oubliez pas d'instancier les objets ayant besoin d'une boucle d'événement seulement dans vos fonctions asynchrones, par exemple une fonction de rappel `'@app.on_event("startup")` callback.
 
 ///
