@@ -58,9 +58,9 @@ Para o OAuth2, eles são apenas strings.
 
 ///
 
-## Global view
+## Visão global
 
-First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
+Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - User Guide** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Agora utilizando escopos OAuth2:
 
 //// tab | Python 3.10+
 
@@ -88,9 +88,9 @@ First, let's quickly see the parts that change from the examples in the main **T
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -102,9 +102,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -116,9 +116,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -128,13 +128,13 @@ Prefer to use the `Annotated` version if possible.
 
 ////
 
-Now let's review those changes step by step.
+Agora vamos revisar essas mudanças passo a passo.
 
-## OAuth2 Security scheme
+## Esquema de segurança OAuth2
 
-The first change is that now we are declaring the OAuth2 security scheme with two available scopes, `me` and `items`.
+A primeira mudança é que agora nós estamos declarando o esquema de segurança OAuth2 com dpos escopos disponíveis, `me` e `items`.
 
-The `scopes` parameter receives a `dict` with each scope as a key and the description as the value:
+O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descrição como valor:
 
 //// tab | Python 3.10+
 
@@ -162,9 +162,9 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -176,9 +176,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -190,9 +190,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -202,27 +202,27 @@ Prefer to use the `Annotated` version if possible.
 
 ////
 
-Because we are now declaring those scopes, they will show up in the API docs when you log-in/authorize.
+Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você fizer login/autorizar.
 
-And you will be able to select which scopes you want to give access to: `me` and `items`.
+E você poderá selecionar quais escopos você deseja dar acesso: `me` e `items`.
 
-This is the same mechanism used when you give permissions while logging in with Facebook, Google, GitHub, etc:
+Este é o mesmo mecanismo utilizado quando você adiciona permissões enquanto se autentica com o Facebook, Google, GitHub, etc:
 
 <img src="/img/tutorial/security/image11.png">
 
-## JWT token with scopes
+## Token JWT com escopos
 
-Now, modify the token *path operation* to return the scopes requested.
+Agora, modifique o *caminho de rota* token para retornar os escopos solicitados.
 
-We are still using the same `OAuth2PasswordRequestForm`. It includes a property `scopes` with a `list` of `str`, with each scope it received in the request.
+Nós ainda estamos utilizando o mesmo `OAuth2PasswordRequestForm`. Ele inclui a propriedade `scopes` com uma `list` de `str`, com cada escopo que ele recebeu na requisição.
 
-And we return the scopes as part of the JWT token.
+E nós retornamos os escopos como parte do token JWT.
 
 /// danger
 
-For simplicity, here we are just adding the scopes received directly to the token.
+Para manter as coisas simples, aqui nós estamos apenas adicionando os escopos recebidos diretamente ao token.
 
-But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
+Porém em sua aplicação, por segurança, você deve garantir que você apenas adiciona os escopos que o usuário possui permissão de fato, ou aqueles que você predefiniu.
 
 ///
 
@@ -252,9 +252,9 @@ But in your application, for security, you should make sure you only add the sco
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -266,9 +266,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -280,9 +280,9 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -292,18 +292,19 @@ Prefer to use the `Annotated` version if possible.
 
 ////
 
-## Declare scopes in *path operations* and dependencies
+## Declare escopos em *operações de rota* e dependências
 
-Now we declare that the *path operation* for `/users/me/items/` requires the scope `items`.
+Agora nós declaramos que a *operação de rota* para `/users/me/items/` exige o escopo `items`.
 
-For this, we import and use `Security` from `fastapi`.
+Para isso, nós importamos e utilizamos `Security` de `fastapi`.
 
-You can use `Security` to declare dependencies (just like `Depends`), but `Security` also receives a parameter `scopes` with a list of scopes (strings).
+Você pode utilizar `Security` para declarar dependências (assim como `Depends`), porém o `Security` também recebe o parâmetros `scopes` com uma lista de escopos (strings).
 
-In this case, we pass a dependency function `get_current_active_user` to `Security` (the same way we would do with `Depends`).
+Neste caso, nós passamos a função `get_current_active_user` como dependência para `Security` (da mesma forma que nós faríamos com `Depends`).
 
-But we also pass a `list` of scopes, in this case with just one scope: `items` (it could have more).
+Mas nós também passamos uma `list` de escopos, neste caso com apenas um escopo: `items` (poderia ter mais).
 
+E a função de dependência `get_current_active_user` também pode declarar subdependências, não apenas com `Depends`, mas também com `Security`. Ao dec
 And the dependency function `get_current_active_user` can also declare sub-dependencies, not only with `Depends` but also with `Security`. Declaring its own sub-dependency function (`get_current_user`), and more scope requirements.
 
 In this case, it requires the scope `me` (it could require more than one scope).
@@ -344,7 +345,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -358,7 +359,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -372,7 +373,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -434,7 +435,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -448,7 +449,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -462,7 +463,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -512,7 +513,7 @@ In this exception, we include the scopes required (if any) as a string separated
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -526,7 +527,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -540,7 +541,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -592,7 +593,7 @@ We also verify that we have a user with that username, and if not, we raise that
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -606,7 +607,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -620,7 +621,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -664,7 +665,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -678,7 +679,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
@@ -692,7 +693,7 @@ Prefer to use the `Annotated` version if possible.
 
 /// tip
 
-Prefer to use the `Annotated` version if possible.
+Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
