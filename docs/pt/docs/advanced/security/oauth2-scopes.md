@@ -60,7 +60,7 @@ Para o OAuth2, eles são apenas strings.
 
 ## Visão global
 
-Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - User Guide** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Agora utilizando escopos OAuth2:
+Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - Guia de Usuário** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Agora utilizando escopos OAuth2:
 
 //// tab | Python 3.10+
 
@@ -132,7 +132,7 @@ Agora vamos revisar essas mudanças passo a passo.
 
 ## Esquema de segurança OAuth2
 
-A primeira mudança é que agora nós estamos declarando o esquema de segurança OAuth2 com dpos escopos disponíveis, `me` e `items`.
+A primeira mudança é que agora nós estamos declarando o esquema de segurança OAuth2 com dois escopos disponíveis, `me` e `items`.
 
 O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descrição como valor:
 
@@ -202,7 +202,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você fizer login/autorizar.
+Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você fizer se autenticar/autorizar.
 
 E você poderá selecionar quais escopos você deseja dar acesso: `me` e `items`.
 
@@ -212,13 +212,13 @@ Este é o mesmo mecanismo utilizado quando você adiciona permissões enquanto s
 
 ## Token JWT com escopos
 
-Agora, modifique o *caminho de rota* token para retornar os escopos solicitados.
+Agora, modifique o *caminho de rota* para retornar os escopos solicitados.
 
 Nós ainda estamos utilizando o mesmo `OAuth2PasswordRequestForm`. Ele inclui a propriedade `scopes` com uma `list` de `str`, com cada escopo que ele recebeu na requisição.
 
 E nós retornamos os escopos como parte do token JWT.
 
-/// danger
+/// danger | "Cuidado"
 
 Para manter as coisas simples, aqui nós estamos apenas adicionando os escopos recebidos diretamente ao token.
 
@@ -304,16 +304,15 @@ Neste caso, nós passamos a função `get_current_active_user` como dependência
 
 Mas nós também passamos uma `list` de escopos, neste caso com apenas um escopo: `items` (poderia ter mais).
 
-E a função de dependência `get_current_active_user` também pode declarar subdependências, não apenas com `Depends`, mas também com `Security`. Ao dec
-And the dependency function `get_current_active_user` can also declare sub-dependencies, not only with `Depends` but also with `Security`. Declaring its own sub-dependency function (`get_current_user`), and more scope requirements.
+E a função de dependência `get_current_active_user` também pode declarar subdependências, não apenas com `Depends`, mas também com `Security`. Ao declarar sua própria função de subdependência (`get_current_user`), e mais requisitos de escopo.
 
-In this case, it requires the scope `me` (it could require more than one scope).
+Neste caso, ele requer o escopo `me` (poderia requerer mais de um escopo).
 
-/// note
+/// note | "Nota"
 
-You don't necessarily need to add different scopes in different places.
+Você não necessariamente precisa adicionar diferentes escopos em diferentes lugares.
 
-We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
+Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escopos declarados em diferentes níveis.
 
 ///
 
@@ -343,7 +342,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -357,7 +356,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -371,7 +370,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -383,29 +382,29 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-/// info | "Technical Details"
+/// info | "Informações Técnicas"
 
-`Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
+`Security` é na verdade uma subclasse de `Depends`, e ele possui apenas um parâmetro extra que veremos depois.
 
-But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
+Porém ao utilizar `Security` no lugar de `Depends`, o **FastAPI** saberá que ele pode declarar escopos de segurança, utilizá-los internamente, e documentar a API com o OpenAPI.
 
-But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, those are actually functions that return special classes.
+Mas quando você importa `Query`, `Path`, `Depends`, `Security` entre outros de `fastapi`, eles são na verdade funções que retornam classes especiais.
 
 ///
 
-## Use `SecurityScopes`
+## Utilize `SecurityScopes`
 
-Now update the dependency `get_current_user`.
+Agora atualize a dependência `get_current_user`.
 
-This is the one used by the dependencies above.
+Este é o usado pelas dependências acima.
 
-Here's where we are using the same OAuth2 scheme we created before, declaring it as a dependency: `oauth2_scheme`.
+Aqui é onde estamos utilizando o mesmo esquema OAuth2 que nós declaramos antes, declarando-o como uma dependência: `oauth2_scheme`.
 
-Because this dependency function doesn't have any scope requirements itself, we can use `Depends` with `oauth2_scheme`, we don't have to use `Security` when we don't need to specify security scopes.
+Porque esta função de dependência não possui nenhum requerimento de escopo, nós podemos utilizar `Depends` com o `oauth2_scheme`. Nós não precisamos utilizar `Security` quando nós não precisamos especificar escopos de segurança.
 
-We also declare a special parameter of type `SecurityScopes`, imported from `fastapi.security`.
+Nós também declaramos um parâmetro especial do tipo `SecurityScopes`, importado de `fastapi.security`.
 
-This `SecurityScopes` class is similar to `Request` (`Request` was used to get the request object directly).
+A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utilizada para obter o objeto da requisição diretamente).
 
 //// tab | Python 3.10+
 
@@ -433,7 +432,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -447,7 +446,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -461,7 +460,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -473,17 +472,17 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-## Use the `scopes`
+## Utilize os `scopes`
 
-The parameter `security_scopes` will be of type `SecurityScopes`.
+O parâmetro `security_scopes` será do tipo `SecurityScopes`.
 
-It will have a property `scopes` with a list containing all the scopes required by itself and all the dependencies that use this as a sub-dependency. That means, all the "dependants"... this might sound confusing, it is explained again later below.
+Ele terá a propriedade `scopes` com uma lista contendo todos os escopos requeridos por ele e todas as dependências que utilizam ele como uma subdependência. Isso significa, todos  os "dependentes"... pode soar meio confuso, e isso será explicado novamente mais adiante.
 
-The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_str` attribute with a single string, containing those scopes separated by spaces (we are going to use it).
+O objeto `security_scopes` (da classe `SecurityScopes`) também oferece um atributo `scope_str` com uma única string, contendo os escopos separados por espaços (nós vamos utilizar isso).
 
-We create an `HTTPException` that we can reuse (`raise`) later at several points.
+Nós criamos uma `HTTPException` que nós podemos reutilizar (`raise`) mais tarde em diversos lugares.
 
-In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
+Nesta exceção, nós incluímos os escopos necessários (se houver algum) como uma string separada por espaços (utilizando `scope_str`). Nós colocamos esta string contendo os escopos no cabeçalho `WWW-Authenticate` (isso é parte da especificação).
 
 //// tab | Python 3.10+
 
@@ -511,7 +510,7 @@ In this exception, we include the scopes required (if any) as a string separated
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -525,7 +524,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -539,7 +538,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -551,19 +550,19 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-## Verify the `username` and data shape
+## Verifique o `username` e o formato dos dados
 
-We verify that we get a `username`, and extract the scopes.
+Nós verificamos que nós obtemos um `username`, e extraímos os escopos.
 
-And then we validate that data with the Pydantic model (catching the `ValidationError` exception), and if we get an error reading the JWT token or validating the data with Pydantic, we raise the `HTTPException` we created before.
+E depois nós validamos esse dado com o modelo Pydantic (capturando a exceção `ValidationError`), e se nós obtemos um erro ao ler o token JWT ou validando os dados com o Pydantic, nós levantamos a exceção `HTTPException` que criamos anteriormente.
 
-For that, we update the Pydantic model `TokenData` with a new property `scopes`.
+Para isso, nós atualizamos o modelo Pydantic `TokenData` com a nova propriedade `scopes`.
 
-By validating the data with Pydantic we can make sure that we have, for example, exactly a `list` of `str` with the scopes and a `str` with the `username`.
+Ao validar os dados com o Pydantic nós podemos garantir que temos, por exemplo, exatamente uma `list` de `str` com os escopos e uma `str` com o `username`.
 
-Instead of, for example, a `dict`, or something else, as it could break the application at some point later, making it a security risk.
+No lugar de, por exemplo, um `dict`, ou alguma outra coisa, que poderia quebrar a aplicação em algum lugar mais tarde, tornando isso um risco de segurança.
 
-We also verify that we have a user with that username, and if not, we raise that same exception we created before.
+Nós também verificamos que nós temos um usuário com o "*username*", e caso contrário, nós levantamos a mesma exceção que criamos anteriormente.
 
 //// tab | Python 3.10+
 
@@ -591,7 +590,7 @@ We also verify that we have a user with that username, and if not, we raise that
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -605,7 +604,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -619,7 +618,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -631,11 +630,11 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-## Verify the `scopes`
+## Verifique os `scopes`
 
-We now verify that all the scopes required, by this dependency and all the dependants (including *path operations*), are included in the scopes provided in the token received, otherwise raise an `HTTPException`.
+Nós verificamos agora que todos os escopos necessários, por essa dependência e todos os dependentes (incluindo as *operações de rota*) estão incluídas nos escopos fornecidos pelo token recebido, caso contrário, levantamos uma `HTTPException`.
 
-For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
+Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com todos esses escopos como uma `str`.
 
 //// tab | Python 3.10+
 
@@ -663,7 +662,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -677,7 +676,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -691,7 +690,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | "Dica"
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -703,85 +702,85 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-## Dependency tree and scopes
+## Árvore de dependência e escopos
 
-Let's review again this dependency tree and the scopes.
+Vamos rever novamente essa árvore de dependência e os escopos.
 
-As the `get_current_active_user` dependency has as a sub-dependency on `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
+Como a dependência `get_current_active_user` possui uma subdependência em `get_current_user`, o escopo `"me"` declarado em `get_current_active_user` será incluído na lista de escopos necessários em `security_scopes.scopes` passado para `get_current_user`.
 
-The *path operation* itself also declares a scope, `"items"`, so this will also be in the list of `security_scopes.scopes` passed to `get_current_user`.
+A própria *operação de rota* também declara o escopo, `"items"`, então ele também estará na lista de `security_scopes.scopes` passado para o `get_current_user`.
 
-Here's how the hierarchy of dependencies and scopes looks like:
+Aqui está como a hierarquia de dependências e escopos parecem:
 
-* The *path operation* `read_own_items` has:
-    * Required scopes `["items"]` with the dependency:
+* A *operação de rota* `read_own_items` possui:
+    * Escopos necessários `["items"]` com a dependência:
     * `get_current_active_user`:
-        *  The dependency function `get_current_active_user` has:
-            * Required scopes `["me"]` with the dependency:
+        *  A função de dependência `get_current_active_user` possui:
+            * Escopos necessários `["me"]` com a dependência:
             * `get_current_user`:
-                * The dependency function `get_current_user` has:
-                    * No scopes required by itself.
-                    * A dependency using `oauth2_scheme`.
-                    * A `security_scopes` parameter of type `SecurityScopes`:
-                        * This `security_scopes` parameter has a property `scopes` with a `list` containing all these scopes declared above, so:
-                            * `security_scopes.scopes` will contain `["me", "items"]` for the *path operation* `read_own_items`.
-                            * `security_scopes.scopes` will contain `["me"]` for the *path operation* `read_users_me`, because it is declared in the dependency `get_current_active_user`.
-                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scopes` either.
+                * A função de dependência `get_current_user` possui:
+                    * Nenhum escopo necessário.
+                    * Uma dependência utilizando `oauth2_scheme`.
+                    * Um parâmetro `security_scopes` do tipo `SecurityScopes`:
+                        * Este parâmetro `security_scopes` possui uma propriedade `scopes` com uma `list` contendo todos estes escopos declarados acima, então:
+                            * `security_scopes.scopes` terá `["me", "items"]` para a *operação de rota* `read_own_items`.
+                            * `security_scopes.scopes` terá `["me"]` para a *operação de rota* `read_users_me`, porque ela declarou na dependência `get_current_active_user`.
+                            * `security_scopes.scopes` terá `[]` (nada) para a *operação de rota* `read_system_status`, porque ele não declarou nenhum `Security` com `scopes`, e sua dependência, `get_current_user`, não declara nenhum `scopes` também.
 
-/// tip
+/// tip | "Dica"
 
-The important and "magic" thing here is that `get_current_user` will have a different list of `scopes` to check for each *path operation*.
+A coisa importante e "mágica" aqui é que `get_current_user` terá diferentes listas de `scopes` para validar para cada *operação de rota*.
 
-All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific *path operation*.
+Tudo depende dos `scopes` declarados em cada *operação de rota* e cada dependência da árvore de dependências para aquela *operação de rota* específica.
 
 ///
 
-## More details about `SecurityScopes`
+## Mais detalhes sobre `SecurityScopes`
 
-You can use `SecurityScopes` at any point, and in multiple places, it doesn't have to be at the "root" dependency.
+Você pode utilizar `SecurityScopes` em qualquer lugar, e em diversos lugares. Ele não precisa estar na dependência "raiz".
 
-It will always have the security scopes declared in the current `Security` dependencies and all the dependants for **that specific** *path operation* and **that specific** dependency tree.
+Ele sempre terá os escopos de segurança declarados nas dependências atuais de `Security` e todos os dependentes para **aquela** *operação de rota* **específica** e **aquela** árvore de dependência **específica**.
 
-Because the `SecurityScopes` will have all the scopes declared by dependants, you can use it to verify that a token has the required scopes in a central dependency function, and then declare different scope requirements in different *path operations*.
+Porque o `SecurityScopes` terá todos os escopos declarados por dependentes, você pode utilizá-lo para verificar se o token possui os escopos necessários em uma função de dependência central, e depois declarar diferentes requisitos de escopo em diferentes *operações de rota*.
 
-They will be checked independently for each *path operation*.
+Todos eles serão validados independentemente para cada *operação de rota*.
 
-## Check it
+## Verifique
 
-If you open the API docs, you can authenticate and specify which scopes you want to authorize.
+Se você abrir os documentos da API, você pode antenticar e especificar quais escopos você quer autorizar.
 
 <img src="/img/tutorial/security/image11.png">
 
-If you don't select any scope, you will be "authenticated", but when you try to access `/users/me/` or `/users/me/items/` you will get an error saying that you don't have enough permissions. You will still be able to access `/status/`.
+Se você não selecionar nenhum escopo, você terá "autenticado", mas quando você tentar acessar `/users/me/` ou `/users/me/items/`, você vai obter um erro dizendo que você não possui as permissões necessárias. Você ainda poderá acessar `/status/`.
 
-And if you select the scope `me` but not the scope `items`, you will be able to access `/users/me/` but not `/users/me/items/`.
+E se você selecionar o escopo `me`, mas não o escopo `items`, você poderá acessar `/users/me/`, mas não `/users/me/items/`.
 
-That's what would happen to a third party application that tried to access one of these *path operations* with a token provided by a user, depending on how many permissions the user gave the application.
+Isso é o que aconteceria se uma aplicação terceira que tentou acessar uma dessas *operações de rota* com um token fornecido por um usuário, dependendo de quantas permissões o usuário forneceu para a aplicação.
 
-## About third party integrations
+## Sobre integrações de terceiros
 
-In this example we are using the OAuth2 "password" flow.
+Neste exemplos nós estamos utilizando o fluxo de senha do OAuth2.
 
-This is appropriate when we are logging in to our own application, probably with our own frontend.
+Isso é apropriado quando nós estamos autenticando em nossa própria aplicação, provavelmente com o nosso próprio "*frontend*".
 
-Because we can trust it to receive the `username` and `password`, as we control it.
+Porque nós podemos confiar nele para receber o `username` e o `password`, pois nós controlamos isso.
 
-But if you are building an OAuth2 application that others would connect to (i.e., if you are building an authentication provider equivalent to Facebook, Google, GitHub, etc.) you should use one of the other flows.
+Mas se nós estamos construindo uma aplicação OAuth2 que outros poderiam conectar (i.e., se você está construindo um provedor de autenticação equivalente ao Facebook, Google, GitHub, etc.) você deveria utilizar um dos outros fluxos.
 
-The most common is the implicit flow.
+O mais comum é o fluxo implícito.
 
-The most secure is the code flow, but is more complex to implement as it requires more steps. As it is more complex, many providers end up suggesting the implicit flow.
+O mais seguro é o fluxo de código, mas ele é mais complexo para implementar, pois ele necessita mais passos. Como ele é mais complexo, muitos provedores terminam sugerindo o fluxo implícito.
 
-/// note
+/// note | "Nota"
 
-It's common that each authentication provider names their flows in a different way, to make it part of their brand.
+É comum que cada provedor de autenticação nomeie os seus fluxos de forma diferente, para torná-lo parte de sua marca.
 
-But in the end, they are implementing the same OAuth2 standard.
+Mas no final, eles estão implementando o mesmo padrão OAuth2.
 
 ///
 
-**FastAPI** includes utilities for all these OAuth2 authentication flows in `fastapi.security.oauth2`.
+O **FastAPI** inclui utilitários para todos esses fluxos de autenticação OAuth2 em `fastapi.security.oauth2`.
 
-## `Security` in decorator `dependencies`
+## `Security` em docoradores de `dependências`
 
-The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.
+Da mesma forma que você pode definir uma `list` de `Depends` no parâmetro de `dependencias` do decorador (como explicado em [Dependências em decoradores de operações de rota](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), você também pode utilizar `Security` com escopos lá.
