@@ -1,6 +1,6 @@
 # Swagger-Oberfläche konfigurieren
 
-Sie können einige zusätzliche <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Parameter der Swagger-Oberfläche</a> konfigurieren.
+Sie können einige zusätzliche <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Parameter der Swagger-Oberfläche</a> konfigurieren.
 
 Um diese zu konfigurieren, übergeben Sie das Argument `swagger_ui_parameters` beim Erstellen des `FastAPI()`-App-Objekts oder an die Funktion `get_swagger_ui_html()`.
 
@@ -58,7 +58,7 @@ Um beispielsweise `deepLinking` zu deaktivieren, könnten Sie folgende Einstellu
 
 ## Andere Parameter der Swagger-Oberfläche
 
-Um alle anderen möglichen Konfigurationen zu sehen, die Sie verwenden können, lesen Sie die offizielle <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Dokumentation für die Parameter der Swagger-Oberfläche</a>.
+Um alle anderen möglichen Konfigurationen zu sehen, die Sie verwenden können, lesen Sie die offizielle <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Dokumentation für die Parameter der Swagger-Oberfläche</a>.
 
 ## JavaScript-basierte Einstellungen
 
