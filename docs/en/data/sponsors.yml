@@ -26,9 +26,6 @@ gold:
   - url: https://zuplo.link/fastapi-gh
     title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
-  - url: https://fine.dev?ref=fastapibadge
-    title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
-    img: https://fastapi.tiangolo.com/img/sponsors/fine.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
