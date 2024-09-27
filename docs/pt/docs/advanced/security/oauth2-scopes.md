@@ -46,7 +46,7 @@ Eles são normalmente utilizados para declarar permissões de segurança especí
 * `instagram_basic` é utilizado pelo Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` é utilizado pelo Google.
 
-/// info | "Informação"
+/// info | Informação
 
 No OAuth2, um "escopo" é apenas uma string que declara uma permissão específica necessária.
 
@@ -88,7 +88,7 @@ Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -102,7 +102,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -116,7 +116,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -162,7 +162,7 @@ O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descr
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -176,7 +176,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -190,7 +190,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -202,7 +202,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você fizer se autenticar/autorizar.
+Pelo motivo de estarmos declarando estes escopos, eles aparecerão nos documentos da API quando você se autenticar/autorizar.
 
 E você poderá selecionar quais escopos você deseja dar acesso: `me` e `items`.
 
@@ -218,7 +218,7 @@ Nós ainda estamos utilizando o mesmo `OAuth2PasswordRequestForm`. Ele inclui a 
 
 E nós retornamos os escopos como parte do token JWT.
 
-/// danger | "Cuidado"
+/// danger | Cuidado
 
 Para manter as coisas simples, aqui nós estamos apenas adicionando os escopos recebidos diretamente ao token.
 
@@ -252,7 +252,7 @@ Porém em sua aplicação, por segurança, você deve garantir que você apenas 
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -266,7 +266,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -280,7 +280,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -342,7 +342,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -356,7 +356,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -370,7 +370,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -382,7 +382,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-/// info | "Informações Técnicas"
+/// info | Informações Técnicas
 
 `Security` é na verdade uma subclasse de `Depends`, e ele possui apenas um parâmetro extra que veremos depois.
 
@@ -432,7 +432,7 @@ A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utili
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -446,7 +446,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -460,7 +460,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -510,7 +510,7 @@ Nesta exceção, nós incluímos os escopos necessários (se houver algum) como 
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -524,7 +524,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -538,7 +538,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -590,7 +590,7 @@ Nós também verificamos que nós temos um usuário com o "*username*", e caso c
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -604,7 +604,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -618,7 +618,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -662,7 +662,7 @@ Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com 
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -676,7 +676,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -690,7 +690,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -727,7 +727,7 @@ Aqui está como a hierarquia de dependências e escopos parecem:
                             * `security_scopes.scopes` terá `["me"]` para a *operação de rota* `read_users_me`, porque ela declarou na dependência `get_current_active_user`.
                             * `security_scopes.scopes` terá `[]` (nada) para a *operação de rota* `read_system_status`, porque ele não declarou nenhum `Security` com `scopes`, e sua dependência, `get_current_user`, não declara nenhum `scopes` também.
 
-/// tip | "Dica"
+/// tip | Dica
 
 A coisa importante e "mágica" aqui é que `get_current_user` terá diferentes listas de `scopes` para validar para cada *operação de rota*.
 
