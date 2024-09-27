@@ -18,7 +18,6 @@ def init_db(session: Session) -> None:
     # the tables un-commenting the next lines
     # from sqlmodel import SQLModel
 
-    # from app.core.engine import engine
     # This works because the models are already imported and registered from app.models
     # SQLModel.metadata.create_all(engine)
 
