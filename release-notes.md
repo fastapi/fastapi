@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Refactors
+
+* 💡 Remove unnecessary comment. PR [#1260](https://github.com/fastapi/full-stack-fastapi-template/pull/1260) by [@sebhani](https://github.com/sebhani).
+
 ### Internal
 
 * 👷 Generate and commit client only on same repo PRs, on forks, show the error. PR [#1376](https://github.com/fastapi/full-stack-fastapi-template/pull/1376) by [@tiangolo](https://github.com/tiangolo).
