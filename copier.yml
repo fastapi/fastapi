@@ -97,4 +97,4 @@ _exclude:
 _answers_file: .copier/.copier-answers.yml
 
 _tasks:
-  - "python .copier/update_dotenv.py"
+  - ["{{ _copier_python }}", .copier/update_dotenv.py]
