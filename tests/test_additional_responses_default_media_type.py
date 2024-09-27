@@ -1,6 +1,6 @@
 """
-    This test is about the possibility of superimposing an additional response's media_type
-    over the default route's response class's media_type.
+This test is about the possibility of superimposing an additional response's media_type
+over the default route's response class's media_type.
 """
 
 from fastapi import FastAPI
