@@ -62,7 +62,7 @@ Utilize uma dependência para verificar se o usuário e a senha estão corretos.
 
 Para isso, utilize o módulo padrão do Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar o usuário e senha.
 
-O `secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em Inglês). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
+O `secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em inglês). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
 
 Para lidar com isso, primeiramente nós convertemos o `username` e o `password` para `bytes`, codificando-os com UTF-8.
 
@@ -106,11 +106,11 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
     ...
 ```
 
-Porém ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "ataque de temporização (timing attacks)".
+Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks" (ataques de temporização).
 
 ### Ataques de Temporização
 
-Mas o que é um "ataque de temporização"?
+Mas o que é um "timing attack" (ataque de temporização)?
 
 Vamos imaginar que alguns invasores estão tentando adivinhar o usuário e a senha.
 
@@ -125,7 +125,7 @@ if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
 
 Mas no exato momento que o Python compara o primeiro `j` em `johndoe` contra o primeiro `s` em `stanleyjobson`, ele retornará `False`, porque ele já sabe que aquelas duas strings não são a mesma, pensando que "não existe a necessidade de desperdiçar mais poder computacional comparando o resto das letras". E a sua aplicação dirá "Usuário ou senha incorretos".
 
-Mas então os invasores vão tentar com o usuário `stanleyjobsox` e a senha `love123`.
+Então os invasores vão tentar com o usuário `stanleyjobsox` e a senha `love123`.
 
 E a sua aplicação faz algo como:
 
@@ -134,11 +134,11 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-O Python terá que comparar todo o `stanleyjobso` tanto em `stanleyjobsox` como em `stanleyjobson` antes de perceber que as strings não são a mesma. Então isso levará alguns microsegundos a mais para retornar "Usuário ou senha incorretos".
+O Python terá que comparar todo o `stanleyjobso` tanto em `stanleyjobsox` como em `stanleyjobson` antes de perceber que as strings não são a mesma. Então isso levará alguns microssegundos a mais para retornar "Usuário ou senha incorretos".
 
 #### O tempo para responder ajuda os invasores
 
-Neste ponto, ao perceber que o servidor demorou alguns microsegundos a mais para enviar o retorno "Usuário ou senha incorretos", os invasores irão saber que eles acertaram _alguma coisa_, algumas das letras iniciais estavam certas.
+Neste ponto, ao perceber que o servidor demorou alguns microssegundos a mais para enviar o retorno "Usuário ou senha incorretos", os invasores irão saber que eles acertaram _alguma coisa_, algumas das letras iniciais estavam certas.
 
 E eles podem tentar de novo sabendo que provavelmente é algo mais parecido com `stanleyjobsox` do que com `johndoe`.
 
@@ -150,16 +150,16 @@ Mas fazendo isso, em alguns minutos ou horas os invasores teriam adivinhado o us
 
 #### Corrija com o `secrets.compare_digest()`
 
-Mas em nosso código nós estamos utilizando o `secrets.compare_digest()`.
+Mas em nosso código já estamos utilizando o `secrets.compare_digest()`.
 
 Resumindo, levará o mesmo tempo para comparar `stanleyjobsox` com `stanleyjobson` do que comparar `johndoe` com `stanleyjobson`. E o mesmo para a senha.
 
-Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação, ela esterá a salvo contra toda essa gama de ataques de segurança.
+Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação, ela estará a salvo contra toda essa gama de ataques de segurança.
 
 
 ### Retorne o erro
 
-Depois de detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
+Após detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
 
 //// tab | Python 3.9+
 
