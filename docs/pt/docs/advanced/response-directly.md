@@ -1,6 +1,6 @@
 # Retornando uma Resposta Diretamente
 
-Quando você cria uma *operação de rota* no **FastAPI** você pode retornar qualquer dado nela: um dicionário (`dict`), uma lista (`list`), um modelo do Pydantic ou banco de dados, etc.
+Quando você cria uma *operação de rota* no **FastAPI** você pode retornar qualquer dado nela: um dicionário (`dict`), uma lista (`list`), um modelo do Pydantic ou do seu banco de dados, etc.
 
 Por padrão, o **FastAPI** irá converter automaticamente o valor do retorno para JSON utilizando o `jsonable_encoder` explicado em [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
 
@@ -67,4 +67,4 @@ Quando você retorna uma `Response` diretamente os dados não são validados, co
 Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI
 ](additional-responses.md){.internal-link target=_blank}.
 
-Você pode ver nas próximas seção como usar/declarar essas `Responses` customizadas enquanto mantém a conversão e documentação automática dos dados.
+Você pode ver nas próximas seções como usar/declarar essas `Responses` customizadas enquanto mantém a conversão e documentação automática dos dados.
