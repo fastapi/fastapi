@@ -12,7 +12,7 @@ Isso é suportado desde a versão `0.115.0` do FastAPI. 🤓
 
 /// tip | Dica
 
-Essa mesma técnica se aplica para `Query`, `Cookie`, e `Header`. 😎 
+Essa mesma técnica se aplica para `Query`, `Cookie`, e `Header`. 😎
 
 ///
 
@@ -97,7 +97,7 @@ Mas mesmo que você **adicionar os dados** e clicar em "Executar", pelo motivo d
 Em alguns casos especiais (provavelmente não muito comuns), você pode querer **restringir** os cookies que você deseja receber.
 
 Agora a sua API possui o poder de contrar o seu próprio <abbr title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</abbr>. 🤪🍪
- 
+
 
  Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer campo `extra`.
 
