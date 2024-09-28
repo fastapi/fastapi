@@ -8,6 +8,8 @@ The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
 
 The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
 
+There will also be a guide on using SQLModel with async code. 😎
+
 ///
 
 **FastAPI** doesn't require you to use a SQL (relational) database.
@@ -718,12 +720,6 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     db_user = crud.get_user(db, user_id=user_id)
     ...
 ```
-
-/// info
-
-If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
-
-///
 
 /// note | "Very Technical Details"
 
