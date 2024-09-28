@@ -33,7 +33,9 @@ jobs:
         with:
           version: "0.4.15"
           enable-cache: true
-          cache-dependency-glob: "{requirements**.txt,pyproject.toml}"
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements-tests.txt
       - name: Install Pydantic v2
