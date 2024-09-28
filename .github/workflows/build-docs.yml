@@ -57,7 +57,9 @@ jobs:
         with:
           version: "0.4.15"
           enable-cache: true
-          cache-dependency-glob: "{requirements**.txt,pyproject.toml}"
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
       # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
@@ -97,7 +99,9 @@ jobs:
         with:
           version: "0.4.15"
           enable-cache: true
-          cache-dependency-glob: "{requirements**.txt,pyproject.toml}"
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
       - name: Install Material for MkDocs Insiders

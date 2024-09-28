@@ -28,7 +28,9 @@ jobs:
       with:
         version: "0.4.15"
         enable-cache: true
-        cache-dependency-glob: "{requirements**.txt,pyproject.toml}"
+        cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
     - name: Install GitHub Actions dependencies
       run: uv pip install -r requirements-github-actions.txt
     - name: Label Approved
