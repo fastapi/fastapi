@@ -62,7 +62,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 Então declare os paramêtros de cookie usando a mesma estrutura que em `Path` e `Query`.
 
-Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação: 
+Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
 
 //// tab | Python 3.10+
