@@ -17,10 +17,23 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - uses: docker://tiangolo/label-approved:0.0.4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        config: >
+        python-version: "3.11"
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+    - name: Install GitHub Actions dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: pip install -r requirements-github-actions.txt
+    - name: Label Approved
+      run: python ./scripts/label_approved.py
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG: >
           {
             "approved-1":
               {
