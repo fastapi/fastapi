@@ -737,7 +737,7 @@ Tudo depende dos `scopes` declarados em cada *operação de rota* e cada depend�
 
 ## Mais detalhes sobre `SecurityScopes`
 
-Você pode utilizar `SecurityScopes` em qualquer lugar, e em diversos lugares. Ele não precisa estar na dependência "raiz".
+Você pode utilizar `SecurityScopes` em qualquer lugar, e em diversos lugares. Ele não precisa estar na dependência "raiz". 
 
 Ele sempre terá os escopos de segurança declarados nas dependências atuais de `Security` e todos os dependentes para **aquela** *operação de rota* **específica** e **aquela** árvore de dependência **específica**.
 
