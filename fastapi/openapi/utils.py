@@ -3,6 +3,7 @@ import inspect
 import warnings
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
+from fastapi import FastAPI
 from fastapi import routing
 from fastapi._compat import (
     GenerateJsonSchema,
@@ -546,3 +547,100 @@ def get_openapi(
     if tags:
         output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+
+
+
+class ConsolidatedOpenAPI:
+    """
+    ConsolidatedOpenAPI is a utility class for combining the OpenAPI schemas of a main FastAPI application and multiple sub-applications.
+    It generates a consolidated OpenAPI schema that includes the routes of both the main app and the sub-apps.
+
+    Usage:
+        ```python
+        app = FastAPI()
+        sub_app = FastAPI()
+
+        app.mount("/sub", sub_app, name="sub")
+        app.openapi = CustomOpenAPI(title="Consolidated API", app=app, sub_apps=[sub_app], version="1.0.0")
+        unicorn.run(app, host="localhost", port=8000)
+        ```
+    Then you will see all the routes of the main app and the sub-apps in `http://localhost:8000/docs`.
+    Created by Zhengde Zhang on 2024-09-30.
+    """
+
+    def __init__(
+            self, 
+            title: str,
+            app: FastAPI, 
+            sub_apps: list[FastAPI],
+            version: str,
+            openapi_version: str = "3.1.0",
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            tags: Optional[List[Dict[str, Any]]] = None,
+            servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+            terms_of_service: Optional[str] = None,
+            contact: Optional[Dict[str, Union[str, Any]]] = None,
+            license_info: Optional[Dict[str, Union[str, Any]]] = None,
+            separate_input_output_schemas: bool = True,
+            ) -> None:
+        """
+        Initializes the ConsolidatedOpenAPI class with the given parameters.
+
+        Args:
+        title (str): The title of the API.
+        app (FastAPI): The main FastAPI application instance.
+        sub_apps (list[FastAPI]): A list of sub-application FastAPI instances.
+        version (str): The version of the API.
+        openapi_version (str, optional): The OpenAPI version. Defaults to "3.1.0".
+        summary (str, optional): A brief summary of the API. Defaults to None.
+        description (str, optional): A detailed description of the API. Defaults to None.
+        tags (List[Dict[str, Any]], optional): A list of tags for categorizing operations. Defaults to None.
+        servers (List[Dict[str, Union[str, Any]]], optional): A list of server objects providing connectivity information. Defaults to None.
+        terms_of_service (str, optional): A URL to the terms of service for the API. Defaults to None.
+        contact (Dict[str, Union[str, Any]], optional): Contact information for the API. Defaults to None.
+        license_info (Dict[str, Union[str, Any]], optional): Licensing information for the API. Defaults to None.
+        separate_input_output_schemas (bool, optional): Whether to generate separate schemas for input and output data. Defaults to True.
+        """
+        self.title = title
+        self.version = version
+        self.app = app
+        self.sub_apps = sub_apps
+        self.kwargs = {
+            "openapi_version": openapi_version,
+            "summary": summary,
+            "description": description,
+            "tags": tags,
+            "servers": servers,
+            "terms_of_service": terms_of_service,
+            "contact": contact,
+            "license_info": license_info,
+            "separate_input_output_schemas": separate_input_output_schemas,
+        }
+
+    def __call__(self):
+        """
+        Generates and returns the combined OpenAPI schema for the main app and sub-apps.
+
+        Returns:
+        dict: The combined OpenAPI schema.
+        """
+        if self.app.openapi_schema:
+            return self.app.openapi_schema
+        openapi_schema = get_openapi(
+            title=self.title,
+            version=self.version,
+            routes=self.app.routes,
+            **self.kwargs
+        )
+        for sub_app in self.sub_apps:
+            subapp_schema = sub_app.openapi()
+            sub_app_mount = [x for x in self.app.routes if x.app == sub_app]
+            assert len(sub_app_mount) == 1, f"Faild to find the sub app {sub_app}, please mount the sub app to the main app using `app.mount(...)` first"
+            sub_app_mount_path = sub_app_mount[0].path
+            for path, path_item in subapp_schema["paths"].items():
+                openapi_schema["paths"][f"{sub_app_mount_path}" + path] = path_item
+            
+        self.app.openapi_schema = openapi_schema
+        return self.app.openapi_schema
+    
