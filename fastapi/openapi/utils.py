@@ -3,8 +3,7 @@ import inspect
 import warnings
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
-from fastapi import FastAPI
-from fastapi import routing
+from fastapi import FastAPI, routing
 from fastapi._compat import (
     GenerateJsonSchema,
     JsonSchemaValue,
@@ -549,7 +548,6 @@ def get_openapi(
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
 
 
-
 class ConsolidatedOpenAPI:
     """
     ConsolidatedOpenAPI is a utility class for combining the OpenAPI schemas of a main FastAPI application and multiple sub-applications.
@@ -569,21 +567,21 @@ class ConsolidatedOpenAPI:
     """
 
     def __init__(
-            self, 
-            title: str,
-            app: FastAPI, 
-            sub_apps: list[FastAPI],
-            version: str,
-            openapi_version: str = "3.1.0",
-            summary: Optional[str] = None,
-            description: Optional[str] = None,
-            tags: Optional[List[Dict[str, Any]]] = None,
-            servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
-            terms_of_service: Optional[str] = None,
-            contact: Optional[Dict[str, Union[str, Any]]] = None,
-            license_info: Optional[Dict[str, Union[str, Any]]] = None,
-            separate_input_output_schemas: bool = True,
-            ) -> None:
+        self,
+        title: str,
+        app: FastAPI,
+        sub_apps: list[FastAPI],
+        version: str,
+        openapi_version: str = "3.1.0",
+        summary: Optional[str] = None,
+        description: Optional[str] = None,
+        tags: Optional[List[Dict[str, Any]]] = None,
+        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+        terms_of_service: Optional[str] = None,
+        contact: Optional[Dict[str, Union[str, Any]]] = None,
+        license_info: Optional[Dict[str, Union[str, Any]]] = None,
+        separate_input_output_schemas: bool = True,
+    ) -> None:
         """
         Initializes the ConsolidatedOpenAPI class with the given parameters.
 
@@ -631,16 +629,17 @@ class ConsolidatedOpenAPI:
             title=self.title,
             version=self.version,
             routes=self.app.routes,
-            **self.kwargs
+            **self.kwargs,
         )
         for sub_app in self.sub_apps:
             subapp_schema = sub_app.openapi()
             sub_app_mount = [x for x in self.app.routes if x.app == sub_app]
-            assert len(sub_app_mount) == 1, f"Faild to find the sub app {sub_app}, please mount the sub app to the main app using `app.mount(...)` first"
+            assert (
+                len(sub_app_mount) == 1
+            ), f"Faild to find the sub app {sub_app}, please mount the sub app to the main app using `app.mount(...)` first"
             sub_app_mount_path = sub_app_mount[0].path
             for path, path_item in subapp_schema["paths"].items():
                 openapi_schema["paths"][f"{sub_app_mount_path}" + path] = path_item
-            
+
         self.app.openapi_schema = openapi_schema
         return self.app.openapi_schema
-    
