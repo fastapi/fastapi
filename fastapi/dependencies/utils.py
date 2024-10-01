@@ -258,6 +258,7 @@ def get_dependant(
     *,
     path: str,
     call: Callable[..., Any],
+    param_convertors: Optional[Dict[str, Any]] = {},
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
@@ -272,6 +273,15 @@ def get_dependant(
         security_scopes=security_scopes,
         use_cache=use_cache,
     )
+    assert param_convertors is not None
+    for param_name, param_convertor in param_convertors.items():
+        assert "return" in param_convertor.convert.__annotations__
+        annotation = param_convertor.convert.__annotations__["return"]
+        param_details = analyze_param(
+            param_name=param_name, annotation=annotation, is_path_param=True, value=None
+        )
+        assert param_details is not None
+        add_param_to_fields(field=param_details.field, dependant=dependant)
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
