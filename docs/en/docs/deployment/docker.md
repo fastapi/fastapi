@@ -285,7 +285,7 @@ CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 
 #### Docker Cache
 
-There's an important trick in this `Dockerfile`, we first copy the **file with the dependencies alone**, not the rest of the code. Let me tell you why is that.
+There's an important trick in this `Dockerfile`, we first copy the **file with the dependencies alone**, not the rest of the code. Let me tell you why we do this.
 
 ```Dockerfile
 COPY ./requirements.txt /code/requirements.txt
