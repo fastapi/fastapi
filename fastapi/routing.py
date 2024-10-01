@@ -549,7 +549,11 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint, param_convertors=self.param_convertors)
+        self.dependant = get_dependant(
+            path=self.path_format,
+            call=self.endpoint,
+            param_convertors=self.param_convertors,
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
