@@ -1,7 +1,6 @@
 import {
   Badge,
   Box,
-  Button,
   Container,
   Flex,
   Heading,
@@ -23,6 +22,7 @@ import { type UserPublic, UsersService } from "../../client"
 import AddUser from "../../components/Admin/AddUser"
 import ActionsMenu from "../../components/Common/ActionsMenu"
 import Navbar from "../../components/Common/Navbar"
+import { PaginationFooter } from "../../components/Common/PaginationFooter.tsx"
 
 const usersSearchSchema = z.object({
   page: z.number().catch(1),
@@ -128,7 +128,7 @@ function UsersTable() {
                     <ActionsMenu
                       type="User"
                       value={user}
-                      disabled={currentUser?.id === user.id ? true : false}
+                      disabled={currentUser?.id === user.id}
                     />
                   </Td>
                 </Tr>
@@ -137,21 +137,12 @@ function UsersTable() {
           )}
         </Table>
       </TableContainer>
-      <Flex
-        gap={4}
-        alignItems="center"
-        mt={4}
-        direction="row"
-        justifyContent="flex-end"
-      >
-        <Button onClick={() => setPage(page - 1)} isDisabled={!hasPreviousPage}>
-          Previous
-        </Button>
-        <span>Page {page}</span>
-        <Button isDisabled={!hasNextPage} onClick={() => setPage(page + 1)}>
-          Next
-        </Button>
-      </Flex>
+      <PaginationFooter
+        onChangePage={setPage}
+        page={page}
+        hasNextPage={hasNextPage}
+        hasPreviousPage={hasPreviousPage}
+      />
     </>
   )
 }
