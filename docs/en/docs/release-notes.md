@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+*  🌐 Update Portuguese translation for `docs/pt/docs/advanced/security/http-basic-auth.md`. PR [#12275](https://github.com/fastapi/fastapi/pull/12275) by [@andersonrocha0](https://github.com/andersonrocha0).
 * 🌐 Add Portuguese translation for `docs/pt/docs/deployment/cloud.md`. PR [#12217](https://github.com/fastapi/fastapi/pull/12217) by [@marcelomarkus](https://github.com/marcelomarkus).
 * ✏️ Fix typo in `docs/es/docs/python-types.md`. PR [#12235](https://github.com/fastapi/fastapi/pull/12235) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
 * 🌐 Add Dutch translation for `docs/nl/docs/environment-variables.md`. PR [#12200](https://github.com/fastapi/fastapi/pull/12200) by [@maxscheijen](https://github.com/maxscheijen).
