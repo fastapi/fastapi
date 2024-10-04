@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/concepts.md`. PR [#12219](https://github.com/fastapi/fastapi/pull/12219) by [@marcelomarkus](https://github.com/marcelomarkus).
 * 🌐 Add Portuguese translation for `docs/pt/docs/how-to/conditional-openapi.md`. PR [#12221](https://github.com/fastapi/fastapi/pull/12221) by [@marcelomarkus](https://github.com/marcelomarkus).
 * 🌐 Add Portuguese translation for `docs/pt/docs/advanced/response-directly.md`. PR [#12266](https://github.com/fastapi/fastapi/pull/12266) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Update Portuguese translation for `docs/pt/docs/tutorial/cookie-params.md`. PR [#12297](https://github.com/fastapi/fastapi/pull/12297) by [@ceb10n](https://github.com/ceb10n).
