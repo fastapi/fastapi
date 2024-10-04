@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/response-directly.md`. PR [#12266](https://github.com/fastapi/fastapi/pull/12266) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Update Portuguese translation for `docs/pt/docs/tutorial/cookie-params.md`. PR [#12297](https://github.com/fastapi/fastapi/pull/12297) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Fix Korean translation for `docs/ko/docs/tutorial/index.md`. PR [#12278](https://github.com/fastapi/fastapi/pull/12278) by [@kkotipy](https://github.com/kkotipy).
 *  🌐 Update Portuguese translation for `docs/pt/docs/advanced/security/http-basic-auth.md`. PR [#12275](https://github.com/fastapi/fastapi/pull/12275) by [@andersonrocha0](https://github.com/andersonrocha0).
