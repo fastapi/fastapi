@@ -1,6 +1,6 @@
 # 配置 Swagger UI
 
-你可以配置一些额外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Swagger UI 参数</a>.
+你可以配置一些额外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 参数</a>.
 
 如果需要配置它们，可以在创建 `FastAPI()` 应用对象时或调用 `get_swagger_ui_html()` 函数时传递 `swagger_ui_parameters` 参数。
 
@@ -58,7 +58,7 @@ FastAPI 包含了一些默认配置参数，适用于大多数用例。
 
 ## 其他 Swagger UI 参数
 
-查看其他 Swagger UI 参数，请阅读 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">docs for Swagger UI parameters</a>。
+查看其他 Swagger UI 参数，请阅读 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">docs for Swagger UI parameters</a>。
 
 ## JavaScript-only 配置
 
