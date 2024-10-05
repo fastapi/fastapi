@@ -92,6 +92,10 @@ Articles:
     author_link: https://uk.linkedin.com/in/bengamble7
     link: https://ably.com/blog/realtime-ticket-booking-solution-kafka-fastapi-ably
     title: Building a realtime ticket booking solution with Kafka, FastAPI, and Ably
+  - author: Balthazar Rouberol
+    author_link: https://balthazar-rouberol.com
+    link: https://blog.balthazar-rouberol.com/how-to-profile-a-fastapi-asynchronous-request
+    title: How to profile a FastAPI asynchronous request
   - author: Shahriyar(Shako) Rzayev
     author_link: https://www.linkedin.com/in/shahriyar-rzayev/
     link: https://www.azepug.az/posts/fastapi/#building-simple-e-commerce-with-nuxtjs-and-fastapi-series
