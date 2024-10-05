@@ -16,7 +16,7 @@ def test_upload_file_invalid():
 
 def test_upload_file_invalid_pydantic_v2():
     with pytest.raises(ValueError):
-        UploadFile._validate("not a Starlette UploadFile", {})
+        UploadFile._model_validate("not a Starlette UploadFile", {})
 
 
 def test_default_placeholder_equals():

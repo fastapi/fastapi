@@ -28,17 +28,11 @@ from pydantic.version import VERSION as P_VERSION
 from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined, PydanticUndefinedType
 from pydantic_core import Url as Url
+from pydantic_core.core_schema import (
+    with_info_plain_validator_function as with_info_plain_validator_function,
+)
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-try:
-    from pydantic_core.core_schema import (
-        with_info_plain_validator_function as with_info_plain_validator_function,
-    )
-except ImportError:  # pragma: no cover
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
-    )
 
 # Reassign variable to make it reexported for mypy
 PYDANTIC_VERSION = P_VERSION
@@ -162,12 +156,6 @@ def get_schema_from_model_field(
     )
     # This expects that GenerateJsonSchema was already used to generate the definitions
     json_schema = field_mapping[(field, override_mode or field.mode)]
-    if "$ref" not in json_schema:
-        # TODO remove when deprecating Pydantic v1
-        # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-        json_schema["title"] = field.field_info.title or field.alias.title().replace(
-            "_", " "
-        )
     return json_schema
 
 

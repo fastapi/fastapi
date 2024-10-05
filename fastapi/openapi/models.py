@@ -136,10 +136,7 @@ class Schema(BaseModelWithConfig):
     else_: Optional["SchemaOrBool"] = Field(default=None, alias="else")
     dependentSchemas: Optional[Dict[str, "SchemaOrBool"]] = None
     prefixItems: Optional[List["SchemaOrBool"]] = None
-    # TODO: uncomment and remove below when deprecating Pydantic v1
-    # It generales a list of schemas for tuples, before prefixItems was available
-    # items: Optional["SchemaOrBool"] = None
-    items: Optional[Union["SchemaOrBool", List["SchemaOrBool"]]] = None
+    items: Optional["SchemaOrBool"] = None
     contains: Optional["SchemaOrBool"] = None
     properties: Optional[Dict[str, "SchemaOrBool"]] = None
     patternProperties: Optional[Dict[str, "SchemaOrBool"]] = None
