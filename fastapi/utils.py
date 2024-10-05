@@ -15,7 +15,6 @@ import fastapi
 from fastapi._compat import (
     ModelField,
     Undefined,
-    Validator,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel, PydanticSchemaGenerationError
@@ -55,13 +54,11 @@ def get_path_param_names(path: str) -> Set[str]:
 def create_model_field(
     name: str,
     type_: Any,
-    class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
-    class_validators = class_validators or {}
     field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
 
     try:
