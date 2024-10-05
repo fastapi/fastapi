@@ -367,7 +367,11 @@ def test_openapi_schema(client: TestClient):
                             }
                         ),
                         "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string"},
+                        "password": {
+                            "title": "Password",
+                            "type": "string",
+                            "format": "password",
+                        },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
                         "client_id": IsDict(
                             {
@@ -383,6 +387,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "format": "password",
                             }
                         )
                         | IsDict(
