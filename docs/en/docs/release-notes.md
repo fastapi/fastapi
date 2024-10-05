@@ -9,10 +9,21 @@ hide:
 
 ### Docs
 
+* 📝 Update link to Swagger UI configuration docs. PR [#12264](https://github.com/fastapi/fastapi/pull/12264) by [@makisukurisu](https://github.com/makisukurisu).
+* 📝 Adding links for Playwright and Vite in `docs/project-generation.md`. PR [#12274](https://github.com/fastapi/fastapi/pull/12274) by [@kayqueGovetri](https://github.com/kayqueGovetri).
 * 📝 Fix small typos in the documentation. PR [#12213](https://github.com/fastapi/fastapi/pull/12213) by [@svlandeg](https://github.com/svlandeg).
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/graphql.md`. PR [#12215](https://github.com/fastapi/fastapi/pull/12215) by [@AnandaCampelo](https://github.com/AnandaCampelo).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/security/oauth2-scopes.md`. PR [#12263](https://github.com/fastapi/fastapi/pull/12263) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/concepts.md`. PR [#12219](https://github.com/fastapi/fastapi/pull/12219) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/conditional-openapi.md`. PR [#12221](https://github.com/fastapi/fastapi/pull/12221) by [@marcelomarkus](https://github.com/marcelomarkus).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/response-directly.md`. PR [#12266](https://github.com/fastapi/fastapi/pull/12266) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Update Portuguese translation for `docs/pt/docs/tutorial/cookie-params.md`. PR [#12297](https://github.com/fastapi/fastapi/pull/12297) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Fix Korean translation for `docs/ko/docs/tutorial/index.md`. PR [#12278](https://github.com/fastapi/fastapi/pull/12278) by [@kkotipy](https://github.com/kkotipy).
+*  🌐 Update Portuguese translation for `docs/pt/docs/advanced/security/http-basic-auth.md`. PR [#12275](https://github.com/fastapi/fastapi/pull/12275) by [@andersonrocha0](https://github.com/andersonrocha0).
+* 🌐 Add Portuguese translation for `docs/pt/docs/deployment/cloud.md`. PR [#12217](https://github.com/fastapi/fastapi/pull/12217) by [@marcelomarkus](https://github.com/marcelomarkus).
 * ✏️ Fix typo in `docs/es/docs/python-types.md`. PR [#12235](https://github.com/fastapi/fastapi/pull/12235) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
 * 🌐 Add Dutch translation for `docs/nl/docs/environment-variables.md`. PR [#12200](https://github.com/fastapi/fastapi/pull/12200) by [@maxscheijen](https://github.com/maxscheijen).
 * 🌐 Add Portuguese translation for `docs/pt/docs/deployment/manually.md`. PR [#12210](https://github.com/fastapi/fastapi/pull/12210) by [@JoaoGustavoRogel](https://github.com/JoaoGustavoRogel).
@@ -21,6 +32,13 @@ hide:
 
 ### Internal
 
+* 👷 Update Cloudflare GitHub Action. PR [#12387](https://github.com/fastapi/fastapi/pull/12387) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR [#12386](https://github.com/fastapi/fastapi/pull/12386) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocstrings[python] from 0.25.1 to 0.26.1. PR [#12371](https://github.com/fastapi/fastapi/pull/12371) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump griffe-typingdoc from 0.2.6 to 0.2.7. PR [#12370](https://github.com/fastapi/fastapi/pull/12370) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12331](https://github.com/fastapi/fastapi/pull/12331) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 🔧 Update sponsors, remove Fine.dev. PR [#12271](https://github.com/fastapi/fastapi/pull/12271) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12253](https://github.com/fastapi/fastapi/pull/12253) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ✏️ Fix docstring typos in http security. PR [#12223](https://github.com/fastapi/fastapi/pull/12223) by [@albertvillanova](https://github.com/albertvillanova).
 
 ## 0.115.0
