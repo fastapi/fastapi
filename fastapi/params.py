@@ -7,7 +7,7 @@ from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import PYDANTIC_VERSION, Undefined
+from ._compat import Undefined
 
 _Unset: Any = Undefined
 
@@ -104,12 +104,9 @@ class Param(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
         kwargs.update(
             {
+                "deprecated": deprecated,
                 "annotation": annotation,
                 "alias_priority": alias_priority,
                 "validation_alias": validation_alias,
@@ -546,12 +543,9 @@ class Body(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
         kwargs.update(
             {
+                "deprecated": deprecated,
                 "annotation": annotation,
                 "alias_priority": alias_priority,
                 "validation_alias": validation_alias,

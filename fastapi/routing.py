@@ -73,28 +73,28 @@ from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
-    res: Any,
+    response: Any,
     *,
     exclude_unset: bool,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
 ) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(res.model_config, "read_with_orm_mode", None)
+    if isinstance(response, BaseModel):
+        read_with_orm_mode = getattr(response.model_config, "read_with_orm_mode", None)
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
             # Otherwise, there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return res.model_dump(
+            return response
+        return response.model_dump(
             mode="json",
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    elif isinstance(res, list):
+    if isinstance(response, list):
         return [
             _prepare_response_content(
                 item,
@@ -102,9 +102,9 @@ def _prepare_response_content(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
-            for item in res
+            for item in response
         ]
-    elif isinstance(res, dict):
+    if isinstance(response, dict):
         return {
             k: _prepare_response_content(
                 v,
@@ -112,11 +112,11 @@ def _prepare_response_content(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
-            for k, v in res.items()
+            for k, v in response.items()
         }
-    elif dataclasses.is_dataclass(res):
-        return dataclasses.asdict(res)
-    return res
+    if dataclasses.is_dataclass(response):
+        return dataclasses.asdict(response)
+    return response
 
 
 def _merge_lifespan_context(
@@ -150,14 +150,6 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if not hasattr(field, "serialize"):
-            # pydantic v1
-            response_content = _prepare_response_content(
-                response_content,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
@@ -191,8 +183,8 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    else:
-        return jsonable_encoder(response_content)
+
+    return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(

@@ -136,10 +136,10 @@ class UploadFile(StarletteUploadFile):
         return await super().close()
 
     @classmethod
-    def model_validate(cls: Type["UploadFile"], v: Any) -> Any:
-        if not isinstance(v, StarletteUploadFile):
-            raise ValueError(f"Expected UploadFile, received: {type(v)}")
-        return v
+    def model_validate(cls: Type["UploadFile"], value: Any) -> Any:
+        if not isinstance(value, StarletteUploadFile):
+            raise ValueError(f"Expected UploadFile, received: {type(value)}")
+        return value
 
     @classmethod
     def _model_validate(cls, __input_value: Any, _: Any) -> "UploadFile":
