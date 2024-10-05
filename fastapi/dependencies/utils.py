@@ -21,8 +21,6 @@ from typing import (
 import anyio
 from fastapi import params
 from fastapi._compat import (
-    PYDANTIC_V2,
-    ErrorWrapper,
     ModelField,
     Required,
     Undefined,
@@ -31,7 +29,6 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
-    get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
     is_bytes_field,
@@ -142,12 +139,11 @@ def get_sub_dependant(
     security_requirement = None
     security_scopes = security_scopes or []
     if isinstance(depends, params.Security):
-        dependency_scopes = depends.scopes
-        security_scopes.extend(dependency_scopes)
+        security_scopes.extend(depends.scopes)
     if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
+        use_scopes = (
+            security_scopes if isinstance(dependency, (OAuth2, OpenIdConnect)) else []
+        )
         security_requirement = SecurityRequirement(
             security_scheme=dependency, scopes=use_scopes
         )
@@ -170,11 +166,11 @@ def get_flat_dependant(
     dependant: Dependant,
     *,
     skip_repeats: bool = False,
-    visited: Optional[List[CacheKey]] = None,
+    visited: Optional[set[CacheKey]] = None,
 ) -> Dependant:
     if visited is None:
-        visited = []
-    visited.append(dependant.cache_key)
+        visited = set()
+    visited.add(dependant.cache_key)
 
     flat_dependant = Dependant(
         path_params=dependant.path_params.copy(),
@@ -206,8 +202,8 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
         return fields
     first_field = fields[0]
     if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
-        return fields_to_extract
+        # If the first field is a model, just return that model's fields to avoid unnecessary checks
+        return get_cached_model_fields(first_field.type_)
     return fields
 
 
@@ -346,8 +342,8 @@ def analyze_param(
 ) -> ParamDetails:
     field_info = None
     depends = None
-    type_annotation: Any = Any
     use_annotation: Any = Any
+    type_annotation: Any = Any
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
         type_annotation = annotation
@@ -407,8 +403,7 @@ def analyze_param(
             f" together for {param_name!r}"
         )
         field_info = value
-        if PYDANTIC_V2:
-            field_info.annotation = type_annotation
+        field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
@@ -463,11 +458,6 @@ def analyze_param(
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
-        use_annotation_from_field_info = get_annotation_from_field_info(
-            use_annotation,
-            field_info,
-            param_name,
-        )
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
@@ -477,10 +467,9 @@ def analyze_param(
         field_info.alias = alias
         field = create_model_field(
             name=param_name,
-            type_=use_annotation_from_field_info,
+            type_=use_annotation,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (Required, Undefined),
             field_info=field_info,
         )
         if is_path_param:
@@ -694,9 +683,7 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
-    if isinstance(errors_, ErrorWrapper):
-        return None, [errors_]
-    elif isinstance(errors_, list):
+    if isinstance(errors_, list):
         new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
@@ -955,7 +942,6 @@ def get_body_field(
     final_field = create_model_field(
         name="body",
         type_=BodyModel,
-        required=required,
         alias="body",
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )

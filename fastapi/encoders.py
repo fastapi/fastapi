@@ -24,7 +24,7 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
 
-from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+from ._compat import UndefinedType, Url
 
 
 # Taken from Pydantic v1 as is
@@ -214,14 +214,7 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        # TODO: remove when deprecating Pydantic v1
-        encoders: Dict[Any, Any] = {}
-        if not PYDANTIC_V2:
-            encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
-            if custom_encoder:
-                encoders.update(custom_encoder)
-        obj_dict = _model_dump(
-            obj,
+        obj_dict = obj.model_dump(
             mode="json",
             include=include,
             exclude=exclude,
@@ -236,12 +229,10 @@ def jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            # TODO: remove when deprecating Pydantic v1
-            custom_encoder=encoders,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
-        obj_dict = dataclasses.asdict(obj)
+        obj_dict = dataclasses.asdict(obj)  # type: ignore
         return jsonable_encoder(
             obj_dict,
             include=include,

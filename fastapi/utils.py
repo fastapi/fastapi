@@ -1,6 +1,4 @@
 import re
-import warnings
-from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -10,23 +8,17 @@ from typing import (
     Set,
     Type,
     Union,
-    cast,
 )
 from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi._compat import (
-    PYDANTIC_V2,
-    BaseConfig,
     ModelField,
-    PydanticSchemaGenerationError,
     Undefined,
-    UndefinedType,
     Validator,
-    lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
-from pydantic import BaseModel, create_model
+from pydantic import BaseModel, PydanticSchemaGenerationError
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
 
@@ -65,36 +57,16 @@ def create_model_field(
     type_: Any,
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
-    required: Union[bool, UndefinedType] = Undefined,
-    model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
     class_validators = class_validators or {}
-    if PYDANTIC_V2:
-        field_info = field_info or FieldInfo(
-            annotation=type_, default=default, alias=alias
-        )
-    else:
-        field_info = field_info or FieldInfo()
-    kwargs = {"name": name, "field_info": field_info}
-    if PYDANTIC_V2:
-        kwargs.update({"mode": mode})
-    else:
-        kwargs.update(
-            {
-                "type_": type_,
-                "class_validators": class_validators,
-                "default": default,
-                "required": required,
-                "model_config": model_config,
-                "alias": alias,
-            }
-        )
+    field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
+
     try:
-        return ModelField(**kwargs)  # type: ignore[arg-type]
-    except (RuntimeError, PydanticSchemaGenerationError):
+        return ModelField(name=name, mode=mode, field_info=field_info)
+    except PydanticSchemaGenerationError:
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
             f"check that {type_} is a valid Pydantic field type. "
@@ -104,76 +76,6 @@ def create_model_field(
             "parameter response_model=None. Read more: "
             "https://fastapi.tiangolo.com/tutorial/response-model/"
         ) from None
-
-
-def create_cloned_field(
-    field: ModelField,
-    *,
-    cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
-) -> ModelField:
-    if PYDANTIC_V2:
-        return field
-    # cloned_types caches already cloned types to support recursive models and improve
-    # performance by avoiding unnecessary cloning
-    if cloned_types is None:
-        cloned_types = _CLONED_TYPES_CACHE
-
-    original_type = field.type_
-    if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
-        original_type = original_type.__pydantic_model__
-    use_type = original_type
-    if lenient_issubclass(original_type, BaseModel):
-        original_type = cast(Type[BaseModel], original_type)
-        use_type = cloned_types.get(original_type)
-        if use_type is None:
-            use_type = create_model(original_type.__name__, __base__=original_type)
-            cloned_types[original_type] = use_type
-            for f in original_type.__fields__.values():
-                use_type.__fields__[f.name] = create_cloned_field(
-                    f, cloned_types=cloned_types
-                )
-    new_field = create_model_field(name=field.name, type_=use_type)
-    new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
-    new_field.alias = field.alias  # type: ignore[misc]
-    new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
-    new_field.default = field.default  # type: ignore[misc]
-    new_field.required = field.required  # type: ignore[misc]
-    new_field.model_config = field.model_config  # type: ignore[attr-defined]
-    new_field.field_info = field.field_info
-    new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
-    new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
-    if field.sub_fields:  # type: ignore[attr-defined]
-        new_field.sub_fields = [  # type: ignore[attr-defined]
-            create_cloned_field(sub_field, cloned_types=cloned_types)
-            for sub_field in field.sub_fields  # type: ignore[attr-defined]
-        ]
-    if field.key_field:  # type: ignore[attr-defined]
-        new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
-            field.key_field,  # type: ignore[attr-defined]
-            cloned_types=cloned_types,
-        )
-    new_field.validators = field.validators  # type: ignore[attr-defined]
-    new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]
-    new_field.post_validators = field.post_validators  # type: ignore[attr-defined]
-    new_field.parse_json = field.parse_json  # type: ignore[attr-defined]
-    new_field.shape = field.shape  # type: ignore[attr-defined]
-    new_field.populate_validators()  # type: ignore[attr-defined]
-    return new_field
-
-
-def generate_operation_id_for_path(
-    *, name: str, path: str, method: str
-) -> str:  # pragma: nocover
-    warnings.warn(
-        "fastapi.utils.generate_operation_id_for_path() was deprecated, "
-        "it is not used internally, and will be removed soon",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-    operation_id = f"{name}{path}"
-    operation_id = re.sub(r"\W", "_", operation_id)
-    operation_id = f"{operation_id}_{method.lower()}"
-    return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:

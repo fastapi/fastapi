@@ -4,7 +4,6 @@ from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _get_model_config,
     get_cached_model_fields,
     get_model_fields,
     is_bytes_sequence_annotation,
@@ -58,7 +57,7 @@ def test_get_model_config():
         model_config = ConfigDict(from_attributes=True)
 
     foo = Foo()
-    config = _get_model_config(foo)
+    config = foo.model_config
     assert config == {"from_attributes": True}
 
 

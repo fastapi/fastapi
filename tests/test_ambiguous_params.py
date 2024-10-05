@@ -1,8 +1,8 @@
 import pytest
 from fastapi import Depends, FastAPI, Path
+from fastapi._compat import PYDANTIC_V2
 from fastapi.param_functions import Query
 from fastapi.testclient import TestClient
-from fastapi.utils import PYDANTIC_V2
 from typing_extensions import Annotated
 
 app = FastAPI()

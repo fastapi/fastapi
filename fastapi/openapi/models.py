@@ -2,11 +2,9 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Type, Union
 
 from fastapi._compat import (
-    PYDANTIC_V2,
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,
-    _model_rebuild,
     with_info_plain_validator_function,
 )
 from fastapi.logger import logger
@@ -56,13 +54,7 @@ except ImportError:  # pragma: no cover
 
 
 class BaseModelWithConfig(BaseModel):
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
-
-    else:
-
-        class Config:
-            extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Contact(BaseModelWithConfig):
@@ -218,14 +210,7 @@ class Example(TypedDict, total=False):
     description: Optional[str]
     value: Optional[Any]
     externalValue: Optional[AnyUrl]
-
-    if PYDANTIC_V2:  # type: ignore [misc]
-        __pydantic_config__ = {"extra": "allow"}
-
-    else:
-
-        class Config:
-            extra = "allow"
+    __pydantic_config__ = {"extra": "allow"}  # type: ignore
 
 
 class ParameterInType(Enum):
@@ -440,6 +425,6 @@ class OpenAPI(BaseModelWithConfig):
     externalDocs: Optional[ExternalDocumentation] = None
 
 
-_model_rebuild(Schema)
-_model_rebuild(Operation)
-_model_rebuild(Encoding)
+Schema.model_rebuild()
+Operation.model_rebuild()
+Encoding.model_rebuild()
