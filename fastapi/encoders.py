@@ -232,7 +232,7 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
-        obj_dict = dataclasses.asdict(obj)  # type: ignore
+        obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
             include=include,
