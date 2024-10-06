@@ -71,7 +71,7 @@
 ➡️ 🥇 ✅ 🌐 😐 🏒 📟, ✍ 🏒 💽:
 
 ```Python hl_lines="3  5  22"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 /// tip
@@ -131,7 +131,7 @@ connect_args={"check_same_thread": False}
 👥 🔜 ✍ `PeeweeConnectionState`:
 
 ```Python hl_lines="10-19"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 👉 🎓 😖 ⚪️➡️ 🎁 🔗 🎓 ⚙️ 🏒.
@@ -155,7 +155,7 @@ connect_args={"check_same_thread": False}
 🔜, 📁 `._state` 🔗 🔢 🏒 💽 `db` 🎚 ⚙️ 🆕 `PeeweeConnectionState`:
 
 ```Python hl_lines="24"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 /// tip
@@ -191,7 +191,7 @@ connect_args={"check_same_thread": False}
 🗄 `db` ⚪️➡️ `database` (📁 `database.py` ⚪️➡️ 🔛) &amp; ⚙️ ⚫️ 📥.
 
 ```Python hl_lines="3  6-12  15-21"
-{!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
 /// tip
@@ -225,7 +225,7 @@ connect_args={"check_same_thread": False}
 ✍ 🌐 🎏 Pydantic 🏷 🇸🇲 🔰:
 
 ```Python hl_lines="16-18  21-22  25-30  34-35  38-39  42-48"
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 /// tip
@@ -253,7 +253,7 @@ connect_args={"check_same_thread": False}
 👥 🔜 ✍ 🛃 `PeeweeGetterDict` 🎓 &amp; ⚙️ ⚫️ 🌐 🎏 Pydantic *🏷* / 🔗 👈 ⚙️ `orm_mode`:
 
 ```Python hl_lines="3  8-13  31  49"
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 📥 👥 ✅ 🚥 🔢 👈 ➖ 🔐 (✅ `.items` `some_user.items`) 👐 `peewee.ModelSelect`.
@@ -277,7 +277,7 @@ connect_args={"check_same_thread": False}
 ✍ 🌐 🎏 💩 🇨🇻 🇸🇲 🔰, 🌐 📟 📶 🎏:
 
 ```Python hl_lines="1  4-5  8-9  12-13  16-20  23-24  27-30"
-{!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
 📤 🔺 ⏮️ 📟 🇸🇲 🔰.
@@ -301,7 +301,7 @@ list(models.User.select())
 📶 🙃 🌌 ✍ 💽 🏓:
 
 ```Python hl_lines="9-11"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### ✍ 🔗
@@ -309,7 +309,7 @@ list(models.User.select())
 ✍ 🔗 👈 🔜 🔗 💽 ▶️️ ▶️ 📨 &amp; 🔌 ⚫️ 🔚:
 
 ```Python hl_lines="23-29"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 📥 👥 ✔️ 🛁 `yield` ↩️ 👥 🤙 🚫 ⚙️ 💽 🎚 🔗.
@@ -323,7 +323,7 @@ list(models.User.select())
 ✋️ 👥 🚫 ⚙️ 💲 👐 👉 🔗 (⚫️ 🤙 🚫 🤝 🙆 💲, ⚫️ ✔️ 🛁 `yield`). , 👥 🚫 🚮 ⚫️ *➡ 🛠️ 🔢* ✋️ *➡ 🛠️ 👨‍🎨* `dependencies` 🔢:
 
 ```Python hl_lines="32  40  47  59  65  72"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### 🔑 🔢 🎧-🔗
@@ -333,7 +333,7 @@ list(models.User.select())
 👈, 👥 💪 ✍ ➕1️⃣ `async` 🔗 `reset_db_state()` 👈 ⚙️ 🎧-🔗 `get_db()`. ⚫️ 🔜 ⚒ 💲 🔑 🔢 (⏮️ 🔢 `dict`) 👈 🔜 ⚙️ 💽 🇵🇸 🎂 📨. &amp; ⤴️ 🔗 `get_db()` 🔜 🏪 ⚫️ 💽 🇵🇸 (🔗, 💵, ♒️).
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 **⏭ 📨**, 👥 🔜 ⏲ 👈 🔑 🔢 🔄 `async` 🔗 `reset_db_state()` &amp; ⤴️ ✍ 🆕 🔗 `get_db()` 🔗, 👈 🆕 📨 🔜 ✔️ 🚮 👍 💽 🇵🇸 (🔗, 💵, ♒️).
@@ -365,7 +365,7 @@ async def reset_db_state():
 🔜, 😒, 📥 🐩 **FastAPI** *➡ 🛠️* 📟.
 
 ```Python hl_lines="32-37  40-43  46-53  56-62  65-68  71-79"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### 🔃 `def` 🆚 `async def`
@@ -482,31 +482,31 @@ async def reset_db_state():
 * `sql_app/database.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ## 📡 ℹ

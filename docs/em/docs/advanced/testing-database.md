@@ -49,7 +49,7 @@
 ✋️ 🎂 🎉 📟 🌅 ⚖️ 🌘 🎏, 👥 📁 ⚫️.
 
 ```Python hl_lines="8-13"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip
@@ -73,7 +73,7 @@ Base.metadata.create_all(bind=engine)
 👥 🚮 👈 ⏸ 📥, ⏮️ 🆕 📁.
 
 ```Python hl_lines="16"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 ## 🔗 🔐
@@ -81,7 +81,7 @@ Base.metadata.create_all(bind=engine)
 🔜 👥 ✍ 🔗 🔐 &amp; 🚮 ⚫️ 🔐 👆 📱.
 
 ```Python hl_lines="19-24  27"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip
@@ -95,7 +95,7 @@ Base.metadata.create_all(bind=engine)
 ⤴️ 👥 💪 💯 📱 🛎.
 
 ```Python hl_lines="32-47"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 &amp; 🌐 🛠️ 👥 ⚒ 💽 ⏮️ 💯 🔜 `test.db` 💽 ↩️ 👑 `sql_app.db`.

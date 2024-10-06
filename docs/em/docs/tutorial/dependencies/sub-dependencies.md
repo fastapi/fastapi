@@ -13,7 +13,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -21,7 +21,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
@@ -37,7 +37,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
@@ -64,7 +64,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -72,7 +72,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
