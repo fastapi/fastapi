@@ -3,7 +3,7 @@
 En sade FastAPI dosyası şu şekilde görünür:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Yukarıdaki içeriği bir `main.py` dosyasına kopyalayalım.
@@ -134,7 +134,7 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 ### Adım 1: `FastAPI`yı Projemize Dahil Edelim
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI`, API'niz için tüm işlevselliği sağlayan bir Python sınıfıdır.
@@ -150,7 +150,7 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 ### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
@@ -172,7 +172,7 @@ $ uvicorn main:app --reload
 Uygulamanızı aşağıdaki gibi oluşturursanız:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 Ve bunu `main.py` dosyasına yerleştirirseniz eğer `uvicorn` komutunu şu şekilde çalıştırabilirsiniz:
@@ -251,7 +251,7 @@ Biz de onları "**operasyonlar**" olarak adlandıracağız.
 #### Bir *Yol Operasyonu Dekoratörü* Tanımlayalım
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `@app.get("/")` dekoratörü, **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
@@ -307,7 +307,7 @@ Aşağıdaki, bizim **yol operasyonu fonksiyonumuzdur**:
 * **fonksiyon**: "dekoratör"ün (`@app.get("/")`'in) altındaki fonksiyondur.
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Bu bir Python fonksiyonudur.
@@ -321,7 +321,7 @@ Bu durumda bu fonksiyon bir `async` fonksiyondur.
 Bu fonksiyonu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note | "Not"
@@ -333,7 +333,7 @@ Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurr
 ### Adım 5: İçeriği Geri Döndürün
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Bir `dict`, `list` veya `str`, `int` gibi tekil değerler döndürebilirsiniz.

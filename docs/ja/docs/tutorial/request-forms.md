@@ -15,7 +15,7 @@ JSONの代わりにフィールドを受け取る場合は、`Form`を使用し�
 `fastapi`から`Form`をインポートします:
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ## `Form`のパラメータの定義
@@ -23,7 +23,7 @@ JSONの代わりにフィールドを受け取る場合は、`Form`を使用し�
 `Body`や`Query`の場合と同じようにフォームパラメータを作成します:
 
 ```Python hl_lines="7"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 例えば、OAuth2仕様が使用できる方法の１つ（「パスワードフロー」と呼ばれる）では、フォームフィールドとして`username`と`password`を送信する必要があります。

@@ -7,7 +7,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -15,7 +15,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 为此，首先从 `fastapi` 导入 `Query`：
 
 ```Python hl_lines="1"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 ## 使用 `Query` 作为默认值
@@ -39,7 +39,7 @@
 现在，将 `Query` 用作查询参数的默认值，并将它的 `max_length` 参数设置为 50：
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 由于我们必须用 `Query(default=None)` 替换默认值 `None`，`Query` 的第一个参数同样也是用于定义默认值。
@@ -71,7 +71,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 你还可以添加 `min_length` 参数：
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial003.py!}
+{!../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
 ## 添加正则表达式
@@ -79,7 +79,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 你可以定义一个参数值必须匹配的<abbr title="正则表达式或正则是定义字符串搜索模式的字符序列。">正则表达式</abbr>：
 
 ```Python hl_lines="11"
-{!../../../docs_src/query_params_str_validations/tutorial004.py!}
+{!../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
 这个指定的正则表达式通过以下规则检查接收到的参数值：
@@ -99,7 +99,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 假设你想要声明查询参数 `q`，使其 `min_length` 为 `3`，并且默认值为 `fixedquery`：
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial005.py!}
+{!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
 /// note
@@ -131,7 +131,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 因此，当你在使用 `Query` 且需要声明一个值是必需的时，只需不声明默认参数：
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006.py!}
+{!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
 ### 使用省略号(`...`)声明必需参数
@@ -139,7 +139,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 有另一种方法可以显式的声明一个值是必需的，即将默认参数的默认值设为 `...` ：
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006b.py!}
+{!../../docs_src/query_params_str_validations/tutorial006b.py!}
 ```
 
 /// info
@@ -158,7 +158,7 @@ Pydantic 和 FastAPI 使用它来显式的声明需要一个值。
 为此，你可以声明`None`是一个有效的类型，并仍然使用`default=...`：
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial006c.py!}
+{!../../docs_src/query_params_str_validations/tutorial006c.py!}
 ```
 
 /// tip
@@ -172,7 +172,7 @@ Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没�
 如果你觉得使用 `...` 不舒服，你也可以从 Pydantic 导入并使用 `Required`：
 
 ```Python hl_lines="2  8"
-{!../../../docs_src/query_params_str_validations/tutorial006d.py!}
+{!../../docs_src/query_params_str_validations/tutorial006d.py!}
 ```
 
 /// tip
@@ -188,7 +188,7 @@ Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没�
 例如，要声明一个可在 URL 中出现多次的查询参数 `q`，你可以这样写：
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial011.py!}
+{!../../docs_src/query_params_str_validations/tutorial011.py!}
 ```
 
 然后，输入如下网址：
@@ -225,7 +225,7 @@ http://localhost:8000/items/?q=foo&q=bar
 你还可以定义在没有任何给定值时的默认 `list` 值：
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial012.py!}
+{!../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
 如果你访问：
@@ -250,7 +250,7 @@ http://localhost:8000/items/
 你也可以直接使用 `list` 代替 `List [str]`：
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial013.py!}
+{!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
 /// note
@@ -278,13 +278,13 @@ http://localhost:8000/items/
 你可以添加 `title`：
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial007.py!}
+{!../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 以及 `description`：
 
 ```Python hl_lines="13"
-{!../../../docs_src/query_params_str_validations/tutorial008.py!}
+{!../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
 ## 别名参数
@@ -306,7 +306,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 这时你可以用 `alias` 参数声明一个别名，该别名将用于在 URL 中查找查询参数值：
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial009.py!}
+{!../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
 ## 弃用参数
@@ -318,7 +318,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 那么将参数 `deprecated=True` 传入 `Query`：
 
 ```Python hl_lines="18"
-{!../../../docs_src/query_params_str_validations/tutorial010.py!}
+{!../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
 文档将会像下面这样展示它：

@@ -13,7 +13,7 @@ Mit dem Parameter `operation_id` können Sie die OpenAPI `operationId` festlegen
 Sie müssten sicherstellen, dass sie für jede Operation eindeutig ist.
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
 ### Verwendung des Namens der *Pfadoperation-Funktion* als operationId
@@ -23,7 +23,7 @@ Wenn Sie die Funktionsnamen Ihrer API als `operationId`s verwenden möchten, kö
 Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben.
 
 ```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
 /// tip | "Tipp"
@@ -45,7 +45,7 @@ Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
 Um eine *Pfadoperation* aus dem generierten OpenAPI-Schema (und damit aus den automatischen Dokumentationssystemen) auszuschließen, verwenden Sie den Parameter `include_in_schema` und setzen Sie ihn auf `False`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
 ## Fortgeschrittene Beschreibung mittels Docstring
@@ -57,7 +57,7 @@ Das Hinzufügen eines `\f` (ein maskiertes „Form Feed“-Zeichen) führt dazu,
 Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) können den Rest verwenden.
 
 ```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```
 
 ## Zusätzliche Responses
@@ -101,7 +101,7 @@ Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie de
 Dieses `openapi_extra` kann beispielsweise hilfreich sein, um <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions" class="external-link" target="_blank">OpenAPI-Erweiterungen</a> zu deklarieren:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
 ```
 
 Wenn Sie die automatische API-Dokumentation öffnen, wird Ihre Erweiterung am Ende der spezifischen *Pfadoperation* angezeigt.
@@ -150,7 +150,7 @@ Sie könnten sich beispielsweise dafür entscheiden, den Request mit Ihrem eigen
 Das könnte man mit `openapi_extra` machen:
 
 ```Python hl_lines="20-37  39-40"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
 ```
 
 In diesem Beispiel haben wir kein Pydantic-Modell deklariert. Tatsächlich wird der Requestbody nicht einmal als JSON <abbr title="von einem einfachen Format, wie Bytes, in Python-Objekte konvertieren">geparst</abbr>, sondern direkt als `bytes` gelesen und die Funktion `magic_data_reader ()` wäre dafür verantwortlich, ihn in irgendeiner Weise zu parsen.
@@ -168,7 +168,7 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 //// tab | Pydantic v2
 
 ```Python hl_lines="17-22  24"
-{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 ////
@@ -176,7 +176,7 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 //// tab | Pydantic v1
 
 ```Python hl_lines="17-22  24"
-{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
 ```
 
 ////
@@ -196,7 +196,7 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 //// tab | Pydantic v2
 
 ```Python hl_lines="26-33"
-{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 ////
@@ -204,7 +204,7 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 //// tab | Pydantic v1
 
 ```Python hl_lines="26-33"
-{!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
+{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
 ```
 
 ////

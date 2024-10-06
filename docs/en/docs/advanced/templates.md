@@ -28,7 +28,7 @@ $ pip install jinja2
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
 ```Python hl_lines="4  11  15-18"
-{!../../../docs_src/templates/tutorial001.py!}
+{!../../docs_src/templates/tutorial001.py!}
 ```
 
 /// note
@@ -58,7 +58,7 @@ You could also use `from starlette.templating import Jinja2Templates`.
 Then you can write a template at `templates/item.html` with, for example:
 
 ```jinja hl_lines="7"
-{!../../../docs_src/templates/templates/item.html!}
+{!../../docs_src/templates/templates/item.html!}
 ```
 
 ### Template Context Values
@@ -112,13 +112,13 @@ For example, with an ID of `42`, this would render:
 You can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted with the `name="static"`.
 
 ```jinja hl_lines="4"
-{!../../../docs_src/templates/templates/item.html!}
+{!../../docs_src/templates/templates/item.html!}
 ```
 
 In this example, it would link to a CSS file at `static/styles.css` with:
 
 ```CSS hl_lines="4"
-{!../../../docs_src/templates/static/styles.css!}
+{!../../docs_src/templates/static/styles.css!}
 ```
 
 And because you are using `StaticFiles`, that CSS file would be served automatically by your **FastAPI** application at the URL `/static/styles.css`.

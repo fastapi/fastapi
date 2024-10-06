@@ -15,7 +15,7 @@
 🏆 👈, 🗄 `JSONResponse`, &amp; 📨 👆 🎚 📤 🔗, ⚒ `status_code` 👈 👆 💚:
 
 ```Python hl_lines="4  25"
-{!../../../docs_src/additional_status_codes/tutorial001.py!}
+{!../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
 /// warning

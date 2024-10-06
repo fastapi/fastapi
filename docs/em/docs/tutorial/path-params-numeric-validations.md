@@ -9,7 +9,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@
 , 👆 💪 📣 👆 🔢:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ## ✔ 🔢 👆 💪, 🎱
@@ -83,7 +83,7 @@
 🐍 🏆 🚫 🕳 ⏮️ 👈 `*`, ✋️ ⚫️ 🔜 💭 👈 🌐 📄 🔢 🔜 🤙 🇨🇻 ❌ (🔑-💲 👫), 💭 <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. 🚥 👫 🚫 ✔️ 🔢 💲.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## 🔢 🔬: 👑 🌘 ⚖️ 🌓
@@ -93,7 +93,7 @@
 📥, ⏮️ `ge=1`, `item_id` 🔜 💪 🔢 🔢 "`g`🅾 🌘 ⚖️ `e`🅾" `1`.
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ## 🔢 🔬: 🌘 🌘 &amp; 🌘 🌘 ⚖️ 🌓
@@ -104,7 +104,7 @@
 * `le`: `l`👭 🌘 ⚖️ `e`🅾
 
 ```Python hl_lines="9"
-{!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ## 🔢 🔬: 🎈, 🌘 🌘 &amp; 🌘 🌘
@@ -118,7 +118,7 @@
 &amp; 🎏 <abbr title="less than"><code>lt</code></abbr>.
 
 ```Python hl_lines="11"
-{!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ## 🌃

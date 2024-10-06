@@ -89,7 +89,7 @@ Let's refer to the file `sql_app/database.py`.
 Let's first check all the normal Peewee code, create a Peewee database:
 
 ```Python hl_lines="3  5  22"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 /// tip
@@ -149,7 +149,7 @@ This might seem a bit complex (and it actually is), you don't really need to com
 We will create a `PeeweeConnectionState`:
 
 ```Python hl_lines="10-19"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 This class inherits from a special internal class used by Peewee.
@@ -173,7 +173,7 @@ But it doesn't give Peewee async super-powers. You should still use normal `def`
 Now, overwrite the `._state` internal attribute in the Peewee database `db` object using the new `PeeweeConnectionState`:
 
 ```Python hl_lines="24"
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 /// tip
@@ -209,7 +209,7 @@ But Pydantic also uses the term "**model**" to refer to something different, the
 Import `db` from `database` (the file `database.py` from above) and use it here.
 
 ```Python hl_lines="3  6-12  15-21"
-{!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
 /// tip
@@ -243,7 +243,7 @@ So this will help us avoiding confusion while using both.
 Create all the same Pydantic models as in the SQLAlchemy tutorial:
 
 ```Python hl_lines="16-18  21-22  25-30  34-35  38-39  42-48"
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 /// tip
@@ -271,7 +271,7 @@ But recent versions of Pydantic allow providing a custom class that inherits fro
 We are going to create a custom `PeeweeGetterDict` class and use it in all the same Pydantic *models* / schemas that use `orm_mode`:
 
 ```Python hl_lines="3  8-13  31  49"
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 Here we are checking if the attribute that is being accessed (e.g. `.items` in `some_user.items`) is an instance of `peewee.ModelSelect`.
@@ -295,7 +295,7 @@ Now let's see the file `sql_app/crud.py`.
 Create all the same CRUD utils as in the SQLAlchemy tutorial, all the code is very similar:
 
 ```Python hl_lines="1  4-5  8-9  12-13  16-20  23-24  27-30"
-{!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
 There are some differences with the code for the SQLAlchemy tutorial.
@@ -319,7 +319,7 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 In a very simplistic way create the database tables:
 
 ```Python hl_lines="9-11"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### Create a dependency
@@ -327,7 +327,7 @@ In a very simplistic way create the database tables:
 Create a dependency that will connect the database right at the beginning of a request and disconnect it at the end:
 
 ```Python hl_lines="23-29"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 Here we have an empty `yield` because we are actually not using the database object directly.
@@ -341,7 +341,7 @@ And then, in each *path operation function* that needs to access the database we
 But we are not using the value given by this dependency (it actually doesn't give any value, as it has an empty `yield`). So, we don't add it to the *path operation function* but to the *path operation decorator* in the `dependencies` parameter:
 
 ```Python hl_lines="32  40  47  59  65  72"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### Context variable sub-dependency
@@ -351,7 +351,7 @@ For all the `contextvars` parts to work, we need to make sure we have an indepen
 For that, we need to create another `async` dependency `reset_db_state()` that is used as a sub-dependency in `get_db()`. It will set the value for the context variable (with just a default `dict`) that will be used as the database state for the whole request. And then the dependency `get_db()` will store in it the database state (connection, transactions, etc).
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc).
@@ -383,7 +383,7 @@ async def reset_db_state():
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
 ```Python hl_lines="32-37  40-43  46-53  56-62  65-68  71-79"
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ### About `def` vs `async def`
@@ -500,31 +500,31 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 * `sql_app/database.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
 
 ```Python
-{!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
+{!../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
 ## Technical Details

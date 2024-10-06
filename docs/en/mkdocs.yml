@@ -305,7 +305,6 @@ markdown_extensions:
 
   # Other extensions
   mdx_include:
-    base_path: docs
 
 extra:
   analytics:
