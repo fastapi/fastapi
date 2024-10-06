@@ -122,13 +122,13 @@ Let's refer to the file `sql_app/database.py`.
 ### Import the SQLAlchemy parts
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### Create a database URL for SQLAlchemy
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
@@ -158,7 +158,7 @@ The first step is to create a SQLAlchemy "engine".
 We will later use this `engine` in other places.
 
 ```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 #### Note
@@ -196,7 +196,7 @@ We will use `Session` (the one imported from SQLAlchemy) later.
 To create the `SessionLocal` class, use the function `sessionmaker`:
 
 ```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### Create a `Base` class
@@ -206,7 +206,7 @@ Now we will use the function `declarative_base()` that returns a class.
 Later we will inherit from this class to create each of the database models or classes (the ORM models):
 
 ```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ## Create the database models
@@ -232,7 +232,7 @@ Create classes that inherit from it.
 These classes are the SQLAlchemy models.
 
 ```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 The `__tablename__` attribute tells SQLAlchemy the name of the table to use in the database for each of these models.
@@ -248,7 +248,7 @@ We use `Column` from SQLAlchemy as the default value.
 And we pass a SQLAlchemy class "type", as `Integer`, `String`, and `Boolean`, that defines the type in the database, as an argument.
 
 ```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 ### Create the relationships
@@ -260,7 +260,7 @@ For this, we use `relationship` provided by SQLAlchemy ORM.
 This will become, more or less, a "magic" attribute that will contain the values from other tables related to this one.
 
 ```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 When accessing the attribute `items` in a `User`, as in `my_user.items`, it will have a list of `Item` SQLAlchemy models (from the `items` table) that have a foreign key pointing to this record in the `users` table.
@@ -478,7 +478,7 @@ Create utility functions to:
 * Read multiple items.
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -499,7 +499,7 @@ The steps are:
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
 ```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// info
@@ -752,13 +752,13 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 * `sql_app/database.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
@@ -790,7 +790,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
