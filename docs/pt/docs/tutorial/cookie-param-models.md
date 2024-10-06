@@ -136,7 +136,7 @@ Se o cliente tentar enviar alguns **cookies extras**, eles receberão um retorno
 
 Coitados dos banners de cookies com todo o seu esforço para obter o seu consentimento para a <abbr title="Isso é uma outra piada. Não preste atenção em mim. Beba um café com o seu cookie. ☕">API rejeitá-lo</abbr>. 🍪
 
-Por exxemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o <abbr title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie `santa_tracker` is not allowed</abbr>:
+Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o <abbr title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie `santa_tracker` is not allowed</abbr>:
 
 ```json
 {
