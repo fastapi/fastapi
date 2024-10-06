@@ -36,7 +36,7 @@ Depending on your use case, you might prefer to use a different library, but if 
 Here's a small preview of how you could integrate Strawberry with FastAPI:
 
 ```Python hl_lines="3  22  25-26"
-{!../../../docs_src/graphql/tutorial001.py!}
+{!../../docs_src/graphql/tutorial001.py!}
 ```
 
 You can learn more about Strawberry in the <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry documentation</a>.

@@ -32,7 +32,7 @@ Sie verfügt über eine *Pfadoperation*, die einen `Invoice`-Body empfängt, und
 Dieser Teil ist ziemlich normal, der größte Teil des Codes ist Ihnen wahrscheinlich bereits bekannt:
 
 ```Python hl_lines="9-13  36-53"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
+{!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
 /// tip | "Tipp"
@@ -93,7 +93,7 @@ Wenn Sie diese Sichtweise (des *externen Entwicklers*) vorübergehend übernehme
 Erstellen Sie zunächst einen neuen `APIRouter`, der einen oder mehrere Callbacks enthält.
 
 ```Python hl_lines="3  25"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
+{!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
 ### Die Callback-*Pfadoperation* erstellen
@@ -106,7 +106,7 @@ Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 * Und sie könnte auch eine Deklaration der Response enthalten, die zurückgegeben werden soll, z. B. `response_model=InvoiceEventReceived`.
 
 ```Python hl_lines="16-18  21-22  28-32"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
+{!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
 Es gibt zwei Hauptunterschiede zu einer normalen *Pfadoperation*:
@@ -176,7 +176,7 @@ An diesem Punkt haben Sie die benötigte(n) *Callback-Pfadoperation(en)* (diejen
 Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer API*, um das Attribut `.routes` (das ist eigentlich nur eine `list`e von Routen/*Pfadoperationen*) dieses Callback-Routers zu übergeben:
 
 ```Python hl_lines="35"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
+{!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
 /// tip | "Tipp"

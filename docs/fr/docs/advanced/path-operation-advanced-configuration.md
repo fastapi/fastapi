@@ -13,7 +13,7 @@ Dans OpenAPI, les chemins sont des ressources, tels que /users/ ou /items/, expo
 Vous devez vous assurer qu'il est unique pour chaque opération.
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
 ### Utilisation du nom *path operation function* comme operationId
@@ -23,7 +23,7 @@ Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, 
 Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 
 ```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
 /// tip | "Astuce"
@@ -45,7 +45,7 @@ Même s'ils se trouvent dans des modules différents (fichiers Python).
 Pour exclure un *chemin* du schéma OpenAPI généré (et donc des systèmes de documentation automatiques), utilisez le paramètre `include_in_schema` et assignez-lui la valeur `False` :
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
 ## Description avancée de docstring
@@ -57,7 +57,7 @@ L'ajout d'un `\f` (un caractère d'échappement "form feed") va permettre à **F
 Il n'apparaîtra pas dans la documentation, mais d'autres outils (tel que Sphinx) pourront utiliser le reste.
 
 ```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```
 
 ## Réponses supplémentaires
@@ -99,7 +99,7 @@ Vous pouvez étendre le schéma OpenAPI pour une *opération de chemin* en utili
 Cet `openapi_extra` peut être utile, par exemple, pour déclarer [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) :
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
 ```
 
 Si vous ouvrez la documentation automatique de l'API, votre extension apparaîtra au bas du *chemin* spécifique.
@@ -148,7 +148,7 @@ Par exemple, vous pouvez décider de lire et de valider la requête avec votre p
 Vous pouvez le faire avec `openapi_extra` :
 
 ```Python hl_lines="20-37 39-40"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial006.py !}
+{!../../docs_src/path_operation_advanced_configuration/tutorial006.py !}
 ```
 
 Dans cet exemple, nous n'avons déclaré aucun modèle Pydantic. En fait, le corps de la requête n'est même pas <abbr title="converti d'un format simple, comme des octets, en objets Python">parsé</abbr> en tant que JSON, il est lu directement en tant que `bytes`, et la fonction `magic_data_reader()` serait chargé de l'analyser d'une manière ou d'une autre.
@@ -164,7 +164,7 @@ Et vous pouvez le faire même si le type de données dans la requête n'est pas 
 Dans cet exemple, nous n'utilisons pas les fonctionnalités de FastAPI pour extraire le schéma JSON des modèles Pydantic ni la validation automatique pour JSON. En fait, nous déclarons le type de contenu de la requête en tant que YAML, et non JSON :
 
 ```Python hl_lines="17-22  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 Néanmoins, bien que nous n'utilisions pas la fonctionnalité par défaut, nous utilisons toujours un modèle Pydantic pour générer manuellement le schéma JSON pour les données que nous souhaitons recevoir en YAML.
@@ -174,7 +174,7 @@ Ensuite, nous utilisons directement la requête et extrayons son contenu en tant
 Et nous analysons directement ce contenu YAML, puis nous utilisons à nouveau le même modèle Pydantic pour valider le contenu YAML :
 
 ```Python hl_lines="26-33"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 /// tip | "Astuce"

@@ -23,7 +23,7 @@ Import `File` and `UploadFile` from `fastapi`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Import `File` and `UploadFile` from `fastapi`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -65,7 +65,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -113,7 +113,7 @@ Define a file parameter with a type of `UploadFile`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -121,7 +121,7 @@ Define a file parameter with a type of `UploadFile`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -135,7 +135,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -224,7 +224,7 @@ You can make a file optional by using standard type annotations and setting a de
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an_py310.py!}
 ```
 
 ////
@@ -232,7 +232,7 @@ You can make a file optional by using standard type annotations and setting a de
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an_py39.py!}
 ```
 
 ////
@@ -240,7 +240,7 @@ You can make a file optional by using standard type annotations and setting a de
 //// tab | Python 3.8+
 
 ```Python hl_lines="10  18"
-{!> ../../../docs_src/request_files/tutorial001_02_an.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an.py!}
 ```
 
 ////
@@ -254,7 +254,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7  15"
-{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
 ```
 
 ////
@@ -268,7 +268,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02.py!}
+{!> ../../docs_src/request_files/tutorial001_02.py!}
 ```
 
 ////
@@ -280,7 +280,7 @@ You can also use `File()` with `UploadFile`, for example, to set additional meta
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  15"
-{!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_03_an_py39.py!}
 ```
 
 ////
@@ -288,7 +288,7 @@ You can also use `File()` with `UploadFile`, for example, to set additional meta
 //// tab | Python 3.8+
 
 ```Python hl_lines="8  14"
-{!> ../../../docs_src/request_files/tutorial001_03_an.py!}
+{!> ../../docs_src/request_files/tutorial001_03_an.py!}
 ```
 
 ////
@@ -302,7 +302,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7  13"
-{!> ../../../docs_src/request_files/tutorial001_03.py!}
+{!> ../../docs_src/request_files/tutorial001_03.py!}
 ```
 
 ////
@@ -318,7 +318,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -326,7 +326,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/request_files/tutorial002_an.py!}
+{!> ../../docs_src/request_files/tutorial002_an.py!}
 ```
 
 ////
@@ -340,7 +340,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_py39.py!}
 ```
 
 ////
@@ -354,7 +354,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002.py!}
+{!> ../../docs_src/request_files/tutorial002.py!}
 ```
 
 ////
@@ -376,7 +376,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  18-20"
-{!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -384,7 +384,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
 //// tab | Python 3.8+
 
 ```Python hl_lines="12  19-21"
-{!> ../../../docs_src/request_files/tutorial003_an.py!}
+{!> ../../docs_src/request_files/tutorial003_an.py!}
 ```
 
 ////
@@ -398,7 +398,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9  16"
-{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_py39.py!}
 ```
 
 ////
@@ -412,7 +412,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11  18"
-{!> ../../../docs_src/request_files/tutorial003.py!}
+{!> ../../docs_src/request_files/tutorial003.py!}
 ```
 
 ////

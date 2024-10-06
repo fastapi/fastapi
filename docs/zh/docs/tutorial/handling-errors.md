@@ -26,7 +26,7 @@
 ### 导入 `HTTPException`
 
 ```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 
 ```
 
@@ -43,7 +43,7 @@
 本例中，客户端用 `ID` 请求的 `item` 不存在时，触发状态码为 `404` 的异常：
 
 ```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 
 ```
 
@@ -86,7 +86,7 @@
 但对于某些高级应用场景，还是需要添加自定义响应头：
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
+{!../../docs_src/handling_errors/tutorial002.py!}
 
 ```
 
@@ -101,7 +101,7 @@
 此时，可以用 `@app.exception_handler()` 添加自定义异常控制器：
 
 ```Python hl_lines="5-7  13-18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
+{!../../docs_src/handling_errors/tutorial003.py!}
 
 ```
 
@@ -143,7 +143,7 @@
 这样，异常处理器就可以接收 `Request` 与异常。
 
 ```Python hl_lines="2  14-16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 
 ```
 
@@ -199,7 +199,7 @@ path -> item_id
 例如，只为错误返回纯文本响应，而不是返回 JSON 格式的内容：
 
 ```Python hl_lines="3-4  9-11  22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 
 ```
 
@@ -218,7 +218,7 @@ path -> item_id
 开发时，可以用这个请求体生成日志、调试错误，并返回给用户。
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
+{!../../docs_src/handling_errors/tutorial005.py!}
 
 ```
 
@@ -284,7 +284,7 @@ FastAPI 支持先对异常进行某些处理，然后再使用 **FastAPI** 中�
 从 `fastapi.exception_handlers` 中导入要复用的默认异常处理器：
 
 ```Python hl_lines="2-5  15  21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
+{!../../docs_src/handling_errors/tutorial006.py!}
 
 ```
 

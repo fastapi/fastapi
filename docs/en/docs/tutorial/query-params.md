@@ -3,7 +3,7 @@
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
@@ -66,7 +66,7 @@ The same way, you can declare optional query parameters, by setting their defaul
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params/tutorial002_py310.py!}
+{!> ../../docs_src/query_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -74,7 +74,7 @@ The same way, you can declare optional query parameters, by setting their defaul
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params/tutorial002.py!}
+{!> ../../docs_src/query_params/tutorial002.py!}
 ```
 
 ////
@@ -94,7 +94,7 @@ You can also declare `bool` types, and they will be converted:
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params/tutorial003_py310.py!}
+{!> ../../docs_src/query_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -102,7 +102,7 @@ You can also declare `bool` types, and they will be converted:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params/tutorial003.py!}
+{!> ../../docs_src/query_params/tutorial003.py!}
 ```
 
 ////
@@ -151,7 +151,7 @@ They will be detected by name:
 //// tab | Python 3.10+
 
 ```Python hl_lines="6  8"
-{!> ../../../docs_src/query_params/tutorial004_py310.py!}
+{!> ../../docs_src/query_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -159,7 +159,7 @@ They will be detected by name:
 //// tab | Python 3.8+
 
 ```Python hl_lines="8  10"
-{!> ../../../docs_src/query_params/tutorial004.py!}
+{!> ../../docs_src/query_params/tutorial004.py!}
 ```
 
 ////
@@ -173,7 +173,7 @@ If you don't want to add a specific value but just make it optional, set the def
 But when you want to make a query parameter required, you can just not declare any default value:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 Here the query parameter `needy` is a required query parameter of type `str`.
@@ -223,7 +223,7 @@ And of course, you can define some parameters as required, some as having a defa
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params/tutorial006_py310.py!}
+{!> ../../docs_src/query_params/tutorial006_py310.py!}
 ```
 
 ////
@@ -231,7 +231,7 @@ And of course, you can define some parameters as required, some as having a defa
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params/tutorial006.py!}
+{!> ../../docs_src/query_params/tutorial006.py!}
 ```
 
 ////

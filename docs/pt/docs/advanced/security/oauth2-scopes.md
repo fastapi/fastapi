@@ -65,7 +65,7 @@ Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial
 //// tab | Python 3.10+
 
 ```Python hl_lines="5  9  13  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial
 //// tab | Python 3.9+
 
 ```Python hl_lines="2  5  9  13  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -81,7 +81,7 @@ Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial
 //// tab | Python 3.8+
 
 ```Python hl_lines="2  5  9  13  48  66  107  109-117  123-126  130-136  141  157"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -95,7 +95,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="2  5  9  13  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -123,7 +123,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="2  5  9  13  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -139,7 +139,7 @@ O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descr
 //// tab | Python 3.10+
 
 ```Python hl_lines="63-66"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descr
 //// tab | Python 3.9+
 
 ```Python hl_lines="63-66"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -155,7 +155,7 @@ O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descr
 //// tab | Python 3.8+
 
 ```Python hl_lines="64-67"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -169,7 +169,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="62-65"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -183,7 +183,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="63-66"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -197,7 +197,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="63-66"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ Porém em sua aplicação, por segurança, você deve garantir que você apenas 
 //// tab | Python 3.10+
 
 ```Python hl_lines="156"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ Porém em sua aplicação, por segurança, você deve garantir que você apenas 
 //// tab | Python 3.9+
 
 ```Python hl_lines="156"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -245,7 +245,7 @@ Porém em sua aplicação, por segurança, você deve garantir que você apenas 
 //// tab | Python 3.8+
 
 ```Python hl_lines="157"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -259,7 +259,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="155"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -273,7 +273,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="156"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -287,7 +287,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="156"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -319,7 +319,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 //// tab | Python 3.10+
 
 ```Python hl_lines="5  140  171"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -327,7 +327,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 //// tab | Python 3.9+
 
 ```Python hl_lines="5  140  171"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -335,7 +335,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 //// tab | Python 3.8+
 
 ```Python hl_lines="5  141  172"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -349,7 +349,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="4  139  168"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -363,7 +363,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="5  140  169"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -377,7 +377,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="5  140  169"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -409,7 +409,7 @@ A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utili
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  106"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -417,7 +417,7 @@ A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utili
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  106"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -425,7 +425,7 @@ A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utili
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  107"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -439,7 +439,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="8  105"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -453,7 +453,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="9  106"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -467,7 +467,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="9  106"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -487,7 +487,7 @@ Nesta exceção, nós incluímos os escopos necessários (se houver algum) como 
 //// tab | Python 3.10+
 
 ```Python hl_lines="106  108-116"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -495,7 +495,7 @@ Nesta exceção, nós incluímos os escopos necessários (se houver algum) como 
 //// tab | Python 3.9+
 
 ```Python hl_lines="106  108-116"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -503,7 +503,7 @@ Nesta exceção, nós incluímos os escopos necessários (se houver algum) como 
 //// tab | Python 3.8+
 
 ```Python hl_lines="107  109-117"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -517,7 +517,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="105  107-115"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -531,7 +531,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="106  108-116"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -545,7 +545,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="106  108-116"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -567,7 +567,7 @@ Nós também verificamos que nós temos um usuário com o "*username*", e caso c
 //// tab | Python 3.10+
 
 ```Python hl_lines="47  117-128"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -575,7 +575,7 @@ Nós também verificamos que nós temos um usuário com o "*username*", e caso c
 //// tab | Python 3.9+
 
 ```Python hl_lines="47  117-128"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -583,7 +583,7 @@ Nós também verificamos que nós temos um usuário com o "*username*", e caso c
 //// tab | Python 3.8+
 
 ```Python hl_lines="48  118-129"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -597,7 +597,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="46  116-127"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -611,7 +611,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="47  117-128"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -625,7 +625,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="47  117-128"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -639,7 +639,7 @@ Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com 
 //// tab | Python 3.10+
 
 ```Python hl_lines="129-135"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -647,7 +647,7 @@ Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com 
 //// tab | Python 3.9+
 
 ```Python hl_lines="129-135"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -655,7 +655,7 @@ Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com 
 //// tab | Python 3.8+
 
 ```Python hl_lines="130-136"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
@@ -669,7 +669,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="128-134"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
@@ -683,7 +683,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="129-135"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
@@ -697,7 +697,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="129-135"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////

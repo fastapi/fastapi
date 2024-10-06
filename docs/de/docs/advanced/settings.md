@@ -181,7 +181,7 @@ Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für
 //// tab | Pydantic v2
 
 ```Python hl_lines="2  5-8  11"
-{!> ../../../docs_src/settings/tutorial001.py!}
+{!> ../../docs_src/settings/tutorial001.py!}
 ```
 
 ////
@@ -195,7 +195,7 @@ In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydan
 ///
 
 ```Python hl_lines="2  5-8  11"
-{!> ../../../docs_src/settings/tutorial001_pv1.py!}
+{!> ../../docs_src/settings/tutorial001_pv1.py!}
 ```
 
 ////
@@ -215,7 +215,7 @@ Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `
 Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 ### Den Server ausführen
@@ -251,13 +251,13 @@ Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
 ```Python
-{!../../../docs_src/settings/app01/config.py!}
+{!../../docs_src/settings/app01/config.py!}
 ```
 
 Und dann verwenden Sie diese in einer Datei `main.py`:
 
 ```Python hl_lines="3  11-13"
-{!../../../docs_src/settings/app01/main.py!}
+{!../../docs_src/settings/app01/main.py!}
 ```
 
 /// tip | "Tipp"
@@ -277,7 +277,7 @@ Dies könnte besonders beim Testen nützlich sein, da es sehr einfach ist, eine 
 Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
 ```Python hl_lines="10"
-{!../../../docs_src/settings/app02/config.py!}
+{!../../docs_src/settings/app02/config.py!}
 ```
 
 Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
@@ -289,7 +289,7 @@ Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurüc
 //// tab | Python 3.9+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -297,7 +297,7 @@ Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurüc
 //// tab | Python 3.8+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -311,7 +311,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="5  11-12"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -329,7 +329,7 @@ Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einf
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -337,7 +337,7 @@ Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einf
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -351,7 +351,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="16  18-20"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -361,7 +361,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 Dann wäre es sehr einfach, beim Testen ein anderes Einstellungsobjekt bereitzustellen, indem man eine Abhängigkeitsüberschreibung für `get_settings` erstellt:
 
 ```Python hl_lines="9-10  13  21"
-{!../../../docs_src/settings/app02/test_main.py!}
+{!../../docs_src/settings/app02/test_main.py!}
 ```
 
 Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_email` fest, wenn wir das neue `Settings`-Objekt erstellen, und geben dann dieses neue Objekt zurück.
@@ -406,7 +406,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 //// tab | Pydantic v2
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/settings/app03_an/config.py!}
+{!> ../../docs_src/settings/app03_an/config.py!}
 ```
 
 /// tip | "Tipp"
@@ -420,7 +420,7 @@ Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. 
 //// tab | Pydantic v1
 
 ```Python hl_lines="9-10"
-{!> ../../../docs_src/settings/app03_an/config_pv1.py!}
+{!> ../../docs_src/settings/app03_an/config_pv1.py!}
 ```
 
 /// tip | "Tipp"
@@ -465,7 +465,7 @@ Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Obj
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+{!> ../../docs_src/settings/app03_an_py39/main.py!}
 ```
 
 ////
@@ -473,7 +473,7 @@ Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Obj
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an/main.py!}
+{!> ../../docs_src/settings/app03_an/main.py!}
 ```
 
 ////
@@ -487,7 +487,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="1  10"
-{!> ../../../docs_src/settings/app03/main.py!}
+{!> ../../docs_src/settings/app03/main.py!}
 ```
 
 ////

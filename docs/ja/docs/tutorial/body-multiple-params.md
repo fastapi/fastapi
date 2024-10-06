@@ -9,7 +9,7 @@
 また、デフォルトの`None`を設定することで、ボディパラメータをオプションとして宣言することもできます:
 
 ```Python hl_lines="19 20 21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
+{!../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 /// note | "備考"
@@ -34,7 +34,7 @@
 しかし、`item`と`user`のように複数のボディパラメータを宣言することもできます:
 
 ```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
+{!../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 この場合、**FastAPI**は関数内に複数のボディパラメータ（Pydanticモデルである２つのパラメータ）があることに気付きます。
@@ -78,7 +78,7 @@
 
 
 ```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
+{!../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 この場合、**FastAPI** は以下のようなボディを期待します:
@@ -115,7 +115,7 @@ q: str = None
 以下において:
 
 ```Python hl_lines="27"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+{!../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 /// info | "情報"
@@ -139,7 +139,7 @@ item: Item = Body(..., embed=True)
 以下において:
 
 ```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
+{!../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 この場合、**FastAPI** は以下のようなボディを期待します:

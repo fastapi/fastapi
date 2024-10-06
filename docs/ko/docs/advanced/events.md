@@ -15,7 +15,7 @@
 응용 프로그램을 시작하기 전에 실행하려는 함수를 "startup" 이벤트로 선언합니다:
 
 ```Python hl_lines="8"
-{!../../../docs_src/events/tutorial001.py!}
+{!../../docs_src/events/tutorial001.py!}
 ```
 
 이 경우 `startup` 이벤트 핸들러 함수는 단순히 몇 가지 값으로 구성된 `dict` 형식의 "데이터베이스"를 초기화합니다.
@@ -29,7 +29,7 @@
 응용 프로그램이 종료될 때 실행하려는 함수를 추가하려면 `"shutdown"` 이벤트로 선언합니다:
 
 ```Python hl_lines="6"
-{!../../../docs_src/events/tutorial002.py!}
+{!../../docs_src/events/tutorial002.py!}
 ```
 
 이 예제에서 `shutdown` 이벤트 핸들러 함수는 `"Application shutdown"`이라는 텍스트가 적힌 `log.txt` 파일을 추가할 것입니다.

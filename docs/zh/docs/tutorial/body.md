@@ -25,7 +25,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.10+
 
 ```Python hl_lines="2"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -33,7 +33,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.8+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -47,7 +47,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.10+
 
 ```Python hl_lines="5-9"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -55,7 +55,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.8+
 
 ```Python hl_lines="7-11"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -89,7 +89,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -97,7 +97,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -170,7 +170,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/body/tutorial002_py310.py!}
+{!> ../../docs_src/body/tutorial002_py310.py!}
 ```
 
 ////
@@ -178,7 +178,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.8+
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/body/tutorial002.py!}
+{!> ../../docs_src/body/tutorial002.py!}
 ```
 
 ////
@@ -192,7 +192,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.10+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/body/tutorial003_py310.py!}
+{!> ../../docs_src/body/tutorial003_py310.py!}
 ```
 
 ////
@@ -200,7 +200,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-18"
-{!> ../../../docs_src/body/tutorial003.py!}
+{!> ../../docs_src/body/tutorial003.py!}
 ```
 
 ////
@@ -214,7 +214,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/body/tutorial004_py310.py!}
+{!> ../../docs_src/body/tutorial004_py310.py!}
 ```
 
 ////
@@ -222,7 +222,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body/tutorial004.py!}
+{!> ../../docs_src/body/tutorial004.py!}
 ```
 
 ////

@@ -58,7 +58,7 @@ Enforces that all incoming requests must either be `https` or `wss`.
 Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
+{!../../docs_src/advanced_middleware/tutorial001.py!}
 ```
 
 ## `TrustedHostMiddleware`
@@ -66,7 +66,7 @@ Any incoming request to `http` or `ws` will be redirected to the secure scheme i
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
 ```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
+{!../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
 The following arguments are supported:
@@ -82,7 +82,7 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 The middleware will handle both standard and streaming responses.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
+{!../../docs_src/advanced_middleware/tutorial003.py!}
 ```
 
 The following arguments are supported:
