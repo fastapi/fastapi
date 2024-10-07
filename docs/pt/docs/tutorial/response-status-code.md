@@ -9,7 +9,7 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 * etc.
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 /// note | "Nota"
@@ -78,7 +78,7 @@ Para saber mais sobre cada código de status e qual código serve para quê, ver
 Vamos ver o exemplo anterior novamente:
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 `201` é o código de status para "Criado".
@@ -88,7 +88,7 @@ Mas você não precisa memorizar o que cada um desses códigos significa.
 Você pode usar as variáveis de conveniência de `fastapi.status`.
 
 ```Python hl_lines="1  6"
-{!../../../docs_src/response_status_code/tutorial002.py!}
+{!../../docs_src/response_status_code/tutorial002.py!}
 ```
 
 Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa forma você pode usar o autocomplete do editor para encontrá-los:

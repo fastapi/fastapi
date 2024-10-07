@@ -30,7 +30,7 @@
 此时，需要直接访问请求。
 
 ```Python hl_lines="1  7-8"
-{!../../../docs_src/using_request_directly/tutorial001.py!}
+{!../../docs_src/using_request_directly/tutorial001.py!}
 ```
 
 把*路径操作函数*的参数类型声明为 `Request`，**FastAPI** 就能把 `Request` 传递到参数里。

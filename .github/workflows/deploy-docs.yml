@@ -55,19 +55,19 @@ jobs:
         # hashFiles returns an empty string if there are no files
         if: hashFiles('./site/*')
         id: deploy
-        uses: cloudflare/pages-action@v1
+        env:
+          PROJECT_NAME: fastapitiangolo
+          BRANCH: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: fastapitiangolo
-          directory: './site'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+          command: pages deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
       - name: Comment Deploy
         run: python ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEPLOY_URL: ${{ steps.deploy.outputs.url }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
           RUN_ID: ${{ github.run_id }}
           IS_DONE: "true"

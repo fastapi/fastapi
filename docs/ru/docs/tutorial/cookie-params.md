@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////

@@ -32,7 +32,7 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 依赖项就是一个函数，且可以使用与*路径操作函数*相同的参数：
 
 ```Python hl_lines="8-11"
-{!../../../docs_src/dependencies/tutorial001.py!}
+{!../../docs_src/dependencies/tutorial001.py!}
 ```
 
 大功告成。
@@ -56,7 +56,7 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 ### 导入 `Depends`
 
 ```Python hl_lines="3"
-{!../../../docs_src/dependencies/tutorial001.py!}
+{!../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ### 声明依赖项
@@ -64,7 +64,7 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 与在*路径操作函数*参数中使用 `Body`、`Query` 的方式相同，声明依赖项需要使用 `Depends` 和一个新的参数：
 
 ```Python hl_lines="15  20"
-{!../../../docs_src/dependencies/tutorial001.py!}
+{!../../docs_src/dependencies/tutorial001.py!}
 ```
 
 虽然，在路径操作函数的参数中使用 `Depends` 的方式与 `Body`、`Query` 相同，但 `Depends` 的工作方式略有不同。

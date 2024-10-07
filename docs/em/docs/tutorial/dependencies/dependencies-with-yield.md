@@ -30,19 +30,19 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 🕴 📟 ⏭ &amp; 🔌 `yield` 📄 🛠️ ⏭ 📨 📨:
 
 ```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 🌾 💲 ⚫️❔ 💉 🔘 *➡ 🛠️* &amp; 🎏 🔗:
 
 ```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 📟 📄 `yield` 📄 🛠️ ⏮️ 📨 ✔️ 🚚:
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 /// tip
@@ -64,7 +64,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 🎏 🌌, 👆 💪 ⚙️ `finally` ⚒ 💭 🚪 📶 🛠️, 🙅‍♂ 🤔 🚥 📤 ⚠ ⚖️ 🚫.
 
 ```Python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 ## 🎧-🔗 ⏮️ `yield`
@@ -76,7 +76,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 🖼, `dependency_c` 💪 ✔️ 🔗 🔛 `dependency_b`, &amp; `dependency_b` 🔛 `dependency_a`:
 
 ```Python hl_lines="4  12  20"
-{!../../../docs_src/dependencies/tutorial008.py!}
+{!../../docs_src/dependencies/tutorial008.py!}
 ```
 
 &amp; 🌐 👫 💪 ⚙️ `yield`.
@@ -86,7 +86,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 &amp; , 🔄, `dependency_b` 💪 💲 ⚪️➡️ `dependency_a` (📥 📛 `dep_a`) 💪 🚮 🚪 📟.
 
 ```Python hl_lines="16-17  24-25"
-{!../../../docs_src/dependencies/tutorial008.py!}
+{!../../docs_src/dependencies/tutorial008.py!}
 ```
 
 🎏 🌌, 👆 💪 ✔️ 🔗 ⏮️ `yield` &amp; `return` 🌀.
@@ -225,7 +225,7 @@ with open("./somefile.txt") as f:
 `with` ⚖️ `async with` 📄 🔘 🔗 🔢:
 
 ```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
+{!../../docs_src/dependencies/tutorial010.py!}
 ```
 
 /// tip

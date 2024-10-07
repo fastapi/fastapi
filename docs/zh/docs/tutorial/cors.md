@@ -47,7 +47,7 @@
 * 特定的 HTTP headers 或者使用通配符 `"*"` 允许所有 headers。
 
 ```Python hl_lines="2  6-11  13-19"
-{!../../../docs_src/cors/tutorial001.py!}
+{!../../docs_src/cors/tutorial001.py!}
 ```
 
 默认情况下，这个 `CORSMiddleware` 实现所使用的默认参数较为保守，所以你需要显式地启用特定的源、方法或者 headers，以便浏览器能够在跨域上下文中使用它们。

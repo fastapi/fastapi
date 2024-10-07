@@ -30,7 +30,7 @@ Angenommen, Sie möchten auf die IP-Adresse/den Host des Clients in Ihrer *Pfado
 Dazu müssen Sie direkt auf den Request zugreifen.
 
 ```Python hl_lines="1  7-8"
-{!../../../docs_src/using_request_directly/tutorial001.py!}
+{!../../docs_src/using_request_directly/tutorial001.py!}
 ```
 
 Durch die Deklaration eines *Pfadoperation-Funktionsparameters*, dessen Typ der `Request` ist, weiß **FastAPI**, dass es den `Request` diesem Parameter übergeben soll.

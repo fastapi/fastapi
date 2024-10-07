@@ -35,7 +35,7 @@
 📚 💼, 👆 💪 ⚙️ `jsonable_encoder` 🗜 👆 📊 ⏭ 🚶‍♀️ ⚫️ 📨:
 
 ```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
 /// note | "📡 ℹ"
@@ -57,7 +57,7 @@
 👆 💪 🚮 👆 📂 🎚 🎻, 🚮 ⚫️ `Response`, &amp; 📨 ⚫️:
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## 🗒
