@@ -9,7 +9,7 @@ You can define an attribute to be a subtype. For example, a Python `list`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial001_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ You can define an attribute to be a subtype. For example, a Python `list`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/body_nested_models/tutorial001.py!}
+{!> ../../docs_src/body_nested_models/tutorial001.py!}
 ```
 
 ////
@@ -35,7 +35,7 @@ In Python 3.9 and above you can use the standard `list` to declare these type an
 But in Python versions before 3.9 (3.6 and above), you first need to import `List` from standard Python's `typing` module:
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/body_nested_models/tutorial002.py!}
+{!> ../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
 ### Declare a `list` with a type parameter
@@ -68,7 +68,7 @@ So, in our example, we can make `tags` be specifically a "list of strings":
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial002_py310.py!}
 ```
 
 ////
@@ -76,7 +76,7 @@ So, in our example, we can make `tags` be specifically a "list of strings":
 //// tab | Python 3.9+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial002_py39.py!}
 ```
 
 ////
@@ -84,7 +84,7 @@ So, in our example, we can make `tags` be specifically a "list of strings":
 //// tab | Python 3.8+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/body_nested_models/tutorial002.py!}
+{!> ../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
 ////
@@ -100,7 +100,7 @@ Then we can declare `tags` as a set of strings:
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial003_py310.py!}
 ```
 
 ////
@@ -108,7 +108,7 @@ Then we can declare `tags` as a set of strings:
 //// tab | Python 3.9+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial003_py39.py!}
 ```
 
 ////
@@ -116,7 +116,7 @@ Then we can declare `tags` as a set of strings:
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  14"
-{!> ../../../docs_src/body_nested_models/tutorial003.py!}
+{!> ../../docs_src/body_nested_models/tutorial003.py!}
 ```
 
 ////
@@ -144,7 +144,7 @@ For example, we can define an `Image` model:
 //// tab | Python 3.10+
 
 ```Python hl_lines="7-9"
-{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial004_py310.py!}
 ```
 
 ////
@@ -152,7 +152,7 @@ For example, we can define an `Image` model:
 //// tab | Python 3.9+
 
 ```Python hl_lines="9-11"
-{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial004_py39.py!}
 ```
 
 ////
@@ -160,7 +160,7 @@ For example, we can define an `Image` model:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-11"
-{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+{!> ../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
 ////
@@ -172,7 +172,7 @@ And then we can use it as the type of an attribute:
 //// tab | Python 3.10+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial004_py310.py!}
 ```
 
 ////
@@ -180,7 +180,7 @@ And then we can use it as the type of an attribute:
 //// tab | Python 3.9+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial004_py39.py!}
 ```
 
 ////
@@ -188,7 +188,7 @@ And then we can use it as the type of an attribute:
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_nested_models/tutorial004.py!}
+{!> ../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
 ////
@@ -227,7 +227,7 @@ For example, as in the `Image` model we have a `url` field, we can declare it to
 //// tab | Python 3.10+
 
 ```Python hl_lines="2  8"
-{!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial005_py310.py!}
 ```
 
 ////
@@ -235,7 +235,7 @@ For example, as in the `Image` model we have a `url` field, we can declare it to
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  10"
-{!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial005_py39.py!}
 ```
 
 ////
@@ -243,7 +243,7 @@ For example, as in the `Image` model we have a `url` field, we can declare it to
 //// tab | Python 3.8+
 
 ```Python hl_lines="4  10"
-{!> ../../../docs_src/body_nested_models/tutorial005.py!}
+{!> ../../docs_src/body_nested_models/tutorial005.py!}
 ```
 
 ////
@@ -257,7 +257,7 @@ You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 //// tab | Python 3.10+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial006_py310.py!}
 ```
 
 ////
@@ -265,7 +265,7 @@ You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 //// tab | Python 3.9+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial006_py39.py!}
 ```
 
 ////
@@ -273,7 +273,7 @@ You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_nested_models/tutorial006.py!}
+{!> ../../docs_src/body_nested_models/tutorial006.py!}
 ```
 
 ////
@@ -317,7 +317,7 @@ You can define arbitrarily deeply nested models:
 //// tab | Python 3.10+
 
 ```Python hl_lines="7  12  18  21  25"
-{!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
+{!> ../../docs_src/body_nested_models/tutorial007_py310.py!}
 ```
 
 ////
@@ -325,7 +325,7 @@ You can define arbitrarily deeply nested models:
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  14  20  23  27"
-{!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial007_py39.py!}
 ```
 
 ////
@@ -333,7 +333,7 @@ You can define arbitrarily deeply nested models:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  14  20  23  27"
-{!> ../../../docs_src/body_nested_models/tutorial007.py!}
+{!> ../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
 ////
@@ -363,7 +363,7 @@ as in:
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial008_py39.py!}
 ```
 
 ////
@@ -371,7 +371,7 @@ as in:
 //// tab | Python 3.8+
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_nested_models/tutorial008.py!}
+{!> ../../docs_src/body_nested_models/tutorial008.py!}
 ```
 
 ////
@@ -407,7 +407,7 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
 //// tab | Python 3.9+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
+{!> ../../docs_src/body_nested_models/tutorial009_py39.py!}
 ```
 
 ////
@@ -415,7 +415,7 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/body_nested_models/tutorial009.py!}
+{!> ../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
 ////

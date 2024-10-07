@@ -8,7 +8,7 @@
 * "Примонтируйте" экземпляр `StaticFiles()` с указанием определенной директории.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
+{!../../docs_src/static_files/tutorial001.py!}
 ```
 
 /// note | "Технические детали"

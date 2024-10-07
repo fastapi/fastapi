@@ -13,7 +13,7 @@
 
 
 ```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### زیر برنامه
@@ -23,7 +23,7 @@
 این زیر برنامه فقط یکی دیگر از برنامه های استاندارد FastAPI است، اما این برنامه ای است که متصل می شود:
 
 ```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### اتصال زیر برنامه
@@ -31,7 +31,7 @@
 در برنامه سطح بالا `app` اتصال زیر برنامه `subapi` در این نمونه `/subapi` در مسیر قرار میدهد و میشود:
 
 ```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### اسناد API خودکار را بررسی کنید

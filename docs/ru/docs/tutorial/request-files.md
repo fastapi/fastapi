@@ -19,7 +19,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -41,7 +41,7 @@
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -61,7 +61,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
+{!> ../../docs_src/request_files/tutorial001_an.py!}
 ```
 
 ////
@@ -131,7 +131,7 @@
 ///
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/request_files/tutorial001.py!}
+{!> ../../docs_src/request_files/tutorial001.py!}
 ```
 
 ////
@@ -220,7 +220,7 @@ contents = myfile.file.read()
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an_py310.py!}
 ```
 
 ////
@@ -228,7 +228,7 @@ contents = myfile.file.read()
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an_py39.py!}
 ```
 
 ////
@@ -236,7 +236,7 @@ contents = myfile.file.read()
 //// tab | Python 3.6+
 
 ```Python hl_lines="10  18"
-{!> ../../../docs_src/request_files/tutorial001_02_an.py!}
+{!> ../../docs_src/request_files/tutorial001_02_an.py!}
 ```
 
 ////
@@ -250,7 +250,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="7  15"
-{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
 ```
 
 ////
@@ -264,7 +264,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02.py!}
+{!> ../../docs_src/request_files/tutorial001_02.py!}
 ```
 
 ////
@@ -276,7 +276,7 @@ contents = myfile.file.read()
 //// tab | Python 3.9+
 
 ```Python hl_lines="9  15"
-{!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial001_03_an_py39.py!}
 ```
 
 ////
@@ -284,7 +284,7 @@ contents = myfile.file.read()
 //// tab | Python 3.6+
 
 ```Python hl_lines="8  14"
-{!> ../../../docs_src/request_files/tutorial001_03_an.py!}
+{!> ../../docs_src/request_files/tutorial001_03_an.py!}
 ```
 
 ////
@@ -298,7 +298,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="7  13"
-{!> ../../../docs_src/request_files/tutorial001_03.py!}
+{!> ../../docs_src/request_files/tutorial001_03.py!}
 ```
 
 ////
@@ -314,7 +314,7 @@ contents = myfile.file.read()
 //// tab | Python 3.9+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -322,7 +322,7 @@ contents = myfile.file.read()
 //// tab | Python 3.6+
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/request_files/tutorial002_an.py!}
+{!> ../../docs_src/request_files/tutorial002_an.py!}
 ```
 
 ////
@@ -336,7 +336,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_py39.py!}
 ```
 
 ////
@@ -350,7 +350,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002.py!}
+{!> ../../docs_src/request_files/tutorial002.py!}
 ```
 
 ////
@@ -372,7 +372,7 @@ contents = myfile.file.read()
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  18-20"
-{!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -380,7 +380,7 @@ contents = myfile.file.read()
 //// tab | Python 3.6+
 
 ```Python hl_lines="12  19-21"
-{!> ../../../docs_src/request_files/tutorial003_an.py!}
+{!> ../../docs_src/request_files/tutorial003_an.py!}
 ```
 
 ////
@@ -394,7 +394,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="9  16"
-{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_py39.py!}
 ```
 
 ////
@@ -408,7 +408,7 @@ contents = myfile.file.read()
 ///
 
 ```Python hl_lines="11  18"
-{!> ../../../docs_src/request_files/tutorial003.py!}
+{!> ../../docs_src/request_files/tutorial003.py!}
 ```
 
 ////

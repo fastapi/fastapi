@@ -29,7 +29,7 @@
 这样一来，**FastAPI** 就会调用覆盖依赖项，不再调用原依赖项。
 
 ```Python hl_lines="26-27  30"
-{!../../../docs_src/dependency_testing/tutorial001.py!}
+{!../../docs_src/dependency_testing/tutorial001.py!}
 ```
 
 /// tip | "提示"

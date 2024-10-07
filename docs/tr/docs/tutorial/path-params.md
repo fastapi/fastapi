@@ -3,7 +3,7 @@
 Yol "parametrelerini" veya "değişkenlerini" Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimi ile tanımlayabilirsiniz.
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 Yol parametresi olan `item_id`'nin değeri, fonksiyonunuza `item_id` argümanı olarak aktarılacaktır.
@@ -19,7 +19,7 @@ Eğer bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" clas
 Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiyonun içerisinde tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
@@ -124,7 +124,7 @@ Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıc�
 *Yol operasyonları* sıralı bir şekilde gözden geçirildiğinden dolayı `/users/me` yolunun `/users/{user_id}` yolundan önce tanımlanmış olmasından emin olmanız gerekmektedir:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 Aksi halde, `/users/{user_id}` yolu `"me"` değerinin `user_id` parametresi için gönderildiğini "düşünerek" `/users/me` ile de eşleşir.
@@ -132,7 +132,7 @@ Aksi halde, `/users/{user_id}` yolu `"me"` değerinin `user_id` parametresi içi
 Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003b.py!}
+{!../../docs_src/path_params/tutorial003b.py!}
 ```
 
 Yol, ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu kullanılacaktır.
@@ -150,7 +150,7 @@ Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve alabileceği *yol 
 Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit değerli özelliklerini oluşturalım:
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// info | "Bilgi"
@@ -170,7 +170,7 @@ Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine �
 Sonrasında, yarattığımız enum sınıfını (`ModelName`) kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### Dokümana Göz Atalım
@@ -188,7 +188,7 @@ Sonrasında, yarattığımız enum sınıfını (`ModelName`) kullanarak tip bel
 Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration üyesi* ile karşılaştırabilirsiniz:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### *Enumeration Değerini* Edinelim
@@ -196,7 +196,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 `model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// tip | "İpucu"
@@ -212,7 +212,7 @@ JSON gövdesine (örneğin bir `dict`) gömülü olsalar bile *yol operasyonunda
 Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerine (bu durumda string) dönüştürüleceklerdir:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 İstemci tarafında şuna benzer bir JSON yanıtı ile karşılaşırsınız:
@@ -253,7 +253,7 @@ Bu durumda, parametrenin adı `file_path` olacaktır ve son kısım olan `:path`
 Böylece şunun gibi bir kullanım yapabilirsiniz:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
 /// tip | "İpucu"

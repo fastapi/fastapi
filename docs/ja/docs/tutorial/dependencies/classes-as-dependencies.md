@@ -7,7 +7,7 @@
 前の例では、依存関係（"dependable"）から`dict`を返していました:
 
 ```Python hl_lines="9"
-{!../../../docs_src/dependencies/tutorial001.py!}
+{!../../docs_src/dependencies/tutorial001.py!}
 ```
 
 しかし、*path operation関数*のパラメータ`commons`に`dict`が含まれています。
@@ -72,19 +72,19 @@ FastAPIが実際にチェックしているのは、それが「呼び出し可�
 そこで、上で紹介した依存関係の`common_parameters`を`CommonQueryParams`クラスに変更します:
 
 ```Python hl_lines="11 12 13 14 15"
-{!../../../docs_src/dependencies/tutorial002.py!}
+{!../../docs_src/dependencies/tutorial002.py!}
 ```
 
 クラスのインスタンスを作成するために使用される`__init__`メソッドに注目してください:
 
 ```Python hl_lines="12"
-{!../../../docs_src/dependencies/tutorial002.py!}
+{!../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ...以前の`common_parameters`と同じパラメータを持っています:
 
 ```Python hl_lines="8"
-{!../../../docs_src/dependencies/tutorial001.py!}
+{!../../docs_src/dependencies/tutorial001.py!}
 ```
 
 これらのパラメータは **FastAPI** が依存関係を「解決」するために使用するものです。
@@ -102,7 +102,7 @@ FastAPIが実際にチェックしているのは、それが「呼び出し可�
 これで、このクラスを使用して依存関係を宣言することができます。
 
 ```Python hl_lines="19"
-{!../../../docs_src/dependencies/tutorial002.py!}
+{!../../docs_src/dependencies/tutorial002.py!}
 ```
 
 **FastAPI** は`CommonQueryParams`クラスを呼び出します。これにより、そのクラスの「インスタンス」が作成され、インスタンスはパラメータ`commons`として関数に渡されます。
@@ -144,7 +144,7 @@ commons = Depends(CommonQueryParams)
 以下にあるように:
 
 ```Python hl_lines="19"
-{!../../../docs_src/dependencies/tutorial003.py!}
+{!../../docs_src/dependencies/tutorial003.py!}
 ```
 
 しかし、型を宣言することは推奨されています。そうすれば、エディタは`commons`のパラメータとして何が渡されるかを知ることができ、コードの補完や型チェックなどを行うのに役立ちます:
@@ -180,7 +180,7 @@ commons: CommonQueryParams = Depends()
 同じ例では以下のようになります:
 
 ```Python hl_lines="19"
-{!../../../docs_src/dependencies/tutorial004.py!}
+{!../../docs_src/dependencies/tutorial004.py!}
 ```
 
 ...そして **FastAPI** は何をすべきか知っています。

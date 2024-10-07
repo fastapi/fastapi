@@ -5,7 +5,7 @@ Sie können den schon bekannten `TestClient` zum Testen von WebSockets verwenden
 Dazu verwenden Sie den `TestClient` in einer `with`-Anweisung, eine Verbindung zum WebSocket herstellend:
 
 ```Python hl_lines="27-31"
-{!../../../docs_src/app_testing/tutorial002.py!}
+{!../../docs_src/app_testing/tutorial002.py!}
 ```
 
 /// note | "Hinweis"

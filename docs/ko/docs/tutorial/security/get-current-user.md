@@ -3,7 +3,7 @@
 이전 장에서 (의존성 주입 시스템을 기반으로 한)보안 시스템은 *경로 작동 함수*에서 `str`로 `token`을 제공했습니다:
 
 ```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
 그러나 아직도 유용하지 않습니다.
@@ -19,7 +19,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.7 이상
 
 ```Python hl_lines="5  12-16"
-{!> ../../../docs_src/security/tutorial002.py!}
+{!> ../../docs_src/security/tutorial002.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.10 이상
 
 ```Python hl_lines="3  10-14"
-{!> ../../../docs_src/security/tutorial002_py310.py!}
+{!> ../../docs_src/security/tutorial002_py310.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.7 이상
 
 ```Python hl_lines="25"
-{!> ../../../docs_src/security/tutorial002.py!}
+{!> ../../docs_src/security/tutorial002.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.10 이상
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/security/tutorial002_py310.py!}
+{!> ../../docs_src/security/tutorial002_py310.py!}
 ```
 
 ////
@@ -65,7 +65,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.7 이상
 
 ```Python hl_lines="19-22  26-27"
-{!> ../../../docs_src/security/tutorial002.py!}
+{!> ../../docs_src/security/tutorial002.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.10 이상
 
 ```Python hl_lines="17-20  24-25"
-{!> ../../../docs_src/security/tutorial002_py310.py!}
+{!> ../../docs_src/security/tutorial002_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.7 이상
 
 ```Python hl_lines="31"
-{!> ../../../docs_src/security/tutorial002.py!}
+{!> ../../docs_src/security/tutorial002.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@ Pydantic을 사용하여 본문을 선언하는 것과 같은 방식으로 다�
 //// tab | 파이썬 3.10 이상
 
 ```Python hl_lines="29"
-{!> ../../../docs_src/security/tutorial002_py310.py!}
+{!> ../../docs_src/security/tutorial002_py310.py!}
 ```
 
 ////
@@ -153,7 +153,7 @@ Pydantic 모델인 `User`로 `current_user`의 타입을 선언하는 것을 알
 //// tab | 파이썬 3.7 이상
 
 ```Python hl_lines="30-32"
-{!> ../../../docs_src/security/tutorial002.py!}
+{!> ../../docs_src/security/tutorial002.py!}
 ```
 
 ////
@@ -161,7 +161,7 @@ Pydantic 모델인 `User`로 `current_user`의 타입을 선언하는 것을 알
 //// tab | 파이썬 3.10 이상
 
 ```Python hl_lines="28-30"
-{!> ../../../docs_src/security/tutorial002_py310.py!}
+{!> ../../docs_src/security/tutorial002_py310.py!}
 ```
 
 ////

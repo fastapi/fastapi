@@ -21,7 +21,7 @@ JSON互換のデータのみを受信するデータベース`fase_db`がある�
 Pydanticモデルのようなオブジェクトを受け取り、JSON互換版を返します:
 
 ```Python hl_lines="5 22"
-{!../../../docs_src/encoder/tutorial001.py!}
+{!../../docs_src/encoder/tutorial001.py!}
 ```
 
 この例では、Pydanticモデルを`dict`に、`datetime`を`str`に変換します。

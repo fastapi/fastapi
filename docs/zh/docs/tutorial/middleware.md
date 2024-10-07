@@ -32,7 +32,7 @@
 * 然后你可以在返回 `response` 前进一步修改它.
 
 ```Python hl_lines="8-9  11  14"
-{!../../../docs_src/middleware/tutorial001.py!}
+{!../../docs_src/middleware/tutorial001.py!}
 ```
 
 /// tip
@@ -60,7 +60,7 @@
 例如你可以添加自定义请求头 `X-Process-Time` 包含以秒为单位的接收请求和生成响应的时间:
 
 ```Python hl_lines="10  12-13"
-{!../../../docs_src/middleware/tutorial001.py!}
+{!../../docs_src/middleware/tutorial001.py!}
 ```
 
 ## 其他中间件

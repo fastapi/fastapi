@@ -17,7 +17,7 @@
 しかし、それぞれの番号コードが何のためのものか覚えていない場合は、`status`のショートカット定数を使用することができます:
 
 ```Python hl_lines="3  17"
-{!../../../docs_src/path_operation_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_configuration/tutorial001.py!}
 ```
 
 そのステータスコードはレスポンスで使用され、OpenAPIスキーマに追加されます。
@@ -35,7 +35,7 @@
 `tags`パラメータを`str`の`list`（通常は１つの`str`）と一緒に渡すと、*path operation*にタグを追加できます:
 
 ```Python hl_lines="17  22  27"
-{!../../../docs_src/path_operation_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
 これらはOpenAPIスキーマに追加され、自動ドキュメントのインターフェースで使用されます:
@@ -47,7 +47,7 @@
 `summary`と`description`を追加できます:
 
 ```Python hl_lines="20-21"
-{!../../../docs_src/path_operation_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
 ## docstringを用いた説明
@@ -57,7 +57,7 @@
 docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
 ```Python hl_lines="19-27"
-{!../../../docs_src/path_operation_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
 これは対話的ドキュメントで使用されます:
@@ -69,7 +69,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 `response_description`パラメータでレスポンスの説明をすることができます。
 
 ```Python hl_lines="21"
-{!../../../docs_src/path_operation_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
 /// info | "情報"
@@ -93,7 +93,7 @@ OpenAPIは*path operation*ごとにレスポンスの説明を必要としてい
 *path operation*を<abbr title="非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_operation_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
 対話的ドキュメントでは非推奨と明記されます:
