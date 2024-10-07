@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add External Link: How to profile a FastAPI asynchronous request. PR [#12389](https://github.com/fastapi/fastapi/pull/12389) by [@brouberol](https://github.com/brouberol).
 * 🔧 Remove `base_path` for `mdx_include` Markdown extension in MkDocs. PR [#12391](https://github.com/fastapi/fastapi/pull/12391) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update link to Swagger UI configuration docs. PR [#12264](https://github.com/fastapi/fastapi/pull/12264) by [@makisukurisu](https://github.com/makisukurisu).
 * 📝 Adding links for Playwright and Vite in `docs/project-generation.md`. PR [#12274](https://github.com/fastapi/fastapi/pull/12274) by [@kayqueGovetri](https://github.com/kayqueGovetri).
