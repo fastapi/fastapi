@@ -11,7 +11,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 //// tab | Python 3.10+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -19,7 +19,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@ Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Def
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
 ```
 
 ////
@@ -41,7 +41,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -55,7 +55,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 ////
@@ -84,7 +84,7 @@ Aber Sie können auch mehrere Body-Parameter deklarieren, z. B. `item` und `user
 //// tab | Python 3.10+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -92,7 +92,7 @@ Aber Sie können auch mehrere Body-Parameter deklarieren, z. B. `item` und `user
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 ////
@@ -139,7 +139,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 //// tab | Python 3.10+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 //// tab | Python 3.9+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -155,7 +155,7 @@ Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu er
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
 ```
 
 ////
@@ -169,7 +169,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -183,7 +183,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ Zum Beispiel:
 //// tab | Python 3.10+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ Zum Beispiel:
 //// tab | Python 3.9+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -245,7 +245,7 @@ Zum Beispiel:
 //// tab | Python 3.8+
 
 ```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
 ```
 
 ////
@@ -259,7 +259,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="25"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -273,7 +273,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 ////
@@ -301,7 +301,7 @@ so wie in:
 //// tab | Python 3.10+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -309,7 +309,7 @@ so wie in:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -317,7 +317,7 @@ so wie in:
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
 ```
 
 ////
@@ -331,7 +331,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
 ```
 
 ////
@@ -345,7 +345,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 ////

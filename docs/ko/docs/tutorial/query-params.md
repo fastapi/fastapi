@@ -3,7 +3,7 @@
 경로 매개변수의 일부가 아닌 다른 함수 매개변수를 선언하면 "쿼리" 매개변수로 자동 해석합니다.
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 쿼리는 URL에서 `?` 후에 나오고 `&`으로 구분되는 키-값 쌍의 집합입니다.
@@ -64,7 +64,7 @@ http://127.0.0.1:8000/items/?skip=20
 같은 방법으로 기본값을 `None`으로 설정하여 선택적 매개변수를 선언할 수 있습니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial002.py!}
+{!../../docs_src/query_params/tutorial002.py!}
 ```
 
 이 경우 함수 매개변수 `q`는 선택적이며 기본값으로 `None` 값이 됩니다.
@@ -88,7 +88,7 @@ FastAPI는 `q`가 `= None`이므로 선택적이라는 것을 인지합니다.
 `bool` 형으로 선언할 수도 있고, 아래처럼 변환됩니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial003.py!}
+{!../../docs_src/query_params/tutorial003.py!}
 ```
 
 이 경우, 아래로 이동하면:
@@ -133,7 +133,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 매개변수들은 이름으로 감지됩니다:
 
 ```Python hl_lines="8  10"
-{!../../../docs_src/query_params/tutorial004.py!}
+{!../../docs_src/query_params/tutorial004.py!}
 ```
 
 ## 필수 쿼리 매개변수
@@ -145,7 +145,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 그러나 쿼리 매개변수를 필수로 만들려면 단순히 기본값을 선언하지 않으면 됩니다:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 여기 쿼리 매개변수 `needy`는 `str`형인 필수 쿼리 매개변수입니다.
@@ -191,7 +191,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 그리고 물론, 일부 매개변수는 필수로, 다른 일부는 기본값을, 또 다른 일부는 선택적으로 선언할 수 있습니다:
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params/tutorial006.py!}
+{!../../docs_src/query_params/tutorial006.py!}
 ```
 
 위 예시에서는 3가지 쿼리 매개변수가 있습니다:

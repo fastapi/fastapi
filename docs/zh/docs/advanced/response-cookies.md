@@ -5,7 +5,7 @@
 你可以在 *路径函数* 中定义一个类型为 `Response`的参数，这样你就可以在这个临时响应对象中设置cookie了。
 
 ```Python hl_lines="1  8-9"
-{!../../../docs_src/response_cookies/tutorial002.py!}
+{!../../docs_src/response_cookies/tutorial002.py!}
 ```
 
 而且你还可以根据你的需要响应不同的对象，比如常用的 `dict`，数据库model等。
@@ -25,7 +25,7 @@
 然后设置Cookies，并返回：
 
 ```Python hl_lines="10-12"
-{!../../../docs_src/response_cookies/tutorial001.py!}
+{!../../docs_src/response_cookies/tutorial001.py!}
 ```
 
 /// tip

@@ -13,7 +13,7 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 ## 导入 `File` 与 `Form`
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 ## 定义 `File` 与 `Form` 参数
@@ -21,7 +21,7 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 创建文件和表单参数的方式与 `Body` 和 `Query` 一样：
 
 ```Python hl_lines="8"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 文件和表单字段作为表单数据上传与接收。

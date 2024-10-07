@@ -5,7 +5,7 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 ✋️ FastAPI 🐕‍🦺 ⚙️ <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> 🎏 🌌:
 
 ```Python hl_lines="1  7-12  19-20"
-{!../../../docs_src/dataclasses/tutorial001.py!}
+{!../../docs_src/dataclasses/tutorial001.py!}
 ```
 
 👉 🐕‍🦺 👏 **Pydantic**, ⚫️ ✔️ <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">🔗 🐕‍🦺 `dataclasses`</a>.
@@ -35,7 +35,7 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 👆 💪 ⚙️ `dataclasses` `response_model` 🔢:
 
 ```Python hl_lines="1  7-13  19"
-{!../../../docs_src/dataclasses/tutorial002.py!}
+{!../../docs_src/dataclasses/tutorial002.py!}
 ```
 
 🎻 🔜 🔁 🗜 Pydantic 🎻.
@@ -53,7 +53,7 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 👈 💼, 👆 💪 🎯 💱 🐩 `dataclasses` ⏮️ `pydantic.dataclasses`, ❔ 💧-♻:
 
 ```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../../docs_src/dataclasses/tutorial003.py!}
+{!../../docs_src/dataclasses/tutorial003.py!}
 ```
 
 1️⃣. 👥 🗄 `field` ⚪️➡️ 🐩 `dataclasses`.

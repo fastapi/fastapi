@@ -26,7 +26,7 @@ HTTPレスポンスをエラーでクライアントに返すには、`HTTPExcep
 ### `HTTPException`のインポート
 
 ```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### コード内での`HTTPException`の発生
@@ -42,7 +42,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例では、クライアントが存在しないIDでアイテムを要求した場合、`404`のステータスコードを持つ例外を発生させます:
 
 ```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### レスポンス結果
@@ -82,7 +82,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 しかし、高度なシナリオのために必要な場合には、カスタムヘッダーを追加することができます:
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
+{!../../docs_src/handling_errors/tutorial002.py!}
 ```
 
 ## カスタム例外ハンドラのインストール
@@ -96,7 +96,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 カスタム例外ハンドラを`@app.exception_handler()`で追加することができます:
 
 ```Python hl_lines="5 6 7  13 14 15 16 17 18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
+{!../../docs_src/handling_errors/tutorial003.py!}
 ```
 
 ここで、`/unicorns/yolo`をリクエストすると、*path operation*は`UnicornException`を`raise`します。
@@ -136,7 +136,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例外ハンドラは`Requset`と例外を受け取ります。
 
 ```Python hl_lines="2 14 15 16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
 これで、`/items/foo`にアクセスすると、デフォルトのJSONエラーの代わりに以下が返されます:
@@ -189,7 +189,7 @@ path -> item_id
 例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
 
 ```Python hl_lines="3 4  9 10 11 22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
 /// note | "技術詳細"
@@ -207,7 +207,7 @@ path -> item_id
 アプリ開発中に本体のログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
+{!../../docs_src/handling_errors/tutorial005.py!}
 ```
 
 ここで、以下のような無効な項目を送信してみてください:
@@ -269,7 +269,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 デフォルトの例外ハンドラを`fastapi.exception_handlers`からインポートして再利用することができます:
 
 ```Python hl_lines="2 3 4 5 15 21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
+{!../../docs_src/handling_errors/tutorial006.py!}
 ```
 
 この例では、非常に表現力のあるメッセージでエラーを`print`しています。

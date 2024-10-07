@@ -17,7 +17,7 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  25"
-{!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
+{!> ../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  25"
-{!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
+{!> ../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -33,7 +33,7 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 //// tab | Python 3.8+
 
 ```Python hl_lines="4  26"
-{!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
+{!> ../../docs_src/additional_status_codes/tutorial001_an.py!}
 ```
 
 ////
@@ -47,7 +47,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="2  23"
-{!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
+{!> ../../docs_src/additional_status_codes/tutorial001_py310.py!}
 ```
 
 ////
@@ -61,7 +61,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="4  25"
-{!> ../../../docs_src/additional_status_codes/tutorial001.py!}
+{!> ../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
 ////

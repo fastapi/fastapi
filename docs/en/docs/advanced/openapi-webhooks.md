@@ -33,7 +33,7 @@ Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0`
 When you create a **FastAPI** application, there is a `webhooks` attribute that you can use to define *webhooks*, the same way you would define *path operations*, for example with `@app.webhooks.post()`.
 
 ```Python hl_lines="9-13  36-53"
-{!../../../docs_src/openapi_webhooks/tutorial001.py!}
+{!../../docs_src/openapi_webhooks/tutorial001.py!}
 ```
 
 The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.

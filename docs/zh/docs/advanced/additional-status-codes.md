@@ -15,7 +15,7 @@
 要实现它，导入 `JSONResponse`，然后在其中直接返回你的内容，并将 `status_code` 设置为为你要的值。
 
 ```Python hl_lines="4  25"
-{!../../../docs_src/additional_status_codes/tutorial001.py!}
+{!../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
 /// warning | "警告"
