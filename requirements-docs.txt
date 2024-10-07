@@ -16,3 +16,6 @@ griffe-typingdoc==0.2.7
 # For griffe, it formats with black
 black==24.3.0
 mkdocs-macros-plugin==1.0.5
+#For comparing the hash of the translation to outline the outdated docs
+gitpython==3.1.43
+tabulate==0.9.0
