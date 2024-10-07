@@ -12,6 +12,7 @@
 
 ### Internal
 
+* 👷 Update `labeler.yml`. PR [#1388](https://github.com/fastapi/full-stack-fastapi-template/pull/1388) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add .auth playwright folder to `.gitignore`. PR [#1383](https://github.com/fastapi/full-stack-fastapi-template/pull/1383) by [@justin-p](https://github.com/justin-p).
 * ⬆️ Bump rollup from 4.6.1 to 4.22.5 in /frontend. PR [#1379](https://github.com/fastapi/full-stack-fastapi-template/pull/1379) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump astral-sh/setup-uv from 2 to 3. PR [#1364](https://github.com/fastapi/full-stack-fastapi-template/pull/1364) by [@dependabot[bot]](https://github.com/apps/dependabot).
