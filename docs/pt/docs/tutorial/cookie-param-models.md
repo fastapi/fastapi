@@ -23,7 +23,7 @@ Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, 
 //// tab | Python 3.10+
 
 ```Python hl_lines="9-12  16"
-{!> ../../../docs_src/cookie_param_models/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_param_models/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, 
 //// tab | Python 3.9+
 
 ```Python hl_lines="9-12  16"
-{!> ../../../docs_src/cookie_param_models/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_param_models/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, 
 //// tab | Python 3.8+
 
 ```Python hl_lines="10-13  17"
-{!> ../../../docs_src/cookie_param_models/tutorial001_an.py!}
+{!> ../../docs_src/cookie_param_models/tutorial001_an.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="7-10  14"
-{!> ../../../docs_src/cookie_param_models/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_param_models/tutorial001_py310.py!}
 ```
 
 ////
@@ -67,7 +67,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="9-12  16"
-{!> ../../../docs_src/cookie_param_models/tutorial001.py!}
+{!> ../../docs_src/cookie_param_models/tutorial001.py!}
 ```
 
 ////
@@ -105,7 +105,7 @@ Agora a sua API possui o poder de contrar o seu próprio <abbr title="Isso é um
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/cookie_param_models/tutorial002_an_py39.py!}
+{!> ../../docs_src/cookie_param_models/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -113,7 +113,7 @@ Agora a sua API possui o poder de contrar o seu próprio <abbr title="Isso é um
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/cookie_param_models/tutorial002_an.py!}
+{!> ../../docs_src/cookie_param_models/tutorial002_an.py!}
 ```
 
 ////
@@ -127,7 +127,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/cookie_param_models/tutorial002.py!}
+{!> ../../docs_src/cookie_param_models/tutorial002.py!}
 ```
 
 ////
