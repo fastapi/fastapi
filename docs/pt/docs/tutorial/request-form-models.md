@@ -27,7 +27,7 @@ Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja re
 //// tab | Python 3.9+
 
 ```Python hl_lines="9-11  15"
-{!> ../../../docs_src/request_form_models/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_form_models/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -35,7 +35,7 @@ Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja re
 //// tab | Python 3.8+
 
 ```Python hl_lines="8-10  14"
-{!> ../../../docs_src/request_form_models/tutorial001_an.py!}
+{!> ../../docs_src/request_form_models/tutorial001_an.py!}
 ```
 
 ////
@@ -49,7 +49,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="7-9  13"
-{!> ../../../docs_src/request_form_models/tutorial001.py!}
+{!> ../../docs_src/request_form_models/tutorial001.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@ Você pode utilizar a configuração de modelo do Pydantic para `proibir` qualqu
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/request_form_models/tutorial002_an_py39.py!}
+{!> ../../docs_src/request_form_models/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -87,7 +87,7 @@ Você pode utilizar a configuração de modelo do Pydantic para `proibir` qualqu
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/request_form_models/tutorial002_an.py!}
+{!> ../../docs_src/request_form_models/tutorial002_an.py!}
 ```
 
 ////
@@ -101,7 +101,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/request_form_models/tutorial002.py!}
+{!> ../../docs_src/request_form_models/tutorial002.py!}
 ```
 
 ////

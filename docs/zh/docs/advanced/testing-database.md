@@ -49,7 +49,7 @@
 但其余的会话代码基本上都是一样的，只要复制就可以了。
 
 ```Python hl_lines="8-13"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip | "提示"
@@ -73,7 +73,7 @@ Base.metadata.create_all(bind=engine)
 因此，要在测试代码中添加这行代码创建新的数据库文件。
 
 ```Python hl_lines="16"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 ## 覆盖依赖项
@@ -81,7 +81,7 @@ Base.metadata.create_all(bind=engine)
 接下来，创建覆盖依赖项，并为应用添加覆盖内容。
 
 ```Python hl_lines="19-24  27"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip | "提示"
@@ -95,7 +95,7 @@ Base.metadata.create_all(bind=engine)
 然后，就可以正常测试了。
 
 ```Python hl_lines="32-47"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 测试期间，所有在数据库中所做的修改都在 `test.db` 里，不会影响主应用的 `sql_app.db`。

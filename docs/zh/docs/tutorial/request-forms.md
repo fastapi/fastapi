@@ -15,7 +15,7 @@
 从 `fastapi` 导入 `Form`：
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ## 定义 `Form` 参数
@@ -23,7 +23,7 @@
 创建表单（`Form`）参数的方式与 `Body` 和 `Query` 一样：
 
 ```Python hl_lines="7"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 例如，OAuth2 规范的 "密码流" 模式规定要通过表单字段发送 `username` 和 `password`。

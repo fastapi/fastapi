@@ -23,7 +23,7 @@ Como é desencorajado, a documentação interativa com Swagger UI não irá most
 Primeiro, você precisa importar `BaseModel` do `pydantic`:
 
 ```Python hl_lines="4"
-{!../../../docs_src/body/tutorial001.py!}
+{!../../docs_src/body/tutorial001.py!}
 ```
 
 ## Crie seu modelo de dados
@@ -33,7 +33,7 @@ Então você declara seu modelo de dados como uma classe que herda `BaseModel`.
 Utilize os tipos Python padrão para todos os atributos:
 
 ```Python hl_lines="7-11"
-{!../../../docs_src/body/tutorial001.py!}
+{!../../docs_src/body/tutorial001.py!}
 ```
 
 Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele se torna opcional. Caso contrário, se torna obrigatório. Use `None` para torná-lo opcional.
@@ -63,7 +63,7 @@ Por exemplo, o modelo acima declara um JSON "`object`" (ou `dict` no Python) com
 Para adicionar o corpo na *função de operação de rota*, declare-o da mesma maneira que você declarou parâmetros de rota e consulta:
 
 ```Python hl_lines="18"
-{!../../../docs_src/body/tutorial001.py!}
+{!../../docs_src/body/tutorial001.py!}
 ```
 
 ...E declare o tipo como o modelo que você criou, `Item`.
@@ -132,7 +132,7 @@ Melhora o suporte do editor para seus modelos Pydantic com::
 Dentro da função, você pode acessar todos os atributos do objeto do modelo diretamente:
 
 ```Python hl_lines="21"
-{!../../../docs_src/body/tutorial002.py!}
+{!../../docs_src/body/tutorial002.py!}
 ```
 
 ## Corpo da requisição + parâmetros de rota
@@ -142,7 +142,7 @@ Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
 O **FastAPI** irá reconhecer que os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
 
 ```Python hl_lines="17-18"
-{!../../../docs_src/body/tutorial003.py!}
+{!../../docs_src/body/tutorial003.py!}
 ```
 
 ## Corpo da requisição + parâmetros de rota + parâmetros de consulta
@@ -152,7 +152,7 @@ Você também pode declarar parâmetros de **corpo**, **rota** e **consulta**, a
 O **FastAPI** irá reconhecer cada um deles e retirar a informação do local correto.
 
 ```Python hl_lines="18"
-{!../../../docs_src/body/tutorial004.py!}
+{!../../docs_src/body/tutorial004.py!}
 ```
 
 Os parâmetros da função serão reconhecidos conforme abaixo:

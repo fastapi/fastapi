@@ -3,7 +3,7 @@
 🙅 FastAPI 📁 💪 👀 💖 👉:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 📁 👈 📁 `main.py`.
@@ -134,7 +134,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ### 🔁 1️⃣: 🗄 `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` 🐍 🎓 👈 🚚 🌐 🛠️ 👆 🛠️.
@@ -150,7 +150,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ### 🔁 2️⃣: ✍ `FastAPI` "👐"
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 📥 `app` 🔢 🔜 "👐" 🎓 `FastAPI`.
@@ -172,7 +172,7 @@ $ uvicorn main:app --reload
 🚥 👆 ✍ 👆 📱 💖:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 &amp; 🚮 ⚫️ 📁 `main.py`, ⤴️ 👆 🔜 🤙 `uvicorn` 💖:
@@ -251,7 +251,7 @@ https://example.com/items/foo
 #### 🔬 *➡ 🛠️ 👨‍🎨*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `@app.get("/")` 💬 **FastAPI** 👈 🔢 ▶️️ 🔛 🈚 🚚 📨 👈 🚶:
@@ -307,7 +307,7 @@ https://example.com/items/foo
 * **🔢**: 🔢 🔛 "👨‍🎨" (🔛 `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 👉 🐍 🔢.
@@ -321,7 +321,7 @@ https://example.com/items/foo
 👆 💪 🔬 ⚫️ 😐 🔢 ↩️ `async def`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note
@@ -333,7 +333,7 @@ https://example.com/items/foo
 ### 🔁 5️⃣: 📨 🎚
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 👆 💪 📨 `dict`, `list`, ⭐ 💲 `str`, `int`, ♒️.

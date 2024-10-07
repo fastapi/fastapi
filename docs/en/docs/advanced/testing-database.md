@@ -59,7 +59,7 @@ We'll use an in-memory database that persists during the tests instead of the lo
 But the rest of the session code is more or less the same, we just copy it.
 
 ```Python hl_lines="8-13"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip
@@ -83,7 +83,7 @@ That is normally called in `main.py`, but the line in `main.py` uses the databas
 So we add that line here, with the new file.
 
 ```Python hl_lines="16"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 ## Dependency override
@@ -91,7 +91,7 @@ So we add that line here, with the new file.
 Now we create the dependency override and add it to the overrides for our app.
 
 ```Python hl_lines="19-24  27"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 /// tip
@@ -105,7 +105,7 @@ The code for `override_get_db()` is almost exactly the same as for `get_db()`, b
 Then we can just test the app as normally.
 
 ```Python hl_lines="32-47"
-{!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
+{!../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
 And all the modifications we made in the database during the tests will be in the `test.db` database instead of the main `sql_app.db`.

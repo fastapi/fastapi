@@ -8,7 +8,7 @@
 * Bir `StaticFiles()` örneğini belirli bir yola bağlayın.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
+{!../../docs_src/static_files/tutorial001.py!}
 ```
 
 /// note | "Teknik Detaylar"

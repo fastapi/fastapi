@@ -11,7 +11,7 @@
 🥇, ✍ 👑, 🔝-🎚, **FastAPI** 🈸, &amp; 🚮 *➡ 🛠️*:
 
 ```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### 🎧-🈸
@@ -21,7 +21,7 @@
 👉 🎧-🈸 ➕1️⃣ 🐩 FastAPI 🈸, ✋️ 👉 1️⃣ 👈 🔜 "🗻":
 
 ```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### 🗻 🎧-🈸
@@ -31,7 +31,7 @@
 👉 💼, ⚫️ 🔜 📌 ➡ `/subapi`:
 
 ```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### ✅ 🏧 🛠️ 🩺
