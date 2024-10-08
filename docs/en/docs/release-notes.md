@@ -35,6 +35,10 @@ hide:
 
 ### Internal
 
+* 🔧 Add speakeasy-api to `sponsors_badge.yml`. PR [#12404](https://github.com/fastapi/fastapi/pull/12404) by [@tiangolo](https://github.com/tiangolo).
+* ➕ Add docs dependency: markdown-include-variants. PR [#12399](https://github.com/fastapi/fastapi/pull/12399) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Fix extra mdx-base-path paths. PR [#12397](https://github.com/fastapi/fastapi/pull/12397) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Tweak labeler to not override custom labels. PR [#12398](https://github.com/fastapi/fastapi/pull/12398) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update worfkow deploy-docs-notify URL. PR [#12392](https://github.com/fastapi/fastapi/pull/12392) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update Cloudflare GitHub Action. PR [#12387](https://github.com/fastapi/fastapi/pull/12387) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR [#12386](https://github.com/fastapi/fastapi/pull/12386) by [@dependabot[bot]](https://github.com/apps/dependabot).
