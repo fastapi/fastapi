@@ -1,8 +1,12 @@
+from typing import List
+
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 from typing_extensions import Literal
+
+from .utils import needs_pydanticv2
 
 
 class FilterParams(BaseModel):
@@ -11,7 +15,7 @@ class FilterParams(BaseModel):
     limit: int = Field(100, gt=0, le=100)
     offset: int = Field(0, ge=0)
     order_by: Literal["created_at", "updated_at"] = "created_at"
-    tags: list[str] = []
+    tags: List[str] = []
 
 
 app = FastAPI()
@@ -25,6 +29,7 @@ async def read_items(filter_query: FilterParams = Query()):
 client = TestClient(app)
 
 
+@needs_pydanticv2
 def test_get_data_with_alias_default():
     response = client.get(
         "/items/?offset=1&orderBy=created_at",
@@ -38,6 +43,7 @@ def test_get_data_with_alias_default():
     }
 
 
+@needs_pydanticv2
 def test_get_data_with_alias_non_default():
     response = client.get(
         "/items/?offset=1&orderBy=updated_at",
