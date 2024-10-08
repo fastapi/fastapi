@@ -2,15 +2,23 @@ from typing import List
 
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
+from fastapi.utils import PYDANTIC_V2
 from pydantic import BaseModel, ConfigDict, Field
-from pydantic.alias_generators import to_camel
 from typing_extensions import Literal
 
-from .utils import needs_pydanticv2
+
+def to_camel(string: str) -> str:
+    output = "".join(word.capitalize() for word in string.split("_"))
+    return output[0].lower() + output[1:]
 
 
 class FilterParams(BaseModel):
-    model_config = ConfigDict(alias_generator=to_camel)
+    if PYDANTIC_V2:
+        model_config = ConfigDict(alias_generator=to_camel)
+    else:
+
+        class Config:
+            alias_generator = to_camel
 
     limit: int = Field(100, gt=0, le=100)
     offset: int = Field(0, ge=0)
@@ -29,7 +37,6 @@ async def read_items(filter_query: FilterParams = Query()):
 client = TestClient(app)
 
 
-@needs_pydanticv2
 def test_get_data_with_alias_default():
     response = client.get(
         "/items/?offset=1&orderBy=created_at",
@@ -43,7 +50,6 @@ def test_get_data_with_alias_default():
     }
 
 
-@needs_pydanticv2
 def test_get_data_with_alias_non_default():
     response = client.get(
         "/items/?offset=1&orderBy=updated_at",
