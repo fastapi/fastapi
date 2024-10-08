@@ -91,14 +91,14 @@ multipart_incorrect_install_error = (
 def ensure_multipart_is_installed() -> None:
     try:
         # __version__ is available in both multiparts, and can be mocked
-        from multipart import __version__  # type: ignore
+        from multipart import __version__
 
         assert __version__
         try:
             # parse_options_header is only available in the right multipart
-            from multipart.multipart import parse_options_header  # type: ignore
+            from multipart.multipart import parse_options_header
 
-            assert parse_options_header
+            assert parse_options_header  # type: ignore[truthy-function]
         except ImportError:
             logger.error(multipart_incorrect_install_error)
             raise RuntimeError(multipart_incorrect_install_error) from None
