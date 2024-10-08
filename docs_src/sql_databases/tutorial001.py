@@ -36,7 +36,7 @@ def on_startup():
 
 
 @app.post("/heroes/")
-def create_hero(*, session: Session = Depends(get_session), hero: Hero) -> Hero:
+def create_hero(hero: Hero, session: Session = Depends(get_session)) -> Hero:
     session.add(hero)
     session.commit()
     session.refresh(hero)
@@ -45,7 +45,6 @@ def create_hero(*, session: Session = Depends(get_session), hero: Hero) -> Hero:
 
 @app.get("/heroes/")
 def read_heroes(
-    *,
     session: Session = Depends(get_session),
     offset: int = 0,
     limit: int = Query(default=100, le=100),
@@ -55,7 +54,7 @@ def read_heroes(
 
 
 @app.get("/heroes/{hero_id}")
-def read_hero(*, session: Session = Depends(get_session), hero_id: int) -> Hero:
+def read_hero(hero_id: int, session: Session = Depends(get_session)) -> Hero:
     hero = session.get(Hero, hero_id)
     if not hero:
         raise HTTPException(status_code=404, detail="Hero not found")
@@ -63,7 +62,7 @@ def read_hero(*, session: Session = Depends(get_session), hero_id: int) -> Hero:
 
 
 @app.delete("/heroes/{hero_id}")
-def delete_hero(*, session: Session = Depends(get_session), hero_id: int):
+def delete_hero(hero_id: int, session: Session = Depends(get_session)):
     hero = session.get(Hero, hero_id)
     if not hero:
         raise HTTPException(status_code=404, detail="Hero not found")
