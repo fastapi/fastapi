@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Update type annotations for improved `python-multipart`. PR [#12407](https://github.com/fastapi/fastapi/pull/12407) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Add External Link: How to profile a FastAPI asynchronous request. PR [#12389](https://github.com/fastapi/fastapi/pull/12389) by [@brouberol](https://github.com/brouberol).
