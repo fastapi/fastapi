@@ -15,6 +15,7 @@ import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+from ruff.__main__ import find_ruff_bin
 
 logging.basicConfig(level=logging.INFO)
 
@@ -380,6 +381,42 @@ def langs_json():
         if lang_path.is_dir():
             langs.append(lang_path.name)
     print(json.dumps(langs))
+
+
+@app.command()
+def generate_docs_src_versions_for_file(file_path: Path) -> None:
+    target_versions = ["py39", "py310"]
+    base_content = file_path.read_text(encoding="utf-8")
+    previous_content = {base_content}
+    for target_version in target_versions:
+        version_result = subprocess.run(
+            [
+                find_ruff_bin(),
+                "check",
+                "--target-version",
+                target_version,
+                "--fix",
+                "--unsafe-fixes",
+                "-",
+            ],
+            input=base_content.encode("utf-8"),
+            capture_output=True,
+        )
+        content_target = version_result.stdout.decode("utf-8")
+        format_result = subprocess.run(
+            [find_ruff_bin(), "format", "-"],
+            input=content_target.encode("utf-8"),
+            capture_output=True,
+        )
+        content_format = format_result.stdout.decode("utf-8")
+        if content_format in previous_content:
+            continue
+        previous_content.add(content_format)
+        version_file = file_path.with_name(
+            file_path.name.replace(".py", f"_{target_version}.py")
+        )
+        logging.info(f"Writing to {version_file}")
+        version_file.write_text(content_format, encoding="utf-8")
 
 
 if __name__ == "__main__":
