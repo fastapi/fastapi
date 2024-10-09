@@ -1,6 +1,6 @@
-# Models de Parâmetros de Consulta
+# Modelos de Parâmetros de Consulta
 
-Se você tem um grupo de **parâmetros de consultas** que são relacionados, você pode criar um **modelo Pydantic** para declará-los.
+Se você possui um grupo de **parâmetros de consultas** que são relacionados, você pode criar um **modelo Pydantic** para declará-los.
 
 Isso permitiria que você **reutilizasse o modelo** em **diversos lugares**, e também declarasse validações e metadados de todos os parâmetros de uma única vez. 😎
 
@@ -95,7 +95,7 @@ Você pode ver os parâmetros de consulta nos documentos de IU em `/docs`:
 
 Em alguns casos especiais (provavelmente não muito comuns), você queira **restrinjir** os parâmetros de consulta que deseja receber.
 
-Você pode usar a configuração do modelo Pydantic para `forbid` qualquer campo `extra`:
+Você pode usar a configuração do modelo Pydantic para `forbid` (proibir) qualquer campo `extra`:
 
 //// tab | Python 3.10+
 
@@ -171,7 +171,7 @@ Por exemplo, se o cliente tentar enviar um parâmetro de consulta `tool` com o v
 https://example.com/items/?limit=10&tool=plumbus
 ```
 
-Ekes receberão um retorno de **erro** informando-os que o parâmentro de consulta `tool` não é permitido:
+Eles receberão um retorno de **erro** informando-os que o parâmentro de consulta `tool` não é permitido:
 
 ```json
 {
