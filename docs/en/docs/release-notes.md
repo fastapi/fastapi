@@ -40,6 +40,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12396](https://github.com/fastapi/fastapi/pull/12396) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🔨 Add script to generate variants of files. PR [#12405](https://github.com/fastapi/fastapi/pull/12405) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add speakeasy-api to `sponsors_badge.yml`. PR [#12404](https://github.com/fastapi/fastapi/pull/12404) by [@tiangolo](https://github.com/tiangolo).
 * ➕ Add docs dependency: markdown-include-variants. PR [#12399](https://github.com/fastapi/fastapi/pull/12399) by [@tiangolo](https://github.com/tiangolo).
