@@ -831,6 +831,25 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        ignore_trailing_slash: Annotated[
+            bool,
+            Doc(
+                """
+                To ignore (or not) trailing slashes at the end of URIs.
+
+                For example, by setting `ignore_trailing_slash` to True,
+                requests to `/auth` and `/auth/` will have the same behaviour.
+
+                By default (`ignore_trailing_slash` is False), the two requests are treated differently.
+                One of them will result in a 307-redirect.
+
+                It's important to understand that when `ignore_trailing_slash=True`, registering both `/auth`
+                and `/auth/` as different routes will be treated as if `/auth` was registered twice.
+                This means that only the first route registered will be used.
+                Therefore, ensure your route setup does not conflict unintentionally.
+                """
+            ),
+        ] = False,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -856,6 +875,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.ignore_trailing_slash = ignore_trailing_slash
 
     def route(
         self,
@@ -866,7 +886,7 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_route(
-                path,
+                self._normalize_path(path),
                 func,
                 methods=methods,
                 name=name,
@@ -910,6 +930,7 @@ class APIRouter(routing.Router):
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
     ) -> None:
+        path = self._normalize_path(path)
         route_class = route_class_override or self.route_class
         responses = responses or {}
         combined_responses = {**self.responses, **responses}
@@ -1020,6 +1041,15 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def add_websocket_route(
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+    ) -> None:
+        path = self._normalize_path(path)
+        super().add_websocket_route(path, endpoint, name)
+
     def add_api_websocket_route(
         self,
         path: str,
@@ -1028,6 +1058,7 @@ class APIRouter(routing.Router):
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> None:
+        path = self._normalize_path(path)
         current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
@@ -1111,6 +1142,8 @@ class APIRouter(routing.Router):
     def websocket_route(
         self, path: str, name: Union[str, None] = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        path = self._normalize_path(path)
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_websocket_route(path, func, name=name)
             return func
@@ -1268,6 +1301,7 @@ class APIRouter(routing.Router):
         if responses is None:
             responses = {}
         for route in router.routes:
+            route = self._normalize_route(route)
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
                 use_response_class = get_value_or_default(
@@ -1360,6 +1394,16 @@ class APIRouter(routing.Router):
             self.lifespan_context,
             router.lifespan_context,
         )
+
+    def _normalize_path(self, path: str) -> str:
+        if self.ignore_trailing_slash:
+            return path.rstrip("/")
+        return path
+
+    def _normalize_route(self, route: BaseRoute) -> BaseRoute:
+        if hasattr(route, "path") and isinstance(route.path, str):
+            route.path = self._normalize_path(route.path)
+        return route
 
     def get(
         self,
