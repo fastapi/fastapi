@@ -24,13 +24,18 @@ def get_client():
     def read_root() -> Rectangle:
         return Rectangle(width=3, length=4)
 
+    @app.get("/responses", responses={200: {"model": Rectangle}})
+    def read_responses() -> Rectangle:
+        return Rectangle(width=3, length=4)
+
     client = TestClient(app)
     return client
 
 
+@pytest.mark.parametrize("path", ["/", "/responses"])
 @needs_pydanticv2
-def test_get(client: TestClient):
-    response = client.get("/")
+def test_get(client: TestClient, path: str):
+    response = client.get(path)
     assert response.status_code == 200, response.text
     assert response.json() == {"width": 3, "length": 4, "area": 12}
 
@@ -58,7 +63,23 @@ def test_openapi_schema(client: TestClient):
                         }
                     },
                 }
-            }
+            },
+            "/responses": {
+                "get": {
+                    "summary": "Read Responses",
+                    "operationId": "read_responses_responses_get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Rectangle"}
+                                }
+                            },
+                        }
+                    },
+                }
+            },
         },
         "components": {
             "schemas": {
