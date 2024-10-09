@@ -91,7 +91,10 @@ if PYDANTIC_V2:
 
         @property
         def alias(self) -> str:
-            a = self.field_info.alias
+            a = (
+                isinstance(self.field_info.validation_alias, str)
+                and self.field_info.validation_alias
+            ) or self.field_info.alias
             return a if a is not None else self.name
 
         @property
@@ -276,7 +279,9 @@ if PYDANTIC_V2:
     def create_body_model(
         *, fields: Sequence[ModelField], model_name: str
     ) -> Type[BaseModel]:
-        field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
+        field_params = {
+            f"{f.alias}": (f.field_info.annotation, f.field_info) for f in fields
+        }
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
 
