@@ -75,6 +75,7 @@ plugins:
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+      advanced/testing-database.md: how-to/testing-database.md
   mkdocstrings:
     handlers:
       python:
@@ -211,7 +212,7 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
-    - how-to/async-sql-encode-databases.md
+    - how-to/testing-database.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
