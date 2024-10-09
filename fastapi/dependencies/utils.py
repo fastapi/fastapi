@@ -12,6 +12,7 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
+    Set,
     Tuple,
     Type,
     Union,
@@ -960,3 +961,8 @@ def get_body_field(
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
     return final_field
+
+
+def get_path_hash_val(path: str, methods: Optional[Set[str]] = None) -> str:
+    methods = methods or {"GET"}
+    return f"path:{path};methods:{methods}"
