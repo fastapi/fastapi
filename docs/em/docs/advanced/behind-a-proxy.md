@@ -95,7 +95,7 @@ $ uvicorn main:app --root-path /api/v1
 📥 👥 ✅ ⚫️ 📧 🎦 🎯.
 
 ```Python hl_lines="8"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+{!../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
 ⤴️, 🚥 👆 ▶️ Uvicorn ⏮️:
@@ -124,7 +124,7 @@ $ uvicorn main:app --root-path /api/v1
 👐, 🚥 👆 🚫 ✔️ 🌌 🚚 📋 ⏸ 🎛 💖 `--root-path` ⚖️ 🌓, 👆 💪 ⚒ `root_path` 🔢 🕐❔ 🏗 👆 FastAPI 📱:
 
 ```Python hl_lines="3"
-{!../../../docs_src/behind_a_proxy/tutorial002.py!}
+{!../../docs_src/behind_a_proxy/tutorial002.py!}
 ```
 
 🚶‍♀️ `root_path` `FastAPI` 🔜 🌓 🚶‍♀️ `--root-path` 📋 ⏸ 🎛 Uvicorn ⚖️ Hypercorn.
@@ -306,7 +306,7 @@ $ uvicorn main:app --root-path /api/v1
 🖼:
 
 ```Python hl_lines="4-7"
-{!../../../docs_src/behind_a_proxy/tutorial003.py!}
+{!../../docs_src/behind_a_proxy/tutorial003.py!}
 ```
 
 🔜 🏗 🗄 🔗 💖:
@@ -355,7 +355,7 @@ $ uvicorn main:app --root-path /api/v1
 🚥 👆 🚫 💚 **FastAPI** 🔌 🏧 💽 ⚙️ `root_path`, 👆 💪 ⚙️ 🔢 `root_path_in_servers=False`:
 
 ```Python hl_lines="9"
-{!../../../docs_src/behind_a_proxy/tutorial004.py!}
+{!../../docs_src/behind_a_proxy/tutorial004.py!}
 ```
 
 &amp; ⤴️ ⚫️ 🏆 🚫 🔌 ⚫️ 🗄 🔗.

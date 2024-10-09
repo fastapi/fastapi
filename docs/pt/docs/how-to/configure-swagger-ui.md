@@ -19,7 +19,7 @@ Sem alterar as configurações, o destaque de sintaxe é habilitado por padrão:
 Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial001.py!}
+{!../../docs_src/configure_swagger_ui/tutorial001.py!}
 ```
 
 ...e então o Swagger UI não mostrará mais o destaque de sintaxe:
@@ -31,7 +31,7 @@ Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 Da mesma forma que você pode definir o tema de destaque de sintaxe com a chave `"syntaxHighlight.theme"` (observe que há um ponto no meio):
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial002.py!}
+{!../../docs_src/configure_swagger_ui/tutorial002.py!}
 ```
 
 Essa configuração alteraria o tema de cores de destaque de sintaxe:
@@ -45,7 +45,7 @@ O FastAPI inclui alguns parâmetros de configuração padrão apropriados para a
 Inclui estas configurações padrão:
 
 ```Python
-{!../../../fastapi/openapi/docs.py[ln:7-23]!}
+{!../../fastapi/openapi/docs.py[ln:7-23]!}
 ```
 
 Você pode substituir qualquer um deles definindo um valor diferente no argumento `swagger_ui_parameters`.
@@ -53,7 +53,7 @@ Você pode substituir qualquer um deles definindo um valor diferente no argument
 Por exemplo, para desabilitar `deepLinking` você pode passar essas configurações para `swagger_ui_parameters`:
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial003.py!}
+{!../../docs_src/configure_swagger_ui/tutorial003.py!}
 ```
 
 ## Outros parâmetros da UI do Swagger

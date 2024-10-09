@@ -16,7 +16,7 @@ This includes, for example:
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
@@ -34,7 +34,7 @@ In this case, the task function will write to a file (simulating sending an emai
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## Add the background task
@@ -42,7 +42,7 @@ And as the write operation doesn't use `async` and `await`, we define the functi
 Inside of your *path operation function*, pass your task function to the *background tasks* object with the method `.add_task()`:
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` receives as arguments:
@@ -60,7 +60,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
+{!> ../../docs_src/background_tasks/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -68,7 +68,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 //// tab | Python 3.9+
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
+{!> ../../docs_src/background_tasks/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -76,7 +76,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 //// tab | Python 3.8+
 
 ```Python hl_lines="14  16  23  26"
-{!> ../../../docs_src/background_tasks/tutorial002_an.py!}
+{!> ../../docs_src/background_tasks/tutorial002_an.py!}
 ```
 
 ////
@@ -90,7 +90,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11  13  20  23"
-{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
 ```
 
 ////
@@ -104,7 +104,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002.py!}
+{!> ../../docs_src/background_tasks/tutorial002.py!}
 ```
 
 ////

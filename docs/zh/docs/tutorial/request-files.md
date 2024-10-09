@@ -17,7 +17,7 @@
 从 `fastapi` 导入 `File` 和 `UploadFile`：
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 ## 定义 `File` 参数
@@ -25,7 +25,7 @@
 创建文件（`File`）参数的方式与 `Body` 和 `Form` 一样：
 
 ```Python hl_lines="7"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 /// info | "说明"
@@ -55,7 +55,7 @@
 定义文件参数时使用 `UploadFile`：
 
 ```Python hl_lines="12"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 `UploadFile` 与 `bytes` 相比有更多优势：
@@ -141,7 +141,7 @@ contents = myfile.file.read()
 //// tab | Python 3.9+
 
 ```Python hl_lines="7  14"
-{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
 ```
 
 ////
@@ -149,7 +149,7 @@ contents = myfile.file.read()
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02.py!}
+{!> ../../docs_src/request_files/tutorial001_02.py!}
 ```
 
 ////
@@ -159,7 +159,7 @@ contents = myfile.file.read()
 您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
 ```Python hl_lines="13"
-{!../../../docs_src/request_files/tutorial001_03.py!}
+{!../../docs_src/request_files/tutorial001_03.py!}
 ```
 
 ## 多文件上传
@@ -173,7 +173,7 @@ FastAPI 支持同时上传多个文件。
 //// tab | Python 3.9+
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_py39.py!}
 ```
 
 ////
@@ -181,7 +181,7 @@ FastAPI 支持同时上传多个文件。
 //// tab | Python 3.8+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002.py!}
+{!> ../../docs_src/request_files/tutorial002.py!}
 ```
 
 ////
@@ -204,7 +204,7 @@ FastAPI 支持同时上传多个文件。
 //// tab | Python 3.9+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_py39.py!}
 ```
 
 ////
@@ -212,7 +212,7 @@ FastAPI 支持同时上传多个文件。
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/request_files/tutorial003.py!}
+{!> ../../docs_src/request_files/tutorial003.py!}
 ```
 
 ////

@@ -23,7 +23,7 @@
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@
 ///
 
 ```Python
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
@@ -155,7 +155,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 //// tab | Python 3.9+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -163,7 +163,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 //// tab | Python 3.8+
 
 ```Python  hl_lines="7"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -177,7 +177,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
@@ -221,7 +221,7 @@ oauth2_scheme(some, parameters)
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ oauth2_scheme(some, parameters)
 //// tab | Python 3.8+
 
 ```Python  hl_lines="11"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -243,7 +243,7 @@ oauth2_scheme(some, parameters)
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////

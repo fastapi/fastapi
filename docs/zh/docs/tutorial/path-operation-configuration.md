@@ -17,7 +17,7 @@
 如果记不住数字码的涵义，也可以用 `status` 的快捷常量：
 
 ```Python hl_lines="3  17"
-{!../../../docs_src/path_operation_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_configuration/tutorial001.py!}
 ```
 
 状态码在响应中使用，并会被添加到 OpenAPI 概图。
@@ -35,7 +35,7 @@
 `tags` 参数的值是由 `str` 组成的 `list` （一般只有一个 `str` ），`tags` 用于为*路径操作*添加标签：
 
 ```Python hl_lines="17  22  27"
-{!../../../docs_src/path_operation_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
 OpenAPI 概图会自动添加标签，供 API 文档接口使用：
@@ -47,7 +47,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 路径装饰器还支持 `summary` 和 `description` 这两个参数：
 
 ```Python hl_lines="20-21"
-{!../../../docs_src/path_operation_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
 ## 文档字符串（`docstring`）
@@ -57,7 +57,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 文档字符串支持 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
 
 ```Python hl_lines="19-27"
-{!../../../docs_src/path_operation_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
 下图为 Markdown 文本在 API 文档中的显示效果：
@@ -69,7 +69,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 `response_description` 参数用于定义响应的描述说明：
 
 ```Python hl_lines="21"
-{!../../../docs_src/path_operation_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
 /// info | "说明"
@@ -93,7 +93,7 @@ OpenAPI 规定每个*路径操作*都要有响应描述。
 `deprecated` 参数可以把*路径操作*标记为<abbr title="过时，建议不要使用">弃用</abbr>，无需直接删除：
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_operation_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
 API 文档会把该路径操作标记为弃用：

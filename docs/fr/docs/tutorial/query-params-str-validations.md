@@ -5,7 +5,7 @@
 Commençons avec cette application pour exemple :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial001.py!}
+{!../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
 Le paramètre de requête `q` a pour type `Union[str, None]` (ou `str | None` en Python 3.10), signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et bien sûr, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
@@ -27,7 +27,7 @@ Nous allons imposer que bien que `q` soit un paramètre optionnel, dès qu'il es
 Pour cela, importez d'abord `Query` depuis `fastapi` :
 
 ```Python hl_lines="3"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 ## Utiliser `Query` comme valeur par défaut
@@ -35,7 +35,7 @@ Pour cela, importez d'abord `Query` depuis `fastapi` :
 Construisez ensuite la valeur par défaut de votre paramètre avec `Query`, en choisissant 50 comme `max_length` :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 Comme nous devons remplacer la valeur par défaut `None` dans la fonction par `Query()`, nous pouvons maintenant définir la valeur par défaut avec le paramètre `Query(default=None)`, il sert le même objectif qui est de définir cette valeur par défaut.
@@ -87,7 +87,7 @@ Cela va valider les données, montrer une erreur claire si ces dernières ne son
 Vous pouvez aussi rajouter un second paramètre `min_length` :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial003.py!}
+{!../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
 ## Ajouter des validations par expressions régulières
@@ -95,7 +95,7 @@ Vous pouvez aussi rajouter un second paramètre `min_length` :
 On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un pattern de correspondance pour les chaînes de caractères.">expression régulière</abbr> à laquelle le paramètre doit correspondre :
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial004.py!}
+{!../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
 Cette expression régulière vérifie que la valeur passée comme paramètre :
@@ -115,7 +115,7 @@ De la même façon que vous pouvez passer `None` comme premier argument pour l'u
 Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de `3`, et une valeur par défaut étant `"fixedquery"` :
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial005.py!}
+{!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
 /// note | "Rappel"
@@ -147,7 +147,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 Donc pour déclarer une valeur comme requise tout en utilisant `Query`, il faut utiliser `...` comme premier argument :
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006.py!}
+{!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
 /// info
@@ -165,7 +165,7 @@ Quand on définit un paramètre de requête explicitement avec `Query` on peut a
 Par exemple, pour déclarer un paramètre de requête `q` qui peut apparaître plusieurs fois dans une URL, on écrit :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial011.py!}
+{!../../docs_src/query_params_str_validations/tutorial011.py!}
 ```
 
 Ce qui fait qu'avec une URL comme :
@@ -202,7 +202,7 @@ La documentation sera donc mise à jour automatiquement pour autoriser plusieurs
 Et l'on peut aussi définir une liste de valeurs par défaut si aucune n'est fournie :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial012.py!}
+{!../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
 Si vous allez à :
@@ -229,7 +229,7 @@ et la réponse sera :
 Il est aussi possible d'utiliser directement `list` plutôt que `List[str]` :
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial013.py!}
+{!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
 /// note
@@ -257,13 +257,13 @@ Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnée
 Vous pouvez ajouter un `title` :
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial007.py!}
+{!../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 Et une `description` :
 
 ```Python hl_lines="13"
-{!../../../docs_src/query_params_str_validations/tutorial008.py!}
+{!../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
 ## Alias de paramètres
@@ -285,7 +285,7 @@ Mais vous avez vraiment envie que ce soit exactement `item-query`...
 Pour cela vous pouvez déclarer un `alias`, et cet alias est ce qui sera utilisé pour trouver la valeur du paramètre :
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial009.py!}
+{!../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
 ## Déprécier des paramètres
@@ -297,7 +297,7 @@ Il faut qu'il continue à exister pendant un certain temps car vos clients l'uti
 On utilise alors l'argument `deprecated=True` de `Query` :
 
 ```Python hl_lines="18"
-{!../../../docs_src/query_params_str_validations/tutorial010.py!}
+{!../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
 La documentation le présentera comme il suit :

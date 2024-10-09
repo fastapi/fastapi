@@ -31,7 +31,7 @@ Beginnen wir mit einer einfachen FastAPI-Anwendung:
 //// tab | Python 3.9+
 
 ```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Beginnen wir mit einer einfachen FastAPI-Anwendung:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../../docs_src/generate_clients/tutorial001.py!}
+{!> ../../docs_src/generate_clients/tutorial001.py!}
 ```
 
 ////
@@ -150,7 +150,7 @@ Beispielsweise könnten Sie einen Abschnitt für **Items (Artikel)** und einen w
 //// tab | Python 3.9+
 
 ```Python hl_lines="21  26  34"
-{!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
 ```
 
 ////
@@ -158,7 +158,7 @@ Beispielsweise könnten Sie einen Abschnitt für **Items (Artikel)** und einen w
 //// tab | Python 3.8+
 
 ```Python hl_lines="23  28  36"
-{!> ../../../docs_src/generate_clients/tutorial002.py!}
+{!> ../../docs_src/generate_clients/tutorial002.py!}
 ```
 
 ////
@@ -211,7 +211,7 @@ Anschließend können Sie diese benutzerdefinierte Funktion als Parameter `gener
 //// tab | Python 3.9+
 
 ```Python hl_lines="6-7  10"
-{!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
 ```
 
 ////
@@ -219,7 +219,7 @@ Anschließend können Sie diese benutzerdefinierte Funktion als Parameter `gener
 //// tab | Python 3.8+
 
 ```Python hl_lines="8-9  12"
-{!> ../../../docs_src/generate_clients/tutorial003.py!}
+{!> ../../docs_src/generate_clients/tutorial003.py!}
 ```
 
 ////
@@ -247,7 +247,7 @@ Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dan
 //// tab | Python
 
 ```Python
-{!> ../../../docs_src/generate_clients/tutorial004.py!}
+{!> ../../docs_src/generate_clients/tutorial004.py!}
 ```
 
 ////
@@ -255,7 +255,7 @@ Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dan
 //// tab | Node.js
 
 ```Javascript
-{!> ../../../docs_src/generate_clients/tutorial004.js!}
+{!> ../../docs_src/generate_clients/tutorial004.js!}
 ```
 
 ////

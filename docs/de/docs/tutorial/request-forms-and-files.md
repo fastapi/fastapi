@@ -15,7 +15,7 @@ Z. B. `pip install python-multipart`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -23,7 +23,7 @@ Z. B. `pip install python-multipart`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
 ```
 
 ////
@@ -37,7 +37,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 ////
@@ -49,7 +49,7 @@ Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Q
 //// tab | Python 3.9+
 
 ```Python hl_lines="10-12"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Q
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-11"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 ////

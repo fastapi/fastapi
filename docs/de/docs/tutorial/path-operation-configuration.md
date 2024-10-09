@@ -19,7 +19,7 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  15"
-{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001_py310.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
 //// tab | Python 3.9+
 
 ```Python hl_lines="3  17"
-{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001_py39.py!}
 ```
 
 ////
@@ -35,7 +35,7 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
 //// tab | Python 3.8+
 
 ```Python hl_lines="3  17"
-{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Sie können Ihrer *Pfadoperation* Tags hinzufügen, mittels des Parameters `tags
 //// tab | Python 3.10+
 
 ```Python hl_lines="15  20  25"
-{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002_py310.py!}
 ```
 
 ////
@@ -65,7 +65,7 @@ Sie können Ihrer *Pfadoperation* Tags hinzufügen, mittels des Parameters `tags
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  22  27"
-{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002_py39.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Sie können Ihrer *Pfadoperation* Tags hinzufügen, mittels des Parameters `tags
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  22  27"
-{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
 ////
@@ -91,7 +91,7 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 **FastAPI** unterstützt diese genauso wie einfache Strings:
 
 ```Python hl_lines="1  8-10  13  18"
-{!../../../docs_src/path_operation_configuration/tutorial002b.py!}
+{!../../docs_src/path_operation_configuration/tutorial002b.py!}
 ```
 
 ## Zusammenfassung und Beschreibung
@@ -101,7 +101,7 @@ Sie können eine Zusammenfassung (`summary`) und eine Beschreibung (`description
 //// tab | Python 3.10+
 
 ```Python hl_lines="18-19"
-{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003_py310.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ Sie können eine Zusammenfassung (`summary`) und eine Beschreibung (`description
 //// tab | Python 3.9+
 
 ```Python hl_lines="20-21"
-{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003_py39.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ Sie können eine Zusammenfassung (`summary`) und eine Beschreibung (`description
 //// tab | Python 3.8+
 
 ```Python hl_lines="20-21"
-{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
 ////
@@ -131,7 +131,7 @@ Sie können im Docstring <a href="https://en.wikipedia.org/wiki/Markdown" class=
 //// tab | Python 3.10+
 
 ```Python hl_lines="17-25"
-{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004_py310.py!}
 ```
 
 ////
@@ -139,7 +139,7 @@ Sie können im Docstring <a href="https://en.wikipedia.org/wiki/Markdown" class=
 //// tab | Python 3.9+
 
 ```Python hl_lines="19-27"
-{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004_py39.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ Sie können im Docstring <a href="https://en.wikipedia.org/wiki/Markdown" class=
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-27"
-{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
 ////
@@ -163,7 +163,7 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005_py310.py!}
 ```
 
 ////
@@ -171,7 +171,7 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 //// tab | Python 3.9+
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005_py39.py!}
 ```
 
 ////
@@ -179,7 +179,7 @@ Die Response können Sie mit dem Parameter `response_description` beschreiben:
 //// tab | Python 3.8+
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
 ////
@@ -205,7 +205,7 @@ Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolg
 Wenn Sie eine *Pfadoperation* als <abbr title="deprecated – obsolet, veraltet: Es soll nicht mehr verwendet werden">deprecated</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_operation_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
 Sie wird in der interaktiven Dokumentation gut sichtbar als deprecated markiert werden:

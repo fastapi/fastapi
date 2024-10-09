@@ -30,7 +30,7 @@ Você pode usar facilmente as mesmas configurações do Pydantic para configurar
 Por exemplo:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/conditional_openapi/tutorial001.py!}
+{!../../docs_src/conditional_openapi/tutorial001.py!}
 ```
 
 Aqui declaramos a configuração `openapi_url` com o mesmo padrão de `"/openapi.json"`.

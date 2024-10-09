@@ -122,13 +122,13 @@ Let's refer to the file `sql_app/database.py`.
 ### Import the SQLAlchemy parts
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### Create a database URL for SQLAlchemy
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
@@ -158,7 +158,7 @@ The first step is to create a SQLAlchemy "engine".
 We will later use this `engine` in other places.
 
 ```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 #### Note
@@ -196,7 +196,7 @@ We will use `Session` (the one imported from SQLAlchemy) later.
 To create the `SessionLocal` class, use the function `sessionmaker`:
 
 ```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### Create a `Base` class
@@ -206,7 +206,7 @@ Now we will use the function `declarative_base()` that returns a class.
 Later we will inherit from this class to create each of the database models or classes (the ORM models):
 
 ```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ## Create the database models
@@ -232,7 +232,7 @@ Create classes that inherit from it.
 These classes are the SQLAlchemy models.
 
 ```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 The `__tablename__` attribute tells SQLAlchemy the name of the table to use in the database for each of these models.
@@ -248,7 +248,7 @@ We use `Column` from SQLAlchemy as the default value.
 And we pass a SQLAlchemy class "type", as `Integer`, `String`, and `Boolean`, that defines the type in the database, as an argument.
 
 ```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 ### Create the relationships
@@ -260,7 +260,7 @@ For this, we use `relationship` provided by SQLAlchemy ORM.
 This will become, more or less, a "magic" attribute that will contain the values from other tables related to this one.
 
 ```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 When accessing the attribute `items` in a `User`, as in `my_user.items`, it will have a list of `Item` SQLAlchemy models (from the `items` table) that have a foreign key pointing to this record in the `users` table.
@@ -296,7 +296,7 @@ But for security, the `password` won't be in other Pydantic *models*, for exampl
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -304,7 +304,7 @@ But for security, the `password` won't be in other Pydantic *models*, for exampl
 //// tab | Python 3.9+
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -312,7 +312,7 @@ But for security, the `password` won't be in other Pydantic *models*, for exampl
 //// tab | Python 3.8+
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -346,7 +346,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 //// tab | Python 3.10+
 
 ```Python hl_lines="13-15  29-32"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -354,7 +354,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -362,7 +362,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 //// tab | Python 3.8+
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -384,7 +384,7 @@ In the `Config` class, set the attribute `orm_mode = True`.
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  17-18  29  34-35"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -392,7 +392,7 @@ In the `Config` class, set the attribute `orm_mode = True`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -400,7 +400,7 @@ In the `Config` class, set the attribute `orm_mode = True`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -478,7 +478,7 @@ Create utility functions to:
 * Read multiple items.
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -499,7 +499,7 @@ The steps are:
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
 ```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// info
@@ -559,7 +559,7 @@ In a very simplistic way create the database tables:
 //// tab | Python 3.9+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -567,7 +567,7 @@ In a very simplistic way create the database tables:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -597,7 +597,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
 //// tab | Python 3.9+
 
 ```Python hl_lines="13-18"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -605,7 +605,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
 //// tab | Python 3.8+
 
 ```Python hl_lines="15-20"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -629,7 +629,7 @@ This will then give us better editor support inside the *path operation function
 //// tab | Python 3.9+
 
 ```Python hl_lines="22  30  36  45  51"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -637,7 +637,7 @@ This will then give us better editor support inside the *path operation function
 //// tab | Python 3.8+
 
 ```Python hl_lines="24  32  38  47  53"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -657,7 +657,7 @@ Now, finally, here's the standard **FastAPI** *path operations* code.
 //// tab | Python 3.9+
 
 ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -665,7 +665,7 @@ Now, finally, here's the standard **FastAPI** *path operations* code.
 //// tab | Python 3.8+
 
 ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -752,13 +752,13 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 * `sql_app/database.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
@@ -766,7 +766,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 //// tab | Python 3.10+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -774,7 +774,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -782,7 +782,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -790,7 +790,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
@@ -798,7 +798,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -806,7 +806,7 @@ For example, in a background task worker with <a href="https://docs.celeryq.dev"
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -863,7 +863,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
 //// tab | Python 3.9+
 
 ```Python hl_lines="12-20"
-{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
 ```
 
 ////
@@ -871,7 +871,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-22"
-{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app/alt_main.py!}
 ```
 
 ////

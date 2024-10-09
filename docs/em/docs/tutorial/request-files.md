@@ -17,7 +17,7 @@
 🗄 `File` &amp; `UploadFile` ⚪️➡️ `fastapi`:
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 ## 🔬 `File` 🔢
@@ -25,7 +25,7 @@
 ✍ 📁 🔢 🎏 🌌 👆 🔜 `Body` ⚖️ `Form`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 /// info
@@ -55,7 +55,7 @@
 🔬 📁 🔢 ⏮️ 🆎 `UploadFile`:
 
 ```Python hl_lines="12"
-{!../../../docs_src/request_files/tutorial001.py!}
+{!../../docs_src/request_files/tutorial001.py!}
 ```
 
 ⚙️ `UploadFile` ✔️ 📚 📈 🤭 `bytes`:
@@ -142,7 +142,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02.py!}
+{!> ../../docs_src/request_files/tutorial001_02.py!}
 ```
 
 ////
@@ -150,7 +150,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="7  14"
-{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
 ```
 
 ////
@@ -160,7 +160,7 @@ contents = myfile.file.read()
 👆 💪 ⚙️ `File()` ⏮️ `UploadFile`, 🖼, ⚒ 🌖 🗃:
 
 ```Python hl_lines="13"
-{!../../../docs_src/request_files/tutorial001_03.py!}
+{!../../docs_src/request_files/tutorial001_03.py!}
 ```
 
 ## 💗 📁 📂
@@ -174,7 +174,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002.py!}
+{!> ../../docs_src/request_files/tutorial002.py!}
 ```
 
 ////
@@ -182,7 +182,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/request_files/tutorial002_py39.py!}
+{!> ../../docs_src/request_files/tutorial002_py39.py!}
 ```
 
 ////
@@ -204,7 +204,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/request_files/tutorial003.py!}
+{!> ../../docs_src/request_files/tutorial003.py!}
 ```
 
 ////
@@ -212,7 +212,7 @@ contents = myfile.file.read()
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/request_files/tutorial003_py39.py!}
+{!> ../../docs_src/request_files/tutorial003_py39.py!}
 ```
 
 ////

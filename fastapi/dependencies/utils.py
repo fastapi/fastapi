@@ -96,7 +96,7 @@ def ensure_multipart_is_installed() -> None:
             # parse_options_header is only available in the right multipart
             from multipart.multipart import parse_options_header
 
-            assert parse_options_header  # type: ignore [truthy-function]
+            assert parse_options_header  # type: ignore[truthy-function]
         except ImportError:
             logger.error(multipart_incorrect_install_error)
             raise RuntimeError(multipart_incorrect_install_error) from None

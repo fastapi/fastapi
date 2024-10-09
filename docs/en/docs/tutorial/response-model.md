@@ -7,7 +7,7 @@ You can use **type annotations** the same way you would for input data in functi
 //// tab | Python 3.10+
 
 ```Python hl_lines="16  21"
-{!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
+{!> ../../docs_src/response_model/tutorial001_01_py310.py!}
 ```
 
 ////
@@ -15,7 +15,7 @@ You can use **type annotations** the same way you would for input data in functi
 //// tab | Python 3.9+
 
 ```Python hl_lines="18  23"
-{!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
+{!> ../../docs_src/response_model/tutorial001_01_py39.py!}
 ```
 
 ////
@@ -23,7 +23,7 @@ You can use **type annotations** the same way you would for input data in functi
 //// tab | Python 3.8+
 
 ```Python hl_lines="18  23"
-{!> ../../../docs_src/response_model/tutorial001_01.py!}
+{!> ../../docs_src/response_model/tutorial001_01.py!}
 ```
 
 ////
@@ -62,7 +62,7 @@ You can use the `response_model` parameter in any of the *path operations*:
 //// tab | Python 3.10+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001_py310.py!}
+{!> ../../docs_src/response_model/tutorial001_py310.py!}
 ```
 
 ////
@@ -70,7 +70,7 @@ You can use the `response_model` parameter in any of the *path operations*:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001_py39.py!}
+{!> ../../docs_src/response_model/tutorial001_py39.py!}
 ```
 
 ////
@@ -78,7 +78,7 @@ You can use the `response_model` parameter in any of the *path operations*:
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001.py!}
+{!> ../../docs_src/response_model/tutorial001.py!}
 ```
 
 ////
@@ -116,7 +116,7 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 //// tab | Python 3.10+
 
 ```Python hl_lines="7  9"
-{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+{!> ../../docs_src/response_model/tutorial002_py310.py!}
 ```
 
 ////
@@ -124,7 +124,7 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  11"
-{!> ../../../docs_src/response_model/tutorial002.py!}
+{!> ../../docs_src/response_model/tutorial002.py!}
 ```
 
 ////
@@ -152,7 +152,7 @@ And we are using this model to declare our input and the same model to declare o
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+{!> ../../docs_src/response_model/tutorial002_py310.py!}
 ```
 
 ////
@@ -160,7 +160,7 @@ And we are using this model to declare our input and the same model to declare o
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/response_model/tutorial002.py!}
+{!> ../../docs_src/response_model/tutorial002.py!}
 ```
 
 ////
@@ -184,7 +184,7 @@ We can instead create an input model with the plaintext password and an output m
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  11  16"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -192,7 +192,7 @@ We can instead create an input model with the plaintext password and an output m
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  11  16"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -202,7 +202,7 @@ Here, even though our *path operation function* is returning the same input user
 //// tab | Python 3.10+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -210,7 +210,7 @@ Here, even though our *path operation function* is returning the same input user
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -220,7 +220,7 @@ Here, even though our *path operation function* is returning the same input user
 //// tab | Python 3.10+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -228,7 +228,7 @@ Here, even though our *path operation function* is returning the same input user
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -258,7 +258,7 @@ And in those cases, we can use classes and inheritance to take advantage of func
 //// tab | Python 3.10+
 
 ```Python hl_lines="7-10  13-14  18"
-{!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_01_py310.py!}
 ```
 
 ////
@@ -266,7 +266,7 @@ And in those cases, we can use classes and inheritance to take advantage of func
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-13  15-16  20"
-{!> ../../../docs_src/response_model/tutorial003_01.py!}
+{!> ../../docs_src/response_model/tutorial003_01.py!}
 ```
 
 ////
@@ -312,7 +312,7 @@ There might be cases where you return something that is not a valid Pydantic fie
 The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
 
 ```Python hl_lines="8  10-11"
-{!> ../../../docs_src/response_model/tutorial003_02.py!}
+{!> ../../docs_src/response_model/tutorial003_02.py!}
 ```
 
 This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.
@@ -324,7 +324,7 @@ And tools will also be happy because both `RedirectResponse` and `JSONResponse` 
 You can also use a subclass of `Response` in the type annotation:
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/response_model/tutorial003_03.py!}
+{!> ../../docs_src/response_model/tutorial003_03.py!}
 ```
 
 This will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case.
@@ -338,7 +338,7 @@ The same would happen if you had something like a <abbr title='A union between m
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_04_py310.py!}
 ```
 
 ////
@@ -346,7 +346,7 @@ The same would happen if you had something like a <abbr title='A union between m
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/response_model/tutorial003_04.py!}
+{!> ../../docs_src/response_model/tutorial003_04.py!}
 ```
 
 ////
@@ -364,7 +364,7 @@ In this case, you can disable the response model generation by setting `response
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_05_py310.py!}
 ```
 
 ////
@@ -372,7 +372,7 @@ In this case, you can disable the response model generation by setting `response
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/response_model/tutorial003_05.py!}
+{!> ../../docs_src/response_model/tutorial003_05.py!}
 ```
 
 ////
@@ -386,7 +386,7 @@ Your response model could have default values, like:
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  11-12"
-{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+{!> ../../docs_src/response_model/tutorial004_py310.py!}
 ```
 
 ////
@@ -394,7 +394,7 @@ Your response model could have default values, like:
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  13-14"
-{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+{!> ../../docs_src/response_model/tutorial004_py39.py!}
 ```
 
 ////
@@ -402,7 +402,7 @@ Your response model could have default values, like:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11  13-14"
-{!> ../../../docs_src/response_model/tutorial004.py!}
+{!> ../../docs_src/response_model/tutorial004.py!}
 ```
 
 ////
@@ -422,7 +422,7 @@ You can set the *path operation decorator* parameter `response_model_exclude_uns
 //// tab | Python 3.10+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+{!> ../../docs_src/response_model/tutorial004_py310.py!}
 ```
 
 ////
@@ -430,7 +430,7 @@ You can set the *path operation decorator* parameter `response_model_exclude_uns
 //// tab | Python 3.9+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+{!> ../../docs_src/response_model/tutorial004_py39.py!}
 ```
 
 ////
@@ -438,7 +438,7 @@ You can set the *path operation decorator* parameter `response_model_exclude_uns
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial004.py!}
+{!> ../../docs_src/response_model/tutorial004.py!}
 ```
 
 ////
@@ -541,7 +541,7 @@ This also applies to `response_model_by_alias` that works similarly.
 //// tab | Python 3.10+
 
 ```Python hl_lines="29  35"
-{!> ../../../docs_src/response_model/tutorial005_py310.py!}
+{!> ../../docs_src/response_model/tutorial005_py310.py!}
 ```
 
 ////
@@ -549,7 +549,7 @@ This also applies to `response_model_by_alias` that works similarly.
 //// tab | Python 3.8+
 
 ```Python hl_lines="31  37"
-{!> ../../../docs_src/response_model/tutorial005.py!}
+{!> ../../docs_src/response_model/tutorial005.py!}
 ```
 
 ////
@@ -569,7 +569,7 @@ If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will s
 //// tab | Python 3.10+
 
 ```Python hl_lines="29  35"
-{!> ../../../docs_src/response_model/tutorial006_py310.py!}
+{!> ../../docs_src/response_model/tutorial006_py310.py!}
 ```
 
 ////
@@ -577,7 +577,7 @@ If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will s
 //// tab | Python 3.8+
 
 ```Python hl_lines="31  37"
-{!> ../../../docs_src/response_model/tutorial006.py!}
+{!> ../../docs_src/response_model/tutorial006.py!}
 ```
 
 ////

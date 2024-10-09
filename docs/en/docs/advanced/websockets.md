@@ -39,7 +39,7 @@ In production you would have one of the options above.
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
 ```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 ## Create a `websocket`
@@ -47,7 +47,7 @@ But it's the simplest way to focus on the server-side of WebSockets and have a w
 In your **FastAPI** application, create a `websocket`:
 
 ```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 /// note | "Technical Details"
@@ -63,7 +63,7 @@ You could also use `from starlette.websockets import WebSocket`.
 In your WebSocket route you can `await` for messages and send messages.
 
 ```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 You can receive and send binary, text, and JSON data.
@@ -118,7 +118,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 //// tab | Python 3.10+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -126,7 +126,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 //// tab | Python 3.9+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -134,7 +134,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 //// tab | Python 3.8+
 
 ```Python hl_lines="69-70  83"
-{!> ../../../docs_src/websockets/tutorial002_an.py!}
+{!> ../../docs_src/websockets/tutorial002_an.py!}
 ```
 
 ////
@@ -148,7 +148,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="66-67  79"
-{!> ../../../docs_src/websockets/tutorial002_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_py310.py!}
 ```
 
 ////
@@ -162,7 +162,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="68-69  81"
-{!> ../../../docs_src/websockets/tutorial002.py!}
+{!> ../../docs_src/websockets/tutorial002.py!}
 ```
 
 ////
@@ -213,7 +213,7 @@ When a WebSocket connection is closed, the `await websocket.receive_text()` will
 //// tab | Python 3.9+
 
 ```Python hl_lines="79-81"
-{!> ../../../docs_src/websockets/tutorial003_py39.py!}
+{!> ../../docs_src/websockets/tutorial003_py39.py!}
 ```
 
 ////
@@ -221,7 +221,7 @@ When a WebSocket connection is closed, the `await websocket.receive_text()` will
 //// tab | Python 3.8+
 
 ```Python hl_lines="81-83"
-{!> ../../../docs_src/websockets/tutorial003.py!}
+{!> ../../docs_src/websockets/tutorial003.py!}
 ```
 
 ////

@@ -47,7 +47,7 @@
 * 특정한 HTTP 헤더 또는 와일드카드 `"*"` 를 사용한 모든 HTTP 헤더.
 
 ```Python hl_lines="2  6-11  13-19"
-{!../../../docs_src/cors/tutorial001.py!}
+{!../../docs_src/cors/tutorial001.py!}
 ```
 
 `CORSMiddleware` 에서 사용하는 기본 매개변수는 제한적이므로, 브라우저가 교차-도메인 상황에서 특정한 출처, 메소드, 헤더 등을 사용할 수 있도록 하려면 이들을 명시적으로 허용해야 합니다.

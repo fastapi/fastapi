@@ -5,7 +5,7 @@
 이 응용 프로그램을 예로 들어보겠습니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial001.py!}
+{!../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
 쿼리 매개변수 `q`는 `Optional[str]` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
@@ -27,7 +27,7 @@ FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압�
 이를 위해 먼저 `fastapi`에서 `Query`를 임포트합니다:
 
 ```Python hl_lines="3"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 ## 기본값으로 `Query` 사용
@@ -35,7 +35,7 @@ FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압�
 이제 `Query`를 매개변수의 기본값으로 사용하여 `max_length` 매개변수를 50으로 설정합니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 기본값 `None`을 `Query(None)`으로 바꿔야 하므로, `Query`의 첫 번째 매개변수는 기본값을 정의하는 것과 같은 목적으로 사용됩니다.
@@ -87,7 +87,7 @@ q: str = Query(None, max_length=50)
 매개변수 `min_length` 또한 추가할 수 있습니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial003.py!}
+{!../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
 ## 정규식 추가
@@ -95,7 +95,7 @@ q: str = Query(None, max_length=50)
 매개변수와 일치해야 하는 <abbr title="정규표현식(regular expression), regex 또는 regexp는 문자열 조회 패턴을 정의하는 문자들의 순열입니다">정규표현식</abbr>을 정의할 수 있습니다:
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial004.py!}
+{!../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
 이 특정 정규표현식은 전달 받은 매개변수 값을 검사합니다:
@@ -115,7 +115,7 @@ q: str = Query(None, max_length=50)
 `min_length`가 `3`이고, 기본값이 `"fixedquery"`인 쿼리 매개변수 `q`를 선언해봅시다:
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial005.py!}
+{!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
 /// note | "참고"
@@ -147,7 +147,7 @@ q: Optional[str] = Query(None, min_length=3)
 그래서 `Query`를 필수값으로 만들어야 할 때면, 첫 번째 인자로 `...`를 사용할 수 있습니다:
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006.py!}
+{!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
 /// info | "정보"
@@ -165,7 +165,7 @@ q: Optional[str] = Query(None, min_length=3)
 예를 들어, URL에서 여러번 나오는  `q` 쿼리 매개변수를 선언하려면 다음과 같이 작성할 수 있습니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial011.py!}
+{!../../docs_src/query_params_str_validations/tutorial011.py!}
 ```
 
 아래와 같은 URL을 사용합니다:
@@ -202,7 +202,7 @@ http://localhost:8000/items/?q=foo&q=bar
 그리고 제공된 값이 없으면 기본 `list` 값을 정의할 수도 있습니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial012.py!}
+{!../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
 아래로 이동한다면:
@@ -227,7 +227,7 @@ http://localhost:8000/items/
 `List[str]` 대신 `list`를 직접 사용할 수도 있습니다:
 
 ```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial013.py!}
+{!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
 /// note | "참고"
@@ -255,13 +255,13 @@ http://localhost:8000/items/
 `title`을 추가할 수 있습니다:
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial007.py!}
+{!../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 그리고 `description`도 추가할 수 있습니다:
 
 ```Python hl_lines="13"
-{!../../../docs_src/query_params_str_validations/tutorial008.py!}
+{!../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
 ## 별칭 매개변수
@@ -283,7 +283,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 이럴 경우 `alias`를 선언할 수 있으며, 해당 별칭은 매개변수 값을 찾는 데 사용됩니다:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial009.py!}
+{!../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
 ## 매개변수 사용하지 않게 하기
@@ -295,7 +295,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 그렇다면 `deprecated=True` 매개변수를 `Query`로 전달합니다:
 
 ```Python hl_lines="18"
-{!../../../docs_src/query_params_str_validations/tutorial010.py!}
+{!../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
 문서가 아래와 같이 보일겁니다:

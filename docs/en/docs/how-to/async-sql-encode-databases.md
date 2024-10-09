@@ -43,7 +43,7 @@ This section doesn't apply those ideas, to be equivalent to the counterpart in <
 * Create a table `notes` using the `metadata` object.
 
 ```Python hl_lines="4  14  16-22"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 /// tip
@@ -61,7 +61,7 @@ Notice that all this code is pure SQLAlchemy Core.
 * Create a `database` object.
 
 ```Python hl_lines="3  9  12"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 /// tip
@@ -80,7 +80,7 @@ Here, this section would run directly, right before starting your **FastAPI** ap
 * Create all the tables from the `metadata` object.
 
 ```Python hl_lines="25-28"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 ## Create models
@@ -91,7 +91,7 @@ Create Pydantic models for:
 * Notes to be returned (`Note`).
 
 ```Python hl_lines="31-33  36-39"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 By creating these Pydantic models, the input data will be validated, serialized (converted), and annotated (documented).
@@ -104,7 +104,7 @@ So, you will be able to see it all in the interactive API docs.
 * Create event handlers to connect and disconnect from the database.
 
 ```Python hl_lines="42  45-47  50-52"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 ## Read notes
@@ -112,7 +112,7 @@ So, you will be able to see it all in the interactive API docs.
 Create the *path operation function* to read notes:
 
 ```Python hl_lines="55-58"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 /// note
@@ -132,7 +132,7 @@ That documents (and validates, serializes, filters) the output data, as a `list`
 Create the *path operation function* to create notes:
 
 ```Python hl_lines="61-65"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
+{!../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 /// info

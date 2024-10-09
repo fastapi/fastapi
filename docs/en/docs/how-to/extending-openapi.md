@@ -44,7 +44,7 @@ For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/doc
 First, write all your **FastAPI** application as normally:
 
 ```Python hl_lines="1  4  7-9"
-{!../../../docs_src/extending_openapi/tutorial001.py!}
+{!../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
 ### Generate the OpenAPI schema
@@ -52,7 +52,7 @@ First, write all your **FastAPI** application as normally:
 Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
 
 ```Python hl_lines="2  15-21"
-{!../../../docs_src/extending_openapi/tutorial001.py!}
+{!../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
 ### Modify the OpenAPI schema
@@ -60,7 +60,7 @@ Then, use the same utility function to generate the OpenAPI schema, inside a `cu
 Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
 
 ```Python hl_lines="22-24"
-{!../../../docs_src/extending_openapi/tutorial001.py!}
+{!../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
 ### Cache the OpenAPI schema
@@ -72,7 +72,7 @@ That way, your application won't have to generate the schema every time a user o
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
 ```Python hl_lines="13-14  25-26"
-{!../../../docs_src/extending_openapi/tutorial001.py!}
+{!../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
 ### Override the method
@@ -80,7 +80,7 @@ It will be generated only once, and then the same cached schema will be used for
 Now you can replace the `.openapi()` method with your new function.
 
 ```Python hl_lines="29"
-{!../../../docs_src/extending_openapi/tutorial001.py!}
+{!../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
 ### Check it

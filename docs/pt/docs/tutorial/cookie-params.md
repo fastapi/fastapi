@@ -9,7 +9,7 @@ Primeiro importe `Cookie`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ Primeiro importe `Cookie`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ Primeiro importe `Cookie`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
@@ -68,7 +68,7 @@ Você pode definir o valor padrão, assim como todas as validações extras ou p
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -76,7 +76,7 @@ Você pode definir o valor padrão, assim como todas as validações extras ou p
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -84,7 +84,7 @@ Você pode definir o valor padrão, assim como todas as validações extras ou p
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
@@ -98,7 +98,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -112,7 +112,7 @@ Prefira utilizar a versão `Annotated` se possível.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
