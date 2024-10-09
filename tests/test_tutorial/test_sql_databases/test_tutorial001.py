@@ -138,6 +138,10 @@ def test_crud_app(client: TestClient):
         response = client.get(f"/heroes/{hero_id}")
         assert response.status_code == 404, response.text
 
+        response = client.delete(f"/heroes/{hero_id}")
+        assert response.status_code == 404, response.text
+        assert response.json() == snapshot({"detail": "Hero not found"})
+
 
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")

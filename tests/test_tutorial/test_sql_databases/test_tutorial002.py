@@ -132,8 +132,19 @@ def test_crud_app(client: TestClient):
         assert response.status_code == 200, response.text
         assert response.json() == snapshot({"ok": True})
 
+        # The hero is no longer found
         response = client.get(f"/heroes/{hero_id}")
         assert response.status_code == 404, response.text
+
+        # Delete a hero that does not exist
+        response = client.delete(f"/heroes/{hero_id}")
+        assert response.status_code == 404, response.text
+        assert response.json() == snapshot({"detail": "Hero not found"})
+
+        # Update a hero that does not exist
+        response = client.patch(f"/heroes/{hero_id}", json={"name": "Dog Pond"})
+        assert response.status_code == 404, response.text
+        assert response.json() == snapshot({"detail": "Hero not found"})
 
 
 def test_openapi_schema(client: TestClient):
