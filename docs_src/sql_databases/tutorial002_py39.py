@@ -1,8 +1,7 @@
-from typing import List, Union
+from typing import Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-from typing_extensions import Annotated
 
 
 class HeroBase(SQLModel):
@@ -45,7 +44,6 @@ def get_session():
         yield session
 
 
-SessionDep = Annotated[Session, Depends(get_session)]
 app = FastAPI()
 
 
@@ -55,7 +53,7 @@ def on_startup():
 
 
 @app.post("/heroes/", response_model=HeroPublic)
-def create_hero(hero: HeroCreate, session: SessionDep):
+def create_hero(hero: HeroCreate, session: Session = Depends(get_session)):
     db_hero = Hero.model_validate(hero)
     session.add(db_hero)
     session.commit()
@@ -63,18 +61,18 @@ def create_hero(hero: HeroCreate, session: SessionDep):
     return db_hero
 
 
-@app.get("/heroes/", response_model=List[HeroPublic])
+@app.get("/heroes/", response_model=list[HeroPublic])
 def read_heroes(
-    session: SessionDep,
+    session: Session = Depends(get_session),
     offset: int = 0,
-    limit: Annotated[int, Query(le=100)] = 100,
+    limit: int = Query(default=100, le=100),
 ):
     heroes = session.exec(select(Hero).offset(offset).limit(limit)).all()
     return heroes
 
 
 @app.get("/heroes/{hero_id}", response_model=HeroPublic)
-def read_hero(hero_id: int, session: SessionDep):
+def read_hero(hero_id: int, session: Session = Depends(get_session)):
     hero = session.get(Hero, hero_id)
     if not hero:
         raise HTTPException(status_code=404, detail="Hero not found")
@@ -82,7 +80,9 @@ def read_hero(hero_id: int, session: SessionDep):
 
 
 @app.patch("/heroes/{hero_id}", response_model=HeroPublic)
-def update_hero(hero_id: int, hero: HeroUpdate, session: SessionDep):
+def update_hero(
+    hero_id: int, hero: HeroUpdate, session: Session = Depends(get_session)
+):
     hero_db = session.get(Hero, hero_id)
     if not hero_db:
         raise HTTPException(status_code=404, detail="Hero not found")
@@ -95,7 +95,7 @@ def update_hero(hero_id: int, hero: HeroUpdate, session: SessionDep):
 
 
 @app.delete("/heroes/{hero_id}")
-def delete_hero(hero_id: int, session: SessionDep):
+def delete_hero(hero_id: int, session: Session = Depends(get_session)):
     hero = session.get(Hero, hero_id)
     if not hero:
         raise HTTPException(status_code=404, detail="Hero not found")

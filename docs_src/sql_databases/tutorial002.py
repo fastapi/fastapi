@@ -1,4 +1,4 @@
-from typing import Union
+from typing import List, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
@@ -61,7 +61,7 @@ def create_hero(hero: HeroCreate, session: Session = Depends(get_session)):
     return db_hero
 
 
-@app.get("/heroes/", response_model=list[HeroPublic])
+@app.get("/heroes/", response_model=List[HeroPublic])
 def read_heroes(
     session: Session = Depends(get_session),
     offset: int = 0,
