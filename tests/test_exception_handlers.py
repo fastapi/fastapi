@@ -1,5 +1,5 @@
 import pytest
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.exceptions import RequestValidationError
 from fastapi.testclient import TestClient
 from starlette.responses import JSONResponse
@@ -26,6 +26,15 @@ app = FastAPI(
 )
 
 client = TestClient(app)
+
+
+def dependency_with_yield():
+    yield "This is a dependency with yield"
+
+
+@app.get("/with-yield", dependencies=[Depends(dependency_with_yield)])
+def with_yield():
+    raise RuntimeError("Should print traceback, with file and line number")
 
 
 @app.get("/http-exception")
@@ -65,3 +74,11 @@ def test_override_server_error_exception_response():
     response = client.get("/server-error")
     assert response.status_code == 500
     assert response.json() == {"exception": "server-error"}
+
+
+def test_showing_exception_trace():
+    app.debug = True
+    client = TestClient(app, raise_server_exceptions=False)
+    response = client.get("/with-yield")
+    assert response.status_code == 500
+    assert __file__ in response.text
