@@ -26,14 +26,14 @@ async def contextmanager_in_threadpool(
     try:
         yield await run_in_threadpool(cm._enter_)
     except Exception as e:
-       ok = bool(
+        ok = bool(
             await anyio.to_thread.run_sync(
                 cm._exit_, type(e), e, None, limiter=exit_limiter
             )
-       )
-    
-       if not ok:
-            raise e
+        )
+
+        if not ok:
+            raise RuntimeError("Failed to exit context manager properly.") from e
     else:
         await anyio.to_thread.run_sync(
             cm.exit, None, None, None, limiter=exit_limiter
