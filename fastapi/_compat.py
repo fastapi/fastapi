@@ -55,6 +55,9 @@ if PYDANTIC_V2:
     )
     from pydantic._internal._typing_extra import eval_type_lenient
     from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
+    from pydantic.errors import (
+        PydanticUndefinedAnnotation as PydanticUndefinedAnnotation,
+    )
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
@@ -363,6 +366,9 @@ else:
         ref_template: str
 
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
+        pass
+
+    class PydanticUndefinedAnnotation(Exception):  # type: ignore[no-redef]
         pass
 
     def with_info_plain_validator_function(  # type: ignore[misc]
