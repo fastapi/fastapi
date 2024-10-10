@@ -196,7 +196,20 @@ if PYDANTIC_V2:
             None if separate_input_output_schemas else "validation"
         )
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = field_mapping[(field, override_mode or field.mode)]
+        try:
+            json_schema = field_mapping[(field, override_mode or field.mode)]
+        except KeyError:
+            inputs = [
+                (field, override_mode or field.mode, field._type_adapter.core_schema)
+            ]
+            new_generator = GenerateJsonSchema(
+                ref_template=schema_generator.ref_template
+            )
+            new_field_mapping, definitions = new_generator.generate_definitions(
+                inputs=inputs
+            )
+            field_mapping.update(new_field_mapping)
+            json_schema = field_mapping[(field, override_mode or field.mode)]
         if "$ref" not in json_schema:
             # TODO remove when deprecating Pydantic v1
             # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
