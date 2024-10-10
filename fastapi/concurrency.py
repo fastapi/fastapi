@@ -11,6 +11,7 @@ from starlette.concurrency import (
 
 _T = TypeVar("_T")
 
+
 @asynccontextmanager
 async def contextmanager_in_threadpool(
     cm: ContextManager[_T],
