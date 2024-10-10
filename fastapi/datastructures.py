@@ -2,8 +2,6 @@ from typing import (
     Any,
     BinaryIO,
     Callable,
-    Dict,
-    Iterable,
     Optional,
     Type,
     TypeVar,
@@ -11,7 +9,6 @@ from typing import (
 )
 
 from fastapi._compat import (
-    PYDANTIC_V2,
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,
@@ -139,26 +136,16 @@ class UploadFile(StarletteUploadFile):
         return await super().close()
 
     @classmethod
-    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
-        yield cls.validate
+    def model_validate(cls: Type["UploadFile"], value: Any) -> Any:
+        if not isinstance(value, StarletteUploadFile):
+            raise ValueError(f"Expected UploadFile, received: {type(value)}")
+        return value
 
     @classmethod
-    def validate(cls: Type["UploadFile"], v: Any) -> Any:
-        if not isinstance(v, StarletteUploadFile):
-            raise ValueError(f"Expected UploadFile, received: {type(v)}")
-        return v
-
-    @classmethod
-    def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
+    def _model_validate(cls, __input_value: Any, _: Any) -> "UploadFile":
         if not isinstance(__input_value, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
-
-    if not PYDANTIC_V2:
-
-        @classmethod
-        def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
-            field_schema.update({"type": "string", "format": "binary"})
 
     @classmethod
     def __get_pydantic_json_schema__(
@@ -170,7 +157,7 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_core_schema__(
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
     ) -> CoreSchema:
-        return with_info_plain_validator_function(cls._validate)
+        return with_info_plain_validator_function(cls._model_validate)
 
 
 class DefaultPlaceholder:

@@ -3,10 +3,11 @@ from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
+from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import PYDANTIC_V2, PYDANTIC_VERSION, Undefined
+from ._compat import Undefined
 
 _Unset: Any = Undefined
 
@@ -29,9 +30,7 @@ class Param(FieldInfo):
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -105,25 +104,18 @@ class Param(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+        kwargs.update(
+            {
+                "deprecated": deprecated,
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+                "pattern": pattern or regex,
+            }
+        )
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
         super().__init__(**use_kwargs)
@@ -143,9 +135,7 @@ class Path(Param):
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -229,9 +219,7 @@ class Query(Param):
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -313,9 +301,7 @@ class Header(Param):
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         convert_underscores: bool = True,
         title: Optional[str] = None,
@@ -399,9 +385,7 @@ class Cookie(Param):
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -483,9 +467,7 @@ class Body(FieldInfo):
         media_type: str = "application/json",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -561,25 +543,18 @@ class Body(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+        kwargs.update(
+            {
+                "deprecated": deprecated,
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+                "pattern": pattern or regex,
+            }
+        )
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
@@ -599,9 +574,7 @@ class Form(Body):
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -683,9 +656,7 @@ class File(Form):
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,

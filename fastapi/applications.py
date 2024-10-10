@@ -1013,6 +1013,7 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
+                assert self.openapi_url
                 openapi_url = root_path + self.openapi_url
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
@@ -1041,6 +1042,7 @@ class FastAPI(Starlette):
 
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
+                assert self.openapi_url
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
                     openapi_url=openapi_url, title=f"{self.title} - ReDoc"

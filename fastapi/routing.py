@@ -25,9 +25,6 @@ from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _get_model_config,
-    _model_dump,
-    _normalize_errors,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -50,7 +47,6 @@ from fastapi.exceptions import (
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
-    create_cloned_field,
     create_model_field,
     generate_unique_id,
     get_value_or_default,
@@ -77,28 +73,28 @@ from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
-    res: Any,
+    response: Any,
     *,
     exclude_unset: bool,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
 ) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)
+    if isinstance(response, BaseModel):
+        read_with_orm_mode = getattr(response.model_config, "read_with_orm_mode", None)
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
             # Otherwise, there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return _model_dump(
-            res,
+            return response
+        return response.model_dump(
+            mode="json",
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    elif isinstance(res, list):
+    if isinstance(response, list):
         return [
             _prepare_response_content(
                 item,
@@ -106,9 +102,9 @@ def _prepare_response_content(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
-            for item in res
+            for item in response
         ]
-    elif isinstance(res, dict):
+    if isinstance(response, dict):
         return {
             k: _prepare_response_content(
                 v,
@@ -116,11 +112,11 @@ def _prepare_response_content(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
-            for k, v in res.items()
+            for k, v in response.items()
         }
-    elif dataclasses.is_dataclass(res):
-        return dataclasses.asdict(res)
-    return res
+    if dataclasses.is_dataclass(response):
+        return dataclasses.asdict(response)
+    return response
 
 
 def _merge_lifespan_context(
@@ -154,14 +150,6 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if not hasattr(field, "serialize"):
-            # pydantic v1
-            response_content = _prepare_response_content(
-                response_content,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
@@ -173,9 +161,7 @@ async def serialize_response(
         elif errors_:
             errors.append(errors_)
         if errors:
-            raise ResponseValidationError(
-                errors=_normalize_errors(errors), body=response_content
-            )
+            raise ResponseValidationError(errors=errors, body=response_content)
 
         if hasattr(field, "serialize"):
             return field.serialize(
@@ -197,8 +183,8 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    else:
-        return jsonable_encoder(response_content)
+
+    return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(
@@ -340,9 +326,7 @@ def get_request_handler(
                             response.body = b""
                         response.headers.raw.extend(solved_result.response.headers.raw)
             if errors:
-                validation_error = RequestValidationError(
-                    _normalize_errors(errors), body=body
-                )
+                validation_error = RequestValidationError(errors, body=body)
                 raise validation_error
         if response is None:
             raise FastAPIError(
@@ -376,9 +360,7 @@ def get_websocket_app(
                 embed_body_fields=embed_body_fields,
             )
             if solved_result.errors:
-                raise WebSocketRequestValidationError(
-                    _normalize_errors(solved_result.errors)
-                )
+                raise WebSocketRequestValidationError(solved_result.errors)
             assert dependant.call is not None, "dependant.call must be a function"
             await dependant.call(**solved_result.values)
 
@@ -513,20 +495,8 @@ class APIRoute(routing.Route):
                 type_=self.response_model,
                 mode="serialization",
             )
-            # Create a clone of the field, so that a Pydantic submodel is not returned
-            # as is just because it's an instance of a subclass of a more limited class
-            # e.g. UserInDB (containing hashed_password) could be a subclass of User
-            # that doesn't have the hashed_password. But because it's a subclass, it
-            # would pass the validation and be returned as is.
-            # By being a new field, no inheritance will be passed as is. A new model
-            # will always be created.
-            # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[ModelField] = (
-                create_cloned_field(self.response_field)
-            )
         else:
             self.response_field = None  # type: ignore
-            self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -572,7 +542,7 @@ class APIRoute(routing.Route):
             body_field=self.body_field,
             status_code=self.status_code,
             response_class=self.response_class,
-            response_field=self.secure_cloned_response_field,
+            response_field=self.response_field,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
             response_model_by_alias=self.response_model_by_alias,
