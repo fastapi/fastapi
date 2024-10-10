@@ -223,15 +223,57 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-    typed_params = [
-        inspect.Parameter(
-            name=param.name,
-            kind=param.kind,
-            default=param.default,
-            annotation=get_typed_annotation(param.annotation, globalns),
-        )
-        for param in signature.parameters.values()
-    ]
+    if PYDANTIC_V2:
+        fields = getattr(call, "model_fields", {})
+    else:
+        fields = getattr(call, "__fields__", {})
+    if len(fields):
+        alias_dict = {}
+        query_extra_info = {}
+        for param in fields:
+            if PYDANTIC_V2:
+                query_extra_info[param] = dict(fields[param].__repr_args__())
+            else:
+                query_extra_info[param] = dict(fields[param].field_info.__repr_args__())
+
+            if "alias" in query_extra_info[param]:
+                if PYDANTIC_V2:
+                    query_extra_info[query_extra_info[param]["alias"]] = dict(
+                        fields[param].__repr_args__()
+                    )
+                else:
+                    query_extra_info[query_extra_info[param]["alias"]] = dict(
+                        fields[param].field_info.__repr_args__()
+                    )
+                alias_dict[query_extra_info[param]["alias"]] = param
+            query_extra_info[param]["default"] = (
+                Required
+                if getattr(fields[param], "required", False)
+                else fields[param].default
+            )
+        typed_params = []
+
+        for param in signature.parameters.values():
+            param_name = (
+                param.name if param.name not in alias_dict else alias_dict[param.name]
+            )
+            created_param = inspect.Parameter(
+                name=param_name,
+                kind=param.kind,
+                default=params.Param(**query_extra_info[param_name]),
+                annotation=get_typed_annotation(param.annotation, globalns),
+            )
+            typed_params.append(created_param)
+    else:
+        typed_params = [
+            inspect.Parameter(
+                name=param.name,
+                kind=param.kind,
+                default=param.default,
+                annotation=get_typed_annotation(param.annotation, globalns),
+            )
+            for param in signature.parameters.values()
+        ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
 
