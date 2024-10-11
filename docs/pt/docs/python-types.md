@@ -1,6 +1,6 @@
 # Introdução aos tipos Python
 
-O Pytho possui suporte para "dicas de tipo" ou "type hints" (também chamado de "anotações de tipo" ou "type annotations")
+O Python possui suporte para "dicas de tipo" ou "type hints" (também chamado de "anotações de tipo" ou "type annotations")
 
 Esses **"type hints"** são uma sintaxe especial que permite declarar o <abbr title = "por exemplo: str, int, float, bool">tipo</abbr> de uma variável.
 
@@ -48,7 +48,7 @@ A função faz o seguinte:
 
 Mas agora imagine que você estava escrevendo do zero.
 
-Em algum momento você teria iniciado a definição da função, já tinha os parâmetros prontos ...
+Em algum momento você teria iniciado a definição da função, já tinha os parâmetros prontos...
 
 Mas então você deve chamar "esse método que converte a primeira letra em maiúscula".
 
@@ -96,7 +96,7 @@ Isso não é o mesmo que declarar valores padrão como seria com:
 
 Estamos usando dois pontos (`:`), não é igual a (`=`).
 
-E adicionar type hints normalmente não muda o que acontece do que aconteceria sem elas.
+E adicionar type hints normalmente não muda o que acontece do que aconteceria sem eles.
 
 Mas agora, imagine que você está novamente no meio da criação dessa função, mas com type hints.
 
@@ -116,7 +116,7 @@ Verifique esta função, ela já possui type hints:
 {!../../docs_src/python_types/tutorial003.py!}
 ```
 
-Como o editor conhece os tipos de variáveis, você não apenas obtém o preenchimento automático, mas também as verificações de erro:
+Como o editor conhece os tipos de variáveis, você não obtém apenas o preenchimento automático, mas também as verificações de erro:
 
 <img src="/img/python-types/image04.png">
 
@@ -167,11 +167,11 @@ Em todos os documentos existem exemplos compatíveis com cada versão do Python 
 
 Por exemplo, "**Python 3.6+**" significa que é compatível com o Python 3.6 ou superior (incluindo o 3.7, 3.8, 3.9, 3.10, etc). E "**Python 3.9+**" significa que é compatível com o Python 3.9 ou mais recente (incluindo o 3.10, etc).
 
-Se você pode utilizar a **versão mais recente do Python**, utilize os exemplos para as últimas versões. Eles terão os **melhores e mais simples sintaxes**, como por exemplo, "**Python 3.10+**".
+Se você pode utilizar a **versão mais recente do Python**, utilize os exemplos para as últimas versões. Eles terão as **melhores e mais simples sintaxes**, como por exemplo, "**Python 3.10+**".
 
 #### List
 
-Por exemplo, vamos definir uma variável para ser uma `lista` de `str`.
+Por exemplo, vamos definir uma variável para ser uma `list` de `str`.
 
 //// tab | Python 3.9+
 
@@ -217,7 +217,7 @@ Neste caso, `str` é o parâmetro de tipo passado para `List` (ou `list` no Pyth
 
 Isso significa: "a variável `items` é uma `list`, e cada um dos itens desta lista é uma `str`".
 
-/// tip
+/// tip | Dica
 
 Se você usa o Python 3.9 ou superior, você não precisa importar `List` de `typing`. Você pode utilizar o mesmo tipo `list` no lugar.
 
@@ -325,7 +325,7 @@ No Python 3.6 e superior (incluindo o Python 3.10) você pode declará-lo import
 {!../../docs_src/python_types/tutorial009.py!}
 ```
 
-O uso de `Opcional[str]` em vez de apenas `str` permitirá que o editor o ajude a detectar erros, onde você pode estar assumindo que um valor é sempre um `str`, quando na verdade também pode ser `None`.
+O uso de `Optional[str]` em vez de apenas `str` permitirá que o editor o ajude a detectar erros, onde você pode estar assumindo que um valor é sempre um `str`, quando na verdade também pode ser `None`.
 
 `Optional[Something]` é na verdade um atalho para `Union[Something, None]`, eles são equivalentes.
 
@@ -362,7 +362,7 @@ Se você está utilizando uma versão do Python abaixo da 3.10, aqui vai uma dic
 * 🚨 Evite utilizar `Optional[SomeType]`
 * No lugar, ✨ **use `Union[SomeType, None]`** ✨.
 
-Ambos são equivalentes, e no final das contas, eles são o mesmo. Mas eu recomendaria o `Union` ao invés de `Optional` porque a palavra **Optional** parece implicar que o valor é opcional, quando na verdade significa "isso pode ser `None`", mesmo que ele não é opcional e ainda é obrigatório.
+Ambos são equivalentes, e no final das contas, eles são o mesmo. Mas eu recomendaria o `Union` ao invés de `Optional` porque a palavra **Optional** parece implicar que o valor é opcional, quando na verdade significa "isso pode ser `None`", mesmo que ele não seja opcional e ainda seja obrigatório.
 
 Eu penso que `Union[SomeType, None]` é mais explícito sobre o que ele significa.
 
@@ -419,7 +419,6 @@ No Python 3.10, como uma alternativa para a utilização dos genéricos `Union` 
 
 //// tab | Python 3.9+
 
-Voc 
 Você pode utilizar os mesmos tipos internos como genéricos (com colchetes e tipos dentro):
 
 * `list`
@@ -473,7 +472,7 @@ Isso não significa que "`one_person` é a **classe** chamada `Person`".
 
 ## Modelos Pydantic
 
-O <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic </a> é uma biblioteca Python para executar a validação de dados.
+O <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> é uma biblioteca Python para executar a validação de dados.
 
 Você declara a "forma" dos dados como classes com atributos.
 
@@ -511,7 +510,7 @@ Retirado dos documentos oficiais dos Pydantic:
 
 /// info | Informação
 
-Para saber mais sobre o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, verifique seus documentos</a>.
+Para saber mais sobre o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, verifique a sua documentação</a>.
 
 ///
 
@@ -526,9 +525,9 @@ O Pydantic tem um comportamento especial quando você usa `Optional` ou `Union[S
 ///
 
 
-## Type Hints com Metadata de Anotações
+## Type Hints com Metadados de Anotações
 
-O Python possui uma funcionalidade que nos permite incluir **<abbr title="Informação sobre a informação, neste caso, informação sobre o tipo, e.g. uma descrição.">metadata</abbr> adicional** nos type hints utilizando `Annotated`.
+O Python possui uma funcionalidade que nos permite incluir **<abbr title="Informação sobre a informação, neste caso, informação sobre o tipo, e.g. uma descrição.">metadados</abbr> adicionais** nos type hints utilizando `Annotated`.
 
 //// tab | Python 3.9+
 
@@ -556,7 +555,7 @@ O Python em si não faz nada com este `Annotated`. E para editores e outras ferr
 
 Mas você pode utilizar este espaço dentro do `Annotated` para fornecer ao **FastAPI** metadata adicional sobre como você deseja que a sua aplicação se comporte.
 
-O importante aqui de se lembrar é que **o primeiro *type parameter*** que você informar ao `Annotated` é o **tipo de fato**. O resto é apenas metadata para outras ferramentas.
+O importante aqui de se lembrar é que **o primeiro *type parameter*** que você informar ao `Annotated` é o **tipo de fato**. O resto é apenas metadado para outras ferramentas.
 
 Por hora, você precisa apenas saber que o `Annotated` existe, e que ele é Python padrão. 😎
 
