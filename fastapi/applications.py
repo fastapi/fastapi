@@ -27,7 +27,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
-from fastapi.openapi.utils import get_openapi
+from fastapi.openapi.utils import calculate_relative_url, get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
@@ -679,6 +679,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        relative_docs: bool = False,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -831,6 +832,7 @@ class FastAPI(Starlette):
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
         self.root_path_in_servers = root_path_in_servers
+        self.relative_docs = relative_docs
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
@@ -1006,6 +1008,10 @@ class FastAPI(Starlette):
                     if root_path and self.root_path_in_servers:
                         self.servers.insert(0, {"url": root_path})
                         server_urls.add(root_path)
+                if self.relative_docs and self.docs_url:
+                    relative_server = "../" * self.docs_url.count("/")
+                    self.servers.insert(0, {"url": relative_server})
+                    server_urls.add(relative_server)
                 return JSONResponse(self.openapi())
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
@@ -1013,7 +1019,12 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
+                if self.relative_docs and self.docs_url:
+                    openapi_url = calculate_relative_url(
+                        self.docs_url, self.openapi_url
+                    )
+                else:
+                    openapi_url = root_path + self.openapi_url
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url = root_path + oauth2_redirect_url
@@ -1040,8 +1051,13 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
-                root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
+                if self.relative_docs and self.redoc_url:
+                    openapi_url = calculate_relative_url(
+                        self.redoc_url, self.openapi_url
+                    )
+                else:
+                    root_path = req.scope.get("root_path", "").rstrip("/")
+                    openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
                     openapi_url=openapi_url, title=f"{self.title} - ReDoc"
                 )

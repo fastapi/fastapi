@@ -1,7 +1,9 @@
 import http.client
 import inspect
 import warnings
+from os.path import basename, dirname, relpath
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from urllib.parse import urlparse
 
 from fastapi import routing
 from fastapi._compat import (
@@ -546,3 +548,35 @@ def get_openapi(
     if tags:
         output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+
+
+def calculate_relative_url(page_url: Optional[str], fetch_url: Optional[str]) -> str:
+    if page_url is None or fetch_url is None:
+        return fetch_url or ""
+
+    parsed_page_url = urlparse(page_url)
+    parsed_fetch_url = urlparse(fetch_url)
+
+    if (
+        parsed_page_url.scheme != parsed_fetch_url.scheme
+        or parsed_page_url.netloc != parsed_fetch_url.netloc
+    ):
+        return fetch_url
+
+    fetch_path = parsed_fetch_url.path
+    page_path = parsed_page_url.path
+    if not page_path.endswith("/"):
+        page_path = dirname(page_path) + "/"
+
+    relative_path = relpath(fetch_path, page_path)
+
+    if relative_path == ".":
+        return "./" if fetch_path.endswith("/") else basename(fetch_path)
+
+    if relative_path == "..":
+        return "../"
+
+    if not relative_path.startswith("/"):
+        relative_path = f"./{relative_path}"
+
+    return relative_path
