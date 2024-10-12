@@ -578,7 +578,9 @@ class APIRoute(routing.Route):
                 ), f"Status code {additional_status_code} must not have a response body"
 
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                response_field = create_model_field(name=response_name, type_=model, mode="serialization")
+                response_field = create_model_field(
+                    name=response_name, type_=model, mode="serialization"
+                )
                 response_fields[additional_status_code] = response_field
         return response_fields
 
