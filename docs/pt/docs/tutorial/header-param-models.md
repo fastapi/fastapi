@@ -4,7 +4,7 @@ Se você possui um grupo de **parâmetros de cabeçalho** relacionados, você po
 
 Isso vai lhe permitir **reusar o modelo** em **múltiplos lugares** e também declarar validações e metadadados para todos os parâmetros de uma vez. 😎
 
-/// note Nota
+/// note | Nota
 
 Isso é possível desde a versão `0.115.0` do FastAPI. 🤓
 
