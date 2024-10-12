@@ -443,7 +443,7 @@ item: Item
 
 Используется Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - для проверки электронной почты.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - для проверки электронной почты.
 
 Используется Starlette:
 

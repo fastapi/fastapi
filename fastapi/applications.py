@@ -1067,7 +1067,7 @@ class FastAPI(Starlette):
     def add_api_route(
         self,
         path: str,
-        endpoint: Callable[..., Coroutine[Any, Any, Response]],
+        endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,

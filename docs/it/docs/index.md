@@ -1,7 +1,3 @@
-
-{!../../../docs/missing-translation.md!}
-
-
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -438,7 +434,7 @@ Per approfondire, consulta la sezione <a href="https://fastapi.tiangolo.com/benc
 
 Usate da Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - per la validazione di email.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - per la validazione di email.
 
 Usate da Starlette:
 

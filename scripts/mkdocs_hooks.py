@@ -8,9 +8,14 @@ from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import Link, Navigation, Section
 from mkdocs.structure.pages import Page
 
-non_traslated_sections = [
+non_translated_sections = [
     "reference/",
     "release-notes.md",
+    "fastapi-people.md",
+    "external-links.md",
+    "newsletter.md",
+    "management-tasks.md",
+    "management.md",
 ]
 
 
@@ -128,7 +133,7 @@ def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
     if isinstance(page.file, EnFile):
-        for excluded_section in non_traslated_sections:
+        for excluded_section in non_translated_sections:
             if page.file.src_path.startswith(excluded_section):
                 return markdown
         missing_translation_content = get_missing_translation_content(config.docs_dir)

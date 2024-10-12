@@ -4,7 +4,7 @@ default_language_version:
     python: python3.10
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
     -   id: check-added-large-files
     -   id: check-toml
@@ -13,8 +13,8 @@ repos:
         -   --unsafe
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
--   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.2.0
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
     hooks:
     -   id: ruff
         args:

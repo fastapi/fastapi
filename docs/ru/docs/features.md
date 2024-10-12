@@ -66,10 +66,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info "Информация"
-    `**second_user_data` означает:
+/// info | "Информация"
 
-    Передать ключи и значения словаря `second_user_data`,  в качестве аргументов типа "ключ-значение", это эквивалентно: `User(id=4, name="Mary", joined="2018-11-30")` .
+`**second_user_data` означает:
+
+Передать ключи и значения словаря `second_user_data`,  в качестве аргументов типа "ключ-значение", это эквивалентно: `User(id=4, name="Mary", joined="2018-11-30")` .
+
+///
 
 ### Поддержка редакторов (IDE)
 

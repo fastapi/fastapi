@@ -9,16 +9,22 @@ The same way you can specify a response model, you can also declare the HTTP sta
 * etc.
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note
-    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+/// note
+
+Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+
+///
 
 The `status_code` parameter receives a number with the HTTP status code.
 
-!!! info
-    `status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+/// info
+
+`status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+
+///
 
 It will:
 
@@ -27,15 +33,21 @@ It will:
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-!!! note
-    Some response codes (see the next section) indicate that the response does not have a body.
+/// note
 
-    FastAPI knows this, and will produce OpenAPI docs that state there is no response body.
+Some response codes (see the next section) indicate that the response does not have a body.
+
+FastAPI knows this, and will produce OpenAPI docs that state there is no response body.
+
+///
 
 ## About HTTP status codes
 
-!!! note
-    If you already know what HTTP status codes are, skip to the next section.
+/// note
+
+If you already know what HTTP status codes are, skip to the next section.
+
+///
 
 In HTTP, you send a numeric status code of 3 digits as part of the response.
 
@@ -54,15 +66,18 @@ In short:
     * For generic errors from the client, you can just use `400`.
 * `500` and above are for server errors. You almost never use them directly. When something goes wrong at some part in your application code, or server, it will automatically return one of these status codes.
 
-!!! tip
-    To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+/// tip
+
+To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+
+///
 
 ## Shortcut to remember the names
 
 Let's see the previous example again:
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 `201` is the status code for "Created".
@@ -72,17 +87,20 @@ But you don't have to memorize what each of these codes mean.
 You can use the convenience variables from `fastapi.status`.
 
 ```Python hl_lines="1  6"
-{!../../../docs_src/response_status_code/tutorial002.py!}
+{!../../docs_src/response_status_code/tutorial002.py!}
 ```
 
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-!!! note "Technical Details"
-    You could also use `from starlette import status`.
+/// note | "Technical Details"
 
-    **FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
+You could also use `from starlette import status`.
+
+**FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
+
+///
 
 ## Changing the default
 

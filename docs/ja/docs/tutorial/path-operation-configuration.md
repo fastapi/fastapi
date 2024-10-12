@@ -2,8 +2,11 @@
 
 *path operationデコレータ*を設定するためのパラメータがいくつかあります。
 
-!!! warning "注意"
-    これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
+/// warning | "注意"
+
+これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
+
+///
 
 ## レスポンスステータスコード
 
@@ -14,22 +17,25 @@
 しかし、それぞれの番号コードが何のためのものか覚えていない場合は、`status`のショートカット定数を使用することができます:
 
 ```Python hl_lines="3  17"
-{!../../../docs_src/path_operation_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_configuration/tutorial001.py!}
 ```
 
 そのステータスコードはレスポンスで使用され、OpenAPIスキーマに追加されます。
 
-!!! note "技術詳細"
-    また、`from starlette import status`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+また、`from starlette import status`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+
+///
 
 ## タグ
 
 `tags`パラメータを`str`の`list`（通常は１つの`str`）と一緒に渡すと、*path operation*にタグを追加できます:
 
 ```Python hl_lines="17  22  27"
-{!../../../docs_src/path_operation_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
 これらはOpenAPIスキーマに追加され、自動ドキュメントのインターフェースで使用されます:
@@ -41,7 +47,7 @@
 `summary`と`description`を追加できます:
 
 ```Python hl_lines="20-21"
-{!../../../docs_src/path_operation_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
 ## docstringを用いた説明
@@ -51,7 +57,7 @@
 docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
 ```Python hl_lines="19-27"
-{!../../../docs_src/path_operation_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
 これは対話的ドキュメントで使用されます:
@@ -63,16 +69,22 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 `response_description`パラメータでレスポンスの説明をすることができます。
 
 ```Python hl_lines="21"
-{!../../../docs_src/path_operation_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
-!!! info "情報"
-    `respnse_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
+/// info | "情報"
 
-!!! check "確認"
-    OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
+`respnse_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
 
-    そのため、それを提供しない場合は、**FastAPI** が自動的に「成功のレスポンス」を生成します。
+///
+
+/// check | "確認"
+
+OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
+
+そのため、それを提供しない場合は、**FastAPI** が自動的に「成功のレスポンス」を生成します。
+
+///
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image03.png">
 
@@ -81,7 +93,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 *path operation*を<abbr title="非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_operation_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
 対話的ドキュメントでは非推奨と明記されます:

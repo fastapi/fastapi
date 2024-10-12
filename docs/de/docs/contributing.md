@@ -24,63 +24,73 @@ Das erstellt ein Verzeichnis `./env/` mit den Python-Binärdateien und Sie könn
 
 Aktivieren Sie die neue Umgebung mit:
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Oder, wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Oder, wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 Um zu überprüfen, ob es funktioniert hat, geben Sie ein:
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 Wenn die `pip` Binärdatei unter `env/bin/pip` angezeigt wird, hat es funktioniert. 🎉
 
@@ -96,10 +106,13 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-!!! tip "Tipp"
-    Aktivieren Sie jedes Mal, wenn Sie ein neues Package mit `pip` in dieser Umgebung installieren, die Umgebung erneut.
+/// tip | "Tipp"
 
-    Dadurch wird sichergestellt, dass Sie, wenn Sie ein von diesem Package installiertes Terminalprogramm verwenden, das Programm aus Ihrer lokalen Umgebung verwenden und kein anderes, das global installiert sein könnte.
+Aktivieren Sie jedes Mal, wenn Sie ein neues Package mit `pip` in dieser Umgebung installieren, die Umgebung erneut.
+
+Dadurch wird sichergestellt, dass Sie, wenn Sie ein von diesem Package installiertes Terminalprogramm verwenden, das Programm aus Ihrer lokalen Umgebung verwenden und kein anderes, das global installiert sein könnte.
+
+///
 
 ### Benötigtes mit pip installieren
 
@@ -125,10 +138,13 @@ Und wenn Sie diesen lokalen FastAPI-Quellcode aktualisieren und dann die Python-
 
 Auf diese Weise müssen Sie Ihre lokale Version nicht „installieren“, um jede Änderung testen zu können.
 
-!!! note "Technische Details"
-    Das geschieht nur, wenn Sie die Installation mit der enthaltenen `requirements.txt` durchführen, anstatt `pip install fastapi` direkt auszuführen.
+/// note | "Technische Details"
 
-    Das liegt daran, dass in der Datei `requirements.txt` die lokale Version von FastAPI mit der Option `-e` für die Installation im „editierbaren“ Modus markiert ist.
+Das geschieht nur, wenn Sie die Installation mit der enthaltenen `requirements.txt` durchführen, anstatt `pip install fastapi` direkt auszuführen.
+
+Das liegt daran, dass in der Datei `requirements.txt` die lokale Version von FastAPI mit der Option `-e` für die Installation im „editierbaren“ Modus markiert ist.
+
+///
 
 ### Den Code formatieren
 
@@ -170,20 +186,23 @@ Das stellt die Dokumentation unter `http://127.0.0.1:8008` bereit.
 
 Auf diese Weise können Sie die Dokumentation/Quelldateien bearbeiten und die Änderungen live sehen.
 
-!!! tip "Tipp"
-    Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
+/// tip | "Tipp"
 
-    Gehen Sie in das Verzeichnis für die entsprechende Sprache. Das für die englischsprachige Hauptdokumentation befindet sich unter `docs/en/`:
+Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
-    ```console
-    $ cd docs/en/
-    ```
+Gehen Sie in das Verzeichnis für die entsprechende Sprache. Das für die englischsprachige Hauptdokumentation befindet sich unter `docs/en/`:
 
-    Führen Sie dann `mkdocs` in diesem Verzeichnis aus:
+```console
+$ cd docs/en/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+Führen Sie dann `mkdocs` in diesem Verzeichnis aus:
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 #### Typer-CLI (optional)
 
@@ -210,8 +229,11 @@ Die Dokumentation verwendet <a href="https://www.mkdocs.org/" class="external-li
 
 Und es gibt zusätzliche Tools/Skripte für Übersetzungen, in `./scripts/docs.py`.
 
-!!! tip "Tipp"
-    Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
+/// tip | "Tipp"
+
+Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
+
+///
 
 Die gesamte Dokumentation befindet sich im Markdown-Format im Verzeichnis `./docs/en/`.
 
@@ -261,10 +283,13 @@ Hier sind die Schritte, die Ihnen bei Übersetzungen helfen.
 
 * Sehen Sie diese Pull Requests durch (Review), schlagen Sie Änderungen vor, oder segnen Sie sie ab (Approval). Bei den Sprachen, die ich nicht spreche, warte ich, bis mehrere andere die Übersetzung durchgesehen haben, bevor ich den Pull Request merge.
 
-!!! tip "Tipp"
-    Sie können <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">Kommentare mit Änderungsvorschlägen</a> zu vorhandenen Pull Requests hinzufügen.
+/// tip | "Tipp"
 
-    Schauen Sie sich die Dokumentation an, <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">wie man ein Review zu einem Pull Request hinzufügt</a>, welches den PR absegnet oder Änderungen vorschlägt.
+Sie können <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">Kommentare mit Änderungsvorschlägen</a> zu vorhandenen Pull Requests hinzufügen.
+
+Schauen Sie sich die Dokumentation an, <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">wie man ein Review zu einem Pull Request hinzufügt</a>, welches den PR absegnet oder Änderungen vorschlägt.
+
+///
 
 * Überprüfen Sie, ob es eine <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub-Diskussion</a> gibt, die Übersetzungen für Ihre Sprache koordiniert. Sie können sie abonnieren, und wenn ein neuer Pull Request zum Review vorliegt, wird der Diskussion automatisch ein Kommentar hinzugefügt.
 
@@ -278,8 +303,11 @@ Angenommen, Sie möchten eine Seite für eine Sprache übersetzen, die bereits �
 
 Im Spanischen lautet der Zwei-Buchstaben-Code `es`. Das Verzeichnis für spanische Übersetzungen befindet sich also unter `docs/es/`.
 
-!!! tip "Tipp"
-    Die Haupt („offizielle“) Sprache ist Englisch und befindet sich unter `docs/en/`.
+/// tip | "Tipp"
+
+Die Haupt („offizielle“) Sprache ist Englisch und befindet sich unter `docs/en/`.
+
+///
 
 Führen Sie nun den Live-Server für die Dokumentation auf Spanisch aus:
 
@@ -296,20 +324,23 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-!!! tip "Tipp"
-    Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
+/// tip | "Tipp"
 
-    Gehen Sie in das Sprachverzeichnis, für die spanischen Übersetzungen ist das `docs/es/`:
+Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
-    ```console
-    $ cd docs/es/
-    ```
+Gehen Sie in das Sprachverzeichnis, für die spanischen Übersetzungen ist das `docs/es/`:
 
-    Dann führen Sie in dem Verzeichnis `mkdocs` aus:
+```console
+$ cd docs/es/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+Dann führen Sie in dem Verzeichnis `mkdocs` aus:
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 Jetzt können Sie auf <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> gehen und Ihre Änderungen live sehen.
 
@@ -329,8 +360,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip "Tipp"
-    Beachten Sie, dass die einzige Änderung in Pfad und Dateiname der Sprachcode ist, von `en` zu `es`.
+/// tip | "Tipp"
+
+Beachten Sie, dass die einzige Änderung in Pfad und Dateiname der Sprachcode ist, von `en` zu `es`.
+
+///
 
 Wenn Sie in Ihrem Browser nachsehen, werden Sie feststellen, dass die Dokumentation jetzt Ihren neuen Abschnitt anzeigt (die Info-Box oben ist verschwunden). 🎉
 
@@ -365,8 +399,11 @@ Obiges Kommando hat eine Datei `docs/ht/mkdocs.yml` mit einer Minimal-Konfigurat
 INHERIT: ../en/mkdocs.yml
 ```
 
-!!! tip "Tipp"
-    Sie können diese Datei mit diesem Inhalt auch einfach manuell erstellen.
+/// tip | "Tipp"
+
+Sie können diese Datei mit diesem Inhalt auch einfach manuell erstellen.
+
+///
 
 Das Kommando hat auch eine Dummy-Datei `docs/ht/index.md` für die Hauptseite erstellt. Sie können mit der Übersetzung dieser Datei beginnen.
 

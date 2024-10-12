@@ -35,7 +35,7 @@ jobs:
           TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
         run: python -m build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.8.14
+        uses: pypa/gh-action-pypi-publish@v1.10.3
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
