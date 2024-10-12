@@ -13,7 +13,7 @@
 👆 🔜 ✔️ ⚒ 💭 👈 ⚫️ 😍 🔠 🛠️.
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
 ### ⚙️ *➡ 🛠️ 🔢* 📛 {
@@ -23,7 +23,7 @@
 👆 🔜 ⚫️ ⏮️ ❎ 🌐 👆 *➡ 🛠️*.
 
 ```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
 /// tip
@@ -45,7 +45,7 @@
 🚫 *➡ 🛠️* ⚪️➡️ 🏗 🗄 🔗 (&amp; ➡️, ⚪️➡️ 🏧 🧾 ⚙️), ⚙️ 🔢 `include_in_schema` &amp; ⚒ ⚫️ `False`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
 ## 🏧 📛 ⚪️➡️ #️⃣
@@ -57,7 +57,7 @@
 ⚫️ 🏆 🚫 🎦 🆙 🧾, ✋️ 🎏 🧰 (✅ 🐉) 🔜 💪 ⚙️ 🎂.
 
 ```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```
 
 ## 🌖 📨
@@ -101,7 +101,7 @@
 👉 `openapi_extra` 💪 👍, 🖼, 📣 [🗄 ↔](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
 ```
 
 🚥 👆 📂 🏧 🛠️ 🩺, 👆 ↔ 🔜 🎦 🆙 🔝 🎯 *➡ 🛠️*.
@@ -150,7 +150,7 @@
 👆 💪 👈 ⏮️ `openapi_extra`:
 
 ```Python hl_lines="20-37  39-40"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
 ```
 
 👉 🖼, 👥 🚫 📣 🙆 Pydantic 🏷. 👐, 📨 💪 🚫 <abbr title="converted from some plain format, like bytes, into Python objects">🎻</abbr> 🎻, ⚫️ ✍ 🔗 `bytes`, &amp; 🔢 `magic_data_reader()` 🔜 🈚 🎻 ⚫️ 🌌.
@@ -166,7 +166,7 @@
 🖼, 👉 🈸 👥 🚫 ⚙️ FastAPI 🛠️ 🛠️ ⚗ 🎻 🔗 ⚪️➡️ Pydantic 🏷 🚫 🏧 🔬 🎻. 👐, 👥 📣 📨 🎚 🆎 📁, 🚫 🎻:
 
 ```Python hl_lines="17-22  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 👐, 👐 👥 🚫 ⚙️ 🔢 🛠️ 🛠️, 👥 ⚙️ Pydantic 🏷 ❎ 🏗 🎻 🔗 💽 👈 👥 💚 📨 📁.
@@ -176,7 +176,7 @@
 &amp; ⤴️ 👆 📟, 👥 🎻 👈 📁 🎚 🔗, &amp; ⤴️ 👥 🔄 ⚙️ 🎏 Pydantic 🏷 ✔ 📁 🎚:
 
 ```Python hl_lines="26-33"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
 /// tip

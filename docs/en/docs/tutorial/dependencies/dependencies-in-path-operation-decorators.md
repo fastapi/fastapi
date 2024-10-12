@@ -17,7 +17,7 @@ It should be a `list` of `Depends()`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ It should be a `list` of `Depends()`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@ They can declare request requirements (like headers) or other sub-dependencies:
 //// tab | Python 3.9+
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -83,7 +83,7 @@ They can declare request requirements (like headers) or other sub-dependencies:
 //// tab | Python 3.8+
 
 ```Python hl_lines="7  12"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
@@ -97,7 +97,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="6  11"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
@@ -131,7 +131,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
@@ -145,7 +145,7 @@ So, you can reuse a normal dependency (that returns a value) you already use som
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -153,7 +153,7 @@ So, you can reuse a normal dependency (that returns a value) you already use som
 //// tab | Python 3.8+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
@@ -167,7 +167,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////

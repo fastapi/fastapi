@@ -34,7 +34,7 @@ Ela é apenas uma função que pode receber os mesmos parâmetros de uma *funç�
 //// tab | Python 3.10+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -42,7 +42,7 @@ Ela é apenas uma função que pode receber os mesmos parâmetros de uma *funç�
 //// tab | Python 3.9+
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -50,7 +50,7 @@ Ela é apenas uma função que pode receber os mesmos parâmetros de uma *funç�
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
@@ -64,7 +64,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
@@ -78,7 +78,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -116,7 +116,7 @@ Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#a
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -124,7 +124,7 @@ Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#a
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -132,7 +132,7 @@ Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#a
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
@@ -146,7 +146,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
@@ -160,7 +160,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -172,7 +172,7 @@ Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  18"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -180,7 +180,7 @@ Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *
 //// tab | Python 3.9+
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -188,7 +188,7 @@ Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *
 //// tab | Python 3.8+
 
 ```Python hl_lines="16  21"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
@@ -202,7 +202,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
@@ -216,7 +216,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -279,7 +279,7 @@ Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` 
 //// tab | Python 3.10+
 
 ```Python hl_lines="12  16  21"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py310.py!}
 ```
 
 ////
@@ -287,7 +287,7 @@ Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` 
 //// tab | Python 3.9+
 
 ```Python hl_lines="14  18  23"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py39.py!}
 ```
 
 ////
@@ -295,7 +295,7 @@ Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` 
 //// tab | Python 3.8+
 
 ```Python hl_lines="15  19  24"
-{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an.py!}
 ```
 
 ////

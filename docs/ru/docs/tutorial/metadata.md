@@ -18,7 +18,7 @@
 Вы можете задать их следующим образом:
 
 ```Python hl_lines="3-16  19-31"
-{!../../../docs_src/metadata/tutorial001.py!}
+{!../../docs_src/metadata/tutorial001.py!}
 ```
 
 /// tip | "Подсказка"
@@ -52,7 +52,7 @@
 Создайте метаданные для ваших тегов и передайте их в параметре `openapi_tags`:
 
 ```Python hl_lines="3-16  18"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
 Помните, что вы можете использовать Markdown внутри описания, к примеру "login" будет отображен жирным шрифтом (**login**) и "fancy" будет отображаться курсивом (_fancy_).
@@ -67,7 +67,7 @@
 Используйте параметр `tags` с вашими *операциями пути* (и `APIRouter`ами), чтобы присвоить им различные теги:
 
 ```Python hl_lines="21  26"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
 /// info | "Дополнительная информация"
@@ -97,7 +97,7 @@
 К примеру, чтобы задать её отображение по адресу `/api/v1/openapi.json`:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial002.py!}
+{!../../docs_src/metadata/tutorial002.py!}
 ```
 
 Если вы хотите отключить схему OpenAPI полностью, вы можете задать `openapi_url=None`, это также отключит пользовательские интерфейсы документации, которые его использует.
@@ -116,5 +116,5 @@
 К примеру, чтобы задать отображение Swagger UI по адресу `/documentation` и отключить ReDoc:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial003.py!}
+{!../../docs_src/metadata/tutorial003.py!}
 ```

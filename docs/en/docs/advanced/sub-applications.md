@@ -11,7 +11,7 @@ If you need to have two independent FastAPI applications, with their own indepen
 First, create the main, top-level, **FastAPI** application, and its *path operations*:
 
 ```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Sub-application
@@ -21,7 +21,7 @@ Then, create your sub-application, and its *path operations*.
 This sub-application is just another standard FastAPI application, but this is the one that will be "mounted":
 
 ```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Mount the sub-application
@@ -31,7 +31,7 @@ In your top-level application, `app`, mount the sub-application, `subapi`.
 In this case, it will be mounted at the path `/subapi`:
 
 ```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Check the automatic API docs

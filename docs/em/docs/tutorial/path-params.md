@@ -3,7 +3,7 @@
 👆 💪 📣 ➡ "🔢" ⚖️ "🔢" ⏮️ 🎏 ❕ ⚙️ 🐍 📁 🎻:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 💲 ➡ 🔢 `item_id` 🔜 🚶‍♀️ 👆 🔢 ❌ `item_id`.
@@ -19,7 +19,7 @@
 👆 💪 📣 🆎 ➡ 🔢 🔢, ⚙️ 🐩 🐍 🆎 ✍:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 👉 💼, `item_id` 📣 `int`.
@@ -122,7 +122,7 @@
 ↩️ *➡ 🛠️* 🔬 ✔, 👆 💪 ⚒ 💭 👈 ➡ `/users/me` 📣 ⏭ 1️⃣ `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 ⏪, ➡ `/users/{user_id}` 🔜 🏏 `/users/me`, "💭" 👈 ⚫️ 📨 🔢 `user_id` ⏮️ 💲 `"me"`.
@@ -130,7 +130,7 @@
 ➡, 👆 🚫🔜 ↔ ➡ 🛠️:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003b.py!}
+{!../../docs_src/path_params/tutorial003b.py!}
 ```
 
 🥇 🕐 🔜 🕧 ⚙️ ↩️ ➡ 🏏 🥇.
@@ -148,7 +148,7 @@
 ⤴️ ✍ 🎓 🔢 ⏮️ 🔧 💲, ❔ 🔜 💪 ☑ 💲:
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// info
@@ -168,7 +168,7 @@
 ⤴️ ✍ *➡ 🔢* ⏮️ 🆎 ✍ ⚙️ 🔢 🎓 👆 ✍ (`ModelName`):
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### ✅ 🩺
@@ -186,7 +186,7 @@
 👆 💪 🔬 ⚫️ ⏮️ *🔢 👨‍🎓* 👆 ✍ 🔢 `ModelName`:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### 🤚 *🔢 💲*
@@ -194,7 +194,7 @@
 👆 💪 🤚 ☑ 💲 ( `str` 👉 💼) ⚙️ `model_name.value`, ⚖️ 🏢, `your_enum_member.value`:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// tip
@@ -210,7 +210,7 @@
 👫 🔜 🗜 👫 🔗 💲 (🎻 👉 💼) ⏭ 🛬 👫 👩‍💻:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 👆 👩‍💻 👆 🔜 🤚 🎻 📨 💖:
@@ -251,7 +251,7 @@
 , 👆 💪 ⚙️ ⚫️ ⏮️:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
 /// tip
