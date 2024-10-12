@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.1
+
 ### Fixes
 
 * 🐛 Fix openapi generation with responses kwarg. PR [#10895](https://github.com/fastapi/fastapi/pull/10895) by [@flxdot](https://github.com/flxdot).
