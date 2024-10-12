@@ -182,4 +182,3 @@ Por exemplo, se o cliente tentar enviar um cabeçalho `tool` com o valor `plumbu
 ## Resumo
 
 Você pode utilizar **modelos do Pydantic** para declarar **cabeçalhos** no **FastAPI**. 😎
-
