@@ -1,6 +1,6 @@
 # Swagger-Oberfläche konfigurieren
 
-Sie können einige zusätzliche <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Parameter der Swagger-Oberfläche</a> konfigurieren.
+Sie können einige zusätzliche <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Parameter der Swagger-Oberfläche</a> konfigurieren.
 
 Um diese zu konfigurieren, übergeben Sie das Argument `swagger_ui_parameters` beim Erstellen des `FastAPI()`-App-Objekts oder an die Funktion `get_swagger_ui_html()`.
 
@@ -19,7 +19,7 @@ Ohne Änderung der Einstellungen ist die Syntaxhervorhebung standardmäßig akti
 Sie können sie jedoch deaktivieren, indem Sie `syntaxHighlight` auf `False` setzen:
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial001.py!}
+{!../../docs_src/configure_swagger_ui/tutorial001.py!}
 ```
 
 ... und dann zeigt die Swagger-Oberfläche die Syntaxhervorhebung nicht mehr an:
@@ -31,7 +31,7 @@ Sie können sie jedoch deaktivieren, indem Sie `syntaxHighlight` auf `False` set
 Auf die gleiche Weise könnten Sie das Theme der Syntaxhervorhebung mit dem Schlüssel `syntaxHighlight.theme` festlegen (beachten Sie, dass er einen Punkt in der Mitte hat):
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial002.py!}
+{!../../docs_src/configure_swagger_ui/tutorial002.py!}
 ```
 
 Obige Konfiguration würde das Theme für die Farbe der Syntaxhervorhebung ändern:
@@ -45,7 +45,7 @@ FastAPI enthält einige Defaultkonfigurationsparameter, die für die meisten Anw
 Es umfasst die folgenden Defaultkonfigurationen:
 
 ```Python
-{!../../../fastapi/openapi/docs.py[ln:7-23]!}
+{!../../fastapi/openapi/docs.py[ln:7-23]!}
 ```
 
 Sie können jede davon überschreiben, indem Sie im Argument `swagger_ui_parameters` einen anderen Wert festlegen.
@@ -53,12 +53,12 @@ Sie können jede davon überschreiben, indem Sie im Argument `swagger_ui_paramet
 Um beispielsweise `deepLinking` zu deaktivieren, könnten Sie folgende Einstellungen an `swagger_ui_parameters` übergeben:
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial003.py!}
+{!../../docs_src/configure_swagger_ui/tutorial003.py!}
 ```
 
 ## Andere Parameter der Swagger-Oberfläche
 
-Um alle anderen möglichen Konfigurationen zu sehen, die Sie verwenden können, lesen Sie die offizielle <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Dokumentation für die Parameter der Swagger-Oberfläche</a>.
+Um alle anderen möglichen Konfigurationen zu sehen, die Sie verwenden können, lesen Sie die offizielle <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Dokumentation für die Parameter der Swagger-Oberfläche</a>.
 
 ## JavaScript-basierte Einstellungen
 

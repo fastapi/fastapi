@@ -23,7 +23,7 @@ Es nimmt ein Objekt entgegen, wie etwa ein Pydantic-Modell, und gibt eine JSON-k
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  21"
-{!> ../../../docs_src/encoder/tutorial001_py310.py!}
+{!> ../../docs_src/encoder/tutorial001_py310.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Es nimmt ein Objekt entgegen, wie etwa ein Pydantic-Modell, und gibt eine JSON-k
 //// tab | Python 3.8+
 
 ```Python hl_lines="5  22"
-{!> ../../../docs_src/encoder/tutorial001.py!}
+{!> ../../docs_src/encoder/tutorial001.py!}
 ```
 
 ////

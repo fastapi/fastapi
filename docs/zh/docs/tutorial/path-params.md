@@ -3,7 +3,7 @@
 FastAPI 支持使用 Python 字符串格式化语法声明**路径参数**（**变量**）：
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 这段代码把路径参数 `item_id` 的值传递给路径函数的参数 `item_id`。
@@ -19,7 +19,7 @@ FastAPI 支持使用 Python 字符串格式化语法声明**路径参数**（**�
 使用 Python 标准类型注解，声明路径操作函数中路径参数的类型。
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 本例把 `item_id` 的类型声明为 `int`。
@@ -122,7 +122,7 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 由于*路径操作*是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 否则，`/users/{user_id}` 将匹配 `/users/me`，FastAPI 会**认为**正在接收值为 `"me"` 的 `user_id` 参数。
@@ -140,7 +140,7 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 然后，创建包含固定值的类属性，这些固定值是可用的有效值：
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// info | "说明"
@@ -160,7 +160,7 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 使用 Enum 类（`ModelName`）创建使用类型注解的*路径参数*：
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### 查看文档
@@ -178,7 +178,7 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 枚举类 `ModelName` 中的*枚举元素*支持比较操作：
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### 获取*枚举值*
@@ -186,7 +186,7 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 使用 `model_name.value` 或 `your_enum_member.value` 获取实际的值（本例中为**字符串**）：
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 /// tip | "提示"
@@ -202,7 +202,7 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.
 返回给客户端之前，要把枚举元素转换为对应的值（本例中为字符串）：
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 客户端中的 JSON 响应如下：
@@ -243,7 +243,7 @@ OpenAPI 不支持声明包含路径的*路径参数*，因为这会导致测试�
 用法如下：
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
 /// tip | "提示"

@@ -11,7 +11,7 @@ Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, w
 //// tab | Python 3.10+ Pydantic v2
 
 ```Python hl_lines="13-24"
-{!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial001_py310.py!}
 ```
 
 ////
@@ -19,7 +19,7 @@ Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, w
 //// tab | Python 3.10+ Pydantic v1
 
 ```Python hl_lines="13-23"
-{!> ../../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
+{!> ../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@ Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, w
 //// tab | Python 3.8+ Pydantic v2
 
 ```Python hl_lines="15-26"
-{!> ../../../docs_src/schema_extra_example/tutorial001.py!}
+{!> ../../docs_src/schema_extra_example/tutorial001.py!}
 ```
 
 ////
@@ -35,7 +35,7 @@ Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, w
 //// tab | Python 3.8+ Pydantic v1
 
 ```Python hl_lines="15-25"
-{!> ../../../docs_src/schema_extra_example/tutorial001_pv1.py!}
+{!> ../../docs_src/schema_extra_example/tutorial001_pv1.py!}
 ```
 
 ////
@@ -83,7 +83,7 @@ Wenn Sie `Field()` mit Pydantic-Modellen verwenden, können Sie ebenfalls zusät
 //// tab | Python 3.10+
 
 ```Python hl_lines="2  8-11"
-{!> ../../../docs_src/schema_extra_example/tutorial002_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial002_py310.py!}
 ```
 
 ////
@@ -91,7 +91,7 @@ Wenn Sie `Field()` mit Pydantic-Modellen verwenden, können Sie ebenfalls zusät
 //// tab | Python 3.8+
 
 ```Python hl_lines="4  10-13"
-{!> ../../../docs_src/schema_extra_example/tutorial002.py!}
+{!> ../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body
 //// tab | Python 3.10+
 
 ```Python hl_lines="22-29"
-{!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -125,7 +125,7 @@ Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body
 //// tab | Python 3.9+
 
 ```Python hl_lines="22-29"
-{!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
+{!> ../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -133,7 +133,7 @@ Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body
 //// tab | Python 3.8+
 
 ```Python hl_lines="23-30"
-{!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
+{!> ../../docs_src/schema_extra_example/tutorial003_an.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="18-25"
-{!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial003_py310.py!}
 ```
 
 ////
@@ -161,7 +161,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="20-27"
-{!> ../../../docs_src/schema_extra_example/tutorial003.py!}
+{!> ../../docs_src/schema_extra_example/tutorial003.py!}
 ```
 
 ////
@@ -179,7 +179,7 @@ Sie können natürlich auch mehrere `examples` übergeben:
 //// tab | Python 3.10+
 
 ```Python hl_lines="23-38"
-{!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -187,7 +187,7 @@ Sie können natürlich auch mehrere `examples` übergeben:
 //// tab | Python 3.9+
 
 ```Python hl_lines="23-38"
-{!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
+{!> ../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -195,7 +195,7 @@ Sie können natürlich auch mehrere `examples` übergeben:
 //// tab | Python 3.8+
 
 ```Python hl_lines="24-39"
-{!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
+{!> ../../docs_src/schema_extra_example/tutorial004_an.py!}
 ```
 
 ////
@@ -209,7 +209,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="19-34"
-{!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial004_py310.py!}
 ```
 
 ////
@@ -223,7 +223,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="21-36"
-{!> ../../../docs_src/schema_extra_example/tutorial004.py!}
+{!> ../../docs_src/schema_extra_example/tutorial004.py!}
 ```
 
 ////
@@ -270,7 +270,7 @@ Sie können es so verwenden:
 //// tab | Python 3.10+
 
 ```Python hl_lines="23-49"
-{!> ../../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -278,7 +278,7 @@ Sie können es so verwenden:
 //// tab | Python 3.9+
 
 ```Python hl_lines="23-49"
-{!> ../../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
+{!> ../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -286,7 +286,7 @@ Sie können es so verwenden:
 //// tab | Python 3.8+
 
 ```Python hl_lines="24-50"
-{!> ../../../docs_src/schema_extra_example/tutorial005_an.py!}
+{!> ../../docs_src/schema_extra_example/tutorial005_an.py!}
 ```
 
 ////
@@ -300,7 +300,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="19-45"
-{!> ../../../docs_src/schema_extra_example/tutorial005_py310.py!}
+{!> ../../docs_src/schema_extra_example/tutorial005_py310.py!}
 ```
 
 ////
@@ -314,7 +314,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="21-47"
-{!> ../../../docs_src/schema_extra_example/tutorial005.py!}
+{!> ../../docs_src/schema_extra_example/tutorial005.py!}
 ```
 
 ////

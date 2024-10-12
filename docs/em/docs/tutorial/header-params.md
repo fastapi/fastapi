@@ -9,7 +9,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial002.py!}
+{!> ../../docs_src/header_params/tutorial002.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/header_params/tutorial002_py310.py!}
+{!> ../../docs_src/header_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003.py!}
+{!> ../../docs_src/header_params/tutorial003.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003_py39.py!}
+{!> ../../docs_src/header_params/tutorial003_py39.py!}
 ```
 
 ////
@@ -125,7 +125,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial003_py310.py!}
+{!> ../../docs_src/header_params/tutorial003_py310.py!}
 ```
 
 ////

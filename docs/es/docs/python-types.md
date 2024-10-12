@@ -23,7 +23,7 @@ Si eres un experto en Python y ya lo sabes todo sobre los type hints, salta al s
 Comencemos con un ejemplo simple:
 
 ```Python
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 Llamar este programa nos muestra el siguiente <abbr title="en español: salida">output</abbr>:
@@ -39,7 +39,7 @@ La función hace lo siguiente:
 * Las <abbr title="las junta como si fuesen una. Con el contenido de una después de la otra. En inglés: concatenate.">concatena</abbr> con un espacio en la mitad.
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 ### Edítalo
@@ -83,7 +83,7 @@ Eso es todo.
 Esos son los "type hints":
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial002.py!}
+{!../../docs_src/python_types/tutorial002.py!}
 ```
 
 No es lo mismo a declarar valores por defecto, como sería con:
@@ -113,7 +113,7 @@ Con esto puedes moverte hacia abajo viendo las opciones hasta que encuentras una
 Mira esta función que ya tiene type hints:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial003.py!}
+{!../../docs_src/python_types/tutorial003.py!}
 ```
 
 Como el editor conoce el tipo de las variables no solo obtienes auto-completado, si no que también obtienes chequeo de errores:
@@ -123,7 +123,7 @@ Como el editor conoce el tipo de las variables no solo obtienes auto-completado,
 Ahora que sabes que tienes que arreglarlo convierte `age` a un string con `str(age)`:
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial004.py!}
+{!../../docs_src/python_types/tutorial004.py!}
 ```
 
 ## Declarando tipos
@@ -144,7 +144,7 @@ Por ejemplo, puedes usar:
 * `bytes`
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
+{!../../docs_src/python_types/tutorial005.py!}
 ```
 
 ### Tipos con sub-tipos
@@ -162,7 +162,7 @@ Por ejemplo, vamos a definir una variable para que sea una `list` compuesta de `
 De `typing`, importa `List` (con una `L` mayúscula):
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
 Declara la variable con la misma sintaxis de los dos puntos (`:`).
@@ -172,7 +172,7 @@ Pon `List` como el tipo.
 Como la lista es un tipo que permite tener un "sub-tipo" pones el sub-tipo en corchetes `[]`:
 
 ```Python hl_lines="4"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
 Esto significa: la variable `items` es una `list` y cada uno de los ítems en esta lista es un `str`.
@@ -192,7 +192,7 @@ El editor aún sabe que es un `str` y provee soporte para ello.
 Harías lo mismo para declarar `tuple`s y `set`s:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial007.py!}
+{!../../docs_src/python_types/tutorial007.py!}
 ```
 
 Esto significa:
@@ -209,7 +209,7 @@ El primer sub-tipo es para los keys del `dict`.
 El segundo sub-tipo es para los valores del `dict`:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial008.py!}
+{!../../docs_src/python_types/tutorial008.py!}
 ```
 
 Esto significa:
@@ -225,13 +225,13 @@ También puedes declarar una clase como el tipo de una variable.
 Digamos que tienes una clase `Person`con un nombre:
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009.py!}
 ```
 
 Entonces puedes declarar una variable que sea de tipo `Person`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009.py!}
 ```
 
 Una vez más tendrás todo el soporte del editor:
@@ -253,7 +253,7 @@ Y obtienes todo el soporte del editor con el objeto resultante.
 Tomado de la documentación oficial de Pydantic:
 
 ```Python
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 /// info | Información

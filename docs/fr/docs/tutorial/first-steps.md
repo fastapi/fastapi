@@ -3,7 +3,7 @@
 Le fichier **FastAPI** le plus simple possible pourrait ressembler à cela  :
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Copiez ce code dans un fichier nommé `main.py`.
@@ -135,7 +135,7 @@ Vous pourriez aussi l'utiliser pour générer du code automatiquement, pour les 
 ### Étape 1 : import `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` est une classe Python qui fournit toutes les fonctionnalités nécessaires au lancement de votre API.
@@ -151,7 +151,7 @@ Vous pouvez donc aussi utiliser toutes les fonctionnalités de <a href="https://
 ### Étape 2 : créer une "instance" `FastAPI`
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Ici la variable `app` sera une "instance" de la classe `FastAPI`.
@@ -173,7 +173,7 @@ $ uvicorn main:app --reload
 Si vous créez votre app avec :
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 Et la mettez dans un fichier `main.py`, alors vous appelleriez `uvicorn` avec :
@@ -251,7 +251,7 @@ Nous allons donc aussi appeler ces dernières des "**opérations**".
 #### Définir un *décorateur d'opération de chemin*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Le `@app.get("/")` dit à **FastAPI** que la fonction en dessous est chargée de gérer les requêtes qui vont sur :
@@ -307,7 +307,7 @@ Voici notre "**fonction de chemin**" (ou fonction d'opération de chemin) :
 * **fonction** : la fonction sous le "décorateur" (sous `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 C'est une fonction Python.
@@ -321,7 +321,7 @@ Ici, c'est une fonction asynchrone (définie avec `async def`).
 Vous pourriez aussi la définir comme une fonction classique plutôt qu'avec `async def` :
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note
@@ -333,7 +333,7 @@ Si vous ne connaissez pas la différence, allez voir la section [Concurrence : *
 ### Étape 5 : retourner le contenu
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Vous pouvez retourner un dictionnaire (`dict`), une liste (`list`), des valeurs seules comme des chaines de caractères (`str`) et des entiers (`int`), etc.
