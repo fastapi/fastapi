@@ -114,13 +114,14 @@ jobs:
           cache-dependency-glob: |
             requirements**.txt
             pyproject.toml
+      - name: Install Dependencies
+        run: uv pip install -r requirements-tests.txt
       - name: Get coverage files
         uses: actions/download-artifact@v4
         with:
           pattern: coverage-*
           path: coverage
           merge-multiple: true
-      - run: uv pip install coverage[toml]
       - run: ls -la coverage
       - run: coverage combine coverage
       - run: coverage report
