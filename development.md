@@ -186,6 +186,8 @@ Adminer: http://localhost:8080
 
 Traefik UI: http://localhost:8090
 
+MailCatcher: http://localhost:1080
+
 ### Development URLs with `localhost.tiangolo.com` Configured
 
 Development URLs, for local development.
@@ -194,10 +196,12 @@ Frontend: http://dashboard.localhost.tiangolo.com
 
 Backend: http://api.localhost.tiangolo.com
 
-Automatic Interactive Docs (Swagger UI): http://api.localhost.tiangolo.comdocs
+Automatic Interactive Docs (Swagger UI): http://api.localhost.tiangolo.com/docs
 
-Automatic Alternative Docs (ReDoc): http://api.localhost.tiangolo.comredoc
+Automatic Alternative Docs (ReDoc): http://api.localhost.tiangolo.com/redoc
 
 Adminer: http://localhost.tiangolo.com:8080
 
 Traefik UI: http://localhost.tiangolo.com:8090
+
+MailCatcher: http://localhost.tiangolo.com:1080
