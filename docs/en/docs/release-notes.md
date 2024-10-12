@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👷 Fix smokeshow, checkout files on CI. PR [#12434](https://github.com/fastapi/fastapi/pull/12434) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use uv in CI. PR [#12281](https://github.com/fastapi/fastapi/pull/12281) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Update httpx requirement from <0.25.0,>=0.23.0 to >=0.23.0,<0.28.0. PR [#11509](https://github.com/fastapi/fastapi/pull/11509) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
