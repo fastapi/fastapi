@@ -23,77 +23,89 @@
 
 您可以使用以下命令安装 ASGI 兼容服务器：
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>，一个快如闪电 ASGI 服务器，基于 uvloop 和 httptools 构建。
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>，一个快如闪电 ASGI 服务器，基于 uvloop 和 httptools 构建。
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ pip install "uvicorn[standard]"
+```console
+$ pip install "uvicorn[standard]"
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-    !!! tip
-        通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
+/// tip
 
-        其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
+通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
-=== "Hypercorn"
+其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
 
-    * <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
+///
 
-    <div class="termy">
+////
 
-    ```console
-    $ pip install hypercorn
+//// tab | Hypercorn
 
-    ---> 100%
-    ```
+* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
 
-    </div>
+<div class="termy">
 
-    ...或任何其他 ASGI 服务器。
+```console
+$ pip install hypercorn
 
+---> 100%
+```
+
+</div>
+
+...或任何其他 ASGI 服务器。
+
+////
 
 ## 运行服务器程序
 
 您可以按照之前教程中的相同方式运行应用程序，但不使用`--reload`选项，例如：
 
-=== "Uvicorn"
+//// tab | Uvicorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ uvicorn main:app --host 0.0.0.0 --port 80
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
 
-    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-    ```
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+```
 
-    </div>
+</div>
 
+////
 
-=== "Hypercorn"
+//// tab | Hypercorn
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ hypercorn main:app --bind 0.0.0.0:80
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
 
-    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-    ```
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```
 
-    </div>
+</div>
 
-!!! warning
-     如果您正在使用`--reload`选项，请记住删除它。
+////
 
-     `--reload` 选项消耗更多资源，并且更不稳定。
+/// warning
 
-     它在**开发**期间有很大帮助，但您**不应该**在**生产环境**中使用它。
+如果您正在使用`--reload`选项，请记住删除它。
+
+ `--reload` 选项消耗更多资源，并且更不稳定。
+
+ 它在**开发**期间有很大帮助，但您**不应该**在**生产环境**中使用它。
+
+///
 
 ## Hypercorn with Trio
 

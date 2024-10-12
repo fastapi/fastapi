@@ -17,10 +17,13 @@ Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md){.internal
 
 Hier zeige ich Ihnen, wie Sie <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> mit **Uvicorn Workerprozessen** verwenden.
 
-!!! info
-    Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+/// info
 
-    Insbesondere wenn die Anwendung auf **Kubernetes** läuft, werden Sie Gunicorn wahrscheinlich **nicht** verwenden wollen und stattdessen **einen einzelnen Uvicorn-Prozess pro Container** ausführen wollen, aber ich werde Ihnen später in diesem Kapitel mehr darüber erzählen.
+Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
+
+Insbesondere wenn die Anwendung auf **Kubernetes** läuft, werden Sie Gunicorn wahrscheinlich **nicht** verwenden wollen und stattdessen **einen einzelnen Uvicorn-Prozess pro Container** ausführen wollen, aber ich werde Ihnen später in diesem Kapitel mehr darüber erzählen.
+
+///
 
 ## Gunicorn mit Uvicorn-Workern
 

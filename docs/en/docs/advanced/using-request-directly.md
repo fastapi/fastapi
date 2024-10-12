@@ -30,23 +30,29 @@ Let's imagine you want to get the client's IP address/host inside of your *path 
 For that you need to access the request directly.
 
 ```Python hl_lines="1  7-8"
-{!../../../docs_src/using_request_directly/tutorial001.py!}
+{!../../docs_src/using_request_directly/tutorial001.py!}
 ```
 
 By declaring a *path operation function* parameter with the type being the `Request` **FastAPI** will know to pass the `Request` in that parameter.
 
-!!! tip
-    Note that in this case, we are declaring a path parameter beside the request parameter.
+/// tip
 
-    So, the path parameter will be extracted, validated, converted to the specified type and annotated with OpenAPI.
+Note that in this case, we are declaring a path parameter beside the request parameter.
 
-    The same way, you can declare any other parameter as normally, and additionally, get the `Request` too.
+So, the path parameter will be extracted, validated, converted to the specified type and annotated with OpenAPI.
+
+The same way, you can declare any other parameter as normally, and additionally, get the `Request` too.
+
+///
 
 ## `Request` documentation
 
 You can read more details about the <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` object in the official Starlette documentation site</a>.
 
-!!! note "Technical Details"
-    You could also use `from starlette.requests import Request`.
+/// note | "Technical Details"
 
-    **FastAPI** provides it directly just as a convenience for you, the developer. But it comes directly from Starlette.
+You could also use `from starlette.requests import Request`.
+
+**FastAPI** provides it directly just as a convenience for you, the developer. But it comes directly from Starlette.
+
+///

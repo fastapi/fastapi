@@ -43,10 +43,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** enthält mehrere Middlewares für gängige Anwendungsfälle. Wir werden als Nächstes sehen, wie man sie verwendet.
 
-!!! note "Technische Details"
-    Für die nächsten Beispiele könnten Sie auch `from starlette.middleware.something import SomethingMiddleware` verwenden.
+/// note | "Technische Details"
 
-    **FastAPI** bietet mehrere Middlewares via `fastapi.middleware` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Middlewares kommen aber direkt von Starlette.
+Für die nächsten Beispiele könnten Sie auch `from starlette.middleware.something import SomethingMiddleware` verwenden.
+
+**FastAPI** bietet mehrere Middlewares via `fastapi.middleware` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Middlewares kommen aber direkt von Starlette.
+
+///
 
 ## `HTTPSRedirectMiddleware`
 
@@ -55,7 +58,7 @@ Erzwingt, dass alle eingehenden Requests entweder `https` oder `wss` sein müsse
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
+{!../../docs_src/advanced_middleware/tutorial001.py!}
 ```
 
 ## `TrustedHostMiddleware`
@@ -63,7 +66,7 @@ Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
 ```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
+{!../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
 Die folgenden Argumente werden unterstützt:
@@ -79,7 +82,7 @@ Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
+{!../../docs_src/advanced_middleware/tutorial003.py!}
 ```
 
 Die folgenden Argumente werden unterstützt:
@@ -92,7 +95,6 @@ Es gibt viele andere ASGI-Middlewares.
 
 Zum Beispiel:
 
-* <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorns `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 

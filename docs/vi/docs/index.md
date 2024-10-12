@@ -452,7 +452,7 @@ Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** ch�
 
 Sử dụng bởi Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - cho email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - cho email validation.
 
 Sử dụng Starlette:
 

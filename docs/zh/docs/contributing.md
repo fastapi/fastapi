@@ -24,63 +24,73 @@ $ python -m venv env
 
 使用以下方法激活新环境：
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 要检查操作是否成功，运行：
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 如果显示 `pip` 程序文件位于 `env/bin/pip` 则说明激活成功。 🎉
 
@@ -96,10 +106,13 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-!!! tip
-    每一次你在该环境下使用 `pip` 安装了新软件包时，请再次激活该环境。
+/// tip
 
-    这样可以确保你在使用由该软件包安装的终端程序时使用的是当前虚拟环境中的程序，而不是其他的可能是全局安装的程序。
+每一次你在该环境下使用 `pip` 安装了新软件包时，请再次激活该环境。
+
+这样可以确保你在使用由该软件包安装的终端程序时使用的是当前虚拟环境中的程序，而不是其他的可能是全局安装的程序。
+
+///
 
 ### pip
 
@@ -125,10 +138,13 @@ $ pip install -r requirements.txt
 
 这样，你不必再去重新"安装"你的本地版本即可测试所有更改。
 
-!!! note "技术细节"
-    仅当你使用此项目中的 `requirements.txt` 安装而不是直接使用 `pip install fastapi` 安装时，才会发生这种情况。
+/// note | "技术细节"
 
-    这是因为在 `requirements.txt` 中，本地的 FastAPI 是使用“可编辑” （`-e`）选项安装的
+仅当你使用此项目中的 `requirements.txt` 安装而不是直接使用 `pip install fastapi` 安装时，才会发生这种情况。
+
+这是因为在 `requirements.txt` 中，本地的 FastAPI 是使用“可编辑” （`-e`）选项安装的
+
+///
 
 ### 格式化
 
@@ -170,20 +186,23 @@ $ python ./scripts/docs.py live
 
 这样，你可以编辑文档 / 源文件并实时查看更改。
 
-!!! tip
-    或者你也可以手动执行和该脚本一样的操作
+/// tip
 
-    进入语言目录，如果是英文文档，目录则是 `docs/en/`:
+或者你也可以手动执行和该脚本一样的操作
 
-    ```console
-    $ cd docs/en/
-    ```
+进入语言目录，如果是英文文档，目录则是 `docs/en/`:
 
-    在该目录执行 `mkdocs` 命令
+```console
+$ cd docs/en/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+在该目录执行 `mkdocs` 命令
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 #### Typer CLI （可选）
 
@@ -210,8 +229,11 @@ Completion will take effect once you restart the terminal.
 
 在 `./scripts/docs.py` 中还有额外工具 / 脚本来处理翻译。
 
-!!! tip
-    你不需要去了解 `./scripts/docs.py` 中的代码，只需在命令行中使用它即可。
+/// tip
+
+你不需要去了解 `./scripts/docs.py` 中的代码，只需在命令行中使用它即可。
+
+///
 
 所有文档均在 `./docs/en/` 目录中以 Markdown 文件格式保存。
 
@@ -256,10 +278,13 @@ $ uvicorn tutorial001:app --reload
 
 * 在当前 <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">已有的 pull requests</a> 中查找你使用的语言，添加要求修改或同意合并的评审意见。
 
-!!! tip
-    你可以为已有的 pull requests <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">添加包含修改建议的评论</a>。
+/// tip
 
-    详情可查看关于 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">添加 pull request 评审意见</a> 以同意合并或要求修改的文档。
+你可以为已有的 pull requests <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">添加包含修改建议的评论</a>。
+
+详情可查看关于 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">添加 pull request 评审意见</a> 以同意合并或要求修改的文档。
+
+///
 
 * 检查在 <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> 是否有关于你所用语言的协作翻译。 如果有，你可以订阅它，当有一条新的 PR 请求需要评审时，系统会自动将其添加到讨论中，你也会收到对应的推送。
 
@@ -283,8 +308,11 @@ $ uvicorn tutorial001:app --reload
 
 对于西班牙语来说，它的两位字母代码是 `es`。所以西班牙语翻译的目录位于 `docs/es/`。
 
-!!! tip
-    默认语言是英语，位于 `docs/en/`目录。
+/// tip
+
+默认语言是英语，位于 `docs/en/`目录。
+
+///
 
 现在为西班牙语文档运行实时服务器：
 
@@ -301,20 +329,23 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-!!! tip
-    或者你也可以手动执行和该脚本一样的操作
+/// tip
 
-    进入语言目录，对于西班牙语的翻译，目录是 `docs/es/`:
+或者你也可以手动执行和该脚本一样的操作
 
-    ```console
-    $ cd docs/es/
-    ```
+进入语言目录，对于西班牙语的翻译，目录是 `docs/es/`:
 
-    在该目录执行 `mkdocs` 命令
+```console
+$ cd docs/es/
+```
 
-    ```console
-    $ mkdocs serve --dev-addr 8008
-    ```
+在该目录执行 `mkdocs` 命令
+
+```console
+$ mkdocs serve --dev-addr 8008
+```
+
+///
 
 现在你可以访问 <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> 实时查看你所做的更改。
 
@@ -334,8 +365,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
-    注意路径和文件名的唯一变化是语言代码，从 `en` 更改为 `es`。
+/// tip
+
+注意路径和文件名的唯一变化是语言代码，从 `en` 更改为 `es`。
+
+///
 
 回到浏览器你就可以看到刚刚更新的章节了。🎉
 
@@ -370,8 +404,11 @@ Successfully initialized: docs/ht
 INHERIT: ../en/mkdocs.yml
 ```
 
-!!! tip
-    你也可以自己手动创建包含这些内容的文件。
+/// tip
+
+你也可以自己手动创建包含这些内容的文件。
+
+///
 
 这条命令还会生成一个文档主页 `docs/ht/index.md`，你可以从这个文件开始翻译。
 

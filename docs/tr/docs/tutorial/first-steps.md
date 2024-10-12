@@ -3,7 +3,7 @@
 En sade FastAPI dosyası şu şekilde görünür:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Yukarıdaki içeriği bir `main.py` dosyasına kopyalayalım.
@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "Not"
-    `uvicorn main:app` komutunu şu şekilde açıklayabiliriz:
+/// note | "Not"
 
-    * `main`: dosya olan `main.py` (yani Python "modülü").
-    * `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` nesnesi.
-    * `--reload`: kod değişikliklerinin ardından sunucuyu otomatik olarak yeniden başlatır. Bu parameteyi sadece geliştirme aşamasında kullanmalıyız.
+`uvicorn main:app` komutunu şu şekilde açıklayabiliriz:
+
+* `main`: dosya olan `main.py` (yani Python "modülü").
+* `app`: ise `main.py` dosyasının içerisinde `app = FastAPI()` satırında oluşturduğumuz `FastAPI` nesnesi.
+* `--reload`: kod değişikliklerinin ardından sunucuyu otomatik olarak yeniden başlatır. Bu parameteyi sadece geliştirme aşamasında kullanmalıyız.
+
+///
 
 Çıktı olarak şöyle bir satır ile karşılaşacaksınız:
 
@@ -131,20 +134,23 @@ Ayrıca, API'ınızla iletişim kuracak önyüz, mobil veya IoT uygulamaları gi
 ### Adım 1: `FastAPI`yı Projemize Dahil Edelim
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI`, API'niz için tüm işlevselliği sağlayan bir Python sınıfıdır.
 
-!!! note "Teknik Detaylar"
-    `FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
+/// note | "Teknik Detaylar"
 
-    <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+`FastAPI` doğrudan `Starlette`'i miras alan bir sınıftır.
+
+<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+
+///
 
 ### Adım 2: Bir `FastAPI` "Örneği" Oluşturalım
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Burada `app` değişkeni `FastAPI` sınıfının bir örneği olacaktır.
@@ -166,7 +172,7 @@ $ uvicorn main:app --reload
 Uygulamanızı aşağıdaki gibi oluşturursanız:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 Ve bunu `main.py` dosyasına yerleştirirseniz eğer `uvicorn` komutunu şu şekilde çalıştırabilirsiniz:
@@ -199,8 +205,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info "Bilgi"
-    "Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
+/// info | "Bilgi"
+
+"Yol" genellikle "<abbr title="Endpoint: Bitim Noktası">endpoint</abbr>" veya "<abbr title="Route: Yönlendirme/Yön">route</abbr>" olarak adlandırılır.
+
+///
 
 Bir API oluştururken, "yol", "kaynaklar" ile "endişeleri" ayırmanın ana yöntemidir.
 
@@ -242,7 +251,7 @@ Biz de onları "**operasyonlar**" olarak adlandıracağız.
 #### Bir *Yol Operasyonu Dekoratörü* Tanımlayalım
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `@app.get("/")` dekoratörü, **FastAPI**'a hemen altındaki fonksiyonun aşağıdaki durumlardan sorumlu olduğunu söyler:
@@ -250,16 +259,19 @@ Biz de onları "**operasyonlar**" olarak adlandıracağız.
 * <abbr title="Bir HTTP GET metodu"><code>get</code> operasyonu</abbr> ile
 * `/` yoluna gelen istekler
 
-!!! info "`@decorator` Bilgisi"
-    Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
+/// info | "`@decorator` Bilgisi"
 
-    Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor) fonksiyonların üzerlerine yerleştirilirler.
+Python'da `@something` sözdizimi "<abbr title="Decorator">dekoratör</abbr>" olarak adlandırılır.
 
-    Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
+Dekoratörler, dekoratif bir şapka gibi (sanırım terim buradan geliyor) fonksiyonların üzerlerine yerleştirilirler.
 
-    Bizim durumumuzda, kullandığımız dekoratör, **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
+Bir "dekoratör" hemen altında bulunan fonksiyonu alır ve o fonksiyon ile bazı işlemler gerçekleştirir.
 
-    Bu bir **yol operasyonu dekoratörüdür**.
+Bizim durumumuzda, kullandığımız dekoratör, **FastAPI**'a altındaki fonksiyonun `/` yoluna gelen `get` metodlu isteklerden sorumlu olduğunu söyler.
+
+Bu bir **yol operasyonu dekoratörüdür**.
+
+///
 
 Ayrıca diğer operasyonları da kullanabilirsiniz:
 
@@ -274,14 +286,17 @@ Daha az kullanılanları da kullanabilirsiniz:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip "İpucu"
-    Her işlemi (HTTP metod) istediğiniz gibi kullanmakta özgürsünüz.
+/// tip | "İpucu"
 
-    **FastAPI** herhangi bir özel amacı veya anlamı olması konusunda ısrarcı olmaz.
+Her işlemi (HTTP metod) istediğiniz gibi kullanmakta özgürsünüz.
 
-    Buradaki bilgiler bir gereklilik değil, bir kılavuz olarak sunulmaktadır.
+**FastAPI** herhangi bir özel amacı veya anlamı olması konusunda ısrarcı olmaz.
 
-    Mesela GraphQL kullanırkan genelde tüm işlemleri yalnızca `POST` operasyonunu kullanarak gerçekleştirirsiniz.
+Buradaki bilgiler bir gereklilik değil, bir kılavuz olarak sunulmaktadır.
+
+Mesela GraphQL kullanırkan genelde tüm işlemleri yalnızca `POST` operasyonunu kullanarak gerçekleştirirsiniz.
+
+///
 
 ### Adım 4: **Yol Operasyonu Fonksiyonunu** Tanımlayın
 
@@ -292,7 +307,7 @@ Aşağıdaki, bizim **yol operasyonu fonksiyonumuzdur**:
 * **fonksiyon**: "dekoratör"ün (`@app.get("/")`'in) altındaki fonksiyondur.
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Bu bir Python fonksiyonudur.
@@ -306,16 +321,19 @@ Bu durumda bu fonksiyon bir `async` fonksiyondur.
 Bu fonksiyonu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz.
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "Not"
-    Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasını kontrol edebilirsiniz.
+/// note | "Not"
+
+Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurry){.internal-link target=_blank} sayfasını kontrol edebilirsiniz.
+
+///
 
 ### Adım 5: İçeriği Geri Döndürün
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Bir `dict`, `list` veya `str`, `int` gibi tekil değerler döndürebilirsiniz.

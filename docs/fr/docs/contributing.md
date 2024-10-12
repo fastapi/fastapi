@@ -24,72 +24,85 @@ Cela va créer un répertoire `./env/` avec les binaires Python et vous pourrez 
 
 Activez le nouvel environnement avec :
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+```console
+$ source ./env/bin/activate
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
+<div class="termy">
 
-    </div>
+```console
+$ .\env\Scripts\Activate.ps1
+```
 
-=== "Windows Bash"
+</div>
 
-    Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+////
 
-    <div class="termy">
+//// tab | Windows Bash
 
-    ```console
-    $ source ./env/Scripts/activate
-    ```
+Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-    </div>
+<div class="termy">
+
+```console
+$ source ./env/Scripts/activate
+```
+
+</div>
+
+////
 
 Pour vérifier que cela a fonctionné, utilisez :
 
-=== "Linux, macOS, Windows Bash"
+//// tab | Linux, macOS, Windows Bash
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ which pip
+```console
+$ which pip
 
-    some/directory/fastapi/env/bin/pip
-    ```
+some/directory/fastapi/env/bin/pip
+```
 
-    </div>
+</div>
 
-=== "Windows PowerShell"
+////
 
-    <div class="termy">
+//// tab | Windows PowerShell
 
-    ```console
-    $ Get-Command pip
+<div class="termy">
 
-    some/directory/fastapi/env/bin/pip
-    ```
+```console
+$ Get-Command pip
 
-    </div>
+some/directory/fastapi/env/bin/pip
+```
+
+</div>
+
+////
 
 Si celui-ci montre le binaire `pip` à `env/bin/pip`, alors ça a fonctionné. 🎉
 
 
 
-!!! tip
-    Chaque fois que vous installez un nouveau paquet avec `pip` sous cet environnement, activez à nouveau l'environnement.
+/// tip
 
-    Cela permet de s'assurer que si vous utilisez un programme terminal installé par ce paquet (comme `flit`), vous utilisez celui de votre environnement local et pas un autre qui pourrait être installé globalement.
+Chaque fois que vous installez un nouveau paquet avec `pip` sous cet environnement, activez à nouveau l'environnement.
+
+Cela permet de s'assurer que si vous utilisez un programme terminal installé par ce paquet (comme `flit`), vous utilisez celui de votre environnement local et pas un autre qui pourrait être installé globalement.
+
+///
 
 ### Flit
 
@@ -111,31 +124,35 @@ Réactivez maintenant l'environnement pour vous assurer que vous utilisez le "fl
 
 Et maintenant, utilisez `flit` pour installer les dépendances de développement :
 
-=== "Linux, macOS"
+//// tab | Linux, macOS
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    $ flit install --deps develop --symlink
+```console
+$ flit install --deps develop --symlink
 
-    ---> 100%
-    ```
+---> 100%
+```
 
-    </div>
+</div>
 
-=== "Windows"
+////
 
-    Si vous êtes sous Windows, utilisez `--pth-file` au lieu de `--symlink` :
+//// tab | Windows
 
-    <div class="termy">
+Si vous êtes sous Windows, utilisez `--pth-file` au lieu de `--symlink` :
 
-    ```console
-    $ flit install --deps develop --pth-file
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ flit install --deps develop --pth-file
 
-    </div>
+---> 100%
+```
+
+</div>
+
+////
 
 Il installera toutes les dépendances et votre FastAPI local dans votre environnement local.
 
@@ -185,8 +202,11 @@ La documentation utilise <a href="https://www.mkdocs.org/" class="external-link"
 
 Et il y a des outils/scripts supplémentaires en place pour gérer les traductions dans `./scripts/docs.py`.
 
-!!! tip
-    Vous n'avez pas besoin de voir le code dans `./scripts/docs.py`, vous l'utilisez simplement dans la ligne de commande.
+/// tip
+
+Vous n'avez pas besoin de voir le code dans `./scripts/docs.py`, vous l'utilisez simplement dans la ligne de commande.
+
+///
 
 Toute la documentation est au format Markdown dans le répertoire `./docs/fr/`.
 
@@ -271,10 +291,13 @@ Voici les étapes à suivre pour aider à la traduction.
 
 * Vérifiez les <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">pull requests existantes</a> pour votre langue et ajouter des reviews demandant des changements ou les approuvant.
 
-!!! tip
-    Vous pouvez <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">ajouter des commentaires avec des suggestions de changement</a> aux pull requests existantes.
+/// tip
 
-    Consultez les documents concernant <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">l'ajout d'un review de pull request</a> pour l'approuver ou demander des modifications.
+Vous pouvez <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">ajouter des commentaires avec des suggestions de changement</a> aux pull requests existantes.
+
+Consultez les documents concernant <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">l'ajout d'un review de pull request</a> pour l'approuver ou demander des modifications.
+
+///
 
 * Vérifiez dans <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">issues</a> pour voir s'il y a une personne qui coordonne les traductions pour votre langue.
 
@@ -296,8 +319,11 @@ Disons que vous voulez traduire une page pour une langue qui a déjà des traduc
 
 Dans le cas de l'espagnol, le code à deux lettres est `es`. Ainsi, le répertoire des traductions espagnoles se trouve à l'adresse `docs/es/`.
 
-!!! tip
-    La langue principale ("officielle") est l'anglais, qui se trouve à l'adresse "docs/en/".
+/// tip
+
+La langue principale ("officielle") est l'anglais, qui se trouve à l'adresse "docs/en/".
+
+///
 
 Maintenant, lancez le serveur en live pour les documents en espagnol :
 
@@ -334,8 +360,11 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip
-    Notez que le seul changement dans le chemin et le nom du fichier est le code de langue, qui passe de `en` à `es`.
+/// tip
+
+Notez que le seul changement dans le chemin et le nom du fichier est le code de langue, qui passe de `en` à `es`.
+
+///
 
 * Ouvrez maintenant le fichier de configuration de MkDocs pour l'anglais à
 
@@ -406,10 +435,13 @@ Updating en
 
 Vous pouvez maintenant vérifier dans votre éditeur de code le répertoire nouvellement créé `docs/ht/`.
 
-!!! tip
-    Créez une première demande d'extraction à l'aide de cette fonction, afin de configurer la nouvelle langue avant d'ajouter des traductions.
+/// tip
 
-    Ainsi, d'autres personnes peuvent vous aider à rédiger d'autres pages pendant que vous travaillez sur la première. 🚀
+Créez une première demande d'extraction à l'aide de cette fonction, afin de configurer la nouvelle langue avant d'ajouter des traductions.
+
+Ainsi, d'autres personnes peuvent vous aider à rédiger d'autres pages pendant que vous travaillez sur la première. 🚀
+
+///
 
 Commencez par traduire la page principale, `docs/ht/index.md`.
 

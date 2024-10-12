@@ -30,7 +30,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 that would mean that you would use the versions `0.112.0` or above, but less than `0.113.0`, for example, a version `0.112.2` would still be accepted.
 
-If you use any other tool to manage your installations, like Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
+If you use any other tool to manage your installations, like `uv`, Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
 
 ## Available versions
 
@@ -42,8 +42,11 @@ Following the Semantic Versioning conventions, any version below `1.0.0` could p
 
 FastAPI also follows the convention that any "PATCH" version change is for bug fixes and non-breaking changes.
 
-!!! tip
-    The "PATCH" is the last number, for example, in `0.2.3`, the PATCH version is `3`.
+/// tip
+
+The "PATCH" is the last number, for example, in `0.2.3`, the PATCH version is `3`.
+
+///
 
 So, you should be able to pin to a version like:
 
@@ -53,8 +56,11 @@ fastapi>=0.45.0,<0.46.0
 
 Breaking changes and new features are added in "MINOR" versions.
 
-!!! tip
-    The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
+/// tip
+
+The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
+
+///
 
 ## Upgrading the FastAPI versions
 

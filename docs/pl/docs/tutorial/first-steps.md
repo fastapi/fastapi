@@ -3,7 +3,7 @@
 Najprostszy plik FastAPI może wyglądać tak:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Skopiuj to do pliku `main.py`.
@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    Polecenie `uvicorn main:app` odnosi się do:
+/// note
 
-    * `main`: plik `main.py` ("moduł" Python).
-    * `app`: obiekt utworzony w pliku `main.py` w lini `app = FastAPI()`.
-    * `--reload`: sprawia, że serwer uruchamia się ponownie po zmianie kodu. Używany tylko w trakcie tworzenia oprogramowania.
+Polecenie `uvicorn main:app` odnosi się do:
+
+* `main`: plik `main.py` ("moduł" Python).
+* `app`: obiekt utworzony w pliku `main.py` w lini `app = FastAPI()`.
+* `--reload`: sprawia, że serwer uruchamia się ponownie po zmianie kodu. Używany tylko w trakcie tworzenia oprogramowania.
+
+///
 
 Na wyjściu znajduje się linia z czymś w rodzaju:
 
@@ -131,21 +134,23 @@ Możesz go również użyć do automatycznego generowania kodu dla klientów, kt
 ### Krok 1: zaimportuj `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` jest klasą, która zapewnia wszystkie funkcjonalności Twojego API.
 
-!!! note "Szczegóły techniczne"
-    `FastAPI` jest klasą, która dziedziczy bezpośrednio z `Starlette`.
+/// note | "Szczegóły techniczne"
 
-    Oznacza to, że możesz korzystać ze wszystkich funkcjonalności <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> również w `FastAPI`.
+`FastAPI` jest klasą, która dziedziczy bezpośrednio z `Starlette`.
 
+Oznacza to, że możesz korzystać ze wszystkich funkcjonalności <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> również w `FastAPI`.
+
+///
 
 ### Krok 2: utwórz instancję `FastAPI`
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Zmienna `app` będzie tutaj "instancją" klasy `FastAPI`.
@@ -167,7 +172,7 @@ $ uvicorn main:app --reload
 Jeśli stworzysz swoją aplikację, np.:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 I umieścisz to w pliku `main.py`, to będziesz mógł tak wywołać `uvicorn`:
@@ -200,8 +205,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    "Ścieżka" jest zazwyczaj nazywana "path", "endpoint" lub "route'.
+/// info
+
+"Ścieżka" jest zazwyczaj nazywana "path", "endpoint" lub "route'.
+
+///
 
 Podczas budowania API, "ścieżka" jest głównym sposobem na oddzielenie "odpowiedzialności" i „zasobów”.
 
@@ -243,7 +251,7 @@ Będziemy je również nazywali "**operacjami**".
 #### Zdefiniuj *dekorator operacji na ścieżce*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `@app.get("/")` mówi **FastAPI** że funkcja poniżej odpowiada za obsługę żądań, które trafiają do:
@@ -251,16 +259,19 @@ Będziemy je również nazywali "**operacjami**".
 * ścieżki `/`
 * używając <abbr title="metoda HTTP GET">operacji <code>get</code></abbr>
 
-!!! info "`@decorator` Info"
-    Składnia `@something` jest w Pythonie nazywana "dekoratorem".
+/// info | "`@decorator` Info"
 
-    Umieszczasz to na szczycie funkcji. Jak ładną ozdobną czapkę (chyba stąd wzięła się nazwa).
+Składnia `@something` jest w Pythonie nazywana "dekoratorem".
 
-    "Dekorator" przyjmuje funkcję znajdującą się poniżej jego i coś z nią robi.
+Umieszczasz to na szczycie funkcji. Jak ładną ozdobną czapkę (chyba stąd wzięła się nazwa).
 
-    W naszym przypadku dekorator mówi **FastAPI**, że poniższa funkcja odpowiada **ścieżce** `/` z **operacją** `get`.
+"Dekorator" przyjmuje funkcję znajdującą się poniżej jego i coś z nią robi.
 
-    Jest to "**dekorator operacji na ścieżce**".
+W naszym przypadku dekorator mówi **FastAPI**, że poniższa funkcja odpowiada **ścieżce** `/` z **operacją** `get`.
+
+Jest to "**dekorator operacji na ścieżce**".
+
+///
 
 Możesz również użyć innej operacji:
 
@@ -275,14 +286,17 @@ Oraz tych bardziej egzotycznych:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    Możesz dowolnie używać każdej operacji (metody HTTP).
+/// tip
 
-    **FastAPI** nie narzuca żadnego konkretnego znaczenia.
+Możesz dowolnie używać każdej operacji (metody HTTP).
 
-    Informacje tutaj są przedstawione jako wskazówka, a nie wymóg.
+**FastAPI** nie narzuca żadnego konkretnego znaczenia.
 
-    Na przykład, używając GraphQL, normalnie wykonujesz wszystkie akcje używając tylko operacji `POST`.
+Informacje tutaj są przedstawione jako wskazówka, a nie wymóg.
+
+Na przykład, używając GraphQL, normalnie wykonujesz wszystkie akcje używając tylko operacji `POST`.
+
+///
 
 ### Krok 4: zdefiniuj **funkcję obsługującą ścieżkę**
 
@@ -293,7 +307,7 @@ To jest nasza "**funkcja obsługująca ścieżkę**":
 * **funkcja**: to funkcja poniżej "dekoratora" (poniżej `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Jest to funkcja Python.
@@ -307,16 +321,19 @@ W tym przypadku jest to funkcja "asynchroniczna".
 Możesz również zdefiniować to jako normalną funkcję zamiast `async def`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    Jeśli nie znasz różnicy, sprawdź [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+/// note
+
+Jeśli nie znasz różnicy, sprawdź [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+
+///
 
 ### Krok 5: zwróć zawartość
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Możesz zwrócić `dict`, `list`, pojedynczą wartość jako `str`, `int`, itp.

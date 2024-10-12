@@ -7,7 +7,7 @@ Visual Studio CodeやPyCharmなどを使用して、エディター上でデバ�
 FastAPIアプリケーション上で、`uvicorn` を直接インポートして実行します:
 
 ```Python hl_lines="1  15"
-{!../../../docs_src/debugging/tutorial001.py!}
+{!../../docs_src/debugging/tutorial001.py!}
 ```
 
 ### `__name__ == "__main__"` について
@@ -74,8 +74,11 @@ from myapp import app
 
 は実行されません。
 
-!!! info "情報"
-    より詳しい情報は、<a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">公式Pythonドキュメント</a>を参照してください。
+/// info | "情報"
+
+より詳しい情報は、<a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">公式Pythonドキュメント</a>を参照してください。
+
+///
 
 ## デバッガーでコードを実行
 

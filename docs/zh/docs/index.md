@@ -446,7 +446,7 @@ item: Item
 
 用于 Pydantic：
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用于 email 校验。
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 用于 email 校验。
 
 用于 Starlette：
 
