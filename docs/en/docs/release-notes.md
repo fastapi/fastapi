@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Remove `Required` shadowing from fastapi using Pydantic v2. PR [#12197](https://github.com/fastapi/fastapi/pull/12197) by [@pachewise](https://github.com/pachewise).
+
 ### Refactors
 
 * ♻️ Update type annotations for improved `python-multipart`. PR [#12407](https://github.com/fastapi/fastapi/pull/12407) by [@tiangolo](https://github.com/tiangolo).
