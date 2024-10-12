@@ -9,7 +9,7 @@ Aqui estão várias formas de se fazer isso.
 Você pode declarar um `example` para um modelo Pydantic usando `Config` e `schema_extra`, conforme descrito em <a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Documentação do Pydantic: Schema customization</a>:
 
 ```Python hl_lines="15-23"
-{!../../../docs_src/schema_extra_example/tutorial001.py!}
+{!../../docs_src/schema_extra_example/tutorial001.py!}
 ```
 
 Essas informações extras serão adicionadas como se encontram no **JSON Schema** de resposta desse modelo e serão usadas na documentação da API.
@@ -29,7 +29,7 @@ Ao usar `Field ()` com modelos Pydantic, você também pode declarar informaçõ
 Você pode usar isso para adicionar um `example` para cada campo:
 
 ```Python hl_lines="4  10-13"
-{!../../../docs_src/schema_extra_example/tutorial002.py!}
+{!../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
 /// warning | "Atenção"
@@ -57,7 +57,7 @@ você também pode declarar um dado `example` ou um grupo de `examples` com info
 Aqui nós passamos um `example` dos dados esperados por `Body()`:
 
 ```Python hl_lines="21-26"
-{!../../../docs_src/schema_extra_example/tutorial003.py!}
+{!../../docs_src/schema_extra_example/tutorial003.py!}
 ```
 
 ### Exemplo na UI da documentação
@@ -80,7 +80,7 @@ Cada `dict` de exemplo específico em `examples` pode conter:
 * `externalValue`: alternativa ao `value`, uma URL apontando para o exemplo. Embora isso possa não ser suportado por tantas ferramentas quanto `value`.
 
 ```Python hl_lines="22-48"
-{!../../../docs_src/schema_extra_example/tutorial004.py!}
+{!../../docs_src/schema_extra_example/tutorial004.py!}
 ```
 
 ### Exemplos na UI da documentação

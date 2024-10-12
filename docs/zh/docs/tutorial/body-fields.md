@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+{!> ../../docs_src/body_fields/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 ///
 
 ```Python hl_lines="2"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@
 ///
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
+{!> ../../docs_src/body_fields/tutorial001.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -87,7 +87,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="12-15"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+{!> ../../docs_src/body_fields/tutorial001_an.py!}
 ```
 
 ////
@@ -101,7 +101,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9-12"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_py310.py!}
 ```
 
 ////
@@ -115,7 +115,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
+{!> ../../docs_src/body_fields/tutorial001.py!}
 ```
 
 ////

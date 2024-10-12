@@ -32,7 +32,7 @@ The middleware function receives:
 * You can then further modify the `response` before returning it.
 
 ```Python hl_lines="8-9  11  14"
-{!../../../docs_src/middleware/tutorial001.py!}
+{!../../docs_src/middleware/tutorial001.py!}
 ```
 
 /// tip
@@ -60,7 +60,7 @@ And also after the `response` is generated, before returning it.
 For example, you could add a custom header `X-Process-Time` containing the time in seconds that it took to process the request and generate a response:
 
 ```Python hl_lines="10  12-13"
-{!../../../docs_src/middleware/tutorial001.py!}
+{!../../docs_src/middleware/tutorial001.py!}
 ```
 
 /// tip

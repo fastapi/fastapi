@@ -9,7 +9,7 @@
 * 等……
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 /// note | "笔记"
@@ -77,7 +77,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 再看下之前的例子：
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 `201` 表示**已创建**的状态码。
@@ -87,7 +87,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 可以使用 `fastapi.status` 中的快捷变量。
 
 ```Python hl_lines="1  6"
-{!../../../docs_src/response_status_code/tutorial002.py!}
+{!../../docs_src/response_status_code/tutorial002.py!}
 ```
 
 这只是一种快捷方式，具有相同的数字代码，但它可以使用编辑器的自动补全功能：

@@ -9,7 +9,7 @@ Primeiro importe `Header`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ Primeiro importe `Header`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@ Se por algum motivo você precisar desabilitar a conversão automática de subli
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/header_params/tutorial002_py310.py!}
+{!> ../../docs_src/header_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ Se por algum motivo você precisar desabilitar a conversão automática de subli
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial002.py!}
+{!> ../../docs_src/header_params/tutorial002.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de 
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial003_py310.py!}
+{!> ../../docs_src/header_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de 
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003_py39.py!}
+{!> ../../docs_src/header_params/tutorial003_py39.py!}
 ```
 
 ////
@@ -125,7 +125,7 @@ Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de 
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003.py!}
+{!> ../../docs_src/header_params/tutorial003.py!}
 ```
 
 ////

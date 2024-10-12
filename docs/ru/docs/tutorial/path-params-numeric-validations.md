@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3-4"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
@@ -107,7 +107,7 @@
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -121,7 +121,7 @@
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -167,7 +167,7 @@ Path-параметр всегда является обязательным, п
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ////
@@ -177,7 +177,7 @@ Path-параметр всегда является обязательным, п
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -185,7 +185,7 @@ Path-параметр всегда является обязательным, п
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
 ```
 
 ////
@@ -214,7 +214,7 @@ Path-параметр всегда является обязательным, п
 Python не будет ничего делать с `*`, но он будет знать, что все следующие параметры являются именованными аргументами (парами ключ-значение), также известными как <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>, даже если у них нет значений по умолчанию.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ### Лучше с `Annotated`
@@ -224,7 +224,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -232,7 +232,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
 ```
 
 ////
@@ -246,7 +246,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -254,7 +254,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
 ```
 
 ////
@@ -268,7 +268,7 @@ Python не будет ничего делать с `*`, но он будет з
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ////
@@ -283,7 +283,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -291,7 +291,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
 ```
 
 ////
@@ -305,7 +305,7 @@ Python не будет ничего делать с `*`, но он будет з
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ////
@@ -323,7 +323,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -331,7 +331,7 @@ Python не будет ничего делать с `*`, но он будет з
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
 ```
 
 ////
@@ -345,7 +345,7 @@ Python не будет ничего делать с `*`, но он будет з
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ////

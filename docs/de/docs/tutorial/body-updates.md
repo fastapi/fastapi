@@ -9,7 +9,7 @@ Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas 
 //// tab | Python 3.10+
 
 ```Python hl_lines="28-33"
-{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
+{!> ../../docs_src/body_updates/tutorial001_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas 
 //// tab | Python 3.9+
 
 ```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
+{!> ../../docs_src/body_updates/tutorial001_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas 
 //// tab | Python 3.8+
 
 ```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001.py!}
+{!> ../../docs_src/body_updates/tutorial001.py!}
 ```
 
 ////
@@ -87,7 +87,7 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) 
 //// tab | Python 3.10+
 
 ```Python hl_lines="32"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -95,7 +95,7 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) 
 //// tab | Python 3.9+
 
 ```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -103,7 +103,7 @@ Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) 
 //// tab | Python 3.8+
 
 ```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////
@@ -125,7 +125,7 @@ Wie in `stored_item_model.model_copy(update=update_data)`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="33"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -133,7 +133,7 @@ Wie in `stored_item_model.model_copy(update=update_data)`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -141,7 +141,7 @@ Wie in `stored_item_model.model_copy(update=update_data)`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////
@@ -164,7 +164,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 //// tab | Python 3.10+
 
 ```Python hl_lines="28-35"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -172,7 +172,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 //// tab | Python 3.9+
 
 ```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -180,7 +180,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 //// tab | Python 3.8+
 
 ```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////

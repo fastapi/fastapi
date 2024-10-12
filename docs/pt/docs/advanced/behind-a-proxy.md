@@ -19,7 +19,7 @@ Nesse caso, o caminho original `/app` seria servido em `/api/v1/app`.
 Embora todo o seu código esteja escrito assumindo que existe apenas `/app`.
 
 ```Python hl_lines="6"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+{!../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
 E o proxy estaria **"removendo"** o **prefixo do caminho** dinamicamente antes de transmitir a solicitação para o servidor da aplicação (provavelmente Uvicorn via CLI do FastAPI), mantendo sua aplicação convencida de que está sendo servida em `/app`, para que você não precise atualizar todo o seu código para incluir o prefixo `/api/v1`.
@@ -99,7 +99,7 @@ Você pode obter o `root_path` atual usado pela sua aplicação para cada solici
 Aqui estamos incluindo ele na mensagem apenas para fins de demonstração.
 
 ```Python hl_lines="8"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+{!../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
 Então, se você iniciar o Uvicorn com:
@@ -128,7 +128,7 @@ A resposta seria algo como:
 Alternativamente, se você não tiver uma maneira de fornecer uma opção de linha de comando como `--root-path` ou equivalente, você pode definir o parâmetro `--root-path` ao criar sua aplicação FastAPI:
 
 ```Python hl_lines="3"
-{!../../../docs_src/behind_a_proxy/tutorial002.py!}
+{!../../docs_src/behind_a_proxy/tutorial002.py!}
 ```
 
 Passar o `root_path`h para `FastAPI` seria o equivalente a passar a opção de linha de comando `--root-path` para Uvicorn ou Hypercorn.
@@ -310,7 +310,7 @@ Se você passar uma lista personalizada de `servers` e houver um `root_path` (po
 Por exemplo:
 
 ```Python hl_lines="4-7"
-{!../../../docs_src/behind_a_proxy/tutorial003.py!}
+{!../../docs_src/behind_a_proxy/tutorial003.py!}
 ```
 
 Gerará um OpenAPI schema como:
@@ -359,7 +359,7 @@ A interface de documentação interagirá com o servidor que você selecionar.
 Se você não quiser que o **FastAPI** inclua um servidor automático usando o `root_path`, você pode usar o parâmetro `root_path_in_servers=False`:
 
 ```Python hl_lines="9"
-{!../../../docs_src/behind_a_proxy/tutorial004.py!}
+{!../../docs_src/behind_a_proxy/tutorial004.py!}
 ```
 
 e então ele não será incluído no OpenAPI schema.
