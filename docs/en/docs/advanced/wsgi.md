@@ -13,7 +13,7 @@ Then wrap the WSGI (e.g. Flask) app with the middleware.
 And then mount that under a path.
 
 ```Python hl_lines="2-3  23"
-{!../../../docs_src/wsgi/tutorial001.py!}
+{!../../docs_src/wsgi/tutorial001.py!}
 ```
 
 ## Check it

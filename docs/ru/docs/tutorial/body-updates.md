@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="28-33"
-{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
+{!> ../../docs_src/body_updates/tutorial001_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
+{!> ../../docs_src/body_updates/tutorial001_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001.py!}
+{!> ../../docs_src/body_updates/tutorial001.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="32"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////
@@ -107,7 +107,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="33"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -115,7 +115,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -123,7 +123,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////
@@ -146,7 +146,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="28-35"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+{!> ../../docs_src/body_updates/tutorial002_py310.py!}
 ```
 
 ////
@@ -154,7 +154,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
+{!> ../../docs_src/body_updates/tutorial002_py39.py!}
 ```
 
 ////
@@ -162,7 +162,7 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
+{!> ../../docs_src/body_updates/tutorial002.py!}
 ```
 
 ////

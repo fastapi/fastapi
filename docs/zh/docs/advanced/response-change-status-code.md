@@ -21,7 +21,7 @@
 然后你可以在这个*临时*响应对象中设置`status_code`。
 
 ```Python hl_lines="1  9  12"
-{!../../../docs_src/response_change_status_code/tutorial001.py!}
+{!../../docs_src/response_change_status_code/tutorial001.py!}
 ```
 
 然后你可以像平常一样返回任何你需要的对象（例如一个`dict`或者一个数据库模型）。如果你声明了一个`response_model`，它仍然会被用来过滤和转换你返回的对象。

@@ -31,7 +31,7 @@ Beginnen wir mit einem Beispiel und sehen es uns dann im Detail an.
 Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 ```Python hl_lines="16  19"
-{!../../../docs_src/events/tutorial003.py!}
+{!../../docs_src/events/tutorial003.py!}
 ```
 
 Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das Dictionary mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
@@ -51,7 +51,7 @@ Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach
 Das Erste, was auffällt, ist, dass wir eine asynchrone Funktion mit `yield` definieren. Das ist sehr ähnlich zu Abhängigkeiten mit `yield`.
 
 ```Python hl_lines="14-19"
-{!../../../docs_src/events/tutorial003.py!}
+{!../../docs_src/events/tutorial003.py!}
 ```
 
 Der erste Teil der Funktion, vor dem `yield`, wird ausgeführt **bevor** die Anwendung startet.
@@ -65,7 +65,7 @@ Wie Sie sehen, ist die Funktion mit einem `@asynccontextmanager` versehen.
 Dadurch wird die Funktion in einen sogenannten „**asynchronen Kontextmanager**“ umgewandelt.
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/events/tutorial003.py!}
+{!../../docs_src/events/tutorial003.py!}
 ```
 
 Ein **Kontextmanager** in Python ist etwas, das Sie in einer `with`-Anweisung verwenden können, zum Beispiel kann `open()` als Kontextmanager verwendet werden:
@@ -89,7 +89,7 @@ In unserem obigen Codebeispiel verwenden wir ihn nicht direkt, sondern übergebe
 Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontextmanager**, wir können ihm also unseren neuen asynchronen Kontextmanager `lifespan` übergeben.
 
 ```Python hl_lines="22"
-{!../../../docs_src/events/tutorial003.py!}
+{!../../docs_src/events/tutorial003.py!}
 ```
 
 ## Alternative Events (deprecated)
@@ -113,7 +113,7 @@ Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `startup`:
 
 ```Python hl_lines="8"
-{!../../../docs_src/events/tutorial001.py!}
+{!../../docs_src/events/tutorial001.py!}
 ```
 
 In diesem Fall initialisiert die Eventhandler-Funktion `startup` die „Datenbank“ der Items (nur ein `dict`) mit einigen Werten.
@@ -127,7 +127,7 @@ Und Ihre Anwendung empfängt erst dann Anfragen, wenn alle `startup`-Eventhandle
 Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/events/tutorial002.py!}
+{!../../docs_src/events/tutorial002.py!}
 ```
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.

@@ -23,7 +23,7 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  8  12"
-{!> ../../../docs_src/security/tutorial006_an_py39.py!}
+{!> ../../docs_src/security/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
 //// tab | Python 3.8+
 
 ```Python hl_lines="2  7  11"
-{!> ../../../docs_src/security/tutorial006_an.py!}
+{!> ../../docs_src/security/tutorial006_an.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="2  6  10"
-{!> ../../../docs_src/security/tutorial006.py!}
+{!> ../../docs_src/security/tutorial006.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@ Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass 
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@ Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass 
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="1  11-21"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////
@@ -163,7 +163,7 @@ Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben
 //// tab | Python 3.9+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -171,7 +171,7 @@ Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben
 //// tab | Python 3.8+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
@@ -185,7 +185,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="23-27"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////

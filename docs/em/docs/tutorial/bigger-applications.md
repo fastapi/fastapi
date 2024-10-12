@@ -86,7 +86,7 @@ from app.routers import items
 👆 🗄 ⚫️ &amp; ✍ "👐" 🎏 🌌 👆 🔜 ⏮️ 🎓 `FastAPI`:
 
 ```Python hl_lines="1  3" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 ### *➡ 🛠️* ⏮️ `APIRouter`
@@ -96,7 +96,7 @@ from app.routers import items
 ⚙️ ⚫️ 🎏 🌌 👆 🔜 ⚙️ `FastAPI` 🎓:
 
 ```Python hl_lines="6  11  16" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 👆 💪 💭 `APIRouter` "🐩 `FastAPI`" 🎓.
@@ -122,7 +122,7 @@ from app.routers import items
 👥 🔜 🔜 ⚙️ 🙅 🔗 ✍ 🛃 `X-Token` 🎚:
 
 ```Python hl_lines="1  4-6" title="app/dependencies.py"
-{!../../../docs_src/bigger_applications/app/dependencies.py!}
+{!../../docs_src/bigger_applications/app/dependencies.py!}
 ```
 
 /// tip
@@ -156,7 +156,7 @@ from app.routers import items
 , ↩️ ❎ 🌐 👈 🔠 *➡ 🛠️*, 👥 💪 🚮 ⚫️ `APIRouter`.
 
 ```Python hl_lines="5-10  16  21" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 ➡ 🔠 *➡ 🛠️* ✔️ ▶️ ⏮️ `/`, 💖:
@@ -217,7 +217,7 @@ async def read_item(item_id: str):
 👥 ⚙️ ⚖ 🗄 ⏮️ `..` 🔗:
 
 ```Python hl_lines="3" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 #### ❔ ⚖ 🗄 👷
@@ -290,7 +290,7 @@ that 🔜 ⛓:
 ✋️ 👥 💪 🚮 _🌅_ `tags` 👈 🔜 ✔ 🎯 *➡ 🛠️*, &amp; ➕ `responses` 🎯 👈 *➡ 🛠️*:
 
 ```Python hl_lines="30-31" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 /// tip
@@ -318,7 +318,7 @@ that 🔜 ⛓:
 &amp; 👥 💪 📣 [🌐 🔗](dependencies/global-dependencies.md){.internal-link target=_blank} 👈 🔜 🌀 ⏮️ 🔗 🔠 `APIRouter`:
 
 ```Python hl_lines="1  3  7" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### 🗄 `APIRouter`
@@ -326,7 +326,7 @@ that 🔜 ⛓:
 🔜 👥 🗄 🎏 🔁 👈 ✔️ `APIRouter`Ⓜ:
 
 ```Python hl_lines="5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 📁 `app/routers/users.py` &amp; `app/routers/items.py` 🔁 👈 🍕 🎏 🐍 📦 `app`, 👥 💪 ⚙️ 👁 ❣ `.` 🗄 👫 ⚙️ "⚖ 🗄".
@@ -391,7 +391,7 @@ from .routers.users import router
 , 💪 ⚙️ 👯‍♂️ 👫 🎏 📁, 👥 🗄 🔁 🔗:
 
 ```Python hl_lines="5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### 🔌 `APIRouter`Ⓜ `users` &amp; `items`
@@ -399,7 +399,7 @@ from .routers.users import router
 🔜, ➡️ 🔌 `router`Ⓜ ⚪️➡️ 🔁 `users` &amp; `items`:
 
 ```Python hl_lines="10-11" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 /// info
@@ -441,7 +441,7 @@ from .routers.users import router
 👉 🖼 ⚫️ 🔜 💎 🙅. ✋️ ➡️ 💬 👈 ↩️ ⚫️ 💰 ⏮️ 🎏 🏗 🏢, 👥 🚫🔜 🔀 ⚫️ &amp; 🚮 `prefix`, `dependencies`, `tags`, ♒️. 🔗 `APIRouter`:
 
 ```Python hl_lines="3" title="app/internal/admin.py"
-{!../../../docs_src/bigger_applications/app/internal/admin.py!}
+{!../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
 ✋️ 👥 💚 ⚒ 🛃 `prefix` 🕐❔ ✅ `APIRouter` 👈 🌐 🚮 *➡ 🛠️* ▶️ ⏮️ `/admin`, 👥 💚 🔐 ⚫️ ⏮️ `dependencies` 👥 ⏪ ✔️ 👉 🏗, &amp; 👥 💚 🔌 `tags` &amp; `responses`.
@@ -449,7 +449,7 @@ from .routers.users import router
 👥 💪 📣 🌐 👈 🍵 ✔️ 🔀 ⏮️ `APIRouter` 🚶‍♀️ 👈 🔢 `app.include_router()`:
 
 ```Python hl_lines="14-17" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 👈 🌌, ⏮️ `APIRouter` 🔜 🚧 ⚗, 👥 💪 💰 👈 🎏 `app/internal/admin.py` 📁 ⏮️ 🎏 🏗 🏢.
@@ -472,7 +472,7 @@ from .routers.users import router
 📥 👥 ⚫️... 🎦 👈 👥 💪 🤷:
 
 ```Python hl_lines="21-23" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 &amp; ⚫️ 🔜 👷 ☑, 👯‍♂️ ⏮️ 🌐 🎏 *➡ 🛠️* 🚮 ⏮️ `app.include_router()`.

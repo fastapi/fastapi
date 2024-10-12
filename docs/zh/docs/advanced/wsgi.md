@@ -13,7 +13,7 @@
 之后将其挂载到某一个路径下。
 
 ```Python hl_lines="2-3  22"
-{!../../../docs_src/wsgi/tutorial001.py!}
+{!../../docs_src/wsgi/tutorial001.py!}
 ```
 
 ## 检查

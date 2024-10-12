@@ -118,13 +118,13 @@ $ pip install sqlalchemy
 ### 导入 SQLAlchemy 部件
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### 为 SQLAlchemy 定义数据库 URL地址
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 在这个例子中，我们正在“连接”到一个 SQLite 数据库（用 SQLite 数据库打开一个文件）。
@@ -154,7 +154,7 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 我们稍后会将这个`engine`在其他地方使用。
 
 ```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 #### 注意
@@ -192,7 +192,7 @@ connect_args={"check_same_thread": False}
 要创建`SessionLocal`类，请使用函数`sessionmaker`：
 
 ```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### 创建一个`Base`类
@@ -202,7 +202,7 @@ connect_args={"check_same_thread": False}
 稍后我们将继承这个类，来创建每个数据库模型或类（ORM 模型）：
 
 ```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ## 创建数据库模型
@@ -228,7 +228,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 这些类就是 SQLAlchemy 模型。
 
 ```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 这个`__tablename__`属性是用来告诉 SQLAlchemy 要在数据库中为每个模型使用的数据库表的名称。
@@ -244,7 +244,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 我们传递一个 SQLAlchemy “类型”，如`Integer`、`String`和`Boolean`，它定义了数据库中的类型，作为参数。
 
 ```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 ### 创建关系
@@ -256,7 +256,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 这将或多或少会成为一种“神奇”属性，其中表示该表与其他相关的表中的值。
 
 ```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 当访问 user 中的属性`items`时，如 中`my_user.items`，它将有一个`Item`SQLAlchemy 模型列表（来自`items`表），这些模型具有指向`users`表中此记录的外键。
@@ -292,7 +292,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -300,7 +300,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 //// tab | Python 3.9+
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -308,7 +308,7 @@ SQLAlchemy 使用的“**模型**”这个术语 来指代与数据库交互的�
 //// tab | Python 3.8+
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -342,7 +342,7 @@ name: str
 //// tab | Python 3.10+
 
 ```Python hl_lines="13-15  29-32"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -350,7 +350,7 @@ name: str
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -358,7 +358,7 @@ name: str
 //// tab | Python 3.8+
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -380,7 +380,7 @@ name: str
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  17-18  29  34-35"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -388,7 +388,7 @@ name: str
 //// tab | Python 3.9+
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -396,7 +396,7 @@ name: str
 //// tab | Python 3.8+
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -474,7 +474,7 @@ current_user.items
 * 查询多个项目。
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -495,7 +495,7 @@ current_user.items
 * 使用`refresh`来刷新您的实例对象（以便它包含来自数据库的任何新数据，例如生成的 ID）。
 
 ```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -547,7 +547,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.9+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -555,7 +555,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -585,7 +585,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.9+
 
 ```Python hl_lines="13-18"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -593,7 +593,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.8+
 
 ```Python hl_lines="15-20"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -617,7 +617,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.9+
 
 ```Python hl_lines="22  30  36  45  51"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -625,7 +625,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.8+
 
 ```Python hl_lines="24  32  38  47  53"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -645,7 +645,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.9+
 
 ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -653,7 +653,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 //// tab | Python 3.8+
 
 ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -740,13 +740,13 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 * `sql_app/database.py`：
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
@@ -754,7 +754,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | Python 3.10+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -762,7 +762,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -770,7 +770,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -778,7 +778,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
@@ -786,7 +786,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -794,7 +794,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -851,7 +851,7 @@ $ uvicorn sql_app.main:app --reload
 //// tab | Python 3.9+
 
 ```Python hl_lines="12-20"
-{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
 ```
 
 ////
@@ -859,7 +859,7 @@ $ uvicorn sql_app.main:app --reload
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-22"
-{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app/alt_main.py!}
 ```
 
 ////

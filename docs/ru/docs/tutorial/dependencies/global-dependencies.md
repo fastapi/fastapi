@@ -9,7 +9,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an.py!}
+{!> ../../docs_src/dependencies/tutorial012_an.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial012.py!}
+{!> ../../docs_src/dependencies/tutorial012.py!}
 ```
 
 ////
