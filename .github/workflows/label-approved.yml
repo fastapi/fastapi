@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "0 12 * * *"
   workflow_dispatch:
+  # TODO: remove this
+  pull_request:
 
 permissions:
   pull-requests: write
