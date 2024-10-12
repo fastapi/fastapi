@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.2
+
 ### Upgrades
 
 * ⬆️ Upgrade Starlette to `>=0.37.2,<0.41.0`. PR [#12431](https://github.com/fastapi/fastapi/pull/12431) by [@tiangolo](https://github.com/tiangolo).
