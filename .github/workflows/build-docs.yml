@@ -7,6 +7,10 @@ on:
     types:
       - opened
       - synchronize
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -48,18 +52,20 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/cache@v4
-        id: cache
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-insiders.txt', 'requirements-docs-tests.txt') }}-v08
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install docs extras
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs.txt
+        run: uv pip install -r requirements-docs.txt
       # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
       - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' ) && steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs-insiders.txt
+        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
+        run: uv pip install -r requirements-docs-insiders.txt
         env:
           TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Verify Docs
@@ -88,17 +94,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/cache@v4
-        id: cache
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-insiders.txt', 'requirements-docs-tests.txt') }}-v08
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install docs extras
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs.txt
+        run: uv pip install -r requirements-docs.txt
       - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' ) && steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs-insiders.txt
+        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
+        run: uv pip install -r requirements-docs-insiders.txt
         env:
           TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Update Languages
