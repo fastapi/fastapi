@@ -592,7 +592,7 @@ def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> b
             if field_annotation_is_scalar_sequence(arg):
                 at_least_one_scalar_sequence = True
                 continue
-            elif not field_annotation_is_scalar(arg):
+            if not field_annotation_is_scalar(arg):
                 return False
         return at_least_one_scalar_sequence
     return field_annotation_is_sequence(annotation) and all(
