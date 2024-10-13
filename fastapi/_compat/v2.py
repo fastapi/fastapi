@@ -27,7 +27,7 @@ from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined
+from pydantic_core import PydanticUndefined, PydanticUndefinedType
 from pydantic_core import Url as Url
 from pydantic_core.core_schema import (
     with_info_plain_validator_function as with_info_plain_validator_function,
@@ -36,6 +36,7 @@ from typing_extensions import Literal, get_args, get_origin
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
+UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
