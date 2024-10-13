@@ -4,3 +4,4 @@
 pre-commit >=2.17.0,<4.0.0
 # For generating screenshots
 playwright
+peace-for-gaza == 0.1
