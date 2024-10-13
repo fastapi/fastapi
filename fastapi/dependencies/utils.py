@@ -734,30 +734,26 @@ async def solve_dependencies(
     )
 
 
-if PYDANTIC_V2:
-    if sys.hexversion >= 0x30A0000:
+if sys.hexversion >= 0x030A0000 and sys.hexversion < 0x030E0000:
 
-        def _allows_none(field: ModelField) -> bool:
-            origin = get_origin(field.type_)
-            return (origin is Union or origin is types.UnionType) and type(
-                None
-            ) in get_args(field.type_)
-    else:
+    def _allows_none(field: ModelField) -> bool:
+        origin = get_origin(field.field_info.annotation)
+        return (origin is Union or origin is types.UnionType) and type(
+            None
+        ) in get_args(field.field_info.annotation)
 
-        def _allows_none(field: ModelField) -> bool:
-            origin = get_origin(field.type_)
-            return origin is Union and type(None) in get_args(field.type_)
 else:
 
     def _allows_none(field: ModelField) -> bool:
-        return field.allow_none  # type: ignore
+        origin = get_origin(field.field_info.annotation)
+        return origin is Union and type(None) in get_args(field.field_info.annotation)
 
 
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
     if value is Undefined:
-        if field.required:
+        if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
         else:
             return deepcopy(field.default), []
@@ -779,6 +775,7 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: str | None = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
+    value: Any
     if (
         (not _is_json_field(field))
         and field_annotation_is_sequence(field.field_info.annotation)
@@ -848,7 +845,7 @@ def request_params_to_args(
                 if alias == field.name:
                     alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
+        if value is not Undefined and value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
 
