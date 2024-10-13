@@ -1,8 +1,8 @@
 import dataclasses
 import inspect
 import sys
-import warnings
 import types
+import warnings
 from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -734,25 +734,19 @@ async def solve_dependencies(
         dependency_cache=dependency_cache,
     )
 
+if sys.hexversion >= 0x030A0000 and sys.hexversion < 0x030E0000:
 
-if PYDANTIC_V2:
-    if sys.hexversion >= 0x30A0000:
+    def _allows_none(field: ModelField) -> bool:
+        origin = get_origin(field.type_)
+        return (origin is Union or origin is types.UnionType) and type(None) in get_args(
+            field.type_
+        )
 
-        def _allows_none(field: ModelField) -> bool:
-            origin = get_origin(field.type_)
-            return (origin is Union or origin is types.UnionType) and type(
-                None
-            ) in get_args(field.type_)
-    else:
-
-        def _allows_none(field: ModelField) -> bool:
-            origin = get_origin(field.type_)
-            return origin is Union and type(None) in get_args(field.type_)
 else:
 
     def _allows_none(field: ModelField) -> bool:
-        return field.allow_none  # type: ignore
-
+        origin = get_origin(field.type_)
+        return origin is Union and type(None) in get_args(field.type_)
 
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
@@ -844,7 +838,7 @@ def request_params_to_args(
                 if alias == field.name:
                     alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
+        if value is not Undefined and value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
 
