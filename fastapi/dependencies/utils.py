@@ -842,7 +842,7 @@ def request_params_to_args(
                 if alias == field.name:
                     alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
+        if value is not Undefined and value is not None:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
 
