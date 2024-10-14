@@ -40,7 +40,7 @@
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
@@ -54,7 +54,7 @@
 
 //// tab | Python 3.9+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
@@ -68,7 +68,7 @@
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
@@ -122,7 +122,7 @@
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
@@ -136,7 +136,7 @@
 
 //// tab | Python 3.9+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
@@ -150,7 +150,7 @@
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip
+/// tip | Совет
 
 При возможности используйте версию с `Annotated`.
 
