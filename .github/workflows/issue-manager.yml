@@ -43,5 +43,5 @@ jobs:
               "invalid": {
                 "delay": 0,
                 "message": "This was marked as invalid and will be closed now. If this is an error, please provide additional details."
-              },
+              }
             }
