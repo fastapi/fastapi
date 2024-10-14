@@ -14,6 +14,7 @@ from typing import (
 )
 
 from fastapi import routing
+from fastapi._compat import GenerateJsonSchema
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -755,6 +756,17 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        schema_generator_class: Annotated[
+            Type[GenerateJsonSchema],
+            Doc(
+                """
+                Schema generator to use for the OpenAPI specification.
+                You probably don't need it, but it's available.
+
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+                """
+            ),
+        ] = GenerateJsonSchema,
         swagger_ui_parameters: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -862,6 +874,7 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.schema_generator_class = schema_generator_class
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -1071,6 +1084,7 @@ class FastAPI(Starlette):
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
                 external_docs=self.openapi_external_docs,
+                schema_generator_class=self.schema_generator_class,
             )
         return self.openapi_schema
 

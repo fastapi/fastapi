@@ -489,6 +489,7 @@ def get_openapi(
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
     external_docs: Optional[Dict[str, Any]] = None,
+    schema_generator_class: Type[GenerateJsonSchema] = GenerateJsonSchema,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -510,7 +511,7 @@ def get_openapi(
     operation_ids: Set[str] = set()
     all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
     model_name_map = get_compat_model_name_map(all_fields)
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    schema_generator = schema_generator_class(ref_template=REF_TEMPLATE)
     field_mapping, definitions = get_definitions(
         fields=all_fields,
         schema_generator=schema_generator,
