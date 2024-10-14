@@ -312,7 +312,7 @@ No Python 3.10 também existe uma **nova sintaxe** onde você pode colocar os po
 
 ////
 
-Em ambos os casos isso significa que `item` poderia ser um `int` ou um `str`.
+Em ambos os casos, isso significa que `item` poderia ser um `int` ou um `str`.
 
 
 #### Possívelmente `None`
