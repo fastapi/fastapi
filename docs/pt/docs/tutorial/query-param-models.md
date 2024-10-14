@@ -80,7 +80,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-O **FastAPI** irá **extrair** os dados para **cada campo** dos **parâmetros de consulta** presentes na requisição, e fornecerá o modelo Pydantic que você definiu.
+O **FastAPI** **extrairá** os dados para **cada campo** dos **parâmetros de consulta** presentes na requisição, e fornecerá o modelo Pydantic que você definiu.
 
 
 ## Verifique os Documentos
