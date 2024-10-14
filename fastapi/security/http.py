@@ -9,7 +9,7 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 from typing_extensions import Annotated, Doc
 
 
@@ -87,7 +87,7 @@ class HTTPBase(SecurityBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED, detail="Not authenticated"
+                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
             else:
                 return None
@@ -200,7 +200,7 @@ class HTTPBasic(HTTPBase):
                 return None
         invalid_user_credentials_exc = HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials (Check the WWW-Authenticate header for authentication hints)",
+            detail="Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)",
             headers={"WWW-Authenticate": f'Basic realm="{self.realm}", error="invalid_token", error_description="base64 token has invalid format"'},
         )
         try:
@@ -322,7 +322,7 @@ class HTTPBearer(HTTPBase):
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED, 
-                    detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
+                    detail="Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)",
                     headers=unauthorized_headers
                 )
             else:
@@ -375,6 +375,24 @@ class HTTPDigest(HTTPBase):
                 """
             ),
         ] = None,
+        realm: Annotated[
+            Optional[str],
+            Doc(
+                """
+                HTTP Digest authentication realm.
+                """
+            ),
+        ] = "global",
+        qop: Annotated[
+            Optional[str],
+            Doc(
+                """
+                HTTP Digest authentication qulity of protection.
+
+                This value can be "auth" | "auth-int" | <token> according to RFC 7616
+                """
+            ),
+        ] = "auth",
         description: Annotated[
             Optional[str],
             Doc(
@@ -407,6 +425,8 @@ class HTTPDigest(HTTPBase):
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
+        self.qop = qop
         self.auto_error = auto_error
 
     async def __call__(
@@ -419,7 +439,7 @@ class HTTPDigest(HTTPBase):
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated (Check the WWW-Authenticate header for authentication hints)",
+                    detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
                     headers=unauthorize_headers
                 )
             else:
@@ -427,7 +447,7 @@ class HTTPDigest(HTTPBase):
         if scheme.lower() != "digest":
             raise HTTPException(
                 status_code=HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication schema (Check the WWW-Authenticate header for authentication hints)",
+                detail="Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)",
                 headers=unauthorize_headers,
             )
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)

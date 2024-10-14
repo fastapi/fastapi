@@ -15,9 +15,9 @@ def test_security_http_basic():
 
 def test_security_http_basic_no_credentials():
     response = client.get("/users/me")
-    assert response.json() == {"detail": "Not authenticated"}
+    assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global"'
 
 
 def test_security_http_basic_invalid_credentials():
@@ -25,8 +25,8 @@ def test_security_http_basic_invalid_credentials():
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global", error="invalid_token", error_description="base64 token has invalid format"'
+    assert response.json() == {"detail": "Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)"}
 
 
 def test_security_http_basic_non_basic_credentials():
@@ -34,8 +34,8 @@ def test_security_http_basic_non_basic_credentials():
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global", error="invalid_token", error_description="base64 token has invalid format"'
+    assert response.json() == {"detail": "Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)"}
 
 
 def test_openapi_schema():
