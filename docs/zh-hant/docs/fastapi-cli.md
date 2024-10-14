@@ -78,6 +78,6 @@ FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動�
 
 /// tip
 
-你可以在 [deployment documentation](deployment/index.md){.internal-link target=_blank} 中了解更多相關資訊。
+你可以在[部署文件](deployment/index.md){.internal-link target=_blank}中了解更多相關資訊。
 
 ///
