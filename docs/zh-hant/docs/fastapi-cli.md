@@ -1,6 +1,6 @@
 # FastAPI CLI
 
-**FastAPI CLI** 是一個命令行程式，能用來運行你的 FastAPI 應用程式、管理你的 FastAPI 專案等。
+**FastAPI CLI** 是一個命令列程式，能用來運行你的 FastAPI 應用程式、管理你的 FastAPI 專案等。
 
 當你安裝 FastAPI（例如使用 `pip install "fastapi[standard]"`），它會包含一個叫做 `fastapi-cli` 的套件，這個套件提供了 `fastapi` 命令。
 
