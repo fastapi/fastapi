@@ -15,7 +15,7 @@
 
 FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由於該框架基於 OpenAPI，因此有多種選擇，預設提供了兩種。
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a> 提供互動式探索，讓你可以直接從瀏覽器調用並測試你的 API 。
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a> 提供互動式探索，讓你可以直接從瀏覽器呼叫並測試你的 API 。
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
