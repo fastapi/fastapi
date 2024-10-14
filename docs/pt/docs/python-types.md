@@ -161,7 +161,7 @@ A sintaxe utilizando `typing` é **compatível** com todas as versões, desde o 
 
 Conforme o Python evolui, **novas versões** chegam com suporte melhorado para esses type annotations, e em muitos casos, você não precisará nem importar e utilizar o módulo `typing` para declarar os type annotations.
 
-Se você pode escolher uma versão mais recente do Python para o seu projeto, você poderá tirar proveito desta simplicidade a mais.
+Se você pode escolher uma versão mais recente do Python para o seu projeto, você poderá aproveitar isso ao seu favor.
 
 Em todos os documentos existem exemplos compatíveis com cada versão do Python (quando existem diferenças).
 
