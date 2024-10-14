@@ -40,7 +40,7 @@ Declare os **parâmetros de cabeçalho** que você precisa em um **modelo do Pyd
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -54,7 +54,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -68,7 +68,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -122,7 +122,7 @@ Você pode usar a configuração dos modelos do Pydantic para proibir (`forbid`)
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -136,7 +136,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.9+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -150,7 +150,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
