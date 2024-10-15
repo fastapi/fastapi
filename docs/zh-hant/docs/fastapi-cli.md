@@ -54,7 +54,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 
 </div>
 
-`fastapi` 命令行程式就是 **FastAPI CLI**。
+`fastapi` 命令列程式就是 **FastAPI CLI**。
 
 FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動檢測 FastAPI 實例（通常命名為 `app`），確定正確的引入模組流程，然後運行該應用程式。
 
@@ -72,7 +72,7 @@ FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動�
 
 執行 `fastapi run` 會以生產模式啟動 FastAPI。
 
-預設情況下，**auto-reload** 功能是禁用的。它也會在 IP 位址 `0.0.0.0` 上監聽，表示會監聽所有可用的 IP 地址，這樣任何能與該機器通信的人都可以公開存取它。這通常是你在生產環境中運行應用的方式，例如在容器中運行時。
+預設情況下，**auto-reload** 功能是禁用的。它也會在 IP 位址 `0.0.0.0` 上監聽，表示會監聽所有可用的 IP 地址，這樣任何能與該機器通信的人都可以公開存取它。這通常是你在生產環境中運行應用程式的方式，例如在容器中運行時。
 
 在大多數情況下，你會（也應該）有一個「終止代理」來處理 HTTPS，這取決於你如何部署你的應用程式，你的服務供應商可能會為你做這件事，或者你需要自己設置它。
 
