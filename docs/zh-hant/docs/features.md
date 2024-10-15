@@ -28,7 +28,7 @@ FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由�
 
 這一切都基於標準的 **Python type** 聲明（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
 
-如果你需要2分鐘來學習如何使用 Python types（即使你不使用 FastAPI），可以看看這個簡短的教學：[Python Types](python-types.md){.internal-link target=_blank}。
+如果你需要 2 分鐘來學習如何使用 Python types（即使你不使用 FastAPI），可以看看這個簡短的教學：[Python Types](python-types.md){.internal-link target=_blank}。
 
 如果你寫帶有 Python types 的程式碼：
 
@@ -70,7 +70,7 @@ my_second_user: User = User(**second_user_data)
 
 `**second_user_data`意思是:
 
-將`second_user_data`字典直接作為 key-value 參數傳遞，等同於：`User(id=4, name="Mary", joined="2018-11-30")`
+將 `second_user_data` 字典直接作為 key-value 引數傳遞，等同於：`User(id=4, name="Mary", joined="2018-11-30")`
 
 ///
 
@@ -110,11 +110,11 @@ FastAPI 為你提供了 **預設值**，讓你不必在初期進行繁瑣的配�
 
 所有的驗證都由完善且強大的 **Pydantic** 處理。
 
-* 驗證大部分（甚至所有？）的 Python 數據類型，包括：
-    * JSON 物件 (`dict`).
-    * JSON 陣列 (`list`) 定義項目類型。
-    * 字符串 (`str`) 字段, 定義最小或最大長度。
-    * 數字 (`int`, `float`) 有最大值和最小值，等等。
+* 驗證大部分（甚至所有？）的 Python 資料型別，包括：
+    * JSON 物件 (`dict`)。
+    * JSON 陣列 (`list`) 定義項目型別。
+    * 字串 (`str`) 欄位，定義最小或最大長度。
+    * 數字 (`int`, `float`) 與其最大值和最小值等。
 
 * 驗證外來的數據類型， 比如:
     * URL
@@ -124,7 +124,7 @@ FastAPI 為你提供了 **預設值**，讓你不必在初期進行繁瑣的配�
 
 ### 安全性及身份驗證
 
-FastAPI 已經整合了安全性和身份驗證的功能，但不會強制與特定的數據庫或數據模型進行綁定。
+FastAPI 已經整合了安全性和身份驗證的功能，但不會強制與特定的資料庫或資料模型進行綁定。
 
 OpenAPI 中定義的安全模式，包括：
 
@@ -137,7 +137,7 @@ OpenAPI 中定義的安全模式，包括：
 
 加上来自 Starlette（包括 **session cookie**）的所有安全特性。
 
-所有的這些都是可重複使用的工具和套件，可以輕鬆與你的系統、資料存儲（Data Stores）、關聯式資料庫（RDBMS）以及非關聯式資料庫（NoSQL）等等整合。
+所有的這些都是可重複使用的工具和套件，可以輕鬆與你的系統、資料儲存（Data Stores）、關聯式資料庫（RDBMS）以及非關聯式資料庫（NoSQL）等等整合。
 
 
 ### 依賴注入（Dependency Injection）
@@ -156,13 +156,13 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 或者說，無需其他額外配置，直接導入並使用你所需要的程式碼。
 
-任何整合都被設計得非常簡單易用（通過依賴注入），你只需用與 *路徑操作* 相同的結構和語法，用兩行程式碼就能為你的應用創建一個「擴充功能」。
+任何整合都被設計得非常簡單易用（通過依賴注入），你只需用與 *路徑操作* 相同的結構和語法，用兩行程式碼就能為你的應用程式建立一個「擴充功能」。
 
 
 ### 測試
 
-* 100%的 <abbr title="有自動測試的程式碼">測試覆蓋率</abbr>。
-* 100%的程式碼有 <abbr title="Python type annotation，有了這個你的編輯器和外部工具可以給你更好的支持">類型注解</abbr>。
+* 100% 的 <abbr title="有自動測試的程式碼">測試覆蓋率</abbr>。
+* 100% 的程式碼有 <abbr title="Python 型別註釋，有了這個你的編輯器和外部工具可以給你更好的支援">型別註釋</abbr>。
 * 已在生產應用中使用。
 
 ## Starlette 特性ok
@@ -175,7 +175,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 * **支援 WebSocket** 。
 * 內建進程內的後臺任務處理。
 * 支援啟動和關閉事件。
-* 有基於 HTTPX 的測試客戶端。
+* 有基於 HTTPX 的測試用戶端。
 * 支援 **CORS**, GZip, 靜態文件, 串流響應。
 * 支援 **Session 和 Cookie** 。
 * 100% 測試覆蓋率。
@@ -185,7 +185,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 **FastAPI** 完全兼容且基於 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>。所以，你有其他 Pydantic 程式碼也能正常工作。
 
-兼容包括基於 Pydantic 的外部庫， 例如用與資料庫的 <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s。
+相容包括基於 Pydantic 的外部函式庫， 例如用於資料庫的 <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s。
 
 這也意味著在很多情況下，你可以把從請求中獲得的物件 **直接傳到資料庫**，因為所有數據都會自動進行驗證。
 
@@ -197,7 +197,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
     * 不需要學習新的 micro-language 來定義結構。
     * 如果你知道 Python types，你就知道如何使用 Pydantic。
 * 和你的 **<abbr title="Integrated Development Environment，和程式碼編輯器類似">IDE</abbr>/<abbr title="一個檢查程式碼錯誤的工具">linter</abbr>/brain** 都能好好配合：
-    * 因為 Pydantic 的數據結構其實就是你自己定義的類的實例，所以自動補齊、linting、mypy 以及你的直覺都能很好地在經過驗證的數據上發揮作用。
+    * 因為 Pydantic 的資料結構其實就是你自己定義的類別實例，所以自動補齊、linting、mypy 以及你的直覺都能很好地在經過驗證的資料上發揮作用。
 * 驗證 **複雜結構**：
     * 使用 Pydantic 模型時，你可以把數據結構分層設計，並且用 Python 的 `List` 和 `Dict` 等類型來定義。
     * 驗證器讓我們可以輕鬆地定義和檢查複雜的數據結構，並把它們轉換成 JSON Schema 進行記錄。
