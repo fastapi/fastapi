@@ -7,7 +7,7 @@
 &amp; ⤴️ 👆 💪 ⚒ 🎚 👈 *🔀* 📨 🎚.
 
 ```Python hl_lines="1  7-8"
-{!../../../docs_src/response_headers/tutorial002.py!}
+{!../../docs_src/response_headers/tutorial002.py!}
 ```
 
 &amp; ⤴️ 👆 💪 📨 🙆 🎚 👆 💪, 👆 🛎 🔜 ( `dict`, 💽 🏷, ♒️).
@@ -25,7 +25,7 @@
 ✍ 📨 🔬 [📨 📨 🔗](response-directly.md){.internal-link target=_blank} &amp; 🚶‍♀️ 🎚 🌖 🔢:
 
 ```Python hl_lines="10-12"
-{!../../../docs_src/response_headers/tutorial001.py!}
+{!../../docs_src/response_headers/tutorial001.py!}
 ```
 
 /// note | "📡 ℹ"

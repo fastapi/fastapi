@@ -17,21 +17,15 @@ gold:
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://docs.withcoherence.com/configuration/frameworks/?utm_medium=advertising&utm_source=fastapi&utm_campaign=docs#fastapi-example
+  - url: https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website
     title: Coherence
     img: https://fastapi.tiangolo.com/img/sponsors/coherence.png
   - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
     title: Simplify Full Stack Development with FastAPI & MongoDB
     img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
-  - url: https://konghq.com/products/kong-konnect?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=fast-api
-    title: Kong Konnect - API management platform
-    img: https://fastapi.tiangolo.com/img/sponsors/kong.png
   - url: https://zuplo.link/fastapi-gh
     title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
-  - url: https://fine.dev?ref=fastapibadge
-    title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
-    img: https://fastapi.tiangolo.com/img/sponsors/fine.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/liblab.png

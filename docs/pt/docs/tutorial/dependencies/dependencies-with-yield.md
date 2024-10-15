@@ -30,19 +30,19 @@ Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dado
 Apenas o código anterior a declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta.
 
 ```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências.
 
 ```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 O código após o `yield` é executado após a resposta ser entregue:
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 /// tip | "Dica"
@@ -64,7 +64,7 @@ Então, você pode procurar por essa exceção específica dentro da dependênci
 Da mesma forma, você pode utilizar `finally` para garantir que os passos de saída são executados, com ou sem exceções.
 
 ```python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 ## Subdependências com `yield`
@@ -78,7 +78,7 @@ Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` de
 //// tab | python 3.9+
 
 ```python hl_lines="6  14  22"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -86,7 +86,7 @@ Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` de
 //// tab | python 3.8+
 
 ```python hl_lines="5  13  21"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -100,7 +100,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```python hl_lines="4  12  20"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -114,7 +114,7 @@ E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeada
 //// tab | python 3.9+
 
 ```python hl_lines="18-19  26-27"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -122,7 +122,7 @@ E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeada
 //// tab | python 3.8+
 
 ```python hl_lines="17-18  25-26"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -136,7 +136,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```python hl_lines="16-17  24-25"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -174,7 +174,7 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 //// tab | python 3.9+
 
 ```python hl_lines="18-22  31"
-{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
 ```
 
 ////
@@ -182,7 +182,7 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 //// tab | python 3.8+
 
 ```python hl_lines="17-21  30"
-{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an.py!}
 ```
 
 ////
@@ -196,7 +196,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```python hl_lines="16-20  29"
-{!> ../../../docs_src/dependencies/tutorial008b.py!}
+{!> ../../docs_src/dependencies/tutorial008b.py!}
 ```
 
 ////
@@ -210,7 +210,7 @@ Se você capturar uma exceção com `except` em uma dependência que utilize `yi
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
 ```
 
 ////
@@ -218,7 +218,7 @@ Se você capturar uma exceção com `except` em uma dependência que utilize `yi
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-15"
-{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an.py!}
 ```
 
 ////
@@ -232,7 +232,7 @@ utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="13-14"
-{!> ../../../docs_src/dependencies/tutorial008c.py!}
+{!> ../../docs_src/dependencies/tutorial008c.py!}
 ```
 
 ////
@@ -248,7 +248,7 @@ Você pode relançar a mesma exceção utilizando `raise`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
 ```
 
 ////
@@ -256,7 +256,7 @@ Você pode relançar a mesma exceção utilizando `raise`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an.py!}
 ```
 
 ////
@@ -270,7 +270,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial008d.py!}
+{!> ../../docs_src/dependencies/tutorial008d.py!}
 ```
 
 ////
@@ -403,7 +403,7 @@ Em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar `with` ou `async with` dentro da função da dependência:
 
 ```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
+{!../../docs_src/dependencies/tutorial010.py!}
 ```
 
 /// tip | "Dica"

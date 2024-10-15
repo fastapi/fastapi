@@ -21,7 +21,7 @@ Dazu deklarieren wir eine Methode `__call__`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
 ```
 
 ////
@@ -29,7 +29,7 @@ Dazu deklarieren wir eine Methode `__call__`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+{!> ../../docs_src/dependencies/tutorial011_an.py!}
 ```
 
 ////
@@ -43,7 +43,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial011.py!}
+{!> ../../docs_src/dependencies/tutorial011.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu dekl
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
 ```
 
 ////
@@ -65,7 +65,7 @@ Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu dekl
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+{!> ../../docs_src/dependencies/tutorial011_an.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/dependencies/tutorial011.py!}
+{!> ../../docs_src/dependencies/tutorial011.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 //// tab | Python 3.9+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
 ```
 
 ////
@@ -101,7 +101,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 //// tab | Python 3.8+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+{!> ../../docs_src/dependencies/tutorial011_an.py!}
 ```
 
 ////
@@ -115,7 +115,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial011.py!}
+{!> ../../docs_src/dependencies/tutorial011.py!}
 ```
 
 ////
@@ -137,7 +137,7 @@ checker(q="somequery")
 //// tab | Python 3.9+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
 ```
 
 ////
@@ -145,7 +145,7 @@ checker(q="somequery")
 //// tab | Python 3.8+
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/dependencies/tutorial011_an.py!}
+{!> ../../docs_src/dependencies/tutorial011_an.py!}
 ```
 
 ////
@@ -159,7 +159,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial011.py!}
+{!> ../../docs_src/dependencies/tutorial011.py!}
 ```
 
 ////

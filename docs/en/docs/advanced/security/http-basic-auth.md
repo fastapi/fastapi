@@ -23,7 +23,7 @@ Then, when you type that username and password, the browser sends them in the he
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  8  12"
-{!> ../../../docs_src/security/tutorial006_an_py39.py!}
+{!> ../../docs_src/security/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Then, when you type that username and password, the browser sends them in the he
 //// tab | Python 3.8+
 
 ```Python hl_lines="2  7  11"
-{!> ../../../docs_src/security/tutorial006_an.py!}
+{!> ../../docs_src/security/tutorial006_an.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="2  6  10"
-{!> ../../../docs_src/security/tutorial006.py!}
+{!> ../../docs_src/security/tutorial006.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@ Then we can use `secrets.compare_digest()` to ensure that `credentials.username`
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@ Then we can use `secrets.compare_digest()` to ensure that `credentials.username`
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1  11-21"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////
@@ -144,7 +144,7 @@ And then they can try again knowing that it's probably something more similar to
 
 #### A "professional" attack
 
-Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
+Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And they would get just one extra correct letter at a time.
 
 But doing that, in some minutes or hours the attackers would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
 
@@ -163,7 +163,7 @@ After detecting that the credentials are incorrect, return an `HTTPException` wi
 //// tab | Python 3.9+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -171,7 +171,7 @@ After detecting that the credentials are incorrect, return an `HTTPException` wi
 //// tab | Python 3.8+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
@@ -185,7 +185,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="23-27"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////

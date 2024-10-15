@@ -7,7 +7,7 @@
 &amp; ⤴️ 👆 💪 ⚒ 🍪 👈 *🔀* 📨 🎚.
 
 ```Python hl_lines="1  8-9"
-{!../../../docs_src/response_cookies/tutorial002.py!}
+{!../../docs_src/response_cookies/tutorial002.py!}
 ```
 
 &amp; ⤴️ 👆 💪 📨 🙆 🎚 👆 💪, 👆 🛎 🔜 ( `dict`, 💽 🏷, ♒️).
@@ -27,7 +27,7 @@
 ⤴️ ⚒ 🍪 ⚫️, &amp; ⤴️ 📨 ⚫️:
 
 ```Python hl_lines="10-12"
-{!../../../docs_src/response_cookies/tutorial001.py!}
+{!../../docs_src/response_cookies/tutorial001.py!}
 ```
 
 /// tip

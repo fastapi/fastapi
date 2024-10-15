@@ -28,14 +28,14 @@ This gives you a lot of flexibility. You can return any data type, override any 
 
 ## Using the `jsonable_encoder` in a `Response`
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure its contents are ready for it.
+Because **FastAPI** doesn't make any changes to a `Response` you return, you have to make sure its contents are ready for it.
 
 For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
 
 For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
 
 ```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
 /// note | "Technical Details"
@@ -57,7 +57,7 @@ Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML"
 You could put your XML content in a string, put that in a `Response`, and return it:
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notes

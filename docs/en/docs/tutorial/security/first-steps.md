@@ -23,7 +23,7 @@ Copy the example in a file `main.py`:
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Copy the example in a file `main.py`:
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -45,7 +45,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
@@ -163,7 +163,7 @@ When we create an instance of the `OAuth2PasswordBearer` class we pass in the `t
 //// tab | Python 3.9+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -171,7 +171,7 @@ When we create an instance of the `OAuth2PasswordBearer` class we pass in the `t
 //// tab | Python 3.8+
 
 ```Python  hl_lines="7"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -185,7 +185,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 //// tab | Python 3.8+
 
 ```Python  hl_lines="11"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -251,7 +251,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////

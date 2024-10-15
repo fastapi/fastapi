@@ -7,7 +7,7 @@
 まず、以下のようにインポートします:
 
 ```Python hl_lines="4"
-{!../../../docs_src/body_fields/tutorial001.py!}
+{!../../docs_src/body_fields/tutorial001.py!}
 ```
 
 /// warning | "注意"
@@ -21,7 +21,7 @@
 以下のように`Field`をモデルの属性として使用することができます:
 
 ```Python hl_lines="11 12 13 14"
-{!../../../docs_src/body_fields/tutorial001.py!}
+{!../../docs_src/body_fields/tutorial001.py!}
 ```
 
 `Field`は`Query`や`Path`、`Body`と同じように動作し、全く同様のパラメータなどを持ちます。

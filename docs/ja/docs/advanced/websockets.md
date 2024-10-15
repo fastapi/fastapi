@@ -39,7 +39,7 @@ $ pip install websockets
 しかし、これはWebSocketのサーバーサイドに焦点を当て、実用的な例を示す最も簡単な方法です。
 
 ```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 ## `websocket` を作成する
@@ -47,7 +47,7 @@ $ pip install websockets
 **FastAPI** アプリケーションで、`websocket` を作成します。
 
 ```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 /// note | "技術詳細"
@@ -63,7 +63,7 @@ $ pip install websockets
 WebSocketルートでは、 `await` を使ってメッセージの送受信ができます。
 
 ```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 バイナリやテキストデータ、JSONデータを送受信できます。
@@ -116,7 +116,7 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 これらは、他のFastAPI エンドポイント/*path operation* の場合と同じように機能します。
 
 ```Python hl_lines="58-65  68-83"
-{!../../../docs_src/websockets/tutorial002.py!}
+{!../../docs_src/websockets/tutorial002.py!}
 ```
 
 /// info | "情報"
@@ -165,7 +165,7 @@ $ uvicorn main:app --reload
 WebSocket接続が閉じられると、 `await websocket.receive_text()` は例外 `WebSocketDisconnect` を発生させ、この例のようにキャッチして処理することができます。
 
 ```Python hl_lines="81-83"
-{!../../../docs_src/websockets/tutorial003.py!}
+{!../../docs_src/websockets/tutorial003.py!}
 ```
 
 試してみるには、

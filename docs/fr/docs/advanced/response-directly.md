@@ -35,7 +35,7 @@ Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONRespons
 Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convertir vos données avant de les passer à une réponse :
 
 ```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
 /// note | "Détails techniques"
@@ -57,7 +57,7 @@ Disons que vous voulez retourner une réponse <a href="https://en.wikipedia.org/
 Vous pouvez mettre votre contenu XML dans une chaîne de caractères, la placer dans une `Response`, et la retourner :
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notes

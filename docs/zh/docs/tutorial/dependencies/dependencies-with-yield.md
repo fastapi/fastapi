@@ -30,19 +30,19 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 在发送响应之前，只会执行 `yield` 语句及之前的代码：
 
 ```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 生成的值会注入到 *路由函数* 和其他依赖项中：
 
 ```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 `yield` 语句后面的代码会在创建响应后，发送响应前执行：
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 /// tip | 提示
@@ -64,7 +64,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 同样，你也可以使用 `finally` 来确保退出步骤得到执行，无论是否存在异常。
 
 ```Python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 ## 使用 `yield` 的子依赖项
 
@@ -77,7 +77,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.9+
 
 ```Python hl_lines="6  14  22"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.8+
 
 ```Python hl_lines="5  13  21"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -99,7 +99,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 ///
 
 ```Python hl_lines="4  12  20"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -113,7 +113,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-19  26-27"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -121,7 +121,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-18  25-26"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -135,7 +135,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 ///
 
 ```Python hl_lines="16-17  24-25"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -173,7 +173,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-22  31"
-{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
 ```
 
 ////
@@ -181,7 +181,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-21  30"
-{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an.py!}
 ```
 
 ////
@@ -195,7 +195,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 ///
 
 ```Python hl_lines="16-20  29"
-{!> ../../../docs_src/dependencies/tutorial008b.py!}
+{!> ../../docs_src/dependencies/tutorial008b.py!}
 ```
 
 ////
@@ -209,7 +209,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
 ```
 
 ////
@@ -217,7 +217,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-15"
-{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an.py!}
 ```
 
 ////
@@ -231,7 +231,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 ///
 
 ```Python hl_lines="13-14"
-{!> ../../../docs_src/dependencies/tutorial008c.py!}
+{!> ../../docs_src/dependencies/tutorial008c.py!}
 ```
 
 ////
@@ -247,7 +247,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
 ```
 
 ////
@@ -255,7 +255,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an.py!}
 ```
 
 ////
@@ -269,7 +269,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial008d.py!}
+{!> ../../docs_src/dependencies/tutorial008d.py!}
 ```
 
 ////
@@ -400,7 +400,7 @@ with open("./somefile.txt") as f:
 你也可以在 **FastAPI** 的 `yield` 依赖项中通过 `with` 或者 `async with` 语句来使用它们：
 
 ```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
+{!../../docs_src/dependencies/tutorial010.py!}
 ```
 
 /// tip | 提示
