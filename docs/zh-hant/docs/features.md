@@ -6,7 +6,7 @@
 
 ### 建立在開放標準的基礎上
 
-* 使用 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 來創建 API，包含<abbr title="也被叫做: endpoints, routes">路徑</abbr><abbr title="也叫做HTTP方法, 例如 POST, GET, PUT, DELETE">操作</abbr>、參數、請求訊息、安全性等聲明。
+* 使用 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 來建立 API，包含<abbr title="path，也被叫做: endpoints, routes">路徑</abbr><abbr title="也叫做 HTTP 方法, 例如 POST, GET, PUT, DELETE">操作</abbr>、參數、請求內文、安全性等聲明。
 * 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> （因為 OpenAPI 本身就是基於 JSON Schema）自動生成資料模型文件。
 * 經過縝密的研究後圍繞這些標準進行設計，而不是事後在已有系統上附加的一層功能。
 * 這也讓自動化工具能解析 API 的結構，進而生成不同語言的程式碼。
