@@ -30,7 +30,7 @@ Let's imagine you want to get the client's IP address/host inside of your *path 
 For that you need to access the request directly.
 
 ```Python hl_lines="1  7-8"
-{!../../../docs_src/using_request_directly/tutorial001.py!}
+{!../../docs_src/using_request_directly/tutorial001.py!}
 ```
 
 By declaring a *path operation function* parameter with the type being the `Request` **FastAPI** will know to pass the `Request` in that parameter.

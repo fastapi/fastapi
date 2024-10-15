@@ -7,7 +7,7 @@ Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten
 //// tab | Python 3.10+
 
 ```Python hl_lines="16  21"
-{!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
+{!> ../../docs_src/response_model/tutorial001_01_py310.py!}
 ```
 
 ////
@@ -15,7 +15,7 @@ Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten
 //// tab | Python 3.9+
 
 ```Python hl_lines="18  23"
-{!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
+{!> ../../docs_src/response_model/tutorial001_01_py39.py!}
 ```
 
 ////
@@ -23,7 +23,7 @@ Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten
 //// tab | Python 3.8+
 
 ```Python hl_lines="18  23"
-{!> ../../../docs_src/response_model/tutorial001_01.py!}
+{!> ../../docs_src/response_model/tutorial001_01.py!}
 ```
 
 ////
@@ -62,7 +62,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 //// tab | Python 3.10+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001_py310.py!}
+{!> ../../docs_src/response_model/tutorial001_py310.py!}
 ```
 
 ////
@@ -70,7 +70,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001_py39.py!}
+{!> ../../docs_src/response_model/tutorial001_py39.py!}
 ```
 
 ////
@@ -78,7 +78,7 @@ Sie können `response_model` in jeder möglichen *Pfadoperation* verwenden:
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  22  24-27"
-{!> ../../../docs_src/response_model/tutorial001.py!}
+{!> ../../docs_src/response_model/tutorial001.py!}
 ```
 
 ////
@@ -116,7 +116,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 //// tab | Python 3.10+
 
 ```Python hl_lines="7  9"
-{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+{!> ../../docs_src/response_model/tutorial002_py310.py!}
 ```
 
 ////
@@ -124,7 +124,7 @@ Im Folgenden deklarieren wir ein `UserIn`-Modell; es enthält ein Klartext-Passw
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  11"
-{!> ../../../docs_src/response_model/tutorial002.py!}
+{!> ../../docs_src/response_model/tutorial002.py!}
 ```
 
 ////
@@ -143,7 +143,7 @@ Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu 
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/response_model/tutorial002_py310.py!}
+{!> ../../docs_src/response_model/tutorial002_py310.py!}
 ```
 
 ////
@@ -151,7 +151,7 @@ Wir verwenden dieses Modell, um sowohl unsere Eingabe- als auch Ausgabedaten zu 
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/response_model/tutorial002.py!}
+{!> ../../docs_src/response_model/tutorial002.py!}
 ```
 
 ////
@@ -175,7 +175,7 @@ Wir können stattdessen ein Eingabemodell mit dem Klartext-Passwort, und ein Aus
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  11  16"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -183,7 +183,7 @@ Wir können stattdessen ein Eingabemodell mit dem Klartext-Passwort, und ein Aus
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  11  16"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -193,7 +193,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
 //// tab | Python 3.10+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -201,7 +201,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -211,7 +211,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
 //// tab | Python 3.10+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial003_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_py310.py!}
 ```
 
 ////
@@ -219,7 +219,7 @@ Obwohl unsere *Pfadoperation-Funktion* hier denselben `user` von der Eingabe zur
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial003.py!}
+{!> ../../docs_src/response_model/tutorial003.py!}
 ```
 
 ////
@@ -249,7 +249,7 @@ Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil a
 //// tab | Python 3.10+
 
 ```Python hl_lines="7-10  13-14  18"
-{!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_01_py310.py!}
 ```
 
 ////
@@ -257,7 +257,7 @@ Und in solchen Fällen können wir Klassen und Vererbung verwenden, um Vorteil a
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-13  15-16  20"
-{!> ../../../docs_src/response_model/tutorial003_01.py!}
+{!> ../../docs_src/response_model/tutorial003_01.py!}
 ```
 
 ////
@@ -303,7 +303,7 @@ Es kann Fälle geben, bei denen Sie etwas zurückgeben, das kein gültiges Pydan
 Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, wie es später im Handbuch für fortgeschrittene Benutzer erläutert wird](../advanced/response-directly.md){.internal-link target=_blank}.
 
 ```Python hl_lines="8  10-11"
-{!> ../../../docs_src/response_model/tutorial003_02.py!}
+{!> ../../docs_src/response_model/tutorial003_02.py!}
 ```
 
 Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Unterklasse von) `Response` ist.
@@ -315,7 +315,7 @@ Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `
 Sie können auch eine Unterklasse von `Response` in der Typannotation verwenden.
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/response_model/tutorial003_03.py!}
+{!> ../../docs_src/response_model/tutorial003_03.py!}
 ```
 
 Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `Response` ist, und FastAPI sich um diesen einfachen Anwendungsfall automatisch kümmert.
@@ -329,7 +329,7 @@ Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_04_py310.py!}
 ```
 
 ////
@@ -337,7 +337,7 @@ Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/response_model/tutorial003_04.py!}
+{!> ../../docs_src/response_model/tutorial003_04.py!}
 ```
 
 ////
@@ -355,7 +355,7 @@ In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+{!> ../../docs_src/response_model/tutorial003_05_py310.py!}
 ```
 
 ////
@@ -363,7 +363,7 @@ In diesem Fall können Sie die Generierung des Responsemodells abschalten, indem
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/response_model/tutorial003_05.py!}
+{!> ../../docs_src/response_model/tutorial003_05.py!}
 ```
 
 ////
@@ -377,7 +377,7 @@ Ihr Responsemodell könnte Defaultwerte haben, wie:
 //// tab | Python 3.10+
 
 ```Python hl_lines="9  11-12"
-{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+{!> ../../docs_src/response_model/tutorial004_py310.py!}
 ```
 
 ////
@@ -385,7 +385,7 @@ Ihr Responsemodell könnte Defaultwerte haben, wie:
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  13-14"
-{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+{!> ../../docs_src/response_model/tutorial004_py39.py!}
 ```
 
 ////
@@ -393,7 +393,7 @@ Ihr Responsemodell könnte Defaultwerte haben, wie:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11  13-14"
-{!> ../../../docs_src/response_model/tutorial004.py!}
+{!> ../../docs_src/response_model/tutorial004.py!}
 ```
 
 ////
@@ -413,7 +413,7 @@ Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unse
 //// tab | Python 3.10+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/response_model/tutorial004_py310.py!}
+{!> ../../docs_src/response_model/tutorial004_py310.py!}
 ```
 
 ////
@@ -421,7 +421,7 @@ Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unse
 //// tab | Python 3.9+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial004_py39.py!}
+{!> ../../docs_src/response_model/tutorial004_py39.py!}
 ```
 
 ////
@@ -429,7 +429,7 @@ Sie können den *Pfadoperation-Dekorator*-Parameter `response_model_exclude_unse
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/response_model/tutorial004.py!}
+{!> ../../docs_src/response_model/tutorial004.py!}
 ```
 
 ////
@@ -532,7 +532,7 @@ Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
 //// tab | Python 3.10+
 
 ```Python hl_lines="29  35"
-{!> ../../../docs_src/response_model/tutorial005_py310.py!}
+{!> ../../docs_src/response_model/tutorial005_py310.py!}
 ```
 
 ////
@@ -540,7 +540,7 @@ Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
 //// tab | Python 3.8+
 
 ```Python hl_lines="31  37"
-{!> ../../../docs_src/response_model/tutorial005.py!}
+{!> ../../docs_src/response_model/tutorial005.py!}
 ```
 
 ////
@@ -560,7 +560,7 @@ Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ei
 //// tab | Python 3.10+
 
 ```Python hl_lines="29  35"
-{!> ../../../docs_src/response_model/tutorial006_py310.py!}
+{!> ../../docs_src/response_model/tutorial006_py310.py!}
 ```
 
 ////
@@ -568,7 +568,7 @@ Wenn Sie vergessen, ein `set` zu verwenden, und stattdessen eine `list`e oder ei
 //// tab | Python 3.8+
 
 ```Python hl_lines="31  37"
-{!> ../../../docs_src/response_model/tutorial006.py!}
+{!> ../../docs_src/response_model/tutorial006.py!}
 ```
 
 ////

@@ -17,7 +17,7 @@ Formları kullanmak için öncelikle <a href="https://github.com/Kludex/python-m
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ Formları kullanmak için öncelikle <a href="https://github.com/Kludex/python-m
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////
@@ -51,7 +51,7 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -59,7 +59,7 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////

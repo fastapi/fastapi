@@ -3,7 +3,7 @@
 O arquivo FastAPI mais simples pode se parecer com:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Copie o conteúdo para um arquivo `main.py`.
@@ -134,7 +134,7 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 ### Passo 1: importe `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
@@ -150,7 +150,7 @@ Você pode usar todas as funcionalidades do <a href="https://www.starlette.io/" 
 ### Passo 2: crie uma "instância" de `FastAPI`
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
@@ -172,7 +172,7 @@ $ uvicorn main:app --reload
 Se você criar a sua aplicação como:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 E colocar em um arquivo `main.py`, você iria chamar o `uvicorn` assim:
@@ -251,7 +251,7 @@ Vamos chamá-los de "**operações**" também.
 #### Defina um *decorador de rota*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
@@ -307,7 +307,7 @@ Esta é a nossa "**função de rota**":
 * **função**: é a função abaixo do "decorador" (abaixo do `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Esta é uma função Python.
@@ -321,7 +321,7 @@ Neste caso, é uma função `assíncrona`.
 Você também pode defini-la como uma função normal em vez de `async def`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note | "Nota"
@@ -333,7 +333,7 @@ Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.m
 ### Passo 5: retorne o conteúdo
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Você pode retornar um `dict`, `list` e valores singulares como `str`, `int`, etc.

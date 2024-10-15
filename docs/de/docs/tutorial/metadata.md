@@ -19,7 +19,7 @@ Sie können die folgenden Felder festlegen, welche in der OpenAPI-Spezifikation 
 Sie können diese wie folgt setzen:
 
 ```Python hl_lines="3-16  19-32"
-{!../../../docs_src/metadata/tutorial001.py!}
+{!../../docs_src/metadata/tutorial001.py!}
 ```
 
 /// tip | "Tipp"
@@ -39,7 +39,7 @@ Seit OpenAPI 3.1.0 und FastAPI 0.99.0 können Sie die `license_info` auch mit ei
 Zum Beispiel:
 
 ```Python hl_lines="31"
-{!../../../docs_src/metadata/tutorial001_1.py!}
+{!../../docs_src/metadata/tutorial001_1.py!}
 ```
 
 ## Metadaten für Tags
@@ -63,7 +63,7 @@ Versuchen wir das an einem Beispiel mit Tags für `users` und `items`.
 Erstellen Sie Metadaten für Ihre Tags und übergeben Sie sie an den Parameter `openapi_tags`:
 
 ```Python hl_lines="3-16  18"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
 Beachten Sie, dass Sie Markdown in den Beschreibungen verwenden können. Beispielsweise wird „login“ in Fettschrift (**login**) und „fancy“ in Kursivschrift (_fancy_) angezeigt.
@@ -79,7 +79,7 @@ Sie müssen nicht für alle von Ihnen verwendeten Tags Metadaten hinzufügen.
 Verwenden Sie den Parameter `tags` mit Ihren *Pfadoperationen* (und `APIRouter`n), um diese verschiedenen Tags zuzuweisen:
 
 ```Python hl_lines="21  26"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
 /// info
@@ -109,7 +109,7 @@ Sie können das aber mit dem Parameter `openapi_url` konfigurieren.
 Um beispielsweise festzulegen, dass es unter `/api/v1/openapi.json` bereitgestellt wird:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial002.py!}
+{!../../docs_src/metadata/tutorial002.py!}
 ```
 
 Wenn Sie das OpenAPI-Schema vollständig deaktivieren möchten, können Sie `openapi_url=None` festlegen, wodurch auch die Dokumentationsbenutzeroberflächen deaktiviert werden, die es verwenden.
@@ -128,5 +128,5 @@ Sie können die beiden enthaltenen Dokumentationsbenutzeroberflächen konfigurie
 Um beispielsweise Swagger UI so einzustellen, dass sie unter `/documentation` bereitgestellt wird, und ReDoc zu deaktivieren:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial003.py!}
+{!../../docs_src/metadata/tutorial003.py!}
 ```

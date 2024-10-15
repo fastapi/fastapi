@@ -9,7 +9,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="3-4"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -93,7 +93,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
@@ -107,7 +107,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -121,7 +121,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -163,7 +163,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ////
@@ -173,7 +173,7 @@ But keep in mind that if you use `Annotated`, you won't have this problem, it wo
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -181,7 +181,7 @@ But keep in mind that if you use `Annotated`, you won't have this problem, it wo
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
 ```
 
 ////
@@ -210,7 +210,7 @@ Pass `*`, as the first parameter of the function.
 Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ### Better with `Annotated`
@@ -220,7 +220,7 @@ Keep in mind that if you use `Annotated`, as you are not using function paramete
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -228,7 +228,7 @@ Keep in mind that if you use `Annotated`, as you are not using function paramete
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
 ```
 
 ////
@@ -242,7 +242,7 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -250,7 +250,7 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
 ```
 
 ////
@@ -264,7 +264,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ////
@@ -279,7 +279,7 @@ The same applies for:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -287,7 +287,7 @@ The same applies for:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
 ```
 
 ////
@@ -301,7 +301,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ////
@@ -319,7 +319,7 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -327,7 +327,7 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
 ```
 
 ////
@@ -341,7 +341,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ////

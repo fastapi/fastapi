@@ -17,7 +17,7 @@ Importieren Sie `Form` von `fastapi`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ Importieren Sie `Form` von `fastapi`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////
@@ -51,7 +51,7 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -59,7 +59,7 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////

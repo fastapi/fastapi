@@ -35,7 +35,7 @@ $ pip install websockets
 但这是一种专注于 WebSockets 的服务器端并提供一个工作示例的最简单方式：
 
 ```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 ## 创建 `websocket`
@@ -43,7 +43,7 @@ $ pip install websockets
 在您的 **FastAPI** 应用程序中，创建一个 `websocket`：
 
 ```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 /// note | "技术细节"
@@ -59,7 +59,7 @@ $ pip install websockets
 在您的 WebSocket 路由中，您可以使用 `await` 等待消息并发送消息。
 
 ```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 您可以接收和发送二进制、文本和 JSON 数据。
@@ -112,7 +112,7 @@ $ uvicorn main:app --reload
 //// tab | Python 3.10+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -120,7 +120,7 @@ $ uvicorn main:app --reload
 //// tab | Python 3.9+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -128,7 +128,7 @@ $ uvicorn main:app --reload
 //// tab | Python 3.8+
 
 ```Python hl_lines="69-70  83"
-{!> ../../../docs_src/websockets/tutorial002_an.py!}
+{!> ../../docs_src/websockets/tutorial002_an.py!}
 ```
 
 ////
@@ -142,7 +142,7 @@ $ uvicorn main:app --reload
 ///
 
 ```Python hl_lines="66-67  79"
-{!> ../../../docs_src/websockets/tutorial002_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_py310.py!}
 ```
 
 ////
@@ -156,7 +156,7 @@ $ uvicorn main:app --reload
 ///
 
 ```Python hl_lines="68-69  81"
-{!> ../../../docs_src/websockets/tutorial002.py!}
+{!> ../../docs_src/websockets/tutorial002.py!}
 ```
 
 ////
@@ -203,7 +203,7 @@ $ uvicorn main:app --reload
 //// tab | Python 3.9+
 
 ```Python hl_lines="79-81"
-{!> ../../../docs_src/websockets/tutorial003_py39.py!}
+{!> ../../docs_src/websockets/tutorial003_py39.py!}
 ```
 
 ////
@@ -211,7 +211,7 @@ $ uvicorn main:app --reload
 //// tab | Python 3.8+
 
 ```Python hl_lines="81-83"
-{!> ../../../docs_src/websockets/tutorial003.py!}
+{!> ../../docs_src/websockets/tutorial003.py!}
 ```
 
 ////

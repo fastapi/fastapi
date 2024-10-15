@@ -5,6 +5,7 @@ from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
+    get_cached_model_fields,
     get_model_fields,
     is_bytes_sequence_annotation,
     is_scalar_field,
@@ -102,3 +103,18 @@ def test_is_pv1_scalar_field():
 
     fields = get_model_fields(Model)
     assert not is_scalar_field(fields[0])
+
+
+def test_get_model_fields_cached():
+    class Model(BaseModel):
+        foo: str
+
+    non_cached_fields = get_model_fields(Model)
+    non_cached_fields2 = get_model_fields(Model)
+    cached_fields = get_cached_model_fields(Model)
+    cached_fields2 = get_cached_model_fields(Model)
+    for f1, f2 in zip(cached_fields, cached_fields2):
+        assert f1 is f2
+
+    assert non_cached_fields is not non_cached_fields2
+    assert cached_fields is cached_fields2

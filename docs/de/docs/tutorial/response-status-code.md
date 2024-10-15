@@ -9,7 +9,7 @@ So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Respo
 * usw.
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 /// note | "Hinweis"
@@ -77,7 +77,7 @@ Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Si
 Schauen wir uns das vorherige Beispiel noch einmal an:
 
 ```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
+{!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
 `201` ist der Statuscode für „Created“ („Erzeugt“).
@@ -87,7 +87,7 @@ Aber Sie müssen sich nicht daran erinnern, welcher dieser Codes was bedeutet.
 Sie können die Hilfsvariablen von `fastapi.status` verwenden.
 
 ```Python hl_lines="1  6"
-{!../../../docs_src/response_status_code/tutorial002.py!}
+{!../../docs_src/response_status_code/tutorial002.py!}
 ```
 
 Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese Weise können Sie die Autovervollständigung Ihres Editors verwenden, um sie zu finden:

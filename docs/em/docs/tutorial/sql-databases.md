@@ -110,13 +110,13 @@ $ pip install sqlalchemy
 ### 🗄 🇸🇲 🍕
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### ✍ 💽 📛 🇸🇲
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 👉 🖼, 👥 "🔗" 🗄 💽 (📂 📁 ⏮️ 🗄 💽).
@@ -146,7 +146,7 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 👥 🔜 ⏪ ⚙️ 👉 `engine` 🎏 🥉.
 
 ```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 #### 🗒
@@ -184,7 +184,7 @@ connect_args={"check_same_thread": False}
 ✍ `SessionLocal` 🎓, ⚙️ 🔢 `sessionmaker`:
 
 ```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### ✍ `Base` 🎓
@@ -194,7 +194,7 @@ connect_args={"check_same_thread": False}
 ⏪ 👥 🔜 😖 ⚪️➡️ 👉 🎓 ✍ 🔠 💽 🏷 ⚖️ 🎓 (🐜 🏷):
 
 ```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ## ✍ 💽 🏷
@@ -220,7 +220,7 @@ connect_args={"check_same_thread": False}
 👫 🎓 🇸🇲 🏷.
 
 ```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 `__tablename__` 🔢 💬 🇸🇲 📛 🏓 ⚙️ 💽 🔠 👫 🏷.
@@ -236,7 +236,7 @@ connect_args={"check_same_thread": False}
 &amp; 👥 🚶‍♀️ 🇸🇲 🎓 "🆎", `Integer`, `String`, &amp; `Boolean`, 👈 🔬 🆎 💽, ❌.
 
 ```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 ### ✍ 💛
@@ -248,7 +248,7 @@ connect_args={"check_same_thread": False}
 👉 🔜 ▶️️, 🌅 ⚖️ 🌘, "🎱" 🔢 👈 🔜 🔌 💲 ⚪️➡️ 🎏 🏓 🔗 👉 1️⃣.
 
 ```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 🕐❔ 🔐 🔢 `items` `User`, `my_user.items`, ⚫️ 🔜 ✔️ 📇 `Item` 🇸🇲 🏷 (⚪️➡️ `items` 🏓) 👈 ✔️ 💱 🔑 ☝ 👉 ⏺ `users` 🏓.
@@ -284,7 +284,7 @@ connect_args={"check_same_thread": False}
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -292,7 +292,7 @@ connect_args={"check_same_thread": False}
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -300,7 +300,7 @@ connect_args={"check_same_thread": False}
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -334,7 +334,7 @@ name: str
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -342,7 +342,7 @@ name: str
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -350,7 +350,7 @@ name: str
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="13-15  29-32"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -372,7 +372,7 @@ name: str
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -380,7 +380,7 @@ name: str
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -388,7 +388,7 @@ name: str
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="13  17-18  29  34-35"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -466,7 +466,7 @@ current_user.items
 * ✍ 💗 🏬.
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -487,7 +487,7 @@ current_user.items
 * `refresh` 👆 👐 (👈 ⚫️ 🔌 🙆 🆕 📊 ⚪️➡️ 💽, 💖 🏗 🆔).
 
 ```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 /// tip
@@ -539,7 +539,7 @@ current_user.items
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -547,7 +547,7 @@ current_user.items
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -577,7 +577,7 @@ current_user.items
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="15-20"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -585,7 +585,7 @@ current_user.items
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="13-18"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -609,7 +609,7 @@ current_user.items
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="24  32  38  47  53"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -617,7 +617,7 @@ current_user.items
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="22  30  36  45  51"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -637,7 +637,7 @@ current_user.items
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -645,7 +645,7 @@ current_user.items
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -732,13 +732,13 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 * `sql_app/database.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/database.py!}
+{!../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
+{!../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
@@ -746,7 +746,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
 ////
@@ -754,7 +754,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/schemas.py!}
 ```
 
 ////
@@ -762,7 +762,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+{!> ../../docs_src/sql_databases/sql_app_py310/schemas.py!}
 ```
 
 ////
@@ -770,7 +770,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 * `sql_app/crud.py`:
 
 ```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
+{!../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
@@ -778,7 +778,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
+{!> ../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
 ////
@@ -786,7 +786,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/main.py!}
 ```
 
 ////
@@ -843,7 +843,7 @@ $ uvicorn sql_app.main:app --reload
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="14-22"
-{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app/alt_main.py!}
 ```
 
 ////
@@ -851,7 +851,7 @@ $ uvicorn sql_app.main:app --reload
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
 ```Python hl_lines="12-20"
-{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+{!> ../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
 ```
 
 ////

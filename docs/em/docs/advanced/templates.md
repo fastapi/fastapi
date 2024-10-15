@@ -28,7 +28,7 @@ $ pip install jinja2
 * ⚙️ `templates` 👆 ✍ ✍ &amp; 📨 `TemplateResponse`, 🚶‍♀️ `request` 1️⃣ 🔑-💲 👫 Jinja2️⃣ "🔑".
 
 ```Python hl_lines="4  11  15-18"
-{!../../../docs_src/templates/tutorial001.py!}
+{!../../docs_src/templates/tutorial001.py!}
 ```
 
 /// note
@@ -56,7 +56,7 @@ $ pip install jinja2
 ⤴️ 👆 💪 ✍ 📄 `templates/item.html` ⏮️:
 
 ```jinja hl_lines="7"
-{!../../../docs_src/templates/templates/item.html!}
+{!../../docs_src/templates/templates/item.html!}
 ```
 
 ⚫️ 🔜 🎦 `id` ✊ ⚪️➡️ "🔑" `dict` 👆 🚶‍♀️:
@@ -70,13 +70,13 @@ $ pip install jinja2
 &amp; 👆 💪 ⚙️ `url_for()` 🔘 📄, &amp; ⚙️ ⚫️, 🖼, ⏮️ `StaticFiles` 👆 📌.
 
 ```jinja hl_lines="4"
-{!../../../docs_src/templates/templates/item.html!}
+{!../../docs_src/templates/templates/item.html!}
 ```
 
 👉 🖼, ⚫️ 🔜 🔗 🎚 📁 `static/styles.css` ⏮️:
 
 ```CSS hl_lines="4"
-{!../../../docs_src/templates/static/styles.css!}
+{!../../docs_src/templates/static/styles.css!}
 ```
 
 &amp; ↩️ 👆 ⚙️ `StaticFiles`, 👈 🎚 📁 🔜 🍦 🔁 👆 **FastAPI** 🈸 📛 `/static/styles.css`.
