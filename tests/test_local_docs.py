@@ -1,6 +1,7 @@
 import inspect
 
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
+from fastapi.openapi.utils import calculate_relative_url
 
 
 def test_strings_in_generated_swagger():
@@ -65,3 +66,25 @@ def test_google_fonts_in_generated_redoc():
         openapi_url="/docs", title="title", with_google_fonts=False
     ).body.decode()
     assert "fonts.googleapis.com" not in body_without_google_fonts
+
+
+def test_calculate_relative_url() -> None:
+    assert calculate_relative_url("/docs/", "/docs/a.json") == "./a.json"
+    assert calculate_relative_url("/docs", "/docs/a.json") == "./docs/a.json"
+    assert calculate_relative_url("/docs/", "/docs/subdir/a.json") == "./subdir/a.json"
+    assert (
+        calculate_relative_url("/docs", "/docs/subdir/a.json") == "./docs/subdir/a.json"
+    )
+    assert calculate_relative_url("/", "/a.json") == "./a.json"
+    assert calculate_relative_url("/b.json", "/a.json") == "./a.json"
+    assert calculate_relative_url("/docs/a.json", "/docs/a.json") == "./a.json"
+    assert calculate_relative_url("/", "/docs/a.json") == "./docs/a.json"
+    assert calculate_relative_url("/docs", "/") == "./"
+    assert calculate_relative_url("/docs/", "/") == "../"
+
+    assert calculate_relative_url(None, "/any/path") == "/any/path"
+    assert calculate_relative_url("http://example.com", "/any/path") == "/any/path"
+    assert (
+        calculate_relative_url("http://example.com", "http://a.com/any/path")
+        == "http://a.com/any/path"
+    )
