@@ -40,7 +40,7 @@ E de forma semelhante para o ReDoc...
 {!../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-/// Dica
+/// tip | "Dica"
 
 O *path operation* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
 
@@ -180,7 +180,7 @@ E de forma semelhante para o ReDoc...
 {!../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-/// Dica
+/// tip | "Dica"
 
 O *path operation* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
 
