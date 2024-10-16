@@ -42,7 +42,7 @@ Todas essas tarefas ajudam a manter o repositório.
 
 Uma salva de palmas para eles. 👏 🙇
 
-## Team
+## Time
 
 Essa é a lista atual de membros da equipe. 😎
 
@@ -58,11 +58,11 @@ Eles tem diferentes níveis de envolvimento e permissões, eles podem realizar [
 
 Apesar de os membros da equipe terem permissões para realizar tarefas privilegiadas, toda a [ajuda de outros mantendo o FastAPI](./help-fastapi.md#help-maintain-fastapi){.internal-link target=_blank} é muito apreciada! 🙇‍♂️
 
-## FastAPI Experts
+## Expeerts FastAPI
 
 Esses são os usuários que [mais ajudaram os outros com perguntas no GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}. 🙇
 
-Eles provaram ser **FastAPI Experts** ajudando muitos outros. ✨
+Eles provaram ser **Experts FASTApi** ajudando muitos outros. ✨
 
 /// dica
 
@@ -72,7 +72,7 @@ Somente ao [ajudar os outros com perguntas no GitHub](help-fastapi.md#help-other
 
 ///
 
-Você pode ver os **FastAPI Experts** para:
+Você pode ver os **Experts FASTApi** para:
 
 * [Último Mês](#fastapi-experts-last-month) 🤓
 * [3 Meses](#fastapi-experts-3-months) 😎
@@ -138,7 +138,7 @@ Esses são os usuários que estiveram [ajudando os outros com perguntas no GitHu
 
 ### Experts FastAPI - All Time
 
-Aqui estão os **FastAPI Experts** de todos os tempos. 🤓🤯
+Aqui estão os **Experts FASTApi** de todos os tempos. 🤓🤯
 
 Esses são os usuários que [mais ajudaram os outros com perguntas no GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} *de todos os tempos*. 🧙
 
