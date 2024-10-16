@@ -88,4 +88,4 @@ Agora, você pode substituir o método `.openapi()` pela sua nova função.
 
 Uma vez que você acessar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>, verá que está usando seu logo personalizado (neste exemplo, o logo do **FastAPI**):
 
-<img src="/docs/en/docs/img/tutorial/extending-openapi/image01.png">
+<img src="/img/tutorial/extending-openapi/image01.png">
