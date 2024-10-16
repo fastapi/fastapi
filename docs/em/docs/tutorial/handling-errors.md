@@ -26,7 +26,7 @@
 ### 🗄 `HTTPException`
 
 ```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### 🤚 `HTTPException` 👆 📟
@@ -42,7 +42,7 @@
 👉 🖼, 🕐❔ 👩‍💻 📨 🏬 🆔 👈 🚫 🔀, 🤚 ⚠ ⏮️ 👔 📟 `404`:
 
 ```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### 📉 📨
@@ -63,12 +63,15 @@
 }
 ```
 
-!!! tip
-    🕐❔ 🙋‍♀ `HTTPException`, 👆 💪 🚶‍♀️ 🙆 💲 👈 💪 🗜 🎻 🔢 `detail`, 🚫 🕴 `str`.
+/// tip
 
-    👆 💪 🚶‍♀️ `dict`, `list`, ♒️.
+🕐❔ 🙋‍♀ `HTTPException`, 👆 💪 🚶‍♀️ 🙆 💲 👈 💪 🗜 🎻 🔢 `detail`, 🚫 🕴 `str`.
 
-    👫 🍵 🔁 **FastAPI** &amp; 🗜 🎻.
+👆 💪 🚶‍♀️ `dict`, `list`, ♒️.
+
+👫 🍵 🔁 **FastAPI** &amp; 🗜 🎻.
+
+///
 
 ## 🚮 🛃 🎚
 
@@ -79,7 +82,7 @@
 ✋️ 💼 👆 💪 ⚫️ 🏧 😐, 👆 💪 🚮 🛃 🎚:
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
+{!../../docs_src/handling_errors/tutorial002.py!}
 ```
 
 ## ❎ 🛃 ⚠ 🐕‍🦺
@@ -93,7 +96,7 @@
 👆 💪 🚮 🛃 ⚠ 🐕‍🦺 ⏮️ `@app.exception_handler()`:
 
 ```Python hl_lines="5-7  13-18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
+{!../../docs_src/handling_errors/tutorial003.py!}
 ```
 
 📥, 🚥 👆 📨 `/unicorns/yolo`, *➡ 🛠️* 🔜 `raise` `UnicornException`.
@@ -106,10 +109,13 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.requests import Request` &amp; `from starlette.responses import JSONResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request`.
+👆 💪 ⚙️ `from starlette.requests import Request` &amp; `from starlette.responses import JSONResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request`.
+
+///
 
 ## 🔐 🔢 ⚠ 🐕‍🦺
 
@@ -130,7 +136,7 @@
 ⚠ 🐕‍🦺 🔜 📨 `Request` &amp; ⚠.
 
 ```Python hl_lines="2  14-16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
 🔜, 🚥 👆 🚶 `/items/foo`, ↩️ 💆‍♂ 🔢 🎻 ❌ ⏮️:
@@ -160,10 +166,13 @@ path -> item_id
 
 #### `RequestValidationError` 🆚 `ValidationError`
 
-!!! warning
-    👫 📡 ℹ 👈 👆 💪 🚶 🚥 ⚫️ 🚫 ⚠ 👆 🔜.
+/// warning
 
-`RequestValidationError` 🎧-🎓 Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+👫 📡 ℹ 👈 👆 💪 🚶 🚥 ⚫️ 🚫 ⚠ 👆 🔜.
+
+///
+
+`RequestValidationError` 🎧-🎓 Pydantic <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** ⚙️ ⚫️ 👈, 🚥 👆 ⚙️ Pydantic 🏷 `response_model`, &amp; 👆 💽 ✔️ ❌, 👆 🔜 👀 ❌ 👆 🕹.
 
@@ -180,13 +189,16 @@ path -> item_id
 🖼, 👆 💪 💚 📨 ✅ ✍ 📨 ↩️ 🎻 👫 ❌:
 
 ```Python hl_lines="3-4  9-11  22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import PlainTextResponse`.
+/// note | "📡 ℹ"
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import PlainTextResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### ⚙️ `RequestValidationError` 💪
 
@@ -195,7 +207,7 @@ path -> item_id
 👆 💪 ⚙️ ⚫️ ⏪ 🛠️ 👆 📱 🕹 💪 &amp; ℹ ⚫️, 📨 ⚫️ 👩‍💻, ♒️.
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
+{!../../docs_src/handling_errors/tutorial005.py!}
 ```
 
 🔜 🔄 📨 ❌ 🏬 💖:
@@ -255,7 +267,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 🚥 👆 💚 ⚙️ ⚠ ⤴️ ⏮️ 🎏 🔢 ⚠ 🐕‍🦺 ⚪️➡️ **FastAPI**, 👆 💪 🗄 &amp; 🏤-⚙️ 🔢 ⚠ 🐕‍🦺 ⚪️➡️ `fastapi.exception_handlers`:
 
 ```Python hl_lines="2-5  15  21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
+{!../../docs_src/handling_errors/tutorial006.py!}
 ```
 
 👉 🖼 👆 `print`😅 ❌ ⏮️ 📶 🎨 📧, ✋️ 👆 🤚 💭. 👆 💪 ⚙️ ⚠ &amp; ⤴️ 🏤-⚙️ 🔢 ⚠ 🐕‍🦺.

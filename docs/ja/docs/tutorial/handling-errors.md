@@ -26,7 +26,7 @@ HTTPレスポンスをエラーでクライアントに返すには、`HTTPExcep
 ### `HTTPException`のインポート
 
 ```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### コード内での`HTTPException`の発生
@@ -42,7 +42,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例では、クライアントが存在しないIDでアイテムを要求した場合、`404`のステータスコードを持つ例外を発生させます:
 
 ```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 ```
 
 ### レスポンス結果
@@ -63,12 +63,15 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 }
 ```
 
-!!! tip "豆知識"
-    `HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
+/// tip | "豆知識"
 
-    `dist`や`list`などを渡すことができます。
+`HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
 
-    これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
+`dist`や`list`などを渡すことができます。
+
+これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
+
+///
 
 ## カスタムヘッダーの追加
 
@@ -79,7 +82,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 しかし、高度なシナリオのために必要な場合には、カスタムヘッダーを追加することができます:
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
+{!../../docs_src/handling_errors/tutorial002.py!}
 ```
 
 ## カスタム例外ハンドラのインストール
@@ -93,7 +96,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 カスタム例外ハンドラを`@app.exception_handler()`で追加することができます:
 
 ```Python hl_lines="5 6 7  13 14 15 16 17 18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
+{!../../docs_src/handling_errors/tutorial003.py!}
 ```
 
 ここで、`/unicorns/yolo`をリクエストすると、*path operation*は`UnicornException`を`raise`します。
@@ -106,10 +109,13 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "技術詳細"
-    また、`from starlette.requests import Request`と`from starlette.responses import JSONResponse`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。これは`Request`と同じです。
+また、`from starlette.requests import Request`と`from starlette.responses import JSONResponse`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。これは`Request`と同じです。
+
+///
 
 ## デフォルトの例外ハンドラのオーバーライド
 
@@ -130,7 +136,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例外ハンドラは`Requset`と例外を受け取ります。
 
 ```Python hl_lines="2 14 15 16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
 これで、`/items/foo`にアクセスすると、デフォルトのJSONエラーの代わりに以下が返されます:
@@ -160,10 +166,13 @@ path -> item_id
 
 #### `RequestValidationError`と`ValidationError`
 
-!!! warning "注意"
-    これらは今のあなたにとって重要でない場合は省略しても良い技術的な詳細です。
+/// warning | "注意"
 
-`RequestValidationError`はPydanticの<a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>のサブクラスです。
+これらは今のあなたにとって重要でない場合は省略しても良い技術的な詳細です。
+
+///
+
+`RequestValidationError`はPydanticの<a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>のサブクラスです。
 
 **FastAPI** は`response_model`でPydanticモデルを使用していて、データにエラーがあった場合、ログにエラーが表示されるようにこれを使用しています。
 
@@ -180,13 +189,16 @@ path -> item_id
 例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
 
 ```Python hl_lines="3 4  9 10 11 22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! note "技術詳細"
-    また、`from starlette.responses import PlainTextResponse`を使用することもできます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+また、`from starlette.responses import PlainTextResponse`を使用することもできます。
+
+**FastAPI** は開発者の利便性を考慮して、`fastapi.responses`と同じ`starlette.responses`を提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+
+///
 
 ### `RequestValidationError`のボディの使用
 
@@ -195,7 +207,7 @@ path -> item_id
 アプリ開発中に本体のログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
+{!../../docs_src/handling_errors/tutorial005.py!}
 ```
 
 ここで、以下のような無効な項目を送信してみてください:
@@ -257,7 +269,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 デフォルトの例外ハンドラを`fastapi.exception_handlers`からインポートして再利用することができます:
 
 ```Python hl_lines="2 3 4 5 15 21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
+{!../../docs_src/handling_errors/tutorial006.py!}
 ```
 
 この例では、非常に表現力のあるメッセージでエラーを`print`しています。

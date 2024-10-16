@@ -12,8 +12,11 @@
 
 そしてもし、`Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ (`application/json`) ならば、データは *path operationデコレータ* に宣言したPydantic `response_model` により自動的に変換 (もしくはフィルタ) されます。
 
-!!! note "備考"
-    メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待します。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
+/// note | "備考"
+
+メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待します。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
+
+///
 
 ## `ORJSONResponse` を使う
 
@@ -22,18 +25,24 @@
 使いたい `Response` クラス (サブクラス) をインポートし、 *path operationデコレータ* に宣言します。
 
 ```Python hl_lines="2  7"
-{!../../../docs_src/custom_response/tutorial001b.py!}
+{!../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-!!! info "情報"
-    パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用することもできます。
+/// info | "情報"
 
-    この場合、HTTPヘッダー `Content-Type` には `application/json` がセットされます。
+パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用することもできます。
 
-    そして、OpenAPIにはそのようにドキュメントされます。
+この場合、HTTPヘッダー `Content-Type` には `application/json` がセットされます。
 
-!!! tip "豆知識"
-    `ORJSONResponse` は、現在はFastAPIのみで利用可能で、Starletteでは利用できません。
+そして、OpenAPIにはそのようにドキュメントされます。
+
+///
+
+/// tip | "豆知識"
+
+`ORJSONResponse` は、現在はFastAPIのみで利用可能で、Starletteでは利用できません。
+
+///
 
 ## HTMLレスポンス
 
@@ -43,15 +52,18 @@
 * *path operation* のパラメータ `content_type` に `HTMLResponse` を渡す。
 
 ```Python hl_lines="2  7"
-{!../../../docs_src/custom_response/tutorial002.py!}
+{!../../docs_src/custom_response/tutorial002.py!}
 ```
 
-!!! info "情報"
-    パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用されます。
+/// info | "情報"
 
-    この場合、HTTPヘッダー `Content-Type` には `text/html` がセットされます。
+パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用されます。
 
-    そして、OpenAPIにはそのようにドキュメント化されます。
+この場合、HTTPヘッダー `Content-Type` には `text/html` がセットされます。
+
+そして、OpenAPIにはそのようにドキュメント化されます。
+
+///
 
 ### `Response` を返す
 
@@ -60,14 +72,20 @@
 上記と同じ例において、 `HTMLResponse` を返すと、このようになります:
 
 ```Python hl_lines="2  7  19"
-{!../../../docs_src/custom_response/tutorial003.py!}
+{!../../docs_src/custom_response/tutorial003.py!}
 ```
 
-!!! warning "注意"
-    *path operation関数* から直接返される `Response` は、OpenAPIにドキュメントされず (例えば、 `Content-Type` がドキュメントされない) 、自動的な対話的ドキュメントからも閲覧できません。
+/// warning | "注意"
 
-!!! info "情報"
-    もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返された `Response` オブジェクトに由来しています。
+*path operation関数* から直接返される `Response` は、OpenAPIにドキュメントされず (例えば、 `Content-Type` がドキュメントされない) 、自動的な対話的ドキュメントからも閲覧できません。
+
+///
+
+/// info | "情報"
+
+もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返された `Response` オブジェクトに由来しています。
+
+///
 
 ### OpenAPIドキュメントと `Response` のオーバーライド
 
@@ -80,7 +98,7 @@
 例えば、このようになります:
 
 ```Python hl_lines="7  21  23"
-{!../../../docs_src/custom_response/tutorial004.py!}
+{!../../docs_src/custom_response/tutorial004.py!}
 ```
 
 この例では、関数 `generate_html_response()` は、`str` のHTMLを返すのではなく `Response` を生成して返しています。
@@ -97,10 +115,13 @@
 
 `Response` を使って他の何かを返せますし、カスタムのサブクラスも作れることを覚えておいてください。
 
-!!! note "技術詳細"
-    `from starlette.responses import HTMLResponse` も利用できます。
+/// note | "技術詳細"
 
-    **FastAPI** は開発者の利便性のために `fastapi.responses` として `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+`from starlette.responses import HTMLResponse` も利用できます。
+
+**FastAPI** は開発者の利便性のために `fastapi.responses` として `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+
+///
 
 ### `Response`
 
@@ -118,7 +139,7 @@
 FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含みます。また、media_typeに基づいたContent-Typeヘッダーを含み、テキストタイプのためにcharsetを追加します。
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ### `HTMLResponse`
@@ -130,7 +151,7 @@ FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含�
 テキストやバイトを受け取り、プレーンテキストのレスポンスを返します。
 
 ```Python hl_lines="2  7  9"
-{!../../../docs_src/custom_response/tutorial005.py!}
+{!../../docs_src/custom_response/tutorial005.py!}
 ```
 
 ### `JSONResponse`
@@ -147,22 +168,28 @@ FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含�
 
 <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>を使った、代替のJSONレスポンスです。
 
-!!! warning "注意"
-    `ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも作りこまれていません。
+/// warning | "注意"
+
+`ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも作りこまれていません。
+
+///
 
 ```Python hl_lines="2  7"
-{!../../../docs_src/custom_response/tutorial001.py!}
+{!../../docs_src/custom_response/tutorial001.py!}
 ```
 
-!!! tip "豆知識"
-    `ORJSONResponse` のほうが高速な代替かもしれません。
+/// tip | "豆知識"
+
+`ORJSONResponse` のほうが高速な代替かもしれません。
+
+///
 
 ### `RedirectResponse`
 
 HTTPリダイレクトを返します。デフォルトでは307ステータスコード (Temporary Redirect) となります。
 
 ```Python hl_lines="2  9"
-{!../../../docs_src/custom_response/tutorial006.py!}
+{!../../docs_src/custom_response/tutorial006.py!}
 ```
 
 ### `StreamingResponse`
@@ -170,7 +197,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 非同期なジェネレータか通常のジェネレータ・イテレータを受け取り、レスポンスボディをストリームします。
 
 ```Python hl_lines="2  14"
-{!../../../docs_src/custom_response/tutorial007.py!}
+{!../../docs_src/custom_response/tutorial007.py!}
 ```
 
 #### `StreamingResponse` をファイルライクなオブジェクトとともに使う
@@ -180,11 +207,14 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 これにはクラウドストレージとの連携や映像処理など、多くのライブラリが含まれています。
 
 ```Python hl_lines="2  10-12  14"
-{!../../../docs_src/custom_response/tutorial008.py!}
+{!../../docs_src/custom_response/tutorial008.py!}
 ```
 
-!!! tip "豆知識"
-    ここでは `async` や `await` をサポートしていない標準の `open()` を使っているので、通常の `def` でpath operationを宣言していることに注意してください。
+/// tip | "豆知識"
+
+ここでは `async` や `await` をサポートしていない標準の `open()` を使っているので、通常の `def` でpath operationを宣言していることに注意してください。
+
+///
 
 ### `FileResponse`
 
@@ -200,7 +230,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 ファイルレスポンスには、適切な `Content-Length` 、 `Last-Modified` 、 `ETag` ヘッダーが含まれます。
 
 ```Python hl_lines="2  10"
-{!../../../docs_src/custom_response/tutorial009.py!}
+{!../../docs_src/custom_response/tutorial009.py!}
 ```
 
 ## デフォルトレスポンスクラス
@@ -212,11 +242,14 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 以下の例では、 **FastAPI** は、全ての *path operation* で `JSONResponse` の代わりに `ORJSONResponse` をデフォルトとして利用します。
 
 ```Python hl_lines="2  4"
-{!../../../docs_src/custom_response/tutorial010.py!}
+{!../../docs_src/custom_response/tutorial010.py!}
 ```
 
-!!! tip "豆知識"
-    前に見たように、 *path operation* の中で `response_class` をオーバーライドできます。
+/// tip | "豆知識"
+
+前に見たように、 *path operation* の中で `response_class` をオーバーライドできます。
+
+///
 
 ## その他のドキュメント
 

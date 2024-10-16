@@ -5,7 +5,7 @@ Vous pouvez déclarer des "paramètres" ou "variables" de chemin avec la même s
 
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`.
@@ -23,14 +23,17 @@ Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en uti
 
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 Ici, `item_id` est déclaré comme `int`.
 
-!!! hint "Astuce"
-    Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
-    que des vérifications d'erreur, de l'auto-complétion, etc.
+/// check | "vérifier"
+
+Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
+que des vérifications d'erreur, de l'auto-complétion, etc.
+
+///
 
 ## <abbr title="aussi appelé sérialisation, ou parfois parsing ou marshalling en anglais">Conversion</abbr> de données
 
@@ -40,12 +43,15 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
 {"item_id":3}
 ```
 
-!!! hint "Astuce"
-    Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
-    en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
+/// check | "vérifier"
 
-    Grâce aux déclarations de types, **FastAPI** fournit du
-    <abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
+Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
+en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
+
+Grâce aux déclarations de types, **FastAPI** fournit du
+<abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
+
+///
 
 ## Validation de données
 
@@ -72,12 +78,15 @@ La même erreur se produira si vous passez un nombre flottant (`float`) et non u
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
 
 
-!!! hint "Astuce"
-    Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
+/// check | "vérifier"
 
-    Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.
+Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
 
-    Ce qui est incroyablement utile au moment de développer et débugger du code qui interagit avec votre API.
+Notez que l'erreur mentionne le point exact où la validation n'a pas réussi.
+
+Ce qui est incroyablement utile au moment de développer et débugger du code qui interagit avec votre API.
+
+///
 
 ## Documentation
 
@@ -86,10 +95,13 @@ documentation générée automatiquement et interactive :
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! info
-    À nouveau, en utilisant uniquement les déclarations de type Python, **FastAPI** vous fournit automatiquement une documentation interactive (via Swagger UI).
+/// info
 
-    On voit bien dans la documentation que `item_id` est déclaré comme entier.
+À nouveau, en utilisant uniquement les déclarations de type Python, **FastAPI** vous fournit automatiquement une documentation interactive (via Swagger UI).
+
+On voit bien dans la documentation que `item_id` est déclaré comme entier.
+
+///
 
 ## Les avantages d'avoir une documentation basée sur une norme, et la documentation alternative.
 
@@ -106,7 +118,7 @@ pour de nombreux langages.
 
 ## Pydantic
 
-Toute la validation de données est effectué en arrière-plan avec <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>,
+Toute la validation de données est effectué en arrière-plan avec <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>,
 dont vous bénéficierez de tous les avantages. Vous savez donc que vous êtes entre de bonnes mains.
 
 ## L'ordre importe
@@ -120,7 +132,7 @@ Et vous avez un second chemin : `/users/{user_id}` pour récupérer de la donné
 Les *fonctions de chemin* étant évaluées dans l'ordre, il faut s'assurer que la fonction correspondant à `/users/me` est déclarée avant celle de `/users/{user_id}` :
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, la fonction "croyant" qu'elle a reçu un paramètre `user_id` avec pour valeur `"me"`.
@@ -138,21 +150,27 @@ En héritant de `str` la documentation sera capable de savoir que les valeurs do
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs autorisées pour cette énumération.
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Les énumérations (ou enums) sont disponibles en Python</a> depuis la version 3.4.
+/// info
 
-!!! tip "Astuce"
-    Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Les énumérations (ou enums) sont disponibles en Python</a> depuis la version 3.4.
+
+///
+
+/// tip | "Astuce"
+
+Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
+
+///
 
 ### Déclarer un paramètre de chemin
 
 Créez ensuite un *paramètre de chemin* avec une annotation de type désignant l'énumération créée précédemment (`ModelName`) :
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### Documentation
@@ -170,7 +188,7 @@ La valeur du *paramètre de chemin* sera un des "membres" de l'énumération.
 Vous pouvez comparer ce paramètre avec les membres de votre énumération `ModelName` :
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### Récupérer la *valeur de l'énumération*
@@ -178,11 +196,14 @@ Vous pouvez comparer ce paramètre avec les membres de votre énumération `Mode
 Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici), avec `model_name.value`, ou en général, `votre_membre_d'enum.value` :
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip "Astuce"
-    Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
+/// tip | "Astuce"
+
+Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
+
+///
 
 #### Retourner des *membres d'énumération*
 
@@ -191,7 +212,7 @@ Vous pouvez retourner des *membres d'énumération* dans vos *fonctions de chemi
 Ils seront convertis vers leurs valeurs correspondantes (chaînes de caractères ici) avant d'être transmis au client :
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 Le client recevra une réponse JSON comme celle-ci :
@@ -232,13 +253,16 @@ Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:pat
 Vous pouvez donc l'utilisez comme tel :
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip "Astuce"
-    Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
+/// tip | "Astuce"
 
-    Dans ce cas, l'URL serait : `/files//home/johndoe/myfile.txt`, avec un double slash (`//`) entre `files` et `home`.
+Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
+
+Dans ce cas, l'URL serait : `/files//home/johndoe/myfile.txt`, avec un double slash (`//`) entre `files` et `home`.
+
+///
 
 ## Récapitulatif
 

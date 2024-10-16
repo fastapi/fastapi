@@ -11,7 +11,7 @@ If you need to have two independent FastAPI applications, with their own indepen
 First, create the main, top-level, **FastAPI** application, and its *path operations*:
 
 ```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Sub-application
@@ -21,7 +21,7 @@ Then, create your sub-application, and its *path operations*.
 This sub-application is just another standard FastAPI application, but this is the one that will be "mounted":
 
 ```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Mount the sub-application
@@ -31,17 +31,17 @@ In your top-level application, `app`, mount the sub-application, `subapi`.
 In this case, it will be mounted at the path `/subapi`:
 
 ```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
+{!../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### Check the automatic API docs
 
-Now, run `uvicorn` with the main app, if your file is `main.py`, it would be:
+Now, run the `fastapi` command with your file:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -70,4 +70,4 @@ That way, the sub-application will know to use that path prefix for the docs UI.
 
 And the sub-application could also have its own mounted sub-applications and everything would work correctly, because FastAPI handles all these `root_path`s automatically.
 
-You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](./behind-a-proxy.md){.internal-link target=_blank}.
+You will learn more about the `root_path` and how to use it explicitly in the section about [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.

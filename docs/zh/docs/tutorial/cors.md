@@ -47,7 +47,7 @@
 * 特定的 HTTP headers 或者使用通配符 `"*"` 允许所有 headers。
 
 ```Python hl_lines="2  6-11  13-19"
-{!../../../docs_src/cors/tutorial001.py!}
+{!../../docs_src/cors/tutorial001.py!}
 ```
 
 默认情况下，这个 `CORSMiddleware` 实现所使用的默认参数较为保守，所以你需要显式地启用特定的源、方法或者 headers，以便浏览器能够在跨域上下文中使用它们。
@@ -78,7 +78,10 @@
 
 更多关于 <abbr title="Cross-Origin Resource Sharing">CORS</abbr> 的信息，请查看 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 文档</a>。
 
-!!! note "技术细节"
-    你也可以使用 `from starlette.middleware.cors import CORSMiddleware`。
+/// note | "技术细节"
 
-    出于方便，**FastAPI** 在 `fastapi.middleware` 中为开发者提供了几个中间件。但是大多数可用的中间件都是直接来自 Starlette。
+你也可以使用 `from starlette.middleware.cors import CORSMiddleware`。
+
+出于方便，**FastAPI** 在 `fastapi.middleware` 中为开发者提供了几个中间件。但是大多数可用的中间件都是直接来自 Starlette。
+
+///

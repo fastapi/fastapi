@@ -21,17 +21,20 @@
 `main.py`に、下記の例をコピーします:
 
 ```Python
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
 ## 実行
 
-!!! info "情報"
-    まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
+/// info | "情報"
 
-    例えば、`pip install python-multipart`。
+まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
-    これは、**OAuth2**が `ユーザー名` や `パスワード` を送信するために、「フォームデータ」を使うからです。
+例えば、`pip install python-multipart`。
+
+これは、**OAuth2**が `ユーザー名` や `パスワード` を送信するために、「フォームデータ」を使うからです。
+
+///
 
 例を実行します:
 
@@ -53,17 +56,23 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! check "Authorizeボタン!"
-    すでにピカピカの新しい「Authorize」ボタンがあります。
+/// check | "Authorizeボタン!"
 
-    そして、あなたの*path operation*には、右上にクリックできる小さな鍵アイコンがあります。
+すでにピカピカの新しい「Authorize」ボタンがあります。
+
+そして、あなたの*path operation*には、右上にクリックできる小さな鍵アイコンがあります。
+
+///
 
 それをクリックすると、`ユーザー名`と`パスワード` (およびその他のオプションフィールド) を入力する小さな認証フォームが表示されます:
 
 <img src="/img/tutorial/security/image02.png">
 
-!!! note "備考"
-    フォームに何を入力しても、まだうまくいきません。ですが、これから動くようになります。
+/// note | "備考"
+
+フォームに何を入力しても、まだうまくいきません。ですが、これから動くようになります。
+
+///
 
 もちろんエンドユーザーのためのフロントエンドではありません。しかし、すべてのAPIをインタラクティブにドキュメント化するための素晴らしい自動ツールです。
 
@@ -105,36 +114,45 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 この例では、**Bearer**トークンを使用して**OAuth2**を**パスワード**フローで使用します。これには`OAuth2PasswordBearer`クラスを使用します。
 
-!!! info "情報"
-    「bearer」トークンが、唯一の選択肢ではありません。
+/// info | "情報"
 
-    しかし、私たちのユースケースには最適です。
+「bearer」トークンが、唯一の選択肢ではありません。
 
-    あなたがOAuth2の専門家で、あなたのニーズに適した別のオプションがある理由を正確に知っている場合を除き、ほとんどのユースケースに最適かもしれません。
+しかし、私たちのユースケースには最適です。
 
-    その場合、**FastAPI**はそれを構築するためのツールも提供します。
+あなたがOAuth2の専門家で、あなたのニーズに適した別のオプションがある理由を正確に知っている場合を除き、ほとんどのユースケースに最適かもしれません。
+
+その場合、**FastAPI**はそれを構築するためのツールも提供します。
+
+///
 
 `OAuth2PasswordBearer` クラスのインスタンスを作成する時に、パラメーター`tokenUrl`を渡します。このパラメーターには、クライアント (ユーザーのブラウザで動作するフロントエンド) がトークンを取得するために`ユーザー名`と`パスワード`を送信するURLを指定します。
 
 ```Python hl_lines="6"
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
-!!! tip "豆知識"
-    ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
+/// tip | "豆知識"
 
-    相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
+ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
 
-    相対 URL を使うことは、[プロキシと接続](./.../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
+
+相対 URL を使うことは、[プロキシと接続](../../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+
+///
 
 このパラメーターはエンドポイント/ *path operation*を作成しません。しかし、URL`/token`はクライアントがトークンを取得するために使用するものであると宣言します。この情報は OpenAPI やインタラクティブな API ドキュメントシステムで使われます。
 
 実際のpath operationもすぐに作ります。
 
-!!! info "情報"
-    非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
+/// info | "情報"
 
-    それはOpenAPI仕様と同じ名前を使用しているからです。そのため、これらのセキュリティスキームについてもっと調べる必要がある場合は、それをコピーして貼り付ければ、それについての詳細な情報を見つけることができます。
+非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
+
+それはOpenAPI仕様と同じ名前を使用しているからです。そのため、これらのセキュリティスキームについてもっと調べる必要がある場合は、それをコピーして貼り付ければ、それについての詳細な情報を見つけることができます。
+
+///
 
 変数`oauth2_scheme`は`OAuth2PasswordBearer`のインスタンスですが、「呼び出し可能」です。
 
@@ -151,17 +169,20 @@ oauth2_scheme(some, parameters)
 これで`oauth2_scheme`を`Depends`で依存関係に渡すことができます。
 
 ```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
 この依存関係は、*path operation function*のパラメーター`token`に代入される`str`を提供します。
 
 **FastAPI**は、この依存関係を使用してOpenAPIスキーマ (および自動APIドキュメント) で「セキュリティスキーム」を定義できることを知っています。
 
-!!! info "技術詳細"
-    **FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
+/// info | "技術詳細"
 
-    OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
+**FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
+
+OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
+
+///
 
 ## どのように動作するか
 

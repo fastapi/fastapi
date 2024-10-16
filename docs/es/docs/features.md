@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # Características
 
 ## Características de FastAPI
@@ -68,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` significa:
+/// info | Información
 
-    Pasa las <abbr title="en español key se refiere a la guía de un diccionario">keys</abbr> y los valores del dict `second_user_data` directamente como argumentos de key-value, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` significa:
+
+Pasa las <abbr title="en español key se refiere a la guía de un diccionario">keys</abbr> y los valores del dict `second_user_data` directamente como argumentos de key-value, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Soporte del editor
 
@@ -179,7 +177,7 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 
 ## Características de Pydantic
 
-**FastAPI** está basado y es completamente compatible con <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tanto así, que cualquier código de Pydantic que tengas también funcionará.
+**FastAPI** está basado y es completamente compatible con <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tanto así, que cualquier código de Pydantic que tengas también funcionará.
 
 Esto incluye a librerías externas basadas en Pydantic como <abbr title="Object-Relational Mapper">ORM</abbr>s y <abbr title="Object-Document Mapper">ODM</abbr>s para bases de datos.
 

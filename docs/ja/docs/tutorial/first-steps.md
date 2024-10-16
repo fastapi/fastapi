@@ -3,7 +3,7 @@
 最もシンプルなFastAPIファイルは以下のようになります:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 これを`main.py`にコピーします。
@@ -24,12 +24,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "備考"
-    `uvicorn main:app`は以下を示します:
+/// note | "備考"
 
-    * `main`: `main.py`ファイル (Python "module")。
-    * `app`:  `main.py`内部で作られるobject（`app = FastAPI()`のように記述される）。
-    * `--reload`: コードの変更時にサーバーを再起動させる。開発用。
+`uvicorn main:app`は以下を示します:
+
+* `main`: `main.py`ファイル (Python "module")。
+* `app`:  `main.py`内部で作られるobject（`app = FastAPI()`のように記述される）。
+* `--reload`: コードの変更時にサーバーを再起動させる。開発用。
+
+///
 
 出力には次のような行があります:
 
@@ -131,20 +134,23 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 ### Step 1: `FastAPI`をインポート
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
-!!! note "技術詳細"
-    `FastAPI`は`Starlette`を直接継承するクラスです。
+/// note | "技術詳細"
 
-    `FastAPI`でも<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
+`FastAPI`は`Starlette`を直接継承するクラスです。
+
+`FastAPI`でも<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
+
+///
 
 ### Step 2: `FastAPI`の「インスタンス」を生成
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
@@ -165,7 +171,7 @@ $ uvicorn main:app --reload
 以下のようなアプリを作成したとき:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 そして、それを`main.py`ファイルに置き、次のように`uvicorn`を呼び出します:
@@ -198,8 +204,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info "情報"
-    「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
+/// info | "情報"
+
+「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
+
+///
 
 APIを構築する際、「パス」は「関心事」と「リソース」を分離するための主要な方法です。
 
@@ -241,23 +250,26 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 #### *パスオペレーションデコレータ*を定義
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 `@app.get("/")`は直下の関数が下記のリクエストの処理を担当することを**FastAPI**に伝えます:
 
 * パス `/`
 * <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
 
-!!! info "`@decorator` について"
-    Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
+/// info | "`@decorator` について"
 
-    「デコレータ」は関数の上に置きます。かわいらしい装飾的な帽子のようです（この用語の由来はそこにあると思います）。
+Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
-    「デコレータ」は直下の関数を受け取り、それを使って何かを行います。
+「デコレータ」は関数の上に置きます。かわいらしい装飾的な帽子のようです（この用語の由来はそこにあると思います）。
 
-    私たちの場合、このデコレーターは直下の関数が**オペレーション** `get`を使用した**パス**` / `に対応することを**FastAPI** に通知します。
+「デコレータ」は直下の関数を受け取り、それを使って何かを行います。
 
-    これが「*パスオペレーションデコレータ*」です。
+私たちの場合、このデコレーターは直下の関数が**オペレーション** `get`を使用した**パス**` / `に対応することを**FastAPI** に通知します。
+
+これが「*パスオペレーションデコレータ*」です。
+
+///
 
 他のオペレーションも使用できます:
 
@@ -272,14 +284,17 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip "豆知識"
-    各オペレーション (HTTPメソッド)は自由に使用できます。
+/// tip | "豆知識"
 
-    **FastAPI**は特定の意味づけを強制しません。
+各オペレーション (HTTPメソッド)は自由に使用できます。
 
-    ここでの情報は、要件ではなくガイドラインとして提示されます。
+**FastAPI**は特定の意味づけを強制しません。
 
-    例えば、GraphQLを使用する場合、通常は`POST`オペレーションのみを使用してすべてのアクションを実行します。
+ここでの情報は、要件ではなくガイドラインとして提示されます。
+
+例えば、GraphQLを使用する場合、通常は`POST`オペレーションのみを使用してすべてのアクションを実行します。
+
+///
 
 ### Step 4: **パスオペレーション**を定義
 
@@ -290,7 +305,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * **関数**: 「デコレータ」の直下にある関数 (`@app.get("/")`の直下) です。
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 これは、Pythonの関数です。
@@ -304,16 +319,19 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 `async def`の代わりに通常の関数として定義することもできます:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "備考"
-    違いが分からない場合は、[Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}を確認してください。
+/// note | "備考"
+
+違いが分からない場合は、[Async: *"急いでいますか？"*](../async.md#_1){.internal-link target=_blank}を確認してください。
+
+///
 
 ### Step 5: コンテンツの返信
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `dict`、`list`、`str`、`int`などを返すことができます。
