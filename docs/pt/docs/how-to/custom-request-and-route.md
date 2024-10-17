@@ -6,7 +6,7 @@ Em particular, isso pode ser uma boa alternativa para uma lógica em um intermed
 
 Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que ele seja processado pela sua aplicação.
 
-/// perigo
+/// danger | perigo
 
 Isso é um recurso "avançado".
 
@@ -30,7 +30,7 @@ E uma subclasse de `APIRoute` para usar essa classe de requisição personalizad
 
 ### Criar uma classe `GzipRequest` personalizada
 
-/// dica
+/// tip | dica
 
 Isso é um exemplo de brincadeira para demonstrar como funciona, se você precisar de suporte para Gzip, você pode usar o [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} fornecido.
 
@@ -60,7 +60,7 @@ Aqui nós usamos para criar um `GzipRequest` a partir da requisição original.
 {!../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-/// nota | "Detalhes Técnicas"
+/// note | "Detalhes Técnicos"
 
 Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
 
@@ -84,7 +84,7 @@ Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisiçã
 
 ## Acessando o corpo da requisição em um manipulador de exceção
 
-/// dica
+/// tip | dica
 
 Para resolver esse mesmo problema, é provavelmente muito mais fácil usar o `body` em um manipulador personalizado para `RequestValidationError` ([Tratando Erros](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
 
