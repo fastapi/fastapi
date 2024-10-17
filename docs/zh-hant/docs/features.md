@@ -9,7 +9,7 @@
 * 使用 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 來建立 API，包含<abbr title="path，也被叫做: endpoints, routes">路徑</abbr><abbr title="也叫做 HTTP 方法, 例如 POST, GET, PUT, DELETE">操作</abbr>、參數、請求內文、安全性等聲明。
 * 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> （因為 OpenAPI 本身就是基於 JSON Schema）自動生成資料模型文件。
 * 經過縝密的研究後圍繞這些標準進行設計，而不是事後在已有系統上附加的一層功能。
-* 這也讓自動化工具能解析 API 的結構，進而生成不同語言的程式碼。
+* 這也讓我們在多種語言中可以使用自動 **用戶端程式碼生成**。
 
 ### 能夠自動生成文件
 
@@ -26,11 +26,11 @@ FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由�
 
 ### 現代 Python
 
-這一切都基於標準的 **Python type** 聲明（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
+這一切都基於標準的 **Python 型別** 宣告（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
 
-如果你需要 2 分鐘來學習如何使用 Python types（即使你不使用 FastAPI），可以看看這個簡短的教學：[Python Types](python-types.md){.internal-link target=_blank}。
+如果你需要 2 分鐘來學習如何使用 Python 型別（即使你不使用 FastAPI），可以看看這個簡短的教學：[Python 型別](python-types.md){.internal-link target=_blank}。
 
-如果你寫帶有 Python types 的程式碼：
+如果你寫帶有 Python 型別的程式碼：
 
 ```python
 from datetime import date
@@ -38,7 +38,7 @@ from datetime import date
 from pydantic import BaseModel
 
 # 宣告一個變數為 string
-# 並在函數中獲得 editor support
+# 並在函式中獲得 editor support
 def main(user_id: str):
     return user_id
 
@@ -173,13 +173,13 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 * 性能極其出色。它是 <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">Python 可用的最快框架之一，和 **NodeJS** 及 **Go** 相當</a>。
 * **支援 WebSocket** 。
-* 內建進程內的後臺任務處理。
+* 能在行程內處理背景任務。
 * 支援啟動和關閉事件。
 * 有基於 HTTPX 的測試用戶端。
-* 支援 **CORS**, GZip, 靜態文件, 串流響應。
+* 支援 **CORS**、GZip、靜態檔案、串流回應。
 * 支援 **Session 和 Cookie** 。
 * 100% 測試覆蓋率。
-* 100% 類型注解的程式碼庫。
+* 100% 型別註解的程式碼庫。
 
 ## Pydantic 特性
 
@@ -195,7 +195,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 * **更簡單**：
     * 不需要學習新的 micro-language 來定義結構。
-    * 如果你知道 Python types，你就知道如何使用 Pydantic。
+    * 如果你知道 Python 型別，你就知道如何使用 Pydantic。
 * 和你的 **<abbr title="Integrated Development Environment，和程式碼編輯器類似">IDE</abbr>/<abbr title="一個檢查程式碼錯誤的工具">linter</abbr>/brain** 都能好好配合：
     * 因為 Pydantic 的資料結構其實就是你自己定義的類別實例，所以自動補齊、linting、mypy 以及你的直覺都能很好地在經過驗證的資料上發揮作用。
 * 驗證 **複雜結構**：
