@@ -87,6 +87,8 @@ multipart_incorrect_install_error = (
     "pip install python-multipart\n"
 )
 
+_NOT_SPECIFIED = object()
+
 
 def ensure_multipart_is_installed() -> None:
     try:
@@ -690,7 +692,7 @@ async def solve_dependencies(
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: Dict[str, Any], loc: Tuple[str, ...]
 ) -> Tuple[Any, List[Any]]:
-    if value is None:
+    if value == _NOT_SPECIFIED:
         if field.required:
             return None, [get_missing_field_error(loc=loc)]
         else:
@@ -712,20 +714,15 @@ def _get_multidict_value(
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
-        value = values.get(alias, None)
+        value = values.get(alias, _NOT_SPECIFIED)
     if (
-        value is None
-        or (
-            isinstance(field.field_info, params.Form)
-            and isinstance(value, str)  # For type checks
-            and value == ""
-        )
-        or (is_sequence_field(field) and len(value) == 0)
+        isinstance(field.field_info, params.Form)
+        and isinstance(value, str)  # For type checks
+        and value == ""
     ):
-        if field.required:
-            return
-        else:
-            return deepcopy(field.default)
+        value = None
+    if is_sequence_field(field) and len(value) == _NOT_SPECIFIED:
+        value = _NOT_SPECIFIED
     return value
 
 
@@ -763,7 +760,7 @@ def request_params_to_args(
                     else field.name.replace("_", "-")
                 )
         value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
+        if value != _NOT_SPECIFIED:
             params_to_process[field.name] = value
         processed_keys.add(alias or field.alias)
         processed_keys.add(field.name)
@@ -785,6 +782,8 @@ def request_params_to_args(
 
     for field in fields:
         value = _get_multidict_value(field, received_params)
+        if value == _NOT_SPECIFIED:
+            continue
         field_info = field.field_info
         assert isinstance(
             field_info, params.Param
@@ -829,8 +828,10 @@ async def _extract_form_body(
     values = {}
     first_field = body_fields[0]
     first_field_info = first_field.field_info
+    body_field_keys = set()
 
     for field in body_fields:
+        body_field_keys.update({field.alias, field.name})
         value = _get_multidict_value(field, received_body)
         if (
             isinstance(first_field_info, params.File)
@@ -857,10 +858,10 @@ async def _extract_form_body(
                 for sub_value in value:
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
-        if value is not None:
+        if value != _NOT_SPECIFIED:
             values[field.alias] = value
     for key, value in received_body.items():
-        if key not in values:
+        if key not in body_field_keys and key not in values:
             values[key] = value
     return values
 
@@ -896,7 +897,7 @@ async def request_body_to_args(
         value: Optional[Any] = None
         if body_to_process is not None:
             try:
-                value = body_to_process.get(field.alias)
+                value = body_to_process.get(field.alias, _NOT_SPECIFIED)
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
