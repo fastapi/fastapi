@@ -2,9 +2,9 @@
 
 몇몇 애플리케이션에서는 애플리케이션 전체에 의존성을 추가하고 싶을 수 있습니다.
 
-[*경로 작동 데코레이터*에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}와 유사한 방법으로 `FastAPI` 애플리케이션에 그것들을 추가할 수 있습니다.
+[*경로 작동 데코레이터* 에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}와 유사한 방법으로 `FastAPI` 애플리케이션에 그것들을 추가할 수 있습니다.
 
-그런 경우에, 애플리케이션의 모든 *경로 작동*에 적용될 것입니다:
+그런 경우에, 애플리케이션의 모든 *경로 작동* 에 적용될 것입니다:
 
 //// tab | Python 3.9+
 
@@ -36,7 +36,7 @@
 
 ////
 
-그리고 [*경로 작동 데코레이터*에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}에 대한 아이디어는 여전히 적용되지만 여기에서는 앱에 있는 모든 *경로 작동*에 적용됩니다.
+그리고 [*경로 작동 데코레이터* 에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}에 대한 아이디어는 여전히 적용되지만 여기에서는 앱에 있는 모든 *경로 작동* 에 적용됩니다.
 
 ## *경로 작동* 모음에 대한 의존성
 

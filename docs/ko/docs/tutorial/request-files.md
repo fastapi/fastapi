@@ -44,7 +44,7 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
 
 파일들은 "폼 데이터"의 형태로 업로드 됩니다.
 
-*경로 작동 함수*의 매개변수를 `bytes` 로 선언하는 경우 **FastAPI**는 파일을 읽고 `bytes` 형태의 내용을 전달합니다.
+*경로 작동 함수* 의 매개변수를 `bytes` 로 선언하는 경우 **FastAPI** 는 파일을 읽고 `bytes` 형태의 내용을 전달합니다.
 
 이것은 전체 내용이 메모리에 저장된다는 것을 의미한다는 걸 염두하기 바랍니다. 이는 작은 크기의 파일들에 적합합니다.
 
@@ -86,13 +86,13 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
 
 상기 모든 메소드들이 `async` 메소드이기 때문에 “await”을 사용하여야 합니다.
 
-예를들어, `async` *경로 작동 함수*의 내부에서 다음과 같은 방식으로 내용을 가져올 수 있습니다:
+예를들어, `async` *경로 작동 함수* 의 내부에서 다음과 같은 방식으로 내용을 가져올 수 있습니다:
 
 ```Python
 contents = await myfile.read()
 ```
 
-만약 일반적인 `def` *경로 작동 함수*의 내부라면, 다음과 같이 `UploadFile.file` 에 직접 접근할 수 있습니다:
+만약 일반적인 `def` *경로 작동 함수* 의 내부라면, 다음과 같이 `UploadFile.file` 에 직접 접근할 수 있습니다:
 
 ```Python
 contents = myfile.file.read()
@@ -100,13 +100,13 @@ contents = myfile.file.read()
 
 /// note |  "`async` 기술적 세부사항"
 
-`async` 메소드들을 사용할 때 **FastAPI**는 스레드풀에서 파일 메소드들을 실행하고 그들을 기다립니다.
+`async` 메소드들을 사용할 때 **FastAPI** 는 스레드풀에서 파일 메소드들을 실행하고 그들을 기다립니다.
 
 ///
 
 /// note | "Starlette 기술적 세부사항"
 
-**FastAPI**의 `UploadFile` 은 **Starlette**의 `UploadFile` 을 직접적으로 상속받지만, **Pydantic** 및 FastAPI의 다른 부분들과의 호환성을 위해 필요한 부분들이 추가되었습니다.
+**FastAPI** 의 `UploadFile` 은 **Starlette** 의 `UploadFile` 을 직접적으로 상속받지만, **Pydantic** 및 FastAPI의 다른 부분들과의 호환성을 위해 필요한 부분들이 추가되었습니다.
 
 ///
 
@@ -114,13 +114,13 @@ contents = myfile.file.read()
 
 HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은 대개 데이터에 JSON과는 다른 "특별한" 인코딩을 사용합니다.
 
-**FastAPI**는 JSON 대신 올바른 위치에서 데이터를 읽을 수 있도록 합니다.
+**FastAPI** 는 JSON 대신 올바른 위치에서 데이터를 읽을 수 있도록 합니다.
 
 /// note | "기술적 세부사항"
 
 폼의 데이터는 파일이 포함되지 않은 경우 일반적으로 "미디어 유형" `application/x-www-form-urlencoded` 을 사용해 인코딩 됩니다.
 
-하지만 파일이 포함된 경우, `multipart/form-data`로 인코딩됩니다. `File`을 사용하였다면, **FastAPI**는 본문의 적합한 부분에서 파일을 가져와야 한다는 것을 인지합니다.
+하지만 파일이 포함된 경우, `multipart/form-data`로 인코딩됩니다. `File`을 사용하였다면, **FastAPI** 는 본문의 적합한 부분에서 파일을 가져와야 한다는 것을 인지합니다.
 
 인코딩과 폼 필드에 대해 더 알고싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><code>POST</code>에 관한<abbr title="Mozilla Developer Network">MDN</abbr>웹 문서</a> 를 참고하기 바랍니다,.
 
@@ -128,9 +128,9 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 /// warning | "경고"
 
-다수의 `File` 과 `Form` 매개변수를 한 *경로 작동*에 선언하는 것이 가능하지만, 요청의 본문이 `application/json` 가 아닌 `multipart/form-data` 로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
+다수의 `File` 과 `Form` 매개변수를 한 *경로 작동* 에 선언하는 것이 가능하지만, 요청의 본문이 `application/json` 가 아닌 `multipart/form-data` 로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
 
-이는 **FastAPI**의 한계가 아니라, HTTP 프로토콜에 의한 것입니다.
+이는 **FastAPI** 의 한계가 아니라, HTTP 프로토콜에 의한 것입니다.
 
 ///
 
@@ -152,9 +152,9 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 2019년 4월 14일부터 Swagger UI가 하나의 폼 필드로 다수의 파일을 업로드하는 것을 지원하지 않습니다. 더 많은 정보를 원하면,  <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a>과 <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>을 참고하세요.
 
-그럼에도, **FastAPI**는 표준 Open API를 사용해 이미 호환이 가능합니다.
+그럼에도, **FastAPI** 는 표준 Open API를 사용해 이미 호환이 가능합니다.
 
-따라서 Swagger UI 또는 기타 그 외의 OpenAPI를 지원하는 툴이 다중 파일 업로드를 지원하는 경우, 이들은 **FastAPI**와 호환됩니다.
+따라서 Swagger UI 또는 기타 그 외의 OpenAPI를 지원하는 툴이 다중 파일 업로드를 지원하는 경우, 이들은 **FastAPI** 와 호환됩니다.
 
 ///
 
@@ -162,7 +162,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 `from starlette.responses import HTMLResponse` 역시 사용할  수 있습니다.
 
-**FastAPI**는 개발자의 편의를 위해 `fastapi.responses` 와 동일한 `starlette.responses` 도 제공합니다. 하지만 대부분의 응답들은 Starlette로부터 직접 제공됩니다.
+**FastAPI** 는 개발자의 편의를 위해 `fastapi.responses` 와 동일한 `starlette.responses` 도 제공합니다. 하지만 대부분의 응답들은 Starlette로부터 직접 제공됩니다.
 
 ///
 
