@@ -1,6 +1,6 @@
 # 第一步
 
-最簡單的 FastAPI 文件可能看起來像這樣：
+最簡單的 FastAPI 檔案可能看起來像這樣：
 
 ```Python
 {!../../docs_src/first_steps/tutorial001.py!}
@@ -88,17 +88,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 現在，前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-你將看到替代自動文件（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
+你將看到另一種自動文件（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI
 
-**FastAPI** 使用 **OpenAPI** 標準生成一個 「schema」 與所有你的 API。
+**FastAPI** 使用定義 API 的 **OpenAPI** 標準來生成一個 「schema」 與你的所有 API。
 
 #### 「Schema」
 
-「schema」是對某個事物的定義或描述。它並不是實現該事物的程式碼，而僅僅是一個抽象的描述。
+「schema」是對某個事物的定義或描述。它並不是實作它的程式碼，而僅僅是一個抽象的描述。
 
 #### API 「schema」
 
@@ -151,7 +151,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 而且有許多替代方案，所有這些都是基於 OpenAPI。你可以輕鬆地將任何這些替代方案添加到使用 **FastAPI** 建置的應用程式中。
 
-你也可以用它自動生成程式碼，讓前端、手機應用程式或物聯網設備等與你的 API 進行通信。
+你也可以用它自動生成程式碼，讓前端、手機應用程式或物聯網設備等與你的 API 進行通訊。
 
 ## 逐步回顧
 
@@ -171,7 +171,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 ///
 
-### 第二步：創建一個 `FastAPI` 「實例」
+### 第二步：建立一個 `FastAPI` 「實例」
 
 ```Python hl_lines="3"
 {!../../docs_src/first_steps/tutorial001.py!}
@@ -185,7 +185,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 #### 路徑
 
-這裡的「路徑」指的是 URL 的第一個 `/` 之後的部分。
+這裡的「路徑」指的是 URL 中自第一個 `/` 以後的部分。
 
 例如，在 URL 中：
 
@@ -320,11 +320,11 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 /// note
 
-如果你不知道差別，請檢查[Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+如果你不知道差別，請查看 [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ///
 
-### 第五步：返回內容
+### 第五步：回傳內容
 
 ```Python hl_lines="8"
 {!../../docs_src/first_steps/tutorial001.py!}
