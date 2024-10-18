@@ -28,7 +28,7 @@ E essa função `get_openapi()` recebe como parâmetros:
 * `description`: A descrição da sua API, que pode incluir markdown e será exibida na documentação.
 * `routes`: Uma lista de rotas, que são cada uma das *operações de rota* registradas. Elas são obtidas de `app.routes`.
 
-/// info
+/// info | Informação 
 
 O parâmetro `summary` está disponível no OpenAPI 3.1.0 e superior, suportado pelo FastAPI 0.99.0 e superior.
 
@@ -40,7 +40,7 @@ Com as informações acima, você pode usar a mesma função utilitária para ge
 
 Por exemplo, vamos adicionar <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">Extensão OpenAPI do ReDoc para incluir um logo personalizado</a>.
 
-### Normal **FastAPI**
+### **FastAPI** Normal
 
 Primeiro, escreva toda a sua aplicação **FastAPI** normalmente:
 
