@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Type, Union
 from uuid import UUID
 
 from fastapi.types import IncEx
@@ -25,6 +25,10 @@ from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+
+
+DictIntStrAny = Dict[Union[int, str], Any]
+SetIntStr = Set[Union[int, str]]
 
 
 # Taken from Pydantic v1 as is
