@@ -2,11 +2,11 @@
 
 Em algum casos, você pode querer sobreescrever a lógica usada pelas classes `Request`e `APIRoute`.
 
-Em particular, isso pode ser uma boa alternativa para uma lógica em um intermediário
+Em particular, isso pode ser uma boa alternativa para uma lógica em um middleware
 
 Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que ele seja processado pela sua aplicação.
 
-/// danger | "perigo"
+/// danger | Perigo
 
 Isso é um recurso "avançado".
 
@@ -30,7 +30,7 @@ E uma subclasse de `APIRoute` para usar essa classe de requisição personalizad
 
 ### Criar uma classe `GzipRequest` personalizada
 
-/// tip | "dica"
+/// tip | Dica
 
 Isso é um exemplo de brincadeira para demonstrar como funciona, se você precisar de suporte para Gzip, você pode usar o [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} fornecido.
 
@@ -60,7 +60,7 @@ Aqui nós usamos para criar um `GzipRequest` a partir da requisição original.
 {!../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
 
@@ -76,7 +76,7 @@ Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.io
 
 A única coisa que a função retornada por `GzipRequest.get_route_handler` faz de diferente é converter o `Request` para um `GzipRequest`.
 
-Fazendo isso, nosso `GzipRequest` irá cuidar de descomprimir os dados (se necessário) antes de passá-los para nossas *operações de caminho*.
+Fazendo isso, nosso `GzipRequest` irá cuidar de descomprimir os dados (se necessário) antes de passá-los para nossas *operações de rota*.
 
 Depois disso, toda a lógica de processamento é a mesma.
 
@@ -84,7 +84,7 @@ Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisiçã
 
 ## Acessando o corpo da requisição em um manipulador de exceção
 
-/// tip | "dica"
+/// tip | Dica
 
 Para resolver esse mesmo problema, é provavelmente muito mais fácil usar o `body` em um manipulador personalizado para `RequestValidationError` ([Tratando Erros](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
 
@@ -114,7 +114,7 @@ você também pode definir o parametro `route_class` de uma `APIRouter`;
 {!../../docs_src/custom_request_and_route/tutorial003.py!}
 ```
 
-Nesse exemplo, as *operações de caminho* sob o `router` irão usar a classe `TimedRoute` personalizada, e terão um cabeçalho extra `X-Response-Time` na resposta com o tempo que levou para gerar a resposta:
+Nesse exemplo, as *operações de rota* sob o `router` irão usar a classe `TimedRoute` personalizada, e terão um cabeçalho extra `X-Response-Time` na resposta com o tempo que levou para gerar a resposta:
 
 ```Python hl_lines="13-20"
 {!../../docs_src/custom_request_and_route/tutorial003.py!}
