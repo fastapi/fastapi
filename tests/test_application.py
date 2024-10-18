@@ -1,5 +1,6 @@
 import pytest
 from dirty_equals import IsDict
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from .main import app
@@ -1281,3 +1282,20 @@ def test_openapi_schema():
             }
         },
     }
+
+
+def test_relative_docs():
+    _app = FastAPI(relative_docs=True)
+    _client = TestClient(_app)
+
+    response = _client.get("/docs")
+    assert response.status_code == 200, response.text
+    assert "./openapi.json" in response.text
+
+    response = _client.get("/redoc")
+    assert response.status_code == 200, response.text
+    assert "./openapi.json" in response.text
+
+    response = _client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert "../" in response.text
