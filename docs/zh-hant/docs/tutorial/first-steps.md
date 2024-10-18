@@ -8,7 +8,7 @@
 
 將其複製到一個名為 `main.py` 的文件中。
 
-執行 live server：
+執行即時重新載入伺服器（live server）：
 
 <div class="termy">
 
