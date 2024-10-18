@@ -155,7 +155,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 ## 逐步回顧
 
-### 第一步：匯入 `FastAPI`
+### 第一步：引入 `FastAPI`
 
 ```Python hl_lines="1"
 {!../../docs_src/first_steps/tutorial001.py!}
