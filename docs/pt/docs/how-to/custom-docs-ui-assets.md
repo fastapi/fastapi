@@ -24,7 +24,7 @@ Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAP
 
 ### Incluir a documentação personalizada
 
-Agora você pode criar as *path operations* para a documentação personalizada.
+Agora você pode criar as *operações de rota* para a documentação personalizada.
 
 Você pode reutilizar as funções internas do FastAPI para criar as páginas HTML para a documentação e passar os argumentos necessários:
 
@@ -40,9 +40,9 @@ E de forma semelhante para o ReDoc...
 {!../../docs_src/custom_docs_ui/tutorial001.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
-O *path operation* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
+A *operação de rota* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
 
 Se você integrar sua API com um provedor OAuth2, você poderá autenticar e voltar para a documentação da API com as credenciais adquiridas. E interagir com ela usando a autenticação OAuth2 real.
 
@@ -50,9 +50,9 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 ///
 
-### Criar uma *path operation* para testar
+### Criar uma *operação de rota* para testar
 
-Agora, para poder testar se tudo funciona, crie uma *path operation*:
+Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
 ```Python hl_lines="36-38"
 {!../../docs_src/custom_docs_ui/tutorial001.py!}
@@ -164,7 +164,7 @@ Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAP
 
 ### Incluir a documentação personalizada para arquivos estáticos
 
-E da mesma forma que com um CDN personalizado, agora você pode criar as *path operations* para a documentação personalizada.
+E da mesma forma que com um CDN personalizado, agora você pode criar as *operações de rota* para a documentação personalizada.
 
 Novamente, você pode reutilizar as funções internas do FastAPI para criar as páginas HTML para a documentação e passar os argumentos necessários:
 
@@ -180,9 +180,9 @@ E de forma semelhante para o ReDoc...
 {!../../docs_src/custom_docs_ui/tutorial002.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
-O *path operation* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
+A *operação de rota* para `swagger_ui_redirect` é um auxiliar para quando você usa OAuth2.
 
 Se você integrar sua API com um provedor OAuth2, você poderá autenticar e voltar para a documentação da API com as credenciais adquiridas. E, então, interagir com ela usando a autenticação OAuth2 real.
 
@@ -190,9 +190,9 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 ///
 
-### Criar uma *path operation* para testar arquivos estáticos
+### Criar uma *operação de rota* para testar arquivos estáticos
 
-Agora, para poder testar se tudo funciona, crie uma *path operation*:
+Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
 ```Python hl_lines="39-41"
 {!../../docs_src/custom_docs_ui/tutorial002.py!}
