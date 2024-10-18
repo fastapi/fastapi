@@ -1,12 +1,12 @@
 # 请求体
 
-FastAPI 使用**请求体**从客户端（例如浏览器）向 API 发送数据。
+FastAPI 使用 **请求体** 从客户端（例如浏览器）向 API 发送数据。
 
-**请求体**是客户端发送给 API 的数据。**响应体**是 API 发送给客户端的数据。
+**请求体** 是客户端发送给 API 的数据。**响应体** 是 `API` 发送给客户端的数据。
 
-API 基本上肯定要发送**响应体**，但是客户端不一定发送**请求体**。
+API 基本上肯定要发送 **响应体**，但是客户端不一定发送 **请求体**。
 
-使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型声明**请求体**，能充分利用它的功能和优点。
+使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型声明 **请求体**，能充分利用它的功能和优点。
 
 /// info | "说明"
 
