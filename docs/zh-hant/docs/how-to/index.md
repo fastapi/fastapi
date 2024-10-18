@@ -8,6 +8,6 @@
 
 /// tip
 
-如果你想要以結構化的方式 **學習 FastAPI**（推薦），請前往[Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank}逐章閱讀。
+如果你想要以結構化的方式 **學習 FastAPI**（推薦），請前往[教學 - 使用者指南](../tutorial/index.md){.internal-link target=_blank}逐章閱讀。
 
 ///
