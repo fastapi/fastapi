@@ -20,7 +20,7 @@ E claro, ele suporta o mesmo:
 
 Isso funciona da mesma forma que com os modelos Pydantic. E na verdade é alcançado da mesma maneira por baixo dos panos, usando Pydantic.
 
-/// info
+/// info | Informação
 
 Lembre-se de que dataclasses não podem fazer tudo o que os modelos Pydantic podem fazer.
 
@@ -76,13 +76,13 @@ Nesse caso, você pode simplesmente trocar as `dataclasses` padrão por `pydanti
 
     Novamente, você pode combinar `dataclasses` com anotações de tipo padrão.
 
-8. Note que esta *função de operação de caminho* usa `def` regular em vez de `async def`.
+8. Note que esta *função de operação de rota* usa `def` regular em vez de `async def`.
 
     Como sempre, no FastAPI você pode combinar `def` e `async def` conforme necessário.
 
     Se você precisar de uma atualização sobre quando usar qual, confira a seção _"Com pressa?"_ na documentação sobre [`async` e `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
 
-9. Esta *função de operação de caminho* não está retornando dataclasses (embora pudesse), mas uma lista de dicionários com dados internos.
+9. Esta *função de operação de rota* não está retornando dataclasses (embora pudesse), mas uma lista de dicionários com dados internos.
 
     O FastAPI usará o parâmetro `response_model` (que inclui dataclasses) para converter a resposta.
 
