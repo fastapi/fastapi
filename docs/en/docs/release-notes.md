@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/fastapi-cli.md`. PR [#12444](https://github.com/fastapi/fastapi/pull/12444) by [@codingjenny](https://github.com/codingjenny).
 * 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/deployment/index.md`. PR [#12439](https://github.com/fastapi/fastapi/pull/12439) by [@codingjenny](https://github.com/codingjenny).
 * 🌐 Add Portuguese translation for `docs/pt/docs/how-to/testing-database.md`. PR [#12472](https://github.com/fastapi/fastapi/pull/12472) by [@GuilhermeRameh](https://github.com/GuilhermeRameh).
 * 🌐 Add Portuguese translation for `docs/pt/docs/how-to/custom-docs-ui-assets.md`. PR [#12473](https://github.com/fastapi/fastapi/pull/12473) by [@devluisrodrigues](https://github.com/devluisrodrigues).
