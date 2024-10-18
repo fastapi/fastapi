@@ -26,7 +26,6 @@ from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
-
 DictIntStrAny = Dict[Union[int, str], Any]
 SetIntStr = Set[Union[int, str]]
 
