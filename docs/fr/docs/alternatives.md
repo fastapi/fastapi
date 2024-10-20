@@ -351,7 +351,7 @@ Cela a en fait inspiré la mise à jour de certaines parties de Pydantic, afin d
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug a été l'un des premiers frameworks à implémenter la déclaration des types de paramètres d'API en utilisant les type hints Python. C'était une excellente idée qui a inspiré d'autres outils à faire de même.
 
