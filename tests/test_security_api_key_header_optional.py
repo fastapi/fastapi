@@ -60,13 +60,13 @@ def test_openapi_schema():
                     },
                     "summary": "Read Current User",
                     "operationId": "read_current_user_users_me_get",
-                    "security": [{"APIKeyHeader": []}],
+                    "security": [{"key": []}],
                 }
             }
         },
         "components": {
             "securitySchemes": {
-                "APIKeyHeader": {"type": "apiKey", "name": "key", "in": "header"}
+                "key": {"type": "apiKey", "name": "key", "in": "header"}
             }
         },
     }
