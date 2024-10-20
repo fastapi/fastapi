@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix broken link in docs. PR [#12495](https://github.com/fastapi/fastapi/pull/12495) by [@eltonjncorreia](https://github.com/eltonjncorreia).
+
 ### Translations
 
 * 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/fastapi-cli.md`. PR [#12444](https://github.com/fastapi/fastapi/pull/12444) by [@codingjenny](https://github.com/codingjenny).
