@@ -114,45 +114,49 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
+    html_swagger_ui_parameters = "\n                    ".join(
+        [
+            f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},"
+            for key, value in current_swagger_ui_parameters.items()
+        ]
+    )
+    html_oauth2_redirect_url = (
+        f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        if oauth2_redirect_url
+        else ""
+    )
+    init_oauth_html = (
+        f"ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})"
+        if init_oauth
+        else ""
+    )
+
     html = f"""
     <!DOCTYPE html>
     <html>
-    <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
-    <title>{title}</title>
-    </head>
-    <body>
-    <div id="swagger-ui">
-    </div>
-    <script src="{swagger_js_url}"></script>
-    <!-- `SwaggerUIBundle` is now available on the page -->
-    <script>
-    const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
-    """
-
-    for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
-
-    if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
-
-    html += """
-    presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
-        ],
-    })"""
-
-    if init_oauth:
-        html += f"""
-        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
-        """
-
-    html += """
-    </script>
-    </body>
+        <head>
+            <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
+            <link rel="shortcut icon" href="{swagger_favicon_url}">
+            <title>{title}</title>
+        </head>
+        <body>
+            <div id="swagger-ui">
+            </div>
+            <script src="{swagger_js_url}"></script>
+            <!-- `SwaggerUIBundle` is now available on the page -->
+            <script>
+                const ui = SwaggerUIBundle({{
+                    url: '{openapi_url}',
+                    {html_swagger_ui_parameters}
+                    {html_oauth2_redirect_url}
+                    presets: [
+                        SwaggerUIBundle.presets.apis,
+                        SwaggerUIBundle.SwaggerUIStandalonePreset
+                    ],
+                }})
+                {init_oauth_html}
+            </script>
+        </body>
     </html>
     """
     return HTMLResponse(html)
