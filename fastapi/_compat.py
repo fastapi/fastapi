@@ -110,7 +110,7 @@ if PYDANTIC_V2:
         def __post_init__(self) -> None:
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[self.field_info.annotation, self.field_info],
-                config=self.model_config,
+                config=self.model_config,  # type: ignore[arg-type]
             )
 
         def get_default(self) -> Any:
@@ -285,7 +285,9 @@ if PYDANTIC_V2:
     def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
         return [
             ModelField(
-                field_info=field_info, name=name, model_config=model.model_config
+                field_info=field_info,
+                name=name,
+                model_config=model.model_config,  # type: ignore[arg-type]
             )
             for name, field_info in model.model_fields.items()
         ]
