@@ -1,1 +1,5 @@
 INHERIT: ../en/mkdocs.yml
+
+markdown_extensions:
+  pymdownx.betterem:
+    smart_enable: underscore # This is will override the `en/mkdocs.yml` pymdownx.betterem plugin
