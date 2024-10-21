@@ -722,7 +722,7 @@ def _get_multidict_value(
         and value == ""
     ):
         # Empty strings in a form can be a representation of None values
-        _, error = field.validate(value=None)
+        _, error = field.validate(None, {}, loc=())
         # If None is an accepted value for this field, use that
         if error is None:
             value = None
