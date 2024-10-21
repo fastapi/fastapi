@@ -91,7 +91,7 @@ def test_propagates_pydantic_model_config():
         model_config = ConfigDict(
             arbitrary_types_allowed=True,
         )
-        value: str | Missing = Missing()
+        value: Union[str, Missing] = Missing()
 
     @app.post("/")
     def foo(req: Model) -> str | None:
