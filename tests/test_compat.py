@@ -80,7 +80,8 @@ def test_complex():
     assert response2.json() == [1, 2]
 
 
-def test_propagates_pydantic_model_config():
+@needs_pydanticv2
+def test_propagates_pydantic2_model_config():
     app = FastAPI()
 
     class Missing:
