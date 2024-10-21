@@ -95,7 +95,7 @@ def test_propagates_pydantic2_model_config():
         value: Union[str, Missing] = Missing()
 
     @app.post("/")
-    def foo(req: Model) -> str | None:
+    def foo(req: Model) -> Union[str, None]:
         return req.value or None
 
     client = TestClient(app)
