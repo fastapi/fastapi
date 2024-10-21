@@ -87,7 +87,7 @@ if PYDANTIC_V2:
     class ModelField:
         field_info: FieldInfo
         name: str
-        model_config: BaseConfig | None = None
+        model_config: Union[BaseConfig, None] = None
         mode: Literal["validation", "serialization"] = "validation"
 
         @property
