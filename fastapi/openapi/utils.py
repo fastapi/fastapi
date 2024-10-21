@@ -242,6 +242,7 @@ def get_openapi_path(
     separate_input_output_schemas: bool = True,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
+    empty_responses: List[str] = []
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
@@ -357,7 +358,7 @@ def get_openapi_path(
                     additional_response,
                 ) in route.responses.items():
                     process_response = additional_response.copy()
-                    process_response.pop("model", None)
+                    process_response_model = process_response.pop("model", None)
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
                         status_code_key = "default"
@@ -367,6 +368,8 @@ def get_openapi_path(
                     assert isinstance(
                         process_response, dict
                     ), "An additional response must be a dict"
+                    if not process_response and not process_response_model:
+                        empty_responses.append(str(additional_status_code))
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
@@ -418,6 +421,9 @@ def get_openapi_path(
                     )
             if route.openapi_extra:
                 deep_dict_update(operation, route.openapi_extra)
+            if empty_responses:
+                for response_status_code in empty_responses:
+                    del operation["responses"][response_status_code]
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
