@@ -80,6 +80,34 @@ def test_complex():
     assert response2.json() == [1, 2]
 
 
+def test_propagates_pydantic_model_config():
+    app = FastAPI()
+
+    class Missing:
+        def __bool__(self):
+            return False
+
+    class Model(BaseModel):
+        model_config = ConfigDict(
+            arbitrary_types_allowed=True,
+        )
+        value: str | Missing = Missing()
+
+    @app.post("/")
+    def foo(req: Model) -> str | None:
+        return req.value or None
+
+    client = TestClient(app)
+
+    response = client.post("/", json={})
+    assert response.status_code == 200, response.text
+    assert response.json() is None
+
+    response2 = client.post("/", json={"value": "foo"})
+    assert response2.status_code == 200, response2.text
+    assert response2.json() == "foo"
+
+
 def test_is_bytes_sequence_annotation_union():
     # For coverage
     # TODO: in theory this would allow declaring types that could be lists of bytes
