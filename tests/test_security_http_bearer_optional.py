@@ -61,6 +61,8 @@ def test_openapi_schema():
             }
         },
         "components": {
-            "securitySchemes": {"HTTPBearer": {"type": "http", "scheme": "bearer", "realm": "global"}}
+            "securitySchemes": {
+                "HTTPBearer": {"type": "http", "scheme": "bearer", "realm": "global"}
+            }
         },
     }

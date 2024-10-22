@@ -38,9 +38,11 @@ def test_security_http_digest_incorrect_scheme_credentials():
         "/users/me", headers={"Authorization": "Other invalidauthorization"}
     )
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.json() == {
+        "detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"
+    }
     assert response.headers["WWW-Authenticate"] == 'Digest realm="global" qop="auth"'
-    
+
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
@@ -67,9 +69,9 @@ def test_openapi_schema():
             "securitySchemes": {
                 "HTTPDigest": {
                     "type": "http",
-                    "scheme": "digest", 
+                    "scheme": "digest",
                     "realm": "global",
-                    "qop": "auth"
+                    "qop": "auth",
                 }
             }
         },

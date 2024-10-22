@@ -24,7 +24,9 @@ def test_security_http_digest():
 def test_security_http_digest_no_credentials():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.json() == {
+        "detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"
+    }
     assert response.headers["WWW-Authenticate"] == 'Digest realm="simple" qop="auth"'
 
 
@@ -33,7 +35,9 @@ def test_security_http_digest_incorrect_scheme_credentials():
         "/users/me", headers={"Authorization": "Other invalidauthorization"}
     )
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.json() == {
+        "detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"
+    }
     assert response.headers["WWW-Authenticate"] == 'Digest realm="simple" qop="auth"'
 
 
