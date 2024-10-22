@@ -4,7 +4,9 @@ from typing import Optional
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
+from fastapi.openapi.models import HTTPBasic as HTTPBasicModel
 from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
+from fastapi.openapi.models import HTTPDigest as HTTPDigestModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
@@ -179,7 +181,7 @@ class HTTPBasic(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBaseModel(scheme="basic", description=description)
+        self.model = HTTPBasicModel(description=description, realm=realm)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -298,7 +300,7 @@ class HTTPBearer(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
+        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description, realm=realm)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -423,7 +425,7 @@ class HTTPDigest(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBaseModel(scheme="digest", description=description)
+        self.model = HTTPDigestModel(description=description, realm=realm, qop=qop)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.qop = qop

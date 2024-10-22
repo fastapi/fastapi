@@ -357,9 +357,21 @@ class HTTPBase(SecurityBase):
     scheme: str
 
 
+class HTTPBasic(HTTPBase):
+    scheme: Literal["basic"] = "basic"
+    realm: str
+
+
 class HTTPBearer(HTTPBase):
     scheme: Literal["bearer"] = "bearer"
     bearerFormat: Optional[str] = None
+    realm: str
+
+
+class HTTPDigest(HTTPBase):
+    scheme: Literal["digest"] = "digest"
+    realm: str
+    qop: str
 
 
 class OAuthFlow(BaseModelWithConfig):

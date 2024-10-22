@@ -1,4 +1,5 @@
 from base64 import b64encode
+from typing import Optional
 
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -6,11 +7,13 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPBasic(realm="simple")
+security = HTTPBasic()
 
 
 @app.get("/users/me")
-def read_current_user(credentials: HTTPBasicCredentials = Security(security)):
+def read_current_user(credentials: Optional[HTTPBasicCredentials] = Security(security)):
+    if credentials is None:
+        return {"msg": "Create an account first"}
     return {"username": credentials.username, "password": credentials.password}
 
 
@@ -27,7 +30,7 @@ def test_security_http_basic_no_credentials():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
-    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global"'
 
 
 def test_security_http_basic_invalid_credentials():
@@ -35,7 +38,7 @@ def test_security_http_basic_invalid_credentials():
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple", error="invalid_token", error_description="base64 token has invalid format"'
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global", error="invalid_token", error_description="base64 token has invalid format"'
     assert response.json() == {"detail": "Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)"}
 
 
@@ -44,7 +47,7 @@ def test_security_http_basic_non_basic_credentials():
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple", error="invalid_token", error_description="base64 token has invalid format"'
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="global", error="invalid_token", error_description="base64 token has invalid format"'
     assert response.json() == {"detail": "Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)"}
 
 
@@ -70,6 +73,6 @@ def test_openapi_schema():
             }
         },
         "components": {
-            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic", "realm": "simple"}}
+            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic", "realm": "global"}}
         },
     }

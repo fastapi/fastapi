@@ -64,6 +64,8 @@ def test_openapi_schema():
                     "type": "http",
                     "scheme": "digest",
                     "description": "HTTPDigest scheme",
+                    "realm": "global",
+                    "qop": "auth",
                 }
             }
         },

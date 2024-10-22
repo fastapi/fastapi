@@ -72,6 +72,6 @@ def test_openapi_schema(client: TestClient):
             }
         },
         "components": {
-            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
+            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic", "realm": "global"}}
         },
     }

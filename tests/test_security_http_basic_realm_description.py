@@ -75,6 +75,7 @@ def test_openapi_schema():
                     "type": "http",
                     "scheme": "basic",
                     "description": "HTTPBasic scheme",
+                    "realm": "simple",
                 }
             }
         },

@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Security
-from fastapi.security import HTTPAuthorizationCredentials, HTTPDigest
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPDigest()
+security = HTTPBearer(realm="simple")
 
 
 @app.get("/users/me")
@@ -15,24 +15,24 @@ def read_current_user(credentials: HTTPAuthorizationCredentials = Security(secur
 client = TestClient(app)
 
 
-def test_security_http_digest():
-    response = client.get("/users/me", headers={"Authorization": "Digest foobar"})
+def test_security_http_bearer():
+    response = client.get("/users/me", headers={"Authorization": "Bearer foobar"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"scheme": "Digest", "credentials": "foobar"}
+    assert response.json() == {"scheme": "Bearer", "credentials": "foobar"}
 
 
-def test_security_http_digest_no_credentials():
+def test_security_http_bearer_no_credentials():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.headers["WWW-Authenticate"] == 'Bearer realm="simple"'
 
 
-def test_security_http_digest_incorrect_scheme_credentials():
-    response = client.get(
-        "/users/me", headers={"Authorization": "Other invalidauthorization"}
-    )
+def test_security_http_bearer_incorrect_scheme_credentials():
+    response = client.get("/users/me", headers={"Authorization": "Basic notreally"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.headers["WWW-Authenticate"] == 'Bearer realm="simple"'
 
 
 def test_openapi_schema():
@@ -52,17 +52,16 @@ def test_openapi_schema():
                     },
                     "summary": "Read Current User",
                     "operationId": "read_current_user_users_me_get",
-                    "security": [{"HTTPDigest": []}],
+                    "security": [{"HTTPBearer": []}],
                 }
             }
         },
         "components": {
             "securitySchemes": {
-                "HTTPDigest": {
-                    "type": "http", 
-                    "scheme": "digest", 
-                    "realm": "global",
-                    "qop": "auth",
+                "HTTPBearer": {
+                    "type": "http",
+                    "scheme": "bearer",
+                    "realm": "simple",
                 }
             }
         },

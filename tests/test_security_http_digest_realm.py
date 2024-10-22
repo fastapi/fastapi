@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPDigest()
+security = HTTPDigest(realm="simple")
 
 
 @app.get("/users/me")
@@ -25,6 +25,7 @@ def test_security_http_digest_no_credentials():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.headers["WWW-Authenticate"] == 'Digest realm="simple" qop="auth"'
 
 
 def test_security_http_digest_incorrect_scheme_credentials():
@@ -33,6 +34,7 @@ def test_security_http_digest_incorrect_scheme_credentials():
     )
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.headers["WWW-Authenticate"] == 'Digest realm="simple" qop="auth"'
 
 
 def test_openapi_schema():
@@ -59,9 +61,9 @@ def test_openapi_schema():
         "components": {
             "securitySchemes": {
                 "HTTPDigest": {
-                    "type": "http", 
-                    "scheme": "digest", 
-                    "realm": "global",
+                    "type": "http",
+                    "scheme": "digest",
+                    "realm": "simple",
                     "qop": "auth",
                 }
             }

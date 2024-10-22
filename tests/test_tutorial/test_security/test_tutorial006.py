@@ -60,6 +60,6 @@ def test_openapi_schema():
             }
         },
         "components": {
-            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
+            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic", "realm": "global"}}
         },
     }

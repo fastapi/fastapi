@@ -64,6 +64,13 @@ def test_openapi_schema():
             }
         },
         "components": {
-            "securitySchemes": {"HTTPDigest": {"type": "http", "scheme": "digest"}}
+            "securitySchemes": {
+                "HTTPDigest": {
+                    "type": "http",
+                    "scheme": "digest", 
+                    "realm": "global",
+                    "qop": "auth"
+                }
+            }
         },
     }
