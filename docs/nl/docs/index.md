@@ -93,7 +93,7 @@ De belangrijkste kenmerken zijn:
 
 "_Wat je hebt gebouwd ziet er echt super solide en gepolijst uit. In veel opzichten is het wat ik wilde dat **Hug** kon zijn - het is echt inspirerend om iemand dit te zien bouwen._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
