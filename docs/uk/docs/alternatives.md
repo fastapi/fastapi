@@ -321,7 +321,7 @@ Falcon — ще один високопродуктивний фреймворк
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug був одним із перших фреймворків, який реалізував оголошення типів параметрів API за допомогою підказок типу Python. Це була чудова ідея, яка надихнула інші інструменти зробити те саме.
 
