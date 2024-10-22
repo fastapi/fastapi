@@ -297,7 +297,12 @@ def get_request_handler(
                     embed_body_fields=embed_body_fields,
                 )
                 errors = solved_result.errors
-                if not errors:
+                if errors:
+                    validation_error = RequestValidationError(
+                        _normalize_errors(errors), body=body
+                    )
+                    raise validation_error
+                else:
                     raw_response = await run_endpoint_function(
                         dependant=dependant,
                         values=solved_result.values,
@@ -339,11 +344,6 @@ def get_request_handler(
                         if not is_body_allowed_for_status_code(response.status_code):
                             response.body = b""
                         response.headers.raw.extend(solved_result.response.headers.raw)
-            if errors:
-                validation_error = RequestValidationError(
-                    _normalize_errors(errors), body=body
-                )
-                raise validation_error
         if response is None:
             raise FastAPIError(
                 "No response object was returned. There's a high chance that the "
