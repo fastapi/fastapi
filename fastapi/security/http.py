@@ -203,7 +203,9 @@ class HTTPBasic(HTTPBase):
         invalid_user_credentials_exc = HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail="Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)",
-            headers={"WWW-Authenticate": f'Basic realm="{self.realm}", error="invalid_token", error_description="base64 token has invalid format"'},
+            headers={
+                "WWW-Authenticate": f'Basic realm="{self.realm}", error="invalid_token", error_description="base64 token has invalid format"'
+            },
         )
         try:
             data = b64decode(param).decode("ascii")
@@ -300,7 +302,9 @@ class HTTPBearer(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description, realm=realm)
+        self.model = HTTPBearerModel(
+            bearerFormat=bearerFormat, description=description, realm=realm
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -314,18 +318,18 @@ class HTTPBearer(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED, 
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
-                    headers=unauthorized_headers
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED, 
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)",
-                    headers=unauthorized_headers
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
@@ -436,13 +440,15 @@ class HTTPDigest(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
-        unauthorize_headers = {"WWW-Authenticate": f'Digest realm="{self.realm}" qop="{self.qop}"'}
+        unauthorize_headers = {
+            "WWW-Authenticate": f'Digest realm="{self.realm}" qop="{self.qop}"'
+        }
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
                     detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
-                    headers=unauthorize_headers
+                    headers=unauthorize_headers,
                 )
             else:
                 return None

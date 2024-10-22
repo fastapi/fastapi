@@ -24,14 +24,18 @@ def test_security_http_bearer():
 def test_security_http_bearer_no_credentials():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.json() == {
+        "detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"
+    }
     assert response.headers["WWW-Authenticate"] == 'Bearer realm="simple"'
 
 
 def test_security_http_bearer_incorrect_scheme_credentials():
     response = client.get("/users/me", headers={"Authorization": "Basic notreally"})
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"}
+    assert response.json() == {
+        "detail": "Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)"
+    }
     assert response.headers["WWW-Authenticate"] == 'Bearer realm="simple"'
 
 

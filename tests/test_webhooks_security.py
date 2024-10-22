@@ -121,6 +121,8 @@ def test_openapi_schema():
                     "title": "ValidationError",
                 },
             },
-            "securitySchemes": {"HTTPBearer": {"type": "http", "scheme": "bearer", "realm": "global"}},
+            "securitySchemes": {
+                "HTTPBearer": {"type": "http", "scheme": "bearer", "realm": "global"}
+            },
         },
     }
