@@ -4,7 +4,7 @@
 
 同样地，你可以定义在应用**关闭**时应执行的逻辑。在这种情况下，这段代码将在**处理可能的多次请求后**执行**一次**。
 
-因为这段代码在应用开始接收请求**之前**执行，也会在处理请求可能的若干请求**之后**执行，它覆盖了整个应用程序的**生命周期**（"生命周期"这个词很重要😉）。
+因为这段代码在应用开始接收请求**之前**执行，也会在处理可能的若干请求**之后**执行，它覆盖了整个应用程序的**生命周期**（"生命周期"这个词很重要😉）。
 
 这对于设置你需要在整个应用中使用的**资源**非常有用，这些资源在请求之间**共享**，你可能需要在之后进行**释放**。例如，数据库连接池，或加载一个共享的机器学习模型。
 
@@ -92,7 +92,7 @@ async with lifespan(app):
 
 /// warning | "警告"
 
-配置**启动**和**关闭**事件的推荐方法是使用 `FastAPI()` 应用的 `lifespan` 参数，如前所示。如果你提供了一个 `lifespan` 参数，启动（ `startup` ）和关闭（ `shutdown` ）事件处理器将不再生效。要么使用 `lifespan`，要么配置所有事件，两者不能共用。
+配置**启动**和**关闭**事件的推荐方法是使用 `FastAPI()` 应用的 `lifespan` 参数，如前所示。如果你提供了一个 `lifespan` 参数，启动（`startup`）和关闭（`shutdown`）事件处理器将不再生效。要么使用 `lifespan`，要么配置所有事件，两者不能共用。
 
 你可以跳过这一部分。
 
@@ -158,7 +158,7 @@ async with lifespan(app):
 
 只是为好奇者提供的技术细节。🤓
 
-在底层，这部分是<a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">生命周期协议</a>的一部分，参见 ASGI 技术规范，定义了称为启动（ `startup` ）和关闭（ `shutdown` ）的事件。
+在底层，这部分是<a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">生命周期协议</a>的一部分，参见 ASGI 技术规范，定义了称为启动（`startup`）和关闭（`shutdown`）的事件。
 
 /// info | "说明"
 
