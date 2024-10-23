@@ -9,6 +9,29 @@ hide:
 
 ### Docs
 
+* 🌐 Fix rendering issue in translations. PR [#12509](https://github.com/fastapi/fastapi/pull/12509) by [@alejsdev](https://github.com/alejsdev).
+
+### Translations
+
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/how-to/index.md`. PR [#12468](https://github.com/fastapi/fastapi/pull/12468) by [@codingjenny](https://github.com/codingjenny).
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/tutorial/index.md`. PR [#12466](https://github.com/fastapi/fastapi/pull/12466) by [@codingjenny](https://github.com/codingjenny).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/header-param-models.md`. PR [#12437](https://github.com/fastapi/fastapi/pull/12437) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/extending-openapi.md`. PR [#12470](https://github.com/fastapi/fastapi/pull/12470) by [@ilacftemp](https://github.com/ilacftemp).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/dataclasses.md`. PR [#12475](https://github.com/fastapi/fastapi/pull/12475) by [@leoscarlato](https://github.com/leoscarlato).
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/custom-request-and-route.md`. PR [#12483](https://github.com/fastapi/fastapi/pull/12483) by [@devfernandoa](https://github.com/devfernandoa).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12505](https://github.com/fastapi/fastapi/pull/12505) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.115.3
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette to `>=0.40.0,<0.42.0`. PR [#12469](https://github.com/fastapi/fastapi/pull/12469) by [@defnull](https://github.com/defnull).
+
+### Docs
+
 * 📝 Fix broken link in docs. PR [#12495](https://github.com/fastapi/fastapi/pull/12495) by [@eltonjncorreia](https://github.com/eltonjncorreia).
 
 ### Translations
