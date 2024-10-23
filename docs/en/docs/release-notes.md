@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix minor typos. PR [#12516](https://github.com/fastapi/fastapi/pull/12516) by [@kkirsche](https://github.com/kkirsche).
 * 🌐 Fix rendering issue in translations. PR [#12509](https://github.com/fastapi/fastapi/pull/12509) by [@alejsdev](https://github.com/alejsdev).
 
 ### Translations
