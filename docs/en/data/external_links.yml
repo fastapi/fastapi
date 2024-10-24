@@ -339,6 +339,10 @@ Articles:
     link: https://qiita.com/mtitg/items/47770e9a562dd150631d
     title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
   Portuguese:
+  - author: Eduardo Mendes
+    author_link: https://bolha.us/@dunossauro
+    link: https://fastapidozero.dunossauro.com/
+    title: FastAPI do ZERO
   - author: Jessica Temporal
     author_link: https://jtemporal.com/socials
     link: https://jtemporal.com/dicas-para-migrar-de-flask-para-fastapi-e-vice-versa/
