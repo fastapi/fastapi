@@ -39,7 +39,7 @@ The yielded value is what is injected into *path operations* and other dependenc
 {!../../docs_src/dependencies/tutorial007.py!}
 ```
 
-The code following the `yield` statement is executed after the response has been delivered:
+The code following the `yield` statement is executed after creating the response but before sending it:
 
 ```Python hl_lines="5-6"
 {!../../docs_src/dependencies/tutorial007.py!}
