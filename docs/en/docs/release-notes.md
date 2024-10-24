@@ -15,6 +15,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/how-to/separate-openapi-schemas.md`. PR [#12518](https://github.com/fastapi/fastapi/pull/12518) by [@ilacftemp](https://github.com/ilacftemp).
 * 🌐 Update Traditional Chinese translation for `docs/zh-hant/docs/deployment/index.md`. PR [#12521](https://github.com/fastapi/fastapi/pull/12521) by [@codingjenny](https://github.com/codingjenny).
 * 🌐 Update Traditional Chinese translation for `docs/zh-hant/docs/deployment/cloud.md`. PR [#12522](https://github.com/fastapi/fastapi/pull/12522) by [@codingjenny](https://github.com/codingjenny).
 * 🌐 Update Traditional Chinese translation for `docs/zh-hant/docs/how-to/index.md`. PR [#12523](https://github.com/fastapi/fastapi/pull/12523) by [@codingjenny](https://github.com/codingjenny).
