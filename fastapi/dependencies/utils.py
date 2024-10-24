@@ -51,7 +51,14 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.dependencies.models import (
+    CacheKey,
+    EndpointDependant,
+    LifespanDependant,
+    LifespanDependantCacheKey,
+    SecurityRequirement,
+)
+from fastapi.exceptions import FastAPIError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -112,8 +119,9 @@ def get_param_sub_dependant(
     param_name: str,
     depends: params.Depends,
     path: str,
+    caller: Callable[..., Any],
     security_scopes: Optional[List[str]] = None,
-) -> Dependant:
+) -> Union[EndpointDependant, LifespanDependant]:
     assert depends.dependency
     return get_sub_dependant(
         depends=depends,
@@ -121,14 +129,25 @@ def get_param_sub_dependant(
         path=path,
         name=param_name,
         security_scopes=security_scopes,
+        caller=caller,
     )
 
 
-def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
+def get_parameterless_sub_dependant(
+        *,
+        depends: params.Depends,
+        path: str,
+        caller: Callable[..., Any]
+) -> Union[EndpointDependant, LifespanDependant]:
     assert callable(
         depends.dependency
     ), "A parameter-less dependency must have a callable dependency"
-    return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
+    return get_sub_dependant(
+        depends=depends,
+        dependency=depends.dependency,
+        path=path,
+        caller=caller
+    )
 
 
 def get_sub_dependant(
@@ -136,57 +155,69 @@ def get_sub_dependant(
     depends: params.Depends,
     dependency: Callable[..., Any],
     path: str,
+    caller: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    security_requirement = None
-    security_scopes = security_scopes or []
-    if isinstance(depends, params.Security):
-        dependency_scopes = depends.scopes
-        security_scopes.extend(dependency_scopes)
-    if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
-        security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=use_scopes
+) -> Union[EndpointDependant, LifespanDependant]:
+    if depends.dependency_scope == "lifespan":
+        return get_lifespan_dependant(
+            caller=caller,
+            call=depends.dependency,
+            name=name,
+            use_cache=depends.use_cache
         )
-    sub_dependant = get_dependant(
-        path=path,
-        call=dependency,
-        name=name,
-        security_scopes=security_scopes,
-        use_cache=depends.use_cache,
-    )
-    if security_requirement:
-        sub_dependant.security_requirements.append(security_requirement)
-    return sub_dependant
-
-
-CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
+    elif depends.dependency_scope == "endpoint":
+        security_requirement = None
+        security_scopes = security_scopes or []
+        if isinstance(depends, params.Security):
+            dependency_scopes = depends.scopes
+            security_scopes.extend(dependency_scopes)
+        if isinstance(dependency, SecurityBase):
+            use_scopes: List[str] = []
+            if isinstance(dependency, (OAuth2, OpenIdConnect)):
+                use_scopes = security_scopes
+            security_requirement = SecurityRequirement(
+                security_scheme=dependency, scopes=use_scopes
+            )
+        sub_dependant = get_endpoint_dependant(
+            path=path,
+            call=dependency,
+            name=name,
+            security_scopes=security_scopes,
+            use_cache=depends.use_cache,
+        )
+        if security_requirement:
+            sub_dependant.security_requirements.append(security_requirement)
+        return sub_dependant
+    else:
+        raise ValueError(
+            f"Dependency {name} of {caller} has an invalid "
+            f"sub-dependency scope: {depends.dependency_scope}"
+        )
 
 
 def get_flat_dependant(
-    dependant: Dependant,
+    dependant: EndpointDependant,
     *,
     skip_repeats: bool = False,
     visited: Optional[List[CacheKey]] = None,
-) -> Dependant:
+) -> EndpointDependant:
     if visited is None:
         visited = []
     visited.append(dependant.cache_key)
 
-    flat_dependant = Dependant(
+    flat_dependant = EndpointDependant(
         path_params=dependant.path_params.copy(),
         query_params=dependant.query_params.copy(),
         header_params=dependant.header_params.copy(),
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
         security_requirements=dependant.security_requirements.copy(),
+        lifespan_dependencies=dependant.lifespan_dependencies.copy(),
         use_cache=dependant.use_cache,
-        path=dependant.path,
+        path=dependant.path
     )
-    for sub_dependant in dependant.dependencies:
+    for sub_dependant in dependant.endpoint_dependencies:
         if skip_repeats and sub_dependant.cache_key in visited:
             continue
         flat_sub = get_flat_dependant(
@@ -198,6 +229,7 @@ def get_flat_dependant(
         flat_dependant.cookie_params.extend(flat_sub.cookie_params)
         flat_dependant.body_params.extend(flat_sub.body_params)
         flat_dependant.security_requirements.extend(flat_sub.security_requirements)
+        flat_dependant.lifespan_dependencies.extend(flat_sub.lifespan_dependencies)
     return flat_dependant
 
 
@@ -211,7 +243,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     return fields
 
 
-def get_flat_params(dependant: Dependant) -> List[ModelField]:
+def get_flat_params(dependant: EndpointDependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     path_params = _get_flat_fields_from_params(flat_dependant.path_params)
     query_params = _get_flat_fields_from_params(flat_dependant.query_params)
@@ -254,18 +286,64 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     return get_typed_annotation(annotation, globalns)
 
 
-def get_dependant(
+def get_lifespan_dependant(
+    *,
+    caller: Callable[..., Any],
+    call: Callable[..., Any],
+    name: Optional[str] = None,
+    use_cache: bool = True,
+) -> LifespanDependant:
+    dependency_signature = get_typed_signature(call)
+    signature_params = dependency_signature.parameters
+    dependant = LifespanDependant(
+        call=call,
+        name=name,
+        use_cache=use_cache,
+        caller=caller
+    )
+    for param_name, param in signature_params.items():
+        param_details = analyze_param(
+            param_name=param_name,
+            annotation=param.annotation,
+            value=param.default,
+            is_path_param=False,
+        )
+        if param_details.depends is None:
+            raise FastAPIError(
+                f"Lifespan dependency {dependant.name} was defined with an "
+                f"invalid argument {param_name}. Lifespan dependencies may "
+                f"only use other lifespan dependencies as arguments.")
+
+        if param_details.depends.dependency_scope != "lifespan":
+            raise FastAPIError(
+                "Lifespan dependency may not use "
+                "sub-dependencies of other scopes."
+            )
+
+        sub_dependant = get_lifespan_dependant(
+            name=param_name,
+            call=param_details.depends.dependency,
+            use_cache=param_details.depends.use_cache,
+            caller=call
+        )
+        dependant.dependencies.append(sub_dependant)
+
+    return dependant
+
+
+
+def get_endpoint_dependant(
     *,
     path: str,
     call: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
-) -> Dependant:
+) -> EndpointDependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(
+    dependant = EndpointDependant(
         call=call,
         name=name,
         path=path,
@@ -281,13 +359,28 @@ def get_dependant(
             is_path_param=is_path_param,
         )
         if param_details.depends is not None:
-            sub_dependant = get_param_sub_dependant(
-                param_name=param_name,
-                depends=param_details.depends,
-                path=path,
-                security_scopes=security_scopes,
-            )
-            dependant.dependencies.append(sub_dependant)
+            if param_details.depends.dependency_scope == "endpoint":
+                sub_dependant = get_param_sub_dependant(
+                    param_name=param_name,
+                    depends=param_details.depends,
+                    path=path,
+                    security_scopes=security_scopes,
+                    caller=call,
+                )
+                dependant.endpoint_dependencies.append(sub_dependant)
+            elif param_details.depends.dependency_scope == "lifespan":
+                sub_dependant = get_lifespan_dependant(
+                    caller=call,
+                    call=param_details.depends.dependency,
+                    name=param_name,
+                    use_cache=param_details.depends.use_cache,
+                )
+                dependant.lifespan_dependencies.append(sub_dependant)
+            else:
+                raise FastAPIError(
+                    f"Dependency \"{param_name}\" of `{call}` has an invalid "
+                    f"sub-dependency scope: \"{param_details.depends.dependency_scope}\""
+                )
             continue
         if add_non_field_param_to_dependency(
             param_name=param_name,
@@ -306,8 +399,12 @@ def get_dependant(
     return dependant
 
 
+# Kept for backwards compatibility
+get_dependant = get_endpoint_dependant
+
+
 def add_non_field_param_to_dependency(
-    *, param_name: str, type_annotation: Any, dependant: Dependant
+    *, param_name: str, type_annotation: Any, dependant: EndpointDependant
 ) -> Optional[bool]:
     if lenient_issubclass(type_annotation, Request):
         dependant.request_param_name = param_name
@@ -501,7 +598,7 @@ def analyze_param(
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
 
-def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
+def add_param_to_fields(*, field: ModelField, dependant: EndpointDependant) -> None:
     field_info = field.field_info
     field_info_in = getattr(field_info, "in_", None)
     if field_info_in == params.ParamTypes.path:
@@ -551,6 +648,82 @@ async def solve_generator(
 
 
 @dataclass
+class SolvedLifespanDependant:
+    value: Any
+    dependency_cache: Dict[Callable[..., Any], Any]
+
+
+async def solve_lifespan_dependant(
+    *,
+    dependant: LifespanDependant,
+    dependency_overrides_provider: Optional[Any] = None,
+    dependency_cache: Optional[Dict[LifespanDependantCacheKey, Callable[..., Any]]] = None,
+    async_exit_stack: AsyncExitStack,
+) -> SolvedLifespanDependant:
+    dependency_cache = dependency_cache or {}
+    if dependant.use_cache and dependant.cache_key in dependency_cache:
+        return SolvedLifespanDependant(
+            value=dependency_cache[dependant.cache_key],
+            dependency_cache=dependency_cache,
+        )
+
+    dependency_arguments: Dict[str, Any] = {}
+    sub_dependant: LifespanDependant
+    for sub_dependant in dependant.dependencies:
+        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
+        sub_dependant.cache_key = cast(
+            Callable[..., Any], sub_dependant.cache_key
+        )
+        assert sub_dependant.name, (
+            "Lifespan scoped dependencies should not be able to have "
+            "subdependencies with no name"
+        )
+
+        sub_dependant_to_solve = sub_dependant
+        if (
+            dependency_overrides_provider
+            and dependency_overrides_provider.dependency_overrides
+        ):
+            original_call = sub_dependant.call
+            call = getattr(
+                dependency_overrides_provider, "dependency_overrides", {}
+            ).get(original_call, original_call)
+            sub_dependant_to_solve = get_lifespan_dependant(
+                call=call,
+                name=sub_dependant.name,
+                caller=dependant.call
+            )
+
+        solved_sub_dependant = await solve_lifespan_dependant(
+            dependant=sub_dependant_to_solve,
+            dependency_overrides_provider=dependency_overrides_provider,
+            dependency_cache=dependency_cache,
+            async_exit_stack=async_exit_stack,
+        )
+        dependency_cache.update(solved_sub_dependant.dependency_cache)
+        dependency_arguments[sub_dependant.name] = solved_sub_dependant.value
+
+    if is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call):
+        value = await solve_generator(
+            call=dependant.call,
+            stack=async_exit_stack,
+            sub_values=dependency_arguments
+        )
+    elif is_coroutine_callable(dependant.call):
+        value = await dependant.call(**dependency_arguments)
+    else:
+        value = await run_in_threadpool(dependant.call, **dependency_arguments)
+
+    if dependant.cache_key not in dependency_cache:
+        dependency_cache[dependant.cache_key] = value
+
+    return SolvedLifespanDependant(
+        value=value,
+        dependency_cache=dependency_cache,
+    )
+
+
+@dataclass
 class SolvedDependency:
     values: Dict[str, Any]
     errors: List[Any]
@@ -562,7 +735,7 @@ class SolvedDependency:
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
-    dependant: Dependant,
+    dependant: EndpointDependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
@@ -573,13 +746,35 @@ async def solve_dependencies(
 ) -> SolvedDependency:
     values: Dict[str, Any] = {}
     errors: List[Any] = []
+
+    for sub_dependant in dependant.lifespan_dependencies:
+        if sub_dependant.name is None:
+            continue
+        try:
+            lifespan_scoped_dependencies = request.state.__fastapi__[
+                "lifespan_scoped_dependencies"]
+        except AttributeError as e:
+            raise FastAPIError(
+                "FastAPI's internal lifespan was not initialized"
+            ) from e
+
+        try:
+            value = lifespan_scoped_dependencies[sub_dependant.cache_key]
+        except KeyError as e:
+            raise FastAPIError(
+                    f"Dependency {sub_dependant.name} of {dependant.call} "
+                    f"was not initialized."
+            ) from e
+
+        values[sub_dependant.name] = value
+
     if response is None:
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
+
     dependency_cache = dependency_cache or {}
-    sub_dependant: Dependant
-    for sub_dependant in dependant.dependencies:
+    for sub_dependant in dependant.endpoint_dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         sub_dependant.cache_key = cast(
             Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
@@ -595,7 +790,7 @@ async def solve_dependencies(
                 dependency_overrides_provider, "dependency_overrides", {}
             ).get(original_call, original_call)
             use_path: str = sub_dependant.path  # type: ignore
-            use_sub_dependant = get_dependant(
+            use_sub_dependant = get_endpoint_dependant(
                 path=use_path,
                 call=call,
                 name=sub_dependant.name,
@@ -910,7 +1105,7 @@ async def request_body_to_args(
 
 
 def get_body_field(
-    *, flat_dependant: Dependant, name: str, embed_body_fields: bool
+    *, flat_dependant: EndpointDependant, name: str, embed_body_fields: bool
 ) -> Optional[ModelField]:
     """
     Get a ModelField representing the request body for a path operation, combining

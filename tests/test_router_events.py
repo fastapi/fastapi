@@ -199,6 +199,9 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
             "app_specific": True,
             "router_specific": True,
             "overridden": "app",
+            "__fastapi__": {
+                "lifespan_scoped_dependencies": {}
+            },
         }
 
 
@@ -216,7 +219,11 @@ def test_merged_no_return_lifespans_return_none() -> None:
     app.include_router(router)
 
     with TestClient(app) as client:
-        assert not client.app_state
+        assert client.app_state == {
+            "__fastapi__": {
+                "lifespan_scoped_dependencies": {}
+            }
+        }
 
 
 def test_merged_mixed_state_lifespans() -> None:
@@ -239,4 +246,9 @@ def test_merged_mixed_state_lifespans() -> None:
     app.include_router(router)
 
     with TestClient(app) as client:
-        assert client.app_state == {"router": True}
+        assert client.app_state == {
+            "router": True,
+            "__fastapi__": {
+                "lifespan_scoped_dependencies": {}
+            }
+        }

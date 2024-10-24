@@ -1,6 +1,8 @@
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum
 from typing import (
     Any,
+    AsyncGenerator,
     Awaitable,
     Callable,
     Coroutine,
@@ -15,12 +17,14 @@ from typing import (
 
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.dependencies.utils import is_coroutine_callable
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.lifespan import resolve_lifespan_dependants
 from fastapi.logger import logger
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -29,9 +33,11 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.routing import merge_lifespan_context
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
+from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
@@ -929,12 +935,24 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
+        if lifespan is None:
+            lifespan = FastAPI._internal_lifespan
+        else:
+            lifespan = merge_lifespan_context(
+                FastAPI._internal_lifespan,
+                lifespan
+            )
+
+        # Since we always use a lifespan, starlette will no longer run event
+        # handlers which are defined in the scope of the application.
+        # We therefore need to call them ourselves.
+        self._on_startup = on_startup or []
+        self._on_shutdown = on_shutdown or []
+
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
-            on_startup=on_startup,
-            on_shutdown=on_shutdown,
             lifespan=lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
@@ -962,6 +980,32 @@ class FastAPI(Starlette):
         )
         self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
+
+    @asynccontextmanager
+    async def _internal_lifespan(self) -> AsyncGenerator[dict[str, Any], None]:
+        async with AsyncExitStack() as exit_stack:
+            lifespan_scoped_dependencies = await resolve_lifespan_dependants(
+                app=self,
+                async_exit_stack=exit_stack
+            )
+            try:
+                for handler in self._on_startup:
+                    if is_coroutine_callable(handler):
+                        await handler()
+                    else:
+                        await run_in_threadpool(handler)
+                yield {
+                    "__fastapi__": {
+                        "lifespan_scoped_dependencies": lifespan_scoped_dependencies
+                    }
+                }
+            finally:
+                for handler in self._on_shutdown:
+                    if is_coroutine_callable(handler):
+                        await handler()
+                    else:
+                        await run_in_threadpool(handler)
+
 
     def openapi(self) -> Dict[str, Any]:
         """
@@ -4492,7 +4536,13 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
-        return self.router.on_event(event_type)
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            if event_type == "startup":
+                self._on_startup.append(func)
+            else:
+                self._on_shutdown.append(func)
+            return func
+        return decorator
 
     def middleware(
         self,

@@ -1,5 +1,6 @@
 from typing import Any, List
 
+import pytest
 from dirty_equals import IsOneOf
 from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
 
@@ -143,10 +144,16 @@ def test_body_repr_list():
     assert repr(Body([])) == "Body([])"
 
 
-def test_depends_repr():
-    assert repr(Depends()) == "Depends(NoneType)"
-    assert repr(Depends(get_user)) == "Depends(get_user)"
-    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=False)"
-    assert (
-        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
-    )
+@pytest.mark.parametrize(["depends", "expected_repr"], [
+    [Depends(), "Depends(NoneType)"],
+    [Depends(get_user), "Depends(get_user)"],
+    [Depends(use_cache=False), "Depends(NoneType, use_cache=False)"],
+    [Depends(get_user, use_cache=False), "Depends(get_user, use_cache=False)"],
+
+    [Depends(dependency_scope="lifespan"), "Depends(NoneType, dependency_scope=\"lifespan\")"],
+    [Depends(get_user, dependency_scope="lifespan"), "Depends(get_user, dependency_scope=\"lifespan\")"],
+    [Depends(use_cache=False, dependency_scope="lifespan"), "Depends(NoneType, use_cache=False, dependency_scope=\"lifespan\")"],
+    [Depends(get_user, use_cache=False, dependency_scope="lifespan"), "Depends(get_user, use_cache=False, dependency_scope=\"lifespan\")"],
+])
+def test_depends_repr(depends, expected_repr):
+    assert repr(depends) == expected_repr

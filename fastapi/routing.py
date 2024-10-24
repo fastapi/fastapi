@@ -31,11 +31,11 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import EndpointDependant, LifespanDependant
 from fastapi.dependencies.utils import (
     _should_embed_body_fields,
     get_body_field,
-    get_dependant,
+    get_endpoint_dependant,
     get_flat_dependant,
     get_parameterless_sub_dependant,
     get_typed_return_annotation,
@@ -73,7 +73,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, Doc, assert_never, deprecated
 
 
 def _prepare_response_content(
@@ -123,7 +123,7 @@ def _prepare_response_content(
     return res
 
 
-def _merge_lifespan_context(
+def merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
     @asynccontextmanager
@@ -202,7 +202,7 @@ async def serialize_response(
 
 
 async def run_endpoint_function(
-    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+    *, dependant: EndpointDependant, values: Dict[str, Any], is_coroutine: bool
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
@@ -215,7 +215,7 @@ async def run_endpoint_function(
 
 
 def get_request_handler(
-    dependant: Dependant,
+    dependant: EndpointDependant,
     body_field: Optional[ModelField] = None,
     status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
@@ -358,7 +358,7 @@ def get_request_handler(
 
 
 def get_websocket_app(
-    dependant: Dependant,
+    dependant: EndpointDependant,
     dependency_overrides_provider: Optional[Any] = None,
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
@@ -400,12 +400,20 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_endpoint_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            sub_dependant = get_parameterless_sub_dependant(
+                depends=depends,
+                path=self.path_format,
+                caller=self
             )
+            if depends.dependency_scope == "endpoint":
+                self.dependant.endpoint_dependencies.insert(0, sub_dependant)
+            elif depends.dependency_scope == "lifespan":
+                self.dependant.lifespan_dependencies.insert(0, sub_dependant)
+            else:
+                assert_never(depends.dependency_scope)
+
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
             self._flat_dependant.body_params
@@ -423,6 +431,10 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
+
+    @property
+    def lifespan_dependencies(self) -> List[LifespanDependant]:
+        return self._flat_dependant.lifespan_dependencies
 
 
 class APIRoute(routing.Route):
@@ -549,12 +561,19 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_endpoint_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            sub_dependant = get_parameterless_sub_dependant(
+                depends=depends,
+                path=self.path_format,
+                caller=self.__call__
             )
+            if depends.dependency_scope == "endpoint":
+                self.dependant.endpoint_dependencies.insert(0, sub_dependant)
+            elif depends.dependency_scope == "lifespan":
+                self.dependant.lifespan_dependencies.insert(0, sub_dependant)
+            else:
+                assert_never(depends.dependency_scope)
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
             self._flat_dependant.body_params
@@ -588,6 +607,10 @@ class APIRoute(routing.Route):
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
+
+    @property
+    def lifespan_dependencies(self) -> List[LifespanDependant]:
+        return self._flat_dependant.lifespan_dependencies
 
 
 class APIRouter(routing.Router):
@@ -1356,7 +1379,7 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
-        self.lifespan_context = _merge_lifespan_context(
+        self.lifespan_context = merge_lifespan_context(
             self.lifespan_context,
             router.lifespan_context,
         )

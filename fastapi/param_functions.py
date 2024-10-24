@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
+from fastapi.params import DependencyScope
 from typing_extensions import Annotated, Doc, deprecated
 
 _Unset: Any = Undefined
@@ -2244,6 +2247,33 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
+    dependency_scope: Annotated[
+        DependencyScope,
+        Doc(
+            """
+            The scope in which the dependency value should be evaluated. Can be
+            either `"endpoint"` or `"lifespan"`.
+
+            If `dependency_scope` is set to "endpoint" (the default), the
+            dependency will be setup and teardown for every request.
+
+            If `dependency_scope` is set to `"lifespan"` the dependency would
+            be setup at the start of the entire application's lifespan. The
+            evaluated dependency would be then reused across all endpoints.
+            The dependency would be teared down as a part of the application's
+            shutdown process.
+
+            Note that dependencies defined with the `"endpoint"` scope may use
+            sub-dependencies defined with the `"lifespan"` scope, but not the
+            other way around;
+            Dependencies defined with the `"lifespan"` scope may not use
+            sub-dependencies with `"endpoint"` scope, nor can they use
+            other "endpoint scoped" arguments such as "Path", "Body", "Query",
+            or any other annotation which does not make sense in a scope of an
+            application's entire lifespan.
+            """
+        )
+    ] = "endpoint"
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2274,7 +2304,7 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(dependency=dependency, use_cache=use_cache, dependency_scope=dependency_scope)
 
 
 def Security(  # noqa: N802

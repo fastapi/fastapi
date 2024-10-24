@@ -4,11 +4,12 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated, Literal, TypeAlias, deprecated
 
 from ._compat import PYDANTIC_V2, PYDANTIC_VERSION, Undefined
 
 _Unset: Any = Undefined
+DependencyScope: TypeAlias = Literal["endpoint", "lifespan"]
 
 
 class ParamTypes(Enum):
@@ -759,15 +760,25 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
+        use_cache: bool = True,
+        dependency_scope: DependencyScope = "endpoint"
     ):
         self.dependency = dependency
         self.use_cache = use_cache
+        self.dependency_scope = dependency_scope
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        return f"{self.__class__.__name__}({attr}{cache})"
+        if self.dependency_scope == "endpoint":
+            dependency_scope = ""
+        else:
+            dependency_scope = f", dependency_scope=\"{self.dependency_scope}\""
+
+        return f"{self.__class__.__name__}({attr}{cache}{dependency_scope})"
 
 
 class Security(Depends):
@@ -778,5 +789,9 @@ class Security(Depends):
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(
+            dependency=dependency,
+            use_cache=use_cache,
+            dependency_scope="endpoint"
+        )
         self.scopes = scopes or []
