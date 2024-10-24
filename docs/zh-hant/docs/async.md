@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-如果你正在使用某個函式庫，它告訴你可以使用 `await` 呼叫它，那麼你需要用 `async def` 定義路徑操作函數，如：
+如果你正在使用某個函式庫，它告訴你可以使用 `await` 呼叫它，那麼你需要用 `async def` 定義路徑操作函式，如：
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
