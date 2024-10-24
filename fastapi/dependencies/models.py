@@ -12,7 +12,10 @@ class SecurityRequirement:
     scopes: Optional[Sequence[str]] = None
 
 
-LifespanDependantCacheKey: TypeAlias = Union[Tuple[Callable[..., Any], str], Callable[..., Any]]
+LifespanDependantCacheKey: TypeAlias = Union[
+    Tuple[Callable[..., Any], str], Callable[..., Any]
+]
+
 
 @dataclass
 class LifespanDependant:
@@ -30,7 +33,10 @@ class LifespanDependant:
             self.cache_key = (self.caller, self.name)
 
 
-EndpointDependantCacheKey: TypeAlias = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
+EndpointDependantCacheKey: TypeAlias = Tuple[
+    Optional[Callable[..., Any]], Tuple[str, ...]
+]
+
 
 @dataclass
 class EndpointDependant:
@@ -39,8 +45,7 @@ class EndpointDependant:
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
     use_cache: bool = True
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(
-        init=False)
+    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
     header_params: List[ModelField] = field(default_factory=list)
@@ -63,6 +68,7 @@ class EndpointDependant:
     @property
     def dependencies(self) -> Tuple[Union["EndpointDependant", LifespanDependant], ...]:
         return tuple(self.endpoint_dependencies + self.lifespan_dependencies)
+
 
 # Kept for backwards compatibility
 Dependant = EndpointDependant

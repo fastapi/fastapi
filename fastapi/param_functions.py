@@ -2272,8 +2272,8 @@ def Depends(  # noqa: N802
             or any other annotation which does not make sense in a scope of an
             application's entire lifespan.
             """
-        )
-    ] = "endpoint"
+        ),
+    ] = "endpoint",
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2304,7 +2304,9 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache, dependency_scope=dependency_scope)
+    return params.Depends(
+        dependency=dependency, use_cache=use_cache, dependency_scope=dependency_scope
+    )
 
 
 def Security(  # noqa: N802

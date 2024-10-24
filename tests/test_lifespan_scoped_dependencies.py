@@ -21,7 +21,7 @@ from fastapi.security import SecurityScopes
 from starlette.testclient import TestClient
 from typing_extensions import Annotated, Generator, Literal, assert_never
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class DependencyStyle(StrEnum):
@@ -33,9 +33,7 @@ class DependencyStyle(StrEnum):
 
 class DependencyFactory:
     def __init__(
-            self,
-            dependency_style: DependencyStyle, *,
-            should_error: bool = False
+        self, dependency_style: DependencyStyle, *, should_error: bool = False
     ):
         self.activation_times = 0
         self.deactivation_times = 0
@@ -89,11 +87,11 @@ class DependencyFactory:
 
 
 def _expect_correct_amount_of_dependency_activations(
-        *,
-        app: FastAPI,
-        dependency_factory: DependencyFactory,
-        urls_and_responses: List[Tuple[str, Any]],
-        expected_activation_times: int
+    *,
+    app: FastAPI,
+    dependency_factory: DependencyFactory,
+    urls_and_responses: List[Tuple[str, Any]],
+    expected_activation_times: int,
 ) -> None:
     assert dependency_factory.activation_times == 0
     assert dependency_factory.deactivation_times == 0
@@ -111,16 +109,19 @@ def _expect_correct_amount_of_dependency_activations(
 
     assert dependency_factory.activation_times == expected_activation_times
     if dependency_factory.dependency_style not in (
-            DependencyStyle.SYNC_FUNCTION,
-            DependencyStyle.ASYNC_FUNCTION
+        DependencyStyle.SYNC_FUNCTION,
+        DependencyStyle.ASYNC_FUNCTION,
     ):
         assert dependency_factory.deactivation_times == expected_activation_times
+
 
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
-def test_endpoint_dependencies(dependency_style: DependencyStyle, routing_style, use_cache):
-    dependency_factory= DependencyFactory(dependency_style)
+def test_endpoint_dependencies(
+    dependency_style: DependencyStyle, routing_style, use_cache
+):
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -131,11 +132,14 @@ def test_endpoint_dependencies(dependency_style: DependencyStyle, routing_style,
 
     @router.post("/test")
     async def endpoint(
-            dependency: Annotated[None, Depends(
+        dependency: Annotated[
+            None,
+            Depends(
                 dependency_factory.get_dependency(),
                 dependency_scope="lifespan",
                 use_cache=use_cache,
-            )]
+            ),
+        ],
     ) -> None:
         assert dependency == 1
         return dependency
@@ -147,23 +151,22 @@ def test_endpoint_dependencies(dependency_style: DependencyStyle, routing_style,
         app=app,
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", 1)] * 2,
-        expected_activation_times=1
+        expected_activation_times=1,
     )
+
 
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_router_dependencies(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     if routing_style == "app":
@@ -186,7 +189,7 @@ def test_router_dependencies(
         app=app,
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", None)] * 2,
-        expected_activation_times=1
+        expected_activation_times=1,
     )
 
 
@@ -195,17 +198,17 @@ def test_router_dependencies(
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 @pytest.mark.parametrize("main_dependency_scope", ["endpoint", "lifespan"])
 def test_dependency_cache_in_same_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        main_dependency_scope: Literal["endpoint", "lifespan"]
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    main_dependency_scope: Literal["endpoint", "lifespan"],
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -217,18 +220,21 @@ def test_dependency_cache_in_same_dependency(
         router = APIRouter()
 
     async def dependency(
-            sub_dependency1: Annotated[int, depends],
-            sub_dependency2: Annotated[int, depends],
+        sub_dependency1: Annotated[int, depends],
+        sub_dependency2: Annotated[int, depends],
     ) -> List[int]:
         return [sub_dependency1, sub_dependency2]
 
     @router.post("/test")
     async def endpoint(
-            dependency: Annotated[List[int], Depends(
+        dependency: Annotated[
+            List[int],
+            Depends(
                 dependency,
                 use_cache=use_cache,
                 dependency_scope=main_dependency_scope,
-            )]
+            ),
+        ],
     ) -> List[int]:
         return dependency
 
@@ -243,7 +249,7 @@ def test_dependency_cache_in_same_dependency(
                 ("/test", [1, 1]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=1
+            expected_activation_times=1,
         )
     else:
         _expect_correct_amount_of_dependency_activations(
@@ -253,7 +259,7 @@ def test_dependency_cache_in_same_dependency(
                 ("/test", [1, 2]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=2
+            expected_activation_times=2,
         )
 
 
@@ -261,16 +267,14 @@ def test_dependency_cache_in_same_dependency(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_same_endpoint(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -286,9 +290,9 @@ def test_dependency_cache_in_same_endpoint(
 
     @router.post("/test1")
     async def endpoint(
-            dependency1: Annotated[int, depends],
-            dependency2: Annotated[int, depends],
-            dependency3: Annotated[int, Depends(endpoint_dependency)]
+        dependency1: Annotated[int, depends],
+        dependency2: Annotated[int, depends],
+        dependency3: Annotated[int, Depends(endpoint_dependency)],
     ) -> List[int]:
         return [dependency1, dependency2, dependency3]
 
@@ -303,7 +307,7 @@ def test_dependency_cache_in_same_endpoint(
                 ("/test1", [1, 1, 1]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=1
+            expected_activation_times=1,
         )
     else:
         _expect_correct_amount_of_dependency_activations(
@@ -313,23 +317,22 @@ def test_dependency_cache_in_same_endpoint(
                 ("/test1", [1, 2, 3]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=3
+            expected_activation_times=3,
         )
+
 
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_different_endpoints(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -345,17 +348,17 @@ def test_dependency_cache_in_different_endpoints(
 
     @router.post("/test1")
     async def endpoint(
-            dependency1: Annotated[int, depends],
-            dependency2: Annotated[int, depends],
-            dependency3: Annotated[int, Depends(endpoint_dependency)]
+        dependency1: Annotated[int, depends],
+        dependency2: Annotated[int, depends],
+        dependency3: Annotated[int, Depends(endpoint_dependency)],
     ) -> List[int]:
         return [dependency1, dependency2, dependency3]
 
     @router.post("/test2")
     async def endpoint2(
-            dependency1: Annotated[int, depends],
-            dependency2: Annotated[int, depends],
-            dependency3: Annotated[int, Depends(endpoint_dependency)]
+        dependency1: Annotated[int, depends],
+        dependency2: Annotated[int, depends],
+        dependency3: Annotated[int, Depends(endpoint_dependency)],
     ) -> List[int]:
         return [dependency1, dependency2, dependency3]
 
@@ -372,7 +375,7 @@ def test_dependency_cache_in_different_endpoints(
                 ("/test2", [1, 1, 1]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=1
+            expected_activation_times=1,
         )
     else:
         _expect_correct_amount_of_dependency_activations(
@@ -384,21 +387,22 @@ def test_dependency_cache_in_different_endpoints(
                 ("/test2", [4, 5, 3]),
             ],
             dependency_factory=dependency_factory,
-            expected_activation_times=5
+            expected_activation_times=5,
         )
+
 
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_no_cached_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
+    dependency_style: DependencyStyle,
+    routing_style,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=False
+        use_cache=False,
     )
 
     app = FastAPI()
@@ -411,7 +415,7 @@ def test_no_cached_dependency(
 
     @router.post("/test")
     async def endpoint(
-            dependency: Annotated[int, depends],
+        dependency: Annotated[int, depends],
     ) -> int:
         return dependency
 
@@ -422,49 +426,52 @@ def test_no_cached_dependency(
         app=app,
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", 1)] * 2,
-        expected_activation_times=1
+        expected_activation_times=1,
     )
 
 
-@pytest.mark.parametrize("annotation", [
-    Annotated[str, Path()],
-    Annotated[str, Body()],
-    Annotated[str, Query()],
-    Annotated[str, Header()],
-    SecurityScopes,
-    Annotated[str, Cookie()],
-    Annotated[str, Form()],
-    Annotated[str, File()],
-    BackgroundTasks,
-])
-def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
-        annotation
-):
+@pytest.mark.parametrize(
+    "annotation",
+    [
+        Annotated[str, Path()],
+        Annotated[str, Body()],
+        Annotated[str, Query()],
+        Annotated[str, Header()],
+        SecurityScopes,
+        Annotated[str, Cookie()],
+        Annotated[str, Form()],
+        Annotated[str, File()],
+        BackgroundTasks,
+    ],
+)
+def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(annotation):
     async def dependency_func(param: annotation) -> None:
         yield
 
     app = FastAPI()
 
     with pytest.raises(FastAPIError):
+
         @app.post("/test")
         async def endpoint(
-                dependency: Annotated[
-                    None, Depends(dependency_func, dependency_scope="lifespan")]
+            dependency: Annotated[
+                None, Depends(dependency_func, dependency_scope="lifespan")
+            ],
         ) -> None:
             return
 
 
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
-        dependency_style: DependencyStyle
+    dependency_style: DependencyStyle,
 ):
     dependency_factory = DependencyFactory(dependency_style)
 
     async def lifespan_scoped_dependency(
-            param: Annotated[int, Depends(
-                dependency_factory.get_dependency(),
-                dependency_scope="lifespan"
-            )]
+        param: Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
     ) -> AsyncGenerator[int, None]:
         yield param
 
@@ -472,10 +479,9 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
 
     @app.post("/test")
     async def endpoint(
-            dependency: Annotated[int, Depends(
-                lifespan_scoped_dependency,
-                dependency_scope="lifespan"
-            )]
+        dependency: Annotated[
+            int, Depends(lifespan_scoped_dependency, dependency_scope="lifespan")
+        ],
     ) -> int:
         return dependency
 
@@ -483,42 +489,44 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
         app=app,
         dependency_factory=dependency_factory,
         expected_activation_times=1,
-        urls_and_responses=[("/test", 1)] * 2
+        urls_and_responses=[("/test", 1)] * 2,
     )
 
 
 @pytest.mark.parametrize("depends_class", [Depends, Security])
-@pytest.mark.parametrize("route_type", [FastAPI.post, FastAPI.websocket], ids=[
-    "websocket", "endpoint"
-])
+@pytest.mark.parametrize(
+    "route_type", [FastAPI.post, FastAPI.websocket], ids=["websocket", "endpoint"]
+)
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
-        depends_class,
-        route_type
+    depends_class, route_type
 ):
     async def sub_dependency() -> None:
         pass
 
-    async def dependency_func(param: Annotated[None, depends_class(sub_dependency)]) -> None:
+    async def dependency_func(
+        param: Annotated[None, depends_class(sub_dependency)],
+    ) -> None:
         yield
 
     app = FastAPI()
     route_decorator = route_type(app, "/test")
 
     with pytest.raises(FastAPIError):
+
         @route_decorator
-        async def endpoint(x: Annotated[None, Depends(dependency_func, dependency_scope="lifespan")]
+        async def endpoint(
+            x: Annotated[None, Depends(dependency_func, dependency_scope="lifespan")],
         ) -> None:
             return
+
 
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_dependencies_must_provide_correct_dependency_scope(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -528,13 +536,17 @@ def test_dependencies_must_provide_correct_dependency_scope(
         router = APIRouter()
 
     with pytest.raises(FastAPIError):
+
         @router.post("/test")
         async def endpoint(
-                dependency: Annotated[None, Depends(
+            dependency: Annotated[
+                None,
+                Depends(
                     dependency_factory.get_dependency(),
                     dependency_scope="incorrect",
                     use_cache=use_cache,
-                )]
+                ),
+            ],
         ) -> None:
             assert dependency == 1
             return dependency
@@ -544,11 +556,9 @@ def test_dependencies_must_provide_correct_dependency_scope(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoints_report_incorrect_dependency_scope(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -567,10 +577,9 @@ def test_endpoints_report_incorrect_dependency_scope(
     depends.dependency_scope = "asdad"
 
     with pytest.raises(FastAPIError):
+
         @router.post("/test")
-        async def endpoint(
-                dependency: Annotated[int, depends]
-        ) -> int:
+        async def endpoint(dependency: Annotated[int, depends]) -> int:
             assert dependency == 1
             return dependency
 
@@ -579,11 +588,9 @@ def test_endpoints_report_incorrect_dependency_scope(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoints_report_uninitialized_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -599,9 +606,7 @@ def test_endpoints_report_uninitialized_dependency(
     )
 
     @router.post("/test")
-    async def endpoint(
-            dependency: Annotated[int, depends]
-    ) -> int:
+    async def endpoint(dependency: Annotated[int, depends]) -> int:
         assert dependency == 1
         return dependency
 
@@ -616,18 +621,18 @@ def test_endpoints_report_uninitialized_dependency(
             with pytest.raises(FastAPIError):
                 client.post("/test")
         finally:
-            client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = dependencies
+            client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = (
+                dependencies
+            )
 
 
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoints_report_uninitialized_internal_lifespan(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache
+    dependency_style: DependencyStyle, routing_style, use_cache
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -643,9 +648,7 @@ def test_endpoints_report_uninitialized_internal_lifespan(
     )
 
     @router.post("/test")
-    async def endpoint(
-            dependency: Annotated[int, depends]
-    ) -> int:
+    async def endpoint(dependency: Annotated[int, depends]) -> int:
         assert dependency == 1
         return dependency
 
@@ -666,8 +669,10 @@ def test_endpoints_report_uninitialized_internal_lifespan(
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
-def test_bad_lifespan_scoped_dependencies(use_cache, dependency_style: DependencyStyle, routing_style):
-    dependency_factory= DependencyFactory(dependency_style, should_error=True)
+def test_bad_lifespan_scoped_dependencies(
+    use_cache, dependency_style: DependencyStyle, routing_style
+):
+    dependency_factory = DependencyFactory(dependency_style, should_error=True)
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
@@ -683,9 +688,7 @@ def test_bad_lifespan_scoped_dependencies(use_cache, dependency_style: Dependenc
         router = APIRouter()
 
     @router.post("/test")
-    async def endpoint(
-            dependency: Annotated[int, depends]
-    ) -> int:
+    async def endpoint(dependency: Annotated[int, depends]) -> int:
         assert dependency == 1
         return dependency
 

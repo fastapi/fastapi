@@ -938,10 +938,7 @@ class FastAPI(Starlette):
         if lifespan is None:
             lifespan = FastAPI._internal_lifespan
         else:
-            lifespan = merge_lifespan_context(
-                FastAPI._internal_lifespan,
-                lifespan
-            )
+            lifespan = merge_lifespan_context(FastAPI._internal_lifespan, lifespan)
 
         # Since we always use a lifespan, starlette will no longer run event
         # handlers which are defined in the scope of the application.
@@ -985,8 +982,7 @@ class FastAPI(Starlette):
     async def _internal_lifespan(self) -> AsyncGenerator[dict[str, Any], None]:
         async with AsyncExitStack() as exit_stack:
             lifespan_scoped_dependencies = await resolve_lifespan_dependants(
-                app=self,
-                async_exit_stack=exit_stack
+                app=self, async_exit_stack=exit_stack
             )
             try:
                 for handler in self._on_startup:
@@ -1005,7 +1001,6 @@ class FastAPI(Starlette):
                         await handler()
                     else:
                         await run_in_threadpool(handler)
-
 
     def openapi(self) -> Dict[str, Any]:
         """
@@ -4536,12 +4531,14 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             if event_type == "startup":
                 self._on_startup.append(func)
             else:
                 self._on_shutdown.append(func)
             return func
+
         return decorator
 
     def middleware(
