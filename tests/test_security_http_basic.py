@@ -1,8 +1,19 @@
 from base64 import b64encode
+from typing import Optional
 
+from fastapi import FastAPI, Security
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.testclient import TestClient
 
-from docs_src.security.tutorial006 import app
+app = FastAPI()
+
+security = HTTPBasic()
+
+
+@app.get("/users/me")
+def read_current_user(credentials: Optional[HTTPBasicCredentials] = Security(security)):
+    return {"username": credentials.username, "password": credentials.password}
+
 
 client = TestClient(app)
 
@@ -15,10 +26,10 @@ def test_security_http_basic():
 
 def test_security_http_basic_no_credentials():
     response = client.get("/users/me")
+    assert response.status_code == 401, response.text
     assert response.json() == {
         "detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"
     }
-    assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == 'Basic realm="global"'
 
 
