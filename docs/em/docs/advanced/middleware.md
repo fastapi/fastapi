@@ -58,7 +58,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 🙆 📨 📨 `http` ⚖️ `ws` 🔜 ❎ 🔐 ⚖ ↩️.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
+{!../../docs_src/advanced_middleware/tutorial001.py!}
 ```
 
 ## `TrustedHostMiddleware`
@@ -66,7 +66,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 🛠️ 👈 🌐 📨 📨 ✔️ ☑ ⚒ `Host` 🎚, ✔ 💂‍♂ 🛡 🇺🇸🔍 🦠 🎚 👊.
 
 ```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
+{!../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
 📄 ❌ 🐕‍🦺:
@@ -82,7 +82,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 🛠️ 🔜 🍵 👯‍♂️ 🐩 &amp; 🎥 📨.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
+{!../../docs_src/advanced_middleware/tutorial003.py!}
 ```
 
 📄 ❌ 🐕‍🦺:

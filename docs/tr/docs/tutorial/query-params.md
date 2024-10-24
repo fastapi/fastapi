@@ -3,7 +3,7 @@
 Fonksiyonda yol parametrelerinin parçası olmayan diğer tanımlamalar otomatik olarak "sorgu" parametresi olarak yorumlanır.
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 Sorgu, bağlantıdaki `?` kısmından sonra gelen ve `&` işareti ile ayrılan anahtar-değer çiftlerinin oluşturduğu bir kümedir.
@@ -66,7 +66,7 @@ Aynı şekilde, varsayılan değerlerini `None` olarak atayarak isteğe bağlı 
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params/tutorial002_py310.py!}
+{!> ../../docs_src/query_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -74,7 +74,7 @@ Aynı şekilde, varsayılan değerlerini `None` olarak atayarak isteğe bağlı 
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params/tutorial002.py!}
+{!> ../../docs_src/query_params/tutorial002.py!}
 ```
 
 ////
@@ -94,7 +94,7 @@ Aşağıda görüldüğü gibi dönüştürülmek üzere `bool` tipleri de tanı
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params/tutorial003_py310.py!}
+{!> ../../docs_src/query_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -102,7 +102,7 @@ Aşağıda görüldüğü gibi dönüştürülmek üzere `bool` tipleri de tanı
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params/tutorial003.py!}
+{!> ../../docs_src/query_params/tutorial003.py!}
 ```
 
 ////
@@ -151,7 +151,7 @@ Ve parametreleri, herhangi bir sıraya koymanıza da gerek yoktur.
 //// tab | Python 3.10+
 
 ```Python hl_lines="6  8"
-{!> ../../../docs_src/query_params/tutorial004_py310.py!}
+{!> ../../docs_src/query_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -159,7 +159,7 @@ Ve parametreleri, herhangi bir sıraya koymanıza da gerek yoktur.
 //// tab | Python 3.8+
 
 ```Python hl_lines="8  10"
-{!> ../../../docs_src/query_params/tutorial004.py!}
+{!> ../../docs_src/query_params/tutorial004.py!}
 ```
 
 ////
@@ -173,7 +173,7 @@ Parametre için belirli bir değer atamak istemeyip parametrenin sadece isteğe 
 Fakat, bir sorgu parametresini zorunlu yapmak istiyorsanız varsayılan bir değer atamamanız yeterli olacaktır:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 Burada `needy` parametresi `str` tipinden oluşan zorunlu bir sorgu parametresidir.
@@ -223,7 +223,7 @@ Ve elbette, bazı parametreleri zorunlu, bazılarını varsayılan değerli ve b
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params/tutorial006_py310.py!}
+{!> ../../docs_src/query_params/tutorial006_py310.py!}
 ```
 
 ////
@@ -231,7 +231,7 @@ Ve elbette, bazı parametreleri zorunlu, bazılarını varsayılan değerli ve b
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params/tutorial006.py!}
+{!> ../../docs_src/query_params/tutorial006.py!}
 ```
 
 ////

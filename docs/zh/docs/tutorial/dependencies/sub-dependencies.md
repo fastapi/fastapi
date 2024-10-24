@@ -11,7 +11,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 下列代码创建了第一层依赖项：
 
 ```Python hl_lines="8-9"
-{!../../../docs_src/dependencies/tutorial005.py!}
+{!../../docs_src/dependencies/tutorial005.py!}
 ```
 
 这段代码声明了类型为 `str` 的可选查询参数 `q`，然后返回这个查询参数。
@@ -23,7 +23,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 接下来，创建另一个依赖项函数，并同时用该依赖项自身再声明一个依赖项（所以这也是一个「依赖项」）：
 
 ```Python hl_lines="13"
-{!../../../docs_src/dependencies/tutorial005.py!}
+{!../../docs_src/dependencies/tutorial005.py!}
 ```
 
 这里重点说明一下声明的参数：
@@ -38,7 +38,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 接下来，就可以使用依赖项：
 
 ```Python hl_lines="22"
-{!../../../docs_src/dependencies/tutorial005.py!}
+{!../../docs_src/dependencies/tutorial005.py!}
 ```
 
 /// info | "信息"

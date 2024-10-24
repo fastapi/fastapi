@@ -30,19 +30,19 @@ For example, you could use this to create a database session and close it after 
 Only the code prior to and including the `yield` statement is executed before creating a response:
 
 ```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 The yielded value is what is injected into *path operations* and other dependencies:
 
 ```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 The code following the `yield` statement is executed after the response has been delivered:
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 /// tip
@@ -64,7 +64,7 @@ So, you can look for that specific exception inside the dependency with `except 
 In the same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
 
 ```Python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 ## Sub-dependencies with `yield`
@@ -78,7 +78,7 @@ For example, `dependency_c` can have a dependency on `dependency_b`, and `depend
 //// tab | Python 3.9+
 
 ```Python hl_lines="6  14  22"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -86,7 +86,7 @@ For example, `dependency_c` can have a dependency on `dependency_b`, and `depend
 //// tab | Python 3.8+
 
 ```Python hl_lines="5  13  21"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -100,7 +100,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="4  12  20"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -114,7 +114,7 @@ And, in turn, `dependency_b` needs the value from `dependency_a` (here named `de
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-19  26-27"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -122,7 +122,7 @@ And, in turn, `dependency_b` needs the value from `dependency_a` (here named `de
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-18  25-26"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
@@ -136,7 +136,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="16-17  24-25"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -174,7 +174,7 @@ But it's there for you if you need it. 🤓
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-22  31"
-{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
 ```
 
 ////
@@ -182,7 +182,7 @@ But it's there for you if you need it. 🤓
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-21  30"
-{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an.py!}
 ```
 
 ////
@@ -196,7 +196,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="16-20  29"
-{!> ../../../docs_src/dependencies/tutorial008b.py!}
+{!> ../../docs_src/dependencies/tutorial008b.py!}
 ```
 
 ////
@@ -210,7 +210,7 @@ If you catch an exception using `except` in a dependency with `yield` and you do
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
 ```
 
 ////
@@ -218,7 +218,7 @@ If you catch an exception using `except` in a dependency with `yield` and you do
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-15"
-{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an.py!}
 ```
 
 ////
@@ -232,7 +232,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="13-14"
-{!> ../../../docs_src/dependencies/tutorial008c.py!}
+{!> ../../docs_src/dependencies/tutorial008c.py!}
 ```
 
 ////
@@ -248,7 +248,7 @@ You can re-raise the same exception using `raise`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
 ```
 
 ////
@@ -256,7 +256,7 @@ You can re-raise the same exception using `raise`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an.py!}
 ```
 
 ////
@@ -270,7 +270,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial008d.py!}
+{!> ../../docs_src/dependencies/tutorial008d.py!}
 ```
 
 ////
@@ -404,7 +404,7 @@ You can also use them inside of **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
 ```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
+{!../../docs_src/dependencies/tutorial010.py!}
 ```
 
 /// tip

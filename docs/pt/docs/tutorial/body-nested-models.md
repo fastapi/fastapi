@@ -7,7 +7,7 @@ Com o **FastAPI**, você pode definir, validar, documentar e usar modelos profun
 Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Python:
 
 ```Python hl_lines="14"
-{!../../../docs_src/body_nested_models/tutorial001.py!}
+{!../../docs_src/body_nested_models/tutorial001.py!}
 ```
 
 Isso fará com que tags seja uma lista de itens mesmo sem declarar o tipo dos elementos desta lista.
@@ -21,7 +21,7 @@ Mas o Python tem uma maneira específica de declarar listas com tipos internos o
 Primeiramente, importe `List` do módulo `typing` que já vem por padrão no Python:
 
 ```Python hl_lines="1"
-{!../../../docs_src/body_nested_models/tutorial002.py!}
+{!../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
 ### Declare a `List` com um parâmetro de tipo
@@ -45,7 +45,7 @@ Portanto, em nosso exemplo, podemos fazer com que `tags` sejam especificamente u
 
 
 ```Python hl_lines="14"
-{!../../../docs_src/body_nested_models/tutorial002.py!}
+{!../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
 ## Tipo "set"
@@ -59,7 +59,7 @@ Então podemos importar `Set` e declarar `tags` como um `set` de `str`s:
 
 
 ```Python hl_lines="1  14"
-{!../../../docs_src/body_nested_models/tutorial003.py!}
+{!../../docs_src/body_nested_models/tutorial003.py!}
 ```
 
 Com isso, mesmo que você receba uma requisição contendo dados duplicados, ela será convertida em um conjunto de itens exclusivos.
@@ -83,7 +83,7 @@ Tudo isso, aninhado arbitrariamente.
 Por exemplo, nós podemos definir um modelo `Image`:
 
 ```Python hl_lines="9-11"
-{!../../../docs_src/body_nested_models/tutorial004.py!}
+{!../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
 ### Use o sub-modelo como um tipo
@@ -91,7 +91,7 @@ Por exemplo, nós podemos definir um modelo `Image`:
 E então podemos usa-lo como o tipo de um atributo:
 
 ```Python hl_lines="20"
-{!../../../docs_src/body_nested_models/tutorial004.py!}
+{!../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
 Isso significa que o **FastAPI** vai esperar um corpo similar à:
@@ -126,7 +126,7 @@ Para ver todas as opções possíveis, cheque a documentação para os<a href="h
 Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declara-lo como um `HttpUrl` do Pydantic invés de como uma `str`:
 
 ```Python hl_lines="4  10"
-{!../../../docs_src/body_nested_models/tutorial005.py!}
+{!../../docs_src/body_nested_models/tutorial005.py!}
 ```
 
 A string será verificada para se tornar uma URL válida e documentada no esquema JSON/1OpenAPI como tal.
@@ -136,7 +136,7 @@ A string será verificada para se tornar uma URL válida e documentada no esquem
 Você também pode usar modelos Pydantic como subtipos de `list`, `set`, etc:
 
 ```Python hl_lines="20"
-{!../../../docs_src/body_nested_models/tutorial006.py!}
+{!../../docs_src/body_nested_models/tutorial006.py!}
 ```
 
 Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
@@ -176,7 +176,7 @@ Note como o campo `images` agora tem uma lista de objetos de image.
 Você pode definir modelos profundamente aninhados de forma arbitrária:
 
 ```Python hl_lines="9  14  20  23  27"
-{!../../../docs_src/body_nested_models/tutorial007.py!}
+{!../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
 /// info | "informação"
@@ -197,7 +197,7 @@ images: List[Image]
 como em:
 
 ```Python hl_lines="15"
-{!../../../docs_src/body_nested_models/tutorial008.py!}
+{!../../docs_src/body_nested_models/tutorial008.py!}
 ```
 
 ## Suporte de editor em todo canto
@@ -229,7 +229,7 @@ Outro caso útil é quando você deseja ter chaves de outro tipo, por exemplo, `
 Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com valores `float`:
 
 ```Python hl_lines="9"
-{!../../../docs_src/body_nested_models/tutorial009.py!}
+{!../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
 /// tip | "Dica"

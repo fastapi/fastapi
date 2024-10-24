@@ -15,7 +15,7 @@
 🗄 `Form` ⚪️➡️ `fastapi`:
 
 ```Python hl_lines="1"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ## 🔬 `Form` 🔢
@@ -23,7 +23,7 @@
 ✍ 📨 🔢 🎏 🌌 👆 🔜 `Body` ⚖️ `Query`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/request_forms/tutorial001.py!}
+{!../../docs_src/request_forms/tutorial001.py!}
 ```
 
 🖼, 1️⃣ 🌌 Oauth2️⃣ 🔧 💪 ⚙️ (🤙 "🔐 💧") ⚫️ ✔ 📨 `username` &amp; `password` 📨 🏑.

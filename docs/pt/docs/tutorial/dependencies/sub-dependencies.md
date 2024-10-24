@@ -13,7 +13,7 @@ Você pode criar uma primeira dependência (injetável) dessa forma:
 //// tab | Python 3.10+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -21,7 +21,7 @@ Você pode criar uma primeira dependência (injetável) dessa forma:
 //// tab | Python 3.9+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -29,7 +29,7 @@ Você pode criar uma primeira dependência (injetável) dessa forma:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-10"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
@@ -43,7 +43,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Então, você pode criar uma outra função para uma dependência (um "injetáve
 //// tab | Python 3.10+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -81,7 +81,7 @@ Então, você pode criar uma outra função para uma dependência (um "injetáve
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -89,7 +89,7 @@ Então, você pode criar uma outra função para uma dependência (um "injetáve
 //// tab | Python 3.8+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
@@ -103,7 +103,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -136,7 +136,7 @@ Então podemos utilizar a dependência com:
 //// tab | Python 3.10+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -144,7 +144,7 @@ Então podemos utilizar a dependência com:
 //// tab | Python 3.9+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -152,7 +152,7 @@ Então podemos utilizar a dependência com:
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
@@ -166,7 +166,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
@@ -180,7 +180,7 @@ Utilize a versão com `Annotated` se possível.
 ///
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
