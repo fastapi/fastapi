@@ -5,7 +5,13 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
+from tests.utils import (
+    needs_py39,
+    needs_py310,
+    needs_pydanticv1,
+    needs_pydanticv2,
+    snapshot_pydantic,
+)
 
 
 @pytest.fixture(
@@ -59,8 +65,19 @@ def test_cookie_param_model_defaults(client: TestClient):
 def test_cookie_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == snapshot(
-        IsDict(
+    assert response.json() == snapshot_pydantic(
+        v1=snapshot(
+            {
+                "detail": [
+                    {
+                        "loc": ["cookie", "session_id"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            }
+        ),
+        v2=snapshot(
             {
                 "detail": [
                     {
@@ -71,19 +88,7 @@ def test_cookie_param_model_invalid(client: TestClient):
                     }
                 ]
             }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "detail": [
-                    {
-                        "type": "value_error.missing",
-                        "loc": ["cookie", "session_id"],
-                        "msg": "field required",
-                    }
-                ]
-            }
-        )
+        ),
     )
 
 
