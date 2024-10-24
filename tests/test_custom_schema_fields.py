@@ -1,7 +1,14 @@
+from typing import Optional
+
+from dirty_equals import IsList
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated
+
+if PYDANTIC_V2:
+    from pydantic.json_schema import WithJsonSchema
 
 app = FastAPI()
 
@@ -10,12 +17,17 @@ class Item(BaseModel):
     name: str
 
     if PYDANTIC_V2:
+        description: Annotated[
+            Optional[str], WithJsonSchema({"type": ["string", "null"]})
+        ] = None
+
         model_config = {
             "json_schema_extra": {
                 "x-something-internal": {"level": 4},
             }
         }
     else:
+        description: Optional[str] = None  # type: ignore[no-redef]
 
         class Config:
             schema_extra = {
@@ -42,7 +54,18 @@ item_schema = {
         "name": {
             "title": "Name",
             "type": "string",
-        }
+        },
+        "description": (
+            {
+                "title": "Description",
+                "type": IsList("string", "null", check_order=False),
+            }
+            if PYDANTIC_V2
+            else {
+                "title": "Description",
+                "type": "string",
+            }
+        ),
     },
 }
 
@@ -57,4 +80,4 @@ def test_response():
     # For coverage
     response = client.get("/foo")
     assert response.status_code == 200, response.text
-    assert response.json() == {"name": "Foo item"}
+    assert response.json() == {"name": "Foo item", "description": None}
