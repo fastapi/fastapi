@@ -62,7 +62,10 @@ jobs:
         env:
           PROJECT_NAME: fastapitiangolo
           BRANCH: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
-        uses: cloudflare/wrangler-action@v3
+        # TODO: Use v3 when it's fixed, probably in v3.11
+        # https://github.com/cloudflare/wrangler-action/issues/307
+        uses: cloudflare/wrangler-action@v3.9
+        # uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
