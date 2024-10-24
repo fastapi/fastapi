@@ -60,7 +60,7 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 인수로 받아
 
 프로덕션 환경에서는 `fastapi run` 명령어를 사용합니다. 🚀
 
-내부적으로, **FastAPI CLI**는 고성능의, 프로덕션 준비 단계인, ASGI 서버인 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>을 사용합니다. 😎
+내부적으로, **FastAPI CLI**는 고성능의, 프로덕션에 적합한, ASGI 서버인 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>을 사용합니다. 😎
 
 ## `fastapi dev`
 
@@ -74,7 +74,7 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 인수로 받아
 
 기본적으로 **자동 재시작(auto-reload)** 기능이 비활성화되어 있습니다. 또한, 사용 가능한 모든 IP 주소인 `0.0.0.0`에서 연결을 대기하므로 해당 컴퓨터와 통신할 수 있는 모든 사람이 공개적으로 액세스할 수 있습니다. 이는 일반적으로 컨테이너와 같은 프로덕션 환경에서 실행하는 방법입니다.
 
-대부분의 경우 "종료 프록시(termination proxy)"를 활용해 HTTPS를 처리하는 것이 일반적이며 권장됩니다. 이 설정은 애플리케이션을 어떻게 배포하느냐에 따라 달라질 수 있습니다. 배포 서비스 제공자가 이 작업을 자동으로 처리해줄 수도 있고, 직접 설정해야 할 수도 있습니다.
+애플리케이션을 배포하는 방식에 따라 다르지만, 대부분 "종료 프록시(termination proxy)"를 활용해 HTTPS를 처리하는 것이 좋습니다. 배포 서비스 제공자가 이 작업을 대신 처리해줄 수도 있고, 직접 설정해야 할 수도 있습니다.
 
 /// tip
 
