@@ -114,7 +114,7 @@ Por exemplo, para defini-lo para ser servido em `/api/v1/openapi.json`:
 
 Se você quiser desativar completamente o esquema OpenAPI, pode definir `openapi_url=None`, o que também desativará as interfaces de documentação que o utilizam.
 
-## URLs da Documentação 
+## URLs da Documentação
 
 Você pode configurar as duas interfaces de documentação incluídas:
 
