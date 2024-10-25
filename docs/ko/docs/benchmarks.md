@@ -24,7 +24,7 @@
     * Uvicorn을 비교할 때는 Daphne, Hypercorn, uWSGI 등의 응용 프로그램 서버와 비교하세요.
 * **Starlette**:
     * Uvicorn 다음으로 좋은 성능을 발휘합니다. 사실 Starlette는 Uvicorn을 사용하여 실행됩니다. 따라서 더 많은 코드를 실행해야 하기 때문에 Uvicorn보다 "느려질" 수밖에 없습니다.
-    * 하지만 경로 기반 라우팅 등 간단한 웹 애플리케이션을 구축할 수 있는 도구를 제공합니다.
+    * 하지만 경로 기반 라우팅 등 간단한 웹 응용 프로그램을 구축할 수 있는 도구를 제공합니다.
     * Starlette를 비교할 때는 Sanic, Flask, Django 등의 웹 프레임워크(또는 마이크로 프레임워크)와 비교하세요.
 * **FastAPI**:
     * Starlette가 Uvicorn을 사용하고 Uvicorn보다 빨라질 수 없는 것과 마찬가지로, **FastAPI**는 Starlette를 사용하므로 더 빠를 수 없습니다.
