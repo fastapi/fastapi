@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "*.ts", "**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

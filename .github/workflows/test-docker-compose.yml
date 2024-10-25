@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - run: docker compose build
       - run: docker compose down -v --remove-orphans
-      - run: docker compose up -d --wait
+      - run: docker compose up -d --wait backend frontend adminer
       - name: Test backend is up
         run: curl http://localhost:8000/api/v1/utils/health-check
       - name: Test frontend is up
