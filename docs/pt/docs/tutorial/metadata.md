@@ -1,8 +1,8 @@
-# Metadados and Urls de Documentos
+# Metadados e Urls de Documentos
 
 Você pode personalizar várias configurações de metadados na sua aplicação **FastAPI**.
 
-## Metadata for API
+## Metadados para API
 
 Você pode definir os seguintes campos que são usados na especificação OpenAPI e nas interfaces automáticas de documentação da API:
 
@@ -22,7 +22,7 @@ Você pode defini-los da seguinte maneira:
 {!../../docs_src/metadata/tutorial001.py!}
 ```
 
-/// tip
+/// tip | Dica
 
 Você pode escrever Markdown no campo `description` e ele será renderizado na saída.
 
@@ -32,7 +32,7 @@ Com essa configuração, a documentação automática da API se pareceria com:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## License identifier
+## Identificador de Licença
 
 Desde o OpenAPI 3.1.0 e FastAPI 0.99.0, você também pode definir o license_info com um identifier em vez de uma url.
 
@@ -44,13 +44,13 @@ Por exemplo:
 
 ## Metadados para tags
 
-Você também pode adicionar metadados adicionais para as diferentes tags usadas para agrupar suas operações de caminho com o parâmetro `openapi_tags`.
+Você também pode adicionar metadados adicionais para as diferentes tags usadas para agrupar suas operações de rota com o parâmetro `openapi_tags`.
 
 Ele recebe uma lista contendo um dicionário para cada tag.
 
 Cada dicionário pode conter:
 
-* `name` (**obrigatório**): uma `str` com o mesmo nome da tag que você usa no parâmetro `tags` nas suas *operações de caminho* e `APIRouter`s.
+* `name` (**obrigatório**): uma `str` com o mesmo nome da tag que você usa no parâmetro `tags` nas suas *operações de rota* e `APIRouter`s.
 * `description`: uma `str` com uma breve descrição da tag. Pode conter Markdown e será exibido na interface de documentação.
 * `externalDocs`: um `dict` descrevendo a documentação externa com:
     * `description`: uma `str` com uma breve descrição da documentação externa.
@@ -68,7 +68,7 @@ Crie metadados para suas tags e passe-os para o parâmetro `openapi_tags`:
 
 Observe que você pode usar Markdown dentro das descrições. Por exemplo, "login" será exibido em negrito (**login**) e "fancy" será exibido em itálico (_fancy_).
 
-/// tip
+/// tip | Dica
 
 Você não precisa adicionar metadados para todas as tags que você usa.
 
@@ -76,13 +76,13 @@ Você não precisa adicionar metadados para todas as tags que você usa.
 
 ### Use suas tags
 
-Use o parâmetro `tags` com suas *operações de caminho* (e `APIRouter`s) para atribuí-los a diferentes tags:
+Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atribuí-los a diferentes tags:
 
 ```Python hl_lines="21  26"
 {!../../docs_src/metadata/tutorial004.py!}
 ```
 
-/// info
+/// info  | Informação
 
 Leia mais sobre tags em [Configuração de Operação de Caminho](path-operation-configuration.md#tags){.internal-link target=_blank}.
 
