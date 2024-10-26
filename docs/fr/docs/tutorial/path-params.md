@@ -20,7 +20,7 @@ vous verrez comme réponse :
 Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python :
 
 
-{* ../../docs_src/path_params/tutorial002.py hl[7] *} 
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
@@ -143,7 +143,7 @@ En héritant de `str` la documentation sera capable de savoir que les valeurs do
 
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs autorisées pour cette énumération.
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *} 
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// info
 
