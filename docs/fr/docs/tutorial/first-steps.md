@@ -34,7 +34,7 @@ La commande `uvicorn main:app` fait référence à :
 
 Vous devriez voir dans la console, une ligne semblable à la suivante :
 
-```hl[4]
+```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
