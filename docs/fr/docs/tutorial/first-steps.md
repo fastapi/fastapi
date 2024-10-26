@@ -2,7 +2,7 @@
 
 Le fichier **FastAPI** le plus simple possible pourrait ressembler à cela  :
 
-{* ../../docs_src/first_steps/tutorial001.py *} 
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Copiez ce code dans un fichier nommé `main.py`.
 
