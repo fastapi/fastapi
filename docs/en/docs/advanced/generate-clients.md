@@ -34,17 +34,13 @@ Let's start with a simple FastAPI application:
 
 //// tab | Python 3.9+
 
-```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
-```
+{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../docs_src/generate_clients/tutorial001.py!}
-```
+{* ../../docs_src/generate_clients/tutorial001.py hl[9:11,14:15,18,19,23] *}
 
 ////
 
@@ -153,17 +149,13 @@ For example, you could have a section for **items** and another section for **us
 
 //// tab | Python 3.9+
 
-```Python hl_lines="21  26  34"
-{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
-```
+{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="23  28  36"
-{!> ../../docs_src/generate_clients/tutorial002.py!}
-```
+{* ../../docs_src/generate_clients/tutorial002.py hl[23,28,36] *}
 
 ////
 
@@ -214,17 +206,13 @@ You can then pass that custom function to **FastAPI** as the `generate_unique_id
 
 //// tab | Python 3.9+
 
-```Python hl_lines="6-7  10"
-{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
-```
+{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="8-9  12"
-{!> ../../docs_src/generate_clients/tutorial003.py!}
-```
+{* ../../docs_src/generate_clients/tutorial003.py hl[8:9,12] *}
 
 ////
 
@@ -250,9 +238,7 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 //// tab | Python
 
-```Python
-{!> ../../docs_src/generate_clients/tutorial004.py!}
-```
+{* ../../docs_src/generate_clients/tutorial004.py hl[] *}
 
 ////
 
