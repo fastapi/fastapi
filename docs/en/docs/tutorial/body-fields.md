@@ -6,7 +6,7 @@ The same way you can declare additional validation and metadata in *path operati
 
 First, you have to import it:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}  
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
 
 
@@ -14,8 +14,8 @@ First, you have to import it:
 
 You can then use `Field` with model attributes:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}  
- 
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+
 
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
