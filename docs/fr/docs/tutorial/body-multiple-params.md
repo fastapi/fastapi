@@ -72,7 +72,7 @@ Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.gi
 
 Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant `Body` :
 
-{* ../../docs_src/body_multiple_params/tutorial003_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 Dans ce cas, **FastAPI** s'attendra à un body semblable à :
 
