@@ -173,7 +173,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Əgər kodunuzda `async` və ya `await` vardırsa `async def` istifadə edə bilərik:
 
-```Python hl_lines="9  14"
+```Python hl[9,14]
 from typing import Union
 
 from fastapi import FastAPI
@@ -265,7 +265,7 @@ Avtomatik interaktiv API sənədlərini görəcəksiniz (<a href="https://github
 
 Pydantic sayəsində standart Python tiplərindən istifadə edərək <abbr title="Gövdə: Body ">gövdə</abbr>ni müəyyən edək.
 
-```Python hl_lines="4  9-12  25-27"
+```Python hl[4,9:12,25:27]
 from typing import Union
 
 from fastapi import FastAPI
