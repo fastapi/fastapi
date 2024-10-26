@@ -24,7 +24,7 @@ Nous allons imposer que bien que `q` soit un paramètre optionnel, dès qu'il es
 
 Pour cela, importez d'abord `Query` depuis `fastapi` :
 
-{* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *} 
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *}
 
 ## Utiliser `Query` comme valeur par défaut
 
@@ -80,13 +80,13 @@ Cela va valider les données, montrer une erreur claire si ces dernières ne son
 
 Vous pouvez aussi rajouter un second paramètre `min_length` :
 
-{* ../../docs_src/query_params_str_validations/tutorial003.py hl[9] *} 
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[9] *}
 
 ## Ajouter des validations par expressions régulières
 
 On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un pattern de correspondance pour les chaînes de caractères.">expression régulière</abbr> à laquelle le paramètre doit correspondre :
 
-{* ../../docs_src/query_params_str_validations/tutorial004.py hl[10] *} 
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[10] *}
 
 Cette expression régulière vérifie que la valeur passée comme paramètre :
 
