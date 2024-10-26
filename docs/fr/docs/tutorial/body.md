@@ -125,7 +125,7 @@ Ce qui améliore le support pour les modèles Pydantic avec :
 
 Dans la fonction, vous pouvez accéder à tous les attributs de l'objet du modèle directement :
 
-{* ../../docs_src/body/tutorial002.py hl[21] *} 
+{* ../../docs_src/body/tutorial002.py hl[21] *}
 
 ## Corps de la requête + paramètres de chemin
 
