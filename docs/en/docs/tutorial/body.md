@@ -30,7 +30,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9]*}
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 
 The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
@@ -59,7 +59,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16]*}
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...and declare its type as the model you created, `Item`.
 
