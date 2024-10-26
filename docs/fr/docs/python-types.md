@@ -23,7 +23,7 @@ Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annota
 
 Prenons un exemple simple :
 
-{* ../../docs_src/python_types/tutorial001.py *} 
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Exécuter ce programe affiche :
 
@@ -80,7 +80,7 @@ C'est tout.
 
 Ce sont des annotations de types :
 
-{* ../../docs_src/python_types/tutorial002.py hl[1] *} 
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 À ne pas confondre avec la déclaration de valeurs par défaut comme ici :
 
