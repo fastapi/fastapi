@@ -173,7 +173,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 If your code uses `async` / `await`, use `async def`:
 
-```Python hl_lines="9  14"
+```Python hl[9,14]
 from typing import Union
 
 from fastapi import FastAPI
@@ -278,7 +278,7 @@ Now modify the file `main.py` to receive a body from a `PUT` request.
 
 Declare the body using standard Python types, thanks to Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
+```Python hl[4,9:12,25:27]
 from typing import Union
 
 from fastapi import FastAPI
