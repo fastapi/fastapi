@@ -176,7 +176,7 @@ Instead of, for example, a `dict`, or something else, as it could break the appl
 
 We also verify that we have a user with that username, and if not, we raise that same exception we created before.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117-128] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:128] *}
 
 ## Verify the `scopes`
 
