@@ -65,7 +65,6 @@ Enforces that all incoming requests have a correctly set `Host` header, in order
 
 {* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
-
 The following arguments are supported:
 
 * `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
