@@ -6,13 +6,13 @@
 
 ///
 
-환경 변수는 파이썬 코드 **바깥**, **운영 체제** 단에 존재하는 변수입니다. 파이썬 코드나 다른 프로그램에서 읽을 수 있습니다.
+환경 변수는 파이썬 코드의 **바깥**인, **운영 체제**에 존재하는 변수입니다. 파이썬 코드나 다른 프로그램에서 읽을 수 있습니다.
 
-환경 변수는 애플리케이션 **설정**을 처리할 때나, 파이썬의 **설치** 과정의 일부로 유용할 수 있습니다.
+환경 변수는 애플리케이션 **설정**을 처리하거나, 파이썬의 **설치** 과정의 일부로 유용합니다.
 
 ## 환경 변수를 만들고 사용하기
 
-파이썬을 사용할 필요 없이, **셸 (터미널)** 에서 환경변수를 **생성** 하고 사용할 수 있습니다.
+파이썬 없이도, **셸 (터미널)** 에서 환경 변수를 **생성** 하고 사용할 수 있습니다.
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -52,7 +52,7 @@ Hello Wade Wilson
 
 ## 파이썬에서 환경 변수 읽기
 
-파이썬 **바깥** 인 터미널에서 환경 변수를 생성할 수 있고(물론, 다른 방법도 좋습니다.), **파이썬에서 그것들을 읽을 수 있습니다.**
+파이썬 **바깥** 인 터미널에서(다른 도구로도 가능함.) 환경 변수를 생성할 수 있고, **파이썬에서 그것들을 읽을 수 있습니다.**
 
 예를 들어 다음과 같은 `main.py` 파일이 있다고 합시다:
 
@@ -71,7 +71,7 @@ print(f"Hello {name} from Python")
 
 ///
 
-그러면 그 파이썬 프로그램을 호출할 수 있습니다:
+그 파이썬 프로그램은 이렇게 호출할 수 있습니다:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -131,7 +131,7 @@ Hello Wade Wilson from Python
 
 **특정 프로그램 호출**에 대해서만 사용할 수 있는 환경 변수를 만들 수도 있습니다. 해당 프로그램에서만 사용할 수 있고, 해당 프로그램이 실행되는 동안만 사용할 수 있습니다.
 
-그렇게 하려면 프로그램 바로 앞, 같은 줄에 환경 변수를 만듭니다:
+그렇게 하려면 프로그램 바로 앞, 같은 줄에 환경 변수를 만들어야 합니다:
 
 <div class="termy">
 
@@ -167,7 +167,7 @@ Hello World from Python
 
 ## `PATH` 환경 변수
 
-**`PATH`** 라고 불리는, 운영체제(Linux, Windows, macOS 등)에서 실행할 프로그램을 찾기위해 사용되는 **특별한** 환경변수가 있습니다.
+**`PATH`**라고 불리는, **특별한** 환경변수가 있습니다.  운영체제(Linux, Windows, macOS 등)에서 실행할 프로그램을 찾기위해 사용됩니다.
 
 변수 `PATH`의 값은 Linux와 macOS에서는 콜론 `:`, Windows에서는 세미콜론 `;`으로 구분된 디렉토리로 구성된 긴 문자열입니다.
 
@@ -217,7 +217,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 Python을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다고 가정해 보겠습니다.
 
-`PATH` 환경 변수를 업데이트하도록 예라고 하면 설치 관리자가 `/opt/custompython/bin`을 `PATH` 환경 변수에 추가합니다.
+`PATH` 환경 변수를 업데이트하도록 "예"라고 하면 설치 관리자가 `/opt/custompython/bin`을 `PATH` 환경 변수에 추가합니다.
 
 다음과 같이 보일 수 있습니다:
 
@@ -225,7 +225,7 @@ Python을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다�
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
 ```
 
-이렇게 하면 터미널에 `python`을 입력하면 시스템이 `/opt/custompython/bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
+이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `/opt/custompython/bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
 
 ////
 
@@ -233,13 +233,13 @@ Python을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다�
 
 Python을 설치하고 그것이 `C:\opt\custompython\bin` 디렉토리에 있다고 가정해 보겠습니다.
 
-`PATH` 환경 변수를 업데이트하도록 예라고 하면 설치 관리자가 `C:\opt\custompython\bin`을 `PATH` 환경 변수에 추가합니다.
+`PATH` 환경 변수를 업데이트하도록 "예"라고 하면 설치 관리자가 `C:\opt\custompython\bin`을 `PATH` 환경 변수에 추가합니다.
 
 ```plaintext
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
-이렇게 하면 터미널에 `python`을 입력하면 시스템이 `C:\opt\custompython\bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
+이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `C:\opt\custompython\bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
 
 ////
 
@@ -257,7 +257,7 @@ $ python
 
 시스템은 `/opt/custompython/bin`에서 `python` 프로그램을 **찾아** 실행합니다.
 
-대략 다음과 같이 입력하는 것과 같습니다:
+다음과 같이 입력하는 것과 거의 같습니다:
 
 <div class="termy">
 
@@ -273,7 +273,7 @@ $ /opt/custompython/bin/python
 
 시스템은 `C:\opt\custompython\bin\python`에서 `python` 프로그램을 **찾아** 실행합니다.
 
-대략 다음과 같이 입력하는 것과 같습니다:
+다음과 같이 입력하는 것과 거의 같습니다:
 
 <div class="termy">
 
@@ -289,10 +289,10 @@ $ C:\opt\custompython\bin\python
 
 ## 결론
 
-이를 통해 **환경 변수**가 무엇이고 Python에서 어떻게 사용하는지에 대한 기본적인 이해가 생겼을 것입니다.
+이 문서를 읽고 **환경 변수**가 무엇이고 Python에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
 또한 <a href="https://ko.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">환경 변수에 대한 위키피디아(한국어)</a>에서 이에 대해 자세히 알아볼 수 있습니다.
 
-많은 경우 환경 변수가 어떻게 유용하고 적용 가능한지 바로 알 수 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
+많은 경우에서, 환경 변수가 어떻게 유용하고 적용 가능한지 바로 명확하게 알 수는 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
 
 예를 들어, 다음 섹션인 [가상 환경](virtual-environments.md)에서 이 정보가 필요합니다.
