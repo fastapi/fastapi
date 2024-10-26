@@ -169,9 +169,9 @@ As the type, put `list`.
 
 As the list is a type that contains some internal types, you put them in square brackets:
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006_py39.py!}
-```
+
+{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
+
 
 ////
 
@@ -179,9 +179,9 @@ As the list is a type that contains some internal types, you put them in square 
 
 From `typing`, import `List` (with a capital `L`):
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
+
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+
 
 Declare the variable, with the same colon (`:`) syntax.
 
@@ -189,9 +189,9 @@ As the type, put the `List` that you imported from `typing`.
 
 As the list is a type that contains some internal types, you put them in square brackets:
 
-```Python hl_lines="4"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
+
+{* ../../docs_src/python_types/tutorial006.py hl[4] *}
+
 
 ////
 
@@ -227,17 +227,15 @@ You would do the same to declare `tuple`s and `set`s:
 
 //// tab | Python 3.9+
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial007_py39.py!}
-```
+{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
+
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial007.py!}
-```
+
+{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
 
 ////
 
@@ -254,21 +252,8 @@ The first type parameter is for the keys of the `dict`.
 
 The second type parameter is for the values of the `dict`:
 
-//// tab | Python 3.9+
+{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008.py!}
-```
-
-////
 
 This means:
 
@@ -284,21 +269,8 @@ In Python 3.6 and above (including Python 3.10) you can use the `Union` type fro
 
 In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
 
-//// tab | Python 3.10+
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial008b_py310.py hl[1] *}
 
 In both cases this means that `item` could be an `int` or a `str`.
 
@@ -308,9 +280,8 @@ You can declare that a value could have a type, like `str`, but that it could al
 
 In Python 3.6 and above (including Python 3.10) you can declare it by importing and using `Optional` from the `typing` module.
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009.py!}
-```
+{* ../../docs_src/python_types/tutorial009.py [1,4] *}
+
 
 Using `Optional[str]` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
 
@@ -318,29 +289,9 @@ Using `Optional[str]` instead of just `str` will let the editor help you detect 
 
 This also means that in Python 3.10, you can use `Something | None`:
 
-//// tab | Python 3.10+
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
-```
 
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009.py!}
-```
-
-////
-
-//// tab | Python 3.8+ alternative
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial009_py310.py [1]*}
 
 #### Using `Union` or `Optional`
 
@@ -463,29 +414,9 @@ And you get all the editor support with that resulting object.
 
 An example from the official Pydantic docs:
 
-//// tab | Python 3.10+
 
-```Python
-{!> ../../docs_src/python_types/tutorial011_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011.py!}
-```
-
-////
 
 /// info
 
@@ -507,27 +438,8 @@ Pydantic has a special behavior when you use `Optional` or `Union[Something, Non
 
 Python also has a feature that allows putting **additional <abbr title="Data about the data, in this case, information about the type, e.g. a description.">metadata</abbr>** in these type hints using `Annotated`.
 
-//// tab | Python 3.9+
+{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
 
-In Python 3.9, `Annotated` is part of the standard library, so you can import it from `typing`.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-In versions below Python 3.9, you import `Annotated` from `typing_extensions`.
-
-It will already be installed with **FastAPI**.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013.py!}
-```
-
-////
 
 Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.
 
