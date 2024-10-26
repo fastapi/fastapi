@@ -31,7 +31,7 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6,9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Add the background task
 
