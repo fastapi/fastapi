@@ -61,7 +61,7 @@ Les valeurs des paramètres de votre fonction seront :
 
 De la même façon, vous pouvez définir des paramètres de requête comme optionnels, en leur donnant comme valeur par défaut `None` :
 
-{* ../../docs_src/query_params/tutorial002.py hl[9] *} 
+{* ../../docs_src/query_params/tutorial002.py hl[9] *}
 
 Ici, le paramètre `q` sera optionnel, et aura `None` comme valeur par défaut.
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Et bien sur, vous pouvez définir certains paramètres comme requis, certains avec des valeurs par défaut et certains entièrement optionnels :
 
-{* ../../docs_src/query_params/tutorial006.py hl[10] *} 
+{* ../../docs_src/query_params/tutorial006.py hl[10] *}
 
 Ici, on a donc 3 paramètres de requête :
 
