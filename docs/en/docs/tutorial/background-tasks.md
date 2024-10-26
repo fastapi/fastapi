@@ -52,7 +52,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 **FastAPI** knows what to do in each case and how to reuse the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
 
-{* > ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
 
 In this example, the messages will be written to the `log.txt` file *after* the response is sent.
