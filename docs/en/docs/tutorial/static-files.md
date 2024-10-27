@@ -7,9 +7,7 @@ You can serve static files automatically from a directory using `StaticFiles`.
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="2  6"
-{!../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | "Technical Details"
 
