@@ -9,6 +9,12 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/how-to/configure-swagger-ui.md`. PR [#12556](https://github.com/fastapi/fastapi/pull/12556) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes for `docs/en/docs/how-to/separate-openapi-schemas.md`. PR [#12555](https://github.com/fastapi/fastapi/pull/12555) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes for `docs/en/docs/advanced/security/http-basic-auth.md`. PR [#12553](https://github.com/fastapi/fastapi/pull/12553) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes in `docs/en/docs/tutorial/first-steps.md`. PR [#12552](https://github.com/fastapi/fastapi/pull/12552) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes in `docs/en/docs/python-types.md`. PR [#12551](https://github.com/fastapi/fastapi/pull/12551) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Fix link in OAuth2 docs. PR [#12550](https://github.com/fastapi/fastapi/pull/12550) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add External Link: FastAPI do Zero. PR [#12533](https://github.com/fastapi/fastapi/pull/12533) by [@rennerocha](https://github.com/rennerocha).
 * 📝 Fix minor typos. PR [#12516](https://github.com/fastapi/fastapi/pull/12516) by [@kkirsche](https://github.com/kkirsche).
 * 🌐 Fix rendering issue in translations. PR [#12509](https://github.com/fastapi/fastapi/pull/12509) by [@alejsdev](https://github.com/alejsdev).
@@ -29,6 +35,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump cloudflare/wrangler-action from 3.9 to 3.11. PR [#12544](https://github.com/fastapi/fastapi/pull/12544) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Update GitHub Action to deploy docs previews to handle missing deploy comments. PR [#12527](https://github.com/fastapi/fastapi/pull/12527) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12505](https://github.com/fastapi/fastapi/pull/12505) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
