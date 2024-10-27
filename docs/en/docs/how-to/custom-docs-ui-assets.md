@@ -18,7 +18,7 @@ The first step is to disable the automatic docs, as by default, those use the de
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Include the custom docs
 
@@ -34,7 +34,7 @@ You can reuse FastAPI's internal functions to create the HTML pages for the docs
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip
 
@@ -50,7 +50,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### Test it
 
@@ -118,7 +118,7 @@ After that, your file structure could look like:
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Test the static files
 
@@ -150,7 +150,7 @@ The same as when using a custom CDN, the first step is to disable the automatic 
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Include the custom docs for static files
 
@@ -166,7 +166,7 @@ Again, you can reuse FastAPI's internal functions to create the HTML pages for t
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip
 
@@ -182,7 +182,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Test Static Files UI
 
