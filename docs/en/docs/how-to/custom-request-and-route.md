@@ -116,4 +116,4 @@ You can also set the `route_class` parameter of an `APIRouter`:
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13-20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
