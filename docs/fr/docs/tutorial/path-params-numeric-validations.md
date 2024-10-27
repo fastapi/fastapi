@@ -58,7 +58,7 @@ Ainsi, vous pouvez déclarer votre fonction comme suit :
 
 Mais gardez à l'esprit que si vous utilisez `Annotated`, vous n'aurez pas ce problème, cela n'aura pas d'importance car vous n'utilisez pas les valeurs par défaut des paramètres de fonction pour `Query()` ou `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py hl[10] *} 
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py hl[10] *}
 
 ## Ordonnez les paramètres comme vous le souhaitez (astuces)
 
