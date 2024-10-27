@@ -9,6 +9,31 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/how-to/custom-docs-ui-assets.md`. PR [#12557](https://github.com/fastapi/fastapi/pull/12557) by [@philipokiokio](https://github.com/philipokiokio).
+* 🎨 Adjust spacing. PR [#12635](https://github.com/fastapi/fastapi/pull/12635) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Update includes in `docs/en/docs/how-to/custom-request-and-route.md`. PR [#12560](https://github.com/fastapi/fastapi/pull/12560) by [@philipokiokio](https://github.com/philipokiokio).
+
+### Translations
+
+* 🌐 Add Korean Translation for `docs/ko/docs/advanced/response-change-status-code.md`. PR [#12547](https://github.com/fastapi/fastapi/pull/12547) by [@9zimin9](https://github.com/9zimin9).
+
+## 0.115.4
+
+### Refactors
+
+* ♻️ Update logic to import and check `python-multipart` for compatibility with newer version. PR [#12627](https://github.com/fastapi/fastapi/pull/12627) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝  Update includes in `docs/fr/docs/tutorial/body.md`. PR [#12596](https://github.com/fastapi/fastapi/pull/12596) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes in `docs/fr/docs/tutorial/debugging.md`. PR [#12595](https://github.com/fastapi/fastapi/pull/12595) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes in `docs/fr/docs/tutorial/query-params-str-validations.md`. PR [#12591](https://github.com/fastapi/fastapi/pull/12591) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes in `docs/fr/docs/tutorial/query-params.md`. PR [#12589](https://github.com/fastapi/fastapi/pull/12589) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes in `docs/en/tutorial/body-fields.md`. PR [#12588](https://github.com/fastapi/fastapi/pull/12588) by [@lucaromagnoli](https://github.com/lucaromagnoli).
+* 📝 Update includes in `docs/de/docs/tutorial/response-status-code.md`. PR [#12585](https://github.com/fastapi/fastapi/pull/12585) by [@abejaranoh](https://github.com/abejaranoh).
+* 📝 Update includes in `docs/en/docs/tutorial/body.md`. PR [#12586](https://github.com/fastapi/fastapi/pull/12586) by [@lucaromagnoli](https://github.com/lucaromagnoli).
+* 📝 Update includes in `docs/en/docs/advanced/behind-a-proxy.md`. PR [#12583](https://github.com/fastapi/fastapi/pull/12583) by [@imjuanleonard](https://github.com/imjuanleonard).
+* 📝 Update includes syntax for `docs/pl/docs/tutorial/first-steps.md`. PR [#12584](https://github.com/fastapi/fastapi/pull/12584) by [@sebkozlo](https://github.com/sebkozlo).
 * 📝 Update includes in `docs/en/docs/advanced/middleware.md`. PR [#12582](https://github.com/fastapi/fastapi/pull/12582) by [@montanarograziano](https://github.com/montanarograziano).
 * 📝 Update includes in `docs/en/docs/advanced/additional-status-codes.md`. PR [#12577](https://github.com/fastapi/fastapi/pull/12577) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes in `docs/en/docs/advanced/advanced-dependencies.md`. PR [#12578](https://github.com/fastapi/fastapi/pull/12578) by [@krishnamadhavan](https://github.com/krishnamadhavan).
