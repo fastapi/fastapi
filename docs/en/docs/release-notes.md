@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/tutorial/encoder.md`. PR [#12597](https://github.com/fastapi/fastapi/pull/12597) by [@tonyjly](https://github.com/tonyjly).
 * 📝 Update includes in `docs/en/docs/how-to/custom-docs-ui-assets.md`. PR [#12557](https://github.com/fastapi/fastapi/pull/12557) by [@philipokiokio](https://github.com/philipokiokio).
 * 🎨 Adjust spacing. PR [#12635](https://github.com/fastapi/fastapi/pull/12635) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Update includes in `docs/en/docs/how-to/custom-request-and-route.md`. PR [#12560](https://github.com/fastapi/fastapi/pull/12560) by [@philipokiokio](https://github.com/philipokiokio).
