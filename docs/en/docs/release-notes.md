@@ -7,6 +7,17 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🎨 Adjust spacing. PR [#12635](https://github.com/fastapi/fastapi/pull/12635) by [@alejsdev](https://github.com/alejsdev).
+* 📝 Update includes in `docs/en/docs/how-to/custom-request-and-route.md`. PR [#12560](https://github.com/fastapi/fastapi/pull/12560) by [@philipokiokio](https://github.com/philipokiokio).
+
+### Translations
+
+* 🌐 Add Korean Translation for `docs/ko/docs/advanced/response-change-status-code.md`. PR [#12547](https://github.com/fastapi/fastapi/pull/12547) by [@9zimin9](https://github.com/9zimin9).
+
+## 0.115.4
+
 ### Refactors
 
 * ♻️ Update logic to import and check `python-multipart` for compatibility with newer version. PR [#12627](https://github.com/fastapi/fastapi/pull/12627) by [@tiangolo](https://github.com/tiangolo).
