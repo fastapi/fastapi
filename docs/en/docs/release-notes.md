@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/additional-status-codes.md`. PR [#12577](https://github.com/fastapi/fastapi/pull/12577) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes in `docs/en/docs/advanced/advanced-dependencies.md`. PR [#12578](https://github.com/fastapi/fastapi/pull/12578) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes in `docs/en/docs/advanced/additional-responses.md`. PR [#12576](https://github.com/fastapi/fastapi/pull/12576) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes in `docs/en/docs/tutorial/static-files.md`. PR [#12575](https://github.com/fastapi/fastapi/pull/12575) by [@lucaromagnoli](https://github.com/lucaromagnoli).
