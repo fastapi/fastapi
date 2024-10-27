@@ -62,7 +62,7 @@ standard = [
     # For templates
     "jinja2 >=2.11.2",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.16",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
