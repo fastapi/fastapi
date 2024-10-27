@@ -32,7 +32,6 @@ We create an async function `lifespan()` with `yield` like this:
 
 {* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
-
 Here we are simulating the expensive *startup* operation of loading the model by putting the (fake) model function in the dictionary with machine learning models before the `yield`. This code will be executed **before** the application **starts taking requests**, during the *startup*.
 
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
