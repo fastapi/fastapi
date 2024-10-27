@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update includes in `docs/en/docs/how-to/custom-request-and-route.md`. PR [#12560](https://github.com/fastapi/fastapi/pull/12560) by [@philipokiokio](https://github.com/philipokiokio).
+
 ### Translations
 
 * 🌐 Add Korean Translation for `docs/ko/docs/advanced/response-change-status-code.md`. PR [#12547](https://github.com/fastapi/fastapi/pull/12547) by [@9zimin9](https://github.com/9zimin9).
