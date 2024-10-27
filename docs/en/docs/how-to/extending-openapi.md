@@ -45,22 +45,17 @@ First, write all your **FastAPI** application as normally:
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
-
 ### Generate the OpenAPI schema
 
 Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
 
-
-
 {* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
-
 
 ### Modify the OpenAPI schema
 
 Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
-
 
 ### Cache the OpenAPI schema
 
@@ -70,18 +65,13 @@ That way, your application won't have to generate the schema every time a user o
 
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
-
 {* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
-
 
 ### Override the method
 
 Now you can replace the `.openapi()` method with your new function.
 
-
-
 {* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
-
 
 ### Check it
 
