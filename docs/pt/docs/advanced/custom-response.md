@@ -63,7 +63,7 @@ Para retornar uma resposta com HTML diretamente do **FastAPI**, utilize `HTMLRes
 
 /// info | Informação
 
-O parâmetro `response_class` também será usado para definir o "media type" da resposta. 
+O parâmetro `response_class` também será usado para definir o "media type" da resposta.
 
 Neste caso, o cabeçalho HTTP `Content-Type` será definido como `text/html`.
 
@@ -255,7 +255,7 @@ Isso inclui muitas bibliotecas que interagem com armazenamento em nuvem, process
 1. Essa é a função geradora. É definida como "função geradora" porque contém declarações `yield` nela.
 2. Ao utilizar o bloco `with`, nós garantimos que o objeto semelhante a um arquivo é fechado após a função geradora ser finalizada. Isto é, após a resposta terminar de ser enivada.
 3. Essa declaração `yield from` informa a função para iterar sobre essa coisa nomeada de `file_like`. E então, para cada parte iterada, fornece essa parte como se viesse dessa função geradora (`iterfile`).
-   
+
     Então, é uma função geradora que transfere o trabalho de "geração" para alguma outra coisa interna.
 
     Fazendo dessa forma, podemos colocá-la em um bloco `with`, e assim garantir que o objeto semelhante a um arquivo é fechado quando a função termina.
