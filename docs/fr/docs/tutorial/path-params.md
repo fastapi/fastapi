@@ -183,7 +183,7 @@ Vous pouvez comparer ce paramètre avec les membres de votre énumération `Mode
 
 Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici), avec `model_name.value`, ou en général, `votre_membre_d'enum.value` :
 
-{ *../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | "Astuce"
 
