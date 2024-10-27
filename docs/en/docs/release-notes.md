@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/fr/docs/python-types.md`. PR [#12558](https://github.com/fastapi/fastapi/pull/12558) by [@Ismailtlem](https://github.com/Ismailtlem).
 * 📝 Update includes in `docs/en/docs/how-to/graphql.md`. PR [#12564](https://github.com/fastapi/fastapi/pull/12564) by [@philipokiokio](https://github.com/philipokiokio).
 * 📝 Update includes in `docs/en/docs/how-to/extending-openapi.md`. PR [#12562](https://github.com/fastapi/fastapi/pull/12562) by [@philipokiokio](https://github.com/philipokiokio).
 * 📝 Update includes for `docs/en/docs/how-to/configure-swagger-ui.md`. PR [#12556](https://github.com/fastapi/fastapi/pull/12556) by [@tiangolo](https://github.com/tiangolo).
