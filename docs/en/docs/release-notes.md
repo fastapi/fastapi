@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.4
+
 ### Refactors
 
 * ♻️ Update logic to import and check `python-multipart` for compatibility with newer version. PR [#12627](https://github.com/fastapi/fastapi/pull/12627) by [@tiangolo](https://github.com/tiangolo).
