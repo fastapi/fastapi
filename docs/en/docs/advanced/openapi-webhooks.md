@@ -34,6 +34,7 @@ When you create a **FastAPI** application, there is a `webhooks` attribute that 
 
 {* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:13,36:53] *}
 
+
 The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.
 
 /// info
