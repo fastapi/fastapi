@@ -78,19 +78,12 @@ multipart_not_installed_error = (
     'You can install "python-multipart" with: \n\n'
     "pip install python-multipart\n"
 )
-multipart_incorrect_install_error = (
-    'Form data requires "python-multipart" to be installed. '
-    'It seems you installed "multipart" instead. \n'
-    'You can remove "multipart" with: \n\n'
-    "pip uninstall multipart\n\n"
-    'And then install "python-multipart" with: \n\n'
-    "pip install python-multipart\n"
-)
 
 
 def ensure_multipart_is_installed() -> None:
     try:
         from python_multipart import __version__
+
         assert __version__
     except ImportError:
         logger.error(multipart_not_installed_error)
