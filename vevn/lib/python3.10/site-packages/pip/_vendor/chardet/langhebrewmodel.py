@@ -4380,4 +4380,3 @@ WINDOWS_1255_HEBREW_MODEL = SingleByteCharSetModel(charset_name='windows-1255',
                                                    typical_positive_ratio=0.984004,
                                                    keep_ascii_letters=False,
                                                    alphabet='אבגדהוזחטיךכלםמןנסעףפץצקרשתװױײ')
-
