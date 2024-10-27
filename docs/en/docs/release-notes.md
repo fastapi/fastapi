@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/tutorial/static-files.md`. PR [#12575](https://github.com/fastapi/fastapi/pull/12575) by [@lucaromagnoli](https://github.com/lucaromagnoli).
 * 📝 Update includes in `docs/en/docs/advanced/async-tests.md`. PR [#12568](https://github.com/fastapi/fastapi/pull/12568) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes in `docs/pt/docs/advanced/behind-a-proxy.md`. PR [#12563](https://github.com/fastapi/fastapi/pull/12563) by [@asmioglou](https://github.com/asmioglou).
 * 📝 Update includes in `docs/de/docs/advanced/security/http-basic-auth.md`. PR [#12561](https://github.com/fastapi/fastapi/pull/12561) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
