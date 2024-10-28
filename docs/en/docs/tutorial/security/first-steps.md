@@ -20,35 +20,7 @@ Let's first just use the code and see how it works, and then we'll come back to 
 
 Copy the example in a file `main.py`:
 
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py *}
 
 ## Run it
 
@@ -160,35 +132,7 @@ In that case, **FastAPI** also provides you with the tools to build it.
 
 When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="8"
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="7"
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="6"
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
 
 /// tip
 
@@ -226,35 +170,7 @@ So, it can be used with `Depends`.
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="11"
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
 
 This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
 
