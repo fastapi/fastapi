@@ -86,7 +86,7 @@ Prefira usar a versão `Annotated` se possível.
 
 /// info | Informação
 
-`File` é uma classe que herda diretamente de `Form`. 
+`File` é uma classe que herda diretamente de `Form`.
 
 Mas lembre-se que quando você importa `Query`, `Path`, `File` e outros de `fastapi`, eles são, na verdade, funções que retornam classes especiais.
 
