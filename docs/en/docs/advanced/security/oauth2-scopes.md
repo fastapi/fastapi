@@ -96,6 +96,8 @@ For simplicity, here we are just adding the scopes received directly to the toke
 
 But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
 
+///
+
 {* ../../docs_src/security/tutorial005_an_py310.py hl[156] *}
 
 ## Declare scopes in *path operations* and dependencies
@@ -119,6 +121,8 @@ In this case, it requires the scope `me` (it could require more than one scope).
 You don't necessarily need to add different scopes in different places.
 
 We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
+
+///
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
 
