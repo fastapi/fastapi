@@ -25,7 +25,7 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 
 /// tip
 
-`description` 필드에 Markdown을 작성할 수 있으며, 출력에서 렌더링됩니다.
+`description` 필드에 Markdown을 사용할 수 있으며, 출력에서 렌더링됩니다.
 
 ///
 
