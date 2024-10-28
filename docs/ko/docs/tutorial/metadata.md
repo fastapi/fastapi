@@ -101,7 +101,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `identifier`를 URL 대
 
 ## OpenAPI URL
 
-기본적으로 OpenAPI 스키마는 `/openapi.json`에 제공됩니다.
+OpenAPI 구조는 기본적으로  `/openapi.json`에서 제공됩니다.
 
 `openapi_url` 매개변수를 통해 이를 설정할 수 있습니다.
 
