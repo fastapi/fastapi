@@ -363,7 +363,7 @@ async def read_burgers():
 
 ### 編寫自己的非同步程式碼
 
-Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 實現的，這使得它們與 Python 標準庫兼容 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>。
+Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 實作的，這使得它們與 Python 標準函式庫相容 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>。
 
 特別是，你可以直接使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 來處理更複雜的並行使用案例，這些案例需要你在自己的程式碼中使用更高階的模式。
 
@@ -429,7 +429,7 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 ### 其他輔助函式
 
-你可以直接呼叫任何使用 `def` 或 `async def` 創建的其他輔助函式，FastAPI 不會影響你呼叫它們的方式。
+你可以直接呼叫任何使用 `def` 或 `async def` 建立的其他輔助函式，FastAPI 不會影響你呼叫它們的方式。
 
 這與 FastAPI 為你呼叫*路徑操作函式*和依賴項的邏輯有所不同。
 
