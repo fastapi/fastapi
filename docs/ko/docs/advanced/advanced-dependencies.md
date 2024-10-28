@@ -48,7 +48,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 ////
 
-이 경우, **FastAPI**는 추가 매개변수와 하위 의존성을 확인하기 위해 `__call__`을 사용하게 되며, 
+이 경우, **FastAPI**는 추가 매개변수와 하위 의존성을 확인하기 위해 `__call__`을 사용하게 되며,
 나중에 *경로 연산 함수*에서 매개변수에 값을 전달할 때 이를 호출하게 됩니다.
 
 ## 인스턴스 매개변수화하기
@@ -125,7 +125,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 ## 인스턴스를 의존성으로 사용하기
 
-그런 다음, `Depends(FixedContentQueryChecker)` 대신 `Depends(checker)`에서 이 `checker` 인스턴스를 사용할 수 있으며, 
+그런 다음, `Depends(FixedContentQueryChecker)` 대신 `Depends(checker)`에서 이 `checker` 인스턴스를 사용할 수 있으며,
 클래스 자체가 아닌 인스턴스 `checker`가 의존성이 됩니다.
 
 의존성을 해결할 때 **FastAPI**는 이 `checker`를 다음과 같이 호출합니다:
