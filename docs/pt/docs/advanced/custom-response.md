@@ -335,7 +335,7 @@ No exemplo abaixo, o **FastAPI** irá utilizar `ORJSONResponse` por padrão, em 
 
 /// tip | Dica
 
-Você ainda substituir `response_class` em *operações de rota* como antes.
+Você ainda pode substituir `response_class` em *operações de rota* como antes.
 
 ///
 
