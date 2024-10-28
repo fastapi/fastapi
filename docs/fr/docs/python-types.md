@@ -23,7 +23,9 @@ Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annota
 
 Prenons un exemple simple :
 
-{*../../docs_src/python_types/tutorial001.py*}
+```Python
+{!../../docs_src/python_types/tutorial001.py!}
+```
 
 Exécuter ce programe affiche :
 
@@ -37,7 +39,9 @@ La fonction :
 * Convertit la première lettre de chaque paramètre en majuscules grâce à `title()`.
 * Concatène les résultats avec un espace entre les deux.
 
-{*../../docs_src/python_types/tutorial001.py hl[2] *}
+```Python hl_lines="2"
+{!../../docs_src/python_types/tutorial001.py!}
+```
 
 ### Limitations
 
@@ -80,7 +84,9 @@ C'est tout.
 
 Ce sont des annotations de types :
 
-{*../../docs_src/python_types/tutorial002.py hl[1] *}
+```Python hl_lines="1"
+{!../../docs_src/python_types/tutorial002.py!}
+```
 
 À ne pas confondre avec la déclaration de valeurs par défaut comme ici :
 
@@ -108,7 +114,9 @@ Vous pouvez donc dérouler les options jusqu'à trouver la méthode à laquelle 
 
 Cette fonction possède déjà des annotations de type :
 
-{*../../docs_src/python_types/tutorial003.py hl[1] *}
+```Python hl_lines="1"
+{!../../docs_src/python_types/tutorial003.py!}
+```
 
 Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'auto-complétion, mais aussi de la détection d'erreurs :
 
@@ -116,7 +124,9 @@ Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'aut
 
 Maintenant que vous avez connaissance du problème, convertissez `age` en <abbr title="string">chaîne de caractères</abbr> grâce à `str(age)` :
 
-{*../../docs_src/python_types/tutorial004.py hl[2] *}
+```Python hl_lines="2"
+{!../../docs_src/python_types/tutorial004.py!}
+```
 
 ## Déclarer des types
 
@@ -135,7 +145,9 @@ Comme par exemple :
 * `bool`
 * `bytes`
 
-{*../../docs_src/python_types/tutorial005.py hl[1] *}
+```Python hl_lines="1"
+{!../../docs_src/python_types/tutorial005.py!}
+```
 
 ### Types génériques avec des paramètres de types
 
@@ -151,7 +163,9 @@ Par exemple, définissons une variable comme `list` de `str`.
 
 Importez `List` (avec un `L` majuscule) depuis `typing`.
 
-{*../../docs_src/python_types/tutorial006.py hl[1] *}
+```Python hl_lines="1"
+{!../../docs_src/python_types/tutorial006.py!}
+```
 
 Déclarez la variable, en utilisant la syntaxe des deux-points (`:`).
 
@@ -159,7 +173,9 @@ Et comme type, mettez `List`.
 
 Les listes étant un type contenant des types internes, mettez ces derniers entre crochets (`[`, `]`) :
 
-{*../../docs_src/python_types/tutorial006.py hl[4] *}
+```Python hl_lines="4"
+{!../../docs_src/python_types/tutorial006.py!}
+```
 
 /// tip | "Astuce"
 
@@ -185,7 +201,9 @@ Et pourtant, l'éditeur sait qu'elle est de type `str` et pourra donc vous aider
 
 C'est le même fonctionnement pour déclarer un `tuple` ou un `set` :
 
-{*../../docs_src/python_types/tutorial007.py hl[1,4] *}
+```Python hl_lines="1  4"
+{!../../docs_src/python_types/tutorial007.py!}
+```
 
 Dans cet exemple :
 
@@ -198,7 +216,9 @@ Pour définir un `dict`, il faut lui passer 2 paramètres, séparés par une vir
 
 Le premier paramètre de type est pour les clés et le second pour les valeurs du dictionnaire (`dict`).
 
-{*../../docs_src/python_types/tutorial008.py hl[1,4] *}
+```Python hl_lines="1  4"
+{!../../docs_src/python_types/tutorial008.py!}
+```
 
 Dans cet exemple :
 
@@ -210,7 +230,9 @@ Dans cet exemple :
 
 Vous pouvez aussi utiliser `Optional` pour déclarer qu'une variable a un type, comme `str` mais qu'il est "optionnel" signifiant qu'il pourrait aussi être `None`.
 
-{*../../docs_src/python_types/tutorial009.py hl[1,4] *}
+```Python hl_lines="1  4"
+{!../../docs_src/python_types/tutorial009.py!}
+```
 
 Utiliser `Optional[str]` plutôt que `str` permettra à l'éditeur de vous aider à détecter les erreurs où vous supposeriez qu'une valeur est toujours de type `str`, alors qu'elle pourrait aussi être `None`.
 
@@ -233,12 +255,15 @@ Vous pouvez aussi déclarer une classe comme type d'une variable.
 
 Disons que vous avez une classe `Person`, avec une variable `name` :
 
-{*../../docs_src/python_types/tutorial010.py hl[1:3] *}
-
+```Python hl_lines="1-3"
+{!../../docs_src/python_types/tutorial010.py!}
+```
 
 Vous pouvez ensuite déclarer une variable de type `Person` :
 
-{*../../docs_src/python_types/tutorial010.py hl[6] *}
+```Python hl_lines="6"
+{!../../docs_src/python_types/tutorial010.py!}
+```
 
 Et vous aurez accès, encore une fois, au support complet offert par l'éditeur :
 
@@ -258,7 +283,9 @@ Ainsi, votre éditeur vous offrira un support adapté pour l'objet résultant.
 
 Extrait de la documentation officielle de **Pydantic** :
 
-{*../../docs_src/python_types/tutorial011.py*}
+```Python
+{!../../docs_src/python_types/tutorial011.py!}
+```
 
 /// info
 
