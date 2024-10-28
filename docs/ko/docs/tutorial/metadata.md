@@ -111,7 +111,7 @@ OpenAPI 구조는 기본적으로  `/openapi.json`에서 제공됩니다.
 {!../../docs_src/metadata/tutorial002.py!}
 ```
 
-OpenAPI 스키마를 완전히 비활성화하려면 `openapi_url=None`으로 설정할 수 있으며, 이를 사용하여 문서화 사용자 인터페이스도 비활성화됩니다.
+OpenAPI 구조를 완전히 비활성화하려면 `openapi_url=None`으로 설정할 수 있으며, 이를 사용하여 문서화 사용자 인터페이스도 비활성화됩니다.
 
 ## 문서화 URL
 
