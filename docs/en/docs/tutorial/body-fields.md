@@ -6,57 +6,8 @@ The same way you can declare additional validation and metadata in *path operati
 
 First, you have to import it:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
 
 /// warning
 
@@ -68,57 +19,7 @@ Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as 
 
 You can then use `Field` with model attributes:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 

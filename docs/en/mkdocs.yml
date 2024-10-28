@@ -266,7 +266,6 @@ markdown_extensions:
 
   # Python Markdown Extensions
   pymdownx.betterem:
-    smart_enable: all
   pymdownx.caret:
   pymdownx.highlight:
     line_spans: __span

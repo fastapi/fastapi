@@ -319,7 +319,7 @@ Bu aslında Pydantic'in de aynı doğrulama stiline geçmesinde ilham kaynağı 
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug, Python tip belirteçlerini kullanarak API parametrelerinin tipini belirlemeyi uygulayan ilk framework'lerdendi. Bu, diğer araçlara da ilham kaynağı olan harika bir fikirdi.
 

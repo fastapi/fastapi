@@ -323,7 +323,7 @@ Isso na verdade inspirou a atualização de partes do Pydantic, para dar suporte
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug foi um dos primeiros frameworks a implementar a declaração de tipos de parâmetros usando Python _type hints_. Isso foi uma ótima idéia que inspirou outras ferramentas a fazer o mesmo.
 

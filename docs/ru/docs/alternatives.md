@@ -357,7 +357,7 @@ Molten мне попался на начальной стадии написан
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug был одним из первых фреймворков, реализовавших объявление параметров API с использованием подсказок типов Python.
 Эта отличная идея была использована и другими инструментами.

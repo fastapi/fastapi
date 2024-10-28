@@ -93,7 +93,7 @@ FastAPI — это современный, быстрый (высокопрои�
 
 "_Честно говоря, то, что вы создали, выглядит очень солидно и отполировано. Во многих смыслах я хотел, чтобы **Hug** был именно таким — это действительно вдохновляет, когда кто-то создаёт такое._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

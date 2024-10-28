@@ -72,7 +72,7 @@ It supports many secure hashing algorithms and utilities to work with them.
 
 The recommended algorithm is "Bcrypt".
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install PassLib with Bcrypt:
+Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install PassLib with Bcrypt:
 
 <div class="termy">
 

@@ -2,9 +2,7 @@
 
 Quand vous déclarez des paramètres dans votre fonction de chemin qui ne font pas partie des paramètres indiqués dans le chemin associé, ces paramètres sont automatiquement considérés comme des paramètres de "requête".
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial001.py!}
-```
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 La partie appelée requête (ou **query**) dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`.
 
@@ -63,9 +61,7 @@ Les valeurs des paramètres de votre fonction seront :
 
 De la même façon, vous pouvez définir des paramètres de requête comme optionnels, en leur donnant comme valeur par défaut `None` :
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial002.py!}
-```
+{* ../../docs_src/query_params/tutorial002.py hl[9] *}
 
 Ici, le paramètre `q` sera optionnel, et aura `None` comme valeur par défaut.
 
@@ -87,9 +83,7 @@ Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI** (**FastAPI
 
 Vous pouvez aussi déclarer des paramètres de requête comme booléens (`bool`), **FastAPI** les convertira :
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial003.py!}
-```
+{* ../../docs_src/query_params/tutorial003.py hl[9] *}
 
 Avec ce code, en allant sur :
 
@@ -131,9 +125,7 @@ Et vous n'avez pas besoin de les déclarer dans un ordre spécifique.
 
 Ils seront détectés par leurs noms :
 
-```Python hl_lines="8  10"
-{!../../docs_src/query_params/tutorial004.py!}
-```
+{* ../../docs_src/query_params/tutorial004.py hl[8,10] *}
 
 ## Paramètres de requête requis
 
@@ -143,9 +135,7 @@ Si vous ne voulez pas leur donner de valeur par défaut mais juste les rendre op
 
 Mais si vous voulez rendre un paramètre de requête obligatoire, vous pouvez juste ne pas y affecter de valeur par défaut :
 
-```Python hl_lines="6-7"
-{!../../docs_src/query_params/tutorial005.py!}
-```
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Ici le paramètre `needy` est un paramètre requis (ou obligatoire) de type `str`.
 
@@ -189,9 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Et bien sur, vous pouvez définir certains paramètres comme requis, certains avec des valeurs par défaut et certains entièrement optionnels :
 
-```Python hl_lines="10"
-{!../../docs_src/query_params/tutorial006.py!}
-```
+{* ../../docs_src/query_params/tutorial006.py hl[10] *}
 
 Ici, on a donc 3 paramètres de requête :
 

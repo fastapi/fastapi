@@ -321,7 +321,7 @@ Das hat tatsächlich dazu geführt, dass Teile von Pydantic aktualisiert wurden,
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug war eines der ersten Frameworks, welches die Deklaration von API-Parametertypen mithilfe von Python-Typhinweisen implementierte. Das war eine großartige Idee, die andere Tools dazu inspirierte, dasselbe zu tun.
 

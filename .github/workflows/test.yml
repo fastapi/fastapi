@@ -12,6 +12,9 @@ on:
     # cron every week on monday
     - cron: "0 0 * * 1"
 
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -25,19 +28,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          # Issue ref: https://github.com/actions/setup-python/issues/436
-          # cache: "pip"
-          # cache-dependency-path: pyproject.toml
-      - uses: actions/cache@v4
-        id: cache
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-pydantic-v2-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v08
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-tests.txt
+        run: uv pip install -r requirements-tests.txt
       - name: Install Pydantic v2
-        run: pip install --upgrade "pydantic>=2.0.2,<3.0.0"
+        run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
       - name: Lint
         run: bash scripts/lint.sh
 
@@ -63,23 +65,22 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          # Issue ref: https://github.com/actions/setup-python/issues/436
-          # cache: "pip"
-          # cache-dependency-path: pyproject.toml
-      - uses: actions/cache@v4
-        id: cache
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ matrix.pydantic-version }}-${{ hashFiles('pyproject.toml', 'requirements-tests.txt', 'requirements-docs-tests.txt') }}-test-v08
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-tests.txt
+        run: uv pip install -r requirements-tests.txt
       - name: Install Pydantic v1
         if: matrix.pydantic-version == 'pydantic-v1'
-        run: pip install "pydantic>=1.10.0,<2.0.0"
+        run: uv pip install "pydantic>=1.10.0,<2.0.0"
       - name: Install Pydantic v2
         if: matrix.pydantic-version == 'pydantic-v2'
-        run: pip install --upgrade "pydantic>=2.0.2,<3.0.0"
+        run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
@@ -105,16 +106,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.8'
-          # Issue ref: https://github.com/actions/setup-python/issues/436
-          # cache: "pip"
-          # cache-dependency-path: pyproject.toml
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+      - name: Install Dependencies
+        run: uv pip install -r requirements-tests.txt
       - name: Get coverage files
         uses: actions/download-artifact@v4
         with:
           pattern: coverage-*
           path: coverage
           merge-multiple: true
-      - run: pip install coverage[toml]
       - run: ls -la coverage
       - run: coverage combine coverage
       - run: coverage report

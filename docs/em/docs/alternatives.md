@@ -321,7 +321,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">🤗</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">🤗</a>
 
 🤗 🕐 🥇 🛠️ 🛠️ 📄 🛠️ 🔢 🆎 ⚙️ 🐍 🆎 🔑. 👉 👑 💭 👈 😮 🎏 🧰 🎏.
 
