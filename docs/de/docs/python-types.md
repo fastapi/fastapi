@@ -160,6 +160,7 @@ Wenn Sie über die **neueste Version von Python** verfügen, verwenden Sie die B
 #### Liste
 
 Definieren wir zum Beispiel eine Variable, die eine `list` von `str` – eine Liste von Strings – sein soll.
+
 //// tab | Python 3.9+
 
 Deklarieren Sie die Variable mit der gleichen Doppelpunkt-Syntax (`:`).
@@ -224,7 +225,21 @@ Und trotzdem weiß der Editor, dass es sich um ein `str` handelt, und bietet ent
 
 Das Gleiche gilt für die Deklaration eines Tupels – `tuple` – und einer Menge – `set`:
 
-{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
+//// tab | Python 3.9+
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial007_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial007.py!}
+```
+
+////
 
 Das bedeutet:
 
@@ -239,7 +254,21 @@ Der erste Typ-Parameter ist für die Schlüssel des `dict`.
 
 Der zweite Typ-Parameter ist für die Werte des `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
+//// tab | Python 3.9+
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial008_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial008.py!}
+```
+
+////
 
 Das bedeutet:
 
@@ -255,7 +284,21 @@ In Python 3.6 und höher (inklusive Python 3.10) können Sie den `Union`-Typ von
 
 In Python 3.10 gibt es zusätzlich eine **neue Syntax**, die es erlaubt, die möglichen Typen getrennt von einem <abbr title='Allgemein: „oder“. In anderem Zusammenhang auch „Bitweises ODER“, aber letztere Bedeutung ist hier nicht relevant'>vertikalen Balken (`|`)</abbr> aufzulisten.
 
-{* ../../docs_src/python_types/tutorial008b_py310.py hl[1] *}
+//// tab | Python 3.10+
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial008b.py!}
+```
+
+////
 
 In beiden Fällen bedeutet das, dass `item` ein `int` oder ein `str` sein kann.
 
@@ -273,7 +316,29 @@ Wenn Sie `Optional[str]` anstelle von nur `str` verwenden, wird Ihr Editor Ihnen
 
 Das bedeutet auch, dass Sie in Python 3.10 `Something | None` verwenden können:
 
-{* ../../docs_src/python_types/tutorial009_py310.py hl[1] *}
+//// tab | Python 3.10+
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial009_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial009.py!}
+```
+
+////
+
+//// tab | Python 3.8+ Alternative
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial009b.py!}
+```
+
+////
 
 #### `Union` oder `Optional` verwenden?
 
@@ -396,7 +461,29 @@ Und Sie erhalten volle Editor-Unterstützung für dieses Objekt.
 
 Ein Beispiel aus der offiziellen Pydantic Dokumentation:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+//// tab | Python 3.10+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py310.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011.py!}
+```
+
+////
 
 /// info
 
@@ -418,7 +505,27 @@ Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` o
 
 Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typhinweisen unterzubringen, mittels `Annotated`.
 
-{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
+//// tab | Python 3.9+
+
+In Python 3.9 ist `Annotated` ein Teil der Standardbibliothek, Sie können es von `typing` importieren.
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial013_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+In Versionen niedriger als Python 3.9 importieren Sie `Annotated` von `typing_extensions`.
+
+Es wird bereits mit **FastAPI** installiert sein.
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial013.py!}
+```
+
+////
 
 Python selbst macht nichts mit `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
 
