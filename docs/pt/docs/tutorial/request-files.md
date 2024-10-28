@@ -12,7 +12,7 @@ Garanta que você criou um [ambiente virtual](../virtual-environments.md){.inter
 $ pip install python-multipart
 ```
 
-Isso ocorre porque os arquivos enviados são enviados como "dados de formulário".
+Isso é necessário, visto que os arquivos enviados são enviados como "dados de formulário".
 
 ///
 
@@ -106,7 +106,7 @@ Mantenha em mente que isso significa que todo o conteúdo será armazenado na me
 
 Mas há muitos casos em que você pode se beneficiar do uso de `UploadFile`.
 
-## Parametros de Arquivo com `UploadFile`
+## Parâmetros de Arquivo com `UploadFile`
 
 Defina um parâmetro de arquivo com um tipo de `UploadFile`:
 
@@ -140,15 +140,15 @@ Prefira usar a versão `Annotated` se possível.
 
 ////
 
-Usando `UploadFile` tem várias vantagens sobre `bytes`:
+Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 
 * Você não precisa utilizar o `File()` no valor padrão do parâmetro.
 * Ele utiliza um arquivo "spooled":
     * Um arquivo armazenado na memória até um limite máximo de tamanho, e após passar esse limite, ele será armazenado no disco.
 * Isso significa que funcionará bem para arquivos grandes como imagens, vídeos, binários grandes, etc., sem consumir toda a memória.
 * Você pode receber metadados do arquivo enviado.
-* Ele tem uma <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank"></a> interface `assíncrona`.
-* Ele expõe um objeto python real <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que você pode passar diretamente para outras bibliotecas que esperam um objeto semelhante a um arquivo.
+* Ele tem uma <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> interface `assíncrona`.
+* Ele expõe um objeto python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que você pode passar diretamente para outras bibliotecas que esperam um objeto semelhante a um arquivo("file-like").
 
 ### `UploadFile`
 
@@ -156,7 +156,7 @@ Usando `UploadFile` tem várias vantagens sobre `bytes`:
 
 * `filename`: Uma `str` com o nome do arquivo original que foi enviado (por exemplo, `myimage.jpg`).
 * `content_type`: Uma `str` com o tipo de conteúdo (tipo MIME / tipo de mídia) (por exemplo, `image/jpeg`).
-* `file`: Um <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (um <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> objeto). Este é o objeto de arquivo Python real que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto "file-like".
+* `file`: Um <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (um <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> objeto). Este é o objeto de arquivo Python que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto semelhante a um arquivo("file-like").
 
 `UploadFile` tem os seguintes métodos `assíncronos`. Todos eles chamam os métodos de arquivo correspondentes por baixo dos panos (usando o `SpooledTemporaryFile` interno).
 
@@ -189,19 +189,19 @@ Quando você usa os métodos `async`, o **FastAPI** executa os métodos de arqui
 
 /// note | "Detalhes Técnicos do Starlette"
 
-***FastAPI**'s `UploadFile` herda diretamente de `UploadFile` do **Starlette**, mas adiciona algumas partes necessárias para torná-lo compatível com o **Pydantic** e as outras partes do FastAPI.
+O `UploadFile` do ***FastAPI** herda diretamente do `UploadFile` do **Starlette** , mas adiciona algumas partes necessárias para torná-lo compatível com o **Pydantic** e as outras partes do FastAPI.
 
 ///
 
 ## O que é "Form Data"
 
-O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, é diferente do JSON.
+O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, a qual é diferente do JSON.
 
 **FastAPI** se certificará de ler esses dados do lugar certo, ao invés de JSON.
 
 /// note | "Detalhes Técnicos"
 
-Dados de formulários normalmente são codificados usando o "media type (tipo de mídia)" `application/x-www-form-urlencoded` quando não incluem arquivos.
+Dados de formulários normalmente são codificados usando o "media type" (tipo de mídia) `application/x-www-form-urlencoded` quando não incluem arquivos.
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo da requisição.
 
@@ -359,7 +359,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`s.
+Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
 /// note | "Detalhes Técnicos"
 
