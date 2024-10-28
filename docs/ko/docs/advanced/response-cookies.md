@@ -25,8 +25,9 @@
 이를 위해 [Response를 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성할 수 있습니다.
 
 그런 다음 쿠키를 설정하고 반환하면 됩니다:
-Python hl_lines="10-12"
-{!../../docs_src/response_cookies/tutorial001.py!}
+```Python hl_lines="1  18"
+{!../../docs_src/response_directly/tutorial002.py!}
+```
 /// tip
 
 `Response` 매개변수를 사용하지 않고 응답을 직접 반환하는 경우, FastAPI는 이를 직접 반환한다는 점에 유의하세요.
