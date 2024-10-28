@@ -52,7 +52,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `identifier`를 URL 대
 각 딕셔너리에는 다음이 포함될 수 있습니다:
 
 * `name` (**필수**): `tags` 매개변수에서 *경로 작동*과 `APIRouter`에 사용된 태그 이름과 동일한 `str`입니다.
-* `description`: 태그에 대한 간단한 설명을 담은 `str`입니다. Markdown을 사용할 수 있으며 문서 UI에 표시됩니다.
+* `description`: 태그에 대한 간단한 설명을 담은 `str`입니다. 마크다운을 사용할 수 있으며 문서 UI에 표시됩니다.
 * `externalDocs`: 외부 문서를 설명하는 `dict`이며:
     * `description`: 외부 문서에 대한 간단한 설명을 담은 `str`입니다.
     * `url` (**필수**): 외부 문서의 URL을 담은 `str`입니다.
