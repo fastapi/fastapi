@@ -46,9 +46,8 @@ You can also specify whether your backend allows:
 * Specific HTTP methods (`POST`, `PUT`) or all of them with the wildcard `"*"`.
 * Specific HTTP headers or all of them with the wildcard `"*"`.
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
+
 
 The default parameters used by the `CORSMiddleware` implementation are restrictive by default, so you'll need to explicitly enable particular origins, methods, or headers, in order for browsers to be permitted to use them in a Cross-Domain context.
 
