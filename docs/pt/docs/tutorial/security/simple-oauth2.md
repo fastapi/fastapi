@@ -252,7 +252,7 @@ Assim, o ladrão não poderá tentar usar essas mesmas senhas em outro sistema (
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
