@@ -9,6 +9,11 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/openapi-webhooks.md`. PR [#12605](https://github.com/fastapi/fastapi/pull/12605) by [@salmantec](https://github.com/salmantec).
+* 📝 Update includes in `docs/en/docs/advanced/events.md`. PR [#12604](https://github.com/fastapi/fastapi/pull/12604) by [@salmantec](https://github.com/salmantec).
+* 📝 Update includes in `docs/en/docs/advanced/dataclasses.md`. PR [#12603](https://github.com/fastapi/fastapi/pull/12603) by [@salmantec](https://github.com/salmantec).
+* 📝 Update includes in `docs/es/docs/tutorial/cookie-params.md`. PR [#12602](https://github.com/fastapi/fastapi/pull/12602) by [@antonyare93](https://github.com/antonyare93).
+* 📝 Update includes in `docs/fr/docs/tutorial/path-params-numeric-validations.md`. PR [#12601](https://github.com/fastapi/fastapi/pull/12601) by [@kantandane](https://github.com/kantandane).
 * 📝 Update includes in `docs/fr/docs/tutorial/background-tasks.md`. PR [#12600](https://github.com/fastapi/fastapi/pull/12600) by [@kantandane](https://github.com/kantandane).
 * 📝 Update includes in `docs/en/docs/tutorial/encoder.md`. PR [#12597](https://github.com/fastapi/fastapi/pull/12597) by [@tonyjly](https://github.com/tonyjly).
 * 📝 Update includes in `docs/en/docs/how-to/custom-docs-ui-assets.md`. PR [#12557](https://github.com/fastapi/fastapi/pull/12557) by [@philipokiokio](https://github.com/philipokiokio).
