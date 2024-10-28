@@ -12,7 +12,7 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 | `title` | `str` | API의 제목입니다. |
 | `summary` | `str` | API에 대한 짧은 요약입니다. <small>OpenAPI 3.1.0, FastAPI 0.99.0부터 사용 가능</small> |
 | `description` | `str` | API에 대한 짧은 설명입니다. Markdown을 사용할 수 있습니다. |
-| `version` | `string` | API의 버전입니다. OpenAPI의 버전이 아닌 애플리케이션의 버전을 나타냅니다. 예: `2.5.0` |
+| `version` | `string` | API의 버전입니다. OpenAPI의 버전이 아닌, 여러분의 애플리케이션의 버전을 나타냅니다. 예: `2.5.0` |
 | `terms_of_service` | `str` | API 이용 약관의 URL입니다. 제공하는 경우 URL 형식이어야 합니다. |
 | `contact` | `dict` | 노출된 API에 대한 연락처 정보입니다. 여러 필드를 포함할 수 있습니다. <details><summary><code>contact</code> 필드</summary><table><thead><tr><th>매개변수</th><th>타입</th><th>설명</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>연락처 인물/조직의 식별명입니다.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>연락처 정보가 담긴 URL입니다. URL 형식이어야 합니다.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>연락처 인물/조직의 이메일 주소입니다. 이메일 주소 형식이어야 합니다.</td></tr></tbody></table></details> |
 | `license_info` | `dict` | 노출된 API의 라이선스 정보입니다. 여러 필드를 포함할 수 있습니다. <details><summary><code>license_info</code> 필드</summary><table><thead><tr><th>매개변수</th><th>타입</th><th>설명</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>필수</strong> (<code>license_info</code>가 설정된 경우). API에 사용된 라이선스 이름입니다.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API에 대한 <a href="https://spdx.org/licenses/" class="external-link" target="_blank">SPDX</a> 라이선스 표현입니다. <code>identifier</code> 필드는 <code>url</code> 필드와 상호 배타적입니다. <small>OpenAPI 3.1.0, FastAPI 0.99.0부터 사용 가능</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API에 사용된 라이선스의 URL입니다. URL 형식이어야 합니다.</td></tr></tbody></table></details> |
