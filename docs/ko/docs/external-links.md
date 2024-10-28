@@ -6,11 +6,9 @@
 
 다음은 그 중 미완성인 것들에 대해서 입니다.
 
-/// 팁
+!!! 팁
 
 아직 이 곳에 존재하지 않는 **FastAPI**관련 기사, 프로젝트, 툴 등이 있을 경우, <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">추가하여 풀 리퀘스트를 올려주세요</a>.
-
-///
 
 {% for section_name, section_content in external_links.items() %}
 
