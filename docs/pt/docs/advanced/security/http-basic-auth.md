@@ -40,7 +40,7 @@ Para lidar com isso, primeiramente nós convertemos o `username` e o `password` 
 
 Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `credentials.username` é `"stanleyjobson"`, e que o `credentials.password` é `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[12:24] *}
+{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
 
 Isso seria parecido com:
 
