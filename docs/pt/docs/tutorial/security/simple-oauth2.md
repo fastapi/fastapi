@@ -14,7 +14,7 @@ Mas não se preocupe, você pode mostrá-lo como quiser aos usuários finais no 
 
 E seus modelos de banco de dados podem usar qualquer outro nome que você desejar.
 
-Mas para a *path operation* (operação de caminho) de login, precisamos usar esses nomes para serem compatíveis com a especificação (e poder, por exemplo, usar o sistema integrado de documentação da API).
+Mas para a *operação de rota* de login, precisamos usar esses nomes para serem compatíveis com a especificação (e poder, por exemplo, usar o sistema integrado de documentação da API).
 
 A especificação também afirma que o `username` e a `password` devem ser enviados como dados de formulário (portanto, não há JSON aqui).
 
@@ -26,13 +26,13 @@ O nome do campo do formulário é `scope` (no singular), mas na verdade é uma l
 
 Cada “scope” é apenas uma string (sem espaços).
 
-Normalmente são usados ​​para declarar permissões de segurança específicas, por exemplo:
+Normalmente são usados para declarar permissões de segurança específicas, por exemplo:
 
 * `users:read` ou `users:write` são exemplos comuns.
 * `instagram_basic` é usado pelo Facebook e Instagram.
 * `https://www.googleapis.com/auth/drive` é usado pelo Google.
 
-/// info | "Informação"
+/// info | Informação
 
 No OAuth2, um "scope" é apenas uma string que declara uma permissão específica necessária.
 
@@ -50,7 +50,7 @@ Agora vamos usar os utilitários fornecidos pelo **FastAPI** para lidar com isso
 
 ### `OAuth2PasswordRequestForm`
 
-Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com `Depends` na *path operation* (operação de caminho) para `/token`:
+Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com `Depends` na *operação de rota* para `/token`:
 
 //// tab | Python 3.10+
 
@@ -78,7 +78,7 @@ Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com 
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -92,7 +92,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -111,7 +111,7 @@ Prefira usar a versão `Annotated`, se possível.
 * Um campo `scope` opcional como uma string grande, composta de strings separadas por espaços.
 * Um `grant_type` (tipo de concessão) opcional.
 
-/// tip | "Dica"
+/// tip | Dica
 
 A especificação OAuth2 na verdade *requer* um campo `grant_type` com um valor fixo de `password`, mas `OAuth2PasswordRequestForm` não o impõe.
 
@@ -122,7 +122,7 @@ Se você precisar aplicá-lo, use `OAuth2PasswordRequestFormStrict` em vez de `O
 * Um `client_id` opcional (não precisamos dele em nosso exemplo).
 * Um `client_secret` opcional (não precisamos dele em nosso exemplo).
 
-/// info | "Informação"
+/// info | Informação
 
 O `OAuth2PasswordRequestForm` não é uma classe especial para **FastAPI** como é `OAuth2PasswordBearer`.
 
@@ -136,7 +136,7 @@ Mas como é um caso de uso comum, ele é fornecido diretamente pelo **FastAPI**,
 
 ### Use os dados do formulário
 
-/// tip | "Dica"
+/// tip | Dica
 
 A instância da classe de dependência `OAuth2PasswordRequestForm` não terá um atributo `scope` com a string longa separada por espaços, em vez disso, terá um atributo `scopes` com a lista real de strings para cada escopo enviado.
 
@@ -176,7 +176,7 @@ Para o erro, usamos a exceção `HTTPException`:
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -190,7 +190,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -266,7 +266,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -279,8 +279,6 @@ Prefira usar a versão `Annotated`, se possível.
 ////
 
 #### Sobre `**user_dict`
-
-`UserInDB(**user_dict)` means:
 
 `UserInDB(**user_dict)` significa:
 
@@ -312,7 +310,7 @@ E deve ter um `access_token`, com uma string contendo nosso token de acesso.
 
 Para este exemplo simples, seremos completamente inseguros e retornaremos o mesmo `username` do token.
 
-/// tip | "Dica"
+/// tip | Dica
 
 No próximo capítulo, você verá uma implementação realmente segura, com hash de senha e tokens <abbr title="JSON Web Tokens">JWT</abbr>.
 
@@ -346,7 +344,7 @@ Mas, por enquanto, vamos nos concentrar nos detalhes específicos de que precisa
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -360,7 +358,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -372,7 +370,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Pela especificação, você deve retornar um JSON com um `access_token` e um `token_type`, o mesmo que neste exemplo.
 
@@ -422,7 +420,7 @@ Portanto, em nosso endpoint, só obteremos um usuário se o usuário existir, ti
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -436,7 +434,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated`, se possível.
 
@@ -448,7 +446,7 @@ Prefira usar a versão `Annotated`, se possível.
 
 ////
 
-/// info | "Informação"
+/// info | Informação
 
 O cabeçalho adicional `WWW-Authenticate` com valor `Bearer` que estamos retornando aqui também faz parte da especificação.
 
