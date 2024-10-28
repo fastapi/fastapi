@@ -4,7 +4,7 @@ Por padrão, o **FastAPI** irá retornar respostas utilizando `JSONResponse`.
 
 Mas você pode sobrescrever esse comportamento utilizando `Response` diretamente, como visto em [Retornando uma Resposta Diretamente](response-directly.md){.internal-link target=_blank}.
 
-Mas se você retornar uma `Response` diretamente (ou qualquer subclasse, como `JSONResponse`), os dados não serão convertidos automaticamente (memso que você declare um `response_model`), e a documentação não será gerada automaticamente (por exemplo, incluindo o "media type", no cabeçalho HTTP `Content-Type` como parte do esquema OpenAPI gerado).
+Mas se você retornar uma `Response` diretamente (ou qualquer subclasse, como `JSONResponse`), os dados não serão convertidos automaticamente (mesmo que você declare um `response_model`), e a documentação não será gerada automaticamente (por exemplo, incluindo o "media type", no cabeçalho HTTP `Content-Type` como parte do esquema OpenAPI gerado).
 
 Mas você também pode declarar a `Response` que você deseja utilizar (e.g. qualquer subclasse de `Response`), em um *decorador de operação de rota* utilizando o parâmetro `response_class`.
 
@@ -89,7 +89,7 @@ Uma `Response` retornada diretamente em sua *função de operação de rota* nã
 
 /// info | Informação
 
-Obviamente, o cabeçalho `Content-Type`, o código de status, etc, irão vir do objeto `Response` que você retornou.
+Obviamente, o cabeçalho `Content-Type`, o código de status, etc, virão do objeto `Response` que você retornou.
 
 ///
 
@@ -133,7 +133,7 @@ O **FastAPI** provê a mesma `starlette.responses` como `fastapi.responses` apen
 
 A classe principal de respostas, todas as outras respostas herdam dela.
 
-Você pode retorná-la direamente.
+Você pode retorná-la diretamente.
 
 Ela aceita os seguintes parâmetros:
 
