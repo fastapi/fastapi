@@ -22,9 +22,7 @@ Se você é um especialista em Python e já sabe tudo sobre type hints, pule par
 
 Vamos começar com um exemplo simples:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
 
 A chamada deste programa gera:
 
@@ -38,9 +36,7 @@ A função faz o seguinte:
 * Converte a primeira letra de cada uma em maiúsculas com `title()`.
 * <abbr title = "Agrupa-os, como um. Com o conteúdo de um após o outro.">Concatena</abbr> com um espaço no meio.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Edite-o
 
@@ -82,9 +78,7 @@ para:
 
 Esses são os "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Isso não é o mesmo que declarar valores padrão como seria com:
 
@@ -112,9 +106,7 @@ Com isso, você pode rolar, vendo as opções, até encontrar o que "soa familia
 
 Verifique esta função, ela já possui type hints:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Como o editor conhece os tipos de variáveis, você não obtém apenas o preenchimento automático, mas também as verificações de erro:
 
@@ -122,9 +114,7 @@ Como o editor conhece os tipos de variáveis, você não obtém apenas o preench
 
 Agora você sabe que precisa corrigí-lo, converta `age` em uma string com `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Declarando Tipos
 
@@ -143,9 +133,7 @@ Você pode usar, por exemplo:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Tipos genéricos com parâmetros de tipo
 
@@ -181,9 +169,7 @@ Como tipo, coloque `list`.
 
 Como a lista é o tipo que contém algum tipo interno, você coloca o tipo dentro de colchetes:
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006_py39.py!}
-```
+{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
 
 ////
 
@@ -191,9 +177,7 @@ Como a lista é o tipo que contém algum tipo interno, você coloca o tipo dentr
 
 De `typing`, importe `List` (com o `L` maiúsculo):
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 Declare uma variável com a mesma sintaxe com dois pontos (`:`)
 
@@ -201,9 +185,7 @@ Como tipo, coloque o `List` que você importou de `typing`.
 
 Como a lista é o tipo que contém algum tipo interno, você coloca o tipo dentro de colchetes:
 
-```Python hl_lines="4"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[4] *}
 
 ////
 
@@ -237,21 +219,7 @@ E, ainda assim, o editor sabe que é um `str` e fornece suporte para isso.
 
 Você faria o mesmo para declarar `tuple`s e `set`s:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial007_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
 
 Isso significa que:
 
@@ -266,21 +234,7 @@ O primeiro parâmetro de tipo é para as chaves do `dict`.
 
 O segundo parâmetro de tipo é para os valores do `dict`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
 
 Isso significa que:
 
@@ -296,21 +250,7 @@ No Python 3.6 e superior (incluindo o Python 3.10), você pode utilizar o tipo `
 
 No Python 3.10 também existe uma **nova sintaxe** onde você pode colocar os possívels tipos separados por uma <abbr title='também chamado de "bitwise ou operador", mas o significado é irrelevante aqui'>barra vertical (`|`)</abbr>.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial008b_py310.py hl[1] *}
 
 Em ambos os casos, isso significa que `item` poderia ser um `int` ou um `str`.
 
@@ -321,9 +261,7 @@ Você pode declarar que um valor pode ter um tipo, como `str`, mas que ele tamb�
 
 No Python 3.6 e superior (incluindo o Python 3.10) você pode declará-lo importando e utilizando `Optional` do módulo `typing`.
 
-```Python hl_lines="1 4"
-{!../../docs_src/python_types/tutorial009.py!}
-```
+{* ../../docs_src/python_types/tutorial009.py hl[1,4] *}
 
 O uso de `Optional[str]` em vez de apenas `str` permitirá que o editor o ajude a detectar erros, onde você pode estar assumindo que um valor é sempre um `str`, quando na verdade também pode ser `None`.
 
@@ -331,29 +269,7 @@ O uso de `Optional[str]` em vez de apenas `str` permitirá que o editor o ajude 
 
 Isso também significa que no Python 3.10, você pode utilizar `Something | None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009.py!}
-```
-
-////
-
-//// tab | Python 3.8+ alternative
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial009_py310.py hl[1] *}
 
 #### Utilizando `Union` ou `Optional`
 
@@ -370,9 +286,7 @@ Isso é apenas sobre palavras e nomes. Mas estas palavras podem afetar como os s
 
 Por exemplo, vamos pegar esta função:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
 
 O paâmetro `name` é definido como `Optional[str]`, mas ele **não é opcional**, você não pode chamar a função sem o parâmetro:
 
@@ -388,9 +302,7 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 A boa notícia é, quando você estiver no Python 3.10 você não precisará se preocupar mais com isso, pois você poderá simplesmente utilizar o `|` para definir uniões de tipos:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
 
 E então você não precisará mais se preocupar com nomes como `Optional` e `Union`. 😎
 
@@ -452,15 +364,11 @@ Você também pode declarar uma classe como o tipo de uma variável.
 
 Digamos que você tenha uma classe `Person`, com um nome:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Então você pode declarar que uma variável é do tipo `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 E então, novamente, você recebe todo o suporte do editor:
 
@@ -484,29 +392,7 @@ E você recebe todo o suporte do editor com esse objeto resultante.
 
 Retirado dos documentos oficiais dos Pydantic:
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// info | Informação
 
@@ -529,27 +415,7 @@ O Pydantic tem um comportamento especial quando você usa `Optional` ou `Union[S
 
 O Python possui uma funcionalidade que nos permite incluir **<abbr title="Informação sobre a informação, neste caso, informação sobre o tipo, e.g. uma descrição.">metadados</abbr> adicionais** nos type hints utilizando `Annotated`.
 
-//// tab | Python 3.9+
-
-No Python 3.9, `Annotated` é parte da biblioteca padrão, então você pode importá-lo de `typing`.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-Em versões abaixo do Python 3.9, você importa `Annotated` de `typing_extensions`.
-
-Ele já estará instalado com o **FastAPI**.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
 
 O Python em si não faz nada com este `Annotated`. E para editores e outras ferramentas, o tipo ainda é `str`.
 
