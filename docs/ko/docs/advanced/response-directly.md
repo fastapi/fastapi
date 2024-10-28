@@ -55,7 +55,7 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 
 XML 내용을 문자열에 넣고, 이를 `Response`에 넣어 반환할 수 있습니다:
 
-```Python hl_lines="1 18" 
+```Python hl_lines="1 18"
 {!../../docs_src/response_directly/tutorial002.py!}
 ```
 
