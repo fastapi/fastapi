@@ -4647,4 +4647,3 @@ ISO_8859_2_HUNGARIAN_MODEL = SingleByteCharSetModel(charset_name='ISO-8859-2',
                                                     typical_positive_ratio=0.947368,
                                                     keep_ascii_letters=True,
                                                     alphabet='ABCDEFGHIJKLMNOPRSTUVZabcdefghijklmnoprstuvzÁÉÍÓÖÚÜáéíóöúüŐőŰű')
-

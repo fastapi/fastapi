@@ -5715,4 +5715,3 @@ ISO_8859_5_RUSSIAN_MODEL = SingleByteCharSetModel(charset_name='ISO-8859-5',
                                                   typical_positive_ratio=0.976601,
                                                   keep_ascii_letters=False,
                                                   alphabet='ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё')
-

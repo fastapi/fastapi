@@ -4380,4 +4380,3 @@ ISO_8859_9_TURKISH_MODEL = SingleByteCharSetModel(charset_name='ISO-8859-9',
                                                   typical_positive_ratio=0.97029,
                                                   keep_ascii_letters=True,
                                                   alphabet='ABCDEFGHIJKLMNOPRSTUVYZabcdefghijklmnoprstuvyzÂÇÎÖÛÜâçîöûüĞğİıŞş')
-

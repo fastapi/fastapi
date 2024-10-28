@@ -4380,4 +4380,3 @@ TIS_620_THAI_MODEL = SingleByteCharSetModel(charset_name='TIS-620',
                                             typical_positive_ratio=0.926386,
                                             keep_ascii_letters=False,
                                             alphabet='กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุู฿เแโใไๅๆ็่้๊๋์ํ๎๏๐๑๒๓๔๕๖๗๘๙๚๛')
-

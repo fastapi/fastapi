@@ -4395,4 +4395,3 @@ ISO_8859_7_GREEK_MODEL = SingleByteCharSetModel(charset_name='ISO-8859-7',
                                                 typical_positive_ratio=0.982851,
                                                 keep_ascii_letters=False,
                                                 alphabet='ΆΈΉΊΌΎΏΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίαβγδεζηθικλμνξοπρςστυφχψωόύώ')
-

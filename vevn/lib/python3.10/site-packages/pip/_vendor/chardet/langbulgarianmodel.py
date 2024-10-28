@@ -4647,4 +4647,3 @@ WINDOWS_1251_BULGARIAN_MODEL = SingleByteCharSetModel(charset_name='windows-1251
                                                       typical_positive_ratio=0.969392,
                                                       keep_ascii_letters=False,
                                                       alphabet='АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯабвгдежзийклмнопрстуфхцчшщъьюя')
-
