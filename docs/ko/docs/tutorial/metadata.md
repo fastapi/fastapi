@@ -75,7 +75,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `identifier`를 URL 대
 
 ### 태그 사용
 
-`tags` 매개변수를 *경로 작업* 및 `APIRouter`와 함께 사용하여 태그에 할당할 수 있습니다:
+`tags` 매개변수를 *경로 작동* 및 `APIRouter`와 함께 사용하여 태그에 할당할 수 있습니다:
 
 ```Python hl_lines="21  26"
 {!../../docs_src/metadata/tutorial004.py!}
