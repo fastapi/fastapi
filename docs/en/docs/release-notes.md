@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/how-to/conditional-openapi.md`. PR [#12624](https://github.com/fastapi/fastapi/pull/12624) by [@rabinlamadong](https://github.com/rabinlamadong).
 * 📝 Update includes in `docs/en/docs/tutorial/dependencies/index.md`. PR [#12615](https://github.com/fastapi/fastapi/pull/12615) by [@bharara](https://github.com/bharara).
 * 📝 Update includes in `docs/en/docs/tutorial/response-status-code.md`. PR [#12620](https://github.com/fastapi/fastapi/pull/12620) by [@kantandane](https://github.com/kantandane).
 * 📝 Update includes in `docs/en/docs/how-to/custom-docs-ui-assets.md`. PR [#12623](https://github.com/fastapi/fastapi/pull/12623) by [@rabinlamadong](https://github.com/rabinlamadong).
