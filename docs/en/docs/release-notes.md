@@ -29,6 +29,10 @@ hide:
 * 🌐 Add Korean translation for `docs/ko/docs/fastapi-cli.md`. PR [#12515](https://github.com/fastapi/fastapi/pull/12515) by [@dhdld](https://github.com/dhdld).
 * 🌐 Add Korean Translation for `docs/ko/docs/advanced/response-change-status-code.md`. PR [#12547](https://github.com/fastapi/fastapi/pull/12547) by [@9zimin9](https://github.com/9zimin9).
 
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12707](https://github.com/fastapi/fastapi/pull/12707) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
 ## 0.115.4
 
 ### Refactors
