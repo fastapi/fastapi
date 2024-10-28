@@ -29,7 +29,7 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 
 ///
 
-이 구성을 사용하면 자동 API 문서는 다음과 같이 보입니다:
+이 구성을 사용하면 문서 자동화(로 생성된) API 문서는 다음과 같이 보입니다:
 
 <img src="/img/tutorial/metadata/image01.png">
 
