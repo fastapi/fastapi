@@ -90,21 +90,29 @@ multipart_incorrect_install_error = (
 
 def ensure_multipart_is_installed() -> None:
     try:
-        # __version__ is available in both multiparts, and can be mocked
-        from multipart import __version__
+        from python_multipart import __version__
 
-        assert __version__
+        # Import an attribute that can be mocked/deleted in testing
+        assert __version__ > "0.0.12"
+    except (ImportError, AssertionError):
         try:
-            # parse_options_header is only available in the right multipart
-            from multipart.multipart import parse_options_header
+            # __version__ is available in both multiparts, and can be mocked
+            from multipart import __version__  # type: ignore[no-redef,import-untyped]
 
-            assert parse_options_header  # type: ignore[truthy-function]
+            assert __version__
+            try:
+                # parse_options_header is only available in the right multipart
+                from multipart.multipart import (  # type: ignore[import-untyped]
+                    parse_options_header,
+                )
+
+                assert parse_options_header
+            except ImportError:
+                logger.error(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error) from None
         except ImportError:
-            logger.error(multipart_incorrect_install_error)
-            raise RuntimeError(multipart_incorrect_install_error) from None
-    except ImportError:
-        logger.error(multipart_not_installed_error)
-        raise RuntimeError(multipart_not_installed_error) from None
+            logger.error(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error) from None
 
 
 def get_param_sub_dependant(
