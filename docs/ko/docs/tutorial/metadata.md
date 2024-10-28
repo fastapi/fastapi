@@ -65,7 +65,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `identifier`를 URL 대
 {!../../docs_src/metadata/tutorial004.py!}
 ```
 
-설명 안에 Markdown을 사용할 수 있습니다. 예를 들어 "login"은 굵게(**login**) 표시되고, "fancy"는 기울임꼴(_fancy_)로 표시됩니다.
+설명 안에 마크다운을 사용할 수 있습니다. 예를 들어 "login"은 굵게(**login**) 표시되고, "fancy"는 기울임꼴(_fancy_)로 표시됩니다.
 
 /// tip
 
