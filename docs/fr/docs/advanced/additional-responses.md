@@ -237,9 +237,6 @@ Vous pouvez utiliser cette technique pour réutiliser certaines réponses préd�
 
 Par exemple:
 
-```Python hl_lines="13-17 26"
-{!../../docs_src/additional_responses/tutorial004.py!}
-```
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## Plus d'informations sur les réponses OpenAPI
