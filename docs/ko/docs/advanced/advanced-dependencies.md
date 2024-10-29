@@ -154,7 +154,7 @@ checker(q="somequery")
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip "팁"
+/// tip "참고"
 
 가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
 
