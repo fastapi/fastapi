@@ -109,7 +109,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip "팁"
+/// tip "참고"
 
 가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
 
