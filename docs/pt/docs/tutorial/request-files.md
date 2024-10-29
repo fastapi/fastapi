@@ -20,69 +20,13 @@ Isso é necessário, visto que os arquivos enviados são enviados como "dados de
 
 Importe `File` e `UploadFile` de `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
 ## Definir Parâmetros `File`
 
 Crie parâmetros de arquivo da mesma forma que você faria para `Body` ou `Form`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
 /// info | Informação
 
@@ -110,35 +54,7 @@ Mas há muitos casos em que você pode se beneficiar do uso de `UploadFile`.
 
 Defina um parâmetro de arquivo com um tipo de `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="13"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="12"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 
@@ -211,7 +127,7 @@ Se você quiser ler mais sobre essas codificações e campos de formulário, vá
 
 /// warning | Aviso
 
-Você pode declarar multiplos parâmetros `File` e `Form` em uma *operação de rota*, mas você não pode declarar campos `Body` que você espera receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
+Você pode declarar múltiplos parâmetros `File` e `Form` em uma *operação de rota*, mas você não pode declarar campos `Body` que você espera receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
 
 Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
@@ -221,91 +137,13 @@ Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
 Você pode tornar um arquivo opcional usando anotações de tipo padrão e definindo um valor padrão de `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  18"
-{!> ../../docs_src/request_files/tutorial001_02_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="7  15"
-{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[17] *}
 
 ## `UploadFile` com Metadados Adicionais
 
 Você também pode usar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9  15"
-{!> ../../docs_src/request_files/tutorial001_03_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  14"
-{!> ../../docs_src/request_files/tutorial001_03_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="7  13"
-{!> ../../docs_src/request_files/tutorial001_03.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[15] *}
 
 ## Uploads de Múltiplos Arquivos
 
@@ -315,49 +153,7 @@ Eles serão associados ao mesmo "campo de formulário" enviado usando "dados de 
 
 Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/request_files/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[15] *}
 
 Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
@@ -373,49 +169,7 @@ Você pode também pode usar `from starlette.responses import HTMLResponse`.
 
 Da mesma forma de antes, você pode usar `File()` para definir parâmetros adicionais, mesmo para `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  18-20"
-{!> ../../docs_src/request_files/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12  19-21"
-{!> ../../docs_src/request_files/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9  16"
-{!> ../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="11  18"
-{!> ../../docs_src/request_files/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
 ## Recapitulando
 
