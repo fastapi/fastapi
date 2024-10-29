@@ -1,6 +1,6 @@
 # 응답을 직접 반환하기
 
-**FastAPI**에서 *경로 작업(path operation)*을 생성할 때, 일반적으로 `dict`, `list`, `Pydantic 모델`, `데이터베이스 모델` 등의 데이터를 반환할 수 있습니다.
+**FastAPI**에서 *경로 작업(path operation)*을 생성할 때, 일반적으로 `dict`, `list`, Pydantic 모델, 데이터베이스 모델 등의 데이터를 반환할 수 있습니다.
 
 기본적으로 **FastAPI**는 [JSON 호환 인코더](../tutorial/encoder.md){.internal-link target=_blank}에 설명된 `jsonable_encoder`를 사용해 해당 반환 값을 자동으로 `JSON`으로 변환합니다.
 
