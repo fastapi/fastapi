@@ -62,7 +62,7 @@ standard = [
     # For templates
     "jinja2 >=2.11.2",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.16",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -81,7 +81,7 @@ all = [
     # For templates
     "jinja2 >=2.11.2",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.16",
     # For Starlette's SessionMiddleware, not commonly used with FastAPI
     "itsdangerous >=1.1.0",
     # For Starlette's schema generation, would not be used with FastAPI
