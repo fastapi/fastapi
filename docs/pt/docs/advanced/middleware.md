@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** inclui vários middlewares para casos de uso comuns, veremos a seguir como usá-los.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Para o próximo exemplo, você também poderia usar `from starlette.middleware.something import SomethingMiddleware`.
 
@@ -92,7 +92,5 @@ Por exemplo:
 
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
-
-To see other available middlewares check <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlette's Middleware docs</a> and the <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.
 
 Para checar outros middlewares disponíveis, confira <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Documentação de Middlewares do Starlette</a> e a  <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">Lista Incrível do ASGI</a>.
