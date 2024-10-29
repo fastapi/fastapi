@@ -27,6 +27,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Portuguese Translation for `docs/pt/docs/advanced/custom-response.md`. PR [#12631](https://github.com/fastapi/fastapi/pull/12631) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/metadata.md`. PR [#12538](https://github.com/fastapi/fastapi/pull/12538) by [@LinkolnR](https://github.com/LinkolnR).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/metadata.md`. PR [#12541](https://github.com/fastapi/fastapi/pull/12541) by [@kwang1215](https://github.com/kwang1215).
 * 🌐 Add Korean Translation for `docs/ko/docs/advanced/response-cookies.md`. PR [#12546](https://github.com/fastapi/fastapi/pull/12546) by [@kim-sangah](https://github.com/kim-sangah).
