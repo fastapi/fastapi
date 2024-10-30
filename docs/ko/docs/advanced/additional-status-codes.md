@@ -1,8 +1,8 @@
 # 추가 상태 코드
 
-기본적으로 **FastAPI**는 *경로 연산*에서 반환한 콘텐츠를 해당 `JSONResponse`에 넣어 `JSONResponse`를 사용하여 응답을 반환합니다.
+기본적으로 **FastAPI**는 응답을 `JSONResponse`를 사용하여 반환하며, *경로 작업(path operation)*에서 반환한 내용을 해당 `JSONResponse` 안에 넣어 반환합니다.
 
-기본 상태 코드 또는 *경로 연산*에서 설정한 상태 코드를 사용합니다.
+기본 상태 코드 또는 *경로 작업*에서 설정한 상태 코드를 사용합니다.
 
 ## 추가 상태 코드
 
@@ -10,13 +10,13 @@
 
 예를 들어 항목을 업데이트할 수 있는 *경로 작업*이 있고 성공 시 200 “OK”의 HTTP 상태 코드를 반환한다고 가정해 보겠습니다.
 
-하지만 새 항목도 수락하기를 원합니다. 그리고 항목이 이전에 존재하지 않았던 경우 항목을 생성하고 HTTP 상태 코드 201 “Created”를 반환합니다.
+하지만 새로운 항목을 허용하기를 원할 것입니다. 항목이 이전에 존재하지 않았다면 이를 생성하고 HTTP 상태 코드 201 "Created"를 반환합니다.
 
 이를 위해서는 `JSONResponse`를 가져와서 원하는 `status_code`를 설정하여 콘텐츠를 직접 반환합니다:
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning 경고
+/// warning | 경고
 
 위의 예제처럼 `Response`를 직접 반환하면 바로 반환됩니다.
 
@@ -26,11 +26,11 @@
 
 ///
 
-/// note 참고 | “기술적 세부 정보”
+/// note 참고 | "기술적 세부 정보"
 
 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
-**FastAPI**는 개발자의 편의를 위해 `fastapi.responses`와 동일한 `starlette.responses`를 제공합니다. 하지만 사용 가능한 대부분의 응답은 Starlette에서 직접 제공합니다. 상태`도 마찬가지입니다.
+**FastAPI**는 개발자의 편의를 위해 `fastapi.responses`와 동일한 `starlette.responses`를 제공합니다. 하지만 사용 가능한 대부분의 응답은 Starlette에서 직접 제공합니다. 상태도 마찬가지입니다.
 
 ///
 
