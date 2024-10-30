@@ -31,7 +31,7 @@ Die Middleware-Funktion erhält:
     * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
 * Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
 
-{* }../../docs_src/middleware/tutorial001.py! hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py! hl[8:9,11,14] *}
 
 /// tip | "Tipp"
 
