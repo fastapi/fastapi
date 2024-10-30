@@ -137,13 +137,13 @@ Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
 Você pode tornar um arquivo opcional usando anotações de tipo padrão e definindo um valor padrão de `None`:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[17] *}
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## `UploadFile` com Metadados Adicionais
 
 Você também pode usar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[15] *}
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
 ## Uploads de Múltiplos Arquivos
 
@@ -153,7 +153,7 @@ Eles serão associados ao mesmo "campo de formulário" enviado usando "dados de 
 
 Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py39.py hl[15] *}
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
