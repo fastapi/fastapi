@@ -20,7 +20,7 @@ vous verrez comme réponse :
 Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python :
 
 
-{* ../../docs_src/path_params/tutorial005.py hl[6:9] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
