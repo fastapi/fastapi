@@ -20,7 +20,6 @@ Então sua API irá (vamos imaginar):
 
 * Enviar uma solicitação de pagamento para o desenvolvedor externo.
 * Coletar o dinheiro.
-* Send a notification back to the API user (the external developer).
 * Enviar a notificação de volta para o usuário da API (o desenvolvedor externo).
 * Isso será feito enviando uma solicitação POST (de *sua API*) para alguma *API externa* fornecida por esse desenvolvedor externo (este é o "callback").
 
@@ -36,13 +35,12 @@ Essa parte é bastante normal, a maior parte do código provavelmente já é fam
 {!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-/// tip | dica
+/// tip | Dica
 
 O parâmetro de consulta `callback_url` usa um tipo Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>.
 
 ///
 
-The only new thing is the `callbacks=invoices_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
 A única coisa nova é o argumento `callbacks=invoices_callback_router.routes` no decorador da *operação de rota*. Veremos o que é isso a seguir.
 
 ## Documentando o callback
@@ -66,11 +64,10 @@ A documentação aparecerá na interface do Swagger em `/docs` em sua API, e per
 
 Esse exemplo não implementa o callback em si (que poderia ser apenas uma linha de código), apenas a parte da documentação.
 
-/// tip | dica
+/// tip | Dica
 
 O callback real é apenas uma solicitação HTTP.
 
-When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 Quando implementando o callback por você mesmo, você pode usar algo como <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> ou <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requisições</a>.
 
 ///
@@ -83,7 +80,7 @@ Mas, você já sabe como criar facilmente documentação automática para uma AP
 
 Então vamos usar esse mesmo conhecimento para documentar como a *API externa* deveria ser... criando as *operações de rota* que a *API externa* deveria implementar (as que sua API irá chamar).
 
-/// tip | dica
+/// tip | Dica
 
 Quando escrever o código para documentar um callback, pode ser útil imaginar que você é aquele *desenvolvedor externo*. E que você está atualmente implementando a *API externa*, não *sua API*.
 
@@ -166,7 +163,7 @@ e esperaria uma resposta daquela *API externa* com um corpo JSON como:
 }
 ```
 
-/// tip | dica
+/// tip | Dica
 
 Perceba como a URL de callback usada contém a URL recebida como um parâmetro de consulta em `callback_url` (`https://www.external.org/events`) e também o `id` da fatura de dentro do corpo JSON (`2expen51ve`).
 
@@ -182,7 +179,7 @@ Agora use o parâmetro `callbacks` no decorador da *operação de rota de sua AP
 {!../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
-/// tip | dica
+/// tip | Dica
 
 Perceba que você não está passando o roteador em si (`invoices_callback_router`) para `callback=`, mas o atributo `.routes`, como em `invoices_callback_router.routes`.
 
