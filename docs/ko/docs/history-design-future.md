@@ -1,4 +1,4 @@
-# 역사, 설계 그리고 미래
+# 역사, 디자인 그리고 미래
 
 어느 날, [한 FastAPI 사용자](https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920)가 이렇게 물었습니다:
 
