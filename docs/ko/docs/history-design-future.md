@@ -77,4 +77,5 @@
 
 하지만 여전히 개선해야 할 점과 추가할 기능들이 많이 남아 있습니다.
 
-**FastAPI**는 밝은 미래를 가지고 있으며, [여러분의 도움](help-fastapi.md){.internal-link target=_blank}이 큰 힘이 됩니다.
+**FastAPI**는 밝은 미래로 나아가고 있습니다.
+그리고 [여러분의 도움](help-fastapi.md){.internal-link target=_blank}은 큰 힘이 됩니다.
