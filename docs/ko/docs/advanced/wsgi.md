@@ -22,7 +22,7 @@ WSGI 응용 프로그램들을 다음과 같이 설치할 수 있습니다 [서�
 
 그리고 나머지는 **FastAPI**에 의해 처리됩니다.
 
-이를 실행하고 다음으로 이동하면 <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> 응답을 볼 수 있습니다 Flask:
+실행하면 <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>으로 이동해서 Flask의 응답을 볼 수 있습니다:
 
 ```txt
 Hello, World from Flask!
