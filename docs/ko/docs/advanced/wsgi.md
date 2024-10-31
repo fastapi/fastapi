@@ -28,7 +28,7 @@
 Hello, World from Flask!
 ```
 
-그리고 다음으로 이동하면 <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a> 응답을 볼 수 있습니다 FastAPI:
+그리고 다음으로 이동하면 <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a> Flask의 응답을 볼 수 있습니다:
 
 ```JSON
 {
