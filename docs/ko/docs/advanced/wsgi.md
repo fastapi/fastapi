@@ -1,6 +1,6 @@
 # WSGI 포함하기 - Flask, Django, others
 
-WSGI 응용 프로그램들을 다음과 같이 설치할 수 있습니다 [서브 응용 프로그램 - 설치](sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+[서브 응용 프로그램 - 마운트](sub-applications.md){.internal-link target=_blank}, [프록시 뒤편에서](behind-a-proxy.md){.internal-link target=_blank}에서 보았듯이 WSGI 응용 프로그램들을 다음과 같이 마운트 할 수 있습니다.
 
 `WSGIMiddleware`를 사용하여 WSGI 응용 프로그램(예: Flask, Django 등)을 감쌀 수 있습니다.
 
