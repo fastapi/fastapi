@@ -8,9 +8,9 @@
 
 `WSGIMiddleware`를 불러와야 합니다.
 
-그런 다음, WSGI(예: Flask) 응용 프로그램을 미들웨어로 감싸세요.
+그런 다음, WSGI(예: Flask) 응용 프로그램을 미들웨어로 포장합시다.
 
-그 후, 해당 경로에 설치하세요.
+그 후, 해당 경로에 마운트합시다.
 
 ```Python hl_lines="2-3  23"
 {!../../docs_src/wsgi/tutorial001.py!}
