@@ -184,7 +184,7 @@ John Doe
 
 Вы бы сделали то же самое, чтобы объявить `tuple` и `set`:
 
-{* ../../docs_src/python_types/tutorial007.py hl[1 4] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
 
 Это означает:
 
@@ -199,7 +199,7 @@ John Doe
 
 Второй параметр типа предназначен для значений `dict`:
 
-{* ../../docs_src/python_types/tutorial008.py hl[1 4] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
 
 Это означает:
 
@@ -234,7 +234,7 @@ John Doe
 
 Допустим, у вас есть класс `Person` с полем `name`:
 
-{* ../../docs_src/python_types/tutorial010.py hl[1-3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Тогда вы можете объявить переменную типа `Person`:
 
