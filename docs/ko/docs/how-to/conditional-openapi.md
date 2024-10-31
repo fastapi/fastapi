@@ -1,4 +1,4 @@
-# Conditional OpenAPI 조건부적인 OpenAPI
+# 조건부적인 OpenAPI
 
 필요한 경우, 설정 및 환경 변수를 사용하여 환경에 따라 조건부로 OpenAPI를 구성하고 완전히 비활성화할 수도 있습니다.
 
