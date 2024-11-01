@@ -8,7 +8,7 @@
 {!../../docs_src/app_testing/tutorial002.py!}
 ```
 
-/// "참고"
+/// note | 참고
 
 자세한 내용은 <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">Starlette의 WebSocket 테스트 세션</a>에 관한 설명서를 참고하세요.
 
