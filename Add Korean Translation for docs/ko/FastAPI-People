@@ -4,7 +4,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 ## 개발자
 
-안녕하세요! 👋  
+안녕하세요! 👋
 이 사람이 접니다:
 
 {% if people %}
@@ -14,7 +14,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
   <a href="{{ user.url }}" target="_blank">
     <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
     <div class="title">@{{ user.login }}</div>
-  </a> 
+  </a>
   <div class="count">답변 수: {{ user.answers }}</div>
   <div class="count">PR 수: {{ user.prs }}</div>
 </div>
@@ -32,10 +32,10 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 이 분들은:
 
-* [GitHub에서 질문에 답변합니다](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}  
-* [풀 리퀘스트(PR)를 만듭니다](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}  
-* [특히 번역 관련 PR을 검토합니다](contributing.md#translations){.internal-link target=_blank}  
-* 팀 멤버로서 [레포지토리를 관리하는 데 기여합니다](management-tasks.md){.internal-link target=_blank}  
+* [GitHub에서 질문에 답변합니다](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}
+* [풀 리퀘스트(PR)를 만듭니다](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+* [특히 번역 관련 PR을 검토합니다](contributing.md#translations){.internal-link target=_blank}
+* 팀 멤버로서 [레포지토리를 관리하는 데 기여합니다](management-tasks.md){.internal-link target=_blank}
 
 이 모든 작업은 레포지토리를 유지하고 발전시키는 데 큰 도움이 됩니다.
 
@@ -45,7 +45,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 ## 팀
 
-다음은 현재 활동 중인 팀원들입니다. 😎  
+다음은 현재 활동 중인 팀원들입니다. 😎
 이들은 각기 다른 역할과 권한을 갖고 있으며, [FastAPI 레포지토리 관리](./management.md){.internal-link target=_blank}를 위해 함께 일하고 있습니다.
 
 <div class="user-list user-list-center">
@@ -65,11 +65,11 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 ## FastAPI 전문가
 
-이들은 [GitHub에서 많은 질문에 답변해준 사용자들](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}입니다. 🙇  
+이들은 [GitHub에서 많은 질문에 답변해준 사용자들](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}입니다. 🙇
 많은 도움을 주신 덕분에 **FastAPI 전문가**로 인정받았습니다. ✨
 
 /// tip
-여러분도 공식 FastAPI 전문가가 될 수 있습니다!  
+여러분도 공식 FastAPI 전문가가 될 수 있습니다!
 [GitHub에서 질문에 답변](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank)하면서 기여해보세요. 🤓
 ///
 
@@ -86,7 +86,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
   <a href="{{ user.url }}" target="_blank">
     <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
     <div class="title">@{{ user.login }}</div>
-  </a> 
+  </a>
   <div class="count">답변 수: {{ user.count }}</div>
 </div>
 {% endfor %}
@@ -102,7 +102,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
   <a href="{{ user.url }}" target="_blank">
     <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
     <div class="title">@{{ user.login }}</div>
-  </a> 
+  </a>
   <div class="count">답변 수: {{ user.count }}</div>
 </div>
 {% endfor %}
@@ -113,7 +113,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 ## 최고의 기여자들
 
-여기 **최고의 기여자들**이 있습니다. 👷  
+여기 **최고의 기여자들**이 있습니다. 👷
 이분들은 [가장 많은 PR을 생성](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}했으며, 코드와 문서, 번역 등 다양한 기여를 해주셨습니다. 📦
 
 {% if people %}
@@ -123,7 +123,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
   <a href="{{ user.url }}" target="_blank">
     <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
     <div class="title">@{{ user.login }}</div>
-  </a> 
+  </a>
   <div class="count">PR 수: {{ user.count }}</div>
 </div>
 {% endfor %}
@@ -136,7 +136,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
 
 ## 최고의 번역 검토자들
 
-이분들은 **최고의 번역 검토자**입니다. 🕵️  
+이분들은 **최고의 번역 검토자**입니다. 🕵️
 저는 몇몇 언어만 다룰 수 있기 때문에(그마저도 아주 잘하진 않습니다 😅), 번역 검토자분들은 문서 번역을 승인할 [**권한**](contributing.md#translations){.internal-link target=_blank}을 가지고 있습니다. 이분들이 없다면 다양한 언어로 된 문서는 불가능했을 겁니다.
 
 {% if people %}
@@ -146,7 +146,7 @@ FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티�
   <a href="{{ user.url }}" target="_blank">
     <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
     <div class="title">@{{ user.login }}</div>
-  </a> 
+  </a>
   <div class="count">검토 수: {{ user.count }}</div>
 </div>
 {% endfor %}
