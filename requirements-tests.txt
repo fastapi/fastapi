@@ -5,7 +5,7 @@ coverage[toml] >= 6.5.0,< 8.0
 mypy ==1.8.0
 dirty-equals ==0.6.0
 sqlmodel==0.0.22
-flask >=1.1.2,<3.0.0
+flask >=1.1.2,<4.0.0
 anyio[trio] >=3.2.1,<4.0.0
 PyJWT==2.8.0
 pyyaml >=5.3.1,<7.0.0
