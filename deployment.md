@@ -183,22 +183,22 @@ There are already two environments configured, `staging` and `production`. 🚀
 
 ### Install GitHub Actions Runner
 
-* On your remote server, if you are running as the `root` user, create a user for your GitHub Actions:
+* On your remote server, create a user for your GitHub Actions:
 
 ```bash
-adduser github
+sudo adduser github
 ```
 
 * Add Docker permissions to the `github` user:
 
 ```bash
-usermod -aG docker github
+sudo usermod -aG docker github
 ```
 
 * Temporarily switch to the `github` user:
 
 ```bash
-su - github
+sudo su - github
 ```
 
 * Go to the `github` user's home directory:
@@ -219,9 +219,15 @@ To make sure it runs on startup and continues running, you can install it as a s
 exit
 ```
 
-After you do it, you would be on the `root` user again. And you will be on the previous directory, belonging to the `root` user.
+After you do it, you will be on the previous user again. And you will be on the previous directory, belonging to that user.
 
-* Go to the `actions-runner` directory inside of the `github` user's home directory:
+Before being able to go the `github` user directory, you need to become the `root` user (you might already be):
+
+```bash
+sudo su
+```
+
+* As the `root` user, go to the `actions-runner` directory inside of the `github` user's home directory:
 
 ```bash
 cd /home/github/actions-runner
