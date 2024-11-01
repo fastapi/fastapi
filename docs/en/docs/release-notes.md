@@ -43,6 +43,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump typer from 0.12.3 to 0.12.5. PR [#12748](https://github.com/fastapi/fastapi/pull/12748) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Update flask requirement from <3.0.0,>=1.1.2 to >=1.1.2,<4.0.0. PR [#12747](https://github.com/fastapi/fastapi/pull/12747) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pillow from 10.4.0 to 11.0.0. PR [#12746](https://github.com/fastapi/fastapi/pull/12746) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Update pytest requirement from <8.0.0,>=7.1.3 to >=7.1.3,<9.0.0. PR [#12745](https://github.com/fastapi/fastapi/pull/12745) by [@dependabot[bot]](https://github.com/apps/dependabot).
