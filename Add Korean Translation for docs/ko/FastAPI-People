@@ -1,0 +1,187 @@
+# FastAPI People
+
+FastAPI에는 다양한 배경의 사람들을 환영하는 멋진 커뮤니티가 있습니다.
+
+## 개발자
+
+안녕하세요! 👋  
+이 사람이 접니다:
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.maintainers %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a> 
+  <div class="count">답변 수: {{ user.answers }}</div>
+  <div class="count">PR 수: {{ user.prs }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+제 소개와 관련된 자세한 내용은 [도움 받기 - FastAPI 개발자와 연결하기](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}에서 확인하실 수 있습니다.
+
+...여기에서는 커뮤니티의 멤버들을 소개하고 싶습니다.
+
+---
+
+**FastAPI**는 커뮤니티의 많은 도움을 받고 있으며, 이분들의 기여를 한눈에 볼 수 있게 소개하고 있습니다.
+
+이 분들은:
+
+* [GitHub에서 질문에 답변합니다](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}  
+* [풀 리퀘스트(PR)를 만듭니다](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}  
+* [특히 번역 관련 PR을 검토합니다](contributing.md#translations){.internal-link target=_blank}  
+* 팀 멤버로서 [레포지토리를 관리하는 데 기여합니다](management-tasks.md){.internal-link target=_blank}  
+
+이 모든 작업은 레포지토리를 유지하고 발전시키는 데 큰 도움이 됩니다.
+
+이들에게 큰 박수를 보냅니다! 👏 🙇
+
+---
+
+## 팀
+
+다음은 현재 활동 중인 팀원들입니다. 😎  
+이들은 각기 다른 역할과 권한을 갖고 있으며, [FastAPI 레포지토리 관리](./management.md){.internal-link target=_blank}를 위해 함께 일하고 있습니다.
+
+<div class="user-list user-list-center">
+{% for user in members["members"] %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatar_url }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a>
+</div>
+{% endfor %}
+</div>
+
+팀원들은 특정 작업을 수행할 권한이 있지만, [다른 커뮤니티 멤버들의 도움](./help-fastapi.md#help-maintain-fastapi){.internal-link target=_blank}도 매우 소중하게 생각합니다! 🙇‍♂️
+
+---
+
+## FastAPI 전문가
+
+이들은 [GitHub에서 많은 질문에 답변해준 사용자들](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}입니다. 🙇  
+많은 도움을 주신 덕분에 **FastAPI 전문가**로 인정받았습니다. ✨
+
+/// tip
+여러분도 공식 FastAPI 전문가가 될 수 있습니다!  
+[GitHub에서 질문에 답변](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank)하면서 기여해보세요. 🤓
+///
+
+---
+
+## FastAPI 전문가 목록
+
+### 지난 한 달 동안
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.last_month_experts[:10] %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a> 
+  <div class="count">답변 수: {{ user.count }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+### 지난 3개월 동안
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.three_months_experts[:10] %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a> 
+  <div class="count">답변 수: {{ user.count }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+---
+
+## 최고의 기여자들
+
+여기 **최고의 기여자들**이 있습니다. 👷  
+이분들은 [가장 많은 PR을 생성](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}했으며, 코드와 문서, 번역 등 다양한 기여를 해주셨습니다. 📦
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.top_contributors[:50] %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a> 
+  <div class="count">PR 수: {{ user.count }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+기여자 목록은 [FastAPI GitHub 기여자 페이지](https://github.com/fastapi/fastapi/graphs/contributors){.external-link target=_blank}에서 더 많은 사람들을 확인할 수 있습니다. 👷
+
+---
+
+## 최고의 번역 검토자들
+
+이분들은 **최고의 번역 검토자**입니다. 🕵️  
+저는 몇몇 언어만 다룰 수 있기 때문에(그마저도 아주 잘하진 않습니다 😅), 번역 검토자분들은 문서 번역을 승인할 [**권한**](contributing.md#translations){.internal-link target=_blank}을 가지고 있습니다. 이분들이 없다면 다양한 언어로 된 문서는 불가능했을 겁니다.
+
+{% if people %}
+<div class="user-list user-list-center">
+{% for user in people.top_translations_reviewers[:50] %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a> 
+  <div class="count">검토 수: {{ user.count }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+---
+
+## 스폰서들
+
+### 개인 스폰서
+
+{% if github_sponsors %}
+{% for group in github_sponsors.sponsors %}
+<div class="user-list user-list-center">
+{% for user in group %}
+{% if user.login not in sponsors_badge.logins %}
+<div class="user">
+  <a href="{{ user.url }}" target="_blank">
+    <div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div>
+    <div class="title">@{{ user.login }}</div>
+  </a>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+{% endfor %}
+{% endif %}
+
+---
+
+## 데이터와 기술적 세부사항
+
+이 페이지의 목적은 커뮤니티가 기여한 노력을 기리고 특히 눈에 잘 띄지 않는 질문 답변, 번역 검토 같은 중요한 작업을 조명하는 것입니다.
+
+데이터는 매달 갱신되며, [소스 코드](https://github.com/fastapi/fastapi/blob/master/.github/actions/people/app/main.py){.external-link target=_blank}에서 확인하실 수 있습니다.
+
+또한 필요 시 알고리즘, 섹션, 기준 등도 업데이트할 수 있는 권한을 가지고 있습니다 (상황에 따라 🤷).
