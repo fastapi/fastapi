@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning | 경고
+/// warning | "경고"
 
 위의 예제처럼 `Response`를 직접 반환하면 바로 반환됩니다.
 
@@ -38,4 +38,4 @@
 
 추가 상태 코드와 응답을 직접 반환하는 경우, FastAPI는 반환할 내용을 미리 알 수 있는 방법이 없기 때문에 OpenAPI 스키마(API 문서)에 포함되지 않습니다.
 
-하지만 다음을 사용하여 코드에 이를 문서화할 수 있습니다: [추가 응답](additional-responses.md){.internal-link target=_blank}.
+하지만 다음을 사용하여 코드에 이를 문서화할 수 있습니다: [OpenAPI의 추가 응답](additional-responses.md){.internal-link target=_blank}.
