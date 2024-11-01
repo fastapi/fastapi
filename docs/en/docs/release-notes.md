@@ -27,6 +27,13 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/wsgi.md`. PR [#12659](https://github.com/fastapi/fastapi/pull/12659) by [@Limsunoh](https://github.com/Limsunoh).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/websockets.md`. PR [#12703](https://github.com/fastapi/fastapi/pull/12703) by [@devfernandoa](https://github.com/devfernandoa).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/security/simple-oauth2.md`. PR [#12520](https://github.com/fastapi/fastapi/pull/12520) by [@LidiaDomingos](https://github.com/LidiaDomingos).
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/response-directly.md`. PR [#12674](https://github.com/fastapi/fastapi/pull/12674) by [@9zimin9](https://github.com/9zimin9).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/middleware.md`. PR [#12704](https://github.com/fastapi/fastapi/pull/12704) by [@devluisrodrigues](https://github.com/devluisrodrigues).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/openapi-callbacks.md`. PR [#12705](https://github.com/fastapi/fastapi/pull/12705) by [@devfernandoa](https://github.com/devfernandoa).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/request-files.md`. PR [#12706](https://github.com/fastapi/fastapi/pull/12706) by [@devluisrodrigues](https://github.com/devluisrodrigues).
 * 🌐 Add Portuguese Translation for `docs/pt/docs/advanced/custom-response.md`. PR [#12631](https://github.com/fastapi/fastapi/pull/12631) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/metadata.md`. PR [#12538](https://github.com/fastapi/fastapi/pull/12538) by [@LinkolnR](https://github.com/LinkolnR).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/metadata.md`. PR [#12541](https://github.com/fastapi/fastapi/pull/12541) by [@kwang1215](https://github.com/kwang1215).
@@ -36,6 +43,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add Render. PR [#12733](https://github.com/fastapi/fastapi/pull/12733) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12707](https://github.com/fastapi/fastapi/pull/12707) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
 ## 0.115.4
