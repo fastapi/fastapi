@@ -43,6 +43,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.10.3 to 1.11.0. PR [#12721](https://github.com/fastapi/fastapi/pull/12721) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Update pre-commit requirement from <4.0.0,>=2.17.0 to >=2.17.0,<5.0.0. PR [#12749](https://github.com/fastapi/fastapi/pull/12749) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typer from 0.12.3 to 0.12.5. PR [#12748](https://github.com/fastapi/fastapi/pull/12748) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Update flask requirement from <3.0.0,>=1.1.2 to >=1.1.2,<4.0.0. PR [#12747](https://github.com/fastapi/fastapi/pull/12747) by [@dependabot[bot]](https://github.com/apps/dependabot).
