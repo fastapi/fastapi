@@ -133,8 +133,6 @@ Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nic
 
 Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrundtasks in mehreren Prozessen und insbesondere auf mehreren Servern.
 
-Um ein Beispiel zu sehen, sehen Sie sich die [Projektgeneratoren](../project-generation.md){.internal-link target=_blank} an. Sie alle enthalten Celery, bereits konfiguriert.
-
 Wenn Sie jedoch über dieselbe **FastAPI**-Anwendung auf Variablen und Objekte zugreifen oder kleine Hintergrundtasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
 
 ## Zusammenfassung
