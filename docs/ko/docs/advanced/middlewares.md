@@ -55,4 +55,42 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 들어오는 모든 요청이 `https` 또는 `wss`여야 합니다.
 
-http` 또는 `ws`로 들어오는 모든 요청은 대신 보안 체계로 리디렉션됩니다.
+`http` 또는 `ws`로 들어오는 모든 요청은 대신 보안 체계로 리디렉션됩니다.
+
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+
+## `TrustedHostMiddleware`
+
+HTTP 호스트 헤더 공격을 방지하기 위해 모든 수신 요청에 올바르게 설정된 `Host` 헤더를 갖도록 강제합니다.
+
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+
+다음 인수가 지원됩니다:
+
+* `allowed_hosts` - 호스트 이름으로 허용해야 하는 도메인 이름 목록입니다. 일치하는 하위 도메인에 대해 `*.example.com`과 같은 와일드카드 도메인이 지원됩니다. 모든 호스트 이름을 허용하려면 `allowed_hosts=[“*”]`를 사용하거나 미들웨어를 생략하세요.
+
+수신 요청의 유효성이 올바르게 확인되지 않으면 `400`이라는 응답이 전송됩니다.
+
+## `GZipMiddleware`
+
+`Accept-Encoding` 헤더에 `“gzip”`이 포함된 모든 요청에 대해 GZip 응답을 처리합니다.
+
+미들웨어는 표준 응답과 스트리밍 응답을 모두 처리합니다.
+
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+
+지원되는 인수는 다음과 같습니다:
+
+* `minimum_size` - 이 최소 크기(바이트)보다 작은 응답은 GZip하지 않습니다. 기본값은 `500`입니다.
+* `compresslevel` - GZip 압축 중에 사용됩니다. 1에서 9 사이의 정수입니다. 기본값은 `9`입니다. 값이 낮을수록 압축 속도는 빨라지지만 파일 크기는 커지고, 값이 높을수록 압축 속도는 느려지지만 파일 크기는 작아집니다.
+
+## 기타 미들웨어
+
+다른 많은 ASGI 미들웨어가 있습니다.
+
+예를 들어:
+
+<a href=“https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py” class=“external-link” target=“_blank”>유비콘의 `ProxyHeadersMiddleware`></a>
+<a href=“https://github.com/florimondmanca/msgpack-asgi” class=“external-link” target=“_blank”>MessagePack</a>
+
+사용 가능한 다른 미들웨어를 확인하려면 <a href=“https://www.starlette.io/middleware/” class=“external-link” target=“_blank”>스타렛의 미들웨어 문서</a> 및 <a href=“https://github.com/florimondmanca/awesome-asgi” class=“external-link” target=“_blank”>ASGI Awesome List</a>를 참조하세요.
