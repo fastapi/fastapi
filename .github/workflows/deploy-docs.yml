@@ -12,6 +12,9 @@ permissions:
   pull-requests: write
   statuses: write
 
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
@@ -25,21 +28,22 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: actions/cache@v4
-        id: cache
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
       - name: Install GitHub Actions dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-github-actions.txt
+        run: uv pip install -r requirements-github-actions.txt
       - name: Deploy Docs Status Pending
         run: python ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
           RUN_ID: ${{ github.run_id }}
-
       - name: Clean site
         run: |
           rm -rf ./site
@@ -58,7 +62,10 @@ jobs:
         env:
           PROJECT_NAME: fastapitiangolo
           BRANCH: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
-        uses: cloudflare/wrangler-action@v3
+        # TODO: Use v3 when it's fixed, probably in v3.11
+        # https://github.com/cloudflare/wrangler-action/issues/307
+        uses: cloudflare/wrangler-action@v3.11
+        # uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
