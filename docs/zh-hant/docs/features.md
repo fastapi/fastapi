@@ -2,7 +2,7 @@
 
 ## FastAPI 特性
 
-**FastAPI**提供了以下内容：
+**FastAPI** 提供了以下内容：
 
 ### 建立在開放標準的基礎上
 
@@ -26,7 +26,7 @@ FastAPI 能生成互動式 API 文件和探索性的 Web 使用者介面。由�
 
 ### 現代 Python
 
-這一切都基於標準的**Python 型別**宣告（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
+這一切都基於標準的 **Python 型別**宣告（感謝 Pydantic）。無需學習新的語法，只需使用標準的現代 Python。
 
 如果你需要 2 分鐘來學習如何使用 Python 型別（即使你不使用 FastAPI），可以看看這個簡短的教學：[Python 型別](python-types.md){.internal-link target=_blank}。
 
@@ -80,7 +80,7 @@ my_second_user: User = User(**second_user_data)
 
 在最近的 Python 開發者調查中，我們能看到<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank"> 被使用最多的功能是 autocompletion</a>，此功能可以預測將要輸入文字，並自動補齊。
 
-整個**FastAPI**框架就是基於這一點，任何地方都可以進行自動補齊。
+整個 **FastAPI** 框架就是基於這一點，任何地方都可以進行自動補齊。
 
 你幾乎不需要經常來回看文件。
 
@@ -108,9 +108,9 @@ FastAPI 為你提供了**預設值**，讓你不必在初期進行繁瑣的配�
 
 ### 驗證
 
-所有的驗證都由完善且強大的**Pydantic**處理。
+所有的驗證都由完善且強大的 **Pydantic** 處理。
 
-* 驗證大部分（甚至所有？）的 Python**資料型別**，包括：
+* 驗證大部分（甚至所有？）的 Python **資料型別**，包括：
     * JSON 物件 (`dict`)。
     * JSON 陣列 (`list`) 定義項目型別。
     * 字串 (`str`) 欄位，定義最小或最大長度。
@@ -129,13 +129,13 @@ FastAPI 已經整合了安全性和身份驗證的功能，但不會強制與特
 OpenAPI 中定義的安全模式，包括：
 
 * HTTP 基本認證。
-* **OAuth2**（也使用**JWT tokens**）。在 [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 查看教學。
+* **OAuth2**（也使用 **JWT tokens**）。在 [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 查看教學。
 * API 密鑰，在：
     * 標頭（Header）
     * 查詢參數
     * Cookies，等等。
 
-加上来自 Starlette（包括**session cookie**）的所有安全特性。
+加上来自 Starlette（包括 **session cookie**）的所有安全特性。
 
 所有的這些都是可重複使用的工具和套件，可以輕鬆與你的系統、資料儲存（Data Stores）、關聯式資料庫（RDBMS）以及非關聯式資料庫（NoSQL）等等整合。
 
@@ -167,23 +167,23 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 ## Starlette 特性
 
-**FastAPI**完全相容且基於 <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>。所以，你有其他的 Starlette 程式碼也能正常運作。FastAPI 繼承了 Starlette 的所有功能，如果你已經知道或者使用過 Starlette，大部分的功能會以相同的方式運作。
+**FastAPI** 完全相容且基於 <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>。所以，你有其他的 Starlette 程式碼也能正常運作。FastAPI 繼承了 Starlette 的所有功能，如果你已經知道或者使用過 Starlette，大部分的功能會以相同的方式運作。
 
-通過**FastAPI**你可以獲得所有**Starlette**的特性（FastAPI 就像加強版的 Starlette）：
+通過 **FastAPI** 你可以獲得所有 **Starlette** 的特性（FastAPI 就像加強版的 Starlette）：
 
-* 性能極其出色。它是 <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">Python 可用的最快框架之一，和**NodeJS**及**Go**相當</a>。
+* 性能極其出色。它是 <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">Python 可用的最快框架之一，和 **NodeJS** 及 **Go** 相當</a>。
 * **支援 WebSocket**。
 * 能在行程內處理背景任務。
 * 支援啟動和關閉事件。
 * 有基於 HTTPX 的測試用戶端。
-* 支援**CORS**、GZip、靜態檔案、串流回應。
-* 支援**Session 和 Cookie** 。
+* 支援 **CORS**、GZip、靜態檔案、串流回應。
+* 支援 **Session 和 Cookie** 。
 * 100% 測試覆蓋率。
 * 100% 型別註釋的程式碼庫。
 
 ## Pydantic 特性
 
-**FastAPI**完全相容且基於 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>。所以，你有其他 Pydantic 程式碼也能正常工作。
+**FastAPI** 完全相容且基於 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>。所以，你有其他 Pydantic 程式碼也能正常工作。
 
 相容包括基於 Pydantic 的外部函式庫， 例如用於資料庫的 <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s。
 
@@ -191,7 +191,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 
 反之亦然，在很多情況下，你也可以把從資料庫中獲取的物件**直接傳給客戶端**。
 
-通過**FastAPI**你可以獲得所有**Pydantic**的特性（FastAPI 基於 Pydantic 做了所有的資料處理）：
+通過 **FastAPI** 你可以獲得所有 **Pydantic** 的特性（FastAPI 基於 Pydantic 做了所有的資料處理）：
 
 * **更簡單**：
     * 不需要學習新的 micro-language 來定義結構。
@@ -201,7 +201,7 @@ FastAPI 有一個使用簡單，但是非常強大的<abbr title='也叫做 "com
 * 驗證**複雜結構**：
     * 使用 Pydantic 模型時，你可以把資料結構分層設計，並且用 Python 的 `List` 和 `Dict` 等型別來定義。
     * 驗證器讓我們可以輕鬆地定義和檢查複雜的資料結構，並把它們轉換成 JSON Schema 進行記錄。
-    * 你可以擁有深層**巢狀的 JSON**物件，並對它們進行驗證和註釋。
+    * 你可以擁有深層**巢狀的 JSON** 物件，並對它們進行驗證和註釋。
 * **可擴展**：
     * Pydantic 讓我們可以定義客製化的資料型別，或者你可以使用帶有 validator 裝飾器的方法來擴展模型中的驗證功能。
 * 100% 測試覆蓋率。
