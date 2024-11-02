@@ -159,15 +159,15 @@ Hello World from Python
 
 ## 타입과 검증
 
-이 환경변수들은 오직 **텍스트 문자열**로만 처리할 수 있습니다. 텍스트 문자열은 Python 외부에 있으며 다른 프로그램 및 나머지 시스템(Linux, Windows, macOS 등 다른 운영 체제)과 호환되어야 합니다.
+이 환경변수들은 오직 **텍스트 문자열**로만 처리할 수 있습니다. 텍스트 문자열은 파이썬 외부에 있으며 다른 프로그램 및 나머지 시스템(Linux, Windows, macOS 등 다른 운영 체제)과 호환되어야 합니다.
 
-즉, Python에서 환경 변수로부터 읽은 **모든 값**은 **`str`**이 되고, 다른 타입으로의 변환이나 검증은 코드에서 수행해야 합니다.
+즉, 파이썬에서 환경 변수로부터 읽은 **모든 값**은 **`str`**이 되고, 다른 타입으로의 변환이나 검증은 코드에서 수행해야 합니다.
 
 **애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md){.internal-link target=\_blank} 에서 확인할 수 있습니다.
 
 ## `PATH` 환경 변수
 
-**`PATH`**라고 불리는, **특별한** 환경변수가 있습니다.  운영체제(Linux, Windows, macOS 등)에서 실행할 프로그램을 찾기위해 사용됩니다.
+**`PATH`**라고 불리는, **특별한** 환경변수가 있습니다. 운영체제(Linux, Windows, macOS 등)에서 실행할 프로그램을 찾기위해 사용됩니다.
 
 변수 `PATH`의 값은 Linux와 macOS에서는 콜론 `:`, Windows에서는 세미콜론 `;`으로 구분된 디렉토리로 구성된 긴 문자열입니다.
 
@@ -215,7 +215,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 //// tab | Linux, macOS
 
-Python을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다고 가정해 보겠습니다.
+파이썬을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다고 가정해 보겠습니다.
 
 `PATH` 환경 변수를 업데이트하도록 "예"라고 하면 설치 관리자가 `/opt/custompython/bin`을 `PATH` 환경 변수에 추가합니다.
 
@@ -225,13 +225,13 @@ Python을 설치하고 그것이 `/opt/custompython/bin` 디렉토리에 있다�
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
 ```
 
-이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `/opt/custompython/bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
+이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `/opt/custompython/bin`(마지막 디렉토리)에서 파이썬 프로그램을 찾아 사용합니다.
 
 ////
 
 //// tab | Windows
 
-Python을 설치하고 그것이 `C:\opt\custompython\bin` 디렉토리에 있다고 가정해 보겠습니다.
+파이썬을 설치하고 그것이 `C:\opt\custompython\bin` 디렉토리에 있다고 가정해 보겠습니다.
 
 `PATH` 환경 변수를 업데이트하도록 "예"라고 하면 설치 관리자가 `C:\opt\custompython\bin`을 `PATH` 환경 변수에 추가합니다.
 
@@ -239,7 +239,7 @@ Python을 설치하고 그것이 `C:\opt\custompython\bin` 디렉토리에 있�
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
-이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `C:\opt\custompython\bin`(마지막 디렉토리)에서 Python 프로그램을 찾아 사용합니다.
+이렇게 하면 터미널에 `python`을 입력할 때, 시스템이 `C:\opt\custompython\bin`(마지막 디렉토리)에서 파이썬 프로그램을 찾아 사용합니다.
 
 ////
 
@@ -289,7 +289,7 @@ $ C:\opt\custompython\bin\python
 
 ## 결론
 
-이 문서를 읽고 **환경 변수**가 무엇이고 Python에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
+이 문서를 읽고 **환경 변수**가 무엇이고 파이썬에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
 또한 <a href="https://ko.wikipedia.org/wiki/환경_변수" class="external-link" target="_blank">환경 변수에 대한 위키피디아(한국어)</a>에서 이에 대해 자세히 알아볼 수 있습니다.
 
