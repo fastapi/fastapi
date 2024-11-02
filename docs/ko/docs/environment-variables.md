@@ -52,7 +52,7 @@ Hello Wade Wilson
 
 ## 파이썬에서 환경 변수 읽기
 
-파이썬 **바깥** 인 터미널에서(다른 도구로도 가능함.) 환경 변수를 생성할 수 있고, **파이썬에서 그것들을 읽을 수 있습니다.**
+파이썬 **바깥**인 터미널에서(다른 도구로도 가능) 환경 변수를 생성도 할 수도 있고, 이를 **파이썬에서 읽을 수 있습니다.**
 
 예를 들어 다음과 같은 `main.py` 파일이 있다고 합시다:
 
@@ -71,7 +71,7 @@ print(f"Hello {name} from Python")
 
 ///
 
-그 파이썬 프로그램은 이렇게 호출할 수 있습니다:
+그러면 해당 파이썬 프로그램을 다음과 같이 호출할 수 있습니다:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -157,7 +157,7 @@ Hello World from Python
 
 ///
 
-## 타입과 검증(Validation)
+## 타입과 검증
 
 이 환경변수들은 오직 **텍스트 문자열**로만 처리할 수 있습니다. 텍스트 문자열은 Python 외부에 있으며 다른 프로그램 및 나머지 시스템(Linux, Windows, macOS 등 다른 운영 체제)과 호환되어야 합니다.
 
@@ -291,7 +291,7 @@ $ C:\opt\custompython\bin\python
 
 이 문서를 읽고 **환경 변수**가 무엇이고 Python에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
-또한 <a href="https://ko.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">환경 변수에 대한 위키피디아(한국어)</a>에서 이에 대해 자세히 알아볼 수 있습니다.
+또한 <a href="https://ko.wikipedia.org/wiki/환경_변수" class="external-link" target="_blank">환경 변수에 대한 위키피디아(한국어)</a>에서 이에 대해 자세히 알아볼 수 있습니다.
 
 많은 경우에서, 환경 변수가 어떻게 유용하고 적용 가능한지 바로 명확하게 알 수는 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
 
