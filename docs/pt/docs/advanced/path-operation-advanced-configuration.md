@@ -215,10 +215,10 @@ Na versão 1 do Pydantic, o método para analisar e validar um objeto era `Item.
 
 ///
 
-///tip | Dica 
+///tip | Dica
 
 Aqui reutilizamos o mesmo modelo do Pydantic.
 
-Mas da mesma forma, nós poderíamos ter validado de alguma outra forma. 
+Mas da mesma forma, nós poderíamos ter validado de alguma outra forma.
 
 ///
