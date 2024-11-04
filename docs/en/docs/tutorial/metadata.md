@@ -18,7 +18,7 @@ You can set the following fields that are used in the OpenAPI specification and 
 
 You can set them as follows:
 
-{* ./../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
 
 /// tip
 
