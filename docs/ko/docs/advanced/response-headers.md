@@ -22,7 +22,7 @@
 
 `Response`를 직접 반환할 때에도 헤더를 추가할 수 있습니다.
 
-[Return a Response Directly](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요.
+[응답을 직접 반환하기](response-directly.md){.internal-link target=_blank}에서 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요.
 
 ```Python hl_lines="10-12"
 {!../../docs_src/response_headers/tutorial001.py!}
