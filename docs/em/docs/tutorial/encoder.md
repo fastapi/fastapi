@@ -22,13 +22,13 @@
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-{* > ../../docs_src/encoder/tutorial001.py hl[5,22] *}
+{* ../../docs_src/encoder/tutorial001.py hl[5,22] *}
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-{* > ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
+{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
 
 ////
 
