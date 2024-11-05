@@ -30,7 +30,7 @@
 
 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
-**FastAPI**는 개발자의 편의를 위해 `fastapi.responses`와 동일한 `starlette.responses`를 제공합니다. 하지만 사용 가능한 대부분의 응답은 Starlette에서 직접 제공합니다. 상태도 마찬가지입니다.
+**FastAPI**는 개발자 여러분을 위한 편의성으로 `fastapi.responses`와 동일한 `starlette.responses`를 제공합니다. 그러나 사용 가능한 응답의 대부분은 Starlette에서 직접 제공됩니다. `status` 또한 마찬가지입니다.
 
 ///
 
@@ -38,4 +38,4 @@
 
 추가 상태 코드와 응답을 직접 반환하는 경우, FastAPI는 반환할 내용을 미리 알 수 있는 방법이 없기 때문에 OpenAPI 스키마(API 문서)에 포함되지 않습니다.
 
-하지만 다음을 사용하여 코드에 이를 문서화할 수 있습니다: [OpenAPI의 추가 응답](additional-responses.md){.internal-link target=_blank}.
+하지만 다음을 사용하여 코드에 이를 문서화할 수 있습니다: [추가 응답](additional-responses.md){.internal-link target=_blank}.
