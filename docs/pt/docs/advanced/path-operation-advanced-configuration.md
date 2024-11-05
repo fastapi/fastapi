@@ -46,7 +46,7 @@ Para excluir uma *operação de rota* do esquema OpenAPI gerado (e por consequê
 
 Você pode limitar as linhas utilizadas a partir de uma docstring de uma *função de operação de rota* para o OpenAPI.
 
-Adicionar um `\f` (um caractere de escape "form feed") faz com que o **FastAPI** restrinja a saída utilizada pelo OpenAPI até esse ponto.
+Adicionar um `\f` (um caractere de escape para alimentação de formulário) faz com que o **FastAPI** restrinja a saída utilizada pelo OpenAPI até esse ponto.
 
 Ele não será mostrado na documentação, mas outras ferramentas (como o Sphinx) serão capazes de utilizar o resto do texto.
 
