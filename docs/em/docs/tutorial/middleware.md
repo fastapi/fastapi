@@ -31,9 +31,7 @@
     * ⤴️ ⚫️ 📨 `response` 🏗 🔗 *➡ 🛠️*.
 * 👆 💪 ⤴️ 🔀 🌅 `response` ⏭ 🛬 ⚫️.
 
-```Python hl_lines="8-9  11  14"
 {* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
-```
 
 /// tip
 
