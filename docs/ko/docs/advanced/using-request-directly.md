@@ -35,7 +35,7 @@
 
 *경로 작동 함수* 매개변수를 `Request` 타입으로 선언하면 **FastAPI**가 해당 매개변수에 `Request` 객체를 전달하는 것을 알게 됩니다.
 
-/// tip "팁"
+/// tip | 팁
 
 이 경우, 요청 매개변수와 함께 경로 매개변수를 선언한 것을 볼 수 있습니다.
 
@@ -49,7 +49,7 @@
 
 여러분은 `Request` 객체에 대한 더 자세한 내용을 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">공식 Starlette 설명서 사이트</a>에서 읽어볼 수 있습니다.
 
-/// note "기술적 세부사항"
+/// note | 기술 세부사항
 
 `from starlette.requests import Request`를 사용할 수도 있습니다.
 
