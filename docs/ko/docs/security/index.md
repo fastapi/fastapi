@@ -2,7 +2,7 @@
 
 ## 추가 기능
 
-보안 처리를 위한 몇 가지 추가 기능이 있으며, 이는 [자습서 - 사용자 가이드: 보안](../../tutorial/security/index.md){.internal-link target=_blank} 문서에서 다룬 내용과는 별개입니다.
+[자습서 - 사용자 가이드: 보안](../../tutorial/security/index.md){.internal-link target=_blank} 문서에서 다룬 내용 외에도 보안 처리를 위한 몇 가지 추가 기능이 있습니다.
 
 /// tip
 
