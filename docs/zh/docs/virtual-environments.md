@@ -279,3 +279,301 @@ $ echo "*" > .venv/.gitignore
 ```gitignore
 *
 ```
+
+///
+
+## 安装软件包
+
+在激活虚拟环境后，你可以在其中安装软件包。
+
+/// tip
+
+当你需要安装或升级软件包时，执行本操作**一次**；
+
+如果你需要再升级版本或添加新软件包，你可以**再次执行此操作**。
+
+///
+
+### 直接安装包
+
+如果你急于安装，不想使用文件来声明工程的软件包依赖，您可以直接安装它们。
+
+/// tip
+
+将程序所需的软件包及其版本放在文件中（例如 `requirements.txt` 或 `pyproject.toml`）是个好（并且非常好）的主意。
+
+///
+
+//// tab | `pip`
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+////
+
+//// tab | `uv`
+
+如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+
+<div class="termy">
+
+```console
+$ uv pip install "fastapi[standard]"
+---> 100%
+```
+
+</div>
+
+////
+
+### 从 `requirements.txt` 安装
+
+如果你有一个 `requirements.txt` 文件，你可以使用它来安装其中的软件包。
+
+//// tab | `pip`
+
+<div class="termy">
+
+```console
+$ pip install -r requirements.txt
+---> 100%
+```
+
+</div>
+
+////
+
+//// tab | `uv`
+
+如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+
+<div class="termy">
+
+```console
+$ uv pip install -r requirements.txt
+---> 100%
+```
+
+</div>
+
+////
+
+/// details | 关于 `requirements.txt`
+
+一个包含一些软件包的 `requirements.txt` 文件看起来应该是这样的：
+
+```requirements.txt
+fastapi[standard]==0.113.0
+pydantic==2.8.0
+```
+
+///
+
+## 运行程序
+
+在你激活虚拟环境后，你可以运行你的程序，它将使用虚拟环境中的 Python 和你在其中安装的软件包。
+
+<div class="termy">
+
+```console
+$ python main.py
+
+Hello World
+```
+
+</div>
+
+## 配置编辑器
+
+你可能会用到编辑器（即 IDE —— 译者注），请确保配置它使用与你创建的相同的虚拟环境（它可能会自动检测到），以便你可以获得自动补全和内联错误提示。
+
+例如：
+
+* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
+* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+
+/// tip
+
+通常你只需要在创建虚拟环境时执行此操作**一次**。
+
+///
+
+## 退出虚拟环境
+
+当你完成工作后，你可以**退出**虚拟环境。
+
+<div class="termy">
+
+```console
+$ deactivate
+```
+
+</div>
+
+这样，当你运行 `python` 时，它不会尝试从安装了软件包的虚拟环境中运行。（即，它将不再会尝试从虚拟环境中运行，也不会使用其中安装的软件包。—— 译者注）
+
+## 开始工作
+
+现在你已经准备好开始你的工作了。
+
+
+
+/// tip
+
+你想要理解上面的所有内容吗？
+
+继续阅读。👇🤓
+
+///
+
+## 为什么要使用虚拟环境
+
+你需要安装 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+
+之后，你需要**安装** FastAPI 和你想要使用的任何其他**软件包**。
+
+要安装软件包，你通常会使用随 Python 一起提供的 `pip` 命令（或类似的替代方案）。
+
+然而，如果你直接使用 `pip`，软件包将被安装在你的**全局 Python 环境**中（即 Python 的全局安装）。
+
+### 存在的问题
+
+那么，在全局 Python 环境中安装软件包有什么问题呢？
+
+有些时候，你可能会编写许多不同的程序，这些程序依赖于**不同的软件包**；你所做的一些工程也会依赖于**同一软件包的不同版本**。😱
+
+例如，你可能会创建一个名为 `philosophers-stone` 的工程，这个程序依赖于另一个名为 **`harry` 的软件包，使用版本 `1`**。因此，你需要安装 `harry`。
+
+```mermaid
+flowchart LR
+    stone(philosophers-stone) -->|需要| harry-1[harry v1]
+```
+
+然而在此之后，你又创建了另一个名为 `prisoner-of-azkaban` 的工程，这个工程也依赖于 `harry`，但是这个工程需要 **`harry` 版本 `3`**。
+
+```mermaid
+flowchart LR
+    azkaban(prisoner-of-azkaban) --> |需要| harry-3[harry v3]
+```
+
+那么现在的问题是，如果你将软件包安装在全局环境中而不是在本地**虚拟环境**中，你将不得不面临选择安装哪个版本的 `harry` 的问题。
+
+如果你想运行 `philosophers-stone`，你需要首先安装 `harry` 版本 `1`，例如：
+
+<div class="termy">
+
+```console
+$ pip install "harry==1"
+```
+
+</div>
+
+然后你将在全局 Python 环境中安装 `harry` 版本 `1`。
+
+```mermaid
+flowchart LR
+    subgraph global[全局环境]
+        harry-1[harry v1]
+    end
+    subgraph stone-project[工程 philosophers-stone]
+        stone(philosophers-stone) -->|需要| harry-1
+    end
+```
+
+但是如果你想运行 `prisoner-of-azkaban`，你需要卸载 `harry` 版本 `1` 并安装 `harry` 版本 `3`（或者说，只要你安装版本 `3` ，版本 `1` 就会自动卸载）。
+
+<div class="termy">
+
+```console
+$ pip install "harry==3"
+```
+
+</div>
+
+于是，你在你的全局 Python 环境中安装了 `harry` 版本 `3`。
+
+如果你再次尝试运行 `philosophers-stone`，有可能它**无法正常工作**，因为它需要 `harry` 版本 `1`。
+
+```mermaid
+flowchart LR
+    subgraph global[全局环境]
+        harry-1[<strike>harry v1</strike>]
+        style harry-1 fill:#ccc,stroke-dasharray: 5 5
+        harry-3[harry v3]
+    end
+    subgraph stone-project[工程 philosophers-stone]
+        stone(philosophers-stone) -.-x|⛔️| harry-1
+    end
+    subgraph azkaban-project[工程 prisoner-of-azkaban]
+        azkaban(prisoner-of-azkaban) --> |需要| harry-3
+    end
+```
+
+/// tip
+
+Python 包在推出**新版本**时通常会尽量**避免破坏性更改**，但最好还是要小心，要想清楚再安装新版本，而且在运行测试以确保一切能正常工作时再安装。
+
+///
+
+现在，想象一下，如果有**许多**其他**软件包**，它们都是你的**工程所依赖的**。这是非常难以管理的。你可能会发现，有些工程使用了一些**不兼容的软件包版本**，而不知道为什么某些东西无法正常工作。
+
+此外，取决于你的操作系统（例如 Linux、Windows、macOS），它可能已经预先安装了 Python。在这种情况下，它可能已经预先安装了一些软件包，这些软件包的特定版本是**系统所需的**。如果你在全局 Python 环境中安装软件包，你可能会**破坏**一些随操作系统一起安装的程序。
+
+## 软件包安装在哪里
+
+当你安装 Python 时，它会在你的计算机上创建一些目录，并在这些目录中放一些文件。
+
+其中一些目录负责存放你安装的所有软件包。
+
+当你运行：
+
+<div class="termy">
+
+```console
+// 先别去运行这个命令，这只是一个示例 🤓
+$ pip install "fastapi[standard]"
+---> 100%
+```
+
+</div>
+
+这将会从 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下载一个压缩文件，其中包含 FastAPI 代码。
+
+它还会**下载** FastAPI 依赖的其他软件包的文件。
+
+然后它会**解压**所有这些文件，并将它们放在你的计算机上的一个目录中。
+
+默认情况下，它会将下载并解压的这些文件放在随 Python 安装的目录中，这就是**全局环境**。
+
+## 什么是虚拟环境
+
+解决软件包都安装在全局环境中的问题的方法是为你所做的每个工程使用一个**虚拟环境**。
+
+虚拟环境是一个**目录**，与全局环境非常相似，你可以在其中专为某个工程安装软件包。
+
+这样，每个工程都会有自己的虚拟环境（`.venv` 目录），其中包含自己的软件包。
+
+```mermaid
+flowchart TB
+    subgraph stone-project[工程 philosophers-stone]
+        stone(philosophers-stone) --->|需要| harry-1
+        subgraph venv1[.venv]
+            harry-1[harry v1]
+        end
+    end
+    subgraph azkaban-project[工程 prisoner-of-azkaban]
+        azkaban(prisoner-of-azkaban) --->|需要| harry-3
+        subgraph venv2[.venv]
+            harry-3[harry v3]
+        end
+    end
+    stone-project ~~~ azkaban-project
+```
+
