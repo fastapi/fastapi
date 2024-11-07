@@ -242,9 +242,9 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## 添加 `.gitignore`
+## 加入 `.gitignore`
 
-如果你使用 **Git**（這是你應該使用的），添加一個 `.gitignore` 檔案來排除你的 `.venv` 中的所有內容。
+如果你使用 **Git**（這是你應該使用的），加入一個 `.gitignore` 檔案來排除你的 `.venv` 中的所有內容。
 
 /// tip
 
@@ -268,9 +268,9 @@ $ echo "*" > .venv/.gitignore
 
 /// details | 上述指令的含義
 
-* `echo "*"`: 將在終端中 "顯示" 文本 `*`（接下來的部分會對這個操作進行一些修改）
-* `>`: 使左邊的指令顯示到終端的任何內容實際上都不會被顯示，而是會被寫入到右邊的檔案中
-* `.gitignore`: 被寫入文本的檔案的名稱
+-   `echo "*"`: 將在終端中 "顯示" 文本 `*`（接下來的部分會對這個操作進行一些修改）
+-   `>`: 使左邊的指令顯示到終端的任何內容實際上都不會被顯示，而是會被寫入到右邊的檔案中
+-   `.gitignore`: 被寫入文本的檔案的名稱
 
 而 `*` 對於 Git 來說意味著 "所有內容"。所以，它會忽略 `.venv` 目錄中的所有內容。
 
@@ -423,6 +423,8 @@ $ deactivate
 
 現在你已經準備好開始你的工作了。
 
+
+
 /// tip
 
 你想要理解上面的所有內容嗎？
@@ -430,6 +432,7 @@ $ deactivate
 繼續閱讀。👇🤓
 
 ///
+
 ## 為什麼要使用虛擬環境
 
 你需要安裝 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
@@ -574,3 +577,268 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
+## 啟用虛擬環境意味著什麼
+
+當你啟用了虛擬環境，例如：
+
+//// tab | Linux, macOS
+
+<div class="termy">
+
+```console
+$ source .venv/bin/activate
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ .venv\Scripts\Activate.ps1
+```
+
+</div>
+
+////
+
+//// tab | Windows Bash
+
+或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+
+<div class="termy">
+
+```console
+$ source .venv/Scripts/activate
+```
+
+</div>
+
+////
+
+這個命令會建立或修改一些[環境變數](environment-variables.md){.internal-link target=_blank}，這些環境變數將在接下來的指令中可用。
+
+其中之一是 `PATH` 變數。
+
+/// tip
+
+你可以在 [環境變數](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多關於 `PATH` 環境變數的內容。
+
+///
+
+啟用虛擬環境會將其路徑 `.venv/bin`（在 Linux 和 macOS 上）或 `.venv\Scripts`（在 Windows 上）加入到 `PATH` 環境變數中。
+
+假設在啟用環境之前，`PATH` 變數看起來像這樣：
+
+//// tab | Linux, macOS
+
+```plaintext
+/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+這意味著系統會在以下目錄中查找程式：
+
+* `/usr/bin`
+* `/bin`
+* `/usr/sbin`
+* `/sbin`
+
+////
+
+//// tab | Windows
+
+```plaintext
+C:\Windows\System32
+```
+
+這意味著系統會在以下目錄中查找程式：
+
+* `C:\Windows\System32`
+
+////
+
+啟用虛擬環境後，`PATH` 變數會變成這樣：
+
+//// tab | Linux, macOS
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+這意味著系統現在會首先在以下目錄中查找程式：
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin
+```
+
+然後再在其他目錄中查找。
+
+因此，當你在終端機中輸入 `python` 時，系統會在以下目錄中找到 Python 程式：
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin/python
+```
+
+並使用這個。
+
+////
+
+//// tab | Windows
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
+```
+
+這意味著系統現在會首先在以下目錄中查找程式：
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts
+```
+
+然後再在其他目錄中查找。
+
+因此，當你在終端機中輸入 `python` 時，系統會在以下目錄中找到 Python 程式：
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts\python
+```
+
+並使用這個。
+
+////
+
+一個重要的細節是，虛擬環境路徑會被放在 `PATH` 變數的**開頭**。系統會在找到任何其他可用的 Python **之前**找到它。這樣，當你運行 `python` 時，它會使用**虛擬環境中的** Python，而不是任何其他 `python`（例如，全域環境中的 `python`）。
+
+啟用虛擬環境還會改變其他一些內容，但這是它所做的最重要的事情之一。
+
+## 檢查虛擬環境
+
+當你檢查虛擬環境是否啟動時，例如：
+
+//// tab | Linux, macOS, Windows Bash
+
+<div class="termy">
+
+```console
+$ which python
+
+/home/user/code/awesome-project/.venv/bin/python
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ Get-Command python
+
+C:\Users\user\code\awesome-project\.venv\Scripts\python
+```
+
+</div>
+
+////
+
+這表示將使用的 `python` 程式是**在虛擬環境中**的那一個。
+
+在 Linux 和 macOS 中使用 `which`，在 Windows PowerShell 中使用 `Get-Command`。
+
+這個指令的運作方式是，它會在 `PATH` 環境變數中搜尋，依序**逐個路徑**查找名為 `python` 的程式。一旦找到，它會**顯示該程式的路徑**。
+
+最重要的是，當你呼叫 `python` 時，將執行的就是這個確切的 "`python`"。
+
+因此，你可以確認是否在正確的虛擬環境中。
+
+/// tip
+
+啟動一個虛擬環境，取得一個 Python，然後**切換到另一個專案**是件很容易的事；
+
+但如果第二個專案**無法正常運作**，那可能是因為你使用了來自其他專案的虛擬環境的、**不正確的 Python**。
+
+因此，檢查正在使用的 `python` 是非常實用的。🤓
+
+///
+
+## 為什麼要停用虛擬環境
+
+例如，你可能正在一個專案 `philosophers-stone` 上工作，**啟動了該虛擬環境**，安裝了套件並使用了該環境，
+
+然後你想要在**另一個專案** `prisoner-of-azkaban` 上工作，
+
+你進入那個專案：
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+```
+
+</div>
+
+如果你不去停用 `philosophers-stone` 的虛擬環境，當你在終端中執行 `python` 時，它會嘗試使用 `philosophers-stone` 中的 Python。
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+
+$ python main.py
+
+// 匯入 sirius 錯誤，未安裝 😱
+Traceback (most recent call last):
+    File "main.py", line 1, in <module>
+        import sirius
+```
+
+</div>
+
+但如果你停用虛擬環境並啟用 `prisoner-of-askaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-askaban` 中虛擬環境的 Python。
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+
+// 你不需要在舊目錄中操作停用，你可以在任何地方操作停用，甚至在切換到另一個專案之後 😎
+$ deactivate
+
+// 啟用 prisoner-of-azkaban/.venv 中的虛擬環境 🚀
+$ source .venv/bin/activate
+
+// 現在當你執行 python 時，它會在這個虛擬環境中找到已安裝的 sirius 套件 ✨
+$ python main.py
+
+I solemnly swear 🐺
+```
+
+</div>
+
+## 替代方案
+
+這是一個簡單的指南，幫助你入門並教會你如何理解一切**底層**的原理。
+
+有許多**替代方案**來管理虛擬環境、套件依賴（requirements）、專案。
+
+當你準備好並想要使用一個工具來**管理整個專案**、套件依賴、虛擬環境等，建議你嘗試 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+
+`uv` 可以執行許多操作，它可以：
+
+* 為你**安裝 Python**，包括不同的版本
+* 為你的專案管理**虛擬環境**
+* 安裝**套件**
+* 為你的專案管理套件的**依賴和版本**
+* 確保你有一個**精確**的套件和版本集合來安裝，包括它們的依賴項，這樣你可以確保專案在生產環境中運行的狀態與開發時在你的電腦上運行的狀態完全相同，這被稱為**鎖定**
+* 還有很多其他功能
+
+## 結論
+
+如果你讀過並理解了所有這些，現在**你對虛擬環境的了解已超過許多開發者**。🤓
+
+未來當你調試看起來複雜的問題時，了解這些細節很可能會有所幫助，你會知道**它是如何在底層運作的**。😎
