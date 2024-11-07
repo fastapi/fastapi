@@ -11,7 +11,7 @@
 또한, 기본 값을 `None`으로 설정해 본문 매개변수를 선택사항으로 선언할 수 있습니다.
 
 ```Python hl_lines="19-21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
+{!../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 /// note | "참고"
@@ -36,7 +36,7 @@
 하지만, 다중 본문 매개변수 역시 선언할 수 있습니다. 예. `item`과 `user`:
 
 ```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
+{!../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 이 경우에, **FastAPI**는 이 함수 안에 한 개 이상의 본문 매개변수(Pydantic 모델인 두 매개변수)가 있다고 알 것입니다.
@@ -80,7 +80,7 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 
 
 ```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
+{!../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 이 경우에는 **FastAPI**는 본문을 이와 같이 예측할 것입니다:
@@ -111,7 +111,7 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 기본적으로 단일 값은 쿼리 매개변수로 해석되므로, 명시적으로 `Query`를 추가할 필요가 없고, 아래처럼 할 수 있습니다:
 
 ```Python hl_lines="27"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+{!../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 이렇게:
@@ -135,7 +135,7 @@ Pydantic 모델 `Item`의 `item`을 본문 매개변수로 오직 한개만 갖�
 하지만, 만약 모델 내용에 `item `키를 가진 JSON으로 예측하길 원한다면, 추가적인 본문 매개변수를 선언한 것처럼 `Body`의 특별한 매개변수인 `embed`를 사용할 수 있습니다:
 
 ```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
+{!../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 아래 처럼:

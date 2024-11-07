@@ -63,7 +63,7 @@ Oauth2️⃣ 👫 🎻.
 🥇, ➡️ 🔜 👀 🍕 👈 🔀 ⚪️➡️ 🖼 👑 **🔰 - 👩‍💻 🦮** [Oauth2️⃣ ⏮️ 🔐 (&amp; 🔁), 📨 ⏮️ 🥙 🤝](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. 🔜 ⚙️ Oauth2️⃣ ↔:
 
 ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 🔜 ➡️ 📄 👈 🔀 🔁 🔁.
@@ -75,7 +75,7 @@ Oauth2️⃣ 👫 🎻.
 `scopes` 🔢 📨 `dict` ⏮️ 🔠 ↔ 🔑 &amp; 📛 💲:
 
 ```Python hl_lines="62-65"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ↩️ 👥 🔜 📣 📚 ↔, 👫 🔜 🎦 🆙 🛠️ 🩺 🕐❔ 👆 🕹-/✔.
@@ -103,7 +103,7 @@ Oauth2️⃣ 👫 🎻.
 ///
 
 ```Python hl_lines="155"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ## 📣 ↔ *➡ 🛠️* &amp; 🔗
@@ -131,7 +131,7 @@ Oauth2️⃣ 👫 🎻.
 ///
 
 ```Python hl_lines="4  139  168"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 /// info | "📡 ℹ"
@@ -159,7 +159,7 @@ Oauth2️⃣ 👫 🎻.
 👉 `SecurityScopes` 🎓 🎏 `Request` (`Request` ⚙️ 🤚 📨 🎚 🔗).
 
 ```Python hl_lines="8  105"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ## ⚙️ `scopes`
@@ -175,7 +175,7 @@ Oauth2️⃣ 👫 🎻.
 👉 ⚠, 👥 🔌 ↔ 🚚 (🚥 🙆) 🎻 👽 🚀 (⚙️ `scope_str`). 👥 🚮 👈 🎻 ⚗ ↔ `WWW-Authenticate` 🎚 (👉 🍕 🔌).
 
 ```Python hl_lines="105  107-115"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ## ✔ `username` &amp; 💽 💠
@@ -193,7 +193,7 @@ Oauth2️⃣ 👫 🎻.
 👥 ✔ 👈 👥 ✔️ 👩‍💻 ⏮️ 👈 🆔, &amp; 🚥 🚫, 👥 🤚 👈 🎏 ⚠ 👥 ✍ ⏭.
 
 ```Python hl_lines="46  116-127"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ## ✔ `scopes`
@@ -203,7 +203,7 @@ Oauth2️⃣ 👫 🎻.
 👉, 👥 ⚙️ `security_scopes.scopes`, 👈 🔌 `list` ⏮️ 🌐 👫 ↔ `str`.
 
 ```Python hl_lines="128-134"
-{!../../../docs_src/security/tutorial005.py!}
+{!../../docs_src/security/tutorial005.py!}
 ```
 
 ## 🔗 🌲 &amp; ↔

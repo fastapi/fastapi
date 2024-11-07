@@ -3,7 +3,7 @@
 Tệp tin FastAPI đơn giản nhất có thể trông như này:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Sao chép sang một tệp tin `main.py`.
@@ -134,7 +134,7 @@ Bạn cũng có thể sử dụng nó để sinh code tự động, với các c
 ### Bước 1: import `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` là một Python class cung cấp tất cả chức năng cho API của bạn.
@@ -150,7 +150,7 @@ Bạn cũng có thể sử dụng tất cả <a href="https://www.starlette.io/"
 ### Bước 2: Tạo một `FastAPI` "instance"
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Biến `app` này là một "instance" của class `FastAPI`.
@@ -172,7 +172,7 @@ $ uvicorn main:app --reload
 Nếu bạn tạo ứng dụng của bạn giống như:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 Và đặt nó trong một tệp tin `main.py`, sau đó bạn sẽ gọi `uvicorn` giống như:
@@ -251,7 +251,7 @@ Chúng ta cũng sẽ gọi chúng là "**các toán tử**".
 #### Định nghĩa moojt *decorator cho đường dẫn toán tử*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `@app.get("/")` nói **FastAPI** rằng hàm bên dưới có trách nhiệm xử lí request tới:
@@ -307,7 +307,7 @@ Ví dụ, khi sử dụng GraphQL bạn thông thường thực hiện tất c�
 * **hàm**: là hàm bên dưới "decorator" (bên dưới `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Đây là một hàm Python.
@@ -321,7 +321,7 @@ Trong trường hợp này, nó là một hàm `async`.
 Bạn cũng có thể định nghĩa nó như là một hàm thông thường thay cho `async def`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note
@@ -333,7 +333,7 @@ Nếu bạn không biết sự khác nhau, kiểm tra [Async: *"Trong khi vội 
 ### Bước 5: Nội dung trả về
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Bạn có thể trả về một `dict`, `list`, một trong những giá trị đơn như `str`, `int`,...

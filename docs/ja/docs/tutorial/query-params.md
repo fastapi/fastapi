@@ -3,7 +3,7 @@
 パスパラメータではない関数パラメータを宣言すると、それらは自動的に "クエリ" パラメータとして解釈されます。
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 クエリはURL内で `?` の後に続くキーとバリューの組で、 `&` で区切られています。
@@ -64,7 +64,7 @@ http://127.0.0.1:8000/items/?skip=20
 同様に、デフォルト値を `None` とすることで、オプショナルなクエリパラメータを宣言できます:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial002.py!}
+{!../../docs_src/query_params/tutorial002.py!}
 ```
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
@@ -80,7 +80,7 @@ http://127.0.0.1:8000/items/?skip=20
 `bool` 型も宣言できます。これは以下の様に変換されます:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial003.py!}
+{!../../docs_src/query_params/tutorial003.py!}
 ```
 
 この場合、以下にアクセスすると:
@@ -124,7 +124,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 名前で判別されます:
 
 ```Python hl_lines="8  10"
-{!../../../docs_src/query_params/tutorial004.py!}
+{!../../docs_src/query_params/tutorial004.py!}
 ```
 
 ## 必須のクエリパラメータ
@@ -136,7 +136,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 しかしクエリパラメータを必須にしたい場合は、ただデフォルト値を宣言しなければよいです:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 ここで、クエリパラメータ `needy` は `str` 型の必須のクエリパラメータです
@@ -182,7 +182,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 そして当然、あるパラメータを必須に、別のパラメータにデフォルト値を設定し、また別のパラメータをオプショナルにできます:
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params/tutorial006.py!}
+{!../../docs_src/query_params/tutorial006.py!}
 ```
 
 この場合、3つのクエリパラメータがあります。:

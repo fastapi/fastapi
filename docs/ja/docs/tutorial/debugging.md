@@ -7,7 +7,7 @@ Visual Studio CodeやPyCharmなどを使用して、エディター上でデバ�
 FastAPIアプリケーション上で、`uvicorn` を直接インポートして実行します:
 
 ```Python hl_lines="1  15"
-{!../../../docs_src/debugging/tutorial001.py!}
+{!../../docs_src/debugging/tutorial001.py!}
 ```
 
 ### `__name__ == "__main__"` について

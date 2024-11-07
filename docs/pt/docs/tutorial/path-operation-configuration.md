@@ -19,7 +19,7 @@ Mas se você não se lembrar o que cada código numérico significa, pode usar a
 //// tab | Python 3.8 and above
 
 ```Python hl_lines="3  17"
-{!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@ Mas se você não se lembrar o que cada código numérico significa, pode usar a
 //// tab | Python 3.9 and above
 
 ```Python hl_lines="3  17"
-{!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001_py39.py!}
 ```
 
 ////
@@ -35,7 +35,7 @@ Mas se você não se lembrar o que cada código numérico significa, pode usar a
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="1  15"
-{!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial001_py310.py!}
 ```
 
 ////
@@ -57,7 +57,7 @@ Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tag
 //// tab | Python 3.8 and above
 
 ```Python hl_lines="17  22  27"
-{!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
 ////
@@ -65,7 +65,7 @@ Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tag
 //// tab | Python 3.9 and above
 
 ```Python hl_lines="17  22  27"
-{!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002_py39.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tag
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="15  20  25"
-{!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial002_py310.py!}
 ```
 
 ////
@@ -91,7 +91,7 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 **FastAPI** suporta isso da mesma maneira que com strings simples:
 
 ```Python hl_lines="1  8-10  13  18"
-{!../../../docs_src/path_operation_configuration/tutorial002b.py!}
+{!../../docs_src/path_operation_configuration/tutorial002b.py!}
 ```
 
 ## Resumo e descrição
@@ -101,7 +101,7 @@ Você pode adicionar um `summary` e uma `description`:
 //// tab | Python 3.8 and above
 
 ```Python hl_lines="20-21"
-{!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ Você pode adicionar um `summary` e uma `description`:
 //// tab | Python 3.9 and above
 
 ```Python hl_lines="20-21"
-{!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003_py39.py!}
 ```
 
 ////
@@ -117,7 +117,7 @@ Você pode adicionar um `summary` e uma `description`:
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="18-19"
-{!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial003_py310.py!}
 ```
 
 ////
@@ -131,7 +131,7 @@ Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="exte
 //// tab | Python 3.8 and above
 
 ```Python hl_lines="19-27"
-{!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
 ////
@@ -139,7 +139,7 @@ Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="exte
 //// tab | Python 3.9 and above
 
 ```Python hl_lines="19-27"
-{!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004_py39.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ Você pode escrever <a href="https://en.wikipedia.org/wiki/Markdown" class="exte
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="17-25"
-{!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial004_py310.py!}
 ```
 
 ////
@@ -164,7 +164,7 @@ Você pode especificar a descrição da resposta com o parâmetro `response_desc
 //// tab | Python 3.8 and above
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
 ////
@@ -172,7 +172,7 @@ Você pode especificar a descrição da resposta com o parâmetro `response_desc
 //// tab | Python 3.9 and above
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005_py39.py!}
 ```
 
 ////
@@ -180,7 +180,7 @@ Você pode especificar a descrição da resposta com o parâmetro `response_desc
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+{!> ../../docs_src/path_operation_configuration/tutorial005_py310.py!}
 ```
 
 ////
@@ -206,7 +206,7 @@ Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma
 Se você precisar marcar uma *operação de rota* como <abbr title="obsoleta, recomendada não usá-la">descontinuada</abbr>, mas sem removê-la, passe o parâmetro `deprecated`:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_operation_configuration/tutorial006.py!}
+{!../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
 Ela será claramente marcada como descontinuada nas documentações interativas:
