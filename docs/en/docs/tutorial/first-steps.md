@@ -236,7 +236,7 @@ So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a *path operation decorator*
+#### Define a *path operation* decorator
 
 {* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
@@ -255,7 +255,7 @@ A "decorator" takes the function below and does something with it.
 
 In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
 
-It is the "**path operation decorator**".
+It is the "**path operation" decorator**.
 
 ///
 
