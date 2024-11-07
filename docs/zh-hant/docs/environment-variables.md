@@ -12,7 +12,7 @@
 
 ## 建立和使用環境變數
 
-你在**shell（終端機）**中就可以**建立**和使用環境變數，並不需要用到 Python：
+你在 **shell（終端機）**中就可以**建立**和使用環境變數，並不需要用到 Python：
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip
 
-第二個參數是<a href="https://docs.python.org/zh-tw/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a>的預設返回值。
+第二個參數是 <a href="https://docs.python.org/zh-tw/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的預設回傳值。
 
 如果沒有提供，預設值為 `None`，這裡我們提供 `"World"` 作為預設值。
 
@@ -127,7 +127,7 @@ Hello Wade Wilson from Python
 
 ////
 
-由於環境變數可以在程式碼之外設定、被程式碼讀取，並且不必與其他檔案一起儲存（提交到 `git`），因此通常用於配置或**設定**。
+由於環境變數可以在程式碼之外設定，但可以被程式碼讀取，並且不必與其他檔案一起儲存（提交到 `git`），因此通常用於配置或**設定**。
 
 你還可以為**特定的程式呼叫**建立特定的環境變數，該環境變數僅對該程式可用，且僅在其執行期間有效。
 
@@ -139,11 +139,11 @@ Hello Wade Wilson from Python
 // 在這個程式呼叫的同一行中建立一個名為 MY_NAME 的環境變數
 $ MY_NAME="Wade Wilson" python main.py
 
-// 現在就可以讀到取環境變數了
+// 現在就可以讀取到環境變數了
 
 Hello Wade Wilson from Python
 
-// 在此之後環境這個變數將不再存在
+// 在此之後這個環境變數將不再存在
 $ python main.py
 
 Hello World from Python
@@ -153,15 +153,15 @@ Hello World from Python
 
 /// tip
 
-你可以在<a href="https://12factor.net/zh_cn/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多資訊。
+你可以在 <a href="https://12factor.net/zh_cn/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多資訊。
 
 ///
 
-## 類型和驗證
+## 型別和驗證
 
 這些環境變數只能處理**文字字串**，因為它們是位於 Python 範疇之外的，必須與其他程式和作業系統的其餘部分相容（甚至與不同的作業系統相容，如 Linux、Windows、macOS）。
 
-這意味著從環境變數中讀取的**任何值**在 Python 中都將是一個 `str`，任何類型轉換或驗證都必須在程式碼中完成。
+這意味著從環境變數中讀取的**任何值**在 Python 中都將是一個 `str`，任何型別轉換或驗證都必須在程式碼中完成。
 
 你將在[進階使用者指南 - 設定和環境變數](./advanced/settings.md)中了解更多關於使用環境變數處理**應用程式設定**的資訊。
 
@@ -217,7 +217,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 假設你安裝了 Python，並將其安裝在目錄 `/opt/custompython/bin` 中。
 
-如果你選擇更新 `PATH` 環境變數，那麼安裝程式會將 `/opt/custompython/bin` 添加到 `PATH` 環境變數中。
+如果你選擇更新 `PATH` 環境變數，那麼安裝程式會將 `/opt/custompython/bin` 加入到 `PATH` 環境變數中。
 
 它看起來大致會是這樣：
 
@@ -233,7 +233,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 假設你安裝了 Python，並將其安裝在目錄 `C:\opt\custompython\bin` 中。
 
-如果你選擇更新 `PATH` 環境變數（在 Python 安裝程式中，這個選項是名為 `Add Python x.xx to PATH` 的勾選框——譯者註），那麼安裝程式會將 `C:\opt\custompython\bin` 添加到 `PATH` 環境變數中。
+如果你選擇更新 `PATH` 環境變數（在 Python 安裝程式中，這個選項是名為 `Add Python x.xx to PATH` 的勾選框——譯者註），那麼安裝程式會將 `C:\opt\custompython\bin` 加入到 `PATH` 環境變數中。
 
 ```plaintext
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
