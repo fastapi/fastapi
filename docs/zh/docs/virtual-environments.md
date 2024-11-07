@@ -1,6 +1,6 @@
 # 虚拟环境
 
-当你在 Python 项目中工作时，你可能会有必要用到一个**虚拟环境**（或类似的机制）来隔离你为每个项目安装的包。
+当你在 Python 工程中工作时，你可能会有必要用到一个**虚拟环境**（或类似的机制）来隔离你为每个工程安装的包。
 
 /// info
 
@@ -577,3 +577,268 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
+## 激活虚拟环境意味着什么
+
+当你激活了一个虚拟环境，例如：
+
+//// tab | Linux, macOS
+
+<div class="termy">
+
+```console
+$ source .venv/bin/activate
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ .venv\Scripts\Activate.ps1
+```
+
+</div>
+
+////
+
+//// tab | Windows Bash
+
+或者如果你在 Windows 上使用 Bash（例如 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>）：
+
+<div class="termy">
+
+```console
+$ source .venv/Scripts/activate
+```
+
+</div>
+
+////
+
+这个命令会创建或修改一些[环境变量](environment-variables.md){.internal-link target=_blank}，这些环境变量将在接下来的命令中可用。
+
+其中之一是 `PATH` 变量。
+
+/// tip
+
+你可以在 [环境变量](environment-variables.md#path-environment-variable){.internal-link target=_blank} 部分了解更多关于 `PATH` 环境变量的内容。
+
+///
+
+激活虚拟环境会将其路径 `.venv/bin`（在 Linux 和 macOS 上）或 `.venv\Scripts`（在 Windows 上）添加到 `PATH` 环境变量中。
+
+假设在激活环境之前，`PATH` 变量看起来像这样：
+
+//// tab | Linux, macOS
+
+```plaintext
+/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+这意味着系统会在以下目录中查找程序：
+
+* `/usr/bin`
+* `/bin`
+* `/usr/sbin`
+* `/sbin`
+
+////
+
+//// tab | Windows
+
+```plaintext
+C:\Windows\System32
+```
+
+这意味着系统会在以下目录中查找程序：
+
+* `C:\Windows\System32`
+
+////
+
+激活虚拟环境后，`PATH` 变量会变成这样：
+
+//// tab | Linux, macOS
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+这意味着系统现在会首先在以下目录中查找程序：
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin
+```
+
+然后再在其他目录中查找。
+
+因此，当你在终端中输入 `python` 时，系统会在以下目录中找到 Python 程序：
+
+```plaintext
+/home/user/code/awesome-project/.venv/bin/python
+```
+
+并使用这个。
+
+////
+
+//// tab | Windows
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
+```
+
+这意味着系统现在会首先在以下目录中查找程序：
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts
+```
+
+然后再在其他目录中查找。
+
+因此，当你在终端中输入 `python` 时，系统会在以下目录中找到 Python 程序：
+
+```plaintext
+C:\Users\user\code\awesome-project\.venv\Scripts\python
+```
+
+并使用这个。
+
+////
+
+一个重要的细节是，虚拟环境路径会被放在 `PATH` 变量的**开头**。系统会在找到任何其他可用的 Python **之前**找到它。这样，当你运行 `python` 时，它会使用**虚拟环境中**的 Python，而不是任何其他 `python`（例如，全局环境中的 `python`）。
+
+激活虚拟环境还会改变其他一些东西，但这是它所做的最重要的事情之一。
+
+## 检查虚拟环境
+
+当你检查虚拟环境是否激活时，例如：
+
+//// tab | Linux, macOS, Windows Bash
+
+<div class="termy">
+
+```console
+$ which python
+
+/home/user/code/awesome-project/.venv/bin/python
+```
+
+</div>
+
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ Get-Command python
+
+C:\Users\user\code\awesome-project\.venv\Scripts\python
+```
+
+</div>
+
+////
+
+这意味着将使用的 `python` 程序是**在虚拟环境中**的那个。
+
+在 Linux 和 macOS 中使用 `which`，在 Windows PowerShell 中使用 `Get-Command`。
+
+这个命令的工作方式是，它会在 `PATH` 环境变量中查找，按顺序**逐个路径**查找名为 `python` 的程序。一旦找到，它会**显示该程序的路径**。
+
+最重要的部分是，当你调用 `python` 时，将执行的就是这个确切的 "`python`"。
+
+因此，你可以确认你是否在正确的虚拟环境中。
+
+/// tip
+
+激活一个虚拟环境，获取一个 Python，然后**转到另一个工程**是一件很容易的事情；
+
+但如果第二个工程**无法工作**，那是因为你使用了来自另一个工程的虚拟环境的、**不正确的 Python**。
+
+因此，会检查正在使用的 `python` 是很有用的。🤓
+
+///
+
+## 为什么要停用虚拟环境
+
+例如，你可能正在一个工程 `philosophers-stone` 上工作，**激活了该虚拟环境**，安装了包并使用了该环境，
+
+然后你想要在**另一个工程** `prisoner-of-azkaban` 上工作，
+
+你进入那个工程：
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+```
+
+</div>
+
+如果你不去停用 `philosophers-stone` 的虚拟环境，当你在终端中运行 `python` 时，它会尝试使用 `philosophers-stone` 中的 Python。
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+
+$ python main.py
+
+// 导入 sirius 报错，它没有安装 😱
+Traceback (most recent call last):
+    File "main.py", line 1, in <module>
+        import sirius
+```
+
+</div>
+
+但是如果你停用虚拟环境并激活 `prisoner-of-askaban` 的新虚拟环境，那么当你运行 `python` 时，它会使用 `prisoner-of-askaban` 中的虚拟环境中的 Python。
+
+<div class="termy">
+
+```console
+$ cd ~/code/prisoner-of-azkaban
+
+// 你不需要在旧目录中操作停用，你可以在任何地方操作停用，甚至在转到另一个工程之后 😎
+$ deactivate
+
+// 激活 prisoner-of-azkaban/.venv 中的虚拟环境 🚀
+$ source .venv/bin/activate
+
+// 现在当你运行 python 时，它会在这个虚拟环境中找到安装的 sirius 包 ✨
+$ python main.py
+
+I solemnly swear 🐺
+```
+
+</div>
+
+## 替代方案
+
+这是一个简单的指南，可以帮助你入门并教会你如何理解一切**底层**的东西。
+
+有许多**替代方案**来管理虚拟环境、包依赖（requirements）、工程。
+
+一旦你准备好并想要使用一个工具来**管理整个工程**、包依赖、虚拟环境等，建议你尝试 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>。
+
+`uv` 可以做很多事情，它可以：
+
+* 为你**安装 Python**，包括不同的版本
+* 为你的工程管理**虚拟环境**
+* 安装**软件包**
+* 为你的工程管理软件包的**依赖和版本**
+* 确保你有一个**确切**的软件包和版本集合来安装，包括它们的依赖项，这样你就可以确保在生产中运行你的工程与在开发时在你的计算机上运行的工程完全相同，这被称为**锁定**
+* 还有很多其他功能
+
+## 结论
+
+如果你读过并理解了所有这些，现在**你对虚拟环境的了解比很多开发者都要多**。🤓
+
+在未来当你调试看起来复杂的东西时，了解这些细节很可能会有用，你会知道**它是如何在底层工作的**。😎
