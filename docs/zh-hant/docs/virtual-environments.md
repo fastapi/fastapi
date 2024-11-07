@@ -279,3 +279,298 @@ $ echo "*" > .venv/.gitignore
 ```gitignore
 *
 ```
+
+///
+
+## 安裝套件
+
+在啟用虛擬環境後，你可以在其中安裝套件。
+
+/// tip
+
+當你需要安裝或升級套件時，執行本操作**一次**；
+
+如果你需要再升級版本或新增套件，你可以**再次執行此操作**。
+
+///
+
+### 直接安裝包
+
+如果你急於安裝，不想使用檔案來聲明專案的套件依賴，你可以直接安裝它們。
+
+/// tip
+
+將程式所需的套件及其版本放在檔案中（例如 `requirements.txt` 或 `pyproject.toml`）是個好（而且非常好）的主意。
+
+///
+
+//// tab | `pip`
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+////
+
+//// tab | `uv`
+
+如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+
+<div class="termy">
+
+```console
+$ uv pip install "fastapi[standard]"
+---> 100%
+```
+
+</div>
+
+////
+
+### 從 `requirements.txt` 安裝
+
+如果你有一個 `requirements.txt` 檔案，你可以使用它來安裝其中的套件。
+
+//// tab | `pip`
+
+<div class="termy">
+
+```console
+$ pip install -r requirements.txt
+---> 100%
+```
+
+</div>
+
+////
+
+//// tab | `uv`
+
+如果你有 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+
+<div class="termy">
+
+```console
+$ uv pip install -r requirements.txt
+---> 100%
+```
+
+</div>
+
+////
+
+/// details | 關於 `requirements.txt`
+
+一個包含一些套件的 `requirements.txt` 檔案看起來應該是這樣的：
+
+```requirements.txt
+fastapi[standard]==0.113.0
+pydantic==2.8.0
+```
+
+///
+
+## 執行程式
+
+在啟用虛擬環境後，你可以執行你的程式，它將使用虛擬環境中的 Python 和你在其中安裝的套件。
+
+<div class="termy">
+
+```console
+$ python main.py
+
+Hello World
+```
+
+</div>
+
+## 設定編輯器
+
+你可能會用到編輯器（即 IDE —— 譯者註），請確保設定它使用你建立的相同虛擬環境（它可能會自動偵測到），以便你可以獲得自動完成和內聯錯誤提示。
+
+例如：
+
+* <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
+* <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
+
+/// tip
+
+通常你只需要在建立虛擬環境時執行此操作**一次**。
+
+///
+
+## 退出虛擬環境
+
+當你完成工作後，你可以**退出**虛擬環境。
+
+<div class="termy">
+
+```console
+$ deactivate
+```
+
+</div>
+
+這樣，當你執行 `python` 時，它不會嘗試從已安裝套件的虛擬環境中執行。（即，它將不再會嘗試從虛擬環境中執行，也不會使用其中安裝的套件。 —— 譯者註）
+
+## 開始工作
+
+現在你已經準備好開始你的工作了。
+
+/// tip
+
+你想要理解上面的所有內容嗎？
+
+繼續閱讀。👇🤓
+
+///
+## 為什麼要使用虛擬環境
+
+你需要安裝 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
+
+接下來，你需要**安裝** FastAPI 以及你想使用的其他**套件**。
+
+要安裝套件，你通常會使用隨 Python 一起提供的 `pip` 指令（或類似的替代工具）。
+
+然而，如果你直接使用 `pip`，套件將會安裝在你的**全域 Python 環境**中（即 Python 的全域安裝）。
+
+### 存在的問題
+
+那麼，在全域 Python 環境中安裝套件有什麼問題呢？
+
+有時候，你可能會開發許多不同的程式，而這些程式各自依賴於**不同的套件**；有些專案甚至需要依賴於**相同套件的不同版本**。😱
+
+例如，你可能會建立一個名為 `philosophers-stone` 的專案，這個程式依賴於另一個名為 **`harry` 的套件，並使用版本 `1`**。因此，你需要安裝 `harry`。
+
+```mermaid
+flowchart LR
+    stone(philosophers-stone) -->|需要| harry-1[harry v1]
+```
+
+然而，在此之後，你又建立了另一個名為 `prisoner-of-azkaban` 的專案，而這個專案也依賴於 `harry`，但需要的是**`harry` 版本 `3`**。
+
+```mermaid
+flowchart LR
+    azkaban(prisoner-of-azkaban) --> |需要| harry-3[harry v3]
+```
+
+現在的問題是，如果你在全域環境中安裝套件而不是在本地**虛擬環境**中，你將面臨選擇安裝哪個版本的 `harry` 的困境。
+
+如果你想運行 `philosophers-stone`，你需要先安裝 `harry` 版本 `1`，例如：
+
+<div class="termy">
+
+```console
+$ pip install "harry==1"
+```
+
+</div>
+
+然後你會在全域 Python 環境中安裝 `harry` 版本 `1`。
+
+```mermaid
+flowchart LR
+    subgraph global[全域環境]
+        harry-1[harry v1]
+    end
+    subgraph stone-project[專案 philosophers-stone]
+        stone(philosophers-stone) -->|需要| harry-1
+    end
+```
+
+但如果你想運行 `prisoner-of-azkaban`，你需要卸載 `harry` 版本 `1` 並安裝 `harry` 版本 `3`（或者只要你安裝版本 `3`，版本 `1` 就會自動卸載）。
+
+<div class="termy">
+
+```console
+$ pip install "harry==3"
+```
+
+</div>
+
+於是，你在全域 Python 環境中安裝了 `harry` 版本 `3`。
+
+如果你再次嘗試運行 `philosophers-stone`，很可能會**無法正常運作**，因為它需要的是 `harry` 版本 `1`。
+
+```mermaid
+flowchart LR
+    subgraph global[全域環境]
+        harry-1[<strike>harry v1</strike>]
+        style harry-1 fill:#ccc,stroke-dasharray: 5 5
+        harry-3[harry v3]
+    end
+    subgraph stone-project[專案 philosophers-stone]
+        stone(philosophers-stone) -.-x|⛔️| harry-1
+    end
+    subgraph azkaban-project[專案 prisoner-of-azkaban]
+        azkaban(prisoner-of-azkaban) --> |需要| harry-3
+    end
+```
+
+/// 提示
+
+Python 套件在推出**新版本**時通常會儘量**避免破壞性更改**，但最好還是要謹慎，在安裝新版本前進行測試，以確保一切能正常運行。
+
+///
+
+現在，想像一下如果有**許多**其他**套件**，它們都是你的**專案所依賴的**。這樣是非常難以管理的。你可能會發現有些專案使用了一些**不相容的套件版本**，而無法得知為什麼某些程式無法正常運作。
+
+此外，取決於你的操作系統（例如 Linux、Windows、macOS），它可能已經預先安裝了 Python。在這種情況下，它可能已經有一些系統所需的套件和特定版本。如果你在全域 Python 環境中安裝套件，可能會**破壞**某些隨作業系統一起安裝的程式。
+
+## 套件安裝在哪裡
+
+當你安裝 Python 時，它會在你的電腦中建立一些目錄並放置一些檔案。
+
+其中一些目錄專門用來存放你所安裝的所有套件。
+
+當你運行：
+
+<div class="termy">
+
+```console
+// 先別去運行這個指令，這只是個示例 🤓
+$ pip install "fastapi[standard]"
+---> 100%
+```
+
+</div>
+
+這會從 <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a> 下載一個壓縮檔案，其中包含 FastAPI 的程式碼。
+
+它還會**下載** FastAPI 所依賴的其他套件的檔案。
+
+接著，它會**解壓**所有這些檔案，並將它們放在你的電腦中的某個目錄中。
+
+預設情況下，這些下載和解壓的檔案會放置於隨 Python 安裝的目錄中，即**全域環境**。
+
+## 什麼是虛擬環境
+
+解決套件都安裝在全域環境中的問題方法是為你所做的每個專案使用一個**虛擬環境**。
+
+虛擬環境是一個**目錄**，與全域環境非常相似，你可以在其中針對某個專案安裝套件。
+
+這樣，每個專案都會有自己的虛擬環境（`.venv` 目錄），其中包含自己的套件。
+
+```mermaid
+flowchart TB
+    subgraph stone-project[專案 philosophers-stone]
+        stone(philosophers-stone) --->|需要| harry-1
+        subgraph venv1[.venv]
+            harry-1[harry v1]
+        end
+    end
+    subgraph azkaban-project[專案 prisoner-of-azkaban]
+        azkaban(prisoner-of-azkaban) --->|需要| harry-3
+        subgraph venv2[.venv]
+            harry-3[harry v3]
+        end
+    end
+    stone-project ~~~ azkaban-project
+```
+
