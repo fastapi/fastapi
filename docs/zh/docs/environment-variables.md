@@ -12,7 +12,7 @@
 
 ## 创建和使用环境变量
 
-你在**shell（终端）**中就可以**创建**和使用环境变量，并不需要用到 Python：
+你在 **shell（终端）**中就可以**创建**和使用环境变量，并不需要用到 Python：
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -65,7 +65,7 @@ print(f"Hello {name} from Python")
 
 /// tip
 
-第二个参数是<a href="https://docs.python.org/zh-cn/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a>的默认返回值。
+第二个参数是 <a href="https://docs.python.org/zh-cn/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 的默认返回值。
 
 如果没有提供，默认值为 `None`，这里我们提供 `"World"` 作为默认值。
 
@@ -127,7 +127,7 @@ Hello Wade Wilson from Python
 
 ////
 
-由于环境变量可以在代码之外设置、被代码读取，并且不必与其他文件一起存储（提交到 `git`），因此通常用于配置或**设置**。
+由于环境变量可以在代码之外设置、但可以被代码读取，并且不必与其他文件一起存储（提交到 `git`），因此通常用于配置或**设置**。
 
 你还可以为**特定的程序调用**创建特定的环境变量，该环境变量仅对该程序可用，且仅在其运行期间有效。
 
@@ -139,11 +139,11 @@ Hello Wade Wilson from Python
 // 在这个程序调用的同一行中创建一个名为 MY_NAME 的环境变量
 $ MY_NAME="Wade Wilson" python main.py
 
-// 现在就可以读到取环境变量了
+// 现在就可以读取到环境变量了
 
 Hello Wade Wilson from Python
 
-// 在此之后环境这个变量将不会依然存在
+// 在此之后这个环境变量将不会依然存在
 $ python main.py
 
 Hello World from Python
@@ -153,7 +153,7 @@ Hello World from Python
 
 /// tip
 
-你可以在<a href="https://12factor.net/zh_cn/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多信息。
+你可以在 <a href="https://12factor.net/zh_cn/config" class="external-link" target="_blank">The Twelve-Factor App: 配置</a>中了解更多信息。
 
 ///
 
