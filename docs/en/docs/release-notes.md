@@ -53,6 +53,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump tiangolo/latest-changes from 0.3.1 to 0.3.2. PR [#12794](https://github.com/fastapi/fastapi/pull/12794) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.0 to 1.12.2. PR [#12788](https://github.com/fastapi/fastapi/pull/12788) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.11.0 to 1.12.0. PR [#12781](https://github.com/fastapi/fastapi/pull/12781) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump cloudflare/wrangler-action from 3.11 to 3.12. PR [#12777](https://github.com/fastapi/fastapi/pull/12777) by [@dependabot[bot]](https://github.com/apps/dependabot).
