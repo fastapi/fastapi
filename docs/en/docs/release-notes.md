@@ -27,6 +27,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/virtual-environments.md`. PR [#12790](https://github.com/fastapi/fastapi/pull/12790) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Korean translation for `/docs/ko/docs/environment-variables.md`. PR [#12526](https://github.com/fastapi/fastapi/pull/12526) by [@Tolerblanc](https://github.com/Tolerblanc).
 * 🌐 Add Korean translation for `docs/ko/docs/history-design-future.md`. PR [#12646](https://github.com/fastapi/fastapi/pull/12646) by [@saeye](https://github.com/saeye).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/advanced-dependencies.md`. PR [#12675](https://github.com/fastapi/fastapi/pull/12675) by [@kim-sangah](https://github.com/kim-sangah).
