@@ -18,6 +18,7 @@
 
 ### Internal
 
+* ⬆ Bump tiangolo/latest-changes from 0.3.1 to 0.3.2. PR [#1418](https://github.com/fastapi/full-stack-fastapi-template/pull/1418) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Update issue manager workflow. PR [#1398](https://github.com/fastapi/full-stack-fastapi-template/pull/1398) by [@alejsdev](https://github.com/alejsdev).
 * 👷 Fix smokeshow, checkout files on CI. PR [#1395](https://github.com/fastapi/full-stack-fastapi-template/pull/1395) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update `labeler.yml`. PR [#1388](https://github.com/fastapi/full-stack-fastapi-template/pull/1388) by [@tiangolo](https://github.com/tiangolo).
