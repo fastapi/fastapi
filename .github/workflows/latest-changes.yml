@@ -30,7 +30,7 @@ jobs:
         with:
           # To allow latest-changes to commit to the main branch
           token: ${{ secrets.LATEST_CHANGES }}
-      - uses: tiangolo/latest-changes@0.3.1
+      - uses: tiangolo/latest-changes@0.3.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: ./release-notes.md
