@@ -289,7 +289,7 @@ $ C:\opt\custompython\bin\python
 
 ## 结论
 
-通过这个教程，你应该对**环墍变量**是什么以及如何在 Python 中使用它们有了基本的了解。
+通过这个教程，你应该对**环境变量**是什么以及如何在 Python 中使用它们有了基本的了解。
 
 你也可以在<a href="https://zh.wikipedia.org/wiki/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" class="external-link" target="_blank">环境变量 - 维基百科</a> (<a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">Wikipedia for Environment Variable</a>) 中了解更多关于它们的信息。
 
