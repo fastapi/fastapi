@@ -52,7 +52,7 @@ $ pip install "fastapi[all]"
 
 ...isso também inclui o `uvicorn`, que você pode usar como o servidor que rodará seu código.
 
-/// note | "Nota"
+/// note | Nota
 
 Você também pode instalar parte por parte.
 

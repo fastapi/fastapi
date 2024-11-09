@@ -26,8 +26,8 @@ class Item(BaseModel):
 def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
     app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
 
-    @app.post("/items/")
-    def create_item(item: Item):
+    @app.post("/items/", responses={402: {"model": Item}})
+    def create_item(item: Item) -> Item:
         return item
 
     @app.post("/items-list/")
@@ -174,7 +174,23 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Item-Output"
+                                    }
+                                }
+                            },
+                        },
+                        "402": {
+                            "description": "Payment Required",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Item-Output"
+                                    }
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",
@@ -374,7 +390,19 @@ def test_openapi_schema_no_separate():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
+                        },
+                        "402": {
+                            "description": "Payment Required",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",
