@@ -60,7 +60,6 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 {* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip
-```Python hl_lines="10  12-13"
 
 Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> instead of `time.time()` because it can be more precise for these use cases. 🤓
 
