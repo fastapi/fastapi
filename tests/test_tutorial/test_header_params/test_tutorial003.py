@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.header_params.tutorial003 import app
@@ -11,8 +12,12 @@ client = TestClient(app)
     [
         ("/items", None, 200, {"X-Token values": None}),
         ("/items", {"x-token": "foo"}, 200, {"X-Token values": ["foo"]}),
-        # TODO: fix this, is it a bug?
-        # ("/items", [("x-token", "foo"), ("x-token", "bar")], 200, {"X-Token values": ["foo", "bar"]}),
+        (
+            "/items",
+            [("x-token", "foo"), ("x-token", "bar")],
+            200,
+            {"X-Token values": ["foo", "bar"]},
+        ),
     ],
 )
 def test(path, headers, expected_status, expected_response):
@@ -24,9 +29,8 @@ def test(path, headers, expected_status, expected_response):
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    # insert_assert(response.json())
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/": {
@@ -36,11 +40,23 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": False,
-                            "schema": {
-                                "title": "X-Token",
-                                "type": "array",
-                                "items": {"type": "string"},
-                            },
+                            "schema": IsDict(
+                                {
+                                    "title": "X-Token",
+                                    "anyOf": [
+                                        {"type": "array", "items": {"type": "string"}},
+                                        {"type": "null"},
+                                    ],
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "title": "X-Token",
+                                    "type": "array",
+                                    "items": {"type": "string"},
+                                }
+                            ),
                             "name": "x-token",
                             "in": "header",
                         }

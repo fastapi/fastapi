@@ -26,7 +26,7 @@
 ### 导入 `HTTPException`
 
 ```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 
 ```
 
@@ -43,7 +43,7 @@
 本例中，客户端用 `ID` 请求的 `item` 不存在时，触发状态码为 `404` 的异常：
 
 ```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
+{!../../docs_src/handling_errors/tutorial001.py!}
 
 ```
 
@@ -67,14 +67,15 @@
 
 ```
 
-!!! tip "提示"
+/// tip | 提示
 
-    触发 `HTTPException` 时，可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。
+触发 `HTTPException` 时，可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。
 
-    还支持传递 `dict`、`list` 等数据结构。
+还支持传递 `dict`、`list` 等数据结构。
 
-    **FastAPI** 能自动处理这些数据，并将之转换为 JSON。
+**FastAPI** 能自动处理这些数据，并将之转换为 JSON。
 
+///
 
 ## 添加自定义响应头
 
@@ -85,7 +86,7 @@
 但对于某些高级应用场景，还是需要添加自定义响应头：
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
+{!../../docs_src/handling_errors/tutorial002.py!}
 
 ```
 
@@ -100,7 +101,7 @@
 此时，可以用 `@app.exception_handler()` 添加自定义异常控制器：
 
 ```Python hl_lines="5-7  13-18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
+{!../../docs_src/handling_errors/tutorial003.py!}
 
 ```
 
@@ -115,12 +116,13 @@
 
 ```
 
-!!! note "技术细节"
+/// note | 技术细节
 
-    `from starlette.requests import Request` 和 `from starlette.responses import JSONResponse` 也可以用于导入 `Request` 和 `JSONResponse`。
+`from starlette.requests import Request` 和 `from starlette.responses import JSONResponse` 也可以用于导入 `Request` 和 `JSONResponse`。
 
-    **FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应操作都可以直接从 Starlette 导入。同理，`Request` 也是如此。
+**FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应操作都可以直接从 Starlette 导入。同理，`Request` 也是如此。
 
+///
 
 ## 覆盖默认异常处理器
 
@@ -141,11 +143,11 @@
 这样，异常处理器就可以接收 `Request` 与异常。
 
 ```Python hl_lines="2  14-16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 
 ```
 
-访问 `/items/foo`，可以看到以下内容替换了默认 JSON 错误信息：
+访问 `/items/foo`，可以看到默认的 JSON 错误信息：
 
 ```JSON
 {
@@ -163,7 +165,7 @@
 
 ```
 
-以下是文本格式的错误信息：
+被替换为了以下文本格式的错误信息：
 
 ```
 1 validation error
@@ -174,12 +176,13 @@ path -> item_id
 
 ### `RequestValidationError` vs `ValidationError`
 
-!!! warning "警告"
+/// warning | 警告
 
-    如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
+如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
 
+///
 
-`RequestValidationError` 是 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
+`RequestValidationError` 是 Pydantic 的 <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
 
 **FastAPI** 调用的就是 `RequestValidationError` 类，因此，如果在 `response_model` 中使用 Pydantic 模型，且数据有错误时，在日志中就会看到这个错误。
 
@@ -196,16 +199,17 @@ path -> item_id
 例如，只为错误返回纯文本响应，而不是返回 JSON 格式的内容：
 
 ```Python hl_lines="3-4  9-11  22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
+{!../../docs_src/handling_errors/tutorial004.py!}
 
 ```
 
-!!! note "技术细节"
+/// note | 技术细节
 
-    还可以使用 `from starlette.responses import PlainTextResponse`。
+还可以使用 `from starlette.responses import PlainTextResponse`。
 
-    **FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应都可以直接从 Starlette 导入。
+**FastAPI** 提供了与 `starlette.responses` 相同的 `fastapi.responses` 作为快捷方式，但大部分响应都可以直接从 Starlette 导入。
 
+///
 
 ### 使用 `RequestValidationError` 的请求体
 
@@ -214,7 +218,7 @@ path -> item_id
 开发时，可以用这个请求体生成日志、调试错误，并返回给用户。
 
 ```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
+{!../../docs_src/handling_errors/tutorial005.py!}
 
 ```
 
@@ -280,7 +284,7 @@ FastAPI 支持先对异常进行某些处理，然后再使用 **FastAPI** 中�
 从 `fastapi.exception_handlers` 中导入要复用的默认异常处理器：
 
 ```Python hl_lines="2-5  15  21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
+{!../../docs_src/handling_errors/tutorial006.py!}
 
 ```
 
