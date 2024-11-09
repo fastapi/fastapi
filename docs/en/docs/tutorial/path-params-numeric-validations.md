@@ -365,7 +365,7 @@ All of them share the same parameters for additional validation and metadata you
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
 

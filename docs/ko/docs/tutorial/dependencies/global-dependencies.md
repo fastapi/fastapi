@@ -24,7 +24,7 @@
 
 //// tab | Python 3.8 Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
