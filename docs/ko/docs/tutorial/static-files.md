@@ -8,10 +8,10 @@
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트" 합니다.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
+{!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.staticfiles import StaticFiles` 를 사용할 수도 있습니다.
 

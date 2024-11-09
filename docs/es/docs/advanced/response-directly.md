@@ -14,7 +14,7 @@ Esto puede ser útil, por ejemplo, para devolver cookies o headers personalizado
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de la misma.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 `JSONResponse` en sí misma es una subclase de `Response`.
 
@@ -35,10 +35,10 @@ Por ejemplo, no puedes poner un modelo Pydantic en una `JSONResponse` sin primer
 Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos antes de pasarlos a la respuesta:
 
 ```Python hl_lines="4 6 20 21"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 También puedes usar `from starlette.responses import JSONResponse`.
 
@@ -57,7 +57,7 @@ Digamos que quieres devolver una respuesta <a href="https://en.wikipedia.org/wik
 Podrías poner tu contenido XML en un string, ponerlo en una `Response` y devolverlo:
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notas
