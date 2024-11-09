@@ -38,17 +38,13 @@ In production you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
-```Python hl_lines="2  6-38  41-43"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Create a `websocket`
 
 In your **FastAPI** application, create a `websocket`:
 
-```Python hl_lines="1  46-47"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
 /// note | "Technical Details"
 
@@ -62,9 +58,7 @@ You could also use `from starlette.websockets import WebSocket`.
 
 In your WebSocket route you can `await` for messages and send messages.
 
-```Python hl_lines="48-52"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
 
 You can receive and send binary, text, and JSON data.
 
@@ -115,57 +109,7 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="68-69  82"
-{!> ../../docs_src/websockets/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="68-69  82"
-{!> ../../docs_src/websockets/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="69-70  83"
-{!> ../../docs_src/websockets/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="66-67  79"
-{!> ../../docs_src/websockets/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="68-69  81"
-{!> ../../docs_src/websockets/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info
 
@@ -210,21 +154,7 @@ With that you can connect the WebSocket and then send and receive messages:
 
 When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="79-81"
-{!> ../../docs_src/websockets/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="81-83"
-{!> ../../docs_src/websockets/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
 
 To try it out:
 

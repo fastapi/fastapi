@@ -30,9 +30,7 @@ This is because by default, FastAPI will inspect every item inside and make sure
 
 But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial001b.py!}
-```
+{* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
 
 /// info
 
@@ -57,9 +55,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 * Import `HTMLResponse`.
 * Pass `HTMLResponse` as the parameter `response_class` of your *path operation decorator*.
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial002.py!}
-```
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// info
 
@@ -77,9 +73,7 @@ As seen in [Return a Response directly](response-directly.md){.internal-link tar
 
 The same example from above, returning an `HTMLResponse`, could look like:
 
-```Python hl_lines="2  7  19"
-{!../../docs_src/custom_response/tutorial003.py!}
-```
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning
 
@@ -103,9 +97,7 @@ The `response_class` will then be used only to document the OpenAPI *path operat
 
 For example, it could be something like:
 
-```Python hl_lines="7  21  23"
-{!../../docs_src/custom_response/tutorial004.py!}
-```
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 In this example, the function `generate_html_response()` already generates and returns a `Response` instead of returning the HTML in a `str`.
 
@@ -144,9 +136,7 @@ It accepts the following parameters:
 
 FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the `media_type` and appending a charset for text types.
 
-```Python hl_lines="1  18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse`
 
@@ -156,9 +146,7 @@ Takes some text or bytes and returns an HTML response, as you read above.
 
 Takes some text or bytes and returns a plain text response.
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial005.py!}
-```
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse`
 
@@ -192,9 +180,7 @@ This requires installing `ujson` for example with `pip install ujson`.
 
 ///
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial001.py!}
-```
+{* ../../docs_src/custom_response/tutorial001.py hl[2,7] *}
 
 /// tip
 
@@ -208,18 +194,14 @@ Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default
 
 You can return a `RedirectResponse` directly:
 
-```Python hl_lines="2  9"
-{!../../docs_src/custom_response/tutorial006.py!}
-```
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 Or you can use it in the `response_class` parameter:
 
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial006b.py!}
-```
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 If you do that, then you can return the URL directly from your *path operation* function.
 
@@ -229,17 +211,13 @@ In this case, the `status_code` used will be the default one for the `RedirectRe
 
 You can also use the `status_code` parameter combined with the `response_class` parameter:
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial006c.py!}
-```
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse`
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
-```Python hl_lines="2  14"
-{!../../docs_src/custom_response/tutorial007.py!}
-```
+{* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
 #### Using `StreamingResponse` with file-like objects
 
@@ -249,9 +227,7 @@ That way, you don't have to read it all first in memory, and you can pass that g
 
 This includes many libraries to interact with cloud storage, video processing, and others.
 
-```{ .python .annotate hl_lines="2  10-12  14" }
-{!../../docs_src/custom_response/tutorial008.py!}
-```
+{* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
 2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
@@ -280,15 +256,11 @@ Takes a different set of arguments to instantiate than the other response types:
 
 File responses will include appropriate `Content-Length`, `Last-Modified` and `ETag` headers.
 
-```Python hl_lines="2  10"
-{!../../docs_src/custom_response/tutorial009.py!}
-```
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 You can also use the `response_class` parameter:
 
-```Python hl_lines="2  8  10"
-{!../../docs_src/custom_response/tutorial009b.py!}
-```
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 In this case, you can return the file path directly from your *path operation* function.
 
@@ -302,9 +274,7 @@ Let's say you want it to return indented and formatted JSON, so you want to use 
 
 You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
 
-```Python hl_lines="9-14  17"
-{!../../docs_src/custom_response/tutorial009c.py!}
-```
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 Now instead of returning:
 
@@ -330,9 +300,7 @@ The parameter that defines this is `default_response_class`.
 
 In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
 
-```Python hl_lines="2  4"
-{!../../docs_src/custom_response/tutorial010.py!}
-```
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip
 
