@@ -8,6 +8,9 @@ on:
 permissions:
   pull-requests: write
 
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   label-approved:
     if: github.repository_owner == 'fastapi'
@@ -17,10 +20,26 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - uses: docker://tiangolo/label-approved:0.0.4
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        config: >
+        python-version: "3.11"
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "0.4.15"
+        enable-cache: true
+        cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+    - name: Install GitHub Actions dependencies
+      run: uv pip install -r requirements-github-actions.txt
+    - name: Label Approved
+      run: python ./scripts/label_approved.py
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG: >
           {
             "approved-1":
               {

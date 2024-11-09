@@ -34,7 +34,7 @@ And if you update that local FastAPI source code when you run that Python file a
 
 That way, you don't have to "install" your local version to be able to test every change.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
 

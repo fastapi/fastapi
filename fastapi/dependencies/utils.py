@@ -24,7 +24,7 @@ from fastapi._compat import (
     PYDANTIC_V2,
     ErrorWrapper,
     ModelField,
-    Required,
+    RequiredParam,
     Undefined,
     _regenerate_error_with_loc,
     copy_field_info,
@@ -90,21 +90,29 @@ multipart_incorrect_install_error = (
 
 def ensure_multipart_is_installed() -> None:
     try:
-        # __version__ is available in both multiparts, and can be mocked
-        from multipart import __version__  # type: ignore
+        from python_multipart import __version__
 
-        assert __version__
+        # Import an attribute that can be mocked/deleted in testing
+        assert __version__ > "0.0.12"
+    except (ImportError, AssertionError):
         try:
-            # parse_options_header is only available in the right multipart
-            from multipart.multipart import parse_options_header  # type: ignore
+            # __version__ is available in both multiparts, and can be mocked
+            from multipart import __version__  # type: ignore[no-redef,import-untyped]
 
-            assert parse_options_header
+            assert __version__
+            try:
+                # parse_options_header is only available in the right multipart
+                from multipart.multipart import (  # type: ignore[import-untyped]
+                    parse_options_header,
+                )
+
+                assert parse_options_header
+            except ImportError:
+                logger.error(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error) from None
         except ImportError:
-            logger.error(multipart_incorrect_install_error)
-            raise RuntimeError(multipart_incorrect_install_error) from None
-    except ImportError:
-        logger.error(multipart_not_installed_error)
-        raise RuntimeError(multipart_not_installed_error) from None
+            logger.error(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error) from None
 
 
 def get_param_sub_dependant(
@@ -201,14 +209,23 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
+    if not fields:
+        return fields
+    first_field = fields[0]
+    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
+        return fields_to_extract
+    return fields
+
+
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    return (
-        flat_dependant.path_params
-        + flat_dependant.query_params
-        + flat_dependant.header_params
-        + flat_dependant.cookie_params
-    )
+    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
+    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
+    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
+    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    return path_params + query_params + header_params + cookie_params
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
@@ -368,7 +385,9 @@ def analyze_param(
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
-            assert field_info.default is Undefined or field_info.default is Required, (
+            assert (
+                field_info.default is Undefined or field_info.default is RequiredParam
+            ), (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
@@ -376,7 +395,7 @@ def analyze_param(
                 assert not is_path_param, "Path parameters cannot have default values"
                 field_info.default = value
             else:
-                field_info.default = Required
+                field_info.default = RequiredParam
         # Get Annotated Depends
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
@@ -425,9 +444,9 @@ def analyze_param(
         ), f"Cannot specify FastAPI annotation for type {type_annotation!r}"
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
-        default_value = value if value is not inspect.Signature.empty else Required
+        default_value = value if value is not inspect.Signature.empty else RequiredParam
         if is_path_param:
-            # We might check here that `default_value is Required`, but the fact is that the same
+            # We might check here that `default_value is RequiredParam`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
             field_info = params.Path(annotation=use_annotation)
@@ -471,7 +490,7 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (Required, Undefined),
+            required=field_info.default in (RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:
@@ -479,7 +498,15 @@ def analyze_param(
                 field=field
             ), "Path params must be of one of the supported types"
         elif isinstance(field_info, params.Query):
-            assert is_scalar_field(field) or is_scalar_sequence_field(field)
+            assert (
+                is_scalar_field(field)
+                or is_scalar_sequence_field(field)
+                or (
+                    lenient_issubclass(field.type_, BaseModel)
+                    # For Pydantic v1
+                    and getattr(field, "shape", 1) == 1
+                )
+            )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
@@ -686,11 +713,14 @@ def _validate_value_with_model_field(
         return v_, []
 
 
-def _get_multidict_value(field: ModelField, values: Mapping[str, Any]) -> Any:
+def _get_multidict_value(
+    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+) -> Any:
+    alias = alias or field.alias
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
-        value = values.getlist(field.alias)
+        value = values.getlist(alias)
     else:
-        value = values.get(field.alias, None)
+        value = values.get(alias, None)
     if (
         value is None
         or (
@@ -712,7 +742,55 @@ def request_params_to_args(
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[Any]]:
     values: Dict[str, Any] = {}
-    errors = []
+    errors: List[Dict[str, Any]] = []
+
+    if not fields:
+        return values, errors
+
+    first_field = fields[0]
+    fields_to_extract = fields
+    single_not_embedded_field = False
+    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
+        single_not_embedded_field = True
+
+    params_to_process: Dict[str, Any] = {}
+
+    processed_keys = set()
+
+    for field in fields_to_extract:
+        alias = None
+        if isinstance(received_params, Headers):
+            # Handle fields extracted from a Pydantic Model for a header, each field
+            # doesn't have a FieldInfo of type Header with the default convert_underscores=True
+            convert_underscores = getattr(field.field_info, "convert_underscores", True)
+            if convert_underscores:
+                alias = (
+                    field.alias
+                    if field.alias != field.name
+                    else field.name.replace("_", "-")
+                )
+        value = _get_multidict_value(field, received_params, alias=alias)
+        if value is not None:
+            params_to_process[field.name] = value
+        processed_keys.add(alias or field.alias)
+        processed_keys.add(field.name)
+
+    for key, value in received_params.items():
+        if key not in processed_keys:
+            params_to_process[key] = value
+
+    if single_not_embedded_field:
+        field_info = first_field.field_info
+        assert isinstance(
+            field_info, params.Param
+        ), "Params must be subclasses of Param"
+        loc: Tuple[str, ...] = (field_info.in_.value,)
+        v_, errors_ = _validate_value_with_model_field(
+            field=first_field, value=params_to_process, values=values, loc=loc
+        )
+        return {first_field.name: v_}, errors_
+
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info

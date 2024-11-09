@@ -11,7 +11,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 ////
@@ -19,7 +19,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -48,7 +48,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 ////
@@ -56,7 +56,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -103,7 +103,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 ////
@@ -111,7 +111,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -157,7 +157,7 @@ q: str | None = None
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 ////
@@ -165,7 +165,7 @@ q: str | None = None
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="26"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -193,7 +193,7 @@ item: Item = Body(embed=True)
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 ////
@@ -201,7 +201,7 @@ item: Item = Body(embed=True)
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
 ```
 
 ////

@@ -12,7 +12,7 @@
 
 비록 **FastAPI**를 쓰지 않는다고 하더라도, 조금이라도 알아두면 도움이 될 것입니다.
 
-/// note | "참고"
+/// note | 참고
 
 파이썬에 능숙하셔서 타입 힌트에 대해 모두 아신다면, 다음 챕터로 건너뛰세요.
 
@@ -23,7 +23,7 @@
 간단한 예제부터 시작해봅시다:
 
 ```Python
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 이 프로그램을 실행한 결과값:
@@ -39,7 +39,7 @@ John Doe
 * 두 단어를 중간에 공백을 두고 <abbr title="두 개를 하나로 차례차례 이어지게 하다">연결</abbr>합니다.
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 ### 코드 수정
@@ -83,7 +83,7 @@ John Doe
 이게 "타입 힌트"입니다:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial002.py!}
+{!../../docs_src/python_types/tutorial002.py!}
 ```
 
 타입힌트는 다음과 같이 기본 값을 선언하는 것과는 다릅니다:
@@ -113,7 +113,7 @@ John Doe
 아래 함수를 보면, 이미 타입 힌트가 적용되어 있는 걸 볼 수 있습니다:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial003.py!}
+{!../../docs_src/python_types/tutorial003.py!}
 ```
 
 편집기가 변수의 타입을 알고 있기 때문에, 자동완성 뿐 아니라 에러도 확인할 수 있습니다:
@@ -123,7 +123,7 @@ John Doe
 이제 고쳐야하는 걸 알기 때문에, `age`를 `str(age)`과 같이 문자열로 바꾸게 됩니다:
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial004.py!}
+{!../../docs_src/python_types/tutorial004.py!}
 ```
 
 ## 타입 선언
@@ -144,7 +144,7 @@ John Doe
 * `bytes`
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
+{!../../docs_src/python_types/tutorial005.py!}
 ```
 
 ### 타입 매개변수를 활용한 Generic(제네릭) 타입
@@ -162,7 +162,7 @@ John Doe
 `typing`에서  `List`(대문자 `L`)를 import 합니다.
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
 콜론(`:`) 문법을 이용하여 변수를 선언합니다.
@@ -172,10 +172,10 @@ John Doe
 이때 배열은 내부 타입을 포함하는 타입이기 때문에 대괄호 안에 넣어줍니다.
 
 ```Python hl_lines="4"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 대괄호 안의 내부 타입은 "타입 매개변수(type paramters)"라고 합니다.
 
@@ -200,7 +200,7 @@ John Doe
 `tuple`과 `set`도 동일하게 선언할 수 있습니다.
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial007.py!}
+{!../../docs_src/python_types/tutorial007.py!}
 ```
 
 이 뜻은 아래와 같습니다:
@@ -217,7 +217,7 @@ John Doe
 두 번째 매개변수는  `dict`의 값(value)입니다.
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial008.py!}
+{!../../docs_src/python_types/tutorial008.py!}
 ```
 
 이 뜻은 아래와 같습니다:
@@ -231,7 +231,7 @@ John Doe
 `str`과 같이 타입을 선언할 때 `Optional`을 쓸 수도 있는데, "선택적(Optional)"이기때문에 `None`도 될 수 있습니다:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009.py!}
 ```
 
 `Optional[str]`을 `str` 대신 쓰게 되면, 특정 값이 실제로는 `None`이 될 수도 있는데 항상 `str`이라고 가정하는 상황에서 에디터가 에러를 찾게 도와줄 수 있습니다.
@@ -256,13 +256,13 @@ John Doe
 이름(name)을 가진 `Person` 클래스가 있다고 해봅시다.
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 그렇게 하면 변수를 `Person`이라고 선언할 수 있게 됩니다.
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 그리고 역시나 모든 에디터 도움을 받게 되겠죠.
@@ -284,10 +284,10 @@ John Doe
 Pydantic 공식 문서 예시:
 
 ```Python
-{!../../../docs_src/python_types/tutorial011.py!}
+{!../../docs_src/python_types/tutorial011.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 Pydantic<에 대해 더 배우고 싶다면 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
 
@@ -319,7 +319,7 @@ Pydantic<에 대해 더 배우고 싶다면 <a href="https://docs.pydantic.dev/"
 
 가장 중요한 건, 표준 파이썬 타입을 한 곳에서(클래스를 더하거나, 데코레이터 사용하는 대신) 사용함으로써 **FastAPI**가 당신을 위해 많은 일을 해준다는 사실이죠.
 
-/// info | "정보"
+/// info | 정보
 
 만약 모든 자습서를 다 보았음에도 타입에 대해서 더 보고자 방문한 경우에는 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`에서 제공하는 "cheat sheet"</a>이 좋은 자료가 될 겁니다.
 
