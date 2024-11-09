@@ -161,7 +161,7 @@ Les listes étant un type contenant des types internes, mettez ces derniers entr
 
 {*../../docs_src/python_types/tutorial006.py hl[4] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Ces types internes entre crochets sont appelés des "paramètres de type".
 

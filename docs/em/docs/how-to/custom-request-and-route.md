@@ -60,7 +60,7 @@
 {!../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 `Request` ✔️ `request.scope` 🔢, 👈 🐍 `dict` ⚗ 🗃 🔗 📨.
 
