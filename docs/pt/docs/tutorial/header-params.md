@@ -44,7 +44,7 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 
 ////
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 `Header` é uma classe "irmã" de `Path`, `Query` e `Cookie`. Ela também herda da mesma classe em comum `Param`.
 
@@ -90,7 +90,7 @@ Se por algum motivo você precisar desabilitar a conversão automática de subli
 
 ////
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Antes de definir `convert_underscores` como `False`, lembre-se de que alguns proxies e servidores HTTP não permitem o uso de cabeçalhos com sublinhados.
 
