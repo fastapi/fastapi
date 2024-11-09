@@ -11,7 +11,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -19,7 +19,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -27,40 +27,40 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать версию с `Annotated`, если это возможно.
 
 ///
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 ////
 
-/// note | "Заметка"
+/// note | Заметка
 
 Заметьте, что в данном случае параметр `item`, который будет взят из тела запроса, необязателен. Так как было установлено значение `None` по умолчанию.
 
@@ -84,7 +84,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -92,7 +92,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 ////
@@ -116,7 +116,7 @@
 }
 ```
 
-/// note | "Внимание"
+/// note | Внимание
 
 Обратите внимание, что хотя параметр `item` был объявлен таким же способом, как и раньше, теперь предпологается, что он находится внутри тела с ключом `item`.
 
@@ -139,7 +139,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -155,35 +155,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ q: str | None = None
 //// tab | Python 3.10+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ q: str | None = None
 //// tab | Python 3.9+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -245,40 +245,40 @@ q: str | None = None
 //// tab | Python 3.8+
 
 ```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="25"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 ////
 
-/// info | "Информация"
+/// info | Информация
 
 `Body` также имеет все те же дополнительные параметры валидации и метаданных, как у `Query`,`Path` и других, которые вы увидите позже.
 
@@ -301,7 +301,7 @@ item: Item = Body(embed=True)
 //// tab | Python 3.10+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -309,7 +309,7 @@ item: Item = Body(embed=True)
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -317,35 +317,35 @@ item: Item = Body(embed=True)
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Заметка"
+/// tip | Заметка
 
 Рекомендуется использовать `Annotated` версию, если это возможно.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 ////

@@ -58,7 +58,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -66,7 +66,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -74,7 +74,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  3  13-17"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an.py!}
 ```
 
 ////
@@ -88,7 +88,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1  2  11-15"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
 ```
 
 ////
@@ -102,7 +102,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1  2  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+{!> ../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
 ////
@@ -112,7 +112,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.10+
 
 ```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -120,7 +120,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -128,7 +128,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-20"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_an.py!}
 ```
 
 ////
@@ -142,7 +142,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="17-18"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
 ```
 
 ////
@@ -156,7 +156,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
+{!> ../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
 ////
