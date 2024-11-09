@@ -25,7 +25,7 @@ Copie o exemplo em um arquivo `main.py`:
 
 ## Execute-o
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -57,7 +57,7 @@ Você verá algo deste tipo:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Botão de Autorizar!"
+/// check | Botão de Autorizar!
 
 
 
@@ -71,7 +71,7 @@ E se você clicar, você terá um pequeno formulário de autorização para digi
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "Nota"
+/// note | Nota
 
 
 
@@ -119,7 +119,7 @@ Então, vamos rever de um ponto de vista simplificado:
 
 Neste exemplo, nós vamos usar o **OAuth2** com o fluxo de **Senha**, usando um token **Bearer**. Fazemos isso usando a classe `OAuth2PasswordBearer`.
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -139,7 +139,7 @@ Quando nós criamos uma instância da classe `OAuth2PasswordBearer`, nós passam
 {!../../docs_src/security/tutorial001.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -155,7 +155,7 @@ Esse parâmetro não cria um endpoint / *path operation*, mas declara que a URL 
 
 Em breve também criaremos o atual path operation.
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -187,7 +187,7 @@ Esse dependência vai fornecer uma `str` que é atribuído ao parâmetro `token 
 
 A **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e na documentação da API automática).
 
-/// info | "Detalhes técnicos"
+/// info | Detalhes técnicos
 
 
 
