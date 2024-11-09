@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/tutorial/cookie-param-models.md`. PR [#12639](https://github.com/fastapi/fastapi/pull/12639) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes for `docs/en/docs/tutorial/extra-models.md`. PR [#12638](https://github.com/fastapi/fastapi/pull/12638) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes for `docs/en/docs/tutorial/cors.md`. PR [#12637](https://github.com/fastapi/fastapi/pull/12637) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/sub-dependencies.md`. PR [#12810](https://github.com/fastapi/fastapi/pull/12810) by [@handabaldeep](https://github.com/handabaldeep).
