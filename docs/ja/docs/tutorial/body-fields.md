@@ -10,7 +10,7 @@
 {!../../docs_src/body_fields/tutorial001.py!}
 ```
 
-/// warning | "注意"
+/// warning | 注意
 
 `Field`は他の全てのもの（`Query`、`Path`、`Body`など）とは違い、`fastapi`からではなく、`pydantic`から直接インポートされていることに注意してください。
 
@@ -26,7 +26,7 @@
 
 `Field`は`Query`や`Path`、`Body`と同じように動作し、全く同様のパラメータなどを持ちます。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 実際には次に見る`Query`や`Path`などは、共通の`Param`クラスのサブクラスのオブジェクトを作成しますが、それ自体はPydanticの`FieldInfo`クラスのサブクラスです。
 
@@ -38,7 +38,7 @@
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 型、デフォルト値、`Field`を持つ各モデルの属性が、`Path`や`Query`、`Body`の代わりに`Field`を持つ、*path operation 関数の*パラメータと同じ構造になっていることに注目してください。
 

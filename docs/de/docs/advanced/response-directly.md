@@ -14,7 +14,7 @@ Das kann beispielsweise nützlich sein, um benutzerdefinierte Header oder Cookie
 
 Tatsächlich können Sie jede `Response` oder jede Unterklasse davon zurückgeben.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 `JSONResponse` selbst ist eine Unterklasse von `Response`.
 
@@ -38,7 +38,7 @@ In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu
 {!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import JSONResponse` verwenden.
 

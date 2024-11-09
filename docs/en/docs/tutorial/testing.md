@@ -44,7 +44,7 @@ This allows you to use `pytest` directly without complications.
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.testclient import TestClient`.
 

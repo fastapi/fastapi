@@ -1,6 +1,6 @@
 # 환경 변수
 
-/// tip | "팁"
+/// tip | 팁
 
 만약 "환경 변수"가 무엇이고, 어떻게 사용하는지 알고 계시다면, 이 챕터를 스킵하셔도 좋습니다.
 
@@ -63,7 +63,7 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 의 두 번째 인자는 반환할 기본값입니다.
 
@@ -151,7 +151,7 @@ Hello World from Python
 
 </div>
 
-/// tip | "팁"
+/// tip | 팁
 
 <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> 에서 좀 더 자세히 알아볼 수 있습니다.
 

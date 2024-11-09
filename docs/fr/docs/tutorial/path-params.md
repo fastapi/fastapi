@@ -24,7 +24,7 @@ Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en uti
 
 Ici, `item_id` est déclaré comme `int`.
 
-/// check | "vérifier"
+/// check | vérifier
 
 Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
 que des vérifications d'erreur, de l'auto-complétion, etc.
@@ -39,7 +39,7 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
 {"item_id":3}
 ```
 
-/// check | "vérifier"
+/// check | vérifier
 
 Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
 en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
@@ -74,7 +74,7 @@ La même erreur se produira si vous passez un nombre flottant (`float`) et non u
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
 
 
-/// check | "vérifier"
+/// check | vérifier
 
 Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
 
@@ -151,7 +151,7 @@ Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les va
 
 ///
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
 
@@ -185,7 +185,7 @@ Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici)
 
 {* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
 
@@ -238,7 +238,7 @@ Vous pouvez donc l'utilisez comme tel :
 
 {* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
 
