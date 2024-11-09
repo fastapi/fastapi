@@ -82,7 +82,7 @@ $ fastapi run main.py --root-path /api/v1
 
 If you use Hypercorn, it also has the option `--root-path`.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 The ASGI specification defines a `root_path` for this use case.
 

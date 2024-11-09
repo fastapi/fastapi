@@ -47,7 +47,7 @@
 
 説明文 (description) の中で Markdown を使用できることに注意してください。たとえば、「login」は太字 (**login**) で表示され、「fancy」は斜体 (_fancy_) で表示されます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 使用するすべてのタグにメタデータを追加する必要はありません。
 
@@ -61,7 +61,7 @@
 {!../../docs_src/metadata/tutorial004.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 タグのより詳しい説明を知りたい場合は [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank} を参照して下さい。
 

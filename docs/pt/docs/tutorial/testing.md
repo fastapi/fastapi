@@ -8,7 +8,7 @@ Com ele, você pode usar o <a href="https://docs.pytest.org/" class="external-li
 
 ## Usando `TestClient`
 
-/// info | "Informação"
+/// info | Informação
 
 Para usar o `TestClient`, primeiro instale o <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
@@ -34,7 +34,7 @@ Escreva instruções `assert` simples com as expressões Python padrão que voc�
 {!../../docs_src/app_testing/tutorial001.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Observe que as funções de teste são `def` normais, não `async def`.
 
@@ -44,7 +44,7 @@ Isso permite que você use `pytest` diretamente sem complicações.
 
 ///
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.testclient import TestClient`.
 
@@ -52,7 +52,7 @@ Você também pode usar `from starlette.testclient import TestClient`.
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você quiser chamar funções `async` em seus testes além de enviar solicitações ao seu aplicativo FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md){.internal-link target=_blank} no tutorial avançado.
 
@@ -152,7 +152,7 @@ Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated` se possível.
 
@@ -166,7 +166,7 @@ Prefira usar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated` se possível.
 
@@ -200,7 +200,7 @@ Por exemplo:
 
 Para mais informações sobre como passar dados para o backend (usando `httpx` ou `TestClient`), consulte a <a href="https://www.python-httpx.org" class="external-link" target="_blank">documentação do HTTPX</a>.
 
-/// info | "Informação"
+/// info | Informação
 
 Observe que o `TestClient` recebe dados que podem ser convertidos para JSON, não para modelos Pydantic.
 

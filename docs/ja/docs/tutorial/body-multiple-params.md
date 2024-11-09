@@ -12,7 +12,7 @@
 {!../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 この場合、ボディから取得する`item`はオプションであることに注意してください。デフォルト値は`None`です。
 
@@ -56,7 +56,7 @@
 }
 ```
 
-/// note | "備考"
+/// note | 備考
 
 以前と同じように`item`が宣言されていたにもかかわらず、`item`はキー`item`を持つボディの内部にあることが期待されていることに注意してください。
 
@@ -118,7 +118,7 @@ q: str = None
 {!../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 `Body`もまた、後述する `Query` や `Path` などと同様に、すべての検証パラメータとメタデータパラメータを持っています。
 
