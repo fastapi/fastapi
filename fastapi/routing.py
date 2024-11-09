@@ -73,7 +73,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, assert_never, deprecated
+from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
@@ -407,14 +407,12 @@ class APIWebSocketRoute(routing.WebSocketRoute):
             sub_dependant = get_parameterless_sub_dependant(
                 depends=depends, path=self.path_format, caller=self.__call__, index=i
             )
-            if depends.dependency_scope == "endpoint":
+            if isinstance(sub_dependant, EndpointDependant):
                 assert isinstance(sub_dependant, EndpointDependant)
                 self.dependant.endpoint_dependencies.insert(0, sub_dependant)
-            elif depends.dependency_scope == "lifespan":
+            else:
                 assert isinstance(sub_dependant, LifespanDependant)
                 self.dependant.lifespan_dependencies.insert(0, sub_dependant)
-            else:
-                assert_never(depends.dependency_scope)
 
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
@@ -572,14 +570,12 @@ class APIRoute(routing.Route):
             sub_dependant = get_parameterless_sub_dependant(
                 depends=depends, path=self.path_format, caller=self.__call__, index=i
             )
-            if depends.dependency_scope == "endpoint":
-                assert isinstance(sub_dependant, EndpointDependant)
+            if isinstance(sub_dependant, EndpointDependant):
                 self.dependant.endpoint_dependencies.insert(0, sub_dependant)
-            elif depends.dependency_scope == "lifespan":
+            else:
                 assert isinstance(sub_dependant, LifespanDependant)
                 self.dependant.lifespan_dependencies.insert(0, sub_dependant)
-            else:
-                assert_never(depends.dependency_scope)
+
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
             self._flat_dependant.body_params

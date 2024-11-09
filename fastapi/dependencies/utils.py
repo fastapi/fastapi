@@ -388,10 +388,9 @@ def get_endpoint_dependant(
             )
             if isinstance(sub_dependant, EndpointDependant):
                 dependant.endpoint_dependencies.append(sub_dependant)
-            elif isinstance(sub_dependant, LifespanDependant):
-                dependant.lifespan_dependencies.append(sub_dependant)
             else:
-                assert_never(sub_dependant)
+                assert isinstance(sub_dependant, LifespanDependant)
+                dependant.lifespan_dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
             param_name=param_name,

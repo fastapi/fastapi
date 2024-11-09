@@ -1,10 +1,8 @@
-import threading
 from enum import Enum
 from typing import Any, AsyncGenerator, Generator, List, TypeVar, Union
 
 from fastapi import APIRouter, FastAPI, WebSocket
-from starlette.testclient import TestClient
-from starlette.websockets import WebSocketDisconnect
+from fastapi.testclient import TestClient
 from typing_extensions import assert_never
 
 T = TypeVar("T")
@@ -34,7 +32,6 @@ class DependencyFactory:
         self.dependency_style = dependency_style
         self._should_error = should_error
         self._value_offset = value_offset
-        self._event = threading.Event()
 
     def get_dependency(self):
         if self.dependency_style == DependencyStyle.SYNC_FUNCTION:
@@ -49,7 +46,7 @@ class DependencyFactory:
         if self.dependency_style == DependencyStyle.ASYNC_GENERATOR:
             return self._asynchronous_generator_dependency
 
-        assert_never(self.dependency_style)
+        assert_never(self.dependency_style)  # pragma: nocover
 
     async def _asynchronous_generator_dependency(self) -> AsyncGenerator[T, None]:
         self.activation_times += 1
@@ -58,7 +55,6 @@ class DependencyFactory:
 
         yield self.activation_times + self._value_offset
         self.deactivation_times += 1
-        self._event.set()
 
     def _synchronous_generator_dependency(self) -> Generator[T, None, None]:
         self.activation_times += 1
@@ -67,7 +63,6 @@ class DependencyFactory:
 
         yield self.activation_times + self._value_offset
         self.deactivation_times += 1
-        self._event.set()
 
     async def _asynchronous_function_dependency(self) -> T:
         self.activation_times += 1
@@ -106,10 +101,7 @@ def create_endpoint_0_annotations(
         @router.websocket(path)
         async def endpoint(websocket: WebSocket) -> None:
             await websocket.accept()
-            try:
-                await websocket.send_json(None)
-            except WebSocketDisconnect:
-                pass
+            await websocket.send_json(None)
     else:
 
         @router.post(path)
@@ -133,10 +125,7 @@ def create_endpoint_1_annotation(
                 assert value == expected_value
 
             await websocket.accept()
-            try:
-                await websocket.send_json(value)
-            except WebSocketDisconnect:
-                pass
+            await websocket.send_json(value)
     else:
 
         @router.post(path)
@@ -164,10 +153,7 @@ def create_endpoint_2_annotations(
             value2: annotation2,
         ) -> None:
             await websocket.accept()
-            try:
-                await websocket.send_json([value1, value2])
-            except WebSocketDisconnect:
-                await websocket.close()
+            await websocket.send_json([value1, value2])
     else:
 
         @router.post(path)
@@ -197,10 +183,7 @@ def create_endpoint_3_annotations(
             value3: annotation3,
         ) -> None:
             await websocket.accept()
-            try:
-                await websocket.send_json([value1, value2, value3])
-            except WebSocketDisconnect:
-                await websocket.close()
+            await websocket.send_json([value1, value2, value3])
     else:
 
         @router.post(path)

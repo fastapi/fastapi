@@ -7,7 +7,7 @@ from fastapi.dependencies.models import LifespanDependant, LifespanDependantCach
 from fastapi.dependencies.utils import solve_lifespan_dependant
 from fastapi.routing import APIRoute, APIWebSocketRoute
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
     from fastapi import FastAPI
 
 

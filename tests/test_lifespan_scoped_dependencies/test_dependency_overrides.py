@@ -482,10 +482,10 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_paramete
     annotation, is_websocket
 ):
     async def dependency_func() -> None:
-        yield
+        yield  # pragma: nocover
 
     async def override_dependency_func(param: annotation) -> None:
-        yield
+        yield  # pragma: nocover
 
     app = FastAPI()
     app.dependency_overrides[dependency_func] = override_dependency_func
@@ -551,15 +551,15 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
     depends_class, is_websocket
 ):
     async def sub_dependency() -> None:
-        pass
+        pass  # pragma: nocover
 
     async def dependency_func() -> None:
-        yield
+        yield  # pragma: nocover
 
     async def override_dependency_func(
         param: Annotated[None, depends_class(sub_dependency)],
     ) -> None:
-        yield
+        yield  # pragma: nocover
 
     app = FastAPI()
 
