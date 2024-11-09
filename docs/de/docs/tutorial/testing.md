@@ -30,7 +30,7 @@ Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken,
 {!../../docs_src/app_testing/tutorial001.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass die Testfunktionen normal `def` und nicht `async def` sind.
 
@@ -40,7 +40,7 @@ Dadurch können Sie `pytest` ohne Komplikationen direkt nutzen.
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
@@ -48,7 +48,7 @@ Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
 
@@ -148,7 +148,7 @@ Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -162,7 +162,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 

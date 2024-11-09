@@ -2,7 +2,7 @@
 
 JSONの代わりにフィールドを受け取る場合は、`Form`を使用します。
 
-/// info | "情報"
+/// info | 情報
 
 フォームを使うためには、まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
@@ -32,13 +32,13 @@ JSONの代わりにフィールドを受け取る場合は、`Form`を使用し�
 
 `Form`では`Body`（および`Query`や`Path`、`Cookie`）と同じメタデータとバリデーションを宣言することができます。
 
-/// info | "情報"
+/// info | 情報
 
 `Form`は`Body`を直接継承するクラスです。
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 フォームのボディを宣言するには、明示的に`Form`を使用する必要があります。なぜなら、これを使わないと、パラメータはクエリパラメータやボディ（JSON）パラメータとして解釈されるからです。
 
@@ -50,7 +50,7 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 **FastAPI** は、JSONの代わりにそのデータを適切な場所から読み込むようにします。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 フォームからのデータは通常、`application/x-www-form-urlencoded`の「media type」を使用してエンコードされます。
 
@@ -60,7 +60,7 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 ///
 
-/// warning | "注意"
+/// warning | 注意
 
 *path operation*で複数の`Form`パラメータを宣言することができますが、JSONとして受け取ることを期待している`Body`フィールドを宣言することはできません。なぜなら、リクエストは`application/json`の代わりに`application/x-www-form-urlencoded`を使ってボディをエンコードするからです。
 
