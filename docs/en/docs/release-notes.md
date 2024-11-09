@@ -9,6 +9,20 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/advanced/testing-websockets.md`. PR [#12761](https://github.com/fastapi/fastapi/pull/12761) by [@hamidrasti](https://github.com/hamidrasti).
+* 📝 Update includes for `docs/en/docs/advanced/using-request-directly.md`. PR [#12760](https://github.com/fastapi/fastapi/pull/12760) by [@hamidrasti](https://github.com/hamidrasti).
+* 📝 Update includes for `docs/advanced/wsgi.md`. PR [#12758](https://github.com/fastapi/fastapi/pull/12758) by [@hamidrasti](https://github.com/hamidrasti).
+* 📝 Update includes in `docs/de/docs/tutorial/middleware.md`. PR [#12729](https://github.com/fastapi/fastapi/pull/12729) by [@paintdog](https://github.com/paintdog).
+* 📝 Update includes for `docs/en/docs/tutorial/schema-extra-example.md`. PR [#12822](https://github.com/fastapi/fastapi/pull/12822) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes in `docs/fr/docs/advanced/additional-responses.md`. PR [#12634](https://github.com/fastapi/fastapi/pull/12634) by [@fegmorte](https://github.com/fegmorte).
+* 📝 Update includes in `docs/fr/docs/advanced/path-operation-advanced-configuration.md`. PR [#12633](https://github.com/fastapi/fastapi/pull/12633) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes in `docs/fr/docs/advanced/response-directly.md`. PR [#12632](https://github.com/fastapi/fastapi/pull/12632) by [@kantandane](https://github.com/kantandane).
+* 📝 Update includes for `docs/en/docs/tutorial/header-params.md`. PR [#12640](https://github.com/fastapi/fastapi/pull/12640) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes in `docs/en/docs/tutorial/cookie-param-models.md`. PR [#12639](https://github.com/fastapi/fastapi/pull/12639) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes for `docs/en/docs/tutorial/extra-models.md`. PR [#12638](https://github.com/fastapi/fastapi/pull/12638) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes for `docs/en/docs/tutorial/cors.md`. PR [#12637](https://github.com/fastapi/fastapi/pull/12637) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes for `docs/en/docs/tutorial/dependencies/sub-dependencies.md`. PR [#12810](https://github.com/fastapi/fastapi/pull/12810) by [@handabaldeep](https://github.com/handabaldeep).
+* 📝 Update includes in `docs/en/docs/tutorial/body-nested-models.md`. PR [#12812](https://github.com/fastapi/fastapi/pull/12812) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/en/docs/tutorial/path-operation-configuration.md`. PR [#12809](https://github.com/fastapi/fastapi/pull/12809) by [@AlexWendland](https://github.com/AlexWendland).
 * 📝 Update includes in `docs/en/docs/tutorial/request-files.md`. PR [#12818](https://github.com/fastapi/fastapi/pull/12818) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes for `docs/en/docs/tutorial/query-param-models.md`. PR [#12817](https://github.com/fastapi/fastapi/pull/12817) by [@handabaldeep](https://github.com/handabaldeep).

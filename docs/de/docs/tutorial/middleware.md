@@ -31,9 +31,7 @@ Die Middleware-Funktion erhält:
     * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
 * Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
 
-```Python hl_lines="8-9  11  14"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | "Tipp"
 
@@ -59,9 +57,7 @@ Und auch nachdem die `response` generiert wurde, bevor sie zurückgegeben wird.
 
 Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hinzufügen, der die Zeit in Sekunden enthält, die benötigt wurde, um den Request zu verarbeiten und eine Response zu generieren:
 
-```Python hl_lines="10  12-13"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## Andere Middlewares
 
