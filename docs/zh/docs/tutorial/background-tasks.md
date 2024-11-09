@@ -53,19 +53,19 @@
 
 //// tab | Python 3.10+
 
-{* > ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13, 15, 22, 25] *}
+{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13, 15, 22, 25] *}
 
 ////
 
 //// tab | Python 3.9+
 
-{* > ../../docs_src/background_tasks/tutorial002_an_py39.py hl[13, 15, 22, 25] *}
+{* ../../docs_src/background_tasks/tutorial002_an_py39.py hl[13, 15, 22, 25] *}
 
 ////
 
 //// tab | Python 3.8+
 
-{* > ../../docs_src/background_tasks/tutorial002_an.py hl[14, 16, 23, 26] *}
+{* ../../docs_src/background_tasks/tutorial002_an.py hl[14, 16, 23, 26] *}
 
 ////
 
@@ -77,7 +77,7 @@
 
 ///
 
-{* > ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
+{* ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
 
 ////
 
@@ -89,7 +89,7 @@
 
 ///
 
-{* > ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
 
 ////
 
