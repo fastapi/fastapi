@@ -1,4 +1,4 @@
-from enum import StrEnum, auto
+from enum import Enum
 from typing import Any, AsyncGenerator, Generator, TypeVar, Union, assert_never
 
 from fastapi import APIRouter, FastAPI, WebSocket
@@ -8,11 +8,11 @@ from starlette.websockets import WebSocketDisconnect
 T = TypeVar("T")
 
 
-class DependencyStyle(StrEnum):
-    SYNC_FUNCTION = auto()
-    ASYNC_FUNCTION = auto()
-    SYNC_GENERATOR = auto()
-    ASYNC_GENERATOR = auto()
+class DependencyStyle(str, Enum):
+    SYNC_FUNCTION = "sync_function"
+    ASYNC_FUNCTION = "async_function"
+    SYNC_GENERATOR = "sync_generator"
+    ASYNC_GENERATOR = "async_generator"
 
 
 class IntentionallyBadDependency(Exception):
