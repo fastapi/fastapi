@@ -48,7 +48,7 @@ des changements non rétrocompatibles.
 FastAPI suit également la convention que tout changement de version "PATCH" est pour des corrections de bogues et
 des changements rétrocompatibles.
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Le "PATCH" est le dernier chiffre, par exemple, dans `0.2.3`, la version PATCH est `3`.
 
@@ -62,7 +62,7 @@ fastapi>=0.45.0,<0.46.0
 
 Les changements non rétrocompatibles et les nouvelles fonctionnalités sont ajoutés dans les versions "MINOR".
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Le "MINOR" est le numéro au milieu, par exemple, dans `0.2.3`, la version MINOR est `2`.
 
