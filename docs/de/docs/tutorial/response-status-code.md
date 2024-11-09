@@ -10,7 +10,7 @@ So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Respo
 
 {* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter und der Body.
 
@@ -31,7 +31,7 @@ Das wird:
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Einige Responsecodes (siehe nächster Abschnitt) kennzeichnen, dass die Response keinen Body hat.
 
@@ -41,7 +41,7 @@ FastAPI versteht das und wird in der OpenAPI-Dokumentation anzeigen, dass es kei
 
 ## Über HTTP-Statuscodes
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Wenn Sie bereits wissen, was HTTP-Statuscodes sind, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
 
@@ -64,7 +64,7 @@ Kurz:
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
 * `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in Ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a>.
 
@@ -88,7 +88,7 @@ Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette import status` verwenden.
 

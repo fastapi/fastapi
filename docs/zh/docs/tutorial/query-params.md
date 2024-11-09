@@ -81,13 +81,13 @@ http://127.0.0.1:8000/items/?skip=20
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
-/// check | "检查"
+/// check | 检查
 
 注意，**FastAPI** 可以识别出 `item_id` 是路径参数，`q` 不是路径参数，而是查询参数。
 
 ///
 
-/// note | "笔记"
+/// note | 笔记
 
 因为默认值为 `= None`，FastAPI 把 `q` 识别为可选参数。
 
@@ -249,7 +249,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`，默认值为 `0` 的 `int` 类型参数
 * `limit`，可选的 `int` 类型参数
 
-/// tip | "提示"
+/// tip | 提示
 
 还可以像在[路径参数](path-params.md#_8){.internal-link target=_blank} 中那样使用 `Enum`。
 

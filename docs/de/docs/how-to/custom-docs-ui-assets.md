@@ -36,7 +36,7 @@ Und genau so für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
@@ -168,7 +168,7 @@ Und genau so für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die *Pfadoperation* für `swagger_ui_redirect` ist ein Hilfsmittel bei der Verwendung von OAuth2.
 
