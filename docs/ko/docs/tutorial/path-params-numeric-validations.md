@@ -20,7 +20,7 @@
 {!../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
-/// note | "참고"
+/// note | 참고
 
 경로 매개변수는 경로의 일부여야 하므로 언제나 필수적입니다.
 
@@ -108,7 +108,7 @@
 * `lt`: 작거나(`l`ess `t`han)
 * `le`: 작거나 같은(`l`ess than or `e`qual)
 
-/// info | "정보"
+/// info | 정보
 
 `Query`, `Path`, 그리고 나중에게 보게될 것들은 (여러분이 사용할 필요가 없는) 공통 `Param` 클래스의 서브 클래스입니다.
 
@@ -116,7 +116,7 @@
 
 ///
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `fastapi`에서 `Query`, `Path` 등을 임포트 할 때, 이것들은 실제로 함수입니다.
 

@@ -88,7 +88,7 @@ They are just a convenience, they hold the same number, but that way you can use
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette import status`.
 
