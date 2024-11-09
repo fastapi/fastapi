@@ -83,7 +83,7 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, assert_never, get_args, get_origin
+from typing_extensions import Annotated, get_args, get_origin
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
