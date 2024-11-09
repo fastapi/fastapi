@@ -26,7 +26,7 @@ Make sure it has the data you want it to have, and that the values are valid JSO
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import JSONResponse`.
 

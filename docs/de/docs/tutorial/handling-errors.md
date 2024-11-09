@@ -63,7 +63,7 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
 
@@ -109,7 +109,7 @@ Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-I
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
 
@@ -166,7 +166,7 @@ path -> item_id
 
 #### `RequestValidationError` vs. `ValidationError`
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Das folgende sind technische Details, die Sie überspringen können, wenn sie für Sie nicht wichtig sind.
 
@@ -192,7 +192,7 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 {!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
 
