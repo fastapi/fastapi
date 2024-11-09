@@ -12,14 +12,14 @@ on:
 
 jobs:
   fastapi-people:
-    if: github.repository_owner == 'tiangolo'
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # Ref: https://github.com/actions/runner/issues/2033
       - name: Fix git safe.directory in container
         run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /github/workspace" > /home/runner/work/_temp/_github_home/.gitconfig

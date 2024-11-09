@@ -14,7 +14,7 @@
 * ☁ 🐝 📳 🛠️.
 * **☁ ✍** 🛠️ &amp; 🛠️ 🇧🇿 🛠️.
 * **🏭 🔜** 🐍 🕸 💽 ⚙️ Uvicorn &amp; 🐁.
-* 🐍 <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> 👩‍💻:
+* 🐍 <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**</a> 👩‍💻:
     * **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic).
     * **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠️</abbr> 🌐. 🌘 🕰 🛠️.
     * **⏩**: 🔧 ⏩ ⚙️ &amp; 💡. 🌘 🕰 👂 🩺.
@@ -79,6 +79,6 @@
 * **🌈** 🕜 🏷 🛠️.
 * **☁ 🧠 🔎** 📨 📁 🏗.
 * **🏭 🔜** 🐍 🕸 💽 ⚙️ Uvicorn &amp; 🐁.
-* **☁ 👩‍💻** Kubernete (🦲) 🆑/💿 🛠️ 🏗.
+* **☁ 👩‍💻** Kubernetes (🦲) 🆑/💿 🛠️ 🏗.
 * **🤸‍♂** 💪 ⚒ 1️⃣ 🌈 🏗 🇪🇸 ⏮️ 🏗 🖥.
 * **💪 🏧** 🎏 🏷 🛠️ (Pytorch, 🇸🇲), 🚫 🌈.
