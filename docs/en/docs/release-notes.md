@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/de/docs/how-to/configure-swagger-ui.md`. PR [#12690](https://github.com/fastapi/fastapi/pull/12690) by [@alissadb](https://github.com/alissadb).
 * 📝 Update includes in `docs/en/docs/advanced/security/oauth2-scopes.md`. PR [#12572](https://github.com/fastapi/fastapi/pull/12572) by [@krishnamadhavan](https://github.com/krishnamadhavan).
 * 📝 Update includes for `docs/en/docs/how-to/conditional-openapi.md`. PR [#12624](https://github.com/fastapi/fastapi/pull/12624) by [@rabinlamadong](https://github.com/rabinlamadong).
 * 📝 Update includes in `docs/en/docs/tutorial/dependencies/index.md`. PR [#12615](https://github.com/fastapi/fastapi/pull/12615) by [@bharara](https://github.com/bharara).
