@@ -13,10 +13,10 @@ Repositorio en GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo
     - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y la gestión de configuraciones.
     - 💾 [PostgreSQL](https://www.postgresql.org) como la base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
-    - 💃 Usando TypeScript, hooks, Vite y otras partes de un stack de frontend moderno.
+    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev) y otras partes de un stack de frontend moderno.
     - 🎨 [Chakra UI](https://chakra-ui.com) para los componentes del frontend.
     - 🤖 Un cliente frontend generado automáticamente.
-    - 🧪 Playwright para pruebas End-to-End.
+    - 🧪 [Playwright](https://playwright.dev) para pruebas End-to-End.
     - 🦇 Soporte para modo oscuro.
 - 🐋 [Docker Compose](https://www.docker.com) para desarrollo y producción.
 - 🔒 Hashing seguro de contraseñas por defecto.

@@ -9,7 +9,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Depend
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Depend
 //// tab | Python 3.9+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,35 +25,35 @@ Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Depend
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -122,7 +122,7 @@ Dann können wir das „Dependable“ `common_parameters` der Abhängigkeit von 
 //// tab | Python 3.10+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -130,7 +130,7 @@ Dann können wir das „Dependable“ `common_parameters` der Abhängigkeit von 
 //// tab | Python 3.9+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -138,35 +138,35 @@ Dann können wir das „Dependable“ `common_parameters` der Abhängigkeit von 
 //// tab | Python 3.8+
 
 ```Python hl_lines="12-16"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="9-13"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -176,7 +176,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -184,7 +184,7 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -192,35 +192,35 @@ Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse 
 //// tab | Python 3.8+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -230,7 +230,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -238,7 +238,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -246,35 +246,35 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -296,7 +296,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -304,7 +304,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -312,35 +312,35 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -361,7 +361,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -397,7 +397,7 @@ commons: Annotated[CommonQueryParams, ...
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -423,7 +423,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -440,7 +440,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -448,7 +448,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -456,35 +456,35 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial003_an.py!}
+{!> ../../docs_src/dependencies/tutorial003_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial003_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003.py!}
+{!> ../../docs_src/dependencies/tutorial003.py!}
 ```
 
 ////
@@ -507,7 +507,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -535,7 +535,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -559,7 +559,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -578,7 +578,7 @@ Dasselbe Beispiel würde dann so aussehen:
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -586,7 +586,7 @@ Dasselbe Beispiel würde dann so aussehen:
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -594,42 +594,42 @@ Dasselbe Beispiel würde dann so aussehen:
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial004_an.py!}
+{!> ../../docs_src/dependencies/tutorial004_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial004_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004.py!}
+{!> ../../docs_src/dependencies/tutorial004.py!}
 ```
 
 ////
 
 ... und **FastAPI** wird wissen, was zu tun ist.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie das eher verwirrt, als Ihnen zu helfen, ignorieren Sie es, Sie *brauchen* es nicht.
 

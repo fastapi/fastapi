@@ -292,7 +292,7 @@ For example:
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
+With **FastAPI** you can take advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
@@ -387,7 +387,7 @@ In previous versions of NodeJS / Browser JavaScript, you would have used "callba
 
 ## Coroutines
 
-**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
+**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
 
 But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
 

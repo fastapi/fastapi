@@ -11,7 +11,7 @@ E você também pode declarar parâmetros de corpo como opcionais, definindo o v
 //// tab | Python 3.10+
 
 ```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -19,12 +19,12 @@ E você também pode declarar parâmetros de corpo como opcionais, definindo o v
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 ////
 
-/// note | "Nota"
+/// note | Nota
 
 Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
 
@@ -48,7 +48,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
 //// tab | Python 3.10+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -56,7 +56,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 ////
@@ -80,7 +80,7 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
 }
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
 
@@ -103,7 +103,7 @@ Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo u
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 ////
@@ -111,7 +111,7 @@ Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo u
 //// tab | Python 3.10+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -157,7 +157,7 @@ Por exemplo:
 //// tab | Python 3.10+
 
 ```Python hl_lines="26"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -165,12 +165,12 @@ Por exemplo:
 //// tab | Python 3.8+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 ////
 
-/// info | "Informação"
+/// info | Informação
 
 `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
 
@@ -193,7 +193,7 @@ como em:
 //// tab | Python 3.10+
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
 ```
 
 ////
@@ -201,7 +201,7 @@ como em:
 //// tab | Python 3.8+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 ////

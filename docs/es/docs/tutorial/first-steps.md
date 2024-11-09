@@ -3,7 +3,7 @@
 Un archivo muy simple de FastAPI podría verse así:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Copia eso a un archivo `main.py`.
@@ -134,7 +134,7 @@ También podrías usarlo para generar código automáticamente, para los cliente
 ### Paso 1: importa `FastAPI`
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` es una clase de Python que provee toda la funcionalidad para tu API.
@@ -150,7 +150,7 @@ También puedes usar toda la funcionalidad de <a href="https://www.starlette.io/
 ### Paso 2: crea un "instance" de `FastAPI`
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Aquí la variable `app` será un instance de la clase `FastAPI`.
@@ -172,7 +172,7 @@ $ uvicorn main:app --reload
 Si creas un app como:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 y lo guardas en un archivo `main.py`, entonces ejecutarías `uvicorn` así:
@@ -251,7 +251,7 @@ Nosotros también los llamaremos "**operación**".
 #### Define un *decorador de operaciones de path*
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 El `@app.get("/")` le dice a **FastAPI** que la función que tiene justo debajo está a cargo de manejar los requests que van a:
@@ -307,7 +307,7 @@ Esta es nuestra  "**función de la operación de path**":
 * **función**: es la función debajo del "decorador" (debajo de `@app.get("/")`).
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Esto es una función de Python.
@@ -321,7 +321,7 @@ En este caso es una función `async`.
 También podrías definirla como una función estándar en lugar de `async def`:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
 /// note | Nota
@@ -333,7 +333,7 @@ Si no sabes la diferencia, revisa el [Async: *"¿Tienes prisa?"*](../async.md#ti
 ### Paso 5: devuelve el contenido
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 Puedes devolver `dict`, `list`, valores singulares como un `str`, `int`, etc.

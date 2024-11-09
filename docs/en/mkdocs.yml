@@ -71,13 +71,11 @@ plugins:
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
-      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
-      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
-      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
       advanced/graphql.md: how-to/graphql.md
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+      advanced/testing-database.md: how-to/testing-database.md
   mkdocstrings:
     handlers:
       python:
@@ -108,6 +106,8 @@ nav:
   - learn/index.md
   - python-types.md
   - async.md
+  - environment-variables.md
+  - virtual-environments.md
   - Tutorial - User Guide:
     - tutorial/index.md
     - tutorial/first-steps.md
@@ -116,6 +116,7 @@ nav:
     - tutorial/body.md
     - tutorial/query-params-str-validations.md
     - tutorial/path-params-numeric-validations.md
+    - tutorial/query-param-models.md
     - tutorial/body-multiple-params.md
     - tutorial/body-fields.md
     - tutorial/body-nested-models.md
@@ -123,10 +124,13 @@ nav:
     - tutorial/extra-data-types.md
     - tutorial/cookie-params.md
     - tutorial/header-params.md
+    - tutorial/cookie-param-models.md
+    - tutorial/header-param-models.md
     - tutorial/response-model.md
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
     - tutorial/request-forms.md
+    - tutorial/request-form-models.md
     - tutorial/request-files.md
     - tutorial/request-forms-and-files.md
     - tutorial/handling-errors.md
@@ -181,7 +185,6 @@ nav:
     - advanced/testing-websockets.md
     - advanced/testing-events.md
     - advanced/testing-dependencies.md
-    - advanced/testing-database.md
     - advanced/async-tests.md
     - advanced/settings.md
     - advanced/openapi-callbacks.md
@@ -208,9 +211,7 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
+    - how-to/testing-database.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -265,7 +266,6 @@ markdown_extensions:
 
   # Python Markdown Extensions
   pymdownx.betterem:
-    smart_enable: all
   pymdownx.caret:
   pymdownx.highlight:
     line_spans: __span
@@ -299,7 +299,7 @@ markdown_extensions:
 
   # Other extensions
   mdx_include:
-    base_path: docs
+  markdown_include_variants:
 
 extra:
   analytics:
@@ -361,6 +361,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl - Nederlands
   - link: /pl/
     name: pl - Polski
   - link: /pt/
