@@ -80,7 +80,7 @@ $ uvicorn main:app --root-path /api/v1
 
 🚥 👆 ⚙️ Hypercorn, ⚫️ ✔️ 🎛 `--root-path`.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 🔫 🔧 🔬 `root_path` 👉 ⚙️ 💼.
 
