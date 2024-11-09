@@ -17,7 +17,8 @@
     max-width: 100%;
     background: var(--color-bg);
     color: var(--color-text);
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 15px;
     /* font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace; */
     font-family: 'Roboto Mono', 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
@@ -25,6 +26,8 @@
     position: relative;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    /* Custom line-height */
+    line-height: 1.2;
 }
 
 [data-termynal]:before {
