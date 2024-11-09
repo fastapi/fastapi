@@ -24,7 +24,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ここでは、 `item_id` は `int` として宣言されています。
 
-/// check | "確認"
+/// check | 確認
 
 これにより、関数内でのエディターサポート (エラーチェックや補完など) が提供されます。
 
@@ -38,7 +38,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {"item_id":3}
 ```
 
-/// check | "確認"
+/// check | 確認
 
 関数が受け取った（および返した）値は、文字列の `"3"` ではなく、Pythonの `int` としての `3` であることに注意してください。
 
@@ -69,7 +69,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> で見られるように、intのかわりに `float` が与えられた場合にも同様なエラーが表示されます。
 
-/// check | "確認"
+/// check | 確認
 
 したがって、Pythonの型宣言を使用することで、**FastAPI**はデータのバリデーションを行います。
 
@@ -85,7 +85,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "確認"
+/// check | 確認
 
 繰り返しになりますが、Python型宣言を使用するだけで、**FastAPI**は対話的なAPIドキュメントを自動的に生成します（Swagger UIを統合）。
 
@@ -143,13 +143,13 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (もしくは、enums)はPython 3.4以降で利用できます</a>。
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 "AlexNet"、"ResNet"そして"LeNet"は機械学習<abbr title="Technically, Deep Learning model architectures">モデル</abbr>の名前です。
 
@@ -189,7 +189,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `ModelName.lenet.value` でも `"lenet"` 値にアクセスできます。
 
@@ -246,7 +246,7 @@ Starletteのオプションを直接使用することで、以下のURLの様�
 {!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 最初のスラッシュ (`/`)が付いている `/home/johndoe/myfile.txt` をパラメータが含んでいる必要があります。
 
