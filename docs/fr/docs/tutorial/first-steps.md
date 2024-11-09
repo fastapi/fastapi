@@ -136,7 +136,7 @@ Vous pourriez aussi l'utiliser pour générer du code automatiquement, pour les 
 
 `FastAPI` est une classe Python qui fournit toutes les fonctionnalités nécessaires au lancement de votre API.
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 `FastAPI` est une classe héritant directement de `Starlette`.
 
@@ -249,7 +249,7 @@ Le `@app.get("/")` dit à **FastAPI** que la fonction en dessous est chargée de
 * le chemin `/`
 * en utilisant une <abbr title="une méthode GET HTTP">opération <code>get</code></abbr>
 
-/// info | "`@décorateur` Info"
+/// info | `@décorateur` Info
 
 Cette syntaxe `@something` en Python est appelée un "décorateur".
 
@@ -276,7 +276,7 @@ Tout comme celles les plus exotiques :
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous êtes libres d'utiliser chaque opération (méthode HTTP) comme vous le désirez.
 

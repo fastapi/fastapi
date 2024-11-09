@@ -14,7 +14,7 @@ Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés 
 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
-/// note | "Remarque"
+/// note | Remarque
 
 `JSONResponse` est elle-même une sous-classe de `Response`.
 
@@ -36,7 +36,7 @@ Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convert
 
 {* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
 

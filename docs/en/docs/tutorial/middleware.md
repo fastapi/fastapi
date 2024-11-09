@@ -11,7 +11,7 @@ A "middleware" is a function that works with every **request** before it is proc
 * It can do something to that **response** or run any needed code.
 * Then it returns the **response**.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 If you have dependencies with `yield`, the exit code will run *after* the middleware.
 
@@ -41,7 +41,7 @@ But if you have custom headers that you want a client in a browser to be able to
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.requests import Request`.
 

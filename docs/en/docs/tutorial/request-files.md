@@ -97,13 +97,13 @@ If you are inside of a normal `def` *path operation function*, you can access th
 contents = myfile.file.read()
 ```
 
-/// note | "`async` Technical Details"
+/// note | `async` Technical Details
 
 When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
 
 ///
 
-/// note | "Starlette Technical Details"
+/// note | Starlette Technical Details
 
 **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
 
@@ -115,7 +115,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded` when it doesn't include files.
 
@@ -157,7 +157,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import HTMLResponse`.
 

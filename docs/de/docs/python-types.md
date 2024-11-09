@@ -12,7 +12,7 @@ Dies ist lediglich eine **schnelle Anleitung / Auffrischung** über Pythons Typh
 
 Aber selbst wenn Sie **FastAPI** nie verwenden, wird es für Sie nützlich sein, ein wenig darüber zu lernen.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
 
@@ -195,7 +195,7 @@ Da die Liste ein Typ ist, welcher innere Typen enthält, werden diese von eckige
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die inneren Typen in den eckigen Klammern werden als „Typ-Parameter“ bezeichnet.
 
@@ -205,7 +205,7 @@ In diesem Fall ist `str` der Typ-Parameter, der an `List` übergeben wird (oder 
 
 Das bedeutet: Die Variable `items` ist eine Liste – `list` – und jedes der Elemente in dieser Liste ist ein String – `str`.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie Python 3.9 oder höher verwenden, müssen Sie `List` nicht von `typing` importieren, Sie können stattdessen den regulären `list`-Typ verwenden.
 
@@ -495,7 +495,7 @@ Um mehr über <a href="https://pydantic-docs.helpmanual.io/" class="external-lin
 
 Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Etwas, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
 
@@ -537,7 +537,7 @@ Im Moment müssen Sie nur wissen, dass `Annotated` existiert, und dass es Standa
 
 Später werden Sie sehen, wie **mächtig** es sein kann.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 

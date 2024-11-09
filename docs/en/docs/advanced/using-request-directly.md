@@ -47,7 +47,7 @@ The same way, you can declare any other parameter as normally, and additionally,
 
 You can read more details about the <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` object in the official Starlette documentation site</a>.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.requests import Request`.
 

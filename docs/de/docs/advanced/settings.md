@@ -8,7 +8,7 @@ Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestell
 
 ## Umgebungsvariablen
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie bereits wissen, was „Umgebungsvariablen“ sind und wie man sie verwendet, können Sie gerne mit dem nächsten Abschnitt weiter unten fortfahren.
 
@@ -67,7 +67,7 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das zweite Argument für <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> ist der zurückzugebende Defaultwert.
 
@@ -124,7 +124,7 @@ Hello World from Python
 
 </div>
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Weitere Informationen dazu finden Sie unter <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
 
@@ -200,7 +200,7 @@ In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydan
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Für ein schnelles Copy-and-paste verwenden Sie nicht dieses Beispiel, sondern das letzte unten.
 
@@ -232,7 +232,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 </div>
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen Sie diese einfach durch ein Leerzeichen und fügen Sie alle vor dem Befehl ein.
 
@@ -260,7 +260,7 @@ Und dann verwenden Sie diese in einer Datei `main.py`:
 {!../../docs_src/settings/app01/main.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie benötigen außerdem eine Datei `__init__.py`, wie in [Größere Anwendungen – mehrere Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gesehen.
 
@@ -304,7 +304,7 @@ Jetzt erstellen wir eine Abhängigkeit, die ein neues `config.Settings()` zurüc
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -316,7 +316,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wir werden das `@lru_cache` in Kürze besprechen.
 
@@ -344,7 +344,7 @@ Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einf
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -374,7 +374,7 @@ Wenn Sie viele Einstellungen haben, die sich möglicherweise oft ändern, vielle
 
 Diese Praxis ist so weit verbreitet, dass sie einen Namen hat. Diese Umgebungsvariablen werden üblicherweise in einer Datei `.env` abgelegt und die Datei wird „dotenv“ genannt.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Eine Datei, die mit einem Punkt (`.`) beginnt, ist eine versteckte Datei in Unix-ähnlichen Systemen wie Linux und macOS.
 
@@ -384,7 +384,7 @@ Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
 
 Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Damit das funktioniert, müssen Sie `pip install python-dotenv` ausführen.
 
@@ -409,7 +409,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 {!> ../../docs_src/settings/app03_an/config.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Configuration</a>.
 
@@ -423,7 +423,7 @@ Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. 
 {!> ../../docs_src/settings/app03_an/config_pv1.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die Klasse `Config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
 
@@ -480,7 +480,7 @@ Da wir jedoch den `@lru_cache`-Dekorator oben verwenden, wird das `Settings`-Obj
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
