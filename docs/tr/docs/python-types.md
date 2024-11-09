@@ -12,7 +12,7 @@ Bu  pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme
 
 **FastAPI** kullanmayacak olsanız bile tür belirteçleri hakkında bilgi edinmenizde fayda var.
 
-/// note | "Not"
+/// note | Not
 
 Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
 
@@ -175,7 +175,7 @@ Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli para
 {!../../docs_src/python_types/tutorial006.py!}
 ```
 
-/// tip | "Ipucu"
+/// tip | Ipucu
 
 Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
 

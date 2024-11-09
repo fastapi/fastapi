@@ -74,7 +74,7 @@ from myapp import app
 
 は実行されません。
 
-/// info | "情報"
+/// info | 情報
 
 より詳しい情報は、<a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">公式Pythonドキュメント</a>を参照してください。
 
