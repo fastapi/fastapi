@@ -8,7 +8,7 @@
 
 ## Использование класса `TestClient`
 
-/// info | "Информация"
+/// info | Информация
 
 Для использования класса `TestClient` необходимо установить библиотеку <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
@@ -27,10 +27,10 @@
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
 ```Python hl_lines="2  12  15-18"
-{!../../../docs_src/app_testing/tutorial001.py!}
+{!../../docs_src/app_testing/tutorial001.py!}
 ```
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Обратите внимание, что тестирующая функция является обычной `def`, а не асинхронной `async def`.
 
@@ -40,7 +40,7 @@
 
 ///
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Также можно написать `from starlette.testclient import TestClient`.
 
@@ -48,7 +48,7 @@
 
 ///
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Если для тестирования Вам, помимо запросов к приложению FastAPI, необходимо вызывать асинхронные функции (например, для подключения к базе данных с помощью асинхронного драйвера), то ознакомьтесь со страницей [Асинхронное тестирование](../advanced/async-tests.md){.internal-link target=_blank} в расширенном руководстве.
 
@@ -75,7 +75,7 @@
 
 
 ```Python
-{!../../../docs_src/app_testing/main.py!}
+{!../../docs_src/app_testing/main.py!}
 ```
 
 ### Файл тестов
@@ -93,7 +93,7 @@
 Так как оба файла находятся в одной директории, для импорта объекта приложения из файла `main` в файл `test_main` Вы можете использовать относительный импорт:
 
 ```Python hl_lines="3"
-{!../../../docs_src/app_testing/test_main.py!}
+{!../../docs_src/app_testing/test_main.py!}
 ```
 
 ...и писать дальше тесты, как и раньше.
@@ -125,7 +125,7 @@
 //// tab | Python 3.10+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
 ```
 
 ////
@@ -133,7 +133,7 @@
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
 ```
 
 ////
@@ -141,35 +141,35 @@
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+{!> ../../docs_src/app_testing/app_b_an/main.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 По возможности используйте версию с `Annotated`.
 
 ///
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+{!> ../../docs_src/app_testing/app_b_py310/main.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+  без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 По возможности используйте версию с `Annotated`.
 
 ///
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b/main.py!}
+{!> ../../docs_src/app_testing/app_b/main.py!}
 ```
 
 ////
@@ -179,7 +179,7 @@
 Теперь обновим файл `test_main.py`, добавив в него тестов:
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b/test_main.py!}
+{!> ../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
 Если Вы не знаете, как передать информацию в запросе, можете воспользоваться поисковиком (погуглить) и задать вопрос: "Как передать информацию в запросе с помощью `httpx`", можно даже спросить: "Как передать информацию в запросе с помощью `requests`", поскольку дизайн HTTPX основан на дизайне Requests.
@@ -196,7 +196,7 @@
 
 Для получения дополнительной информации о передаче данных на бэкенд с помощью `httpx` или `TestClient` ознакомьтесь с <a href="https://www.python-httpx.org" class="external-link" target="_blank">документацией HTTPX</a>.
 
-/// info | "Информация"
+/// info | Информация
 
 Обратите внимание, что `TestClient` принимает данные, которые можно конвертировать в JSON, но не модели Pydantic.
 

@@ -13,7 +13,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -21,7 +21,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -29,35 +29,35 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="9-10"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -81,7 +81,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -89,35 +89,35 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
@@ -136,7 +136,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -144,7 +144,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -152,40 +152,40 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
+{!> ../../docs_src/dependencies/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+{!> ../../docs_src/dependencies/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
+{!> ../../docs_src/dependencies/tutorial005.py!}
 ```
 
 ////
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Обратите внимание, что мы объявляем только одну зависимость в *функции операции пути* - `query_or_cookie_extractor`.
 
@@ -223,7 +223,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
@@ -244,7 +244,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 Но, тем не менее, эта система очень мощная и позволяет вам объявлять вложенные графы (деревья) зависимостей сколь угодно глубоко.
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Все это может показаться не столь полезным на этих простых примерах.
 
