@@ -57,7 +57,7 @@ Und auch nachdem die `response` generiert wurde, bevor sie zurückgegeben wird.
 
 Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hinzufügen, der die Zeit in Sekunden enthält, die benötigt wurde, um den Request zu verarbeiten und eine Response zu generieren:
 
-{* ../../docs_src/middleware/tutorial001.py hl[12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## Andere Middlewares
 
