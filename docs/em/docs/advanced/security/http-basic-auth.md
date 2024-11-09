@@ -21,7 +21,7 @@
     * ⚫️ 🔌 `username` &amp; `password` 📨.
 
 ```Python hl_lines="2  6  10"
-{!../../../docs_src/security/tutorial006.py!}
+{!../../docs_src/security/tutorial006.py!}
 ```
 
 🕐❔ 👆 🔄 📂 📛 🥇 🕰 (⚖️ 🖊 "🛠️" 🔼 🩺) 🖥 🔜 💭 👆 👆 🆔 &amp; 🔐:
@@ -43,7 +43,7 @@
 ⤴️ 👥 💪 ⚙️ `secrets.compare_digest()` 🚚 👈 `credentials.username` `"stanleyjobson"`, &amp; 👈 `credentials.password` `"swordfish"`.
 
 ```Python hl_lines="1  11-21"
-{!../../../docs_src/security/tutorial007.py!}
+{!../../docs_src/security/tutorial007.py!}
 ```
 
 👉 🔜 🎏:
@@ -109,5 +109,5 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 ⏮️ 🔍 👈 🎓 ❌, 📨 `HTTPException` ⏮️ 👔 📟 4️⃣0️⃣1️⃣ (🎏 📨 🕐❔ 🙅‍♂ 🎓 🚚) &amp; 🚮 🎚 `WWW-Authenticate` ⚒ 🖥 🎦 💳 📋 🔄:
 
 ```Python hl_lines="23-27"
-{!../../../docs_src/security/tutorial007.py!}
+{!../../docs_src/security/tutorial007.py!}
 ```
