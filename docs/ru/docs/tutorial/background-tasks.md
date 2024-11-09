@@ -16,7 +16,7 @@
 Сначала импортируйте `BackgroundTasks`, потом добавьте в функцию параметр с типом `BackgroundTasks`:
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** создаст объект класса `BackgroundTasks` для вас и запишет его в параметр.
@@ -34,7 +34,7 @@
 Так как операция записи не использует `async` и `await`, мы определим ее как обычную `def`:
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## Добавление фоновой задачи
@@ -42,7 +42,7 @@
 Внутри функции вызовите метод `.add_task()` у объекта *background tasks* и передайте ему функцию, которую хотите выполнить в фоне:
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` принимает следующие аргументы:
@@ -60,7 +60,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="11  13  20  23"
-{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
 ```
 
 ////
@@ -68,7 +68,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002.py!}
+{!> ../../docs_src/background_tasks/tutorial002.py!}
 ```
 
 ////

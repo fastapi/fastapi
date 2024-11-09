@@ -9,7 +9,7 @@ In that case, they will be applied to all the *path operations* in the applicati
 //// tab | Python 3.9+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ In that case, they will be applied to all the *path operations* in the applicati
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an.py!}
+{!> ../../docs_src/dependencies/tutorial012_an.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial012.py!}
+{!> ../../docs_src/dependencies/tutorial012.py!}
 ```
 
 ////

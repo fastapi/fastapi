@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,35 +25,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001_an.py!}
+{!> ../../docs_src/header_params/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
@@ -67,7 +67,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -83,40 +83,40 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial001_an.py!}
+{!> ../../docs_src/header_params/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial001_py310.py!}
+{!> ../../docs_src/header_params/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial001.py!}
+{!> ../../docs_src/header_params/tutorial001.py!}
 ```
 
 ////
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 `Header` - это "родственный" класс `Path`, `Query` и `Cookie`. Он также наследуется от того же общего класса `Param`.
 
@@ -124,7 +124,7 @@
 
 ///
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Чтобы объявить заголовки, важно использовать `Header`, иначе параметры интерпретируются как query-параметры.
 
@@ -149,7 +149,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial002_an_py310.py!}
+{!> ../../docs_src/header_params/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -157,7 +157,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/header_params/tutorial002_an_py39.py!}
+{!> ../../docs_src/header_params/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -165,40 +165,40 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/header_params/tutorial002_an.py!}
+{!> ../../docs_src/header_params/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/header_params/tutorial002_py310.py!}
+{!> ../../docs_src/header_params/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial002.py!}
+{!> ../../docs_src/header_params/tutorial002.py!}
 ```
 
 ////
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 Прежде чем установить для `convert_underscores` значение `False`, имейте в виду, что некоторые HTTP-прокси и серверы запрещают использование заголовков с подчеркиванием.
 
@@ -217,7 +217,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003_an_py310.py!}
+{!> ../../docs_src/header_params/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -225,7 +225,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003_an_py39.py!}
+{!> ../../docs_src/header_params/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -233,49 +233,49 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/header_params/tutorial003_an.py!}
+{!> ../../docs_src/header_params/tutorial003_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/header_params/tutorial003_py310.py!}
+{!> ../../docs_src/header_params/tutorial003_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003_py39.py!}
+{!> ../../docs_src/header_params/tutorial003_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/header_params/tutorial003.py!}
+{!> ../../docs_src/header_params/tutorial003.py!}
 ```
 
 ////

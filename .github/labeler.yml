@@ -7,6 +7,8 @@ docs:
       - all-globs-to-all-files:
         - '!fastapi/**'
         - '!pyproject.toml'
+        - '!docs/en/data/sponsors.yml'
+        - '!docs/en/overrides/main.html'
 
 lang-all:
   - all:
@@ -28,6 +30,8 @@ internal:
         - .pre-commit-config.yaml
         - pdm_build.py
         - requirements*.txt
+        - docs/en/data/sponsors.yml
+        - docs/en/overrides/main.html
       - all-globs-to-all-files:
         - '!docs/*/docs/**'
         - '!fastapi/**'

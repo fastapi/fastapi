@@ -56,11 +56,11 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 Aqui está um exemplo de *operação de rota* com parâmetros utilizando-se de alguns dos tipos acima.
 
 ```Python hl_lines="1  3  12-16"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
+{!../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
 Note que os parâmetros dentro da função tem seu tipo de dados natural, e você pode, por exemplo, realizar manipulações normais de data, como:
 
 ```Python hl_lines="18-19"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
+{!../../docs_src/extra_data_types/tutorial001.py!}
 ```

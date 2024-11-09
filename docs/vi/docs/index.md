@@ -93,7 +93,7 @@ Những tính năng như:
 
 "_Thành thật, những gì bạn đã xây dựng nhìn siêu chắc chắn và bóng bẩy. Theo nhiều cách, nó là những gì tôi đã muốn Hug trở thành - thật sự truyền cảm hứng để thấy ai đó xây dựng nó._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - người tạo ra <strong><a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - người tạo ra <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
