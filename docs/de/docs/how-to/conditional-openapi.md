@@ -30,7 +30,7 @@ Sie können problemlos dieselben Pydantic-Einstellungen verwenden, um Ihre gener
 Zum Beispiel:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/conditional_openapi/tutorial001.py!}
+{!../../docs_src/conditional_openapi/tutorial001.py!}
 ```
 
 Hier deklarieren wir die Einstellung `openapi_url` mit dem gleichen Defaultwert `"/openapi.json"`.

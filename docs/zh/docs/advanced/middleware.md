@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** 为常见用例提供了一些中间件，下面介绍怎么使用这些中间件。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 以下几个示例中也可以使用 `from starlette.middleware.something import SomethingMiddleware`。
 
@@ -58,7 +58,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 任何传向 `http` 或 `ws` 的请求都会被重定向至安全方案。
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
+{!../../docs_src/advanced_middleware/tutorial001.py!}
 ```
 
 ## `TrustedHostMiddleware`
@@ -66,7 +66,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 强制所有传入请求都必须正确设置 `Host` 请求头，以防 HTTP 主机头攻击。
 
 ```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
+{!../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
 支持以下参数：
@@ -82,7 +82,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 中间件会处理标准响应与流响应。
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
+{!../../docs_src/advanced_middleware/tutorial003.py!}
 ```
 
 支持以下参数：
@@ -95,7 +95,6 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 例如：
 
-* <a href="https://docs.sentry.io/platforms/python/asgi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn 的 `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 

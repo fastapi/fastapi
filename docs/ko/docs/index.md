@@ -441,7 +441,7 @@ item: Item
 
 Pydantic이 사용하는:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 이메일 유효성 검사.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 이메일 유효성 검사.
 
 Starlette이 사용하는:
 

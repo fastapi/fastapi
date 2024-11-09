@@ -6,143 +6,25 @@ Most of these settings are variable (can change), like database URLs. And many c
 
 For this reason it's common to provide them in environment variables that are read by the application.
 
-## Environment Variables
-
 /// tip
 
-If you already know what "environment variables" are and how to use them, feel free to skip to the next section below.
+To understand environment variables you can read [Environment Variables](../environment-variables.md){.internal-link target=_blank}.
 
 ///
 
-An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside of the Python code, in the operating system, and could be read by your Python code (or by other programs as well).
-
-You can create and use environment variables in the shell, without needing Python:
-
-//// tab | Linux, macOS, Windows Bash
-
-<div class="termy">
-
-```console
-// You could create an env var MY_NAME with
-$ export MY_NAME="Wade Wilson"
-
-// Then you could use it with other programs, like
-$ echo "Hello $MY_NAME"
-
-Hello Wade Wilson
-```
-
-</div>
-
-////
-
-//// tab | Windows PowerShell
-
-<div class="termy">
-
-```console
-// Create an env var MY_NAME
-$ $Env:MY_NAME = "Wade Wilson"
-
-// Use it with other programs, like
-$ echo "Hello $Env:MY_NAME"
-
-Hello Wade Wilson
-```
-
-</div>
-
-////
-
-### Read env vars in Python
-
-You could also create environment variables outside of Python, in the terminal (or with any other method), and then read them in Python.
-
-For example you could have a file `main.py` with:
-
-```Python hl_lines="3"
-import os
-
-name = os.getenv("MY_NAME", "World")
-print(f"Hello {name} from Python")
-```
-
-/// tip
-
-The second argument to <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> is the default value to return.
-
-If not provided, it's `None` by default, here we provide `"World"` as the default value to use.
-
-///
-
-Then you could call that Python program:
-
-<div class="termy">
-
-```console
-// Here we don't set the env var yet
-$ python main.py
-
-// As we didn't set the env var, we get the default value
-
-Hello World from Python
-
-// But if we create an environment variable first
-$ export MY_NAME="Wade Wilson"
-
-// And then call the program again
-$ python main.py
-
-// Now it can read the environment variable
-
-Hello Wade Wilson from Python
-```
-
-</div>
-
-As environment variables can be set outside of the code, but can be read by the code, and don't have to be stored (committed to `git`) with the rest of the files, it's common to use them for configurations or settings.
-
-You can also create an environment variable only for a specific program invocation, that is only available to that program, and only for its duration.
-
-To do that, create it right before the program itself, on the same line:
-
-<div class="termy">
-
-```console
-// Create an env var MY_NAME in line for this program call
-$ MY_NAME="Wade Wilson" python main.py
-
-// Now it can read the environment variable
-
-Hello Wade Wilson from Python
-
-// The env var no longer exists afterwards
-$ python main.py
-
-Hello World from Python
-```
-
-</div>
-
-/// tip
-
-You can read more about it at <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
-
-///
-
-### Types and validation
+## Types and validation
 
 These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
-That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or validation has to be done in code.
+That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or any validation has to be done in code.
 
 ## Pydantic `Settings`
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
 
 ### Install `pydantic-settings`
 
-First, install the `pydantic-settings` package:
+First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install the `pydantic-settings` package:
 
 <div class="termy">
 
@@ -181,7 +63,7 @@ You can use all the same validation features and tools you use for Pydantic mode
 //// tab | Pydantic v2
 
 ```Python hl_lines="2  5-8  11"
-{!> ../../../docs_src/settings/tutorial001.py!}
+{!> ../../docs_src/settings/tutorial001.py!}
 ```
 
 ////
@@ -195,7 +77,7 @@ In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead 
 ///
 
 ```Python hl_lines="2  5-8  11"
-{!> ../../../docs_src/settings/tutorial001_pv1.py!}
+{!> ../../docs_src/settings/tutorial001_pv1.py!}
 ```
 
 ////
@@ -215,7 +97,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 Then you can use the new `settings` object in your application:
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 ### Run the server
@@ -251,13 +133,13 @@ You could put those settings in another module file as you saw in [Bigger Applic
 For example, you could have a file `config.py` with:
 
 ```Python
-{!../../../docs_src/settings/app01/config.py!}
+{!../../docs_src/settings/app01/config.py!}
 ```
 
 And then use it in a file `main.py`:
 
 ```Python hl_lines="3  11-13"
-{!../../../docs_src/settings/app01/main.py!}
+{!../../docs_src/settings/app01/main.py!}
 ```
 
 /// tip
@@ -277,7 +159,7 @@ This could be especially useful during testing, as it's very easy to override a 
 Coming from the previous example, your `config.py` file could look like:
 
 ```Python hl_lines="10"
-{!../../../docs_src/settings/app02/config.py!}
+{!../../docs_src/settings/app02/config.py!}
 ```
 
 Notice that now we don't create a default instance `settings = Settings()`.
@@ -289,7 +171,7 @@ Now we create a dependency that returns a new `config.Settings()`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -297,7 +179,7 @@ Now we create a dependency that returns a new `config.Settings()`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -311,7 +193,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="5  11-12"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -329,7 +211,7 @@ And then we can require it from the *path operation function* as a dependency an
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -337,7 +219,7 @@ And then we can require it from the *path operation function* as a dependency an
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -351,7 +233,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="16  18-20"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -361,7 +243,7 @@ Prefer to use the `Annotated` version if possible.
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
 ```Python hl_lines="9-10  13  21"
-{!../../../docs_src/settings/app02/test_main.py!}
+{!../../docs_src/settings/app02/test_main.py!}
 ```
 
 In the dependency override we set a new value for the `admin_email` when creating the new `Settings` object, and then we return that new object.
@@ -406,12 +288,12 @@ And then update your `config.py` with:
 //// tab | Pydantic v2
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/settings/app03_an/config.py!}
+{!> ../../docs_src/settings/app03_an/config.py!}
 ```
 
 /// tip
 
-The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
 
 ///
 
@@ -420,7 +302,7 @@ The `model_config` attribute is used just for Pydantic configuration. You can re
 //// tab | Pydantic v1
 
 ```Python hl_lines="9-10"
-{!> ../../../docs_src/settings/app03_an/config_pv1.py!}
+{!> ../../docs_src/settings/app03_an/config_pv1.py!}
 ```
 
 /// tip
@@ -465,7 +347,7 @@ But as we are using the `@lru_cache` decorator on top, the `Settings` object wil
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+{!> ../../docs_src/settings/app03_an_py39/main.py!}
 ```
 
 ////
@@ -473,7 +355,7 @@ But as we are using the `@lru_cache` decorator on top, the `Settings` object wil
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an/main.py!}
+{!> ../../docs_src/settings/app03_an/main.py!}
 ```
 
 ////
@@ -487,12 +369,12 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1  10"
-{!> ../../../docs_src/settings/app03/main.py!}
+{!> ../../docs_src/settings/app03/main.py!}
 ```
 
 ////
 
-Then for any subsequent calls of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
+Then for any subsequent call of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 
 #### `lru_cache` Technical Details
 

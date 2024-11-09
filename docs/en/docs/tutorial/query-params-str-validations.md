@@ -7,7 +7,7 @@ Let's take this application as example:
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial001_py310.py!}
 ```
 
 ////
@@ -15,7 +15,7 @@ Let's take this application as example:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
 ////
@@ -46,7 +46,7 @@ To achieve that, first import:
 In Python 3.9 or above, `Annotated` is part of the standard library, so you can import it from `typing`.
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -58,7 +58,7 @@ In versions of Python below Python 3.9 you import `Annotated` from `typing_exten
 It will already be installed with FastAPI.
 
 ```Python hl_lines="3-4"
-{!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002_an.py!}
 ```
 
 ////
@@ -126,7 +126,7 @@ Now that we have this `Annotated` where we can put more information (in this cas
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -134,7 +134,7 @@ Now that we have this `Annotated` where we can put more information (in this cas
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002_an.py!}
 ```
 
 ////
@@ -155,7 +155,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old) `Query` as the default value
+## Alternative (old): `Query` as the default value
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -170,7 +170,7 @@ This is how you would use `Query()` as the default value of your function parame
 //// tab | Python 3.10+
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002_py310.py!}
 ```
 
 ////
@@ -178,7 +178,7 @@ This is how you would use `Query()` as the default value of your function parame
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
 ////
@@ -209,7 +209,7 @@ q: str | None = Query(default=None)
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+But the `Query` versions declare it explicitly as being a query parameter.
 
 /// info
 
@@ -273,7 +273,7 @@ The **default** value of the **function parameter** is the **actual default** va
 
 You could **call** that same function in **other places** without FastAPI, and it would **work as expected**. If there's a **required** parameter (without a default value), your **editor** will let you know with an error, **Python** will also complain if you run it without passing the required parameter.
 
-When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other place**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
+When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other places**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
 
 Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
@@ -284,7 +284,7 @@ You can also add a parameter `min_length`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial003_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -292,7 +292,7 @@ You can also add a parameter `min_length`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial003_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -300,7 +300,7 @@ You can also add a parameter `min_length`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial003_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial003_an.py!}
 ```
 
 ////
@@ -314,7 +314,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial003_py310.py!}
 ```
 
 ////
@@ -328,7 +328,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
 ////
@@ -340,7 +340,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 //// tab | Python 3.10+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -348,7 +348,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 //// tab | Python 3.9+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial004_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -356,7 +356,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/query_params_str_validations/tutorial004_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004_an.py!}
 ```
 
 ////
@@ -370,7 +370,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004_py310.py!}
 ```
 
 ////
@@ -384,7 +384,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
 ////
@@ -408,7 +408,7 @@ You could still see some code using it:
 //// tab | Python 3.10+ Pydantic v1
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
 ```
 
 ////
@@ -424,7 +424,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial005_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -432,7 +432,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial005_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial005_an.py!}
 ```
 
 ////
@@ -446,7 +446,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
 ////
@@ -457,7 +457,7 @@ Having a default value of any type, including `None`, makes the parameter option
 
 ///
 
-## Make it required
+## Required parameters
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -494,7 +494,7 @@ So, when you need to declare a value as required while using `Query`, you can si
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial006_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -502,7 +502,7 @@ So, when you need to declare a value as required while using `Query`, you can si
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial006_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006_an.py!}
 ```
 
 ////
@@ -516,7 +516,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
 /// tip
@@ -536,7 +536,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial006b_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006b_an_py39.py!}
 ```
 
 ////
@@ -544,7 +544,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial006b_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006b_an.py!}
 ```
 
 ////
@@ -558,7 +558,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial006b.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006b.py!}
 ```
 
 ////
@@ -573,7 +573,7 @@ It is used by Pydantic and FastAPI to explicitly declare that a value is require
 
 This will let **FastAPI** know that this parameter is required.
 
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -582,7 +582,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py!}
 ```
 
 ////
@@ -590,7 +590,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial006c_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006c_an_py39.py!}
 ```
 
 ////
@@ -598,7 +598,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial006c_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006c_an.py!}
 ```
 
 ////
@@ -612,7 +612,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
 ```
 
 ////
@@ -626,14 +626,14 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial006c.py!}
 ```
 
 ////
 
 /// tip
 
-Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-optional-fields" class="external-link" target="_blank">Required fields</a>.
 
 ///
 
@@ -645,14 +645,14 @@ Remember that in most of the cases, when something is required, you can simply o
 
 ## Query parameter list / multiple values
 
-When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.
+When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
 
 For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
 
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial011_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011_an_py310.py!}
 ```
 
 ////
@@ -660,7 +660,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial011_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011_an_py39.py!}
 ```
 
 ////
@@ -668,7 +668,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial011_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011_an.py!}
 ```
 
 ////
@@ -682,7 +682,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011_py310.py!}
 ```
 
 ////
@@ -696,7 +696,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011_py39.py!}
 ```
 
 ////
@@ -710,7 +710,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial011.py!}
 ```
 
 ////
@@ -751,7 +751,7 @@ And you can also define a default `list` of values if none are provided:
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial012_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial012_an_py39.py!}
 ```
 
 ////
@@ -759,7 +759,7 @@ And you can also define a default `list` of values if none are provided:
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial012_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial012_an.py!}
 ```
 
 ////
@@ -773,7 +773,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial012_py39.py!}
 ```
 
 ////
@@ -787,7 +787,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
 ////
@@ -809,14 +809,14 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial013_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial013_an_py39.py!}
 ```
 
 ////
@@ -824,7 +824,7 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial013_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial013_an.py!}
 ```
 
 ////
@@ -838,7 +838,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
 ////
@@ -870,7 +870,7 @@ You can add a `title`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial007_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial007_an_py310.py!}
 ```
 
 ////
@@ -878,7 +878,7 @@ You can add a `title`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial007_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -886,7 +886,7 @@ You can add a `title`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial007_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial007_an.py!}
 ```
 
 ////
@@ -900,7 +900,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial007_py310.py!}
 ```
 
 ////
@@ -914,7 +914,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 ////
@@ -924,7 +924,7 @@ And a `description`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/query_params_str_validations/tutorial008_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial008_an_py310.py!}
 ```
 
 ////
@@ -932,7 +932,7 @@ And a `description`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="14"
-{!> ../../../docs_src/query_params_str_validations/tutorial008_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -940,7 +940,7 @@ And a `description`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/query_params_str_validations/tutorial008_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial008_an.py!}
 ```
 
 ////
@@ -954,7 +954,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial008_py310.py!}
 ```
 
 ////
@@ -968,7 +968,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
 ////
@@ -994,7 +994,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial009_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial009_an_py310.py!}
 ```
 
 ////
@@ -1002,7 +1002,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial009_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial009_an_py39.py!}
 ```
 
 ////
@@ -1010,7 +1010,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial009_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial009_an.py!}
 ```
 
 ////
@@ -1024,7 +1024,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial009_py310.py!}
 ```
 
 ////
@@ -1038,7 +1038,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
 ////
@@ -1054,7 +1054,7 @@ Then pass the parameter `deprecated=True` to `Query`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/query_params_str_validations/tutorial010_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial010_an_py310.py!}
 ```
 
 ////
@@ -1062,7 +1062,7 @@ Then pass the parameter `deprecated=True` to `Query`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/query_params_str_validations/tutorial010_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial010_an_py39.py!}
 ```
 
 ////
@@ -1070,7 +1070,7 @@ Then pass the parameter `deprecated=True` to `Query`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/query_params_str_validations/tutorial010_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial010_an.py!}
 ```
 
 ////
@@ -1084,7 +1084,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial010_py310.py!}
 ```
 
 ////
@@ -1098,7 +1098,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
 ////
@@ -1107,14 +1107,14 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameters from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial014_an_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial014_an_py310.py!}
 ```
 
 ////
@@ -1122,7 +1122,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial014_an_py39.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial014_an_py39.py!}
 ```
 
 ////
@@ -1130,7 +1130,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/query_params_str_validations/tutorial014_an.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial014_an.py!}
 ```
 
 ////
@@ -1144,7 +1144,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial014_py310.py!}
 ```
 
 ////
@@ -1158,7 +1158,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
+{!> ../../docs_src/query_params_str_validations/tutorial014.py!}
 ```
 
 ////
@@ -1182,4 +1182,4 @@ Validations specific for strings:
 
 In these examples you saw how to declare validations for `str` values.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+See the next chapters to learn how to declare validations for other types, like numbers.

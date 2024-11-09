@@ -90,7 +90,7 @@ Kluczowe cechy:
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -439,7 +439,7 @@ Aby dowiedzieć się o tym więcej, zobacz sekcję <a href="https://fastapi.tian
 
 Używane przez Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - dla walidacji adresów email.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - dla walidacji adresów email.
 
 Używane przez Starlette:
 

@@ -4,7 +4,7 @@ Ao fazer o deploy de aplicações FastAPI uma abordagem comum é construir uma *
 
 Usando contêineres Linux você tem diversas vantagens incluindo **segurança**, **replicabilidade**, **simplicidade**, entre outras.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Está com pressa e já sabe dessas coisas? Pode ir direto para [`Dockerfile` abaixo 👇](#construindo-uma-imagem-docker-para-fastapi).
 
@@ -205,8 +205,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     A opção `--no-cache-dir` diz ao `pip` para não salvar os pacotes baixados localmente, pois isso só aconteceria se `pip` fosse executado novamente para instalar os mesmos pacotes, mas esse não é o caso quando trabalhamos com contêineres.
 
-    !!! note
-        `--no-cache-dir` é apenas relacionado ao `pip`, não tem nada a ver com Docker ou contêineres.
+    /// note
+
+    `--no-cache-dir` é apenas relacionado ao `pip`, não tem nada a ver com Docker ou contêineres.
+
+    ///
 
     A opção `--upgrade` diz ao `pip` para atualizar os pacotes se eles já estiverem instalados.
 

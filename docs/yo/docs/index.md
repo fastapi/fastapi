@@ -93,7 +93,7 @@ FastAPI jẹ́ ìgbàlódé, tí ó yára (iṣẹ-giga), ìlànà wẹ́ẹ́b�
 
 "_Ní tòótọ́, ohun tí o kọ dára ó sì tún dán. Ní ọ̀pọ̀lọpọ̀ ọ̀nà, ohun tí mo fẹ́ kí **Hug** jẹ́ nìyẹn - ó wúni lórí gan-an láti rí ẹnìkan tí ó kọ́ nǹkan bí èyí._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -449,7 +449,7 @@ Láti ní òye síi nípa rẹ̀, wo abala àwọn <a href="https://fastapi.tian
 
 Èyí tí Pydantic ń lò:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - fún ifọwọsi ímeèlì.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - fún ifọwọsi ímeèlì.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - fún ètò ìsàkóso.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - fún àfikún oríṣi láti lọ pẹ̀lú Pydantic.
 

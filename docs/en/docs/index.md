@@ -93,7 +93,7 @@ The key features are:
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -127,6 +127,8 @@ FastAPI stands on the shoulders of giants:
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
 ## Installation
+
+Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
 
 <div class="termy">
 
@@ -388,7 +390,7 @@ Coming back to the previous code example, **FastAPI** will:
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
     * As the `q` parameter is declared with `= None`, it is optional.
     * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
+* For `PUT` requests to `/items/{item_id}`, read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`.
     * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
@@ -458,7 +460,7 @@ When you install FastAPI with `pip install "fastapi[standard]"` it comes the `st
 
 Used by Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
 
 Used by Starlette:
 

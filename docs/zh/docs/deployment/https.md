@@ -4,8 +4,11 @@
 
 但实际情况比这复杂得多。
 
-!!!提示
-     如果你很赶时间或不在乎，请继续阅读下一部分，下一部分会提供一个step-by-step的教程，告诉你怎么使用不同技术来把一切都配置好。
+/// note | 提示
+
+如果你很赶时间或不在乎，请继续阅读下一部分，下一部分会提供一个step-by-step的教程，告诉你怎么使用不同技术来把一切都配置好。
+
+///
 
 要从用户的视角**了解 HTTPS 的基础知识**，请查看 <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>。
 

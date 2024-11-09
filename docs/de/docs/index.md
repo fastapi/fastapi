@@ -94,7 +94,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Autor von <a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Autor von <a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
@@ -449,7 +449,7 @@ Um mehr darüber zu erfahren, siehe den Abschnitt <a href="https://fastapi.tiang
 
 Wird von Pydantic verwendet:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - für E-Mail-Validierung.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - für E-Mail-Validierung.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - für die Verwaltung von Einstellungen.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - für zusätzliche Typen, mit Pydantic zu verwenden.
 
