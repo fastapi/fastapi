@@ -32,7 +32,7 @@ Importieren Sie zuerst `Cookie`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -46,7 +46,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -90,7 +90,7 @@ Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -104,7 +104,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -116,7 +116,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 `Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 

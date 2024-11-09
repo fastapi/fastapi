@@ -2,7 +2,7 @@
 
 ## OpenAPI operationId
 
-/// warning | "Advertencia"
+/// warning | Advertencia
 
 Si no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
 

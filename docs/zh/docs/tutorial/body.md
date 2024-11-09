@@ -8,7 +8,7 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 
 使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型声明**请求体**，能充分利用它的功能和优点。
 
-/// info | "说明"
+/// info | 说明
 
 发送数据使用 `POST`（最常用）、`PUT`、`DELETE`、`PATCH` 等操作。
 
@@ -149,7 +149,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "提示"
+/// tip | 提示
 
 使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 编辑器时，推荐安装 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>。
 
@@ -233,7 +233,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 - 类型是（`int`、`float`、`str`、`bool` 等）**单类型**的参数，是**查询**参数
 - 类型是 **Pydantic 模型**的参数，是**请求体**
 
-/// note | "笔记"
+/// note | 笔记
 
 因为默认值是 `None`， FastAPI 会把 `q` 当作可选参数。
 
