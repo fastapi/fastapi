@@ -1,4 +1,4 @@
-import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.query_params.tutorial005 import app
@@ -6,36 +6,45 @@ from docs_src.query_params.tutorial005 import app
 client = TestClient(app)
 
 
-query_required = {
-    "detail": [
+def test_foo_needy_very():
+    response = client.get("/items/foo?needy=very")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": "foo", "needy": "very"}
+
+
+def test_foo_no_needy():
+    response = client.get("/items/foo")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
-            "loc": ["query", "needy"],
-            "msg": "field required",
-            "type": "value_error.missing",
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["query", "needy"],
+                    "msg": "Field required",
+                    "input": None,
+                }
+            ]
         }
-    ]
-}
-
-
-@pytest.mark.parametrize(
-    "path,expected_status,expected_response",
-    [
-        ("/items/foo?needy=very", 200, {"item_id": "foo", "needy": "very"}),
-        ("/items/foo", 422, query_required),
-        ("/items/foo", 422, query_required),
-    ],
-)
-def test(path, expected_status, expected_response):
-    response = client.get(path)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["query", "needy"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
