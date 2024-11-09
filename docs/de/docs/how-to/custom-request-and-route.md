@@ -6,7 +6,7 @@ Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.
 
 Wenn Sie beispielsweise den Requestbody lesen oder manipulieren möchten, bevor er von Ihrer Anwendung verarbeitet wird.
 
-/// danger | "Gefahr"
+/// danger | Gefahr
 
 Dies ist eine „fortgeschrittene“ Funktion.
 
@@ -30,7 +30,7 @@ Und eine `APIRoute`-Unterklasse zur Verwendung dieser benutzerdefinierten Reques
 
 ### Eine benutzerdefinierte `GzipRequest`-Klasse erstellen
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} verwenden.
 
@@ -60,7 +60,7 @@ Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` z
 {!../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-`dict` ist, welches die mit dem Request verbundenen Metadaten enthält.
 
@@ -84,7 +84,7 @@ Aufgrund unserer Änderungen in `GzipRequest.body` wird der Requestbody jedoch b
 
 ## Zugriff auf den Requestbody in einem Exceptionhandler
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#den-requestvalidationerror-body-verwenden){.internal-link target=_blank}).
 

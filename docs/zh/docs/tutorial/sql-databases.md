@@ -167,7 +167,7 @@ connect_args={"check_same_thread": False}
 
 ...仅用于`SQLite`，在其他数据库不需要它。
 
-/// info | "技术细节"
+/// info | 技术细节
 
 默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
 
@@ -630,7 +630,7 @@ SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含�
 
 ////
 
-/// info | "技术细节"
+/// info | 技术细节
 
 参数`db`实际上是 type `SessionLocal`，但是这个类（用 创建`sessionmaker()`）是 SQLAlchemy 的“代理” `Session`，所以，编辑器并不真正知道提供了哪些方法。
 
@@ -713,7 +713,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 ///
 
-/// note | "Very Technical Details"
+/// note | Very Technical Details
 
 如果您很好奇并且拥有深厚的技术知识，您可以在[Async](https://fastapi.tiangolo.com/zh/async/#very-technical-details)文档中查看有关如何处理 `async def`于`def`差别的技术细节。
 

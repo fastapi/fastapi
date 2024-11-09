@@ -161,7 +161,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 }
 ```
 
-/// info | "정보"
+/// info | 정보
 
 `images` 키가 어떻게 이미지 객체 리스트를 갖는지 주목하세요.
 
@@ -175,7 +175,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 {!../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 `Offer`가 선택사항 `Image` 리스트를 차례로 갖는 `Item` 리스트를 어떻게 가지고 있는지 주목하세요
 
@@ -227,7 +227,7 @@ Pydantic 모델 대신에 `dict`를 직접 사용하여 작업할 경우, 이러
 {!../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 JSON은 오직 `str`형 키만 지원한다는 것을 염두에 두세요.
 

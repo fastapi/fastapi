@@ -30,13 +30,13 @@ Django REST framework'ü, Django'nun API kabiliyetlerini arttırmak için arka p
 
 **Otomatik API dökümantasyonu**nun ilk örneklerinden biri olduğu için, **FastAPI** arayışına ilham veren ilk fikirlerden biri oldu.
 
-/// note | "Not"
+/// note | Not
 
 Django REST Framework'ü, aynı zamanda **FastAPI**'ın dayandığı Starlette ve Uvicorn'un da yaratıcısı olan Tom Christie tarafından geliştirildi.
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 Kullanıcılar için otomatik API dökümantasyonu sunan bir web arayüzüne sahip olmalı.
 
@@ -56,7 +56,7 @@ Uygulama parçalarının böyle ayrılıyor oluşu ve istenilen özelliklerle ge
 
 Flask'ın basitliği göz önünde bulundurulduğu zaman, API geliştirmek için iyi bir seçim gibi görünüyordu. Sıradaki şey ise Flask için bir "Django REST Framework"!
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 Gereken araçları ve parçaları birleştirip eşleştirmeyi kolaylaştıracak bir mikro framework olmalı.
 
@@ -98,7 +98,7 @@ def read_url():
 
 `requests.get(...)` ile `@app.get(...)` arasındaki benzerliklere bakın.
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 * Basit ve sezgisel bir API'ya sahip olmalı.
 * HTTP metot isimlerini (işlemlerini) anlaşılır olacak bir şekilde, direkt kullanmalı.
@@ -118,7 +118,7 @@ Swagger bir noktada Linux Foundation'a verildi ve adı OpenAPI olarak değiştir
 
 İşte bu yüzden versiyon 2.0 hakkında konuşurken "Swagger", versiyon 3 ve üzeri için ise "OpenAPI" adını kullanmak daha yaygın.
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 API spesifikasyonları için özel bir şema yerine bir <abbr title="Open Standard: Açık Standart, Açık kaynak olarak yayınlanan standart">açık standart</abbr> benimseyip kullanmalı.
 
@@ -147,7 +147,7 @@ Marshmallow bu özellikleri sağlamak için geliştirilmişti. Benim de geçmiş
 
 Ama... Python'un tip belirteçleri gelmeden önce oluşturulmuştu. Yani her <abbr title="Verilerin nasıl oluşturulması gerektiğinin tanımı">şemayı</abbr> tanımlamak için Marshmallow'un sunduğu spesifik araçları ve sınıfları kullanmanız gerekiyordu.
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 Kod kullanarak otomatik olarak veri tipini ve veri doğrulamayı belirten "şemalar" tanımlamalı.
 
@@ -163,13 +163,13 @@ Veri doğrulama için arka planda Marshmallow kullanıyor, hatta aynı geliştir
 
 Webargs da harika bir araç ve onu da geçmişte henüz **FastAPI** yokken çok kullandım.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 Webargs aynı Marshmallow geliştirileri tarafından oluşturuldu.
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 Gelen istek verisi için otomatik veri doğrulamaya sahip olmalı.
 
@@ -191,13 +191,13 @@ Fakat sonrasında yine mikro sözdizimi problemiyle karşılaşıyoruz. Python m
 
 Editör bu konuda pek yardımcı olamaz. Üstelik eğer parametreleri ya da Marshmallow şemalarını değiştirip YAML kodunu güncellemeyi unutursak artık döküman geçerliliğini yitiriyor.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 APISpec de aynı Marshmallow geliştiricileri tarafından oluşturuldu.
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham verdi?"
+/// check | **FastAPI**'a nasıl ilham verdi?
 
 API'lar için açık standart desteği olmalı (OpenAPI gibi).
 
@@ -223,13 +223,13 @@ Bunu kullanmak, bir kaç <abbr title="full-stack: Hem ön uç hem de arka uç ge
 
 Aynı full-stack üreticiler [**FastAPI** Proje Üreticileri](project-generation.md){.internal-link target=_blank}'nin de temelini oluşturdu.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 Flask-apispec de aynı Marshmallow geliştiricileri tarafından üretildi.
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Veri dönüşümü ve veri doğrulamayı tanımlayan kodu kullanarak otomatik olarak OpenAPI şeması oluşturmalı.
 
@@ -249,7 +249,7 @@ Ama TypeScript verileri kod JavaScript'e derlendikten sonra korunmadığından, 
 
 İç içe geçen derin modelleri pek iyi işleyemiyor. Yani eğer istekteki JSON gövdesi derin bir JSON objesiyse düzgün bir şekilde dökümante edilip doğrulanamıyor.
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Güzel bir editör desteği için Python tiplerini kullanmalı.
 
@@ -261,7 +261,7 @@ Güçlü bir bağımlılık enjeksiyon sistemine sahip olmalı. Kod tekrarını 
 
 Sanic, `asyncio`'ya dayanan son derece hızlı Python kütüphanelerinden biriydi. Flask'a epey benzeyecek şekilde geliştirilmişti.
 
-/// note | "Teknik detaylar"
+/// note | Teknik detaylar
 
 İçerisinde standart Python `asyncio` döngüsü yerine <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> kullanıldı. Hızının asıl kaynağı buydu.
 
@@ -269,7 +269,7 @@ Uvicorn ve Starlette'e ilham kaynağı olduğu oldukça açık, şu anda ikisi d
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Uçuk performans sağlayacak bir yol bulmalı.
 
@@ -285,7 +285,7 @@ Falcon ise bir diğer yüksek performanslı Python framework'ü. Minimal olacak 
 
 Yani veri doğrulama, veri dönüştürme ve dökümantasyonun hepsi kodda yer almalı, otomatik halledemiyoruz. Ya da Falcon üzerine bir framework olarak uygulanmaları gerekiyor, aynı Hug'da olduğu gibi. Bu ayrım Falcon'un tasarımından esinlenen, istek ve cevap objelerini parametre olarak işleyen diğer kütüphanelerde de yer alıyor.
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Harika bir performans'a sahip olmanın yollarını bulmalı.
 
@@ -311,7 +311,7 @@ Biraz daha detaylı ayarlamalara gerek duyuyor. Ayrıca <abbr title="ASGI (Async
 
 <abbr title="Route: HTTP isteğinin gittiği yol">Yol</abbr>'lar fonksiyonun üstünde endpoint'i işleyen dekoratörler yerine farklı yerlerde tanımlanan fonksiyonlarla belirlenir. Bu Flask (ve Starlette) yerine daha çok Django'nun yaklaşımına daha yakın bir metot. Bu, kodda nispeten birbiriyle sıkı ilişkili olan şeyleri ayırmaya sebep oluyor.
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Model özelliklerinin "standart" değerlerini kullanarak veri tipleri için ekstra veri doğrulama koşulları tanımlamalı. Bu editör desteğini geliştiriyor ve daha önceden Pydantic'te yoktu.
 
@@ -319,7 +319,7 @@ Bu aslında Pydantic'in de aynı doğrulama stiline geçmesinde ilham kaynağı 
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug, Python tip belirteçlerini kullanarak API parametrelerinin tipini belirlemeyi uygulayan ilk framework'lerdendi. Bu, diğer araçlara da ilham kaynağı olan harika bir fikirdi.
 
@@ -333,13 +333,13 @@ Ayrıca ilginç ve çok rastlanmayan bir özelliği vardı: aynı framework'ü k
 
 Senkron çalışan Python web framework'lerinin standardına (WSGI) dayandığından dolayı Websocket'leri ve diğer şeyleri işleyemiyor, ancak yine de yüksek performansa sahip.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 Hug, Python dosyalarında bulunan dahil etme satırlarını otomatik olarak sıralayan harika bir araç olan <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>'un geliştiricisi Timothy Crosley tarafından geliştirildi.
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Hug, APIStar'ın çeşitli kısımlarında esin kaynağı oldu ve APIStar'la birlikte en umut verici bulduğum araçlardan biriydi.
 
@@ -373,7 +373,7 @@ Geliştiricinin Starlette'e odaklanması gerekince proje de artık bir API web f
 
 Artık APIStar, OpenAPI özelliklerini doğrulamak için bir dizi araç sunan bir proje haline geldi.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 APIStar, aşağıdaki projeleri de üreten Tom Christie tarafından geliştirildi:
 
@@ -383,7 +383,7 @@ APIStar, aşağıdaki projeleri de üreten Tom Christie tarafından geliştirild
 
 ///
 
-/// check | "**FastAPI**'a nasıl ilham oldu?"
+/// check | **FastAPI**'a nasıl ilham oldu?
 
 Var oldu.
 
@@ -407,7 +407,7 @@ Tip belirteçleri kullanıyor olması onu aşırı sezgisel yapıyor.
 
 Marshmallow ile karşılaştırılabilir. Ancak karşılaştırmalarda Marshmallowdan daha hızlı görünüyor. Aynı Python tip belirteçlerine dayanıyor ve editör desteği de harika.
 
-/// check | "**FastAPI** nerede kullanıyor?"
+/// check | **FastAPI** nerede kullanıyor?
 
 Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik model dökümantasyonunu halletmek için!
 
@@ -442,7 +442,7 @@ Ancak otomatik veri doğrulama, veri dönüştürme ve dökümantasyon sağlamyo
 
 Bu, **FastAPI**'ın onun üzerine tamamen Python tip belirteçlerine bağlı olarak eklediği (Pydantic ile) ana şeylerden biri. **FastAPI** bunun yanında artı olarak bağımlılık enjeksiyonu sistemi, güvenlik araçları, OpenAPI şema üretimi ve benzeri özellikler de ekliyor.
 
-/// note | "Teknik Detaylar"
+/// note | Teknik Detaylar
 
 ASGI, Django'nun ana ekibi tarafından geliştirilen yeni bir "standart". Bir "Python standardı" (PEP) olma sürecinde fakat henüz bir standart değil.
 
@@ -450,7 +450,7 @@ Bununla birlikte, halihazırda birçok araç tarafından bir "standart" olarak k
 
 ///
 
-/// check | "**FastAPI** nerede kullanıyor?"
+/// check | **FastAPI** nerede kullanıyor?
 
 Tüm temel web kısımlarında üzerine özellikler eklenerek kullanılmakta.
 
@@ -468,7 +468,7 @@ Bir web framework'ünden ziyade bir sunucudur, yani yollara bağlı yönlendirme
 
 Starlette ve **FastAPI** için tavsiye edilen sunucu Uvicorndur.
 
-/// check | "**FastAPI** neden tavsiye ediyor?"
+/// check | **FastAPI** neden tavsiye ediyor?
 
 **FastAPI** uygulamalarını çalıştırmak için ana web sunucusu Uvicorn!
 
