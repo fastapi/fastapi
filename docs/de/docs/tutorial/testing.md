@@ -124,7 +124,7 @@ Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
 Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisieren:
 
-{* > ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie nicht wissen, wie das geht, können Sie suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
 
