@@ -138,7 +138,7 @@ $ pip install -r requirements.txt
 
 这样，你不必再去重新"安装"你的本地版本即可测试所有更改。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 仅当你使用此项目中的 `requirements.txt` 安装而不是直接使用 `pip install fastapi` 安装时，才会发生这种情况。
 

@@ -62,7 +62,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | "情報"
+/// info | 情報
 
 `**second_user_data` は以下を意味します：
 
