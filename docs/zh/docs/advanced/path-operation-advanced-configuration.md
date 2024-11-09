@@ -2,15 +2,18 @@
 
 ## OpenAPI 的 operationId
 
-!!! warning
-    如果你并非 OpenAPI 的「专家」，你可能不需要这部分内容。
+/// warning
+
+如果你并非 OpenAPI 的「专家」，你可能不需要这部分内容。
+
+///
 
 你可以在路径操作中通过参数 `operation_id` 设置要使用的 OpenAPI `operationId`。
 
 务必确保每个操作路径的 `operation_id` 都是唯一的。
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
 ### 使用 *路径操作函数* 的函数名作为 operationId
@@ -20,23 +23,29 @@
 你应该在添加了所有 *路径操作* 之后执行此操作。
 
 ```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip
-    如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
+/// tip
 
-!!! warning
-    如果你这样做，务必确保你的每个 *路径操作函数* 的名字唯一。
+如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
 
-    即使它们在不同的模块中（Python 文件）。
+///
+
+/// warning
+
+如果你这样做，务必确保你的每个 *路径操作函数* 的名字唯一。
+
+即使它们在不同的模块中（Python 文件）。
+
+///
 
 ## 从 OpenAPI 中排除
 
 使用参数 `include_in_schema` 并将其设置为 `False` ，来从生成的 OpenAPI 方案中排除一个 *路径操作*（这样一来，就从自动化文档系统中排除掉了）。
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
 ## docstring 的高级描述
@@ -49,5 +58,5 @@
 
 
 ```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```

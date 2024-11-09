@@ -3,7 +3,7 @@
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
@@ -63,38 +63,49 @@ The parameter values in your function will be:
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../docs_src/query_params/tutorial002_py310.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../docs_src/query_params/tutorial002.py!}
+```
+
+////
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
-!!! check
-    Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
+/// check
+
+Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
+
+///
 
 ## Query parameter type conversion
 
 You can also declare `bool` types, and they will be converted:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial003_py310.py!}
-    ```
+```Python hl_lines="7"
+{!> ../../docs_src/query_params/tutorial003_py310.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="9"
+{!> ../../docs_src/query_params/tutorial003.py!}
+```
+
+////
 
 In this case, if you go to:
 
@@ -137,17 +148,21 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="6  8"
-    {!> ../../../docs_src/query_params/tutorial004_py310.py!}
-    ```
+```Python hl_lines="6  8"
+{!> ../../docs_src/query_params/tutorial004_py310.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="8  10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="8  10"
+{!> ../../docs_src/query_params/tutorial004.py!}
+```
+
+////
 
 ## Required query parameters
 
@@ -158,7 +173,7 @@ If you don't want to add a specific value but just make it optional, set the def
 But when you want to make a query parameter required, you can just not declare any default value:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 Here the query parameter `needy` is a required query parameter of type `str`.
@@ -173,16 +188,18 @@ http://127.0.0.1:8000/items/foo-item
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null,
+      "url": "https://errors.pydantic.dev/2.1/v/missing"
+    }
+  ]
 }
 ```
 
@@ -203,17 +220,21 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../docs_src/query_params/tutorial006_py310.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params/tutorial006.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="10"
+{!> ../../docs_src/query_params/tutorial006.py!}
+```
+
+////
 
 In this case, there are 3 query parameters:
 
@@ -221,5 +242,8 @@ In this case, there are 3 query parameters:
 * `skip`, an `int` with a default value of `0`.
 * `limit`, an optional `int`.
 
-!!! tip
-    You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+/// tip
+
+You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+
+///

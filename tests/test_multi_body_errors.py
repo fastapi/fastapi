@@ -4,7 +4,6 @@ from typing import List
 from dirty_equals import IsDict, IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel, condecimal
 
 app = FastAPI()
@@ -51,8 +50,7 @@ def test_jsonable_encoder_requiring_error():
                     "loc": ["body", 0, "age"],
                     "msg": "Input should be greater than 0",
                     "input": -1.0,
-                    "ctx": {"gt": 0.0},
-                    "url": match_pydantic_error_url("greater_than"),
+                    "ctx": {"gt": 0},
                 }
             ]
         }
@@ -82,7 +80,6 @@ def test_put_incorrect_body_multiple():
                     "loc": ["body", 0, "name"],
                     "msg": "Field required",
                     "input": {"age": "five"},
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "decimal_parsing",
@@ -95,7 +92,6 @@ def test_put_incorrect_body_multiple():
                     "loc": ["body", 1, "name"],
                     "msg": "Field required",
                     "input": {"age": "six"},
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "decimal_parsing",

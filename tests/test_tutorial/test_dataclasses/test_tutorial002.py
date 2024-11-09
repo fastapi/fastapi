@@ -1,4 +1,4 @@
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
 from docs_src.dataclasses.tutorial002 import app
@@ -12,7 +12,7 @@ def test_get_item():
     assert response.json() == {
         "name": "Island In The Moon",
         "price": 12.99,
-        "description": "A place to be be playin' and havin' fun",
+        "description": "A place to be playin' and havin' fun",
         "tags": ["breater"],
         "tax": None,
     }
@@ -21,8 +21,7 @@ def test_get_item():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    data = response.json()
-    assert data == {
+    assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
@@ -47,7 +46,11 @@ def test_openapi_schema():
             "schemas": {
                 "Item": {
                     "title": "Item",
-                    "required": ["name", "price"],
+                    "required": IsOneOf(
+                        ["name", "price", "tags", "description", "tax"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["name", "price"],
+                    ),
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
@@ -57,7 +60,6 @@ def test_openapi_schema():
                                 "title": "Tags",
                                 "type": "array",
                                 "items": {"type": "string"},
-                                "default": [],
                             }
                         )
                         | IsDict(

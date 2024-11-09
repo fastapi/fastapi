@@ -1,5 +1,5 @@
 import pytest
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
 from docs_src.response_model.tutorial004 import app
@@ -79,7 +79,11 @@ def test_openapi_schema():
             "schemas": {
                 "Item": {
                     "title": "Item",
-                    "required": ["name", "price"],
+                    "required": IsOneOf(
+                        ["name", "description", "price", "tax", "tags"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["name", "price"],
+                    ),
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
