@@ -109,7 +109,7 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
 
@@ -192,7 +192,7 @@ For example, you could want to return a plain text response instead of JSON for 
 {!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import PlainTextResponse`.
 

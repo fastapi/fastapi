@@ -222,7 +222,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
 
 {* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
 
