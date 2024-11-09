@@ -60,7 +60,7 @@ checker(q="somequery")
 {!../../docs_src/dependencies/tutorial011.py!}
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 本章示例有些刻意，也看不出有什么用处。
 
