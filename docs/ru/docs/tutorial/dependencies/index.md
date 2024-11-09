@@ -32,7 +32,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -40,7 +40,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -48,35 +48,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -99,7 +99,7 @@
 
 И в конце она возвращает `dict`, содержащий эти значения.
 
-/// info | "Информация"
+/// info | Информация
 
 **FastAPI** добавил поддержку для `Annotated` (и начал её рекомендовать) в версии 0.95.0.
 
@@ -114,7 +114,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -122,7 +122,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -130,35 +130,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -170,7 +170,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  18"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -178,7 +178,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -186,35 +186,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="16  21"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Настоятельно рекомендуем использовать `Annotated` версию насколько это возможно.
 
 ///
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -225,7 +225,7 @@
 
 И потом функция берёт параметры так же, как *функция обработки пути*.
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 В следующей главе вы увидите, какие другие вещи, помимо функций, можно использовать в качестве зависимостей.
 
@@ -250,7 +250,7 @@ common_parameters --> read_users
 
 Таким образом, вы пишете общий код один раз, и **FastAPI** позаботится о его вызове для ваших *операций с путями*.
 
-/// check | "Проверка"
+/// check | Проверка
 
 Обратите внимание, что вы не создаёте специальный класс и не передаёте его куда-то в **FastAPI** для регистрации, или что-то в этом роде.
 
@@ -273,7 +273,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 //// tab | Python 3.10+
 
 ```Python hl_lines="12  16  21"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py310.py!}
 ```
 
 ////
@@ -281,7 +281,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 //// tab | Python 3.9+
 
 ```Python hl_lines="14  18  23"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py39.py!}
 ```
 
 ////
@@ -289,12 +289,12 @@ commons: Annotated[dict, Depends(common_parameters)]
 //// tab | Python 3.8+
 
 ```Python hl_lines="15  19  24"
-{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an.py!}
 ```
 
 ////
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Это стандартный синтаксис python и называется "type alias", это не особенность **FastAPI**.
 
@@ -316,7 +316,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Это всё не важно. **FastAPI** знает, что нужно сделать. 😎
 
-/// note | "Информация"
+/// note | Информация
 
 Если вам эта тема не знакома, прочтите [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} раздел о `async` и `await` в документации.
 

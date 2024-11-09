@@ -7,7 +7,7 @@
 まず初めに、`fastapi`から`Path`をインポートします:
 
 ```Python hl_lines="1"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ## メタデータの宣言
@@ -17,10 +17,10 @@
 例えば、パスパラメータ`item_id`に対して`title`のメタデータを宣言するには以下のようにします:
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 パスの一部でなければならないので、パスパラメータは常に必須です。
 
@@ -47,7 +47,7 @@ Pythonは「デフォルト」を持たない値の前に「デフォルト」�
 そのため、以下のように関数を宣言することができます:
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ## 必要に応じてパラメータを並び替えるトリック
@@ -59,7 +59,7 @@ Pythonは「デフォルト」を持たない値の前に「デフォルト」�
 Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## 数値の検証: 以上
@@ -69,7 +69,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 ここで、`ge=1`の場合、`item_id`は`1`「より大きい`g`か、同じ`e`」整数でなれけばなりません。
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ## 数値の検証: より大きいと小なりイコール
@@ -80,7 +80,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 * `le`: 小なりイコール（`l`ess than or `e`qual）
 
 ```Python hl_lines="9"
-{!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ## 数値の検証: 浮動小数点、 大なり小なり
@@ -94,7 +94,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 これは<abbr title="未満"><code>lt</code></abbr>も同じです。
 
 ```Python hl_lines="11"
-{!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ## まとめ
@@ -108,7 +108,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 * `lt`: より小さい（`l`ess `t`han）
 * `le`: 以下（`l`ess than or `e`qual）
 
-/// info | "情報"
+/// info | 情報
 
 `Query`、`Path`などは後に共通の`Param`クラスのサブクラスを見ることになります。（使う必要はありません）
 
@@ -116,7 +116,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `fastapi`から`Query`、`Path`などをインポートすると、これらは実際には関数です。
 

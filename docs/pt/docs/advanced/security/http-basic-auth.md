@@ -23,7 +23,7 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  8  12"
-{!> ../../../docs_src/security/tutorial006_an_py39.py!}
+{!> ../../docs_src/security/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -31,21 +31,21 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 //// tab | Python 3.8+
 
 ```Python hl_lines="2  7  11"
-{!> ../../../docs_src/security/tutorial006_an.py!}
+{!> ../../docs_src/security/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="2  6  10"
-{!> ../../../docs_src/security/tutorial006.py!}
+{!> ../../docs_src/security/tutorial006.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@ Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `c
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -79,21 +79,21 @@ Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `c
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  12-24"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="1  11-21"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////
@@ -164,7 +164,7 @@ Após detectar que as credenciais estão incorretas, retorne um `HTTPException` 
 //// tab | Python 3.9+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an_py39.py!}
+{!> ../../docs_src/security/tutorial007_an_py39.py!}
 ```
 
 ////
@@ -172,21 +172,21 @@ Após detectar que as credenciais estão incorretas, retorne um `HTTPException` 
 //// tab | Python 3.8+
 
 ```Python hl_lines="26-30"
-{!> ../../../docs_src/security/tutorial007_an.py!}
+{!> ../../docs_src/security/tutorial007_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="23-27"
-{!> ../../../docs_src/security/tutorial007.py!}
+{!> ../../docs_src/security/tutorial007.py!}
 ```
 
 ////

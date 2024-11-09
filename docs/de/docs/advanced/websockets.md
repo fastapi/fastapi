@@ -39,7 +39,7 @@ In der Produktion hätten Sie eine der oben genannten Optionen.
 Aber es ist die einfachste Möglichkeit, sich auf die Serverseite von WebSockets zu konzentrieren und ein funktionierendes Beispiel zu haben:
 
 ```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 ## Einen `websocket` erstellen
@@ -47,10 +47,10 @@ Aber es ist die einfachste Möglichkeit, sich auf die Serverseite von WebSockets
 Erstellen Sie in Ihrer **FastAPI**-Anwendung einen `websocket`:
 
 ```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.websockets import WebSocket` verwenden.
 
@@ -63,7 +63,7 @@ Sie können auch `from starlette.websockets import WebSocket` verwenden.
 In Ihrer WebSocket-Route können Sie Nachrichten `await`en und Nachrichten senden.
 
 ```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 Sie können Binär-, Text- und JSON-Daten empfangen und senden.
@@ -118,7 +118,7 @@ Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfa
 //// tab | Python 3.10+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -126,7 +126,7 @@ Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfa
 //// tab | Python 3.9+
 
 ```Python hl_lines="68-69  82"
-{!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
+{!> ../../docs_src/websockets/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -134,35 +134,35 @@ Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfa
 //// tab | Python 3.8+
 
 ```Python hl_lines="69-70  83"
-{!> ../../../docs_src/websockets/tutorial002_an.py!}
+{!> ../../docs_src/websockets/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="66-67  79"
-{!> ../../../docs_src/websockets/tutorial002_py310.py!}
+{!> ../../docs_src/websockets/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="68-69  81"
-{!> ../../../docs_src/websockets/tutorial002.py!}
+{!> ../../docs_src/websockets/tutorial002.py!}
 ```
 
 ////
@@ -196,7 +196,7 @@ Dort können Sie einstellen:
 * Die „Item ID“, die im Pfad verwendet wird.
 * Das „Token“, das als Query-Parameter verwendet wird.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass der Query-„Token“ von einer Abhängigkeit verarbeitet wird.
 
@@ -213,7 +213,7 @@ Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_
 //// tab | Python 3.9+
 
 ```Python hl_lines="79-81"
-{!> ../../../docs_src/websockets/tutorial003_py39.py!}
+{!> ../../docs_src/websockets/tutorial003_py39.py!}
 ```
 
 ////
@@ -221,7 +221,7 @@ Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_
 //// tab | Python 3.8+
 
 ```Python hl_lines="81-83"
-{!> ../../../docs_src/websockets/tutorial003.py!}
+{!> ../../docs_src/websockets/tutorial003.py!}
 ```
 
 ////
@@ -238,7 +238,7 @@ Das wird die Ausnahme `WebSocketDisconnect` auslösen und alle anderen Clients e
 Client #1596980209979 left the chat
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die obige Anwendung ist ein minimales und einfaches Beispiel, das zeigt, wie Nachrichten verarbeitet und an mehrere WebSocket-Verbindungen gesendet werden.
 
