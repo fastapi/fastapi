@@ -63,7 +63,7 @@
 }
 ```
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 При вызове `HTTPException` в качестве параметра `detail` можно передавать любое значение, которое может быть преобразовано в JSON, а не только `str`.
 
@@ -109,7 +109,7 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Также можно использовать `from starlette.requests import Request` и `from starlette.responses import JSONResponse`.
 
@@ -166,7 +166,7 @@ path -> item_id
 
 #### `RequestValidationError` или `ValidationError`
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
 
@@ -192,7 +192,7 @@ path -> item_id
 {!../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Можно также использовать `from starlette.responses import PlainTextResponse`.
 

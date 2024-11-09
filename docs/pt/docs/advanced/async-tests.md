@@ -64,7 +64,7 @@ O marcador `@pytest.mark.anyio` informa ao pytest que esta função de teste dev
 {!../../docs_src/async_tests/test_main.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Note que a função de teste é `async def` agora, no lugar de apenas `def` como quando estávamos utilizando o `TestClient` anteriormente.
 
@@ -84,13 +84,13 @@ response = client.get('/')
 
 ...que nós utilizamos para fazer as nossas requisições utilizando o `TestClient`.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Note que nós estamos utilizando async/await com o novo `AsyncClient` - a requisição é assíncrona.
 
 ///
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Se a sua aplicação depende dos eventos de vida útil (*lifespan*), o `AsyncClient` não acionará estes eventos. Para garantir que eles são acionados, utilize o `LifespanManager` do <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
 
@@ -100,7 +100,7 @@ Se a sua aplicação depende dos eventos de vida útil (*lifespan*), o `AsyncCli
 
 Como a função de teste agora é assíncrona, você pode chamar (e `esperar`) outras funções `async` além de enviar requisições para a sua aplicação FastAPI em seus testes, exatamente como você as chamaria em qualquer outro lugar do seu código.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você se deparar com um `RuntimeError: Task attached to a different loop` ao integrar funções assíncronas em seus testes (e.g. ao utilizar o <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MotorClient do MongoDB</a>) Lembre-se de instanciar objetos que precisam de um loop de eventos (*event loop*) apenas em funções assíncronas, e.g. um *"callback"* `'@app.on_event("startup")`.
 

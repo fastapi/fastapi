@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "備考"
+/// note | 備考
 
 `async def` を使用して作成された関数の内部でしか `await` は使用できません。
 
@@ -358,7 +358,7 @@ async def read_burgers():
 
 ## 非常に発展的な技術的詳細
 
-/// warning | "注意"
+/// warning | 注意
 
 恐らくスキップしても良いでしょう。
 

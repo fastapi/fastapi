@@ -35,7 +35,7 @@
 
 把*路径操作函数*的参数类型声明为 `Request`，**FastAPI** 就能把 `Request` 传递到参数里。
 
-/// tip | "提示"
+/// tip | 提示
 
 注意，本例除了声明请求参数之外，还声明了路径参数。
 
@@ -49,7 +49,7 @@
 
 更多细节详见 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette 官档 - `Request` 对象</a>。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 您也可以使用 `from starlette.requests import Request`。
 
