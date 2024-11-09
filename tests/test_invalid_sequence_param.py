@@ -13,7 +13,7 @@ def test_invalid_sequence():
             title: str
 
         @app.get("/items/")
-        def read_items(q: List[Item] = Query(None)):
+        def read_items(q: List[Item] = Query(default=None)):
             pass  # pragma: no cover
 
 
@@ -25,7 +25,7 @@ def test_invalid_tuple():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Tuple[Item, Item] = Query(None)):
+        def read_items(q: Tuple[Item, Item] = Query(default=None)):
             pass  # pragma: no cover
 
 
@@ -37,7 +37,7 @@ def test_invalid_dict():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Dict[str, Item] = Query(None)):
+        def read_items(q: Dict[str, Item] = Query(default=None)):
             pass  # pragma: no cover
 
 
@@ -49,5 +49,5 @@ def test_invalid_simple_dict():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Optional[dict] = Query(None)):
+        def read_items(q: Optional[dict] = Query(default=None)):
             pass  # pragma: no cover

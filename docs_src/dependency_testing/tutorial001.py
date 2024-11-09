@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
@@ -6,7 +6,9 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 
-async def common_parameters(q: Optional[str] = None, skip: int = 0, limit: int = 100):
+async def common_parameters(
+    q: Union[str, None] = None, skip: int = 0, limit: int = 100
+):
     return {"q": q, "skip": skip, "limit": limit}
 
 
@@ -23,7 +25,7 @@ async def read_users(commons: dict = Depends(common_parameters)):
 client = TestClient(app)
 
 
-async def override_dependency(q: Optional[str] = None):
+async def override_dependency(q: Union[str, None] = None):
     return {"q": q, "skip": 5, "limit": 10}
 
 

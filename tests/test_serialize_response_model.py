@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    name: str = Field(..., alias="aliased_name")
+    name: str = Field(alias="aliased_name")
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
 

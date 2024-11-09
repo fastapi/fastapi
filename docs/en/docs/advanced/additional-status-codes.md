@@ -14,21 +14,25 @@ But you also want it to accept new items. And when the items didn't exist before
 
 To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
 
-```Python hl_lines="4  23"
-{!../../../docs_src/additional_status_codes/tutorial001.py!}
-```
+{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-!!! warning
-    When you return a `Response` directly, like in the example above, it will be returned directly.
+/// warning
 
-    It won't be serialized with a model, etc.
-    
-    Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
+When you return a `Response` directly, like in the example above, it will be returned directly.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+It won't be serialized with a model, etc.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
+
+///
+
+/// note | Technical Details
+
+You could also use `from starlette.responses import JSONResponse`.
+
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+
+///
 
 ## OpenAPI and API docs
 
