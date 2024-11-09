@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/tutorial/security/get-current-user.md`. PR [#12645](https://github.com/fastapi/fastapi/pull/12645) by [@OCE1960](https://github.com/OCE1960).
 * 📝 Update includes for `docs/en/docs/tutorial/security/first-steps.md`. PR [#12643](https://github.com/fastapi/fastapi/pull/12643) by [@OCE1960](https://github.com/OCE1960).
 * 📝 Update includes in `docs/de/docs/advanced/additional-responses.md`. PR [#12821](https://github.com/fastapi/fastapi/pull/12821) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/en/docs/advanced/generate-clients.md`. PR [#12642](https://github.com/fastapi/fastapi/pull/12642) by [@AyushSinghal1794](https://github.com/AyushSinghal1794).
