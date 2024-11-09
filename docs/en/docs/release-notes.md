@@ -46,6 +46,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/environment-variables.md`. PR [#12784](https://github.com/fastapi/fastapi/pull/12784) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Korean translation for `ko/docs/advanced/response-headers.md`. PR [#12740](https://github.com/fastapi/fastapi/pull/12740) by [@kwang1215](https://github.com/kwang1215).
 * 🌐 Add Chinese translation for `docs/zh/docs/virtual-environments.md`. PR [#12790](https://github.com/fastapi/fastapi/pull/12790) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Korean translation for `/docs/ko/docs/environment-variables.md`. PR [#12526](https://github.com/fastapi/fastapi/pull/12526) by [@Tolerblanc](https://github.com/Tolerblanc).
