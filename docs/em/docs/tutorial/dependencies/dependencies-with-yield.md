@@ -10,7 +10,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 ///
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 🙆 🔢 👈 ☑ ⚙️ ⏮️:
 
@@ -97,7 +97,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 **FastAPI** 🔜 ⚒ 💭 🌐 🏃 ☑ ✔.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👉 👷 👏 🐍 <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">🔑 👨‍💼</a>.
 

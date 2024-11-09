@@ -32,7 +32,7 @@ OAuth2 还支持客户端发送**`scope`**表单字段。
 * 脸书和 Instagram 使用 `instagram_basic`
 * 谷歌使用 `https://www.googleapis.com/auth/drive`
 
-/// info | "说明"
+/// info | 说明
 
 OAuth2 中，**作用域**只是声明指定权限的字符串。
 
@@ -63,7 +63,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 * 可选的 `scope` 字段，由多个空格分隔的字符串组成的长字符串
 * 可选的 `grant_type`
 
-/// tip | "提示"
+/// tip | 提示
 
 实际上，OAuth2 规范*要求* `grant_type` 字段使用固定值 `password`，但 `OAuth2PasswordRequestForm` 没有作强制约束。
 
@@ -74,7 +74,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 * 可选的 `client_id`（本例未使用）
 * 可选的 `client_secret`（本例未使用）
 
-/// info | "说明"
+/// info | 说明
 
 `OAuth2PasswordRequestForm` 与 `OAuth2PasswordBearer` 一样，都不是 FastAPI 的特殊类。
 
@@ -88,7 +88,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 ### 使用表单数据
 
-/// tip | "提示"
+/// tip | 提示
 
 `OAuth2PasswordRequestForm` 类依赖项的实例没有以空格分隔的长字符串属性 `scope`，但它支持 `scopes` 属性，由已发送的 scope 字符串列表组成。
 
@@ -150,7 +150,7 @@ UserInDB(
 )
 ```
 
-/// info | "说明"
+/// info | 说明
 
 `user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#user_indict){.internal-link target=_blank}。
 
@@ -166,7 +166,7 @@ UserInDB(
 
 本例只是简单的演示，返回的 Token 就是 `username`，但这种方式极不安全。
 
-/// tip | "提示"
+/// tip | 提示
 
 下一章介绍使用哈希密码和 <abbr title="JSON Web Tokens">JWT</abbr> Token 的真正安全机制。
 
@@ -178,7 +178,7 @@ UserInDB(
 {!../../docs_src/security/tutorial003.py!}
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 按规范的要求，应像本示例一样，返回带有 `access_token` 和 `token_type` 的 JSON 对象。
 
@@ -206,7 +206,7 @@ UserInDB(
 {!../../docs_src/security/tutorial003.py!}
 ```
 
-/// info | "说明"
+/// info | 说明
 
 此处返回值为 `Bearer` 的响应头 `WWW-Authenticate` 也是规范的一部分。
 

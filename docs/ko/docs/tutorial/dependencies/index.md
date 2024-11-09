@@ -57,7 +57,7 @@
 
 //// tab | Python 3.10+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -71,7 +71,7 @@
 
 //// tab | Python 3.8+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -101,7 +101,7 @@
 
 그 후 위의 값을 포함한 `dict` 자료형으로 반환할 뿐입니다.
 
-/// info | "정보"
+/// info | 정보
 
 FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를 사용하기 권장합니다) 추가했습니다.
 
@@ -139,7 +139,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 //// tab | Python 3.10+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -153,7 +153,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 //// tab | Python 3.8+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -195,7 +195,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 //// tab | Python 3.10+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -209,7 +209,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 //// tab | Python 3.8+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
@@ -231,7 +231,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 그리고 그 함수는 *경로 작동 함수*가 작동하는 것과 같은 방식으로 매개변수를 받습니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 여러분은 다음 장에서 함수를 제외하고서, "다른 것들"이 어떻게 의존성으로 사용되는지 알게 될 것입니다.
 
@@ -256,7 +256,7 @@ common_parameters --> read_users
 
 이렇게 하면 공용 코드를 한번만 적어도 되며, **FastAPI**는 *경로 작동*을 위해 이에 대한 호출을 처리합니다.
 
-/// check | "확인"
+/// check | 확인
 
 특별한 클래스를 만들지 않아도 되며, 이러한 것 혹은 비슷한 종류를 **FastAPI**에 "등록"하기 위해 어떤 곳에 넘겨주지 않아도 됩니다.
 
@@ -300,7 +300,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 ////
 
-/// tip | "팁"
+/// tip | 팁
 
 이는 그저 표준 파이썬이고 "type alias"라고 부르며 사실 **FastAPI**에 국한되는 것은 아닙니다.
 
@@ -322,7 +322,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 아무 문제 없습니다. **FastAPI**는 무엇을 할지 알고 있습니다.
 
-/// note | "참고"
+/// note | 참고
 
 잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
 

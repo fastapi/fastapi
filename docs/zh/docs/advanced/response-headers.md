@@ -25,7 +25,7 @@
 ```
 
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以使用`from starlette.responses import Response`或`from starlette.responses import JSONResponse`。
 

@@ -8,7 +8,7 @@ Sua API quase sempre irá enviar um corpo na **resposta**. Mas os clientes não 
 
 Para declarar um corpo da **requisição**, você utiliza os modelos do <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> com todos os seus poderes e benefícios.
 
-/// info | "Informação"
+/// info | Informação
 
 Para enviar dados, você deve usar utilizar um dos métodos: `POST` (Mais comum), `PUT`, `DELETE` ou `PATCH`.
 
@@ -113,7 +113,7 @@ Mas você terá o mesmo suporte do editor no <a href="https://www.jetbrains.com/
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você utiliza o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como editor, você pode utilizar o <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Plugin do Pydantic para o PyCharm </a>.
 
@@ -161,7 +161,7 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 * Se o parâmetro é de um **tipo único** (como `int`, `float`, `str`, `bool`, etc) será interpretado como um parâmetro de **consulta**.
 * Se o parâmetro é declarado como um **modelo Pydantic**, será interpretado como o **corpo** da requisição.
 
-/// note | "Observação"
+/// note | Observação
 
 O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
