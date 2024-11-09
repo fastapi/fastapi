@@ -3,7 +3,7 @@
 最もシンプルなFastAPIファイルは以下のようになります:
 
 ```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 これを`main.py`にコピーします。
@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-/// note | "備考"
+/// note | 備考
 
 `uvicorn main:app`は以下を示します:
 
@@ -134,12 +134,12 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 ### Step 1: `FastAPI`をインポート
 
 ```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
@@ -150,7 +150,7 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 ### Step 2: `FastAPI`の「インスタンス」を生成
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
@@ -171,7 +171,7 @@ $ uvicorn main:app --reload
 以下のようなアプリを作成したとき:
 
 ```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
+{!../../docs_src/first_steps/tutorial002.py!}
 ```
 
 そして、それを`main.py`ファイルに置き、次のように`uvicorn`を呼び出します:
@@ -204,7 +204,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "情報"
+/// info | 情報
 
 「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
@@ -250,14 +250,14 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 #### *パスオペレーションデコレータ*を定義
 
 ```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 `@app.get("/")`は直下の関数が下記のリクエストの処理を担当することを**FastAPI**に伝えます:
 
 * パス `/`
 * <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
 
-/// info | "`@decorator` について"
+/// info | `@decorator` について
 
 Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
@@ -284,7 +284,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 各オペレーション (HTTPメソッド)は自由に使用できます。
 
@@ -305,7 +305,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 * **関数**: 「デコレータ」の直下にある関数 (`@app.get("/")`の直下) です。
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 これは、Pythonの関数です。
@@ -319,10 +319,10 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 `async def`の代わりに通常の関数として定義することもできます:
 
 ```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
+{!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 違いが分からない場合は、[Async: *"急いでいますか？"*](../async.md#_1){.internal-link target=_blank}を確認してください。
 
@@ -331,7 +331,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 ### Step 5: コンテンツの返信
 
 ```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
+{!../../docs_src/first_steps/tutorial001.py!}
 ```
 
 `dict`、`list`、`str`、`int`などを返すことができます。
