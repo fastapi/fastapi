@@ -37,13 +37,13 @@ Além disso, em versões anteriores, o objeto `request` era passado como parte d
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
 
 ///
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Você também poderia usar `from starlette.templating import Jinja2Templates`.
 

@@ -12,7 +12,7 @@ Der Inhalt, den Sie von Ihrer *Pfadoperation-Funktion* zurückgeben, wird in die
 
 Und wenn diese `Response` einen JSON-Medientyp (`application/json`) hat, wie es bei `JSONResponse` und `UJSONResponse` der Fall ist, werden die von Ihnen zurückgegebenen Daten automatisch mit jedem Pydantic `response_model` konvertiert (und gefiltert), das Sie im *Pfadoperation-Dekorator* deklariert haben.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Wenn Sie eine Response-Klasse ohne Medientyp verwenden, erwartet FastAPI, dass Ihre Response keinen Inhalt hat, und dokumentiert daher das Format der Response nicht in deren generierter OpenAPI-Dokumentation.
 
@@ -44,7 +44,7 @@ Und er wird als solcher in OpenAPI dokumentiert.
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die `ORJSONResponse` ist derzeit nur in FastAPI verfügbar, nicht in Starlette.
 
@@ -81,7 +81,7 @@ Das gleiche Beispiel von oben, das eine `HTMLResponse` zurückgibt, könnte so a
 {!../../docs_src/custom_response/tutorial003.py!}
 ```
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Eine `Response`, die direkt von Ihrer *Pfadoperation-Funktion* zurückgegeben wird, wird in OpenAPI nicht dokumentiert (zum Beispiel wird der `Content-Type` nicht dokumentiert) und ist in der automatischen interaktiven Dokumentation nicht sichtbar.
 
@@ -121,7 +121,7 @@ Hier sind einige der verfügbaren Responses.
 
 Bedenken Sie, dass Sie `Response` verwenden können, um alles andere zurückzugeben, oder sogar eine benutzerdefinierte Unterklasse zu erstellen.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
@@ -174,7 +174,7 @@ Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjs
 
 Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 `ujson` ist bei der Behandlung einiger Sonderfälle weniger sorgfältig als Pythons eingebaute Implementierung.
 
@@ -184,7 +184,7 @@ Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajs
 {!../../docs_src/custom_response/tutorial001.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Möglicherweise ist `ORJSONResponse` eine schnellere Alternative.
 
@@ -249,7 +249,7 @@ Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbei
 
     Auf diese Weise können wir das Ganze in einen `with`-Block einfügen und so sicherstellen, dass das dateiartige Objekt nach Abschluss geschlossen wird.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass wir, da wir Standard-`open()` verwenden, welches `async` und `await` nicht unterstützt, hier die Pfadoperation mit normalen `def` deklarieren.
 
@@ -322,7 +322,7 @@ Im folgenden Beispiel verwendet **FastAPI** standardmäßig `ORJSONResponse` in 
 {!../../docs_src/custom_response/tutorial010.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können dennoch weiterhin `response_class` in *Pfadoperationen* überschreiben, wie bisher.
 
