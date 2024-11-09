@@ -10,7 +10,7 @@ Vamos utilizar essa aplicação como exemplo:
 
 O parâmetro de consulta `q` é do tipo `Union[str, None]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
-/// note | "Observação"
+/// note | Observação
 
 O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
@@ -54,7 +54,7 @@ q: Union[str, None] = None
 
 Mas o declara explicitamente como um parâmetro de consulta.
 
-/// info | "Informação"
+/// info | Informação
 
 Tenha em mente que o FastAPI se preocupa com a parte:
 
@@ -118,7 +118,7 @@ Vamos dizer que você queira que o parâmetro de consulta `q` tenha um `min_leng
 {!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-/// note | "Observação"
+/// note | Observação
 
 O parâmetro torna-se opcional quando possui um valor padrão.
 
@@ -150,7 +150,7 @@ Então, quando você precisa declarar um parâmetro obrigatório utilizando o `Q
 {!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-/// info | "Informação"
+/// info | Informação
 
 Se você nunca viu os `...` antes: é um valor único especial, faz <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte do Python e é chamado "Ellipsis"</a>.
 
@@ -187,7 +187,7 @@ Assim, a resposta para essa URL seria:
 }
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Para declarar um parâmetro de consulta com o tipo `list`, como no exemplo acima, você precisa usar explicitamente o `Query`, caso contrário será interpretado como um corpo da requisição.
 
@@ -230,7 +230,7 @@ Você também pode utilizar o tipo `list` diretamente em vez de `List[str]`:
 {!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-/// note | "Observação"
+/// note | Observação
 
 Tenha em mente que neste caso, o FastAPI não irá validar os conteúdos da lista.
 
@@ -244,7 +244,7 @@ Você pode adicionar mais informações sobre o parâmetro.
 
 Essa informações serão inclusas no esquema do OpenAPI e utilizado pela documentação interativa e ferramentas externas.
 
-/// note | "Observação"
+/// note | Observação
 
 Tenha em mente que cada ferramenta oferece diferentes níveis de suporte ao OpenAPI.
 
