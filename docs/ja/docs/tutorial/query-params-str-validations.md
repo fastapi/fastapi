@@ -10,7 +10,7 @@
 
 クエリパラメータ `q` は `Optional[str]` 型で、`None` を許容する `str` 型を意味しており、デフォルトは `None` です。そのため、FastAPIはそれが必須ではないと理解します。
 
-/// note | "備考"
+/// note | 備考
 
 FastAPIは、 `q` はデフォルト値が `=None` であるため、必須ではないと理解します。
 
@@ -54,7 +54,7 @@ q: Optional[str] = None
 
 しかし、これはクエリパラメータとして明示的に宣言しています。
 
-/// info | "情報"
+/// info | 情報
 
 FastAPIは以下の部分を気にすることを覚えておいてください:
 
@@ -118,7 +118,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 {!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 デフォルト値を指定すると、パラメータは任意になります。
 
@@ -150,7 +150,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 {!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 これまで`...`を見たことがない方へ: これは特殊な単一値です。<a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Pythonの一部であり、"Ellipsis"と呼ばれています</a>。
 
@@ -187,7 +187,7 @@ http://localhost:8000/items/?q=foo&q=bar
 }
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 上述の例のように、`list`型のクエリパラメータを宣言するには明示的に`Query`を使用する必要があります。そうしない場合、リクエストボディと解釈されます。
 
@@ -230,7 +230,7 @@ http://localhost:8000/items/
 {!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 この場合、FastAPIはリストの内容をチェックしないことを覚えておいてください。
 
@@ -244,7 +244,7 @@ http://localhost:8000/items/
 
 その情報は、生成されたOpenAPIに含まれ、ドキュメントのユーザーインターフェースや外部のツールで使用されます。
 
-/// note | "備考"
+/// note | 備考
 
 ツールによってOpenAPIのサポートのレベルが異なる可能性があることを覚えておいてください。
 

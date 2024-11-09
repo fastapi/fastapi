@@ -414,7 +414,7 @@ from .routers.users import router
 
 它将包含来自该路由器的所有路由作为其一部分。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 实际上，它将在内部为声明在 `APIRouter` 中的每个*路径操作*创建一个*路径操作*。
 
@@ -477,7 +477,7 @@ from .routers.users import router
 
 它将与通过 `app.include_router()` 添加的所有其他*路径操作*一起正常运行。
 
-/// info | "特别的技术细节"
+/// info | 特别的技术细节
 
 **注意**：这是一个非常技术性的细节，你也许可以**直接跳过**。
 

@@ -2,7 +2,7 @@
 
 FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
-/// info | "说明"
+/// info | 说明
 
 接收上传文件或表单数据，要预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
@@ -28,7 +28,7 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
 声明文件可以使用 `bytes` 或 `UploadFile` 。
 
-/// warning | "警告"
+/// warning | 警告
 
 可在一个*路径操作*中声明多个 `File` 与 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码为 `multipart/form-data`，不是 `application/json`。
 
