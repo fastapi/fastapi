@@ -92,9 +92,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 首先，新建包含一些用于回调的 `APIRouter`。
 
-```Python hl_lines="5  26"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py! hl[5 26] *}
 
 ### 创建回调*路径操作*
 
@@ -105,9 +103,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 声明要接收的请求体，例如，`body: InvoiceEvent`
 * 还要声明要返回的响应，例如，`response_model=InvoiceEventReceived`
 
-```Python hl_lines="17-19  22-23  29-33"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[17:19,22:23,29:33] *}
 
 回调*路径操作*与常规*路径操作*有两点主要区别：
 
