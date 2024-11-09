@@ -93,7 +93,7 @@ Les principales fonctionnalités sont :
 
 "_Honnêtement, ce que vous avez construit a l'air super solide et élégant. A bien des égards, c'est comme ça que je voulais que **Hug** soit - c'est vraiment inspirant de voir quelqu'un construire ça._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong> Créateur de <a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong> Créateur de <a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

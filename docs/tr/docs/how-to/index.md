@@ -6,7 +6,7 @@ Bu fikirlerin büyük bir kısmı aşağı yukarı **bağımsız** olacaktır, �
 
 Projeniz için ilginç ve yararlı görünen bir şey varsa devam edin ve inceleyin, aksi halde bunları atlayabilirsiniz.
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 **FastAPI**'ı düzgün (ve önerilen) şekilde öğrenmek istiyorsanız [Öğretici - Kullanıcı Rehberi](../tutorial/index.md){.internal-link target=_blank}'ni bölüm bölüm okuyun.
 

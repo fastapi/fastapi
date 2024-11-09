@@ -31,7 +31,7 @@ And then **FastAPI** will call that override instead of the original dependency.
 //// tab | Python 3.10+
 
 ```Python hl_lines="26-27  30"
-{!> ../../../docs_src/dependency_testing/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ And then **FastAPI** will call that override instead of the original dependency.
 //// tab | Python 3.9+
 
 ```Python hl_lines="28-29  32"
-{!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -47,7 +47,7 @@ And then **FastAPI** will call that override instead of the original dependency.
 //// tab | Python 3.8+
 
 ```Python hl_lines="29-30  33"
-{!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an.py!}
 ```
 
 ////
@@ -61,7 +61,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="24-25  28"
-{!> ../../../docs_src/dependency_testing/tutorial001_py310.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_py310.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="28-29  32"
-{!> ../../../docs_src/dependency_testing/tutorial001.py!}
+{!> ../../docs_src/dependency_testing/tutorial001.py!}
 ```
 
 ////

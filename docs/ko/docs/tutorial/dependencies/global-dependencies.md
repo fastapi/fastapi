@@ -9,7 +9,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
 ```
 
 ////
@@ -17,21 +17,21 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial012_an.py!}
+{!> ../../docs_src/dependencies/tutorial012_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8 Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial012.py!}
+{!> ../../docs_src/dependencies/tutorial012.py!}
 ```
 
 ////
