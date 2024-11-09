@@ -9,7 +9,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 //// tab | Python 3.9+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -122,7 +122,7 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 //// tab | Python 3.10+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -130,7 +130,7 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 //// tab | Python 3.9+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -138,7 +138,7 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 //// tab | Python 3.8+
 
 ```Python hl_lines="12-16"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
@@ -152,7 +152,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9-13"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
@@ -166,7 +166,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -176,7 +176,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -184,7 +184,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -192,7 +192,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 //// tab | Python 3.8+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
@@ -206,7 +206,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
@@ -220,7 +220,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -230,7 +230,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -238,7 +238,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -246,7 +246,7 @@ Prefer to use the `Annotated` version if possible.
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
@@ -260,7 +260,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
@@ -274,7 +274,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -296,7 +296,7 @@ Now you can declare your dependency using this class.
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -304,7 +304,7 @@ Now you can declare your dependency using this class.
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -312,7 +312,7 @@ Now you can declare your dependency using this class.
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
@@ -326,7 +326,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
@@ -340,7 +340,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -381,7 +381,7 @@ The last `CommonQueryParams`, in:
 
 ...is what **FastAPI** will actually use to know what is the dependency.
 
-From it is that FastAPI will extract the declared parameters and that is what FastAPI will actually call.
+It is from this one that FastAPI will extract the declared parameters and that is what FastAPI will actually call.
 
 ---
 
@@ -440,7 +440,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -448,7 +448,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -456,7 +456,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial003_an.py!}
+{!> ../../docs_src/dependencies/tutorial003_an.py!}
 ```
 
 ////
@@ -470,7 +470,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial003_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_py310.py!}
 ```
 
 ////
@@ -484,7 +484,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003.py!}
+{!> ../../docs_src/dependencies/tutorial003.py!}
 ```
 
 ////
@@ -578,7 +578,7 @@ The same example would then look like:
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -586,7 +586,7 @@ The same example would then look like:
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -594,7 +594,7 @@ The same example would then look like:
 //// tab | Python 3.8+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial004_an.py!}
+{!> ../../docs_src/dependencies/tutorial004_an.py!}
 ```
 
 ////
@@ -608,7 +608,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial004_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_py310.py!}
 ```
 
 ////
@@ -622,7 +622,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004.py!}
+{!> ../../docs_src/dependencies/tutorial004.py!}
 ```
 
 ////

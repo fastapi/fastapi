@@ -23,7 +23,7 @@ Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ
 Hãy bắt đầu với một ví dụ đơn giản:
 
 ```Python
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 Kết quả khi gọi chương trình này:
@@ -39,7 +39,7 @@ Hàm thực hiện như sau:
 * <abbr title="Đặt chúng lại với nhau thành một. Với các nội dung lần lượt.">Nối</abbr> chúng lại với nhau bằng một kí tự trắng ở giữa.
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 ### Sửa đổi
@@ -83,7 +83,7 @@ Chính là nó.
 Những thứ đó là "type hints":
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial002.py!}
+{!../../docs_src/python_types/tutorial002.py!}
 ```
 
 Đó không giống như khai báo những giá trị mặc định giống như:
@@ -113,7 +113,7 @@ Với cái đó, bạn có thể cuộn, nhìn thấy các lựa chọn, cho đ�
 Kiểm tra hàm này, nó đã có gợi ý kiểu dữ liệu:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial003.py!}
+{!../../docs_src/python_types/tutorial003.py!}
 ```
 
 Bởi vì trình soạn thảo biết kiểu dữ liệu của các biến, bạn không chỉ có được completion, bạn cũng được kiểm tra lỗi:
@@ -123,7 +123,7 @@ Bởi vì trình soạn thảo biết kiểu dữ liệu của các biến, bạ
 Bây giờ bạn biết rằng bạn phải sửa nó, chuyển `age` sang một xâu với `str(age)`:
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial004.py!}
+{!../../docs_src/python_types/tutorial004.py!}
 ```
 
 ## Khai báo các kiểu dữ liệu
@@ -144,7 +144,7 @@ Bạn có thể sử dụng, ví dụ:
 * `bytes`
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
+{!../../docs_src/python_types/tutorial005.py!}
 ```
 
 ### Các kiểu dữ liệu tổng quát với tham số kiểu dữ liệu
@@ -182,7 +182,7 @@ Tương tự kiểu dữ liệu `list`.
 Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệu có sẵn, bạn đặt chúng trong các dấu ngoặc vuông:
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial006_py39.py!}
+{!> ../../docs_src/python_types/tutorial006_py39.py!}
 ```
 
 ////
@@ -192,7 +192,7 @@ Như danh sách là một kiểu dữ liệu chứa một vài kiểu dữ liệ
 Từ `typing`, import `List` (với chữ cái `L` viết hoa):
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial006.py!}
+{!> ../../docs_src/python_types/tutorial006.py!}
 ```
 
 Khai báo biến với cùng dấu hai chấm (`:`).
@@ -202,7 +202,7 @@ Tương tự như kiểu dữ liệu, `List` bạn import từ `typing`.
 Như danh sách là một kiểu dữ liệu chứa các kiểu dữ liệu có sẵn, bạn đặt chúng bên trong dấu ngoặc vuông:
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/python_types/tutorial006.py!}
+{!> ../../docs_src/python_types/tutorial006.py!}
 ```
 
 ////
@@ -240,7 +240,7 @@ Bạn sẽ làm điều tương tự để khai báo các `tuple` và  các `set
 //// tab | Python 3.9+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial007_py39.py!}
+{!> ../../docs_src/python_types/tutorial007_py39.py!}
 ```
 
 ////
@@ -248,7 +248,7 @@ Bạn sẽ làm điều tương tự để khai báo các `tuple` và  các `set
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial007.py!}
+{!> ../../docs_src/python_types/tutorial007.py!}
 ```
 
 ////
@@ -269,7 +269,7 @@ Tham số kiểu dữ liệu thứ hai dành cho giá trị của `dict`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial008_py39.py!}
+{!> ../../docs_src/python_types/tutorial008_py39.py!}
 ```
 
 ////
@@ -277,7 +277,7 @@ Tham số kiểu dữ liệu thứ hai dành cho giá trị của `dict`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial008.py!}
+{!> ../../docs_src/python_types/tutorial008.py!}
 ```
 
 ////
@@ -302,7 +302,7 @@ Trong Python 3.10 cũng có một **cú pháp mới** mà bạn có thể đặt
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
 ////
@@ -310,7 +310,7 @@ Trong Python 3.10 cũng có một **cú pháp mới** mà bạn có thể đặt
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial008b.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 ////
@@ -324,7 +324,7 @@ Bạn có thể khai báo một giá trị có thể có một kiểu dữ liệ
 Trong Python 3.6 hoặc lớn hơn (bao gồm Python 3.10) bạn có thể khai báo nó bằng các import và sử dụng `Optional` từ mô đun `typing`.
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009.py!}
 ```
 
 Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo giúp bạn phát hiện các lỗi mà bạn có thể gặp như một giá trị luôn là một `str`, trong khi thực tế nó rất có thể là `None`.
@@ -336,7 +336,7 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009_py310.py!}
 ```
 
 ////
@@ -344,7 +344,7 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial009.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -352,7 +352,7 @@ Sử dụng `Optional[str]` thay cho `str` sẽ cho phép trình soạn thảo g
 //// tab | Python 3.8+ alternative
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial009b.py!}
+{!> ../../docs_src/python_types/tutorial009b.py!}
 ```
 
 ////
@@ -375,7 +375,7 @@ Nó chỉ là về các từ và tên. Nhưng những từ đó có thể ảnh 
 Cho một ví dụ, hãy để ý hàm này:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009c.py!}
+{!../../docs_src/python_types/tutorial009c.py!}
 ```
 
 Tham số `name` được định nghĩa là `Optional[str]`, nhưng nó **không phải là tùy chọn**, bạn không thể gọi hàm mà không có tham số:
@@ -393,7 +393,7 @@ say_hi(name=None)  # This works, None is valid 🎉
 Tin tốt là, khi bạn sử dụng Python 3.10, bạn sẽ không phải lo lắng về điều đó, bạn sẽ có thể sử dụng `|` để định nghĩa hợp của các kiểu dữ liệu một cách đơn giản:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009c_py310.py!}
+{!../../docs_src/python_types/tutorial009c_py310.py!}
 ```
 
 Và sau đó, bạn sẽ không phải lo rằng những cái tên như `Optional` và `Union`. 😎
@@ -458,13 +458,13 @@ Bạn cũng có thể khai báo một lớp như là kiểu dữ liệu của m�
 Hãy nói rằng bạn muốn có một lớp `Person` với một tên:
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 Sau đó bạn có thể khai báo một biến có kiểu là `Person`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 Và lại một lần nữa, bạn có được tất cả sự hỗ trợ từ trình soạn thảo:
@@ -492,7 +492,7 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
 //// tab | Python 3.10+
 
 ```Python
-{!> ../../../docs_src/python_types/tutorial011_py310.py!}
+{!> ../../docs_src/python_types/tutorial011_py310.py!}
 ```
 
 ////
@@ -500,7 +500,7 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/python_types/tutorial011_py39.py!}
+{!> ../../docs_src/python_types/tutorial011_py39.py!}
 ```
 
 ////
@@ -508,7 +508,7 @@ Một ví dụ từ tài liệu chính thức của Pydantic:
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/python_types/tutorial011.py!}
+{!> ../../docs_src/python_types/tutorial011.py!}
 ```
 
 ////
@@ -538,7 +538,7 @@ Python cũng có một tính năng cho phép đặt **metadata bổ sung** trong
 Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đó bạn có thể import nó từ `typing`.
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial013_py39.py!}
+{!> ../../docs_src/python_types/tutorial013_py39.py!}
 ```
 
 ////
@@ -550,7 +550,7 @@ Trong Python 3.9, `Annotated` là một phần của thư viện chuẩn, do đ�
 Nó đã được cài đặt sẵng cùng với **FastAPI**.
 
 ```Python hl_lines="1  4"
-{!> ../../../docs_src/python_types/tutorial013.py!}
+{!> ../../docs_src/python_types/tutorial013.py!}
 ```
 
 ////

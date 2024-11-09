@@ -23,7 +23,7 @@
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -31,28 +31,28 @@
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
 
 ## Запуск
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Вначале, установите библиотеку <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
@@ -82,7 +82,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Кнопка авторизации!"
+/// check | Кнопка авторизации!
 
 У вас уже появилась новая кнопка "Authorize".
 
@@ -94,7 +94,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Неважно, что вы введете в форму, она пока не будет работать. Но мы к этому еще придем.
 
@@ -140,7 +140,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 
 В данном примере мы будем использовать **OAuth2**, с аутентификацией по паролю, используя токен **Bearer**. Для этого мы используем класс `OAuth2PasswordBearer`.
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Токен "bearer" - не единственный вариант, но для нашего случая он является наилучшим.
 
@@ -155,7 +155,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 //// tab | Python 3.9+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -163,26 +163,26 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 //// tab | Python 3.8+
 
 ```Python  hl_lines="7"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Здесь `tokenUrl="token"` ссылается на относительный URL `token`, который мы еще не создали. Поскольку это относительный URL, он эквивалентен `./token`.
 
@@ -196,7 +196,7 @@ OAuth2 был разработан для того, чтобы бэкэнд ил
 
 Вскоре мы создадим и саму операцию пути.
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Если вы очень строгий "питонист", то вам может не понравиться стиль названия параметра `tokenUrl` вместо `token_url`.
 
@@ -221,7 +221,7 @@ oauth2_scheme(some, parameters)
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -229,21 +229,21 @@ oauth2_scheme(some, parameters)
 //// tab | Python 3.8+
 
 ```Python  hl_lines="11"
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Предпочтительнее использовать версию с аннотацией, если это возможно.
 
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
@@ -252,7 +252,7 @@ oauth2_scheme(some, parameters)
 
 **FastAPI** будет знать, что он может использовать эту зависимость для определения "схемы безопасности" в схеме OpenAPI (и автоматической документации по API).
 
-/// info | "Технические детали"
+/// info | Технические детали
 
 **FastAPI** будет знать, что он может использовать класс `OAuth2PasswordBearer` (объявленный в зависимости) для определения схемы безопасности в OpenAPI, поскольку он наследуется от `fastapi.security.oauth2.OAuth2`, который, в свою очередь, наследуется от `fastapi.security.base.SecurityBase`.
 

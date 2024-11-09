@@ -21,7 +21,7 @@ Você pode declarar um parâmetro do tipo `Response` em sua *função de operaç
 E então você pode definir o `status_code` neste objeto de retorno temporal.
 
 ```Python hl_lines="1  9  12"
-{!../../../docs_src/response_change_status_code/tutorial001.py!}
+{!../../docs_src/response_change_status_code/tutorial001.py!}
 ```
 
 E então você pode retornar qualquer objeto que você precise, como você faria normalmente (um `dict`, um modelo de banco de dados, etc.).

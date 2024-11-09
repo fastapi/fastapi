@@ -1,6 +1,6 @@
 # 配置 Swagger UI
 
-你可以配置一些额外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">Swagger UI 参数</a>.
+你可以配置一些额外的 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI 参数</a>.
 
 如果需要配置它们，可以在创建 `FastAPI()` 应用对象时或调用 `get_swagger_ui_html()` 函数时传递 `swagger_ui_parameters` 参数。
 
@@ -19,7 +19,7 @@ FastAPI会将这些配置转换为 **JSON**，使其与 JavaScript 兼容，因�
 但是你可以通过设置 `syntaxHighlight` 为 `False` 来禁用 Swagger UI 中的语法高亮：
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial001.py!}
+{!../../docs_src/configure_swagger_ui/tutorial001.py!}
 ```
 
 ...在此之后，Swagger UI 将不会高亮代码:
@@ -31,7 +31,7 @@ FastAPI会将这些配置转换为 **JSON**，使其与 JavaScript 兼容，因�
 同样地，你也可以通过设置键 `"syntaxHighlight.theme"` 来设置语法高亮主题（注意中间有一个点）：
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial002.py!}
+{!../../docs_src/configure_swagger_ui/tutorial002.py!}
 ```
 
 这个配置会改变语法高亮主题：
@@ -45,7 +45,7 @@ FastAPI 包含了一些默认配置参数，适用于大多数用例。
 其包括这些默认配置参数：
 
 ```Python
-{!../../../fastapi/openapi/docs.py[ln:7-23]!}
+{!../../fastapi/openapi/docs.py[ln:7-23]!}
 ```
 
 你可以通过在 `swagger_ui_parameters` 中设置不同的值来覆盖它们。
@@ -53,12 +53,12 @@ FastAPI 包含了一些默认配置参数，适用于大多数用例。
 比如，如果要禁用 `deepLinking`，你可以像这样传递设置到 `swagger_ui_parameters` 中：
 
 ```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial003.py!}
+{!../../docs_src/configure_swagger_ui/tutorial003.py!}
 ```
 
 ## 其他 Swagger UI 参数
 
-查看其他 Swagger UI 参数，请阅读 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">docs for Swagger UI parameters</a>。
+查看其他 Swagger UI 参数，请阅读 <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">docs for Swagger UI parameters</a>。
 
 ## JavaScript-only 配置
 
