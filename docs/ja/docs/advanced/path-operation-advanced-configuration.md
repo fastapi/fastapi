@@ -2,7 +2,7 @@
 
 ## OpenAPI operationId
 
-/// warning | "注意"
+/// warning | 注意
 
 あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
 
@@ -13,7 +13,7 @@
 `operation_id` は各オペレーションで一意にする必要があります。
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
 ### *path operation関数* の名前をoperationIdとして使用する
@@ -23,16 +23,16 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 そうする場合は、すべての *path operation* を追加した後に行う必要があります。
 
 ```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `app.openapi()` を手動でコールする場合、その前に`operationId`を更新する必要があります。
 
 ///
 
-/// warning | "注意"
+/// warning | 注意
 
 この方法をとる場合、各 *path operation関数* が一意な名前である必要があります。
 
@@ -45,7 +45,7 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 生成されるOpenAPIスキーマ (つまり、自動ドキュメント生成の仕組み) から *path operation* を除外するには、 `include_in_schema` パラメータを `False` にします。
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
 ## docstringによる説明の高度な設定
@@ -57,5 +57,5 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 ドキュメントには表示されませんが、他のツール (例えばSphinx) では残りの部分を利用できるでしょう。
 
 ```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
+{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```

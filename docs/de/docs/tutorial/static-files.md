@@ -8,10 +8,10 @@ Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisc
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
+{!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 

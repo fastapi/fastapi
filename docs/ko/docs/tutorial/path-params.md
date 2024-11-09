@@ -3,7 +3,7 @@
 파이썬의 포맷 문자열 리터럴에서 사용되는 문법을 이용하여 경로 "매개변수" 또는 "변수"를 선언할 수 있습니다:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 경로 매개변수 `item_id`의 값은 함수의 `item_id` 인자로 전달됩니다.
@@ -19,12 +19,12 @@
 파이썬 표준 타입 어노테이션을 사용하여 함수에 있는 경로 매개변수의 타입을 선언할 수 있습니다:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 위의 예시에서, `item_id`는 `int`로 선언되었습니다.
 
-/// check | "확인"
+/// check | 확인
 
 이 기능은 함수 내에서 오류 검사, 자동완성 등의 편집기 기능을 활용할 수 있게 해줍니다.
 
@@ -38,7 +38,7 @@
 {"item_id":3}
 ```
 
-/// check | "확인"
+/// check | 확인
 
 함수가 받은(반환도 하는) 값은 문자열 `"3"`이 아니라 파이썬 `int` 형인 `3`입니다.
 
@@ -69,7 +69,7 @@
 
 `int`가 아닌 `float`을 전달하는 경우에도 동일한 오류가 나타납니다: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "확인"
+/// check | 확인
 
 즉, 파이썬 타입 선언을 하면 **FastAPI**는 데이터 검증을 합니다.
 
@@ -85,7 +85,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "확인"
+/// check | 확인
 
 그저 파이썬 타입 선언을 하기만 하면 **FastAPI**는 자동 대화형 API 문서(Swagger UI)를 제공합니다.
 
@@ -122,7 +122,7 @@
 *경로 작동*은 순차적으로 실행되기 때문에 `/users/{user_id}` 이전에 `/users/me`를 먼저 선언해야 합니다:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 그렇지 않으면 `/users/{user_id}`는 `/users/me` 요청 또한 매개변수 `user_id`의 값이 `"me"`인 것으로 "생각하게" 됩니다.
@@ -140,16 +140,16 @@
 가능한 값들에 해당하는 고정된 값의 클래스 어트리뷰트들을 만듭니다:
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">열거형(또는 enums)</a>은 파이썬 버전 3.4 이후로 사용 가능합니다.
 
 ///
 
-/// tip | "팁"
+/// tip | 팁
 
 혹시 궁금하다면, "AlexNet", "ResNet", 그리고 "LeNet"은 그저 기계 학습 <abbr title="기술적으로 정확히는 딥 러닝 모델 구조">모델</abbr>들의 이름입니다.
 
@@ -160,7 +160,7 @@
 생성한 열거형 클래스(`ModelName`)를 사용하는 타입 어노테이션으로 *경로 매개변수*를 만듭니다:
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### 문서 확인
@@ -178,7 +178,7 @@
 열거형 `ModelName`의 *열거형 멤버*를 비교할 수 있습니다:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### *열거형 값* 가져오기
@@ -186,10 +186,10 @@
 `model_name.value` 또는 일반적으로 `your_enum_member.value`를 이용하여 실제 값(위 예시의 경우 `str`)을 가져올 수 있습니다:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 `ModelName.lenet.value`로도 값 `"lenet"`에 접근할 수 있습니다.
 
@@ -202,7 +202,7 @@
 클라이언트에 반환하기 전에 해당 값(이 경우 문자열)으로 변환됩니다:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 클라이언트는 아래의 JSON 응답을 얻습니다:
@@ -243,10 +243,10 @@ Starlette의 옵션을 직접 이용하여 다음과 같은 URL을 사용함으�
 따라서 다음과 같이 사용할 수 있습니다:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 매개변수가 가져야 하는 값이 `/home/johndoe/myfile.txt`와 같이 슬래시로 시작(`/`)해야 할 수 있습니다.
 
