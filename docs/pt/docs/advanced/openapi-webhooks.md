@@ -22,7 +22,7 @@ Com o **FastAPI**, utilizando o OpenAPI, você pode definir os nomes destes webh
 
 Isto pode facilitar bastante para os seus usuários **implementarem as APIs deles** para receber as requisições dos seus **webhooks**, eles podem inclusive ser capazes de gerar parte do código da API deles.
 
-/// info | "Informação"
+/// info | Informação
 
 Webhooks estão disponíveis a partir do OpenAPI 3.1.0, e possui suporte do FastAPI a partir da versão `0.99.0`.
 
@@ -38,7 +38,7 @@ Quando você cria uma aplicação com o **FastAPI**, existe um atributo chamado 
 
 Os webhooks que você define aparecerão no esquema do **OpenAPI** e na **página de documentação** gerada automaticamente.
 
-/// info | "Informação"
+/// info | Informação
 
 O objeto `app.webhooks` é na verdade apenas um `APIRouter`, o mesmo tipo que você utilizaria ao estruturar a sua aplicação com diversos arquivos.
 
