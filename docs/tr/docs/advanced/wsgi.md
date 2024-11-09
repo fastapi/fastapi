@@ -13,7 +13,7 @@ Ardından WSGI (örneğin Flask) uygulamanızı middleware ile sarmalayın.
 Son olarak da bir yol altında bağlama işlemini gerçekleştirin.
 
 ```Python hl_lines="2-3  23"
-{!../../../docs_src/wsgi/tutorial001.py!}
+{!../../docs_src/wsgi/tutorial001.py!}
 ```
 
 ## Kontrol Edelim

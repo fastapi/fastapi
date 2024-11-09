@@ -14,7 +14,7 @@
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `JSONResponse` それ自体は、 `Response` のサブクラスです。
 
@@ -35,10 +35,10 @@
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
 ```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 また、`from starlette.responses import JSONResponse` も利用できます。
 
@@ -57,7 +57,7 @@
 XMLを文字列にし、`Response` に含め、それを返します。
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## 備考
