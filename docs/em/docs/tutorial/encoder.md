@@ -23,7 +23,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="5  22"
-{!> ../../../docs_src/encoder/tutorial001.py!}
+{!> ../../docs_src/encoder/tutorial001.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="4  21"
-{!> ../../../docs_src/encoder/tutorial001_py310.py!}
+{!> ../../docs_src/encoder/tutorial001_py310.py!}
 ```
 
 ////

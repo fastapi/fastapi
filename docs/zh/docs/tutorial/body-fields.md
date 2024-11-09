@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+{!> ../../docs_src/body_fields/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 ///
 
 ```Python hl_lines="2"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,12 +53,12 @@
 ///
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
+{!> ../../docs_src/body_fields/tutorial001.py!}
 ```
 
 ////
 
-/// warning | "警告"
+/// warning | 警告
 
 注意，与从 `fastapi` 导入 `Query`，`Path`、`Body` 不同，要直接从 `pydantic` 导入 `Field` 。
 
@@ -71,7 +71,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -79,7 +79,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -87,7 +87,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="12-15"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
+{!> ../../docs_src/body_fields/tutorial001_an.py!}
 ```
 
 ////
@@ -101,7 +101,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="9-12"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+{!> ../../docs_src/body_fields/tutorial001_py310.py!}
 ```
 
 ////
@@ -115,14 +115,14 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
+{!> ../../docs_src/body_fields/tutorial001.py!}
 ```
 
 ////
 
 `Field` 的工作方式和 `Query`、`Path`、`Body` 相同，参数也相同。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 实际上，`Query`、`Path` 都是 `Params` 的子类，而 `Params` 类又是 Pydantic 中 `FieldInfo` 的子类。
 
@@ -134,7 +134,7 @@ Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 注意，模型属性的类型、默认值及 `Field` 的代码结构与*路径操作函数*的参数相同，只不过是用 `Field` 替换了`Path`、`Query`、`Body`。
 

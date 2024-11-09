@@ -17,7 +17,7 @@ Importieren Sie `Form` von `fastapi`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,21 +25,21 @@ Importieren Sie `Form` von `fastapi`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////
@@ -51,7 +51,7 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -59,21 +59,21 @@ Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` und `Query` mach
 //// tab | Python 3.8+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
+{!> ../../docs_src/request_forms/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
+{!> ../../docs_src/request_forms/tutorial001.py!}
 ```
 
 ////
@@ -90,7 +90,7 @@ Mit `Form` haben Sie die gleichen Konfigurationsmöglichkeiten wie mit `Body` (u
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Um Formularbodys zu deklarieren, verwenden Sie explizit `Form`, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
@@ -102,7 +102,7 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodi
 
 **FastAPI** stellt sicher, dass diese Daten korrekt ausgelesen werden, statt JSON zu erwarten.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Daten aus Formularen werden normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
@@ -112,7 +112,7 @@ Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen
 
 ///
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Sie können mehrere `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `application/x-www-form-urlencoded` statt `application/json` kodiert.
 
