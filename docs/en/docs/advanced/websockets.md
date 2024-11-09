@@ -46,7 +46,7 @@ In your **FastAPI** application, create a `websocket`:
 
 {* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.websockets import WebSocket`.
 

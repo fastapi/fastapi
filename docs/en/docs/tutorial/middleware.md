@@ -11,7 +11,7 @@ A "middleware" is a function that works with every **request** before it is proc
 * It can do something to that **response** or run any needed code.
 * Then it returns the **response**.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 If you have dependencies with `yield`, the exit code will run *after* the middleware.
 
@@ -41,7 +41,7 @@ But if you have custom headers that you want a client in a browser to be able to
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.requests import Request`.
 
@@ -60,7 +60,6 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 {* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip
-```Python hl_lines="10  12-13"
 
 Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> instead of `time.time()` because it can be more precise for these use cases. 🤓
 

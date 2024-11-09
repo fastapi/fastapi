@@ -165,7 +165,7 @@ Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
 }
 ```
 
-/// info | "informação"
+/// info | informação
 
 Note como o campo `images` agora tem uma lista de objetos de image.
 
@@ -179,7 +179,7 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 {!../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-/// info | "informação"
+/// info | informação
 
 Note como `Offer` tem uma lista de `Item`s, que por sua vez possui opcionalmente uma lista `Image`s
 
@@ -232,7 +232,7 @@ Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com va
 {!../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Leve em condideração que o JSON só suporta `str` como chaves.
 

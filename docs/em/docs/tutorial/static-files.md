@@ -11,7 +11,7 @@
 {!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.staticfiles import StaticFiles`.
 

@@ -36,7 +36,7 @@ For those cases, you can use the `jsonable_encoder` to convert your data before 
 
 {* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import JSONResponse`.
 

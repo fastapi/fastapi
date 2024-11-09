@@ -30,7 +30,7 @@ Z. B. `pip install python-multipart`.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -64,7 +64,7 @@ Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Q
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -80,7 +80,7 @@ Die Datei- und Formularfelder werden als Formulardaten hochgeladen, und Sie erha
 
 Und Sie können einige der Dateien als `bytes` und einige als `UploadFile` deklarieren.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `multipart/form-data` statt `application/json` kodiert.
 
