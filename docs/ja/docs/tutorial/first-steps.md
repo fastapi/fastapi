@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-/// note | "備考"
+/// note | 備考
 
 `uvicorn main:app`は以下を示します:
 
@@ -139,7 +139,7 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
@@ -204,7 +204,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "情報"
+/// info | 情報
 
 「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
@@ -257,7 +257,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * パス `/`
 * <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
 
-/// info | "`@decorator` について"
+/// info | `@decorator` について
 
 Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
@@ -284,7 +284,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 各オペレーション (HTTPメソッド)は自由に使用できます。
 
@@ -322,7 +322,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 {!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 違いが分からない場合は、[Async: *"急いでいますか？"*](../async.md#_1){.internal-link target=_blank}を確認してください。
 

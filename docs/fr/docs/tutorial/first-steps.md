@@ -2,9 +2,7 @@
 
 Le fichier **FastAPI** le plus simple possible pourrait ressembler à cela  :
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Copiez ce code dans un fichier nommé `main.py`.
 
@@ -134,13 +132,11 @@ Vous pourriez aussi l'utiliser pour générer du code automatiquement, pour les 
 
 ### Étape 1 : import `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` est une classe Python qui fournit toutes les fonctionnalités nécessaires au lancement de votre API.
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 `FastAPI` est une classe héritant directement de `Starlette`.
 
@@ -150,9 +146,7 @@ Vous pouvez donc aussi utiliser toutes les fonctionnalités de <a href="https://
 
 ### Étape 2 : créer une "instance" `FastAPI`
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Ici la variable `app` sera une "instance" de la classe `FastAPI`.
 
@@ -172,9 +166,7 @@ $ uvicorn main:app --reload
 
 Si vous créez votre app avec :
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 Et la mettez dans un fichier `main.py`, alors vous appelleriez `uvicorn` avec :
 
@@ -250,16 +242,14 @@ Nous allons donc aussi appeler ces dernières des "**opérations**".
 
 #### Définir un *décorateur d'opération de chemin*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 Le `@app.get("/")` dit à **FastAPI** que la fonction en dessous est chargée de gérer les requêtes qui vont sur :
 
 * le chemin `/`
 * en utilisant une <abbr title="une méthode GET HTTP">opération <code>get</code></abbr>
 
-/// info | "`@décorateur` Info"
+/// info | `@décorateur` Info
 
 Cette syntaxe `@something` en Python est appelée un "décorateur".
 
@@ -286,7 +276,7 @@ Tout comme celles les plus exotiques :
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous êtes libres d'utiliser chaque opération (méthode HTTP) comme vous le désirez.
 
@@ -306,9 +296,7 @@ Voici notre "**fonction de chemin**" (ou fonction d'opération de chemin) :
 * **opération** : `get`.
 * **fonction** : la fonction sous le "décorateur" (sous `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 C'est une fonction Python.
 
@@ -320,9 +308,7 @@ Ici, c'est une fonction asynchrone (définie avec `async def`).
 
 Vous pourriez aussi la définir comme une fonction classique plutôt qu'avec `async def` :
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
@@ -332,9 +318,7 @@ Si vous ne connaissez pas la différence, allez voir la section [Concurrence : *
 
 ### Étape 5 : retourner le contenu
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Vous pouvez retourner un dictionnaire (`dict`), une liste (`list`), des valeurs seules comme des chaines de caractères (`str`) et des entiers (`int`), etc.
 
