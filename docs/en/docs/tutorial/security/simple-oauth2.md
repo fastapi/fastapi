@@ -55,7 +55,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  78"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+{!> ../../docs_src/security/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -63,7 +63,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  78"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+{!> ../../docs_src/security/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -71,7 +71,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 //// tab | Python 3.8+
 
 ```Python hl_lines="4  79"
-{!> ../../../docs_src/security/tutorial003_an.py!}
+{!> ../../docs_src/security/tutorial003_an.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="2  74"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
+{!> ../../docs_src/security/tutorial003_py310.py!}
 ```
 
 ////
@@ -99,7 +99,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="4  76"
-{!> ../../../docs_src/security/tutorial003.py!}
+{!> ../../docs_src/security/tutorial003.py!}
 ```
 
 ////
@@ -153,7 +153,7 @@ For the error, we use the exception `HTTPException`:
 //// tab | Python 3.10+
 
 ```Python hl_lines="3  79-81"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+{!> ../../docs_src/security/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -161,7 +161,7 @@ For the error, we use the exception `HTTPException`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="3  79-81"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+{!> ../../docs_src/security/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -169,7 +169,7 @@ For the error, we use the exception `HTTPException`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="3  80-82"
-{!> ../../../docs_src/security/tutorial003_an.py!}
+{!> ../../docs_src/security/tutorial003_an.py!}
 ```
 
 ////
@@ -183,7 +183,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1  75-77"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
+{!> ../../docs_src/security/tutorial003_py310.py!}
 ```
 
 ////
@@ -197,7 +197,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="3  77-79"
-{!> ../../../docs_src/security/tutorial003.py!}
+{!> ../../docs_src/security/tutorial003.py!}
 ```
 
 ////
@@ -229,7 +229,7 @@ So, the thief won't be able to try to use those same passwords in another system
 //// tab | Python 3.10+
 
 ```Python hl_lines="82-85"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+{!> ../../docs_src/security/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ So, the thief won't be able to try to use those same passwords in another system
 //// tab | Python 3.9+
 
 ```Python hl_lines="82-85"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+{!> ../../docs_src/security/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -245,7 +245,7 @@ So, the thief won't be able to try to use those same passwords in another system
 //// tab | Python 3.8+
 
 ```Python hl_lines="83-86"
-{!> ../../../docs_src/security/tutorial003_an.py!}
+{!> ../../docs_src/security/tutorial003_an.py!}
 ```
 
 ////
@@ -259,7 +259,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="78-81"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
+{!> ../../docs_src/security/tutorial003_py310.py!}
 ```
 
 ////
@@ -273,7 +273,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="80-83"
-{!> ../../../docs_src/security/tutorial003.py!}
+{!> ../../docs_src/security/tutorial003.py!}
 ```
 
 ////
@@ -321,7 +321,7 @@ But for now, let's focus on the specific details we need.
 //// tab | Python 3.10+
 
 ```Python hl_lines="87"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+{!> ../../docs_src/security/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -329,7 +329,7 @@ But for now, let's focus on the specific details we need.
 //// tab | Python 3.9+
 
 ```Python hl_lines="87"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+{!> ../../docs_src/security/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -337,7 +337,7 @@ But for now, let's focus on the specific details we need.
 //// tab | Python 3.8+
 
 ```Python hl_lines="88"
-{!> ../../../docs_src/security/tutorial003_an.py!}
+{!> ../../docs_src/security/tutorial003_an.py!}
 ```
 
 ////
@@ -351,7 +351,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="83"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
+{!> ../../docs_src/security/tutorial003_py310.py!}
 ```
 
 ////
@@ -365,7 +365,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="85"
-{!> ../../../docs_src/security/tutorial003.py!}
+{!> ../../docs_src/security/tutorial003.py!}
 ```
 
 ////
@@ -397,7 +397,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 //// tab | Python 3.10+
 
 ```Python hl_lines="58-66  69-74  94"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
+{!> ../../docs_src/security/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -405,7 +405,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 //// tab | Python 3.9+
 
 ```Python hl_lines="58-66  69-74  94"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
+{!> ../../docs_src/security/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -413,7 +413,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 //// tab | Python 3.8+
 
 ```Python hl_lines="59-67  70-75  95"
-{!> ../../../docs_src/security/tutorial003_an.py!}
+{!> ../../docs_src/security/tutorial003_an.py!}
 ```
 
 ////
@@ -427,7 +427,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="56-64  67-70  88"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
+{!> ../../docs_src/security/tutorial003_py310.py!}
 ```
 
 ////
@@ -441,7 +441,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="58-66  69-72  90"
-{!> ../../../docs_src/security/tutorial003.py!}
+{!> ../../docs_src/security/tutorial003.py!}
 ```
 
 ////

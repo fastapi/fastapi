@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,35 +25,35 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
@@ -67,7 +67,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -83,40 +83,40 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ Annotated가 없는 경우
 
-/// tip | "팁"
+/// tip | 팁
 
 가능하다면 `Annotated`가 달린 버전을 권장합니다.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `Cookie`는 `Path` 및 `Query`의 "자매"클래스입니다. 이 역시 동일한 공통 `Param` 클래스를 상속합니다.
 
@@ -124,7 +124,7 @@
 
 ///
 
-/// info | "정보"
+/// info | 정보
 
 쿠키를 선언하기 위해서는 `Cookie`를 사용해야 합니다. 그렇지 않으면 해당 매개변수를 쿼리 매개변수로 해석하기 때문입니다.
 
