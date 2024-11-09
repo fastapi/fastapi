@@ -7,7 +7,7 @@
 这样一来，就可以为所有*路径操作*应用该依赖项：
 
 ```Python hl_lines="15"
-{!../../../docs_src/dependencies/tutorial012.py!}
+{!../../docs_src/dependencies/tutorial012.py!}
 ```
 
 [*路径装饰器依赖项*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} 一章的思路均适用于全局依赖项， 在本例中，这些依赖项可以用于应用中的所有*路径操作*。
