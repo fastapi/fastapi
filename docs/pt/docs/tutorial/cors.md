@@ -78,7 +78,7 @@ Qualquer solicitação com um cabeçalho `Origin`. Neste caso, o middleware pass
 
 Para mais informações <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, acesse <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.middleware.cors import CORSMiddleware`.
 

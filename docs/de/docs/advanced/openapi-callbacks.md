@@ -33,7 +33,7 @@ Dieser Teil ist ziemlich normal, der größte Teil des Codes ist Ihnen wahrschei
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Der Query-Parameter `callback_url` verwendet einen Pydantic-<a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>-Typ.
 
@@ -62,7 +62,7 @@ Diese Dokumentation wird in der Swagger-Oberfläche unter `/docs` in Ihrer API a
 
 In diesem Beispiel wird nicht der Callback selbst implementiert (das könnte nur eine Codezeile sein), sondern nur der Dokumentationsteil.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Der eigentliche Callback ist nur ein HTTP-Request.
 
@@ -78,7 +78,7 @@ Sie wissen jedoch bereits, wie Sie mit **FastAPI** ganz einfach eine automatisch
 
 Daher werden wir dasselbe Wissen nutzen, um zu dokumentieren, wie die *externe API* aussehen sollte ... indem wir die *Pfadoperation(en)* erstellen, welche die externe API implementieren soll (die, welche Ihre API aufruft).
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie den Code zum Dokumentieren eines Callbacks schreiben, kann es hilfreich sein, sich vorzustellen, dass Sie dieser *externe Entwickler* sind. Und dass Sie derzeit die *externe API* implementieren, nicht *Ihre API*.
 
@@ -157,7 +157,7 @@ und sie würde eine Response von dieser *externen API* mit einem JSON-Body wie d
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass die verwendete Callback-URL die URL enthält, die als Query-Parameter in `callback_url` (`https://www.external.org/events`) empfangen wurde, und auch die Rechnungs-`id` aus dem JSON-Body (`2expen51ve`).
 
@@ -171,7 +171,7 @@ Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer AP
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `callback=` übergeben, sondern das Attribut `.routes`, wie in `invoices_callback_router.routes`.
 
