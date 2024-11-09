@@ -11,7 +11,7 @@
 * その**レスポンス**に対して何かを実行したり、必要なコードを実行したりできます。
 * そして、**レスポンス**を返します。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `yield` を使った依存関係をもつ場合は、終了コードはミドルウェアの *後に* 実行されます。
 
@@ -35,7 +35,7 @@
 {!../../docs_src/middleware/tutorial001.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-'プレフィックスを使用</a>してカスタムの独自ヘッダーを追加できます。
 
@@ -43,7 +43,7 @@
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.requests import Request` を使用することもできます。
 

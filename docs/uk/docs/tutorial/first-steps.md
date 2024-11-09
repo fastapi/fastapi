@@ -163,7 +163,7 @@ OpenAPI описує схему для вашого API. І ця схема вк
 
 `FastAPI` це клас у Python, який надає всю функціональність для API.
 
-/// note | "Технічні деталі"
+/// note | Технічні деталі
 
 `FastAPI` це клас, який успадковується безпосередньо від `Starlette`.
 
@@ -198,7 +198,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "Додаткова інформація"
+/// info | Додаткова інформація
 
 "Шлях" (path) також зазвичай називають "ендпоінтом" (endpoint) або "маршрутом" (route).
 
@@ -250,7 +250,7 @@ https://example.com/items/foo
 * шлях `/`
 * використовуючи <abbr title="an HTTP GET method"><code>get</code> операцію</abbr>
 
-/// info | "`@decorator` Додаткова інформація"
+/// info | `@decorator` Додаткова інформація
 
 Синтаксис `@something` у Python називається "декоратором".
 
@@ -277,7 +277,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "Порада"
+/// tip | Порада
 
 Ви можете використовувати кожну операцію (HTTP-метод) на свій розсуд.
 
@@ -315,7 +315,7 @@ FastAPI викликатиме її щоразу, коли отримає зап
 {!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-/// note | "Примітка"
+/// note | Примітка
 
 Якщо не знаєте в чому різниця, подивіться [Конкурентність: *"Поспішаєш?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 

@@ -9,7 +9,7 @@ You can serve static files automatically from a directory using `StaticFiles`.
 
 {* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.staticfiles import StaticFiles`.
 
