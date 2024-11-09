@@ -103,7 +103,7 @@ Quando você usa os métodos `async`, o **FastAPI** executa os métodos de arqui
 
 ///
 
-/// note | "Detalhes Técnicos do Starlette"
+/// note | Detalhes Técnicos do Starlette
 
 O `UploadFile` do ***FastAPI** herda diretamente do `UploadFile` do **Starlette** , mas adiciona algumas partes necessárias para torná-lo compatível com o **Pydantic** e as outras partes do FastAPI.
 
@@ -115,7 +115,7 @@ O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servid
 
 **FastAPI** se certificará de ler esses dados do lugar certo, ao invés de JSON.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Dados de formulários normalmente são codificados usando o "media type" (tipo de mídia) `application/x-www-form-urlencoded` quando não incluem arquivos.
 
@@ -157,7 +157,7 @@ Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
 Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Você pode também pode usar `from starlette.responses import HTMLResponse`.
 
