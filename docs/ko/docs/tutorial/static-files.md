@@ -11,7 +11,7 @@
 {!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.staticfiles import StaticFiles` 를 사용할 수도 있습니다.
 
