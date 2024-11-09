@@ -46,6 +46,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/testing-websockets.md`. PR [#12739](https://github.com/fastapi/fastapi/pull/12739) by [@Limsunoh](https://github.com/Limsunoh).
 * 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/environment-variables.md`. PR [#12785](https://github.com/fastapi/fastapi/pull/12785) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Chinese translation for `docs/zh/docs/environment-variables.md`. PR [#12784](https://github.com/fastapi/fastapi/pull/12784) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Korean translation for `ko/docs/advanced/response-headers.md`. PR [#12740](https://github.com/fastapi/fastapi/pull/12740) by [@kwang1215](https://github.com/kwang1215).
