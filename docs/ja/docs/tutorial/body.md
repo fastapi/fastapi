@@ -8,7 +8,7 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 
 **リクエスト** ボディを宣言するために <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
 
-/// info | "情報"
+/// info | 情報
 
 データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。
 
@@ -113,7 +113,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
 
@@ -161,7 +161,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 * パラメータが**単数型** (`int`、`float`、`str`、`bool` など)の場合は**クエリ**パラメータとして解釈されます。
 * パラメータが **Pydantic モデル**型で宣言された場合、リクエスト**ボディ**として解釈されます。
 
-/// note | "備考"
+/// note | 備考
 
 FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
 
