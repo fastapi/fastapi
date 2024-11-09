@@ -18,17 +18,13 @@
 
 //// tab | Python 3.9+
 
-```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
-```
+{* > ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../docs_src/generate_clients/tutorial001.py!}
-```
+{* > ../../docs_src/generate_clients/tutorial001.py hl[9:11,14:15,18,19,23] *}
 
 ////
 
@@ -137,17 +133,13 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 //// tab | Python 3.9+
 
-```Python hl_lines="21  26  34"
-{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
-```
+{* > ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
 ////
 
 //// tab | Python 3.8+
 
-```Python hl_lines="23  28  36"
-{!> ../../docs_src/generate_clients/tutorial002.py!}
-```
+{* > ../../docs_src/generate_clients/tutorial002.py hl[23,28,36] *}
 
 ////
 
