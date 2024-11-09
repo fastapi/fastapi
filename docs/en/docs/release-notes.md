@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/fr/docs/advanced/path-operation-advanced-configuration.md`. PR [#12633](https://github.com/fastapi/fastapi/pull/12633) by [@kantandane](https://github.com/kantandane).
 * 📝 Update includes in `docs/fr/docs/advanced/response-directly.md`. PR [#12632](https://github.com/fastapi/fastapi/pull/12632) by [@kantandane](https://github.com/kantandane).
 * 📝 Update includes for `docs/en/docs/tutorial/header-params.md`. PR [#12640](https://github.com/fastapi/fastapi/pull/12640) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes in `docs/en/docs/tutorial/cookie-param-models.md`. PR [#12639](https://github.com/fastapi/fastapi/pull/12639) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
