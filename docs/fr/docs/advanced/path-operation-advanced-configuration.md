@@ -2,7 +2,7 @@
 
 ## ID d'opération OpenAPI
 
-/// warning | "Attention"
+/// warning | Attention
 
 Si vous n'êtes pas un "expert" en OpenAPI, vous n'en avez probablement pas besoin.
 
@@ -22,13 +22,13 @@ Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,12:21,24] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant.
 
 ///
 
-/// warning | "Attention"
+/// warning | Attention
 
 Pour faire cela, vous devez vous assurer que chacun de vos *chemin* ait un nom unique.
 
@@ -66,7 +66,7 @@ Il y a un chapitre entier ici dans la documentation à ce sujet, vous pouvez le 
 
 Lorsque vous déclarez un *chemin* dans votre application, **FastAPI** génère automatiquement les métadonnées concernant ce *chemin* à inclure dans le schéma OpenAPI.
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 La spécification OpenAPI appelle ces métadonnées des <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objets d'opération</a>.
 
@@ -78,7 +78,7 @@ Il inclut les `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 Ce schéma OpenAPI spécifique aux *operations* est normalement généré automatiquement par **FastAPI**, mais vous pouvez également l'étendre.
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
@@ -161,7 +161,7 @@ Et nous analysons directement ce contenu YAML, puis nous utilisons à nouveau le
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Ici, nous réutilisons le même modèle Pydantic.
 

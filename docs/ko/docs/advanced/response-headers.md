@@ -28,7 +28,7 @@
 {!../../docs_src/response_headers/tutorial001.py!}
 ```
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.responses import Response`나 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
