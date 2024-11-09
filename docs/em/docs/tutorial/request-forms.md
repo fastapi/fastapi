@@ -50,7 +50,7 @@
 
 **FastAPI** 🔜 ⚒ 💭 ✍ 👈 📊 ⚪️➡️ ▶️️ 🥉 ↩️ 🎻.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded`.
 

@@ -16,7 +16,7 @@ You can define the default value as well as all the extra validation or annotati
 
 {* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 `Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
 

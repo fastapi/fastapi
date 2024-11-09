@@ -16,7 +16,7 @@ El primer valor es el valor por defecto, puedes pasar todos los parámetros adic
 
 {* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9]*}
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 `Cookie` es una clase "hermana" de `Path` y `Query`. También hereda de la misma clase común `Param`.
 

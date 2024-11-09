@@ -80,7 +80,7 @@ FastAPI CLI 接收你的 Python 程序路径，自动检测包含 FastAPI 的变
 
 在大多数情况下，你会（且应该）有一个“终止代理”在上层为你处理 HTTPS，这取决于你如何部署应用程序，你的服务提供商可能会为你处理此事，或者你可能需要自己设置。
 
-/// tip | "提示"
+/// tip | 提示
 
 你可以在 [deployment documentation](deployment/index.md){.internal-link target=_blank} 获得更多信息。
 
