@@ -57,7 +57,7 @@ Ela é apenas uma função que pode receber os mesmos parâmetros de uma *funç�
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -71,7 +71,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -101,7 +101,7 @@ Neste caso, a dependência espera por:
 
 E então retorna um `dict` contendo esses valores.
 
-/// info | "Informação"
+/// info | Informação
 
 FastAPI passou a suportar a notação `Annotated` (e começou a recomendá-la) na versão 0.95.0.
 
@@ -139,7 +139,7 @@ Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#a
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -153,7 +153,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -195,7 +195,7 @@ Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -209,7 +209,7 @@ Utilize a versão com `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -231,7 +231,7 @@ Você **não chama a função** diretamente (não adicione os parênteses no fin
 
 E essa função vai receber os parâmetros da mesma forma que uma *função de operação de rota*.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você verá quais outras "coisas", além de funções, podem ser usadas como dependências no próximo capítulo.
 
@@ -256,7 +256,7 @@ common_parameters --> read_users
 
 Assim, você escreve um código compartilhado apenas uma vez e o **FastAPI** se encarrega de chamá-lo em suas *operações de rota*.
 
-/// check | "Checando"
+/// check | Checando
 
 Perceba que você não precisa criar uma classe especial e enviar a dependência para algum outro lugar em que o **FastAPI** a "registre" ou realize qualquer operação similar.
 
@@ -300,7 +300,7 @@ Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` 
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Isso é apenas Python padrão, essa funcionalidade é chamada de "type alias", e na verdade não é específica ao **FastAPI**.
 
@@ -322,7 +322,7 @@ E você pode declarar dependências utilizando `async def` dentro de *funções 
 
 Não faz diferença. O **FastAPI** sabe o que fazer.
 
-/// note | "Nota"
+/// note | Nota
 
 Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#com-pressa){.internal-link target=_blank} a sessão acerca de `async` e `await` na documentação.
 

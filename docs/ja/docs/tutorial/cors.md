@@ -78,7 +78,7 @@
 
 <abbr title="Cross-Origin Resource Sharing (オリジン間リソース共有)">CORS</abbr>についてより詳しい情報は、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a> を参照して下さい。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.middleware.cors import CORSMiddleware` も使用できます。
 
