@@ -2,7 +2,7 @@
 
 `File`을 사용하여 클라이언트가 업로드할 파일들을 정의할 수 있습니다.
 
-/// info | "정보"
+/// info | 정보
 
 업로드된 파일을 전달받기 위해 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야합니다.
 
@@ -28,7 +28,7 @@
 {!../../docs_src/request_files/tutorial001.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 `File` 은 `Form` 으로부터 직접 상속된 클래스입니다.
 
@@ -36,7 +36,7 @@
 
 ///
 
-/// tip | "팁"
+/// tip | 팁
 
 File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본문(JSON) 매개변수로 해석되는  것을 방지하기 위해 `File` 을 사용해야합니다.
 
@@ -104,7 +104,7 @@ contents = myfile.file.read()
 
 ///
 
-/// note | "Starlette 기술적 세부사항"
+/// note | Starlette 기술적 세부사항
 
 **FastAPI**의 `UploadFile` 은 **Starlette**의 `UploadFile` 을 직접적으로 상속받지만, **Pydantic** 및 FastAPI의 다른 부분들과의 호환성을 위해 필요한 부분들이 추가되었습니다.
 
@@ -116,7 +116,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 **FastAPI**는 JSON 대신 올바른 위치에서 데이터를 읽을 수 있도록 합니다.
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 폼의 데이터는 파일이 포함되지 않은 경우 일반적으로 "미디어 유형" `application/x-www-form-urlencoded` 을 사용해 인코딩 됩니다.
 
@@ -126,7 +126,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 ///
 
-/// warning | "경고"
+/// warning | 경고
 
 다수의 `File` 과 `Form` 매개변수를 한 *경로 작동*에 선언하는 것이 가능하지만, 요청의 본문이 `application/json` 가 아닌 `multipart/form-data` 로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
 
@@ -148,7 +148,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 선언한대로, `bytes` 의 `list` 또는 `UploadFile` 들을 전송받을 것입니다.
 
-/// note | "참고"
+/// note | 참고
 
 2019년 4월 14일부터 Swagger UI가 하나의 폼 필드로 다수의 파일을 업로드하는 것을 지원하지 않습니다. 더 많은 정보를 원하면,  <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a>과 <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>을 참고하세요.
 
@@ -158,7 +158,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 ///
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.responses import HTMLResponse` 역시 사용할  수 있습니다.
 

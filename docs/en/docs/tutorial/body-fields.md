@@ -23,7 +23,7 @@ You can then use `Field` with model attributes:
 
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Actually, `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
 

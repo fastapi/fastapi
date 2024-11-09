@@ -40,7 +40,7 @@ $ pip install pyjwt
 
 </div>
 
-/// info | "说明"
+/// info | 说明
 
 如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
 
@@ -82,7 +82,7 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-/// tip | "提示"
+/// tip | 提示
 
 `passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
 
@@ -98,7 +98,7 @@ $ pip install passlib[bcrypt]
 
 创建用于密码哈希和身份校验的 PassLib **上下文**。
 
-/// tip | "提示"
+/// tip | 提示
 
 PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
 
@@ -166,7 +166,7 @@ Prefer to use the `Annotated` version if possible.
 
 ////
 
-/// note | "笔记"
+/// note | 笔记
 
 查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
 
@@ -358,7 +358,7 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 用户名: `johndoe` 密码: `secret`
 
-/// check | "检查"
+/// check | 检查
 
 注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
 
@@ -383,7 +383,7 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image10.png">
 
-/// note | "笔记"
+/// note | 笔记
 
 注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
 
