@@ -77,7 +77,7 @@
 
 ///
 
-{* > ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
+{* ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
 
 ////
 
@@ -89,7 +89,7 @@
 
 ///
 
-{* > ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
 
 ////
 
