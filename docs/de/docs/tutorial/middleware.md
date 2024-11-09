@@ -11,7 +11,7 @@ Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bev
 * Sie kann etwas mit dieser **Response** tun oder beliebigen Code ausführen.
 * Dann gibt sie die **Response** zurück.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Wenn Sie Abhängigkeiten mit `yield` haben, wird der Exit-Code *nach* der Middleware ausgeführt.
 
@@ -33,7 +33,7 @@ Die Middleware-Funktion erhält:
 
 {* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
 
@@ -41,7 +41,7 @@ Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie könnten auch `from starlette.requests import Request` verwenden.
 

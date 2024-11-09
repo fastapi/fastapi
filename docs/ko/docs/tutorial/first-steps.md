@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-/// note | "참고"
+/// note | 참고
 
 `uvicorn main:app` 명령은 다음을 의미합니다:
 
@@ -139,7 +139,7 @@ API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케
 
 `FastAPI`는 당신의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
@@ -205,7 +205,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "정보"
+/// info | 정보
 
 "경로"는 일반적으로 "엔드포인트" 또는 "라우트"라고도 불립니다.
 
@@ -259,7 +259,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * 경로 `/`
 * <abbr title="HTTP GET 메소드"><code>get</code> 작동</abbr> 사용
 
-/// info | "`@decorator` 정보"
+/// info | `@decorator` 정보
 
 이 `@something` 문법은 파이썬에서 "데코레이터"라 부릅니다.
 
@@ -286,7 +286,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "팁"
+/// tip | 팁
 
 각 작동(HTTP 메소드)을 원하는 대로 사용해도 됩니다.
 
@@ -324,7 +324,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 {!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-/// note | "참고"
+/// note | 참고
 
 차이점을 모르겠다면 [Async: *"바쁘신 경우"*](../async.md#_1){.internal-link target=_blank}을 확인하세요.
 

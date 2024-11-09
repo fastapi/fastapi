@@ -38,7 +38,7 @@ Sie können `schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Date
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Mit derselben Technik können Sie das JSON-Schema erweitern und Ihre eigenen benutzerdefinierten Zusatzinformationen hinzufügen.
 
@@ -143,7 +143,7 @@ Wenn `openapi_examples` zu `Body()` hinzugefügt wird, würde `/docs` so aussehe
 
 ## Technische Details
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie bereits **FastAPI** Version **0.99.0 oder höher** verwenden, können Sie diese Details wahrscheinlich **überspringen**.
 
@@ -153,7 +153,7 @@ Sie können dies als eine kurze **Geschichtsstunde** zu OpenAPI und JSON Schema 
 
 ///
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies sind sehr technische Details zu den Standards **JSON Schema** und **OpenAPI**.
 

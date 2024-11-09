@@ -20,7 +20,7 @@ But if you don't remember what each number code is for, you can use the shortcut
 
 That status code will be used in the response and will be added to the OpenAPI schema.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette import status`.
 
