@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py39
 
@@ -26,7 +25,6 @@ def test_post_form_no_body(client: TestClient):
                     "loc": ["body", "file"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -56,7 +54,6 @@ def test_post_body_json(client: TestClient):
                     "loc": ["body", "file"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }

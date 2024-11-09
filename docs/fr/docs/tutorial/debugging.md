@@ -6,9 +6,7 @@ Vous pouvez connecter le <abbr title="En anglais: debugger">débogueur</abbr> da
 
 Dans votre application FastAPI, importez et exécutez directement `uvicorn` :
 
-```Python hl_lines="1  15"
-{!../../../docs_src/debugging/tutorial001.py!}
-```
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### À propos de `__name__ == "__main__"`
 
@@ -74,8 +72,11 @@ Ainsi, la ligne :
 
 ne sera pas exécutée.
 
-!!! info
+/// info
+
 Pour plus d'informations, consultez <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">la documentation officielle de Python</a>.
+
+///
 
 ## Exécutez votre code avec votre <abbr title="En anglais: debugger">débogueur</abbr>
 

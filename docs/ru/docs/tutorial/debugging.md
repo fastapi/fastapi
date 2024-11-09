@@ -7,7 +7,7 @@
 В вашем FastAPI приложении, импортируйте и вызовите `uvicorn` напрямую:
 
 ```Python hl_lines="1  15"
-{!../../../docs_src/debugging/tutorial001.py!}
+{!../../docs_src/debugging/tutorial001.py!}
 ```
 
 ### Описание `__name__ == "__main__"`
@@ -74,8 +74,11 @@ from myapp import app
 
 не будет выполнена.
 
-!!! Информация
-    Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+/// info | Информация
+
+Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+
+///
 
 ## Запуск вашего кода с помощью отладчика
 

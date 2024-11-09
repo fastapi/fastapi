@@ -63,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` quer dizer:
+/// info
 
-    Passe as chaves e valores do dicionário `second_user_data` diretamente como argumentos chave-valor, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` quer dizer:
+
+Passe as chaves e valores do dicionário `second_user_data` diretamente como argumentos chave-valor, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Suporte de editores
 

@@ -5,7 +5,7 @@ from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 
 class APIKeyBase(SecurityBase):
@@ -76,7 +76,7 @@ class APIKeyQuery(APIKeyBase):
             Doc(
                 """
                 By default, if the query parameter is not provided, `APIKeyQuery` will
-                automatically cancel the request and sebd the client an error.
+                automatically cancel the request and send the client an error.
 
                 If `auto_error` is set to `False`, when the query parameter is not
                 available, instead of erroring out, the dependency result will be
