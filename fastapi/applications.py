@@ -946,8 +946,13 @@ class FastAPI(Starlette):
         # Since we always use a lifespan, starlette will no longer run event
         # handlers which are defined in the scope of the application.
         # We therefore need to call them ourselves.
-        self._on_startup = on_startup or []
-        self._on_shutdown = on_shutdown or []
+        if on_startup is None:
+            on_startup = []
+
+        if on_shutdown is None:
+            on_shutdown = []
+        self._on_startup = list(on_startup)
+        self._on_shutdown = list(on_shutdown)
 
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
@@ -982,7 +987,7 @@ class FastAPI(Starlette):
         self.setup()
 
     @asynccontextmanager
-    async def _internal_lifespan(self) -> AsyncGenerator[dict[str, Any], None]:
+    async def _internal_lifespan(self) -> AsyncGenerator[Dict[str, Any], None]:
         async with AsyncExitStack() as exit_stack:
             lifespan_scoped_dependencies = await resolve_lifespan_dependants(
                 app=self,

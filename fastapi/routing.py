@@ -401,15 +401,18 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_endpoint_dependant(path=self.path_format, call=self.endpoint)
-        for depends in self.dependencies[::-1]:
+        for i, depends in list(enumerate(self.dependencies))[::-1]:
             sub_dependant = get_parameterless_sub_dependant(
                 depends=depends,
                 path=self.path_format,
-                caller=self
+                caller=self.__call__,
+                index=i
             )
             if depends.dependency_scope == "endpoint":
+                assert isinstance(sub_dependant, EndpointDependant)
                 self.dependant.endpoint_dependencies.insert(0, sub_dependant)
             elif depends.dependency_scope == "lifespan":
+                assert isinstance(sub_dependant, LifespanDependant)
                 self.dependant.lifespan_dependencies.insert(0, sub_dependant)
             else:
                 assert_never(depends.dependency_scope)
@@ -564,15 +567,18 @@ class APIRoute(routing.Route):
 
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_endpoint_dependant(path=self.path_format, call=self.endpoint)
-        for depends in self.dependencies[::-1]:
+        for i, depends in list(enumerate(self.dependencies))[::-1]:
             sub_dependant = get_parameterless_sub_dependant(
                 depends=depends,
                 path=self.path_format,
-                caller=self.__call__
+                caller=self.__call__,
+                index=i
             )
             if depends.dependency_scope == "endpoint":
+                assert isinstance(sub_dependant, EndpointDependant)
                 self.dependant.endpoint_dependencies.insert(0, sub_dependant)
             elif depends.dependency_scope == "lifespan":
+                assert isinstance(sub_dependant, LifespanDependant)
                 self.dependant.lifespan_dependencies.insert(0, sub_dependant)
             else:
                 assert_never(depends.dependency_scope)

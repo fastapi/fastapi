@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, Callable, List, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -12,22 +12,28 @@ class SecurityRequirement:
     scopes: Optional[Sequence[str]] = None
 
 
-LifespanDependantCacheKey: TypeAlias = Union[Tuple[Callable[..., Any], str], Callable[..., Any]]
+LifespanDependantCacheKey: TypeAlias = Union[Tuple[Callable[..., Any], Union[str, int]], Callable[..., Any]]
 
 @dataclass
 class LifespanDependant:
+    call: Callable[..., Any]
     caller: Callable[..., Any]
     dependencies: List["LifespanDependant"] = field(default_factory=list)
     name: Optional[str] = None
-    call: Optional[Callable[..., Any]] = None
     use_cache: bool = True
+    index: Optional[int] = None
     cache_key: LifespanDependantCacheKey = field(init=False)
 
     def __post_init__(self) -> None:
         if self.use_cache:
             self.cache_key = self.call
-        else:
+        elif self.name is not None:
             self.cache_key = (self.caller, self.name)
+        else:
+            assert self.index is not None, (
+                "Lifespan dependency must have an associated name or index."
+            )
+            self.cache_key = (self.caller, self.index)
 
 
 EndpointDependantCacheKey: TypeAlias = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
@@ -39,6 +45,7 @@ class EndpointDependant:
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
     use_cache: bool = True
+    index: Optional[int] = None
     cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(
         init=False)
     path_params: List[ModelField] = field(default_factory=list)
@@ -62,7 +69,16 @@ class EndpointDependant:
     # Kept for backwards compatibility
     @property
     def dependencies(self) -> Tuple[Union["EndpointDependant", LifespanDependant], ...]:
-        return tuple(self.endpoint_dependencies + self.lifespan_dependencies)
+        lifespan_dependencies = cast(
+            List[Union[EndpointDependant, LifespanDependant]],
+            self.lifespan_dependencies
+        )
+        endpoint_dependencies = cast(
+            List[Union[EndpointDependant, LifespanDependant]],
+            self.endpoint_dependencies
+        )
+
+        return tuple(lifespan_dependencies + endpoint_dependencies)
 
 # Kept for backwards compatibility
 Dependant = EndpointDependant

@@ -146,6 +146,22 @@ class FastAPIError(RuntimeError):
     """
 
 
+class DependencyError(FastAPIError):
+    pass
+
+
+class InvalidDependencyScope(DependencyError):
+    pass
+
+
+class DependencyScopeConflict(DependencyError):
+    pass
+
+
+class UninitializedLifespanDependency(DependencyError):
+    pass
+
+
 class ValidationException(Exception):
     def __init__(self, errors: Sequence[Any]) -> None:
         self._errors = errors

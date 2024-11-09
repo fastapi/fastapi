@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, List
 
 from fastapi.dependencies.models import LifespanDependant, LifespanDependantCacheKey
 from fastapi.dependencies.utils import solve_lifespan_dependant
-from fastapi.routing import APIRoute
+from fastapi.routing import APIRoute, APIWebSocketRoute
 
 if TYPE_CHECKING:
     from fastapi import FastAPI
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 def _get_lifespan_dependants(app: FastAPI) -> List[LifespanDependant]:
     lifespan_dependants_cache: Dict[LifespanDependantCacheKey, LifespanDependant] = {}
     for route in app.router.routes:
-        if not isinstance(route, APIRoute):
+        if not isinstance(route, (APIWebSocketRoute, APIRoute)):
             continue
 
         for sub_dependant in route.lifespan_dependencies:

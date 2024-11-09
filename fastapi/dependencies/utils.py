@@ -54,11 +54,16 @@ from fastapi.concurrency import (
 from fastapi.dependencies.models import (
     CacheKey,
     EndpointDependant,
+    EndpointDependantCacheKey,
     LifespanDependant,
     LifespanDependantCacheKey,
     SecurityRequirement,
 )
-from fastapi.exceptions import FastAPIError
+from fastapi.exceptions import (
+    DependencyScopeConflict,
+    InvalidDependencyScope,
+    UninitializedLifespanDependency,
+)
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -78,7 +83,7 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import Annotated, assert_never, get_args, get_origin
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -137,7 +142,8 @@ def get_parameterless_sub_dependant(
         *,
         depends: params.Depends,
         path: str,
-        caller: Callable[..., Any]
+        caller: Callable[..., Any],
+        index: int
 ) -> Union[EndpointDependant, LifespanDependant]:
     assert callable(
         depends.dependency
@@ -146,7 +152,8 @@ def get_parameterless_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
         path=path,
-        caller=caller
+        caller=caller,
+        index=index
     )
 
 
@@ -158,13 +165,15 @@ def get_sub_dependant(
     caller: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    index: Optional[int] = None,
 ) -> Union[EndpointDependant, LifespanDependant]:
     if depends.dependency_scope == "lifespan":
         return get_lifespan_dependant(
             caller=caller,
-            call=depends.dependency,
+            call=dependency,
             name=name,
-            use_cache=depends.use_cache
+            use_cache=depends.use_cache,
+            index=index
         )
     elif depends.dependency_scope == "endpoint":
         security_requirement = None
@@ -185,14 +194,15 @@ def get_sub_dependant(
             name=name,
             security_scopes=security_scopes,
             use_cache=depends.use_cache,
+            index=index
         )
         if security_requirement:
             sub_dependant.security_requirements.append(security_requirement)
         return sub_dependant
     else:
-        raise ValueError(
-            f"Dependency {name} of {caller} has an invalid "
-            f"sub-dependency scope: {depends.dependency_scope}"
+        raise InvalidDependencyScope(
+            f"Dependency \"{name}\" of {caller} has an invalid "
+            f"scope: \"{depends.dependency_scope}\""
         )
 
 
@@ -292,6 +302,7 @@ def get_lifespan_dependant(
     call: Callable[..., Any],
     name: Optional[str] = None,
     use_cache: bool = True,
+    index: Optional[int] = None
 ) -> LifespanDependant:
     dependency_signature = get_typed_signature(call)
     signature_params = dependency_signature.parameters
@@ -299,7 +310,8 @@ def get_lifespan_dependant(
         call=call,
         name=name,
         use_cache=use_cache,
-        caller=caller
+        caller=caller,
+        index=index
     )
     for param_name, param in signature_params.items():
         param_details = analyze_param(
@@ -309,16 +321,22 @@ def get_lifespan_dependant(
             is_path_param=False,
         )
         if param_details.depends is None:
-            raise FastAPIError(
-                f"Lifespan dependency {dependant.name} was defined with an "
-                f"invalid argument {param_name}. Lifespan dependencies may "
-                f"only use other lifespan dependencies as arguments.")
+            raise DependencyScopeConflict(
+                f"Lifespan scoped dependency \"{dependant.name}\" was defined "
+                f"with an invalid argument: \"{param_name}\" which is "
+                f"\"endpoint\" scoped. Lifespan scoped dependencies may only "
+                f"use lifespan scoped sub-dependencies.")
 
         if param_details.depends.dependency_scope != "lifespan":
-            raise FastAPIError(
-                "Lifespan dependency may not use "
-                "sub-dependencies of other scopes."
+            raise DependencyScopeConflict(
+                f"Lifespan scoped dependency {dependant.name} was defined with the "
+                f"sub-dependency \"{param_name}\" which is "
+                f"\"{param_details.depends.dependency_scope}\" scoped. "
+                f"Lifespan scoped dependencies may only use lifespan scoped "
+                f"sub-dependencies."
             )
+
+        assert param_details.depends.dependency is not None
 
         sub_dependant = get_lifespan_dependant(
             name=param_name,
@@ -339,6 +357,7 @@ def get_endpoint_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    index: Optional[int] = None
 ) -> EndpointDependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -349,6 +368,7 @@ def get_endpoint_dependant(
         path=path,
         security_scopes=security_scopes,
         use_cache=use_cache,
+        index=index
     )
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
@@ -359,28 +379,19 @@ def get_endpoint_dependant(
             is_path_param=is_path_param,
         )
         if param_details.depends is not None:
-            if param_details.depends.dependency_scope == "endpoint":
-                sub_dependant = get_param_sub_dependant(
-                    param_name=param_name,
-                    depends=param_details.depends,
-                    path=path,
-                    security_scopes=security_scopes,
-                    caller=call,
-                )
+            sub_dependant = get_param_sub_dependant(
+                param_name=param_name,
+                depends=param_details.depends,
+                path=path,
+                security_scopes=security_scopes,
+                caller=call,
+            )
+            if isinstance(sub_dependant, EndpointDependant):
                 dependant.endpoint_dependencies.append(sub_dependant)
-            elif param_details.depends.dependency_scope == "lifespan":
-                sub_dependant = get_lifespan_dependant(
-                    caller=call,
-                    call=param_details.depends.dependency,
-                    name=param_name,
-                    use_cache=param_details.depends.use_cache,
-                )
+            elif isinstance(sub_dependant, LifespanDependant):
                 dependant.lifespan_dependencies.append(sub_dependant)
             else:
-                raise FastAPIError(
-                    f"Dependency \"{param_name}\" of `{call}` has an invalid "
-                    f"sub-dependency scope: \"{param_details.depends.dependency_scope}\""
-                )
+                assert_never(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
             param_name=param_name,
@@ -652,7 +663,7 @@ async def solve_generator(
 @dataclass
 class SolvedLifespanDependant:
     value: Any
-    dependency_cache: Dict[Callable[..., Any], Any]
+    dependency_cache: Dict[LifespanDependantCacheKey, Any]
 
 
 async def solve_lifespan_dependant(
@@ -669,35 +680,33 @@ async def solve_lifespan_dependant(
             dependency_cache=dependency_cache,
         )
 
-    dependency_arguments: Dict[str, Any] = {}
-    sub_dependant: LifespanDependant
-    for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Callable[..., Any], sub_dependant.cache_key
+    call = dependant.call
+    dependant_to_solve = dependant
+    if (
+            dependency_overrides_provider
+            and dependency_overrides_provider.dependency_overrides
+    ):
+        call = getattr(
+            dependency_overrides_provider,
+            "dependency_overrides",
+            {}
+        ).get(dependant.call, dependant.call)
+        dependant_to_solve = get_lifespan_dependant(
+            caller=dependant.caller,
+            call=call,
+            name=dependant.name,
+            use_cache=dependant.use_cache,
+            index=dependant.index,
         )
+
+    dependency_arguments: Dict[str, Any] = {}
+    for sub_dependant in dependant_to_solve.dependencies:
         assert sub_dependant.name, (
             "Lifespan scoped dependencies should not be able to have "
             "subdependencies with no name"
         )
-
-        sub_dependant_to_solve = sub_dependant
-        if (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
-            sub_dependant_to_solve = get_lifespan_dependant(
-                call=call,
-                name=sub_dependant.name,
-                caller=dependant.call
-            )
-
         solved_sub_dependant = await solve_lifespan_dependant(
-            dependant=sub_dependant_to_solve,
+            dependant=sub_dependant,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
             async_exit_stack=async_exit_stack,
@@ -705,16 +714,16 @@ async def solve_lifespan_dependant(
         dependency_cache.update(solved_sub_dependant.dependency_cache)
         dependency_arguments[sub_dependant.name] = solved_sub_dependant.value
 
-    if is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call):
+    if is_gen_callable(call) or is_async_gen_callable(call):
         value = await solve_generator(
-            call=dependant.call,
+            call=call,
             stack=async_exit_stack,
             sub_values=dependency_arguments
         )
-    elif is_coroutine_callable(dependant.call):
-        value = await dependant.call(**dependency_arguments)
+    elif is_coroutine_callable(call):
+        value = await call(**dependency_arguments)
     else:
-        value = await run_in_threadpool(dependant.call, **dependency_arguments)
+        value = await run_in_threadpool(call, **dependency_arguments)
 
     if dependant.cache_key not in dependency_cache:
         dependency_cache[dependant.cache_key] = value
@@ -731,7 +740,7 @@ class SolvedDependency:
     errors: List[Any]
     background_tasks: Optional[StarletteBackgroundTasks]
     response: Response
-    dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
+    dependency_cache: Dict[EndpointDependantCacheKey, Any]
 
 
 async def solve_dependencies(
@@ -742,33 +751,34 @@ async def solve_dependencies(
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    dependency_cache: Optional[Dict[EndpointDependantCacheKey, Any]] = None,
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
 ) -> SolvedDependency:
     values: Dict[str, Any] = {}
     errors: List[Any] = []
 
-    for sub_dependant in dependant.lifespan_dependencies:
-        if sub_dependant.name is None:
+    for lifespan_sub_dependant in dependant.lifespan_dependencies:
+        if lifespan_sub_dependant.name is None:
             continue
+
         try:
             lifespan_scoped_dependencies = request.state.__fastapi__[
                 "lifespan_scoped_dependencies"]
-        except AttributeError as e:
-            raise FastAPIError(
-                "FastAPI's internal lifespan was not initialized"
+        except (AttributeError, KeyError) as e:
+            raise UninitializedLifespanDependency(
+                "FastAPI's internal lifespan was not initialized correctly."
             ) from e
 
         try:
-            value = lifespan_scoped_dependencies[sub_dependant.cache_key]
+            value = lifespan_scoped_dependencies[lifespan_sub_dependant.cache_key]
         except KeyError as e:
-            raise FastAPIError(
-                    f"Dependency {sub_dependant.name} of {dependant.call} "
-                    f"was not initialized."
+            raise UninitializedLifespanDependency(
+                    f"Dependency \"{lifespan_sub_dependant.name}\" of "
+                    f"`{dependant.call}` was not initialized correctly."
             ) from e
 
-        values[sub_dependant.name] = value
+        values[lifespan_sub_dependant.name] = value
 
     if response is None:
         response = Response()
