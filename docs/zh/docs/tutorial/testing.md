@@ -8,7 +8,7 @@
 
 ## 使用 `TestClient`
 
-/// info | "信息"
+/// info | 信息
 
 要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
@@ -30,7 +30,7 @@
 {!../../docs_src/app_testing/tutorial001.py!}
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 注意测试函数是普通的 `def`，不是 `async def`。
 
@@ -40,7 +40,7 @@
 
 ///
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以用 `from starlette.testclient import TestClient`。
 
@@ -48,7 +48,7 @@
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} 。
 
@@ -148,7 +148,7 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "提示"
+/// tip | 提示
 
 Prefer to use the `Annotated` version if possible.
 
@@ -162,7 +162,7 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "提示"
+/// tip | 提示
 
 Prefer to use the `Annotated` version if possible.
 
@@ -196,7 +196,7 @@ Prefer to use the `Annotated` version if possible.
 
 关于如何传数据给后端的更多信息 (使用`httpx` 或 `TestClient`)，请查阅 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX 文档</a>.
 
-/// info | "信息"
+/// info | 信息
 
 注意 `TestClient` 接收可以被转化为JSON的数据，而不是Pydantic模型。
 
