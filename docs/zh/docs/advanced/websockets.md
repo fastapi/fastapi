@@ -46,7 +46,7 @@ $ pip install websockets
 {!../../docs_src/websockets/tutorial001.py!}
 ```
 
-/// note | "技术细节"
+/// note | 技术细节
 
 您也可以使用 `from starlette.websockets import WebSocket`。
 
