@@ -2,9 +2,7 @@
 
 The simplest FastAPI file could look like this:
 
-```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Copy that to a file `main.py`.
 
@@ -157,13 +155,11 @@ You could also use it to generate code automatically, for clients that communica
 
 ### Step 1: import `FastAPI`
 
-```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
@@ -173,9 +169,7 @@ You can use all the <a href="https://www.starlette.io/" class="external-link" ta
 
 ### Step 2: create a `FastAPI` "instance"
 
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
@@ -244,16 +238,14 @@ We are going to call them "**operations**" too.
 
 #### Define a *path operation decorator*
 
-```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
 * the path `/`
 * using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 That `@something` syntax in Python is called a "decorator".
 
@@ -300,9 +292,7 @@ This is our "**path operation function**":
 * **operation**: is `get`.
 * **function**: is the function below the "decorator" (below `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 This is a Python function.
 
@@ -314,9 +304,7 @@ In this case, it is an `async` function.
 
 You could also define it as a normal function instead of `async def`:
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
@@ -326,9 +314,7 @@ If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md
 
 ### Step 5: return the content
 
-```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 You can return a `dict`, `list`, singular values as `str`, `int`, etc.
 

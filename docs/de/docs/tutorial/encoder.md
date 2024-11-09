@@ -23,7 +23,7 @@ Es nimmt ein Objekt entgegen, wie etwa ein Pydantic-Modell, und gibt eine JSON-k
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  21"
-{!> ../../../docs_src/encoder/tutorial001_py310.py!}
+{!> ../../docs_src/encoder/tutorial001_py310.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@ Es nimmt ein Objekt entgegen, wie etwa ein Pydantic-Modell, und gibt eine JSON-k
 //// tab | Python 3.8+
 
 ```Python hl_lines="5  22"
-{!> ../../../docs_src/encoder/tutorial001.py!}
+{!> ../../docs_src/encoder/tutorial001.py!}
 ```
 
 ////
@@ -42,7 +42,7 @@ Das Resultat dieses Aufrufs ist etwas, das mit Pythons Standard-<a href="https:/
 
 Es wird also kein großer `str` zurückgegeben, der die Daten im JSON-Format (als String) enthält. Es wird eine Python-Standarddatenstruktur (z. B. ein `dict`) zurückgegeben, mit Werten und Unterwerten, die alle mit JSON kompatibel sind.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 `jsonable_encoder` wird tatsächlich von **FastAPI** intern verwendet, um Daten zu konvertieren. Aber es ist in vielen anderen Szenarien hilfreich.
 
