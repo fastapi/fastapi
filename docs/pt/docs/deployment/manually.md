@@ -102,7 +102,7 @@ $ pip install "uvicorn[standard]"
 
 Um processo semelhante se aplicaria a qualquer outro programa de servidor ASGI.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Adicionando o `standard`, o Uvicorn instalará e usará algumas dependências extras recomendadas.
 
@@ -126,7 +126,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 </div>
 
-/// note | "Nota"
+/// note | Nota
 
 O comando `uvicorn main:app` refere-se a:
 
@@ -143,7 +143,7 @@ from main import app
 
 Cada programa de servidor ASGI alternativo teria um comando semelhante, você pode ler mais na documentação respectiva.
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Uvicorn e outros servidores suportam a opção `--reload` que é útil durante o desenvolvimento.
 

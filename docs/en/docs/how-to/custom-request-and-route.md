@@ -56,7 +56,7 @@ Here we use it to create a `GzipRequest` from the original request.
 
 {* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
 

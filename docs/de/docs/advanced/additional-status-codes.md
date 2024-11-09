@@ -40,7 +40,7 @@ Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -54,7 +54,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -66,7 +66,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Wenn Sie eine `Response` direkt zurückgeben, wie im obigen Beispiel, wird sie direkt zurückgegeben.
 
@@ -76,7 +76,7 @@ Stellen Sie sicher, dass sie die gewünschten Daten enthält und dass die Werte 
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import JSONResponse` verwenden.
 
