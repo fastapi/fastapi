@@ -12,7 +12,7 @@ class SubModel(BaseModel):
 
 
 class Model(BaseModel):
-    x: Optional[int]
+    x: Optional[int] = None
     sub: SubModel
 
 

@@ -1,3 +1,4 @@
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
 from docs_src.dataclasses.tutorial002 import app
@@ -11,7 +12,7 @@ def test_get_item():
     assert response.json() == {
         "name": "Island In The Moon",
         "price": 12.99,
-        "description": "A place to be be playin' and havin' fun",
+        "description": "A place to be playin' and havin' fun",
         "tags": ["breater"],
         "tax": None,
     }
@@ -20,9 +21,8 @@ def test_get_item():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    data = response.json()
-    assert data == {
-        "openapi": "3.0.2",
+    assert response.json() == {
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/next": {
@@ -46,18 +46,50 @@ def test_openapi_schema():
             "schemas": {
                 "Item": {
                     "title": "Item",
-                    "required": ["name", "price"],
+                    "required": IsOneOf(
+                        ["name", "price", "tags", "description", "tax"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["name", "price"],
+                    ),
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "price": {"title": "Price", "type": "number"},
-                        "tags": {
-                            "title": "Tags",
-                            "type": "array",
-                            "items": {"type": "string"},
-                        },
-                        "description": {"title": "Description", "type": "string"},
-                        "tax": {"title": "Tax", "type": "number"},
+                        "tags": IsDict(
+                            {
+                                "title": "Tags",
+                                "type": "array",
+                                "items": {"type": "string"},
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Tags",
+                                "type": "array",
+                                "items": {"type": "string"},
+                            }
+                        ),
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                     },
                 }
             }

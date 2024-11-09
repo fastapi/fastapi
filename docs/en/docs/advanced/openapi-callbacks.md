@@ -31,14 +31,15 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-```Python hl_lines="9-13  36-53"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
-!!! tip
-    The `callback_url` query parameter uses a Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> type.
+/// tip
 
-The only new thing is the `callbacks=messages_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
+The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
+
+///
+
+The only new thing is the `callbacks=invoices_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
 
 ## Documenting the callback
 
@@ -61,10 +62,13 @@ That documentation will show up in the Swagger UI at `/docs` in your API, and it
 
 This example doesn't implement the callback itself (that could be just a line of code), only the documentation part.
 
-!!! tip
-    The actual callback is just an HTTP request.
+/// tip
 
-    When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+The actual callback is just an HTTP request.
+
+When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+
+///
 
 ## Write the callback documentation code
 
@@ -74,18 +78,19 @@ But, you already know how to easily create automatic documentation for an API wi
 
 So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
 
-!!! tip
-    When writing the code to document a callback, it might be useful to imagine that you are that *external developer*. And that you are currently implementing the *external API*, not *your API*.
+/// tip
 
-    Temporarily adopting this point of view (of the *external developer*) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that *external API*.
+When writing the code to document a callback, it might be useful to imagine that you are that *external developer*. And that you are currently implementing the *external API*, not *your API*.
+
+Temporarily adopting this point of view (of the *external developer*) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that *external API*.
+
+///
 
 ### Create a callback `APIRouter`
 
 First create a new `APIRouter` that will contain one or more callbacks.
 
-```Python hl_lines="3  25"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
 
 ### Create the callback *path operation*
 
@@ -96,18 +101,16 @@ It should look just like a normal FastAPI *path operation*:
 * It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
-```Python hl_lines="16-18  21-22  28-32"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
 
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -131,7 +134,7 @@ with a JSON body of:
 }
 ```
 
-Then *your API* will process the invoice, and at some point later, send a callback request to the `callback_url` (the *external API*):
+then *your API* will process the invoice, and at some point later, send a callback request to the `callback_url` (the *external API*):
 
 ```
 https://www.external.org/events/invoices/2expen51ve
@@ -154,8 +157,11 @@ and it would expect a response from that *external API* with a JSON body like:
 }
 ```
 
-!!! tip
-    Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+/// tip
+
+Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+
+///
 
 ### Add the callback router
 
@@ -163,17 +169,18 @@ At this point you have the *callback path operation(s)* needed (the one(s) that 
 
 Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
 
-```Python hl_lines="35"
-{!../../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
 
-!!! tip
-    Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+/// tip
+
+Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+
+///
 
 ### Check the docs
 
-Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see your docs including a "Callback" section for your *path operation* that shows how the *external API* should look like:
+You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">
