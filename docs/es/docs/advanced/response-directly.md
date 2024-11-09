@@ -14,14 +14,17 @@ Esto puede ser útil, por ejemplo, para devolver cookies o headers personalizado
 
 De hecho, puedes devolver cualquier `Response` o cualquier subclase de la misma.
 
-!!! tip "Consejo"
-    `JSONResponse` en sí misma es una subclase de `Response`.
+/// tip | Consejo
+
+`JSONResponse` en sí misma es una subclase de `Response`.
+
+///
 
 Y cuando devuelves una `Response`, **FastAPI** la pasará directamente.
 
 No hará ninguna conversión de datos con modelos Pydantic, no convertirá el contenido a ningún tipo, etc.
 
-Esto te da mucha flexibilidad. Puedes devolver cualquier tipo de dato, sobrescribir cualquer declaración de datos o validación, etc.
+Esto te da mucha flexibilidad. Puedes devolver cualquier tipo de dato, sobrescribir cualquier declaración de datos o validación, etc.
 
 ## Usando el `jsonable_encoder` en una `Response`
 
@@ -32,13 +35,16 @@ Por ejemplo, no puedes poner un modelo Pydantic en una `JSONResponse` sin primer
 Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos antes de pasarlos a la respuesta:
 
 ```Python hl_lines="4 6 20 21"
-{!../../../docs_src/response_directly/tutorial001.py!}
+{!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Detalles Técnicos"
-    También puedes usar `from starlette.responses import JSONResponse`.
+/// note | Detalles Técnicos
 
-    **FastAPI** provee `starlette.responses` como `fastapi.responses`, simplemente como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+También puedes usar `from starlette.responses import JSONResponse`.
+
+**FastAPI** provee `starlette.responses` como `fastapi.responses`, simplemente como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+
+///
 
 ## Devolviendo una `Response` personalizada
 
@@ -51,7 +57,7 @@ Digamos que quieres devolver una respuesta <a href="https://en.wikipedia.org/wik
 Podrías poner tu contenido XML en un string, ponerlo en una `Response` y devolverlo:
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notas

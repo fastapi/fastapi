@@ -15,9 +15,7 @@
 
 首先导入 `BackgroundTasks` 并在 *路径操作函数* 中使用类型声明 `BackgroundTasks` 定义一个参数：
 
-```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1, 13] *}
 
 **FastAPI** 会创建一个 `BackgroundTasks` 类型的对象并作为该参数传入。
 
@@ -33,17 +31,13 @@
 
 由于写操作不使用 `async` 和 `await`，我们用普通的 `def` 定义函数：
 
-```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## 添加后台任务
 
 在你的 *路径操作函数* 里，用 `.add_task()` 方法将任务函数传到 *后台任务* 对象中：
 
-```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` 接收以下参数：
 
@@ -57,41 +51,47 @@
 
 **FastAPI** 知道在每种情况下该做什么以及如何复用同一对象，因此所有后台任务被合并在一起并且随后在后台运行：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
-    ```
+{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13, 15, 22, 25] *}
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.8+"
+{* ../../docs_src/background_tasks/tutorial002_an_py39.py hl[13, 15, 22, 25] *}
 
-    ```Python hl_lines="14  16  23  26"
-    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ 没Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+{* ../../docs_src/background_tasks/tutorial002_an.py hl[14, 16, 23, 26] *}
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.8+ 没Annotated"
+//// tab | Python 3.10+ 没Annotated
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+/// tip
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+{* ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
+
+////
+
+//// tab | Python 3.8+ 没Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+{* ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
+
+////
 
 该示例中，信息会在响应发出 *之后* 被写到 `log.txt` 文件。
 

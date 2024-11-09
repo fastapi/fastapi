@@ -1,0 +1,69 @@
+name: Test Redistribute
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test-redistribute:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - fastapi
+          - fastapi-slim
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install build dependencies
+        run: pip install build
+      - name: Build source distribution
+        env:
+          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
+        run: python -m build --sdist
+      - name: Decompress source distribution
+        run: |
+          cd dist
+          tar xvf fastapi*.tar.gz
+      - name: Install test dependencies
+        run: |
+          cd dist/fastapi*/
+          pip install -r requirements-tests.txt
+        env:
+          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
+      - name: Run source distribution tests
+        run: |
+          cd dist/fastapi*/
+          bash scripts/test.sh
+      - name: Build wheel distribution
+        run: |
+          cd dist
+          pip wheel --no-deps fastapi*.tar.gz
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+  # https://github.com/marketplace/actions/alls-green#why
+  test-redistribute-alls-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - test-redistribute
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
