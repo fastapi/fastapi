@@ -11,7 +11,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -19,7 +19,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
 ```
 
 ////
@@ -41,7 +41,7 @@
 ///
 
 ```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -55,7 +55,7 @@
 ///
 
 ```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
 ////
@@ -84,7 +84,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
 
 ////
@@ -92,7 +92,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
 ////
@@ -140,7 +140,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -148,7 +148,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -156,7 +156,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="24"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
 ```
 
 ////
@@ -170,7 +170,7 @@
 ///
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
 ```
 
 ////
@@ -184,7 +184,7 @@
 ///
 
 ```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
 ////
@@ -225,7 +225,7 @@ q: str = None
 //// tab | Python 3.10+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -233,7 +233,7 @@ q: str = None
 //// tab | Python 3.9+
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -241,7 +241,7 @@ q: str = None
 //// tab | Python 3.8+
 
 ```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
 ```
 
 ////
@@ -255,7 +255,7 @@ q: str = None
 ///
 
 ```Python hl_lines="25"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
 ```
 
 ////
@@ -269,7 +269,7 @@ q: str = None
 ///
 
 ```Python hl_lines="27"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
 ////
@@ -297,7 +297,7 @@ item: Item = Body(embed=True)
 //// tab | Python 3.10+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -305,7 +305,7 @@ item: Item = Body(embed=True)
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -313,7 +313,7 @@ item: Item = Body(embed=True)
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
 ```
 
 ////
@@ -327,7 +327,7 @@ item: Item = Body(embed=True)
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
 ```
 
 ////
@@ -341,7 +341,7 @@ item: Item = Body(embed=True)
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
 ////
