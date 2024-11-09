@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    You can only use `await` inside of functions created with `async def`.
+/// note
+
+You can only use `await` inside of functions created with `async def`.
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ You just eat them, and you are done. ⏹
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
-!!! info
-    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+/// info
+
+Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -222,7 +231,7 @@ All of the cashiers doing all the work with one client after the other 👨‍�
 
 And you have to wait 🕙 in the line for a long time or you lose your turn.
 
-You probably wouldn't want to take your crush 😍 with you to do errands at the bank 🏦.
+You probably wouldn't want to take your crush 😍 with you to run errands at the bank 🏦.
 
 ### Burger Conclusion
 
@@ -283,7 +292,7 @@ For example:
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
+With **FastAPI** you can take advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
@@ -360,6 +369,8 @@ In particular, you can directly use <a href="https://anyio.readthedocs.io/en/sta
 
 And even if you were not using FastAPI, you could also write your own async applications with <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> to be highly compatible and get its benefits (e.g. *structured concurrency*).
 
+I created another library on top of AnyIO, as a thin layer on top, to improve a bit the type annotations and get better **autocompletion**, **inline errors**, etc. It also has a friendly introduction and tutorial to help you **understand** and write **your own async code**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. It would be particularly useful if you need to **combine async code with regular** (blocking/synchronous) code.
+
 ### Other forms of asynchronous code
 
 This style of using `async` and `await` is relatively new in the language.
@@ -376,7 +387,7 @@ In previous versions of NodeJS / Browser JavaScript, you would have used "callba
 
 ## Coroutines
 
-**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
+**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
 
 But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
 
@@ -392,12 +403,15 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 ## Very Technical Details
 
-!!! warning
-    You can probably skip this.
+/// warning
 
-    These are very technical details of how **FastAPI** works underneath.
+You can probably skip this.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+These are very technical details of how **FastAPI** works underneath.
+
+If you have quite some technical knowledge (coroutines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+
+///
 
 ### Path operation functions
 
@@ -405,15 +419,15 @@ When you declare a *path operation function* with normal `def` instead of `async
 
 If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
+Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
 
 ### Dependencies
 
-The same applies for [dependencies](/tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+The same applies for [dependencies](tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
 ### Sub-dependencies
 
-You can have multiple dependencies and [sub-dependencies](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 

@@ -3,7 +3,7 @@
 👆 💪 📣 ➡ "🔢" ⚖️ "🔢" ⏮️ 🎏 ❕ ⚙️ 🐍 📁 🎻:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 💲 ➡ 🔢 `item_id` 🔜 🚶‍♀️ 👆 🔢 ❌ `item_id`.
@@ -19,13 +19,16 @@
 👆 💪 📣 🆎 ➡ 🔢 🔢, ⚙️ 🐩 🐍 🆎 ✍:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 👉 💼, `item_id` 📣 `int`.
 
-!!! check
-    👉 🔜 🤝 👆 👨‍🎨 🐕‍🦺 🔘 👆 🔢, ⏮️ ❌ ✅, 🛠️, ♒️.
+/// check
+
+👉 🔜 🤝 👆 👨‍🎨 🐕‍🦺 🔘 👆 🔢, ⏮️ ❌ ✅, 🛠️, ♒️.
+
+///
 
 ## 💽 <abbr title="also known as: serialization, parsing, marshalling">🛠️</abbr>
 
@@ -35,10 +38,13 @@
 {"item_id":3}
 ```
 
-!!! check
-    👀 👈 💲 👆 🔢 📨 (&amp; 📨) `3`, 🐍 `int`, 🚫 🎻 `"3"`.
+/// check
 
-    , ⏮️ 👈 🆎 📄, **FastAPI** 🤝 👆 🏧 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>.
+👀 👈 💲 👆 🔢 📨 (&amp; 📨) `3`, 🐍 `int`, 🚫 🎻 `"3"`.
+
+, ⏮️ 👈 🆎 📄, **FastAPI** 🤝 👆 🏧 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>.
+
+///
 
 ## 💽 🔬
 
@@ -63,12 +69,15 @@
 
 🎏 ❌ 🔜 😑 🚥 👆 🚚 `float` ↩️ `int`,: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
-    , ⏮️ 🎏 🐍 🆎 📄, **FastAPI** 🤝 👆 💽 🔬.
+/// check
 
-    👀 👈 ❌ 🎯 🇵🇸 ⚫️❔ ☝ 🌐❔ 🔬 🚫 🚶‍♀️.
+, ⏮️ 🎏 🐍 🆎 📄, **FastAPI** 🤝 👆 💽 🔬.
 
-    👉 🙃 👍 ⏪ 🛠️ &amp; 🛠️ 📟 👈 🔗 ⏮️ 👆 🛠️.
+👀 👈 ❌ 🎯 🇵🇸 ⚫️❔ ☝ 🌐❔ 🔬 🚫 🚶‍♀️.
+
+👉 🙃 👍 ⏪ 🛠️ &amp; 🛠️ 📟 👈 🔗 ⏮️ 👆 🛠️.
+
+///
 
 ## 🧾
 
@@ -76,10 +85,13 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
-    🔄, ⏮️ 👈 🎏 🐍 🆎 📄, **FastAPI** 🤝 👆 🏧, 🎓 🧾 (🛠️ 🦁 🎚).
+/// check
 
-    👀 👈 ➡ 🔢 📣 🔢.
+🔄, ⏮️ 👈 🎏 🐍 🆎 📄, **FastAPI** 🤝 👆 🏧, 🎓 🧾 (🛠️ 🦁 🎚).
+
+👀 👈 ➡ 🔢 📣 🔢.
+
+///
 
 ## 🐩-⚓️ 💰, 🎛 🧾
 
@@ -93,7 +105,7 @@
 
 ## Pydantic
 
-🌐 💽 🔬 🎭 🔽 🚘 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, 👆 🤚 🌐 💰 ⚪️➡️ ⚫️. &amp; 👆 💭 👆 👍 ✋.
+🌐 💽 🔬 🎭 🔽 🚘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, 👆 🤚 🌐 💰 ⚪️➡️ ⚫️. &amp; 👆 💭 👆 👍 ✋.
 
 👆 💪 ⚙️ 🎏 🆎 📄 ⏮️ `str`, `float`, `bool` &amp; 📚 🎏 🏗 📊 🆎.
 
@@ -110,7 +122,7 @@
 ↩️ *➡ 🛠️* 🔬 ✔, 👆 💪 ⚒ 💭 👈 ➡ `/users/me` 📣 ⏭ 1️⃣ `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 ⏪, ➡ `/users/{user_id}` 🔜 🏏 `/users/me`, "💭" 👈 ⚫️ 📨 🔢 `user_id` ⏮️ 💲 `"me"`.
@@ -118,7 +130,7 @@
 ➡, 👆 🚫🔜 ↔ ➡ 🛠️:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003b.py!}
+{!../../docs_src/path_params/tutorial003b.py!}
 ```
 
 🥇 🕐 🔜 🕧 ⚙️ ↩️ ➡ 🏏 🥇.
@@ -136,21 +148,27 @@
 ⤴️ ✍ 🎓 🔢 ⏮️ 🔧 💲, ❔ 🔜 💪 ☑ 💲:
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">🔢 (⚖️ 🔢) 💪 🐍</a> ↩️ ⏬ 3️⃣.4️⃣.
+/// info
 
-!!! tip
-    🚥 👆 💭, "📊", "🎓", &amp; "🍏" 📛 🎰 🏫 <abbr title="Technically, Deep Learning model architectures">🏷</abbr>.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">🔢 (⚖️ 🔢) 💪 🐍</a> ↩️ ⏬ 3️⃣.4️⃣.
+
+///
+
+/// tip
+
+🚥 👆 💭, "📊", "🎓", &amp; "🍏" 📛 🎰 🏫 <abbr title="Technically, Deep Learning model architectures">🏷</abbr>.
+
+///
 
 ### 📣 *➡ 🔢*
 
 ⤴️ ✍ *➡ 🔢* ⏮️ 🆎 ✍ ⚙️ 🔢 🎓 👆 ✍ (`ModelName`):
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### ✅ 🩺
@@ -168,7 +186,7 @@
 👆 💪 🔬 ⚫️ ⏮️ *🔢 👨‍🎓* 👆 ✍ 🔢 `ModelName`:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### 🤚 *🔢 💲*
@@ -176,11 +194,14 @@
 👆 💪 🤚 ☑ 💲 ( `str` 👉 💼) ⚙️ `model_name.value`, ⚖️ 🏢, `your_enum_member.value`:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip
-    👆 💪 🔐 💲 `"lenet"` ⏮️ `ModelName.lenet.value`.
+/// tip
+
+👆 💪 🔐 💲 `"lenet"` ⏮️ `ModelName.lenet.value`.
+
+///
 
 #### 📨 *🔢 👨‍🎓*
 
@@ -189,7 +210,7 @@
 👫 🔜 🗜 👫 🔗 💲 (🎻 👉 💼) ⏭ 🛬 👫 👩‍💻:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 👆 👩‍💻 👆 🔜 🤚 🎻 📨 💖:
@@ -230,13 +251,16 @@
 , 👆 💪 ⚙️ ⚫️ ⏮️:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip
-    👆 💪 💪 🔢 🔌 `/home/johndoe/myfile.txt`, ⏮️ 🏁 🔪 (`/`).
+/// tip
 
-    👈 💼, 📛 🔜: `/files//home/johndoe/myfile.txt`, ⏮️ 2️⃣✖️ 🔪 (`//`) 🖖 `files` &amp; `home`.
+👆 💪 💪 🔢 🔌 `/home/johndoe/myfile.txt`, ⏮️ 🏁 🔪 (`/`).
+
+👈 💼, 📛 🔜: `/files//home/johndoe/myfile.txt`, ⏮️ 2️⃣✖️ 🔪 (`//`) 🖖 `files` &amp; `home`.
+
+///
 
 ## 🌃
 

@@ -2,8 +2,8 @@ from typing import List, Optional
 
 import pytest
 from fastapi import FastAPI
+from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from pydantic import ValidationError
 from pydantic.dataclasses import dataclass
 
 app = FastAPI()
@@ -39,15 +39,15 @@ client = TestClient(app)
 
 
 def test_invalid():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/items/invalid")
 
 
 def test_double_invalid():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/items/innerinvalid")
 
 
 def test_invalid_list():
-    with pytest.raises(ValidationError):
+    with pytest.raises(ResponseValidationError):
         client.get("/items/invalidlist")

@@ -31,41 +31,7 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="9-12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
 
 That's it.
 
@@ -85,90 +51,25 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
-!!! info
-    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+/// info
 
-    If you have an older version, you would get errors when trying to use `Annotated`.
+FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
-    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+If you have an older version, you would get errors when trying to use `Annotated`.
+
+Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
+///
 
 ### Import `Depends`
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
 ### Declare the dependency, in the "dependant"
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="13  18"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
 
 Although you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit differently.
 
@@ -180,8 +81,11 @@ You **don't call it** directly (don't add the parenthesis at the end), you just 
 
 And that function takes parameters in the same way that *path operation functions* do.
 
-!!! tip
-    You'll see what other "things", apart from functions, can be used as dependencies in the next chapter.
+/// tip
+
+You'll see what other "things", apart from functions, can be used as dependencies in the next chapter.
+
+///
 
 Whenever a new request arrives, **FastAPI** will take care of:
 
@@ -202,10 +106,13 @@ common_parameters --> read_users
 
 This way you write shared code once and **FastAPI** takes care of calling it for your *path operations*.
 
-!!! check
-    Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
+/// check
 
-    You just pass it to `Depends` and **FastAPI** knows how to do the rest.
+Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
+
+You just pass it to `Depends` and **FastAPI** knows how to do the rest.
+
+///
 
 ## Share `Annotated` dependencies
 
@@ -219,28 +126,15 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 But because we are using `Annotated`, we can store that `Annotated` value in a variable and use it in multiple places:
 
-=== "Python 3.10+"
+{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
 
-    ```Python hl_lines="12  16  21"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-    ```
+/// tip
 
-=== "Python 3.9+"
+This is just standard Python, it's called a "type alias", it's actually not specific to **FastAPI**.
 
-    ```Python hl_lines="14  18  23"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-    ```
+But because **FastAPI** is based on the Python standards, including `Annotated`, you can use this trick in your code. 😎
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="15  19  24"
-    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-    ```
-
-!!! tip
-    This is just standard Python, it's called a "type alias", it's actually not specific to **FastAPI**.
-
-    But because **FastAPI** is based on the Python standards, including `Annotated`, you can use this trick in your code. 😎
+///
 
 The dependencies will keep working as expected, and the **best part** is that the **type information will be preserved**, which means that your editor will be able to keep providing you with **autocompletion**, **inline errors**, etc. The same for other tools like `mypy`.
 
@@ -256,8 +150,11 @@ And you can declare dependencies with `async def` inside of normal `def` *path o
 
 It doesn't matter. **FastAPI** will know what to do.
 
-!!! note
-    If you don't know, check the [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} section about `async` and `await` in the docs.
+/// note
+
+If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} section about `async` and `await` in the docs.
+
+///
 
 ## Integrated with OpenAPI
 
@@ -287,9 +184,9 @@ Other common terms for this same idea of "dependency injection" are:
 
 ## **FastAPI** plug-ins
 
-Integrations and "plug-in"s can be built using the **Dependency Injection** system. But in fact, there is actually **no need to create "plug-ins"**, as by using dependencies it's possible to declare an infinite number of integrations and interactions that become available to your *path operation functions*.
+Integrations and "plug-ins" can be built using the **Dependency Injection** system. But in fact, there is actually **no need to create "plug-ins"**, as by using dependencies it's possible to declare an infinite number of integrations and interactions that become available to your *path operation functions*.
 
-And dependencies can be created in a very simple and intuitive way that allow you to just import the Python packages you need, and integrate them with your API functions in a couple of lines of code, *literally*.
+And dependencies can be created in a very simple and intuitive way that allows you to just import the Python packages you need, and integrate them with your API functions in a couple of lines of code, *literally*.
 
 You will see examples of this in the next chapters, about relational and NoSQL databases, security, etc.
 

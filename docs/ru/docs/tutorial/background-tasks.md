@@ -16,7 +16,7 @@
 Сначала импортируйте `BackgroundTasks`, потом добавьте в функцию параметр с типом `BackgroundTasks`:
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** создаст объект класса `BackgroundTasks` для вас и запишет его в параметр.
@@ -34,7 +34,7 @@
 Так как операция записи не использует `async` и `await`, мы определим ее как обычную `def`:
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## Добавление фоновой задачи
@@ -42,7 +42,7 @@
 Внутри функции вызовите метод `.add_task()` у объекта *background tasks* и передайте ему функцию, которую хотите выполнить в фоне:
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` принимает следующие аргументы:
@@ -57,21 +57,25 @@
 
 **FastAPI** знает, что нужно сделать в каждом случае и как переиспользовать тот же объект `BackgroundTasks`, так чтобы все фоновые задачи собрались и запустились вместе в фоне:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+```Python hl_lines="11  13  20  23"
+{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
+```
 
-=== "Python 3.6+"
+////
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="13  15  22  25"
+{!> ../../docs_src/background_tasks/tutorial002.py!}
+```
+
+////
 
 В этом примере сообщения будут записаны в `log.txt` *после* того, как ответ сервера был отправлен.
 
-Если бы в запросе была очередь `q`, она бы первой записалась в `log.txt` фоновой задачей (потому что вызывается в зависимости `get_query`).
+Если бы в запрос был передан query-параметр `q`, он бы первыми записался в `log.txt` фоновой задачей (потому что вызывается в зависимости `get_query`).
 
 После другая фоновая задача, которая была сгенерирована в функции, запишет сообщение из параметра `email`.
 
