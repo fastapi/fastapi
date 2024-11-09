@@ -29,6 +29,9 @@ gold:
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
+  - url: https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi
+    title: Deploy & scale any full-stack web app on Render. Focus on building apps, not infra.
+    img: https://fastapi.tiangolo.com/img/sponsors/render.svg
 silver:
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks
