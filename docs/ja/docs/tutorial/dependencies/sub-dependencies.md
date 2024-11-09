@@ -41,7 +41,7 @@
 {!../../docs_src/dependencies/tutorial005.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 *path operation関数*の中で宣言している依存関係は`query_or_cookie_extractor`の１つだけであることに注意してください。
 
@@ -81,7 +81,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 しかし、それでも非常に強力で、任意の深くネストされた依存関係「グラフ」（ツリー）を宣言することができます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 これらの単純な例では、全てが役に立つとは言えないかもしれません。
 
