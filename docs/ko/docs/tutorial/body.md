@@ -8,7 +8,7 @@
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
-/// info | "정보"
+/// info | 정보
 
 데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
 
@@ -149,7 +149,7 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "팁"
+/// tip | 팁
 
 만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
 
@@ -233,7 +233,7 @@
 * 만약 매개변수가 (`int`, `float`, `str`, `bool` 등과 같은) **유일한 타입**으로 되어있으면, **쿼리** 매개변수로 해석될 것입니다.
 * 만약 매개변수가 **Pydantic 모델** 타입으로 선언되어 있으면, 요청 **본문**으로 해석될 것입니다.
 
-/// note | "참고"
+/// note | 참고
 
 FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
 

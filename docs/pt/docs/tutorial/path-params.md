@@ -24,7 +24,7 @@ Você pode declarar o tipo de um parâmetro na função usando as anotações pa
 
 Nesse caso, `item_id` está sendo declarado como um `int`.
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -40,7 +40,7 @@ Se você rodar esse exemplo e abrir o seu navegador em <a href="http://127.0.0.1
 {"item_id":3}
 ```
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -73,7 +73,7 @@ devido ao parâmetro da rota `item_id` ter um valor `"foo"`, que não é um `int
 
 O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -91,7 +91,7 @@ Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -151,13 +151,13 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "informação"
+/// info | informação
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (ou enums) estão disponíveis no Python</a> desde a versão 3.4.
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -199,7 +199,7 @@ Você pode ter o valor exato de enumerate (um `str` nesse caso) usando `model_na
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -258,7 +258,7 @@ Então, você poderia usar ele com:
 {!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
