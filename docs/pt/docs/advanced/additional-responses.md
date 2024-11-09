@@ -1,6 +1,6 @@
 # Retornos Adicionais no OpenAPI
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Este é um tema bem avançado.
 
@@ -30,13 +30,13 @@ Por exemplo, para declarar um outro retorno com o status code `404` e um modelo 
 {!../../docs_src/additional_responses/tutorial001.py!}
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Lembre-se que você deve retornar o `JSONResponse` diretamente.
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 A chave `model` não é parte do OpenAPI.
 
@@ -181,13 +181,13 @@ Por exemplo, você pode adicionar um media type adicional de `image/png`, declar
 {!../../docs_src/additional_responses/tutorial002.py!}
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que o retorno possui o mesmo media type contido na classe principal de retorno (padrão `application/json`).
 
