@@ -21,7 +21,7 @@ Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion*
 Anschließend können Sie den `status_code` in diesem *vorübergehenden* Response-Objekt festlegen.
 
 ```Python hl_lines="1  9  12"
-{!../../../docs_src/response_change_status_code/tutorial001.py!}
+{!../../docs_src/response_change_status_code/tutorial001.py!}
 ```
 
 Und dann können Sie wie gewohnt jedes benötigte Objekt zurückgeben (ein `dict`, ein Datenbankmodell usw.).
