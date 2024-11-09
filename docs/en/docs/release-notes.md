@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/generate-clients.md`. PR [#12642](https://github.com/fastapi/fastapi/pull/12642) by [@AyushSinghal1794](https://github.com/AyushSinghal1794).
 * 📝 Fix admonition double quotes with new syntax. PR [#12835](https://github.com/fastapi/fastapi/pull/12835) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update includes in `docs/zh/docs/advanced/additional-responses.md`. PR [#12828](https://github.com/fastapi/fastapi/pull/12828) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/en/docs/tutorial/path-params-numeric-validations.md`. PR [#12825](https://github.com/fastapi/fastapi/pull/12825) by [@zhaohan-dong](https://github.com/zhaohan-dong).
