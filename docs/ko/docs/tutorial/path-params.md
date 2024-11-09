@@ -24,7 +24,7 @@
 
 위의 예시에서, `item_id`는 `int`로 선언되었습니다.
 
-/// check | "확인"
+/// check | 확인
 
 이 기능은 함수 내에서 오류 검사, 자동완성 등의 편집기 기능을 활용할 수 있게 해줍니다.
 
@@ -38,7 +38,7 @@
 {"item_id":3}
 ```
 
-/// check | "확인"
+/// check | 확인
 
 함수가 받은(반환도 하는) 값은 문자열 `"3"`이 아니라 파이썬 `int` 형인 `3`입니다.
 
@@ -69,7 +69,7 @@
 
 `int`가 아닌 `float`을 전달하는 경우에도 동일한 오류가 나타납니다: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "확인"
+/// check | 확인
 
 즉, 파이썬 타입 선언을 하면 **FastAPI**는 데이터 검증을 합니다.
 
@@ -85,7 +85,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "확인"
+/// check | 확인
 
 그저 파이썬 타입 선언을 하기만 하면 **FastAPI**는 자동 대화형 API 문서(Swagger UI)를 제공합니다.
 
@@ -143,13 +143,13 @@
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">열거형(또는 enums)</a>은 파이썬 버전 3.4 이후로 사용 가능합니다.
 
 ///
 
-/// tip | "팁"
+/// tip | 팁
 
 혹시 궁금하다면, "AlexNet", "ResNet", 그리고 "LeNet"은 그저 기계 학습 <abbr title="기술적으로 정확히는 딥 러닝 모델 구조">모델</abbr>들의 이름입니다.
 
@@ -189,7 +189,7 @@
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 `ModelName.lenet.value`로도 값 `"lenet"`에 접근할 수 있습니다.
 
@@ -246,7 +246,7 @@ Starlette의 옵션을 직접 이용하여 다음과 같은 URL을 사용함으�
 {!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 매개변수가 가져야 하는 값이 `/home/johndoe/myfile.txt`와 같이 슬래시로 시작(`/`)해야 할 수 있습니다.
 

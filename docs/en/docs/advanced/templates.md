@@ -45,7 +45,7 @@ By declaring `response_class=HTMLResponse` the docs UI will be able to know that
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.templating import Jinja2Templates`.
 
