@@ -39,7 +39,7 @@ $ pip install websockets
 しかし、これはWebSocketのサーバーサイドに焦点を当て、実用的な例を示す最も簡単な方法です。
 
 ```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 ## `websocket` を作成する
@@ -47,10 +47,10 @@ $ pip install websockets
 **FastAPI** アプリケーションで、`websocket` を作成します。
 
 ```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.websockets import WebSocket` を使用しても構いません.
 
@@ -63,7 +63,7 @@ $ pip install websockets
 WebSocketルートでは、 `await` を使ってメッセージの送受信ができます。
 
 ```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
+{!../../docs_src/websockets/tutorial001.py!}
 ```
 
 バイナリやテキストデータ、JSONデータを送受信できます。
@@ -116,10 +116,10 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 これらは、他のFastAPI エンドポイント/*path operation* の場合と同じように機能します。
 
 ```Python hl_lines="58-65  68-83"
-{!../../../docs_src/websockets/tutorial002.py!}
+{!../../docs_src/websockets/tutorial002.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 WebSocket で `HTTPException` を発生させることはあまり意味がありません。したがって、WebSocketの接続を直接閉じる方がよいでしょう。
 
@@ -150,7 +150,7 @@ $ uvicorn main:app --reload
 * パスで使用される「Item ID」
 * クエリパラメータとして使用される「Token」
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 クエリ `token` は依存パッケージによって処理されることに注意してください。
 
@@ -165,7 +165,7 @@ $ uvicorn main:app --reload
 WebSocket接続が閉じられると、 `await websocket.receive_text()` は例外 `WebSocketDisconnect` を発生させ、この例のようにキャッチして処理することができます。
 
 ```Python hl_lines="81-83"
-{!../../../docs_src/websockets/tutorial003.py!}
+{!../../docs_src/websockets/tutorial003.py!}
 ```
 
 試してみるには、
@@ -180,7 +180,7 @@ WebSocket接続が閉じられると、 `await websocket.receive_text()` は例�
 Client #1596980209979 left the chat
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 上記のアプリは、複数の WebSocket 接続に対してメッセージを処理し、ブロードキャストする方法を示すための最小限のシンプルな例です。
 

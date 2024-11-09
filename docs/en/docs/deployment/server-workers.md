@@ -1,4 +1,4 @@
-# Server Workers - Gunicorn with Uvicorn
+# Server Workers - Uvicorn with Workers
 
 Let's check back those deployment concepts from before:
 
@@ -9,123 +9,92 @@ Let's check back those deployment concepts from before:
 * Memory
 * Previous steps before starting
 
-Up to this point, with all the tutorials in the docs, you have probably been running a **server program** like Uvicorn, running a **single process**.
+Up to this point, with all the tutorials in the docs, you have probably been running a **server program**, for example, using the `fastapi` command, that runs Uvicorn, running a **single process**.
 
 When deploying applications you will probably want to have some **replication of processes** to take advantage of **multiple cores** and to be able to handle more requests.
 
 As you saw in the previous chapter about [Deployment Concepts](concepts.md){.internal-link target=_blank}, there are multiple strategies you can use.
 
-Here I'll show you how to use <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> with **Uvicorn worker processes**.
+Here I'll show you how to use **Uvicorn** with **worker processes** using the `fastapi` command or the `uvicorn` command directly.
 
 /// info
 
 If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
 
-In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
+In particular, when running on **Kubernetes** you will probably **not** want to use workers and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
 
 ///
 
-## Gunicorn with Uvicorn Workers
+## Multiple Workers
 
-**Gunicorn** is mainly an application server using the **WSGI standard**. That means that Gunicorn can serve applications like Flask and Django. Gunicorn by itself is not compatible with **FastAPI**, as FastAPI uses the newest **<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">ASGI standard</a>**.
+You can start multiple workers with the `--workers` command line option:
 
-But Gunicorn supports working as a **process manager** and allowing users to tell it which specific **worker process class** to use. Then Gunicorn would start one or more **worker processes** using that class.
+//// tab | `fastapi`
 
-And **Uvicorn** has a **Gunicorn-compatible worker class**.
-
-Using that combination, Gunicorn would act as a **process manager**, listening on the **port** and the **IP**. And it would **transmit** the communication to the worker processes running the **Uvicorn class**.
-
-And then the Gunicorn-compatible **Uvicorn worker** class would be in charge of converting the data sent by Gunicorn to the ASGI standard for FastAPI to use it.
-
-## Install Gunicorn and Uvicorn
+If you use the `fastapi` command:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]" gunicorn
+$ <pre> <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration-style:single">main.py</u>
+<font color="#3465A4">INFO    </font> Using path <font color="#3465A4">main.py</font>
+<font color="#3465A4">INFO    </font> Resolved absolute path <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
+<font color="#3465A4">INFO    </font> Searching for package file structure from directories with <font color="#3465A4">__init__.py</font> files
+<font color="#3465A4">INFO    </font> Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
----> 100%
+ ╭─ <font color="#8AE234"><b>Python module file</b></font> ─╮
+ │                      │
+ │  🐍 main.py          │
+ │                      │
+ ╰──────────────────────╯
+
+<font color="#3465A4">INFO    </font> Importing module <font color="#4E9A06">main</font>
+<font color="#3465A4">INFO    </font> Found importable FastAPI app
+
+ ╭─ <font color="#8AE234"><b>Importable FastAPI app</b></font> ─╮
+ │                          │
+ │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
+ │                          │
+ ╰──────────────────────────╯
+
+<font color="#3465A4">INFO    </font> Using import string <font color="#8AE234"><b>main:app</b></font>
+
+ <font color="#4E9A06">╭─────────── FastAPI CLI - Production mode ───────────╮</font>
+ <font color="#4E9A06">│                                                     │</font>
+ <font color="#4E9A06">│  Serving at: http://0.0.0.0:8000                    │</font>
+ <font color="#4E9A06">│                                                     │</font>
+ <font color="#4E9A06">│  API docs: http://0.0.0.0:8000/docs                 │</font>
+ <font color="#4E9A06">│                                                     │</font>
+ <font color="#4E9A06">│  Running in production mode, for development use:   │</font>
+ <font color="#4E9A06">│                                                     │</font>
+ <font color="#4E9A06">│  </font><font color="#8AE234"><b>fastapi dev</b></font><font color="#4E9A06">                                        │</font>
+ <font color="#4E9A06">│                                                     │</font>
+ <font color="#4E9A06">╰─────────────────────────────────────────────────────╯</font>
+
+<font color="#4E9A06">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8000</b> (Press CTRL+C to quit)
+<font color="#4E9A06">INFO</font>:     Started parent process [<font color="#34E2E2"><b>27365</b></font>]
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">27368</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">27369</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">27370</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">27367</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
+</pre>
 ```
 
 </div>
 
-That will install both Uvicorn with the `standard` extra packages (to get high performance) and Gunicorn.
+////
 
-## Run Gunicorn with Uvicorn Workers
+//// tab | `uvicorn`
 
-Then you can run Gunicorn with:
-
-<div class="termy">
-
-```console
-$ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80
-
-[19499] [INFO] Starting gunicorn 20.1.0
-[19499] [INFO] Listening at: http://0.0.0.0:80 (19499)
-[19499] [INFO] Using worker: uvicorn.workers.UvicornWorker
-[19511] [INFO] Booting worker with pid: 19511
-[19513] [INFO] Booting worker with pid: 19513
-[19514] [INFO] Booting worker with pid: 19514
-[19515] [INFO] Booting worker with pid: 19515
-[19511] [INFO] Started server process [19511]
-[19511] [INFO] Waiting for application startup.
-[19511] [INFO] Application startup complete.
-[19513] [INFO] Started server process [19513]
-[19513] [INFO] Waiting for application startup.
-[19513] [INFO] Application startup complete.
-[19514] [INFO] Started server process [19514]
-[19514] [INFO] Waiting for application startup.
-[19514] [INFO] Application startup complete.
-[19515] [INFO] Started server process [19515]
-[19515] [INFO] Waiting for application startup.
-[19515] [INFO] Application startup complete.
-```
-
-</div>
-
-Let's see what each of those options mean:
-
-* `main:app`: This is the same syntax used by Uvicorn, `main` means the Python module named "`main`", so, a file `main.py`. And `app` is the name of the variable that is the **FastAPI** application.
-    * You can imagine that `main:app` is equivalent to a Python `import` statement like:
-
-        ```Python
-        from main import app
-        ```
-
-    * So, the colon in `main:app` would be equivalent to the Python `import` part in `from main import app`.
-
-* `--workers`: The number of worker processes to use, each will run a Uvicorn worker, in this case, 4 workers.
-
-* `--worker-class`: The Gunicorn-compatible worker class to use in the worker processes.
-    * Here we pass the class that Gunicorn can import and use with:
-
-        ```Python
-        import uvicorn.workers.UvicornWorker
-        ```
-
-* `--bind`: This tells Gunicorn the IP and the port to listen to, using a colon (`:`) to separate the IP and the port.
-    * If you were running Uvicorn directly, instead of `--bind 0.0.0.0:80` (the Gunicorn option) you would use `--host 0.0.0.0` and `--port 80`.
-
-In the output, you can see that it shows the **PID** (process ID) of each process (it's just a number).
-
-You can see that:
-
-* The Gunicorn **process manager** starts with PID `19499` (in your case it will be a different number).
-* Then it starts `Listening at: http://0.0.0.0:80`.
-* Then it detects that it has to use the worker class at `uvicorn.workers.UvicornWorker`.
-* And then it starts **4 workers**, each with its own PID: `19511`, `19513`, `19514`, and `19515`.
-
-Gunicorn would also take care of managing **dead processes** and **restarting** new ones if needed to keep the number of workers. So that helps in part with the **restart** concept from the list above.
-
-Nevertheless, you would probably also want to have something outside making sure to **restart Gunicorn** if necessary, and also to **run it on startup**, etc.
-
-## Uvicorn with Workers
-
-Uvicorn also has an option to start and run several **worker processes**.
-
-Nevertheless, as of now, Uvicorn's capabilities for handling worker processes are more limited than Gunicorn's. So, if you want to have a process manager at this level (at the Python level), then it might be better to try with Gunicorn as the process manager.
-
-In any case, you would run it like this:
+If you prefer to use the `uvicorn` command directly:
 
 <div class="termy">
 
@@ -149,13 +118,15 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 </div>
 
+////
+
 The only new option here is `--workers` telling Uvicorn to start 4 worker processes.
 
 You can also see that it shows the **PID** of each process, `27365` for the parent process (this is the **process manager**) and one for each worker process: `27368`, `27369`, `27370`, and `27367`.
 
 ## Deployment Concepts
 
-Here you saw how to use **Gunicorn** (or Uvicorn) managing **Uvicorn worker processes** to **parallelize** the execution of the application, take advantage of **multiple cores** in the CPU, and be able to serve **more requests**.
+Here you saw how to use multiple **workers** to **parallelize** the execution of the application, take advantage of **multiple cores** in the CPU, and be able to serve **more requests**.
 
 From the list of deployment concepts from above, using workers would mainly help with the **replication** part, and a little bit with the **restarts**, but you still need to take care of the others:
 
@@ -168,15 +139,13 @@ From the list of deployment concepts from above, using workers would mainly help
 
 ## Containers and Docker
 
-In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll tell some strategies you could use to handle the other **deployment concepts**.
+In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll explain some strategies you could use to handle the other **deployment concepts**.
 
-I'll also show you the **official Docker image** that includes **Gunicorn with Uvicorn workers** and some default configurations that can be useful for simple cases.
-
-There I'll also show you how to **build your own image from scratch** to run a single Uvicorn process (without Gunicorn). It is a simple process and is probably what you would want to do when using a distributed container management system like **Kubernetes**.
+I'll show you how to **build your own image from scratch** to run a single Uvicorn process. It is a simple process and is probably what you would want to do when using a distributed container management system like **Kubernetes**.
 
 ## Recap
 
-You can use **Gunicorn** (or also Uvicorn) as a process manager with Uvicorn workers to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.
+You can use multiple worker processes with the `--workers` CLI option with the `fastapi` or `uvicorn` commands to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.
 
 You could use these tools and ideas if you are setting up **your own deployment system** while taking care of the other deployment concepts yourself.
 

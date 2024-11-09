@@ -17,7 +17,7 @@ Ele deve ser uma lista de `Depends()`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -25,28 +25,28 @@ Ele deve ser uma lista de `Depends()`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
 
 Essas dependências serão executadas/resolvidas da mesma forma que dependências comuns. Mas o valor delas (se existir algum) não será passado para a sua *função de operação de rota*.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Alguns editores de texto checam parâmetros de funções não utilizados, e os mostram como erros.
 
@@ -56,7 +56,7 @@ Isso também pode ser útil para evitar confundir novos desenvolvedores que ao v
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 Neste exemplo utilizamos cabeçalhos personalizados inventados `X-Keys` e `X-Token`.
 
@@ -75,7 +75,7 @@ Dependências podem declarar requisitos de requisições (como cabeçalhos) ou o
 //// tab | Python 3.9+
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -83,21 +83,21 @@ Dependências podem declarar requisitos de requisições (como cabeçalhos) ou o
 //// tab | Python 3.8+
 
 ```Python hl_lines="7  12"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
 ///
 
 ```Python hl_lines="6  11"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
@@ -109,7 +109,7 @@ Essas dependências podem levantar exceções, da mesma forma que dependências 
 //// tab | Python 3.9+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -117,21 +117,21 @@ Essas dependências podem levantar exceções, da mesma forma que dependências 
 //// tab | Python 3.8+
 
 ```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
 ///
 
 ```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
@@ -145,7 +145,7 @@ Então, você pode reutilizar uma dependência comum (que retorna um valor) que 
 //// tab | Python 3.9+
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -153,14 +153,14 @@ Então, você pode reutilizar uma dependência comum (que retorna um valor) que 
 //// tab | Python 3.8+
 
 ```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
+{!> ../../docs_src/dependencies/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -169,7 +169,7 @@ Então, você pode reutilizar uma dependência comum (que retorna um valor) que 
    Utilize a versão com `Annotated` se possível
 
 ```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
+{!> ../../docs_src/dependencies/tutorial006.py!}
 ```
 
 ////
