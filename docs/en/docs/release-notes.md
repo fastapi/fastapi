@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/websockets.md`. PR [#12606](https://github.com/fastapi/fastapi/pull/12606) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Updates include for `docs/en/docs/tutorial/cookie-params.md`. PR [#12808](https://github.com/fastapi/fastapi/pull/12808) by [@handabaldeep](https://github.com/handabaldeep).
 * 📝 Update includes in `docs/en/docs/tutorial/middleware.md`. PR [#12807](https://github.com/fastapi/fastapi/pull/12807) by [@AlexWendland](https://github.com/AlexWendland).
 * 📝 Update includes in `docs/en/docs/advanced/sub-applications.md`. PR [#12806](https://github.com/fastapi/fastapi/pull/12806) by [@zhaohan-dong](https://github.com/zhaohan-dong).
