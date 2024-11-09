@@ -135,7 +135,7 @@ Możesz go również użyć do automatycznego generowania kodu dla klientów, kt
 
 `FastAPI` jest klasą, która zapewnia wszystkie funkcjonalności Twojego API.
 
-/// note | "Szczegóły techniczne"
+/// note | Szczegóły techniczne
 
 `FastAPI` jest klasą, która dziedziczy bezpośrednio z `Starlette`.
 
@@ -249,7 +249,7 @@ Będziemy je również nazywali "**operacjami**".
 * ścieżki `/`
 * używając <abbr title="metoda HTTP GET">operacji <code>get</code></abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 Składnia `@something` jest w Pythonie nazywana "dekoratorem".
 

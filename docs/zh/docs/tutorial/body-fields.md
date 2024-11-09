@@ -58,7 +58,7 @@
 
 ////
 
-/// warning | "警告"
+/// warning | 警告
 
 注意，与从 `fastapi` 导入 `Query`，`Path`、`Body` 不同，要直接从 `pydantic` 导入 `Field` 。
 
@@ -122,7 +122,7 @@ Prefer to use the `Annotated` version if possible.
 
 `Field` 的工作方式和 `Query`、`Path`、`Body` 相同，参数也相同。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 实际上，`Query`、`Path` 都是 `Params` 的子类，而 `Params` 类又是 Pydantic 中 `FieldInfo` 的子类。
 
@@ -134,7 +134,7 @@ Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 注意，模型属性的类型、默认值及 `Field` 的代码结构与*路径操作函数*的参数相同，只不过是用 `Field` 替换了`Path`、`Query`、`Body`。
 

@@ -31,7 +31,7 @@ $ pip install jinja2
 {!../../docs_src/templates/tutorial001.py!}
 ```
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Vor FastAPI 0.108.0 und Starlette 0.29.0 war `name` der erste Parameter.
 
@@ -39,13 +39,13 @@ Außerdem wurde in früheren Versionen das `request`-Objekt als Teil der Schlüs
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationsoberfläche erkennen, dass die Response HTML sein wird.
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 
