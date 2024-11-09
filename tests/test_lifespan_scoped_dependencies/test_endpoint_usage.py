@@ -573,7 +573,8 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
         app = FastAPI(lifespan=lifespan)
     elif lifespan_style == "events_decorator":
         app = FastAPI()
-        with warnings.catch_warnings(action="ignore", category=DeprecationWarning):
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
 
             @app.on_event("startup")
             async def startup() -> None:
