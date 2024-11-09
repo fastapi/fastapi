@@ -4,9 +4,7 @@ Vous pouvez déclarer des "paramètres" ou "variables" de chemin avec la même s
 <a href="https://docs.python.org/fr/3/library/string.html#format-string-syntax" class="external-link" target="_blank">formatage de chaîne Python</a> :
 
 
-```Python hl_lines="6-7"
-{!../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`.
 
@@ -22,9 +20,7 @@ vous verrez comme réponse :
 Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python :
 
 
-```Python hl_lines="7"
-{!../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
@@ -131,9 +127,7 @@ Et vous avez un second chemin : `/users/{user_id}` pour récupérer de la donné
 
 Les *fonctions de chemin* étant évaluées dans l'ordre, il faut s'assurer que la fonction correspondant à `/users/me` est déclarée avant celle de `/users/{user_id}` :
 
-```Python hl_lines="6  11"
-{!../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, la fonction "croyant" qu'elle a reçu un paramètre `user_id` avec pour valeur `"me"`.
 
@@ -149,9 +143,7 @@ En héritant de `str` la documentation sera capable de savoir que les valeurs do
 
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs autorisées pour cette énumération.
 
-```Python hl_lines="1  6-9"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// info
 
@@ -169,9 +161,7 @@ Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms 
 
 Créez ensuite un *paramètre de chemin* avec une annotation de type désignant l'énumération créée précédemment (`ModelName`) :
 
-```Python hl_lines="16"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Documentation
 
@@ -187,17 +177,13 @@ La valeur du *paramètre de chemin* sera un des "membres" de l'énumération.
 
 Vous pouvez comparer ce paramètre avec les membres de votre énumération `ModelName` :
 
-```Python hl_lines="17"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Récupérer la *valeur de l'énumération*
 
 Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici), avec `model_name.value`, ou en général, `votre_membre_d'enum.value` :
 
-```Python hl_lines="20"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | "Astuce"
 
@@ -211,9 +197,7 @@ Vous pouvez retourner des *membres d'énumération* dans vos *fonctions de chemi
 
 Ils seront convertis vers leurs valeurs correspondantes (chaînes de caractères ici) avant d'être transmis au client :
 
-```Python hl_lines="18  21  23"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 Le client recevra une réponse JSON comme celle-ci :
 
@@ -252,9 +236,7 @@ Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:pat
 
 Vous pouvez donc l'utilisez comme tel :
 
-```Python hl_lines="6"
-{!../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | "Astuce"
 

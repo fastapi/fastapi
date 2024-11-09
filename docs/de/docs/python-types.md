@@ -22,9 +22,7 @@ Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, üb
 
 Fangen wir mit einem einfachen Beispiel an:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Dieses Programm gibt aus:
 
@@ -38,9 +36,7 @@ Die Funktion macht Folgendes:
 * Schreibt den ersten Buchstaben eines jeden Wortes groß, mithilfe von `title()`.
 * <abbr title="Füge zu einer Einheit zusammen, eins nach dem anderen.">Verkettet</abbr> sie mit einem Leerzeichen in der Mitte.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Bearbeiten Sie es
 
@@ -82,9 +78,7 @@ Das war's.
 
 Das sind die „Typhinweise“:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Das ist nicht das gleiche wie das Deklarieren von Defaultwerten, wie es hier der Fall ist:
 
@@ -112,9 +106,7 @@ Hier können Sie durch die Optionen blättern, bis Sie diejenige finden, bei der
 
 Sehen Sie sich diese Funktion an, sie hat bereits Typhinweise:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Da der Editor die Typen der Variablen kennt, erhalten Sie nicht nur Code-Vervollständigung, sondern auch eine Fehlerprüfung:
 
@@ -122,9 +114,7 @@ Da der Editor die Typen der Variablen kennt, erhalten Sie nicht nur Code-Vervoll
 
 Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mittels `str(age)` in einen String:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Deklarieren von Typen
 
@@ -143,9 +133,7 @@ Zum Beispiel diese:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Generische Typen mit Typ-Parametern
 
@@ -320,9 +308,7 @@ Sie können deklarieren, dass ein Wert ein `str`, aber vielleicht auch `None` se
 
 In Python 3.6 und darüber (inklusive Python 3.10) können Sie das deklarieren, indem Sie `Optional` vom `typing` Modul importieren und verwenden.
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009.py!}
-```
+{* ../../docs_src/python_types/tutorial009.py hl[1,4] *}
 
 Wenn Sie `Optional[str]` anstelle von nur `str` verwenden, wird Ihr Editor Ihnen dabei helfen, Fehler zu erkennen, bei denen Sie annehmen könnten, dass ein Wert immer eine String (`str`) ist, obwohl er auch `None` sein könnte.
 
@@ -369,9 +355,7 @@ Es geht nur um Wörter und Namen. Aber diese Worte können beeinflussen, wie Sie
 
 Nehmen wir zum Beispiel diese Funktion:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
 
 Der Parameter `name` ist definiert als `Optional[str]`, aber er ist **nicht optional**, Sie können die Funktion nicht ohne diesen Parameter aufrufen:
 
@@ -387,9 +371,7 @@ say_hi(name=None)  # Das funktioniert, None is gültig 🎉
 
 Die gute Nachricht ist, dass Sie sich darüber keine Sorgen mehr machen müssen, wenn Sie Python 3.10 verwenden, da Sie einfach `|` verwenden können, um Vereinigungen von Typen zu definieren:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
 
 Und dann müssen Sie sich nicht mehr um Namen wie `Optional` und `Union` kümmern. 😎
 
@@ -451,15 +433,11 @@ Sie können auch eine Klasse als Typ einer Variablen deklarieren.
 
 Nehmen wir an, Sie haben eine Klasse `Person`, mit einem Namen:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Dann können Sie eine Variable vom Typ `Person` deklarieren:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Und wiederum bekommen Sie die volle Editor-Unterstützung:
 
