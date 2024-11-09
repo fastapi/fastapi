@@ -24,7 +24,7 @@ Create a response as described in [Return a Response Directly](response-directly
 
 {* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
 

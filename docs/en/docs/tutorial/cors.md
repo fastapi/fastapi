@@ -77,7 +77,7 @@ Any request with an `Origin` header. In this case the middleware will pass the r
 
 For more info about <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.middleware.cors import CORSMiddleware`.
 
