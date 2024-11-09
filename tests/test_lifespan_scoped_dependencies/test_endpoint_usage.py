@@ -436,7 +436,7 @@ def test_no_cached_dependency(
         Annotated[str, File()],
         BackgroundTasks,
         Request,
-        WebSocket
+        WebSocket,
     ],
 )
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
