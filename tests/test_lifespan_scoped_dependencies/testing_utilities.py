@@ -1,10 +1,10 @@
 from enum import Enum
 from typing import Any, AsyncGenerator, Generator, TypeVar, Union
-from typing_extensions import assert_never
 
 from fastapi import APIRouter, FastAPI, WebSocket
 from starlette.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
+from typing_extensions import assert_never
 
 T = TypeVar("T")
 
