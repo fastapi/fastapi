@@ -66,7 +66,7 @@ There's a whole chapter here in the documentation about it, you can read it at [
 
 When you declare a *path operation* in your application, **FastAPI** automatically generates the relevant metadata about that *path operation* to be included in the OpenAPI schema.
 
-/// note | "Technical details"
+/// note | Technical details
 
 In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
 
