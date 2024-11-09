@@ -420,7 +420,7 @@ Im folgenden Beispiel akzeptieren Sie irgendein `dict`, solange es `int`-Schlüs
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bedenken Sie, dass JSON nur `str` als Schlüssel unterstützt.
 

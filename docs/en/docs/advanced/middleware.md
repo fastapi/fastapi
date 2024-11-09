@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
 

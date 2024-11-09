@@ -16,9 +16,7 @@ Cela comprend, par exemple :
 
 Pour commencer, importez `BackgroundTasks` et définissez un paramètre dans votre *fonction de chemin* avec `BackgroundTasks` comme type déclaré.
 
-```Python hl_lines="1  13"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** créera l'objet de type `BackgroundTasks` pour vous et le passera comme paramètre.
 
@@ -32,18 +30,14 @@ Dans cet exemple, la fonction de tâche écrira dans un fichier (afin de simuler
 
 L'opération d'écriture n'utilisant ni `async` ni `await`, on définit la fonction avec un `def` normal.
 
-```Python hl_lines="6-9"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Ajouter une tâche d'arrière-plan
 
 Dans votre *fonction de chemin*, passez votre fonction de tâche à l'objet de type `BackgroundTasks` (`background_tasks` ici) grâce à la méthode `.add_task()` :
 
 
-```Python hl_lines="14"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` reçoit comme arguments :
 
@@ -57,9 +51,7 @@ Utiliser `BackgroundTasks` fonctionne aussi avec le système d'injection de dép
 
 **FastAPI** sait quoi faire dans chaque cas et comment réutiliser le même objet, afin que tous les paramètres de type `BackgroundTasks` soient fusionnés et que les tâches soient exécutées en arrière-plan :
 
-```Python hl_lines="13  15  22  25"
-{!../../docs_src/background_tasks/tutorial002.py!}
-```
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 Dans cet exemple, les messages seront écrits dans le fichier `log.txt` après que la réponse soit envoyée.
 

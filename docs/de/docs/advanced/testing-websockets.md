@@ -8,7 +8,7 @@ Dazu verwenden Sie den `TestClient` in einer `with`-Anweisung, eine Verbindung z
 {!../../docs_src/app_testing/tutorial002.py!}
 ```
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Weitere Informationen finden Sie in der Starlette-Dokumentation zum <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">Testen von WebSockets</a>.
 
