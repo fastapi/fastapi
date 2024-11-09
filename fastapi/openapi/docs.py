@@ -3,7 +3,7 @@ from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],

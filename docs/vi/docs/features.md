@@ -64,10 +64,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` nghĩa là:
+/// info
 
-    Truyền các khóa và giá trị của dict `second_user_data` trực tiếp như các tham số kiểu key-value, tương đương với: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` nghĩa là:
+
+Truyền các khóa và giá trị của dict `second_user_data` trực tiếp như các tham số kiểu key-value, tương đương với: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Được hỗ trợ từ các trình soạn thảo
 
@@ -172,7 +175,7 @@ Với **FastAPI**, bạn có được tất cả những tính năng của **Sta
 
 ## Tính năng của Pydantic
 
-**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
+**FastAPI** tương thích đầy đủ với (và dựa trên) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Do đó, bất kì code Pydantic nào bạn thêm vào cũng sẽ hoạt động.
 
 Bao gồm các thư viện bên ngoài cũng dựa trên Pydantic, như <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s cho cơ sở dữ liệu.
 
