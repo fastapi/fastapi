@@ -745,7 +745,7 @@ def test_endpoints_report_incorrect_dependency_scope_at_router_scope(
     # validation at the function level.
     depends.dependency_scope = "asdad"
 
-    if routing_style == "app_endpoint":
+    if routing_style == "app":
         app = FastAPI(dependencies=[depends])
         router = app
     else:
@@ -800,7 +800,7 @@ def test_endpoints_report_uninitialized_dependency(
             with pytest.raises(UninitializedLifespanDependency):
                 if is_websocket:
                     with client.websocket_connect("/test"):
-                        pass
+                        pass  # pragma: nocover
                 else:
                     client.post("/test")
         finally:
@@ -850,7 +850,7 @@ def test_endpoints_report_uninitialized_internal_lifespan(
             with pytest.raises(UninitializedLifespanDependency):
                 if is_websocket:
                     with client.websocket_connect("/test"):
-                        pass
+                        pass  # pragma: nocover
                 else:
                     client.post("/test")
         finally:
