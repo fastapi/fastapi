@@ -8,7 +8,7 @@
 
 Чтобы объявить тело **запроса**, необходимо использовать модели <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, со всей их мощью и преимуществами.
 
-/// info | "Информация"
+/// info | Информация
 
 Чтобы отправить данные, необходимо использовать один из методов: `POST` (обычно), `PUT`, `DELETE` или `PATCH`.
 
@@ -113,7 +113,7 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Если вы используете <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> в качестве редактора, то вам стоит попробовать плагин <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
@@ -161,7 +161,7 @@
 * Если аннотация типа параметра содержит **примитивный тип** (`int`, `float`, `str`, `bool` и т.п.), он будет интерпретирован как параметр **запроса**.
 * Если аннотация типа параметра представляет собой **модель Pydantic**, он будет интерпретирован как параметр **тела запроса**.
 
-/// note | "Заметка"
+/// note | Заметка
 
 FastAPI понимает, что значение параметра `q` не является обязательным, потому что имеет значение по умолчанию `= None`.
 

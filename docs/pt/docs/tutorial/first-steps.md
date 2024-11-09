@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-/// note | "Nota"
+/// note | Nota
 
 O comando `uvicorn main:app` se refere a:
 
@@ -139,7 +139,7 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 `FastAPI` é uma classe que herda diretamente de `Starlette`.
 
@@ -205,7 +205,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "Informação"
+/// info | Informação
 
 Uma "rota" também é comumente chamada de "endpoint".
 
@@ -259,7 +259,7 @@ O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável 
 * a rota `/`
 * usando o  <abbr title="o método HTTP GET">operador <code>get</code></abbr>
 
-/// info | "`@decorador`"
+/// info | `@decorador`
 
 Essa sintaxe `@alguma_coisa` em Python é chamada de "decorador".
 
@@ -286,7 +286,7 @@ E os mais exóticos:
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você está livre para usar cada operação (método HTTP) como desejar.
 
@@ -324,7 +324,7 @@ Você também pode defini-la como uma função normal em vez de `async def`:
 {!../../docs_src/first_steps/tutorial003.py!}
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
 

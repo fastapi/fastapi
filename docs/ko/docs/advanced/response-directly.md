@@ -38,7 +38,7 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 {!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "기술적 세부 사항"
+/// note | 기술적 세부 사항
 
 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 

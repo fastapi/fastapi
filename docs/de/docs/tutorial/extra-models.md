@@ -8,7 +8,7 @@ Insbesondere Benutzermodelle, denn:
 * Das **herausgehende Modell** sollte kein Passwort haben.
 * Das **Datenbankmodell** sollte wahrscheinlich ein <abbr title='Ein aus scheinbar zufälligen Zeichen bestehender „Fingerabdruck“ eines Textes. Der Inhalt des Textes kann nicht eingesehen werden.'>gehashtes</abbr> Passwort haben.
 
-/// danger | "Gefahr"
+/// danger | Gefahr
 
 Speichern Sie niemals das Klartext-Passwort eines Benutzers. Speichern Sie immer den „sicheren Hash“, den Sie verifizieren können.
 
@@ -154,7 +154,7 @@ UserInDB(
 )
 ```
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Die Hilfsfunktionen `fake_password_hasher` und `fake_save_user` demonstrieren nur den möglichen Fluss der Daten und bieten natürlich keine echte Sicherheit.
 
@@ -200,7 +200,7 @@ Das wird in OpenAPI mit `anyOf` angezeigt.
 
 Um das zu tun, verwenden Sie Pythons Standard-Typhinweis <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Listen Sie, wenn Sie eine <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a> definieren, denjenigen Typ zuerst, der am spezifischsten ist, gefolgt von den weniger spezifischen Typen. Im Beispiel oben, in `Union[PlaneItem, CarItem]` also den spezifischeren `PlaneItem` vor dem weniger spezifischen `CarItem`.
 
