@@ -106,7 +106,7 @@ Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de
 
 {* ../../docs_src/query_params_str_validations/tutorial005.py hl[7] *}
 
-/// note | "Rappel"
+/// note | Rappel
 
 Avoir une valeur par défaut rend le paramètre optionnel.
 
@@ -171,7 +171,7 @@ Donc la réponse de cette URL serait :
 }
 ```
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela sera interprété comme faisant partie du corps de la requête.
 

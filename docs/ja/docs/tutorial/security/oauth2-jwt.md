@@ -44,7 +44,7 @@ $ pip install python-jose[cryptography]
 
 ここでは、推奨されているものを使用します：<a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 このチュートリアルでは以前、<a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>を使用していました。
 
@@ -86,7 +86,7 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `passlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
 
@@ -102,7 +102,7 @@ $ pip install passlib[bcrypt]
 
 PassLib の「context」を作成します。これは、パスワードのハッシュ化と検証に使用されるものです。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 PassLibのcontextには、検証だけが許された非推奨の古いハッシュアルゴリズムを含む、様々なハッシュアルゴリズムを使用した検証機能もあります。
 
@@ -122,7 +122,7 @@ PassLibのcontextには、検証だけが許された非推奨の古いハッシ
 {!../../docs_src/security/tutorial004.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`
 
@@ -219,7 +219,7 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-/// check | "確認"
+/// check | 確認
 
 コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
 
@@ -244,7 +244,7 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image10.png">
 
-/// note | "備考"
+/// note | 備考
 
 ヘッダーの`Authorization`には、`Bearer`で始まる値があります。
 
