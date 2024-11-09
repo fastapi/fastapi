@@ -30,7 +30,7 @@
 🖼:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/conditional_openapi/tutorial001.py!}
+{!../../docs_src/conditional_openapi/tutorial001.py!}
 ```
 
 📥 👥 📣 ⚒ `openapi_url` ⏮️ 🎏 🔢 `"/openapi.json"`.
