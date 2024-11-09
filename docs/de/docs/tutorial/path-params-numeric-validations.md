@@ -32,7 +32,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -46,7 +46,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -100,7 +100,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -114,7 +114,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -126,7 +126,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
 
@@ -138,7 +138,7 @@ Doch selbst wenn Sie ihn mit `None` deklarieren, oder einen Defaultwert setzen, 
 
 ## Sortieren Sie die Parameter, wie Sie möchten
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
@@ -160,7 +160,7 @@ Sie können Ihre Funktion also so deklarieren:
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -192,7 +192,7 @@ Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` ver
 
 ## Sortieren Sie die Parameter wie Sie möchten: Tricks
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
@@ -260,7 +260,7 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -297,7 +297,7 @@ Das Gleiche trifft zu auf:
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -337,7 +337,7 @@ Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></a
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -368,7 +368,7 @@ Sie alle teilen die gleichen Parameter für zusätzliche Validierung und Metadat
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 `Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
 
