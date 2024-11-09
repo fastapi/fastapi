@@ -3,7 +3,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 _Unset: Any = Undefined
 
@@ -240,7 +240,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -565,7 +565,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -880,7 +880,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1185,7 +1185,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1282,7 +1282,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     embed: Annotated[
-        bool,
+        Union[bool, None],
         Doc(
             """
             When `embed` is `True`, the parameter will be expected in a JSON body as a
@@ -1294,7 +1294,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Body - Multiple Parameters](https://fastapi.tiangolo.com/tutorial/body-multiple-params/#embed-a-single-body-parameter).
             """
         ),
-    ] = False,
+    ] = None,
     media_type: Annotated[
         str,
         Doc(
@@ -1512,7 +1512,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1827,7 +1827,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2141,7 +2141,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2298,7 +2298,7 @@ def Security(  # noqa: N802
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
-            intentionaly vague and interpretable. It normally refers to permissions,
+            intentionally vague and interpretable. It normally refers to permissions,
             in cases to roles.
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
@@ -2343,7 +2343,7 @@ def Security(  # noqa: N802
     ```python
     from typing import Annotated
 
-    from fastapi import Depends, FastAPI
+    from fastapi import Security, FastAPI
 
     from .db import User
     from .security import get_current_active_user

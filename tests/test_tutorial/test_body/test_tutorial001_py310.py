@@ -3,7 +3,6 @@ from unittest.mock import patch
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py310
 
@@ -81,7 +80,6 @@ def test_post_with_only_name(client: TestClient):
                     "loc": ["body", "price"],
                     "msg": "Field required",
                     "input": {"name": "Foo"},
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -111,7 +109,6 @@ def test_post_with_only_name_price(client: TestClient):
                     "loc": ["body", "price"],
                     "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "twenty",
-                    "url": match_pydantic_error_url("float_parsing"),
                 }
             ]
         }
@@ -141,14 +138,12 @@ def test_post_with_no_data(client: TestClient):
                     "loc": ["body", "name"],
                     "msg": "Field required",
                     "input": {},
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "price"],
                     "msg": "Field required",
                     "input": {},
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -183,7 +178,6 @@ def test_post_with_none(client: TestClient):
                     "loc": ["body"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -256,7 +250,6 @@ def test_post_form_for_json(client: TestClient):
                     "loc": ["body"],
                     "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": "name=Foo&price=50.5",
-                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -324,7 +317,6 @@ def test_wrong_headers(client: TestClient):
                     "loc": ["body"],
                     "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -353,7 +345,6 @@ def test_wrong_headers(client: TestClient):
                     "loc": ["body"],
                     "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -381,7 +372,6 @@ def test_wrong_headers(client: TestClient):
                     "loc": ["body"],
                     "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }

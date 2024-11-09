@@ -151,7 +151,7 @@ def test_token_no_scope(client: TestClient):
 
 
 @needs_py39
-def test_token_inexistent_user(client: TestClient):
+def test_token_nonexistent_user(client: TestClient):
     response = client.get(
         "/users/me",
         headers={
