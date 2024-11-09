@@ -40,7 +40,7 @@
 
 ### 추가 정보
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.responses import Response` 또는 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
