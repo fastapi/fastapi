@@ -12,7 +12,7 @@
 
 并且如果该 `Response` 有一个 JSON 媒体类型（`application/json`），比如使用 `JSONResponse` 或者 `UJSONResponse` 的时候，返回的数据将使用你在路径操作装饰器中声明的任何 Pydantic 的 `response_model` 自动转换（和过滤）。
 
-/// note | "说明"
+/// note | 说明
 
 如果你使用不带有任何媒体类型的响应类，FastAPI 认为你的响应没有任何内容，所以不会在生成的OpenAPI文档中记录响应格式。
 
@@ -25,10 +25,10 @@
 导入你想要使用的 `Response` 类（子类）然后在 *路径操作装饰器* 中声明它。
 
 ```Python hl_lines="2 7"
-{!../../../docs_src/custom_response/tutorial001b.py!}
+{!../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-/// info | "提示"
+/// info | 提示
 
 参数 `response_class` 也会用来定义响应的「媒体类型」。
 
@@ -38,7 +38,7 @@
 
 ///
 
-/// tip | "小贴士"
+/// tip | 小贴士
 
 `ORJSONResponse` 目前只在 FastAPI 中可用，而在 Starlette 中不可用。
 
@@ -52,10 +52,10 @@
 * 将 `HTMLResponse` 作为你的 *路径操作* 的 `response_class` 参数传入。
 
 ```Python hl_lines="2 7"
-{!../../../docs_src/custom_response/tutorial002.py!}
+{!../../docs_src/custom_response/tutorial002.py!}
 ```
 
-/// info | "提示"
+/// info | 提示
 
 参数 `response_class` 也会用来定义响应的「媒体类型」。
 
@@ -72,16 +72,16 @@
 和上面一样的例子，返回一个 `HTMLResponse` 看起来可能是这样：
 
 ```Python hl_lines="2 7 19"
-{!../../../docs_src/custom_response/tutorial003.py!}
+{!../../docs_src/custom_response/tutorial003.py!}
 ```
 
-/// warning | "警告"
+/// warning | 警告
 
 *路径操作函数* 直接返回的 `Response` 不会被 OpenAPI 的文档记录（比如，`Content-Type` 不会被文档记录），并且在自动化交互文档中也是不可见的。
 
 ///
 
-/// info | "提示"
+/// info | 提示
 
 当然，实际的 `Content-Type` 头，状态码等等，将来自于你返回的 `Response` 对象。
 
@@ -98,7 +98,7 @@
 比如像这样：
 
 ```Python hl_lines="7 23 21"
-{!../../../docs_src/custom_response/tutorial004.py!}
+{!../../docs_src/custom_response/tutorial004.py!}
 ```
 
 在这个例子中，函数 `generate_html_response()` 已经生成并返回 `Response` 对象而不是在 `str` 中返回 HTML。
@@ -115,7 +115,7 @@
 
 要记得你可以使用 `Response` 来返回任何其他东西，甚至创建一个自定义的子类。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以使用 `from starlette.responses import HTMLResponse`。
 
@@ -140,7 +140,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 
 ```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+{!../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ### `HTMLResponse`
@@ -152,7 +152,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 接受文本或字节并返回纯文本响应。
 
 ```Python hl_lines="2  7  9"
-{!../../../docs_src/custom_response/tutorial005.py!}
+{!../../docs_src/custom_response/tutorial005.py!}
 ```
 
 ### `JSONResponse`
@@ -170,17 +170,17 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 `UJSONResponse` 是一个使用 <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a> 的可选 JSON 响应。
 
-/// warning | "警告"
+/// warning | 警告
 
 在处理某些边缘情况时，`ujson` 不如 Python 的内置实现那么谨慎。
 
 ///
 
 ```Python hl_lines="2 7"
-{!../../../docs_src/custom_response/tutorial001.py!}
+{!../../docs_src/custom_response/tutorial001.py!}
 ```
 
-/// tip | "小贴士"
+/// tip | 小贴士
 
 `ORJSONResponse` 可能是一个更快的选择。
 
@@ -191,7 +191,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 返回 HTTP 重定向。默认情况下使用 307 状态代码（临时重定向）。
 
 ```Python hl_lines="2  9"
-{!../../../docs_src/custom_response/tutorial006.py!}
+{!../../docs_src/custom_response/tutorial006.py!}
 ```
 
 ### `StreamingResponse`
@@ -199,7 +199,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 采用异步生成器或普通生成器/迭代器，然后流式传输响应主体。
 
 ```Python hl_lines="2  14"
-{!../../../docs_src/custom_response/tutorial007.py!}
+{!../../docs_src/custom_response/tutorial007.py!}
 ```
 
 #### 对类似文件的对象使用 `StreamingResponse`
@@ -209,10 +209,10 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 包括许多与云存储，视频处理等交互的库。
 
 ```Python hl_lines="2  10-12  14"
-{!../../../docs_src/custom_response/tutorial008.py!}
+{!../../docs_src/custom_response/tutorial008.py!}
 ```
 
-/// tip | "小贴士"
+/// tip | 小贴士
 
 注意在这里，因为我们使用的是不支持 `async` 和 `await` 的标准 `open()`，我们使用普通的 `def` 声明了路径操作。
 
@@ -232,7 +232,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 文件响应将包含适当的 `Content-Length`，`Last-Modified` 和 `ETag` 的响应头。
 
 ```Python hl_lines="2  10"
-{!../../../docs_src/custom_response/tutorial009.py!}
+{!../../docs_src/custom_response/tutorial009.py!}
 ```
 
 ## 额外文档

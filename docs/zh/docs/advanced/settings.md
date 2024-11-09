@@ -151,7 +151,7 @@ Hello World from Python
 您可以使用与 Pydantic 模型相同的验证功能和工具，比如不同的数据类型和使用 `Field()` 进行附加验证。
 
 ```Python hl_lines="2  5-8  11"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 /// tip
@@ -169,7 +169,7 @@ Hello World from Python
 然后，您可以在应用程序中使用新的 `settings` 对象：
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 ### 运行服务器
@@ -205,13 +205,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 例如，您可以创建一个名为 `config.py` 的文件，其中包含以下内容：
 
 ```Python
-{!../../../docs_src/settings/app01/config.py!}
+{!../../docs_src/settings/app01/config.py!}
 ```
 
 然后在一个名为 `main.py` 的文件中使用它：
 
 ```Python hl_lines="3  11-13"
-{!../../../docs_src/settings/app01/main.py!}
+{!../../docs_src/settings/app01/main.py!}
 ```
 
 /// tip
@@ -231,7 +231,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 根据前面的示例，您的 `config.py` 文件可能如下所示：
 
 ```Python hl_lines="10"
-{!../../../docs_src/settings/app02/config.py!}
+{!../../docs_src/settings/app02/config.py!}
 ```
 
 请注意，现在我们不创建默认实例 `settings = Settings()`。
@@ -243,7 +243,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 //// tab | Python 3.9+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -251,7 +251,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 //// tab | Python 3.8+
 
 ```Python hl_lines="6  12-13"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -265,7 +265,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 ///
 
 ```Python hl_lines="5  11-12"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -283,7 +283,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 //// tab | Python 3.9+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an_py39/main.py!}
+{!> ../../docs_src/settings/app02_an_py39/main.py!}
 ```
 
 ////
@@ -291,7 +291,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 //// tab | Python 3.8+
 
 ```Python hl_lines="17  19-21"
-{!> ../../../docs_src/settings/app02_an/main.py!}
+{!> ../../docs_src/settings/app02_an/main.py!}
 ```
 
 ////
@@ -305,7 +305,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 ///
 
 ```Python hl_lines="16  18-20"
-{!> ../../../docs_src/settings/app02/main.py!}
+{!> ../../docs_src/settings/app02/main.py!}
 ```
 
 ////
@@ -315,7 +315,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 然后，在测试期间，通过创建 `get_settings` 的依赖项覆盖，很容易提供一个不同的设置对象：
 
 ```Python hl_lines="9-10  13  21"
-{!../../../docs_src/settings/app02/test_main.py!}
+{!../../docs_src/settings/app02/test_main.py!}
 ```
 
 在依赖项覆盖中，我们在创建新的 `Settings` 对象时为 `admin_email` 设置了一个新值，然后返回该新对象。
@@ -358,7 +358,7 @@ APP_NAME="ChimichangApp"
 然后，您可以使用以下方式更新您的 `config.py`：
 
 ```Python hl_lines="9-10"
-{!../../../docs_src/settings/app03/config.py!}
+{!../../docs_src/settings/app03/config.py!}
 ```
 
 在这里，我们在 Pydantic 的 `Settings` 类中创建了一个名为 `Config` 的类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
@@ -395,7 +395,7 @@ def get_settings():
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an_py39/main.py!}
+{!> ../../docs_src/settings/app03_an_py39/main.py!}
 ```
 
 ////
@@ -403,7 +403,7 @@ def get_settings():
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  11"
-{!> ../../../docs_src/settings/app03_an/main.py!}
+{!> ../../docs_src/settings/app03_an/main.py!}
 ```
 
 ////
@@ -417,7 +417,7 @@ def get_settings():
 ///
 
 ```Python hl_lines="1  10"
-{!> ../../../docs_src/settings/app03/main.py!}
+{!> ../../docs_src/settings/app03/main.py!}
 ```
 
 ////
