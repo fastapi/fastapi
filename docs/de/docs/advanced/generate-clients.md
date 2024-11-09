@@ -127,7 +127,7 @@ Sie erhalten außerdem automatische Vervollständigung für die zu sendende Payl
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie die automatische Vervollständigung für `name` und `price`, welche in der FastAPI-Anwendung im `Item`-Modell definiert wurden.
 

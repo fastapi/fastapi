@@ -1,6 +1,6 @@
 # Réponses supplémentaires dans OpenAPI
 
-/// warning | "Attention"
+/// warning | Attention
 
 Ceci concerne un sujet plutôt avancé.
 
@@ -26,11 +26,9 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
-```Python hl_lines="18 22"
-{!../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-/// note | "Remarque"
+/// note | Remarque
 
 Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
@@ -177,11 +175,9 @@ Vous pouvez utiliser ce même paramètre `responses` pour ajouter différents ty
 
 Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *opération de chemin* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
 
-```Python hl_lines="19-24 28"
-{!../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-/// note | "Remarque"
+/// note | Remarque
 
 Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
@@ -207,9 +203,7 @@ Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui util
 
 Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
-```Python hl_lines="20-31"
-{!../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 
@@ -243,9 +237,7 @@ Vous pouvez utiliser cette technique pour réutiliser certaines réponses préd�
 
 Par exemple:
 
-```Python hl_lines="13-17 26"
-{!../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## Plus d'informations sur les réponses OpenAPI
 
