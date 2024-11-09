@@ -33,13 +33,13 @@ from tests.test_lifespan_scoped_dependencies.testing_utilities import (
 
 
 def expect_correct_amount_of_dependency_activations(
-        *,
-        app: FastAPI,
-        dependency_factory: DependencyFactory,
-        override_dependency_factory: DependencyFactory,
-        urls_and_responses: List[Tuple[str, Any]],
-        expected_activation_times: int,
-        is_websocket: bool
+    *,
+    app: FastAPI,
+    dependency_factory: DependencyFactory,
+    override_dependency_factory: DependencyFactory,
+    urls_and_responses: List[Tuple[str, Any]],
+    expected_activation_times: int,
+    is_websocket: bool,
 ) -> None:
     assert dependency_factory.activation_times == 0
     assert dependency_factory.deactivation_times == 0
@@ -62,17 +62,22 @@ def expect_correct_amount_of_dependency_activations(
 
             assert dependency_factory.activation_times == 0
             assert dependency_factory.deactivation_times == 0
-            assert override_dependency_factory.activation_times == expected_activation_times
+            assert (
+                override_dependency_factory.activation_times
+                == expected_activation_times
+            )
             assert override_dependency_factory.deactivation_times == 0
 
     assert dependency_factory.activation_times == 0
     assert override_dependency_factory.activation_times == expected_activation_times
     if dependency_factory.dependency_style not in (
-            DependencyStyle.SYNC_FUNCTION,
-            DependencyStyle.ASYNC_FUNCTION
+        DependencyStyle.SYNC_FUNCTION,
+        DependencyStyle.ASYNC_FUNCTION,
     ):
         assert dependency_factory.deactivation_times == 0
-        assert override_dependency_factory.deactivation_times == expected_activation_times
+        assert (
+            override_dependency_factory.deactivation_times == expected_activation_times
+        )
 
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
@@ -80,16 +85,10 @@ def expect_correct_amount_of_dependency_activations(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoint_dependencies(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
     dependency_factory = DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     app = FastAPI()
 
@@ -108,14 +107,16 @@ def test_endpoint_dependencies(
                 dependency_factory.get_dependency(),
                 dependency_scope="lifespan",
                 use_cache=use_cache,
-            )
+            ),
         ],
-        expected_value=11
+        expected_value=11,
     )
     if routing_style == "router_endpoint":
         app.include_router(router)
 
-    app.dependency_overrides[dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     expect_correct_amount_of_dependency_activations(
         app=app,
@@ -123,7 +124,7 @@ def test_endpoint_dependencies(
         override_dependency_factory=override_dependency_factory,
         urls_and_responses=[("/test", 11)] * 2,
         expected_activation_times=1,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
 
 
@@ -133,45 +134,40 @@ def test_endpoint_dependencies(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_router_dependencies(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        dependency_duplication,
-        is_websocket
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    dependency_duplication,
+    is_websocket,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    dependency_factory = DependencyFactory(dependency_style)
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     if routing_style == "app":
         app = FastAPI(dependencies=[depends] * dependency_duplication)
 
         create_endpoint_0_annotations(
-            router=app,
-            path="/test",
-            is_websocket=is_websocket
+            router=app, path="/test", is_websocket=is_websocket
         )
     else:
         app = FastAPI()
         router = APIRouter(dependencies=[depends] * dependency_duplication)
 
         create_endpoint_0_annotations(
-            router=router,
-            path="/test",
-            is_websocket=is_websocket
+            router=router, path="/test", is_websocket=is_websocket
         )
 
         app.include_router(router)
 
-    app.dependency_overrides[dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     expect_correct_amount_of_dependency_activations(
         app=app,
@@ -179,8 +175,9 @@ def test_router_dependencies(
         override_dependency_factory=override_dependency_factory,
         urls_and_responses=[("/test", None)] * 2,
         expected_activation_times=1 if use_cache else dependency_duplication,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("use_cache", [True, False])
@@ -188,22 +185,19 @@ def test_router_dependencies(
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 @pytest.mark.parametrize("main_dependency_scope", ["endpoint", "lifespan"])
 def test_dependency_cache_in_same_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        main_dependency_scope: Literal["endpoint", "lifespan"],
-        is_websocket
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    main_dependency_scope: Literal["endpoint", "lifespan"],
+    is_websocket,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    dependency_factory = DependencyFactory(dependency_style)
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -215,8 +209,8 @@ def test_dependency_cache_in_same_dependency(
         router = APIRouter()
 
     async def dependency(
-            sub_dependency1: Annotated[int, depends],
-            sub_dependency2: Annotated[int, depends],
+        sub_dependency1: Annotated[int, depends],
+        sub_dependency2: Annotated[int, depends],
     ) -> List[int]:
         return [sub_dependency1, sub_dependency2]
 
@@ -224,19 +218,22 @@ def test_dependency_cache_in_same_dependency(
         router=router,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[List[int], Depends(
-            dependency,
-            use_cache=use_cache,
-            dependency_scope=main_dependency_scope,
-        )]
+        annotation=Annotated[
+            List[int],
+            Depends(
+                dependency,
+                use_cache=use_cache,
+                dependency_scope=main_dependency_scope,
+            ),
+        ],
     )
 
     if routing_style == "router":
         app.include_router(router)
 
-    app.dependency_overrides[
-        dependency_factory.get_dependency()
-    ] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     if use_cache:
         expect_correct_amount_of_dependency_activations(
@@ -248,7 +245,7 @@ def test_dependency_cache_in_same_dependency(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -260,7 +257,7 @@ def test_dependency_cache_in_same_dependency(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=2,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
 
 
@@ -269,21 +266,15 @@ def test_dependency_cache_in_same_dependency(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_same_endpoint(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    dependency_factory = DependencyFactory(dependency_style)
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -309,9 +300,9 @@ def test_dependency_cache_in_same_endpoint(
     if routing_style == "router":
         app.include_router(router)
 
-    app.dependency_overrides[
-        dependency_factory.get_dependency()
-    ] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     if use_cache:
         expect_correct_amount_of_dependency_activations(
@@ -323,7 +314,7 @@ def test_dependency_cache_in_same_endpoint(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -335,29 +326,24 @@ def test_dependency_cache_in_same_endpoint(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=3,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_different_endpoints(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    dependency_factory = DependencyFactory(dependency_style)
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -392,8 +378,9 @@ def test_dependency_cache_in_different_endpoints(
     if routing_style == "router":
         app.include_router(router)
 
-    app.dependency_overrides[
-        dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     if use_cache:
         expect_correct_amount_of_dependency_activations(
@@ -407,7 +394,7 @@ def test_dependency_cache_in_different_endpoints(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -421,27 +408,23 @@ def test_dependency_cache_in_different_endpoints(
             dependency_factory=dependency_factory,
             override_dependency_factory=override_dependency_factory,
             expected_activation_times=5,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_no_cached_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    dependency_factory = DependencyFactory(dependency_style)
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=False
+        use_cache=False,
     )
 
     app = FastAPI()
@@ -462,8 +445,9 @@ def test_no_cached_dependency(
     if routing_style == "router":
         app.include_router(router)
 
-    app.dependency_overrides[
-        dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     expect_correct_amount_of_dependency_activations(
         app=app,
@@ -471,24 +455,27 @@ def test_no_cached_dependency(
         override_dependency_factory=override_dependency_factory,
         urls_and_responses=[("/test", 11)] * 2,
         expected_activation_times=1,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
 
+
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
-@pytest.mark.parametrize("annotation", [
-    Annotated[str, Path()],
-    Annotated[str, Body()],
-    Annotated[str, Query()],
-    Annotated[str, Header()],
-    SecurityScopes,
-    Annotated[str, Cookie()],
-    Annotated[str, Form()],
-    Annotated[str, File()],
-    BackgroundTasks,
-])
+@pytest.mark.parametrize(
+    "annotation",
+    [
+        Annotated[str, Path()],
+        Annotated[str, Body()],
+        Annotated[str, Query()],
+        Annotated[str, Header()],
+        SecurityScopes,
+        Annotated[str, Cookie()],
+        Annotated[str, Form()],
+        Annotated[str, File()],
+        BackgroundTasks,
+    ],
+)
 def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
-        annotation,
-        is_websocket
+    annotation, is_websocket
 ):
     async def dependency_func() -> None:
         yield
@@ -503,9 +490,9 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_paramete
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[None,
-            Depends(dependency_func, dependency_scope="lifespan")
-        ]
+        annotation=Annotated[
+            None, Depends(dependency_func, dependency_scope="lifespan")
+        ],
     )
 
     with pytest.raises(DependencyScopeConflict):
@@ -516,20 +503,16 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_paramete
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_non_override_lifespan_scoped_dependency_can_use_overridden_lifespan_scoped_dependencies(
-        dependency_style: DependencyStyle,
-        is_websocket
+    dependency_style: DependencyStyle, is_websocket
 ):
     dependency_factory = DependencyFactory(dependency_style)
-    override_dependency_factory = DependencyFactory(
-        dependency_style,
-        value_offset=10
-    )
+    override_dependency_factory = DependencyFactory(dependency_style, value_offset=10)
 
     async def lifespan_scoped_dependency(
-            param: Annotated[int, Depends(
-                dependency_factory.get_dependency(),
-                dependency_scope="lifespan"
-            )]
+        param: Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
     ) -> AsyncGenerator[int, None]:
         yield param
 
@@ -540,12 +523,13 @@ def test_non_override_lifespan_scoped_dependency_can_use_overridden_lifespan_sco
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[
-            int,
-            Depends(lifespan_scoped_dependency, dependency_scope="lifespan")
+            int, Depends(lifespan_scoped_dependency, dependency_scope="lifespan")
         ],
     )
 
-    app.dependency_overrides[dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     expect_correct_amount_of_dependency_activations(
         app=app,
@@ -553,15 +537,14 @@ def test_non_override_lifespan_scoped_dependency_can_use_overridden_lifespan_sco
         override_dependency_factory=override_dependency_factory,
         expected_activation_times=1,
         urls_and_responses=[("/test", 11)] * 2,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
 
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("depends_class", [Depends, Security])
 def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
-        depends_class,
-        is_websocket
+    depends_class, is_websocket
 ):
     async def sub_dependency() -> None:
         pass
@@ -569,7 +552,9 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
     async def dependency_func() -> None:
         yield
 
-    async def override_dependency_func(param: Annotated[None, depends_class(sub_dependency)]) -> None:
+    async def override_dependency_func(
+        param: Annotated[None, depends_class(sub_dependency)],
+    ) -> None:
         yield
 
     app = FastAPI()
@@ -578,7 +563,9 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[None, Depends(dependency_func, dependency_scope="lifespan")]
+        annotation=Annotated[
+            None, Depends(dependency_func, dependency_scope="lifespan")
+        ],
     )
 
     app.dependency_overrides[dependency_func] = override_dependency_func
@@ -593,12 +580,9 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_bad_override_lifespan_scoped_dependencies(
-        use_cache,
-        dependency_style: DependencyStyle,
-        routing_style,
-        is_websocket
+    use_cache, dependency_style: DependencyStyle, routing_style, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
     override_dependency_factory = DependencyFactory(dependency_style, should_error=True)
 
     depends = Depends(
@@ -619,13 +603,15 @@ def test_bad_override_lifespan_scoped_dependencies(
         router=router,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[int, depends]
+        annotation=Annotated[int, depends],
     )
 
     if routing_style == "router_endpoint":
         app.include_router(router)
 
-    app.dependency_overrides[dependency_factory.get_dependency()] = override_dependency_factory.get_dependency()
+    app.dependency_overrides[dependency_factory.get_dependency()] = (
+        override_dependency_factory.get_dependency()
+    )
 
     with pytest.raises(IntentionallyBadDependency) as exception_info:
         with TestClient(app):

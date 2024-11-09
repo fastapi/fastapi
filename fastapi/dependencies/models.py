@@ -12,7 +12,10 @@ class SecurityRequirement:
     scopes: Optional[Sequence[str]] = None
 
 
-LifespanDependantCacheKey: TypeAlias = Union[Tuple[Callable[..., Any], Union[str, int]], Callable[..., Any]]
+LifespanDependantCacheKey: TypeAlias = Union[
+    Tuple[Callable[..., Any], Union[str, int]], Callable[..., Any]
+]
+
 
 @dataclass
 class LifespanDependant:
@@ -30,9 +33,9 @@ class LifespanDependant:
         elif self.name is not None:
             self.cache_key = (self.caller, self.name)
         else:
-            assert self.index is not None, (
-                "Lifespan dependency must have an associated name or index."
-            )
+            assert (
+                self.index is not None
+            ), "Lifespan dependency must have an associated name or index."
             self.cache_key = (self.caller, self.index)
 
 
@@ -49,8 +52,7 @@ class EndpointDependant:
     call: Optional[Callable[..., Any]] = None
     use_cache: bool = True
     index: Optional[int] = None
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(
-        init=False)
+    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
     header_params: List[ModelField] = field(default_factory=list)
@@ -74,11 +76,11 @@ class EndpointDependant:
     def dependencies(self) -> Tuple[Union["EndpointDependant", LifespanDependant], ...]:
         lifespan_dependencies = cast(
             List[Union[EndpointDependant, LifespanDependant]],
-            self.lifespan_dependencies
+            self.lifespan_dependencies,
         )
         endpoint_dependencies = cast(
             List[Union[EndpointDependant, LifespanDependant]],
-            self.endpoint_dependencies
+            self.endpoint_dependencies,
         )
 
         return tuple(lifespan_dependencies + endpoint_dependencies)

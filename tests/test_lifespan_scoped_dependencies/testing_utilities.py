@@ -5,7 +5,7 @@ from fastapi import APIRouter, FastAPI, WebSocket
 from starlette.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class DependencyStyle(StrEnum):
@@ -21,10 +21,11 @@ class IntentionallyBadDependency(Exception):
 
 class DependencyFactory:
     def __init__(
-            self,
-            dependency_style: DependencyStyle, *,
-            should_error: bool = False,
-            value_offset: int = 0,
+        self,
+        dependency_style: DependencyStyle,
+        *,
+        should_error: bool = False,
+        value_offset: int = 0,
     ):
         self.activation_times = 0
         self.deactivation_times = 0
@@ -90,12 +91,13 @@ def use_websocket(client: TestClient, url: str) -> Any:
 
 
 def create_endpoint_0_annotations(
-        *,
-        router: Union[APIRouter, FastAPI],
-        path: str,
-        is_websocket: bool,
+    *,
+    router: Union[APIRouter, FastAPI],
+    path: str,
+    is_websocket: bool,
 ) -> None:
     if is_websocket:
+
         @router.websocket(path)
         async def endpoint(websocket: WebSocket) -> None:
             await websocket.accept()
@@ -104,25 +106,24 @@ def create_endpoint_0_annotations(
             except WebSocketDisconnect:
                 pass
     else:
+
         @router.post(path)
         async def endpoint() -> None:
             return None
 
 
 def create_endpoint_1_annotation(
-        *,
-        router: Union[APIRouter, FastAPI],
-        path: str,
-        is_websocket: bool,
-        annotation: Any,
-        expected_value: Any = None
+    *,
+    router: Union[APIRouter, FastAPI],
+    path: str,
+    is_websocket: bool,
+    annotation: Any,
+    expected_value: Any = None,
 ) -> None:
     if is_websocket:
+
         @router.websocket(path)
-        async def endpoint(
-                websocket: WebSocket,
-                value: annotation
-        ) -> None:
+        async def endpoint(websocket: WebSocket, value: annotation) -> None:
             if expected_value is not None:
                 assert value == expected_value
 
@@ -132,29 +133,30 @@ def create_endpoint_1_annotation(
             except WebSocketDisconnect:
                 pass
     else:
+
         @router.post(path)
-        async def endpoint(
-                value: annotation
-        ) -> None:
+        async def endpoint(value: annotation) -> None:
             if expected_value is not None:
                 assert value == expected_value
 
             return value
 
+
 def create_endpoint_2_annotations(
-        *,
-        router: Union[APIRouter, FastAPI],
-        path: str,
-        is_websocket: bool,
-        annotation1: Any,
-        annotation2: Any,
+    *,
+    router: Union[APIRouter, FastAPI],
+    path: str,
+    is_websocket: bool,
+    annotation1: Any,
+    annotation2: Any,
 ) -> None:
     if is_websocket:
+
         @router.websocket(path)
         async def endpoint(
-                websocket: WebSocket,
-                value1: annotation1,
-                value2: annotation2,
+            websocket: WebSocket,
+            value1: annotation1,
+            value2: annotation2,
         ) -> None:
             await websocket.accept()
             try:
@@ -162,30 +164,32 @@ def create_endpoint_2_annotations(
             except WebSocketDisconnect:
                 await websocket.close()
     else:
+
         @router.post(path)
         async def endpoint(
-                value1: annotation1,
-                value2: annotation2,
+            value1: annotation1,
+            value2: annotation2,
         ) -> list[Any]:
             return [value1, value2]
 
 
 def create_endpoint_3_annotations(
-        *,
-        router: Union[APIRouter, FastAPI],
-        path: str,
-        is_websocket: bool,
-        annotation1: Any,
-        annotation2: Any,
-        annotation3: Any
+    *,
+    router: Union[APIRouter, FastAPI],
+    path: str,
+    is_websocket: bool,
+    annotation1: Any,
+    annotation2: Any,
+    annotation3: Any,
 ) -> None:
     if is_websocket:
+
         @router.websocket(path)
         async def endpoint(
-                websocket: WebSocket,
-                value1: annotation1,
-                value2: annotation2,
-                value3: annotation3
+            websocket: WebSocket,
+            value1: annotation1,
+            value2: annotation2,
+            value3: annotation3,
         ) -> None:
             await websocket.accept()
             try:
@@ -193,10 +197,9 @@ def create_endpoint_3_annotations(
             except WebSocketDisconnect:
                 await websocket.close()
     else:
+
         @router.post(path)
         async def endpoint(
-                value1: annotation1,
-                value2: annotation2,
-                value3: annotation3
+            value1: annotation1, value2: annotation2, value3: annotation3
         ) -> list[Any]:
             return [value1, value2, value3]

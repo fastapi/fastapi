@@ -40,12 +40,12 @@ from tests.test_lifespan_scoped_dependencies.testing_utilities import (
 
 
 def expect_correct_amount_of_dependency_activations(
-        *,
-        app: FastAPI,
-        dependency_factory: DependencyFactory,
-        urls_and_responses: List[Tuple[str, Any]],
-        expected_activation_times: int,
-        is_websocket: bool
+    *,
+    app: FastAPI,
+    dependency_factory: DependencyFactory,
+    urls_and_responses: List[Tuple[str, Any]],
+    expected_activation_times: int,
+    is_websocket: bool,
 ) -> None:
     assert dependency_factory.activation_times == 0
     assert dependency_factory.deactivation_times == 0
@@ -64,21 +64,23 @@ def expect_correct_amount_of_dependency_activations(
 
     assert dependency_factory.activation_times == expected_activation_times
     if dependency_factory.dependency_style not in (
-            DependencyStyle.SYNC_FUNCTION,
-            DependencyStyle.ASYNC_FUNCTION
+        DependencyStyle.SYNC_FUNCTION,
+        DependencyStyle.ASYNC_FUNCTION,
     ):
         assert dependency_factory.deactivation_times == expected_activation_times
 
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
-@pytest.mark.parametrize("use_cache", [True, False], ids=["With Cache", "Without Cache"])
+@pytest.mark.parametrize(
+    "use_cache", [True, False], ids=["With Cache", "Without Cache"]
+)
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoint_dependencies(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket: bool,
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    is_websocket: bool,
 ):
     dependency_factory = DependencyFactory(dependency_style)
 
@@ -93,12 +95,15 @@ def test_endpoint_dependencies(
         router=router,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[None, Depends(
+        annotation=Annotated[
+            None,
+            Depends(
                 dependency_factory.get_dependency(),
                 dependency_scope="lifespan",
                 use_cache=use_cache,
-            )],
-        expected_value=1
+            ),
+        ],
+        expected_value=1,
     )
 
     if routing_style == "router_endpoint":
@@ -109,8 +114,9 @@ def test_endpoint_dependencies(
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", 1)] * 2,
         expected_activation_times=1,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_duplication", [1, 2])
@@ -118,36 +124,32 @@ def test_endpoint_dependencies(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_router_dependencies(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        dependency_duplication,
-        is_websocket: bool,
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    dependency_duplication,
+    is_websocket: bool,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     if routing_style == "app":
         app = FastAPI(dependencies=[depends] * dependency_duplication)
 
         create_endpoint_0_annotations(
-            router=app,
-            path="/test",
-            is_websocket=is_websocket
+            router=app, path="/test", is_websocket=is_websocket
         )
     else:
         app = FastAPI()
         router = APIRouter(dependencies=[depends] * dependency_duplication)
 
         create_endpoint_0_annotations(
-            router=router,
-            path="/test",
-            is_websocket=is_websocket
+            router=router, path="/test", is_websocket=is_websocket
         )
 
         app.include_router(router)
@@ -157,8 +159,9 @@ def test_router_dependencies(
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", None)] * 2,
         expected_activation_times=1 if use_cache else dependency_duplication,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("use_cache", [True, False])
@@ -166,18 +169,18 @@ def test_router_dependencies(
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 @pytest.mark.parametrize("main_dependency_scope", ["endpoint", "lifespan"])
 def test_dependency_cache_in_same_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        main_dependency_scope: Literal["endpoint", "lifespan"],
-        is_websocket: bool,
+    dependency_style: DependencyStyle,
+    routing_style,
+    use_cache,
+    main_dependency_scope: Literal["endpoint", "lifespan"],
+    is_websocket: bool,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -189,8 +192,8 @@ def test_dependency_cache_in_same_dependency(
         router = APIRouter()
 
     async def dependency(
-            sub_dependency1: Annotated[int, depends],
-            sub_dependency2: Annotated[int, depends],
+        sub_dependency1: Annotated[int, depends],
+        sub_dependency2: Annotated[int, depends],
     ) -> List[int]:
         return [sub_dependency1, sub_dependency2]
 
@@ -198,11 +201,14 @@ def test_dependency_cache_in_same_dependency(
         router=router,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[List[int], Depends(
-            dependency,
-            use_cache=use_cache,
-            dependency_scope=main_dependency_scope,
-        )]
+        annotation=Annotated[
+            List[int],
+            Depends(
+                dependency,
+                use_cache=use_cache,
+                dependency_scope=main_dependency_scope,
+            ),
+        ],
     )
 
     if routing_style == "router":
@@ -217,7 +223,7 @@ def test_dependency_cache_in_same_dependency(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -228,7 +234,7 @@ def test_dependency_cache_in_same_dependency(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=2,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
 
 
@@ -237,17 +243,14 @@ def test_dependency_cache_in_same_dependency(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_same_endpoint(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -267,7 +270,7 @@ def test_dependency_cache_in_same_endpoint(
         is_websocket=is_websocket,
         annotation1=Annotated[int, depends],
         annotation2=Annotated[int, depends],
-        annotation3=Annotated[int, Depends(endpoint_dependency)]
+        annotation3=Annotated[int, Depends(endpoint_dependency)],
     )
 
     if routing_style == "router":
@@ -282,7 +285,7 @@ def test_dependency_cache_in_same_endpoint(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -293,25 +296,23 @@ def test_dependency_cache_in_same_endpoint(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=3,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_dependency_cache_in_different_endpoints(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=use_cache
+        use_cache=use_cache,
     )
 
     app = FastAPI()
@@ -331,7 +332,7 @@ def test_dependency_cache_in_different_endpoints(
         is_websocket=is_websocket,
         annotation1=Annotated[int, depends],
         annotation2=Annotated[int, depends],
-        annotation3=Annotated[int, Depends(endpoint_dependency)]
+        annotation3=Annotated[int, Depends(endpoint_dependency)],
     )
 
     create_endpoint_3_annotations(
@@ -340,7 +341,7 @@ def test_dependency_cache_in_different_endpoints(
         is_websocket=is_websocket,
         annotation1=Annotated[int, depends],
         annotation2=Annotated[int, depends],
-        annotation3=Annotated[int, Depends(endpoint_dependency)]
+        annotation3=Annotated[int, Depends(endpoint_dependency)],
     )
 
     if routing_style == "router":
@@ -357,7 +358,7 @@ def test_dependency_cache_in_different_endpoints(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=1,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
     else:
         expect_correct_amount_of_dependency_activations(
@@ -370,23 +371,24 @@ def test_dependency_cache_in_different_endpoints(
             ],
             dependency_factory=dependency_factory,
             expected_activation_times=5,
-            is_websocket=is_websocket
+            is_websocket=is_websocket,
         )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_no_cached_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        is_websocket,
+    dependency_style: DependencyStyle,
+    routing_style,
+    is_websocket,
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
-        use_cache=False
+        use_cache=False,
     )
 
     app = FastAPI()
@@ -402,7 +404,7 @@ def test_no_cached_dependency(
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[int, depends],
-        expected_value=1
+        expected_value=1,
     )
 
     if routing_style == "router":
@@ -413,25 +415,27 @@ def test_no_cached_dependency(
         dependency_factory=dependency_factory,
         urls_and_responses=[("/test", 1)] * 2,
         expected_activation_times=1,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
 
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
-@pytest.mark.parametrize("annotation", [
-    Annotated[str, Path()],
-    Annotated[str, Body()],
-    Annotated[str, Query()],
-    Annotated[str, Header()],
-    SecurityScopes,
-    Annotated[str, Cookie()],
-    Annotated[str, Form()],
-    Annotated[str, File()],
-    BackgroundTasks,
-])
+@pytest.mark.parametrize(
+    "annotation",
+    [
+        Annotated[str, Path()],
+        Annotated[str, Body()],
+        Annotated[str, Query()],
+        Annotated[str, Header()],
+        SecurityScopes,
+        Annotated[str, Cookie()],
+        Annotated[str, Form()],
+        Annotated[str, File()],
+        BackgroundTasks,
+    ],
+)
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
-        annotation,
-        is_websocket
+    annotation, is_websocket
 ):
     async def dependency_func(param: annotation) -> None:
         yield
@@ -444,8 +448,7 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
             path="/test",
             is_websocket=is_websocket,
             annotation=Annotated[
-                    None,
-                    Depends(dependency_func, dependency_scope="lifespan")
+                None, Depends(dependency_func, dependency_scope="lifespan")
             ],
         )
 
@@ -453,16 +456,15 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
-        dependency_style: DependencyStyle,
-        is_websocket
+    dependency_style: DependencyStyle, is_websocket
 ):
     dependency_factory = DependencyFactory(dependency_style)
 
     async def lifespan_scoped_dependency(
-            param: Annotated[int, Depends(
-                dependency_factory.get_dependency(),
-                dependency_scope="lifespan"
-            )]
+        param: Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
     ) -> AsyncGenerator[int, None]:
         yield param
 
@@ -473,7 +475,7 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[int, Depends(lifespan_scoped_dependency)],
-        expected_value=1
+        expected_value=1,
     )
 
     expect_correct_amount_of_dependency_activations(
@@ -481,24 +483,22 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
         dependency_factory=dependency_factory,
         expected_activation_times=1,
         urls_and_responses=[("/test", 1)] * 2,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
 
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
-@pytest.mark.parametrize([
-    "dependency_style",
-    "supports_teardown"
-], [
-    (DependencyStyle.SYNC_FUNCTION, False),
-    (DependencyStyle.ASYNC_FUNCTION, False),
-    (DependencyStyle.SYNC_GENERATOR, True),
-    (DependencyStyle.ASYNC_GENERATOR, True),
-])
+@pytest.mark.parametrize(
+    ["dependency_style", "supports_teardown"],
+    [
+        (DependencyStyle.SYNC_FUNCTION, False),
+        (DependencyStyle.ASYNC_FUNCTION, False),
+        (DependencyStyle.SYNC_GENERATOR, True),
+        (DependencyStyle.ASYNC_GENERATOR, True),
+    ],
+)
 def test_the_same_dependency_can_work_in_different_scopes(
-        dependency_style: DependencyStyle,
-        supports_teardown,
-        is_websocket
+    dependency_style: DependencyStyle, supports_teardown, is_websocket
 ):
     dependency_factory = DependencyFactory(dependency_style)
     app = FastAPI()
@@ -507,14 +507,14 @@ def test_the_same_dependency_can_work_in_different_scopes(
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation1=Annotated[int, Depends(
-            dependency_factory.get_dependency(),
-            dependency_scope="endpoint"
-        )],
-        annotation2=Annotated[int, Depends(
-            dependency_factory.get_dependency(),
-            dependency_scope="lifespan"
-        )],
+        annotation1=Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="endpoint"),
+        ],
+        annotation2=Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
     )
     if is_websocket:
         get_response = use_websocket
@@ -548,17 +548,20 @@ def test_the_same_dependency_can_work_in_different_scopes(
         assert dependency_factory.deactivation_times == 0
 
 
-@pytest.mark.parametrize("lifespan_style", ["lifespan_generator", "events_decorator", "events_constructor"])
+@pytest.mark.parametrize(
+    "lifespan_style", ["lifespan_generator", "events_decorator", "events_constructor"]
+)
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
-        dependency_style: DependencyStyle,
-        is_websocket,
-        lifespan_style: Literal["lifespan_function", "lifespan_events"]
+    dependency_style: DependencyStyle,
+    is_websocket,
+    lifespan_style: Literal["lifespan_function", "lifespan_events"],
 ):
     lifespan_started = False
     lifespan_ended = False
     if lifespan_style == "lifespan_generator":
+
         @asynccontextmanager
         async def lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, int], None]:
             nonlocal lifespan_started
@@ -571,6 +574,7 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
     elif lifespan_style == "events_decorator":
         app = FastAPI()
         with warnings.catch_warnings(action="ignore", category=DeprecationWarning):
+
             @app.on_event("startup")
             async def startup() -> None:
                 nonlocal lifespan_started
@@ -581,6 +585,7 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
                 nonlocal lifespan_ended
                 lifespan_ended = True
     elif lifespan_style == "events_constructor":
+
         async def startup() -> None:
             nonlocal lifespan_started
             lifespan_started = True
@@ -588,6 +593,7 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
         async def shutdown() -> None:
             nonlocal lifespan_ended
             lifespan_ended = True
+
         app = FastAPI(on_startup=[startup], on_shutdown=[shutdown])
     else:
         assert_never(lifespan_style)
@@ -598,11 +604,11 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[int, Depends(
-            dependency_factory.get_dependency(),
-            dependency_scope="lifespan"
-        )],
-        expected_value=1
+        annotation=Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
+        expected_value=1,
     )
 
     expect_correct_amount_of_dependency_activations(
@@ -610,20 +616,22 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
         dependency_factory=dependency_factory,
         expected_activation_times=1,
         urls_and_responses=[("/test", 1)] * 2,
-        is_websocket=is_websocket
+        is_websocket=is_websocket,
     )
     assert lifespan_started and lifespan_ended
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("depends_class", [Depends, Security])
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
-        depends_class,
-        is_websocket
+    depends_class, is_websocket
 ):
     async def sub_dependency() -> None:
         pass
 
-    async def dependency_func(param: Annotated[None, depends_class(sub_dependency)]) -> None:
+    async def dependency_func(
+        param: Annotated[None, depends_class(sub_dependency)],
+    ) -> None:
         yield
 
     app = FastAPI()
@@ -633,20 +641,20 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
             router=app,
             path="/test",
             is_websocket=is_websocket,
-            annotation=Annotated[None, Depends(dependency_func, dependency_scope="lifespan")],
+            annotation=Annotated[
+                None, Depends(dependency_func, dependency_scope="lifespan")
+            ],
         )
+
 
 @pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_dependencies_must_provide_correct_dependency_scope(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -656,19 +664,21 @@ def test_dependencies_must_provide_correct_dependency_scope(
         router = APIRouter()
 
     with pytest.raises(
-            InvalidDependencyScope,
-            match=r'Dependency "value" of .* has an invalid scope: '
-                  r'"incorrect"'
+        InvalidDependencyScope,
+        match=r'Dependency "value" of .* has an invalid scope: ' r'"incorrect"',
     ):
         create_endpoint_1_annotation(
             router=router,
             path="/test",
             is_websocket=is_websocket,
-            annotation=Annotated[None, Depends(
-                dependency_factory.get_dependency(),
-                dependency_scope="incorrect",
-                use_cache=use_cache,
-            )]
+            annotation=Annotated[
+                None,
+                Depends(
+                    dependency_factory.get_dependency(),
+                    dependency_scope="incorrect",
+                    use_cache=use_cache,
+                ),
+            ],
         )
 
 
@@ -677,12 +687,9 @@ def test_dependencies_must_provide_correct_dependency_scope(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoints_report_incorrect_dependency_scope(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style)
+    dependency_factory = DependencyFactory(dependency_style)
 
     app = FastAPI()
 
@@ -705,7 +712,7 @@ def test_endpoints_report_incorrect_dependency_scope(
             router=router,
             path="/test",
             is_websocket=is_websocket,
-            annotation=Annotated[int, depends]
+            annotation=Annotated[int, depends],
         )
 
 
@@ -714,61 +721,7 @@ def test_endpoints_report_incorrect_dependency_scope(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_endpoints_report_uninitialized_dependency(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
-):
-    dependency_factory= DependencyFactory(dependency_style)
-
-    app = FastAPI()
-
-    if routing_style == "app_endpoint":
-        router = app
-    else:
-        router = APIRouter()
-
-    depends = Depends(
-        dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
-        use_cache=use_cache,
-    )
-
-    create_endpoint_1_annotation(
-        router=router,
-        path="/test",
-        is_websocket=is_websocket,
-        annotation=Annotated[int, depends],
-        expected_value=1
-    )
-
-    if routing_style == "router_endpoint":
-        app.include_router(router)
-
-    with TestClient(app) as client:
-        dependencies = client.app_state["__fastapi__"]["lifespan_scoped_dependencies"]
-        client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = {}
-
-        try:
-            with pytest.raises(UninitializedLifespanDependency):
-                if is_websocket:
-                    with client.websocket_connect("/test"):
-                        pass
-                else:
-                    client.post("/test")
-        finally:
-            client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = dependencies
-
-
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
-@pytest.mark.parametrize("use_cache", [True, False])
-@pytest.mark.parametrize("dependency_style", list(DependencyStyle))
-@pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
-def test_endpoints_report_uninitialized_internal_lifespan(
-        dependency_style: DependencyStyle,
-        routing_style,
-        use_cache,
-        is_websocket
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
 ):
     dependency_factory = DependencyFactory(dependency_style)
 
@@ -790,7 +743,57 @@ def test_endpoints_report_uninitialized_internal_lifespan(
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[int, depends],
-        expected_value=1
+        expected_value=1,
+    )
+
+    if routing_style == "router_endpoint":
+        app.include_router(router)
+
+    with TestClient(app) as client:
+        dependencies = client.app_state["__fastapi__"]["lifespan_scoped_dependencies"]
+        client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = {}
+
+        try:
+            with pytest.raises(UninitializedLifespanDependency):
+                if is_websocket:
+                    with client.websocket_connect("/test"):
+                        pass
+                else:
+                    client.post("/test")
+        finally:
+            client.app_state["__fastapi__"]["lifespan_scoped_dependencies"] = (
+                dependencies
+            )
+
+
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("use_cache", [True, False])
+@pytest.mark.parametrize("dependency_style", list(DependencyStyle))
+@pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
+def test_endpoints_report_uninitialized_internal_lifespan(
+    dependency_style: DependencyStyle, routing_style, use_cache, is_websocket
+):
+    dependency_factory = DependencyFactory(dependency_style)
+
+    app = FastAPI()
+
+    if routing_style == "app_endpoint":
+        router = app
+    else:
+        router = APIRouter()
+
+    depends = Depends(
+        dependency_factory.get_dependency(),
+        dependency_scope="lifespan",
+        use_cache=use_cache,
+    )
+
+    create_endpoint_1_annotation(
+        router=router,
+        path="/test",
+        is_websocket=is_websocket,
+        annotation=Annotated[int, depends],
+        expected_value=1,
     )
 
     if routing_style == "router_endpoint":
@@ -816,12 +819,9 @@ def test_endpoints_report_uninitialized_internal_lifespan(
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
 def test_bad_lifespan_scoped_dependencies(
-        use_cache,
-        dependency_style: DependencyStyle,
-        routing_style,
-        is_websocket
+    use_cache, dependency_style: DependencyStyle, routing_style, is_websocket
 ):
-    dependency_factory= DependencyFactory(dependency_style, should_error=True)
+    dependency_factory = DependencyFactory(dependency_style, should_error=True)
     depends = Depends(
         dependency_factory.get_dependency(),
         dependency_scope="lifespan",
@@ -841,7 +841,7 @@ def test_bad_lifespan_scoped_dependencies(
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[int, depends],
-        expected_value=1
+        expected_value=1,
     )
 
     if routing_style == "router_endpoint":
