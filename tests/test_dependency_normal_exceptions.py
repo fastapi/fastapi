@@ -20,6 +20,7 @@ async def get_database():
         fake_database.update(temp_database)
     except HTTPException:
         state["except"] = True
+        raise
     finally:
         state["finally"] = True
 
