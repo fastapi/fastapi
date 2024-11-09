@@ -6,7 +6,7 @@
 
 👆 💪 ⚙️ `jsonable_encoder` 🗜 🔢 💽 📊 👈 💪 🏪 🎻 (✅ ⏮️ ☁ 💽). 🖼, 🏭 `datetime` `str`.
 
-{* ../../docs_src/body_updates/tutorial001.py hl[30-35] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[30:35] *}
 
 `PUT` ⚙️ 📨 💽 👈 🔜 ❎ ♻ 💽.
 
@@ -79,7 +79,7 @@
 * 🖊 💽 👆 💽.
 * 📨 ℹ 🏷.
 
-{* ../../docs_src/body_updates/tutorial002.py hl[30-37] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[30:37] *}
 
 /// tip
 
