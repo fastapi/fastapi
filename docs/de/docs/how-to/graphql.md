@@ -4,7 +4,7 @@ Da **FastAPI** auf dem **ASGI**-Standard basiert, ist es sehr einfach, jede **Gr
 
 Sie können normale FastAPI-*Pfadoperationen* mit GraphQL in derselben Anwendung kombinieren.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 **GraphQL** löst einige sehr spezifische Anwendungsfälle.
 
@@ -49,7 +49,7 @@ Frühere Versionen von Starlette enthielten eine `GraphQLApp`-Klasse zur Integra
 
 Das wurde von Starlette deprecated, aber wenn Sie Code haben, der das verwendet, können Sie einfach zu <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a> **migrieren**, welches denselben Anwendungsfall abdeckt und über eine **fast identische Schnittstelle** verfügt.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie GraphQL benötigen, würde ich Ihnen trotzdem empfehlen, sich <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> anzuschauen, da es auf Typannotationen basiert, statt auf benutzerdefinierten Klassen und Typen.
 

@@ -20,7 +20,7 @@ Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injectio
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -68,7 +68,7 @@ So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch üb
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -82,7 +82,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -130,7 +130,7 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -144,7 +144,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -186,7 +186,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -200,7 +200,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -242,7 +242,7 @@ Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -256,7 +256,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -272,7 +272,7 @@ Beachten Sie, dass wir als Typ von `current_user` das Pydantic-Modell `User` dek
 
 Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen helfen.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie erinnern sich vielleicht, dass Requestbodys ebenfalls mit Pydantic-Modellen deklariert werden.
 
@@ -346,7 +346,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -360,7 +360,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 

@@ -4,7 +4,7 @@
 
 Mas é bem mais complexo do que isso.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você está com pressa ou não se importa, continue com as seções seguintes para instruções passo a passo para configurar tudo com diferentes técnicas.
 
