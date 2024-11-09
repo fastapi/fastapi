@@ -4,7 +4,7 @@
 
 事件函数既可以声明为异步函数（`async def`），也可以声明为普通函数（`def`）。
 
-/// warning | "警告"
+/// warning | 警告
 
 **FastAPI** 只执行主应用中的事件处理器，不执行[子应用 - 挂载](sub-applications.md){.internal-link target=_blank}中的事件处理器。
 
@@ -34,13 +34,13 @@
 
 此处，`shutdown` 事件处理器函数在 `log.txt` 中写入一行文本 `Application shutdown`。
 
-/// info | "说明"
+/// info | 说明
 
 `open()` 函数中，`mode="a"` 指的是**追加**。因此这行文本会添加在文件已有内容之后，不会覆盖之前的内容。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 注意，本例使用 Python `open()` 标准函数与文件交互。
 
@@ -52,7 +52,7 @@
 
 ///
 
-/// info | "说明"
+/// info | 说明
 
 有关事件处理器的详情，请参阅 <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
 

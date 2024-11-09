@@ -32,7 +32,7 @@ Ele deve ser uma lista de `Depends()`:
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -46,7 +46,7 @@ Utilize a versão com `Annotated` se possível
 
 Essas dependências serão executadas/resolvidas da mesma forma que dependências comuns. Mas o valor delas (se existir algum) não será passado para a sua *função de operação de rota*.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Alguns editores de texto checam parâmetros de funções não utilizados, e os mostram como erros.
 
@@ -56,7 +56,7 @@ Isso também pode ser útil para evitar confundir novos desenvolvedores que ao v
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 Neste exemplo utilizamos cabeçalhos personalizados inventados `X-Keys` e `X-Token`.
 
@@ -90,7 +90,7 @@ Dependências podem declarar requisitos de requisições (como cabeçalhos) ou o
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -124,7 +124,7 @@ Essas dependências podem levantar exceções, da mesma forma que dependências 
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível
 
@@ -160,7 +160,7 @@ Então, você pode reutilizar uma dependência comum (que retorna um valor) que 
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 

@@ -20,7 +20,7 @@ $ pip install "uvicorn[standard]"
 
 ////
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `standard` を加えることで、Uvicornがインストールされ、いくつかの推奨される依存関係を利用するようになります。
 

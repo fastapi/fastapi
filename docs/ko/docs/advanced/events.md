@@ -4,7 +4,7 @@
 
 이 함수들은 `async def` 또는 평범하게 `def`으로 선언할 수 있습니다.
 
-/// warning | "경고"
+/// warning | 경고
 
 이벤트 핸들러는 주 응용 프로그램에서만 작동합니다. [하위 응용 프로그램 - 마운트](./sub-applications.md){.internal-link target=_blank}에서는 작동하지 않습니다.
 
@@ -34,13 +34,13 @@
 
 이 예제에서 `shutdown` 이벤트 핸들러 함수는 `"Application shutdown"`이라는 텍스트가 적힌 `log.txt` 파일을 추가할 것입니다.
 
-/// info | "정보"
+/// info | 정보
 
 `open()` 함수에서 `mode="a"`는 "추가"를 의미합니다. 따라서 이미 존재하는 파일의 내용을 덮어쓰지 않고 새로운 줄을 추가합니다.
 
 ///
 
-/// tip | "팁"
+/// tip | 팁
 
 이 예제에서는 파일과 상호작용 하기 위해 파이썬 표준 함수인 `open()`을 사용하고 있습니다.
 
@@ -50,7 +50,7 @@
 
 ///
 
-/// info | "정보"
+/// info | 정보
 
 이벤트 핸들러에 관한 내용은 <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette 이벤트 문서</a>에서 추가로 확인할 수 있습니다.
 
