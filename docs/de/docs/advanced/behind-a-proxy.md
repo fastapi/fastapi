@@ -19,7 +19,7 @@ In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1
 Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app` gibt.
 
 ```Python hl_lines="6"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+{!../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
 Und der Proxy würde das **Pfadpräfix** on-the-fly **"entfernen**", bevor er die Anfrage an Uvicorn übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
@@ -43,7 +43,7 @@ browser --> proxy
 proxy --> server
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die IP `0.0.0.0` wird üblicherweise verwendet, um anzudeuten, dass das Programm alle auf diesem Computer/Server verfügbaren IPs abhört.
 
@@ -84,7 +84,7 @@ $ uvicorn main:app --root-path /api/v1
 
 Falls Sie Hypercorn verwenden, das hat auch die Option `--root-path`.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Die ASGI-Spezifikation definiert einen `root_path` für diesen Anwendungsfall.
 
@@ -99,7 +99,7 @@ Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 
 ```Python hl_lines="8"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
+{!../../docs_src/behind_a_proxy/tutorial001.py!}
 ```
 
 Wenn Sie Uvicorn dann starten mit:
@@ -128,7 +128,7 @@ wäre die Response etwa:
 Falls Sie keine Möglichkeit haben, eine Kommandozeilenoption wie `--root-path` oder ähnlich zu übergeben, können Sie als Alternative beim Erstellen Ihrer FastAPI-Anwendung den Parameter `root_path` setzen:
 
 ```Python hl_lines="3"
-{!../../../docs_src/behind_a_proxy/tutorial002.py!}
+{!../../docs_src/behind_a_proxy/tutorial002.py!}
 ```
 
 Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe der `--root-path`-Kommandozeilenoption an Uvicorn oder Hypercorn.
@@ -178,7 +178,7 @@ Dann erstellen Sie eine Datei `traefik.toml` mit:
 
 Dadurch wird Traefik angewiesen, Port 9999 abzuhören und eine andere Datei `routes.toml` zu verwenden.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wir verwenden Port 9999 anstelle des Standard-HTTP-Ports 80, damit Sie ihn nicht mit Administratorrechten (`sudo`) ausführen müssen.
 
@@ -248,7 +248,7 @@ Wenn Sie nun zur URL mit dem Port für Uvicorn gehen: <a href="http://127.0.0.1:
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass, obwohl Sie unter `http://127.0.0.1:8000/app` darauf zugreifen, als `root_path` angezeigt wird `/api/v1`, welches aus der Option `--root-path` stammt.
 
@@ -295,7 +295,7 @@ Dies liegt daran, dass FastAPI diesen `root_path` verwendet, um den Default-`ser
 
 ## Zusätzliche Server
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies ist ein fortgeschrittener Anwendungsfall. Überspringen Sie das gerne.
 
@@ -310,7 +310,7 @@ Wenn Sie eine benutzerdefinierte Liste von Servern (`servers`) übergeben und es
 Zum Beispiel:
 
 ```Python hl_lines="4-7"
-{!../../../docs_src/behind_a_proxy/tutorial003.py!}
+{!../../docs_src/behind_a_proxy/tutorial003.py!}
 ```
 
 Erzeugt ein OpenAPI-Schema, wie:
@@ -338,7 +338,7 @@ Erzeugt ein OpenAPI-Schema, wie:
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie den automatisch generierten Server mit dem `URL`-Wert `/api/v1`, welcher vom `root_path` stammt.
 
@@ -348,7 +348,7 @@ In der Dokumentationsoberfläche unter <a href="http://127.0.0.1:9999/api/v1/doc
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server.
 
@@ -359,7 +359,7 @@ Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server
 Wenn Sie nicht möchten, dass **FastAPI** einen automatischen Server inkludiert, welcher `root_path` verwendet, können Sie den Parameter `root_path_in_servers=False` verwenden:
 
 ```Python hl_lines="9"
-{!../../../docs_src/behind_a_proxy/tutorial004.py!}
+{!../../docs_src/behind_a_proxy/tutorial004.py!}
 ```
 
 Dann wird er nicht in das OpenAPI-Schema aufgenommen.

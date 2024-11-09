@@ -19,7 +19,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
 ```
 
 ////
@@ -27,7 +27,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../../docs_src/generate_clients/tutorial001.py!}
+{!> ../../docs_src/generate_clients/tutorial001.py!}
 ```
 
 ////
@@ -138,7 +138,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 //// tab | Python 3.9+
 
 ```Python hl_lines="21  26  34"
-{!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
 ```
 
 ////
@@ -146,7 +146,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 //// tab | Python 3.8+
 
 ```Python hl_lines="23  28  36"
-{!> ../../../docs_src/generate_clients/tutorial002.py!}
+{!> ../../docs_src/generate_clients/tutorial002.py!}
 ```
 
 ////
@@ -199,7 +199,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 //// tab | Python 3.9+
 
 ```Python hl_lines="6-7  10"
-{!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
+{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
 ```
 
 ////
@@ -207,7 +207,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 //// tab | Python 3.8+
 
 ```Python hl_lines="8-9  12"
-{!> ../../../docs_src/generate_clients/tutorial003.py!}
+{!> ../../docs_src/generate_clients/tutorial003.py!}
 ```
 
 ////
@@ -233,7 +233,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 我们可以将 OpenAPI JSON 下载到一个名为`openapi.json`的文件中，然后使用以下脚本**删除此前缀的标签**：
 
 ```Python
-{!../../../docs_src/generate_clients/tutorial004.py!}
+{!../../docs_src/generate_clients/tutorial004.py!}
 ```
 
 通过这样做，操作ID将从类似于 `items-get_items` 的名称重命名为 `get_items` ，这样客户端生成器就可以生成更简洁的方法名称。

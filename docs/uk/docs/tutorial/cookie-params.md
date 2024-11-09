@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,7 +25,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -53,7 +53,7 @@
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
@@ -67,7 +67,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -75,7 +75,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -83,7 +83,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+{!> ../../docs_src/cookie_params/tutorial001_an.py!}
 ```
 
 ////
@@ -97,7 +97,7 @@
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
 ```
 
 ////
@@ -111,12 +111,12 @@
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
+{!> ../../docs_src/cookie_params/tutorial001.py!}
 ```
 
 ////
 
-/// note | "Технічні Деталі"
+/// note | Технічні Деталі
 
 `Cookie` це "сестра" класів `Path` і `Query`. Вони наслідуються від одного батьківського класу `Param`.
 Але пам'ятайте, що коли ви імпортуєте `Query`, `Path`, `Cookie` та інше з `fastapi`, це фактично функції, що повертають спеціальні класи.

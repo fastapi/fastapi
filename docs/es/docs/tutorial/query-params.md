@@ -3,7 +3,7 @@
 Cuando declaras otros parámetros de la función que no hacen parte de los parámetros de path estos se interpretan automáticamente como parámetros de "query".
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
+{!../../docs_src/query_params/tutorial001.py!}
 ```
 
 El query es el conjunto de pares de key-value que van después del `?` en la URL, separados por caracteres `&`.
@@ -64,18 +64,18 @@ Los valores de los parámetros en tu función serán:
 Del mismo modo puedes declarar parámetros de query opcionales definiendo el valor por defecto como `None`:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial002.py!}
+{!../../docs_src/query_params/tutorial002.py!}
 ```
 
 En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
 
-/// check | "Revisa"
+/// check | Revisa
 
 También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
 
 ///
 
-/// note | "Nota"
+/// note | Nota
 
 FastAPI sabrá que `q` es opcional por el `= None`.
 
@@ -88,7 +88,7 @@ El `Union` en `Union[str, None]` no es usado por FastAPI (FastAPI solo usará la
 También puedes declarar tipos `bool` y serán convertidos:
 
 ```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial003.py!}
+{!../../docs_src/query_params/tutorial003.py!}
 ```
 
 En este caso, si vas a:
@@ -132,7 +132,7 @@ No los tienes que declarar en un orden específico.
 Serán detectados por nombre:
 
 ```Python hl_lines="8  10"
-{!../../../docs_src/query_params/tutorial004.py!}
+{!../../docs_src/query_params/tutorial004.py!}
 ```
 
 ## Parámetros de query requeridos
@@ -144,7 +144,7 @@ Si no quieres añadir un valor específico sino solo hacerlo opcional, pon el va
 Pero cuando quieres hacer que un parámetro de query sea requerido, puedes simplemente no declararle un valor por defecto:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
+{!../../docs_src/query_params/tutorial005.py!}
 ```
 
 Aquí el parámetro de query `needy` es un parámetro de query requerido, del tipo `str`.
@@ -190,7 +190,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 Por supuesto que también puedes definir algunos parámetros como requeridos, con un valor por defecto y otros completamente opcionales:
 
 ```Python hl_lines="10"
-{!../../../docs_src/query_params/tutorial006.py!}
+{!../../docs_src/query_params/tutorial006.py!}
 ```
 
 En este caso hay 3 parámetros de query:
@@ -199,7 +199,7 @@ En este caso hay 3 parámetros de query:
 * `skip`, un `int` con un valor por defecto de `0`.
 * `limit`, un `int` opcional.
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
 
