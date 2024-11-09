@@ -6,17 +6,21 @@ Do mesmo modo que você pode declarar mais validações e metadados para parâme
 
 Primeiro, importe `Path` de `fastapi`:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+```Python hl_lines="1"
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
+
+```Python hl_lines="3"
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
+
+////
 
 ## Declare metadados
 
@@ -24,24 +28,31 @@ Você pode declarar todos os parâmetros da mesma maneira que na `Query`.
 
 Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota `item_id` você pode digitar:
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+```Python hl_lines="8"
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+//// tab | Python 3.8+
 
-!!! note "Nota"
-    Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
+```Python hl_lines="10"
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
+```
 
-    Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
+////
 
-    Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
+/// note | Nota
+
+Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
+
+Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
+
+Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
+
+///
 
 ## Ordene os parâmetros de acordo com sua necessidade
 
@@ -60,7 +71,7 @@ Isso não faz diferença para o **FastAPI**. Ele vai detectar os parâmetros pel
 Então, você pode declarar sua função assim:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ## Ordene os parâmetros de a acordo com sua necessidade, truques
@@ -72,7 +83,7 @@ Passe `*`, como o primeiro parâmetro da função.
 O Python não vai fazer nada com esse `*`, mas ele vai saber que a partir dali os parâmetros seguintes deverão ser chamados argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não possuam um valor padrão.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## Validações numéricas: maior que ou igual
@@ -82,7 +93,7 @@ Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar r
 Aqui, com `ge=1`, `item_id` precisará ser um número inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
 
 ```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ## Validações numéricas: maior que e menor que ou igual
@@ -93,7 +104,7 @@ O mesmo se aplica para:
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
 ```Python hl_lines="9"
-{!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ## Validações numéricas: valores do tipo float, maior que e menor que
@@ -107,7 +118,7 @@ Assim, `0.5` seria um valor válido. Mas `0.0` ou `0` não seria.
 E o mesmo para <abbr title="less than"><code>lt</code></abbr>.
 
 ```Python hl_lines="11"
-{!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ## Recapitulando
@@ -121,18 +132,24 @@ E você também pode declarar validações numéricas:
 * `lt`: menor que (`l`ess `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-!!! info "Informação"
-    `Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
+/// info | Informação
 
-    Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
+`Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
 
-!!! note "Detalhes Técnicos"
-    Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
+Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
 
-    Que quando chamadas, retornam instâncias de classes de mesmo nome.
+///
 
-    Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+/// note | Detalhes Técnicos
 
-    Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
+Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
 
-    Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
+Que quando chamadas, retornam instâncias de classes de mesmo nome.
+
+Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+
+Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
+
+Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
+
+///

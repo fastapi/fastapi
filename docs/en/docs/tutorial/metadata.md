@@ -19,11 +19,14 @@ You can set the following fields that are used in the OpenAPI specification and 
 You can set them as follows:
 
 ```Python hl_lines="3-16  19-32"
-{!../../../docs_src/metadata/tutorial001.py!}
+{!../../docs_src/metadata/tutorial001.py!}
 ```
 
-!!! tip
-    You can write Markdown in the `description` field and it will be rendered in the output.
+/// tip
+
+You can write Markdown in the `description` field and it will be rendered in the output.
+
+///
 
 With this configuration, the automatic API docs would look like:
 
@@ -36,7 +39,7 @@ Since OpenAPI 3.1.0 and FastAPI 0.99.0, you can also set the `license_info` with
 For example:
 
 ```Python hl_lines="31"
-{!../../../docs_src/metadata/tutorial001_1.py!}
+{!../../docs_src/metadata/tutorial001_1.py!}
 ```
 
 ## Metadata for tags
@@ -60,24 +63,30 @@ Let's try that in an example with tags for `users` and `items`.
 Create metadata for your tags and pass it to the `openapi_tags` parameter:
 
 ```Python hl_lines="3-16  18"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
 Notice that you can use Markdown inside of the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
 
-!!! tip
-    You don't have to add metadata for all the tags that you use.
+/// tip
+
+You don't have to add metadata for all the tags that you use.
+
+///
 
 ### Use your tags
 
 Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assign them to different tags:
 
 ```Python hl_lines="21  26"
-{!../../../docs_src/metadata/tutorial004.py!}
+{!../../docs_src/metadata/tutorial004.py!}
 ```
 
-!!! info
-    Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+/// info
+
+Read more about tags in [Path Operation Configuration](path-operation-configuration.md#tags){.internal-link target=_blank}.
+
+///
 
 ### Check the docs
 
@@ -100,7 +109,7 @@ But you can configure it with the parameter `openapi_url`.
 For example, to set it to be served at `/api/v1/openapi.json`:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial002.py!}
+{!../../docs_src/metadata/tutorial002.py!}
 ```
 
 If you want to disable the OpenAPI schema completely you can set `openapi_url=None`, that will also disable the documentation user interfaces that use it.
@@ -119,5 +128,5 @@ You can configure the two documentation user interfaces included:
 For example, to set Swagger UI to be served at `/documentation` and disable ReDoc:
 
 ```Python hl_lines="3"
-{!../../../docs_src/metadata/tutorial003.py!}
+{!../../docs_src/metadata/tutorial003.py!}
 ```

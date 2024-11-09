@@ -6,41 +6,7 @@ Puedes definir parámetros de Cookie de la misma manera que defines parámetros 
 
 Primero importa `Cookie`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3]*}
 
 ## Declarar parámetros de `Cookie`
 
@@ -48,49 +14,21 @@ Luego declara los parámetros de cookie usando la misma estructura que con `Path
 
 El primer valor es el valor por defecto, puedes pasar todos los parámetros adicionales de validación o anotación:
 
-=== "Python 3.10+"
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9]*}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+/// note | Detalles Técnicos
 
-=== "Python 3.9+"
+`Cookie` es una clase "hermana" de `Path` y `Query`. También hereda de la misma clase común `Param`.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+Pero recuerda que cuando importas `Query`, `Path`, `Cookie`  y otros de `fastapi`, en realidad son funciones que devuelven clases especiales.
 
-=== "Python 3.8+"
+///
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+/// info
 
-=== "Python 3.10+ non-Annotated"
+Para declarar cookies, necesitas usar `Cookie`, porque de lo contrario los parámetros serían interpretados como parámetros de query.
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
-
-!!! note "Detalles Técnicos"
-    `Cookie` es una clase "hermana" de `Path` y `Query`. También hereda de la misma clase común `Param`.
-
-    Pero recuerda que cuando importas `Query`, `Path`, `Cookie`  y otros de `fastapi`, en realidad son funciones que devuelven clases especiales.
-
-!!! info
-    Para declarar cookies, necesitas usar `Cookie`, porque de lo contrario los parámetros serían interpretados como parámetros de query.
+///
 
 ## Resumen
 
