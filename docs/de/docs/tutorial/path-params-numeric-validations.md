@@ -9,7 +9,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 //// tab | Python 3.10+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="1  3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,35 +25,35 @@ Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="3-4"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
@@ -77,7 +77,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 //// tab | Python 3.10+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -85,7 +85,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -93,40 +93,40 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 //// tab | Python 3.8+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ////
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Ein Pfad-Parameter ist immer erforderlich, weil er Teil des Pfads sein muss.
 
@@ -138,7 +138,7 @@ Doch selbst wenn Sie ihn mit `None` deklarieren, oder einen Defaultwert setzen, 
 
 ## Sortieren Sie die Parameter, wie Sie möchten
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
@@ -160,14 +160,14 @@ Sie können Ihre Funktion also so deklarieren:
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ////
@@ -177,7 +177,7 @@ Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` ver
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -185,14 +185,14 @@ Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` ver
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
 ```
 
 ////
 
 ## Sortieren Sie die Parameter wie Sie möchten: Tricks
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie `Annotated` verwenden, ist das folgende nicht so wichtig / nicht notwendig.
 
@@ -214,7 +214,7 @@ Wenn Sie eines der folgenden Dinge tun möchten:
 Python macht nichts mit diesem `*`, aber es wird wissen, dass alle folgenden Parameter als <abbr title="Keyword-Argument – Schlüsselwort-Argument: Das Argument wird anhand seines Namens erkannt, nicht anhand seiner Reihenfolge in der Argumentliste">Keyword-Argumente</abbr> (Schlüssel-Wert-Paare), auch bekannt als <abbr title="Von: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>, verwendet werden. Selbst wenn diese keinen Defaultwert haben.
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
+{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ### Besser mit `Annotated`
@@ -224,7 +224,7 @@ Bedenken Sie, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem nicht hab
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -232,7 +232,7 @@ Bedenken Sie, dass Sie, wenn Sie `Annotated` verwenden, dieses Problem nicht hab
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
 ```
 
 ////
@@ -245,7 +245,7 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -253,21 +253,21 @@ Hier, mit `ge=1`, wird festgelegt, dass `item_id` eine Ganzzahl benötigt, die g
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
 ////
@@ -282,7 +282,7 @@ Das Gleiche trifft zu auf:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -290,21 +290,21 @@ Das Gleiche trifft zu auf:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ////
@@ -322,7 +322,7 @@ Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></a
 //// tab | Python 3.9+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
 ```
 
 ////
@@ -330,21 +330,21 @@ Das gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></a
 //// tab | Python 3.8+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+{!> ../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ////
@@ -368,7 +368,7 @@ Sie alle teilen die gleichen Parameter für zusätzliche Validierung und Metadat
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 `Query`, `Path` und andere, die Sie von `fastapi` importieren, sind tatsächlich Funktionen.
 

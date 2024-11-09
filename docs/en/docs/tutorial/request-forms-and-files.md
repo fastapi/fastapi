@@ -6,7 +6,11 @@ You can define files and form fields at the same time using `File` and `Form`.
 
 To receive uploaded files and/or form data, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-E.g. `pip install python-multipart`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 
@@ -15,7 +19,7 @@ E.g. `pip install python-multipart`.
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -23,7 +27,7 @@ E.g. `pip install python-multipart`.
 //// tab | Python 3.8+
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
 ```
 
 ////
@@ -37,7 +41,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 ////
@@ -49,7 +53,7 @@ Create file and form parameters the same way you would for `Body` or `Query`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="10-12"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -57,7 +61,7 @@ Create file and form parameters the same way you would for `Body` or `Query`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-11"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
 ```
 
 ////
@@ -71,7 +75,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
 ////

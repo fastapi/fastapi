@@ -8,7 +8,7 @@
 
 **요청** 본문을 선언하기 위해서 모든 강력함과 이점을 갖춘 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 모델을 사용합니다.
 
-/// info | "정보"
+/// info | 정보
 
 데이터를 보내기 위해, (좀 더 보편적인) `POST`, `PUT`, `DELETE` 혹은 `PATCH` 중에 하나를 사용하는 것이 좋습니다.
 
@@ -25,7 +25,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="2"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -33,7 +33,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="4"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -47,7 +47,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="5-9"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -55,7 +55,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="7-11"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -89,7 +89,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/body/tutorial001_py310.py!}
+{!> ../../docs_src/body/tutorial001_py310.py!}
 ```
 
 ////
@@ -97,7 +97,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body/tutorial001.py!}
+{!> ../../docs_src/body/tutorial001.py!}
 ```
 
 ////
@@ -149,7 +149,7 @@
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "팁"
+/// tip | 팁
 
 만약 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>를 편집기로 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용할 수 있습니다.
 
@@ -170,7 +170,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/body/tutorial002_py310.py!}
+{!> ../../docs_src/body/tutorial002_py310.py!}
 ```
 
 ////
@@ -178,7 +178,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="21"
-{!> ../../../docs_src/body/tutorial002.py!}
+{!> ../../docs_src/body/tutorial002.py!}
 ```
 
 ////
@@ -192,7 +192,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/body/tutorial003_py310.py!}
+{!> ../../docs_src/body/tutorial003_py310.py!}
 ```
 
 ////
@@ -200,7 +200,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="17-18"
-{!> ../../../docs_src/body/tutorial003.py!}
+{!> ../../docs_src/body/tutorial003.py!}
 ```
 
 ////
@@ -214,7 +214,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/body/tutorial004_py310.py!}
+{!> ../../docs_src/body/tutorial004_py310.py!}
 ```
 
 ////
@@ -222,7 +222,7 @@
 //// tab | Python 3.8+
 
 ```Python hl_lines="18"
-{!> ../../../docs_src/body/tutorial004.py!}
+{!> ../../docs_src/body/tutorial004.py!}
 ```
 
 ////
@@ -233,7 +233,7 @@
 * 만약 매개변수가 (`int`, `float`, `str`, `bool` 등과 같은) **유일한 타입**으로 되어있으면, **쿼리** 매개변수로 해석될 것입니다.
 * 만약 매개변수가 **Pydantic 모델** 타입으로 선언되어 있으면, 요청 **본문**으로 해석될 것입니다.
 
-/// note | "참고"
+/// note | 참고
 
 FastAPI는 `q`의 값이 필요없음을 알게 될 것입니다. 기본 값이 `= None`이기 때문입니다.
 

@@ -23,7 +23,7 @@
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
+{!> ../../docs_src/security/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -31,7 +31,7 @@
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/security/tutorial001_an.py!}
+{!> ../../docs_src/security/tutorial001_an.py!}
 ```
 
 ////
@@ -45,14 +45,14 @@
 ///
 
 ```Python
-{!> ../../../docs_src/security/tutorial001.py!}
+{!> ../../docs_src/security/tutorial001.py!}
 ```
 
 ////
 
 ## 运行
 
-/// info | "说明"
+/// info | 说明
 
 先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
@@ -82,7 +82,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Authorize 按钮！"
+/// check | Authorize 按钮！
 
 页面右上角出现了一个「**Authorize**」按钮。
 
@@ -94,7 +94,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "笔记"
+/// note | 笔记
 
 目前，在表单中输入内容不会有任何反应，后文会介绍相关内容。
 
@@ -140,7 +140,7 @@ OAuth2 的设计目标是为了让后端或 API 独立于服务器验证用户�
 
 本例使用 **OAuth2** 的 **Password** 流以及 **Bearer** 令牌（`Token`）。为此要使用 `OAuth2PasswordBearer` 类。
 
-/// info | "说明"
+/// info | 说明
 
 `Bearer` 令牌不是唯一的选择。
 
@@ -155,10 +155,10 @@ OAuth2 的设计目标是为了让后端或 API 独立于服务器验证用户�
 创建 `OAuth2PasswordBearer` 的类实例时，要传递 `tokenUrl` 参数。该参数包含客户端（用户浏览器中运行的前端） 的 URL，用于发送 `username` 与 `password`，并获取令牌。
 
 ```Python hl_lines="6"
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 在此，`tokenUrl="token"` 指向的是暂未创建的相对 URL `token`。这个相对 URL 相当于 `./token`。
 
@@ -172,7 +172,7 @@ OAuth2 的设计目标是为了让后端或 API 独立于服务器验证用户�
 
 接下来，学习如何创建实际的路径操作。
 
-/// info | "说明"
+/// info | 说明
 
 严苛的 **Pythonista** 可能不喜欢用 `tokenUrl` 这种命名风格代替 `token_url`。
 
@@ -195,14 +195,14 @@ oauth2_scheme(some, parameters)
 接下来，使用 `Depends` 把 `oauth2_scheme` 传入依赖项。
 
 ```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
+{!../../docs_src/security/tutorial001.py!}
 ```
 
 该依赖项使用字符串（`str`）接收*路径操作函数*的参数 `token` 。
 
 **FastAPI** 使用依赖项在 OpenAPI 概图（及 API 文档）中定义**安全方案**。
 
-/// info | "技术细节"
+/// info | 技术细节
 
 **FastAPI** 使用（在依赖项中声明的）类 `OAuth2PasswordBearer` 在 OpenAPI 中定义安全方案，这是因为它继承自 `fastapi.security.oauth2.OAuth2`，而该类又是继承自`fastapi.security.base.SecurityBase`。
 

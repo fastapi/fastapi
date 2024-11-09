@@ -33,7 +33,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 //// tab | Python 3.10+
 
 ```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -41,7 +41,7 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 //// tab | Python 3.9+
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -49,35 +49,35 @@ Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennim
 //// tab | Python 3.8+
 
 ```Python hl_lines="9-12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -115,7 +115,7 @@ Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fasta
 //// tab | Python 3.10+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -123,7 +123,7 @@ Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fasta
 //// tab | Python 3.9+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -131,35 +131,35 @@ Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fasta
 //// tab | Python 3.8+
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="1"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -171,7 +171,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 //// tab | Python 3.10+
 
 ```Python hl_lines="13  18"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -179,7 +179,7 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 //// tab | Python 3.9+
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -187,35 +187,35 @@ So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ih
 //// tab | Python 3.8+
 
 ```Python hl_lines="16  21"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -230,7 +230,7 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
 
@@ -278,7 +278,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
 //// tab | Python 3.10+
 
 ```Python hl_lines="12  16  21"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py310.py!}
 ```
 
 ////
@@ -286,7 +286,7 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
 //// tab | Python 3.9+
 
 ```Python hl_lines="14  18  23"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an_py39.py!}
 ```
 
 ////
@@ -294,12 +294,12 @@ Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in eine
 //// tab | Python 3.8+
 
 ```Python hl_lines="15  19  24"
-{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_02_an.py!}
 ```
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
@@ -321,7 +321,7 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
 
