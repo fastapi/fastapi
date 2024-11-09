@@ -75,7 +75,7 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310 hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 
 In this case, **FastAPI** will expect a body like:
