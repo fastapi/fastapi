@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/zh/docs/advanced/additional-responses.md`. PR [#12828](https://github.com/fastapi/fastapi/pull/12828) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/en/docs/tutorial/path-params-numeric-validations.md`. PR [#12825](https://github.com/fastapi/fastapi/pull/12825) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes for `docs/en/docs/advanced/testing-websockets.md`. PR [#12761](https://github.com/fastapi/fastapi/pull/12761) by [@hamidrasti](https://github.com/hamidrasti).
 * 📝 Update includes for `docs/en/docs/advanced/using-request-directly.md`. PR [#12760](https://github.com/fastapi/fastapi/pull/12760) by [@hamidrasti](https://github.com/hamidrasti).
