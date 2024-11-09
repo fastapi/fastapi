@@ -10,7 +10,7 @@ Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder Twitter an
 
 In diesem Abschnitt erfahren Sie, wie Sie Authentifizierung und Autorisierung mit demselben OAuth2, mit Scopes in Ihrer **FastAPI**-Anwendung verwalten.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies ist ein mehr oder weniger fortgeschrittener Abschnitt. Wenn Sie gerade erst anfangen, können Sie ihn überspringen.
 
@@ -88,7 +88,7 @@ Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -102,7 +102,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -116,7 +116,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -162,7 +162,7 @@ Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und des
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -176,7 +176,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -190,7 +190,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -218,7 +218,7 @@ Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine 
 
 Und wir geben die Scopes als Teil des JWT-Tokens zurück.
 
-/// danger | "Gefahr"
+/// danger | Gefahr
 
 Der Einfachheit halber fügen wir hier die empfangenen Scopes direkt zum Token hinzu.
 
@@ -252,7 +252,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -266,7 +266,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -280,7 +280,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -308,7 +308,7 @@ Und die Abhängigkeitsfunktion `get_current_active_user` kann auch Unterabhängi
 
 In diesem Fall erfordert sie den Scope `me` (sie könnte mehr als einen Scope erfordern).
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Sie müssen nicht unbedingt an verschiedenen Stellen verschiedene Scopes hinzufügen.
 
@@ -342,7 +342,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -356,7 +356,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -370,7 +370,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -382,7 +382,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// info | "Technische Details"
+/// info | Technische Details
 
 `Security` ist tatsächlich eine Unterklasse von `Depends` und hat nur noch einen zusätzlichen Parameter, den wir später kennenlernen werden.
 
@@ -432,7 +432,7 @@ Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um d
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -446,7 +446,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -460,7 +460,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -510,7 +510,7 @@ In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als du
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -524,7 +524,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -538,7 +538,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -590,7 +590,7 @@ Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, u
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -604,7 +604,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -618,7 +618,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -662,7 +662,7 @@ Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -676,7 +676,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -690,7 +690,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -727,7 +727,7 @@ So sieht die Hierarchie der Abhängigkeiten und Scopes aus:
                             * `security_scopes.scopes` enthält `["me"]` für die *Pfadoperation* `read_users_me`, da das in der Abhängigkeit `get_current_active_user` deklariert ist.
                             * `security_scopes.scopes` wird `[]` (nichts) für die *Pfadoperation* `read_system_status` enthalten, da diese keine `Security` mit `scopes` deklariert hat, und deren Abhängigkeit `get_current_user` ebenfalls keinerlei `scopes` deklariert.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das Wichtige und „Magische“ hier ist, dass `get_current_user` für jede *Pfadoperation* eine andere Liste von `scopes` hat, die überprüft werden.
 
@@ -771,7 +771,7 @@ Am häufigsten ist der „Implicit“-Flow.
 
 Am sichersten ist der „Code“-Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den „Implicit“-Flow vor.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Es ist üblich, dass jeder Authentifizierungsanbieter seine Flows anders benennt, um sie zu einem Teil seiner Marke zu machen.
 
