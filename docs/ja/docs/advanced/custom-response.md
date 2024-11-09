@@ -12,7 +12,7 @@
 
 そしてもし、`Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ (`application/json`) ならば、データは *path operationデコレータ* に宣言したPydantic `response_model` により自動的に変換 (もしくはフィルタ) されます。
 
-/// note | "備考"
+/// note | 備考
 
 メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待します。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
 
@@ -28,7 +28,7 @@
 {!../../docs_src/custom_response/tutorial001b.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用することもできます。
 
@@ -38,7 +38,7 @@
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `ORJSONResponse` は、現在はFastAPIのみで利用可能で、Starletteでは利用できません。
 
@@ -55,7 +55,7 @@
 {!../../docs_src/custom_response/tutorial002.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用されます。
 
@@ -75,13 +75,13 @@
 {!../../docs_src/custom_response/tutorial003.py!}
 ```
 
-/// warning | "注意"
+/// warning | 注意
 
 *path operation関数* から直接返される `Response` は、OpenAPIにドキュメントされず (例えば、 `Content-Type` がドキュメントされない) 、自動的な対話的ドキュメントからも閲覧できません。
 
 ///
 
-/// info | "情報"
+/// info | 情報
 
 もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返された `Response` オブジェクトに由来しています。
 
@@ -115,7 +115,7 @@
 
 `Response` を使って他の何かを返せますし、カスタムのサブクラスも作れることを覚えておいてください。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.responses import HTMLResponse` も利用できます。
 
@@ -168,7 +168,7 @@ FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含�
 
 <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>を使った、代替のJSONレスポンスです。
 
-/// warning | "注意"
+/// warning | 注意
 
 `ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも作りこまれていません。
 
@@ -178,7 +178,7 @@ FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含�
 {!../../docs_src/custom_response/tutorial001.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `ORJSONResponse` のほうが高速な代替かもしれません。
 
@@ -210,7 +210,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 {!../../docs_src/custom_response/tutorial008.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 ここでは `async` や `await` をサポートしていない標準の `open()` を使っているので、通常の `def` でpath operationを宣言していることに注意してください。
 
@@ -245,7 +245,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 {!../../docs_src/custom_response/tutorial010.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 前に見たように、 *path operation* の中で `response_class` をオーバーライドできます。
 

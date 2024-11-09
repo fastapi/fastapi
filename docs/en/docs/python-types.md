@@ -22,9 +22,7 @@ If you are a Python expert, and you already know everything about type hints, sk
 
 Let's start with a simple example:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Calling this program outputs:
 
@@ -38,9 +36,7 @@ The function does the following:
 * Converts the first letter of each one to upper case with `title()`.
 * <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Edit it
 
@@ -82,9 +78,7 @@ That's it.
 
 Those are the "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 That is not the same as declaring default values like would be with:
 
@@ -112,9 +106,7 @@ With that, you can scroll, seeing the options, until you find the one that "ring
 
 Check this function, it already has type hints:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
 
@@ -122,9 +114,7 @@ Because the editor knows the types of the variables, you don't only get completi
 
 Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Declaring types
 
@@ -143,9 +133,7 @@ You can use, for example:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Generic types with type parameters
 
@@ -369,9 +357,7 @@ It's just about the words and names. But those words can affect how you and your
 
 As an example, let's take this function:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
 
 The parameter `name` is defined as `Optional[str]`, but it is **not optional**, you cannot call the function without the parameter:
 
@@ -387,9 +373,7 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 The good news is, once you are on Python 3.10 you won't have to worry about that, as you will be able to simply use `|` to define unions of types:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
 
 And then you won't have to worry about names like `Optional` and `Union`. 😎
 
@@ -451,15 +435,11 @@ You can also declare a class as the type of a variable.
 
 Let's say you have a class `Person`, with a name:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Then you can declare a variable to be of type `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 And then, again, you get all the editor support:
 
