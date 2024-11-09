@@ -39,7 +39,7 @@ Aqui nós estamos simulando a *inicialização* custosa do carregamento do model
 
 E então, logo após o `yield`, descarregaremos o modelo. Esse código será executado **após** a aplicação **terminar de lidar com as requisições**, pouco antes do *encerramento*. Isso poderia, por exemplo, liberar recursos como memória ou GPU.
 
-/// tip | "Dica"
+/// tip | Dica
 
 O `shutdown` aconteceria quando você estivesse **encerrando** a aplicação.
 
@@ -95,7 +95,7 @@ O parâmetro `lifespan` da aplicação `FastAPI` usa um **Gerenciador de Context
 
 ## Eventos alternativos (deprecados)
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 A maneira recomendada para lidar com a *inicialização* e o *encerramento* é usando o parâmetro `lifespan` da aplicação `FastAPI` como descrito acima.
 
@@ -133,13 +133,13 @@ Para adicionar uma função que deve ser executada quando a aplicação estiver 
 
 Aqui, a função de manipulação de evento `shutdown` irá escrever uma linha de texto `"Application shutdown"` no arquivo `log.txt`.
 
-/// info | "Informação"
+/// info | Informação
 
 Na função `open()`, o `mode="a"` significa "acrescentar", então, a linha irá ser adicionada depois de qualquer coisa que esteja naquele arquivo, sem sobrescrever o conteúdo anterior.
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Perceba que nesse caso nós estamos usando a função padrão do Python `open()` que interage com um arquivo.
 
@@ -165,7 +165,7 @@ Só um detalhe técnico para nerds curiosos. 🤓
 
 Por baixo, na especificação técnica ASGI, essa é a parte do <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Protocolo Lifespan</a>, e define eventos chamados `startup` e `shutdown`.
 
-/// info | "Informação"
+/// info | Informação
 
 Você pode ler mais sobre o manipulador `lifespan` do Starlette na <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Documentação do Lifespan Starlette</a>.
 
