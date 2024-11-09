@@ -32,7 +32,7 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
@@ -46,7 +46,7 @@ Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
@@ -90,7 +90,7 @@ Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
@@ -104,7 +104,7 @@ Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
@@ -116,7 +116,7 @@ Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
 
 ////
 
-/// note | "Teknik Detaylar"
+/// note | Teknik Detaylar
 
 `Cookie` sınıfı `Path` ve `Query` sınıflarının kardeşidir. Diğerleri gibi `Param` sınıfını miras alan bir sınıftır.
 
@@ -124,7 +124,7 @@ Ancak `fastapi`'dan projenize dahil ettiğiniz `Query`, `Path`, `Cookie` ve diğ
 
 ///
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 Çerez tanımlamak için `Cookie` sınıfını kullanmanız gerekmektedir, aksi taktirde parametreler sorgu parametreleri olarak yorumlanır.
 

@@ -74,7 +74,7 @@
 
 🕐❔ 👆 📣 *➡ 🛠️* 👆 🈸, **FastAPI** 🔁 🏗 🔗 🗃 🔃 👈 *➡ 🛠️* 🔌 🗄 🔗.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 🗄 🔧 ⚫️ 🤙 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">🛠️ 🎚</a>.
 

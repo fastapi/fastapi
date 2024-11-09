@@ -78,7 +78,7 @@
 
 更多关于 <abbr title="Cross-Origin Resource Sharing">CORS</abbr> 的信息，请查看 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 文档</a>。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以使用 `from starlette.middleware.cors import CORSMiddleware`。
 
