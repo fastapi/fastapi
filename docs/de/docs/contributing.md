@@ -106,7 +106,7 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Aktivieren Sie jedes Mal, wenn Sie ein neues Package mit `pip` in dieser Umgebung installieren, die Umgebung erneut.
 
@@ -138,7 +138,7 @@ Und wenn Sie diesen lokalen FastAPI-Quellcode aktualisieren und dann die Python-
 
 Auf diese Weise müssen Sie Ihre lokale Version nicht „installieren“, um jede Änderung testen zu können.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Das geschieht nur, wenn Sie die Installation mit der enthaltenen `requirements.txt` durchführen, anstatt `pip install fastapi` direkt auszuführen.
 
@@ -186,7 +186,7 @@ Das stellt die Dokumentation unter `http://127.0.0.1:8008` bereit.
 
 Auf diese Weise können Sie die Dokumentation/Quelldateien bearbeiten und die Änderungen live sehen.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
@@ -229,7 +229,7 @@ Die Dokumentation verwendet <a href="https://www.mkdocs.org/" class="external-li
 
 Und es gibt zusätzliche Tools/Skripte für Übersetzungen, in `./scripts/docs.py`.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie müssen sich den Code in `./scripts/docs.py` nicht anschauen, verwenden Sie ihn einfach in der Kommandozeile.
 
@@ -283,7 +283,7 @@ Hier sind die Schritte, die Ihnen bei Übersetzungen helfen.
 
 * Sehen Sie diese Pull Requests durch (Review), schlagen Sie Änderungen vor, oder segnen Sie sie ab (Approval). Bei den Sprachen, die ich nicht spreche, warte ich, bis mehrere andere die Übersetzung durchgesehen haben, bevor ich den Pull Request merge.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">Kommentare mit Änderungsvorschlägen</a> zu vorhandenen Pull Requests hinzufügen.
 
@@ -303,7 +303,7 @@ Angenommen, Sie möchten eine Seite für eine Sprache übersetzen, die bereits �
 
 Im Spanischen lautet der Zwei-Buchstaben-Code `es`. Das Verzeichnis für spanische Übersetzungen befindet sich also unter `docs/es/`.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die Haupt („offizielle“) Sprache ist Englisch und befindet sich unter `docs/en/`.
 
@@ -324,7 +324,7 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Alternativ können Sie die Schritte des Skripts auch manuell ausführen.
 
@@ -360,7 +360,7 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass die einzige Änderung in Pfad und Dateiname der Sprachcode ist, von `en` zu `es`.
 
@@ -399,7 +399,7 @@ Obiges Kommando hat eine Datei `docs/ht/mkdocs.yml` mit einer Minimal-Konfigurat
 INHERIT: ../en/mkdocs.yml
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können diese Datei mit diesem Inhalt auch einfach manuell erstellen.
 

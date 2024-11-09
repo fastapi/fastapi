@@ -241,7 +241,7 @@ In diesem Fall gibt es drei Query-Parameter:
 * `skip`, ein `int` mit einem Defaultwert `0`.
 * `limit`, ein optionales `int`.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können auch `Enum`s verwenden, auf die gleiche Weise wie mit [Pfad-Parametern](path-params.md#vordefinierte-parameterwerte){.internal-link target=_blank}.
 

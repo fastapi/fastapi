@@ -36,7 +36,7 @@ Para fazer isso, nós declaramos o método `__call__`:
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -72,7 +72,7 @@ E agora, nós podemos utilizar o `__init__` para declarar os parâmetros da inst
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -108,7 +108,7 @@ Nós poderíamos criar uma instância desta classe com:
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -152,7 +152,7 @@ checker(q="somequery")
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
@@ -164,7 +164,7 @@ Prefira utilizar a versão `Annotated` se possível.
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Tudo isso parece não ser natural. E pode não estar muito claro ou aparentar ser útil ainda.
 
