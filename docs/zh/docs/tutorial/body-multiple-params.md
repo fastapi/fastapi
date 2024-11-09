@@ -8,12 +8,63 @@
 
 你还可以通过将默认值设置为 `None` 来将请求体参数声明为可选参数：
 
-```Python hl_lines="17-19"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
+//// tab | Python 3.10+
+
+```Python hl_lines="18-20"
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
 ```
 
-!!! note
-    请注意，在这种情况下，将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。
+////
+
+//// tab | Python 3.9+
+
+```Python hl_lines="18-20"
+{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="19-21"
+{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
+```
+
+////
+
+//// tab | Python 3.10+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="17-19"
+{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="19-21"
+{!> ../../docs_src/body_multiple_params/tutorial001.py!}
+```
+
+////
+
+/// note
+
+请注意，在这种情况下，将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。
+
+///
 
 ## 多个请求体参数
 
@@ -30,9 +81,21 @@
 
 但是你也可以声明多个请求体参数，例如 `item` 和 `user`：
 
+//// tab | Python 3.10+
+
 ```Python hl_lines="20"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
+{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
 ```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="22"
+{!> ../../docs_src/body_multiple_params/tutorial002.py!}
+```
+
+////
 
 在这种情况下，**FastAPI** 将注意到该函数中有多个请求体参数（两个 Pydantic 模型参数）。
 
@@ -53,9 +116,11 @@
 }
 ```
 
-!!! note
-    请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
+/// note
 
+请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
+
+///
 
 **FastAPI** 将自动对请求中的数据进行转换，因此 `item` 参数将接收指定的内容，`user` 参数也是如此。
 
@@ -72,9 +137,57 @@
 但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。
 
 
-```Python hl_lines="21"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
+//// tab | Python 3.10+
+
+```Python hl_lines="23"
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
 ```
+
+////
+
+//// tab | Python 3.9+
+
+```Python hl_lines="23"
+{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="24"
+{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
+```
+
+////
+
+//// tab | Python 3.10+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="20"
+{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="22"
+{!> ../../docs_src/body_multiple_params/tutorial003.py!}
+```
+
+////
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 
@@ -109,13 +222,63 @@ q: str = None
 
 比如：
 
-```Python hl_lines="25"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+//// tab | Python 3.10+
+
+```Python hl_lines="27"
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
 ```
 
-!!! info
-    `Body` 同样具有与 `Query`、`Path` 以及其他后面将看到的类完全相同的额外校验和元数据参数。
+////
 
+//// tab | Python 3.9+
+
+```Python hl_lines="27"
+{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="28"
+{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
+```
+
+////
+
+//// tab | Python 3.10+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="25"
+{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="27"
+{!> ../../docs_src/body_multiple_params/tutorial004.py!}
+```
+
+////
+
+/// info
+
+`Body` 同样具有与 `Query`、`Path` 以及其他后面将看到的类完全相同的额外校验和元数据参数。
+
+///
 
 ## 嵌入单个请求体参数
 
@@ -126,14 +289,62 @@ q: str = None
 但是，如果你希望它期望一个拥有 `item` 键并在值中包含模型内容的 JSON，就像在声明额外的请求体参数时所做的那样，则可以使用一个特殊的 `Body` 参数 `embed`：
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 比如：
 
-```Python hl_lines="15"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
+//// tab | Python 3.10+
+
+```Python hl_lines="17"
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
 ```
+
+////
+
+//// tab | Python 3.9+
+
+```Python hl_lines="17"
+{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python hl_lines="18"
+{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
+```
+
+////
+
+//// tab | Python 3.10+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="15"
+{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+```Python hl_lines="17"
+{!> ../../docs_src/body_multiple_params/tutorial005.py!}
+```
+
+////
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 

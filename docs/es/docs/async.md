@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note "Nota"
-    Solo puedes usar `await` dentro de funciones creadas con `async def`.
+/// note | Nota
+
+Solo puedes usar `await` dentro de funciones creadas con `async def`.
+
+///
 
 ---
 
@@ -104,23 +107,42 @@ Para entender las diferencias, imagina la siguiente historia sobre hamburguesas:
 
 Vas con la persona que te gusta 😍 a pedir comida rápida 🍔, haces cola mientras el cajero 💁 recoge los pedidos de las personas de delante tuyo.
 
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-01.png" alt="illustration">
+
 Llega tu turno, haces tu pedido de 2 hamburguesas impresionantes para esa persona 😍 y para ti.
 
-Pagas 💸.
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-02.png" alt="illustration">
 
 El cajero 💁 le dice algo al chico de la cocina 👨‍🍳 para que sepa que tiene que preparar tus hamburguesas 🍔 (a pesar de que actualmente está preparando las de los clientes anteriores).
 
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-03.png" alt="illustration">
+
+Pagas 💸.
 El cajero 💁 te da el número de tu turno.
+
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-04.png" alt="illustration">
 
 Mientras esperas, vas con esa persona 😍 y eliges una mesa, se sientan y hablan durante un rato largo (ya que las hamburguesas son muy impresionantes y necesitan un rato para prepararse ✨🍔✨).
 
 Mientras te sientas en la mesa con esa persona 😍, esperando las hamburguesas 🍔, puedes disfrutar ese tiempo admirando lo increíble, inteligente, y bien que se ve ✨😍✨.
 
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-05.png" alt="illustration">
+
 Mientras esperas y hablas con esa persona 😍, de vez en cuando, verificas el número del mostrador para ver si ya es tu turno.
 
 Al final, en algún momento, llega tu turno. Vas al mostrador, coges tus hamburguesas 🍔 y vuelves a la mesa.
 
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-06.png" alt="illustration">
+
 Tú y esa persona 😍 se comen las hamburguesas 🍔 y la pasan genial ✨.
+
+<img src="https://fastapi.tiangolo.com/img/async/concurrent-burgers/concurrent-burgers-07.png" alt="illustration">
+
+/// info | Información
+
+Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -150,25 +172,43 @@ Haces la cola mientras varios cajeros (digamos 8) que a la vez son cocineros �
 
 Todos los que están antes de ti están esperando 🕙 que sus hamburguesas 🍔 estén listas antes de dejar el mostrador porque cada uno de los 8 cajeros prepara la hamburguesa de inmediato antes de recibir el siguiente pedido.
 
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-01.png" alt="illustration">
+
 Entonces finalmente es tu turno, haces tu pedido de 2 hamburguesas 🍔 impresionantes para esa persona 😍 y para ti.
 
 Pagas 💸.
+
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-02.png" alt="illustration">
 
 El cajero va a la cocina 👨‍🍳.
 
 Esperas, de pie frente al mostrador 🕙, para que nadie más recoja tus hamburguesas 🍔, ya que no hay números para los turnos.
 
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-03.png" alt="illustration">
+
 Como tu y esa persona 😍 están ocupados en impedir que alguien se ponga delante y recoja tus hamburguesas apenas llegan 🕙, tampoco puedes prestarle atención a esa persona 😞.
 
 Este es un trabajo "síncrono", estás "sincronizado" con el cajero / cocinero 👨‍🍳. Tienes que esperar y estar allí en el momento exacto en que el cajero / cocinero 👨‍🍳 termina las hamburguesas 🍔 y te las da, o de lo contrario, alguien más podría cogerlas.
 
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-04.png" alt="illustration">
+
 Luego, el cajero / cocinero 👨‍🍳 finalmente regresa con tus hamburguesas 🍔, después de mucho tiempo esperando 🕙 frente al mostrador.
 
-Cojes tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-05.png" alt="illustration">
+
+Coges tus hamburguesas 🍔 y vas a la mesa con esa persona 😍.
 
 Sólo las comes y listo 🍔 ⏹.
 
+<img src="https://fastapi.tiangolo.com/img/async/parallel-burgers/parallel-burgers-06.png" alt="illustration">
+
 No has hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo esperando 🕙 frente al mostrador 😞.
+
+/// info | Información
+
+Las ilustraciones fueron creados por <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
+///
 
 ---
 
@@ -240,7 +280,7 @@ Pero en este caso, si pudieras traer a los 8 ex cajeros / cocineros / ahora limp
 
 En este escenario, cada uno de los limpiadores (incluido tú) sería un procesador, haciendo su parte del trabajo.
 
-Y como la mayor parte del tiempo de ejecución lo coge el trabajo real (en lugar de esperar), y el trabajo en un sistema lo realiza una <abbr title = "Central Processing Unit. En español: Unidad Central de Procesamiento."> CPU </abbr>, a estos problemas se les llama "<abbr title="En español: atado a CPU.">CPU bond</abbr>".
+Y como la mayor parte del tiempo de ejecución lo coge el trabajo real (en lugar de esperar), y el trabajo en un sistema lo realiza una <abbr title = "Central Processing Unit. En español: Unidad Central de Procesamiento."> CPU </abbr>, a estos problemas se les llama "<abbr title="En español: atado a CPU.">CPU bound</abbr>".
 
 ---
 
@@ -257,7 +297,7 @@ Por ejemplo:
 
 Con **FastAPI** puedes aprovechar la concurrencia que es muy común para el desarrollo web (atractivo principal de NodeJS).
 
-Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesamiento (tener múltiples procesos ejecutándose en paralelo) para cargas de trabajo **CPU bond** como las de los sistemas de Machine Learning.
+Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesamiento (tener múltiples procesos ejecutándose en paralelo) para cargas de trabajo **CPU bound** como las de los sistemas de Machine Learning.
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena combinación para las API y aplicaciones web de Data Science / Machine Learning (entre muchas otras).
 
@@ -356,12 +396,15 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que hace que te
 
 ## Detalles muy técnicos
 
-!!! warning "Advertencia"
-    Probablemente puedas saltarte esto.
+/// warning | Advertencia
 
-    Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
+Probablemente puedas saltarte esto.
 
-    Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
+Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
+
+Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
+
+///
 
 ### Path operation functions
 
@@ -369,7 +412,7 @@ Cuando declaras una *path operation function* con `def` normal en lugar de `asyn
 
 Si vienes de otro framework asíncrono que no funciona de la manera descrita anteriormente y estás acostumbrado a definir *path operation functions* del tipo sólo cálculo con `def` simple para una pequeña ganancia de rendimiento (aproximadamente 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen un código que realice el bloqueo <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más rápido](/#rendimiento){.Internal-link target=_blank} que (o al menos comparable) a tu framework anterior.
+Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más rápido](index.md#rendimiento){.Internal-link target=_blank} que (o al menos comparable) a tu framework anterior.
 
 ### Dependencias
 

@@ -1,8 +1,13 @@
 from fastapi.testclient import TestClient
 
-from docs_src.websockets.tutorial003 import app
+from docs_src.websockets.tutorial003 import app, html
 
 client = TestClient(app)
+
+
+def test_get():
+    response = client.get("/")
+    assert response.text == html
 
 
 def test_websocket_handle_disconnection():

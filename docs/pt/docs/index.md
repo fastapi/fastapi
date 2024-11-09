@@ -1,3 +1,9 @@
+# FastAPI
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -5,11 +11,11 @@
     <em>Framework FastAPI, alta performance, fácil de aprender, fácil de codar, pronto para produção</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -20,11 +26,11 @@
 
 **Documentação**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Código fonte**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Código fonte**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python 3.6 ou superior, baseado nos _type hints_ padrões do Python.
+FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python, baseado nos _type hints_ padrões do Python.
 
 Os recursos chave são:
 
@@ -39,25 +45,28 @@ Os recursos chave são:
 
 <small>* estimativas baseadas em testes realizados com equipe interna de desenvolvimento, construindo aplicações em produção.</small>
 
-## Gold Sponsors
+## Patrocinadores Ouro
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/pt/fastapi-people/#patrocinadores" class="external-link" target="_blank">Outros patrocinadores</a>
 
 ## Opiniões
 
 "*[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizar ele em todos os times de **serviços _Machine Learning_ na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**.*"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -69,7 +78,7 @@ Os recursos chave são:
 
 "*Honestamente, o que você construiu parece super sólido e rebuscado. De muitas formas, eu queria que o **Hug** fosse assim - é realmente inspirador ver alguém que construiu ele.*"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>criador do<a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>criador do<a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -97,12 +106,10 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 
 ## Requisitos
 
-Python 3.6+
-
 FastAPI está nos ombros de gigantes:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para as partes web.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> para a parte de dados.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> para a parte de dados.
 
 ## Instalação
 
@@ -116,12 +123,12 @@ $ pip install fastapi
 
 </div>
 
-Você também precisará de um servidor ASGI para produção, tal como <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ou <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Você também precisará de um servidor ASGI para produção, tal como <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ou <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -135,7 +142,7 @@ $ pip install uvicorn[standard]
 * Crie um arquivo `main.py` com:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -148,7 +155,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -158,7 +165,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 Se seu código utiliza `async` / `await`, use `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -171,7 +178,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -250,6 +257,8 @@ Agora modifique o arquivo `main.py` para receber um corpo para uma requisição 
 Declare o corpo utilizando tipos padrão Python, graças ao Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -259,7 +268,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool] = None
 
 
 @app.get("/")
@@ -268,7 +277,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -287,7 +296,7 @@ Agora vá para <a href="http://127.0.0.1:8000/docs" class="external-link" target
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Clique no botão "Try it out", ele permiirá que você preencha os parâmetros e interaja diretamente com a API:
+* Clique no botão "Try it out", ele permitirá que você preencha os parâmetros e interaja diretamente com a API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
@@ -311,7 +320,7 @@ Você faz com tipos padrão do Python moderno.
 
 Você não terá que aprender uma nova sintaxe, métodos ou classes de uma biblioteca específica etc.
 
-Apenas **Python 3.6+** padrão.
+Apenas **Python** padrão.
 
 Por exemplo, para um `int`:
 
@@ -362,7 +371,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
     * Como o parâmetro `q` é declarado com `= None`, ele é opcional.
     * Sem o `None` ele poderia ser obrigatório (como o corpo no caso de `PUT`).
 * Para requisições `PUT` para `/items/{item_id}`, lerá o corpo como JSON e:
-    * Verifica que tem um atributo obrigatório `name` que deve ser `str`. 
+    * Verifica que tem um atributo obrigatório `name` que deve ser `str`.
     * Verifica que tem um atributo obrigatório `price` que deve ser `float`.
     * Verifica que tem an atributo opcional `is_offer`, que deve ser `bool`, se presente.
     * Tudo isso também funciona para objetos JSON profundamente aninhados.
@@ -410,7 +419,7 @@ Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fas
 * Muitos recursos extras (graças ao Starlette) como:
     * **WebSockets**
     * **GraphQL**
-    * testes extrememamente fáceis baseados em `requests` e `pytest`
+    * testes extrememamente fáceis baseados em HTTPX e `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...e mais.
@@ -425,24 +434,22 @@ Para entender mais sobre performance, veja a seção <a href="https://fastapi.ti
 
 Usados por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para JSON mais rápido <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validação de email.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - para validação de email.
 
 Usados por Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Necessário se você quiser utilizar o `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Necessário se você quiser utilizar o `FileResponse` ou `StaticFiles`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Necessário se você quiser utilizar o `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Necessário se você quiser utilizar a configuração padrão de templates.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Necessário se você quiser suporte com <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr> de formulário, com `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Necessário se você quiser suporte com <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr> de formulário, com `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Necessário para suporte a `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Necessário para suporte a `SchemaGenerator` da Starlette (você provavelmente não precisará disso com o FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Necessário para suporte a `GraphQLApp`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Necessário se você quer utilizar `UJSONResponse`.
 
 Usados por FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para o servidor que carrega e serve sua aplicação.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Necessário se você quer utilizar `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Necessário se você quer utilizar `UJSONResponse`.
 
 Você pode instalar todas essas dependências com `pip install fastapi[all]`.
 
