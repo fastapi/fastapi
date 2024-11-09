@@ -3,7 +3,7 @@
 Você pode declarar os "parâmetros" ou "variáveis" com a mesma sintaxe utilizada pelo formato de strings do Python:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 O valor do parâmetro que foi passado à `item_id` será passado para a sua função como o argumento `item_id`.
@@ -19,12 +19,12 @@ Então, se você rodar este exemplo e for até <a href="http://127.0.0.1:8000/it
 Você pode declarar o tipo de um parâmetro na função usando as anotações padrões do Python:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 Nesse caso, `item_id` está sendo declarado como um `int`.
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -40,7 +40,7 @@ Se você rodar esse exemplo e abrir o seu navegador em <a href="http://127.0.0.1
 {"item_id":3}
 ```
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -73,7 +73,7 @@ devido ao parâmetro da rota `item_id` ter um valor `"foo"`, que não é um `int
 
 O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -91,7 +91,7 @@ Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "Verifique"
+/// check | Verifique
 
 
 
@@ -130,7 +130,7 @@ E então você pode ter também uma rota `/users/{user_id}` para pegar dados sob
 Porque as operações de rota são avaliadas em ordem, você precisa ter certeza que a rota para `/users/me` está sendo declarado antes da rota `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 Caso contrário, a rota para `/users/{user_id}` coincidiria também para `/users/me`, "pensando" que estaria recebendo o parâmetro `user_id` com o valor de `"me"`.
@@ -148,16 +148,16 @@ Por herdar de `str` a documentação da API vai ser capaz de saber que os valore
 Assim, crie atributos de classe com valores fixos, que serão os valores válidos disponíveis.
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "informação"
+/// info | informação
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (ou enums) estão disponíveis no Python</a> desde a versão 3.4.
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -170,7 +170,7 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 Logo, crie um *parâmetro de rota* com anotações de tipo usando a classe enum que você criou (`ModelName`):
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### Revise a documentação
@@ -188,7 +188,7 @@ O valor do *parâmetro da rota* será um *membro de enumeration*.
 Você pode comparar eles com o *membro de enumeration* no enum `ModelName` que você criou:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### Obtenha o *valor de enumerate*
@@ -196,10 +196,10 @@ Você pode comparar eles com o *membro de enumeration* no enum `ModelName` que v
 Você pode ter o valor exato de enumerate (um `str` nesse caso) usando `model_name.value`, ou em geral, `your_enum_member.value`:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -214,7 +214,7 @@ Você pode retornar *membros de enum* da sua *rota de operação*, em um corpo J
 Eles serão convertidos para o seus valores correspondentes (strings nesse caso) antes de serem retornados ao cliente:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 No seu cliente você vai obter uma resposta JSON como:
@@ -255,10 +255,10 @@ Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz
 Então, você poderia usar ele com:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 

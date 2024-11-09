@@ -1,22 +1,18 @@
 # SQL (Relational) Databases
 
-/// info
+**FastAPI** doesn't require you to use a SQL (relational) database. But you can use **any database** that you want.
 
-These docs are about to be updated. 🎉
+Here we'll see an example using <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a>.
 
-The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
+**SQLModel** is built on top of <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> and Pydantic. It was made by the same author of **FastAPI** to be the perfect match for FastAPI applications that need to use **SQL databases**.
 
-The new docs will include Pydantic v2 and will use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> (which is also based on SQLAlchemy) once it is updated to use Pydantic v2 as well.
+/// tip
+
+You could use any other SQL or NoSQL database library you want (in some cases called <abbr title="Object Relational Mapper, a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>), FastAPI doesn't force you to use anything. 😎
 
 ///
 
-**FastAPI** doesn't require you to use a SQL (relational) database.
-
-But you can use any relational database that you want.
-
-Here we'll see an example using <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>.
-
-You can easily adapt it to any database supported by SQLAlchemy, like:
+As SQLModel is based on SQLAlchemy, you can easily use **any database supported** by SQLAlchemy (which makes them also supported by SQLModel), like:
 
 * PostgreSQL
 * MySQL
@@ -30,889 +26,335 @@ Later, for your production application, you might want to use a database server 
 
 /// tip
 
-There is an official project generator with **FastAPI** and **PostgreSQL**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+There is an official project generator with **FastAPI** and **PostgreSQL** including a frontend and more tools: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
 
 ///
 
-/// note
+This is a very simple and short tutorial, if you want to learn about databases in general, about SQL, or more advanced features, go to the <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel docs</a>.
 
-Notice that most of the code is the standard `SQLAlchemy` code you would use with any framework.
+## Install `SQLModel`
 
-The **FastAPI** specific code is as small as always.
-
-///
-
-## ORMs
-
-**FastAPI** works with any database and any style of library to talk to the database.
-
-A common pattern is to use an "ORM": an "object-relational mapping" library.
-
-An ORM has tools to convert ("*map*") between *objects* in code and database tables ("*relations*").
-
-With an ORM, you normally create a class that represents a table in a SQL database, each attribute of the class represents a column, with a name and a type.
-
-For example a class `Pet` could represent a SQL table `pets`.
-
-And each *instance* object of that class represents a row in the database.
-
-For example an object `orion_cat` (an instance of `Pet`) could have an attribute `orion_cat.type`, for the column `type`. And the value of that attribute could be, e.g. `"cat"`.
-
-These ORMs also have tools to make the connections or relations between tables or entities.
-
-This way, you could also have an attribute `orion_cat.owner` and the owner would contain the data for this pet's owner, taken from the table *owners*.
-
-So, `orion_cat.owner.name` could be the name (from the `name` column in the `owners` table) of this pet's owner.
-
-It could have a value like `"Arquilian"`.
-
-And the ORM will do all the work to get the information from the corresponding table *owners* when you try to access it from your pet object.
-
-Common ORMs are for example: Django-ORM (part of the Django framework), SQLAlchemy ORM (part of SQLAlchemy, independent of framework) and Peewee (independent of framework), among others.
-
-Here we will see how to work with **SQLAlchemy ORM**.
-
-In a similar way you could use any other ORM.
-
-/// tip
-
-There's an equivalent article using Peewee here in the docs.
-
-///
-
-## File structure
-
-For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
-
-```
-.
-└── sql_app
-    ├── __init__.py
-    ├── crud.py
-    ├── database.py
-    ├── main.py
-    ├── models.py
-    └── schemas.py
-```
-
-The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
-
-Now let's see what each file/module does.
-
-## Install `SQLAlchemy`
-
-First you need to install `SQLAlchemy`:
+First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `sqlmodel`:
 
 <div class="termy">
 
 ```console
-$ pip install sqlalchemy
-
+$ pip install sqlmodel
 ---> 100%
 ```
 
 </div>
 
-## Create the SQLAlchemy parts
+## Create the App with a Single Model
 
-Let's refer to the file `sql_app/database.py`.
+We'll create the simplest first version of the app with a single **SQLModel** model first.
 
-### Import the SQLAlchemy parts
+Later we'll improve it increasing security and versatility with **multiple models** below. 🤓
 
-```Python hl_lines="1-3"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+### Create Models
 
-### Create a database URL for SQLAlchemy
+Import `SQLModel` and create a database model:
 
-```Python hl_lines="5-6"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
+The `Hero` class is very similar to a Pydantic model (in fact, underneath, it actually *is a Pydantic model*).
 
-The file will be located at the same directory in the file `sql_app.db`.
+There are a few differences:
 
-That's why the last part is `./sql_app.db`.
+* `table=True` tells SQLModel that this is a *table model*, it should represent a **table** in the SQL database, it's not just a *data model* (as would be any other regular Pydantic class).
 
-If you were using a **PostgreSQL** database instead, you would just have to uncomment the line:
+* `Field(primary_key=True)` tells SQLModel that the `id` is the **primary key** in the SQL database (you can learn more about SQL primary keys in the SQLModel docs).
 
-```Python
-SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
-```
+    By having the type as `int | None`, SQLModel will know that this column should be an `INTEGER` in the SQL database and that it should be `NULLABLE`.
 
-...and adapt it with your database data and credentials (equivalently for MySQL, MariaDB or any other).
+* `Field(index=True)` tells SQLModel that it should create a **SQL index** for this column, that would allow faster lookups in the database when reading data filtered by this column.
 
-/// tip
+    SQLModel will know that something declared as `str` will be a SQL column of type `TEXT` (or `VARCHAR`, depending on the database).
 
-This is the main line that you would have to modify if you wanted to use a different database.
+### Create an Engine
 
-///
+A SQLModel `engine` (underneath it's actually a SQLAlchemy `engine`) is what **holds the connections** to the database.
 
-### Create the SQLAlchemy `engine`
+You would have **one single `engine` object** for all your code to connect to the same database.
 
-The first step is to create a SQLAlchemy "engine".
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
 
-We will later use this `engine` in other places.
+Using `check_same_thread=False` allows FastAPI to use the same SQLite database in different threads. This is necessary as **one single request** could use **more than one thread** (for example in dependencies).
 
-```Python hl_lines="8-10"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
+Don't worry, with the way the code is structured, we'll make sure we use **a single SQLModel *session* per request** later, this is actually what the `check_same_thread` is trying to achieve.
 
-#### Note
+### Create the Tables
 
-The argument:
+We then add a function that uses `SQLModel.metadata.create_all(engine)` to **create the tables** for all the *table models*.
 
-```Python
-connect_args={"check_same_thread": False}
-```
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
 
-...is needed only for `SQLite`. It's not needed for other databases.
+### Create a Session Dependency
 
-/// info | "Technical Details"
+A **`Session`** is what stores the **objects in memory** and keeps track of any changes needed in the data, then it **uses the `engine`** to communicate with the database.
 
-By default SQLite will only allow one thread to communicate with it, assuming that each thread would handle an independent request.
+We will create a FastAPI **dependency** with `yield` that will provide a new `Session` for each request. This is what ensures that we use a single session per request. 🤓
 
-This is to prevent accidentally sharing the same connection for different things (for different requests).
+Then we create an `Annotated` dependency `SessionDep` to simplify the rest of the code that will use this dependency.
 
-But in FastAPI, using normal functions (`def`) more than one thread could interact with the database for the same request, so we need to make SQLite know that it should allow that with `connect_args={"check_same_thread": False}`.
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-Also, we will make sure each request gets its own database connection session in a dependency, so there's no need for that default mechanism.
+### Create Database Tables on Startup
 
-///
+We will create the database tables when the application starts.
 
-### Create a `SessionLocal` class
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
 
-Each instance of the `SessionLocal` class will be a database session. The class itself is not a database session yet.
+Here we create the tables on an application startup event.
 
-But once we create an instance of the `SessionLocal` class, this instance will be the actual database session.
-
-We name it `SessionLocal` to distinguish it from the `Session` we are importing from SQLAlchemy.
-
-We will use `Session` (the one imported from SQLAlchemy) later.
-
-To create the `SessionLocal` class, use the function `sessionmaker`:
-
-```Python hl_lines="11"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
-
-### Create a `Base` class
-
-Now we will use the function `declarative_base()` that returns a class.
-
-Later we will inherit from this class to create each of the database models or classes (the ORM models):
-
-```Python hl_lines="13"
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
-
-## Create the database models
-
-Let's now see the file `sql_app/models.py`.
-
-### Create SQLAlchemy models from the `Base` class
-
-We will use this `Base` class we created before to create the SQLAlchemy models.
+For production you would probably use a migration script that runs before you start your app. 🤓
 
 /// tip
 
-SQLAlchemy uses the term "**model**" to refer to these classes and instances that interact with the database.
-
-But Pydantic also uses the term "**model**" to refer to something different, the data validation, conversion, and documentation classes and instances.
+SQLModel will have migration utilities wrapping Alembic, but for now, you can use <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> directly.
 
 ///
 
-Import `Base` from `database` (the file `database.py` from above).
+### Create a Hero
 
-Create classes that inherit from it.
+Because each SQLModel model is also a Pydantic model, you can use it in the same **type annotations** that you could use Pydantic models.
 
-These classes are the SQLAlchemy models.
+For example, if you declare a parameter of type `Hero`, it will be read from the **JSON body**.
 
-```Python hl_lines="4  7-8  18-19"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+The same way, you can declare it as the function's **return type**, and then the shape of the data will show up in the automatic API docs UI.
 
-The `__tablename__` attribute tells SQLAlchemy the name of the table to use in the database for each of these models.
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
-### Create model attributes/columns
+</details>
 
-Now create all the model (class) attributes.
+Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
 
-Each of these attributes represents a column in its corresponding database table.
+### Read Heroes
 
-We use `Column` from SQLAlchemy as the default value.
+We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
-And we pass a SQLAlchemy class "type", as `Integer`, `String`, and `Boolean`, that defines the type in the database, as an argument.
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-```Python hl_lines="1  10-13  21-24"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+### Read One Hero
 
-### Create the relationships
+We can **read** a single `Hero`.
 
-Now create the relationships.
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-For this, we use `relationship` provided by SQLAlchemy ORM.
+### Delete a Hero
 
-This will become, more or less, a "magic" attribute that will contain the values from other tables related to this one.
+We can also **delete** a `Hero`.
 
-```Python hl_lines="2  15  26"
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
-When accessing the attribute `items` in a `User`, as in `my_user.items`, it will have a list of `Item` SQLAlchemy models (from the `items` table) that have a foreign key pointing to this record in the `users` table.
+### Run the App
 
-When you access `my_user.items`, SQLAlchemy will actually go and fetch the items from the database in the `items` table and populate them here.
-
-And when accessing the attribute `owner` in an `Item`, it will contain a `User` SQLAlchemy model from the `users` table. It will use the `owner_id` attribute/column with its foreign key to know which record to get from the `users` table.
-
-## Create the Pydantic models
-
-Now let's check the file `sql_app/schemas.py`.
-
-/// tip
-
-To avoid confusion between the SQLAlchemy *models* and the Pydantic *models*, we will have the file `models.py` with the SQLAlchemy models, and the file `schemas.py` with the Pydantic models.
-
-These Pydantic models define more or less a "schema" (a valid data shape).
-
-So this will help us avoiding confusion while using both.
-
-///
-
-### Create initial Pydantic *models* / schemas
-
-Create an `ItemBase` and `UserBase` Pydantic *models* (or let's say "schemas") to have common attributes while creating or reading data.
-
-And create an `ItemCreate` and `UserCreate` that inherit from them (so they will have the same attributes), plus any additional data (attributes) needed for creation.
-
-So, the user will also have a `password` when creating it.
-
-But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
-
-//// tab | Python 3.10+
-
-```Python hl_lines="1  4-6  9-10  21-22  25-26"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3  6-8  11-12  23-24  27-28"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-```
-
-////
-
-#### SQLAlchemy style and Pydantic style
-
-Notice that SQLAlchemy *models* define attributes using `=`, and pass the type as a parameter to `Column`, like in:
-
-```Python
-name = Column(String)
-```
-
-while Pydantic *models* declare the types using `:`, the new type annotation syntax/type hints:
-
-```Python
-name: str
-```
-
-Keep these in mind, so you don't get confused when using `=` and `:` with them.
-
-### Create Pydantic *models* / schemas for reading / returning
-
-Now create Pydantic *models* (schemas) that will be used when reading data, when returning it from the API.
-
-For example, before creating an item, we don't know what will be the ID assigned to it, but when reading it (when returning it from the API) we will already know its ID.
-
-The same way, when reading a user, we can now declare that `items` will contain the items that belong to this user.
-
-Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
-
-//// tab | Python 3.10+
-
-```Python hl_lines="13-15  29-32"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15-17  31-34"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-```
-
-////
-
-/// tip
-
-Notice that the `User`, the Pydantic *model* that will be used when reading a user (returning it from the API) doesn't include the `password`.
-
-///
-
-### Use Pydantic's `orm_mode`
-
-Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
-
-This <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
-
-In the `Config` class, set the attribute `orm_mode = True`.
-
-//// tab | Python 3.10+
-
-```Python hl_lines="13  17-18  29  34-35"
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15  19-20  31  36-37"
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-```
-
-////
-
-/// tip
-
-Notice it's assigning a value with `=`, like:
-
-`orm_mode = True`
-
-It doesn't use `:` as for the type declarations before.
-
-This is setting a config value, not declaring a type.
-
-///
-
-Pydantic's `orm_mode` will tell the Pydantic *model* to read the data even if it is not a `dict`, but an ORM model (or any other arbitrary object with attributes).
-
-This way, instead of only trying to get the `id` value from a `dict`, as in:
-
-```Python
-id = data["id"]
-```
-
-it will also try to get it from an attribute, as in:
-
-```Python
-id = data.id
-```
-
-And with this, the Pydantic *model* is compatible with ORMs, and you can just declare it in the `response_model` argument in your *path operations*.
-
-You will be able to return a database model and it will read the data from it.
-
-#### Technical Details about ORM mode
-
-SQLAlchemy and many others are by default "lazy loading".
-
-That means, for example, that they don't fetch the data for relationships from the database unless you try to access the attribute that would contain that data.
-
-For example, accessing the attribute `items`:
-
-```Python
-current_user.items
-```
-
-would make SQLAlchemy go to the `items` table and get the items for this user, but not before.
-
-Without `orm_mode`, if you returned a SQLAlchemy model from your *path operation*, it wouldn't include the relationship data.
-
-Even if you declared those relationships in your Pydantic models.
-
-But with ORM mode, as Pydantic itself will try to access the data it needs from attributes (instead of assuming a `dict`), you can declare the specific data you want to return and it will be able to go and get it, even from ORMs.
-
-## CRUD utils
-
-Now let's see the file `sql_app/crud.py`.
-
-In this file we will have reusable functions to interact with the data in the database.
-
-**CRUD** comes from: **C**reate, **R**ead, **U**pdate, and **D**elete.
-
-...although in this example we are only creating and reading.
-
-### Read data
-
-Import `Session` from `sqlalchemy.orm`, this will allow you to declare the type of the `db` parameters and have better type checks and completion in your functions.
-
-Import `models` (the SQLAlchemy models) and `schemas` (the Pydantic *models* / schemas).
-
-Create utility functions to:
-
-* Read a single user by ID and by email.
-* Read multiple users.
-* Read multiple items.
-
-```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
-
-/// tip
-
-By creating functions that are only dedicated to interacting with the database (get a user or an item) independent of your *path operation function*, you can more easily reuse them in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for them.
-
-///
-
-### Create data
-
-Now create utility functions to create data.
-
-The steps are:
-
-* Create a SQLAlchemy model *instance* with your data.
-* `add` that instance object to your database session.
-* `commit` the changes to the database (so that they are saved).
-* `refresh` your instance (so that it contains any new data from the database, like the generated ID).
-
-```Python hl_lines="18-24  31-36"
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
-
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
-/// tip
-
-The SQLAlchemy model for `User` contains a `hashed_password` that should contain a secure hashed version of the password.
-
-But as what the API client provides is the original password, you need to extract it and generate the hashed password in your application.
-
-And then pass the `hashed_password` argument with the value to save.
-
-///
-
-/// warning
-
-This example is not secure, the password is not hashed.
-
-In a real life application you would need to hash the password and never save them in plaintext.
-
-For more details, go back to the Security section in the tutorial.
-
-Here we are focusing only on the tools and mechanics of databases.
-
-///
-
-/// tip
-
-Instead of passing each of the keyword arguments to `Item` and reading each one of them from the Pydantic *model*, we are generating a `dict` with the Pydantic *model*'s data with:
-
-`item.dict()`
-
-and then we are passing the `dict`'s key-value pairs as the keyword arguments to the SQLAlchemy `Item`, with:
-
-`Item(**item.dict())`
-
-And then we pass the extra keyword argument `owner_id` that is not provided by the Pydantic *model*, with:
-
-`Item(**item.dict(), owner_id=user_id)`
-
-///
-
-## Main **FastAPI** app
-
-And now in the file `sql_app/main.py` let's integrate and use all the other parts we created before.
-
-### Create the database tables
-
-In a very simplistic way create the database tables:
-
-//// tab | Python 3.9+
-
-```Python hl_lines="7"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
-```
-
-////
-
-#### Alembic Note
-
-Normally you would probably initialize your database (create tables, etc) with <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>.
-
-And you would also use Alembic for "migrations" (that's its main job).
-
-A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
-
-You can find an example of Alembic in a FastAPI project in the [Full Stack FastAPI Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-template/tree/master/backend/app/alembic" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
-
-### Create a dependency
-
-Now use the `SessionLocal` class we created in the `sql_app/database.py` file to create a dependency.
-
-We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
-
-And then a new session will be created for the next request.
-
-For that, we will create a new dependency with `yield`, as explained before in the section about [Dependencies with `yield`](dependencies/dependencies-with-yield.md){.internal-link target=_blank}.
-
-Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
-
-//// tab | Python 3.9+
-
-```Python hl_lines="13-18"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15-20"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
-```
-
-////
-
-/// info
-
-We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
-
-And then we close it in the `finally` block.
-
-This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
-
-But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
-
-///
-
-And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
-
-This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
-
-//// tab | Python 3.9+
-
-```Python hl_lines="22  30  36  45  51"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24  32  38  47  53"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
-```
-
-////
-
-/// info | "Technical Details"
-
-The parameter `db` is actually of type `SessionLocal`, but this class (created with `sessionmaker()`) is a "proxy" of a SQLAlchemy `Session`, so, the editor doesn't really know what methods are provided.
-
-But by declaring the type as `Session`, the editor now can know the available methods (`.add()`, `.query()`, `.commit()`, etc) and can provide better support (like completion). The type declaration doesn't affect the actual object.
-
-///
-
-### Create your **FastAPI** *path operations*
-
-Now, finally, here's the standard **FastAPI** *path operations* code.
-
-//// tab | Python 3.9+
-
-```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
-```
-
-////
-
-We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
-
-And then we can create the required dependency in the *path operation function*, to get that session directly.
-
-With that, we can just call `crud.get_user` directly from inside of the *path operation function* and use that session.
-
-/// tip
-
-Notice that the values you return are SQLAlchemy models, or lists of SQLAlchemy models.
-
-But as all the *path operations* have a `response_model` with Pydantic *models* / schemas using `orm_mode`, the data declared in your Pydantic models will be extracted from them and returned to the client, with all the normal filtering and validation.
-
-///
-
-/// tip
-
-Also notice that there are `response_models` that have standard Python types like `List[schemas.Item]`.
-
-But as the content/parameter of that `List` is a Pydantic *model* with `orm_mode`, the data will be retrieved and returned to the client as normally, without problems.
-
-///
-
-### About `def` vs `async def`
-
-Here we are using SQLAlchemy code inside of the *path operation function* and in the dependency, and, in turn, it will go and communicate with an external database.
-
-That could potentially require some "waiting".
-
-But as SQLAlchemy doesn't have compatibility for using `await` directly, as would be with something like:
-
-```Python
-user = await db.query(User).first()
-```
-
-...and instead we are using:
-
-```Python
-user = db.query(User).first()
-```
-
-Then we should declare the *path operation functions* and the dependency without `async def`, just with a normal `def`, as:
-
-```Python hl_lines="2"
-@app.get("/users/{user_id}", response_model=schemas.User)
-def read_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = crud.get_user(db, user_id=user_id)
-    ...
-```
-
-/// info
-
-If you need to connect to your relational database asynchronously, see [Async SQL (Relational) Databases](../how-to/async-sql-encode-databases.md){.internal-link target=_blank}.
-
-///
-
-/// note | "Very Technical Details"
-
-If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
-
-///
-
-## Migrations
-
-Because we are using SQLAlchemy directly and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a> directly.
-
-And as the code related to SQLAlchemy and the SQLAlchemy models lives in separate independent files, you would even be able to perform the migrations with Alembic without having to install FastAPI, Pydantic, or anything else.
-
-The same way, you would be able to use the same SQLAlchemy models and utilities in other parts of your code that are not related to **FastAPI**.
-
-For example, in a background task worker with <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
-
-## Review all the files
-
- Remember you should have a directory named `my_super_project` that contains a sub-directory called `sql_app`.
-
-`sql_app` should have the following files:
-
-* `sql_app/__init__.py`: is an empty file.
-
-* `sql_app/database.py`:
-
-```Python
-{!../../../docs_src/sql_databases/sql_app/database.py!}
-```
-
-* `sql_app/models.py`:
-
-```Python
-{!../../../docs_src/sql_databases/sql_app/models.py!}
-```
-
-* `sql_app/schemas.py`:
-
-//// tab | Python 3.10+
-
-```Python
-{!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
-```
-
-////
-
-* `sql_app/crud.py`:
-
-```Python
-{!../../../docs_src/sql_databases/sql_app/crud.py!}
-```
-
-* `sql_app/main.py`:
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../../docs_src/sql_databases/sql_app/main.py!}
-```
-
-////
-
-## Check it
-
-You can copy this code and use it as is.
-
-/// info
-
-In fact, the code shown here is part of the tests. As most of the code in these docs.
-
-///
-
-Then you can run it with Uvicorn:
-
+You can run the app:
 
 <div class="termy">
 
 ```console
-$ uvicorn sql_app.main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Then go to the `/docs` UI, you will see that **FastAPI** is using these **models** to **document** the API, and it will use them to **serialize** and **validate** the data too.
 
-And you will be able to interact with your **FastAPI** application, reading data from a real database:
-
+<div class="screenshot">
 <img src="/img/tutorial/sql-databases/image01.png">
+</div>
 
-## Interact with the database directly
+## Update the App with Multiple Models
 
-If you want to explore the SQLite database (file) directly, independently of FastAPI, to debug its contents, add tables, columns, records, modify data, etc. you can use <a href="https://sqlitebrowser.org/" class="external-link" target="_blank">DB Browser for SQLite</a>.
+Now let's **refactor** this app a bit to increase **security** and **versatility**.
 
-It will look like this:
+If you check the previous app, in the UI you can see that, up to now, it lets the client decide the `id` of the `Hero` to create. 😱
 
-<img src="/img/tutorial/sql-databases/image02.png">
+We shouldn't let that happen, they could overwrite an `id` we already have assigned in the DB. Deciding the `id` should be done by the **backend** or the **database**, **not by the client**.
 
-You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" class="external-link" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>.
+Additionally, we create a `secret_name` for the hero, but so far, we are returning it everywhere, that's not very **secret**... 😅
 
-## Alternative DB session with middleware
+We'll fix these things by adding a few **extra models**. Here's where SQLModel will shine. ✨
 
-If you can't use dependencies with `yield` -- for example, if you are not using **Python 3.7** and can't install the "backports" mentioned above for **Python 3.6** -- you can set up the session in a "middleware" in a similar way.
+### Create Multiple Models
 
-A "middleware" is basically a function that is always executed for each request, with some code executed before, and some code executed after the endpoint function.
+In **SQLModel**, any model class that has `table=True` is a **table model**.
 
-### Create a middleware
+And any model class that doesn't have `table=True` is a **data model**, these ones are actually just Pydantic models (with a couple of small extra features). 🤓
 
-The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
+With SQLModel, we can use **inheritance** to **avoid duplicating** all the fields in all the cases.
 
-//// tab | Python 3.9+
+#### `HeroBase` - the base class
 
-```Python hl_lines="12-20"
-{!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
-```
+Let's start with a `HeroBase` model that has all the **fields that are shared** by all the models:
 
-////
+* `name`
+* `age`
 
-//// tab | Python 3.8+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
 
-```Python hl_lines="14-22"
-{!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-```
+#### `Hero` - the *table model*
 
-////
+Then let's create `Hero`, the actual *table model*, with the **extra fields** that are not always in the other models:
 
-/// info
+* `id`
+* `secret_name`
 
-We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
 
-And then we close it in the `finally` block.
+* `id`
+* `name`
+* `age`
+* `secret_name`
 
-This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
 
-///
+#### `HeroPublic` - the public *data model*
 
-### About `request.state`
+Next, we create a `HeroPublic` model, this is the one that will be **returned** to the clients of the API.
 
-`request.state` is a property of each `Request` object. It is there to store arbitrary objects attached to the request itself, like the database session in this case. You can read more about it in <a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">Starlette's docs about `Request` state</a>.
+It has the same fields as `HeroBase`, so it won't include `secret_name`.
 
-For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
+Finally, the identity of our heroes is protected! 🥷
 
-### Dependencies with `yield` or middleware
-
-Adding a **middleware** here is similar to what a dependency with `yield` does, with some differences:
-
-* It requires more code and is a bit more complex.
-* The middleware has to be an `async` function.
-    * If there is code in it that has to "wait" for the network, it could "block" your application there and degrade performance a bit.
-    * Although it's probably not very problematic here with the way `SQLAlchemy` works.
-    * But if you added more code to the middleware that had a lot of <abbr title="input and output">I/O</abbr> waiting, it could then be problematic.
-* A middleware is run for *every* request.
-    * So, a connection will be created for every request.
-    * Even when the *path operation* that handles that request didn't need the DB.
+It also re-declares `id: int`. By doing this, we are making a **contract** with the API clients, so that they can always expect the `id` to be there and to be an `int` (it will never be `None`).
 
 /// tip
 
-It's probably better to use dependencies with `yield` when they are enough for the use case.
+Having the return model ensure that a value is always available and always `int` (not `None`) is very useful for the API clients, they can write much simpler code having this certainty.
+
+Also, **automatically generated clients** will have simpler interfaces, so that the developers communicating with your API can have a much better time working with your API. 😎
 
 ///
 
-/// info
+All the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared as `int` (not `None`):
 
-Dependencies with `yield` were added recently to **FastAPI**.
+* `id`
+* `name`
+* `age`
+* `secret_name`
 
-A previous version of this tutorial only had the examples with a middleware and there are probably several applications using the middleware for database session management.
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+
+#### `HeroCreate` - the *data model* to create a hero
+
+Now we create a `HeroCreate` model, this is the one that will **validate** the data from the clients.
+
+It has the same fields as `HeroBase`, and it also has `secret_name`.
+
+Now, when the clients **create a new hero**, they will send the `secret_name`, it will be stored in the database, but those secret names won't be returned in the API to the clients.
+
+/// tip
+
+This is how you would handle **passwords**. Receive them, but don't return them in the API.
+
+You would also **hash** the values of the passwords before storing them, **never store them in plain text**.
 
 ///
+
+The fields of `HeroCreate` are:
+
+* `name`
+* `age`
+* `secret_name`
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+
+#### `HeroUpdate` - the *data model* to update a hero
+
+We didn't have a way to **update a hero** in the previous version of the app, but now with **multiple models**, we can do it. 🎉
+
+The `HeroUpdate` *data model* is somewhat special, it has **all the same fields** that would be needed to create a new hero, but all the fields are **optional** (they all have a default value). This way, when you update a hero, you can send just the fields that you want to update.
+
+Because all the **fields actually change** (the type now includes `None` and they now have a default value of `None`), we need to **re-declare** them.
+
+We don't really need to inherit from `HeroBase` because we are re-declaring all the fields. I'll leave it inheriting just for consistency, but this is not necessary. It's more a matter of personal taste. 🤷
+
+The fields of `HeroUpdate` are:
+
+* `name`
+* `age`
+* `secret_name`
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+
+### Create with `HeroCreate` and return a `HeroPublic`
+
+Now that we have **multiple models**, we can update the parts of the app that use them.
+
+We receive in the request a `HeroCreate` *data model*, and from it, we create a `Hero` *table model*.
+
+This new *table model* `Hero` will have the fields sent by the client, and will also have an `id` generated by the database.
+
+Then we return the same *table model* `Hero` as is from the function. But as we declare the `response_model` with the `HeroPublic` *data model*, **FastAPI** will use `HeroPublic` to validate and serialize the data.
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+
+/// tip
+
+Now we use `response_model=HeroPublic` instead of the **return type annotation** `-> HeroPublic` because the value that we are returning is actually *not* a `HeroPublic`.
+
+If we had declared `-> HeroPublic`, your editor and linter would complain (rightfully so) that you are returning a `Hero` instead of a `HeroPublic`.
+
+By declaring it in `response_model` we are telling **FastAPI** to do its thing, without interfering with the type annotations and the help from your editor and other tools.
+
+///
+
+### Read Heroes with `HeroPublic`
+
+We can do the same as before to **read** `Hero`s, again, we use `response_model=list[HeroPublic]` to ensure that the data is validated and serialized correctly.
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+
+### Read One Hero with `HeroPublic`
+
+We can **read** a single hero:
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+
+### Update a Hero with `HeroUpdate`
+
+We can **update a hero**. For this we use an HTTP `PATCH` operation.
+
+And in the code, we get a `dict` with all the data sent by the client, **only the data sent by the client**, excluding any values that would be there just for being the default values. To do it we use `exclude_unset=True`. This is the main trick. 🪄
+
+Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with the data from `hero_data`.
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+
+### Delete a Hero Again
+
+**Deleting** a hero stays pretty much the same.
+
+We won't satisfy the desire to refactor everything in this one. 😅
+
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+
+### Run the App Again
+
+You can run the app again:
+
+<div class="termy">
+
+```console
+$ fastapi dev main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+If you go to the `/docs` API UI, you will see that it is now updated, and it won't expect to receive the `id` from the client when creating a hero, etc.
+
+<div class="screenshot">
+<img src="/img/tutorial/sql-databases/image02.png">
+</div>
+
+## Recap
+
+You can use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> to interact with a SQL database and simplify the code with *data models*  and *table models*.
+
+You can learn a lot more at the **SQLModel** docs, there's a longer mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial on using SQLModel with **FastAPI**</a>. 🚀

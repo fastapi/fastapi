@@ -149,7 +149,7 @@ Hello World from Python
 👆 💪 ⚙️ 🌐 🎏 🔬 ⚒ &amp; 🧰 👆 ⚙️ Pydantic 🏷, 💖 🎏 📊 🆎 &amp; 🌖 🔬 ⏮️ `Field()`.
 
 ```Python hl_lines="2  5-8  11"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 /// tip
@@ -167,7 +167,7 @@ Hello World from Python
 ⤴️ 👆 💪 ⚙️ 🆕 `settings` 🎚 👆 🈸:
 
 ```Python hl_lines="18-20"
-{!../../../docs_src/settings/tutorial001.py!}
+{!../../docs_src/settings/tutorial001.py!}
 ```
 
 ### 🏃 💽
@@ -203,13 +203,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 🖼, 👆 💪 ✔️ 📁 `config.py` ⏮️:
 
 ```Python
-{!../../../docs_src/settings/app01/config.py!}
+{!../../docs_src/settings/app01/config.py!}
 ```
 
 &amp; ⤴️ ⚙️ ⚫️ 📁 `main.py`:
 
 ```Python hl_lines="3  11-13"
-{!../../../docs_src/settings/app01/main.py!}
+{!../../docs_src/settings/app01/main.py!}
 ```
 
 /// tip
@@ -229,7 +229,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 👟 ⚪️➡️ ⏮️ 🖼, 👆 `config.py` 📁 💪 👀 💖:
 
 ```Python hl_lines="10"
-{!../../../docs_src/settings/app02/config.py!}
+{!../../docs_src/settings/app02/config.py!}
 ```
 
 👀 👈 🔜 👥 🚫 ✍ 🔢 👐 `settings = Settings()`.
@@ -239,7 +239,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 🔜 👥 ✍ 🔗 👈 📨 🆕 `config.Settings()`.
 
 ```Python hl_lines="5  11-12"
-{!../../../docs_src/settings/app02/main.py!}
+{!../../docs_src/settings/app02/main.py!}
 ```
 
 /// tip
@@ -253,7 +253,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 &amp; ⤴️ 👥 💪 🚚 ⚫️ ⚪️➡️ *➡ 🛠️ 🔢* 🔗 &amp; ⚙️ ⚫️ 🙆 👥 💪 ⚫️.
 
 ```Python hl_lines="16  18-20"
-{!../../../docs_src/settings/app02/main.py!}
+{!../../docs_src/settings/app02/main.py!}
 ```
 
 ### ⚒ &amp; 🔬
@@ -261,7 +261,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 ⤴️ ⚫️ 🔜 📶 ⏩ 🚚 🎏 ⚒ 🎚 ⏮️ 🔬 🏗 🔗 🔐 `get_settings`:
 
 ```Python hl_lines="9-10  13  21"
-{!../../../docs_src/settings/app02/test_main.py!}
+{!../../docs_src/settings/app02/test_main.py!}
 ```
 
 🔗 🔐 👥 ⚒ 🆕 💲 `admin_email` 🕐❔ 🏗 🆕 `Settings` 🎚, &amp; ⤴️ 👥 📨 👈 🆕 🎚.
@@ -304,7 +304,7 @@ APP_NAME="ChimichangApp"
 &amp; ⤴️ ℹ 👆 `config.py` ⏮️:
 
 ```Python hl_lines="9-10"
-{!../../../docs_src/settings/app03/config.py!}
+{!../../docs_src/settings/app03/config.py!}
 ```
 
 📥 👥 ✍ 🎓 `Config` 🔘 👆 Pydantic `Settings` 🎓, &amp; ⚒ `env_file` 📁 ⏮️ 🇨🇻 📁 👥 💚 ⚙️.
@@ -339,7 +339,7 @@ def get_settings():
 ✋️ 👥 ⚙️ `@lru_cache` 👨‍🎨 🔛 🔝, `Settings` 🎚 🔜 ✍ 🕴 🕐, 🥇 🕰 ⚫️ 🤙. 👶 👶
 
 ```Python hl_lines="1  10"
-{!../../../docs_src/settings/app03/main.py!}
+{!../../docs_src/settings/app03/main.py!}
 ```
 
 ⤴️ 🙆 🏁 🤙 `get_settings()` 🔗 ⏭ 📨, ↩️ 🛠️ 🔗 📟 `get_settings()` &amp; 🏗 🆕 `Settings` 🎚, ⚫️ 🔜 📨 🎏 🎚 👈 📨 🔛 🥇 🤙, 🔄 &amp; 🔄.

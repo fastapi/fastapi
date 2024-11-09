@@ -17,7 +17,7 @@ Cette image est dotée d'un mécanisme d'"auto-tuning", de sorte qu'il vous suff
 
 Mais vous pouvez toujours changer et mettre à jour toutes les configurations avec des variables d'environnement ou des fichiers de configuration.
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Pour voir toutes les configurations et options, rendez-vous sur la page de l'image Docker : <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 

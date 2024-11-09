@@ -6,7 +6,11 @@ You can define files to be uploaded by the client using `File`.
 
 To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-E.g. `pip install python-multipart`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install python-multipart
+```
 
 This is because uploaded files are sent as "form data".
 
@@ -16,69 +20,13 @@ This is because uploaded files are sent as "form data".
 
 Import `File` and `UploadFile` from `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
 ## Define `File` Parameters
 
 Create file parameters the same way you would for `Body` or `Form`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7"
-{!> ../../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
 /// info
 
@@ -106,35 +54,7 @@ But there are several cases in which you might benefit from using `UploadFile`.
 
 Define a file parameter with a type of `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="13"
-{!> ../../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="12"
-{!> ../../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 Using `UploadFile` has several advantages over `bytes`:
 
@@ -177,13 +97,13 @@ If you are inside of a normal `def` *path operation function*, you can access th
 contents = myfile.file.read()
 ```
 
-/// note | "`async` Technical Details"
+/// note | `async` Technical Details
 
 When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
 
 ///
 
-/// note | "Starlette Technical Details"
+/// note | Starlette Technical Details
 
 **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
 
@@ -195,7 +115,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded` when it doesn't include files.
 
@@ -217,91 +137,13 @@ This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
 You can make a file optional by using standard type annotations and setting a default value of `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  18"
-{!> ../../../docs_src/request_files/tutorial001_02_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7  15"
-{!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="9  17"
-{!> ../../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## `UploadFile` with Additional Metadata
 
 You can also use `File()` with `UploadFile`, for example, to set additional metadata:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9  15"
-{!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  14"
-{!> ../../../docs_src/request_files/tutorial001_03_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7  13"
-{!> ../../../docs_src/request_files/tutorial001_03.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
 ## Multiple File Uploads
 
@@ -311,53 +153,11 @@ They would be associated to the same "form field" sent using "form data".
 
 To use that, declare a list of `bytes` or `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11  16"
-{!> ../../../docs_src/request_files/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="10  15"
-{!> ../../../docs_src/request_files/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import HTMLResponse`.
 
@@ -369,49 +169,7 @@ You could also use `from starlette.responses import HTMLResponse`.
 
 And the same way as before, you can use `File()` to set additional parameters, even for `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  18-20"
-{!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12  19-21"
-{!> ../../../docs_src/request_files/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="9  16"
-{!> ../../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="11  18"
-{!> ../../../docs_src/request_files/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
 ## Recap
 

@@ -10,7 +10,7 @@ Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder Twitter an
 
 In diesem Abschnitt erfahren Sie, wie Sie Authentifizierung und Autorisierung mit demselben OAuth2, mit Scopes in Ihrer **FastAPI**-Anwendung verwalten.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies ist ein mehr oder weniger fortgeschrittener Abschnitt. Wenn Sie gerade erst anfangen, können Sie ihn überspringen.
 
@@ -65,7 +65,7 @@ Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -73,7 +73,7 @@ Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im
 //// tab | Python 3.9+
 
 ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -81,49 +81,49 @@ Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im
 //// tab | Python 3.8+
 
 ```Python hl_lines="2  4  8  12  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  154"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -139,7 +139,7 @@ Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und des
 //// tab | Python 3.10+
 
 ```Python hl_lines="62-65"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -147,7 +147,7 @@ Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und des
 //// tab | Python 3.9+
 
 ```Python hl_lines="62-65"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -155,49 +155,49 @@ Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und des
 //// tab | Python 3.8+
 
 ```Python hl_lines="63-66"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="61-64"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="62-65"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="62-65"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -218,7 +218,7 @@ Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine 
 
 Und wir geben die Scopes als Teil des JWT-Tokens zurück.
 
-/// danger | "Gefahr"
+/// danger | Gefahr
 
 Der Einfachheit halber fügen wir hier die empfangenen Scopes direkt zum Token hinzu.
 
@@ -229,7 +229,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 //// tab | Python 3.10+
 
 ```Python hl_lines="155"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -237,7 +237,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 //// tab | Python 3.9+
 
 ```Python hl_lines="155"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -245,49 +245,49 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 //// tab | Python 3.8+
 
 ```Python hl_lines="156"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="154"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="155"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="155"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -308,7 +308,7 @@ Und die Abhängigkeitsfunktion `get_current_active_user` kann auch Unterabhängi
 
 In diesem Fall erfordert sie den Scope `me` (sie könnte mehr als einen Scope erfordern).
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Sie müssen nicht unbedingt an verschiedenen Stellen verschiedene Scopes hinzufügen.
 
@@ -319,7 +319,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 //// tab | Python 3.10+
 
 ```Python hl_lines="4  139  170"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -327,7 +327,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 //// tab | Python 3.9+
 
 ```Python hl_lines="4  139  170"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -335,54 +335,54 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 //// tab | Python 3.8+
 
 ```Python hl_lines="4  140  171"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="3  138  167"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="4  139  168"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="4  139  168"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
 
-/// info | "Technische Details"
+/// info | Technische Details
 
 `Security` ist tatsächlich eine Unterklasse von `Depends` und hat nur noch einen zusätzlichen Parameter, den wir später kennenlernen werden.
 
@@ -409,7 +409,7 @@ Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um d
 //// tab | Python 3.10+
 
 ```Python hl_lines="8  105"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -417,7 +417,7 @@ Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um d
 //// tab | Python 3.9+
 
 ```Python hl_lines="8  105"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -425,49 +425,49 @@ Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um d
 //// tab | Python 3.8+
 
 ```Python hl_lines="8  106"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="7  104"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="8  105"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="8  105"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -487,7 +487,7 @@ In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als du
 //// tab | Python 3.10+
 
 ```Python hl_lines="105  107-115"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -495,7 +495,7 @@ In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als du
 //// tab | Python 3.9+
 
 ```Python hl_lines="105  107-115"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -503,49 +503,49 @@ In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als du
 //// tab | Python 3.8+
 
 ```Python hl_lines="106  108-116"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="104  106-114"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="105  107-115"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="105  107-115"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -567,7 +567,7 @@ Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, u
 //// tab | Python 3.10+
 
 ```Python hl_lines="46  116-127"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -575,7 +575,7 @@ Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, u
 //// tab | Python 3.9+
 
 ```Python hl_lines="46  116-127"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -583,49 +583,49 @@ Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, u
 //// tab | Python 3.8+
 
 ```Python hl_lines="47  117-128"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="45  115-126"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="46  116-127"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="46  116-127"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -639,7 +639,7 @@ Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen
 //// tab | Python 3.10+
 
 ```Python hl_lines="128-134"
-{!> ../../../docs_src/security/tutorial005_an_py310.py!}
+{!> ../../docs_src/security/tutorial005_an_py310.py!}
 ```
 
 ////
@@ -647,7 +647,7 @@ Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen
 //// tab | Python 3.9+
 
 ```Python hl_lines="128-134"
-{!> ../../../docs_src/security/tutorial005_an_py39.py!}
+{!> ../../docs_src/security/tutorial005_an_py39.py!}
 ```
 
 ////
@@ -655,49 +655,49 @@ Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen
 //// tab | Python 3.8+
 
 ```Python hl_lines="129-135"
-{!> ../../../docs_src/security/tutorial005_an.py!}
+{!> ../../docs_src/security/tutorial005_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="127-133"
-{!> ../../../docs_src/security/tutorial005_py310.py!}
+{!> ../../docs_src/security/tutorial005_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="128-134"
-{!> ../../../docs_src/security/tutorial005_py39.py!}
+{!> ../../docs_src/security/tutorial005_py39.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ///
 
 ```Python hl_lines="128-134"
-{!> ../../../docs_src/security/tutorial005.py!}
+{!> ../../docs_src/security/tutorial005.py!}
 ```
 
 ////
@@ -727,7 +727,7 @@ So sieht die Hierarchie der Abhängigkeiten und Scopes aus:
                             * `security_scopes.scopes` enthält `["me"]` für die *Pfadoperation* `read_users_me`, da das in der Abhängigkeit `get_current_active_user` deklariert ist.
                             * `security_scopes.scopes` wird `[]` (nichts) für die *Pfadoperation* `read_system_status` enthalten, da diese keine `Security` mit `scopes` deklariert hat, und deren Abhängigkeit `get_current_user` ebenfalls keinerlei `scopes` deklariert.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das Wichtige und „Magische“ hier ist, dass `get_current_user` für jede *Pfadoperation* eine andere Liste von `scopes` hat, die überprüft werden.
 
@@ -771,7 +771,7 @@ Am häufigsten ist der „Implicit“-Flow.
 
 Am sichersten ist der „Code“-Flow, die Implementierung ist jedoch komplexer, da mehr Schritte erforderlich sind. Da er komplexer ist, schlagen viele Anbieter letztendlich den „Implicit“-Flow vor.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Es ist üblich, dass jeder Authentifizierungsanbieter seine Flows anders benennt, um sie zu einem Teil seiner Marke zu machen.
 

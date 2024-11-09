@@ -16,7 +16,7 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 먼저 아래와 같이 `BackgroundTasks`를 임포트하고, `BackgroundTasks`를 _경로 작동 함수_ 에서 매개변수로 가져오고 정의합니다.
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** 는 `BackgroundTasks` 개체를 생성하고, 매개 변수로 전달합니다.
@@ -34,7 +34,7 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 그리고 이 작업은 `async`와 `await`를 사용하지 않으므로 일반 `def` 함수로 선언합니다.
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## 백그라운드 작업 추가
@@ -42,7 +42,7 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _백그라운드 작업_ 개체에 전달합니다.
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` 함수는 다음과 같은 인자를 받습니다 :
@@ -60,7 +60,7 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 //// tab | Python 3.6 and above
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002.py!}
+{!> ../../docs_src/background_tasks/tutorial002.py!}
 ```
 
 ////
@@ -68,7 +68,7 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 //// tab | Python 3.10 and above
 
 ```Python hl_lines="11  13  20  23"
-{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
 ```
 
 ////
