@@ -42,7 +42,7 @@ Gemäß den Konventionen zur semantischen Versionierung könnte jede Version unt
 
 FastAPI folgt auch der Konvention, dass jede „PATCH“-Versionsänderung für Bugfixes und abwärtskompatible Änderungen gedacht ist.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Der „PATCH“ ist die letzte Zahl, zum Beispiel ist in `0.2.3` die PATCH-Version `3`.
 
@@ -56,7 +56,7 @@ fastapi>=0.45.0,<0.46.0
 
 Nicht abwärtskompatible Änderungen und neue Funktionen werden in „MINOR“-Versionen hinzugefügt.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 „MINOR“ ist die Zahl in der Mitte, zum Beispiel ist in `0.2.3` die MINOR-Version `2`.
 

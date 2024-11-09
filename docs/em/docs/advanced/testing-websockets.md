@@ -5,7 +5,7 @@
 👉, 👆 ⚙️ `TestClient` `with` 📄, 🔗*️⃣:
 
 ```Python hl_lines="27-31"
-{!../../../docs_src/app_testing/tutorial002.py!}
+{!../../docs_src/app_testing/tutorial002.py!}
 ```
 
 /// note
