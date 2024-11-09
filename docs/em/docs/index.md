@@ -93,7 +93,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 "_🤙, ⚫️❔ 👆 ✔️ 🏗 👀 💎 💠 &amp; 🇵🇱. 📚 🌌, ⚫️ ⚫️❔ 👤 💚 **🤗** - ⚫️ 🤙 😍 👀 👱 🏗 👈._"
 
-<div style="text-align: right; margin-right: 10%;">✡ 🗄 - <strong><a href="https://www.hug.rest/" target="_blank">🤗</a> 👼</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">✡ 🗄 - <strong><a href="https://github.com/hugapi/hug" target="_blank">🤗</a> 👼</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -451,7 +451,7 @@ item: Item
 
 ⚙️ Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 📧 🔬.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 📧 🔬.
 
 ⚙️ 💃:
 
