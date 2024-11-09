@@ -40,7 +40,7 @@
 
 ///
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.testclient import TestClient`.
 
