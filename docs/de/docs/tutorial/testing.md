@@ -118,7 +118,7 @@ Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
 //// tab | Python 3.10+
 
-{* > ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Erweiterte Testdatei
 
