@@ -4,13 +4,13 @@ FastAPI unterstützt Abhängigkeiten, die nach Abschluss einige <abbr title="Man
 
 Verwenden Sie dazu `yield` statt `return` und schreiben Sie die zusätzlichen Schritte / den zusätzlichen Code danach.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Stellen Sie sicher, dass Sie `yield` nur einmal pro Abhängigkeit verwenden.
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Jede Funktion, die dekoriert werden kann mit:
 
@@ -45,7 +45,7 @@ Der auf die `yield`-Anweisung folgende Code wird ausgeführt, nachdem die Respon
 {!../../docs_src/dependencies/tutorial007.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können `async`hrone oder reguläre Funktionen verwenden.
 
@@ -93,7 +93,7 @@ Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `de
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -129,7 +129,7 @@ Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` 
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -149,7 +149,7 @@ Sie können beliebige Kombinationen von Abhängigkeiten haben.
 
 **FastAPI** stellt sicher, dass alles in der richtigen Reihenfolge ausgeführt wird.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Dieses funktioniert dank Pythons <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Kontextmanager</a>.
 
@@ -163,7 +163,7 @@ Sie haben gesehen, dass Ihre Abhängigkeiten `yield` verwenden können und `try`
 
 Auf die gleiche Weise könnten Sie im Exit-Code nach dem `yield` eine `HTTPException` oder ähnliches auslösen.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Dies ist eine etwas fortgeschrittene Technik, die Sie in den meisten Fällen nicht wirklich benötigen, da Sie Exceptions (einschließlich `HTTPException`) innerhalb des restlichen Anwendungscodes auslösen können, beispielsweise in der *Pfadoperation-Funktion*.
 
@@ -189,7 +189,7 @@ Aber es ist für Sie da, wenn Sie es brauchen. 🤓
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -250,7 +250,7 @@ Nachdem eine dieser Responses gesendet wurde, kann keine weitere Response gesend
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Obiges Diagramm verwendet `HTTPException`, aber Sie können auch jede andere Exception auslösen, die Sie in einer Abhängigkeit mit `yield` abfangen, oder mit einem [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} erstellt haben.
 
@@ -260,7 +260,7 @@ Wenn Sie eine Exception auslösen, wird diese mit yield an die Abhängigkeiten �
 
 ## Abhängigkeiten mit `yield`, `HTTPException` und Hintergrundtasks
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Sie benötigen diese technischen Details höchstwahrscheinlich nicht, Sie können diesen Abschnitt überspringen und weiter unten fortfahren.
 
@@ -274,7 +274,7 @@ Dies wurde hauptsächlich so konzipiert, damit die gleichen Objekte, die durch A
 
 Da dies jedoch bedeuten würde, darauf zu warten, dass die Response durch das Netzwerk reist, während eine Ressource unnötigerweise in einer Abhängigkeit mit yield gehalten wird (z. B. eine Datenbankverbindung), wurde dies in FastAPI 0.106.0 geändert.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Darüber hinaus handelt es sich bei einem Hintergrundtask normalerweise um einen unabhängigen Satz von Logik, der separat behandelt werden sollte, mit eigenen Ressourcen (z. B. einer eigenen Datenbankverbindung).
 
@@ -308,7 +308,7 @@ Wenn Sie eine Abhängigkeit mit `yield` erstellen, erstellt **FastAPI** dafür i
 
 ### Kontextmanager in Abhängigkeiten mit `yield` verwenden
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies ist mehr oder weniger eine „fortgeschrittene“ Idee.
 
@@ -324,7 +324,7 @@ Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` ve
 {!../../docs_src/dependencies/tutorial010.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Andere Möglichkeiten, einen Kontextmanager zu erstellen, sind:
 

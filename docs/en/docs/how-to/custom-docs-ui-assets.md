@@ -118,9 +118,7 @@ After that, your file structure could look like:
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="7  11"
-{!../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Test the static files
 

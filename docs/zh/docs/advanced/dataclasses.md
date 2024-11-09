@@ -20,7 +20,7 @@ FastAPI 基于 **Pydantic** 构建，前文已经介绍过如何使用 Pydantic 
 
 数据类的和运作方式与 Pydantic 模型相同。实际上，它的底层使用的也是 Pydantic。
 
-/// info | "说明"
+/// info | 说明
 
 注意，数据类不支持 Pydantic 模型的所有功能。
 

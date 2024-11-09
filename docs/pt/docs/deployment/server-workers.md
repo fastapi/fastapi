@@ -17,7 +17,7 @@ Como você viu no capítulo anterior sobre [Conceitos de implantação](concepts
 
 Aqui mostrarei como usar o **Uvicorn** com **processos de trabalho** usando o comando `fastapi` ou o comando `uvicorn` diretamente.
 
-/// info | "Informação"
+/// info | Informação
 
 Se você estiver usando contêineres, por exemplo com Docker ou Kubernetes, falarei mais sobre isso no próximo capítulo: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
 
