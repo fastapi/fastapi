@@ -38,7 +38,7 @@ And also that you are not sending any data that should have been filtered by a `
 
 ### More info
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
 
