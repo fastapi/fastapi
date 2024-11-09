@@ -4,8 +4,6 @@ from time import sleep
 from typing import Any, AsyncGenerator, Dict, List, Tuple
 
 import pytest
-from setuptools import depends
-
 from fastapi import (
     APIRouter,
     BackgroundTasks,
@@ -30,7 +28,7 @@ from fastapi.exceptions import (
 from fastapi.params import Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated, Literal, assert_never
+from typing_extensions import Annotated, Literal
 
 from tests.test_lifespan_scoped_dependencies.testing_utilities import (
     DependencyFactory,
@@ -614,7 +612,6 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
 
         app = FastAPI(on_startup=[startup], on_shutdown=[shutdown])
 
-
     dependency_factory = DependencyFactory(dependency_style)
 
     create_endpoint_1_annotation(
@@ -742,10 +739,7 @@ def test_endpoints_report_incorrect_dependency_scope_at_router_scope(
 ):
     dependency_factory = DependencyFactory(DependencyStyle.ASYNC_GENERATOR)
 
-    depends = Depends(
-        dependency_factory.get_dependency(),
-        dependency_scope="lifespan"
-    )
+    depends = Depends(dependency_factory.get_dependency(), dependency_scope="lifespan")
 
     # We intentionally change the dependency scope here to bypass the
     # validation at the function level.
@@ -756,7 +750,6 @@ def test_endpoints_report_incorrect_dependency_scope_at_router_scope(
         router = app
     else:
         router = APIRouter(dependencies=[depends])
-
 
     with pytest.raises(InvalidDependencyScope):
         create_endpoint_0_annotations(
@@ -903,15 +896,16 @@ def test_bad_lifespan_scoped_dependencies(
 
     assert exception_info.value.args == (1,)
 
+
 def test_endpoint_dependant_backwards_compatibility():
     dependency_factory = DependencyFactory(DependencyStyle.ASYNC_GENERATOR)
 
     def endpoint(
         dependency1: Annotated[int, Depends(dependency_factory.get_dependency())],
-        dependency2: Annotated[int, Depends(
-            dependency_factory.get_dependency(),
-            dependency_scope="lifespan"
-        )],
+        dependency2: Annotated[
+            int,
+            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+        ],
     ):
         pass  # pragma: nocover
 
@@ -922,6 +916,5 @@ def test_endpoint_dependant_backwards_compatibility():
     )
 
     assert dependant.dependencies == tuple(
-        dependant.lifespan_dependencies +
-        dependant.endpoint_dependencies
+        dependant.lifespan_dependencies + dependant.endpoint_dependencies
     )
