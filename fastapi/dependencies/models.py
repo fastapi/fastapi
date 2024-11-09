@@ -36,7 +36,10 @@ class LifespanDependant:
             self.cache_key = (self.caller, self.index)
 
 
-EndpointDependantCacheKey: TypeAlias = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
+EndpointDependantCacheKey: TypeAlias = Tuple[
+    Optional[Callable[..., Any]], Tuple[str, ...]
+]
+
 
 @dataclass
 class EndpointDependant:
@@ -79,6 +82,7 @@ class EndpointDependant:
         )
 
         return tuple(lifespan_dependencies + endpoint_dependencies)
+
 
 # Kept for backwards compatibility
 Dependant = EndpointDependant

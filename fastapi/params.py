@@ -764,7 +764,7 @@ class Depends:
         dependency: Optional[Callable[..., Any]] = None,
         *,
         use_cache: bool = True,
-        dependency_scope: DependencyScope = "endpoint"
+        dependency_scope: DependencyScope = "endpoint",
     ):
         self.dependency = dependency
         self.use_cache = use_cache
@@ -776,7 +776,7 @@ class Depends:
         if self.dependency_scope == "endpoint":
             dependency_scope = ""
         else:
-            dependency_scope = f", dependency_scope=\"{self.dependency_scope}\""
+            dependency_scope = f', dependency_scope="{self.dependency_scope}"'
 
         return f"{self.__class__.__name__}({attr}{cache}{dependency_scope})"
 
@@ -790,8 +790,6 @@ class Security(Depends):
         use_cache: bool = True,
     ):
         super().__init__(
-            dependency=dependency,
-            use_cache=use_cache,
-            dependency_scope="endpoint"
+            dependency=dependency, use_cache=use_cache, dependency_scope="endpoint"
         )
         self.scopes = scopes or []

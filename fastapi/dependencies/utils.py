@@ -357,7 +357,6 @@ def get_lifespan_dependant(
     return dependant
 
 
-
 def get_endpoint_dependant(
     *,
     path: str,
@@ -678,7 +677,9 @@ async def solve_lifespan_dependant(
     *,
     dependant: LifespanDependant,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[LifespanDependantCacheKey, Callable[..., Any]]] = None,
+    dependency_cache: Optional[
+        Dict[LifespanDependantCacheKey, Callable[..., Any]]
+    ] = None,
     async_exit_stack: AsyncExitStack,
 ) -> SolvedLifespanDependant:
     dependency_cache = dependency_cache or {}

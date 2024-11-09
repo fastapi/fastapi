@@ -27,9 +27,7 @@ def _get_lifespan_dependants(app: FastAPI) -> List[LifespanDependant]:
 
 
 async def resolve_lifespan_dependants(
-        *,
-        app: FastAPI,
-        async_exit_stack: AsyncExitStack
+    *, app: FastAPI, async_exit_stack: AsyncExitStack
 ) -> Dict[LifespanDependantCacheKey, Callable[..., Any]]:
     lifespan_dependants = _get_lifespan_dependants(app)
     dependency_cache: Dict[LifespanDependantCacheKey, Callable[..., Any]] = {}
@@ -38,7 +36,7 @@ async def resolve_lifespan_dependants(
             dependant=lifespan_dependant,
             dependency_overrides_provider=app,
             dependency_cache=dependency_cache,
-            async_exit_stack=async_exit_stack
+            async_exit_stack=async_exit_stack,
         )
 
         dependency_cache.update(solved_dependency.dependency_cache)
