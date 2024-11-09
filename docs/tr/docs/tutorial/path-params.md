@@ -24,7 +24,7 @@ Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiy
 
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
-/// check | "Ek bilgi"
+/// check | Ek bilgi
 
 Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
 
@@ -38,7 +38,7 @@ Eğer bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:800
 {"item_id":3}
 ```
 
-/// check | "Ek bilgi"
+/// check | Ek bilgi
 
 Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
 
@@ -71,7 +71,7 @@ Eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external
 
 Aynı hata <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> sayfasında olduğu gibi `int` yerine `float` bir değer verseydik de ortaya çıkardı.
 
-/// check | "Ek bilgi"
+/// check | Ek bilgi
 
 Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
 
@@ -87,7 +87,7 @@ Ayrıca, tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-l
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "Ek bilgi"
+/// check | Ek bilgi
 
 Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
 
@@ -153,13 +153,13 @@ Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
 
 ///
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
 
@@ -199,7 +199,7 @@ Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration �
 {!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
 
@@ -256,7 +256,7 @@ Böylece şunun gibi bir kullanım yapabilirsiniz:
 {!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
 

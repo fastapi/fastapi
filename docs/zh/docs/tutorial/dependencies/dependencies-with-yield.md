@@ -10,7 +10,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 ///
 
-/// note | "技术细节"
+/// note | 技术细节
 
 任何一个可以与以下内容一起使用的函数：
 
@@ -148,7 +148,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 **FastAPI** 将确保按正确的顺序运行所有内容。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 这是由 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>完成的。
 
