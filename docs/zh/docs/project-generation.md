@@ -13,10 +13,10 @@
     - 🔍 [Pydantic](https://docs.pydantic.dev) FastAPI的依赖项之一，用于数据验证和配置管理。
     - 💾 [PostgreSQL](https://www.postgresql.org) 作为SQL数据库。
 - 🚀 [React](https://react.dev) 用于前端。
-    - 💃 使用了TypeScript、hooks、Vite和其他一些现代化的前端技术栈。
+    - 💃 使用了TypeScript、hooks、[Vite](https://vitejs.dev)和其他一些现代化的前端技术栈。
     - 🎨 [Chakra UI](https://chakra-ui.com) 用于前端组件。
     - 🤖 一个自动化生成的前端客户端。
-    - 🧪 Playwright用于端到端测试。
+    - 🧪 [Playwright](https://playwright.dev)用于端到端测试。
     - 🦇 支持暗黑主题（Dark mode）。
 - 🐋 [Docker Compose](https://www.docker.com) 用于开发环境和生产环境。
 - 🔒 默认使用密码哈希来保证安全。

@@ -16,7 +16,7 @@
 まず初めに、`BackgroundTasks` をインポートし、` BackgroundTasks` の型宣言と共に、*path operation 関数* のパラメーターを定義します:
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** は、`BackgroundTasks` 型のオブジェクトを作成し、そのパラメーターに渡します。
@@ -34,7 +34,7 @@
 また、書き込み操作では `async` と `await` を使用しないため、通常の `def` で関数を定義します。
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## バックグラウンドタスクの追加
@@ -42,7 +42,7 @@
 *path operations 関数* 内で、`.add_task()` メソッドを使用してタスク関数を *background tasks* オブジェクトに渡します。
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` は以下の引数を受け取ります:
@@ -58,7 +58,7 @@
 **FastAPI** は、それぞれの場合の処理​​方法と同じオブジェクトの再利用方法を知っているため、すべてのバックグラウンドタスクがマージされ、バックグラウンドで後で実行されます。
 
 ```Python hl_lines="13  15  22  25"
-{!../../../docs_src/background_tasks/tutorial002.py!}
+{!../../docs_src/background_tasks/tutorial002.py!}
 ```
 
 この例では、レスポンスが送信された *後* にメッセージが `log.txt` ファイルに書き込まれます。

@@ -9,7 +9,7 @@
 //// tab | Python 3.10+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -17,7 +17,7 @@
 //// tab | Python 3.9+
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -25,35 +25,35 @@
 //// tab | Python 3.6+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -120,7 +120,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.10+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -128,7 +128,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.9+
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -136,35 +136,35 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.6+
 
 ```Python hl_lines="12-16"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="9-13"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="11-15"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -174,7 +174,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.10+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -182,7 +182,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.9+
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -190,35 +190,35 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.6+
 
 ```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="12"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -228,7 +228,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.10+
 
 ```Python hl_lines="8"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -236,7 +236,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.9+
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -244,35 +244,35 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.6+
 
 ```Python hl_lines="10"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
+{!> ../../docs_src/dependencies/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="6"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+{!> ../../docs_src/dependencies/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="9"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
+{!> ../../docs_src/dependencies/tutorial001.py!}
 ```
 
 ////
@@ -294,7 +294,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
 ```
 
 ////
@@ -302,7 +302,7 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
 ```
 
 ////
@@ -310,35 +310,35 @@ fluffy = Cat(name="Mr Fluffy")
 //// tab | Python 3.6+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial002_an.py!}
+{!> ../../docs_src/dependencies/tutorial002_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+{!> ../../docs_src/dependencies/tutorial002_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial002.py!}
+{!> ../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ////
@@ -351,7 +351,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -395,7 +395,7 @@ commons: Annotated[CommonQueryParams, ...
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -421,7 +421,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -438,7 +438,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py310.py!}
 ```
 
 ////
@@ -446,7 +446,7 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial003_an_py39.py!}
 ```
 
 ////
@@ -454,35 +454,35 @@ commons = Depends(CommonQueryParams)
 //// tab | Python 3.6+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial003_an.py!}
+{!> ../../docs_src/dependencies/tutorial003_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial003_py310.py!}
+{!> ../../docs_src/dependencies/tutorial003_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial003.py!}
+{!> ../../docs_src/dependencies/tutorial003.py!}
 ```
 
 ////
@@ -497,7 +497,7 @@ commons = Depends(CommonQueryParams)
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -532,7 +532,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -556,7 +556,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 //// tab | Python 3.6 без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
@@ -575,7 +575,7 @@ commons: CommonQueryParams = Depends()
 //// tab | Python 3.10+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -583,7 +583,7 @@ commons: CommonQueryParams = Depends()
 //// tab | Python 3.9+
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -591,42 +591,42 @@ commons: CommonQueryParams = Depends()
 //// tab | Python 3.6+
 
 ```Python hl_lines="20"
-{!> ../../../docs_src/dependencies/tutorial004_an.py!}
+{!> ../../docs_src/dependencies/tutorial004_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial004_py310.py!}
+{!> ../../docs_src/dependencies/tutorial004_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.6+ без Annotated
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Рекомендуется использовать версию с `Annotated` если возможно.
 
 ///
 
 ```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial004.py!}
+{!> ../../docs_src/dependencies/tutorial004.py!}
 ```
 
 ////
 
 ...и **FastAPI** будет знать, что делать.
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Если это покажется вам более запутанным, чем полезным, не обращайте внимания, это вам не *нужно*.
 

@@ -139,7 +139,7 @@ From the list of deployment concepts from above, using workers would mainly help
 
 ## Containers and Docker
 
-In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll tell some strategies you could use to handle the other **deployment concepts**.
+In the next chapter about [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank} I'll explain some strategies you could use to handle the other **deployment concepts**.
 
 I'll show you how to **build your own image from scratch** to run a single Uvicorn process. It is a simple process and is probably what you would want to do when using a distributed container management system like **Kubernetes**.
 
