@@ -4,9 +4,7 @@ Vous pouvez déclarer des "paramètres" ou "variables" de chemin avec la même s
 <a href="https://docs.python.org/fr/3/library/string.html#format-string-syntax" class="external-link" target="_blank">formatage de chaîne Python</a> :
 
 
-```Python hl_lines="6-7"
-{!../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`.
 
@@ -22,13 +20,11 @@ vous verrez comme réponse :
 Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python :
 
 
-```Python hl_lines="7"
-{!../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
-/// check | "vérifier"
+/// check | vérifier
 
 Ceci vous permettra d'obtenir des fonctionnalités de l'éditeur dans votre fonction, telles
 que des vérifications d'erreur, de l'auto-complétion, etc.
@@ -43,7 +39,7 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
 {"item_id":3}
 ```
 
-/// check | "vérifier"
+/// check | vérifier
 
 Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
 en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
@@ -78,7 +74,7 @@ La même erreur se produira si vous passez un nombre flottant (`float`) et non u
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>.
 
 
-/// check | "vérifier"
+/// check | vérifier
 
 Donc, avec ces mêmes déclarations de type Python, **FastAPI** vous fournit de la validation de données.
 
@@ -131,9 +127,7 @@ Et vous avez un second chemin : `/users/{user_id}` pour récupérer de la donné
 
 Les *fonctions de chemin* étant évaluées dans l'ordre, il faut s'assurer que la fonction correspondant à `/users/me` est déclarée avant celle de `/users/{user_id}` :
 
-```Python hl_lines="6  11"
-{!../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, la fonction "croyant" qu'elle a reçu un paramètre `user_id` avec pour valeur `"me"`.
 
@@ -149,9 +143,7 @@ En héritant de `str` la documentation sera capable de savoir que les valeurs do
 
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs autorisées pour cette énumération.
 
-```Python hl_lines="1  6-9"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// info
 
@@ -159,7 +151,7 @@ Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les va
 
 ///
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms de <abbr title="Techniquement, des architectures de modèles">modèles</abbr> de Machine Learning.
 
@@ -169,9 +161,7 @@ Pour ceux qui se demandent, "AlexNet", "ResNet", et "LeNet" sont juste des noms 
 
 Créez ensuite un *paramètre de chemin* avec une annotation de type désignant l'énumération créée précédemment (`ModelName`) :
 
-```Python hl_lines="16"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Documentation
 
@@ -187,19 +177,15 @@ La valeur du *paramètre de chemin* sera un des "membres" de l'énumération.
 
 Vous pouvez comparer ce paramètre avec les membres de votre énumération `ModelName` :
 
-```Python hl_lines="17"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Récupérer la *valeur de l'énumération*
 
 Vous pouvez obtenir la valeur réel d'un membre (une chaîne de caractères ici), avec `model_name.value`, ou en général, `votre_membre_d'enum.value` :
 
-```Python hl_lines="20"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous pouvez aussi accéder la valeur `"lenet"` avec `ModelName.lenet.value`.
 
@@ -211,9 +197,7 @@ Vous pouvez retourner des *membres d'énumération* dans vos *fonctions de chemi
 
 Ils seront convertis vers leurs valeurs correspondantes (chaînes de caractères ici) avant d'être transmis au client :
 
-```Python hl_lines="18  21  23"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 Le client recevra une réponse JSON comme celle-ci :
 
@@ -252,11 +236,9 @@ Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:pat
 
 Vous pouvez donc l'utilisez comme tel :
 
-```Python hl_lines="6"
-{!../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 Vous pourriez avoir besoin que le paramètre contienne `/home/johndoe/myfile.txt`, avec un slash au début (`/`).
 
