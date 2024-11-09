@@ -36,7 +36,7 @@ Django REST Framework was created by Tom Christie. The same creator of Starlette
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Have an automatic API documentation web user interface.
 
@@ -56,7 +56,7 @@ This decoupling of parts, and being a "microframework" that could be extended to
 
 Given the simplicity of Flask, it seemed like a good match for building APIs. The next thing to find was a "Django REST Framework" for Flask.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Be a micro-framework. Making it easy to mix and match the tools and parts needed.
 
@@ -98,7 +98,7 @@ def read_url():
 
 See the similarities in `requests.get(...)` and `@app.get(...)`.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 * Have a simple and intuitive API.
 * Use HTTP method names (operations) directly, in a straightforward and intuitive way.
@@ -118,7 +118,7 @@ At some point, Swagger was given to the Linux Foundation, to be renamed OpenAPI.
 
 That's why when talking about version 2.0 it's common to say "Swagger", and for version 3+ "OpenAPI".
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Adopt and use an open standard for API specifications, instead of a custom schema.
 
@@ -147,7 +147,7 @@ These features are what Marshmallow was built to provide. It is a great library,
 
 But it was created before there existed Python type hints. So, to define every <abbr title="the definition of how data should be formed">schema</abbr> you need to use specific utils and classes provided by Marshmallow.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Use code to define "schemas" that provide data types and validation, automatically.
 
@@ -169,7 +169,7 @@ Webargs was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Have automatic validation of incoming request data.
 
@@ -199,7 +199,7 @@ APISpec was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Support the open standard for APIs, OpenAPI.
 
@@ -231,7 +231,7 @@ Flask-apispec was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Generate the OpenAPI schema automatically, from the same code that defines serialization and validation.
 
@@ -251,7 +251,7 @@ But as TypeScript data is not preserved after compilation to JavaScript, it cann
 
 It can't handle nested models very well. So, if the JSON body in the request is a JSON object that has inner fields that in turn are nested JSON objects, it cannot be properly documented and validated.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Use Python types to have great editor support.
 
@@ -263,7 +263,7 @@ Have a powerful dependency injection system. Find a way to minimize code repetit
 
 It was one of the first extremely fast Python frameworks based on `asyncio`. It was made to be very similar to Flask.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 It used <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> instead of the default Python `asyncio` loop. That's what made it so fast.
 
@@ -271,7 +271,7 @@ It clearly inspired Uvicorn and Starlette, that are currently faster than Sanic 
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Find a way to have a crazy performance.
 
@@ -287,7 +287,7 @@ It is designed to have functions that receive two parameters, one "request" and 
 
 So, data validation, serialization, and documentation, have to be done in code, not automatically. Or they have to be implemented as a framework on top of Falcon, like Hug. This same distinction happens in other frameworks that are inspired by Falcon's design, of having one request object and one response object as parameters.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Find ways to get great performance.
 
@@ -313,7 +313,7 @@ The dependency injection system requires pre-registration of the dependencies an
 
 Routes are declared in a single place, using functions declared in other places (instead of using decorators that can be placed right on top of the function that handles the endpoint). This is closer to how Django does it than to how Flask (and Starlette) does it. It separates in the code things that are relatively tightly coupled.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Define extra validations for data types using the "default" value of model attributes. This improves editor support, and it was not available in Pydantic before.
 
@@ -341,7 +341,7 @@ Hug was created by Timothy Crosley, the same creator of <a href="https://github.
 
 ///
 
-/// check | "Ideas inspiring **FastAPI**"
+/// check | Ideas inspiring **FastAPI**
 
 Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
@@ -385,7 +385,7 @@ APIStar was created by Tom Christie. The same guy that created:
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Exist.
 
@@ -409,7 +409,7 @@ That makes it extremely intuitive.
 
 It is comparable to Marshmallow. Although it's faster than Marshmallow in benchmarks. And as it is based on the same Python type hints, the editor support is great.
 
-/// check | "**FastAPI** uses it to"
+/// check | **FastAPI** uses it to
 
 Handle all the data validation, data serialization and automatic model documentation (based on JSON Schema).
 
@@ -444,7 +444,7 @@ But it doesn't provide automatic data validation, serialization or documentation
 
 That's one of the main things that **FastAPI** adds on top, all based on Python type hints (using Pydantic). That, plus the dependency injection system, security utilities, OpenAPI schema generation, etc.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 ASGI is a new "standard" being developed by Django core team members. It is still not a "Python standard" (a PEP), although they are in the process of doing that.
 
@@ -452,7 +452,7 @@ Nevertheless, it is already being used as a "standard" by several tools. This gr
 
 ///
 
-/// check | "**FastAPI** uses it to"
+/// check | **FastAPI** uses it to
 
 Handle all the core web parts. Adding features on top.
 
@@ -470,7 +470,7 @@ It is not a web framework, but a server. For example, it doesn't provide tools f
 
 It is the recommended server for Starlette and **FastAPI**.
 
-/// check | "**FastAPI** recommends it as"
+/// check | **FastAPI** recommends it as
 
 The main web server to run **FastAPI** applications.
 

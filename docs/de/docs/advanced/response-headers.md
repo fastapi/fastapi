@@ -28,7 +28,7 @@ Erstellen Sie eine Response wie in [Eine Response direkt zurückgeben](response-
 {!../../docs_src/response_headers/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 
