@@ -43,7 +43,7 @@ browser --> proxy
 proxy --> server
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die IP `0.0.0.0` wird üblicherweise verwendet, um anzudeuten, dass das Programm alle auf diesem Computer/Server verfügbaren IPs abhört.
 
@@ -84,7 +84,7 @@ $ uvicorn main:app --root-path /api/v1
 
 Falls Sie Hypercorn verwenden, das hat auch die Option `--root-path`.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Die ASGI-Spezifikation definiert einen `root_path` für diesen Anwendungsfall.
 
@@ -178,7 +178,7 @@ Dann erstellen Sie eine Datei `traefik.toml` mit:
 
 Dadurch wird Traefik angewiesen, Port 9999 abzuhören und eine andere Datei `routes.toml` zu verwenden.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wir verwenden Port 9999 anstelle des Standard-HTTP-Ports 80, damit Sie ihn nicht mit Administratorrechten (`sudo`) ausführen müssen.
 
@@ -248,7 +248,7 @@ Wenn Sie nun zur URL mit dem Port für Uvicorn gehen: <a href="http://127.0.0.1:
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass, obwohl Sie unter `http://127.0.0.1:8000/app` darauf zugreifen, als `root_path` angezeigt wird `/api/v1`, welches aus der Option `--root-path` stammt.
 
@@ -295,7 +295,7 @@ Dies liegt daran, dass FastAPI diesen `root_path` verwendet, um den Default-`ser
 
 ## Zusätzliche Server
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies ist ein fortgeschrittener Anwendungsfall. Überspringen Sie das gerne.
 
@@ -338,7 +338,7 @@ Erzeugt ein OpenAPI-Schema, wie:
 }
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie den automatisch generierten Server mit dem `URL`-Wert `/api/v1`, welcher vom `root_path` stammt.
 
@@ -348,7 +348,7 @@ In der Dokumentationsoberfläche unter <a href="http://127.0.0.1:9999/api/v1/doc
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server.
 

@@ -78,7 +78,7 @@
 
 Для получения более подробной информации о <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, обратитесь к <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Документации CORS от Mozilla</a>.
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Вы также можете использовать `from starlette.middleware.cors import CORSMiddleware`.
 
