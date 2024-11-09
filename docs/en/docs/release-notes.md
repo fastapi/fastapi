@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/tutorial/middleware.md`. PR [#12807](https://github.com/fastapi/fastapi/pull/12807) by [@AlexWendland](https://github.com/AlexWendland).
 * 📝 Update includes in `docs/en/docs/advanced/sub-applications.md`. PR [#12806](https://github.com/fastapi/fastapi/pull/12806) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/en/docs/advanced/response-headers.md`. PR [#12805](https://github.com/fastapi/fastapi/pull/12805) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes in `docs/fr/docs/tutorial/first-steps.md`. PR [#12594](https://github.com/fastapi/fastapi/pull/12594) by [@kantandane](https://github.com/kantandane).
