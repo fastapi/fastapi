@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/advanced/response-directly.md`. PR [#12803](https://github.com/fastapi/fastapi/pull/12803) by [@handabaldeep](https://github.com/handabaldeep).
 * 📝 Update includes in `docs/zh/docs/tutorial/background-tasks.md`. PR [#12798](https://github.com/fastapi/fastapi/pull/12798) by [@zhaohan-dong](https://github.com/zhaohan-dong).
 * 📝 Update includes for `docs/de/docs/tutorial/body-multiple-params.md`. PR [#12699](https://github.com/fastapi/fastapi/pull/12699) by [@alissadb](https://github.com/alissadb).
 * 📝 Update includes in `docs/em/docs/tutorial/body-updates.md`. PR [#12799](https://github.com/fastapi/fastapi/pull/12799) by [@AlexWendland](https://github.com/AlexWendland).
