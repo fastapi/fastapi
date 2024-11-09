@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, AsyncGenerator, Generator, TypeVar, Union
+from typing import Any, AsyncGenerator, Generator, List, TypeVar, Union
 
 from fastapi import APIRouter, FastAPI, WebSocket
 from starlette.testclient import TestClient
@@ -136,7 +136,7 @@ def create_endpoint_1_annotation(
     else:
 
         @router.post(path)
-        async def endpoint(value: annotation) -> None:
+        async def endpoint(value: annotation) -> Any:
             if expected_value is not None:
                 assert value == expected_value
 
@@ -170,7 +170,7 @@ def create_endpoint_2_annotations(
         async def endpoint(
             value1: annotation1,
             value2: annotation2,
-        ) -> list[Any]:
+        ) -> List[Any]:
             return [value1, value2]
 
 
@@ -202,5 +202,5 @@ def create_endpoint_3_annotations(
         @router.post(path)
         async def endpoint(
             value1: annotation1, value2: annotation2, value3: annotation3
-        ) -> list[Any]:
+        ) -> List[Any]:
             return [value1, value2, value3]
