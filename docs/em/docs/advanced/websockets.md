@@ -50,7 +50,7 @@ $ pip install websockets
 {!../../docs_src/websockets/tutorial001.py!}
 ```
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.websockets import WebSocket`.
 

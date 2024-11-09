@@ -2,7 +2,7 @@
 
 Es gibt mehrere Konfigurations-Parameter, die Sie Ihrem *Pfadoperation-Dekorator* übergeben können.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Beachten Sie, dass diese Parameter direkt dem *Pfadoperation-Dekorator* übergeben werden, nicht der *Pfadoperation-Funktion*.
 
@@ -42,7 +42,7 @@ Aber falls Sie sich nicht mehr erinnern, wofür jede Nummer steht, können Sie d
 
 Dieser Statuscode wird in der Response verwendet und zum OpenAPI-Schema hinzugefügt.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette import status` verwenden.
 
