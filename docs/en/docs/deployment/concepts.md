@@ -257,7 +257,7 @@ But in most cases, you will want to perform these steps only **once**.
 
 So, you will want to have a **single process** to perform those **previous steps**, before starting the application.
 
-And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it on **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
+And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it in **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
 
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
