@@ -28,7 +28,9 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 
 ## Install `PyJWT`
 
-We need to install `PyJWT` to generate and verify the JWT tokens in Python:
+We need to install `PyJWT` to generate and verify the JWT tokens in Python.
+
+Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `pyjwt`:
 
 <div class="termy">
 
@@ -70,7 +72,7 @@ It supports many secure hashing algorithms and utilities to work with them.
 
 The recommended algorithm is "Bcrypt".
 
-So, install PassLib with Bcrypt:
+Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install PassLib with Bcrypt:
 
 <div class="termy">
 
@@ -117,7 +119,7 @@ And another one to authenticate and return a user.
 //// tab | Python 3.10+
 
 ```Python hl_lines="8  49  56-57  60-61  70-76"
-{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+{!> ../../docs_src/security/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -125,7 +127,7 @@ And another one to authenticate and return a user.
 //// tab | Python 3.9+
 
 ```Python hl_lines="8  49  56-57  60-61  70-76"
-{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+{!> ../../docs_src/security/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -133,7 +135,7 @@ And another one to authenticate and return a user.
 //// tab | Python 3.8+
 
 ```Python hl_lines="8  50  57-58  61-62  71-77"
-{!> ../../../docs_src/security/tutorial004_an.py!}
+{!> ../../docs_src/security/tutorial004_an.py!}
 ```
 
 ////
@@ -147,7 +149,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="7  48  55-56  59-60  69-75"
-{!> ../../../docs_src/security/tutorial004_py310.py!}
+{!> ../../docs_src/security/tutorial004_py310.py!}
 ```
 
 ////
@@ -161,7 +163,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="8  49  56-57  60-61  70-76"
-{!> ../../../docs_src/security/tutorial004.py!}
+{!> ../../docs_src/security/tutorial004.py!}
 ```
 
 ////
@@ -203,7 +205,7 @@ Create a utility function to generate a new access token.
 //// tab | Python 3.10+
 
 ```Python hl_lines="4 7  13-15  29-31  79-87"
-{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+{!> ../../docs_src/security/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -211,7 +213,7 @@ Create a utility function to generate a new access token.
 //// tab | Python 3.9+
 
 ```Python hl_lines="4 7  13-15  29-31  79-87"
-{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+{!> ../../docs_src/security/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -219,7 +221,7 @@ Create a utility function to generate a new access token.
 //// tab | Python 3.8+
 
 ```Python hl_lines="4 7  14-16  30-32 80-88"
-{!> ../../../docs_src/security/tutorial004_an.py!}
+{!> ../../docs_src/security/tutorial004_an.py!}
 ```
 
 ////
@@ -233,7 +235,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="3 6  12-14  28-30  78-86"
-{!> ../../../docs_src/security/tutorial004_py310.py!}
+{!> ../../docs_src/security/tutorial004_py310.py!}
 ```
 
 ////
@@ -247,7 +249,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="4 7  13-15  29-31  79-87"
-{!> ../../../docs_src/security/tutorial004.py!}
+{!> ../../docs_src/security/tutorial004.py!}
 ```
 
 ////
@@ -263,7 +265,7 @@ If the token is invalid, return an HTTP error right away.
 //// tab | Python 3.10+
 
 ```Python hl_lines="90-107"
-{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+{!> ../../docs_src/security/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -271,7 +273,7 @@ If the token is invalid, return an HTTP error right away.
 //// tab | Python 3.9+
 
 ```Python hl_lines="90-107"
-{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+{!> ../../docs_src/security/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -279,7 +281,7 @@ If the token is invalid, return an HTTP error right away.
 //// tab | Python 3.8+
 
 ```Python hl_lines="91-108"
-{!> ../../../docs_src/security/tutorial004_an.py!}
+{!> ../../docs_src/security/tutorial004_an.py!}
 ```
 
 ////
@@ -293,7 +295,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="89-106"
-{!> ../../../docs_src/security/tutorial004_py310.py!}
+{!> ../../docs_src/security/tutorial004_py310.py!}
 ```
 
 ////
@@ -307,7 +309,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="90-107"
-{!> ../../../docs_src/security/tutorial004.py!}
+{!> ../../docs_src/security/tutorial004.py!}
 ```
 
 ////
@@ -321,7 +323,7 @@ Create a real JWT access token and return it.
 //// tab | Python 3.10+
 
 ```Python hl_lines="118-133"
-{!> ../../../docs_src/security/tutorial004_an_py310.py!}
+{!> ../../docs_src/security/tutorial004_an_py310.py!}
 ```
 
 ////
@@ -329,7 +331,7 @@ Create a real JWT access token and return it.
 //// tab | Python 3.9+
 
 ```Python hl_lines="118-133"
-{!> ../../../docs_src/security/tutorial004_an_py39.py!}
+{!> ../../docs_src/security/tutorial004_an_py39.py!}
 ```
 
 ////
@@ -337,7 +339,7 @@ Create a real JWT access token and return it.
 //// tab | Python 3.8+
 
 ```Python hl_lines="119-134"
-{!> ../../../docs_src/security/tutorial004_an.py!}
+{!> ../../docs_src/security/tutorial004_an.py!}
 ```
 
 ////
@@ -351,7 +353,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="115-130"
-{!> ../../../docs_src/security/tutorial004_py310.py!}
+{!> ../../docs_src/security/tutorial004_py310.py!}
 ```
 
 ////
@@ -365,7 +367,7 @@ Prefer to use the `Annotated` version if possible.
 ///
 
 ```Python hl_lines="116-131"
-{!> ../../../docs_src/security/tutorial004.py!}
+{!> ../../docs_src/security/tutorial004.py!}
 ```
 
 ////

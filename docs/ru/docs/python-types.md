@@ -23,7 +23,7 @@ Python имеет поддержку необязательных аннотац
 Давайте начнем с простого примера:
 
 ```Python
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 Вызов этой программы выводит:
@@ -39,7 +39,7 @@ John Doe
 * <abbr title="Объединяет в одно целое, последовательно, друг за другом.">Соединяет</abbr> их через пробел.
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
+{!../../docs_src/python_types/tutorial001.py!}
 ```
 
 ### Отредактируем пример
@@ -83,7 +83,7 @@ John Doe
 Это аннотации типов:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial002.py!}
+{!../../docs_src/python_types/tutorial002.py!}
 ```
 
 Это не то же самое, что объявление значений по умолчанию, например:
@@ -113,7 +113,7 @@ John Doe
 Проверьте эту функцию, она уже имеет аннотации типов:
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial003.py!}
+{!../../docs_src/python_types/tutorial003.py!}
 ```
 
 Поскольку редактор знает типы переменных, вы получаете не только дополнение, но и проверки ошибок:
@@ -123,7 +123,7 @@ John Doe
 Теперь вы знаете, что вам нужно исправить, преобразовав `age` в строку с `str(age)`:
 
 ```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial004.py!}
+{!../../docs_src/python_types/tutorial004.py!}
 ```
 
 ## Объявление типов
@@ -144,7 +144,7 @@ John Doe
 * `bytes`
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
+{!../../docs_src/python_types/tutorial005.py!}
 ```
 
 ### Generic-типы с параметрами типов
@@ -162,7 +162,7 @@ John Doe
 Импортируйте `List` из `typing` (с заглавной `L`):
 
 ```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
 Объявите переменную с тем же синтаксисом двоеточия (`:`).
@@ -172,7 +172,7 @@ John Doe
 Поскольку список является типом, содержащим некоторые внутренние типы, вы помещаете их в квадратные скобки:
 
 ```Python hl_lines="4"
-{!../../../docs_src/python_types/tutorial006.py!}
+{!../../docs_src/python_types/tutorial006.py!}
 ```
 
 /// tip
@@ -200,7 +200,7 @@ John Doe
 Вы бы сделали то же самое, чтобы объявить `tuple` и `set`:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial007.py!}
+{!../../docs_src/python_types/tutorial007.py!}
 ```
 
 Это означает:
@@ -217,7 +217,7 @@ John Doe
 Второй параметр типа предназначен для значений `dict`:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial008.py!}
+{!../../docs_src/python_types/tutorial008.py!}
 ```
 
 Это означает:
@@ -231,7 +231,7 @@ John Doe
 Вы также можете использовать `Optional`, чтобы объявить, что переменная имеет тип, например, `str`, но это является «необязательным», что означает, что она также может быть `None`:
 
 ```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009.py!}
 ```
 
 Использование `Optional[str]` вместо просто `str` позволит редактору помочь вам в обнаружении ошибок, в которых вы могли бы предположить, что значение всегда является `str`, хотя на самом деле это может быть и `None`.
@@ -256,13 +256,13 @@ John Doe
 Допустим, у вас есть класс `Person` с полем `name`:
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 Тогда вы можете объявить переменную типа `Person`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../docs_src/python_types/tutorial010.py!}
 ```
 
 И снова вы получаете полную поддержку редактора:
@@ -284,7 +284,7 @@ John Doe
 Взято из официальной документации Pydantic:
 
 ```Python
-{!../../../docs_src/python_types/tutorial011.py!}
+{!../../docs_src/python_types/tutorial011.py!}
 ```
 
 /// info
