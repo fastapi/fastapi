@@ -140,7 +140,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
@@ -260,7 +260,7 @@ https://example.com/items/foo
 * 请求路径为 `/`
 * 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
