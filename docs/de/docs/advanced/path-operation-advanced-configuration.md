@@ -2,7 +2,7 @@
 
 ## OpenAPI operationId
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Wenn Sie kein „Experte“ für OpenAPI sind, brauchen Sie dies wahrscheinlich nicht.
 
@@ -26,13 +26,13 @@ Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben
 {!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie `app.openapi()` manuell aufrufen, sollten Sie vorher die `operationId`s aktualisiert haben.
 
 ///
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Wenn Sie dies tun, müssen Sie sicherstellen, dass jede Ihrer *Pfadoperation-Funktionen* einen eindeutigen Namen hat.
 
@@ -74,7 +74,7 @@ Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es un
 
 Wenn Sie in Ihrer Anwendung eine *Pfadoperation* deklarieren, generiert **FastAPI** automatisch die relevanten Metadaten dieser *Pfadoperation*, die in das OpenAPI-Schema aufgenommen werden sollen.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 In der OpenAPI-Spezifikation wird das <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operationsobjekt</a> genannt.
 
@@ -86,7 +86,7 @@ Es enthält `tags`, `parameters`, `requestBody`, `responses`, usw.
 
 Dieses *Pfadoperation*-spezifische OpenAPI-Schema wird normalerweise automatisch von **FastAPI** generiert, Sie können es aber auch erweitern.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Dies ist ein Low-Level Erweiterungspunkt.
 
@@ -215,7 +215,7 @@ In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `I
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Hier verwenden wir dasselbe Pydantic-Modell wieder.
 

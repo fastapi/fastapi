@@ -440,7 +440,7 @@ With `app.include_router()` we can add each `APIRouter` to the main `FastAPI` ap
 
 It will include all the routes from that router as part of it.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
 
@@ -503,7 +503,7 @@ Here we do it... just to show that we can 🤷:
 
 and it will work correctly, together with all the other *path operations* added with `app.include_router()`.
 
-/// info | "Very Technical Details"
+/// info | Very Technical Details
 
 **Note**: this is a very technical detail that you probably can **just skip**.
 

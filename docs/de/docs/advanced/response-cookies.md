@@ -26,7 +26,7 @@ Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 
 {* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass, wenn Sie eine Response direkt zurückgeben, anstatt den `Response`-Parameter zu verwenden, FastAPI diese direkt zurückgibt.
 
@@ -38,7 +38,7 @@ Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten ge
 
 ### Mehr Informationen
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 

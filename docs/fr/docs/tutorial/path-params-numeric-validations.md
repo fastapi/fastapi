@@ -148,7 +148,7 @@ Tous partagent les mêmes paramètres pour des validations supplémentaires et d
 
 ///
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 Lorsque vous importez `Query`, `Path` et d'autres de `fastapi`, ce sont en fait des fonctions.
 
