@@ -24,7 +24,7 @@ Nesse caso, elas serão aplicadas a todas as *operações de rota* da aplicaçã
 
 //// tab | Python 3.8 non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 

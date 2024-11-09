@@ -11,7 +11,7 @@ Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisc
 {!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 

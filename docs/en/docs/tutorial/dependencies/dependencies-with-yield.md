@@ -10,7 +10,7 @@ Make sure to use `yield` one single time per dependency.
 
 ///
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Any function that is valid to use with:
 
@@ -149,7 +149,7 @@ You can have any combinations of dependencies that you want.
 
 **FastAPI** will make sure everything is run in the correct order.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
 
