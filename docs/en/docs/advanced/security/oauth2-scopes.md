@@ -126,7 +126,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
 
-/// info | "Technical Details"
+/// info | Technical Details
 
 `Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
 

@@ -2,7 +2,7 @@
 
 *path operationデコレータ*を設定するためのパラメータがいくつかあります。
 
-/// warning | "注意"
+/// warning | 注意
 
 これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
 
@@ -22,7 +22,7 @@
 
 そのステータスコードはレスポンスで使用され、OpenAPIスキーマに追加されます。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 また、`from starlette import status`を使用することもできます。
 
@@ -72,13 +72,13 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 {!../../docs_src/path_operation_configuration/tutorial005.py!}
 ```
 
-/// info | "情報"
+/// info | 情報
 
 `respnse_description`は具体的にレスポンスを参照し、`description`は*path operation*全般を参照していることに注意してください。
 
 ///
 
-/// check | "確認"
+/// check | 確認
 
 OpenAPIは*path operation*ごとにレスポンスの説明を必要としています。
 
