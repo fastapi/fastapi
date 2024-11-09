@@ -57,9 +57,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 任何传向 `http` 或 `ws` 的请求都会被重定向至安全方案。
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial001.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware`
 
@@ -81,9 +79,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 中间件会处理标准响应与流响应。
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial003.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial003.py! hl[2,6] *}
 
 支持以下参数：
 
