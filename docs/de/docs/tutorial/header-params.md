@@ -32,7 +32,7 @@ Importieren Sie zuerst `Header`:
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -46,7 +46,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -90,7 +90,7 @@ Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -104,7 +104,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -116,7 +116,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 `Header` ist eine Schwesterklasse von `Path`, `Query` und `Cookie`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
@@ -172,7 +172,7 @@ Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen z
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -186,7 +186,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -198,7 +198,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 ////
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass manche HTTP-Proxys und Server die Verwendung von Headern mit Unterstrichen nicht erlauben.
 
@@ -240,7 +240,7 @@ Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen ka
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -254,7 +254,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.9+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -268,7 +268,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 

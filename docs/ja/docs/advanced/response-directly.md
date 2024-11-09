@@ -14,7 +14,7 @@
 
 実際は、`Response` やそのサブクラスを返すことができます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `JSONResponse` それ自体は、 `Response` のサブクラスです。
 
@@ -38,7 +38,7 @@
 {!../../docs_src/response_directly/tutorial001.py!}
 ```
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 また、`from starlette.responses import JSONResponse` も利用できます。
 

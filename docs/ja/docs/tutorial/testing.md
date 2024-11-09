@@ -22,7 +22,7 @@
 {!../../docs_src/app_testing/tutorial001.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 テスト関数は `async def` ではなく、通常の `def` であることに注意してください。
 
@@ -32,7 +32,7 @@
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.testclient import TestClient` も使用できます。
 
@@ -40,7 +40,7 @@
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
 
@@ -121,7 +121,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 (`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
 
-/// info | "情報"
+/// info | 情報
 
 `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 
