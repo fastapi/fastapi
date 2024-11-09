@@ -10,7 +10,7 @@
 
 쿼리 매개변수 `q`는 `Optional[str]` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
 
-/// note | "참고"
+/// note | 참고
 
 FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압니다.
 
@@ -54,7 +54,7 @@ q: Optional[str] = None
 
 하지만 명시적으로 쿼리 매개변수를 선언합니다.
 
-/// info | "정보"
+/// info | 정보
 
 FastAPI는 다음 부분에 관심이 있습니다:
 
@@ -118,7 +118,7 @@ q: str = Query(None, max_length=50)
 {!../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-/// note | "참고"
+/// note | 참고
 
 기본값을 갖는 것만으로 매개변수는 선택적이 됩니다.
 
@@ -150,7 +150,7 @@ q: Optional[str] = Query(None, min_length=3)
 {!../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-/// info | "정보"
+/// info | 정보
 
 이전에 `...`를 본적이 없다면: 특별한 단일값으로, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">파이썬의 일부이며 "Ellipsis"라 부릅니다</a>.
 
@@ -187,7 +187,7 @@ http://localhost:8000/items/?q=foo&q=bar
 }
 ```
 
-/// tip | "팁"
+/// tip | 팁
 
 위의 예와 같이 `list` 자료형으로 쿼리 매개변수를 선언하려면 `Query`를 명시적으로 사용해야 합니다. 그렇지 않으면 요청 본문으로 해석됩니다.
 
@@ -230,7 +230,7 @@ http://localhost:8000/items/
 {!../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-/// note | "참고"
+/// note | 참고
 
 이 경우 FastAPI는 리스트의 내용을 검사하지 않음을 명심하기 바랍니다.
 
@@ -244,7 +244,7 @@ http://localhost:8000/items/
 
 해당 정보는 생성된 OpenAPI에 포함되고 문서 사용자 인터페이스 및 외부 도구에서 사용됩니다.
 
-/// note | "참고"
+/// note | 참고
 
 도구에 따라 OpenAPI 지원 수준이 다를 수 있음을 명심하기 바랍니다.
 
