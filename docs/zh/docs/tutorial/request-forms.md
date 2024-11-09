@@ -2,7 +2,7 @@
 
 接收的不是 JSON，而是表单字段时，要使用 `Form`。
 
-/// info | "说明"
+/// info | 说明
 
 要使用表单，需预先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
@@ -32,13 +32,13 @@
 
 使用 `Form` 可以声明与 `Body` （及 `Query`、`Path`、`Cookie`）相同的元数据和验证。
 
-/// info | "说明"
+/// info | 说明
 
 `Form` 是直接继承自 `Body` 的类。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 声明表单体要显式使用 `Form` ，否则，FastAPI 会把该参数当作查询参数或请求体（JSON）参数。
 
@@ -50,7 +50,7 @@
 
 **FastAPI** 要确保从正确的位置读取数据，而不是读取 JSON。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 表单数据的「媒体类型」编码一般为 `application/x-www-form-urlencoded`。
 
@@ -60,7 +60,7 @@
 
 ///
 
-/// warning | "警告"
+/// warning | 警告
 
 可在一个*路径操作*中声明多个 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码是 `application/x-www-form-urlencoded`，不是 `application/json`。
 

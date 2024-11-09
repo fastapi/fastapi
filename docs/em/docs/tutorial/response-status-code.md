@@ -94,7 +94,7 @@ FastAPI 💭 👉, &amp; 🔜 🏭 🗄 🩺 👈 🇵🇸 📤 🙅‍♂ 📨 
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette import status`.
 
