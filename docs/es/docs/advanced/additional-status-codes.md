@@ -15,10 +15,10 @@ Pero también quieres que acepte nuevos ítems. Cuando los ítems no existan ant
 Para conseguir esto importa `JSONResponse` y devuelve ahí directamente tu contenido, asignando el `status_code` que quieras:
 
 ```Python hl_lines="4  25"
-{!../../../docs_src/additional_status_codes/tutorial001.py!}
+{!../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
-/// warning | "Advertencia"
+/// warning | Advertencia
 
 Cuando devuelves directamente una `Response`, como en los ejemplos anteriores, será devuelta directamente.
 
@@ -28,7 +28,7 @@ Asegúrate de que la respuesta tenga los datos que quieras, y que los valores se
 
 ///
 
-/// note | "Detalles Técnicos"
+/// note | Detalles Técnicos
 
 También podrías utilizar `from starlette.responses import JSONResponse`.
 

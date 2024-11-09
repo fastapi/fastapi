@@ -30,7 +30,7 @@ fastapi[standard]>=0.112.0,<0.113.0
 
 that would mean that you would use the versions `0.112.0` or above, but less than `0.113.0`, for example, a version `0.112.2` would still be accepted.
 
-If you use any other tool to manage your installations, like Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
+If you use any other tool to manage your installations, like `uv`, Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
 
 ## Available versions
 

@@ -36,7 +36,7 @@
 📥 🤪 🎮 ❔ 👆 💪 🛠️ 🍓 ⏮️ FastAPI:
 
 ```Python hl_lines="3  22  25-26"
-{!../../../docs_src/graphql/tutorial001.py!}
+{!../../docs_src/graphql/tutorial001.py!}
 ```
 
 👆 💪 💡 🌅 🔃 🍓 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓 🧾</a>.
