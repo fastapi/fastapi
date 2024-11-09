@@ -95,7 +95,7 @@ some/directory/fastapi/env/bin/pip
 `env/bin/pip`に`pip`バイナリが表示される場合は、正常に機能しています。🎉
 
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 この環境で`pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
 
@@ -165,7 +165,7 @@ $ bash scripts/format-imports.sh
 
 そして、翻訳を処理するためのツール/スクリプトが、`./scripts/docs.py`に用意されています。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `./scripts/docs.py`のコードを見る必要はなく、コマンドラインからただ使うだけです。
 
@@ -254,7 +254,7 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 * あなたの言語の<a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">今あるプルリクエスト</a>を確認し、変更や承認をするレビューを追加します。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 すでにあるプルリクエストに<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">修正提案つきのコメントを追加</a>できます。
 
@@ -282,7 +282,7 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 スペイン語の場合、2文字のコードは`es`です。したがって、スペイン語のディレクトリは`docs/es/`です。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 メイン (「公式」) 言語は英語で、`docs/en/`にあります。
 
@@ -323,7 +323,7 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 パスとファイル名の変更は、`en`から`es`への言語コードだけであることに注意してください。
 
@@ -398,7 +398,7 @@ Updating en
 
 これで、新しく作成された`docs/ht/`ディレクトリをコードエディターから確認できます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 翻訳を追加する前に、これだけで最初のプルリクエストを作成し、新しい言語の設定をセットアップします。
 

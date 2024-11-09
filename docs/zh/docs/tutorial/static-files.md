@@ -8,10 +8,10 @@
 * "挂载"(Mount) 一个 `StaticFiles()` 实例到一个指定路径。
 
 ```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
+{!../../docs_src/static_files/tutorial001.py!}
 ```
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以用 `from starlette.staticfiles import StaticFiles`。
 

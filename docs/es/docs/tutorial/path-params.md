@@ -3,7 +3,7 @@
 Puedes declarar los "parámetros" o "variables" con la misma sintaxis que usan los format strings de Python:
 
 ```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
+{!../../docs_src/path_params/tutorial001.py!}
 ```
 
 El valor del parámetro de path `item_id` será pasado a tu función como el argumento `item_id`.
@@ -19,12 +19,12 @@ Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/fo
 Puedes declarar el tipo de un parámetro de path en la función usando las anotaciones de tipos estándar de Python:
 
 ```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
+{!../../docs_src/path_params/tutorial002.py!}
 ```
 
 En este caso, `item_id` es declarado como un `int`.
 
-/// check | "Revisa"
+/// check | Revisa
 
 Esto te dará soporte en el editor dentro de tu función, con chequeo de errores, auto-completado, etc.
 
@@ -38,7 +38,7 @@ Si corres este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/it
 {"item_id":3}
 ```
 
-/// check | "Revisa"
+/// check | Revisa
 
 Observa que el valor que recibió (y devolvió) tu función es `3`, como un Python `int`, y no un string `"3"`.
 
@@ -69,7 +69,7 @@ debido a que el parámetro de path `item_id` tenía el valor `"foo"`, que no es 
 
 El mismo error aparecería si pasaras un `float` en vez de un `int` como en: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | "Revisa"
+/// check | Revisa
 
 Así, con la misma declaración de tipo de Python, **FastAPI** te da validación de datos.
 
@@ -85,7 +85,7 @@ Cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="externa
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "Revisa"
+/// check | Revisa
 
 Nuevamente, con la misma declaración de tipo de Python, **FastAPI** te da documentación automática e interactiva (integrándose con Swagger UI)
 
@@ -122,7 +122,7 @@ Digamos algo como `/users/me` que sea para obtener datos del usuario actual.
 Porque las *operaciones de path* son evaluadas en orden, tienes que asegurarte de que el path para `/users/me` sea declarado antes que el path para `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
+{!../../docs_src/path_params/tutorial003.py!}
 ```
 
 De otra manera el path para `/users/{user_id}` coincidiría también con `/users/me` "pensando" que está recibiendo el parámetro `user_id` con el valor `"me"`.
@@ -140,16 +140,16 @@ Al heredar desde `str` la documentación de la API podrá saber que los valores 
 Luego crea atributos de clase con valores fijos, que serán los valores disponibles válidos:
 
 ```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// info | "Información"
+/// info | Información
 
 Las <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (o enums) están disponibles en Python</a> desde la versión 3.4.
 
 ///
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr title="Técnicamente, arquitecturas de modelos de Deep Learning">modelos</abbr> de Machine Learning.
 
@@ -160,7 +160,7 @@ Si lo estás dudando, "AlexNet", "ResNet", y "LeNet" son solo nombres de <abbr t
 Luego, crea un *parámetro de path* con anotaciones de tipos usando la clase enum que creaste (`ModelName`):
 
 ```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 ### Revisa la documentación
@@ -178,7 +178,7 @@ El valor del *parámetro de path* será un *enumeration member*.
 Puedes compararlo con el *enumeration member* en el enum (`ModelName`) que creaste:
 
 ```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 #### Obtén el *enumeration value*
@@ -186,10 +186,10 @@ Puedes compararlo con el *enumeration member* en el enum (`ModelName`) que creas
 Puedes obtener el valor exacto (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
 
 ```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 También podrías obtener el valor `"lenet"` con `ModelName.lenet.value`.
 
@@ -202,7 +202,7 @@ Puedes devolver *enum members* desde tu *operación de path* inclusive en un bod
 Ellos serán convertidos a sus valores correspondientes (strings en este caso) antes de devolverlos al cliente:
 
 ```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
+{!../../docs_src/path_params/tutorial005.py!}
 ```
 
 En tu cliente obtendrás una respuesta en JSON como:
@@ -243,10 +243,10 @@ En este caso el nombre del parámetro es `file_path` y la última parte, `:path`
 Entonces lo puedes usar con:
 
 ```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
+{!../../docs_src/path_params/tutorial004.py!}
 ```
 
-/// tip | "Consejo"
+/// tip | Consejo
 
 Podrías necesitar que el parámetro contenga `/home/johndoe/myfile.txt` con un slash inicial (`/`).
 
