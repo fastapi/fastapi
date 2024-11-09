@@ -1,5 +1,6 @@
 import warnings
 from contextlib import asynccontextmanager
+from time import sleep
 from typing import Any, AsyncGenerator, Dict, List, Tuple
 
 import pytest
@@ -15,6 +16,8 @@ from fastapi import (
     Header,
     Path,
     Query,
+    Request,
+    WebSocket,
 )
 from fastapi.exceptions import (
     DependencyScopeConflict,
@@ -70,7 +73,7 @@ def expect_correct_amount_of_dependency_activations(
         assert dependency_factory.deactivation_times == expected_activation_times
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize(
     "use_cache", [True, False], ids=["With Cache", "Without Cache"]
 )
@@ -118,7 +121,7 @@ def test_endpoint_dependencies(
     )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("dependency_duplication", [1, 2])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
@@ -163,7 +166,7 @@ def test_router_dependencies(
     )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
@@ -238,7 +241,7 @@ def test_dependency_cache_in_same_dependency(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
@@ -300,7 +303,7 @@ def test_dependency_cache_in_same_endpoint(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
@@ -375,7 +378,7 @@ def test_dependency_cache_in_different_endpoints(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
 def test_no_cached_dependency(
@@ -419,7 +422,7 @@ def test_no_cached_dependency(
     )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize(
     "annotation",
     [
@@ -432,6 +435,8 @@ def test_no_cached_dependency(
         Annotated[str, Form()],
         Annotated[str, File()],
         BackgroundTasks,
+        Request,
+        WebSocket
     ],
 )
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
@@ -453,7 +458,7 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
     dependency_style: DependencyStyle, is_websocket
@@ -487,7 +492,7 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
     )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize(
     ["dependency_style", "supports_teardown"],
     [
@@ -530,6 +535,10 @@ def test_the_same_dependency_can_work_in_different_scopes(
         assert get_response(client, "/test") == [2, 1]
         assert dependency_factory.activation_times == 2
         if supports_teardown:
+            if is_websocket:
+                # Websockets teardown might take some time after the test client
+                # has disconnected
+                sleep(0.1)
             assert dependency_factory.deactivation_times == 1
         else:
             assert dependency_factory.deactivation_times == 0
@@ -537,6 +546,10 @@ def test_the_same_dependency_can_work_in_different_scopes(
         assert get_response(client, "/test") == [3, 1]
         assert dependency_factory.activation_times == 3
         if supports_teardown:
+            if is_websocket:
+                # Websockets teardown might take some time after the test client
+                # has disconnected
+                sleep(0.1)
             assert dependency_factory.deactivation_times == 2
         else:
             assert dependency_factory.deactivation_times == 0
@@ -551,7 +564,7 @@ def test_the_same_dependency_can_work_in_different_scopes(
 @pytest.mark.parametrize(
     "lifespan_style", ["lifespan_generator", "events_decorator", "events_constructor"]
 )
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
     dependency_style: DependencyStyle,
@@ -622,7 +635,7 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
     assert lifespan_started and lifespan_ended
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("depends_class", [Depends, Security])
 def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
     depends_class, is_websocket
@@ -648,7 +661,7 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
@@ -683,7 +696,7 @@ def test_dependencies_must_provide_correct_dependency_scope(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
@@ -717,7 +730,7 @@ def test_endpoints_report_incorrect_dependency_scope(
         )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
@@ -767,7 +780,7 @@ def test_endpoints_report_uninitialized_dependency(
             )
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])
@@ -815,7 +828,7 @@ def test_endpoints_report_uninitialized_internal_lifespan(
             client.app_state["__fastapi__"] = internal_state
 
 
-@pytest.mark.parametrize("is_websocket", [True, False], ids=["Endpoint", "Websocket"])
+@pytest.mark.parametrize("is_websocket", [True, False], ids=["Websocket", "Endpoint"])
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app_endpoint", "router_endpoint"])

@@ -1,3 +1,4 @@
+import threading
 from enum import Enum
 from typing import Any, AsyncGenerator, Generator, List, TypeVar, Union
 
@@ -33,6 +34,7 @@ class DependencyFactory:
         self.dependency_style = dependency_style
         self._should_error = should_error
         self._value_offset = value_offset
+        self._event = threading.Event()
 
     def get_dependency(self):
         if self.dependency_style == DependencyStyle.SYNC_FUNCTION:
@@ -56,6 +58,7 @@ class DependencyFactory:
 
         yield self.activation_times + self._value_offset
         self.deactivation_times += 1
+        self._event.set()
 
     def _synchronous_generator_dependency(self) -> Generator[T, None, None]:
         self.activation_times += 1
@@ -64,6 +67,7 @@ class DependencyFactory:
 
         yield self.activation_times + self._value_offset
         self.deactivation_times += 1
+        self._event.set()
 
     async def _asynchronous_function_dependency(self) -> T:
         self.activation_times += 1
