@@ -26,7 +26,7 @@
 
 ///
 
-/// note 참고 | "기술적 세부 정보"
+/// note | "기술적 세부 정보"
 
 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
