@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update `contributing.md` docs, include note to not translate this page. PR [#12841](https://github.com/fastapi/fastapi/pull/12841) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update includes in `docs/en/docs/tutorial/request-forms.md`. PR [#12648](https://github.com/fastapi/fastapi/pull/12648) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes in `docs/en/docs/tutorial/request-form-models.md`. PR [#12649](https://github.com/fastapi/fastapi/pull/12649) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes in `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#12650](https://github.com/fastapi/fastapi/pull/12650) by [@OCE1960](https://github.com/OCE1960).
