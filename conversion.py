@@ -1,5 +1,5 @@
-from typing import List, Optional, Tuple
 import re
+from typing import List, Optional, Tuple
 
 FILES_TO_EDIT = [
     "./docs/fa/docs/tutorial/middleware.md",
@@ -628,7 +628,7 @@ def get_line_to_write(line: str, status: Status) -> List[str]:
 def edit_file(file_name: str):
     status = Status()
     output_lines = []
-    with open(file_name, "r") as file_to_edit:
+    with open(file_name) as file_to_edit:
         for line in file_to_edit:
             new_line = get_line_to_write(line, status)
             if new_line != [line]:
