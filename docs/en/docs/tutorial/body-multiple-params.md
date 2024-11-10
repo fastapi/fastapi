@@ -8,57 +8,9 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="17-19"
-{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
+## Multiple body parameters
 
 /// note
 
@@ -81,21 +33,8 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
 
 In this case, **FastAPI** will notice that there is more than one body parameter in the function (there are two parameters that are Pydantic models).
 
@@ -136,57 +75,8 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
 
 In this case, **FastAPI** will expect a body like:
 
@@ -226,57 +116,8 @@ q: str | None = None
 
 For example:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="29"
-{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="26"
-{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
 
 /// info
 
@@ -298,57 +139,8 @@ item: Item = Body(embed=True)
 
 as in:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
 
 In this case **FastAPI** will expect a body like:
 
