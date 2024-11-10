@@ -87,7 +87,7 @@ FastAPI Python ilə API yaratmaq üçün standart Python <abbr title="Tip Məsl�
 
 "_Düzünü desəm, sizin qurduğunuz şey həqiqətən möhkəm və peşəkar görünür. Bir çox cəhətdən **Hug**-un olmasını istədiyim kimdir - kiminsə belə bir şey qurduğunu görmək həqiqətən ruhlandırıcıdır._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
