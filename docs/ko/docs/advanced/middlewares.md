@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI**에는 일반적인 사용 사례를 위한 여러 미들웨어가 포함되어 있으며, 사용 방법은 다음에서 살펴보겠습니다.
 
-/// note 참고 | “기술 세부 사항”
+/// note | “기술 세부 사항”
 
 다음 예제에서는 `from starlette.middleware.something import SomethingMiddleware`를 사용할 수도 있습니다.
 
