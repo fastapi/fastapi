@@ -79,8 +79,6 @@ If you need to perform heavy background computation and you don't necessarily ne
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 
-To see an example, check the [Project Generators](../project-generation.md){.internal-link target=_blank}, they all include Celery already configured.
-
 But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.
 
 ## Recap
