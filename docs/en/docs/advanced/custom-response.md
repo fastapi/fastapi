@@ -113,7 +113,7 @@ Here are some of the available responses.
 
 Keep in mind that you can use `Response` to return anything else, or even create a custom sub-class.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 You could also use `from starlette.responses import HTMLResponse`.
 
