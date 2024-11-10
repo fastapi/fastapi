@@ -30,7 +30,7 @@ Und dann ruft **FastAPI** diese Überschreibung anstelle der ursprünglichen Abh
 
 {* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können eine Überschreibung für eine Abhängigkeit festlegen, die an einer beliebigen Stelle in Ihrer **FastAPI**-Anwendung verwendet wird.
 
@@ -46,7 +46,7 @@ Anschließend können Sie Ihre Überschreibungen zurücksetzen (entfernen), inde
 app.dependency_overrides = {}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie eine Abhängigkeit nur während einiger Tests überschreiben möchten, können Sie die Überschreibung zu Beginn des Tests (innerhalb der Testfunktion) festlegen und am Ende (am Ende der Testfunktion) zurücksetzen.
 

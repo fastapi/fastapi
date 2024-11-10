@@ -74,7 +74,7 @@ from myapp import app
 
 은 실행되지 않습니다.
 
-/// info | "정보"
+/// info | 정보
 
 자세한 내용은 <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">공식 Python 문서</a>를 확인하세요
 

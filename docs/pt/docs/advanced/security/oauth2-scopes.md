@@ -10,7 +10,7 @@ Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, Twitt
 
 Nesta seção, você verá como gerenciar a autenticação e autorização com os mesmos escopos do OAuth2 em sua aplicação **FastAPI**.
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Isso é uma seção mais ou menos avançada. Se você está apenas começando, você pode pular.
 
@@ -308,7 +308,7 @@ E a função de dependência `get_current_active_user` também pode declarar sub
 
 Neste caso, ele requer o escopo `me` (poderia requerer mais de um escopo).
 
-/// note | "Nota"
+/// note | Nota
 
 Você não necessariamente precisa adicionar diferentes escopos em diferentes lugares.
 
@@ -771,7 +771,7 @@ O mais comum é o fluxo implícito.
 
 O mais seguro é o fluxo de código, mas ele é mais complexo para implementar, pois ele necessita mais passos. Como ele é mais complexo, muitos provedores terminam sugerindo o fluxo implícito.
 
-/// note | "Nota"
+/// note | Nota
 
 É comum que cada provedor de autenticação nomeie os seus fluxos de forma diferente, para torná-lo parte de sua marca.
 

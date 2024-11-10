@@ -12,7 +12,7 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 {!../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Observe que `status_code` é um parâmetro do método "decorador" (get, post, etc). Não da sua função de *operação de caminho*, como todos os parâmetros e corpo.
 
@@ -20,7 +20,7 @@ Observe que `status_code` é um parâmetro do método "decorador" (get, post, et
 
 O parâmetro `status_code` recebe um número com o código de status HTTP.
 
-/// info | "Informação"
+/// info | Informação
 
 `status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
@@ -33,7 +33,7 @@ Dessa forma:
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-/// note | "Nota"
+/// note | Nota
 
 Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo.
 
@@ -43,7 +43,7 @@ O FastAPI sabe disso e produzirá documentos OpenAPI informando que não há cor
 
 ## Sobre os códigos de status HTTP
 
-/// note | "Nota"
+/// note | Nota
 
 Se você já sabe o que são códigos de status HTTP, pule para a próxima seção.
 
@@ -67,7 +67,7 @@ Resumidamente:
     * Para erros genéricos do cliente, você pode usar apenas `400`.
 * `500` e acima são para erros do servidor. Você quase nunca os usa diretamente. Quando algo der errado em alguma parte do código do seu aplicativo ou servidor, ele retornará automaticamente um desses códigos de status.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Para saber mais sobre cada código de status e qual código serve para quê, verifique o <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentação sobre códigos de status HTTP</a>.
 
@@ -95,7 +95,7 @@ Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa form
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette import status`.
 
