@@ -9,6 +9,19 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/testing-dependencies.md`. PR [#12647](https://github.com/fastapi/fastapi/pull/12647) by [@AyushSinghal1794](https://github.com/AyushSinghal1794).
+* 📝 Update includes for `docs/en/docs/tutorial/metadata.md`. PR [#12773](https://github.com/fastapi/fastapi/pull/12773) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
+* 📝 Update `docs/en/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#12045](https://github.com/fastapi/fastapi/pull/12045) by [@xuvjso](https://github.com/xuvjso).
+* 📝 Update includes for `docs/en/docs/tutorial/dependencies/global-dependencies.md`. PR [#12653](https://github.com/fastapi/fastapi/pull/12653) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes for `docs/en/docs/tutorial/body-updates.md`. PR [#12712](https://github.com/fastapi/fastapi/pull/12712) by [@davioc](https://github.com/davioc).
+* 📝 Remove mention of Celery in the project generators. PR [#12742](https://github.com/fastapi/fastapi/pull/12742) by [@david-caro](https://github.com/david-caro).
+* 📝 Update includes in `docs/en/docs/tutorial/header-param-models.md`. PR [#12814](https://github.com/fastapi/fastapi/pull/12814) by [@zhaohan-dong](https://github.com/zhaohan-dong).
+* 📝 Update `contributing.md` docs, include note to not translate this page. PR [#12841](https://github.com/fastapi/fastapi/pull/12841) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes in `docs/en/docs/tutorial/request-forms.md`. PR [#12648](https://github.com/fastapi/fastapi/pull/12648) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes in `docs/en/docs/tutorial/request-form-models.md`. PR [#12649](https://github.com/fastapi/fastapi/pull/12649) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
+* 📝 Update includes in `docs/en/docs/tutorial/security/oauth2-jwt.md`. PR [#12650](https://github.com/fastapi/fastapi/pull/12650) by [@OCE1960](https://github.com/OCE1960).
+* 📝 Update includes in `docs/vi/docs/tutorial/first-steps.md`. PR [#12754](https://github.com/fastapi/fastapi/pull/12754) by [@MxPy](https://github.com/MxPy).
+* 📝 Update includes for `docs/pt/docs/advanced/wsgi.md`. PR [#12769](https://github.com/fastapi/fastapi/pull/12769) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#12815](https://github.com/fastapi/fastapi/pull/12815) by [@handabaldeep](https://github.com/handabaldeep).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#12813](https://github.com/fastapi/fastapi/pull/12813) by [@handabaldeep](https://github.com/handabaldeep).
 * ✏️ Fix error in `docs/en/docs/tutorial/middleware.md`. PR [#12819](https://github.com/fastapi/fastapi/pull/12819) by [@alejsdev](https://github.com/alejsdev).
