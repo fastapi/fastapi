@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/en/docs/tutorial/dependencies/global-dependencies.md`. PR [#12653](https://github.com/fastapi/fastapi/pull/12653) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
 * 📝 Update includes for `docs/en/docs/tutorial/body-updates.md`. PR [#12712](https://github.com/fastapi/fastapi/pull/12712) by [@davioc](https://github.com/davioc).
 * 📝 Remove mention of Celery in the project generators. PR [#12742](https://github.com/fastapi/fastapi/pull/12742) by [@david-caro](https://github.com/david-caro).
 * 📝 Update includes in `docs/en/docs/tutorial/header-param-models.md`. PR [#12814](https://github.com/fastapi/fastapi/pull/12814) by [@zhaohan-dong](https://github.com/zhaohan-dong).
