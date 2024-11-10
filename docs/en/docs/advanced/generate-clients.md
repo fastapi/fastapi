@@ -32,21 +32,7 @@ There are also several other companies offering similar services that you can se
 
 Let's start with a simple FastAPI application:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../docs_src/generate_clients/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
 Notice that the *path operations* define the models they use for request payload and response payload, using the models `Item` and `ResponseMessage`.
 
@@ -151,21 +137,7 @@ In many cases your FastAPI app will be bigger, and you will probably use tags to
 
 For example, you could have a section for **items** and another section for **users**, and they could be separated by tags:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="21  26  34"
-{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="23  28  36"
-{!> ../../docs_src/generate_clients/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
 ### Generate a TypeScript Client with Tags
 
@@ -212,21 +184,7 @@ For example, here it is using the first tag (you will probably have only one tag
 
 You can then pass that custom function to **FastAPI** as the `generate_unique_id_function` parameter:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6-7  10"
-{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8-9  12"
-{!> ../../docs_src/generate_clients/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
 ### Generate a TypeScript Client with Custom Operation IDs
 

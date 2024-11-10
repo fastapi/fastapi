@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** 🔌 📚 🛠️ ⚠ ⚙️ 💼, 👥 🔜 👀 ⏭ ❔ ⚙️ 👫.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 ⏭ 🖼, 👆 💪 ⚙️ `from starlette.middleware.something import SomethingMiddleware`.
 
