@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes in `docs/en/docs/advanced/testing-dependencies.md`. PR [#12647](https://github.com/fastapi/fastapi/pull/12647) by [@AyushSinghal1794](https://github.com/AyushSinghal1794).
 * 📝 Update includes for `docs/en/docs/tutorial/metadata.md`. PR [#12773](https://github.com/fastapi/fastapi/pull/12773) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
 * 📝 Update `docs/en/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#12045](https://github.com/fastapi/fastapi/pull/12045) by [@xuvjso](https://github.com/xuvjso).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/global-dependencies.md`. PR [#12653](https://github.com/fastapi/fastapi/pull/12653) by [@vishnuvskvkl](https://github.com/vishnuvskvkl).
