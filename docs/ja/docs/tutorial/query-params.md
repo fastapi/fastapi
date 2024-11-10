@@ -69,7 +69,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
 
-/// check | "確認"
+/// check | 確認
 
 パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
 
@@ -191,7 +191,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`、デフォルト値を `0` とする `int` 。
 * `limit`、オプショナルな `int` 。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 [パスパラメータ](path-params.md#_8){.internal-link target=_blank}と同様に `Enum` を使用できます。
 

@@ -46,7 +46,7 @@ Erstellen Sie in Ihrer **FastAPI**-Anwendung einen `websocket`:
 
 {* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.websockets import WebSocket` verwenden.
 
@@ -140,7 +140,7 @@ Dort können Sie einstellen:
 * Die „Item ID“, die im Pfad verwendet wird.
 * Das „Token“, das als Query-Parameter verwendet wird.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass der Query-„Token“ von einer Abhängigkeit verarbeitet wird.
 
@@ -168,7 +168,7 @@ Das wird die Ausnahme `WebSocketDisconnect` auslösen und alle anderen Clients e
 Client #1596980209979 left the chat
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die obige Anwendung ist ein minimales und einfaches Beispiel, das zeigt, wie Nachrichten verarbeitet und an mehrere WebSocket-Verbindungen gesendet werden.
 
