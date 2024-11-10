@@ -385,7 +385,7 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 ## 協程
 
-**協程**只是 `async def` 函式所回傳的非常特殊的事物名稱。Python 知道它是一個類似函式的東西，可以啟動它，並且在某個時刻它會結束，但它也可能在內部暫停 ⏸，只要遇到 `await`。
+**協程** 只是 `async def` 函式所回傳的非常特殊的事物名稱。Python 知道它是一個類似函式的東西，可以啟動它，並且在某個時刻它會結束，但它也可能在內部暫停 ⏸，只要遇到 `await`。
 
 這種使用 `async` 和 `await` 的非同步程式碼功能通常被概括為「協程」。這與 Go 語言的主要特性「Goroutines」相似。
 
