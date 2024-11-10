@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes for `docs/pt/docs/advanced/wsgi.md`. PR [#12769](https://github.com/fastapi/fastapi/pull/12769) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#12815](https://github.com/fastapi/fastapi/pull/12815) by [@handabaldeep](https://github.com/handabaldeep).
 * 📝 Update includes for `docs/en/docs/tutorial/dependencies/classes-as-dependencies.md`. PR [#12813](https://github.com/fastapi/fastapi/pull/12813) by [@handabaldeep](https://github.com/handabaldeep).
 * ✏️ Fix error in `docs/en/docs/tutorial/middleware.md`. PR [#12819](https://github.com/fastapi/fastapi/pull/12819) by [@alejsdev](https://github.com/alejsdev).
