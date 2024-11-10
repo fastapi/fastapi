@@ -126,7 +126,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82,85] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
 #### About `**user_dict`
 
