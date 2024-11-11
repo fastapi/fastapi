@@ -1,5 +1,5 @@
 # 並行與 async / await
-函數
+
 有關*路徑操作函式*的 `async def` 語法的細節與非同步 (asynchronous) 程式碼、並行 (concurrency) 與平行 (parallelism) 的一些背景知識。
 
 ## 趕時間嗎?
