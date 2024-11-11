@@ -97,8 +97,6 @@ FastAPI에서 `BackgroundTask`를 단독으로 사용하는 것은 여전히 가
 
 RabbitMQ 또는 Redis와 같은 메시지/작업 큐 시스템 보다 복잡한 구성이 필요한 경향이 있지만, 여러 작업 프로세스를 특히 여러 서버의 백그라운드에서 실행할 수 있습니다.
 
-예제를 보시려면 [프로젝트 생성기](../project-generation.md){.internal-link target=\_blank} 를 참고하세요. 해당 예제에는 이미 구성된 `Celery`가 포함되어 있습니다.
-
 그러나 동일한 FastAPI 앱에서 변수 및 개체에 접근해야햐는 작은 백그라운드 수행이 필요한 경우 (예 : 알림 이메일 보내기) 간단하게 `BackgroundTasks`를 사용해보세요.
 
 ## 요약
