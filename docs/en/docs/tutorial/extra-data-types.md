@@ -56,3 +56,7 @@ Here are some of the additional data types you can use:
 Here's an example *path operation* with parameters using some of the above types.
 
 {* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+
+Note that the parameters inside the function have their natural data type, and you can, for example, perform normal date manipulations, like:
+
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
