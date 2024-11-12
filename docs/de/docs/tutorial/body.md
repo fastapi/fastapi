@@ -149,7 +149,7 @@ Aber Sie bekommen die gleiche Editor-Unterstützung in <a href="https://www.jetb
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> als Ihren Editor verwenden, probieren Sie das <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> aus.
 
@@ -233,7 +233,7 @@ Die Funktionsparameter werden wie folgt erkannt:
 * Wenn der Parameter ein **einfacher Typ** ist (wie `int`, `float`, `str`, `bool`, usw.), wird er als **Query**-Parameter interpretiert.
 * Wenn der Parameter vom Typ eines **Pydantic-Modells** ist, wird er als Request**body** interpretiert.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 FastAPI weiß, dass der Wert von `q` nicht erforderlich ist, wegen des definierten Defaultwertes `= None`
 

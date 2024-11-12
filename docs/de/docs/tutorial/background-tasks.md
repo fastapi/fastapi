@@ -83,7 +83,7 @@ Die Verwendung von `BackgroundTasks` funktioniert auch mit dem <abbr title="Einb
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -97,7 +97,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -132,8 +132,6 @@ Weitere Details finden Sie in der <a href="https://www.starlette.io/background/"
 Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nicht unbedingt vom selben Prozess ausgeführt werden müssen (z. B. müssen Sie Speicher, Variablen, usw. nicht gemeinsam nutzen), könnte die Verwendung anderer größerer Tools wie z. B. <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a> von Vorteil sein.
 
 Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrundtasks in mehreren Prozessen und insbesondere auf mehreren Servern.
-
-Um ein Beispiel zu sehen, sehen Sie sich die [Projektgeneratoren](../project-generation.md){.internal-link target=_blank} an. Sie alle enthalten Celery, bereits konfiguriert.
 
 Wenn Sie jedoch über dieselbe **FastAPI**-Anwendung auf Variablen und Objekte zugreifen oder kleine Hintergrundtasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
 

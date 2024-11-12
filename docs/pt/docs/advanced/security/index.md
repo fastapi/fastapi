@@ -4,7 +4,7 @@
 
 Existem algumas funcionalidades adicionais para lidar com segurança além das cobertas em [Tutorial - Guia de Usuário: Segurança](../../tutorial/security/index.md){.internal-link target=_blank}.
 
-/// tip | "Dica"
+/// tip | Dica
 
 As próximas seções **não são necessariamente "avançadas"**.
 
