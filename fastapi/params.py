@@ -105,7 +105,7 @@ class Param(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
+        if tuple(map(int, PYDANTIC_VERSION.split('.'))) < (2, 7, 0):
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
