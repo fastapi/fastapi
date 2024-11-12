@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.5
+
 ### Refactors
 
 * ♻️ Update internal checks to support Pydantic 2.10. PR [#12914](https://github.com/fastapi/fastapi/pull/12914) by [@tiangolo](https://github.com/tiangolo).
