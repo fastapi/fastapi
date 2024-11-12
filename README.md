@@ -519,3 +519,14 @@ For any questions, suggestions, or general inquiries, please feel free to reach 
 
 We encourage you to join our FastAPI community and participate in discussions!
 
+## Acknowledgments
+
+We would like to thank all contributors, users, and supporters of FastAPI. Special thanks go to:
+
+- **Starlette** and **Pydantic** teams, whose libraries serve as the foundation for FastAPI's high performance and data validation.
+- Our community of developers and users who provide invaluable feedback, ideas, and support.
+- Sponsors and open-source contributors for their commitment and dedication.
+
+This project would not be possible without your hard work and enthusiasm. Thank you!
+
+
