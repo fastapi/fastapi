@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Update internal checks to support Pydantic 2.10. PR [#12914](https://github.com/fastapi/fastapi/pull/12914) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Update includes for `docs/en/docs/tutorial/body.md`. PR [#12757](https://github.com/fastapi/fastapi/pull/12757) by [@gsheni](https://github.com/gsheni).
