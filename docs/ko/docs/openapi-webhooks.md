@@ -48,7 +48,7 @@ API **사용자**에게 특정 **이벤트**가 발생할 때 *그들*의 앱(�
 
 ### 문서 확인하기
 
-이제 앱을 시작하고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 이동해 보세요.
+이제 앱을 시작하고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 이동해 봅시다.
 
 문서에서 기존 *경로 작업*뿐만 아니라 **웹훅**도 표시된 것을 확인할 수 있습니다:
 
