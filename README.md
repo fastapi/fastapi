@@ -528,5 +528,3 @@ We would like to thank all contributors, users, and supporters of FastAPI. Speci
 - Sponsors and open-source contributors for their commitment and dedication.
 
 This project would not be possible without your hard work and enthusiasm. Thank you!
-
-
