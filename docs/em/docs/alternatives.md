@@ -36,7 +36,7 @@
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 ✔️ 🏧 🛠️ 🧾 🕸 👩‍💻 🔢.
 
@@ -56,7 +56,7 @@
 
 👐 🦁 🏺, ⚫️ 😑 💖 👍 🏏 🏗 🔗. ⏭ 👜 🔎 "✳ 🎂 🛠️" 🏺.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 ◾-🛠️. ⚒ ⚫️ ⏩ 🌀 &amp; 🏏 🧰 &amp; 🍕 💪.
 
@@ -98,7 +98,7 @@ def read_url():
 
 👀 🔀 `requests.get(...)` &amp; `@app.get(...)`.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 * ✔️ 🙅 &amp; 🏋️ 🛠️.
 * ⚙️ 🇺🇸🔍 👩‍🔬 📛 (🛠️) 🔗, 🎯 &amp; 🏋️ 🌌.
@@ -118,7 +118,7 @@ def read_url():
 
 👈 ⚫️❔ 🕐❔ 💬 🔃 ⏬ 2️⃣.0️⃣ ⚫️ ⚠ 💬 "🦁", &amp; ⏬ 3️⃣ ➕ "🗄".
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🛠️ &amp; ⚙️ 📂 🐩 🛠️ 🔧, ↩️ 🛃 🔗.
 
@@ -147,7 +147,7 @@ def read_url():
 
 ✋️ ⚫️ ✍ ⏭ 📤 🔀 🐍 🆎 🔑. , 🔬 🔠 <abbr title="the definition of how data should be formed">🔗</abbr> 👆 💪 ⚙️ 🎯 🇨🇻 &amp; 🎓 🚚 🍭.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 ⚙️ 📟 🔬 "🔗" 👈 🚚 💽 🆎 &amp; 🔬, 🔁.
 
@@ -169,7 +169,7 @@ Webarg ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 ✔️ 🏧 🔬 📨 📨 💽.
 
@@ -199,7 +199,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🐕‍🦺 📂 🐩 🛠️, 🗄.
 
@@ -231,7 +231,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🏗 🗄 🔗 🔁, ⚪️➡️ 🎏 📟 👈 🔬 🛠️ &amp; 🔬.
 
@@ -251,7 +251,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ⚫️ 💪 🚫 🍵 🔁 🏷 📶 👍. , 🚥 🎻 💪 📨 🎻 🎚 👈 ✔️ 🔘 🏑 👈 🔄 🐦 🎻 🎚, ⚫️ 🚫🔜 ☑ 📄 &amp; ✔.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 ⚙️ 🐍 🆎 ✔️ 👑 👨‍🎨 🐕‍🦺.
 
@@ -263,7 +263,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ⚫️ 🕐 🥇 📶 ⏩ 🐍 🛠️ ⚓️ 🔛 `asyncio`. ⚫️ ⚒ 📶 🎏 🏺.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 ⚫️ ⚙️ <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> ↩️ 🔢 🐍 `asyncio` ➰. 👈 ⚫️❔ ⚒ ⚫️ ⏩.
 
@@ -271,7 +271,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🔎 🌌 ✔️ 😜 🎭.
 
@@ -287,7 +287,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 , 💽 🔬, 🛠️, &amp; 🧾, ✔️ ⌛ 📟, 🚫 🔁. ⚖️ 👫 ✔️ 🛠️ 🛠️ 🔛 🔝 🦅, 💖 🤗. 👉 🎏 🔺 🔨 🎏 🛠️ 👈 😮 🦅 🔧, ✔️ 1️⃣ 📨 🎚 &amp; 1️⃣ 📨 🎚 🔢.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🔎 🌌 🤚 👑 🎭.
 
@@ -313,7 +313,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 🛣 📣 👁 🥉, ⚙️ 🔢 📣 🎏 🥉 (↩️ ⚙️ 👨‍🎨 👈 💪 🥉 ▶️️ 🔛 🔝 🔢 👈 🍵 🔗). 👉 🔐 ❔ ✳ 🔨 ⚫️ 🌘 ❔ 🏺 (&amp; 💃) 🔨 ⚫️. ⚫️ 🎏 📟 👜 👈 📶 😆 🔗.
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🔬 ➕ 🔬 💽 🆎 ⚙️ "🔢" 💲 🏷 🔢. 👉 📉 👨‍🎨 🐕‍🦺, &amp; ⚫️ 🚫 💪 Pydantic ⏭.
 
@@ -321,7 +321,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">🤗</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">🤗</a>
 
 🤗 🕐 🥇 🛠️ 🛠️ 📄 🛠️ 🔢 🆎 ⚙️ 🐍 🆎 🔑. 👉 👑 💭 👈 😮 🎏 🧰 🎏.
 
@@ -341,7 +341,7 @@ APISpec ✍ 🎏 🍭 👩‍💻.
 
 ///
 
-/// check | "💭 😮 **FastAPI**"
+/// check | 💭 😮 **FastAPI**
 
 🤗 😮 🍕 APIStar, &amp; 1️⃣ 🧰 👤 🔎 🏆 👍, 🌟 APIStar.
 
@@ -385,7 +385,7 @@ APIStar ✍ ✡ 🇺🇸🏛. 🎏 👨 👈 ✍:
 
 ///
 
-/// check | "😮 **FastAPI** "
+/// check | 😮 **FastAPI**
 
 🔀.
 
@@ -409,7 +409,7 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 ⚫️ ⭐ 🍭. 👐 ⚫️ ⏩ 🌘 🍭 📇. &amp; ⚫️ ⚓️ 🔛 🎏 🐍 🆎 🔑, 👨‍🎨 🐕‍🦺 👑.
 
-/// check | "**FastAPI** ⚙️ ⚫️"
+/// check | **FastAPI** ⚙️ ⚫️
 
 🍵 🌐 💽 🔬, 💽 🛠️ &amp; 🏧 🏷 🧾 (⚓️ 🔛 🎻 🔗).
 
@@ -444,7 +444,7 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 👈 1️⃣ 👑 👜 👈 **FastAPI** 🚮 🔛 🔝, 🌐 ⚓️ 🔛 🐍 🆎 🔑 (⚙️ Pydantic). 👈, ➕ 🔗 💉 ⚙️, 💂‍♂ 🚙, 🗄 🔗 ⚡, ♒️.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 🔫 🆕 "🐩" ➖ 🛠️ ✳ 🐚 🏉 👨‍🎓. ⚫️ 🚫 "🐍 🐩" (🇩🇬), 👐 👫 🛠️ 🔨 👈.
 
@@ -452,7 +452,7 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 ///
 
-/// check | "**FastAPI** ⚙️ ⚫️"
+/// check | **FastAPI** ⚙️ ⚫️
 
 🍵 🌐 🐚 🕸 🍕. ❎ ⚒ 🔛 🔝.
 
@@ -470,7 +470,7 @@ Uvicorn 🌩-⏩ 🔫 💽, 🏗 🔛 uvloop &amp; httptool.
 
 ⚫️ 👍 💽 💃 &amp; **FastAPI**.
 
-/// check | "**FastAPI** 👍 ⚫️"
+/// check | **FastAPI** 👍 ⚫️
 
 👑 🕸 💽 🏃 **FastAPI** 🈸.
 

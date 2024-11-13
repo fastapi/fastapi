@@ -4,13 +4,13 @@ O FastAPI possui suporte para dependências que realizam <abbr title='também ch
 
 Para fazer isso, utilize `yield` em vez de `return`, e escreva os passos extras (código) depois.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Garanta que `yield` é utilizado apenas uma vez.
 
 ///
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Qualquer função que possa ser utilizada com:
 
@@ -30,22 +30,22 @@ Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dado
 Apenas o código anterior a declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta.
 
 ```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências.
 
 ```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 O código após o `yield` é executado após a resposta ser entregue:
 
 ```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você pode usar funções assíncronas (`async`) ou funções comuns.
 
@@ -64,7 +64,7 @@ Então, você pode procurar por essa exceção específica dentro da dependênci
 Da mesma forma, você pode utilizar `finally` para garantir que os passos de saída são executados, com ou sem exceções.
 
 ```python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
+{!../../docs_src/dependencies/tutorial007.py!}
 ```
 
 ## Subdependências com `yield`
@@ -78,7 +78,7 @@ Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` de
 //// tab | python 3.9+
 
 ```python hl_lines="6  14  22"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -86,21 +86,21 @@ Por exemplo, `dependency_c` pode depender de `dependency_b`, e `dependency_b` de
 //// tab | python 3.8+
 
 ```python hl_lines="5  13  21"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
 
 //// tab | python 3.8+ non-annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
 ///
 
 ```python hl_lines="4  12  20"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -114,7 +114,7 @@ E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeada
 //// tab | python 3.9+
 
 ```python hl_lines="18-19  26-27"
-{!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
 ```
 
 ////
@@ -122,21 +122,21 @@ E, por outro lado, `dependency_b` precisa que o valor de `dependency_a` (nomeada
 //// tab | python 3.8+
 
 ```python hl_lines="17-18  25-26"
-{!> ../../../docs_src/dependencies/tutorial008_an.py!}
+{!> ../../docs_src/dependencies/tutorial008_an.py!}
 ```
 
 ////
 
 //// tab | python 3.8+ non-annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
 ///
 
 ```python hl_lines="16-17  24-25"
-{!> ../../../docs_src/dependencies/tutorial008.py!}
+{!> ../../docs_src/dependencies/tutorial008.py!}
 ```
 
 ////
@@ -149,7 +149,7 @@ Você pode ter qualquer combinação de dependências que você quiser.
 
 O **FastAPI** se encarrega de executá-las na ordem certa.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Tudo isso funciona graças aos <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">gerenciadores de contexto</a> do Python.
 
@@ -163,7 +163,7 @@ Você viu que dependências podem ser utilizadas com `yield` e podem incluir blo
 
 Da mesma forma, você pode lançar uma `httpexception` ou algo parecido no código de saída, após o `yield`
 
-/// tip | "Dica"
+/// tip | Dica
 
 Essa é uma técnica relativamente avançada, e na maioria dos casos você não precisa dela totalmente, já que você pode lançar exceções (incluindo `httpexception`) dentro do resto do código da sua aplicação, por exemplo, em uma *função de operação de rota*.
 
@@ -174,7 +174,7 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 //// tab | python 3.9+
 
 ```python hl_lines="18-22  31"
-{!> ../../../docs_src/dependencies/tutorial008b_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
 ```
 
 ////
@@ -182,21 +182,21 @@ Mas ela existe para ser utilizada caso você precise. 🤓
 //// tab | python 3.8+
 
 ```python hl_lines="17-21  30"
-{!> ../../../docs_src/dependencies/tutorial008b_an.py!}
+{!> ../../docs_src/dependencies/tutorial008b_an.py!}
 ```
 
 ////
 
 //// tab | python 3.8+ non-annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
 ///
 
 ```python hl_lines="16-20  29"
-{!> ../../../docs_src/dependencies/tutorial008b.py!}
+{!> ../../docs_src/dependencies/tutorial008b.py!}
 ```
 
 ////
@@ -210,7 +210,7 @@ Se você capturar uma exceção com `except` em uma dependência que utilize `yi
 //// tab | Python 3.9+
 
 ```Python hl_lines="15-16"
-{!> ../../../docs_src/dependencies/tutorial008c_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
 ```
 
 ////
@@ -218,21 +218,21 @@ Se você capturar uma exceção com `except` em uma dependência que utilize `yi
 //// tab | Python 3.8+
 
 ```Python hl_lines="14-15"
-{!> ../../../docs_src/dependencies/tutorial008c_an.py!}
+{!> ../../docs_src/dependencies/tutorial008c_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-annotated
 
-/// tip | "dica"
+/// tip | dica
 
 utilize a versão com `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="13-14"
-{!> ../../../docs_src/dependencies/tutorial008c.py!}
+{!> ../../docs_src/dependencies/tutorial008c.py!}
 ```
 
 ////
@@ -248,7 +248,7 @@ Você pode relançar a mesma exceção utilizando `raise`:
 //// tab | Python 3.9+
 
 ```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial008d_an_py39.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
 ```
 
 ////
@@ -256,21 +256,21 @@ Você pode relançar a mesma exceção utilizando `raise`:
 //// tab | Python 3.8+
 
 ```Python hl_lines="16"
-{!> ../../../docs_src/dependencies/tutorial008d_an.py!}
+{!> ../../docs_src/dependencies/tutorial008d_an.py!}
 ```
 
 ////
 
 //// tab | python 3.8+ non-annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="15"
-{!> ../../../docs_src/dependencies/tutorial008d.py!}
+{!> ../../docs_src/dependencies/tutorial008d.py!}
 ```
 
 ////
@@ -316,7 +316,7 @@ participant tasks as Tarefas de Background
     end
 ```
 
-/// info | "Informação"
+/// info | Informação
 
 Apenas **uma resposta** será enviada para o cliente. Ela pode ser uma das respostas de erro, ou então a resposta da *operação de rota*.
 
@@ -324,7 +324,7 @@ Após uma dessas respostas ser enviada, nenhuma outra resposta pode ser enviada
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Esse diagrama mostra `HttpException`, mas você pode levantar qualquer outra exceção que você capture em uma dependência com `yield` ou um [Manipulador de exceções personalizado](../handling-errors.md#instalando-manipuladores-de-excecoes-customizados){.internal-link target=_blank}.
 
@@ -334,7 +334,7 @@ Se você lançar qualquer exceção, ela será passada para as dependências com
 
 ## Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Você provavelmente não precisa desses detalhes técnicos, você pode pular essa seção e continuar na próxima seção abaixo.
 
@@ -356,7 +356,7 @@ Isso foi implementado dessa forma principalmente para permitir que os mesmos obj
 
 Ainda assim, como isso exigiria esperar que a resposta navegasse pela rede enquanto mantia ativo um recurso desnecessário na dependência com yield (por exemplo, uma conexão com banco de dados), isso mudou na versão 0.106.0 do FastAPI.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Adicionalmente, uma tarefa de background é, normalmente, um conjunto de lógicas independentes que devem ser manipuladas separadamente, com seus próprios recursos (e.g. sua própria conexão com banco de dados).
 
@@ -390,7 +390,7 @@ Quando você cria uma dependência com `yield`, o **FastAPI** irá criar um gere
 
 ### Utilizando gerenciadores de contexto em dependências com `yield`
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Isso é uma ideia mais ou menos "avançada".
 
@@ -403,10 +403,10 @@ Em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar `with` ou `async with` dentro da função da dependência:
 
 ```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
+{!../../docs_src/dependencies/tutorial010.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Outra forma de criar um gerenciador de contexto é utilizando:
 

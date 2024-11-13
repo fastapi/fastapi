@@ -16,7 +16,7 @@
 🥇, 🗄 `BackgroundTasks` &amp; 🔬 🔢 👆 *➡ 🛠️ 🔢* ⏮️ 🆎 📄 `BackgroundTasks`:
 
 ```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 **FastAPI** 🔜 ✍ 🎚 🆎 `BackgroundTasks` 👆 &amp; 🚶‍♀️ ⚫️ 👈 🔢.
@@ -34,7 +34,7 @@
 &amp; ✍ 🛠️ 🚫 ⚙️ `async` &amp; `await`, 👥 🔬 🔢 ⏮️ 😐 `def`:
 
 ```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 ## 🚮 🖥 📋
@@ -42,7 +42,7 @@
 🔘 👆 *➡ 🛠️ 🔢*, 🚶‍♀️ 👆 📋 🔢 *🖥 📋* 🎚 ⏮️ 👩‍🔬 `.add_task()`:
 
 ```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
+{!../../docs_src/background_tasks/tutorial001.py!}
 ```
 
 `.add_task()` 📨 ❌:
@@ -60,7 +60,7 @@
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
 ```Python hl_lines="13  15  22  25"
-{!> ../../../docs_src/background_tasks/tutorial002.py!}
+{!> ../../docs_src/background_tasks/tutorial002.py!}
 ```
 
 ////
@@ -68,7 +68,7 @@
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
 ```Python hl_lines="11  13  20  23"
-{!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
 ```
 
 ////
@@ -96,8 +96,6 @@
 🚥 👆 💪 🎭 🏋️ 🖥 📊 &amp; 👆 🚫 🎯 💪 ⚫️ 🏃 🎏 🛠️ (🖼, 👆 🚫 💪 💰 💾, 🔢, ♒️), 👆 💪 💰 ⚪️➡️ ⚙️ 🎏 🦏 🧰 💖 <a href="https://docs.celeryq.dev" class="external-link" target="_blank">🥒</a>.
 
 👫 😑 🚚 🌖 🏗 📳, 📧/👨‍🏭 📤 👨‍💼, 💖 ✳ ⚖️ ✳, ✋️ 👫 ✔ 👆 🏃 🖥 📋 💗 🛠️, &amp; ✴️, 💗 💽.
-
-👀 🖼, ✅ [🏗 🚂](../project-generation.md){.internal-link target=_blank}, 👫 🌐 🔌 🥒 ⏪ 📶.
 
 ✋️ 🚥 👆 💪 🔐 🔢 &amp; 🎚 ⚪️➡️ 🎏 **FastAPI** 📱, ⚖️ 👆 💪 🎭 🤪 🖥 📋 (💖 📨 📧 📨), 👆 💪 🎯 ⚙️ `BackgroundTasks`.
 

@@ -31,7 +31,7 @@ E então o **FastAPI** chamará a sobreposição no lugar da dependência origin
 //// tab | Python 3.10+
 
 ```Python hl_lines="26-27  30"
-{!> ../../../docs_src/dependency_testing/tutorial001_an_py310.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an_py310.py!}
 ```
 
 ////
@@ -39,7 +39,7 @@ E então o **FastAPI** chamará a sobreposição no lugar da dependência origin
 //// tab | Python 3.9+
 
 ```Python hl_lines="28-29  32"
-{!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an_py39.py!}
 ```
 
 ////
@@ -47,40 +47,40 @@ E então o **FastAPI** chamará a sobreposição no lugar da dependência origin
 //// tab | Python 3.8+
 
 ```Python hl_lines="29-30  33"
-{!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_an.py!}
 ```
 
 ////
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="24-25  28"
-{!> ../../../docs_src/dependency_testing/tutorial001_py310.py!}
+{!> ../../docs_src/dependency_testing/tutorial001_py310.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira utilizar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="28-29  32"
-{!> ../../../docs_src/dependency_testing/tutorial001.py!}
+{!> ../../docs_src/dependency_testing/tutorial001.py!}
 ```
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você pode definir uma sobreposição de dependência para uma dependência que é utilizada em qualquer lugar da sua aplicação **FastAPI**.
 
@@ -96,7 +96,7 @@ E então você pode redefinir as suas sobreposições (removê-las) definindo o 
 app.dependency_overrides = {}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você quer sobrepor uma dependência apenas para alguns testes, você pode definir a sobreposição no início do testes (dentro da função de teste) e reiniciá-la ao final (no final da função de teste).
 
