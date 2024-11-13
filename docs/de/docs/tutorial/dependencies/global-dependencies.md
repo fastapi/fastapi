@@ -24,7 +24,7 @@ In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
