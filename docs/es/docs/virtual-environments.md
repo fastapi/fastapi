@@ -619,7 +619,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-Esos comandos crearán o modificarán algunas [variables de entorno](environment-variables.md){.internal-link target=_blank}que estarán disponibles para los siguientes comandos.
+Esos comandos crearán o modificarán algunas [variables de entorno](environment-variables.md){.internal-link target=_blank} que estarán disponibles para los siguientes comandos.
 
 Una de esas variables es la variable `PATH`.
 
