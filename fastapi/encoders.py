@@ -49,7 +49,8 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     >>> decimal_encoder(Decimal("1"))
     1
     """
-    if dec_value.as_tuple().exponent >= 0:  # type: ignore[operator]
+    exponent = dec_value.as_tuple().exponent
+    if isinstance(exponent, int) and exponent >= 0:  # type: ignore[operator]
         return int(dec_value)
     else:
         return float(dec_value)
