@@ -318,7 +318,7 @@ Eles podem ser uma lista (`[]`), um `float` de `10.5`, etc.
 
 ### `response_model_include` e `response_model_exclude`
 
-Você também pode usar os parâmetros `response_model_include` e `response_model_exclude` do *path operation decorator*. 
+Você também pode usar os parâmetros `response_model_include` e `response_model_exclude` do *path operation decorator*.
 
 Eles pegam um `set` de `str` com o nome dos atributos para incluir (omitindo o resto) ou para excluir (incluindo o resto).
 
