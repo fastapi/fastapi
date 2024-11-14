@@ -284,7 +284,7 @@ Así, ese comando creará un fichero `.gitignore` con el siguiente contenido:
 
 ## Instala Paquetes
 
-Después de activar el entorno, puedes instalar paquetes en él.
+Después de activar el entorno, puedes instalar paquetes dentro de él.
 
 /// tip
 
