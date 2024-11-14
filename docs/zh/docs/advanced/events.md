@@ -90,7 +90,7 @@ async with lifespan(app):
 
 ## 替代事件（弃用）
 
-/// warning | "警告"
+/// warning | 警告
 
 配置**启动**和**关闭**事件的推荐方法是使用 `FastAPI()` 应用的 `lifespan` 参数，如前所示。如果你提供了一个 `lifespan` 参数，启动（`startup`）和关闭（`shutdown`）事件处理器将不再生效。要么使用 `lifespan`，要么配置所有事件，两者不能共用。
 
@@ -128,13 +128,13 @@ async with lifespan(app):
 
 此处，`shutdown` 事件处理器函数在 `log.txt` 中写入一行文本 `Application shutdown`。
 
-/// info | "说明"
+/// info | 说明
 
 `open()` 函数中，`mode="a"` 指的是**追加**。因此这行文本会添加在文件已有内容之后，不会覆盖之前的内容。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 注意，本例使用 Python `open()` 标准函数与文件交互。
 
@@ -160,9 +160,9 @@ async with lifespan(app):
 
 在底层，这部分是<a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">生命周期协议</a>的一部分，参见 ASGI 技术规范，定义了称为启动（`startup`）和关闭（`shutdown`）的事件。
 
-/// info | "说明"
+/// info | 说明
 
-有关事件处理器的详情，请参阅 <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
+有关事件处理器的详情，请参阅 <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
 
 包括如何处理生命周期状态，这可以用于程序的其他部分。
 

@@ -24,7 +24,7 @@ JSON Schemaの追加情報を宣言する方法はいくつかあります。
 {!../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
-/// warning | "注意"
+/// warning | 注意
 
 これらの追加引数が渡されても、文書化のためのバリデーションは追加されず、注釈だけが追加されることを覚えておいてください。
 

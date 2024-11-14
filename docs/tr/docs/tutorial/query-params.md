@@ -81,7 +81,7 @@ Aynı şekilde, varsayılan değerlerini `None` olarak atayarak isteğe bağlı 
 
 Bu durumda, `q` fonksiyon parametresi isteğe bağlı olacak ve varsayılan değer olarak `None` alacaktır.
 
-/// check | "Ek bilgi"
+/// check | Ek bilgi
 
 Ayrıca, dikkatinizi çekerim ki; **FastAPI**, `item_id` parametresinin bir yol parametresi olduğunu ve `q` parametresinin yol değil bir sorgu parametresi olduğunu fark edecek kadar beceriklidir.
 
@@ -242,7 +242,7 @@ Bu durumda, 3 tane sorgu parametresi var olacaktır:
 * `skip`, varsayılan değeri `0` olan bir `int`.
 * `limit`, isteğe bağlı bir `int`.
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Ayrıca, [Yol Parametrelerinde](path-params.md#on-tanml-degerler){.internal-link target=_blank} de kullanıldığı şekilde `Enum` sınıfından faydalanabilirsiniz.
 

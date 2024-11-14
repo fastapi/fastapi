@@ -38,7 +38,7 @@ Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir 
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird unmittelbar vor dem *Herunterfahren* ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das *Herunterfahren* würde erfolgen, wenn Sie die Anwendung **stoppen**.
 
@@ -94,7 +94,7 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 
 ## Alternative Events (deprecated)
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben. Wenn Sie einen `lifespan`-Parameter übergeben, werden die `startup`- und `shutdown`-Eventhandler nicht mehr aufgerufen. Es ist entweder alles `lifespan` oder alles Events, nicht beides.
 
@@ -138,7 +138,7 @@ In der Funktion `open()` bedeutet `mode="a"` „append“ („anhängen“), sod
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass wir in diesem Fall eine Standard-Python-Funktion `open()` verwenden, die mit einer Datei interagiert.
 

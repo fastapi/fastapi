@@ -32,7 +32,7 @@ Es sollte eine `list`e von `Depends()` sein:
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -46,7 +46,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
 
@@ -90,7 +90,7 @@ Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhä
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -124,7 +124,7 @@ Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeit
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -160,7 +160,7 @@ Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Si
 
 //// tab | Python 3.8 nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
