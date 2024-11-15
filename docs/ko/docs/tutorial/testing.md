@@ -2,7 +2,7 @@
 
 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 를 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
 
-Starlette는 <a href="https://www.python-httpx.org\" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다. 
+Starlette는 <a href="https://www.python-httpx.org\" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
 
 이를 사용하면 FastAPI에서 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a>를 직접 사용할 수 있습니다.
 
@@ -117,7 +117,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 │   └── test_main.py
 ```
 
-이제는 **FastAPI** 인스턴스를 가진 `main.py` 파일에 몇몇의 다른 **경로 작동** 을 가진 경우를 생각해봅시다.  
+이제는 **FastAPI** 인스턴스를 가진 `main.py` 파일에 몇몇의 다른 **경로 작동** 을 가진 경우를 생각해봅시다.
 
 단일 에러를 반환할 수도 있는 `GET` 작동이 있습니다.
 
