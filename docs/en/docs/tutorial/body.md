@@ -126,7 +126,7 @@ It improves editor support for Pydantic models, with:
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-{!> ../../docs_src/body/tutorial002_py310.py!}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
 ## Request body + path parameters
 
