@@ -421,7 +421,7 @@ De esta manera, cuando ejecutas `python` no se ejecutará desde ese entorno virt
 
 ## Preparado para Trabajar
 
-Ahora estás preparado para comennzar a trabajar en tu proyecto.
+Ahora estás preparado para comenzar a trabajar en tu proyecto.
 
 
 
