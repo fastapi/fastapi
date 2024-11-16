@@ -222,7 +222,6 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     return fields_to_extract
 
 
-
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     path_params = _get_flat_fields_from_params(flat_dependant.path_params)
@@ -754,10 +753,14 @@ def request_params_to_args(
     fields_to_extract = fields
     params_to_process: Dict[str, Any] = {}
 
-    model_fields = [field for field in fields if lenient_issubclass(field.type_, BaseModel)]
+    model_fields = [
+        field for field in fields if lenient_issubclass(field.type_, BaseModel)
+    ]
     if model_fields:
         fields_to_extract = [
-            cached_field for field in fields for cached_field in get_cached_model_fields(field.type_)
+            cached_field
+            for field in fields
+            for cached_field in get_cached_model_fields(field.type_)
         ]
 
     processed_keys = set()
