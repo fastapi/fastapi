@@ -2,7 +2,7 @@
 
 ## OpenAPI operationId
 
-/// warning | "注意"
+/// warning | 注意
 
 あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
 
@@ -26,13 +26,13 @@ APIの関数名を `operationId` として利用したい場合、すべてのAP
 {!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `app.openapi()` を手動でコールする場合、その前に`operationId`を更新する必要があります。
 
 ///
 
-/// warning | "注意"
+/// warning | 注意
 
 この方法をとる場合、各 *path operation関数* が一意な名前である必要があります。
 

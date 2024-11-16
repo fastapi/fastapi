@@ -20,7 +20,7 @@
 {!../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
-/// note | "備考"
+/// note | 備考
 
 パスの一部でなければならないので、パスパラメータは常に必須です。
 
@@ -108,7 +108,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 * `lt`: より小さい（`l`ess `t`han）
 * `le`: 以下（`l`ess than or `e`qual）
 
-/// info | "情報"
+/// info | 情報
 
 `Query`、`Path`などは後に共通の`Param`クラスのサブクラスを見ることになります。（使う必要はありません）
 
@@ -116,7 +116,7 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `fastapi`から`Query`、`Path`などをインポートすると、これらは実際には関数です。
 

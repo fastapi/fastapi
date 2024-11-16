@@ -22,7 +22,7 @@ Sie können diese wie folgt setzen:
 {!../../docs_src/metadata/tutorial001.py!}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können Markdown in das Feld `description` schreiben und es wird in der Ausgabe gerendert.
 
@@ -68,7 +68,7 @@ Erstellen Sie Metadaten für Ihre Tags und übergeben Sie sie an den Parameter `
 
 Beachten Sie, dass Sie Markdown in den Beschreibungen verwenden können. Beispielsweise wird „login“ in Fettschrift (**login**) und „fancy“ in Kursivschrift (_fancy_) angezeigt.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie müssen nicht für alle von Ihnen verwendeten Tags Metadaten hinzufügen.
 

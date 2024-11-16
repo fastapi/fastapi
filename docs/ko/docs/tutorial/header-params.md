@@ -20,7 +20,7 @@
 {!../../docs_src/header_params/tutorial001.py!}
 ```
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `Header`는 `Path`, `Query` 및 `Cookie`의 "자매"클래스입니다. 이 역시 동일한 공통 `Param` 클래스를 상속합니다.
 
@@ -28,7 +28,7 @@
 
 ///
 
-/// info | "정보"
+/// info | 정보
 
 헤더를 선언하기 위해서 `Header`를 사용해야 합니다. 그렇지 않으면 해당 매개변수를 쿼리 매개변수로 해석하기 때문입니다.
 
@@ -54,7 +54,7 @@
 {!../../docs_src/header_params/tutorial002.py!}
 ```
 
-/// warning | "경고"
+/// warning | 경고
 
 `convert_underscore`를 `False`로 설정하기 전에, 어떤 HTTP 프록시들과 서버들은 언더스코어가 포함된 헤더 사용을 허락하지 않는다는 것을 명심하십시오.
 
