@@ -257,11 +257,9 @@ Vor Pydantic Version 2 und vor FastAPI Version 0.100.0, war der Name des Paramet
 
 Sie könnten immer noch Code sehen, der den alten Namen verwendet:
 
-//// tab | Python 3.10+ Pydantic v1
+//// tab | Pydantic v1
 
-```Python hl_lines="11"
-{!> ../../docs_src/query_params_str_validations/tutorial004_an_py310_regex.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
 
 ////
 
