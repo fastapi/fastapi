@@ -103,6 +103,6 @@ response = client.get('/')
 /// tip | 팁
 
 테스트에 비동기 함수 호출을 통합할 때 (예: <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB의 MotorClient</a>를 사용할 때) RuntimeError: Task attached to a different loop 오류가 발생한다면, 이벤트 루프가 필요한 객체는 반드시 비동기 함수 내에서만 인스턴스화해야 한다는 점을 주의하세요!
-예를 들어 '@app.on_event("startup") 콜백 내에서 인스턴스화하는 것이 좋습니다.
+예를 들어 `@app.on_event("startup")` 콜백 내에서 인스턴스화하는 것이 좋습니다.
 
 ///
