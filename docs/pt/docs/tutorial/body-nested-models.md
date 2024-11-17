@@ -8,7 +8,6 @@ Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Pytho
 
 {* ../../docs_src/body_nested_models/tutorial001.py hl[14] *}
 
-
 Isso fará com que tags seja uma lista de itens mesmo sem declarar o tipo dos elementos desta lista.
 
 ## Campos do tipo Lista com um parâmetro de tipo
@@ -20,7 +19,6 @@ Mas o Python tem uma maneira específica de declarar listas com tipos internos o
 Primeiramente, importe `List` do módulo `typing` que já vem por padrão no Python:
 
 {* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
 
 ### Declare a `List` com um parâmetro de tipo
 
@@ -44,7 +42,6 @@ Portanto, em nosso exemplo, podemos fazer com que `tags` sejam especificamente u
 
 {* ../../docs_src/body_nested_models/tutorial002.py hl[14] *}
 
-
 ## Tipo "set"
 
 
@@ -56,7 +53,6 @@ Então podemos importar `Set` e declarar `tags` como um `set` de `str`s:
 
 
 {* ../../docs_src/body_nested_models/tutorial003.py hl[1,14] *}
-
 
 Com isso, mesmo que você receba uma requisição contendo dados duplicados, ela será convertida em um conjunto de itens exclusivos.
 
@@ -80,13 +76,11 @@ Por exemplo, nós podemos definir um modelo `Image`:
 
 {* ../../docs_src/body_nested_models/tutorial004.py hl[9:11] *}
 
-
 ### Use o sub-modelo como um tipo
 
 E então podemos usa-lo como o tipo de um atributo:
 
 {* ../../docs_src/body_nested_models/tutorial004.py hl[20] *}
-
 
 Isso significa que o **FastAPI** vai esperar um corpo similar à:
 
@@ -121,7 +115,6 @@ Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declara-l
 
 {* ../../docs_src/body_nested_models/tutorial005.py hl[4,10] *}
 
-
 A string será verificada para se tornar uma URL válida e documentada no esquema JSON/1OpenAPI como tal.
 
 ## Atributos como listas de submodelos
@@ -129,7 +122,6 @@ A string será verificada para se tornar uma URL válida e documentada no esquem
 Você também pode usar modelos Pydantic como subtipos de `list`, `set`, etc:
 
 {* ../../docs_src/body_nested_models/tutorial006.py hl[20] *}
-
 
 Isso vai esperar(converter, validar, documentar, etc) um corpo JSON tal qual:
 
@@ -169,7 +161,6 @@ Você pode definir modelos profundamente aninhados de forma arbitrária:
 
 {* ../../docs_src/body_nested_models/tutorial007.py hl[9,14,20,23,27] *}
 
-
 /// info | informação
 
 Note como `Offer` tem uma lista de `Item`s, que por sua vez possui opcionalmente uma lista `Image`s
@@ -188,7 +179,6 @@ images: List[Image]
 como em:
 
 {* ../../docs_src/body_nested_models/tutorial008.py hl[15] *}
-
 
 ## Suporte de editor em todo canto
 
@@ -219,7 +209,6 @@ Outro caso útil é quando você deseja ter chaves de outro tipo, por exemplo, `
 Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com valores `float`:
 
 {* ../../docs_src/body_nested_models/tutorial009.py hl[9] *}
-
 
 /// tip | Dica
 

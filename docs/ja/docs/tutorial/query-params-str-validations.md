@@ -6,7 +6,6 @@
 
 {* ../../docs_src/query_params_str_validations/tutorial001.py hl[9] *}
 
-
 クエリパラメータ `q` は `Optional[str]` 型で、`None` を許容する `str` 型を意味しており、デフォルトは `None` です。そのため、FastAPIはそれが必須ではないと理解します。
 
 /// note | 備考
@@ -27,13 +26,11 @@ FastAPIは、 `q` はデフォルト値が `=None` であるため、必須で�
 
 {* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *}
 
-
 ## デフォルト値として`Query`を使用
 
 パラメータのデフォルト値として使用し、パラメータ`max_length`を50に設定します:
 
 {* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
-
 
 デフォルト値`None`を`Query(default=None)`に置き換える必要があるので、`Query`の最初の引数はデフォルト値を定義するのと同じです。
 
@@ -85,13 +82,11 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 {* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
-
 ## 正規表現の追加
 
 パラメータが一致するべき<abbr title="正規表現とは、文字列の検索パターンを定義する文字列です。">正規表現</abbr>を定義することができます:
 
 {* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
-
 
 この特定の正規表現は受け取ったパラメータの値をチェックします:
 
@@ -110,7 +105,6 @@ q: Union[str, None] = Query(default=None, max_length=50)
 クエリパラメータ`q`の`min_length`を`3`とし、デフォルト値を`fixedquery`としてみましょう:
 
 {* ../../docs_src/query_params_str_validations/tutorial005.py hl[7] *}
-
 
 /// note | 備考
 
@@ -142,7 +136,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-
 /// info | 情報
 
 これまで`...`を見たことがない方へ: これは特殊な単一値です。<a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Pythonの一部であり、"Ellipsis"と呼ばれています</a>。
@@ -158,7 +151,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 例えば、URL内に複数回出現するクエリパラメータ`q`を宣言するには以下のように書きます:
 
 {* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
-
 
 そしてURLは以下です:
 
@@ -195,7 +187,6 @@ http://localhost:8000/items/?q=foo&q=bar
 
 {* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
-
 以下のURLを開くと:
 
 ```
@@ -218,7 +209,6 @@ http://localhost:8000/items/
 `List[str]`の代わりに直接`list`を使うこともできます:
 
 {* ../../docs_src/query_params_str_validations/tutorial013.py hl[7] *}
-
 
 /// note | 備考
 
@@ -246,11 +236,9 @@ http://localhost:8000/items/
 
 {* ../../docs_src/query_params_str_validations/tutorial007.py hl[9] *}
 
-
 `description`を追加できます:
 
 {* ../../docs_src/query_params_str_validations/tutorial008.py hl[13] *}
-
 
 ## エイリアスパラメータ
 
@@ -272,7 +260,6 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 {* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
-
 ## 非推奨パラメータ
 
 さて、このパラメータが気に入らなくなったとしましょう
@@ -282,7 +269,6 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 その場合、`Query`にパラメータ`deprecated=True`を渡します:
 
 {* ../../docs_src/query_params_str_validations/tutorial010.py hl[18] *}
-
 
 ドキュメントは以下のようになります:
 

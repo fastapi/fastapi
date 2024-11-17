@@ -59,13 +59,11 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
-
 ## `TrustedHostMiddleware`
 
 强制所有传入请求都必须正确设置 `Host` 请求头，以防 HTTP 主机头攻击。
 
 {* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
-
 
 支持以下参数：
 
@@ -80,7 +78,6 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 中间件会处理标准响应与流响应。
 
 {* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
-
 
 支持以下参数：
 

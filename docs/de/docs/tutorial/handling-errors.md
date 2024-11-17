@@ -27,7 +27,6 @@ Um HTTP-Responses mit Fehlern zum Client zurückzugeben, verwenden Sie `HTTPExce
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-
 ### Eine `HTTPException` in Ihrem Code auslösen
 
 `HTTPException` ist eine normale Python-<abbr title="Exception – Ausnahme, Fehler: Python-Objekt, das einen Fehler nebst Metadaten repräsentiert">Exception</abbr> mit einigen zusätzlichen Daten, die für APIs relevant sind.
@@ -41,7 +40,6 @@ Der Vorteil, eine Exception auszulösen (`raise`), statt sie zurückzugeben (`re
 Im folgenden Beispiel lösen wir, wenn der Client eine ID anfragt, die nicht existiert, eine Exception mit dem Statuscode `404` aus.
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
-
 
 ### Die resultierende Response
 
@@ -81,7 +79,6 @@ Aber falls es in einem fortgeschrittenen Szenario notwendig ist, können Sie ben
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-
 ## Benutzerdefinierte Exceptionhandler definieren
 
 Sie können benutzerdefinierte <abbr title="Exceptionhandler – Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> hinzufügen, mithilfe <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">derselben Werkzeuge für Exceptions von Starlette</a>.
@@ -93,7 +90,6 @@ Und Sie möchten diese Exception global mit FastAPI handhaben.
 Sie könnten einen benutzerdefinierten Exceptionhandler mittels `@app.exception_handler()` hinzufügen:
 
 {* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
-
 
 Wenn Sie nun `/unicorns/yolo` anfragen, `raise`d die *Pfadoperation* eine `UnicornException`.
 
@@ -132,7 +128,6 @@ Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und ve
 Der Exceptionhandler wird einen `Request` und die Exception entgegennehmen.
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
-
 
 Wenn Sie nun `/items/foo` besuchen, erhalten Sie statt des Default-JSON-Errors:
 
@@ -185,7 +180,6 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
-
 /// note | Technische Details
 
 Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
@@ -201,7 +195,6 @@ Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen
 Sie könnten diesen verwenden, während Sie Ihre Anwendung entwickeln, um den Body zu loggen und zu debuggen, ihn zum Benutzer zurückzugeben, usw.
 
 {* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
-
 
 Jetzt versuchen Sie, einen ungültigen Artikel zu senden:
 
@@ -258,6 +251,5 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 Wenn Sie die Exception zusammen mit denselben Default-Exceptionhandlern von **FastAPI** verwenden möchten, können Sie die Default-Exceptionhandler von `fastapi.Exception_handlers` importieren und wiederverwenden:
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
-
 
 In diesem Beispiel `print`en Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht, aber Sie sehen, worauf wir hinauswollen. Sie können mit der Exception etwas machen und dann einfach die Default-Exceptionhandler wiederverwenden.

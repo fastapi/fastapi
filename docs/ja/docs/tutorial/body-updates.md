@@ -8,7 +8,6 @@
 
 {* ../../docs_src/body_updates/tutorial001.py hl[30,31,32,33,34,35] *}
 
-
 既存のデータを置き換えるべきデータを受け取るために`PUT`は使用されます。
 
 ### 置換についての注意
@@ -57,7 +56,6 @@
 
 {* ../../docs_src/body_updates/tutorial002.py hl[34] *}
 
-
 ### Pydanticの`update`パラメータ
 
 ここで、`.copy()`を用いて既存のモデルのコピーを作成し、`update`パラメータに更新するデータを含む`dict`を渡すことができます。
@@ -65,7 +63,6 @@
 `stored_item_model.copy(update=update_data)`のように:
 
 {* ../../docs_src/body_updates/tutorial002.py hl[35] *}
-
 
 ### 部分的更新のまとめ
 
@@ -83,7 +80,6 @@
 * 更新されたモデルを返します。
 
 {* ../../docs_src/body_updates/tutorial002.py hl[30,31,32,33,34,35,36,37] *}
-
 
 /// tip | 豆知識
 

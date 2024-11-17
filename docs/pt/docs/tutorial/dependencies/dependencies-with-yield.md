@@ -31,16 +31,13 @@ Apenas o código anterior a declaração com `yield` e o código contendo essa d
 
 {* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
-
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências.
 
 {* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
-
 O código após o `yield` é executado após a resposta ser entregue:
 
 {* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
-
 
 /// tip | Dica
 
@@ -226,7 +223,6 @@ Utilize a versão com `Annotated` se possível.
 
 {* ../../docs_src/dependencies/tutorial008d.py hl[15] *}
 
-
 ////
 
 Agora o cliente irá receber a mesma resposta *HTTP 500 Internal Server Error*, mas o servidor terá nosso `InternalError` personalizado nos logs. 😎
@@ -357,7 +353,6 @@ Em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar `with` ou `async with` dentro da função da dependência:
 
 {* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
-
 
 /// tip | Dica
 

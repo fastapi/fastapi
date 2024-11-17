@@ -33,7 +33,6 @@ API 的用户 （外部开发者）要在您的 API 内使用 POST 请求创建�
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[10:14,37:54] *}
 
-
 /// tip | 提示
 
 `callback_url` 查询参数使用 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> 类型。
@@ -93,7 +92,6 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[5,26] *}
 
-
 ### 创建回调*路径操作*
 
 创建回调*路径操作*也使用之前创建的 `APIRouter`。
@@ -104,7 +102,6 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 还要声明要返回的响应，例如，`response_model=InvoiceEventReceived`
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[17:19,22:23,29:33] *}
-
 
 回调*路径操作*与常规*路径操作*有两点主要区别：
 
@@ -173,7 +170,6 @@ JSON 请求体包含如下内容：
 现在使用 API *路径操作装饰器*的参数 `callbacks`，从回调路由传递属性 `.routes`（实际上只是路由/路径操作的**列表**）：
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[36] *}
-
 
 /// tip | 提示
 

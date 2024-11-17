@@ -8,7 +8,6 @@ Em seu aplicativo FastAPI, importe e execute `uvicorn` diretamente:
 
 {* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
-
 ### Sobre `__name__ == "__main__"`
 
 O objetivo principal de `__name__ == "__main__"` é ter algum código que seja executado quando seu arquivo for chamado com:

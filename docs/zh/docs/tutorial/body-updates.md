@@ -8,7 +8,6 @@
 
 {* ../../docs_src/body_updates/tutorial001.py hl[30:35] *}
 
-
 `PUT` 用于接收替换现有数据的数据。
 
 ### 关于更新数据的警告
@@ -57,7 +56,6 @@
 
 {* ../../docs_src/body_updates/tutorial002.py hl[34] *}
 
-
 ### 使用 Pydantic 的 `update` 参数
 
 接下来，用 `.copy()` 为已有模型创建调用 `update` 参数的副本，该参数为包含更新数据的 `dict`。
@@ -65,7 +63,6 @@
 例如，`stored_item_model.copy(update=update_data)`：
 
 {* ../../docs_src/body_updates/tutorial002.py hl[35] *}
-
 
 ### 更新部分数据小结
 
@@ -83,7 +80,6 @@
 * 返回更新后的模型。
 
 {* ../../docs_src/body_updates/tutorial002.py hl[30:37] *}
-
 
 /// tip | 提示
 

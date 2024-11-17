@@ -41,11 +41,9 @@ FastAPI 将使用此 `response_model` 来：
 
 {* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
-
 我们正在使用此模型声明输入数据，并使用同一模型声明输出数据：
 
 {* ../../docs_src/response_model/tutorial002.py hl[17:18] *}
-
 
 现在，每当浏览器使用一个密码创建用户时，API 都会在响应中返回相同的密码。
 
@@ -91,7 +89,6 @@ FastAPI 将使用此 `response_model` 来：
 
 {* ../../docs_src/response_model/tutorial004.py hl[11,13:14] *}
 
-
 * `description: Union[str, None] = None` 具有默认值 `None`。
 * `tax: float = 10.5` 具有默认值 `10.5`.
 * `tags: List[str] = []` 具有一个空列表作为默认值： `[]`.
@@ -105,7 +102,6 @@ FastAPI 将使用此 `response_model` 来：
 你可以设置*路径操作装饰器*的 `response_model_exclude_unset=True` 参数：
 
 {* ../../docs_src/response_model/tutorial004.py hl[24] *}
-
 
 然后响应中将不会包含那些默认值，而是仅有实际设置的值。
 
@@ -196,7 +192,6 @@ FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydanti
 
 {* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
-
 /// tip
 
 `{"name", "description"}` 语法创建一个具有这两个值的 `set`。
@@ -210,7 +205,6 @@ FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydanti
 如果你忘记使用 `set` 而是使用 `list` 或 `tuple`，FastAPI 仍会将其转换为 `set` 并且正常工作：
 
 {* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
-
 
 ## 总结
 

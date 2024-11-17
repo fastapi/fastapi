@@ -21,7 +21,6 @@ Copie o exemplo em um arquivo `main.py`:
 
 {* ../../docs_src/security/tutorial001.py *}
 
-
 ## Execute-o
 
 /// info | informação
@@ -136,7 +135,6 @@ Quando nós criamos uma instância da classe `OAuth2PasswordBearer`, nós passam
 
 {* ../../docs_src/security/tutorial001.py hl[6] *}
 
-
 /// tip | Dica
 
 
@@ -178,7 +176,6 @@ Então, pode ser usado com `Depends`.
 Agora você pode passar aquele `oauth2_scheme` em uma dependência com `Depends`.
 
 {* ../../docs_src/security/tutorial001.py hl[10] *}
-
 
 Esse dependência vai fornecer uma `str` que é atribuído ao parâmetro `token da *função do path operation*
 

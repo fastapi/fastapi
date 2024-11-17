@@ -54,7 +54,6 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 {* ../../docs_src/security/tutorial003.py hl[4,76] *}
 
-
 `OAuth2PasswordRequestForm` 是用以下几项内容声明表单请求体的类依赖项：
 
 * `username`
@@ -103,7 +102,6 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 {* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
 
-
 ### 校验密码
 
 至此，我们已经从数据库中获取了用户数据，但尚未校验密码。
@@ -129,7 +127,6 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 这样一来，窃贼就无法在其它应用中使用窃取的密码，要知道，很多用户在所有系统中都使用相同的密码，风险超大。
 
 {* ../../docs_src/security/tutorial003.py hl[80:83] *}
-
 
 #### 关于 `**user_dict`
 
@@ -173,7 +170,6 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003.py hl[85] *}
 
-
 /// tip | 提示
 
 按规范的要求，应像本示例一样，返回带有 `access_token` 和 `token_type` 的 JSON 对象。
@@ -199,7 +195,6 @@ UserInDB(
 因此，在端点中，只有当用户存在、通过身份验证、且状态为激活时，才能获得该用户：
 
 {* ../../docs_src/security/tutorial003.py hl[58:67,69:72,90] *}
-
 
 /// info | 说明
 

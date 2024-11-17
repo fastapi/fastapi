@@ -176,7 +176,6 @@ Der häufigste Anwendungsfall ist, wenn Sie [eine Response direkt zurückgeben, 
 
 {* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
-
 Dieser einfache Anwendungsfall wird automatisch von FastAPI gehandhabt, weil die Annotation des Rückgabetyps die Klasse (oder eine Unterklasse von) `Response` ist.
 
 Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `JSONResponse` Unterklassen von `Response` sind, die Typannotation ist daher korrekt.
@@ -186,7 +185,6 @@ Und Tools werden auch glücklich sein, weil sowohl `RedirectResponse` als auch `
 Sie können auch eine Unterklasse von `Response` in der Typannotation verwenden.
 
 {* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
-
 
 Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `Response` ist, und FastAPI sich um diesen einfachen Anwendungsfall automatisch kümmert.
 

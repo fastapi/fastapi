@@ -22,7 +22,6 @@
 
 {* ../../docs_src/extra_models/tutorial001.py hl[9,11,16,22,24,29:30,33:35,40:41] *}
 
-
 ### `**user_in.dict()`について
 
 #### Pydanticの`.dict()`
@@ -157,7 +156,6 @@ UserInDB(
 
 {* ../../docs_src/extra_models/tutorial002.py hl[9,15,16,19,20,23,24] *}
 
-
 ## `Union`または`anyOf`
 
 レスポンスを２つの型の`Union`として宣言することができます。
@@ -168,7 +166,6 @@ OpenAPIでは`anyOf`で定義されます。
 
 {* ../../docs_src/extra_models/tutorial003.py hl[1,14,15,18,19,20,33] *}
 
-
 ## モデルのリスト
 
 同じように、オブジェクトのリストのレスポンスを宣言することができます。
@@ -176,7 +173,6 @@ OpenAPIでは`anyOf`で定義されます。
 そのためには、標準のPythonの`typing.List`を使用する:
 
 {* ../../docs_src/extra_models/tutorial004.py hl[1,20] *}
-
 
 ## 任意の`dict`を持つレスポンス
 
@@ -187,7 +183,6 @@ OpenAPIでは`anyOf`で定義されます。
 この場合、`typing.Dict`を使用することができます:
 
 {* ../../docs_src/extra_models/tutorial005.py hl[1,8] *}
-
 
 ## まとめ
 

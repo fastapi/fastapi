@@ -22,7 +22,6 @@
 
 {* ../../docs_src/security/tutorial001.py *}
 
-
 ## 実行
 
 /// info | 情報
@@ -129,7 +128,6 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 {* ../../docs_src/security/tutorial001.py hl[6] *}
 
-
 /// tip | 豆知識
 
 ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
@@ -167,7 +165,6 @@ oauth2_scheme(some, parameters)
 これで`oauth2_scheme`を`Depends`で依存関係に渡すことができます。
 
 {* ../../docs_src/security/tutorial001.py hl[10] *}
-
 
 この依存関係は、*path operation function*のパラメーター`token`に代入される`str`を提供します。
 

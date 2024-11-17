@@ -182,7 +182,6 @@ Você pode utilizar todas as ferramentas e funcionalidades de validação que s�
 
 {* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
-
 ////
 
 //// tab | Pydantic v1
@@ -194,7 +193,6 @@ Na versão 1 do Pydantic você importaria `BaseSettings` diretamente do módulo 
 ///
 
 {* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
-
 
 ////
 
@@ -213,7 +211,6 @@ Depois ele irá converter e validar os dados. Assim, quando você utilizar aquel
 Depois, Você pode utilizar o novo objeto `settings` na sua aplicação:
 
 {* ../../docs_src/settings/tutorial001.py hl[18:20] *}
-
 
 ### Executando o servidor
 
@@ -249,11 +246,9 @@ Por exemplo, você pode adicionar um arquivo `config.py` com:
 
 {* ../../docs_src/settings/app01/config.py *}
 
-
 E utilizar essa configuração em `main.py`:
 
 {* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
-
 
 /// dica
 
@@ -272,7 +267,6 @@ Isso é especialmente útil durante os testes, já que é bastante simples sobre
 Baseando-se no exemplo anterior, seu arquivo `config.py` seria parecido com isso:
 
 {* ../../docs_src/settings/app02/config.py hl[10] *}
-
 
 Perceba que dessa vez não criamos uma instância padrão `settings = Settings()`.
 
@@ -299,7 +293,6 @@ E então podemos declarar essas configurações como uma dependência na funçã
 Então seria muito fácil fornecer uma configuração diferente durante a execução dos testes sobrescrevendo a dependência de `get_settings`:
 
 {* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
-
 
 Na sobrescrita da dependência, definimos um novo valor para `admin_email` quando instanciamos um novo objeto `Settings`, e então retornamos esse novo objeto.
 
@@ -344,7 +337,6 @@ E então adicionar o seguinte código em `config.py`:
 
 {* ../../docs_src/settings/app03_an/config.py hl[9] *}
 
-
 /// dica
 
 O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
@@ -356,7 +348,6 @@ O atributo `model_config` é usado apenas para configuração do Pydantic. Você
 //// tab | Pydantic v1
 
 {* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
-
 
 /// dica
 

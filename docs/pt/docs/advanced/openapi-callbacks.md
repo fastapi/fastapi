@@ -33,7 +33,6 @@ Essa parte é bastante normal, a maior parte do código provavelmente já é fam
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
-
 /// tip | Dica
 
 O parâmetro de consulta `callback_url` usa um tipo Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>.
@@ -93,7 +92,6 @@ Primeiramente crie um novo `APIRouter` que conterá um ou mais callbacks.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
 
-
 ### Crie a *operação de rota* do callback
 
 Para criar a *operação de rota* do callback, use o mesmo `APIRouter` que você criou acima.
@@ -104,7 +102,6 @@ Ele deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 * E também deveria ter uma declaração de um código de status de resposta, por exemplo. `response_model=InvoiceEventReceived`.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
-
 
 Há 2 diferenças principais de uma *operação de rota* normal:
 
@@ -173,7 +170,6 @@ Nesse ponto você tem a(s) *operação de rota de callback* necessária(s) (a(s)
 Agora use o parâmetro `callbacks` no decorador da *operação de rota de sua API* para passar o atributo `.routes` (que é na verdade apenas uma `list` de rotas/*operações de rota*) do roteador de callback que você criou acima:
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
-
 
 /// tip | Dica
 

@@ -27,7 +27,6 @@ HTTPレスポンスをエラーでクライアントに返すには、`HTTPExcep
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-
 ### コード内での`HTTPException`の発生
 
 `HTTPException`は通常のPythonの例外であり、APIに関連するデータを追加したものです。
@@ -41,7 +40,6 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例では、クライアントが存在しないIDでアイテムを要求した場合、`404`のステータスコードを持つ例外を発生させます:
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
-
 
 ### レスポンス結果
 
@@ -81,7 +79,6 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-
 ## カスタム例外ハンドラのインストール
 
 カスタム例外ハンドラは<a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
@@ -93,7 +90,6 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 カスタム例外ハンドラを`@app.exception_handler()`で追加することができます:
 
 {* ../../docs_src/handling_errors/tutorial003.py hl[5,6,7,13,14,15,16,17,18,24] *}
-
 
 ここで、`/unicorns/yolo`をリクエストすると、*path operation*は`UnicornException`を`raise`します。
 
@@ -132,7 +128,6 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 この例外ハンドラは`Requset`と例外を受け取ります。
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[2,14,15,16] *}
-
 
 これで、`/items/foo`にアクセスすると、デフォルトのJSONエラーの代わりに以下が返されます:
 
@@ -185,7 +180,6 @@ path -> item_id
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[3,4,9,10,11,22] *}
 
-
 /// note | 技術詳細
 
 また、`from starlette.responses import PlainTextResponse`を使用することもできます。
@@ -201,7 +195,6 @@ path -> item_id
 アプリ開発中に本体のログを取ってデバッグしたり、ユーザーに返したりなどに使用することができます。
 
 {* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
-
 
 ここで、以下のような無効な項目を送信してみてください:
 
@@ -262,7 +255,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 デフォルトの例外ハンドラを`fastapi.exception_handlers`からインポートして再利用することができます:
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2,3,4,5,15,21] *}
-
 
 この例では、非常に表現力のあるメッセージでエラーを`print`しています。
 

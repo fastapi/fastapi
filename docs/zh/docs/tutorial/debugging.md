@@ -8,7 +8,6 @@
 
 {* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
-
 ### 关于 `__name__ == "__main__"`
 
 `__name__ == "__main__"` 的主要目的是使用以下代码调用文件时执行一些代码：

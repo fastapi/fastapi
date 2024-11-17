@@ -29,7 +29,6 @@ $ pip install jinja2
 
 {* ../../docs_src/templates/tutorial001.py hl[4,11,15:16] *}
 
-
 /// note | 笔记
 
 在FastAPI 0.108.0，Starlette 0.29.0之前，`name`是第一个参数。

@@ -10,7 +10,6 @@
 
 {* ../../docs_src/response_model/tutorial001.py hl[17] *}
 
-
 /// note | 備考
 
 `response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数* のパラメータではありません。
@@ -42,11 +41,9 @@ FastAPIは`response_model`を使って以下のことをします:
 
 {* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
-
 そして、このモデルを使用して入力を宣言し、同じモデルを使って出力を宣言しています:
 
 {* ../../docs_src/response_model/tutorial002.py hl[17,18] *}
-
 
 これで、ブラウザがパスワードを使ってユーザーを作成する際に、APIがレスポンスで同じパスワードを返すようになりました。
 
@@ -66,16 +63,13 @@ FastAPIは`response_model`を使って以下のことをします:
 
 {* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
-
 ここでは、*path operation関数*がパスワードを含む同じ入力ユーザーを返しているにもかかわらず:
 
 {* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
-
 ...`response_model`を`UserOut`と宣言したことで、パスワードが含まれていません:
 
 {* ../../docs_src/response_model/tutorial003.py hl[22] *}
-
 
 そのため、**FastAPI** は出力モデルで宣言されていない全てのデータをフィルタリングしてくれます（Pydanticを使用）。
 
@@ -95,7 +89,6 @@ FastAPIは`response_model`を使って以下のことをします:
 
 {* ../../docs_src/response_model/tutorial004.py hl[11,13,14] *}
 
-
 * `description: str = None`は`None`がデフォルト値です。
 * `tax: float = 10.5`は`10.5`がデフォルト値です。
 * `tags: List[str] = []` は空のリスト（`[]`）がデフォルト値です。
@@ -109,7 +102,6 @@ FastAPIは`response_model`を使って以下のことをします:
 *path operation デコレータ*に`response_model_exclude_unset=True`パラメータを設定することができます:
 
 {* ../../docs_src/response_model/tutorial004.py hl[24] *}
-
 
 そして、これらのデフォルト値はレスポンスに含まれず、実際に設定された値のみが含まれます。
 
@@ -199,7 +191,6 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 {* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
-
 /// tip | 豆知識
 
 `{"name", "description"}`の構文はこれら２つの値をもつ`set`を作成します。
@@ -213,7 +204,6 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 もし`set`を使用することを忘れて、代わりに`list`や`tuple`を使用しても、FastAPIはそれを`set`に変換して正しく動作します:
 
 {* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
-
 
 ## まとめ
 

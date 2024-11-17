@@ -28,7 +28,6 @@ Por exemplo, para declarar um outro retorno com o status code `404` e um modelo 
 
 {* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-
 /// note | Nota
 
 Lembre-se que você deve retornar o `JSONResponse` diretamente.
@@ -178,7 +177,6 @@ Por exemplo, você pode adicionar um media type adicional de `image/png`, declar
 
 {* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-
 /// note | Nota
 
 Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
@@ -206,7 +204,6 @@ Por exemplo, você pode declarar um retorno com o código de status `404` que ut
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
 {* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
-
 
 Isso será combinado e incluído em seu OpenAPI, e disponibilizado na documentação da sua API:
 
@@ -241,7 +238,6 @@ Você pode utilizar essa técnica para reutilizar alguns retornos predefinidos n
 Por exemplo:
 
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
-
 
 ## Mais informações sobre retornos OpenAPI
 

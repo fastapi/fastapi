@@ -20,7 +20,6 @@
 
 {* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
 
-
 ### 声明具有子类型的 List
 
 要声明具有子类型的类型，例如 `list`、`dict`、`tuple`：

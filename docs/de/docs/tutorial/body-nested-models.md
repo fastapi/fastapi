@@ -22,7 +22,6 @@ In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Py
 
 {* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
 
-
 ### Eine `list`e mit einem Typ-Parameter deklarieren
 
 Um Typen wie `list`, `dict`, `tuple` mit inneren Typ-Parametern (inneren Typen) zu deklarieren:

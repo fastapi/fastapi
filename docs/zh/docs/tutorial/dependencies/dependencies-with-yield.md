@@ -31,16 +31,13 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 {* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
-
 生成的值会注入到 *路由函数* 和其他依赖项中：
 
 {* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
-
 `yield` 语句后面的代码会在创建响应后，发送响应前执行：
 
 {* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
-
 
 /// tip | 提示
 
@@ -61,7 +58,6 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 同样，你也可以使用 `finally` 来确保退出步骤得到执行，无论是否存在异常。
 
 {* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
-
 ## 使用 `yield` 的子依赖项
 
 你可以声明任意数量和层级的树状依赖，而且它们中的任何一个或所有的都可以使用 `yield`。
@@ -256,7 +252,6 @@ with open("./somefile.txt") as f:
 你也可以在 **FastAPI** 的 `yield` 依赖项中通过 `with` 或者 `async with` 语句来使用它们：
 
 {* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
-
 
 /// tip | 提示
 

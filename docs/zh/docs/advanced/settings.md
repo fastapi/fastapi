@@ -152,7 +152,6 @@ Hello World from Python
 
 {* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
-
 /// tip
 
 如果您需要一个快速的复制粘贴示例，请不要使用此示例，而应使用下面的最后一个示例。
@@ -168,7 +167,6 @@ Hello World from Python
 然后，您可以在应用程序中使用新的 `settings` 对象：
 
 {* ../../docs_src/settings/tutorial001.py hl[18:20] *}
-
 
 ### 运行服务器
 
@@ -204,11 +202,9 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 {* ../../docs_src/settings/app01/config.py *}
 
-
 然后在一个名为 `main.py` 的文件中使用它：
 
 {* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
-
 
 /// tip
 
@@ -227,7 +223,6 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 根据前面的示例，您的 `config.py` 文件可能如下所示：
 
 {* ../../docs_src/settings/app02/config.py hl[10] *}
-
 
 请注意，现在我们不创建默认实例 `settings = Settings()`。
 
@@ -254,7 +249,6 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 然后，在测试期间，通过创建 `get_settings` 的依赖项覆盖，很容易提供一个不同的设置对象：
 
 {* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
-
 
 在依赖项覆盖中，我们在创建新的 `Settings` 对象时为 `admin_email` 设置了一个新值，然后返回该新对象。
 
@@ -296,7 +290,6 @@ APP_NAME="ChimichangApp"
 然后，您可以使用以下方式更新您的 `config.py`：
 
 {* ../../docs_src/settings/app03/config.py hl[9:10] *}
-
 
 在这里，我们在 Pydantic 的 `Settings` 类中创建了一个名为 `Config` 的类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
 

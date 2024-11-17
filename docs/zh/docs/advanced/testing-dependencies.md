@@ -30,7 +30,6 @@
 
 {* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
-
 /// tip | 提示
 
 **FastAPI** 应用中的任何位置都可以实现覆盖依赖项。

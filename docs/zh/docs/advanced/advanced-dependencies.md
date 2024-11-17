@@ -20,7 +20,6 @@ Python 可以把类实例变为**可调用项**。
 
 {* ../../docs_src/dependencies/tutorial011.py hl[10] *}
 
-
 本例中，**FastAPI**  使用 `__call__` 检查附加参数及子依赖项，稍后，还要调用它向*路径操作函数*传递值。
 
 ## 参数化实例
@@ -29,7 +28,6 @@ Python 可以把类实例变为**可调用项**。
 
 {* ../../docs_src/dependencies/tutorial011.py hl[7] *}
 
-
 本例中，**FastAPI** 不使用 `__init__`，我们要直接在代码中使用。
 
 ## 创建实例
@@ -37,7 +35,6 @@ Python 可以把类实例变为**可调用项**。
 使用以下代码创建类实例：
 
 {* ../../docs_src/dependencies/tutorial011.py hl[16] *}
-
 
 这样就可以**参数化**依赖项，它包含 `checker.fixed_content` 的属性 - `"bar"`。
 
@@ -54,7 +51,6 @@ checker(q="somequery")
 ……并用*路径操作函数*的参数 `fixed_content_included` 返回依赖项的值：
 
 {* ../../docs_src/dependencies/tutorial011.py hl[20] *}
-
 
 /// tip | 提示
 
