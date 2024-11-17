@@ -22,17 +22,15 @@
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
-{!> ../../docs_src/extra_models/tutorial001.py!}
-```
+{* ../../docs_src/extra_models/tutorial001.py hl[9,11,16,22,24,29:30,33:35,40:41] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
-{!> ../../docs_src/extra_models/tutorial001_py310.py!}
-```
+{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+
 
 ////
 
@@ -170,17 +168,15 @@ UserInDB(
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9  15-16  19-20  23-24"
-{!> ../../docs_src/extra_models/tutorial002.py!}
-```
+{* ../../docs_src/extra_models/tutorial002.py hl[9,15:16,19:20,23:24] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7  13-14  17-18  21-22"
-{!> ../../docs_src/extra_models/tutorial002_py310.py!}
-```
+{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+
 
 ////
 
@@ -200,17 +196,15 @@ UserInDB(
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="1  14-15  18-20  33"
-{!> ../../docs_src/extra_models/tutorial003.py!}
-```
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="1  14-15  18-20  33"
-{!> ../../docs_src/extra_models/tutorial003_py310.py!}
-```
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+
 
 ////
 
@@ -236,17 +230,15 @@ some_variable: PlaneItem | CarItem
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="1  20"
-{!> ../../docs_src/extra_models/tutorial004.py!}
-```
+{* ../../docs_src/extra_models/tutorial004.py hl[1,20] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="18"
-{!> ../../docs_src/extra_models/tutorial004_py39.py!}
-```
+{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+
 
 ////
 
@@ -260,17 +252,15 @@ some_variable: PlaneItem | CarItem
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="1  8"
-{!> ../../docs_src/extra_models/tutorial005.py!}
-```
+{* ../../docs_src/extra_models/tutorial005.py hl[1,8] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="6"
-{!> ../../docs_src/extra_models/tutorial005_py39.py!}
-```
+{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+
 
 ////
 

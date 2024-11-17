@@ -8,17 +8,15 @@
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial001_py310.py hl[7] *}
+
 
 ////
 
@@ -83,17 +81,15 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="11-15"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="9-13"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial002_py310.py hl[9:13] *}
+
 
 ////
 
@@ -101,17 +97,15 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="10"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial002_py310.py hl[10] *}
+
 
 ////
 
@@ -119,17 +113,15 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="6"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial001_py310.py hl[6] *}
+
 
 ////
 
@@ -149,17 +141,15 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial002_py310.py hl[17] *}
+
 
 ////
 
@@ -202,17 +192,15 @@ commons = Depends(CommonQueryParams)
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial003.py!}
-```
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial003_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial003_py310.py hl[17] *}
+
 
 ////
 
@@ -250,17 +238,15 @@ commons: CommonQueryParams = Depends()
 
 //// tab | 파이썬 3.6 이상
 
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial004.py!}
-```
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial004_py310.py!}
-```
+{* ../../docs_src/dependencies/tutorial004_py310.py hl[17] *}
+
 
 ////
 

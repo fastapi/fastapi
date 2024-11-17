@@ -54,17 +54,15 @@ Oauth2️⃣ 👫 🎻.
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="4  76"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[4,76] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="2  74"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[2,74] *}
+
 
 ////
 
@@ -116,17 +114,15 @@ Oauth2️⃣ 🔌 🤙 *🚚* 🏑 `grant_type` ⏮️ 🔧 💲 `password`, ✋
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="3  77-79"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="1  75-77"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[1,75:77] *}
+
 
 ////
 
@@ -156,17 +152,15 @@ Oauth2️⃣ 🔌 🤙 *🚚* 🏑 `grant_type` ⏮️ 🔧 💲 `password`, ✋
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="80-83"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[80:83] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="78-81"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[78:81] *}
+
 
 ////
 
@@ -212,17 +206,15 @@ UserInDB(
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="85"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[85] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="83"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[83] *}
+
 
 ////
 
@@ -252,17 +244,15 @@ UserInDB(
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="58-66  69-72  90"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="55-64  67-70  88"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[55:64,67:70,88] *}
+
 
 ////
 

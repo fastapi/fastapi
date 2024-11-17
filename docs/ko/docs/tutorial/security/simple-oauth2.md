@@ -54,17 +54,15 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 //// tab | 파이썬 3.7 이상
 
-```Python hl_lines="4  76"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[4,76] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="2  74"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[2,74] *}
+
 
 ////
 
@@ -116,17 +114,15 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 //// tab | 파이썬 3.7 이상
 
-```Python hl_lines="3  77-79"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="1  75-77"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[1,75:77] *}
+
 
 ////
 
@@ -156,17 +152,15 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 //// tab | P파이썬 3.7 이상
 
-```Python hl_lines="80-83"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[80:83] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="78-81"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[78:81] *}
+
 
 ////
 
@@ -212,17 +206,15 @@ UserInDB(
 
 //// tab | 파이썬 3.7 이상
 
-```Python hl_lines="85"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[85] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="83"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[83] *}
+
 
 ////
 
@@ -252,17 +244,15 @@ UserInDB(
 
 //// tab | 파이썬 3.7 이상
 
-```Python hl_lines="58-66  69-72  90"
-{!> ../../docs_src/security/tutorial003.py!}
-```
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
+
 
 ////
 
 //// tab | 파이썬 3.10 이상
 
-```Python hl_lines="55-64  67-70  88"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
+{* ../../docs_src/security/tutorial003_py310.py hl[55:64,67:70,88] *}
+
 
 ////
 

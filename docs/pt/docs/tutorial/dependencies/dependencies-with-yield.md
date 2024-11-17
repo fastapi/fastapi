@@ -29,21 +29,18 @@ Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dado
 
 Apenas o código anterior a declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta.
 
-```Python hl_lines="2-4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+
 
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências.
 
-```Python hl_lines="4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+
 
 O código após o `yield` é executado após a resposta ser entregue:
 
-```Python hl_lines="5-6"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+
 
 /// tip | Dica
 
@@ -269,9 +266,8 @@ Utilize a versão com `Annotated` se possível.
 
 ///
 
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial008d.py!}
-```
+{* ../../docs_src/dependencies/tutorial008d.py hl[15] *}
+
 
 ////
 
@@ -402,9 +398,8 @@ Em python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar `with` ou `async with` dentro da função da dependência:
 
-```Python hl_lines="1-9  13"
-{!../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+
 
 /// tip | Dica
 

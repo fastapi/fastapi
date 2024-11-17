@@ -29,21 +29,18 @@ For example, you could use this to create a database session and close it after 
 
 Only the code prior to and including the `yield` statement is executed before creating a response:
 
-```Python hl_lines="2-4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+
 
 The yielded value is what is injected into *path operations* and other dependencies:
 
-```Python hl_lines="4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+
 
 The code following the `yield` statement is executed after creating the response but before sending it:
 
-```Python hl_lines="5-6"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+
 
 /// tip
 
@@ -63,9 +60,8 @@ So, you can look for that specific exception inside the dependency with `except 
 
 In the same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
 
-```Python hl_lines="3  5"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+
 
 ## Sub-dependencies with `yield`
 
@@ -403,9 +399,8 @@ In Python, you can create Context Managers by <a href="https://docs.python.org/3
 You can also use them inside of **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
-```Python hl_lines="1-9  13"
-{!../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+
 
 /// tip
 

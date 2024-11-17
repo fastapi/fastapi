@@ -92,9 +92,8 @@ Then you could have a file `test_main.py` with your tests. It could live on the 
 
 Because this file is in the same package, you can use relative imports to import the object `app` from the `main` module (`main.py`):
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
+
 
 ...and have the code for the tests just like before.
 
@@ -178,9 +177,8 @@ Prefer to use the `Annotated` version if possible.
 
 You could then update `test_main.py` with the extended tests:
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
+
 
 Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
 

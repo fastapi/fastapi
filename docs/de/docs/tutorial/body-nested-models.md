@@ -34,9 +34,8 @@ In Python 3.9 oder darüber können Sie einfach `list` verwenden, um diese Typan
 
 In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Pythons Standardmodul `typing` importieren.
 
-```Python hl_lines="1"
-{!> ../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
+
 
 ### Eine `list`e mit einem Typ-Parameter deklarieren
 

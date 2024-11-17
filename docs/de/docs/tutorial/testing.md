@@ -72,9 +72,8 @@ Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigge
 In der Datei `main.py` haben Sie Ihre **FastAPI**-Anwendung:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
+
 
 ### Testdatei
 
@@ -90,9 +89,8 @@ Dann könnten Sie eine Datei `test_main.py` mit Ihren Tests haben. Sie könnte s
 
 Da sich diese Datei im selben Package befindet, können Sie relative Importe verwenden, um das Objekt `app` aus dem `main`-Modul (`main.py`) zu importieren:
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
+
 
 ... und haben den Code für die Tests wie zuvor.
 

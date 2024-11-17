@@ -32,9 +32,8 @@
 
 首先，从 Python 的标准库 `typing` 模块中导入 `List`：
 
-```Python hl_lines="1"
-{!> ../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
+
 
 ### 声明具有子类型的 List
 

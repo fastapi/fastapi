@@ -6,25 +6,22 @@
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="18  23"
-{!> ../../docs_src/response_model/tutorial001_01.py!}
-```
+{* ../../docs_src/response_model/tutorial001_01.py hl[18,23] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="18  23"
-{!> ../../docs_src/response_model/tutorial001_01_py39.py!}
-```
+{* ../../docs_src/response_model/tutorial001_01_py39.py hl[18,23] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="16  21"
-{!> ../../docs_src/response_model/tutorial001_01_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+
 
 ////
 
@@ -61,25 +58,22 @@ FastAPI 🔜 ⚙️ 👉 📨 🆎:
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001.py!}
-```
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001_py39.py!}
-```
+{* ../../docs_src/response_model/tutorial001_py39.py hl[17,22,24:27] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+
 
 ////
 
@@ -115,17 +109,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9  11"
-{!> ../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7  9"
-{!> ../../docs_src/response_model/tutorial002_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+
 
 ////
 
@@ -142,17 +134,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="18"
-{!> ../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[18] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="16"
-{!> ../../docs_src/response_model/tutorial002_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+
 
 ////
 
@@ -174,17 +164,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9  11  16"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="9  11  16"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+
 
 ////
 
@@ -192,17 +180,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+
 
 ////
 
@@ -210,17 +196,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="22"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="22"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+
 
 ////
 
@@ -248,17 +232,15 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9-13  15-16  20"
-{!> ../../docs_src/response_model/tutorial003_01.py!}
-```
+{* ../../docs_src/response_model/tutorial003_01.py hl[9:13,15:16,20] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7-10  13-14  18"
-{!> ../../docs_src/response_model/tutorial003_01_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+
 
 ////
 
@@ -302,9 +284,8 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 🏆 ⚠ 💼 🔜 [🛬 📨 🔗 🔬 ⏪ 🏧 🩺](../advanced/response-directly.md){.internal-link target=_blank}.
 
-```Python hl_lines="8  10-11"
-{!> ../../docs_src/response_model/tutorial003_02.py!}
-```
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+
 
 👉 🙅 💼 🍵 🔁 FastAPI ↩️ 📨 🆎 ✍ 🎓 (⚖️ 🏿) `Response`.
 
@@ -314,9 +295,8 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 👆 💪 ⚙️ 🏿 `Response` 🆎 ✍:
 
-```Python hl_lines="8-9"
-{!> ../../docs_src/response_model/tutorial003_03.py!}
-```
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+
 
 👉 🔜 👷 ↩️ `RedirectResponse` 🏿 `Response`, &amp; FastAPI 🔜 🔁 🍵 👉 🙅 💼.
 
@@ -328,17 +308,15 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="10"
-{!> ../../docs_src/response_model/tutorial003_04.py!}
-```
+{* ../../docs_src/response_model/tutorial003_04.py hl[10] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="8"
-{!> ../../docs_src/response_model/tutorial003_04_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+
 
 ////
 
@@ -354,17 +332,15 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/response_model/tutorial003_05.py!}
-```
+{* ../../docs_src/response_model/tutorial003_05.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/response_model/tutorial003_05_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+
 
 ////
 
@@ -376,25 +352,22 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="11  13-14"
-{!> ../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[11,13:14] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="11  13-14"
-{!> ../../docs_src/response_model/tutorial004_py39.py!}
-```
+{* ../../docs_src/response_model/tutorial004_py39.py hl[11,13:14] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="9  11-12"
-{!> ../../docs_src/response_model/tutorial004_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+
 
 ////
 
@@ -412,25 +385,22 @@ FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 �
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[24] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial004_py39.py!}
-```
+{* ../../docs_src/response_model/tutorial004_py39.py hl[24] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="22"
-{!> ../../docs_src/response_model/tutorial004_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+
 
 ////
 
@@ -523,17 +493,15 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="31  37"
-{!> ../../docs_src/response_model/tutorial005.py!}
-```
+{* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="29  35"
-{!> ../../docs_src/response_model/tutorial005_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+
 
 ////
 
@@ -551,17 +519,15 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="31  37"
-{!> ../../docs_src/response_model/tutorial006.py!}
-```
+{* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="29  35"
-{!> ../../docs_src/response_model/tutorial006_py310.py!}
-```
+{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+
 
 ////
 

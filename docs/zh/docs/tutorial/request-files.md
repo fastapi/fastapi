@@ -16,17 +16,15 @@
 
 从 `fastapi` 导入 `File` 和 `UploadFile`：
 
-```Python hl_lines="1"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[1] *}
+
 
 ## 定义 `File` 参数
 
 创建文件（`File`）参数的方式与 `Body` 和 `Form` 一样：
 
-```Python hl_lines="7"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[7] *}
+
 
 /// info | 说明
 
@@ -54,9 +52,8 @@
 
 定义文件参数时使用 `UploadFile`：
 
-```Python hl_lines="12"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[12] *}
+
 
 `UploadFile` 与 `bytes` 相比有更多优势：
 
@@ -158,9 +155,8 @@ contents = myfile.file.read()
 
 您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
-```Python hl_lines="13"
-{!../../docs_src/request_files/tutorial001_03.py!}
-```
+{* ../../docs_src/request_files/tutorial001_03.py hl[13] *}
+
 
 ## 多文件上传
 

@@ -34,9 +34,8 @@
 
 Но в версиях Python до 3.9 (начиная с 3.6) сначала вам необходимо импортировать `List` из стандартного модуля `typing` в Python:
 
-```Python hl_lines="1"
-{!> ../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
+
 
 ### Объявление `list` с указанием типов для вложенных элементов
 

@@ -6,17 +6,15 @@
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial001.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial001_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+
 
 ////
 
@@ -40,17 +38,15 @@ FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="3"
-{!> ../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="1"
-{!> ../../docs_src/query_params_str_validations/tutorial002_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[1] *}
+
 
 ////
 
@@ -60,17 +56,15 @@ FastAPI 🔜 💭 👈 💲 `q` 🚫 ✔ ↩️ 🔢 💲 `= None`.
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial002_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+
 
 ////
 
@@ -136,17 +130,15 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="10"
-{!> ../../docs_src/query_params_str_validations/tutorial003.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial003_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial003_py310.py hl[7] *}
+
 
 ////
 
@@ -156,17 +148,15 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="11"
-{!> ../../docs_src/query_params_str_validations/tutorial004.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial004_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial004_py310.py hl[9] *}
+
 
 ////
 
@@ -186,9 +176,8 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 ➡️ 💬 👈 👆 💚 📣 `q` 🔢 🔢 ✔️ `min_length` `3`, &amp; ✔️ 🔢 💲 `"fixedquery"`:
 
-```Python hl_lines="7"
-{!../../docs_src/query_params_str_validations/tutorial005.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[7] *}
+
 
 /// note
 
@@ -218,17 +207,15 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 , 🕐❔ 👆 💪 📣 💲 ✔ ⏪ ⚙️ `Query`, 👆 💪 🎯 🚫 📣 🔢 💲:
 
-```Python hl_lines="7"
-{!../../docs_src/query_params_str_validations/tutorial006.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
+
 
 ### ✔ ⏮️ ❕ (`...`)
 
 📤 🎛 🌌 🎯 📣 👈 💲 ✔. 👆 💪 ⚒ `default` 🔢 🔑 💲 `...`:
 
-```Python hl_lines="7"
-{!../../docs_src/query_params_str_validations/tutorial006b.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006b.py hl[7] *}
+
 
 /// info
 
@@ -248,17 +235,15 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial006c.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006c_py310.py hl[7] *}
+
 
 ////
 
@@ -272,9 +257,8 @@ Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ �
 
 🚥 👆 💭 😬 ⚙️ `...`, 👆 💪 🗄 &amp; ⚙️ `Required` ⚪️➡️ Pydantic:
 
-```Python hl_lines="2  8"
-{!../../docs_src/query_params_str_validations/tutorial006d.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006d.py hl[2,8] *}
+
 
 /// tip
 
@@ -290,25 +274,22 @@ Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ �
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial011.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial011_py39.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial011_py39.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial011_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial011_py310.py hl[7] *}
+
 
 ////
 
@@ -347,17 +328,15 @@ http://localhost:8000/items/?q=foo&q=bar
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial012.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial012_py39.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial012_py39.py hl[7] *}
+
 
 ////
 
@@ -382,9 +361,8 @@ http://localhost:8000/items/
 
 👆 💪 ⚙️ `list` 🔗 ↩️ `List[str]` (⚖️ `list[str]` 🐍 3️⃣.9️⃣ ➕):
 
-```Python hl_lines="7"
-{!../../docs_src/query_params_str_validations/tutorial013.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[7] *}
+
 
 /// note
 
@@ -412,17 +390,15 @@ http://localhost:8000/items/
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="10"
-{!> ../../docs_src/query_params_str_validations/tutorial007.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="8"
-{!> ../../docs_src/query_params_str_validations/tutorial007_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial007_py310.py hl[8] *}
+
 
 ////
 
@@ -430,17 +406,15 @@ http://localhost:8000/items/
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="13"
-{!> ../../docs_src/query_params_str_validations/tutorial008.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[13] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="11"
-{!> ../../docs_src/query_params_str_validations/tutorial008_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial008_py310.py hl[11] *}
+
 
 ////
 
@@ -464,17 +438,15 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial009.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial009_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial009_py310.py hl[7] *}
+
 
 ////
 
@@ -488,17 +460,15 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="18"
-{!> ../../docs_src/query_params_str_validations/tutorial010.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[18] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="16"
-{!> ../../docs_src/query_params_str_validations/tutorial010_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial010_py310.py hl[16] *}
+
 
 ////
 
@@ -512,17 +482,15 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 //// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
 
-```Python hl_lines="10"
-{!> ../../docs_src/query_params_str_validations/tutorial014.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
+
 
 ////
 
 //// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
 
-```Python hl_lines="8"
-{!> ../../docs_src/query_params_str_validations/tutorial014_py310.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial014_py310.py hl[8] *}
+
 
 ////
 

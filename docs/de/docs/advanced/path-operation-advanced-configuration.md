@@ -155,17 +155,15 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 
 //// tab | Pydantic v2
 
-```Python hl_lines="17-22  24"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22,24] *}
+
 
 ////
 
 //// tab | Pydantic v1
 
-```Python hl_lines="17-22  24"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22,24] *}
+
 
 ////
 
@@ -183,17 +181,15 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 
 //// tab | Pydantic v2
 
-```Python hl_lines="26-33"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
+
 
 ////
 
 //// tab | Pydantic v1
 
-```Python hl_lines="26-33"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
+
 
 ////
 
