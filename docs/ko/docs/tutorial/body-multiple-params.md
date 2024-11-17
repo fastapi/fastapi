@@ -12,7 +12,6 @@
 
 {* ../../docs_src/body_multiple_params/tutorial001.py hl[19:21] *}
 
-
 /// note | 참고
 
 이 경우에는 본문으로 부터 가져온 `	item`은 기본값이 `None`이기 때문에, 선택사항이라는 점을 유의해야 합니다.
@@ -35,7 +34,6 @@
 하지만, 다중 본문 매개변수 역시 선언할 수 있습니다. 예. `item`과 `user`:
 
 {* ../../docs_src/body_multiple_params/tutorial002.py hl[22] *}
-
 
 이 경우에, **FastAPI**는 이 함수 안에 한 개 이상의 본문 매개변수(Pydantic 모델인 두 매개변수)가 있다고 알 것입니다.
 
@@ -79,7 +77,6 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 
 {* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
-
 이 경우에는 **FastAPI**는 본문을 이와 같이 예측할 것입니다:
 
 
@@ -109,7 +106,6 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 
 {* ../../docs_src/body_multiple_params/tutorial004.py hl[27] *}
 
-
 이렇게:
 
 ```Python
@@ -131,7 +127,6 @@ Pydantic 모델 `Item`의 `item`을 본문 매개변수로 오직 한개만 갖�
 하지만, 만약 모델 내용에 `item `키를 가진 JSON으로 예측하길 원한다면, 추가적인 본문 매개변수를 선언한 것처럼 `Body`의 특별한 매개변수인 `embed`를 사용할 수 있습니다:
 
 {* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
-
 
 아래 처럼:
 

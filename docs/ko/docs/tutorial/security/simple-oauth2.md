@@ -52,19 +52,7 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 작동*에서 `Depends`의 의존성으로 사용합니다.
 
-//// tab | 파이썬 3.7 이상
-
 {* ../../docs_src/security/tutorial003.py hl[4,76] *}
-
-
-////
-
-//// tab | 파이썬 3.10 이상
-
-{* ../../docs_src/security/tutorial003_py310.py hl[2,74] *}
-
-
-////
 
 `OAuth2PasswordRequestForm`은 다음을 사용하여 폼 본문을 선언하는 클래스 의존성입니다:
 
@@ -112,19 +100,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 오류의 경우 `HTTPException` 예외를 사용합니다:
 
-//// tab | 파이썬 3.7 이상
-
 {* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
-
-
-////
-
-//// tab | 파이썬 3.10 이상
-
-{* ../../docs_src/security/tutorial003_py310.py hl[1,75:77] *}
-
-
-////
 
 ### 패스워드 확인하기
 
@@ -154,15 +130,9 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 {* ../../docs_src/security/tutorial003.py hl[80:83] *}
 
-
 ////
-
-//// tab | 파이썬 3.10 이상
 
 {* ../../docs_src/security/tutorial003_py310.py hl[78:81] *}
-
-
-////
 
 #### `**user_dict`에 대해
 
@@ -204,19 +174,7 @@ UserInDB(
 
 ///
 
-//// tab | 파이썬 3.7 이상
-
 {* ../../docs_src/security/tutorial003.py hl[85] *}
-
-
-////
-
-//// tab | 파이썬 3.10 이상
-
-{* ../../docs_src/security/tutorial003_py310.py hl[83] *}
-
-
-////
 
 /// 팁
 
@@ -242,19 +200,7 @@ UserInDB(
 
 따라서 엔드포인트에서는 사용자가 존재하고 올바르게 인증되었으며 활성 상태인 경우에만 사용자를 얻습니다:
 
-//// tab | 파이썬 3.7 이상
-
 {* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
-
-
-////
-
-//// tab | 파이썬 3.10 이상
-
-{* ../../docs_src/security/tutorial003_py310.py hl[55:64,67:70,88] *}
-
-
-////
 
 /// 정보
 

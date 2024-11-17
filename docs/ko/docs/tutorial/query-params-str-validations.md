@@ -6,7 +6,6 @@
 
 {* ../../docs_src/query_params_str_validations/tutorial001.py hl[9] *}
 
-
 쿼리 매개변수 `q`는 `Optional[str]` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
 
 /// note | 참고
@@ -27,13 +26,11 @@ FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압�
 
 {* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *}
 
-
 ## 기본값으로 `Query` 사용
 
 이제 `Query`를 매개변수의 기본값으로 사용하여 `max_length` 매개변수를 50으로 설정합니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
-
 
 기본값 `None`을 `Query(None)`으로 바꿔야 하므로, `Query`의 첫 번째 매개변수는 기본값을 정의하는 것과 같은 목적으로 사용됩니다.
 
@@ -85,13 +82,11 @@ q: str = Query(None, max_length=50)
 
 {* ../../docs_src/query_params_str_validations/tutorial003.py hl[9] *}
 
-
 ## 정규식 추가
 
 매개변수와 일치해야 하는 <abbr title="정규표현식(regular expression), regex 또는 regexp는 문자열 조회 패턴을 정의하는 문자들의 순열입니다">정규표현식</abbr>을 정의할 수 있습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial004.py hl[10] *}
-
 
 이 특정 정규표현식은 전달 받은 매개변수 값을 검사합니다:
 
@@ -110,7 +105,6 @@ q: str = Query(None, max_length=50)
 `min_length`가 `3`이고, 기본값이 `"fixedquery"`인 쿼리 매개변수 `q`를 선언해봅시다:
 
 {* ../../docs_src/query_params_str_validations/tutorial005.py hl[7] *}
-
 
 /// note | 참고
 
@@ -142,7 +136,6 @@ q: Optional[str] = Query(None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-
 /// info | 정보
 
 이전에 `...`를 본적이 없다면: 특별한 단일값으로, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">파이썬의 일부이며 "Ellipsis"라 부릅니다</a>.
@@ -158,7 +151,6 @@ q: Optional[str] = Query(None, min_length=3)
 예를 들어, URL에서 여러번 나오는  `q` 쿼리 매개변수를 선언하려면 다음과 같이 작성할 수 있습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
-
 
 아래와 같은 URL을 사용합니다:
 
@@ -195,7 +187,6 @@ http://localhost:8000/items/?q=foo&q=bar
 
 {* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
-
 아래로 이동한다면:
 
 ```
@@ -218,7 +209,6 @@ http://localhost:8000/items/
 `List[str]` 대신 `list`를 직접 사용할 수도 있습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial013.py hl[7] *}
-
 
 /// note | 참고
 
@@ -246,11 +236,9 @@ http://localhost:8000/items/
 
 {* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
-
 그리고 `description`도 추가할 수 있습니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial008.py hl[13] *}
-
 
 ## 별칭 매개변수
 
@@ -272,7 +260,6 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 {* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
-
 ## 매개변수 사용하지 않게 하기
 
 이제는 더이상 이 매개변수를 마음에 들어하지 않는다고 가정해 봅시다.
@@ -282,7 +269,6 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 그렇다면 `deprecated=True` 매개변수를 `Query`로 전달합니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial010.py hl[18] *}
-
 
 문서가 아래와 같이 보일겁니다:
 
