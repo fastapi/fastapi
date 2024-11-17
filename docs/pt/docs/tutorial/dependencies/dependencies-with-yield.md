@@ -204,35 +204,7 @@ Uma alternativa que você pode utilizar para capturar exceções (e possivelment
 
 Se você capturar uma exceção com `except` em uma dependência que utilize `yield` e ela não for levantada novamente (ou uma nova exceção for levantada), o FastAPI não será capaz de identifcar que houve uma exceção, da mesma forma que aconteceria com Python puro:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="15-16"
-{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14-15"
-{!> ../../docs_src/dependencies/tutorial008c_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-annotated
-
-/// tip | dica
-
-utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="13-14"
-{!> ../../docs_src/dependencies/tutorial008c.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
 Neste caso, o cliente irá ver uma resposta *HTTP 500 Internal Server Error* como deveria acontecer, já que não estamos levantando nenhuma `HTTPException` ou coisa parecida, mas o servidor **não terá nenhum log** ou qualquer outra indicação de qual foi o erro. 😱
 
@@ -242,21 +214,7 @@ Se você capturar uma exceção em uma dependência com `yield`, a menos que voc
 
 Você pode relançar a mesma exceção utilizando `raise`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial008d_an.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
 //// tab | python 3.8+ non-annotated
 

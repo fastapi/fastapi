@@ -71,35 +71,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Например, `dependency_c` может иметь зависимость от `dependency_b`, а `dependency_b` от `dependency_a`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  14  22"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="5  13  21"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="4  12  20"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 И все они могут использовать `yield`.
 
@@ -107,35 +79,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 И, в свою очередь, `dependency_b` нуждается в том, чтобы значение из `dependency_a` (здесь `dep_a`) было доступно для ее завершающего кода.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19  26-27"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="17-18  25-26"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="16-17  24-25"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
 Точно так же можно иметь часть зависимостей с `yield`, часть с `return`, и какие-то из них могут зависеть друг от друга.
 

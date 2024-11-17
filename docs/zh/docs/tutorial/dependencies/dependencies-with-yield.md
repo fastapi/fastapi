@@ -70,35 +70,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 例如，`dependency_c` 可以依赖于 `dependency_b`，而 `dependency_b` 则依赖于 `dependency_a`。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  14  22"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="5  13  21"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-如果可以，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="4  12  20"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 所有这些依赖都可以使用 `yield`。
 
@@ -106,35 +78,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 而 `dependency_b` 反过来则需要 `dependency_a`（此处称为 `dep_a` ）的值在其退出代码中可用。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19  26-27"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-18  25-26"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-如果可以，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="16-17  24-25"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
 同样，你可以混合使用带有 `yield` 或 `return` 的依赖。
 
@@ -166,35 +110,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 ///
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-22  31"
-{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-21  30"
-{!> ../../docs_src/dependencies/tutorial008b_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-如果可以，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="16-20  29"
-{!> ../../docs_src/dependencies/tutorial008b.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
 
 你还可以创建一个 [自定义异常处理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} 用于捕获异常（同时也可以抛出另一个 `HTTPException`）。
 
@@ -202,35 +118,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 如果你在包含 `yield` 的依赖项中使用 `except` 捕获了一个异常，然后你没有重新抛出该异常（或抛出一个新异常），与在普通的Python代码中相同，FastAPI不会注意到发生了异常。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="15-16"
-{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14-15"
-{!> ../../docs_src/dependencies/tutorial008c_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-如果可以，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="13-14"
-{!> ../../docs_src/dependencies/tutorial008c.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
 在示例代码的情况下，客户端将会收到 *HTTP 500 Internal Server Error* 的响应，因为我们没有抛出 `HTTPException` 或者类似的异常，并且服务器也 **不会有任何日志** 或者其他提示来告诉我们错误是什么。😱
 
@@ -240,35 +128,7 @@ FastAPI支持在完成后执行一些<abbr title='有时也被称为"退出"("ex
 
 你可以使用 `raise` 再次抛出捕获到的异常。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial008d_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 提示
-
-如果可以，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial008d.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
 现在客户端同样会得到 *HTTP 500 Internal Server Error* 响应，但是服务器日志会记录下我们自定义的 `InternalError`。
 

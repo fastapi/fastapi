@@ -71,35 +71,7 @@ Sie können Unterabhängigkeiten und „Bäume“ von Unterabhängigkeiten belie
 
 Beispielsweise kann `dependency_c` von `dependency_b` und `dependency_b` von `dependency_a` abhängen:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  14  22"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="5  13  21"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4  12  20"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 Und alle können `yield` verwenden.
 
@@ -107,35 +79,7 @@ In diesem Fall benötigt `dependency_c` zum Ausführen seines Exit-Codes, dass d
 
 Und wiederum benötigt `dependency_b` den Wert von `dependency_a` (hier `dep_a` genannt) für seinen Exit-Code.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19  26-27"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-18  25-26"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="16-17  24-25"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
 Auf die gleiche Weise könnten Sie einige Abhängigkeiten mit `yield` und einige andere Abhängigkeiten mit `return` haben, und alle können beliebig voneinander abhängen.
 
@@ -167,35 +111,7 @@ Aber es ist für Sie da, wenn Sie es brauchen. 🤓
 
 ///
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-22  31"
-{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-21  30"
-{!> ../../docs_src/dependencies/tutorial008b_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="16-20  29"
-{!> ../../docs_src/dependencies/tutorial008b.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
 
 Eine Alternative zum Abfangen von Exceptions (und möglicherweise auch zum Auslösen einer weiteren `HTTPException`) besteht darin, einen [benutzerdefinierten Exceptionhandler](../handling-errors.md#benutzerdefinierte-exceptionhandler-definieren){.internal-link target=_blank} zu erstellen.
 

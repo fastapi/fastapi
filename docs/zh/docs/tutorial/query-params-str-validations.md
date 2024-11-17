@@ -4,21 +4,7 @@
 
 让我们以下面的应用程序为例：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params_str_validations/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params_str_validations/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
 
 查询参数 `q` 的类型为 `str`，默认值为 `None`，因此它是可选的。
 

@@ -71,35 +71,7 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  14  22"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="5  13  21"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="4  12  20"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 And all of them can use `yield`.
 
@@ -107,35 +79,7 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19  26-27"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-18  25-26"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="16-17  24-25"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
 The same way, you could have some dependencies with `yield` and some other dependencies with `return`, and have some of those depend on some of the others.
 
@@ -167,35 +111,7 @@ But it's there for you if you need it. 🤓
 
 ///
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-22  31"
-{!> ../../docs_src/dependencies/tutorial008b_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-21  30"
-{!> ../../docs_src/dependencies/tutorial008b_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="16-20  29"
-{!> ../../docs_src/dependencies/tutorial008b.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
 
 An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is to create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
@@ -203,35 +119,7 @@ An alternative you could use to catch exceptions (and possibly also raise anothe
 
 If you catch an exception using `except` in a dependency with `yield` and you don't raise it again (or raise a new exception), FastAPI won't be able to notice there was an exception, the same way that would happen with regular Python:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="15-16"
-{!> ../../docs_src/dependencies/tutorial008c_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14-15"
-{!> ../../docs_src/dependencies/tutorial008c_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="13-14"
-{!> ../../docs_src/dependencies/tutorial008c.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
 In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
 
@@ -241,35 +129,7 @@ If you catch an exception in a dependency with `yield`, unless you are raising a
 
 You can re-raise the same exception using `raise`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial008d_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial008d_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial008d.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
 Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
 

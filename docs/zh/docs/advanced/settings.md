@@ -235,35 +235,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 现在我们创建一个依赖项，返回一个新的 `config.Settings()`。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ 非注解版本
-
-/// tip
-
-如果可能，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="5  11-12"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
 
 /// tip
 
@@ -275,35 +247,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 然后，我们可以将其作为依赖项从“路径操作函数”中引入，并在需要时使用它。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ 非注解版本
-
-/// tip
-
-如果可能，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="16  18-20"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
 
 ### 设置和测试
 
@@ -385,35 +329,7 @@ def get_settings():
 
 但是，由于我们在顶部使用了 `@lru_cache` 装饰器，因此只有在第一次调用它时，才会创建 `Settings` 对象一次。 ✔️
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ 非注解版本
-
-/// tip
-
-如果可能，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="1  10"
-{!> ../../docs_src/settings/app03/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
 
 然后，在下一次请求的依赖项中对 `get_settings()` 进行任何后续调用时，它不会执行 `get_settings()` 的内部代码并创建新的 `Settings` 对象，而是返回在第一次调用时返回的相同对象，一次又一次。
 
