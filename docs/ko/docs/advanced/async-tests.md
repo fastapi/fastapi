@@ -90,7 +90,7 @@ response = client.get('/')
 /// warning | 경고
 
 만약의 어플리케이션이 Lifespan 이벤트에 의존성을 갖고 있다면 `AsyncClient` 가 이러한 이벤트를 실행시키지 않습니다.
-`AsyncClient` 가 테스트를 실행시켰다는 것을 확인하기 위해 
+`AsyncClient` 가 테스트를 실행시켰다는 것을 확인하기 위해
 `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.확인해주세요.
 
 
