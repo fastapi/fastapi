@@ -8,19 +8,7 @@
 
 &amp; 👆 💪 📣 💪 🔢 📦, ⚒ 🔢 `None`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/body_multiple_params/tutorial001.py hl[19:21] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/body_multiple_params/tutorial001_py310.py hl[17:19] *}
-
-
-////
 
 /// note
 
@@ -43,19 +31,7 @@
 
 ✋️ 👆 💪 📣 💗 💪 🔢, ✅ `item` &amp; `user`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/body_multiple_params/tutorial002.py hl[22] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
-
-
-////
 
 👉 💼, **FastAPI** 🔜 👀 👈 📤 🌅 🌘 1️⃣ 💪 🔢 🔢 (2️⃣ 🔢 👈 Pydantic 🏷).
 
@@ -96,19 +72,7 @@
 
 ✋️ 👆 💪 💡 **FastAPI** 😥 ⚫️ ➕1️⃣ 💪 🔑 ⚙️ `Body`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/body_multiple_params/tutorial003.py hl[22] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/body_multiple_params/tutorial003_py310.py hl[20] *}
-
-
-////
 
 👉 💼, **FastAPI** 🔜 ⌛ 💪 💖:
 
@@ -148,19 +112,7 @@ q: str | None = None
 
 🖼:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/body_multiple_params/tutorial004.py hl[27] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/body_multiple_params/tutorial004_py310.py hl[26] *}
-
-
-////
 
 /// info
 
@@ -182,19 +134,7 @@ item: Item = Body(embed=True)
 
 :
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/body_multiple_params/tutorial005_py310.py hl[15] *}
-
-
-////
 
 👉 💼 **FastAPI** 🔜 ⌛ 💪 💖:
 

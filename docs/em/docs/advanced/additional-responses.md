@@ -28,7 +28,6 @@
 
 {* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-
 /// note
 
 ✔️ 🤯 👈 👆 ✔️ 📨 `JSONResponse` 🔗.
@@ -178,7 +177,6 @@
 
 {* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-
 /// note
 
 👀 👈 👆 ✔️ 📨 🖼 ⚙️ `FileResponse` 🔗.
@@ -206,7 +204,6 @@
 &amp; 📨 ⏮️ 👔 📟 `200` 👈 ⚙️ 👆 `response_model`, ✋️ 🔌 🛃 `example`:
 
 {* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
-
 
 ⚫️ 🔜 🌐 🌀 &amp; 🔌 👆 🗄, &amp; 🎦 🛠️ 🩺:
 
@@ -241,7 +238,6 @@ new_dict = {**old_dict, "new key": "new value"}
 🖼:
 
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
-
 
 ## 🌖 ℹ 🔃 🗄 📨
 

@@ -18,13 +18,11 @@
 
 {* ../../docs_src/request_files/tutorial001.py hl[1] *}
 
-
 ## 🔬 `File` 🔢
 
 ✍ 📁 🔢 🎏 🌌 👆 🔜 `Body` ⚖️ `Form`:
 
 {* ../../docs_src/request_files/tutorial001.py hl[7] *}
-
 
 /// info
 
@@ -53,7 +51,6 @@
 🔬 📁 🔢 ⏮️ 🆎 `UploadFile`:
 
 {* ../../docs_src/request_files/tutorial001.py hl[12] *}
-
 
 ⚙️ `UploadFile` ✔️ 📚 📈 🤭 `bytes`:
 
@@ -136,26 +133,13 @@ contents = myfile.file.read()
 
 👆 💪 ⚒ 📁 📦 ⚙️ 🐩 🆎 ✍ &amp; ⚒ 🔢 💲 `None`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/request_files/tutorial001_02_py310.py hl[7,14] *}
-
-
-////
 
 ## `UploadFile` ⏮️ 🌖 🗃
 
 👆 💪 ⚙️ `File()` ⏮️ `UploadFile`, 🖼, ⚒ 🌖 🗃:
 
 {* ../../docs_src/request_files/tutorial001_03.py hl[13] *}
-
 
 ## 💗 📁 📂
 
@@ -165,19 +149,7 @@ contents = myfile.file.read()
 
 ⚙️ 👈, 📣 📇 `bytes` ⚖️ `UploadFile`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-{* ../../docs_src/request_files/tutorial002_py39.py hl[8,13] *}
-
-
-////
 
 👆 🔜 📨, 📣, `list` `bytes` ⚖️ `UploadFile`Ⓜ.
 
@@ -193,19 +165,7 @@ contents = myfile.file.read()
 
 &amp; 🎏 🌌 ⏭, 👆 💪 ⚙️ `File()` ⚒ 🌖 🔢, `UploadFile`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/request_files/tutorial003.py hl[18] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-{* ../../docs_src/request_files/tutorial003_py39.py hl[16] *}
-
-
-////
 
 ## 🌃
 

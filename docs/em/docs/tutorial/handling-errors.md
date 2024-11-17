@@ -27,7 +27,6 @@
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-
 ### 🤚 `HTTPException` 👆 📟
 
 `HTTPException` 😐 🐍 ⚠ ⏮️ 🌖 📊 🔗 🔗.
@@ -41,7 +40,6 @@
 👉 🖼, 🕐❔ 👩‍💻 📨 🏬 🆔 👈 🚫 🔀, 🤚 ⚠ ⏮️ 👔 📟 `404`:
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
-
 
 ### 📉 📨
 
@@ -81,7 +79,6 @@
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-
 ## ❎ 🛃 ⚠ 🐕‍🦺
 
 👆 💪 🚮 🛃 ⚠ 🐕‍🦺 ⏮️ <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">🎏 ⚠ 🚙 ⚪️➡️ 💃</a>.
@@ -93,7 +90,6 @@
 👆 💪 🚮 🛃 ⚠ 🐕‍🦺 ⏮️ `@app.exception_handler()`:
 
 {* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
-
 
 📥, 🚥 👆 📨 `/unicorns/yolo`, *➡ 🛠️* 🔜 `raise` `UnicornException`.
 
@@ -132,7 +128,6 @@
 ⚠ 🐕‍🦺 🔜 📨 `Request` &amp; ⚠.
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
-
 
 🔜, 🚥 👆 🚶 `/items/foo`, ↩️ 💆‍♂ 🔢 🎻 ❌ ⏮️:
 
@@ -185,7 +180,6 @@ path -> item_id
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
-
 /// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.responses import PlainTextResponse`.
@@ -201,7 +195,6 @@ path -> item_id
 👆 💪 ⚙️ ⚫️ ⏪ 🛠️ 👆 📱 🕹 💪 &amp; ℹ ⚫️, 📨 ⚫️ 👩‍💻, ♒️.
 
 {* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
-
 
 🔜 🔄 📨 ❌ 🏬 💖:
 
@@ -260,6 +253,5 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 🚥 👆 💚 ⚙️ ⚠ ⤴️ ⏮️ 🎏 🔢 ⚠ 🐕‍🦺 ⚪️➡️ **FastAPI**, 👆 💪 🗄 &amp; 🏤-⚙️ 🔢 ⚠ 🐕‍🦺 ⚪️➡️ `fastapi.exception_handlers`:
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
-
 
 👉 🖼 👆 `print`😅 ❌ ⏮️ 📶 🎨 📧, ✋️ 👆 🤚 💭. 👆 💪 ⚙️ ⚠ &amp; ⤴️ 🏤-⚙️ 🔢 ⚠ 🐕‍🦺.

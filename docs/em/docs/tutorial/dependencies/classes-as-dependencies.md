@@ -6,19 +6,7 @@
 
 ⏮️ 🖼, 👥 🛬 `dict` ⚪️➡️ 👆 🔗 ("☑"):
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial001.py hl[9] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial001_py310.py hl[7] *}
-
-
-////
 
 ✋️ ⤴️ 👥 🤚 `dict` 🔢 `commons` *➡ 🛠️ 🔢*.
 
@@ -81,51 +69,15 @@ fluffy = Cat(name="Mr Fluffy")
 
 ⤴️, 👥 💪 🔀 🔗 "☑" `common_parameters` ⚪️➡️ 🔛 🎓 `CommonQueryParams`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial002_py310.py hl[9:13] *}
-
-
-////
 
 💸 🙋 `__init__` 👩‍🔬 ⚙️ ✍ 👐 🎓:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial002.py hl[12] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial002_py310.py hl[10] *}
-
-
-////
 
 ...⚫️ ✔️ 🎏 🔢 👆 ⏮️ `common_parameters`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial001.py hl[9] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial001_py310.py hl[6] *}
-
-
-////
 
 📚 🔢 ⚫️❔ **FastAPI** 🔜 ⚙️ "❎" 🔗.
 
@@ -141,19 +93,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 🔜 👆 💪 📣 👆 🔗 ⚙️ 👉 🎓.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial002.py hl[19] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial002_py310.py hl[17] *}
-
-
-////
 
 **FastAPI** 🤙 `CommonQueryParams` 🎓. 👉 ✍ "👐" 👈 🎓 &amp; 👐 🔜 🚶‍♀️ 🔢 `commons` 👆 🔢.
 
@@ -193,19 +133,7 @@ commons = Depends(CommonQueryParams)
 
 ...:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial003.py hl[19] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial003_py310.py hl[17] *}
-
-
-////
 
 ✋️ 📣 🆎 💡 👈 🌌 👆 👨‍🎨 🔜 💭 ⚫️❔ 🔜 🚶‍♀️ 🔢 `commons`, &amp; ⤴️ ⚫️ 💪 ℹ 👆 ⏮️ 📟 🛠️, 🆎 ✅, ♒️:
 
@@ -239,19 +167,7 @@ commons: CommonQueryParams = Depends()
 
 🎏 🖼 🔜 ⤴️ 👀 💖:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/dependencies/tutorial004.py hl[19] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/dependencies/tutorial004_py310.py hl[17] *}
-
-
-////
 
 ...&amp; **FastAPI** 🔜 💭 ⚫️❔.
 

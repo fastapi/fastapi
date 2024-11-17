@@ -59,13 +59,11 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
-
 ## `TrustedHostMiddleware`
 
 🛠️ 👈 🌐 📨 📨 ✔️ ☑ ⚒ `Host` 🎚, ✔ 💂‍♂ 🛡 🇺🇸🔍 🦠 🎚 👊.
 
 {* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
-
 
 📄 ❌ 🐕‍🦺:
 
@@ -80,7 +78,6 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 🛠️ 🔜 🍵 👯‍♂️ 🐩 &amp; 🎥 📨.
 
 {* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
-
 
 📄 ❌ 🐕‍🦺:
 

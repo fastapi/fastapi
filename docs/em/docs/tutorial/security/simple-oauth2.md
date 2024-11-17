@@ -52,19 +52,7 @@ Oauth2️⃣ 👫 🎻.
 
 🥇, 🗄 `OAuth2PasswordRequestForm`, &amp; ⚙️ ⚫️ 🔗 ⏮️ `Depends` *➡ 🛠️* `/token`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/security/tutorial003.py hl[4,76] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/security/tutorial003_py310.py hl[2,74] *}
-
-
-////
 
 `OAuth2PasswordRequestForm` 🎓 🔗 👈 📣 📨 💪 ⏮️:
 
@@ -112,19 +100,7 @@ Oauth2️⃣ 🔌 🤙 *🚚* 🏑 `grant_type` ⏮️ 🔧 💲 `password`, ✋
 
 ❌, 👥 ⚙️ ⚠ `HTTPException`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/security/tutorial003_py310.py hl[1,75:77] *}
-
-
-////
 
 ### ✅ 🔐
 
@@ -150,19 +126,7 @@ Oauth2️⃣ 🔌 🤙 *🚚* 🏑 `grant_type` ⏮️ 🔧 💲 `password`, ✋
 
 , 🧙‍♀ 🏆 🚫 💪 🔄 ⚙️ 👈 🎏 🔐 ➕1️⃣ ⚙️ (📚 👩‍💻 ⚙️ 🎏 🔐 🌐, 👉 🔜 ⚠).
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/security/tutorial003.py hl[80:83] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/security/tutorial003_py310.py hl[78:81] *}
-
-
-////
 
 #### 🔃 `**user_dict`
 
@@ -204,19 +168,7 @@ UserInDB(
 
 ///
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/security/tutorial003.py hl[85] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/security/tutorial003_py310.py hl[83] *}
-
-
-////
 
 /// tip
 
@@ -242,19 +194,7 @@ UserInDB(
 
 , 👆 🔗, 👥 🔜 🕴 🤚 👩‍💻 🚥 👩‍💻 🔀, ☑ 🔓, &amp; 🦁:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
 {* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
-
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-{* ../../docs_src/security/tutorial003_py310.py hl[55:64,67:70,88] *}
-
-
-////
 
 /// info
 

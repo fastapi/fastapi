@@ -22,7 +22,6 @@
 
 {* ../../docs_src/security/tutorial001.py *}
 
-
 ## 🏃 ⚫️
 
 /// info
@@ -129,7 +128,6 @@ Oauth2️⃣ 🔧 👈 👩‍💻 ⚖️ 🛠️ 💪 🔬 💽 👈 🔓 👩�
 
 {* ../../docs_src/security/tutorial001.py hl[6] *}
 
-
 /// tip
 
 📥 `tokenUrl="token"` 🔗 ⚖ 📛 `token` 👈 👥 🚫 ✍. ⚫️ ⚖ 📛, ⚫️ 🌓 `./token`.
@@ -167,7 +165,6 @@ oauth2_scheme(some, parameters)
 🔜 👆 💪 🚶‍♀️ 👈 `oauth2_scheme` 🔗 ⏮️ `Depends`.
 
 {* ../../docs_src/security/tutorial001.py hl[10] *}
-
 
 👉 🔗 🔜 🚚 `str` 👈 🛠️ 🔢 `token` *➡ 🛠️ 🔢*.
 

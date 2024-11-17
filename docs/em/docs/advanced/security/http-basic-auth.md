@@ -22,7 +22,6 @@
 
 {* ../../docs_src/security/tutorial006.py hl[2,6,10] *}
 
-
 🕐❔ 👆 🔄 📂 📛 🥇 🕰 (⚖️ 🖊 "🛠️" 🔼 🩺) 🖥 🔜 💭 👆 👆 🆔 &amp; 🔐:
 
 <img src="/img/tutorial/security/image12.png">
@@ -42,7 +41,6 @@
 ⤴️ 👥 💪 ⚙️ `secrets.compare_digest()` 🚚 👈 `credentials.username` `"stanleyjobson"`, &amp; 👈 `credentials.password` `"swordfish"`.
 
 {* ../../docs_src/security/tutorial007.py hl[1,11:21] *}
-
 
 👉 🔜 🎏:
 

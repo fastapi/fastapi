@@ -29,7 +29,6 @@ $ pip install jinja2
 
 {* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
-
 /// note
 
 Before FastAPI 0.108.0, Starlette 0.29.0, the `name` was the first parameter.

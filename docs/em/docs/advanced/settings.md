@@ -150,7 +150,6 @@ Hello World from Python
 
 {* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
-
 /// tip
 
 🚥 👆 💚 🕳 ⏩ 📁 &amp; 📋, 🚫 ⚙️ 👉 🖼, ⚙️ 🏁 1️⃣ 🔛.
@@ -166,7 +165,6 @@ Hello World from Python
 ⤴️ 👆 💪 ⚙️ 🆕 `settings` 🎚 👆 🈸:
 
 {* ../../docs_src/settings/tutorial001.py hl[18:20] *}
-
 
 ### 🏃 💽
 
@@ -202,11 +200,9 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 {* ../../docs_src/settings/app01/config.py *}
 
-
 &amp; ⤴️ ⚙️ ⚫️ 📁 `main.py`:
 
 {* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
-
 
 /// tip
 
@@ -226,7 +222,6 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 {* ../../docs_src/settings/app02/config.py hl[10] *}
 
-
 👀 👈 🔜 👥 🚫 ✍ 🔢 👐 `settings = Settings()`.
 
 ### 👑 📱 📁
@@ -234,7 +229,6 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 🔜 👥 ✍ 🔗 👈 📨 🆕 `config.Settings()`.
 
 {* ../../docs_src/settings/app02/main.py hl[5,11:12] *}
-
 
 /// tip
 
@@ -248,13 +242,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 {* ../../docs_src/settings/app02/main.py hl[16,18:20] *}
 
-
 ### ⚒ &amp; 🔬
 
 ⤴️ ⚫️ 🔜 📶 ⏩ 🚚 🎏 ⚒ 🎚 ⏮️ 🔬 🏗 🔗 🔐 `get_settings`:
 
 {* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
-
 
 🔗 🔐 👥 ⚒ 🆕 💲 `admin_email` 🕐❔ 🏗 🆕 `Settings` 🎚, &amp; ⤴️ 👥 📨 👈 🆕 🎚.
 
@@ -297,7 +289,6 @@ APP_NAME="ChimichangApp"
 
 {* ../../docs_src/settings/app03/config.py hl[9:10] *}
 
-
 📥 👥 ✍ 🎓 `Config` 🔘 👆 Pydantic `Settings` 🎓, &amp; ⚒ `env_file` 📁 ⏮️ 🇨🇻 📁 👥 💚 ⚙️.
 
 /// tip
@@ -330,7 +321,6 @@ def get_settings():
 ✋️ 👥 ⚙️ `@lru_cache` 👨‍🎨 🔛 🔝, `Settings` 🎚 🔜 ✍ 🕴 🕐, 🥇 🕰 ⚫️ 🤙. 👶 👶
 
 {* ../../docs_src/settings/app03/main.py hl[1,10] *}
-
 
 ⤴️ 🙆 🏁 🤙 `get_settings()` 🔗 ⏭ 📨, ↩️ 🛠️ 🔗 📟 `get_settings()` &amp; 🏗 🆕 `Settings` 🎚, ⚫️ 🔜 📨 🎏 🎚 👈 📨 🔛 🥇 🤙, 🔄 &amp; 🔄.
 
