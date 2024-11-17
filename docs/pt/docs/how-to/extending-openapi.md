@@ -1,4 +1,3 @@
-
 # Extendendo o OpenAPI
 
 Existem alguns casos em que pode ser necessário modificar o esquema OpenAPI gerado.
