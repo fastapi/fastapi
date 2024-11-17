@@ -34,11 +34,9 @@ Die Datei `main.py` hätte als Inhalt:
 
 {* ../../docs_src/async_tests/main.py *}
 
-
 Die Datei `test_main.py` hätte die Tests für `main.py`, das könnte jetzt so aussehen:
 
 {* ../../docs_src/async_tests/test_main.py *}
-
 
 ## Es ausführen
 

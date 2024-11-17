@@ -157,13 +157,11 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22,24] *}
 
-
 ////
 
 //// tab | Pydantic v1
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22,24] *}
-
 
 ////
 
@@ -183,13 +181,11 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
 
-
 ////
 
 //// tab | Pydantic v1
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
-
 
 ////
 

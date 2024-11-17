@@ -33,7 +33,6 @@ Dieser Teil ist ziemlich normal, der größte Teil des Codes ist Ihnen wahrschei
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
-
 /// tip | Tipp
 
 Der Query-Parameter `callback_url` verwendet einen Pydantic-<a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>-Typ.
@@ -93,7 +92,6 @@ Erstellen Sie zunächst einen neuen `APIRouter`, der einen oder mehrere Callback
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
 
-
 ### Die Callback-*Pfadoperation* erstellen
 
 Um die Callback-*Pfadoperation* zu erstellen, verwenden Sie denselben `APIRouter`, den Sie oben erstellt haben.
@@ -104,7 +102,6 @@ Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 * Und sie könnte auch eine Deklaration der Response enthalten, die zurückgegeben werden soll, z. B. `response_model=InvoiceEventReceived`.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
-
 
 Es gibt zwei Hauptunterschiede zu einer normalen *Pfadoperation*:
 
@@ -173,7 +170,6 @@ An diesem Punkt haben Sie die benötigte(n) *Callback-Pfadoperation(en)* (diejen
 Verwenden Sie nun den Parameter `callbacks` im *Pfadoperation-Dekorator Ihrer API*, um das Attribut `.routes` (das ist eigentlich nur eine `list`e von Routen/*Pfadoperationen*) dieses Callback-Routers zu übergeben:
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
-
 
 /// tip | Tipp
 

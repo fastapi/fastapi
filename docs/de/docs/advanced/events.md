@@ -32,7 +32,6 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 {* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
-
 Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das Dictionary mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird unmittelbar vor dem *Herunterfahren* ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
@@ -51,7 +50,6 @@ Das Erste, was auffällt, ist, dass wir eine asynchrone Funktion mit `yield` def
 
 {* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
-
 Der erste Teil der Funktion, vor dem `yield`, wird ausgeführt **bevor** die Anwendung startet.
 
 Und der Teil nach `yield` wird ausgeführt, **nachdem** die Anwendung beendet ist.
@@ -63,7 +61,6 @@ Wie Sie sehen, ist die Funktion mit einem `@asynccontextmanager` versehen.
 Dadurch wird die Funktion in einen sogenannten „**asynchronen Kontextmanager**“ umgewandelt.
 
 {* ../../docs_src/events/tutorial003.py hl[1,13] *}
-
 
 Ein **Kontextmanager** in Python ist etwas, das Sie in einer `with`-Anweisung verwenden können, zum Beispiel kann `open()` als Kontextmanager verwendet werden:
 
@@ -87,7 +84,6 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 
 {* ../../docs_src/events/tutorial003.py hl[22] *}
 
-
 ## Alternative Events (deprecated)
 
 /// warning | Achtung
@@ -110,7 +106,6 @@ Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werd
 
 {* ../../docs_src/events/tutorial001.py hl[8] *}
 
-
 In diesem Fall initialisiert die Eventhandler-Funktion `startup` die „Datenbank“ der Items (nur ein `dict`) mit einigen Werten.
 
 Sie können mehr als eine Eventhandler-Funktion hinzufügen.
@@ -122,7 +117,6 @@ Und Ihre Anwendung empfängt erst dann Anfragen, wenn alle `startup`-Eventhandle
 Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
 
 {* ../../docs_src/events/tutorial002.py hl[6] *}
-
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.
 

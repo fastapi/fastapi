@@ -59,13 +59,11 @@ Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere 
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
-
 ## `TrustedHostMiddleware`
 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
 {* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
-
 
 Die folgenden Argumente werden unterstützt:
 
@@ -80,7 +78,6 @@ Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
 {* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
-
 
 Die folgenden Argumente werden unterstützt:
 
