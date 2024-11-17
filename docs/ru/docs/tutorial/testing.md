@@ -26,9 +26,7 @@
 
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Подсказка
 
@@ -74,9 +72,7 @@
 Здесь файл `main.py` является "точкой входа" в Ваше приложение и содержит инициализацию Вашего приложения **FastAPI**:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### Файл тестов
 

@@ -26,9 +26,7 @@ Verwenden Sie das `TestClient`-Objekt auf die gleiche Weise wie `httpx`.
 
 Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken, die Sie überprüfen müssen (wiederum, Standard-`pytest`).
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Tipp
 

@@ -14,69 +14,13 @@ Formları kullanmak için öncelikle <a href="https://github.com/Kludex/python-m
 
 `Form` sınıfını `fastapi`'den projenize dahil edin:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
 ## `Form` Parametrelerini Tanımlayın
 
 Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
 Örneğin, OAuth2 spesifikasyonunun kullanılabileceği ("şifre akışı" olarak adlandırılan) yollardan birinde, form alanları olarak <abbr title="Kullanıcı Adı: Username">"username"</abbr> ve <abbr title="Şifre: Password">"password"</abbr> gönderilmesi gerekir.
 
