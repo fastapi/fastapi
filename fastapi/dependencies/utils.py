@@ -759,7 +759,7 @@ def request_params_to_args(
     if model_fields:
         fields_to_extract = [
             cached_field
-            for field in fields
+            for field in model_fields
             for cached_field in get_cached_model_fields(field.type_)
         ]
 
