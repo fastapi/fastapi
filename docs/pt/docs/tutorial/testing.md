@@ -120,7 +120,57 @@ Ele tem uma operação `POST` que pode retornar vários erros.
 
 Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+//// tab | Python 3.10+
+
+```Python
+{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python
+{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../docs_src/app_testing/app_b_an/main.py!}
+```
+
+////
+
+//// tab | Python 3.10+ non-Annotated
+
+/// tip | Dica
+
+Prefira usar a versão `Annotated` se possível.
+
+///
+
+```Python
+{!> ../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip | Dica
+
+Prefira usar a versão `Annotated` se possível.
+
+///
+
+```Python
+{!> ../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Arquivo de teste estendido
 
