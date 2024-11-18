@@ -6,35 +6,7 @@ Bei einigen Anwendungstypen möchten Sie möglicherweise Abhängigkeiten zur ges
 
 In diesem Fall werden sie auf alle *Pfadoperationen* in der Anwendung angewendet:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial012.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
 
 Und alle Ideen aus dem Abschnitt über das [Hinzufügen von `dependencies` zu den *Pfadoperation-Dekoratoren*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} gelten weiterhin, aber in diesem Fall für alle *Pfadoperationen* in der Anwendung.
 

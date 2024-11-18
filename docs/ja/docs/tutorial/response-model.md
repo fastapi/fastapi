@@ -8,11 +8,9 @@
 * `@app.delete()`
 * など。
 
-```Python hl_lines="17"
-{!../../docs_src/response_model/tutorial001.py!}
-```
+{* ../../docs_src/response_model/tutorial001.py hl[17] *}
 
-/// note | "備考"
+/// note | 備考
 
 `response_model`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数* のパラメータではありません。
 
@@ -31,7 +29,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 * 出力データをモデルのデータに限定します。これがどのように重要なのか以下で見ていきましょう。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 レスポンスモデルは、関数の戻り値のアノテーションではなく、このパラメータで宣言されています。なぜなら、パス関数は実際にはそのレスポンスモデルを返すのではなく、`dict`やデータベースオブジェクト、あるいは他のモデルを返し、`response_model`を使用してフィールドの制限やシリアライズを行うからです。
 
@@ -41,15 +39,11 @@ FastAPIは`response_model`を使って以下のことをします:
 
 ここでは`UserIn`モデルを宣言しています。それには平文のパスワードが含まれています:
 
-```Python hl_lines="9 11"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
 そして、このモデルを使用して入力を宣言し、同じモデルを使って出力を宣言しています:
 
-```Python hl_lines="17 18"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[17,18] *}
 
 これで、ブラウザがパスワードを使ってユーザーを作成する際に、APIがレスポンスで同じパスワードを返すようになりました。
 
@@ -57,7 +51,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 しかし、同じモデルを別の*path operation*に使用すると、すべてのクライアントにユーザーのパスワードを送信してしまうことになります。
 
-/// danger | "危険"
+/// danger | 危険
 
 ユーザーの平文のパスワードを保存したり、レスポンスで送信したりすることは絶対にしないでください。
 
@@ -67,21 +61,15 @@ FastAPIは`response_model`を使って以下のことをします:
 
 代わりに、平文のパスワードを持つ入力モデルと、パスワードを持たない出力モデルを作成することができます:
 
-```Python hl_lines="9 11 16"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 ここでは、*path operation関数*がパスワードを含む同じ入力ユーザーを返しているにもかかわらず:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...`response_model`を`UserOut`と宣言したことで、パスワードが含まれていません:
 
-```Python hl_lines="22"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 そのため、**FastAPI** は出力モデルで宣言されていない全てのデータをフィルタリングしてくれます（Pydanticを使用）。
 
@@ -99,9 +87,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 レスポンスモデルにはデフォルト値を設定することができます:
 
-```Python hl_lines="11 13 14"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[11,13,14] *}
 
 * `description: str = None`は`None`がデフォルト値です。
 * `tax: float = 10.5`は`10.5`がデフォルト値です。
@@ -115,9 +101,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 *path operation デコレータ*に`response_model_exclude_unset=True`パラメータを設定することができます:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[24] *}
 
 そして、これらのデフォルト値はレスポンスに含まれず、実際に設定された値のみが含まれます。
 
@@ -130,13 +114,13 @@ FastAPIは`response_model`を使って以下のことをします:
 }
 ```
 
-/// info | "情報"
+/// info | 情報
 
 FastAPIはこれをするために、Pydanticモデルの`.dict()`を<a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank">その`exclude_unset`パラメータ</a>で使用しています。
 
 ///
 
-/// info | "情報"
+/// info | 情報
 
 以下も使用することができます:
 
@@ -180,7 +164,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 そのため、それらはJSONレスポンスに含まれることになります。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 デフォルト値は`None`だけでなく、なんでも良いことに注意してください。
 例えば、リスト（`[]`）や`10.5`の`float`などです。
@@ -195,7 +179,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 これは、Pydanticモデルが１つしかなく、出力からいくつかのデータを削除したい場合のクイックショートカットとして使用することができます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 それでも、これらのパラメータではなく、複数のクラスを使用して、上記のようなアイデアを使うことをおすすめします。
 
@@ -205,11 +189,9 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 ///
 
-```Python hl_lines="31 37"
-{!../../docs_src/response_model/tutorial005.py!}
-```
+{* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `{"name", "description"}`の構文はこれら２つの値をもつ`set`を作成します。
 
@@ -221,9 +203,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 もし`set`を使用することを忘れて、代わりに`list`や`tuple`を使用しても、FastAPIはそれを`set`に変換して正しく動作します:
 
-```Python hl_lines="31 37"
-{!../../docs_src/response_model/tutorial006.py!}
-```
+{* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
 
 ## まとめ
 

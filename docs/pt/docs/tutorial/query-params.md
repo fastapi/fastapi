@@ -2,9 +2,7 @@
 
 Quando você declara outros parâmetros na função que não fazem parte dos parâmetros da rota, esses parâmetros são automaticamente interpretados como parâmetros de "consulta".
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial001.py!}
-```
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 A consulta é o conjunto de pares chave-valor que vai depois de `?` na URL, separado pelo caractere `&`.
 
@@ -63,25 +61,11 @@ Os valores dos parâmetros na sua função serão:
 
 Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo o valor padrão para `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
 
-/// check | "Verificar"
+/// check | Verificar
 
 Você também pode notar que o **FastAPI** é esperto o suficiente para perceber que o parâmetro da rota `item_id` é um parâmetro da rota, e `q` não é, portanto, `q` é o parâmetro de consulta.
 
@@ -91,21 +75,7 @@ Você também pode notar que o **FastAPI** é esperto o suficiente para perceber
 
 Você também pode declarar tipos `bool`, e eles serão convertidos:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
 Nesse caso, se você for para:
 
@@ -147,21 +117,7 @@ E você não precisa declarar eles em nenhuma ordem específica.
 
 Eles serão detectados pelo nome:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="6  8"
-{!> ../../docs_src/query_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  10"
-{!> ../../docs_src/query_params/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
 ## Parâmetros de consulta obrigatórios
 
@@ -171,9 +127,7 @@ Caso você não queira adicionar um valor específico mas queira apenas torná-l
 
 Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão.
 
-```Python hl_lines="6-7"
-{!../../docs_src/query_params/tutorial005.py!}
-```
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Aqui o parâmetro de consulta `needy` é um valor obrigatório, do tipo `str`.
 
@@ -217,21 +171,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 E claro, você pode definir alguns parâmetros como obrigatórios, alguns possuindo um valor padrão, e outros sendo totalmente opcionais:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8"
-{!> ../../docs_src/query_params/tutorial006_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_params/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
 Nesse caso, existem 3 parâmetros de consulta:
 
@@ -239,7 +179,7 @@ Nesse caso, existem 3 parâmetros de consulta:
 * `skip`, um `int` com o valor padrão `0`.
 * `limit`, um `int` opcional.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#valores-predefinidos){.internal-link target=_blank}.
 

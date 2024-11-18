@@ -6,21 +6,7 @@
 
 🥇, 👆 ✔️ 🗄 ⚫️:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 /// warning
 
@@ -32,25 +18,11 @@
 
 👆 💪 ⤴️ ⚙️ `Field` ⏮️ 🏷 🔢:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` 👷 🎏 🌌 `Query`, `Path` &amp; `Body`, ⚫️ ✔️ 🌐 🎏 🔢, ♒️.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 🤙, `Query`, `Path` &amp; 🎏 👆 🔜 👀 ⏭ ✍ 🎚 🏿 ⚠ `Param` 🎓, ❔ ⚫️ 🏿 Pydantic `FieldInfo` 🎓.
 

@@ -29,13 +29,11 @@ Angenommen, Sie möchten auf die IP-Adresse/den Host des Clients in Ihrer *Pfado
 
 Dazu müssen Sie direkt auf den Request zugreifen.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/using_request_directly/tutorial001.py!}
-```
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 Durch die Deklaration eines *Pfadoperation-Funktionsparameters*, dessen Typ der `Request` ist, weiß **FastAPI**, dass es den `Request` diesem Parameter übergeben soll.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass wir in diesem Fall einen Pfad-Parameter zusätzlich zum Request-Parameter deklarieren.
 
@@ -49,7 +47,7 @@ Auf die gleiche Weise können Sie wie gewohnt jeden anderen Parameter deklariere
 
 Weitere Details zum <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`-Objekt finden Sie in der offiziellen Starlette-Dokumentation</a>.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.requests import Request` verwenden.
 

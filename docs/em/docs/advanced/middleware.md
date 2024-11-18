@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** 🔌 📚 🛠️ ⚠ ⚙️ 💼, 👥 🔜 👀 ⏭ ❔ ⚙️ 👫.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 ⏭ 🖼, 👆 💪 ⚙️ `from starlette.middleware.something import SomethingMiddleware`.
 
@@ -57,17 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 🙆 📨 📨 `http` ⚖️ `ws` 🔜 ❎ 🔐 ⚖ ↩️.
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial001.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware`
 
 🛠️ 👈 🌐 📨 📨 ✔️ ☑ ⚒ `Host` 🎚, ✔ 💂‍♂ 🛡 🇺🇸🔍 🦠 🎚 👊.
 
-```Python hl_lines="2  6-8"
-{!../../docs_src/advanced_middleware/tutorial002.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 📄 ❌ 🐕‍🦺:
 
@@ -81,9 +77,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 🛠️ 🔜 🍵 👯‍♂️ 🐩 &amp; 🎥 📨.
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial003.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 📄 ❌ 🐕‍🦺:
 

@@ -8,23 +8,9 @@ Primeiro, é claro, você pode misturar `Path`, `Query` e declarações de parâ
 
 E você também pode declarar parâmetros de corpo como opcionais, definindo o valor padrão com `None`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial001_py310.py hl[17:19] *}
 
-```Python hl_lines="17-19"
-{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
-
-/// note | "Nota"
+/// note | Nota
 
 Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
 
@@ -45,21 +31,7 @@ No exemplo anterior, as *operações de rota* esperariam um JSON no corpo conten
 
 Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `item` e `user`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
 Neste caso, o **FastAPI** perceberá que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
 
@@ -80,7 +52,7 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
 }
 ```
 
-/// note | "Nota"
+/// note | Nota
 
 Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
 
@@ -100,21 +72,7 @@ Se você declará-lo como é, porque é um valor singular, o **FastAPI** assumir
 
 Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
-
-//// tab | Python 3.10+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[22] *}
 
 Neste caso, o **FastAPI** esperará um corpo como:
 
@@ -154,23 +112,9 @@ q: str | None = None
 
 Por exemplo:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial004_py310.py hl[26] *}
 
-```Python hl_lines="26"
-{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
-
-/// info | "Informação"
+/// info | Informação
 
 `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
 
@@ -190,21 +134,7 @@ item: Item = Body(embed=True)
 
 como em:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial005_py310.py hl[15] *}
 
 Neste caso o **FastAPI** esperará um corpo como:
 

@@ -29,13 +29,11 @@ Vamos imaginar que você deseja obter o endereço de IP/host do cliente dentro d
 
 Para isso você precisa acessar a requisição diretamente.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/using_request_directly/tutorial001.py!}
-```
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 Ao declarar o parâmetro com o tipo sendo um `Request` em sua *função de operação de rota*, o **FastAPI** saberá como passar o `Request` neste parâmetro.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Note que neste caso, nós estamos declarando o parâmetro da rota ao lado do parâmetro da requisição.
 
@@ -49,7 +47,7 @@ Do mesmo jeito, você pode declarar qualquer outro parâmetro normalmente, e al�
 
 Você pode ler mais sobre os detalhes do objeto <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` no site da documentação oficial do Starlette.</a>.
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Você também pode utilizar `from starlette.requests import Request`.
 

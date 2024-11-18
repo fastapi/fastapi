@@ -8,11 +8,9 @@
 * `@app.delete()`
 * 기타
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
-/// note | "참고"
+/// note | 참고
 
 `status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 모든 매개변수들과 본문처럼 *경로 작동 함수*가 아닙니다.
 
@@ -20,7 +18,7 @@
 
 `status_code` 매개변수는 HTTP 상태 코드를 숫자로 입력받습니다.
 
-/// info | "정보"
+/// info | 정보
 
 `status_code` 는 파이썬의 `http.HTTPStatus` 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
 
@@ -33,7 +31,7 @@
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
-/// note | "참고"
+/// note | 참고
 
 어떤 응답 코드들은 해당 응답에 본문이 없다는 것을 의미하기도 합니다 (다음 항목 참고).
 
@@ -43,7 +41,7 @@
 
 ## HTTP 상태 코드에 대하여
 
-/// note | "참고"
+/// note | 참고
 
 만약 HTTP 상태 코드에 대하여 이미 알고있다면, 다음 항목으로 넘어가십시오.
 
@@ -66,7 +64,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
     * 일반적인 클라이언트 오류의 경우 `400` 을 사용할 수 있습니다.
 * `5xx` 상태 코드는 서버 오류에 사용됩니다. 이것들을 직접 사용할 일은 거의 없습니다. 응용 프로그램 코드나 서버의 일부에서 문제가 발생하면 자동으로 이들 상태 코드 중 하나를 반환합니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 각각의 상태 코드와 이들이 의미하는 내용에 대해 더 알고싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> HTTP 상태 코드에 관한 문서</a> 를 확인하십시오.
 
@@ -76,9 +74,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 상기 예시 참고:
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` 은 "생성됨"를 의미하는 상태 코드입니다.
 
@@ -86,15 +82,13 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 `fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
-```Python hl_lines="1  6"
-{!../../docs_src/response_status_code/tutorial002.py!}
-```
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 이것은 단순히 작업을 편리하게 하기 위한 것으로, HTTP 상태 코드와 동일한 번호를 갖고있지만, 이를 사용하면 편집기의 자동완성 기능을 사용할 수 있습니다:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png">
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette import status` 역시 사용할 수 있습니다.
 

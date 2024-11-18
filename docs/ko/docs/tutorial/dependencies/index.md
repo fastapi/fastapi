@@ -31,57 +31,7 @@
 
 *경로 작동 함수*가 가질 수 있는 모든 매개변수를 갖는 단순한 함수입니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8-9"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-11"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="6-7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="8-11"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
 
 이게 다입니다.
 
@@ -101,7 +51,7 @@
 
 그 후 위의 값을 포함한 `dict` 자료형으로 반환할 뿐입니다.
 
-/// info | "정보"
+/// info | 정보
 
 FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를 사용하기 권장합니다) 추가했습니다.
 
@@ -113,113 +63,13 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 ### `Depends` 불러오기
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
 ### "의존자"에 의존성 명시하기
 
 *경로 작동 함수*의 매개변수로 `Body`, `Query` 등을 사용하는 방식과 같이 새로운 매개변수로 `Depends`를 사용합니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="13  18"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="15  20"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16  21"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="15  20"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
 
 비록 `Body`, `Query` 등을 사용하는 것과 같은 방식으로 여러분의 함수의 매개변수에 있는 `Depends`를 사용하지만, `Depends`는 약간 다르게 작동합니다.
 
@@ -231,7 +81,7 @@ FastAPI는 0.95.0 버전부터 `Annotated`에 대한 지원을 (그리고 이를
 
 그리고 그 함수는 *경로 작동 함수*가 작동하는 것과 같은 방식으로 매개변수를 받습니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 여러분은 다음 장에서 함수를 제외하고서, "다른 것들"이 어떻게 의존성으로 사용되는지 알게 될 것입니다.
 
@@ -256,7 +106,7 @@ common_parameters --> read_users
 
 이렇게 하면 공용 코드를 한번만 적어도 되며, **FastAPI**는 *경로 작동*을 위해 이에 대한 호출을 처리합니다.
 
-/// check | "확인"
+/// check | 확인
 
 특별한 클래스를 만들지 않아도 되며, 이러한 것 혹은 비슷한 종류를 **FastAPI**에 "등록"하기 위해 어떤 곳에 넘겨주지 않아도 됩니다.
 
@@ -276,31 +126,9 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 하지만 `Annotated`를 사용하고 있기에, `Annotated` 값을 변수에 저장하고 여러 장소에서 사용할 수 있습니다:
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
 
-```Python hl_lines="12  16  21"
-{!> ../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="14  18  23"
-{!> ../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15  19  24"
-{!> ../../docs_src/dependencies/tutorial001_02_an.py!}
-```
-
-////
-
-/// tip | "팁"
+/// tip | 팁
 
 이는 그저 표준 파이썬이고 "type alias"라고 부르며 사실 **FastAPI**에 국한되는 것은 아닙니다.
 
@@ -322,7 +150,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 아무 문제 없습니다. **FastAPI**는 무엇을 할지 알고 있습니다.
 
-/// note | "참고"
+/// note | 참고
 
 잘 모르시겠다면, [Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank} 문서에서 `async`와 `await`에 대해 확인할 수 있습니다.
 
