@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update includes format in docs with an automated script. PR [#12950](https://github.com/fastapi/fastapi/pull/12950) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update includes for `docs/de/docs/advanced/using-request-directly.md`. PR [#12685](https://github.com/fastapi/fastapi/pull/12685) by [@alissadb](https://github.com/alissadb).
 * 📝 Update includes for `docs/de/docs/how-to/conditional-openapi.md`. PR [#12689](https://github.com/fastapi/fastapi/pull/12689) by [@alissadb](https://github.com/alissadb).
 
