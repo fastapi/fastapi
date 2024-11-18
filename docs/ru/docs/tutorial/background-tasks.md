@@ -15,9 +15,7 @@
 
 Сначала импортируйте `BackgroundTasks`, потом добавьте в функцию параметр с типом `BackgroundTasks`:
 
-```Python hl_lines="1  13"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** создаст объект класса `BackgroundTasks` для вас и запишет его в параметр.
 
@@ -33,17 +31,13 @@
 
 Так как операция записи не использует `async` и `await`, мы определим ее как обычную `def`:
 
-```Python hl_lines="6-9"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Добавление фоновой задачи
 
 Внутри функции вызовите метод `.add_task()` у объекта *background tasks* и передайте ему функцию, которую хотите выполнить в фоне:
 
-```Python hl_lines="14"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` принимает следующие аргументы:
 
@@ -57,21 +51,7 @@
 
 **FastAPI** знает, что нужно сделать в каждом случае и как переиспользовать тот же объект `BackgroundTasks`, так чтобы все фоновые задачи собрались и запустились вместе в фоне:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11  13  20  23"
-{!> ../../docs_src/background_tasks/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="13  15  22  25"
-{!> ../../docs_src/background_tasks/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/background_tasks/tutorial002_py310.py hl[11,13,20,23] *}
 
 В этом примере сообщения будут записаны в `log.txt` *после* того, как ответ сервера был отправлен.
 
