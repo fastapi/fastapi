@@ -6,7 +6,7 @@ Para atualizar um item, você pode usar a operação <a href="https://developer.
 
 Você pode usar `jsonable_encoder` para converter os dados de entrada em dados que podem ser armazenados como JSON (por exemplo, com um banco de dados NoSQL). Por exemplo, convertendo `datetime` em `str`.
 
-{* ../../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` é usado para receber dados que devem substituir os dados existentes.
 
