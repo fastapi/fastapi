@@ -9,6 +9,27 @@ hide:
 
 ### Docs
 
+* 📝 Update includes format in docs with an automated script. PR [#12950](https://github.com/fastapi/fastapi/pull/12950) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update includes for `docs/de/docs/advanced/using-request-directly.md`. PR [#12685](https://github.com/fastapi/fastapi/pull/12685) by [@alissadb](https://github.com/alissadb).
+* 📝 Update includes for `docs/de/docs/how-to/conditional-openapi.md`. PR [#12689](https://github.com/fastapi/fastapi/pull/12689) by [@alissadb](https://github.com/alissadb).
+
+### Translations
+
+* 🔥 Remove obsolete tutorial translation to Chinese for `docs/zh/docs/tutorial/sql-databases.md`, it references files that are no longer on the repo. PR [#12949](https://github.com/fastapi/fastapi/pull/12949) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12954](https://github.com/fastapi/fastapi/pull/12954) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.115.5
+
+### Refactors
+
+* ♻️ Update internal checks to support Pydantic 2.10. PR [#12914](https://github.com/fastapi/fastapi/pull/12914) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update includes for `docs/en/docs/tutorial/body.md`. PR [#12757](https://github.com/fastapi/fastapi/pull/12757) by [@gsheni](https://github.com/gsheni).
 * 📝 Update includes in `docs/en/docs/advanced/testing-dependencies.md`. PR [#12647](https://github.com/fastapi/fastapi/pull/12647) by [@AyushSinghal1794](https://github.com/AyushSinghal1794).
 * 📝 Update includes for `docs/en/docs/tutorial/metadata.md`. PR [#12773](https://github.com/fastapi/fastapi/pull/12773) by [@Nimitha-jagadeesha](https://github.com/Nimitha-jagadeesha).
 * 📝 Update `docs/en/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#12045](https://github.com/fastapi/fastapi/pull/12045) by [@xuvjso](https://github.com/xuvjso).
@@ -121,6 +142,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12907](https://github.com/fastapi/fastapi/pull/12907) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🔨 Update docs preview script to show previous version and English version. PR [#12856](https://github.com/fastapi/fastapi/pull/12856) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump tiangolo/latest-changes from 0.3.1 to 0.3.2. PR [#12794](https://github.com/fastapi/fastapi/pull/12794) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.0 to 1.12.2. PR [#12788](https://github.com/fastapi/fastapi/pull/12788) by [@dependabot[bot]](https://github.com/apps/dependabot).
