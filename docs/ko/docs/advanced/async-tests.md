@@ -19,9 +19,9 @@ AnyIO는 특정 테스트 함수를 비동기 함수로 호출 할 수 있는 �
 
 **FastAPI** 애플리케이션이  `async def` 대신 `def` 키워드로 선언된 함수를 사용하더라도, 내부적으로는 여전히 `비동기` 애플리케이션입니다.
 
-`TestClient`는 표준 pytest를 사용하여 비동기 FastAPI 애플리케이션을 일반적인 `def` 테스트 함수 내에서 호출할 수 있도록 내부적으로 마법 같은 처리를 합니다. 하지만 이 마법은 비동기 함수 내부에서 사용할 때는 더 이상 작동하지 않습니다. 테스트를 비동기적으로 실행하면, 더 이상 테스트 함수 내부에서 `TestClient`를 사용할 수 없습니다.
+`TestClient`는 pytest 표준을 사용하여 비동기 FastAPI 애플리케이션을 일반적인 `def` 테스트 함수 내에서 호출할 수 있도록 내부에서 마술을 부립니다. 하지만 이 마술은 비동기 함수 내부에서 사용할 때는 더 이상 작동하지 않습니다. 테스트를 비동기로 실행하면, 더 이상 테스트 함수 내부에서 `TestClient`를 사용할 수 없습니다.
 
-TestClient는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하고 있으며, 다행히 이를 직접 사용하여 API를 테스트할 수 있습니다.
+`TestClient`는 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>를 기반으로 하고 있으며, 다행히 이를 직접 사용하여 API를 테스트할 수 있습니다.
 
 ## 예시
 
@@ -43,7 +43,7 @@ TestClient는 <a href="https://www.python-httpx.org" class="external-link" targe
 
 {* ../../docs_src/async_tests/test_main.py *}
 
-## 실행 하기!
+## 실행하기
 
 아래의 명령어로 테스트 코드를 실행합니다:
 
