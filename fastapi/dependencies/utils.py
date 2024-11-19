@@ -597,9 +597,11 @@ async def solve_dependencies(
         )
 
         # If the dependant is already cached, skip doing any more work
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+        default_empty = object()
+        cached_value = dependency_cache.get(sub_dependant.cache_key, default_empty)
+        if sub_dependant.use_cache and cached_value != default_empty:
             if sub_dependant.name is not None:
-                values[sub_dependant.name] = dependency_cache[sub_dependant.cache_key]
+                values[sub_dependant.name] = cached_value
             continue
 
         call = sub_dependant.call
