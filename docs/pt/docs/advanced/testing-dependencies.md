@@ -28,57 +28,7 @@ Para sobrepor a dependência para os testes, você coloca como chave a dependên
 
 E então o **FastAPI** chamará a sobreposição no lugar da dependência original.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="26-27  30"
-{!> ../../docs_src/dependency_testing/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="28-29  32"
-{!> ../../docs_src/dependency_testing/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="29-30  33"
-{!> ../../docs_src/dependency_testing/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="24-25  28"
-{!> ../../docs_src/dependency_testing/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="28-29  32"
-{!> ../../docs_src/dependency_testing/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
 /// tip | Dica
 

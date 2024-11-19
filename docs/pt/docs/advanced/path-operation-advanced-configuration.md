@@ -155,17 +155,13 @@ Por exemplo, nesta aplicação nós não usamos a funcionalidade integrada ao Fa
 
 //// tab | Pydantic v2
 
-```Python hl_lines="17-22  24"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22,24] *}
 
 ////
 
 //// tab | Pydantic v1
 
-```Python hl_lines="17-22  24"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22,24] *}
 
 ////
 
@@ -183,17 +179,13 @@ E então no nosso código, nós analisamos o conteúdo YAML diretamente, e estam
 
 //// tab | Pydantic v2
 
-```Python hl_lines="26-33"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
 
 ////
 
 //// tab | Pydantic v1
 
-```Python hl_lines="26-33"
-{!> ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
 
 ////
 
