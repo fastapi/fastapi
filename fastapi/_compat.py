@@ -91,6 +91,9 @@ if PYDANTIC_V2:
         def nullable_schema(
             self, schema: core_schema.NullableSchema
         ) -> JsonSchemaValue:
+            # print("\nin nullable_schema")
+            # print("schema", schema)
+            # print("self.skip_null_schema", self.skip_null_schema)
             if self.skip_null_schema:
                 return super().generate_inner(schema["schema"])
             return super().nullable_schema(schema)
@@ -99,9 +102,12 @@ if PYDANTIC_V2:
             self, schema: core_schema.WithDefaultSchema
         ) -> JsonSchemaValue:
             json_schema = super().default_schema(schema)
+            # print("\nin default_schema", schema)
+            # print("json_schema", json_schema)
+            # print("self.skip_null_schema", self.skip_null_schema)
             if (
                 self.skip_null_schema
-                and json_schema.get("default", None) is None
+                and json_schema.get("default", PydanticUndefined) is None
             ):
                 json_schema.pop("default")
             return json_schema
@@ -127,7 +133,7 @@ if PYDANTIC_V2:
 
             for key, mode, schema in inputs:
                 self._mode = mode
-                self.skip_null_schema = isinstance(key, ModelField) and isinstance(
+                self.skip_null_schema = isinstance(key, ModelField) or isinstance(
                     key.field_info, Param
                 )
                 self.generate_inner(schema)
