@@ -6,57 +6,7 @@
 
 Спочатку імпортуйте `Cookie`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Бажано використовувати `Annotated` версію, якщо це можливо.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Бажано використовувати `Annotated` версію, якщо це можливо.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
 
 ## Визначення параметрів `Cookie`
 
@@ -64,57 +14,7 @@
 
 Перше значення це значення за замовчуванням, ви можете також передати всі додаткові параметри валідації чи анотації:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Бажано використовувати `Annotated` версію, якщо це можливо.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Бажано використовувати `Annotated` версію, якщо це можливо.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
 
 /// note | Технічні Деталі
 

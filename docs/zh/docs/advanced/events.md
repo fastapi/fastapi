@@ -14,9 +14,7 @@
 
 使用 `startup` 事件声明 `app` 启动前运行的函数：
 
-```Python hl_lines="8"
-{!../../docs_src/events/tutorial001.py!}
-```
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 本例中，`startup` 事件处理器函数为项目数据库（只是**字典**）提供了一些初始值。
 
@@ -28,9 +26,7 @@
 
 使用 `shutdown` 事件声明 `app` 关闭时运行的函数：
 
-```Python hl_lines="6"
-{!../../docs_src/events/tutorial002.py!}
-```
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 此处，`shutdown` 事件处理器函数在 `log.txt` 中写入一行文本 `Application shutdown`。
 
