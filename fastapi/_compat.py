@@ -86,7 +86,7 @@ if PYDANTIC_V2:
             self, by_alias: bool = True, ref_template: str = DEFAULT_REF_TEMPLATE
         ):
             super().__init__(by_alias=by_alias, ref_template=ref_template)
-            self.skip_null_schema = True
+            self.skip_null_schema = False
 
         def nullable_schema(
             self, schema: core_schema.NullableSchema
@@ -101,7 +101,7 @@ if PYDANTIC_V2:
             json_schema = super().default_schema(schema)
             if (
                 self.skip_null_schema
-                and json_schema.get("default", PydanticUndefined) is None
+                and json_schema.get("default", None) is None
             ):
                 json_schema.pop("default")
             return json_schema
