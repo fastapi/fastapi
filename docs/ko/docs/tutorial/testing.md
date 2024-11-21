@@ -42,7 +42,7 @@ $ pip install httpx
 
 ///
 
-/// note | Technical Details | 기술 세부사항
+/// note | 기술 세부사항
 
 `from starlette.testclient import TestClient` 역시 사용할 수 있습니다.
 
