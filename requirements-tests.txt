@@ -2,7 +2,7 @@
 -r requirements-docs-tests.txt
 pytest >=7.1.3,<9.0.0
 coverage[toml] >= 6.5.0,< 8.0
-mypy ==1.8.0
+mypy ==1.13.0
 dirty-equals ==0.8.0
 sqlmodel==0.0.22
 flask >=1.1.2,<4.0.0
