@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from .main import BaseConfig as BaseConfig
 from .main import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from .main import RequiredParam as RequiredParam
@@ -34,6 +36,7 @@ from .may_v1 import CoreSchema as CoreSchema
 from .may_v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
 from .may_v1 import JsonSchemaValue as JsonSchemaValue
 from .may_v1 import _normalize_errors as _normalize_errors
+from .may_v1 import display_errors as display_errors
 from .model_field import ModelField as ModelField
 from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
@@ -48,3 +51,6 @@ from .shared import (
 from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
+
+if TYPE_CHECKING:  # pragma: nocover
+    from .may_v1 import ErrorDict as ErrorDict

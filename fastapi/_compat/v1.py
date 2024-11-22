@@ -2,6 +2,7 @@ from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
+    TYPE_CHECKING,
     Any,
     Callable,
     Dict,
@@ -33,6 +34,7 @@ if not PYDANTIC_V2:
     from pydantic.class_validators import Validator as Validator
     from pydantic.color import Color as Color
     from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
+    from pydantic.error_wrappers import display_errors as display_errors
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
@@ -69,6 +71,8 @@ if not PYDANTIC_V2:
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref
     from pydantic.utils import lenient_issubclass as lenient_issubclass
 
+    if TYPE_CHECKING:  # pragma: nocover
+        from pydantic.error_wrappers import ErrorDict as ErrorDict
 
 else:
     from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
@@ -80,6 +84,7 @@ else:
     from pydantic.v1.class_validators import Validator as Validator
     from pydantic.v1.color import Color as Color  # type: ignore[assignment]
     from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
+    from pydantic.v1.error_wrappers import display_errors as display_errors
     from pydantic.v1.errors import MissingError
     from pydantic.v1.fields import (
         SHAPE_FROZENSET,
@@ -121,6 +126,9 @@ else:
     )
     from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
     from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
+
+    if TYPE_CHECKING:  # pragma: nocover
+        from pydantic.v1.error_wrappers import ErrorDict as ErrorDict
 
 
 GetJsonSchemaHandler = Any
