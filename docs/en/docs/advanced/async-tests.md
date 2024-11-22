@@ -97,3 +97,40 @@ As the testing function is now asynchronous, you can now also call (and `await`)
 If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
 
 ///
+
+/// tip
+
+<a href="https://stackoverflow.com/a/72996947/192092" class="external-link" target="_blank">If you encounter a `RuntimeError: Event loop is closed` when using pytest fixtures</a>, set the default `anyio` backend, use `@pytest.fixture(scope='session')` for your fixtures and use `@pytest.mark.anyio` for your tests.
+
+```
+import pytest
+from asgi_lifespan import LifespanManager
+from httpx import ASGITransport, AsyncClient
+
+from your_application.applications import main
+
+@pytest.fixture(scope='session')
+def anyio_backend():
+    return 'asyncio'
+
+@pytest.fixture(scope='session')
+async def client(app):
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url=base_uri,
+    ) as client:
+        yield client
+
+@pytest.fixture(scope='session')
+async def app():
+    async with LifespanManager(main) as manager:
+        yield manager.app
+
+@pytest.mark.anyio
+async def test_see_root_html(client):
+    uri = main.url_path_for('see_root_html')
+    response = await client.get(uri)
+    assert response.status_code == 200
+```
+
+///
