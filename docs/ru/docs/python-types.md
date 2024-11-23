@@ -22,9 +22,8 @@ Python имеет поддержку необязательных аннотац
 
 Давайте начнем с простого примера:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 Вызов этой программы выводит:
 
@@ -38,9 +37,8 @@ John Doe
 * Преобразует первую букву содержимого каждой переменной в верхний регистр с `title()`.
 * <abbr title="Объединяет в одно целое, последовательно, друг за другом.">Соединяет</abbr> их через пробел.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### Отредактируем пример
 
@@ -82,9 +80,8 @@ John Doe
 
 Это аннотации типов:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 Это не то же самое, что объявление значений по умолчанию, например:
 
@@ -112,9 +109,8 @@ John Doe
 
 Проверьте эту функцию, она уже имеет аннотации типов:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 Поскольку редактор знает типы переменных, вы получаете не только дополнение, но и проверки ошибок:
 
@@ -122,9 +118,8 @@ John Doe
 
 Теперь вы знаете, что вам нужно исправить, преобразовав `age` в строку с `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## Объявление типов
 
@@ -143,9 +138,8 @@ John Doe
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### Generic-типы с параметрами типов
 
@@ -161,9 +155,8 @@ John Doe
 
 Импортируйте `List` из `typing` (с заглавной `L`):
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+
 
 Объявите переменную с тем же синтаксисом двоеточия (`:`).
 
@@ -171,9 +164,8 @@ John Doe
 
 Поскольку список является типом, содержащим некоторые внутренние типы, вы помещаете их в квадратные скобки:
 
-```Python hl_lines="4"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[4] *}
+
 
 /// tip
 
@@ -199,9 +191,8 @@ John Doe
 
 Вы бы сделали то же самое, чтобы объявить `tuple` и `set`:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial007.py!}
-```
+{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
+
 
 Это означает:
 
@@ -216,9 +207,8 @@ John Doe
 
 Второй параметр типа предназначен для значений `dict`:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial008.py!}
-```
+{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
+
 
 Это означает:
 
@@ -255,15 +245,13 @@ John Doe
 
 Допустим, у вас есть класс `Person` с полем `name`:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Тогда вы можете объявить переменную типа `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 И снова вы получаете полную поддержку редактора:
 
@@ -283,9 +271,8 @@ John Doe
 
 Взято из официальной документации Pydantic:
 
-```Python
-{!../../docs_src/python_types/tutorial011.py!}
-```
+{* ../../docs_src/python_types/tutorial011.py *}
+
 
 /// info
 
