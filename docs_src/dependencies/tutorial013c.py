@@ -9,6 +9,7 @@ class MyDatabaseConnection:
     """
     This is a mock just for example purposes.
     """
+
     connection_string: str
 
     async def __aenter__(self) -> Self:
@@ -20,6 +21,7 @@ class MyDatabaseConnection:
     async def get_record(self, table_name: str, record_id: str) -> dict:
         pass
 
+
 app = FastAPI()
 
 
@@ -28,20 +30,21 @@ async def get_configuration() -> dict:
         "database_url": "sqlite:///database.db",
     }
 
+
 GlobalConfiguration = Depends(get_configuration, dependency_scope="lifespan")
 
 
-async def get_database_connection(
-        configuration: dict = GlobalConfiguration
-):
+async def get_database_connection(configuration: dict = GlobalConfiguration):
     async with MyDatabaseConnection(configuration["database_url"]) as connection:
         yield connection
 
+
 GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan")
+
 
 @app.get("/users/{user_id}")
 async def read_user(
-        database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
-        user_id: str = Path()
+    database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
+    user_id: str = Path(),
 ):
     return await database_connection.get_record("users", user_id)

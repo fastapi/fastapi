@@ -8,6 +8,7 @@ class MyDatabaseConnection:
     """
     This is a mock just for example purposes.
     """
+
     async def __aenter__(self) -> Self:
         return self
 
@@ -26,7 +27,10 @@ async def get_database_connection():
         yield connection
 
 
-GlobalDatabaseConnection = Annotated[MyDatabaseConnection, Depends(get_database_connection, dependency_scope="lifespan")]
+GlobalDatabaseConnection = Annotated[
+    MyDatabaseConnection, Depends(get_database_connection, dependency_scope="lifespan")
+]
+
 
 @app.get("/users/")
 async def read_users(database_connection: GlobalDatabaseConnection):

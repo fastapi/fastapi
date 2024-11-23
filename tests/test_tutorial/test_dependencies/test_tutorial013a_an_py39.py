@@ -35,11 +35,7 @@ class MockDatabaseConnection:
 def database_connection_mock(monkeypatch) -> MockDatabaseConnection:
     mock = MockDatabaseConnection()
 
-    monkeypatch.setattr(
-        MyDatabaseConnection,
-        "__new__",
-        lambda *args, **kwargs: mock
-    )
+    monkeypatch.setattr(MyDatabaseConnection, "__new__", lambda *args, **kwargs: mock)
 
     return mock
 
@@ -52,13 +48,13 @@ def test_dependency_usage(database_connection_mock):
         assert database_connection_mock.enter_count == 1
         assert database_connection_mock.exit_count == 0
 
-        response = test_client.get('/users')
+        response = test_client.get("/users")
         assert response.status_code == 200
         assert response.json() == []
 
         assert database_connection_mock.get_records_count == 1
 
-        response = test_client.get('/items')
+        response = test_client.get("/items")
         assert response.status_code == 200
         assert response.json() == []
 

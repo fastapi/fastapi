@@ -10,6 +10,7 @@ class MyDatabaseConnection:
     """
     This is a mock just for example purposes.
     """
+
     connection_string: str
 
     async def __aenter__(self) -> Self:
@@ -33,20 +34,25 @@ async def get_configuration() -> dict:
         "database_url": "sqlite:///database.db",
     }
 
-GlobalConfiguration = Annotated[dict, Depends(get_configuration, dependency_scope="lifespan")]
+
+GlobalConfiguration = Annotated[
+    dict, Depends(get_configuration, dependency_scope="lifespan")
+]
 
 
 async def get_database_connection(configuration: GlobalConfiguration):
-    async with MyDatabaseConnection(
-            configuration["database_url"]) as connection:
+    async with MyDatabaseConnection(configuration["database_url"]) as connection:
         yield connection
 
-GlobalDatabaseConnection = Annotated[get_database_connection, Depends(get_database_connection, dependency_scope="lifespan")]
+
+GlobalDatabaseConnection = Annotated[
+    get_database_connection,
+    Depends(get_database_connection, dependency_scope="lifespan"),
+]
 
 
 @app.get("/users/{user_id}")
 async def read_user(
-        database_connection: GlobalDatabaseConnection,
-        user_id: Annotated[str, Path()]
+    database_connection: GlobalDatabaseConnection, user_id: Annotated[str, Path()]
 ):
     return await database_connection.get_record("users", user_id)

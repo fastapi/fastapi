@@ -41,22 +41,17 @@ class MockDatabaseConnection:
         }
 
 
-
 @pytest.fixture
 def database_connection_mocks(monkeypatch) -> List[MockDatabaseConnection]:
     connections = []
+
     def _get_new_connection_mock(*args, **kwargs):
         mock = MockDatabaseConnection()
         connections.append(mock)
 
         return mock
 
-
-    monkeypatch.setattr(
-        MyDatabaseConnection,
-        "__new__",
-        _get_new_connection_mock
-    )
+    monkeypatch.setattr(MyDatabaseConnection, "__new__", _get_new_connection_mock)
     return connections
 
 
@@ -72,7 +67,7 @@ def test_dependency_usage(database_connection_mocks):
             assert connection.get_records_count == 0
             assert connection.get_record_count == 0
 
-        response = test_client.get('/users')
+        response = test_client.get("/users")
         assert response.status_code == 200
         assert response.json() == []
 
@@ -82,9 +77,11 @@ def test_dependency_usage(database_connection_mocks):
                 users_connection = connection
                 break
 
-        assert users_connection is not None, "No connection was found for users endpoint"
+        assert (
+            users_connection is not None
+        ), "No connection was found for users endpoint"
 
-        response = test_client.get('/groups')
+        response = test_client.get("/groups")
         assert response.status_code == 200
         assert response.json() == []
 
@@ -94,7 +91,9 @@ def test_dependency_usage(database_connection_mocks):
                 groups_connection = connection
                 break
 
-        assert groups_connection is not None, "No connection was found for groups endpoint"
+        assert (
+            groups_connection is not None
+        ), "No connection was found for groups endpoint"
         assert groups_connection.get_records_count == 1
 
         items_connection = None
@@ -103,16 +102,18 @@ def test_dependency_usage(database_connection_mocks):
                 items_connection = connection
                 break
 
-        assert items_connection is not None, "No connection was found for items endpoint"
+        assert (
+            items_connection is not None
+        ), "No connection was found for items endpoint"
 
-        response = test_client.get('/items')
+        response = test_client.get("/items")
         assert response.status_code == 200
         assert response.json() == []
 
         assert items_connection.get_records_count == 1
         assert items_connection.get_record_count == 0
 
-        response = test_client.get('/items/asd')
+        response = test_client.get("/items/asd")
         assert response.status_code == 200
         assert response.json() == {
             "table_name": "items",
