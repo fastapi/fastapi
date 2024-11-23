@@ -6,11 +6,11 @@ So far we've used dependencies which are "endpoint scoped". Meaning, they are
 called again and again for every incoming request to the endpoint. However,
 this is not always ideal:
 
-* Sometimes dependencies have a large setup/teardown time. Running it for every request will result in bad performance. 
-* Sometimes dependencies need to have their values shared throughout the lifespan 
+* Sometimes dependencies have a large setup/teardown time. Running it for every request will result in bad performance.
+* Sometimes dependencies need to have their values shared throughout the lifespan
 of the application between multiple requests.
 
- 
+
 An example of this would be a connection to a database. Databases are typically
 less efficient when working with lots of connections and would prefer that
 clients would create a single connection for their operations.
@@ -19,12 +19,12 @@ For such cases can be solved by using "lifespan scoped dependencies".
 
 
 ## What is a lifespan scoped dependency?
-Lifespan scoped dependencies work similarly to the (endpoint scoped) 
-dependencies we've worked with so far. However, unlike endpoint scoped 
+Lifespan scoped dependencies work similarly to the (endpoint scoped)
+dependencies we've worked with so far. However, unlike endpoint scoped
 dependencies, lifespan scoped dependencies are called once and only
 once in the application's lifespan:
 
-* During the application startup process, all lifespan scoped dependencies will 
+* During the application startup process, all lifespan scoped dependencies will
 be called.
 * Their returned value will be shared across all requests to the application.
 * During the application's shutdown process, all lifespan scoped dependencies
@@ -66,11 +66,11 @@ this behavior by passing `use_cache=False` to `Depends`:
 
 In this example, the `read_users` and `read_groups` endpoints are using
 `use_cache=False` whereas the `read_items` and `read_item` are using
-`use_cache=True`. 
+`use_cache=True`.
 That means that we'll have a total of 3 connections created
 for the duration of the application's lifespan:
-* One connection will be shared across all requests for the `read_items` and `read_item` endpoints. 
-* A second connection will be shared across all requests for the `read_users` endpoint. 
+* One connection will be shared across all requests for the `read_items` and `read_item` endpoints.
+* A second connection will be shared across all requests for the `read_users` endpoint.
 * A third and final connection will be shared across all requests for the `read_groups` endpoint.
 
 
