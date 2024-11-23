@@ -21,6 +21,7 @@ class MyDatabaseConnection:
     async def get_record(self, table_name: str, record_id: str) -> dict:
         pass
 
+
 app = FastAPI()
 
 
@@ -29,26 +30,36 @@ async def get_database_connection():
         yield connection
 
 
-
 GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan")
-DedicatedDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan", use_cache=False)
+DedicatedDatabaseConnection = Depends(
+    get_database_connection, dependency_scope="lifespan", use_cache=False
+)
+
 
 @app.get("/groups/")
-async def read_groups(database_connection: MyDatabaseConnection = DedicatedDatabaseConnection):
+async def read_groups(
+    database_connection: MyDatabaseConnection = DedicatedDatabaseConnection,
+):
     return await database_connection.get_records("groups")
 
+
 @app.get("/users/")
-async def read_users(database_connection: MyDatabaseConnection = DedicatedDatabaseConnection):
+async def read_users(
+    database_connection: MyDatabaseConnection = DedicatedDatabaseConnection,
+):
     return await database_connection.get_records("users")
 
 
 @app.get("/items/")
-async def read_items(database_connection: MyDatabaseConnection = GlobalDatabaseConnection):
+async def read_items(
+    database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
+):
     return await database_connection.get_records("items")
+
 
 @app.get("/items/{item_id}")
 async def read_item(
     item_id: str = Path(),
-    database_connection: MyDatabaseConnection = GlobalDatabaseConnection
+    database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
 ):
     return await database_connection.get_record("items", item_id)

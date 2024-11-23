@@ -18,6 +18,7 @@ class MyDatabaseConnection:
     async def get_records(self, table_name: str) -> List[dict]:
         pass
 
+
 app = FastAPI()
 
 
@@ -30,10 +31,14 @@ GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="li
 
 
 @app.get("/users/")
-async def read_users(database_connection: MyDatabaseConnection = GlobalDatabaseConnection):
+async def read_users(
+    database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
+):
     return await database_connection.get_records("users")
 
 
 @app.get("/items/")
-async def read_items(database_connection: MyDatabaseConnection = GlobalDatabaseConnection):
+async def read_items(
+    database_connection: MyDatabaseConnection = GlobalDatabaseConnection,
+):
     return await database_connection.get_records("items")

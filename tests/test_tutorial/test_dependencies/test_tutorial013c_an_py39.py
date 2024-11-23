@@ -34,21 +34,17 @@ class MockDatabaseConnection:
         }
 
 
-
 @pytest.fixture
 def database_connection_mocks(monkeypatch) -> List[MockDatabaseConnection]:
     connections = []
+
     def _get_new_connection_mock(cls, url):
         mock = MockDatabaseConnection(url)
         connections.append(mock)
 
         return mock
 
-    monkeypatch.setattr(
-        MyDatabaseConnection,
-        "__new__",
-        _get_new_connection_mock
-    )
+    monkeypatch.setattr(MyDatabaseConnection, "__new__", _get_new_connection_mock)
     return connections
 
 
@@ -64,7 +60,7 @@ def test_dependency_usage(database_connection_mocks):
         assert database_connection_mock.exit_count == 0
         assert database_connection_mock.get_record_count == 0
 
-        response = test_client.get('/users/user')
+        response = test_client.get("/users/user")
         assert response.status_code == 200
         assert response.json() == {
             "table_name": "users",
