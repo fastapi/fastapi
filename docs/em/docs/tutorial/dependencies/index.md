@@ -31,21 +31,7 @@
 
 ⚫️ 🔢 👈 💪 ✊ 🌐 🎏 🔢 👈 *➡ 🛠️ 🔢* 💪 ✊:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="8-11"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="6-7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001.py hl[8:11] *}
 
 👈 ⚫️.
 
@@ -67,41 +53,13 @@
 
 ### 🗄 `Depends`
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="1"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### 📣 🔗, "⚓️"
 
 🎏 🌌 👆 ⚙️ `Body`, `Query`, ♒️. ⏮️ 👆 *➡ 🛠️ 🔢* 🔢, ⚙️ `Depends` ⏮️ 🆕 🔢:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="15  20"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001.py hl[15,20] *}
 
 👐 👆 ⚙️ `Depends` 🔢 👆 🔢 🎏 🌌 👆 ⚙️ `Body`, `Query`, ♒️, `Depends` 👷 👄 🎏.
 
