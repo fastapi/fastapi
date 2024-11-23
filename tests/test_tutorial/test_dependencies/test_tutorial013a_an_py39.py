@@ -1,10 +1,12 @@
+import sys
 from typing import List
 
 import pytest
 from starlette.testclient import TestClient
 from typing_extensions import Self
 
-from docs_src.dependencies.tutorial013a_an_py39 import MyDatabaseConnection, app
+if sys.version_info >= (3, 9):
+    from docs_src.dependencies.tutorial013a_an_py39 import MyDatabaseConnection, app
 
 from ...utils import needs_py39
 
