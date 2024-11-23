@@ -26,7 +26,7 @@ it.
 You may declare a dependency as a lifespan scoped dependency by passing
 `dependency_scope="lifespan"` to the `Depends` function:
 
-{* ../../docs_src/dependencies/tutorial013a_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial013a_an_py39.py *}
 
 /// tip
 
@@ -52,7 +52,7 @@ scoped dependencies. Meaning as **FastAPI** gathers lifespan scoped dependencies
 will cache dependencies it already encountered before. However, you can disable
 this behavior by passing `use_cache=False` to `Depends`:
 
-{* ../../docs_src/dependencies/tutorial013b_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial013b_an_py39.py *}
 
 In this example, the `read_users` and `read_groups` endpoints are using
 `use_cache=False` whereas the `read_items` and `read_item` are using
@@ -68,11 +68,11 @@ third and final connection will be shared across all requests for the
 Just like with endpoint scoped dependencies, lifespan scoped dependencies may
 use other lifespan scoped sub-dependencies themselves:
 
-{* ../../docs_src/dependencies/tutorial013c_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial013c_an_py39.py *}
 
 Endpoint scoped dependencies may use lifespan scoped sub dependencies as well:
 
-{* ../../docs_src/dependencies/tutorial013d_an_py39.py hl[16] *}
+{* ../../docs_src/dependencies/tutorial013d_an_py39.py *}
 
 /// note
 
