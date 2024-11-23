@@ -1,5 +1,3 @@
-from typing import List
-
 from fastapi import Depends, FastAPI, Path
 from typing_extensions import Self
 

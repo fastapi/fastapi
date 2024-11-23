@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Annotated, List
+from typing import Annotated
 
 from fastapi import Depends, FastAPI, Path
 from typing_extensions import Self
