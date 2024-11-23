@@ -10,9 +10,7 @@
 
 以下のような最初の依存関係（「依存可能なもの」）を作成することができます:
 
-```Python hl_lines="8 9"
-{!../../docs_src/dependencies/tutorial005.py!}
-```
+{* ../../docs_src/dependencies/tutorial005.py hl[8,9] *}
 
 これはオプショナルのクエリパラメータ`q`を`str`として宣言し、それを返すだけです。
 
@@ -22,9 +20,7 @@
 
 そして、別の依存関数（「依存可能なもの」）を作成して、同時にそれ自身の依存関係を宣言することができます（つまりそれ自身も「依存」です）:
 
-```Python hl_lines="13"
-{!../../docs_src/dependencies/tutorial005.py!}
-```
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 宣言されたパラメータに注目してみましょう:
 
@@ -37,9 +33,7 @@
 
 以下のように依存関係を使用することができます:
 
-```Python hl_lines="21"
-{!../../docs_src/dependencies/tutorial005.py!}
-```
+{* ../../docs_src/dependencies/tutorial005.py hl[21] *}
 
 /// info | 情報
 
