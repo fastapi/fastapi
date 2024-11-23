@@ -69,6 +69,7 @@ In this example, the `read_users` and `read_groups` endpoints are using
 `use_cache=True`.
 That means that we'll have a total of 3 connections created
 for the duration of the application's lifespan:
+
 * One connection will be shared across all requests for the `read_items` and `read_item` endpoints.
 * A second connection will be shared across all requests for the `read_users` endpoint.
 * A third and final connection will be shared across all requests for the `read_groups` endpoint.
