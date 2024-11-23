@@ -5,6 +5,7 @@ from starlette.testclient import TestClient
 from typing_extensions import Self
 
 from docs_src.dependencies.tutorial013c_an_py39 import MyDatabaseConnection, app
+from ...utils import needs_py39
 
 
 class MockDatabaseConnection:
@@ -52,6 +53,7 @@ def database_connection_mocks(monkeypatch) -> List[MockDatabaseConnection]:
     return connections
 
 
+@needs_py39
 def test_dependency_usage(database_connection_mocks):
     assert len(database_connection_mocks) == 0
 

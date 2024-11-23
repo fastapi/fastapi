@@ -5,6 +5,7 @@ from starlette.testclient import TestClient
 from typing_extensions import Self
 
 from docs_src.dependencies.tutorial013a_an_py39 import MyDatabaseConnection, app
+from ...utils import needs_py39
 
 
 class MockDatabaseConnection:
@@ -43,6 +44,7 @@ def database_connection_mock(monkeypatch) -> MockDatabaseConnection:
     return mock
 
 
+@needs_py39
 def test_dependency_usage(database_connection_mock):
     assert database_connection_mock.enter_count == 0
     assert database_connection_mock.exit_count == 0
