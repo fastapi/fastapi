@@ -1,24 +1,34 @@
 # Lifespan Scoped Dependencies
 
+## Intro
+
 So far we've used dependencies which are "endpoint scoped". Meaning, they are
 called again and again for every incoming request to the endpoint. However,
-this is not ideal for all kinds of dependencies.
+this is not always ideal:
 
-Sometimes dependencies have a large setup/teardown time, or there is a need
-for their value to be shared throughout the lifespan of the application. An
-example of this would be a connection to a database. Databases are typically
+* Sometimes dependencies have a large setup/teardown time. Running it for every request will result in bad performance. 
+* Sometimes dependencies need to have their values shared throughout the lifespan 
+of the application between multiple requests.
+
+ 
+An example of this would be a connection to a database. Databases are typically
 less efficient when working with lots of connections and would prefer that
 clients would create a single connection for their operations.
 
-For such cases, you might want to use "lifespan scoped" dependencies.
+For such cases can be solved by using "lifespan scoped dependencies".
 
-## Intro
 
-Lifespan scoped dependencies work similarly to the dependencies we've worked
-with so far (which are endpoint scoped). However, they are called once and only
-once in the application's lifespan (instead of being called again and again for
-every request). The returned value will be shared across all requests that need
-it.
+## What is a lifespan scoped dependency?
+Lifespan scoped dependencies work similarly to the (endpoint scoped) 
+dependencies we've worked with so far. However, unlike endpoint scoped 
+dependencies, lifespan scoped dependencies are called once and only
+once in the application's lifespan:
+
+* During the application startup process, all lifespan scoped dependencies will 
+be called.
+* Their returned value will be shared across all requests to the application.
+* During the application's shutdown process, all lifespan scoped dependencies
+will be gracefully teared down.
 
 
 ## Create a lifespan scoped dependency
@@ -56,12 +66,12 @@ this behavior by passing `use_cache=False` to `Depends`:
 
 In this example, the `read_users` and `read_groups` endpoints are using
 `use_cache=False` whereas the `read_items` and `read_item` are using
-`use_cache=True`. That means that we'll have a total of 3 connections created
-for the duration of the application's lifespan. One connection will be shared
-across all requests for the `read_items` and `read_item` endpoints. A second
-connection will be shared across all requests for the `read_users` endpoint. The
-third and final connection will be shared across all requests for the
-`read_groups` endpoint.
+`use_cache=True`. 
+That means that we'll have a total of 3 connections created
+for the duration of the application's lifespan:
+* One connection will be shared across all requests for the `read_items` and `read_item` endpoints. 
+* A second connection will be shared across all requests for the `read_users` endpoint. 
+* A third and final connection will be shared across all requests for the `read_groups` endpoint.
 
 
 ## Lifespan Scoped Sub-Dependencies
@@ -92,8 +102,8 @@ Therefore, it is not possible for a lifespan scoped dependency to use any
 parameters that require the scope of an endpoint.
 
 That includes but not limited to:
-    * Parts of the request (like `Body`, `Query` and `Path`)
-    * The request/response objects themselves (like `Request`, `Response` and `WebSocket`)
-    * Endpoint scoped sub-dependencies.
+* Parts of the request (like `Body`, `Query` and `Path`)
+* The request/response objects themselves (like `Request`, `Response` and `WebSocket`)
+* Endpoint scoped sub-dependencies.
 
 Defining a dependency with such parameters will raise an `InvalidDependencyScope` error.
