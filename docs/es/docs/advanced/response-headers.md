@@ -6,9 +6,7 @@ Puedes declarar un parámetro de tipo `Response` en tu *función de operación d
 
 Y entonces, podrás configurar las cookies en ese objeto de response *temporal*.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/response_headers/tutorial002.py!}
-```
+{* ../../docs_src/response_headers/tutorial002.py hl[1,7:8] *}
 
 Posteriormente, puedes devolver cualquier objeto que necesites, como normalmente harías (un `dict`, un modelo de base de datos, etc).
 
@@ -25,9 +23,7 @@ Adicionalmente, puedes añadir headers cuando se retorne una `Response` directam
 
 Crea un response tal como se describe en [Retornar una respuesta directamente](response-directly.md){.internal-link target=_blank} y pasa los headers como un parámetro adicional:
 
-```Python hl_lines="10-12"
-{!../../docs_src/response_headers/tutorial001.py!}
-```
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | Detalles Técnicos
 
