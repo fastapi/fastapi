@@ -15,9 +15,6 @@ class MyDatabaseConnection:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         pass
 
-    async def get_records(self, table_name: str) -> list[dict]:
-        pass
-
     async def get_record(self, table_name: str, record_id: str) -> dict:
         pass
 

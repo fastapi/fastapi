@@ -37,7 +37,7 @@ class MockDatabaseConnection:
     async def get_record(self, table_name: str, record_id: str) -> dict:
         self.get_record_count += 1
         # Called for the sake of coverage.
-        await MyDatabaseConnection.get_records(self, table_name)
+        await MyDatabaseConnection.get_record(self, table_name, record_id)
         return {
             "table_name": table_name,
             "record_id": record_id,
