@@ -102,6 +102,7 @@ Therefore, it is not possible for a lifespan scoped dependency to use any
 parameters that require the scope of an endpoint.
 
 That includes but not limited to:
+
 * Parts of the request (like `Body`, `Query` and `Path`)
 * The request/response objects themselves (like `Request`, `Response` and `WebSocket`)
 * Endpoint scoped sub-dependencies.
