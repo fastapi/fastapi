@@ -2,9 +2,7 @@
 
 Wenn Sie in ihrer Funktion Parameter deklarieren, die nicht Teil der Pfad-Parameter sind, dann werden diese automatisch als „Query“-Parameter interpretiert.
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial001.py!}
-```
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 Query-Parameter (Deutsch: Abfrage-Parameter) sind die Schlüssel-Wert-Paare, die nach dem `?` in einer URL aufgelistet sind, getrennt durch `&`-Zeichen.
 
@@ -63,21 +61,7 @@ gehen, werden die Parameter-Werte Ihrer Funktion sein:
 
 Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem Sie deren Defaultwert auf `None` setzen:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 In diesem Fall wird der Funktionsparameter `q` optional, und standardmäßig `None` sein.
 
@@ -91,21 +75,7 @@ Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass 
 
 Sie können auch `bool`-Typen deklarieren und sie werden konvertiert:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
 Wenn Sie nun zu:
 
@@ -147,21 +117,7 @@ Und Sie müssen sie auch nicht in einer spezifischen Reihenfolge deklarieren.
 
 Parameter werden anhand ihres Namens erkannt:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="6  8"
-{!> ../../docs_src/query_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  10"
-{!> ../../docs_src/query_params/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
 ## Erforderliche Query-Parameter
 
@@ -171,9 +127,7 @@ Wenn Sie keinen spezifischen Wert haben wollen, sondern der Parameter einfach op
 
 Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie einfach keinen Defaultwert:
 
-```Python hl_lines="6-7"
-{!../../docs_src/query_params/tutorial005.py!}
-```
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Hier ist `needy` ein erforderlicher Query-Parameter vom Typ `str`.
 
@@ -219,21 +173,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Und natürlich können Sie einige Parameter als erforderlich, einige mit Defaultwert, und einige als vollständig optional definieren:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8"
-{!> ../../docs_src/query_params/tutorial006_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_params/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
 In diesem Fall gibt es drei Query-Parameter:
 
