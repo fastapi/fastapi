@@ -6,21 +6,7 @@
 
 Сначала импортируйте `Cookie`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_py310.py hl[1] *}
 
 ## Объявление параметров `Cookie`
 
@@ -28,21 +14,7 @@
 
 Первое значение - это значение по умолчанию, вы можете передать все дополнительные параметры проверки или аннотации:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_py310.py hl[7] *}
 
 /// note | Технические детали
 

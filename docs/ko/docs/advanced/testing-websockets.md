@@ -4,9 +4,7 @@
 
 이를 위해 `with` 문에서 `TestClient`를 사용하여 WebSocket에 연결합니다:
 
-```Python hl_lines="27-31"
-{!../../docs_src/app_testing/tutorial002.py!}
-```
+{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
 /// note | 참고
 
