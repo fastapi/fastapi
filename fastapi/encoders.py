@@ -50,7 +50,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     1
     """
     exponent = dec_value.as_tuple().exponent
-    if isinstance(exponent, int) and exponent >= 0:  # type: ignore[operator]
+    if isinstance(exponent, int) and exponent >= 0:
         return int(dec_value)
     else:
         return float(dec_value)
