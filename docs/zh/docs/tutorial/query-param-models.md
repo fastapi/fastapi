@@ -12,7 +12,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 
 ## 使用 Pydantic 模型的查询参数
 
-在一个 **Pydantic模型**中声明你需要的**查询参数**，然后将参数声明为 `Query`：
+在一个 **Pydantic 模型**中声明你需要的**查询参数**，然后将参数声明为 `Query`：
 
 {* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
