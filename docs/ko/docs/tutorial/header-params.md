@@ -6,9 +6,7 @@
 
 먼저 `Header`를 임포트합니다:
 
-```Python hl_lines="3"
-{!../../docs_src/header_params/tutorial001.py!}
-```
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## `Header` 매개변수 선언
 
@@ -16,9 +14,7 @@
 
 첫 번째 값은 기본값이며, 추가 검증이나 어노테이션 매개변수 모두 전달할 수 있습니다:
 
-```Python hl_lines="9"
-{!../../docs_src/header_params/tutorial001.py!}
-```
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | 기술 세부사항
 
@@ -50,9 +46,7 @@
 
 만약 언더스코어를 하이픈으로 자동 변환을 비활성화해야 할 어떤 이유가 있다면, `Header`의 `convert_underscores` 매개변수를 `False`로 설정하십시오:
 
-```Python hl_lines="10"
-{!../../docs_src/header_params/tutorial002.py!}
-```
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | 경고
 
@@ -70,9 +64,7 @@
 
 예를 들어, 두 번 이상 나타날 수 있는 `X-Token`헤더를 선언하려면, 다음과 같이 작성합니다:
 
-```Python hl_lines="9"
-{!../../docs_src/header_params/tutorial003.py!}
-```
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 다음과 같은 두 개의 HTTP 헤더를 전송하여 해당 *경로* 와 통신할 경우:
 

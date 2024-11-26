@@ -41,21 +41,15 @@ pip install async-exit-stack async-generator
 
 レスポンスを送信する前に`yield`文を含む前のコードのみが実行されます。
 
-```Python hl_lines="2 3 4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2,3,4] *}
 
 生成された値は、*path operations*や他の依存関係に注入されるものです:
 
-```Python hl_lines="4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 `yield`文に続くコードは、レスポンスが送信された後に実行されます:
 
-```Python hl_lines="5 6"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5,6] *}
 
 /// tip | 豆知識
 
@@ -75,9 +69,7 @@ pip install async-exit-stack async-generator
 
 同様に、`finally`を用いて例外があったかどうかにかかわらず、終了ステップを確実に実行することができます。
 
-```Python hl_lines="3 5"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## `yield`を持つサブ依存関係
 
@@ -87,9 +79,7 @@ pip install async-exit-stack async-generator
 
 例えば、`dependency_c`は`dependency_b`と`dependency_b`に依存する`dependency_a`に、依存することができます:
 
-```Python hl_lines="4 12 20"
-{!../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[4,12,20] *}
 
 そして、それらはすべて`yield`を使用することができます。
 
@@ -97,9 +87,7 @@ pip install async-exit-stack async-generator
 
 そして、`dependency_b`は`dependency_a`（ここでは`dep_a`という名前）の値を終了コードで利用できるようにする必要があります。
 
-```Python hl_lines="16 17 24 25"
-{!../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[16,17,24,25] *}
 
 同様に、`yield`と`return`が混在した依存関係を持つこともできます。
 
@@ -233,9 +221,7 @@ Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#conte
 
 また、依存関数の中で`with`や`async with`文を使用することによって`yield`を持つ **FastAPI** の依存関係の中でそれらを使用することができます:
 
-```Python hl_lines="1 2 3 4 5 6 7 8 9 13"
-{!../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1,2,3,4,5,6,7,8,9,13] *}
 
 /// tip | 豆知識
 
