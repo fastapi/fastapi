@@ -42,9 +42,7 @@ Wenn der Header kein `gzip` enthält, wird nicht versucht, den Body zu dekomprim
 
 Auf diese Weise kann dieselbe Routenklasse gzip-komprimierte oder unkomprimierte Requests verarbeiten.
 
-```Python hl_lines="8-15"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
 ### Eine benutzerdefinierte `GzipRoute`-Klasse erstellen
 
@@ -56,9 +54,7 @@ Diese Methode gibt eine Funktion zurück. Und diese Funktion empfängt einen Req
 
 Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` zu erstellen.
 
-```Python hl_lines="18-26"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
 
 /// note | Technische Details
 
@@ -96,26 +92,18 @@ Wir können denselben Ansatz auch verwenden, um in einem Exceptionhandler auf de
 
 Alles, was wir tun müssen, ist, den Request innerhalb eines `try`/`except`-Blocks zu handhaben:
 
-```Python hl_lines="13  15"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
 
 Wenn eine Exception auftritt, befindet sich die `Request`-Instanz weiterhin im Gültigkeitsbereich, sodass wir den Requestbody lesen und bei der Fehlerbehandlung verwenden können:
 
-```Python hl_lines="16-18"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
 ## Benutzerdefinierte `APIRoute`-Klasse in einem Router
 
 Sie können auch den Parameter `route_class` eines `APIRouter` festlegen:
 
-```Python hl_lines="26"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 In diesem Beispiel verwenden die *Pfadoperationen* unter dem `router` die benutzerdefinierte `TimedRoute`-Klasse und haben in der Response einen zusätzlichen `X-Response-Time`-Header mit der Zeit, die zum Generieren der Response benötigt wurde:
 
-```Python hl_lines="13-20"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
