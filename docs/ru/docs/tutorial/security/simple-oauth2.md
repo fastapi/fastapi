@@ -51,57 +51,7 @@ OAuth2 определяет, что при использовании "ауте�
 Во-первых, импортируйте `OAuth2PasswordRequestForm` и используйте ее как зависимость с `Depends` в *эндпоинте* для пути `/token`:
 
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  78"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  78"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  79"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="2  74"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="4  76"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` - это зависимость от класса, которая объявляет тело формы со следующими полями:
 
@@ -143,57 +93,7 @@ Prefer to use the `Annotated` version if possible.
 
 Для ошибки мы используем исключение `HTTPException`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3  79-81"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3  79-81"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3  80-82"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1  75-77"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="3  77-79"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
 ### Проверка пароля
 
@@ -219,57 +119,7 @@ Prefer to use the `Annotated` version if possible.
 
 Таким образом, вор не сможет попытаться использовать эти же пароли в другой системе (поскольку многие пользователи используют одни и те же пароли повсеместно, это было бы опасно).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="82-85"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="82-85"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="83-86"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="78-81"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="80-83"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
 #### Про `**user_dict`
 
@@ -307,57 +157,7 @@ UserInDB(
 Но пока давайте остановимся на необходимых нам деталях.
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="87"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="87"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="88"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="83"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="85"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
 /// tip | Подсказка
 Согласно спецификации, вы должны возвращать JSON с `access_token` и `token_type`, как в данном примере.
@@ -381,57 +181,7 @@ Prefer to use the `Annotated` version if possible.
 
 Таким образом, в нашей конечной точке мы получим пользователя только в том случае, если он существует, правильно аутентифицирован и активен:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="58-66  69-74  94"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="58-66  69-74  94"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="59-67  70-75  95"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="56-64  67-70  88"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="58-66  69-72  90"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
 /// info | Дополнительная информация
 Дополнительный заголовок `WWW-Authenticate` со значением `Bearer`, который мы здесь возвращаем, также является частью спецификации.
