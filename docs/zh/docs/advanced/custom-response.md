@@ -24,9 +24,7 @@
 
 导入你想要使用的 `Response` 类（子类）然后在 *路径操作装饰器* 中声明它。
 
-```Python hl_lines="2 7"
-{!../../docs_src/custom_response/tutorial001b.py!}
-```
+{* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
 
 /// info | 提示
 
@@ -51,9 +49,7 @@
 * 导入 `HTMLResponse`。
 * 将 `HTMLResponse` 作为你的 *路径操作* 的 `response_class` 参数传入。
 
-```Python hl_lines="2 7"
-{!../../docs_src/custom_response/tutorial002.py!}
-```
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// info | 提示
 
@@ -71,9 +67,7 @@
 
 和上面一样的例子，返回一个 `HTMLResponse` 看起来可能是这样：
 
-```Python hl_lines="2 7 19"
-{!../../docs_src/custom_response/tutorial003.py!}
-```
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | 警告
 
@@ -97,9 +91,7 @@
 
 比如像这样：
 
-```Python hl_lines="7 23 21"
-{!../../docs_src/custom_response/tutorial004.py!}
-```
+{* ../../docs_src/custom_response/tutorial004.py hl[7,23,21] *}
 
 在这个例子中，函数 `generate_html_response()` 已经生成并返回 `Response` 对象而不是在 `str` 中返回 HTML。
 
@@ -139,9 +131,7 @@
 FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它还将包含一个基于 media_type 的 Content-Type 头，并为文本类型附加一个字符集。
 
 
-```Python hl_lines="1  18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse`
 
@@ -151,9 +141,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 接受文本或字节并返回纯文本响应。
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial005.py!}
-```
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse`
 
@@ -176,9 +164,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 ///
 
-```Python hl_lines="2 7"
-{!../../docs_src/custom_response/tutorial001.py!}
-```
+{* ../../docs_src/custom_response/tutorial001.py hl[2,7] *}
 
 /// tip | 小贴士
 
@@ -190,17 +176,13 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 返回 HTTP 重定向。默认情况下使用 307 状态代码（临时重定向）。
 
-```Python hl_lines="2  9"
-{!../../docs_src/custom_response/tutorial006.py!}
-```
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ### `StreamingResponse`
 
 采用异步生成器或普通生成器/迭代器，然后流式传输响应主体。
 
-```Python hl_lines="2  14"
-{!../../docs_src/custom_response/tutorial007.py!}
-```
+{* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
 #### 对类似文件的对象使用 `StreamingResponse`
 
@@ -208,9 +190,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 包括许多与云存储，视频处理等交互的库。
 
-```Python hl_lines="2  10-12  14"
-{!../../docs_src/custom_response/tutorial008.py!}
-```
+{* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 /// tip | 小贴士
 
@@ -231,9 +211,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 文件响应将包含适当的 `Content-Length`，`Last-Modified` 和 `ETag` 的响应头。
 
-```Python hl_lines="2  10"
-{!../../docs_src/custom_response/tutorial009.py!}
-```
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 ## 额外文档
 
