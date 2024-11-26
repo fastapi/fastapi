@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Update tests and internals for compatibility with Pydantic >=2.10. PR [#12971](https://github.com/fastapi/fastapi/pull/12971) by [@tamird](https://github.com/tamird).
+
 ### Docs
 
 * 📝 Update includes format in docs with an automated script. PR [#12950](https://github.com/fastapi/fastapi/pull/12950) by [@tiangolo](https://github.com/tiangolo).
