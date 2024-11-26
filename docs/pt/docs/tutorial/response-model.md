@@ -250,7 +250,7 @@ Então, se você enviar uma solicitação para essa *operação de rota* para o 
 }
 ```
 
-/// info
+/// info | Informação
 
 No Pydantic v1, o método era chamado `.dict()`, ele foi descontinuado (mas ainda suportado) no Pydantic v2 e renomeado para `.model_dump()`.
 
@@ -258,13 +258,13 @@ Os exemplos aqui usam `.dict()` para compatibilidade com Pydantic v1, mas você 
 
 ///
 
-/// info
+/// info | Informação
 
 O FastAPI usa `.dict()` do modelo Pydantic com <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">seu parâmetro `exclude_unset`</a> para chegar a isso.
 
 ///
 
-/// info
+/// info | Informação
 
 Você também pode usar:
 
