@@ -27,9 +27,7 @@ $ pip install jinja2
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
-```Python hl_lines="4  11  15-18"
-{!../../docs_src/templates/tutorial001.py!}
-```
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note
 

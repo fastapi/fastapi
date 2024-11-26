@@ -29,21 +29,15 @@ FastAPI поддерживает зависимости, которые выпо
 
 Перед созданием ответа будет выполнен только код до и включая `yield`.
 
-```Python hl_lines="2-4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 Полученное значение и есть то, что будет внедрено в функцию операции пути и другие зависимости:
 
-```Python hl_lines="4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 Код, следующий за оператором `yield`, выполняется после доставки ответа:
 
-```Python hl_lines="5-6"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | Подсказка
 
@@ -63,9 +57,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Таким же образом можно использовать `finally`, чтобы убедиться, что обязательные шаги при выходе выполнены, независимо от того, было ли исключение или нет.
 
-```Python hl_lines="3  5"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## Подзависимости с `yield`
 
@@ -75,35 +67,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Например, `dependency_c` может иметь зависимость от `dependency_b`, а `dependency_b` от `dependency_a`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  14  22"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="5  13  21"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="4  12  20"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 И все они могут использовать `yield`.
 
@@ -111,35 +75,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 И, в свою очередь, `dependency_b` нуждается в том, чтобы значение из `dependency_a` (здесь `dep_a`) было доступно для ее завершающего кода.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19  26-27"
-{!> ../../docs_src/dependencies/tutorial008_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="17-18  25-26"
-{!> ../../docs_src/dependencies/tutorial008_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="16-17  24-25"
-{!> ../../docs_src/dependencies/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
 Точно так же можно иметь часть зависимостей с `yield`, часть с `return`, и какие-то из них могут зависеть друг от друга.
 
@@ -303,9 +239,7 @@ with open("./somefile.txt") as f:
 Вы также можете использовать их внутри зависимостей **FastAPI** с `yield`, используя операторы
 `with` или `async with` внутри функции зависимости:
 
-```Python hl_lines="1-9  13"
-{!../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | Подсказка
 

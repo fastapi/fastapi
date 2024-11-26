@@ -118,21 +118,7 @@ $ pip install "passlib[bcrypt]"
 
 &amp; ➕1️⃣ 1️⃣ 🔓 &amp; 📨 👩‍💻.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="6  47  54-55  58-59  68-74"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004.py hl[7,48,55:56,59:60,69:75] *}
 
 /// note
 
@@ -168,21 +154,7 @@ $ openssl rand -hex 32
 
 ✍ 🚙 🔢 🏗 🆕 🔐 🤝.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="6  12-14  28-30  78-86"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="5  11-13  27-29  77-85"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004.py hl[6,12:14,28:30,78:86] *}
 
 ## ℹ 🔗
 
@@ -192,21 +164,7 @@ $ openssl rand -hex 32
 
 🚥 🤝 ❌, 📨 🇺🇸🔍 ❌ ▶️️ ↖️.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="89-106"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="88-105"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004.py hl[89:106] *}
 
 ## ℹ `/token` *➡ 🛠️*
 
@@ -214,21 +172,7 @@ $ openssl rand -hex 32
 
 ✍ 🎰 🥙 🔐 🤝 &amp; 📨 ⚫️.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="115-130"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="114-129"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004.py hl[115:130] *}
 
 ### 📡 ℹ 🔃 🥙 "📄" `sub`
 

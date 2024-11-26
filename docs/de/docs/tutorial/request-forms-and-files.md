@@ -12,69 +12,13 @@ Z. B. `pip install python-multipart`.
 
 ## `File` und `Form` importieren
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
 
 ## `File` und `Form`-Parameter definieren
 
 Erstellen Sie Datei- und Formularparameter, so wie Sie es auch mit `Body` und `Query` machen würden:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10-12"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-11"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
 
 Die Datei- und Formularfelder werden als Formulardaten hochgeladen, und Sie erhalten diese Dateien und Formularfelder.
 
