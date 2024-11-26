@@ -77,8 +77,6 @@ Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-pla
 
 Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de message, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et potentiellement, sur plusieurs serveurs.
 
-Pour voir un exemple, allez voir les [Générateurs de projets](../project-generation.md){.internal-link target=_blank}, ils incluent tous Celery déjà configuré.
-
 Mais si vous avez besoin d'accéder aux variables et objets de la même application **FastAPI**, ou si vous avez besoin d'effectuer de petites tâches d'arrière-plan (comme envoyer des notifications par email), vous pouvez simplement vous contenter d'utiliser `BackgroundTasks`.
 
 ## Résumé
