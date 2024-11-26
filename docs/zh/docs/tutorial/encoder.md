@@ -20,21 +20,7 @@
 
 它接收一个对象，比如Pydantic模型，并会返回一个JSON兼容的版本：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  21"
-{!> ../../docs_src/encoder/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="5  22"
-{!> ../../docs_src/encoder/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
 
 在这个例子中，它将Pydantic模型转换为`dict`，并将`datetime`转换为`str`。
 
