@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Chinese translation for `docs/zh/docs/tutorial/query-param-models.md`. PR [#12931](https://github.com/fastapi/fastapi/pull/12931) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/query-param-models.md`. PR [#12445](https://github.com/fastapi/fastapi/pull/12445) by [@gitgernit](https://github.com/gitgernit).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/query-param-models.md`. PR [#12940](https://github.com/fastapi/fastapi/pull/12940) by [@jts8257](https://github.com/jts8257).
 * 🔥 Remove obsolete tutorial translation to Chinese for `docs/zh/docs/tutorial/sql-databases.md`, it references files that are no longer on the repo. PR [#12949](https://github.com/fastapi/fastapi/pull/12949) by [@tiangolo](https://github.com/tiangolo).
