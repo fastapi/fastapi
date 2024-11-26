@@ -487,7 +487,7 @@ flowchart LR
     end
 ```
 
-但如果你想運行 `prisoner-of-azkaban`，你需要卸載 `harry` 版本 `1` 並安裝 `harry` 版本 `3`（或者只要你安裝版本 `3`，版本 `1` 就會自動卸載）。
+但如果你想運行 `prisoner-of-azkaban`，你需要解除安裝 `harry` 版本 `1` 並安裝 `harry` 版本 `3`（或者只要你安裝版本 `3`，版本 `1` 就會自動移除）。
 
 <div class="termy">
 
