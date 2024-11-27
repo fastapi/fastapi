@@ -54,7 +54,9 @@ export const getQueryString = (params: Record<string, unknown>): string => {
       return
     }
 
-    if (Array.isArray(value)) {
+    if (value instanceof Date) {
+      append(key, value.toISOString())
+    } else if (Array.isArray(value)) {
       value.forEach((v) => encodePair(key, v))
     } else if (typeof value === "object") {
       Object.entries(value).forEach(([k, v]) => encodePair(`${key}[${k}]`, v))
@@ -113,10 +115,10 @@ export const getFormData = (
   return undefined
 }
 
-type Resolver<T> = (options: ApiRequestOptions) => Promise<T>
+type Resolver<T> = (options: ApiRequestOptions<T>) => Promise<T>
 
 export const resolve = async <T>(
-  options: ApiRequestOptions,
+  options: ApiRequestOptions<T>,
   resolver?: T | Resolver<T>,
 ): Promise<T | undefined> => {
   if (typeof resolver === "function") {
@@ -125,14 +127,18 @@ export const resolve = async <T>(
   return resolver
 }
 
-export const getHeaders = async (
+export const getHeaders = async <T>(
   config: OpenAPIConfig,
-  options: ApiRequestOptions,
+  options: ApiRequestOptions<T>,
 ): Promise<Record<string, string>> => {
   const [token, username, password, additionalHeaders] = await Promise.all([
+    // @ts-ignore
     resolve(options, config.TOKEN),
+    // @ts-ignore
     resolve(options, config.USERNAME),
+    // @ts-ignore
     resolve(options, config.PASSWORD),
+    // @ts-ignore
     resolve(options, config.HEADERS),
   ])
 
@@ -187,7 +193,7 @@ export const getRequestBody = (options: ApiRequestOptions): unknown => {
 
 export const sendRequest = async <T>(
   config: OpenAPIConfig,
-  options: ApiRequestOptions,
+  options: ApiRequestOptions<T>,
   url: string,
   body: unknown,
   formData: FormData | undefined,
@@ -325,7 +331,7 @@ export const catchErrorCodes = (
  */
 export const request = <T>(
   config: OpenAPIConfig,
-  options: ApiRequestOptions,
+  options: ApiRequestOptions<T>,
   axiosClient: AxiosInstance = axios,
 ): CancelablePromise<T> => {
   return new CancelablePromise(async (resolve, reject, onCancel) => {
@@ -357,12 +363,17 @@ export const request = <T>(
           options.responseHeader,
         )
 
+        let transformedBody = responseBody
+        if (options.responseTransformer && isSuccess(response.status)) {
+          transformedBody = await options.responseTransformer(responseBody)
+        }
+
         const result: ApiResult = {
           url,
           ok: isSuccess(response.status),
           status: response.status,
           statusText: response.statusText,
-          body: responseHeader ?? responseBody,
+          body: responseHeader ?? transformedBody,
         }
 
         catchErrorCodes(options, result)
