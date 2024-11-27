@@ -121,7 +121,7 @@ WebSocket에서는 `HTTPException`을 발생시키는 것이 적합하지 않습
 
 ### 종속성을 가진 WebSockets 테스트
 
-파일 이름이 `main.py`라고 가정하고 애플리케이션을 실행합니다:
+파일 이름이 `main.py`라고 가정하고 응용 프로그램을 실행합니다:
 
 <div class="termy">
 
