@@ -86,7 +86,7 @@ $ fastapi dev main.py
 
 <img src="/img/tutorial/websockets/image02.png">
 
-**FastAPI** WebSocket 애플리케이션이 응답을 돌려줄 것입니다:
+**FastAPI** WebSocket 응용 프로그램이 응답을 돌려줄 것입니다:
 
 <img src="/img/tutorial/websockets/image03.png">
 
