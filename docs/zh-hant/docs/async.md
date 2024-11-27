@@ -22,7 +22,7 @@ async def read_results():
     return results
 ```
 
-/// 注意
+/// note | 注意
 
 你只能在 `async def` 建立的函式內使用 `await`。
 
