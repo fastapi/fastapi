@@ -42,7 +42,7 @@ $ pip install websockets
 
 ## `websocket` 생성하기
 
-**FastAPI** 애플리케이션에서 `websocket`을 생성합니다:
+**FastAPI** 응용 프로그램에서 `websocket`을 생성합니다:
 
 {* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
