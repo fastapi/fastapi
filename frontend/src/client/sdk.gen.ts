@@ -4,46 +4,46 @@ import type { CancelablePromise } from "./core/CancelablePromise"
 import { OpenAPI } from "./core/OpenAPI"
 import { request as __request } from "./core/request"
 import type {
-  ReadItemsData,
-  ReadItemsResponse,
-  CreateItemData,
-  CreateItemResponse,
-  ReadItemData,
-  ReadItemResponse,
-  UpdateItemData,
-  UpdateItemResponse,
-  DeleteItemData,
-  DeleteItemResponse,
-  LoginAccessTokenData,
-  LoginAccessTokenResponse,
-  TestTokenResponse,
-  RecoverPasswordData,
-  RecoverPasswordResponse,
-  ResetPasswordData,
-  ResetPasswordResponse,
-  RecoverPasswordHtmlContentData,
-  RecoverPasswordHtmlContentResponse,
-  ReadUsersData,
-  ReadUsersResponse,
-  CreateUserData,
-  CreateUserResponse,
-  ReadUserMeResponse,
-  DeleteUserMeResponse,
-  UpdateUserMeData,
-  UpdateUserMeResponse,
-  UpdatePasswordMeData,
-  UpdatePasswordMeResponse,
-  RegisterUserData,
-  RegisterUserResponse,
-  ReadUserByIdData,
-  ReadUserByIdResponse,
-  UpdateUserData,
-  UpdateUserResponse,
-  DeleteUserData,
-  DeleteUserResponse,
-  TestEmailData,
-  TestEmailResponse,
-  HealthCheckResponse,
+  ItemsReadItemsData,
+  ItemsReadItemsResponse,
+  ItemsCreateItemData,
+  ItemsCreateItemResponse,
+  ItemsReadItemData,
+  ItemsReadItemResponse,
+  ItemsUpdateItemData,
+  ItemsUpdateItemResponse,
+  ItemsDeleteItemData,
+  ItemsDeleteItemResponse,
+  LoginLoginAccessTokenData,
+  LoginLoginAccessTokenResponse,
+  LoginTestTokenResponse,
+  LoginRecoverPasswordData,
+  LoginRecoverPasswordResponse,
+  LoginResetPasswordData,
+  LoginResetPasswordResponse,
+  LoginRecoverPasswordHtmlContentData,
+  LoginRecoverPasswordHtmlContentResponse,
+  UsersReadUsersData,
+  UsersReadUsersResponse,
+  UsersCreateUserData,
+  UsersCreateUserResponse,
+  UsersReadUserMeResponse,
+  UsersDeleteUserMeResponse,
+  UsersUpdateUserMeData,
+  UsersUpdateUserMeResponse,
+  UsersUpdatePasswordMeData,
+  UsersUpdatePasswordMeResponse,
+  UsersRegisterUserData,
+  UsersRegisterUserResponse,
+  UsersReadUserByIdData,
+  UsersReadUserByIdResponse,
+  UsersUpdateUserData,
+  UsersUpdateUserResponse,
+  UsersDeleteUserData,
+  UsersDeleteUserResponse,
+  UtilsTestEmailData,
+  UtilsTestEmailResponse,
+  UtilsHealthCheckResponse,
 } from "./types.gen"
 
 export class ItemsService {
@@ -57,8 +57,8 @@ export class ItemsService {
    * @throws ApiError
    */
   public static readItems(
-    data: ReadItemsData = {},
-  ): CancelablePromise<ReadItemsResponse> {
+    data: ItemsReadItemsData = {},
+  ): CancelablePromise<ItemsReadItemsResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/items/",
@@ -81,8 +81,8 @@ export class ItemsService {
    * @throws ApiError
    */
   public static createItem(
-    data: CreateItemData,
-  ): CancelablePromise<CreateItemResponse> {
+    data: ItemsCreateItemData,
+  ): CancelablePromise<ItemsCreateItemResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/items/",
@@ -103,8 +103,8 @@ export class ItemsService {
    * @throws ApiError
    */
   public static readItem(
-    data: ReadItemData,
-  ): CancelablePromise<ReadItemResponse> {
+    data: ItemsReadItemData,
+  ): CancelablePromise<ItemsReadItemResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/items/{id}",
@@ -127,8 +127,8 @@ export class ItemsService {
    * @throws ApiError
    */
   public static updateItem(
-    data: UpdateItemData,
-  ): CancelablePromise<UpdateItemResponse> {
+    data: ItemsUpdateItemData,
+  ): CancelablePromise<ItemsUpdateItemResponse> {
     return __request(OpenAPI, {
       method: "PUT",
       url: "/api/v1/items/{id}",
@@ -152,8 +152,8 @@ export class ItemsService {
    * @throws ApiError
    */
   public static deleteItem(
-    data: DeleteItemData,
-  ): CancelablePromise<DeleteItemResponse> {
+    data: ItemsDeleteItemData,
+  ): CancelablePromise<ItemsDeleteItemResponse> {
     return __request(OpenAPI, {
       method: "DELETE",
       url: "/api/v1/items/{id}",
@@ -177,8 +177,8 @@ export class LoginService {
    * @throws ApiError
    */
   public static loginAccessToken(
-    data: LoginAccessTokenData,
-  ): CancelablePromise<LoginAccessTokenResponse> {
+    data: LoginLoginAccessTokenData,
+  ): CancelablePromise<LoginLoginAccessTokenResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/login/access-token",
@@ -196,7 +196,7 @@ export class LoginService {
    * @returns UserPublic Successful Response
    * @throws ApiError
    */
-  public static testToken(): CancelablePromise<TestTokenResponse> {
+  public static testToken(): CancelablePromise<LoginTestTokenResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/login/test-token",
@@ -212,8 +212,8 @@ export class LoginService {
    * @throws ApiError
    */
   public static recoverPassword(
-    data: RecoverPasswordData,
-  ): CancelablePromise<RecoverPasswordResponse> {
+    data: LoginRecoverPasswordData,
+  ): CancelablePromise<LoginRecoverPasswordResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/password-recovery/{email}",
@@ -235,8 +235,8 @@ export class LoginService {
    * @throws ApiError
    */
   public static resetPassword(
-    data: ResetPasswordData,
-  ): CancelablePromise<ResetPasswordResponse> {
+    data: LoginResetPasswordData,
+  ): CancelablePromise<LoginResetPasswordResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/reset-password/",
@@ -257,8 +257,8 @@ export class LoginService {
    * @throws ApiError
    */
   public static recoverPasswordHtmlContent(
-    data: RecoverPasswordHtmlContentData,
-  ): CancelablePromise<RecoverPasswordHtmlContentResponse> {
+    data: LoginRecoverPasswordHtmlContentData,
+  ): CancelablePromise<LoginRecoverPasswordHtmlContentResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/password-recovery-html-content/{email}",
@@ -283,8 +283,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static readUsers(
-    data: ReadUsersData = {},
-  ): CancelablePromise<ReadUsersResponse> {
+    data: UsersReadUsersData = {},
+  ): CancelablePromise<UsersReadUsersResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/users/",
@@ -307,8 +307,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static createUser(
-    data: CreateUserData,
-  ): CancelablePromise<CreateUserResponse> {
+    data: UsersCreateUserData,
+  ): CancelablePromise<UsersCreateUserResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/users/",
@@ -326,7 +326,7 @@ export class UsersService {
    * @returns UserPublic Successful Response
    * @throws ApiError
    */
-  public static readUserMe(): CancelablePromise<ReadUserMeResponse> {
+  public static readUserMe(): CancelablePromise<UsersReadUserMeResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/users/me",
@@ -339,7 +339,7 @@ export class UsersService {
    * @returns Message Successful Response
    * @throws ApiError
    */
-  public static deleteUserMe(): CancelablePromise<DeleteUserMeResponse> {
+  public static deleteUserMe(): CancelablePromise<UsersDeleteUserMeResponse> {
     return __request(OpenAPI, {
       method: "DELETE",
       url: "/api/v1/users/me",
@@ -355,8 +355,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static updateUserMe(
-    data: UpdateUserMeData,
-  ): CancelablePromise<UpdateUserMeResponse> {
+    data: UsersUpdateUserMeData,
+  ): CancelablePromise<UsersUpdateUserMeResponse> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/api/v1/users/me",
@@ -377,8 +377,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static updatePasswordMe(
-    data: UpdatePasswordMeData,
-  ): CancelablePromise<UpdatePasswordMeResponse> {
+    data: UsersUpdatePasswordMeData,
+  ): CancelablePromise<UsersUpdatePasswordMeResponse> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/api/v1/users/me/password",
@@ -399,8 +399,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static registerUser(
-    data: RegisterUserData,
-  ): CancelablePromise<RegisterUserResponse> {
+    data: UsersRegisterUserData,
+  ): CancelablePromise<UsersRegisterUserResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/users/signup",
@@ -421,8 +421,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static readUserById(
-    data: ReadUserByIdData,
-  ): CancelablePromise<ReadUserByIdResponse> {
+    data: UsersReadUserByIdData,
+  ): CancelablePromise<UsersReadUserByIdResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/users/{user_id}",
@@ -445,8 +445,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static updateUser(
-    data: UpdateUserData,
-  ): CancelablePromise<UpdateUserResponse> {
+    data: UsersUpdateUserData,
+  ): CancelablePromise<UsersUpdateUserResponse> {
     return __request(OpenAPI, {
       method: "PATCH",
       url: "/api/v1/users/{user_id}",
@@ -470,8 +470,8 @@ export class UsersService {
    * @throws ApiError
    */
   public static deleteUser(
-    data: DeleteUserData,
-  ): CancelablePromise<DeleteUserResponse> {
+    data: UsersDeleteUserData,
+  ): CancelablePromise<UsersDeleteUserResponse> {
     return __request(OpenAPI, {
       method: "DELETE",
       url: "/api/v1/users/{user_id}",
@@ -495,8 +495,8 @@ export class UtilsService {
    * @throws ApiError
    */
   public static testEmail(
-    data: TestEmailData,
-  ): CancelablePromise<TestEmailResponse> {
+    data: UtilsTestEmailData,
+  ): CancelablePromise<UtilsTestEmailResponse> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/v1/utils/test-email/",
@@ -514,7 +514,7 @@ export class UtilsService {
    * @returns boolean Successful Response
    * @throws ApiError
    */
-  public static healthCheck(): CancelablePromise<HealthCheckResponse> {
+  public static healthCheck(): CancelablePromise<UtilsHealthCheckResponse> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/api/v1/utils/health-check/",

@@ -100,122 +100,122 @@ export type ValidationError = {
   type: string
 }
 
-export type ReadItemsData = {
+export type ItemsReadItemsData = {
   limit?: number
   skip?: number
 }
 
-export type ReadItemsResponse = ItemsPublic
+export type ItemsReadItemsResponse = ItemsPublic
 
-export type CreateItemData = {
+export type ItemsCreateItemData = {
   requestBody: ItemCreate
 }
 
-export type CreateItemResponse = ItemPublic
+export type ItemsCreateItemResponse = ItemPublic
 
-export type ReadItemData = {
+export type ItemsReadItemData = {
   id: string
 }
 
-export type ReadItemResponse = ItemPublic
+export type ItemsReadItemResponse = ItemPublic
 
-export type UpdateItemData = {
+export type ItemsUpdateItemData = {
   id: string
   requestBody: ItemUpdate
 }
 
-export type UpdateItemResponse = ItemPublic
+export type ItemsUpdateItemResponse = ItemPublic
 
-export type DeleteItemData = {
+export type ItemsDeleteItemData = {
   id: string
 }
 
-export type DeleteItemResponse = Message
+export type ItemsDeleteItemResponse = Message
 
-export type LoginAccessTokenData = {
+export type LoginLoginAccessTokenData = {
   formData: Body_login_login_access_token
 }
 
-export type LoginAccessTokenResponse = Token
+export type LoginLoginAccessTokenResponse = Token
 
-export type TestTokenResponse = UserPublic
+export type LoginTestTokenResponse = UserPublic
 
-export type RecoverPasswordData = {
+export type LoginRecoverPasswordData = {
   email: string
 }
 
-export type RecoverPasswordResponse = Message
+export type LoginRecoverPasswordResponse = Message
 
-export type ResetPasswordData = {
+export type LoginResetPasswordData = {
   requestBody: NewPassword
 }
 
-export type ResetPasswordResponse = Message
+export type LoginResetPasswordResponse = Message
 
-export type RecoverPasswordHtmlContentData = {
+export type LoginRecoverPasswordHtmlContentData = {
   email: string
 }
 
-export type RecoverPasswordHtmlContentResponse = string
+export type LoginRecoverPasswordHtmlContentResponse = string
 
-export type ReadUsersData = {
+export type UsersReadUsersData = {
   limit?: number
   skip?: number
 }
 
-export type ReadUsersResponse = UsersPublic
+export type UsersReadUsersResponse = UsersPublic
 
-export type CreateUserData = {
+export type UsersCreateUserData = {
   requestBody: UserCreate
 }
 
-export type CreateUserResponse = UserPublic
+export type UsersCreateUserResponse = UserPublic
 
-export type ReadUserMeResponse = UserPublic
+export type UsersReadUserMeResponse = UserPublic
 
-export type DeleteUserMeResponse = Message
+export type UsersDeleteUserMeResponse = Message
 
-export type UpdateUserMeData = {
+export type UsersUpdateUserMeData = {
   requestBody: UserUpdateMe
 }
 
-export type UpdateUserMeResponse = UserPublic
+export type UsersUpdateUserMeResponse = UserPublic
 
-export type UpdatePasswordMeData = {
+export type UsersUpdatePasswordMeData = {
   requestBody: UpdatePassword
 }
 
-export type UpdatePasswordMeResponse = Message
+export type UsersUpdatePasswordMeResponse = Message
 
-export type RegisterUserData = {
+export type UsersRegisterUserData = {
   requestBody: UserRegister
 }
 
-export type RegisterUserResponse = UserPublic
+export type UsersRegisterUserResponse = UserPublic
 
-export type ReadUserByIdData = {
+export type UsersReadUserByIdData = {
   userId: string
 }
 
-export type ReadUserByIdResponse = UserPublic
+export type UsersReadUserByIdResponse = UserPublic
 
-export type UpdateUserData = {
+export type UsersUpdateUserData = {
   requestBody: UserUpdate
   userId: string
 }
 
-export type UpdateUserResponse = UserPublic
+export type UsersUpdateUserResponse = UserPublic
 
-export type DeleteUserData = {
+export type UsersDeleteUserData = {
   userId: string
 }
 
-export type DeleteUserResponse = Message
+export type UsersDeleteUserResponse = Message
 
-export type TestEmailData = {
+export type UtilsTestEmailData = {
   emailTo: string
 }
 
-export type TestEmailResponse = Message
+export type UtilsTestEmailResponse = Message
 
-export type HealthCheckResponse = boolean
+export type UtilsHealthCheckResponse = boolean
