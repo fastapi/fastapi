@@ -7,7 +7,7 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 To use forms, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 폼을 사용하려면, 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치하세요.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고, 활성화하고, 그리고 설치하세요, 예를 들어:
+[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고 활성화한 다음, 아래와 같이 설치할 수 있습니다:
 
 ```console
 $ pip install python-multipart
