@@ -46,9 +46,7 @@
 * 🎯 🇺🇸🔍 👩‍🔬 (`POST`, `PUT`) ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
 * 🎯 🇺🇸🔍 🎚 ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 🔢 🔢 ⚙️ `CORSMiddleware` 🛠️ 🚫 🔢, 👆 🔜 💪 🎯 🛠️ 🎯 🇨🇳, 👩‍🔬, ⚖️ 🎚, ✔ 🖥 ✔ ⚙️ 👫 ✖️-🆔 🔑.
 

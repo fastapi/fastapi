@@ -16,69 +16,13 @@ Isso se deve por que arquivos enviados são enviados como "dados de formulário"
 
 Importe `File` e `UploadFile` do `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
 ## Defina os parâmetros de `File`
 
 Cria os parâmetros do arquivo da mesma forma que você faria para `Body` ou `Form`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
 /// info | Informação
 
@@ -106,35 +50,7 @@ Mas existem vários casos em que você pode se beneficiar ao usar `UploadFile`.
 
 Defina um parâmetro de arquivo com o tipo `UploadFile`
 
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="13"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="12"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 Utilizando `UploadFile` tem várias vantagens sobre `bytes`:
 
@@ -217,91 +133,13 @@ Isso não é uma limitação do **FastAPI**, é uma parte do protocolo HTTP.
 
 Você pode definir um arquivo como opcional utilizando as anotações de tipo padrão e definindo o valor padrão como `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  18"
-{!> ../../docs_src/request_files/tutorial001_02_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated`, se possível
-
-///
-
-```Python hl_lines="7  15"
-{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated`, se possível
-
-///
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## `UploadFile` com Metadados Adicionais
 
 Você também pode utilizar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9  15"
-{!> ../../docs_src/request_files/tutorial001_03_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  14"
-{!> ../../docs_src/request_files/tutorial001_03_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="7  13"
-{!> ../../docs_src/request_files/tutorial001_03.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
 ## Envio de Múltiplos Arquivos
 
@@ -311,49 +149,7 @@ Ele ficam associados ao mesmo "campo do formulário" enviado com "form data".
 
 Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/request_files/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 Você irá receber, como delcarado uma lista (`list`) de `bytes` ou `UploadFile`s,
 
@@ -369,49 +165,7 @@ O **FastAPI** fornece as mesmas `starlette.responses` como `fastapi.responses` a
 
 E da mesma forma que antes, você pode utilizar `File()` para definir parâmetros adicionais, até mesmo para `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  18-20"
-{!> ../../docs_src/request_files/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12  19-21"
-{!> ../../docs_src/request_files/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="9  16"
-{!> ../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="11  18"
-{!> ../../docs_src/request_files/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
 ## Recapitulando
 
