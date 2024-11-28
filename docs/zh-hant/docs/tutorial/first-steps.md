@@ -2,9 +2,7 @@
 
 最簡單的 FastAPI 檔案可能看起來像這樣：
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 將其複製到一個名為 `main.py` 的文件中。
 
@@ -157,9 +155,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 ### 第一步：引入 `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py h1[1] *}
 
 `FastAPI` 是一個 Python 類別，提供所有 API 的全部功能。
 
@@ -173,9 +169,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 ### 第二步：建立一個 `FastAPI` 「實例」
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py h1[3] *}
 
 這裡的 `app` 變數將會是 `FastAPI` 類別的「實例」。
 
@@ -244,9 +238,7 @@ https://example.com/items/foo
 
 #### 定義一個 *路徑操作裝飾器*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py h1[6] *}
 
 `@app.get("/")` 告訴 **FastAPI** 那個函式負責處理請求：
 
@@ -300,9 +292,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 * **operation**: 是 `get`.
 * **function**: 是裝飾器下面的函式（在 `@app.get("/")` 下面）。
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py h1[7] *}
 
 這就是一個 Python 函式。
 
@@ -314,9 +304,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 你可以將它定義為一個正常的函式，而不是 `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py h1[7] *}
 
 /// note
 
@@ -326,9 +314,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 ### 第五步：回傳內容
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py h1[8] *}
 
 你可以返回一個 `dict`、`list`、單個值作為 `str`、`int` 等。
 
