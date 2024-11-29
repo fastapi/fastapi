@@ -41,7 +41,7 @@ FastAPI 0.108.0 이전과 Starlette 0.29.0에서는 `name`이 첫 번째 매개�
 
 ///
 
-/// tip | 참고
+/// tip | 팁
 
 `response_class=HTMLResponse`를 선언하면 문서 UI 응답이 HTML임을 알 수 있습니다.
 
