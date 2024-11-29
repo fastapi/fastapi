@@ -33,7 +33,7 @@ $ pip install jinja2
 {!../../docs_src/templates/tutorial001.py!}
 ```
 
-/// 노트
+/// note | 참고
 
 FastAPI 0.108.0 이전과 Starlette 0.29.0에서는 `name`이 첫 번째 매개변수였습니다.
 
