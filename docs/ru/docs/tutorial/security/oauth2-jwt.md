@@ -25,28 +25,27 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 Через неделю срок действия токена истечет, пользователь не будет авторизован и ему придется заново входить в систему, чтобы получить новый токен. А если пользователь (или третье лицо) попытается модифицировать токен, чтобы изменить срок действия, вы сможете это обнаружить, поскольку подписи не будут совпадать.
 
 Если вы хотите поиграть с JWT-токенами и посмотреть, как они работают, посмотрите <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
-## Установка `python-jose`
 
-Нам необходимо установить `python-jose` для генерации и проверки JWT-токенов на языке Python:
+## Установка `PyJWT`
+
+Нам необходимо установить `pyjwt` для генерации и проверки JWT-токенов на языке Python.
+
+Убедитесь, что вы создали [виртуальное окружение](../../virtual-environments.md){.internal-link target=_blank}, активируйте его, а затем установите `pyjwt`:
 
 <div class="termy">
 
 ```console
-$ pip install "python-jose[cryptography]"
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> требует криптографического бэкенда в качестве дополнения.
+/// info | Дополнительная информация
+Если вы планируете использовать алгоритмы цифровой подписи, такие как RSA или ECDSA, вам следует установить зависимость библиотеки криптографии `pyjwt[crypto]`.
 
-Здесь мы используем рекомендуемый вариант: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
-
-/// tip | Подсказка
-Ранее в этом руководстве использовался <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
-
-Но теперь он обновлен и вместо него используется Python-jose, поскольку он предоставляет все возможности PyJWT, а также некоторые дополнительные возможности, которые могут понадобиться в дальнейшем при создании интеграций с другими инструментами.
+Подробнее об этом можно прочитать в <a href=«https://pyjwt.readthedocs.io/en/latest/installation.html» class=«external-link» target=«_blank»>документации по установке PyJWT</a>.
 ///
 
 ## Хеширование паролей
