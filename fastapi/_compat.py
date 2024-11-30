@@ -442,12 +442,12 @@ else:
         return use_errors
 
     def _model_rebuild(model: Type[BaseModel]) -> None:
-        model.update_forward_refs()
+        model.model_rebuild()
 
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        return model.model_dump(**kwargs)
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]

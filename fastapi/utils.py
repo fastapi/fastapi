@@ -128,8 +128,8 @@ def create_cloned_field(
         if use_type is None:
             use_type = create_model(original_type.__name__, __base__=original_type)
             cloned_types[original_type] = use_type
-            for f in original_type.__fields__.values():
-                use_type.__fields__[f.name] = create_cloned_field(
+            for f in original_type.model_fields.values():
+                use_type.model_fields[f.name] = create_cloned_field(
                     f, cloned_types=cloned_types
                 )
     new_field = create_model_field(name=field.name, type_=use_type)
