@@ -28,13 +28,16 @@ app = FastAPI(
 client = TestClient(app)
 
 
+def raise_value_error():
+    raise ValueError()
+
+
 def dependency_with_yield():
-    yield "This is a dependency with yield"
+    yield raise_value_error()
 
 
-@app.get("/with-yield", dependencies=[Depends(dependency_with_yield)])
-def with_yield():
-    raise RuntimeError("Should print traceback, with file and line number")
+@app.get("/dependency-with-yield", dependencies=[Depends(dependency_with_yield)])
+def with_yield(): ...
 
 
 @app.get("/http-exception")
@@ -76,9 +79,10 @@ def test_override_server_error_exception_response():
     assert response.json() == {"exception": "server-error"}
 
 
-def test_showing_exception_trace():
-    app.debug = True
-    client = TestClient(app, raise_server_exceptions=False)
-    response = client.get("/with-yield")
-    assert response.status_code == 500
-    assert __file__ in response.text
+def test_traceback_for_dependency_with_yield():
+    client = TestClient(app, raise_server_exceptions=True)
+    with pytest.raises(ValueError) as exc_info:
+        client.get("/dependency-with-yield")
+    last_frame = exc_info.traceback[-1]
+    assert str(last_frame.path) == __file__
+    assert last_frame.lineno == raise_value_error.__code__.co_firstlineno
