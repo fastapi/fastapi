@@ -40,7 +40,7 @@
 ```console
 // Перейдите в домашний каталог
 $ cd
-// Создайте отдельную директорию под все будущие програмные проекты (code)
+// Создайте отдельную папку под все будущие программные проекты (code)
 $ mkdir code
 // Войдите в директорию code
 $ cd code
@@ -52,19 +52,20 @@ $ cd awesome-project
 
 </div>
 
-## Create a Virtual Environment
+## Создание виртуальной среды разработки
 
-When you start working on a Python project **for the first time**, create a virtual environment **<abbr title="there are other options, this is a simple guideline">inside your project</abbr>**.
+Начиная работу с Python-проектом, сразу же создавайте виртуальную среду разработки 
+**<abbr title="есть и другие опции, но мы рассмотрим наиболее простой вариант">внутри вашего проекта</abbr>**.
 
 /// tip | Подсказка
 
-You only need to do this **once per project**, not every time you work.
+Виртуальная среда разработки создается один раз, и в дальнейшем, работая с проектом, этого больше делать не придется.
 
 ///
 
 //// tab | `venv`
 
-To create a virtual environment, you can use the `venv` module that comes with Python.
+Для создания виртуальной среды вы можете воспользоваться модулем `venv`, который является частью встроенной библиотеки Python.
 
 <div class="termy">
 
@@ -74,12 +75,12 @@ $ python -m venv .venv
 
 </div>
 
-/// details | What that command means
+/// details | Что делает эта команда?
 
-* `python`: use the program called `python`
-* `-m`: call a module as a script, we'll tell it which module next
-* `venv`: use the module called `venv` that normally comes installed with Python
-* `.venv`: create the virtual environment in the new directory `.venv`
+* `python`: использует программу под именем `python`
+* `-m`: вызывает модуль как скрипт, в следующей инструкции мы скажем какой именно модуль вызван
+* `venv`: использует модуль под названием `venv`, который обычно устанавливается вместе с Python
+* `.venv`: создает виртуальную среду разработки в новой директории `.venv`
 
 ///
 
@@ -87,7 +88,7 @@ $ python -m venv .venv
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> installed, you can use it to create a virtual environment.
+Если вы установили <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, то вы можете им воспользоваться для создания виртуальной среды разработки.
 
 <div class="termy">
 
@@ -99,29 +100,29 @@ $ uv venv
 
 /// tip | Подсказка
 
-By default, `uv` will create a virtual environment in a directory called `.venv`.
+По умолчанию `uv` создаст виртуальную среду разработки в папке под названием `.venv`.
 
-But you could customize it passing an additional argument with the directory name.
+Но вы можете это изменить, передав дополнительный аргумент с именем директории.
 
 ///
 
 ////
 
-That command creates a new virtual environment in a directory called `.venv`.
+Данная команда создаст новую виртуальную среду разработки в папке `.venv`.
 
-/// details | `.venv` or other name
+/// details | `.venv` или другое имя?
 
-You could create the virtual environment in a different directory, but there's a convention of calling it `.venv`.
+Вы можете поместить виртуальную среду разработки в папку с другим именем, но традиционным (конвенциональным) названием является `.venv` .
 
 ///
 
-## Activate the Virtual Environment
+## Активация виртуальной среды разработки
 
-Activate the new virtual environment so that any Python command you run or package you install uses it.
+Активируйте виртуальную среду разработки, и тогда любая запускаемая Python-команда или устанавливаемый пакет будут ее использовать.
 
 /// tip | Подсказка
 
-Do this **every time** you start a **new terminal session** to work on the project.
+При работе над проектом делайте это **каждый раз** при запуске **новой сессии в терминале**.
 
 ///
 
@@ -151,7 +152,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Или при использовании Bash для Windows (напр. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
 <div class="termy">
 
@@ -165,19 +166,19 @@ $ source .venv/Scripts/activate
 
 /// tip | Подсказка
 
-Every time you install a **new package** in that environment, **activate** the environment again.
+Каждый раз при установке **нового пакета** в виртуальное окружение, ре-активируйте виртуальную среду.
 
-This makes sure that if you use a **terminal (<abbr title="command line interface">CLI</abbr>) program** installed by that package, you use the one from your virtual environment and not any other that could be installed globally, probably with a different version than what you need.
+Благодаря этому, вы можете быть уверены в том, что при использовании консольного приложения, установленного с помощью данного пакета, было использовано именно приложение из вашей виртуальной среды разработки, а не какое-либо другое, установленное глобально и, возможно, не той версии, что вам нужно.
 
 ///
 
-## Check the Virtual Environment is Active
+## Проверка активации виртуальной среды
 
-Check that the virtual environment is active (the previous command worked).
+Проверьте, активна ли виртуальная среда (предыдущая команда сработала).
 
 /// tip | Подсказка
 
-This is **optional**, but it's a good way to **check** that everything is working as expected and you are using the virtual environment you intended.
+Убедитесь в том, что все работает так, как нужно, и вы используете именно ту виртуальную среду разработки, которую нужно. Делать это необязательно, но желательно.
 
 ///
 
@@ -193,7 +194,7 @@ $ which python
 
 </div>
 
-If it shows the `python` binary at `.venv/bin/python`, inside of your project (in this case `awesome-project`), then it worked. 🎉
+Если данная команда возвращает `python`-бинарник `.venv/bin/python`, находящийся внутри виртуальной среды вашего проекта (у нас это `awesome-project`), значит все отработало как нужно. 🎉
 
 ////
 
@@ -209,29 +210,29 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 </div>
 
-If it shows the `python` binary at `.venv\Scripts\python`, inside of your project (in this case `awesome-project`), then it worked. 🎉
+Если данная команда возвращает `python`-бинарник `.venv\Scripts\python`, находящийся внутри виртуальной среды вашего проекта (у нас это `awesome-project`), значит все отработало как нужно. 🎉
 
 ////
 
-## Upgrade `pip`
+## Обновление `pip`
 
 /// tip | Подсказка
 
-If you use <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> you would use it to install things instead of `pip`, so you don't need to upgrade `pip`. 😎
+Если вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, то вы должны будете его использовать для установки пакетов вместо `pip`, поэтому обновлять `pip` вам ненужно. 😎
 
 ///
 
-If you are using `pip` to install packages (it comes by default with Python), you should **upgrade** it to the latest version.
+Если для установки пакетов вы используете `pip` (он устанавливается по умолчанию вместе с Python), то обновите `pip` до последней версии.
 
-Many exotic errors while installing a package are solved by just upgrading `pip` first.
+Большинство экзотических ошибок, возникающих при установки пакетов, устраняется предварительным обновлением `pip`.
 
 /// tip | Подсказка
 
-You would normally do this **once**, right after you create the virtual environment.
+Обычно это делается только один раз, сразу после создания виртуальной среды разработки.
 
 ///
 
-Make sure the virtual environment is active (with the command above) and then run:
+Убедитесь в том, что виртуальная среда активирована (с помощью вышестоящей команды) и запустите следующую команду:
 
 <div class="termy">
 
@@ -243,19 +244,19 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## Add `.gitignore`
+## Добавление `.gitignore`
 
-If you are using **Git** (you should), add a `.gitignore` file to exclude everything in your `.venv` from Git.
+Если вы используете **Git** (а вы должны его использовать), то добавьте файл `.gitignore` и исключите из Git всё, что находится в папке `.venv`.
 
 /// tip | Подсказка
 
-If you used <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> to create the virtual environment, it already did this for you, you can skip this step. 😎
+Если для создания виртуальной среды вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, то для вас все уже сделано, и вы можете пропустить этот шаг. 😎
 
 ///
 
-/// tip | Подсказка
+/// tip | Подсказка 
 
-Do this **once**, right after you create the virtual environment.
+Это делается один раз, сразу после создания виртуальной среды разработки.
 
 ///
 
@@ -267,15 +268,15 @@ $ echo "*" > .venv/.gitignore
 
 </div>
 
-/// details | What that command means
+/// details | Что делает эта команда?
 
-* `echo "*"`: will "print" the text `*` in the terminal (the next part changes that a bit)
-* `>`: anything printed to the terminal by the command to the left of `>` should not be printed but instead written to the file that goes to the right of `>`
-* `.gitignore`: the name of the file where the text should be written
+* `echo "*"`: печатает `*` в консоли (следующий шаг это слегка изменит)
+* `>`: все что находится слева от `>` не будет напечатано в консоль, но будет записано в файл находящийся справа от `>`
+* `.gitignore`: имя файла, в который будет помещен текст.
 
-And `*` for Git means "everything". So, it will ignore everything in the `.venv` directory.
+`*` в Git означает "всё". Т.е. будет проигнорировано всё, что содержится в папке `.venv`.
 
-That command will create a file `.gitignore` with the content:
+Данная команда создаст файл `.gitignore` следующего содержания:
 
 ```gitignore
 *
@@ -283,25 +284,25 @@ That command will create a file `.gitignore` with the content:
 
 ///
 
-## Install Packages
+## Установка пакетов
 
-After activating the environment, you can install packages in it.
+После установки виртуальной среды, вы можете устанавливать в нее пакеты.
 
 /// tip | Подсказка
 
-Do this **once** when installing or upgrading the packages your project needs.
+Делайте это **один раз**, при установке или обновлении пакетов, нужных вашему проекту.
 
-If you need to upgrade a version or add a new package you would **do this again**.
+Если вам нужно обновить версию пакета или добавить новый пакет, то вам придется **делать это снова**.
 
 ///
 
-### Install Packages Directly
+### Установка пакетов напрямую
 
-If you're in a hurry and don't want to use a file to declare your project's package requirements, you can install them directly.
+Если вы торопитесь и не хотите объявлять зависимости проекта в отдельном файле, то вы можете установить их напрямую.
 
 /// tip | Подсказка
 
-It's a (very) good idea to put the packages and versions your program needs in a file (for example `requirements.txt` or `pyproject.toml`).
+Объявление пакетов, которые использует ваш проект, и их версий в отдельном файле (например, в `requirements.txt` или в `pyproject.toml`) - это отличная идея.
 
 ///
 
@@ -321,7 +322,7 @@ $ pip install "fastapi[standard]"
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Если вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
@@ -334,9 +335,9 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Install from `requirements.txt`
+### Установка из `requirements.txt`
 
-If you have a `requirements.txt`, you can now use it to install its packages.
+Если у вас есть `requirements.txt`, то вы можете его использовать для установки пакетов.
 
 //// tab | `pip`
 
@@ -353,7 +354,7 @@ $ pip install -r requirements.txt
 
 //// tab | `uv`
 
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+Если вы используете <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
@@ -368,7 +369,7 @@ $ uv pip install -r requirements.txt
 
 /// details | `requirements.txt`
 
-A `requirements.txt` with some packages could look like:
+`requirements.txt` с парочкой пакетов внутри выглядит приблизительно так:
 
 ```requirements.txt
 fastapi[standard]==0.113.0
@@ -377,9 +378,10 @@ pydantic==2.8.0
 
 ///
 
-## Run Your Program
+## Запуск программы
 
-After you activated the virtual environment, you can run your program, and it will use the Python inside of your virtual environment with the packages you installed there.
+После активации виртуальной среды разработки вы можете запустить свою программу, и она будет использовать версию Python
+и пакеты, установленные в виртуальной среде.
 
 <div class="termy">
 
@@ -391,24 +393,24 @@ Hello World
 
 </div>
 
-## Configure Your Editor
+## Настройка редактора
 
-You would probably use an editor, make sure you configure it to use the same virtual environment you created (it will probably autodetect it) so that you can get autocompletion and inline errors.
+Вероятно, вы захотите воспользоваться редактором. Убедитесь, что вы настроили его на использование той самой виртуальной среды, которую вы создали. (Скорее всего, она автоматически будет обнаружена). Это позволит вам использовать авто-завершение и выделение ошибок в редакторе.
 
-For example:
+Например:
 
 * <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
 * <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
 
 /// tip | Подсказка
 
-You normally have to do this only **once**, when you create the virtual environment.
+Обычно, это делается один раз, при создании виртуальной среды разработки.
 
 ///
 
-## Deactivate the Virtual Environment
+## Деактивация виртуальной среды разработки
 
-Once you are done working on your project you can **deactivate** the virtual environment.
+При окончании работы над проектом вы можете деактивировать виртуальную среду.
 
 <div class="termy">
 
@@ -418,19 +420,19 @@ $ deactivate
 
 </div>
 
-This way, when you run `python` it won't try to run it from that virtual environment with the packages installed there.
+Таким образом, запущенный `python` больше не будет запускаться из этой виртуальной среды вместе с установленными в ней пакетами.
 
-## Ready to Work
+## Все готово к работе
 
-Now you're ready to start working on your project.
+Теперь вы готовы к тому, чтобы начать работу над своим проектом.
 
 
 
 /// tip | Подсказка
 
-Do you want to understand what's all that above?
+Хотите разобраться со всем, что написано выше?
 
-Continue reading. 👇🤓
+Продолжайте читать. 👇🤓
 
 ///
 
@@ -838,8 +840,8 @@ Once you are ready and want to use a tool to **manage the entire project**, pack
 * Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project in production exactly the same as in your computer while developing, this is called **locking**
 * And many other things
 
-## Conclusion
+## Заключение
 
-If you read and understood all this, now **you know much more** about virtual environments than many developers out there. 🤓
+Если вы прочитали и поняли всё это, то теперь вы знаете **гораздо больше** о виртуальных средах разработки, чем многие другие разработчики. 🤓
 
-Knowing these details will most probably be useful in a future time when you are debugging something that seems complex, but you will know **how it all works underneath**. 😎
+Скорее всего, знание этих деталей будет полезно вам в будущем. Когда вы будете отлаживать что-то, кажущееся сложным, вы будете знать, **как это работает под капотом**. 😎
