@@ -436,39 +436,39 @@ $ deactivate
 
 ///
 
-## Why Virtual Environments
+## Зачем использовать виртуальную среду?
 
-To work with FastAPI you need to install <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
+Для работы с FastAPI вам потребуется установить <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
 
-After that, you would need to **install** FastAPI and any other **packages** you want to use.
+После этого, вам нужно будет **установить** FastAPI и другие **пакеты**, которые вы собираетесь использовать.
 
-To install packages you would normally use the `pip` command that comes with Python (or similar alternatives).
+Для установки пакетов обычно используют `pip`, который устанавливается вместе с Python, (или же используют альтернативные решения).
 
-Nevertheless, if you just use `pip` directly, the packages would be installed in your **global Python environment** (the global installation of Python).
+Тем не менее, если вы просто используете `pip` напрямую, то пакеты будут установлены в **глобальное Python-окружение** (глобально установленный Python).
 
-### The Problem
+### Проблема 
 
-So, what's the problem with installing packages in the global Python environment?
+Так в чем же проблема с установкой пакетов в глобальную среду Python?
 
-At some point, you will probably end up writing many different programs that depend on **different packages**. And some of these projects you work on will depend on **different versions** of the same package. 😱
+В какой-то момент вам, вероятно, придется писать множество разных программ, которые используют различные пакеты. 😱
 
-For example, you could create a project called `philosophers-stone`, this program depends on another package called **`harry`, using the version `1`**. So, you need to install `harry`.
+Например, вы создаете проект `philosophers-stone`, который зависит от пакета названием **`harry`, версии `1`**. Таким образом, вам нужно установить `harry`.
 
 ```mermaid
 flowchart LR
     stone(philosophers-stone) -->|requires| harry-1[harry v1]
 ```
 
-Then, at some point later, you create another project called `prisoner-of-azkaban`, and this project also depends on `harry`, but this project needs **`harry` version `3`**.
+Затем в какой-то момент, вы создаете другой проект под названием `prisoner-of-azkaban`, и этот проект тоже зависит от `harry`, но он уже использует **`harry` версии `3`**.
 
 ```mermaid
 flowchart LR
     azkaban(prisoner-of-azkaban) --> |requires| harry-3[harry v3]
 ```
 
-But now the problem is, if you install the packages globally (in the global environment) instead of in a local **virtual environment**, you will have to choose which version of `harry` to install.
+Проблема заключается в том, что при установке в глобальное окружение, а не в локальную виртуальную среду разработки, вам нужно будет выбирать, какую версию пакета `harry` устанавливать.
 
-If you want to run `philosophers-stone` you will need to first install `harry` version `1`, for example with:
+Если вам нужен `philosophers-stone`, то вам нужно сначала установить `harry` версии `1`:
 
 <div class="termy">
 
@@ -478,7 +478,7 @@ $ pip install "harry==1"
 
 </div>
 
-And then you would end up with `harry` version `1` installed in your global Python environment.
+И тогда в вашем глобальном окружении Python будет установлен `harry` версии `1`:
 
 ```mermaid
 flowchart LR
@@ -490,7 +490,7 @@ flowchart LR
     end
 ```
 
-But then if you want to run `prisoner-of-azkaban`, you will need to uninstall `harry` version `1` and install `harry` version `3` (or just installing version `3` would automatically uninstall version `1`).
+Но если позднее вы захотите запустить `prisoner-of-azkaban`, то вам нужно будет удалить `harry` версии 1, и установить `harry` версии `3` (при установке пакета версии `3` поверх пакета версии `1`, пакет версии `1` удаляется автоматически).
 
 <div class="termy">
 
@@ -500,9 +500,9 @@ $ pip install "harry==3"
 
 </div>
 
-And then you would end up with `harry` version `3` installed in your global Python environment.
+И тогда, в вашей глобальной среде окружения Python, будет установлен пакет `harry` версии `3`.
 
-And if you try to run `philosophers-stone` again, there's a chance it would **not work** because it needs `harry` version `1`.
+И когда вы снова попытаетесь запустить `philosophers-stone`, то существует вероятность того, что он не будет работать, так как он использует `harry` версии `1`.
 
 ```mermaid
 flowchart LR
@@ -521,47 +521,47 @@ flowchart LR
 
 /// tip | Подсказка
 
-It's very common in Python packages to try the best to **avoid breaking changes** in **new versions**, but it's better to be safe, and install newer versions intentionally and when you can run the tests to check everything is working correctly.
+В пакетах Python очень часто стараются изо всех сил избегать внесения критических изменений в новые версии, но лучше перестраховаться и планово устанавливать новые версии, а затем запускать тесты, чтобы проверить, все ли работает правильно.
 
 ///
 
-Now, imagine that with **many** other **packages** that all your **projects depend on**. That's very difficult to manage. And you would probably end up running some projects with some **incompatible versions** of the packages, and not knowing why something isn't working.
+Теперь представьте, что это происходит со многими другими пакетами, которые используются в ваших проектах. С этим очень сложно справиться. И скорее всего, в конечном итоге вы будете запускать некоторые проекты с некоторыми несовместимыми зависимостями и не будете знать, почему что-то не работает. 
 
-Also, depending on your operating system (e.g. Linux, Windows, macOS), it could have come with Python already installed. And in that case it probably had some packages pre-installed with some specific versions **needed by your system**. If you install packages in the global Python environment, you could end up **breaking** some of the programs that came with your operating system.
+Кроме того, в зависимости от вашей оперативной системы (напр. Linux, Windows, macOS), она может поставляться с уже установленным Python. Вероятно, что в этом случае в ней уже установлены системные пакеты определенных версий. Если вы устанавливаете пакеты глобально, то вы можете **поломать** программы, являющиеся частью ОС.
 
-## Where are Packages Installed
+## Куда устанавливаются пакеты?
 
-When you install Python, it creates some directories with some files in your computer.
+Когда вы устанавливаете Python, то на вашей машине создается некоторое количество директорий, содержащих некоторое количество файлов.
 
-Some of these directories are the ones in charge of having all the packages you install.
+Среди них есть каталоги, отвечающие за хранение всех устанавливаемых вами пакетов.
 
-When you run:
+Когда вы запустите команду:
 
 <div class="termy">
 
 ```console
-// Don't run this now, it's just an example 🤓
+// Не запускайте эту команду, это просто пример 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
 
 </div>
 
-That will download a compressed file with the FastAPI code, normally from <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
+То будет скачан сжатый файл, содержащий код FastAPI, обычно скачивание происходит с <a href="https://pypi.org/project/fastapi/" class="external-link" target="_blank">PyPI</a>.
 
-It will also **download** files for other packages that FastAPI depends on.
+Также будут скачаны файлы, содержащие пакеты, которые использует FastAPI.
 
-Then it will **extract** all those files and put them in a directory in your computer.
+Затем все файлы будут извлечены и помещены в директорию на вашем компьютере.
 
-By default, it will put those files downloaded and extracted in the directory that comes with your Python installation, that's the **global environment**.
+По умолчанию эти файлы будут загружены и извлечены в один из каталогов установки Python, т.е. в глобальную среду.
 
-## What are Virtual Environments
+## Что такое виртуальная среда разработки?
 
-The solution to the problems of having all the packages in the global environment is to use a **virtual environment for each project** you work on.
+Решением проблемы размещения всех пакетов в глобальной среде будет использование отдельной виртуальной среды под каждый проект, над которым вы работаете.
 
-A virtual environment is a **directory**, very similar to the global one, where you can install the packages for a project.
+Виртуальная среда это обычная папка, очень похожая на глобальную, куда вы можете устанавливать пакеты для вашего проекта.
 
-This way, each project will have its own virtual environment (`.venv` directory) with its own packages.
+Таким образом, каждый проект будет иметь свою отдельную виртуальную среду разработки (в директории `.venv`) вместе со своими пакетами.
 
 ```mermaid
 flowchart TB
@@ -580,9 +580,9 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## What Does Activating a Virtual Environment Mean
+## Что означает активация виртуальной среды?
 
-When you activate a virtual environment, for example with:
+Когда вы активируете виртуальную среду разработки, например, так:
 
 //// tab | Linux, macOS
 
@@ -610,7 +610,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Или если вы воспользуетесь Bash под Windows (напр. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
 <div class="termy">
 
@@ -622,19 +622,20 @@ $ source .venv/Scripts/activate
 
 ////
 
-That command will create or modify some [environment variables](environment-variables.md){.internal-link target=_blank} that will be available for the next commands.
 
-One of those variables is the `PATH` variable.
+Эта команда создаст или изменит некоторые [переменные окружения](environment-variables.md){.internal-link target=_blank}, которые будут доступны для последующих команд.
+
+Одной из таких переменных является `PATH`.
 
 /// tip | Подсказка
 
-You can learn more about the `PATH` environment variable in the [Environment Variables](environment-variables.md#path-environment-variable){.internal-link target=_blank} section.
+Вы можете узнать больше о переменной окружения `PATH` в разделе [Переменные окружения](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
 
 ///
 
-Activating a virtual environment adds its path `.venv/bin` (on Linux and macOS) or `.venv\Scripts` (on Windows) to the `PATH` environment variable.
+При активации виртуальной среды путь `.venv/bin` (для Linux и macOS) или `.venv\Scripts` (для Windows) добавляется в переменную окружения `PATH`.
 
-Let's say that before activating the environment, the `PATH` variable looked like this:
+Предположим, что до активации виртуальной среды переменная `PATH` выглядела так:
 
 //// tab | Linux, macOS
 
@@ -642,7 +643,7 @@ Let's say that before activating the environment, the `PATH` variable looked lik
 /usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-That means that the system would look for programs in:
+Это означает, что система ищет программы в следующих каталогах:
 
 * `/usr/bin`
 * `/bin`
@@ -657,13 +658,13 @@ That means that the system would look for programs in:
 C:\Windows\System32
 ```
 
-That means that the system would look for programs in:
+Это означает, что система ищет программы в:
 
 * `C:\Windows\System32`
 
 ////
 
-After activating the virtual environment, the `PATH` variable would look something like this:
+После активации виртуальной среды переменная окружение `PATH` будет выглядеть примерно так:
 
 //// tab | Linux, macOS
 
@@ -671,21 +672,21 @@ After activating the virtual environment, the `PATH` variable would look somethi
 /home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-That means that the system will now start looking first look for programs in:
+Это означает, что система теперь будет искать программы в:
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin
 ```
 
-before looking in the other directories.
+прежде чем начать искать в других каталогах. 
 
-So, when you type `python` in the terminal, the system will find the Python program in
+Таким образом, когда вы введете в консоль `python`, система будет искать Python в
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin/python
 ```
 
-and use that one.
+и будет использовать именно его.
 
 ////
 
@@ -695,31 +696,31 @@ and use that one.
 C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
 ```
 
-That means that the system will now start looking first look for programs in:
+Это означает, что система в первую очередь начнет искать программы в:
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts
 ```
 
-before looking in the other directories.
+прежде чем начать искать в других директориях.
 
-So, when you type `python` in the terminal, the system will find the Python program in
+Таким образом, если вы введете в консоль команду `python`, то система найдет Python в:
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts\python
 ```
 
-and use that one.
+и использует его.
 
 ////
 
-An important detail is that it will put the virtual environment path at the **beginning** of the `PATH` variable. The system will find it **before** finding any other Python available. This way, when you run `python`, it will use the Python **from the virtual environment** instead of any other `python` (for example, a `python` from a global environment).
+Очень важной деталью является то, что путь к виртуальной среде будет помещен в самое начало переменной `PATH`. Система обнаружит данный путь к Python раньше, чем какой-либо другой. Таким образом, при запуске команды `python`, будет использован именно Python из виртуальной среды разработки, а не какой-нибудь другой (например, Python из глобальной среды)
 
-Activating a virtual environment also changes a couple of other things, but this is one of the most important things it does.
+Активация виртуальной среды разработки также меняет и несколько других вещей, но данная функция является основной.
 
-## Checking a Virtual Environment
+## Проверка виртуальной среды
 
-When you check if a virtual environment is active, for example with:
+Когда вы проверяете активна ли виртуальная среда разработки, например, так:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -749,33 +750,33 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ////
 
-That means that the `python` program that will be used is the one **in the virtual environment**.
+Это означает, что будет использоваться `python` **из виртуальной среды разработки**.
 
-you use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
+Вы используете `which` для Linux и macOS и `Get-Command` для Windows PowerShell.
 
-The way that command works is that it will go and check in the `PATH` environment variable, going through **each path in order**, looking for the program called `python`. Once it finds it, it will **show you the path** to that program.
+Эта команда работает следующим образом: она проверяет переменную окружения `PATH`, проходя по очереди каждый указанный путь в поисках программы под названием `python`. И когда она её находит, то возвращает путь к данной программе.
 
-The most important part is that when you call `python`, that is the exact "`python`" that will be executed.
+Основной момент при вызове команды `python` состоит в том, какой именно "`python`" будет запущен.
 
-So, you can confirm if you are in the correct virtual environment.
+Таким образом, вы можете убедиться, что используете правильную виртуальную среду разработки. 
 
 /// tip | Подсказка
 
-It's easy to activate one virtual environment, get one Python, and then **go to another project**.
+Легко активировать одну виртуальную среду, вызвать один Python и **перейти к следующему проекту**.
 
-And the second project **wouldn't work** because you are using the **incorrect Python**, from a virtual environment for another project.
+И следующий проект не будет работать потому, что вы используете **неправильный Python** из виртуальной среды другого проекта.
 
-It's useful being able to check what `python` is being used. 🤓
+Так что, будет нелишним проверить, какой `python` вы используете. 🤓
 
 ///
 
-## Why Deactivate a Virtual Environment
+## Зачем деактивируют виртуальную среду? 
 
-For example, you could be working on a project `philosophers-stone`, **activate that virtual environment**, install packages and work with that environment.
+Предположим, что вы работаете над проектом `philosophers-stone`, **активируете виртуальную среду разработки**, устанавливаете пакеты и работаете с данной средой.
 
-And then you want to work on **another project** `prisoner-of-azkaban`.
+И позже вам понадобилось поработать с **другим проектом** `prisoner-of-azkaban`.
 
-You go to that project:
+Вы переходите к этому проекту:
 
 <div class="termy">
 
@@ -785,7 +786,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 </div>
 
-If you don't deactivate the virtual environment for `philosophers-stone`, when you run `python` in the terminal, it will try to use the Python from `philosophers-stone`.
+Если вы не деактивировали виртуальное окружение проекта `philosophers-stone`, то при запуске `python` через консоль будет вызван Python из `philosophers-stone`
 
 <div class="termy">
 
@@ -802,43 +803,43 @@ Traceback (most recent call last):
 
 </div>
 
-But if you deactivate the virtual environment and activate the new one for `prisoner-of-askaban` then when you run `python` it will use the Python from the virtual environment in `prisoner-of-azkaban`.
+Но если вы деактивируете виртуальную среду разработки и активируете новую среду для `prisoner-of-askaban`, то вы тогда запустите Python из виртуального окружения `prisoner-of-azkaban`.
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
+// Вам не требуется находится в старой директории для деактивации среды разработки, вы можете это сделать откуда угодно, даже из каталога другого проекта, в который вы перешли. 😎
 $ deactivate
 
-// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
+// Активируйте виртуальную среду разработки в prisoner-of-azkaban/.venv 🚀
 $ source .venv/bin/activate
 
-// Now when you run python, it will find the package sirius installed in this virtual environment ✨
+// Тепреь, когда вы запустите python, он найдет пакет sirius, установленный в виртуальной среде ✨
 $ python main.py
 
-I solemnly swear 🐺
+Я торжественно клянусь в этом! 🐺
 ```
 
 </div>
 
-## Alternatives
+## Альтернативы
 
-This is a simple guide to get you started and teach you how everything works **underneath**.
+Этот простое руководство поможет вам начать работу и научит тому, как всё работает **внутри**.
 
-There are many **alternatives** to managing virtual environments, package dependencies (requirements), projects.
+Существует много альтернативных решений для работы с виртуальными средами разработки, с программными зависимостями, а также с проектами.
 
-Once you are ready and want to use a tool to **manage the entire project**, packages dependencies, virtual environments, etc. I would suggest you try <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
+Когда вы будете готовы использовать единый инструмент для управления проектом, программными зависимостями, виртуальными средами разработки и т.д., то я рекомендую вам попробовать <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a>.
 
-`uv` can do a lot of things, it can:
+`uv` может очень многое. Он умеет:
 
-* **Install Python** for you, including different versions
-* Manage the **virtual environment** for your projects
-* Install **packages**
-* Manage package **dependencies and versions** for your project
-* Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project in production exactly the same as in your computer while developing, this is called **locking**
-* And many other things
+* **Устанавливать Python**, включая установку различных версии
+* Управлять средой виртуального окружения вашего проекта
+* Устанавливать **пакеты**
+* Управлять пакетами и их версиями внутри вашего проекта
+* Удостовериться, что вы используете **точный** набор пакетов и версий при установке, включая зависимости. Таким образом, вы можете быть уверенны, что проект, запускается в production, точно также, как и при разработке, этот механизм называется *locking*
+* Многие другие вещи
 
 ## Заключение
 
