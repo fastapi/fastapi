@@ -11,7 +11,7 @@ hide:
 
 ### Fixes
 
-* 🐛 Preserve traceback when exception is raised in sync dependency with `yield`. PR [#5823](https://github.com/fastapi/fastapi/pull/5823) by [@sombek](https://github.com/sombek).
+* 🐛 Preserve traceback when an exception is raised in sync dependency with `yield`. PR [#5823](https://github.com/fastapi/fastapi/pull/5823) by [@sombek](https://github.com/sombek).
 
 ### Refactors
 
