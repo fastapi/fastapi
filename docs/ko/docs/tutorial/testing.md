@@ -103,7 +103,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 ### 확장된 FastAPI 애플리케이션 파일
 
-이전 예시와 동일한 파일 구조를 유지합니다:
+이전과 같은 파일 구조를 계속 사용해 보겠습니다.
 
 ```
 .
@@ -187,10 +187,10 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 예시:
 
 * *경로* 혹은 *쿼리* 매개변수를 전달하려면, URL 자체에 추가한다.
-* JSON body 를 전달하려면, 파이썬 객체 (예를들면 `dict`) 를 `json` 파라미터로 전달한다.
-* JSON 대신 *From Data* 를 보내야한다면, `data` 파라미터를 대신 전달한다.
-* *headers* 를 전달하려면, `headers` 파라미터에 `dict` 를 전달한다.
-* *cookies* 를 전달하려면, `cookies` 파라미터에 `dict` 를 전달한다.
+* JSON 본문을 전달하려면, 파이썬 객체 (예를들면 `dict`) 를 `json` 파라미터로 전달한다.
+* JSON 대신 *폼 데이터* 를 보내야한다면, `data` 파라미터를 대신 전달한다.
+* *헤더* 를 전달하려면, `headers` 파라미터에 `dict` 를 전달한다.
+* *쿠키* 를 전달하려면, `cookies` 파라미터에 `dict` 를 전달한다.
 
 백엔드로 데이터를 어떻게 보내는지 정보를 더 얻으려면 (`httpx` 혹은 `TestClient` 를 이용해서) <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a> 를 확인하세요.
 
@@ -198,7 +198,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 `TestClient` 는 Pydantic 모델이 아니라 JSON 으로 변환될 수 있는 데이터를 받습니다.
 
-만약 테스트중 Pydantic 모델을 어플리케이션으로에 보내고 싶다면, [JSON Compatible Encoder](encoder.md){.internal-link target=_blank} 에 설명되어 있는 `jsonable_encoder` 를 사용할 수 있습니다.
+만약 테스트중 Pydantic 모델을 어플리케이션으로에 보내고 싶다면, [JSON 호환 가능 인코더](encoder.md){.internal-link target=_blank} 에 설명되어 있는 `jsonable_encoder` 를 사용할 수 있습니다.
 
 ///
 
