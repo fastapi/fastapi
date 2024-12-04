@@ -45,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
-  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
-    title: Take code reviews from hours to minutes
-    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
   - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
     title: Stainless | Generate best-in-class SDKs
     img: https://fastapi.tiangolo.com/img/sponsors/stainless.png
