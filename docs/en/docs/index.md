@@ -456,7 +456,7 @@ FastAPI depends on Pydantic and Starlette.
 
 ### `standard` Dependencies
 
-When you install FastAPI with `pip install "fastapi[standard]"` it comes the `standard` group of optional dependencies:
+When you install FastAPI with `pip install "fastapi[standard]"` it comes with the `standard` group of optional dependencies:
 
 Used by Pydantic:
 
