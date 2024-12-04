@@ -153,6 +153,21 @@ class ValidationException(Exception):
     def errors(self) -> Sequence[Any]:
         return self._errors
 
+    def __str__(self) -> str:
+        message = f"{len(self._errors)} validation error"
+        if len(self._errors) != 1:
+            message += "s"
+        message += "\n"
+        for err in self._errors:
+            for i, loc in enumerate(err["loc"]):
+                if i != 0:
+                    message += " -> "
+                message += str(loc)
+            msg = err["msg"]
+            type = err["type"]
+            message += f"\n  {msg} (type={type})"
+        return message
+
 
 class RequestValidationError(ValidationException):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
@@ -168,9 +183,3 @@ class ResponseValidationError(ValidationException):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
         super().__init__(errors)
         self.body = body
-
-    def __str__(self) -> str:
-        message = f"{len(self._errors)} validation errors:\n"
-        for err in self._errors:
-            message += f"  {err}\n"
-        return message
