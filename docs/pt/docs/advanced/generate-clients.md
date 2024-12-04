@@ -34,7 +34,7 @@ Vamos começar com um aplicativo **FastAPI** simples:
 
 {* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
-Note que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`. 
+Note que as *operações de rota* definem os modelos que usam para o corpo da requisição e o corpo da resposta, usando os modelos `Item` e `ResponseMessage`.
 
 ### Documentação da API
 
