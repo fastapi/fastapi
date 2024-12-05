@@ -20,13 +20,13 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
-## Define `Form` parameters
+## `Form` 매개변수 정의하기
 
 `Body` 또는 `Query`와 동일한 방식으로 폼 매개변수를 만듭니다:
 
 {* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
-예를 들어, OAuth2 사양을 사용할 수 있는 방법 중 하나("비밀번호 흐름"이라고 함)로 `username`과 `password`를 폼 필드로 보내야 합니다.
+예를 들어, OAuth2 사양을 사용할 수 있는 방법 중 하나("패스워드 플로우"라고 함)로 `username`과 `password`를 폼 필드로 보내야 합니다.
 
 <abbr title="specification">사양</abbr>에서는 필드 이름이 `username` 및 `password`로 정확하게 명명되어야 하고, JSON이 아닌 폼 필드로 전송해야 합니다.
 
