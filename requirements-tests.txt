@@ -10,7 +10,7 @@ anyio[trio] >=3.2.1,<4.0.0
 PyJWT==2.8.0
 pyyaml >=5.3.1,<7.0.0
 passlib[bcrypt] >=1.7.2,<2.0.0
-inline-snapshot==0.13.0
+inline-snapshot==0.14.0
 # types
 types-ujson ==5.7.0.1
 types-orjson ==3.6.2
