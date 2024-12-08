@@ -45,7 +45,7 @@ $ pip install sqlmodel
 
 </div>
 
-## 创建含有一个模型的应用程序
+## 创建含有单一模型的应用程序
 
 我们首先创建应用程序的最简单的第一个版本，只有一个 **SQLModel** 模型。
 
@@ -69,89 +69,87 @@ $ pip install sqlmodel
 
 * `Field(index=True)` 会告诉 SQLModel 应该为此列创建一个 **SQL 索引**，这样在读取按此列过滤的数据时，程序能在数据库中进行更快的查找。
 
-    SQLModel will know that something declared as `str` will be a SQL column of type `TEXT` (or `VARCHAR`, depending on the database).
-
     SQLModel 会知道声明为 `str` 的内容将是类型为 `TEXT` （或 `VARCHAR` ，具体取决于数据库）的 SQL 列。
 
-### Create an Engine
+### 创建引擎（Engine）对象
 
-A SQLModel `engine` (underneath it's actually a SQLAlchemy `engine`) is what **holds the connections** to the database.
+SQLModel 的 `engine` 对象（实际上它是一个 SQLAlchemy `engine` ）是用来与数据库**保持连接**的。
 
-You would have **one single `engine` object** for all your code to connect to the same database.
+您只需构建**一个 `engine` 对象**，来让您的所有代码连接到同一个数据库。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
 
-Using `check_same_thread=False` allows FastAPI to use the same SQLite database in different threads. This is necessary as **one single request** could use **more than one thread** (for example in dependencies).
+使用 `check_same_thread=False` 可以让 FastAPI 在不同线程中使用同一个 SQLite 数据库。这很有必要，因为**单个请求**可能会使用**多个线程**（例如在依赖项中）。
 
-Don't worry, with the way the code is structured, we'll make sure we use **a single SQLModel *session* per request** later, this is actually what the `check_same_thread` is trying to achieve.
+不用担心，我们会按照代码结构确保**每个请求使用一个单独的 SQLModel *会话***，这实际上就是 `check_same_thread` 想要实现的。
 
-### Create the Tables
+### 创建表
 
-We then add a function that uses `SQLModel.metadata.create_all(engine)` to **create the tables** for all the *table models*.
+然后，我们来添加一个函数，使用 `SQLModel.metadata.create_all(engine)` 为所有*表模型***创建表**。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
 
-### Create a Session Dependency
+### 创建会话（Session）依赖项
 
-A **`Session`** is what stores the **objects in memory** and keeps track of any changes needed in the data, then it **uses the `engine`** to communicate with the database.
+**`Session`** 会存储**内存中的对象**并跟踪数据中所需更改的内容，然后它**使用 `engine`** 与数据库进行通信。
 
-We will create a FastAPI **dependency** with `yield` that will provide a new `Session` for each request. This is what ensures that we use a single session per request. 🤓
+我们会使用 `yield` 创建一个 FastAPI **依赖项**，为每个请求提供一个新的 `Session` 。这确保我们每个请求使用一个单独的会话。🤓
 
-Then we create an `Annotated` dependency `SessionDep` to simplify the rest of the code that will use this dependency.
+然后我们创建一个 `Annotated` 的依赖项 `SessionDep` 来简化其他也会用到此依赖的代码。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-### Create Database Tables on Startup
+### 在启动时创建数据库表
 
-We will create the database tables when the application starts.
+我们会在应用程序启动时创建数据库表。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
 
-Here we create the tables on an application startup event.
+此处，在应用程序启动事件中，我们创建了表。
 
-For production you would probably use a migration script that runs before you start your app. 🤓
+而对于生产环境，您可能会用一个能够在启动应用程序之前运行的迁移脚本。🤓
 
 /// tip
 
-SQLModel will have migration utilities wrapping Alembic, but for now, you can use <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> directly.
+SQLModel 将会拥有封装 Alembic 的迁移工具，但目前您可以直接使用 <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>。
 
 ///
 
-### Create a Hero
+### 创建 Hero 类
 
-Because each SQLModel model is also a Pydantic model, you can use it in the same **type annotations** that you could use Pydantic models.
+因为每个 SQLModel 模型同时也是一个 Pydantic 模型，所以您可以在与 Pydantic 模型相同的**类型注释**中使用它。
 
-For example, if you declare a parameter of type `Hero`, it will be read from the **JSON body**.
+例如，如果您声明一个类型为 `Hero` 的参数，它将从 **JSON 主体**中读取数据。
 
-The same way, you can declare it as the function's **return type**, and then the shape of the data will show up in the automatic API docs UI.
+同样，您可以将其声明为函数的**返回类型**，然后数据的结构就会显示在自动生成的 API 文档界面中。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
 </details>
 
-Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
+这里，我们使用 `SessionDep` 依赖项（一个 `Session` ）将新的 `Hero` 添加到 `Session` 实例中，提交更改到数据库，刷新 hero 中的数据，并返回它。
 
-### Read Heroes
+### 读取 Hero 类
 
-We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
+我们可以使用 `select()` 从数据库中**读取** `Hero` 类。我们可以利用 `limit` 和 `offset` 来对结果进行分页。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-### Read One Hero
+### 读取 Hero
 
-We can **read** a single `Hero`.
+我们可以**读取**一个单独的 `Hero` 。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-### Delete a Hero
+### 删除 Hero
 
-We can also **delete** a `Hero`.
+我们也可以**删除**一个 `Hero` 。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
-### Run the App
+### 运行应用程序
 
-You can run the app:
+您可以运行这个应用程序：
 
 <div class="termy">
 
@@ -163,7 +161,7 @@ $ fastapi dev main.py
 
 </div>
 
-Then go to the `/docs` UI, you will see that **FastAPI** is using these **models** to **document** the API, and it will use them to **serialize** and **validate** the data too.
+然后在 `/docs` UI 中，你会看到 **FastAPI** 会用这些**模型**来**记录** API，并且还会用它们来**序列化**和**验证**数据。
 
 <div class="screenshot">
 <img src="/img/tutorial/sql-databases/image01.png">
