@@ -135,15 +135,15 @@ SQLModel 将会拥有封装 Alembic 的迁移工具，但目前您可以直接�
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
-### 读取 Hero
+### 读取单个 Hero
 
-我们可以**读取**一个单独的 `Hero` 。
+我们可以**读取**单个 `Hero` 。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
 
-### 删除 Hero
+### 删除单个 Hero
 
-我们也可以**删除**一个 `Hero` 。
+我们也可以**删除**单个 `Hero` 。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
 
@@ -303,39 +303,39 @@ $ fastapi dev main.py
 
 ///
 
-### Read Heroes with `HeroPublic`
+### 用 `HeroPublic` 读取 Hero
 
-We can do the same as before to **read** `Hero`s, again, we use `response_model=list[HeroPublic]` to ensure that the data is validated and serialized correctly.
+我们可以像之前一样**读取** `Hero` 。同样，使用 `response_model=list[HeroPublic]` 确保正确地验证和序列化数据。
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
 
-### Read One Hero with `HeroPublic`
+### 用 `HeroPublic` 读取单个 Hero
 
-We can **read** a single hero:
+我们可以**读取**单个 `hero` 。
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
 
-### Update a Hero with `HeroUpdate`
+### 用 `HeroUpdate` 更新单个 Hero
 
-We can **update a hero**. For this we use an HTTP `PATCH` operation.
+我们可以**更新**单个 `hero` 。为此，我们会使用 HTTP 的 `PATCH` 操作。
 
-And in the code, we get a `dict` with all the data sent by the client, **only the data sent by the client**, excluding any values that would be there just for being the default values. To do it we use `exclude_unset=True`. This is the main trick. 🪄
+在代码中，我们会得到一个 `dict` ，其中包含客户端发送的所有数据，**只有客户端发送的数据**，并排除了任何一个仅仅作为默认值存在的值。为此，我们使用 `exclude_unset=True` 。这是最主要的技巧。🪄
 
-Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with the data from `hero_data`.
+然后我们会使用 `hero_db.sqlmodel_update(hero_data)` ，来利用 `hero_data` 的数据更新 `hero_db` 。
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
 
-### Delete a Hero Again
+### （又一次）删除单个 Hero
 
-**Deleting** a hero stays pretty much the same.
+**删除**一个 hero 基本保持不变。
 
-We won't satisfy the desire to refactor everything in this one. 😅
+我们不会满足在这一部分中重构一切的愿望。😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
-### Run the App Again
+### （又一次）运行应用程序
 
-You can run the app again:
+您可以再运行一次应用程序：
 
 <div class="termy">
 
@@ -347,14 +347,14 @@ $ fastapi dev main.py
 
 </div>
 
-If you go to the `/docs` API UI, you will see that it is now updated, and it won't expect to receive the `id` from the client when creating a hero, etc.
+您会在 `/docs` API UI 看到它现在已经更新，并且在进行创建 hero 等操作时，它不会再期望从客户端接收 `id` 数据。
 
 <div class="screenshot">
 <img src="/img/tutorial/sql-databases/image02.png">
 </div>
 
-## Recap
+## 总结
 
-You can use <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> to interact with a SQL database and simplify the code with *data models*  and *table models*.
+您可以使用 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">**SQLModel**</a> 与 SQL 数据库进行交互，并通过*数据模型*和*表模型*简化代码。
 
-You can learn a lot more at the **SQLModel** docs, there's a longer mini <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">tutorial on using SQLModel with **FastAPI**</a>. 🚀
+您可以在 SQLModel 的文档中学习到更多内容，其中有一个更详细的关于<a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">如何将 SQLModel 与 FastAPI 一起使用的教程</a>。🚀
