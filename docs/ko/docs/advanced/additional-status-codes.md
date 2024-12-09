@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning | "경고"
+/// warning | 경고
 
 위의 예제처럼 `Response`를 직접 반환하면 바로 반환됩니다.
 
@@ -26,7 +26,7 @@
 
 ///
 
-/// note | "기술적 세부 정보"
+/// note | 기술적 세부 정보
 
 `from starlette.responses import JSONResponse`를 사용할 수도 있습니다.
 
