@@ -137,6 +137,7 @@ def create_cloned_field(
     new_field.alias = field.alias  # type: ignore[misc]
     new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
     new_field.default = field.default  # type: ignore[misc]
+    new_field.default_factory = field.default_factory  # type: ignore[attr-defined]
     new_field.required = field.required  # type: ignore[misc]
     new_field.model_config = field.model_config  # type: ignore[attr-defined]
     new_field.field_info = field.field_info
