@@ -4,7 +4,7 @@
 
 这里，我们来看一个使用 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel</a> 的示例。
 
-**SQLModel** 建立在 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> 和 Pydantic 之上。它由 **FastAPI** 的同一作者制作，旨在完美匹配需要使用 **SQL 数据库**的 FastAPI 应用程序。
+**SQLModel** 是基于 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a> 和 Pydantic 构建的。它由 **FastAPI** 的同一作者制作，旨在完美匹配需要使用 **SQL 数据库**的 FastAPI 应用程序。
 
 /// tip
 
@@ -30,11 +30,11 @@
 
 ///
 
-这是一个非常简单和简短的教程。如果你想了解一般的数据库、SQL 或更高级的功能，请查看 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel 文档</a>。
+这是一个非常简单和简短的教程。如果您想了解一般的数据库、SQL 或更高级的功能，请查看 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel 文档</a>。
 
 ## 安装 `SQLModel`
 
-首先，确保您创建、激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装 `sqlmodel` :
+首先，确保您创建并激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装了 `sqlmodel` :
 
 <div class="termy">
 
@@ -65,17 +65,17 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)` 会告诉 SQLModel `id` 是 SQL 数据库中的**主键**（您可以在 SQLModel 文档中了解更多关于 SQL 主键的信息）。
 
-    把类型设置为 `int | None` ，SQLModel 就能知道该列在 SQL 数据库中应该是 `INTEGER` ，并且应该是 `NULLABLE` 。
+    把类型设置为 `int | None` ，SQLModel 就能知道该列在 SQL 数据库中应该是 `INTEGER` 类型，并且应该是 `NULLABLE` 。
 
 * `Field(index=True)` 会告诉 SQLModel 应该为此列创建一个 **SQL 索引**，这样在读取按此列过滤的数据时，程序能在数据库中进行更快的查找。
 
     SQLModel 会知道声明为 `str` 的内容将是类型为 `TEXT` （或 `VARCHAR` ，具体取决于数据库）的 SQL 列。
 
-### 创建引擎（Engine）对象
+### 创建引擎（Engine）
 
-SQLModel 的 `engine` 对象（实际上它是一个 SQLAlchemy `engine` ）是用来与数据库**保持连接**的。
+SQLModel 的引擎 `engine`（实际上它是一个 SQLAlchemy `engine` ）是用来与数据库**保持连接**的。
 
-您只需构建**一个 `engine` 对象**，来让您的所有代码连接到同一个数据库。
+您只需构建**一个 `engine`**，来让您的所有代码连接到同一个数据库。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
 
@@ -131,7 +131,7 @@ SQLModel 将会拥有封装 Alembic 的迁移工具，但目前您可以直接�
 
 ### 读取 Hero 类
 
-我们可以使用 `select()` 从数据库中**读取** `Hero` 类。我们可以利用 `limit` 和 `offset` 来对结果进行分页。
+我们可以使用 `select()` 从数据库中**读取** `Hero` 类，并利用 `limit` 和 `offset` 来对结果进行分页。
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 
@@ -161,7 +161,7 @@ $ fastapi dev main.py
 
 </div>
 
-然后在 `/docs` UI 中，你会看到 **FastAPI** 会用这些**模型**来**记录** API，并且还会用它们来**序列化**和**验证**数据。
+然后在 `/docs` UI 中，您能够看到 **FastAPI** 会用这些**模型**来**记录** API，并且还会用它们来**序列化**和**验证**数据。
 
 <div class="screenshot">
 <img src="/img/tutorial/sql-databases/image01.png">
@@ -171,7 +171,7 @@ $ fastapi dev main.py
 
 现在让我们稍微**重构**一下这个应用，以提高**安全性**和**多功能性**。
 
-如果你查看之前的应用程序，你可以在 UI 界面中看到，到目前为止，由客户端决定要创建的 `Hero` 的 `id` 值。😱
+如果您查看之前的应用程序，您可以在 UI 界面中看到，到目前为止，由客户端决定要创建的 `Hero` 的 `id` 值。😱
 
 我们不应该允许这样做，因为他们可能会覆盖我们在数据库中已经分配的 `id` 。决定 `id` 的行为应该由**后端**或**数据库**来完成，**而非客户端**。
 
@@ -179,7 +179,7 @@ $ fastapi dev main.py
 
 我们将通过添加一些**额外的模型**来解决这些问题，而 SQLModel 将在这里大放异彩。✨
 
-### Create Multiple Models
+### 创建多个模型
 
 在 **SQLModel** 中，任何含有 `table=True` 属性的模型类都是一个**表模型**。
 
@@ -189,7 +189,7 @@ $ fastapi dev main.py
 
 #### `HeroBase` - 基类
 
-我们从一个 `HeroBase` 模型开始，该模型具有所有模型`共享的字段`：
+我们从一个 `HeroBase` 模型开始，该模型具有所有模型**共享的字段**：
 
 * `name`
 * `age`
@@ -218,7 +218,7 @@ $ fastapi dev main.py
 
 它包含与 `HeroBase` 相同的字段，因此不会包括 `secret_name` 。
 
-最后，我们英雄（hero）的身份得到了保护！ 🥷
+终于，我们英雄（hero）的身份得到了保护！ 🥷
 
 它还重新声明了 `id: int` 。这样我们便与 API 客户端建立了一种**约定**，使他们始终可以期待 `id` 存在并且是一个整数 `int`（永远不会是 `None` ）。
 
@@ -249,7 +249,7 @@ $ fastapi dev main.py
 
 /// tip
 
-这是您应该处理**密码**的方式：接收密码，但不要通过 API 返回它们。
+这应当是**密码**被处理的方式：接收密码，但不要通过 API 返回它们。
 
 在存储密码之前，您还应该对密码的值进行**哈希**处理，**绝不要以明文形式存储它们**。
 
@@ -267,7 +267,7 @@ $ fastapi dev main.py
 
 在之前的应用程序中，我们没有办法**更新 hero**，但现在有了**多个模型**，我们便能做到这一点了。🎉
 
-`HeroUpdate` *数据模型*有些特殊，它包含创建新 hero 所需的**所有相同字段**，但所有字段都是**可选的**（它们都有默认值）。这样，当你更新一个 hero 时，你可以只发送你想要更新的字段。
+`HeroUpdate` *数据模型*有些特殊，它包含创建新 hero 所需的**所有相同字段**，但所有字段都是**可选的**（它们都有默认值）。这样，当您更新一个 hero 时，您可以只发送您想要更新的字段。
 
 因为所有**字段实际上**都发生了**变化**（类型现在包括 `None` ，并且它们现在有一个默认值 `None` ），我们需要**重新声明**它们。
 
@@ -297,7 +297,7 @@ $ fastapi dev main.py
 
 现在我们使用 `response_model=HeroPublic` 来代替**返回类型注释** `-> HeroPublic` ，因为我们返回的值实际上**并不是** `HeroPublic` 类型。
 
-如果我们声明了 `-> HeroPublic` ，你的编辑器和代码检查工具会抱怨（但也确实理所应当）你返回了一个 `Hero` 而不是一个 `HeroPublic` 。
+如果我们声明了 `-> HeroPublic` ，您的编辑器和代码检查工具会抱怨（但也确实理所应当）您返回了一个 `Hero` 而不是一个 `HeroPublic` 。
 
 通过 `response_model` 的声明，我们让 **FastAPI** 按照它自己的方式处理，而不会干扰类型注解以及编辑器和其他工具提供的帮助。
 
