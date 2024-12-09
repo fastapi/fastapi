@@ -11,6 +11,10 @@ hide:
 
 * 📝 Update docs for `fastapi-cli`. PR [#13031](https://github.com/fastapi/fastapi/pull/13031) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/tutorial/first-steps.md`. PR [#12467](https://github.com/fastapi/fastapi/pull/12467) by [@codingjenny](https://github.com/codingjenny).
+
 ### Internal
 
 * 🔧 Update team members. PR [#13033](https://github.com/fastapi/fastapi/pull/13033) by [@tiangolo](https://github.com/tiangolo).
