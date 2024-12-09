@@ -167,43 +167,43 @@ $ fastapi dev main.py
 <img src="/img/tutorial/sql-databases/image01.png">
 </div>
 
-## Update the App with Multiple Models
+## 更新应用程序以支持多个模型
 
-Now let's **refactor** this app a bit to increase **security** and **versatility**.
+现在让我们稍微**重构**一下这个应用，以提高**安全性**和**多功能性**。
 
-If you check the previous app, in the UI you can see that, up to now, it lets the client decide the `id` of the `Hero` to create. 😱
+如果你查看之前的应用程序，你可以在 UI 界面中看到，到目前为止，由客户端决定要创建的 `Hero` 的 `id` 值。😱
 
-We shouldn't let that happen, they could overwrite an `id` we already have assigned in the DB. Deciding the `id` should be done by the **backend** or the **database**, **not by the client**.
+我们不应该允许这样做，因为他们可能会覆盖我们在数据库中已经分配的 `id` 。决定 `id` 的行为应该由**后端**或**数据库**来完成，**而非客户端**。
 
-Additionally, we create a `secret_name` for the hero, but so far, we are returning it everywhere, that's not very **secret**... 😅
+此外，我们为 hero 创建了一个 `secret_name` ，但到目前为止，我们在各处都返回了它，这就不太**秘密**了……😅
 
-We'll fix these things by adding a few **extra models**. Here's where SQLModel will shine. ✨
+我们将通过添加一些**额外的模型**来解决这些问题，而 SQLModel 将在这里大放异彩。✨
 
 ### Create Multiple Models
 
-In **SQLModel**, any model class that has `table=True` is a **table model**.
+在 **SQLModel** 中，任何含有 `table=True` 属性的模型类都是一个**表模型**。
 
-And any model class that doesn't have `table=True` is a **data model**, these ones are actually just Pydantic models (with a couple of small extra features). 🤓
+任何不含有 `table=True` 属性的模型类都是**数据模型**，这些实际上只是 Pydantic 模型（附带一些小的额外功能）。🤓
 
-With SQLModel, we can use **inheritance** to **avoid duplicating** all the fields in all the cases.
+有了 SQLModel，我们就可以利用**继承**来在所有情况下**避免重复**所有字段。
 
-#### `HeroBase` - the base class
+#### `HeroBase` - 基类
 
-Let's start with a `HeroBase` model that has all the **fields that are shared** by all the models:
+我们从一个 `HeroBase` 模型开始，该模型具有所有模型`共享的字段`：
 
 * `name`
 * `age`
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
 
-#### `Hero` - the *table model*
+#### `Hero` - *表模型*
 
-Then let's create `Hero`, the actual *table model*, with the **extra fields** that are not always in the other models:
+接下来，我们创建 `Hero` ，实际的*表模型*，并添加那些不总是在其他模型中的**额外字段**：
 
 * `id`
 * `secret_name`
 
-Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
+因为 `Hero` 继承自 HeroBase ，所以它**也**包含了在 `HeroBase` 中声明过的**字段**。因此 `Hero` 的所有字段为：
 
 * `id`
 * `name`
@@ -212,25 +212,25 @@ Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
 
-#### `HeroPublic` - the public *data model*
+#### `HeroPublic` - 公共*数据模型*
 
-Next, we create a `HeroPublic` model, this is the one that will be **returned** to the clients of the API.
+接下来，我们创建一个 `HeroPublic` 模型，这是将**返回**给 API 客户端的模型。
 
-It has the same fields as `HeroBase`, so it won't include `secret_name`.
+它包含与 `HeroBase` 相同的字段，因此不会包括 `secret_name` 。
 
-Finally, the identity of our heroes is protected! 🥷
+最后，我们英雄（hero）的身份得到了保护！ 🥷
 
-It also re-declares `id: int`. By doing this, we are making a **contract** with the API clients, so that they can always expect the `id` to be there and to be an `int` (it will never be `None`).
+它还重新声明了 `id: int` 。这样我们便与 API 客户端建立了一种**约定**，使他们始终可以期待 `id` 存在并且是一个整数 `int`（永远不会是 `None` ）。
 
 /// tip
 
-Having the return model ensure that a value is always available and always `int` (not `None`) is very useful for the API clients, they can write much simpler code having this certainty.
+确保返回模型始终提供一个值并且始终是 `int` （而不是 `None` ）对 API 客户端非常有用，他们可以在这种确定性下编写更简单的代码。
 
-Also, **automatically generated clients** will have simpler interfaces, so that the developers communicating with your API can have a much better time working with your API. 😎
+此外，**自动生成的客户端**将拥有更简洁的接口，这样与您的 API 交互的开发者就能更轻松地使用您的 API。😎
 
 ///
 
-All the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared as `int` (not `None`):
+`HeroPublic` 中的所有字段都与 `HeroBase` 中的相同，其中 `id` 声明为 `int` （不是 `None` ）：
 
 * `id`
 * `name`
