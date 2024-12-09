@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/request-forms.md`. PR [#13003](https://github.com/fastapi/fastapi/pull/13003) by [@hard-coders](https://github.com/hard-coders).
 * 🌐 Add Korean translation for `docs/ko/docs/resources/index.md`. PR [#13004](https://github.com/fastapi/fastapi/pull/13004) by [@hard-coders](https://github.com/hard-coders).
 * 🌐 Add Korean translation for `docs/ko/docs/how-to/configure-swagger-ui.md`. PR [#12898](https://github.com/fastapi/fastapi/pull/12898) by [@nahyunkeem](https://github.com/nahyunkeem).
 * 🌐 Add Korean translation to `docs/ko/docs/advanced/additional-status-codes.md`. PR [#12715](https://github.com/fastapi/fastapi/pull/12715) by [@nahyunkeem](https://github.com/nahyunkeem).
