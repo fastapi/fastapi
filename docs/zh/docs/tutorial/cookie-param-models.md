@@ -1,6 +1,6 @@
 # Cookie 参数模型
 
-如果你有一组相关的 **cookies**，你可以创建一个 **Pydantic 模型**来声明它们。🍪
+如果您有一组相关的 **cookies**，您可以创建一个 **Pydantic 模型**来声明它们。🍪
 
 这将允许您在**多个地方**能够**重用模型**，并且可以一次性声明所有参数的验证和元数据。😎
 
@@ -54,7 +54,7 @@
 
 如果客户尝试发送一些**额外的 cookies**，他们将收到**错误**响应。
 
-可怜的 cookie 通知条，费尽心思为了获得你的同意，却被<abbr title="这又是一个笑话，别管我了，给你的 cookie 配上点咖啡吧。☕">API 拒绝了</abbr>。🍪
+可怜的 cookie 通知条，费尽心思为了获得您的同意，却被<abbr title="这又是一个笑话，别管我了，给您的 cookie 配上点咖啡吧。☕">API 拒绝了</abbr>。🍪
 
 例如，如果客户端尝试发送一个值为 `good-list-please` 的 `santa_tracker` cookie，客户端将收到一个**错误**响应，告知他们 `santa_tracker` <abbr title="圣诞老人（Santa）不赞成没有 cookie。🎅 好吧，不会再开 cookie 的玩笑了。">cookie 是不允许的</abbr>：
 
