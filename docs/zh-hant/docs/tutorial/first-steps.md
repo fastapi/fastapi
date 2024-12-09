@@ -159,7 +159,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 `FastAPI` 是一個 Python 類別，提供所有 API 的全部功能。
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 `FastAPI` 是一個直接繼承自 `Starlette` 的類別。
 
@@ -245,7 +245,7 @@ https://example.com/items/foo
 * 路徑 `/`
 * 使用 <abbr title="HTTP GET 方法"><code>get</code>操作</abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 Python 中的 `@something` 語法被稱為「裝飾器」。
 
