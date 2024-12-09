@@ -47,7 +47,7 @@ FastAPI 0.108.0 이전과 Starlette 0.29.0에서는 `name`이 첫 번째 매개�
 
 ///
 
-/// 노트 | "기술 세부 사항"
+/// note | "기술 세부 사항"
 `from starlette.templating import Jinja2Templates`를 사용할 수도 있습니다.
 
 **FastAPI**는 개발자를 위한 편리함으로 `fastapi.templating` 대신 `starlette.templating`을 제공합니다. 하지만 대부분의 사용 가능한 응답은 Starlette에서 직접 옵니다. `Request` 및 `StaticFiles`도 마찬가지입니다.
