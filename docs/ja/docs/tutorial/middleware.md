@@ -31,9 +31,7 @@
     * 次に、対応する*path operation*によって生成された `response` を返します。
 * その後、`response` を返す前にさらに `response` を変更することもできます。
 
-```Python hl_lines="8-9  11  14"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | 豆知識
 
@@ -59,9 +57,7 @@
 
 例えば、リクエストの処理とレスポンスの生成にかかった秒数を含むカスタムヘッダー `X-Process-Time` を追加できます:
 
-```Python hl_lines="10  12-13"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## その他のミドルウェア
 

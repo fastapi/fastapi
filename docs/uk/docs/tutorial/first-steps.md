@@ -2,9 +2,7 @@
 
 Найпростіший файл FastAPI може виглядати так:
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Скопіюйте це до файлу `main.py`.
 
@@ -157,9 +155,7 @@ OpenAPI описує схему для вашого API. І ця схема вк
 
 ### Крок 1: імпортуємо `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` це клас у Python, який надає всю функціональність для API.
 
@@ -173,9 +169,7 @@ OpenAPI описує схему для вашого API. І ця схема вк
 
 ### Крок 2: створюємо екземпляр `FastAPI`
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 Змінна `app` є екземпляром класу `FastAPI`.
 
 Це буде головна точка для створення і взаємодії з API.
@@ -242,9 +236,7 @@ https://example.com/items/foo
 
 #### Визначте декоратор операції шляху (path operation decorator)
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 Декоратор `@app.get("/")` вказує **FastAPI**, що функція нижче, відповідає за обробку запитів, які надходять до неї:
 
 * шлях `/`
@@ -297,9 +289,7 @@ https://example.com/items/foo
 * **операція**: це `get`.
 * **функція**: це функція, яка знаходиться нижче "декоратора" (нижче `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Це звичайна функція Python.
 
@@ -311,9 +301,7 @@ FastAPI викликатиме її щоразу, коли отримає зап
 
 Ви також можете визначити її як звичайну функцію замість `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Примітка
 
@@ -323,9 +311,7 @@ FastAPI викликатиме її щоразу, коли отримає зап
 
 ### Крок 5: поверніть результат
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Ви можете повернути `dict`, `list`, а також окремі значення `str`, `int`, ітд.
 
