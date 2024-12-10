@@ -117,7 +117,7 @@ Você também obterá preenchimento automático para o corpo a ser enviado:
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-/// Dica
+/// Tip | Dica
 
 Observe o preenchimento automático para `name` e `price`, que foi definido no aplicativo FastAPI, no modelo `Item`.
 
