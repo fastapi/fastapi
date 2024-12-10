@@ -60,7 +60,7 @@ jobs:
       with:
         limit-access-to-actor: true
     - name: Install uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v4
       with:
         version: "0.4.15"
         enable-cache: true
