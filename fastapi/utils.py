@@ -20,6 +20,7 @@ from fastapi._compat import (
     BaseConfig,
     ModelField,
     PydanticSchemaGenerationError,
+    PydanticUndefinedAnnotation,
     Undefined,
     UndefinedType,
     Validator,
@@ -94,7 +95,7 @@ def create_model_field(
         )
     try:
         return ModelField(**kwargs)  # type: ignore[arg-type]
-    except (RuntimeError, PydanticSchemaGenerationError):
+    except (RuntimeError, PydanticSchemaGenerationError, PydanticUndefinedAnnotation):
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
             f"check that {type_} is a valid Pydantic field type. "
