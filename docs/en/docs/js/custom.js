@@ -1,23 +1,35 @@
 const div = document.querySelector('.github-topic-projects')
 
 async function getDataBatch(page) {
-    const response = await fetch(`https://api.github.com/search/repositories?q=topic:fastapi&per_page=100&page=${page}`, { headers: { Accept: 'application/vnd.github.mercy-preview+json' } })
-    const data = await response.json()
-    return data
+  const response = await fetch(
+    `https://api.github.com/search/repositories?q=topic:fastapi&per_page=100&page=${page}`,
+    { headers: { Accept: "application/vnd.github.mercy-preview+json" } }
+  );
+  if (!response.ok) {
+    throw Error(`Request failed with status ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
 }
 
 async function getData() {
-    let page = 1
-    let data = []
-    let dataBatch = await getDataBatch(page)
-    data = data.concat(dataBatch.items)
-    const totalCount = dataBatch.total_count
-    while (data.length < totalCount) {
-        page += 1
-        dataBatch = await getDataBatch(page)
-        data = data.concat(dataBatch.items)
+  let page = 1;
+  const pageThreshold = 4;
+  let data = [];
+  let dataBatch = await getDataBatch(page);
+  data = data.concat(dataBatch.items);
+  const totalCount = dataBatch.total_count;
+  while (data.length < totalCount && page < pageThreshold) {
+    page += 1;
+    try {
+      dataBatch = await getDataBatch(page);
+      data = data.concat(dataBatch.items);
+    } catch (error) {
+      console.error("An error occurred:", error.message);
+      break;
     }
-    return data
+  }
+  return data;
 }
 
 function setupTermynal() {
