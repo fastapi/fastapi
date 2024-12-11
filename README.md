@@ -496,3 +496,34 @@ Additional optional FastAPI dependencies:
 ## License
 
 This project is licensed under the terms of the MIT license.
+
+## Contribution Guidelines
+
+We welcome contributions to FastAPI! To help us maintain a smooth workflow, please review the following guidelines:
+
+- **Bug Reports and Feature Requests**: If you find a bug or have an idea for a new feature, please open an issue first to discuss it.
+- **Pull Requests**: Make sure your code follows the existing style of the project. Create a new branch for each feature or bug fix, and make your PR against the `main` branch.
+- **Commit Messages**: Use clear, concise commit messages that summarize the purpose of the changes.
+- **Code Quality**: Please ensure that all new code includes relevant tests and passes existing tests before submitting.
+- **Documentation**: If your contribution affects the project’s functionality, remember to update the documentation.
+
+Thank you for helping to make FastAPI even better! For more details, please see the [contribution guide](link-to-contribution-guide).
+
+## Contact Information
+
+For any questions, suggestions, or general inquiries, please feel free to reach out to us:
+
+- **Project Maintainer**: Sebastián Ramírez - [tiangolo@gmail.com](mailto:tiangolo@gmail.com)
+- **GitHub Issues**: Use the [issue tracker](https://github.com/fastapi/fastapi/issues) for bug reports and feature requests.
+
+We encourage you to join our FastAPI community and participate in discussions!
+
+## Acknowledgments
+
+We would like to thank all contributors, users, and supporters of FastAPI. Special thanks go to:
+
+- **Starlette** and **Pydantic** teams, whose libraries serve as the foundation for FastAPI's high performance and data validation.
+- Our community of developers and users who provide invaluable feedback, ideas, and support.
+- Sponsors and open-source contributors for their commitment and dedication.
+
+This project would not be possible without your hard work and enthusiasm. Thank you!
