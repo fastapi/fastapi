@@ -8,7 +8,7 @@
 
 /// tip
 
-您可以使用任何其他您想要的 SQL 或 NoSQL 数据库（在某些情况下称为 <abbr title="对象关系映射器（Object Relational Mapper，ORM），一种更加高大上的说法，用来指代一种库，其中某些类对应于 SQL 数据表，这些类的实例则对应于表中的行。">“ORM”</abbr>），FastAPI 不会强迫您使用任何东西。😎
+您可以使用任何其他您想要的 SQL 或 NoSQL 数据库（在某些情况下称为 <abbr title="对象关系映射器（Object Relational Mapper，ORM），一个术语，用来指代一种库，其中某些类对应于 SQL 数据表，这些类的实例则对应于表中的行。">“ORM”</abbr>），FastAPI 不会强迫您使用任何东西。😎
 
 ///
 
