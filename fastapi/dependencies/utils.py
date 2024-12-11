@@ -212,11 +212,14 @@ def get_flat_dependant(
 def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
-    first_field = fields[0]
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
-        return fields_to_extract
-    return fields
+    result = []
+    for field in fields:
+        if lenient_issubclass(field.type_, BaseModel):
+            fields_to_extract = get_cached_model_fields(field.type_)
+            result.extend(fields_to_extract)
+        else:
+            result.append(field)
+    return result
 
 
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
@@ -747,12 +750,12 @@ def request_params_to_args(
     if not fields:
         return values, errors
 
-    first_field = fields[0]
-    fields_to_extract = fields
-    single_not_embedded_field = False
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
-        single_not_embedded_field = True
+    fields_to_extract = []
+    for field in fields:
+        if lenient_issubclass(field.type_, BaseModel):
+            fields_to_extract.extend(get_cached_model_fields(field.type_))
+        else:
+            fields_to_extract.append(field)
 
     params_to_process: Dict[str, Any] = {}
 
@@ -780,24 +783,18 @@ def request_params_to_args(
         if key not in processed_keys:
             params_to_process[key] = value
 
-    if single_not_embedded_field:
-        field_info = first_field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
-        loc: Tuple[str, ...] = (field_info.in_.value,)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
-        )
-        return {first_field.name: v_}, errors_
-
     for field in fields:
-        value = _get_multidict_value(field, received_params)
         field_info = field.field_info
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
-        loc = (field_info.in_.value, field.alias)
+
+        if lenient_issubclass(field.type_, BaseModel):
+            value = params_to_process
+            loc: tuple[str, ...] = (field_info.in_.value,)
+        else:
+            value = _get_multidict_value(field, received_params)
+            loc = (field_info.in_.value, field.alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
         )
