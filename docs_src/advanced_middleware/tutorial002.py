@@ -4,7 +4,9 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 app = FastAPI()
 
 app.add_middleware(
-    TrustedHostMiddleware, allowed_hosts=["example.com", "*.example.com"]
+    TrustedHostMiddleware,
+    allowed_hosts=["example.com", "*.example.com"],
+    www_redirect=True,
 )
 
 
