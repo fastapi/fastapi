@@ -118,57 +118,7 @@ Und eine weitere, um zu überprüfen, ob ein empfangenes Passwort mit dem gespei
 
 Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!> ../../docs_src/security/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!> ../../docs_src/security/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7  49  56-57  60-61  70-76"
-{!> ../../docs_src/security/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6  47  54-55  58-59  68-74"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004_an_py310.py hl[7,48,55:56,59:60,69:75] *}
 
 /// note | Hinweis
 
@@ -204,57 +154,7 @@ Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die Response verw
 
 Erstellen Sie eine Hilfsfunktion, um einen neuen Zugriffstoken zu generieren.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="6  12-14  28-30  78-86"
-{!> ../../docs_src/security/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="6  12-14  28-30  78-86"
-{!> ../../docs_src/security/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="6  13-15  29-31 79-87"
-{!> ../../docs_src/security/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="5  11-13  27-29  77-85"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6  12-14  28-30  78-86"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004_an_py310.py hl[6,12:14,28:30,78:86] *}
 
 ## Die Abhängigkeiten aktualisieren
 
@@ -264,57 +164,7 @@ Dekodieren Sie den empfangenen Token, validieren Sie ihn und geben Sie den aktue
 
 Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="89-106"
-{!> ../../docs_src/security/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="89-106"
-{!> ../../docs_src/security/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="90-107"
-{!> ../../docs_src/security/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="88-105"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="89-106"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004_an_py310.py hl[89:106] *}
 
 ## Die *Pfadoperation* `/token` aktualisieren
 
@@ -322,57 +172,7 @@ Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufz
 
 Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="117-132"
-{!> ../../docs_src/security/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="117-132"
-{!> ../../docs_src/security/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="118-133"
-{!> ../../docs_src/security/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="114-129"
-{!> ../../docs_src/security/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="115-130"
-{!> ../../docs_src/security/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial004_an_py310.py hl[117:132] *}
 
 ### Technische Details zum JWT-„Subjekt“ `sub`
 
