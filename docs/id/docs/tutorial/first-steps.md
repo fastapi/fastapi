@@ -273,7 +273,7 @@ Dan operasi unik lainnya:
 * `@app.patch()`
 * `@app.trace()`
 
-/// Tip | Tips
+/// tip | Tips
 
 Jika anda bisa menggunakan operasi apa saja (metode HTTP).
 
@@ -307,7 +307,7 @@ Anda bisa mendefinisikan fungsi ini sebagai fungsi normal daripada `async def`:
 
 {* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
-/// Note | Catatan
+/// note | Catatan
 
 Jika anda tidak tahu perbedaannya, kunjungi [Async: *"Panduan cepat"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
