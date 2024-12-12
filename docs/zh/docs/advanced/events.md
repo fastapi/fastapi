@@ -88,6 +88,10 @@ async with lifespan(app):
 
 `FastAPI()` 的 `lifespan` 参数接受一个**异步上下文管理器**，所以我们可以把我们新定义的上下文管理器 `lifespan` 传给它。
 
+```Python hl_lines="22"
+{!../../docs_src/events/tutorial003.py!}
+```
+
 ## 替代事件（弃用）
 
 /// warning | 警告
