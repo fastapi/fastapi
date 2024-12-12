@@ -75,7 +75,7 @@ Anda akan melihat response JSON sebagai berikut:
 {"message": "Hello World"}
 ```
 
-### Dokumen API interaktif 
+### Dokumen API interaktif
 
 Sekarang kunjungi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -168,7 +168,7 @@ Anda bisa menggunakan semua fungsionalitas <a href="https://www.starlette.io/" c
 
 ///
 
-### Langkah 2: buat "instance" dari `FastAPI` 
+### Langkah 2: buat "instance" dari `FastAPI`
 
 {* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
@@ -250,7 +250,7 @@ Kita akan menyebut mereka juga "**operasi**".
 
 Sintaksis `@sesuatu` di Python disebut "dekorator".
 
-Dekorator ditempatkan di atas fungsi. Seperti sebuah topi cantik (Saya pikir istilah ini berasal dari situ). 
+Dekorator ditempatkan di atas fungsi. Seperti sebuah topi cantik (Saya pikir istilah ini berasal dari situ).
 
 "dekorator" memanggil dan bekerja dengan fungsi yang ada di bawahnya
 
