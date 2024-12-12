@@ -27,9 +27,7 @@ $ pip install jinja2
 * 📣 `Request` 🔢 *➡ 🛠️* 👈 🔜 📨 📄.
 * ⚙️ `templates` 👆 ✍ ✍ &amp; 📨 `TemplateResponse`, 🚶‍♀️ `request` 1️⃣ 🔑-💲 👫 Jinja2️⃣ "🔑".
 
-```Python hl_lines="4  11  15-18"
-{!../../docs_src/templates/tutorial001.py!}
-```
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note
 
@@ -43,7 +41,7 @@ $ pip install jinja2
 
 ///
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.templating import Jinja2Templates`.
 

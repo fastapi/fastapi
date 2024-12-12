@@ -27,11 +27,9 @@ $ pip install jinja2
 * Deklarieren Sie einen `Request`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
 * Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-Dictionary mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-```Python hl_lines="4  11  15-18"
-{!../../docs_src/templates/tutorial001.py!}
-```
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Vor FastAPI 0.108.0 und Starlette 0.29.0 war `name` der erste Parameter.
 
@@ -39,13 +37,13 @@ Außerdem wurde in früheren Versionen das `request`-Objekt als Teil der Schlüs
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationsoberfläche erkennen, dass die Response HTML sein wird.
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 

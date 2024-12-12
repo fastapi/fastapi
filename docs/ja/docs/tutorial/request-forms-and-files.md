@@ -2,7 +2,7 @@
 
 `File`と`Form`を同時に使うことでファイルとフォームフィールドを定義することができます。
 
-/// info | "情報"
+/// info | 情報
 
 アップロードされたファイルやフォームデータを受信するには、まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
@@ -12,23 +12,19 @@
 
 ## `File`と`Form`のインポート
 
-```Python hl_lines="1"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[1] *}
 
 ## `File`と`Form`のパラメータの定義
 
 ファイルやフォームのパラメータは`Body`や`Query`の場合と同じように作成します:
 
-```Python hl_lines="8"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[8] *}
 
 ファイルとフォームフィールドがフォームデータとしてアップロードされ、ファイルとフォームフィールドを受け取ります。
 
 また、いくつかのファイルを`bytes`として、いくつかのファイルを`UploadFile`として宣言することができます。
 
-/// warning | "注意"
+/// warning | 注意
 
 *path operation*で複数の`File`と`Form`パラメータを宣言することができますが、JSONとして受け取ることを期待している`Body`フィールドを宣言することはできません。なぜなら、リクエストのボディは`application/json`の代わりに`multipart/form-data`を使ってエンコードされているからです。
 

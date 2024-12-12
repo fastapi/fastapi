@@ -43,7 +43,7 @@ Django REST framework a été créé par Tom Christie. Le créateur de Starlette
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Avoir une interface de documentation automatique de l'API.
 
@@ -65,7 +65,7 @@ qui est nécessaire, était une caractéristique clé que je voulais conserver.
 
 Compte tenu de la simplicité de Flask, il semblait bien adapté à la création d'API. La prochaine chose à trouver était un "Django REST Framework" pour Flask.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Être un micro-framework. Il est donc facile de combiner les outils et les pièces nécessaires.
 
@@ -107,7 +107,7 @@ def read_url():
 
 Notez les similitudes entre `requests.get(...)` et `@app.get(...)`.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Avoir une API simple et intuitive.
 
@@ -128,7 +128,7 @@ Swagger pour une API permettrait d'utiliser cette interface utilisateur web auto
 
 C'est pourquoi, lorsqu'on parle de la version 2.0, il est courant de dire "Swagger", et pour la version 3+ "OpenAPI".
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Adopter et utiliser une norme ouverte pour les spécifications des API, au lieu d'un schéma personnalisé.
 
@@ -166,7 +166,7 @@ Ces fonctionnalités sont ce pourquoi Marshmallow a été construit. C'est une e
 Mais elle a été créée avant que les type hints n'existent en Python. Ainsi, pour définir chaque <abbr title="la définition de
 la façon dont les données doivent être formées">schéma</abbr>, vous devez utiliser des utilitaires et des classes spécifiques fournies par Marshmallow.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Utilisez du code pour définir des "schémas" qui fournissent automatiquement les types de données et la validation.
 
@@ -189,7 +189,7 @@ Webargs a été créé par les développeurs de Marshmallow.
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Disposer d'une validation automatique des données des requêtes entrantes.
 
@@ -219,7 +219,7 @@ APISpec a été créé par les développeurs de Marshmallow.
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Supporter la norme ouverte pour les API, OpenAPI.
 
@@ -252,7 +252,7 @@ Flask-apispec a été créé par les développeurs de Marshmallow.
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Générer le schéma OpenAPI automatiquement, à partir du même code qui définit la sérialisation et la validation.
 
@@ -273,7 +273,7 @@ Mais comme les données TypeScript ne sont pas préservées après la compilatio
 
 Il ne peut pas très bien gérer les modèles imbriqués. Ainsi, si le corps JSON de la requête est un objet JSON comportant des champs internes qui sont à leur tour des objets JSON imbriqués, il ne peut pas être correctement documenté et validé.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Utiliser les types Python pour bénéficier d'un excellent support de l'éditeur.
 
@@ -285,7 +285,7 @@ Disposer d'un puissant système d'injection de dépendances. Trouver un moyen de
 
 C'était l'un des premiers frameworks Python extrêmement rapides basés sur `asyncio`. Il a été conçu pour être très similaire à Flask.
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 Il utilisait <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> au lieu du système par défaut de Python `asyncio`. C'est ce qui l'a rendu si rapide.
 
@@ -293,7 +293,7 @@ Il a clairement inspiré Uvicorn et Starlette, qui sont actuellement plus rapide
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Trouvez un moyen d'avoir une performance folle.
 
@@ -313,7 +313,7 @@ pas possible de déclarer des paramètres de requête et des corps avec des indi
 
 Ainsi, la validation, la sérialisation et la documentation des données doivent être effectuées dans le code, et non pas automatiquement. Ou bien elles doivent être implémentées comme un framework au-dessus de Falcon, comme Hug. Cette même distinction se retrouve dans d'autres frameworks qui s'inspirent de la conception de Falcon, qui consiste à avoir un objet de requête et un objet de réponse comme paramètres.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Trouver des moyens d'obtenir de bonnes performances.
 
@@ -343,7 +343,7 @@ d'utiliser des décorateurs qui peuvent être placés juste au-dessus de la fonc
 méthode est plus proche de celle de Django que de celle de Flask (et Starlette). Il sépare dans le code des choses
 qui sont relativement fortement couplées.
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Définir des validations supplémentaires pour les types de données utilisant la valeur "par défaut" des attributs du modèle. Ceci améliore le support de l'éditeur, et n'était pas disponible dans Pydantic auparavant.
 
@@ -351,7 +351,7 @@ Cela a en fait inspiré la mise à jour de certaines parties de Pydantic, afin d
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
 
 Hug a été l'un des premiers frameworks à implémenter la déclaration des types de paramètres d'API en utilisant les type hints Python. C'était une excellente idée qui a inspiré d'autres outils à faire de même.
 
@@ -372,7 +372,7 @@ Hug a été créé par Timothy Crosley, le créateur de <a href="https://github.
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Hug a inspiré certaines parties d'APIStar, et était l'un des outils que je trouvais les plus prometteurs, à côté d'APIStar.
 
@@ -419,7 +419,7 @@ APIStar a été créé par Tom Christie. Le même gars qui a créé :
 
 ///
 
-/// check | "A inspiré **FastAPI** à"
+/// check | A inspiré **FastAPI** à
 
 Exister.
 
@@ -444,7 +444,7 @@ Cela le rend extrêmement intuitif.
 Il est comparable à Marshmallow. Bien qu'il soit plus rapide que Marshmallow dans les benchmarks. Et comme il est
 basé sur les mêmes type hints Python, le support de l'éditeur est grand.
 
-/// check | "**FastAPI** l'utilise pour"
+/// check | **FastAPI** l'utilise pour
 
 Gérer toute la validation des données, leur sérialisation et la documentation automatique du modèle (basée sur le schéma JSON).
 
@@ -480,7 +480,7 @@ Mais il ne fournit pas de validation automatique des données, de sérialisation
 
 C'est l'une des principales choses que **FastAPI** ajoute par-dessus, le tout basé sur les type hints Python (en utilisant Pydantic). Cela, plus le système d'injection de dépendances, les utilitaires de sécurité, la génération de schémas OpenAPI, etc.
 
-/// note | "Détails techniques"
+/// note | Détails techniques
 
 ASGI est une nouvelle "norme" développée par les membres de l'équipe principale de Django. Il ne s'agit pas encore d'une "norme Python" (un PEP), bien qu'ils soient en train de le faire.
 
@@ -488,7 +488,7 @@ Néanmoins, il est déjà utilisé comme "standard" par plusieurs outils. Cela a
 
 ///
 
-/// check | "**FastAPI** l'utilise pour"
+/// check | **FastAPI** l'utilise pour
 
 Gérer toutes les parties web de base. Ajouter des fonctionnalités par-dessus.
 
@@ -507,7 +507,7 @@ quelque chose qu'un framework comme Starlette (ou **FastAPI**) fournirait par-de
 
 C'est le serveur recommandé pour Starlette et **FastAPI**.
 
-/// check | "**FastAPI** le recommande comme"
+/// check | **FastAPI** le recommande comme
 
 Le serveur web principal pour exécuter les applications **FastAPI**.
 

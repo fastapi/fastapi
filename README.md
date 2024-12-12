@@ -56,11 +56,11 @@ The key features are:
 <a href="https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral" target="_blank" title="Simplify Full Stack Development with FastAPI & MongoDB"><img src="https://fastapi.tiangolo.com/img/sponsors/mongodb.png"></a>
 <a href="https://zuplo.link/fastapi-gh" target="_blank" title="Zuplo: Scale, Protect, Document, and Monetize your FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/zuplo.png"></a>
 <a href="https://liblab.com?utm_source=fastapi" target="_blank" title="liblab - Generate SDKs from FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/liblab.png"></a>
+<a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Deploy & scale any full-stack web app on Render. Focus on building apps, not infra."><img src="https://fastapi.tiangolo.com/img/sponsors/render.svg"></a>
 <a href="https://github.com/deepset-ai/haystack/" target="_blank" title="Build powerful search from composable, open source building blocks"><img src="https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg"></a>
 <a href="https://databento.com/" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a>
 <a href="https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy.png"></a>
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
-<a href="https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers" target="_blank" title="Take code reviews from hours to minutes"><img src="https://fastapi.tiangolo.com/img/sponsors/codacy.png"></a>
 <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" target="_blank" title="Stainless | Generate best-in-class SDKs"><img src="https://fastapi.tiangolo.com/img/sponsors/stainless.png"></a>
 
 <!-- /sponsors -->
@@ -95,7 +95,7 @@ The key features are:
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -458,7 +458,7 @@ FastAPI depends on Pydantic and Starlette.
 
 ### `standard` Dependencies
 
-When you install FastAPI with `pip install "fastapi[standard]"` it comes the `standard` group of optional dependencies:
+When you install FastAPI with `pip install "fastapi[standard]"` it comes with the `standard` group of optional dependencies:
 
 Used by Pydantic:
 

@@ -32,15 +32,11 @@
 
 📁 `main.py` 🔜 ✔️:
 
-```Python
-{!../../docs_src/async_tests/main.py!}
-```
+{* ../../docs_src/async_tests/main.py *}
 
 📁 `test_main.py` 🔜 ✔️ 💯 `main.py`, ⚫️ 💪 👀 💖 👉 🔜:
 
-```Python
-{!../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py *}
 
 ## 🏃 ⚫️
 
@@ -60,9 +56,7 @@ $ pytest
 
 📑 `@pytest.mark.anyio` 💬 ✳ 👈 👉 💯 🔢 🔜 🤙 🔁:
 
-```Python hl_lines="7"
-{!../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[7] *}
 
 /// tip
 
@@ -72,9 +66,7 @@ $ pytest
 
 ⤴️ 👥 💪 ✍ `AsyncClient` ⏮️ 📱, &amp; 📨 🔁 📨 ⚫️, ⚙️ `await`.
 
-```Python hl_lines="9-12"
-{!../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
 
 👉 🌓:
 

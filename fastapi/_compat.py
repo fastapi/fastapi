@@ -21,13 +21,12 @@ from typing import (
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as P_VERSION
+from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
-# Reassign variable to make it reexported for mypy
-PYDANTIC_VERSION = P_VERSION
-PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
+PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
+PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 
 sequence_annotation_to_type = {
@@ -45,6 +44,8 @@ sequence_annotation_to_type = {
 }
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
+
+Url: Type[Any]
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -71,7 +72,7 @@ if PYDANTIC_V2:
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
 
-    Required = PydanticUndefined
+    RequiredParam = PydanticUndefined
     Undefined = PydanticUndefined
     UndefinedType = PydanticUndefinedType
     evaluate_forwardref = eval_type_lenient
@@ -313,9 +314,10 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         ModelField as ModelField,  # noqa: F401
     )
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        Required as Required,  # noqa: F401
-    )
+
+    # Keeping old "Required" functionality from Pydantic V1, without
+    # shadowing typing.Required.
+    RequiredParam: Any = Ellipsis  # type: ignore[no-redef]
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         Undefined as Undefined,
     )

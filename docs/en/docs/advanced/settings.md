@@ -62,9 +62,7 @@ You can use all the same validation features and tools you use for Pydantic mode
 
 //// tab | Pydantic v2
 
-```Python hl_lines="2  5-8  11"
-{!> ../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 ////
 
@@ -76,9 +74,7 @@ In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead 
 
 ///
 
-```Python hl_lines="2  5-8  11"
-{!> ../../docs_src/settings/tutorial001_pv1.py!}
-```
+{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
 
 ////
 
@@ -96,9 +92,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 
 Then you can use the new `settings` object in your application:
 
-```Python hl_lines="18-20"
-{!../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Run the server
 
@@ -132,15 +126,11 @@ You could put those settings in another module file as you saw in [Bigger Applic
 
 For example, you could have a file `config.py` with:
 
-```Python
-{!../../docs_src/settings/app01/config.py!}
-```
+{* ../../docs_src/settings/app01/config.py *}
 
 And then use it in a file `main.py`:
 
-```Python hl_lines="3  11-13"
-{!../../docs_src/settings/app01/main.py!}
-```
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip
 
@@ -158,9 +148,7 @@ This could be especially useful during testing, as it's very easy to override a 
 
 Coming from the previous example, your `config.py` file could look like:
 
-```Python hl_lines="10"
-{!../../docs_src/settings/app02/config.py!}
-```
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Notice that now we don't create a default instance `settings = Settings()`.
 
@@ -168,35 +156,7 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="5  11-12"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
 
 /// tip
 
@@ -208,43 +168,13 @@ For now you can assume `get_settings()` is a normal function.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="16  18-20"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
 
 ### Settings and testing
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-```Python hl_lines="9-10  13  21"
-{!../../docs_src/settings/app02/test_main.py!}
-```
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 In the dependency override we set a new value for the `admin_email` when creating the new `Settings` object, and then we return that new object.
 
@@ -287,9 +217,7 @@ And then update your `config.py` with:
 
 //// tab | Pydantic v2
 
-```Python hl_lines="9"
-{!> ../../docs_src/settings/app03_an/config.py!}
-```
+{* ../../docs_src/settings/app03_an/config.py hl[9] *}
 
 /// tip
 
@@ -301,9 +229,7 @@ The `model_config` attribute is used just for Pydantic configuration. You can re
 
 //// tab | Pydantic v1
 
-```Python hl_lines="9-10"
-{!> ../../docs_src/settings/app03_an/config_pv1.py!}
-```
+{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
 
 /// tip
 
@@ -344,35 +270,7 @@ we would create that object for each request, and we would be reading the `.env`
 
 But as we are using the `@lru_cache` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1  10"
-{!> ../../docs_src/settings/app03/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
 
 Then for any subsequent call of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 

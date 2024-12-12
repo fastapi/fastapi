@@ -6,9 +6,7 @@
 
 属性をサブタイプとして定義することができます。例えば、Pythonの`list`は以下のように定義できます:
 
-```Python hl_lines="12"
-{!../../docs_src/body_nested_models/tutorial001.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 これにより、各項目の型は宣言されていませんが、`tags`はある項目のリストになります。
 
@@ -20,9 +18,7 @@
 
 まず、Pythonの標準の`typing`モジュールから`List`をインポートします:
 
-```Python hl_lines="1"
-{!../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
 
 ### タイプパラメータを持つ`List`の宣言
 
@@ -43,9 +39,7 @@ my_list: List[str]
 
 そのため、以下の例では`tags`を具体的な「文字列のリスト」にすることができます:
 
-```Python hl_lines="14"
-{!../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[14] *}
 
 ## セット型
 
@@ -55,9 +49,7 @@ my_list: List[str]
 
 そのため、以下のように、`Set`をインポートして`str`の`set`として`tags`を宣言することができます:
 
-```Python hl_lines="1 14"
-{!../../docs_src/body_nested_models/tutorial003.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial003.py hl[1,14] *}
 
 これを使えば、データが重複しているリクエストを受けた場合でも、ユニークな項目のセットに変換されます。
 
@@ -79,17 +71,13 @@ Pydanticモデルの各属性には型があります。
 
 例えば、`Image`モデルを定義することができます:
 
-```Python hl_lines="9 10 11"
-{!../../docs_src/body_nested_models/tutorial004.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial004.py hl[9,10,11] *}
 
 ### サブモデルを型として使用
 
 そして、それを属性の型として使用することができます:
 
-```Python hl_lines="20"
-{!../../docs_src/body_nested_models/tutorial004.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial004.py hl[20] *}
 
 これは **FastAPI** が以下のようなボディを期待することを意味します:
 
@@ -122,9 +110,7 @@ Pydanticモデルの各属性には型があります。
 
 例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`を指定することができます:
 
-```Python hl_lines="4 10"
-{!../../docs_src/body_nested_models/tutorial005.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial005.py hl[4,10] *}
 
 文字列は有効なURLであることが確認され、そのようにJSONスキーマ・OpenAPIで文書化されます。
 
@@ -132,9 +118,7 @@ Pydanticモデルの各属性には型があります。
 
 Pydanticモデルを`list`や`set`などのサブタイプとして使用することもできます:
 
-```Python hl_lines="20"
-{!../../docs_src/body_nested_models/tutorial006.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial006.py hl[20] *}
 
 これは、次のようなJSONボディを期待します（変換、検証、ドキュメントなど）:
 
@@ -162,7 +146,7 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
 }
 ```
 
-/// info | "情報"
+/// info | 情報
 
 `images`キーが画像オブジェクトのリストを持つようになったことに注目してください。
 
@@ -172,11 +156,9 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
 
 深くネストされた任意のモデルを定義することができます:
 
-```Python hl_lines="9 14 20 23 27"
-{!../../docs_src/body_nested_models/tutorial007.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial007.py hl[9,14,20,23,27] *}
 
-/// info | "情報"
+/// info | 情報
 
 `Offer`は`Item`のリストであり、オプションの`Image`のリストを持っていることに注目してください。
 
@@ -192,9 +174,7 @@ images: List[Image]
 
 以下のように:
 
-```Python hl_lines="15"
-{!../../docs_src/body_nested_models/tutorial008.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial008.py hl[15] *}
 
 ## あらゆる場所でのエディタサポート
 
@@ -224,11 +204,9 @@ Pydanticモデルではなく、`dict`を直接使用している場合はこの
 
 この場合、`int`のキーと`float`の値を持つものであれば、どんな`dict`でも受け入れることができます:
 
-```Python hl_lines="15"
-{!../../docs_src/body_nested_models/tutorial009.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial009.py hl[15] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 JSONはキーとして`str`しかサポートしていないことに注意してください。
 

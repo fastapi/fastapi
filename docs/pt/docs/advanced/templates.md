@@ -25,9 +25,7 @@ $ pip install jinja2
 * Declare um parâmetro `Request` no *path operation* que retornará um template.
 * Use o `template` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o request object, e um "context" dict com pares chave-valor a serem usados dentro do template do Jinja2.
 
-```Python hl_lines="4  11  15-18"
-{!../../docs_src/templates/tutorial001.py!}
-```
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note
 
@@ -37,13 +35,13 @@ Além disso, em versões anteriores, o objeto `request` era passado como parte d
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
 
 ///
 
-/// note | "Detalhes Técnicos"
+/// note | Detalhes Técnicos
 
 Você também poderia usar `from starlette.templating import Jinja2Templates`.
 

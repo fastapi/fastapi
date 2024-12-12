@@ -19,13 +19,11 @@ Vamos primeiro usar o código e ver como funciona, e depois voltaremos para ente
 ## Crie um `main.py`
 Copie o exemplo em um arquivo `main.py`:
 
-```Python
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Execute-o
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -57,7 +55,7 @@ Você verá algo deste tipo:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Botão de Autorizar!"
+/// check | Botão de Autorizar!
 
 
 
@@ -71,7 +69,7 @@ E se você clicar, você terá um pequeno formulário de autorização para digi
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "Nota"
+/// note | Nota
 
 
 
@@ -119,7 +117,7 @@ Então, vamos rever de um ponto de vista simplificado:
 
 Neste exemplo, nós vamos usar o **OAuth2** com o fluxo de **Senha**, usando um token **Bearer**. Fazemos isso usando a classe `OAuth2PasswordBearer`.
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -135,11 +133,9 @@ Neste exemplo, nós vamos usar o **OAuth2** com o fluxo de **Senha**, usando um 
 
 Quando nós criamos uma instância da classe `OAuth2PasswordBearer`, nós passamos pelo parâmetro `tokenUrl` Esse parâmetro contém a URL que o client (o frontend rodando no browser do usuário) vai usar para mandar o `username` e `senha` para obter um token.
 
-```Python hl_lines="6"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[6] *}
 
-/// tip | "Dica"
+/// tip | Dica
 
 
 
@@ -155,7 +151,7 @@ Esse parâmetro não cria um endpoint / *path operation*, mas declara que a URL 
 
 Em breve também criaremos o atual path operation.
 
-/// info | "informação"
+/// info | informação
 
 
 
@@ -179,15 +175,13 @@ Então, pode ser usado com `Depends`.
 
 Agora você pode passar aquele `oauth2_scheme` em uma dependência com `Depends`.
 
-```Python hl_lines="10"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[10] *}
 
 Esse dependência vai fornecer uma `str` que é atribuído ao parâmetro `token da *função do path operation*
 
 A **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e na documentação da API automática).
 
-/// info | "Detalhes técnicos"
+/// info | Detalhes técnicos
 
 
 

@@ -7,11 +7,9 @@
 * `StaticFiles` をインポート。
 * `StaticFiles()` インスタンスを生成し、特定のパスに「マウント」。
 
-```Python hl_lines="2  6"
-{!../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.staticfiles import StaticFiles` も使用できます。
 

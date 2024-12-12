@@ -6,59 +6,9 @@ So wie Sie zusätzliche Validation und Metadaten in Parametern der **Pfadoperati
 
 Importieren Sie es zuerst:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
-
-/// warning | "Achtung"
+/// warning | Achtung
 
 Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
 
@@ -68,61 +18,11 @@ Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fas
 
 Dann können Sie `Field` mit Modellattributen deklarieren:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field` funktioniert genauso wie `Query`, `Path` und `Body`, es hat die gleichen Parameter, usw.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Tatsächlich erstellen `Query`, `Path` und andere, die sie kennenlernen werden, Instanzen von Unterklassen einer allgemeinen Klasse `Param`, die ihrerseits eine Unterklasse von Pydantics `FieldInfo`-Klasse ist.
 
@@ -134,7 +34,7 @@ Denken Sie daran, dass `Query`, `Path` und andere von `fastapi` tatsächlich Fun
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass jedes Modellattribut mit einem Typ, Defaultwert und `Field` die gleiche Struktur hat wie ein Parameter einer Pfadoperation-Funktion, nur mit `Field` statt `Path`, `Query`, `Body`.
 
@@ -146,7 +46,7 @@ Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarier
 
 Sie werden später mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema Ihrer Anwendung gelistet. Da diese Schlüssel nicht notwendigerweise Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 

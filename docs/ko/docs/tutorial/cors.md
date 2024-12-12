@@ -46,9 +46,7 @@
 * 특정한 HTTP 메소드(`POST`, `PUT`) 또는 와일드카드 `"*"` 를 사용한 모든 HTTP 메소드.
 * 특정한 HTTP 헤더 또는 와일드카드 `"*"` 를 사용한 모든 HTTP 헤더.
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 `CORSMiddleware` 에서 사용하는 기본 매개변수는 제한적이므로, 브라우저가 교차-도메인 상황에서 특정한 출처, 메소드, 헤더 등을 사용할 수 있도록 하려면 이들을 명시적으로 허용해야 합니다.
 
@@ -78,7 +76,7 @@
 
 <abbr title="교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보를 알고싶다면, <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하기 바랍니다.
 
-/// note | "기술적 세부 사항"
+/// note | 기술적 세부 사항
 
 `from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
 
