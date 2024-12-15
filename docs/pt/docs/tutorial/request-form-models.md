@@ -24,35 +24,7 @@ Isto é suportado desde a versão `0.113.0` do FastAPI. 🤓
 
 Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja receber como **campos de formulários**, e então declarar o parâmetro como um `Form`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9-11  15"
-{!> ../../docs_src/request_form_models/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8-10  14"
-{!> ../../docs_src/request_form_models/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="7-9  13"
-{!> ../../docs_src/request_form_models/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
 
 O **FastAPI** irá **extrair** as informações para **cada campo** dos **dados do formulário** na requisição e dar para você o modelo Pydantic que você definiu.
 
@@ -76,35 +48,7 @@ Isso é suportado deste a versão `0.114.0` do FastAPI. 🤓
 
 Você pode utilizar a configuração de modelo do Pydantic para `proibir` qualquer campo `extra`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/request_form_models/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/request_form_models/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/request_form_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
 
 Caso um cliente tente enviar informações adicionais, ele receberá um retorno de **erro**.
 
