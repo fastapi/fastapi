@@ -15,6 +15,19 @@ hide:
 
 ### Translations
 
+* 🌐 Update Russian translation for `docs/ru/docs/deployment/docker.md`. PR [#13048](https://github.com/fastapi/fastapi/pull/13048) by [@anklav24](https://github.com/anklav24).
+* 🌐 Add Portuguese translation for `docs/pt/docs/advanced/generate-clients.md`. PR [#13030](https://github.com/fastapi/fastapi/pull/13030) by [@vitumenezes](https://github.com/vitumenezes).
+* 🌐 Add Indonesian translation for `docs/id/docs/tutorial/first-steps.md`. PR [#13042](https://github.com/fastapi/fastapi/pull/13042) by [@gerry-sabar](https://github.com/gerry-sabar).
+* 🌐 Add Chinese translation for `docs/zh/docs/tutorial/cookie-param-models.md`. PR [#13038](https://github.com/fastapi/fastapi/pull/13038) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+* 🌐 Add Chinese translation for `docs/zh/docs/tutorial/request-form-models.md`. PR [#13045](https://github.com/fastapi/fastapi/pull/13045) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+* 🌐 Add Russian translation for `docs/ru/docs/virtual-environments.md`. PR [#13026](https://github.com/fastapi/fastapi/pull/13026) by [@alv2017](https://github.com/alv2017).
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/testing.md`. PR [#12968](https://github.com/fastapi/fastapi/pull/12968) by [@jts8257](https://github.com/jts8257).
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/async-test.md`. PR [#12918](https://github.com/fastapi/fastapi/pull/12918) by [@icehongssii](https://github.com/icehongssii).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/security/oauth2-jwt.md`. PR [#10601](https://github.com/fastapi/fastapi/pull/10601) by [@AlertRED](https://github.com/AlertRED).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/security/simple-oauth2.md`. PR [#10599](https://github.com/fastapi/fastapi/pull/10599) by [@AlertRED](https://github.com/AlertRED).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/security/get-current-user.md`. PR [#10594](https://github.com/fastapi/fastapi/pull/10594) by [@AlertRED](https://github.com/AlertRED).
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/features.md`. PR [#12441](https://github.com/fastapi/fastapi/pull/12441) by [@codingjenny](https://github.com/codingjenny).
+* 🌐 Add Traditional Chinese translation for `docs/zh-hant/docs/virtual-environments.md`. PR [#12791](https://github.com/fastapi/fastapi/pull/12791) by [@Vincy1230](https://github.com/Vincy1230).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/templates.md`. PR [#12726](https://github.com/fastapi/fastapi/pull/12726) by [@Heumhub](https://github.com/Heumhub).
 * 🌐 Add Russian translation for `docs/ru/docs/fastapi-cli.md`. PR [#13041](https://github.com/fastapi/fastapi/pull/13041) by [@alv2017](https://github.com/alv2017).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/cookie-param-models.md`. PR [#13000](https://github.com/fastapi/fastapi/pull/13000) by [@hard-coders](https://github.com/hard-coders).
@@ -28,6 +41,14 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: rename CryptAPI to BlockBee. PR [#13078](https://github.com/fastapi/fastapi/pull/13078) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.12.2 to 1.12.3. PR [#13055](https://github.com/fastapi/fastapi/pull/13055) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump types-ujson from 5.7.0.1 to 5.10.0.20240515. PR [#13018](https://github.com/fastapi/fastapi/pull/13018) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump black from 24.3.0 to 24.10.0. PR [#13014](https://github.com/fastapi/fastapi/pull/13014) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump inline-snapshot from 0.13.0 to 0.14.0. PR [#13017](https://github.com/fastapi/fastapi/pull/13017) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump dirty-equals from 0.6.0 to 0.8.0. PR [#13015](https://github.com/fastapi/fastapi/pull/13015) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cloudflare/wrangler-action from 3.12 to 3.13. PR [#12996](https://github.com/fastapi/fastapi/pull/12996) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump astral-sh/setup-uv from 3 to 4. PR [#12982](https://github.com/fastapi/fastapi/pull/12982) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Remove duplicate actions/checkout in `notify-translations.yml`. PR [#12915](https://github.com/fastapi/fastapi/pull/12915) by [@tinyboxvk](https://github.com/tinyboxvk).
 * 🔧 Update team members. PR [#13033](https://github.com/fastapi/fastapi/pull/13033) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update sponsors: remove Codacy. PR [#13032](https://github.com/fastapi/fastapi/pull/13032) by [@tiangolo](https://github.com/tiangolo).
