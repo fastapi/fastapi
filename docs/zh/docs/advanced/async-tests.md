@@ -2,13 +2,13 @@
 
 您已经了解了如何使用 `TestClient` 测试 **FastAPI** 应用程序。但是到目前为止，您只了解了如何编写同步测试，而没有使用 `async` 异步函数。
 
-在测试中能使用异步函数有时会很有用，比如当您需要异步查询数据库的时候。想象一下，您想要测试向 FastAPI 应用程序发送请求，然后验证您的后端是否成功在数据库中写入了正确的数据，与此同时您使用了异步的数据库的库。
+在测试中能够使用异步函数可能会很有用，比如当您需要异步查询数据库的时候。想象一下，您想要测试向 FastAPI 应用程序发送请求，然后验证您的后端是否成功在数据库中写入了正确的数据，与此同时您使用了异步的数据库的库。
 
 让我们看看如何才能实现这一点。
 
 ## pytest.mark.anyio
 
-如果我们想在测试中调用异步函数，我们的测试函数必须是异步的。 AnyIO 为此提供了一个简洁的插件，它允许我们指定一些测试函数要异步调用。
+如果我们想在测试中调用异步函数，那么我们的测试函数必须是异步的。 AnyIO 为此提供了一个简洁的插件，它允许我们指定一些测试函数要异步调用。
 
 ## HTTPX
 
@@ -20,7 +20,7 @@
 
 ## 示例
 
-举个简单的例子，我们可以参考[更大的应用](../tutorial/bigger-applications.md){.internal-link target=_blank}和[测试](../tutorial/testing.md){.internal-link target=_blank}中描述的类似文件结构：
+举个简单的例子，让我们来看一个[更大的应用](../tutorial/bigger-applications.md){.internal-link target=_blank}和[测试](../tutorial/testing.md){.internal-link target=_blank}中描述的类似文件结构：
 
 ```
 .
@@ -54,7 +54,7 @@ $ pytest
 
 ## 详细说明
 
-这个标记 `@pytest.mark.anyio` 会告诉 pytest 该测试函数应该异步调用：
+这个标记 `@pytest.mark.anyio` 会告诉 pytest 该测试函数应该被异步调用：
 
 {* ../../docs_src/async_tests/test_main.py hl[7] *}
 
@@ -78,7 +78,7 @@ response = client.get('/')
 
 /// tip
 
-请注意，我们正在将 async/await 与新的 `AsyncClient` 一起使用 - 请求是异步的。
+请注意，我们正在将 async/await 与新的 `AsyncClient` 一起使用——请求是异步的。
 
 ///
 
