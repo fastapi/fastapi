@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: rename CryptAPI to BlockBee. PR [#13078](https://github.com/fastapi/fastapi/pull/13078) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.2 to 1.12.3. PR [#13055](https://github.com/fastapi/fastapi/pull/13055) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump types-ujson from 5.7.0.1 to 5.10.0.20240515. PR [#13018](https://github.com/fastapi/fastapi/pull/13018) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 24.3.0 to 24.10.0. PR [#13014](https://github.com/fastapi/fastapi/pull/13014) by [@dependabot[bot]](https://github.com/apps/dependabot).
