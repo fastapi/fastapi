@@ -1,7 +1,7 @@
 gold:
-  - url: https://cryptapi.io/
-    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
-    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://blockbee.io?ref=fastapi
+    title: BlockBee Cryptocurrency Payment Gateway
+    img: https://fastapi.tiangolo.com/img/sponsors/blockbee.png
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
@@ -45,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
-  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
-    title: Take code reviews from hours to minutes
-    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
   - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
     title: Stainless | Generate best-in-class SDKs
     img: https://fastapi.tiangolo.com/img/sponsors/stainless.png
