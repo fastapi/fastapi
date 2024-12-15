@@ -6,21 +6,7 @@
 
 ⏮️ 🖼, 👥 🛬 `dict` ⚪️➡️ 👆 🔗 ("☑"):
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 ✋️ ⤴️ 👥 🤚 `dict` 🔢 `commons` *➡ 🛠️ 🔢*.
 
@@ -83,57 +69,15 @@ fluffy = Cat(name="Mr Fluffy")
 
 ⤴️, 👥 💪 🔀 🔗 "☑" `common_parameters` ⚪️➡️ 🔛 🎓 `CommonQueryParams`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="11-15"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="9-13"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 💸 🙋 `__init__` 👩‍🔬 ⚙️ ✍ 👐 🎓:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="10"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...⚫️ ✔️ 🎏 🔢 👆 ⏮️ `common_parameters`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="6"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 📚 🔢 ⚫️❔ **FastAPI** 🔜 ⚙️ "❎" 🔗.
 
@@ -149,21 +93,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 🔜 👆 💪 📣 👆 🔗 ⚙️ 👉 🎓.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** 🤙 `CommonQueryParams` 🎓. 👉 ✍ "👐" 👈 🎓 &amp; 👐 🔜 🚶‍♀️ 🔢 `commons` 👆 🔢.
 
@@ -203,21 +133,7 @@ commons = Depends(CommonQueryParams)
 
 ...:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial003.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial003_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 ✋️ 📣 🆎 💡 👈 🌌 👆 👨‍🎨 🔜 💭 ⚫️❔ 🔜 🚶‍♀️ 🔢 `commons`, &amp; ⤴️ ⚫️ 💪 ℹ 👆 ⏮️ 📟 🛠️, 🆎 ✅, ♒️:
 
@@ -251,21 +167,7 @@ commons: CommonQueryParams = Depends()
 
 🎏 🖼 🔜 ⤴️ 👀 💖:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial004.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial004_py310.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...&amp; **FastAPI** 🔜 💭 ⚫️❔.
 

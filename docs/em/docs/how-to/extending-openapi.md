@@ -46,25 +46,19 @@
 
 🥇, ✍ 🌐 👆 **FastAPI** 🈸 🛎:
 
-```Python hl_lines="1  4  7-9"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### 🏗 🗄 🔗
 
 ⤴️, ⚙️ 🎏 🚙 🔢 🏗 🗄 🔗, 🔘 `custom_openapi()` 🔢:
 
-```Python hl_lines="2  15-20"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:20] *}
 
 ### 🔀 🗄 🔗
 
 🔜 👆 💪 🚮 📄 ↔, ❎ 🛃 `x-logo` `info` "🎚" 🗄 🔗:
 
-```Python hl_lines="21-23"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[21:23] *}
 
 ### 💾 🗄 🔗
 
@@ -74,17 +68,13 @@
 
 ⚫️ 🔜 🏗 🕴 🕐, &amp; ⤴️ 🎏 💾 🔗 🔜 ⚙️ ⏭ 📨.
 
-```Python hl_lines="13-14  24-25"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,24:25] *}
 
 ### 🔐 👩‍🔬
 
 🔜 👆 💪 ❎ `.openapi()` 👩‍🔬 ⏮️ 👆 🆕 🔢.
 
-```Python hl_lines="28"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[28] *}
 
 ### ✅ ⚫️
 
