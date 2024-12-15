@@ -38,9 +38,7 @@ Na produção, você teria uma das opções acima.
 
 Mas é a maneira mais simples de focar no lado do servidor de WebSockets e ter um exemplo funcional:
 
-```Python hl_lines="2  6-38  41-43"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Criando um `websocket`
 

@@ -14,71 +14,7 @@ Isso é suportado desde o FastAPI versão `0.115.0`. 🤓
 
 Declare os **parâmetros de consulta** que você precisa em um **modelo Pydantic**, e então declare o parâmetro como `Query`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-12  16"
-{!> ../../docs_src/query_param_models/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10-14  18"
-{!> ../../docs_src/query_param_models/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="8-12 16"
-{!> ../../docs_src/query_param_models/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
 O **FastAPI** **extrairá** os dados para **cada campo** dos **parâmetros de consulta** presentes na requisição, e fornecerá o modelo Pydantic que você definiu.
 
@@ -97,71 +33,7 @@ Em alguns casos especiais (provavelmente não muito comuns), você queira **rest
 
 Você pode usar a configuração do modelo Pydantic para `forbid` (proibir) qualquer campo `extra`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_param_models/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_param_models/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/query_param_models/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_param_models/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_param_models/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="11"
-{!> ../../docs_src/query_param_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
 Caso um cliente tente enviar alguns dados **extras** nos **parâmetros de consulta**, eles receberão um retorno de **erro**.
 
