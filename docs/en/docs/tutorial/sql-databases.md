@@ -233,7 +233,6 @@ All the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared
 * `id`
 * `name`
 * `age`
-* `secret_name`
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
 
