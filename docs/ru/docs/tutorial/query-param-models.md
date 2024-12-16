@@ -14,71 +14,7 @@
 
 Объявите нужные **query-параметры** в **Pydantic-модели**, а после аннотируйте параметр как `Query`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-12  16"
-{!> ../../docs_src/query_param_models/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10-14  18"
-{!> ../../docs_src/query_param_models/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="8-12 16"
-{!> ../../docs_src/query_param_models/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="9-13  17"
-{!> ../../docs_src/query_param_models/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
 **FastAPI извлечёт** данные соответствующие **каждому полю модели** из **query-параметров** запроса и выдаст вам объявленную Pydantic-модель заполненную ими.
 
@@ -96,71 +32,7 @@
 
 Вы можете сконфигурировать Pydantic-модель так, чтобы запретить (`forbid`) все дополнительные (`extra`) поля.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_param_models/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_param_models/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/query_param_models/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_param_models/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_param_models/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Совет
-
-При возможности используйте версию с `Annotated`.
-
-///
-
-```Python hl_lines="11"
-{!> ../../docs_src/query_param_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
 Если клиент попробует отправить **дополнительные** данные в **query-параметрах**, то в ответ он получит **ошибку**.
 
