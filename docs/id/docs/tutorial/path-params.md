@@ -44,7 +44,7 @@ Sehingga dengan deklarasi tipe data **FastAPI** memberikan request otomatis <abb
 
 ## Validasi Data
 
-Tetapi jika di browser anda akses <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, anda akan melihat pesan kesalahan HTTP:   
+Tetapi jika di browser anda akses <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, anda akan melihat pesan kesalahan HTTP:
 
 ```JSON
 {
@@ -93,7 +93,7 @@ Perhatikan parameter path dideklarasikan sebagai integer.
 
 ## Keuntungan basis-standar, dokumentasi alternatif
 
-Karena skema yang dibuat berasal dari standar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, maka banyak tools lain yang kompatibel. 
+Karena skema yang dibuat berasal dari standar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>, maka banyak tools lain yang kompatibel.
 
 Sehingga **FastAPI** menyediakan dokumentasi alternatif (menggunakan ReDoc), yang bisa diakses di <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
@@ -206,7 +206,7 @@ Klien akan mendapatkan respon JSON seperti berikut:
 }
 ```
 
-## Parameter path berisi path 
+## Parameter path berisi path
 
 Misalkan terdapat *operasi path* dengan path `/files/{file_path}`.
 
@@ -214,7 +214,7 @@ Tetapi anda memerlukan `file_path` itu berisi *path*, seperti like `home/johndoe
 
 Sehingga URL untuk file tersebut akan seperti: `/files/home/johndoe/myfile.txt`.
 
-### Dukungan OpenAPI 
+### Dukungan OpenAPI
 
 OpenAPI tidak bisa mendeklarasikan *parameter path* berisi *path* di dalamnya, karena menyebabkan kondisi yang sulit di*test* dan ddiefinisi
 OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
