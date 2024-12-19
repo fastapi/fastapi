@@ -153,6 +153,24 @@ class ValidationException(Exception):
     def errors(self) -> Sequence[Any]:
         return self._errors
 
+    def __str__(self) -> str:
+        # Adapted from https://github.com/pydantic/pydantic/blob/c326748b/pydantic/v1/error_wrappers.py#L70-L76.
+        def display_errors(errors: Sequence[Any]) -> str:
+            return "\n".join(
+                f'{_display_error_loc(e)}\n  {e["msg"]} (type={e["type"]})'
+                for e in errors
+            )
+
+        def _display_error_loc(error: Any) -> str:
+            return " -> ".join(str(e) for e in error["loc"])
+
+        errors = self.errors()
+        no_errors = len(errors)
+        return (
+            f'{no_errors} validation error{"" if no_errors == 1 else "s"}\n'
+            f'{display_errors(errors)}'
+        )
+
 
 class RequestValidationError(ValidationException):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
@@ -168,9 +186,3 @@ class ResponseValidationError(ValidationException):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
         super().__init__(errors)
         self.body = body
-
-    def __str__(self) -> str:
-        message = f"{len(self._errors)} validation errors:\n"
-        for err in self._errors:
-            message += f"  {err}\n"
-        return message
