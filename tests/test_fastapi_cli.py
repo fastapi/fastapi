@@ -22,7 +22,7 @@ def test_fastapi_cli():
         encoding="utf-8",
     )
     assert result.returncode == 1, result.stdout
-    assert "Using path non_existent_file.py" in result.stdout
+    assert "Path does not exist non_existent_file.py" in result.stdout
 
 
 def test_fastapi_cli_not_installed():

@@ -34,9 +34,7 @@
 
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
-```Python hl_lines="6-7  21-22"
-{!../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
 /// note | 技術詳細
 
@@ -56,9 +54,7 @@
 
 XMLを文字列にし、`Response` に含め、それを返します。
 
-```Python hl_lines="1  18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 備考
 
