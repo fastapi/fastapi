@@ -6,7 +6,7 @@
 
 **SQLModel**은 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>와 Pydantic을 기반으로 구축되었습니다.SQLModel은 **SQL 데이터베이스**를 사용하는 FastAPI 애플리케이션에 완벽히 어울리도록 **FastAPI**의 제작자가 설계한 도구입니다.
 
-/// 팁
+/// tip | 팁
 
 다른 SQL 또는 NoSQL 데이터베이스 라이브러리를 사용할 수도 있습니다 (일부는 <abbr title="객체 관계 매퍼(Object Relational Mapper), SQL 테이블을 나타내는 클래스를 제공하고 테이블의 행을 인스턴스로 표현하는 라이브러리를 지칭하는 용어">"ORM"</abbr>이라고도 불립니다), FastAPI는 특정 라이브러리의 사용을 강요하지 않습니다. 😎
 
@@ -20,11 +20,11 @@ SQLModel은 SQLAlchemy를 기반으로 하므로, SQLAlchemy에서 **지원하�
 * Oracle
 * Microsoft SQL Server 등.
 
-이 예제에서는 SQLite를 사용합니다. **SQLite**는 단일 파일을 사용하고 Python에서 기본적으로 지원하기 때문입니다. 따라서 이 예제를 그대로 복사하여 실행할 수 있습니다.
+이 예제에서는 **SQLite**를 사용합니다. SQLite는 단일 파일을 사용하고 파이썬에서 기본적으로 지원하기 때문입니다. 따라서 이 예제를 그대로 복사하여 실행할 수 있습니다.
 
 나중에 실제 프로덕션 애플리케이션에서는 **PostgreSQL**과 같은 데이터베이스 서버를 사용하는 것이 좋습니다.
 
-/// 팁
+/// tip | 팁
 
 **FastAPI**와 **PostgreSQL**를 포함하여 프론트엔드와 다양한 도구를 제공하는 공식 프로젝트 생성기가 있습니다: <a href="https://github.com/fastapi/full-stack-fastapi-template" class="external-link" target="_blank">https://github.com/fastapi/full-stack-fastapi-template</a>
 
@@ -57,7 +57,7 @@ $ pip install sqlmodel
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
 
-`Hero` 클래스는 Pydantic 모델과 매우 유사합니다 (실제로 내부적으로 *Pydantic model이기도 합니다*).
+`Hero` 클래스는 Pydantic 모델과 매우 유사합니다 (실제로 내부적으로 *Pydantic 모델이기도 합니다*).
 
 몇 가지 차이점이 있습니다:
 
@@ -65,9 +65,9 @@ $ pip install sqlmodel
 
 * `Field(primary_key=True)`는 SQLModel에 `id`가 SQL 데이터베이스의 **기본 키**임을 알려줍니다 (SQL 기본 키에 대한 자세한 내용은 SQLModel 문서를 참고하세요).
 
-    `int | None` 유형으로 설정하면, SQLModel은 해당 열이 SQL 데이터베이스에서 `INTEGER` 유형이며 `NULL` 값을 허용해야 한다는 것을 알 수 있습니다.
+    `int | None` 유형으로 설정하면, SQLModel은 해당 열이 SQL 데이터베이스에서 `INTEGER` 유형이며 `NULLABLE` 값이어야 한다는 것을 알 수 있습니다.
 
-* `Field(index=True)`는 SQLModel에 해당 컬럼에 대해 **SQL 인덱스**를 생성하도록 지시합니다. 이를 통해 데이터베이스에서 이 컬럼으로 필터링된 데이터를 읽을 때 더 빠르게 조회할 수 있습니다.
+* `Field(index=True)`는 SQLModel에 해당 열에 대해 **SQL 인덱스**를 생성하도록 지시합니다. 이를 통해 데이터베이스에서 이 열으로 필터링된 데이터를 읽을 때 더 빠르게 조회할 수 있습니다.
 
     SQLModel은 `str`으로 선언된 항목이 SQL 데이터베이스에서 `TEXT` (또는 데이터베이스에 따라 `VARCHAR`) 유형의 열로 저장된다는 것을 인식합니다.
 
@@ -109,7 +109,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 프로덕션 환경에서는 애플리케이션을 시작하기 전에 실행되는 마이그레이션 스크립트를 사용할 가능성이 높습니다. 🤓
 
-/// 팁
+/// tip | 팁
 
 SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 예정입니다. 하지만 현재 <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>을 직접 사용할 수 있습니다.
 
@@ -203,7 +203,6 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `id`
 * `secret_name`
 
- it **also** has the **fields** declared iso all the fare:
 `Hero`는 `HeroBase`를 상속하므로 `HeroBase`에 선언된 필드도 포함합니다. 따라서 `Hero`는 다음 **필드들도** 가지게 됩니다:
 
 * `id`
@@ -223,9 +222,9 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 또한 `id: int`를 다시 선언합니다. 이를 통해, API 클라이언트와 **계약**을 맺어 `id`가 항상 존재하며 항상 `int` 타입이라는 것을 보장합니다(`None`이 될 수 없습니다).
 
-/// 팁
+/// tip | 팁
 
-반환 모델이 값이 항상 존재하고 항상 `int`(`None`이 아님)를 보장하는 것은 API 클라이언트에게 매우 유용합니다. 이를 통해 API와 통신하는 개발자가 훨씬 더 간단한 코드를 작성할 수 있습니다.
+반환 모델이 값이 항상 존재하고 항상 `int`(`None`이 아님)를 보장하는 것은 API 클라이언트에게 매우 유용합니다. 이를 통해 API와 통신하는 개발자가 훨씬 더 간단한 코드를 작성할 수 있습니다. 
 
 또한 **자동으로 생성된 클라이언트**는 더 단순한 인터페이스를 제공하므로, API와 소통하는 개발자들이 훨씬 수월하게 작업할 수 있습니다. 😎
 
@@ -248,7 +247,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 클라이언트가 **새 hero을 생성**할 때 `secret_name`을 보내고, 이는 데이터베이스에 저장되지만, 해당 비밀 이름은 API를 통해 클라이언트에게 반환되지 않습니다.
 
-/// 팁
+/// tip | 팁
 
 이 방식은 **비밀번호**를 처리하는 방법과 동일합니다. 비밀번호를 받지만, 이를 API에서 반환하지는 않습니다.
 
@@ -274,7 +273,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 엄밀히 말하면 `HeroBase`를 상속할 필요는 없습니다. 모든 필드를 다시 선언하기 때문입니다. 일관성을 위해 상속을 유지하긴 했지만, 필수는 아닙니다. 이는 개인적인 취향의 문제입니다. 🤷
 
-`HeroUpdate의 필드는 다음과 같습니다:
+`HeroUpdate`의 필드는 다음과 같습니다:
 
 * `name`
 * `age`
@@ -294,7 +293,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
 
-/// 팁
+/// tip | 팁
 
 이제 **반환 타입 주석** `-> HeroPublic` 대신 `response_model=HeroPublic`을 사용합니다. 반환하는 값이 실제로 `HeroPublic`이 *아니기* 때문입니다.
 
