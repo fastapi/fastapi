@@ -46,7 +46,7 @@ The key features are:
 
 <!-- sponsors -->
 
-<a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
+<a href="https://blockbee.io?ref=fastapi" target="_blank" title="BlockBee Cryptocurrency Payment Gateway"><img src="https://fastapi.tiangolo.com/img/sponsors/blockbee.png"></a>
 <a href="https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" target="_blank" title="Build, run and scale your apps on a modern, reliable, and secure PaaS."><img src="https://fastapi.tiangolo.com/img/sponsors/platform-sh.png"></a>
 <a href="https://www.porter.run" target="_blank" title="Deploy FastAPI on AWS with a few clicks"><img src="https://fastapi.tiangolo.com/img/sponsors/porter.png"></a>
 <a href="https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor" target="_blank" title="Automate FastAPI documentation generation with Bump.sh"><img src="https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg"></a>
@@ -61,7 +61,6 @@ The key features are:
 <a href="https://databento.com/" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a>
 <a href="https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy.png"></a>
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
-<a href="https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers" target="_blank" title="Take code reviews from hours to minutes"><img src="https://fastapi.tiangolo.com/img/sponsors/codacy.png"></a>
 <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" target="_blank" title="Stainless | Generate best-in-class SDKs"><img src="https://fastapi.tiangolo.com/img/sponsors/stainless.png"></a>
 
 <!-- /sponsors -->
@@ -459,7 +458,7 @@ FastAPI depends on Pydantic and Starlette.
 
 ### `standard` Dependencies
 
-When you install FastAPI with `pip install "fastapi[standard]"` it comes the `standard` group of optional dependencies:
+When you install FastAPI with `pip install "fastapi[standard]"` it comes with the `standard` group of optional dependencies:
 
 Used by Pydantic:
 
