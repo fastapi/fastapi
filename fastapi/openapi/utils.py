@@ -126,8 +126,11 @@ def _get_openapi_operation_parameters(
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
+            param_name = param.alias
+            if param_type == ParamTypes.header and param_name:
+                param_name = param.alias.replace("_", "-")
             parameter = {
-                "name": param.alias,
+                "name": param_name,
                 "in": param_type.value,
                 "required": param.required,
                 "schema": param_schema,
