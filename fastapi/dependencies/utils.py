@@ -713,7 +713,9 @@ def _validate_value_with_model_field(
         return v_, []
 
 
-def _get_value(field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None) -> Any:
+def _get_value(
+    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+) -> Any:
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
@@ -722,7 +724,7 @@ def _get_value(field: ModelField, values: Mapping[str, Any], alias: Union[str, N
 
 
 def _get_multidict_value(
-        field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or field.alias
     value = _get_value(field, values, alias)
