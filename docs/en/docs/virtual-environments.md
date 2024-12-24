@@ -162,14 +162,6 @@ $ source .venv/Scripts/activate
 
 ////
 
-/// tip
-
-Every time you install a **new package** in that environment, **activate** the environment again.
-
-This makes sure that if you use a **terminal (<abbr title="command line interface">CLI</abbr>) program** installed by that package, you use the one from your virtual environment and not any other that could be installed globally, probably with a different version than what you need.
-
-///
-
 ## Check the Virtual Environment is Active
 
 Check that the virtual environment is active (the previous command worked).
