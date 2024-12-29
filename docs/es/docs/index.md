@@ -140,7 +140,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Nota**: Asegúrate de poner `"fastapi[standard]"` entre comillas para asegurar que funcione en todos los terminales.
+**Nota**: Asegúrate de poner `"fastapi[standard]"` entre comillas para asegurar que funcione en todas las terminales.
 
 ## Ejemplo
 
