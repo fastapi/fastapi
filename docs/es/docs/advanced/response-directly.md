@@ -28,7 +28,7 @@ Esto te da mucha flexibilidad. Puedes devolver cualquier tipo de datos, sobrescr
 
 ## Usar el `jsonable_encoder` en una `Response`
 
-Porque **FastAPI** no realiza cambios en una `Response` que devuelves, tienes que asegurarte de que sus contenidos estén listos para ello.
+Como **FastAPI** no realiza cambios en una `Response` que devuelves, tienes que asegurarte de que sus contenidos estén listos para ello.
 
 Por ejemplo, no puedes poner un modelo de Pydantic en un `JSONResponse` sin primero convertirlo a un `dict` con todos los tipos de datos (como `datetime`, `UUID`, etc.) convertidos a tipos compatibles con JSON.
 
