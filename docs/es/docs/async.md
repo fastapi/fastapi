@@ -109,7 +109,7 @@ Vas con tu crush a conseguir comida rápida, te pones en fila mientras el cajero
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Luego es tu turno, haces tu pedido de 2 hamburguesas muy elegantes para tu crush y para ti. 🍔🍔
+Luego es tu turno, haces tu pedido de 2 hamburguesas muy sofisticadas para tu crush y para ti. 🍔🍔
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
@@ -123,7 +123,7 @@ El cajero te da el número de tu turno.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-Mientras esperas, vas con tu crush y eliges una mesa, te sientas y hablas con tu crush por un largo rato (ya que tus hamburguesas son muy elegantes y toman un tiempo en prepararse).
+Mientras esperas, vas con tu crush y eliges una mesa, te sientas y hablas con tu crush por un largo rato (ya que tus hamburguesas son muy sofisticadas y toman un tiempo en prepararse).
 
 Mientras estás sentado en la mesa con tu crush, mientras esperas las hamburguesas, puedes pasar ese tiempo admirando lo increíble, lindo e inteligente que es tu crush ✨😍✨.
 
@@ -175,7 +175,7 @@ Todos antes que tú están esperando a que sus hamburguesas estén listas antes 
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Luego, finalmente es tu turno, haces tu pedido de 2 hamburguesas muy elegantes para tu crush y para ti.
+Luego, finalmente es tu turno, haces tu pedido de 2 hamburguesas muy sofisticadas para tu crush y para ti.
 
 Pagas 💸.
 
