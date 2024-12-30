@@ -6,7 +6,7 @@ Si ya sabes qué son las "variables de entorno" y cómo usarlas, siéntete libre
 
 ///
 
-Una variable de entorno (también conocida como "env var") es una variable que vive **fuera** del código de Python, en el **sistema operativo**, y podría ser leída por tu código de Python (o por otros programas también).
+Una variable de entorno (también conocida como "**env var**") es una variable que vive **fuera** del código de Python, en el **sistema operativo**, y podría ser leída por tu código de Python (o por otros programas también).
 
 Las variables de entorno pueden ser útiles para manejar **configuraciones** de aplicaciones, como parte de la **instalación** de Python, etc.
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Leer variables de entorno en Python
+## Leer Variables de Entorno en Python
 
 También podrías crear variables de entorno **fuera** de Python, en la terminal (o con cualquier otro método), y luego **leerlas en Python**.
 
