@@ -206,7 +206,7 @@ Autoriza la aplicación de la misma manera que antes.
 
 Usando las credenciales:
 
-Usuario: `johndoe`  
+Usuario: `johndoe`
 Contraseña: `secret`
 
 /// check | Revisa
